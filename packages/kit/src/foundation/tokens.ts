@@ -1,4 +1,12 @@
+import { blueDark, grayDark, greenDark, redDark } from "@radix-ui/colors";
+
 export const tokens = {
+	colors: {
+		...grayDark,
+		...blueDark,
+		...redDark,
+		...greenDark,
+	},
 	fontSize: {
 		xs: `0.8rem`,
 		sm: `0.875rem`,
