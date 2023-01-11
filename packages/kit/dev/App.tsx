@@ -1,12 +1,31 @@
 import type { Component } from "solid-js";
-import { Button, theme } from "@codeui/kit";
+import { For } from "solid-js";
+import { Button, ButtonProps, theme } from "@codeui/kit";
 
 const App: Component = () => {
 	return (
 		<div class={theme}>
-			<Button theme={"primary"}>Button</Button>
-			<Button theme={"secondary"}>Button</Button>
-			<Button theme={"tertiary"}>Button</Button>
+			<div style={{ display: "flex", gap: "2rem", padding: "1rem" }}>
+				<For each={["primary", "secondary", "tertiary"] as ButtonProps["theme"][]}>
+					{variant => (
+						<Button size={"md"} theme={variant}>
+							Button
+						</Button>
+					)}
+				</For>
+			</div>
+
+			<div
+				style={{ display: "flex", gap: "2rem", padding: "1rem", "align-items": "center" }}
+			>
+				<For each={["xs", "sm", "md", "lg", "xl"] as ButtonProps["size"][]}>
+					{size => (
+						<Button size={size} theme={"secondary"}>
+							Button
+						</Button>
+					)}
+				</For>
+			</div>
 		</div>
 	);
 };

@@ -9,6 +9,8 @@ export const [buttonTheme, buttonVars] = createTheme({
 	hoverBackground: "",
 	activeBackground: "",
 	color: themeTokens.colors.gray12,
+	borderColor: "",
+	padding: "",
 });
 
 const ButtonSizes = {
@@ -42,12 +44,12 @@ export const button = recipe({
 		buttonTheme,
 		{
 			appearance: "none",
+			fontFamily: "inherit",
 			position: "relative",
 			display: "inline-flex",
 			justifyContent: "center",
 			alignItems: "center",
 			flexShrink: 0,
-			border: "none",
 			outline: "none",
 			whiteSpace: "nowrap",
 			verticalAlign: "middle",
@@ -55,10 +57,23 @@ export const button = recipe({
 			color: buttonVars.color,
 			background: buttonVars.background,
 			borderRadius: themeTokens.radii.md,
-			padding: `0 ${themeTokens.spacing["3"]}`,
+			padding: `0 ${buttonVars.padding}`,
 			fontWeight: themeTokens.fontWeight.medium,
 			animation: `${buttonPopKf} .25s ease-out`,
+			fontSize: buttonVars.fontSize,
+			border: `1px solid ${buttonVars.borderColor}`,
 			transition: "opacity .2s, background-color .2s, transform .2s",
+
+			vars: {
+				[buttonVars.borderColor]: buttonVars.background,
+			},
+
+			":disabled": {
+				vars: {
+					[buttonVars.background]: themeTokens.colors.gray2,
+					[buttonVars.color]: themeTokens.colors.gray8,
+				},
+			},
 
 			selectors: {
 				"&[data-hover]": {
@@ -74,30 +89,40 @@ export const button = recipe({
 	],
 	variants: {
 		size: {
+			[ButtonSizes.xl]: {
+				vars: {
+					[buttonVars.buttonHeight]: "56px",
+					[buttonVars.fontSize]: themeTokens.fontSize.xl,
+					[buttonVars.padding]: themeTokens.spacing["6"],
+				},
+			},
 			[ButtonSizes.lg]: {
 				vars: {
 					[buttonVars.buttonHeight]: "48px",
 					[buttonVars.fontSize]: themeTokens.fontSize.lg,
+					[buttonVars.padding]: themeTokens.spacing["5"],
 				},
 			},
 			[ButtonSizes.md]: {
 				vars: {
-					[buttonVars.buttonHeight]: "42px",
+					[buttonVars.buttonHeight]: "40px",
 					[buttonVars.fontSize]: themeTokens.fontSize.md,
+					[buttonVars.padding]: themeTokens.spacing["5"],
 				},
 			},
 			[ButtonSizes.sm]: {
 				vars: {
 					[buttonVars.buttonHeight]: "36px",
 					[buttonVars.fontSize]: themeTokens.fontSize.sm,
+					[buttonVars.padding]: themeTokens.spacing["4"],
 				},
 			},
 			[ButtonSizes.xs]: {
 				vars: {
 					[buttonVars.buttonHeight]: "30px",
 					[buttonVars.fontSize]: themeTokens.fontSize.xs,
+					[buttonVars.padding]: themeTokens.spacing["2"],
 				},
-				padding: `0 ${themeTokens.spacing["2"]}`,
 			},
 		},
 		theme: {
@@ -119,14 +144,15 @@ export const button = recipe({
 			},
 			[ButtonThemes.secondary]: {
 				vars: {
-					[buttonVars.background]: themeTokens.colors.gray4,
-					[buttonVars.hoverBackground]: themeTokens.colors.gray5,
-					[buttonVars.activeBackground]: themeTokens.colors.gray6,
+					[buttonVars.background]: themeTokens.colors.gray2,
+					[buttonVars.hoverBackground]: themeTokens.colors.gray3,
+					[buttonVars.activeBackground]: themeTokens.colors.gray4,
 					[buttonVars.color]: themeTokens.colors.gray11,
+					[buttonVars.borderColor]: themeTokens.colors.gray5,
 				},
 			},
 		},
-	},
+	} as const,
 	defaultVariants: {
 		size: "md",
 	},
