@@ -11,6 +11,7 @@ export const [buttonTheme, buttonVars] = createTheme({
 	color: themeTokens.colors.gray12,
 	borderColor: "",
 	padding: "",
+	borderRadius: themeTokens.radii.md,
 });
 
 const ButtonSizes = {
@@ -57,7 +58,7 @@ export const button = recipe({
 			height: buttonVars.buttonHeight,
 			color: buttonVars.color,
 			background: buttonVars.background,
-			borderRadius: themeTokens.radii.md,
+			borderRadius: buttonVars.borderRadius,
 			padding: `0 ${buttonVars.padding}`,
 			fontWeight: themeTokens.fontWeight.medium,
 			animation: `${buttonPopKf} .25s ease-out`,
@@ -158,6 +159,13 @@ export const button = recipe({
 					[buttonVars.hoverBackground]: themeTokens.colors.red10,
 					[buttonVars.activeBackground]: themeTokens.colors.red9,
 					[buttonVars.color]: themeTokens.colors.gray12,
+				},
+			},
+		},
+		pill: {
+			true: {
+				vars: {
+					[buttonVars.borderRadius]: themeTokens.radii.full,
 				},
 			},
 		},

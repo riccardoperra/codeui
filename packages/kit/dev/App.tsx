@@ -35,6 +35,23 @@ const App: Component = () => {
 					)}
 				</For>
 			</div>
+
+			<div
+				style={{
+					display: "flex",
+					gap: "2rem",
+					padding: "1rem",
+					"align-items": "center",
+				}}
+			>
+				<For each={["xs", "sm", "md", "lg", "xl"] as ButtonProps["size"][]}>
+					{size => (
+						<Button size={size} theme={"secondary"} pill>
+							Button
+						</Button>
+					)}
+				</For>
+			</div>
 		</div>
 	);
 };

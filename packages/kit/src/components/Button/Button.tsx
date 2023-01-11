@@ -5,7 +5,7 @@ import * as styles from "./Button.css";
 export type ButtonProps = ButtonOptions & styles.ButtonVariants;
 
 export function Button(props: ParentProps<ButtonProps>) {
-	const [local, others] = splitProps(props, ["size", "theme"]);
+	const [local, others] = splitProps(props, ["size", "theme", "pill"]);
 	return (
 		<KButton
 			data-cui="button"
@@ -14,6 +14,7 @@ export function Button(props: ParentProps<ButtonProps>) {
 			class={styles.button({
 				size: local.size,
 				theme: local.theme,
+				pill: local.pill,
 			})}
 			{...others}
 		/>
