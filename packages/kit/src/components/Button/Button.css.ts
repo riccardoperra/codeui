@@ -1,4 +1,4 @@
-import { createTheme, keyframes } from "@vanilla-extract/css";
+import { createTheme, keyframes, style } from "@vanilla-extract/css";
 import { recipe, RecipeVariants } from "@vanilla-extract/recipes";
 import { themeTokens } from "../../foundation/themes.css";
 
@@ -65,6 +65,7 @@ export const button = recipe({
 			fontSize: buttonVars.fontSize,
 			border: `1px solid ${buttonVars.borderColor}`,
 			transition: "opacity .2s, background-color .2s, transform .2s",
+			gap: themeTokens.spacing["2"],
 
 			vars: {
 				[buttonVars.borderColor]: buttonVars.background,
@@ -173,6 +174,12 @@ export const button = recipe({
 	defaultVariants: {
 		size: "md",
 	},
+});
+
+export const buttonIcon = style({
+	display: "inline-flex",
+	alignSelf: "center",
+	flexShrink: 0,
 });
 
 export type ButtonVariants = RecipeVariants<typeof button>;
