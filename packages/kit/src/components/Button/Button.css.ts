@@ -25,6 +25,7 @@ const ButtonThemes = {
 	primary: "primary",
 	secondary: "secondary",
 	tertiary: "tertiary",
+	negative: "negative",
 } as const;
 
 const buttonPopKf = keyframes({
@@ -149,6 +150,14 @@ export const button = recipe({
 					[buttonVars.activeBackground]: themeTokens.colors.gray4,
 					[buttonVars.color]: themeTokens.colors.gray11,
 					[buttonVars.borderColor]: themeTokens.colors.gray5,
+				},
+			},
+			[ButtonThemes.negative]: {
+				vars: {
+					[buttonVars.background]: themeTokens.colors.red9,
+					[buttonVars.hoverBackground]: themeTokens.colors.red10,
+					[buttonVars.activeBackground]: themeTokens.colors.red9,
+					[buttonVars.color]: themeTokens.colors.gray12,
 				},
 			},
 		},

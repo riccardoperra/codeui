@@ -6,7 +6,11 @@ const App: Component = () => {
 	return (
 		<div class={theme}>
 			<div style={{ display: "flex", gap: "2rem", padding: "1rem" }}>
-				<For each={["primary", "secondary", "tertiary"] as ButtonProps["theme"][]}>
+				<For
+					each={
+						["primary", "secondary", "tertiary", "negative"] as ButtonProps["theme"][]
+					}
+				>
 					{variant => (
 						<Button size={"md"} theme={variant}>
 							Button
@@ -16,7 +20,12 @@ const App: Component = () => {
 			</div>
 
 			<div
-				style={{ display: "flex", gap: "2rem", padding: "1rem", "align-items": "center" }}
+				style={{
+					display: "flex",
+					gap: "2rem",
+					padding: "1rem",
+					"align-items": "center",
+				}}
 			>
 				<For each={["xs", "sm", "md", "lg", "xl"] as ButtonProps["size"][]}>
 					{size => (
