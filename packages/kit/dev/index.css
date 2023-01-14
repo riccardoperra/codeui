@@ -22,3 +22,8 @@ html, body {
 		font-family: 'Inter var', sans-serif;
 	}
 }
+
+.title {
+	font-size: 2rem;
+	font-weight: bold;
+}

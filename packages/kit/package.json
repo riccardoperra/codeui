@@ -68,10 +68,13 @@
 	"packageManager": "pnpm@7.5.0",
 	"dependencies": {
 		"@kobalte/core": "^0.2.0",
+		"@kobalte/utils": "^0.2.0",
+		"@motionone/solid": "^10.15.5",
 		"@radix-ui/colors": "^0.1.8",
 		"@vanilla-extract/css": "^1.9.2",
 		"@vanilla-extract/dynamic": "^2.0.3",
 		"@vanilla-extract/recipes": "^0.3.0",
-		"@vanilla-extract/vite-plugin": "^3.7.0"
+		"@vanilla-extract/vite-plugin": "^3.7.0",
+		"motion": "^10.15.5"
 	}
 }
