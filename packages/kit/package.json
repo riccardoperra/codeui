@@ -67,7 +67,7 @@
 	},
 	"packageManager": "pnpm@7.5.0",
 	"dependencies": {
-		"@kobalte/core": "^0.1.0",
+		"@kobalte/core": "^0.2.0",
 		"@radix-ui/colors": "^0.1.8",
 		"@vanilla-extract/css": "^1.9.2",
 		"@vanilla-extract/dynamic": "^2.0.3",

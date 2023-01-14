@@ -1,6 +1,14 @@
 import type { Component } from "solid-js";
 import { For, JSX } from "solid-js";
-import { Button, ButtonProps, IconButton, theme } from "@codeui/kit";
+import {
+	Button,
+	ButtonProps,
+	IconButton,
+	TextField,
+	TextFieldProps,
+	theme,
+} from "@codeui/kit";
+import { TextFieldLabel } from "../src/components/TextField/TextFieldLabel";
 
 function ArrowRightIcon(props: JSX.IntrinsicElements["svg"]) {
 	return (
@@ -61,7 +69,7 @@ function SearchIcon() {
 
 const App: Component = () => {
 	return (
-		<div class={theme}>
+		<div class={theme} style={{ color: "white", padding: "2rem" }}>
 			{/*	Button */}
 			<h1>Button</h1>
 
@@ -77,6 +85,10 @@ const App: Component = () => {
 						</Button>
 					)}
 				</For>
+
+				<Button size={"md"} theme={"primary"} isDisabled>
+					Disabled
+				</Button>
 			</div>
 
 			<div
@@ -192,6 +204,138 @@ const App: Component = () => {
 				<IconButton aria-label="Search" size={"md"} theme={"secondary"}>
 					<SearchIcon />
 				</IconButton>
+			</div>
+
+			{/*	Text Input */}
+			<h1>Text Input</h1>
+
+			<div
+				style={{
+					display: "flex",
+					gap: "2rem",
+					padding: "1rem",
+					"align-items": "center",
+				}}
+			>
+				<For each={["xs", "sm", "md", "lg", "xl"] as TextFieldProps["size"][]}>
+					{size => <TextField value={"Username"} label={"Username"} size={size} />}
+				</For>
+			</div>
+
+			<div
+				style={{
+					display: "flex",
+					gap: "2rem",
+					padding: "1rem",
+					"align-items": "center",
+				}}
+			>
+				<For each={["xs", "sm", "md", "lg", "xl"] as TextFieldProps["size"][]}>
+					{size => (
+						<TextField
+							value={"Username"}
+							theme={"outline"}
+							label={"Username"}
+							size={size}
+						/>
+					)}
+				</For>
+			</div>
+
+			<div
+				style={{
+					display: "flex",
+					gap: "2rem",
+					padding: "1rem",
+					"align-items": "center",
+				}}
+			>
+				<For each={["xs", "sm", "md", "lg", "xl"] as TextFieldProps["size"][]}>
+					{size => (
+						<TextField
+							value={"Username"}
+							theme={"inline"}
+							label={"Username"}
+							size={size}
+						/>
+					)}
+				</For>
+			</div>
+
+			<div
+				style={{
+					display: "flex",
+					gap: "2rem",
+					padding: "1rem",
+					"align-items": "center",
+				}}
+			>
+				<For each={["xs", "sm", "md", "lg", "xl"] as TextFieldProps["size"][]}>
+					{size => (
+						<TextField
+							value={"Username"}
+							description={"Your username is description"}
+							label={<TextFieldLabel>Username</TextFieldLabel>}
+							size={size}
+						/>
+					)}
+				</For>
+			</div>
+
+			<For each={["outline", "filled", "inline"] as TextFieldProps["theme"][]}>
+				{theme => (
+					<div
+						style={{
+							display: "flex",
+							gap: "2rem",
+							padding: "1rem",
+							"align-items": "center",
+						}}
+					>
+						<TextField
+							placeholder={"Enter text..."}
+							theme={theme}
+							label={"Disabled input"}
+							size={"md"}
+							isDisabled
+						/>
+						<TextField
+							placeholder={"Enter text..."}
+							theme={theme}
+							label={"Readonly input"}
+							size={"md"}
+							isReadOnly
+						/>
+						<TextField
+							placeholder={"Enter text..."}
+							theme={theme}
+							label={"Required input"}
+							size={"md"}
+							isRequired
+						/>
+					</div>
+				)}
+			</For>
+
+			<div
+				style={{
+					display: "flex",
+					gap: "2rem",
+					padding: "1rem",
+					"align-items": "center",
+				}}
+			>
+				<For each={["xs", "sm", "md", "lg", "xl"] as TextFieldProps["size"][]}>
+					{size => (
+						<TextField
+							validationState={"invalid"}
+							value={"Username"}
+							label={"Username"}
+							errorMessage={"Username is not valid"}
+							size={size}
+						/>
+					)}
+				</For>
 			</div>
 		</div>
 	);

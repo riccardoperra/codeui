@@ -43,7 +43,7 @@ importers:
   packages/kit:
     specifiers:
       '@codeimage/vanilla-extract': workspace:^0.2.0
-      '@kobalte/core': ^0.1.0
+      '@kobalte/core': ^0.2.0
       '@radix-ui/colors': ^0.1.8
       '@testing-library/jest-dom': ^5.16.4
       '@vanilla-extract/css': ^1.9.2
@@ -60,7 +60,7 @@ importers:
       typescript: ^4.7.4
       vite-tsconfig-paths: ^4.0.3
     dependencies:
-      '@kobalte/core': 0.1.0_solid-js@1.6.8
+      '@kobalte/core': 0.2.0_solid-js@1.6.8
       '@radix-ui/colors': 0.1.8
       '@vanilla-extract/css': 1.9.2
       '@vanilla-extract/dynamic': 2.0.3
@@ -1737,6 +1737,12 @@ packages:
     resolution: {integrity: sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==}
     dev: true
 
+  /@internationalized/date/3.0.2:
+    resolution: {integrity: sha512-9V1IxesP6ASZj/hYyOXOC4yPJvidbbStyWQKLCQSqhhKACMOXoo+BddXZJy47ju9mqOMpWdrJ2rTx4yTxK9oag==}
+    dependencies:
+      '@swc/helpers': 0.4.14
+    dev: false
+
   /@internationalized/number/3.1.2:
     resolution: {integrity: sha512-Mbys8SGsn0ApXz3hJLNU+d95B8luoUbwnmCpBwl7d63UmYAlcT6TRDyvaS/vwdbElXLcsQJjQCu0gox2cv/Tig==}
     dependencies:
@@ -2259,26 +2265,26 @@ packages:
       '@jridgewell/resolve-uri': 3.1.0
       '@jridgewell/sourcemap-codec': 1.4.14
 
-  /@kobalte/core/0.1.0_solid-js@1.6.8:
-    resolution: {integrity: sha512-IYdL9RDexfV+x13RcwAxSyiL2GnEPDPygOWfN8wHcBla7DnUULwdNYUTmN6ABDq7XGP2Fuj5RGgoTkpJ1xoTgQ==}
+  /@kobalte/core/0.2.0_solid-js@1.6.8:
+    resolution: {integrity: sha512-sNMyyn6Erl4+tGkPPdUhrdvvV6GT+8wRx2H2a00pa7Q835TU//xA3r/w9oSPykaKJfPh951dq3hQ3Ws94wOj9A==}
     peerDependencies:
       solid-js: ^1.6.1
     dependencies:
       '@floating-ui/dom': 1.1.0
+      '@internationalized/date': 3.0.2
       '@internationalized/number': 3.1.2
       '@internationalized/string': 3.0.1
-      '@kobalte/utils': 0.1.0_solid-js@1.6.8
+      '@kobalte/utils': 0.2.0_solid-js@1.6.8
       solid-js: 1.6.8
     dev: false
 
-  /@kobalte/utils/0.1.0_solid-js@1.6.8:
-    resolution: {integrity: sha512-3kMYChBPDGGPjtfJl47LjWl8Xz8gHANCnzLHnaXrIJENJcMFwpEApyBMTpO451xFZFwyBkDp++ledYql+OL9Dw==}
+  /@kobalte/utils/0.2.0_solid-js@1.6.8:
+    resolution: {integrity: sha512-kpiRA4LnfVQoELmict4EHvPsjh7JQ9F/4val6k/BdXQMxtc4/VdP5tKd1biwjiUBjxHNfOLMZVw2xA7yLyxkRg==}
     peerDependencies:
       solid-js: ^1.6.1
     dependencies:
       '@solid-primitives/event-listener': 2.2.4_solid-js@1.6.8
       '@solid-primitives/media': 2.0.4_solid-js@1.6.8
-      '@solid-primitives/props': 3.0.1_solid-js@1.6.8
       '@solid-primitives/refs': 0.3.4_solid-js@1.6.8
       '@solid-primitives/utils': 4.0.0_solid-js@1.6.8
       solid-js: 1.6.8
@@ -2544,15 +2550,6 @@ packages:
     dependencies:
       '@solid-primitives/event-listener': 2.2.4_solid-js@1.6.8
       '@solid-primitives/rootless': 1.2.1_solid-js@1.6.8
-      '@solid-primitives/utils': 4.0.0_solid-js@1.6.8
-      solid-js: 1.6.8
-    dev: false
-
-  /@solid-primitives/props/3.0.1_solid-js@1.6.8:
-    resolution: {integrity: sha512-5v27ex4KxxnIbgze1lXPEXHO/ebbtEjL6idkhezH/7jHpjunl8PYabpDgoGO16tb8DawcZWOAXa7waWqWPAe/A==}
-    peerDependencies:
-      solid-js: ^1.6.0
-    dependencies:
       '@solid-primitives/utils': 4.0.0_solid-js@1.6.8
       solid-js: 1.6.8
     dev: false

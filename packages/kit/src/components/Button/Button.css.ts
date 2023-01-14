@@ -1,6 +1,7 @@
 import { createTheme, keyframes, style } from "@vanilla-extract/css";
 import { recipe, RecipeVariants } from "@vanilla-extract/recipes";
 import { themeTokens } from "../../foundation/themes.css";
+import { mapSizeValue } from "../../foundation/sizes.css";
 
 export const [buttonTheme, buttonVars] = createTheme({
 	buttonHeight: "",
@@ -31,7 +32,7 @@ const ButtonThemes = {
 
 const buttonPopKf = keyframes({
 	"0%": {
-		transform: "scale(var(--btn-focus-scale, 0.95))",
+		transform: "scale(0.95)",
 	},
 	"40%": {
 		transform: "scale(1.02)",
@@ -94,35 +95,35 @@ export const button = recipe({
 		size: {
 			[ButtonSizes.xl]: {
 				vars: {
-					[buttonVars.buttonHeight]: "56px",
+					[buttonVars.buttonHeight]: mapSizeValue("xl"),
 					[buttonVars.fontSize]: themeTokens.fontSize.xl,
 					[buttonVars.padding]: themeTokens.spacing["6"],
 				},
 			},
 			[ButtonSizes.lg]: {
 				vars: {
-					[buttonVars.buttonHeight]: "48px",
+					[buttonVars.buttonHeight]: mapSizeValue("lg"),
 					[buttonVars.fontSize]: themeTokens.fontSize.lg,
 					[buttonVars.padding]: themeTokens.spacing["5"],
 				},
 			},
 			[ButtonSizes.md]: {
 				vars: {
-					[buttonVars.buttonHeight]: "40px",
+					[buttonVars.buttonHeight]: mapSizeValue("md"),
 					[buttonVars.fontSize]: themeTokens.fontSize.md,
 					[buttonVars.padding]: themeTokens.spacing["5"],
 				},
 			},
 			[ButtonSizes.sm]: {
 				vars: {
-					[buttonVars.buttonHeight]: "36px",
+					[buttonVars.buttonHeight]: mapSizeValue("sm"),
 					[buttonVars.fontSize]: themeTokens.fontSize.sm,
 					[buttonVars.padding]: themeTokens.spacing["4"],
 				},
 			},
 			[ButtonSizes.xs]: {
 				vars: {
-					[buttonVars.buttonHeight]: "30px",
+					[buttonVars.buttonHeight]: mapSizeValue("xs"),
 					[buttonVars.fontSize]: themeTokens.fontSize.xs,
 					[buttonVars.padding]: themeTokens.spacing["2"],
 				},

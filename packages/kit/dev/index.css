@@ -9,8 +9,12 @@ code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
-óhtml, body {
+html, body {
 	font-family: Inter, sans-serif;
+}
+
+* {
+	box-sizing: border-box;
 }
 
 @supports (font-variation-settings: normal) {
