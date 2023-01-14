@@ -11,5 +11,12 @@ export {
 	DialogPanelContent,
 	DialogPanelFooter,
 } from "./components/Dialog/Dialog";
+export {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuPortal,
+	DropdownMenuItem,
+	DropdownMenuTrigger,
+} from "./components/Dropdown/Dropdown";
 export { tokens } from "./foundation/tokens";
 export { theme, themeTokens } from "./foundation/themes.css";

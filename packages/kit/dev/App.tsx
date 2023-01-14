@@ -4,6 +4,7 @@ import { DialogDemo } from "./demo/Dialog";
 import { ButtonDemo } from "./demo/Button";
 import { TextInputDemo } from "./demo/TextInput";
 import { DemoSection } from "./ui/DemoSection";
+import { DropdownMenuDemo } from "./demo/DropdownMenu";
 
 const App: Component = () => {
 	document.documentElement.classList.add(theme);
@@ -15,6 +16,10 @@ const App: Component = () => {
 
 			<DemoSection>
 				<TextInputDemo />
+			</DemoSection>
+
+			<DemoSection>
+				<DropdownMenuDemo />
 			</DemoSection>
 
 			<DemoSection>
