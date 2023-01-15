@@ -7,21 +7,20 @@ import {
 	DropdownMenuTrigger,
 } from "@codeui/kit";
 import { DemoSectionRow } from "../ui/DemoSection";
-import { createEffect, createSignal } from "solid-js";
+import { createSignal } from "solid-js";
 
 export function DropdownMenuDemo() {
 	const [menuControlled, setMenuControlled] = createSignal(false);
 
-	createEffect(() => console.log(menuControlled()));
 	return (
 		<>
 			<h1 class={"title"}>Dropdown Menu</h1>
 
 			<DemoSectionRow>
 				<DropdownMenu gutter={6}>
-					<DropdownMenuTrigger as={Button} theme={"primary"}>
+					<Button as={DropdownMenuTrigger} theme={"primary"}>
 						Menu
-					</DropdownMenuTrigger>
+					</Button>
 					<DropdownMenuPortal>
 						<DropdownMenuContent>
 							<DropdownMenuItem>Item 1</DropdownMenuItem>
@@ -36,9 +35,9 @@ export function DropdownMenuDemo() {
 					isOpen={menuControlled()}
 					onOpenChange={setMenuControlled}
 				>
-					<DropdownMenuTrigger as={Button} theme={"tertiary"}>
+					<Button as={DropdownMenuTrigger} theme={"tertiary"}>
 						Menu {menuControlled() ? "Close" : "Open"}
-					</DropdownMenuTrigger>
+					</Button>
 					<DropdownMenuPortal>
 						<DropdownMenuContent>
 							<DropdownMenuItem>Item 1</DropdownMenuItem>

@@ -1,11 +1,11 @@
-import { TextField as KTextField, TextFieldOptions } from "@kobalte/core";
+import { TextField as KTextField } from "@kobalte/core";
 import { JSX, Show, splitProps } from "solid-js";
 import * as styles from "./TextField.css";
 import { baseFieldContainer } from "./TextField.css";
 import { mergeClasses } from "../../utils/css";
 import { TextFieldLabel } from "./TextFieldLabel";
 
-export type TextFieldProps = TextFieldOptions &
+export type TextFieldProps = KTextField.TextFieldRootOptions &
 	styles.TextFieldVariants & {
 		description?: string;
 		label?: JSX.Element;
@@ -23,7 +23,7 @@ export function TextField(props: TextFieldProps) {
 		"placeholder",
 	]);
 	return (
-		<KTextField
+		<KTextField.Root
 			data-cui={"text-field"}
 			data-field-size={local.size}
 			{...others}
@@ -49,7 +49,7 @@ export function TextField(props: TextFieldProps) {
 					{local.errorMessage}
 				</KTextField.ErrorMessage>
 			</Show>
-		</KTextField>
+		</KTextField.Root>
 	);
 }
 

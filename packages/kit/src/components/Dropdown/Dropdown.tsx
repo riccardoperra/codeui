@@ -7,9 +7,13 @@ import {
 	createEffect,
 	createSignal,
 	on,
+	ParentProps,
 	useContext,
+	VoidProps,
 } from "solid-js";
+import { DropdownMenuRootOptions } from "@kobalte/core/dist/types/dropdown-menu";
 import { animate } from "motion";
+import { PolymorphicProps } from "@kobalte/utils/dist/types/polymorphic";
 
 const DropdownInternalContext = createContext<{
 	open: Accessor<boolean>;
@@ -65,17 +69,29 @@ export function DropdownMenuItem(props: GetKobalteParams<typeof KDropdownMenu.It
 }
 
 export function DropdownMenuTrigger(
-	props: GetKobalteParams<typeof KDropdownMenu.Trigger>,
+	props: GetKobalteParams<(typeof KDropdownMenu)["Trigger"]>,
 ) {
 	return <KDropdownMenu.Trigger {...props} />;
 }
 
-export function DropdownMenu(props: GetKobalteParams<typeof KDropdownMenu>) {
+export function DropdownMenu(props: ParentProps<DropdownMenuRootOptions>) {
 	const [open, setOpen] = createSignal(false);
 	const [internalOpen, setInternalOpen] = createSignal(false);
 	const [exitAnimationEnd, triggerAnimationEnd] = createSignal(false, { equals: false });
 
 	createEffect(on(exitAnimationEnd, () => setOpen(false)));
+
+	createEffect(() => {
+		if (controlled()) {
+			createEffect(() => {
+				props.onOpenChange?.(open());
+			});
+		}
+	});
+
+	const controlled = () => {
+		return Reflect.has(props, "isOpen");
+	};
 
 	return (
 		<DropdownInternalContext.Provider
@@ -84,9 +100,9 @@ export function DropdownMenu(props: GetKobalteParams<typeof KDropdownMenu>) {
 				triggerAnimationEnd,
 			}}
 		>
-			<KDropdownMenu
+			<KDropdownMenu.Root
 				{...props}
-				isOpen={props.isOpen ?? open()}
+				isOpen={controlled() ? props.isOpen : open()}
 				onOpenChange={change => {
 					setInternalOpen(change);
 					if (change) {

@@ -1,16 +1,19 @@
-import { Button as KButton, ButtonOptions } from "@kobalte/core";
+import { Button as KButton } from "@kobalte/core";
 import { JSX, ParentProps, Show, splitProps } from "solid-js";
 import * as styles from "./Button.css";
 import { mergeClasses } from "../../utils/css";
 import { ButtonIcon } from "./ButtonIcon";
+import type { As } from "@kobalte/utils/dist/types/polymorphic";
+import { PolymorphicProps } from "@kobalte/utils/dist/types/polymorphic";
 
-export type ButtonProps = ButtonOptions &
+export type ButtonProps<T extends As> = PolymorphicProps<T> &
+	KButton.ButtonRootOptions &
 	styles.ButtonVariants & {
 		class?: string;
 		leftIcon?: JSX.Element;
 	};
 
-export function Button(props: ParentProps<ButtonProps>) {
+export function Button<Type extends As = As>(props: ParentProps<ButtonProps<Type>>) {
 	const [local, internal, others] = splitProps(
 		props,
 		["size", "theme", "pill"],
@@ -27,7 +30,7 @@ export function Button(props: ParentProps<ButtonProps>) {
 		);
 
 	return (
-		<KButton
+		<KButton.Root
 			data-cui="button"
 			data-theme={local.theme}
 			data-size={local.size}
@@ -39,6 +42,6 @@ export function Button(props: ParentProps<ButtonProps>) {
 			</Show>
 
 			{internal.children}
-		</KButton>
+		</KButton.Root>
 	);
 }

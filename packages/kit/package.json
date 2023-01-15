@@ -67,8 +67,9 @@
 	},
 	"packageManager": "pnpm@7.5.0",
 	"dependencies": {
-		"@kobalte/core": "^0.2.0",
-		"@kobalte/utils": "^0.2.0",
+		"@kobalte/core": "^0.3.0",
+		"@kobalte/utils": "^0.3.0",
+		"@kobalte/vanilla-extract": "^0.1.0",
 		"@motionone/solid": "^10.15.5",
 		"@radix-ui/colors": "^0.1.8",
 		"@vanilla-extract/css": "^1.9.2",

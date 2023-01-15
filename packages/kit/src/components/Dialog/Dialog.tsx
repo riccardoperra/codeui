@@ -109,7 +109,7 @@ export function Dialog(props: ParentProps<DialogProps>) {
 	);
 
 	return (
-		<KDialog {...others} onOpenChange={setOpen}>
+		<KDialog.Root {...others} onOpenChange={setOpen}>
 			<KDialog.Portal>
 				<KDialog.Overlay class={styles.overlay} />
 				<div class={mergeClasses(styles.dialogTheme, styles.positioner)}>
@@ -126,6 +126,6 @@ export function Dialog(props: ParentProps<DialogProps>) {
 					</DialogPanel>
 				</div>
 			</KDialog.Portal>
-		</KDialog>
+		</KDialog.Root>
 	);
 }
