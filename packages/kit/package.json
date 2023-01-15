@@ -44,6 +44,7 @@
 		"dev": "pnpm run build -w",
 		"playground": "vite serve ./dev --host",
 		"build": "rollup -c rollup.config.js",
+		"build:playground": "cd dev && vite build",
 		"test": "pnpm run test:client && pnpm run test:ssr",
 		"test:client": "jest --config jest.config.ts",
 		"test:ssr": "jest --config jest.config.ssr.ts",
