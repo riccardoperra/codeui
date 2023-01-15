@@ -23,11 +23,6 @@ export const overlay = style([
 		left: 0,
 		right: 0,
 		bottom: 0,
-		selectors: {
-			["&[data-visible=false]"]: {
-				visibility: "hidden",
-			},
-		},
 	},
 ]);
 
@@ -59,11 +54,6 @@ export const positioner = style({
 	display: "flex",
 	alignItems: "center",
 	justifyContent: "center",
-	selectors: {
-		["&[data-visible=false]"]: {
-			visibility: "hidden",
-		},
-	},
 });
 
 export const title = style([

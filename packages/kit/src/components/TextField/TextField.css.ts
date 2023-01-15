@@ -8,6 +8,7 @@ import {
 import { recipe, RecipeVariants } from "@vanilla-extract/recipes";
 import { themeTokens } from "../../foundation/themes.css";
 import { mapFontSizeValue, mapSizeValue } from "../../foundation/sizes.css";
+import { componentStateStyles } from "@kobalte/vanilla-extract";
 
 export const inputHeight = createVar();
 export const fontSize = createVar();
@@ -42,23 +43,23 @@ export const baseField = style([
 		fontSize: textFieldVars.fontSize,
 		height: fallbackVar(textFieldVars.inputHeight, "100%"),
 		color: "currentcolor",
-		":focus": {
+	},
+	componentStateStyles({
+		focus: {
 			borderColor: themeTokens.colors.blue8,
 		},
-		":focus-visible": {
+		"focus-visible": {
 			borderColor: themeTokens.colors.blue9,
 		},
-		selectors: {
-			"&[data-invalid]": {
-				borderColor: themeTokens.colors.red9,
-				color: themeTokens.colors.red9,
-			},
-			"&[data-disabled]": {
-				cursor: "not-allowed",
-				opacity: 0.4,
-			},
+		invalid: {
+			borderColor: themeTokens.colors.red9,
+			color: themeTokens.colors.red9,
 		},
-	},
+		disabled: {
+			cursor: "not-allowed",
+			opacity: 0.4,
+		},
+	}),
 ]);
 
 export const baseFieldContainer = style([
@@ -89,19 +90,17 @@ export const textField = recipe({
 				},
 			},
 			outline: {},
-			inline: {
-				backgroundColor: "transparent",
-				border: "none",
-				borderBottom: `2px solid ${textFieldVars.background}`,
-				borderRadius: 0,
-				paddingLeft: 0,
-				paddingRight: 0,
-				selectors: {
-					"&[data-disabled]": {
-						backgroundColor: "transparent",
-					},
+			inline: [
+				{
+					backgroundColor: "transparent",
+					border: "none",
+					borderBottom: `2px solid ${textFieldVars.background}`,
+					borderRadius: 0,
+					paddingLeft: 0,
+					paddingRight: 0,
 				},
-			},
+				componentStateStyles({ disabled: { backgroundColor: "transparent" } }),
+			],
 		},
 		size: {
 			[FieldSizes.xs]: {

@@ -43,8 +43,9 @@ importers:
   packages/kit:
     specifiers:
       '@codeimage/vanilla-extract': workspace:^0.2.0
-      '@kobalte/core': ^0.2.0
-      '@kobalte/utils': ^0.2.0
+      '@kobalte/core': ^0.3.0
+      '@kobalte/utils': ^0.3.0
+      '@kobalte/vanilla-extract': ^0.1.0
       '@motionone/solid': ^10.15.5
       '@radix-ui/colors': ^0.1.8
       '@testing-library/jest-dom': ^5.16.4
@@ -63,8 +64,9 @@ importers:
       typescript: ^4.7.4
       vite-tsconfig-paths: ^4.0.3
     dependencies:
-      '@kobalte/core': 0.2.0_solid-js@1.6.8
-      '@kobalte/utils': 0.2.0_solid-js@1.6.8
+      '@kobalte/core': 0.3.0_solid-js@1.6.8
+      '@kobalte/utils': 0.3.0_solid-js@1.6.8
+      '@kobalte/vanilla-extract': 0.1.0_@vanilla-extract+css@1.9.2
       '@motionone/solid': 10.15.5_solid-js@1.6.8
       '@radix-ui/colors': 0.1.8
       '@vanilla-extract/css': 1.9.2
@@ -2271,8 +2273,8 @@ packages:
       '@jridgewell/resolve-uri': 3.1.0
       '@jridgewell/sourcemap-codec': 1.4.14
 
-  /@kobalte/core/0.2.0_solid-js@1.6.8:
-    resolution: {integrity: sha512-sNMyyn6Erl4+tGkPPdUhrdvvV6GT+8wRx2H2a00pa7Q835TU//xA3r/w9oSPykaKJfPh951dq3hQ3Ws94wOj9A==}
+  /@kobalte/core/0.3.0_solid-js@1.6.8:
+    resolution: {integrity: sha512-nnzEc7tsFlYmxWgQPBnWchPh3yKzJasZapD5VflucuVEemTY/YgNBNWLtWNn5CK/mpdxf1hqxQTOr4nki5Xy9g==}
     peerDependencies:
       solid-js: ^1.6.1
     dependencies:
@@ -2280,12 +2282,12 @@ packages:
       '@internationalized/date': 3.0.2
       '@internationalized/number': 3.1.2
       '@internationalized/string': 3.0.1
-      '@kobalte/utils': 0.2.0_solid-js@1.6.8
+      '@kobalte/utils': 0.3.0_solid-js@1.6.8
       solid-js: 1.6.8
     dev: false
 
-  /@kobalte/utils/0.2.0_solid-js@1.6.8:
-    resolution: {integrity: sha512-kpiRA4LnfVQoELmict4EHvPsjh7JQ9F/4val6k/BdXQMxtc4/VdP5tKd1biwjiUBjxHNfOLMZVw2xA7yLyxkRg==}
+  /@kobalte/utils/0.3.0_solid-js@1.6.8:
+    resolution: {integrity: sha512-VxsOds//aJ3MyRgLU2FOc0O8HFtRvyrR8Ep271B9duIGtl4wKVQ6zLLvLuZElLDUH45mcPqecs+ESm81L/Zysg==}
     peerDependencies:
       solid-js: ^1.6.1
     dependencies:
@@ -2294,6 +2296,14 @@ packages:
       '@solid-primitives/refs': 0.3.4_solid-js@1.6.8
       '@solid-primitives/utils': 4.0.0_solid-js@1.6.8
       solid-js: 1.6.8
+    dev: false
+
+  /@kobalte/vanilla-extract/0.1.0_@vanilla-extract+css@1.9.2:
+    resolution: {integrity: sha512-Dnov6XuclN5udhkJGSu6voNXrw2gRWH5pEaSfHuVf4Z/DaUg6sW2ypXizKs4PIXzGRlnyaSsTaFysjTCx8sf+A==}
+    peerDependencies:
+      '@vanilla-extract/css': ^1.9.2
+    dependencies:
+      '@vanilla-extract/css': 1.9.2
     dev: false
 
   /@manypkg/find-root/1.1.0:

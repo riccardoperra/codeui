@@ -2,6 +2,7 @@ import { createTheme, keyframes, style } from "@vanilla-extract/css";
 import { recipe, RecipeVariants } from "@vanilla-extract/recipes";
 import { themeTokens } from "../../foundation/themes.css";
 import { mapSizeValue } from "../../foundation/sizes.css";
+import { componentStateStyles } from "@kobalte/vanilla-extract";
 
 export const [buttonTheme, buttonVars] = createTheme({
 	buttonHeight: "",
@@ -67,29 +68,26 @@ export const button = recipe({
 			border: `1px solid ${buttonVars.borderColor}`,
 			transition: "opacity .2s, background-color .2s, transform .2s",
 			gap: themeTokens.spacing["2"],
-
 			vars: {
 				[buttonVars.borderColor]: buttonVars.background,
 			},
-
-			":disabled": {
+		},
+		componentStateStyles({
+			hover: {
+				background: buttonVars.hoverBackground,
+			},
+			active: {
+				background: buttonVars.activeBackground,
+				animation: "none",
+				transform: "scale(0.95)",
+			},
+			disabled: {
 				vars: {
 					[buttonVars.background]: themeTokens.colors.gray2,
 					[buttonVars.color]: themeTokens.colors.gray8,
 				},
 			},
-
-			selectors: {
-				"&[data-hover]": {
-					background: buttonVars.hoverBackground,
-				},
-				"&[data-active]": {
-					background: buttonVars.activeBackground,
-					animation: "none",
-					transform: "scale(0.95)",
-				},
-			},
-		},
+		}),
 	],
 	variants: {
 		size: {
