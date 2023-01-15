@@ -55,12 +55,16 @@ export const item = style([
 		focus: {
 			boxShadow: "none",
 			outline: "none",
+			backgroundColor: themeTokens.colors.blue9,
 		},
 		hover: {
 			backgroundColor: themeTokens.colors.blue9,
 		},
 		disabled: {
 			color: themeTokens.colors.gray10,
+		},
+		"focus-visible": {
+			backgroundColor: themeTokens.colors.blue9,
 		},
 	}),
 ]);
@@ -72,6 +76,9 @@ export const rightSlot = style([
 		color: themeTokens.colors.gray10,
 		selectors: {
 			[`${item}[data-hover] &`]: {
+				color: themeTokens.colors.gray12,
+			},
+			[`${item}[data-focus] &`]: {
 				color: themeTokens.colors.gray12,
 			},
 		},

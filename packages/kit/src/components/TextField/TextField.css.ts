@@ -23,7 +23,7 @@ export const [textFieldTheme, textFieldVars] = createTheme({
 	disabledBackground: themeTokens.colors.gray2,
 });
 
-const FieldSizes = {
+export const FieldSizes = {
 	xs: "xs",
 	sm: "sm",
 	md: "md",

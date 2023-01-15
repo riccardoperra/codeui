@@ -10,4 +10,5 @@ export const row = style({
 	gap: "2rem",
 	padding: "1rem",
 	alignItems: "center",
+	flexWrap: "wrap",
 });

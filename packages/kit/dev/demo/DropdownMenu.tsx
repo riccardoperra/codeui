@@ -36,7 +36,7 @@ export function DropdownMenuDemo() {
 	const [menuControlled, setMenuControlled] = createSignal(false);
 
 	return (
-		<div style={{ "min-height": "600px" }}>
+		<div style={{ "min-height": "300px" }}>
 			<h1 class={"title"}>Dropdown Menu</h1>
 
 			<DemoSectionRow>
