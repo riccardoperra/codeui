@@ -1,22 +1,37 @@
-import { Dialog as KDialog, DialogOptions } from "@kobalte/core";
+import { createDisclosureState, Dialog as KDialog } from "@kobalte/core";
 import {
 	createEffect,
 	createSignal,
 	JSXElement,
-	on,
 	ParentProps,
 	Show,
 	splitProps,
 } from "solid-js";
 import * as styles from "./Dialog.css";
 import { mergeClasses } from "../../utils/css";
-import { animate } from "motion";
 import { IconButton } from "../IconButton/IconButton";
+import { AnimationContextProvider, useAnimationContext } from "../../utils/animation";
+import { animate } from "motion";
 
-type DialogProps = DialogOptions &
+type DialogProps = KDialog.DialogRootOptions &
 	DialogPanelProps & {
 		title?: string;
 	};
+
+const enterAnimation = {
+	opacity: [0, 1],
+	transform: [`scale(0.95) translateY(10px)`, "scale(1) translateY(0px)"],
+};
+
+const exitAnimation = {
+	opacity: [1, 0],
+	transform: [`scale(1)`, "scale(0.95)"],
+};
+
+const animationOptions = {
+	duration: 0.2,
+	easing: "ease-in-out",
+} as const;
 
 function CloseIcon() {
 	return (
@@ -44,32 +59,22 @@ export type DialogPanelProps = styles.DialogPanelVariants &
 	Parameters<typeof KDialog.Content>[0];
 
 export function DialogPanel(props: ParentProps<DialogPanelProps>): JSXElement {
+	const { setRef, registerOnExit, registerOnEnter } = useAnimationContext();
+	registerOnEnter(ref => animate(ref, enterAnimation, animationOptions));
+	registerOnExit(ref => animate(ref, exitAnimation, animationOptions));
+
 	return (
 		<KDialog.Content
 			{...props}
 			class={styles.panel({
 				size: props.size,
 			})}
+			ref={setRef}
 		>
 			{props.children}
 		</KDialog.Content>
 	);
 }
-
-const enterAnimation = {
-	opacity: [0, 1],
-	transform: [`scale(0.95) translateY(10px)`, "scale(1) translateY(0px)"],
-};
-
-const exitAnimation = {
-	opacity: [1, 0],
-	transform: [`scale(1)`, "scale(0.95)"],
-};
-
-const animationOptions = {
-	duration: 0.2,
-	easing: "ease-in-out",
-} as const;
 
 export function Dialog(props: ParentProps<DialogProps>) {
 	const [local, others] = splitProps(props, [
@@ -78,54 +83,42 @@ export function Dialog(props: ParentProps<DialogProps>) {
 		"title",
 		"onOpenChange",
 	]);
-	const [ref, setRef] = createSignal<HTMLElement>();
-	const [open, setOpen] = createSignal(false);
+	const [open, setOpen] = createSignal<boolean>(false);
+	const internalState = createDisclosureState(props);
 
-	createEffect(
-		on(
-			() => props.isOpen,
-			isOpen => {
-				if (isOpen) {
-					setOpen(true);
-					createEffect(
-						on(ref, ref => {
-							if (ref) {
-								animate(ref, enterAnimation, animationOptions);
-								createEffect(
-									on(open, open => {
-										if (!open) {
-											animate(ref, exitAnimation, animationOptions).finished.then(() =>
-												local.onOpenChange?.(false),
-											);
-										}
-									}),
-								);
-							}
-						}),
-					);
-				}
-			},
-		),
-	);
+	createEffect(() => {
+		if (internalState.isOpen()) {
+			setOpen(true);
+		}
+	});
 
 	return (
-		<KDialog.Root {...others} onOpenChange={setOpen}>
-			<KDialog.Portal>
-				<KDialog.Overlay class={styles.overlay} />
-				<div class={mergeClasses(styles.dialogTheme, styles.positioner)}>
-					<DialogPanel size={local.size} ref={setRef}>
-						<Show when={local.title} keyed={false}>
-							<div class={styles.title}>
-								<KDialog.Title>{props.title}</KDialog.Title>
-								<KDialog.CloseButton as={IconButton} size={"xs"} aria-label={"close"}>
-									<CloseIcon />
-								</KDialog.CloseButton>
-							</div>
-						</Show>
-						{local.children}
-					</DialogPanel>
-				</div>
-			</KDialog.Portal>
-		</KDialog.Root>
+		<AnimationContextProvider
+			state={internalState.isOpen()}
+			onExitAnimationFinish={() => setOpen(false)}
+		>
+			<KDialog.Root
+				{...others}
+				isOpen={open()}
+				onOpenChange={value => internalState.setIsOpen(value)}
+			>
+				<KDialog.Portal>
+					<KDialog.Overlay class={styles.overlay} />
+					<div class={mergeClasses(styles.dialogTheme, styles.positioner)}>
+						<DialogPanel size={local.size}>
+							<Show when={local.title} keyed={false}>
+								<div class={styles.title}>
+									<KDialog.Title>{props.title}</KDialog.Title>
+									<KDialog.CloseButton as={IconButton} size={"xs"} aria-label={"close"}>
+										<CloseIcon />
+									</KDialog.CloseButton>
+								</div>
+							</Show>
+							{local.children}
+						</DialogPanel>
+					</div>
+				</KDialog.Portal>
+			</KDialog.Root>
+		</AnimationContextProvider>
 	);
 }

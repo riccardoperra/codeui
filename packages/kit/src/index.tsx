@@ -17,6 +17,10 @@ export {
 	DropdownMenuPortal,
 	DropdownMenuItem,
 	DropdownMenuTrigger,
+	DropdownSubMenu,
+	DropdownSubMenuTrigger,
+	DropdownSubMenuContent,
+	DropdownMenuSeparator,
 } from "./components/Dropdown/Dropdown";
 export { tokens } from "./foundation/tokens";
 export { theme, themeTokens } from "./foundation/themes.css";

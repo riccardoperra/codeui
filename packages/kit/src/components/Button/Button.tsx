@@ -6,7 +6,7 @@ import { ButtonIcon } from "./ButtonIcon";
 import type { As } from "@kobalte/utils/dist/types/polymorphic";
 import { PolymorphicProps } from "@kobalte/utils/dist/types/polymorphic";
 
-export type ButtonProps<T extends As> = PolymorphicProps<T> &
+export type ButtonProps<T extends As = As> = PolymorphicProps<T> &
 	KButton.ButtonRootOptions &
 	styles.ButtonVariants & {
 		class?: string;

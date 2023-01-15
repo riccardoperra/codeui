@@ -13,15 +13,12 @@ const App: Component = () => {
 			<DemoSection>
 				<ButtonDemo />
 			</DemoSection>
-
 			<DemoSection>
 				<TextInputDemo />
 			</DemoSection>
-
 			<DemoSection>
 				<DropdownMenuDemo />
 			</DemoSection>
-
 			<DemoSection>
 				<DialogDemo />
 			</DemoSection>
