@@ -5,6 +5,7 @@ import { ButtonDemo } from "./demo/Button";
 import { TextInputDemo } from "./demo/TextInput";
 import { DemoSection } from "./ui/DemoSection";
 import { DropdownMenuDemo } from "./demo/DropdownMenu";
+import { PopoverDemo } from "./demo/Popover";
 
 const App: Component = () => {
 	document.documentElement.classList.add(theme);
@@ -21,6 +22,9 @@ const App: Component = () => {
 			</DemoSection>
 			<DemoSection>
 				<DialogDemo />
+			</DemoSection>
+			<DemoSection>
+				<PopoverDemo />
 			</DemoSection>
 		</div>
 	);

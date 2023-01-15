@@ -22,5 +22,6 @@ export {
 	DropdownSubMenuContent,
 	DropdownMenuSeparator,
 } from "./components/Dropdown/Dropdown";
+export { Popover, PopoverTrigger, PopoverContent } from "./components/Popover/Popover";
 export { tokens } from "./foundation/tokens";
 export { theme, themeTokens } from "./foundation/themes.css";
