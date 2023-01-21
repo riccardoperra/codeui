@@ -11,11 +11,12 @@ import {
 } from "../TextField/TextField.css";
 import { recipe, RecipeVariants } from "@vanilla-extract/recipes";
 import { mapFontSizeValue, mapSizeValue } from "../../foundation/sizes.css";
+import { tokens } from "../../foundation/contract.css";
 
 export const content = style({
 	boxShadow: themeTokens.boxShadow.lg,
 	// backgroundColor: themeVars.dynamicColors.listBox.panelBackground,
-	backgroundColor: themeTokens.colors.gray4,
+	backgroundColor: tokens.formAccent,
 	overflow: "hidden",
 	borderRadius: themeTokens.radii.md,
 	zIndex: "40",

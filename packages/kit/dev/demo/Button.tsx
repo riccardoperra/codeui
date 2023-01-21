@@ -48,7 +48,13 @@ export function ButtonDemo() {
 			<DemoSectionRow>
 				<For
 					each={
-						["primary", "secondary", "tertiary", "negative"] as ButtonProps["theme"][]
+						[
+							"primary",
+							"secondary",
+							"tertiary",
+							"negative",
+							"caution",
+						] as ButtonProps["theme"][]
 					}
 				>
 					{variant => (

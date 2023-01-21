@@ -78,6 +78,7 @@
 		"@vanilla-extract/recipes": "^0.3.0",
 		"@vanilla-extract/vite-plugin": "^3.7.0",
 		"motion": "^10.15.5",
+		"polished": "^4.2.2",
 		"statebuilder": "^0.2.1"
 	}
 }
