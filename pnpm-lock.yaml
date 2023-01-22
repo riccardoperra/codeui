@@ -43,7 +43,7 @@ importers:
   packages/kit:
     specifiers:
       '@codeimage/vanilla-extract': workspace:^0.2.0
-      '@kobalte/core': ^0.3.0
+      '@kobalte/core': ^0.4.0
       '@kobalte/utils': ^0.3.0
       '@kobalte/vanilla-extract': ^0.1.0
       '@motionone/solid': ^10.15.5
@@ -66,7 +66,7 @@ importers:
       typescript: ^4.7.4
       vite-tsconfig-paths: ^4.0.3
     dependencies:
-      '@kobalte/core': 0.3.0_solid-js@1.6.8
+      '@kobalte/core': 0.4.0_solid-js@1.6.8
       '@kobalte/utils': 0.3.0_solid-js@1.6.8
       '@kobalte/vanilla-extract': 0.1.0_@vanilla-extract+css@1.9.2
       '@motionone/solid': 10.15.5_solid-js@1.6.8
@@ -2277,8 +2277,8 @@ packages:
       '@jridgewell/resolve-uri': 3.1.0
       '@jridgewell/sourcemap-codec': 1.4.14
 
-  /@kobalte/core/0.3.0_solid-js@1.6.8:
-    resolution: {integrity: sha512-nnzEc7tsFlYmxWgQPBnWchPh3yKzJasZapD5VflucuVEemTY/YgNBNWLtWNn5CK/mpdxf1hqxQTOr4nki5Xy9g==}
+  /@kobalte/core/0.4.0_solid-js@1.6.8:
+    resolution: {integrity: sha512-On3tnacosL8Ka+Gk35tMQGQeKHKHoDCtybat2HfV8eZAhwMCvFeDqpkg44nfiTKKsoBbFotmtE00i5baJCSovA==}
     peerDependencies:
       solid-js: ^1.6.1
     dependencies:
