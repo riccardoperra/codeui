@@ -68,7 +68,7 @@
 	},
 	"packageManager": "pnpm@7.5.0",
 	"dependencies": {
-		"@kobalte/core": "^0.3.0",
+		"@kobalte/core": "^0.4.0",
 		"@kobalte/utils": "^0.3.0",
 		"@kobalte/vanilla-extract": "^0.1.0",
 		"@motionone/solid": "^10.15.5",
@@ -78,6 +78,7 @@
 		"@vanilla-extract/recipes": "^0.3.0",
 		"@vanilla-extract/vite-plugin": "^3.7.0",
 		"motion": "^10.15.5",
+		"polished": "^4.2.2",
 		"statebuilder": "^0.2.1"
 	}
 }

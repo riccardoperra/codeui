@@ -9,14 +9,15 @@ import { recipe, RecipeVariants } from "@vanilla-extract/recipes";
 import { themeTokens } from "../../foundation/themes.css";
 import { mapFontSizeValue, mapSizeValue } from "../../foundation/sizes.css";
 import { componentStateStyles } from "@kobalte/vanilla-extract";
+import { tokens } from "../../foundation/contract.css";
 
 export const inputHeight = createVar();
 export const fontSize = createVar();
 
 export const [textFieldTheme, textFieldVars] = createTheme({
 	borderColor: themeTokens.colors.gray7,
-	background: themeTokens.colors.gray3,
-	color: themeTokens.colors.gray12,
+	background: tokens.formAccent,
+	color: tokens.foreground,
 	inputHeight: inputHeight,
 	fontSize: fontSize,
 	descriptionColor: themeTokens.colors.gray11,
@@ -52,8 +53,8 @@ export const baseField = style([
 			borderColor: themeTokens.colors.blue9,
 		},
 		invalid: {
-			borderColor: themeTokens.colors.red9,
-			color: themeTokens.colors.red9,
+			borderColor: tokens.critical,
+			color: tokens.critical,
 		},
 		disabled: {
 			cursor: "not-allowed",
@@ -228,7 +229,7 @@ function makeErrorMessageSize(
 export const errorMessage = style([
 	{
 		userSelect: "none",
-		color: themeTokens.colors.red9,
+		color: tokens.critical,
 	},
 	{
 		selectors: {

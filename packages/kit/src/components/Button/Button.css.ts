@@ -3,6 +3,8 @@ import { recipe, RecipeVariants } from "@vanilla-extract/recipes";
 import { themeTokens } from "../../foundation/themes.css";
 import { mapSizeValue } from "../../foundation/sizes.css";
 import { componentStateStyles } from "@kobalte/vanilla-extract";
+import { tokens } from "../../foundation/contract.css";
+import { lighten } from "polished";
 
 export const [buttonTheme, buttonVars] = createTheme({
 	buttonHeight: "",
@@ -29,6 +31,7 @@ const ButtonThemes = {
 	secondary: "secondary",
 	tertiary: "tertiary",
 	negative: "negative",
+	caution: "caution",
 } as const;
 
 const buttonPopKf = keyframes({
@@ -130,34 +133,42 @@ export const button = recipe({
 		theme: {
 			[ButtonThemes.primary]: {
 				vars: {
-					[buttonVars.background]: themeTokens.colors.blue9,
-					[buttonVars.hoverBackground]: themeTokens.colors.blue10,
-					[buttonVars.activeBackground]: themeTokens.colors.blue9,
+					[buttonVars.background]: tokens.brand,
+					[buttonVars.hoverBackground]: tokens.brandAccentHover,
+					[buttonVars.activeBackground]: tokens.brandAccentActive,
 					[buttonVars.color]: themeTokens.colors.gray12,
 				},
 			},
 			[ButtonThemes.tertiary]: {
 				vars: {
-					[buttonVars.background]: themeTokens.colors.blue4,
-					[buttonVars.hoverBackground]: themeTokens.colors.blue5,
-					[buttonVars.activeBackground]: themeTokens.colors.blue6,
-					[buttonVars.color]: themeTokens.colors.blue11,
+					[buttonVars.background]: tokens.brandSoft,
+					[buttonVars.hoverBackground]: tokens.brandSoftAccentHover,
+					[buttonVars.activeBackground]: tokens.brandSoftAccentActive,
+					[buttonVars.color]: tokens.brandLink,
 				},
 			},
 			[ButtonThemes.secondary]: {
 				vars: {
-					[buttonVars.background]: themeTokens.colors.gray2,
-					[buttonVars.hoverBackground]: themeTokens.colors.gray3,
-					[buttonVars.activeBackground]: themeTokens.colors.gray4,
-					[buttonVars.color]: themeTokens.colors.gray11,
-					[buttonVars.borderColor]: themeTokens.colors.gray5,
+					[buttonVars.background]: tokens.accent2,
+					[buttonVars.hoverBackground]: tokens.accent4,
+					[buttonVars.activeBackground]: tokens.accent5,
+					[buttonVars.color]: tokens.accent10,
+					[buttonVars.borderColor]: tokens.accent3,
 				},
 			},
 			[ButtonThemes.negative]: {
 				vars: {
-					[buttonVars.background]: themeTokens.colors.red9,
-					[buttonVars.hoverBackground]: themeTokens.colors.red10,
-					[buttonVars.activeBackground]: themeTokens.colors.red9,
+					[buttonVars.background]: tokens.critical,
+					[buttonVars.hoverBackground]: tokens.criticalAccentHover,
+					[buttonVars.activeBackground]: tokens.criticalAccentActive,
+					[buttonVars.color]: themeTokens.colors.gray12,
+				},
+			},
+			[ButtonThemes.caution]: {
+				vars: {
+					[buttonVars.background]: tokens.caution,
+					[buttonVars.hoverBackground]: tokens.cautionAccentHover,
+					[buttonVars.activeBackground]: tokens.cautionAccentActive,
 					[buttonVars.color]: themeTokens.colors.gray12,
 				},
 			},
