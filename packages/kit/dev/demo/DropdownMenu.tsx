@@ -41,9 +41,9 @@ export function DropdownMenuDemo() {
 
 			<DemoSectionRow>
 				<DropdownMenu>
-					<Button as={DropdownMenuTrigger} theme={"primary"}>
+					<DropdownMenuTrigger as={Button} theme={"primary"}>
 						Menu
-					</Button>
+					</DropdownMenuTrigger>
 					<DropdownMenuPortal>
 						<DropdownMenuContent>
 							<DropdownMenuItem>Item 1</DropdownMenuItem>
@@ -58,9 +58,9 @@ export function DropdownMenuDemo() {
 					isOpen={menuControlled()}
 					onOpenChange={setMenuControlled}
 				>
-					<Button as={DropdownMenuTrigger} theme={"tertiary"}>
+					<DropdownMenuTrigger as={Button} theme={"tertiary"}>
 						Menu {menuControlled() ? "Close" : "Open"}
-					</Button>
+					</DropdownMenuTrigger>
 
 					<DropdownMenuPortal>
 						<DropdownMenuContent>
