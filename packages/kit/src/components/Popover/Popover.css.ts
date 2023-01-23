@@ -1,24 +1,40 @@
-import { style } from "@vanilla-extract/css";
+import { createTheme, style } from "@vanilla-extract/css";
 import { themeTokens } from "../../foundation/themes.css";
+import { tokens } from "../../foundation/contract.css";
 
-export const content = style({
-	boxShadow: themeTokens.boxShadow.lg,
-	// backgroundColor: themeVars.dynamicColors.listBox.panelBackground,
-	backgroundColor: themeTokens.colors.gray4,
-	overflow: "hidden",
-	borderRadius: themeTokens.radii.md,
-	zIndex: "40",
-	listStyleType: "none",
-	padding: themeTokens.spacing["4"],
-	display: "flex",
-	flexDirection: "column",
-	rowGap: themeTokens.spacing["2"],
-	outline: "none",
+export const [popoverTheme, popoverThemeVars] = createTheme({
+	contentBackground: tokens.dropdownBackground,
+	contentBoxShadow: tokens.dropdownBoxShadow,
+	contentMaxWidth: "276px",
+	contentRadius: themeTokens.radii.lg,
+	contentPadding: themeTokens.spacing["4"],
+	contentFontSize: themeTokens.fontSize.md,
+	titleColor: tokens.foreground,
+	descriptionColor: tokens.foreground,
 });
+
+// TODO: common popover/dropdown style
+export const content = style([
+	popoverTheme,
+	{
+		boxShadow: popoverThemeVars.contentBoxShadow,
+		backgroundColor: popoverThemeVars.contentBackground,
+		borderRadius: popoverThemeVars.contentRadius,
+		padding: popoverThemeVars.contentPadding,
+		maxWidth: popoverThemeVars.contentMaxWidth,
+		overflow: "hidden",
+		zIndex: "40",
+		listStyleType: "none",
+		display: "flex",
+		flexDirection: "column",
+		rowGap: themeTokens.spacing["2"],
+		outline: "none",
+	},
+]);
 
 export const title = style([
 	{
-		color: themeTokens.colors.gray12,
+		color: popoverThemeVars.titleColor,
 		display: "flex",
 		alignItems: "center",
 		fontSize: themeTokens.fontSize.lg,
@@ -29,7 +45,7 @@ export const title = style([
 
 export const description = style([
 	{
-		color: themeTokens.colors.gray12,
-		fontSize: themeTokens.fontSize.md,
+		color: popoverThemeVars.descriptionColor,
+		fontSize: popoverThemeVars.contentFontSize,
 	},
 ]);

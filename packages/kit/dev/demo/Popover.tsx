@@ -30,9 +30,9 @@ export function PopoverDemo() {
 
 			<DemoSectionRow>
 				<Popover>
-					<Button as={PopoverTrigger} theme={"secondary"}>
+					<PopoverTrigger as={Button} theme={"secondary"}>
 						Open
-					</Button>
+					</PopoverTrigger>
 					<PopoverContent title={"Title"}>
 						About Kobalte A UI toolkit for building accessible web apps and design systems
 						with SolidJS.

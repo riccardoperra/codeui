@@ -1,21 +1,37 @@
-import { style } from "@vanilla-extract/css";
+import { createTheme, style } from "@vanilla-extract/css";
 import { themeTokens } from "../../foundation/themes.css";
 import { componentStateStyles } from "@kobalte/vanilla-extract";
+import { tokens } from "../../foundation/contract.css";
+import { selectThemeVars } from "../Select/Select.css";
 
-export const content = style({
-	boxShadow: themeTokens.boxShadow.lg,
-	// backgroundColor: themeVars.dynamicColors.listBox.panelBackground,
-	backgroundColor: themeTokens.colors.gray4,
-	overflow: "hidden",
-	borderRadius: themeTokens.radii.md,
-	zIndex: "40",
-	listStyleType: "none",
-	padding: themeTokens.spacing["2"],
-	display: "flex",
-	flexDirection: "column",
-	rowGap: themeTokens.spacing["1"],
-	outline: "none",
+export const [dropdownMenuTheme, dropdownMenuThemeVars] = createTheme({
+	contentBackground: tokens.dropdownBackground,
+	contentRadius: themeTokens.radii.lg,
+	contentBoxShadow: tokens.dropdownBoxShadow,
+	contentPadding: themeTokens.spacing["2"],
+	separator: tokens.separator,
+	itemTextColor: tokens.dropdownItemTextColor,
+	itemHoverBackground: tokens.dropdownItemHoverBackground,
+	itemHoverTextColor: tokens.dropdownItemHoverTextColor,
 });
+
+// TODO: common popover/dropdown style
+export const content = style([
+	dropdownMenuTheme,
+	{
+		boxShadow: dropdownMenuThemeVars.contentBoxShadow,
+		backgroundColor: dropdownMenuThemeVars.contentBackground,
+		borderRadius: dropdownMenuThemeVars.contentRadius,
+		padding: dropdownMenuThemeVars.contentPadding,
+		overflow: "hidden",
+		zIndex: 40,
+		listStyleType: "none",
+		display: "flex",
+		flexDirection: "column",
+		rowGap: themeTokens.spacing["1"],
+		outline: "none",
+	},
+]);
 
 export const subMenuContent = style([
 	content,
@@ -29,7 +45,7 @@ export const separator = style([
 	{
 		height: "1px",
 		margin: "6px",
-		borderTop: `1px solid #52525b`,
+		borderTop: `1px solid ${dropdownMenuThemeVars.separator}`,
 	},
 ]);
 
@@ -42,7 +58,7 @@ export const item = style([
 		padding: themeTokens.spacing["2"],
 		borderRadius: themeTokens.radii.md,
 		background: "transparent",
-		color: themeTokens.colors.gray12,
+		color: dropdownMenuThemeVars.itemTextColor,
 		userSelect: "none",
 		display: "flex",
 		alignItems: "center",
@@ -55,16 +71,19 @@ export const item = style([
 		focus: {
 			boxShadow: "none",
 			outline: "none",
-			backgroundColor: themeTokens.colors.blue9,
+			backgroundColor: dropdownMenuThemeVars.itemHoverBackground,
+			color: selectThemeVars.itemHoverTextColor,
 		},
 		hover: {
-			backgroundColor: themeTokens.colors.blue9,
+			backgroundColor: dropdownMenuThemeVars.itemHoverBackground,
+			color: dropdownMenuThemeVars.itemHoverTextColor,
 		},
 		disabled: {
 			color: themeTokens.colors.gray10,
 		},
 		"focus-visible": {
-			backgroundColor: themeTokens.colors.blue9,
+			backgroundColor: dropdownMenuThemeVars.itemHoverBackground,
+			color: dropdownMenuThemeVars.itemHoverTextColor,
 		},
 	}),
 ]);

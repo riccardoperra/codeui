@@ -75,6 +75,12 @@ createGlobalTheme("[data-cui-theme=dark]", contract, {
 	neutral,
 	neutralSoft,
 	formAccent: neutralDark,
+	separator: grayDarkScale.gray7,
+	dropdownBackground: grayDarkScale.gray4,
+	dropdownBoxShadow: "0 1px #0000000d,0 4px 10px varrgba(0, 0, 0, .3)",
+	dropdownItemTextColor: "#fff",
+	dropdownItemHoverBackground: themeTokens.colors.blue9,
+	dropdownItemHoverTextColor: "#fff",
 });
 
 createGlobalTheme("[data-cui-theme=light]", contract, {
@@ -106,4 +112,10 @@ createGlobalTheme("[data-cui-theme=light]", contract, {
 	neutral,
 	neutralSoft,
 	formAccent: neutralSoft,
+	separator: grayLightScale.gray9,
+	dropdownBackground: "#fff",
+	dropdownBoxShadow: "0 1px #0000000d,0 4px 10px rgba(0, 0, 0, .1)",
+	dropdownItemTextColor: "#000",
+	dropdownItemHoverBackground: themeTokens.colors.blue9,
+	dropdownItemHoverTextColor: "#fff",
 });
