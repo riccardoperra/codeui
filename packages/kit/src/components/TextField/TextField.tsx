@@ -4,14 +4,18 @@ import * as styles from "./TextField.css";
 import { baseFieldContainer } from "./TextField.css";
 import { mergeClasses } from "../../utils/css";
 import { TextFieldLabel } from "./TextFieldLabel";
+import { TextFieldMessage } from "./TextFieldMessage";
+import {
+	createFieldErrorMessageProps,
+	FieldWithErrorMessageSupport,
+} from "../Forms/FieldError/createFieldErrorMessageProps";
 
 export type TextFieldProps = KTextField.TextFieldRootOptions &
 	styles.TextFieldVariants & {
 		description?: string;
 		label?: JSX.Element;
-		errorMessage?: JSX.Element;
 		placeholder?: string;
-	};
+	} & FieldWithErrorMessageSupport;
 
 export function TextField(props: TextFieldProps) {
 	const [local, others] = splitProps(props, [
@@ -22,6 +26,9 @@ export function TextField(props: TextFieldProps) {
 		"errorMessage",
 		"placeholder",
 	]);
+
+	const errorMessageProps = createFieldErrorMessageProps(props);
+
 	return (
 		<KTextField.Root
 			data-cui={"text-field"}
@@ -40,12 +47,11 @@ export function TextField(props: TextFieldProps) {
 				placeholder={local.placeholder}
 			/>
 			<Show when={local.description} keyed={false}>
-				<KTextField.Description class={styles.description}>
-					{local.description}
-				</KTextField.Description>
+				<TextFieldMessage>{local.description}</TextFieldMessage>
 			</Show>
-			<Show when={local.errorMessage} keyed={false}>
-				<KTextField.ErrorMessage class={styles.errorMessage}>
+
+			<Show when={errorMessageProps.errorMessage} keyed={false}>
+				<KTextField.ErrorMessage class={errorMessageProps.class}>
 					{local.errorMessage}
 				</KTextField.ErrorMessage>
 			</Show>

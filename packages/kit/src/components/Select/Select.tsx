@@ -4,7 +4,9 @@ import { AnimationContextProvider, useAnimationContext } from "../../utils/anima
 import { GetKobalteParams } from "../../utils/types";
 import { animate } from "motion";
 import * as styles from "./Select.css";
-import { TextFieldLabel } from "../TextField/TextFieldLabel";
+import { createFieldLabelProps } from "../Forms/FieldLabel/createFieldLabelProps";
+import { createFieldMessageProps } from "../Forms/FieldMessage/createFieldMessageProps";
+import { createFieldErrorMessageProps } from "../Forms/FieldError/createFieldErrorMessageProps";
 
 type SelectProps = GetKobalteParams<typeof KSelect.Root> &
 	styles.SelectFieldVariants & {
@@ -89,6 +91,10 @@ export function Select(props: ParentProps<SelectProps>) {
 		}
 	});
 
+	const labelProps = createFieldLabelProps({});
+	const descriptionProps = createFieldMessageProps({});
+	const errorProps = createFieldErrorMessageProps(props);
+
 	return (
 		<AnimationContextProvider
 			state={internalState.isOpen()}
@@ -101,7 +107,7 @@ export function Select(props: ParentProps<SelectProps>) {
 			>
 				<div class={styles.field}>
 					<Show when={local.label} keyed={false}>
-						<KSelect.Label class={styles.label}>{local.label}</KSelect.Label>
+						<KSelect.Label {...labelProps}>{local.label}</KSelect.Label>
 					</Show>
 					<KSelect.Trigger
 						aria-label={local["aria-label"]}
@@ -116,12 +122,12 @@ export function Select(props: ParentProps<SelectProps>) {
 						</KSelect.Icon>
 					</KSelect.Trigger>
 					<Show when={local.description} keyed={false}>
-						<KSelect.Description class={styles.description}>
+						<KSelect.Description {...descriptionProps}>
 							{local.description}
 						</KSelect.Description>
 					</Show>
 					<Show when={local.errorMessage} keyed={false}>
-						<KSelect.ErrorMessage class={styles.errorMessage}>
+						<KSelect.ErrorMessage {...errorProps}>
 							{local.errorMessage}
 						</KSelect.ErrorMessage>
 					</Show>

@@ -1,8 +1,10 @@
 import { TextField as KTextField } from "@kobalte/core";
-import * as styles from "./TextField.css";
+import { createFieldLabelProps } from "../Forms/FieldLabel/createFieldLabelProps";
 
 type TextFieldLabelProps = Parameters<(typeof KTextField)["Label"]>[0] & {};
 
 export function TextFieldLabel(props: TextFieldLabelProps) {
-	return <KTextField.Label class={styles.label} {...props} />;
+	const fieldLabelProps = createFieldLabelProps(props);
+
+	return <KTextField.Label {...fieldLabelProps} />;
 }

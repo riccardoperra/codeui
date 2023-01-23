@@ -167,5 +167,3 @@ export const selectField = recipe({
 });
 
 export type SelectFieldVariants = RecipeVariants<typeof selectField>;
-
-export { errorMessage, description, label } from "../TextField/TextField.css";

@@ -1,5 +1,7 @@
 import { themeTokens } from "./themes.css";
 
+export type BaseComponentSize = "xs" | "sm" | "md" | "lg" | "xl";
+
 export const ComponentSizes = {
 	xs: "xs",
 	sm: "sm",
@@ -28,6 +30,6 @@ export const mapSizeValue = (size: keyof typeof ComponentSizes) => {
 	return sizesCss[size];
 };
 
-export const mapFontSizeValue = (size: keyof typeof ComponentSizes) => {
+export const mapFontSizeValue = (size: BaseComponentSize) => {
 	return fontSizesCss[size];
 };

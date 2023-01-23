@@ -10,7 +10,7 @@ code {
 }
 
 html, body {
-	font-family: Inter, sans-serif;
+	font-family: Lexend, sans-serif;
 }
 
 * {
@@ -19,7 +19,7 @@ html, body {
 
 @supports (font-variation-settings: normal) {
 	html, body {
-		font-family: 'Inter var', sans-serif;
+		font-family: 'Lexend', sans-serif;
 	}
 }
 
