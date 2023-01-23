@@ -1,8 +1,8 @@
 import { style } from "@vanilla-extract/css";
 import { themeTokens } from "../../foundation/themes.css";
 import { componentStateStyles } from "@kobalte/vanilla-extract";
-import { baseField, textFieldTheme } from "../TextField/TextField.css";
 import { tokens } from "../../foundation/contract.css";
+import { baseFieldTheme } from "../Field/Field.css";
 
 export const content = style({
 	boxShadow: themeTokens.boxShadow.lg,
@@ -28,7 +28,6 @@ export const separator = style([
 ]);
 
 export const input = style([
-	baseField,
 	{
 		display: "flex",
 		alignItems: "center",
@@ -73,7 +72,7 @@ export const item = style([
 ]);
 
 export const field = style([
-	textFieldTheme,
+	baseFieldTheme,
 	{
 		display: "flex",
 		flexDirection: "column",
@@ -84,7 +83,6 @@ export const field = style([
 ]);
 
 export const selectField = style([
-	baseField,
 	{
 		display: "inline-flex",
 		alignItems: "center",

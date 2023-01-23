@@ -1,6 +1,6 @@
 import { style } from "@vanilla-extract/css";
-import { textFieldVars } from "../../TextField/TextField.css";
 import { styleFieldMessage } from "../fieldStyle";
+import { baseFieldVars } from "../Field.css";
 
 export const description = style([
 	styleFieldMessage({
@@ -11,7 +11,7 @@ export const description = style([
 		xl: "md",
 	}),
 	{
-		color: textFieldVars.descriptionColor,
+		color: baseFieldVars.descriptionColor,
 		userSelect: "none",
 	},
 ]);
