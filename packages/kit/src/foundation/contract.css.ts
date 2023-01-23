@@ -33,9 +33,15 @@ export const tokens = createThemeContract({
 	formAccent: null,
 	// ================================ component ================================ //
 	separator: null,
+	// dropdown
 	dropdownBackground: null,
 	dropdownBoxShadow: null,
 	dropdownItemTextColor: null,
 	dropdownItemHoverBackground: null,
 	dropdownItemHoverTextColor: null,
+	// dialog
+	dialogBackground: null,
+	dialogBoxShadow: null,
+	dialogTextColor: null,
+	dialogOverlayBackground: null,
 } as const);

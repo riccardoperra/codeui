@@ -76,11 +76,17 @@ createGlobalTheme("[data-cui-theme=dark]", contract, {
 	neutralSoft,
 	formAccent: neutralDark,
 	separator: grayDarkScale.gray7,
+	// dropdown
 	dropdownBackground: grayDarkScale.gray4,
-	dropdownBoxShadow: "0 1px #0000000d,0 4px 10px varrgba(0, 0, 0, .3)",
+	dropdownBoxShadow: "0 1px #0000000d,0 4px 10px rgba(0, 0, 0, .3)",
 	dropdownItemTextColor: "#fff",
 	dropdownItemHoverBackground: themeTokens.colors.blue9,
 	dropdownItemHoverTextColor: "#fff",
+	// dialog
+	dialogBackground: grayDarkScale.gray4,
+	dialogBoxShadow: "0 1px #0000000d,0 4px 10px rgba(0, 0, 0, .3)",
+	dialogTextColor: "#fff",
+	dialogOverlayBackground: "rgba(0,0,0,.7)",
 });
 
 createGlobalTheme("[data-cui-theme=light]", contract, {
@@ -112,10 +118,16 @@ createGlobalTheme("[data-cui-theme=light]", contract, {
 	neutral,
 	neutralSoft,
 	formAccent: neutralSoft,
-	separator: grayLightScale.gray9,
+	separator: grayLightScale.gray4,
+	// dropdown
 	dropdownBackground: "#fff",
 	dropdownBoxShadow: "0 1px #0000000d,0 4px 10px rgba(0, 0, 0, .1)",
 	dropdownItemTextColor: "#000",
 	dropdownItemHoverBackground: themeTokens.colors.blue9,
 	dropdownItemHoverTextColor: "#fff",
+	// dialog
+	dialogBackground: "#fff",
+	dialogBoxShadow: "0 1px #0000000d,0 4px 10px rgba(0, 0, 0, .1)",
+	dialogTextColor: "#000",
+	dialogOverlayBackground: "#091e427d",
 });

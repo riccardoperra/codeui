@@ -1,15 +1,21 @@
 import { createTheme, style } from "@vanilla-extract/css";
 import { recipe, RecipeVariants } from "@vanilla-extract/recipes";
 import { themeTokens } from "../../foundation/themes.css";
+import { responsiveStyle } from "../../foundation/responsive";
+import { ComponentSizes } from "../../foundation/sizes.css";
+import { tokens } from "../../foundation/contract.css";
 
 export const [dialogTheme, dialogThemeVars] = createTheme({
+	contentBackground: tokens.dialogBackground,
+	contentBoxShadow: tokens.dialogBoxShadow,
+	contentTextColor: tokens.dialogTextColor,
 	contentPadding: themeTokens.spacing["6"],
 	panelRadius: themeTokens.radii.lg,
 	titleTextColor: themeTokens.colors.gray12,
 	panelTextColor: themeTokens.colors.gray12,
-	dividerColor: themeTokens.colors.gray6,
-	panelBackground: "#1d1d1d",
+	dividerColor: tokens.separator,
 	titleFontSize: themeTokens.fontSize.lg,
+	overlayBackground: tokens.dialogOverlayBackground,
 	panelShadow: `0 10px 30px 0 rgba(0,0,0,.15), inset 0 0 0 1px ${themeTokens.colors.gray3}`,
 });
 
@@ -50,7 +56,7 @@ export const positioner = style({
 	position: "fixed",
 	inset: 0,
 	zIndex: 50,
-	backgroundColor: "rgba(0,0,0,.7)",
+	backgroundColor: dialogThemeVars.overlayBackground,
 	display: "flex",
 	alignItems: "center",
 	justifyContent: "center",
@@ -58,7 +64,7 @@ export const positioner = style({
 
 export const title = style([
 	{
-		color: dialogThemeVars.titleTextColor,
+		color: dialogThemeVars.contentTextColor,
 		height: "52px",
 		borderBottom: `1px solid ${dialogThemeVars.dividerColor}`,
 		padding: `0 ${dialogThemeVars.contentPadding}`,
@@ -78,11 +84,11 @@ export const panel = recipe({
 		padding: 0,
 		overflow: "hidden",
 		textAlign: "left",
-		color: dialogThemeVars.panelTextColor,
 		alignItems: "stretch",
-		boxShadow: dialogThemeVars.panelShadow,
+		color: dialogThemeVars.contentTextColor,
+		boxShadow: dialogThemeVars.contentBoxShadow,
 		borderRadius: dialogThemeVars.panelRadius,
-		backgroundColor: dialogThemeVars.panelBackground,
+		backgroundColor: dialogThemeVars.contentBackground,
 		transform: "translate(0, 0)",
 
 		":focus-visible": {
@@ -90,49 +96,36 @@ export const panel = recipe({
 		},
 	},
 
-	// TODO: Add responsive breakpoints from @codeimage/website
 	variants: {
 		size: {
-			xs: {
-				"@media": {
-					"screen and (min-width: 768px)": {
-						width: "24rem",
-					},
-				},
+			[ComponentSizes.xs]: {
+				width: "24rem",
 			},
-			sm: {
-				"@media": {
-					"screen and (min-width: 768px)": {
-						width: "28rem",
-					},
-				},
+			[ComponentSizes.sm]: {
+				width: "28rem",
 			},
-			md: {
-				"@media": {
-					"screen and (min-width: 768px)": {
-						width: "32rem",
-					},
-				},
+			[ComponentSizes.md]: {
+				width: "32rem",
 			},
-			lg: {
-				"@media": {
-					"screen and (min-width: 768px)": {
-						width: "48rem",
-					},
+			[ComponentSizes.lg]: responsiveStyle({
+				md: {
+					width: "48rem",
 				},
-			},
-			xl: {
-				"@media": {
-					"screen and (min-width: 768px)": {
-						width: "64rem",
-					},
+			}),
+			[ComponentSizes.xl]: responsiveStyle({
+				md: {
+					width: "48rem",
 				},
-			},
+				lg: {
+					width: "64rem",
+				},
+			}),
 			full: {
 				padding: 0,
 				margin: 0,
 				minHeight: "100%",
 				width: "100%",
+				borderRadius: 0,
 				height: "100%",
 				":focus-visible": {
 					boxShadow: "none",
@@ -141,10 +134,6 @@ export const panel = recipe({
 			},
 		},
 	},
-});
-
-export const close = style({
-	fontSize: "16px",
 });
 
 export type DialogPanelVariants = RecipeVariants<typeof panel>;
