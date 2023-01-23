@@ -1,6 +1,6 @@
 import { style } from "@vanilla-extract/css";
 import { tokens } from "../../../foundation/contract.css";
-import { styleFieldMessage } from "../Field.css";
+import { styleFieldMessage } from "../fieldStyle";
 
 export const errorMessage = style([
 	styleFieldMessage({

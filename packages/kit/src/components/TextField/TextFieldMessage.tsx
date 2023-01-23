@@ -1,5 +1,5 @@
 import { TextField as KTextField } from "@kobalte/core";
-import { createFieldMessageProps } from "../Forms/FieldMessage/createFieldMessageProps";
+import { createFieldMessageProps } from "../Field/FieldMessage/createFieldMessageProps";
 
 type TextFieldLabelProps = Parameters<(typeof KTextField)["Description"]>[0] & {};
 

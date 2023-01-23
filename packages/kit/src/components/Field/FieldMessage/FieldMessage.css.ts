@@ -1,6 +1,6 @@
 import { style } from "@vanilla-extract/css";
 import { textFieldVars } from "../../TextField/TextField.css";
-import { styleFieldMessage } from "../Field.css";
+import { styleFieldMessage } from "../fieldStyle";
 
 export const description = style([
 	styleFieldMessage({

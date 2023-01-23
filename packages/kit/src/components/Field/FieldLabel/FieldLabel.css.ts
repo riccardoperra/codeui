@@ -1,6 +1,6 @@
 import { style } from "@vanilla-extract/css";
 import { themeTokens } from "../../../foundation/themes.css";
-import { styleFieldMessage } from "../Field.css";
+import { styleFieldMessage } from "../fieldStyle";
 
 export const label = style([
 	styleFieldMessage({

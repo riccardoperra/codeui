@@ -4,19 +4,23 @@ import { AnimationContextProvider, useAnimationContext } from "../../utils/anima
 import { GetKobalteParams } from "../../utils/types";
 import { animate } from "motion";
 import * as styles from "./Select.css";
-import { createFieldLabelProps } from "../Forms/FieldLabel/createFieldLabelProps";
-import { createFieldMessageProps } from "../Forms/FieldMessage/createFieldMessageProps";
-import { createFieldErrorMessageProps } from "../Forms/FieldError/createFieldErrorMessageProps";
+import { createFieldLabelProps } from "../Field/FieldLabel/createFieldLabelProps";
+import { createFieldMessageProps } from "../Field/FieldMessage/createFieldMessageProps";
+import {
+	createFieldErrorMessageProps,
+	FieldWithErrorMessageSupport,
+} from "../Field/FieldError/createFieldErrorMessageProps";
+import { BaseFieldProps, createBaseFieldProps } from "../Field/createBaseFieldProps";
+import { mergeClasses } from "../../utils/css";
 
 type SelectProps = GetKobalteParams<typeof KSelect.Root> &
-	styles.SelectFieldVariants & {
+	BaseFieldProps & {
 		"aria-label": string;
 		placeholder?: string;
 
 		description?: string;
 		label?: JSX.Element;
-		errorMessage?: JSX.Element;
-	};
+	} & FieldWithErrorMessageSupport;
 
 function SelectorIcon(props: JSX.IntrinsicElements["svg"]): JSX.Element {
 	return (
@@ -91,6 +95,7 @@ export function Select(props: ParentProps<SelectProps>) {
 		}
 	});
 
+	const baseFieldProps = createBaseFieldProps(props);
 	const labelProps = createFieldLabelProps({});
 	const descriptionProps = createFieldMessageProps({});
 	const errorProps = createFieldErrorMessageProps(props);
@@ -111,10 +116,7 @@ export function Select(props: ParentProps<SelectProps>) {
 					</Show>
 					<KSelect.Trigger
 						aria-label={local["aria-label"]}
-						class={styles.selectField({
-							size: local.size,
-							theme: local.theme,
-						})}
+						class={mergeClasses(baseFieldProps.baseStyle(), styles.selectField)}
 					>
 						<KSelect.Value placeholder={local.placeholder} />
 						<KSelect.Icon>

@@ -1,16 +1,7 @@
 import { style } from "@vanilla-extract/css";
 import { themeTokens } from "../../foundation/themes.css";
 import { componentStateStyles } from "@kobalte/vanilla-extract";
-import {
-	baseField,
-	FieldSizes,
-	fontSize,
-	inputHeight,
-	textFieldTheme,
-	textFieldVars,
-} from "../TextField/TextField.css";
-import { recipe, RecipeVariants } from "@vanilla-extract/recipes";
-import { mapFontSizeValue, mapSizeValue } from "../../foundation/sizes.css";
+import { baseField, textFieldTheme } from "../TextField/TextField.css";
 import { tokens } from "../../foundation/contract.css";
 
 export const content = style({
@@ -92,78 +83,17 @@ export const field = style([
 	},
 ]);
 
-export const selectField = recipe({
-	base: [
-		baseField,
-		{
-			display: "inline-flex",
-			alignItems: "center",
-			justifyContent: "space-between",
-			paddingRight: themeTokens.spacing["3"],
-			paddingLeft: themeTokens.spacing["3"],
-			paddingTop: 0,
-			paddingBottom: 0,
-			outline: "none",
-			width: "100%",
-		},
-	],
-	variants: {
-		theme: {
-			filled: {
-				vars: {
-					[textFieldVars.borderColor]: "transparent",
-				},
-			},
-			outline: {},
-			inline: [
-				{
-					backgroundColor: "transparent",
-					border: "none",
-					borderBottom: `2px solid ${textFieldVars.background}`,
-					borderRadius: 0,
-					paddingLeft: 0,
-					paddingRight: 0,
-				},
-				componentStateStyles({ disabled: { backgroundColor: "transparent" } }),
-			],
-		},
-		size: {
-			[FieldSizes.xs]: {
-				vars: {
-					[inputHeight]: mapSizeValue("xs"),
-					[fontSize]: mapFontSizeValue("xs"),
-				},
-			},
-			[FieldSizes.sm]: {
-				vars: {
-					[inputHeight]: mapSizeValue("sm"),
-					[fontSize]: mapFontSizeValue("sm"),
-				},
-			},
-			[FieldSizes.md]: {
-				vars: {
-					[inputHeight]: mapSizeValue("md"),
-					[fontSize]: mapFontSizeValue("md"),
-				},
-			},
-			[FieldSizes.lg]: {
-				vars: {
-					[inputHeight]: mapSizeValue("lg"),
-					[fontSize]: mapFontSizeValue("md"),
-				},
-			},
-			[FieldSizes.xl]: {
-				vars: {
-					[inputHeight]: mapSizeValue("xl"),
-					[fontSize]: mapFontSizeValue("lg"),
-				},
-			},
-		},
+export const selectField = style([
+	baseField,
+	{
+		display: "inline-flex",
+		alignItems: "center",
+		justifyContent: "space-between",
+		paddingRight: themeTokens.spacing["3"],
+		paddingLeft: themeTokens.spacing["3"],
+		paddingTop: 0,
+		paddingBottom: 0,
+		outline: "none",
+		width: "100%",
 	},
-	defaultVariants: {
-		theme: "filled",
-		size: "md",
-	},
-});
-
-export type SelectFieldVariants = RecipeVariants<typeof selectField>;
+]);

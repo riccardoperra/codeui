@@ -8,10 +8,11 @@ import { TextFieldMessage } from "./TextFieldMessage";
 import {
 	createFieldErrorMessageProps,
 	FieldWithErrorMessageSupport,
-} from "../Forms/FieldError/createFieldErrorMessageProps";
+} from "../Field/FieldError/createFieldErrorMessageProps";
+import { BaseFieldProps, createBaseFieldProps } from "../Field/createBaseFieldProps";
 
 export type TextFieldProps = KTextField.TextFieldRootOptions &
-	styles.TextFieldVariants & {
+	BaseFieldProps & {
 		description?: string;
 		label?: JSX.Element;
 		placeholder?: string;
@@ -27,7 +28,10 @@ export function TextField(props: TextFieldProps) {
 		"placeholder",
 	]);
 
+	const baseFieldProps = createBaseFieldProps(props);
 	const errorMessageProps = createFieldErrorMessageProps(props);
+
+	const inputClasses = () => mergeClasses(baseFieldProps.baseStyle(), styles.textField);
 
 	return (
 		<KTextField.Root
@@ -39,13 +43,7 @@ export function TextField(props: TextFieldProps) {
 			<Show when={local.label} keyed={false}>
 				<TextFieldLabel>{local.label}</TextFieldLabel>
 			</Show>
-			<KTextField.Input
-				class={styles.textField({
-					size: local.size,
-					theme: local.theme,
-				})}
-				placeholder={local.placeholder}
-			/>
+			<KTextField.Input class={inputClasses()} placeholder={local.placeholder} />
 			<Show when={local.description} keyed={false}>
 				<TextFieldMessage>{local.description}</TextFieldMessage>
 			</Show>
