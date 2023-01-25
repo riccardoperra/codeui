@@ -9,10 +9,12 @@ export const [selectTheme, selectThemeVars] = createTheme({
 	contentRadius: themeTokens.radii.lg,
 	contentBoxShadow: tokens.dropdownBoxShadow,
 	contentPadding: themeTokens.spacing["2"],
+	contentMaxHeight: "400px",
 	separator: tokens.separator,
 	itemTextColor: tokens.dropdownItemTextColor,
 	itemHoverBackground: tokens.dropdownItemHoverBackground,
 	itemHoverTextColor: tokens.dropdownItemHoverTextColor,
+	itemDisabledOpacity: ".4",
 });
 
 // TODO: common popover/dropdown style
@@ -23,13 +25,14 @@ export const content = style([
 		backgroundColor: selectThemeVars.contentBackground,
 		borderRadius: selectThemeVars.contentRadius,
 		padding: selectThemeVars.contentPadding,
-		overflow: "hidden",
+		overflow: "auto",
 		zIndex: "40",
 		listStyleType: "none",
 		display: "flex",
 		flexDirection: "column",
 		rowGap: themeTokens.spacing["1"],
 		outline: "none",
+		maxHeight: selectThemeVars.contentMaxHeight,
 	},
 ]);
 
@@ -79,7 +82,7 @@ export const item = style([
 			color: selectThemeVars.itemHoverTextColor,
 		},
 		disabled: {
-			color: themeTokens.colors.gray10,
+			opacity: selectThemeVars.itemDisabledOpacity,
 		},
 		"focus-visible": {
 			backgroundColor: selectThemeVars.itemHoverBackground,

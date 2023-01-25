@@ -19,7 +19,11 @@ export function SelectDemo() {
 							theme={"filled"}
 						>
 							<For each={["Apple", "Banana", "Blueberry", "Grapes", "Pineapple"]}>
-								{fruit => <SelectItem value={fruit}>{fruit}</SelectItem>}
+								{fruit => (
+									<SelectItem isDisabled={fruit === "Banana"} value={fruit}>
+										{fruit}
+									</SelectItem>
+								)}
 							</For>
 						</Select>
 					)}

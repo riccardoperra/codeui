@@ -11,12 +11,9 @@ export const [dialogTheme, dialogThemeVars] = createTheme({
 	contentTextColor: tokens.dialogTextColor,
 	contentPadding: themeTokens.spacing["6"],
 	panelRadius: themeTokens.radii.lg,
-	titleTextColor: themeTokens.colors.gray12,
-	panelTextColor: themeTokens.colors.gray12,
 	dividerColor: tokens.separator,
 	titleFontSize: themeTokens.fontSize.lg,
 	overlayBackground: tokens.dialogOverlayBackground,
-	panelShadow: `0 10px 30px 0 rgba(0,0,0,.15), inset 0 0 0 1px ${themeTokens.colors.gray3}`,
 });
 
 export const overlay = style([

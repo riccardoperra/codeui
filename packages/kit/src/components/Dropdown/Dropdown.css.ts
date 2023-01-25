@@ -13,6 +13,7 @@ export const [dropdownMenuTheme, dropdownMenuThemeVars] = createTheme({
 	itemTextColor: tokens.dropdownItemTextColor,
 	itemHoverBackground: tokens.dropdownItemHoverBackground,
 	itemHoverTextColor: tokens.dropdownItemHoverTextColor,
+	itemDisabledOpacity: ".4",
 });
 
 // TODO: common popover/dropdown style
@@ -79,7 +80,7 @@ export const item = style([
 			color: dropdownMenuThemeVars.itemHoverTextColor,
 		},
 		disabled: {
-			color: themeTokens.colors.gray10,
+			opacity: selectThemeVars.itemDisabledOpacity,
 		},
 		"focus-visible": {
 			backgroundColor: dropdownMenuThemeVars.itemHoverBackground,
@@ -92,13 +93,13 @@ export const rightSlot = style([
 	{
 		paddingLeft: themeTokens.spacing["8"],
 		marginLeft: "auto",
-		color: themeTokens.colors.gray10,
+		color: tokens.accent9,
 		selectors: {
 			[`${item}[data-hover] &`]: {
-				color: themeTokens.colors.gray12,
+				color: tokens.foreground,
 			},
 			[`${item}[data-focus] &`]: {
-				color: themeTokens.colors.gray12,
+				color: tokens.foreground,
 			},
 		},
 	},

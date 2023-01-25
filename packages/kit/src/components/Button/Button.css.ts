@@ -161,7 +161,8 @@ export const button = recipe({
 					[buttonVars.background]: tokens.critical,
 					[buttonVars.hoverBackground]: tokens.criticalAccentHover,
 					[buttonVars.activeBackground]: tokens.criticalAccentActive,
-					[buttonVars.color]: themeTokens.colors.gray12,
+					// TODO: add custom colors
+					[buttonVars.color]: tokens.foreground,
 				},
 			},
 			[ButtonThemes.caution]: {
@@ -169,7 +170,7 @@ export const button = recipe({
 					[buttonVars.background]: tokens.caution,
 					[buttonVars.hoverBackground]: tokens.cautionAccentHover,
 					[buttonVars.activeBackground]: tokens.cautionAccentActive,
-					[buttonVars.color]: themeTokens.colors.gray12,
+					[buttonVars.color]: tokens.foreground,
 				},
 			},
 		},
