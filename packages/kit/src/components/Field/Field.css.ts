@@ -39,6 +39,30 @@ export const baseFieldVariants = recipe({
 			height: fallbackVar(baseFieldVars.inputHeight, "100%"),
 			color: "currentcolor",
 		},
+		{
+			":focus": {
+				borderColor: themeTokens.colors.blue8,
+			},
+			":focus-visible": {
+				borderColor: themeTokens.colors.blue9,
+			},
+		},
+		componentStateStyles({
+			focus: {
+				borderColor: themeTokens.colors.blue8,
+			},
+			"focus-visible": {
+				borderColor: themeTokens.colors.blue9,
+			},
+			invalid: {
+				borderColor: tokens.critical,
+				color: tokens.critical,
+			},
+			disabled: {
+				cursor: "not-allowed",
+				opacity: 0.4,
+			},
+		}),
 		componentStateStyles({
 			focus: {
 				borderColor: themeTokens.colors.blue8,

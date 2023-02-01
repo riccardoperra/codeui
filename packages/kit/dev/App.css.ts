@@ -15,3 +15,7 @@ globalStyle("[data-cui-theme=light] body", {
 	background: tokens.background,
 	color: tokens.foreground,
 });
+
+globalStyle("#root", {
+	height: "100%",
+});

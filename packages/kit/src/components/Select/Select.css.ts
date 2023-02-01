@@ -70,23 +70,33 @@ export const item = style([
 		transition: "opacity .2s, background-color .2s, transform .2s",
 		gap: themeTokens.spacing["2"],
 	},
-	componentStateStyles({
-		focus: {
+	{
+		":disabled": {
+			opacity: selectThemeVars.itemDisabledOpacity,
+		},
+		":focus": {
 			boxShadow: "none",
 			outline: "none",
 			backgroundColor: selectThemeVars.itemHoverBackground,
 			color: selectThemeVars.itemHoverTextColor,
 		},
-		hover: {
+		":focus-visible": {
+			backgroundColor: selectThemeVars.itemHoverBackground,
+			color: selectThemeVars.itemHoverTextColor,
+		},
+	},
+	componentStateStyles({
+		highlighted: {
+			boxShadow: "none",
+			outline: "none",
 			backgroundColor: selectThemeVars.itemHoverBackground,
 			color: selectThemeVars.itemHoverTextColor,
 		},
 		disabled: {
 			opacity: selectThemeVars.itemDisabledOpacity,
-		},
-		"focus-visible": {
-			backgroundColor: selectThemeVars.itemHoverBackground,
-			color: selectThemeVars.itemHoverTextColor,
+			not: {
+				":hover": {},
+			},
 		},
 	}),
 ]);

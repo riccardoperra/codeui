@@ -75,15 +75,19 @@ export const button = recipe({
 				[buttonVars.borderColor]: buttonVars.background,
 			},
 		},
+		{
+			selectors: {
+				"&:not([data-disabled]):hover": {
+					background: buttonVars.hoverBackground,
+				},
+				"&:not([data-disabled]):active": {
+					background: buttonVars.activeBackground,
+					animation: "none",
+					transform: "scale(0.95)",
+				},
+			},
+		},
 		componentStateStyles({
-			hover: {
-				background: buttonVars.hoverBackground,
-			},
-			active: {
-				background: buttonVars.activeBackground,
-				animation: "none",
-				transform: "scale(0.95)",
-			},
 			disabled: {
 				vars: {
 					[buttonVars.background]: themeTokens.colors.gray2,

@@ -1,9 +1,10 @@
-import { createTheme, style } from "@vanilla-extract/css";
+import { createTheme, keyframes, style } from "@vanilla-extract/css";
 import { recipe, RecipeVariants } from "@vanilla-extract/recipes";
 import { themeTokens } from "../../foundation/themes.css";
 import { responsiveStyle } from "../../foundation/responsive";
 import { ComponentSizes } from "../../foundation/sizes.css";
 import { tokens } from "../../foundation/contract.css";
+import { componentStateStyles } from "@kobalte/vanilla-extract";
 
 export const [dialogTheme, dialogThemeVars] = createTheme({
 	contentBackground: tokens.dialogBackground,
@@ -14,6 +15,28 @@ export const [dialogTheme, dialogThemeVars] = createTheme({
 	dividerColor: tokens.separator,
 	titleFontSize: themeTokens.fontSize.lg,
 	overlayBackground: tokens.dialogOverlayBackground,
+});
+
+const contentShow = keyframes({
+	from: {
+		opacity: 0,
+		transform: "scale(0.95) translateY(10px)",
+	},
+	to: {
+		opacity: 1,
+		transform: "scale(1) translateY(0px)",
+	},
+});
+
+const contentHide = keyframes({
+	from: {
+		opacity: 1,
+		transform: "scale(1) translateY(0px)",
+	},
+	to: {
+		opacity: 0,
+		transform: "scale(0.95) translateY(10px)",
+	},
 });
 
 export const overlay = style([
@@ -29,15 +52,17 @@ export const overlay = style([
 	},
 ]);
 
-export const panelContent = style({
-	padding: `${dialogThemeVars.contentPadding}`,
-	selectors: {
-		"[data-full-screen=true] &": {
-			overflow: "auto",
-			flex: 1,
+export const panelContent = style([
+	{
+		padding: `${dialogThemeVars.contentPadding}`,
+		selectors: {
+			"[data-full-screen=true] &": {
+				overflow: "auto",
+				flex: 1,
+			},
 		},
 	},
-});
+]);
 
 export const panelFooter = style({
 	padding: `${dialogThemeVars.contentPadding}`,
@@ -74,24 +99,32 @@ export const title = style([
 ]);
 
 export const panel = recipe({
-	base: {
-		display: "inline-flex",
-		flexDirection: "column",
-		width: "100%",
-		padding: 0,
-		overflow: "hidden",
-		textAlign: "left",
-		alignItems: "stretch",
-		color: dialogThemeVars.contentTextColor,
-		boxShadow: dialogThemeVars.contentBoxShadow,
-		borderRadius: dialogThemeVars.panelRadius,
-		backgroundColor: dialogThemeVars.contentBackground,
-		transform: "translate(0, 0)",
+	base: [
+		{
+			display: "inline-flex",
+			flexDirection: "column",
+			width: "100%",
+			padding: 0,
+			overflow: "hidden",
+			textAlign: "left",
+			alignItems: "stretch",
+			color: dialogThemeVars.contentTextColor,
+			boxShadow: dialogThemeVars.contentBoxShadow,
+			borderRadius: dialogThemeVars.panelRadius,
+			backgroundColor: dialogThemeVars.contentBackground,
+			transform: "translate(0, 0)",
+			animation: `${contentHide} 250ms ease-in-out`,
 
-		":focus-visible": {
-			outline: "none",
+			":focus-visible": {
+				outline: "none",
+			},
 		},
-	},
+		componentStateStyles({
+			expanded: {
+				animation: `${contentShow} 250ms ease-in-out`,
+			},
+		}),
+	],
 
 	variants: {
 		size: {
