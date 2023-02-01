@@ -27,7 +27,7 @@ export function DialogDemo() {
 				>
 					{size => (
 						<>
-							<Button theme={"secondary"} onPress={() => setDialogState(size!, true)}>
+							<Button theme={"secondary"} onClick={() => setDialogState(size!, true)}>
 								Open Dialog ({size})
 							</Button>
 							<Dialog

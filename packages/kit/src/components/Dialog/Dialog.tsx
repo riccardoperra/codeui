@@ -49,7 +49,6 @@ export function DialogPanel(props: ParentProps<DialogPanelProps>): JSXElement {
 
 export function Dialog(props: ParentProps<DialogProps>) {
 	const [local, others] = splitProps(props, ["size", "children", "title"]);
-	console.log(others);
 	return (
 		<KDialog.Root {...others}>
 			<KDialog.Portal>
