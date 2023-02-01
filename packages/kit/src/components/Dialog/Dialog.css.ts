@@ -55,7 +55,6 @@ export const overlay = style([
 export const panelContent = style([
 	{
 		padding: `${dialogThemeVars.contentPadding}`,
-		animation: `${contentHide} 250ms ease-in-out`,
 		selectors: {
 			"[data-full-screen=true] &": {
 				overflow: "auto",
@@ -63,11 +62,6 @@ export const panelContent = style([
 			},
 		},
 	},
-	componentStateStyles({
-		expanded: {
-			animation: `${contentShow} 250ms ease-in-out`,
-		},
-	}),
 ]);
 
 export const panelFooter = style({
@@ -105,24 +99,32 @@ export const title = style([
 ]);
 
 export const panel = recipe({
-	base: {
-		display: "inline-flex",
-		flexDirection: "column",
-		width: "100%",
-		padding: 0,
-		overflow: "hidden",
-		textAlign: "left",
-		alignItems: "stretch",
-		color: dialogThemeVars.contentTextColor,
-		boxShadow: dialogThemeVars.contentBoxShadow,
-		borderRadius: dialogThemeVars.panelRadius,
-		backgroundColor: dialogThemeVars.contentBackground,
-		transform: "translate(0, 0)",
+	base: [
+		{
+			display: "inline-flex",
+			flexDirection: "column",
+			width: "100%",
+			padding: 0,
+			overflow: "hidden",
+			textAlign: "left",
+			alignItems: "stretch",
+			color: dialogThemeVars.contentTextColor,
+			boxShadow: dialogThemeVars.contentBoxShadow,
+			borderRadius: dialogThemeVars.panelRadius,
+			backgroundColor: dialogThemeVars.contentBackground,
+			transform: "translate(0, 0)",
+			animation: `${contentHide} 250ms ease-in-out`,
 
-		":focus-visible": {
-			outline: "none",
+			":focus-visible": {
+				outline: "none",
+			},
 		},
-	},
+		componentStateStyles({
+			expanded: {
+				animation: `${contentShow} 250ms ease-in-out`,
+			},
+		}),
+	],
 
 	variants: {
 		size: {
