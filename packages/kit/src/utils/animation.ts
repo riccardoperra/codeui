@@ -94,6 +94,11 @@ function createAnimationContextState(
 	return contextState;
 }
 
+/**
+ * @deprecated Should use kobalte presence
+ * @param props
+ * @constructor
+ */
 export function AnimationContextProvider(props: ParentProps<AnimationContextProps>) {
 	const [local, others] = splitProps(props, ["children"]);
 	const context = useContext(AnimationContext);
@@ -108,6 +113,9 @@ export function AnimationContextProvider(props: ParentProps<AnimationContextProp
 	});
 }
 
+/**
+ * @deprecated Should use kobalte presence
+ */
 export function useAnimationContext() {
 	return useContext(AnimationContext)!;
 }

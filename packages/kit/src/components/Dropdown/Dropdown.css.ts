@@ -1,4 +1,4 @@
-import { createTheme, style } from "@vanilla-extract/css";
+import { createTheme, keyframes, style } from "@vanilla-extract/css";
 import { themeTokens } from "../../foundation/themes.css";
 import { componentStateStyles } from "@kobalte/vanilla-extract";
 import { tokens } from "../../foundation/contract.css";
@@ -16,6 +16,28 @@ export const [dropdownMenuTheme, dropdownMenuThemeVars] = createTheme({
 	itemDisabledOpacity: ".4",
 });
 
+const contentShow = keyframes({
+	from: {
+		opacity: 0,
+		transform: "translateY(-10px)",
+	},
+	to: {
+		opacity: 1,
+		transform: "translateY(0px)",
+	},
+});
+
+const contentHide = keyframes({
+	from: {
+		opacity: 1,
+		transform: "translateY(0px)",
+	},
+	to: {
+		opacity: 0,
+		transform: "translateY(-10px)",
+	},
+});
+
 // TODO: common popover/dropdown style
 export const content = style([
 	dropdownMenuTheme,
@@ -31,7 +53,13 @@ export const content = style([
 		flexDirection: "column",
 		rowGap: themeTokens.spacing["1"],
 		outline: "none",
+		animation: `${contentHide} 250ms ease-in-out`,
 	},
+	componentStateStyles({
+		expanded: {
+			animation: `${contentShow} 250ms ease-in-out`,
+		},
+	}),
 ]);
 
 export const subMenuContent = style([
@@ -68,23 +96,34 @@ export const item = style([
 		transition: "opacity .2s, background-color .2s, transform .2s",
 		gap: themeTokens.spacing["2"],
 	},
-	componentStateStyles({
-		focus: {
+	{
+		":focus": {
 			boxShadow: "none",
 			outline: "none",
 			backgroundColor: dropdownMenuThemeVars.itemHoverBackground,
 			color: selectThemeVars.itemHoverTextColor,
 		},
-		hover: {
+		":hover": {
 			backgroundColor: dropdownMenuThemeVars.itemHoverBackground,
 			color: dropdownMenuThemeVars.itemHoverTextColor,
+		},
+		":disabled": {
+			opacity: selectThemeVars.itemDisabledOpacity,
+		},
+		":focus-visible": {
+			backgroundColor: dropdownMenuThemeVars.itemHoverBackground,
+			color: dropdownMenuThemeVars.itemHoverTextColor,
+		},
+	},
+	componentStateStyles({
+		highlighted: {
+			boxShadow: "none",
+			outline: "none",
+			backgroundColor: dropdownMenuThemeVars.itemHoverBackground,
+			color: selectThemeVars.itemHoverTextColor,
 		},
 		disabled: {
 			opacity: selectThemeVars.itemDisabledOpacity,
-		},
-		"focus-visible": {
-			backgroundColor: dropdownMenuThemeVars.itemHoverBackground,
-			color: dropdownMenuThemeVars.itemHoverTextColor,
 		},
 	}),
 ]);
@@ -99,6 +138,9 @@ export const rightSlot = style([
 				color: tokens.foreground,
 			},
 			[`${item}[data-focus] &`]: {
+				color: tokens.foreground,
+			},
+			[`${item}[data-highlighted] &`]: {
 				color: tokens.foreground,
 			},
 		},
