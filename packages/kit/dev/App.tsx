@@ -9,6 +9,7 @@ import { PopoverDemo } from "./demo/Popover";
 import { SelectDemo } from "./demo/Select";
 import "./App.css";
 import { theme as themeClass } from "@codeui/kit";
+import { SegmentedFieldDemo } from "./demo/SegmentedField";
 
 const App: Component = () => {
 	const [theme, setTheme] = createSignal("dark");
@@ -32,7 +33,6 @@ const App: Component = () => {
 				value={"dark"}
 				onChange={v => setTheme(v.currentTarget.value)}
 			/>
-
 			<DemoSection>
 				<ButtonDemo />
 			</DemoSection>
@@ -50,6 +50,9 @@ const App: Component = () => {
 			</DemoSection>
 			<DemoSection>
 				<PopoverDemo />
+			</DemoSection>
+			<DemoSection>
+				<SegmentedFieldDemo />
 			</DemoSection>
 		</div>
 	);

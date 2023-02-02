@@ -13,7 +13,12 @@
 		"skipLibCheck": true,
 		"strict": true,
 		"paths": {
-			"@codeui/kit": ["./src/index.tsx"]
+			"@codeui/kit": [
+				"./src/index.tsx"
+			],
+			"~/internal": [
+				"./src/internal/index.ts"
+			]
 		}
 	},
 	"extends": "../../tsconfig.json",

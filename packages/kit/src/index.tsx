@@ -22,6 +22,10 @@ export {
 	DropdownSubMenuContent,
 	DropdownMenuSeparator,
 } from "./components/Dropdown/Dropdown";
+export {
+	SegmentedField,
+	SegmentedFieldItem,
+} from "./components/SegmentedField/SegmentedField";
 export { Popover, PopoverTrigger, PopoverContent } from "./components/Popover/Popover";
 export { SelectItem, Select } from "./components/Select/Select";
 export { tokens } from "./foundation/tokens";
