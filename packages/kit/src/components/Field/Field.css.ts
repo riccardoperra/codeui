@@ -48,12 +48,6 @@ export const baseFieldVariants = recipe({
 			},
 		},
 		componentStateStyles({
-			focus: {
-				borderColor: themeTokens.colors.blue8,
-			},
-			"focus-visible": {
-				borderColor: themeTokens.colors.blue9,
-			},
 			invalid: {
 				borderColor: tokens.critical,
 				color: tokens.critical,
@@ -64,12 +58,6 @@ export const baseFieldVariants = recipe({
 			},
 		}),
 		componentStateStyles({
-			focus: {
-				borderColor: themeTokens.colors.blue8,
-			},
-			"focus-visible": {
-				borderColor: themeTokens.colors.blue9,
-			},
 			invalid: {
 				borderColor: tokens.critical,
 				color: tokens.critical,
@@ -87,7 +75,9 @@ export const baseFieldVariants = recipe({
 					[baseFieldVars.borderColor]: "transparent",
 				},
 			},
-			outline: {},
+			outline: {
+				backgroundColor: "transparent",
+			},
 			inline: [
 				{
 					backgroundColor: "transparent",

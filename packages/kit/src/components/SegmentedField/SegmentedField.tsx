@@ -8,12 +8,16 @@ import {
 	createEffect,
 	createMemo,
 	createSignal,
+	createUniqueId,
+	JSX,
 	on,
 	splitProps,
 	useContext,
 } from "solid-js";
 import { useFormControlContext } from "@kobalte/core";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
+import { BaseFieldProps, createBaseFieldProps } from "../Field/createBaseFieldProps";
+import { mergeClasses } from "../../utils/css";
 
 interface SegmentedFieldContext {
 	value: Accessor<unknown>;
@@ -27,12 +31,20 @@ interface SegmentedFieldContext {
 
 const Context = createContext<SegmentedFieldContext>();
 
-export function SegmentedField(
-	props: GetKobalteParams<(typeof InternalSegmentedField)["Root"]>,
-) {
+export type SegmentedFieldProps = GetKobalteParams<
+	(typeof InternalSegmentedField)["Root"]
+> &
+	BaseFieldProps & {
+		description?: string;
+		label?: JSX.Element;
+		placeholder?: string;
+	};
+
+export function SegmentedField(props: SegmentedFieldProps) {
 	const [items, setItems] = createSignal<{ [key: string]: unknown }>({});
-	const [value, setValue] = createSignal<unknown>();
+	const [value, setValue] = createSignal<unknown>(props.defaultValue);
 	const [local, others] = splitProps(props, ["children"]);
+	const baseFieldProps = createBaseFieldProps(props);
 
 	return (
 		<Context.Provider
@@ -53,7 +65,7 @@ export function SegmentedField(
 		>
 			<InternalSegmentedField.Root
 				{...others}
-				class={styles.segmentedGroup}
+				class={mergeClasses(baseFieldProps.baseStyle(), styles.segmentedGroup)}
 				onValueChange={value => {
 					others.onValueChange?.(value);
 					setValue(() => value);
@@ -99,13 +111,13 @@ export function SegmentedFieldItem(
 	props: GetKobalteParams<(typeof InternalSegmentedField)["Item"]>,
 ) {
 	const context = useContext(Context)!;
-	const formControlContext = useFormControlContext();
-	context.registerItem(formControlContext.name(), props.value);
+	const id = `${useFormControlContext().name()}-item-${createUniqueId()}`;
+	context.registerItem(id, props.value);
 
 	createEffect(
 		on(
 			() => props.value,
-			value => context.onItemValuePropChange(formControlContext.name(), value),
+			value => context.onItemValuePropChange(id, value),
 			{ defer: true },
 		),
 	);

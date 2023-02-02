@@ -27,7 +27,6 @@ export const segmentedGroup = style([
 		cursor: "default",
 		textAlign: "center",
 		userSelect: "none",
-		backgroundColor: baseFieldVars.background,
 	},
 ]);
 
