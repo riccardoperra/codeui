@@ -33,9 +33,6 @@ export interface SegmentedFieldRootOptions {
 	/** Event handler called when the value changes. */
 	onValueChange?: (value: string) => void;
 
-	/** Event handler called when the index of the active element changes. */
-	onActiveIndexChange?: (index: number) => void;
-
 	/** The axis the radio group items should align with. */
 	orientation?: Orientation;
 
@@ -94,7 +91,6 @@ export const SegmentedFieldRoot = createPolymorphicComponent<
 			"value",
 			"defaultValue",
 			"onValueChange",
-			"onActiveIndexChange",
 			"orientation",
 			"aria-labelledby",
 			"aria-describedby",

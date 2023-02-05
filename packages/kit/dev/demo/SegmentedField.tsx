@@ -1,7 +1,6 @@
 import { DemoSectionRow } from "../ui/DemoSection";
-import { createEffect, createSignal, JSX } from "solid-js";
-import { segmentedGroup } from "../../src/components/SegmentedField/SegmentedField.css";
-import { SegmentedField, SegmentedFieldItem } from "@codeui/kit";
+import { createEffect, For, JSX } from "solid-js";
+import { SegmentedField, SegmentedFieldItem, TextFieldProps } from "@codeui/kit";
 
 function ArrowRightIcon(props: JSX.IntrinsicElements["svg"]) {
 	return (
@@ -23,20 +22,36 @@ function ArrowRightIcon(props: JSX.IntrinsicElements["svg"]) {
 }
 
 export function SegmentedFieldDemo() {
-	const [value, setValue] = createSignal<string>("");
-
-	createEffect(() => console.log(value(), "segmented field"));
-
 	return (
 		<div style={{ "min-height": "150x" }}>
 			<h1 class={"title"}>SegmentedField</h1>
 
 			<DemoSectionRow>
-				<SegmentedField value={value()} onValueChange={setValue} class={segmentedGroup}>
-					<SegmentedFieldItem value={"1"}>Item - 1</SegmentedFieldItem>
-					<SegmentedFieldItem value={"2"}>Item - 2</SegmentedFieldItem>
-					<SegmentedFieldItem value={"3"}>Item - 3</SegmentedFieldItem>
-				</SegmentedField>
+				<DemoSectionRow>
+					<For each={["xs", "sm", "md", "lg", "xl"] as TextFieldProps["size"][]}>
+						{size => (
+							<div style={{ width: "300px" }}>
+								<SegmentedField size={size} defaultValue={"1"}>
+									<SegmentedFieldItem value={"1"}>Item - 1</SegmentedFieldItem>
+									<SegmentedFieldItem value={"2"}>Item - 2</SegmentedFieldItem>
+									<SegmentedFieldItem value={"3"}>Item - 3</SegmentedFieldItem>
+								</SegmentedField>
+							</div>
+						)}
+					</For>
+
+					<For each={["xs", "sm", "md", "lg", "xl"] as TextFieldProps["size"][]}>
+						{size => (
+							<div style={{ width: "300px" }}>
+								<SegmentedField size={size} theme={"outline"} defaultValue={"1"}>
+									<SegmentedFieldItem value={"1"}>Item - 1</SegmentedFieldItem>
+									<SegmentedFieldItem value={"2"}>Item - 2</SegmentedFieldItem>
+									<SegmentedFieldItem value={"3"}>Item - 3</SegmentedFieldItem>
+								</SegmentedField>
+							</div>
+						)}
+					</For>
+				</DemoSectionRow>
 			</DemoSectionRow>
 		</div>
 	);

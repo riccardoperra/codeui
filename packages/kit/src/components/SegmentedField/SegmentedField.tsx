@@ -1,6 +1,5 @@
 import * as styles from "./SegmentedField.css";
-
-import { SegmentedField as InternalSegmentedField } from "~/internal";
+import * as InternalSegmentedField from "../../internal/SegmentedField";
 import { GetKobalteParams } from "../../utils/types";
 import {
 	Accessor,

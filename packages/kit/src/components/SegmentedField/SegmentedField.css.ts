@@ -7,7 +7,7 @@ import { componentStateStyles } from "@kobalte/vanilla-extract";
 export const [segmentedFieldTheme, segmentedFieldVars] = createTheme({
 	activeSegmentedWidth: "0px",
 	activeSegmentedOffset: "0%",
-	activeSegmentedBackgroundColor: tokens.accent7,
+	activeSegmentedBackgroundColor: tokens.segmentedControlActiveBackground,
 	segmentedTextColor: tokens.foreground,
 	activeSegmentedTextColor: tokens.foreground,
 });
@@ -71,7 +71,7 @@ export const indicator = style([
 			backgroundColor: segmentedFieldVars.activeSegmentedBackgroundColor,
 			content: "",
 			top: 1,
-			boxShadow: themeTokens.boxShadow.default,
+			boxShadow: themeTokens.boxShadow.lg,
 			borderRadius: themeTokens.radii.default,
 		},
 	},

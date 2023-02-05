@@ -87,6 +87,8 @@ createGlobalTheme("[data-cui-theme=dark]", contract, {
 	dialogBoxShadow: "0 1px #0000000d,0 4px 10px rgba(0, 0, 0, .3)",
 	dialogTextColor: "#fff",
 	dialogOverlayBackground: "rgba(0,0,0,.7)",
+	// segmented control
+	segmentedControlActiveBackground: grayDarkScale.gray6,
 });
 
 createGlobalTheme("[data-cui-theme=light]", contract, {
@@ -130,4 +132,6 @@ createGlobalTheme("[data-cui-theme=light]", contract, {
 	dialogBoxShadow: "0 1px #0000000d,0 4px 10px rgba(0, 0, 0, .1)",
 	dialogTextColor: "#000",
 	dialogOverlayBackground: "#091e427d",
+	// segmented control
+	segmentedControlActiveBackground: "#fff",
 });

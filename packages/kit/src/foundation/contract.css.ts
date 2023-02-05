@@ -44,4 +44,6 @@ export const tokens = createThemeContract({
 	dialogBoxShadow: null,
 	dialogTextColor: null,
 	dialogOverlayBackground: null,
+	// segmented control
+	segmentedControlActiveBackground: null,
 } as const);
