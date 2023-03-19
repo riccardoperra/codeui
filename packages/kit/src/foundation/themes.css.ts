@@ -79,6 +79,7 @@ createGlobalTheme("[data-cui-theme=dark]", contract, {
 	// dropdown
 	dropdownBackground: grayDarkScale.gray4,
 	dropdownBoxShadow: "0 1px #0000000d,0 4px 10px rgba(0, 0, 0, .3)",
+	dropdownBorder: grayDarkScale.gray6,
 	dropdownItemTextColor: "#fff",
 	dropdownItemHoverBackground: getHoverColor(brand),
 	dropdownItemHoverTextColor: "#fff",
@@ -122,6 +123,7 @@ createGlobalTheme("[data-cui-theme=light]", contract, {
 	// dropdown
 	dropdownBackground: "#fff",
 	dropdownBoxShadow: "0 1px #0000000d,0 4px 10px rgba(0, 0, 0, .1)",
+	dropdownBorder: grayLightScale.gray4,
 	dropdownItemTextColor: "#000",
 	dropdownItemHoverBackground: getHoverColor(brand),
 	dropdownItemHoverTextColor: "#fff",

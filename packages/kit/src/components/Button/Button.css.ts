@@ -4,7 +4,6 @@ import { themeTokens } from "../../foundation/themes.css";
 import { mapSizeValue } from "../../foundation/sizes.css";
 import { componentStateStyles } from "@kobalte/vanilla-extract";
 import { tokens } from "../../foundation/contract.css";
-import { lighten } from "polished";
 
 export const [buttonTheme, buttonVars] = createTheme({
 	buttonHeight: "",

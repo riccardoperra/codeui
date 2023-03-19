@@ -1,8 +1,7 @@
 import { GetKobalteParams } from "../../utils/types";
 import { DropdownMenu as KDropdownMenu } from "@kobalte/core";
 import * as styles from "./Dropdown.css";
-import { JSX, JSXElement, ParentProps, Show } from "solid-js";
-import { DropdownMenuRootOptions } from "@kobalte/core/dist/types/dropdown-menu";
+import { JSX, JSXElement, Show } from "solid-js";
 
 export function DropdownMenuContent(
 	props: GetKobalteParams<typeof KDropdownMenu.Content>,
@@ -15,7 +14,9 @@ export function DropdownMenuPortal(props: GetKobalteParams<typeof KDropdownMenu.
 }
 
 export function DropdownMenuItem(
-	props: GetKobalteParams<typeof KDropdownMenu.Item> & { rightSlot?: JSXElement },
+	props: GetKobalteParams<typeof KDropdownMenu.Item> & {
+		rightSlot?: JSXElement;
+	},
 ) {
 	return (
 		<KDropdownMenu.Item {...props} class={styles.item}>
@@ -28,11 +29,11 @@ export function DropdownMenuItem(
 }
 
 export function DropdownSubMenu(props: GetKobalteParams<(typeof KDropdownMenu)["Sub"]>) {
-	return <KDropdownMenu.Sub {...props} gutter={12} shift={-8} />;
+	return <KDropdownMenu.Sub {...props} gutter={-4} />;
 }
 
 export function DropdownSubMenuTrigger(
-	props: GetKobalteParams<(typeof KDropdownMenu)["SubTrigger"]> & {
+	props: KDropdownMenu.DropdownMenuSubTriggerProps & {
 		rightSlot: JSX.Element;
 	},
 ) {
@@ -46,24 +47,18 @@ export function DropdownSubMenuTrigger(
 	);
 }
 
-export function DropdownSubMenuContent(
-	props: GetKobalteParams<(typeof KDropdownMenu)["SubContent"]>,
-) {
+export function DropdownSubMenuContent(props: KDropdownMenu.DropdownMenuSubContentProps) {
 	return <KDropdownMenu.SubContent {...props} class={styles.subMenuContent} />;
 }
 
-export function DropdownMenuSeparator(
-	props: GetKobalteParams<(typeof KDropdownMenu)["Separator"]>,
-) {
+export function DropdownMenuSeparator(props: KDropdownMenu.DropdownMenuSeparatorProps) {
 	return <KDropdownMenu.Separator {...props} class={styles.separator} />;
 }
 
-export function DropdownMenuTrigger(
-	props: GetKobalteParams<(typeof KDropdownMenu)["Trigger"]>,
-) {
+export function DropdownMenuTrigger(props: KDropdownMenu.DropdownMenuTriggerProps) {
 	return <KDropdownMenu.Trigger {...props} />;
 }
 
-export function DropdownMenu(props: ParentProps<DropdownMenuRootOptions>) {
+export function DropdownMenu(props: KDropdownMenu.DropdownMenuRootProps) {
 	return <KDropdownMenu.Root {...props} gutter={6} />;
 }

@@ -9,6 +9,7 @@ export const [dropdownMenuTheme, dropdownMenuThemeVars] = createTheme({
 	contentRadius: themeTokens.radii.lg,
 	contentBoxShadow: tokens.dropdownBoxShadow,
 	contentPadding: themeTokens.spacing["2"],
+	contentBorderColor: tokens.dropdownBorder,
 	separator: tokens.separator,
 	itemTextColor: tokens.dropdownItemTextColor,
 	itemHoverBackground: tokens.dropdownItemHoverBackground,
@@ -54,6 +55,7 @@ export const content = style([
 		rowGap: themeTokens.spacing["1"],
 		outline: "none",
 		animation: `${contentHide} 250ms ease-in-out`,
+		border: `1px solid ${dropdownMenuThemeVars.contentBorderColor}`,
 	},
 	componentStateStyles({
 		expanded: {

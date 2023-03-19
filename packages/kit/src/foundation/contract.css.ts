@@ -36,6 +36,7 @@ export const tokens = createThemeContract({
 	// dropdown
 	dropdownBackground: null,
 	dropdownBoxShadow: null,
+	dropdownBorder: null,
 	dropdownItemTextColor: null,
 	dropdownItemHoverBackground: null,
 	dropdownItemHoverTextColor: null,

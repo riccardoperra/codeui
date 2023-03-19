@@ -1,4 +1,4 @@
-import { Dialog as KDialog } from "@kobalte/core";
+import { As, Dialog as KDialog } from "@kobalte/core";
 import { JSXElement, ParentProps, Show, splitProps } from "solid-js";
 import * as styles from "./Dialog.css";
 import { mergeClasses } from "../../utils/css";
@@ -58,8 +58,15 @@ export function Dialog(props: ParentProps<DialogProps>) {
 						<Show when={local.title} keyed={false}>
 							<div class={styles.title}>
 								<KDialog.Title>{props.title}</KDialog.Title>
-								<KDialog.CloseButton as={IconButton} size={"xs"} aria-label={"close"}>
-									<CloseIcon />
+								<KDialog.CloseButton asChild>
+									<As
+										component={IconButton}
+										theme={"secondary"}
+										size={"xs"}
+										aria-label={"close"}
+									>
+										<CloseIcon />
+									</As>
 								</KDialog.CloseButton>
 							</div>
 						</Show>
