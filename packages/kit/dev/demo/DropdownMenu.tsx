@@ -12,6 +12,7 @@ import {
 } from "@codeui/kit";
 import { DemoSectionRow } from "../ui/DemoSection";
 import { createSignal, JSX } from "solid-js";
+import { As } from "@kobalte/core";
 
 function ArrowRightIcon(props: JSX.IntrinsicElements["svg"]) {
 	return (
@@ -41,8 +42,10 @@ export function DropdownMenuDemo() {
 
 			<DemoSectionRow>
 				<DropdownMenu>
-					<DropdownMenuTrigger as={Button} theme={"primary"}>
-						Menu
+					<DropdownMenuTrigger asChild>
+						<As component={Button} theme={"primary"}>
+							Menu
+						</As>
 					</DropdownMenuTrigger>
 					<DropdownMenuPortal>
 						<DropdownMenuContent>
@@ -58,8 +61,10 @@ export function DropdownMenuDemo() {
 					isOpen={menuControlled()}
 					onOpenChange={setMenuControlled}
 				>
-					<DropdownMenuTrigger as={Button} theme={"tertiary"}>
-						Menu {menuControlled() ? "Close" : "Open"}
+					<DropdownMenuTrigger asChild>
+						<As component={Button} theme={"tertiary"}>
+							Menu {menuControlled() ? "Close" : "Open"}
+						</As>
 					</DropdownMenuTrigger>
 
 					<DropdownMenuPortal>
