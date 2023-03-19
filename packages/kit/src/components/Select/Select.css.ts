@@ -1,4 +1,4 @@
-import { createTheme, style } from "@vanilla-extract/css";
+import { createTheme, keyframes, style } from "@vanilla-extract/css";
 import { themeTokens } from "../../foundation/themes.css";
 import { componentStateStyles } from "@kobalte/vanilla-extract";
 import { tokens } from "../../foundation/contract.css";
@@ -17,6 +17,28 @@ export const [selectTheme, selectThemeVars] = createTheme({
 	itemDisabledOpacity: ".4",
 });
 
+const contentShow = keyframes({
+	from: {
+		opacity: 0,
+		transform: "translateY(-10px)",
+	},
+	to: {
+		opacity: 1,
+		transform: "translateY(0px)",
+	},
+});
+
+const contentHide = keyframes({
+	from: {
+		opacity: 1,
+		transform: "translateY(0px)",
+	},
+	to: {
+		opacity: 0,
+		transform: "translateY(-10px)",
+	},
+});
+
 // TODO: common popover/dropdown style
 export const content = style([
 	selectTheme,
@@ -33,15 +55,15 @@ export const content = style([
 		rowGap: themeTokens.spacing["1"],
 		outline: "none",
 		maxHeight: selectThemeVars.contentMaxHeight,
+		// TODO: fix
+		border: `1px solid ${tokens.accent6}`,
+		animation: `${contentHide} 250ms ease-in-out`,
 	},
-]);
-
-export const separator = style([
-	{
-		height: "1px",
-		margin: "6px",
-		borderTop: `1px solid ${selectThemeVars.separator}`,
-	},
+	componentStateStyles({
+		expanded: {
+			animation: `${contentShow} 250ms ease-in-out`,
+		},
+	}),
 ]);
 
 export const input = style([

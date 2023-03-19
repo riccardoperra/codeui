@@ -1,4 +1,4 @@
-import { Select, SelectItem, TextFieldProps } from "@codeui/kit";
+import { Select, TextFieldProps } from "@codeui/kit";
 import { DemoSectionRow } from "../ui/DemoSection";
 import { createSignal, For } from "solid-js";
 
@@ -17,15 +17,8 @@ export function SelectDemo() {
 							aria-label={"Fruit"}
 							size={size}
 							theme={"filled"}
-						>
-							<For each={["Apple", "Banana", "Blueberry", "Grapes", "Pineapple"]}>
-								{fruit => (
-									<SelectItem isDisabled={fruit === "Banana"} value={fruit}>
-										{fruit}
-									</SelectItem>
-								)}
-							</For>
-						</Select>
+							options={["Apple", "Banana", "Blueberry", "Grapes", "Pineapple"]}
+						/>
 					)}
 				</For>
 			</DemoSectionRow>
@@ -38,11 +31,8 @@ export function SelectDemo() {
 							aria-label={"Fruit"}
 							theme={"outline"}
 							size={size}
-						>
-							<For each={["Apple", "Banana", "Blueberry", "Grapes", "Pineapple"]}>
-								{fruit => <SelectItem value={fruit}>{fruit}</SelectItem>}
-							</For>
-						</Select>
+							options={["Apple", "Banana", "Blueberry", "Grapes", "Pineapple"]}
+						></Select>
 					)}
 				</For>
 			</DemoSectionRow>
@@ -55,11 +45,8 @@ export function SelectDemo() {
 							aria-label={"Fruit"}
 							theme={"inline"}
 							size={size}
-						>
-							<For each={["Apple", "Banana", "Blueberry", "Grapes", "Pineapple"]}>
-								{fruit => <SelectItem value={fruit}>{fruit}</SelectItem>}
-							</For>
-						</Select>
+							options={["Apple", "Banana", "Blueberry", "Grapes", "Pineapple"]}
+						/>
 					)}
 				</For>
 			</DemoSectionRow>
@@ -73,11 +60,8 @@ export function SelectDemo() {
 							theme={"inline"}
 							size={size}
 							description={"Select your favourite fruit"}
-						>
-							<For each={["Apple", "Banana", "Blueberry", "Grapes", "Pineapple"]}>
-								{fruit => <SelectItem value={fruit}>{fruit}</SelectItem>}
-							</For>
-						</Select>
+							options={["Apple", "Banana", "Blueberry", "Grapes", "Pineapple"]}
+						/>
 					)}
 				</For>
 			</DemoSectionRow>
@@ -91,33 +75,24 @@ export function SelectDemo() {
 							theme={theme}
 							size={"md"}
 							isDisabled
-						>
-							<For each={["Apple", "Banana", "Blueberry", "Grapes", "Pineapple"]}>
-								{fruit => <SelectItem value={fruit}>{fruit}</SelectItem>}
-							</For>
-						</Select>
+							options={["Apple", "Banana", "Blueberry", "Grapes", "Pineapple"]}
+						/>
 						<Select
 							label={"Select fruit"}
 							aria-label={"Fruit"}
 							theme={theme}
 							size={"md"}
 							isReadOnly
-						>
-							<For each={["Apple", "Banana", "Blueberry", "Grapes", "Pineapple"]}>
-								{fruit => <SelectItem value={fruit}>{fruit}</SelectItem>}
-							</For>
-						</Select>
+							options={["Apple", "Banana", "Blueberry", "Grapes", "Pineapple"]}
+						/>
 						<Select
 							label={"Select fruit"}
 							aria-label={"Fruit"}
 							theme={theme}
 							size={"md"}
 							isRequired
-						>
-							<For each={["Apple", "Banana", "Blueberry", "Grapes", "Pineapple"]}>
-								{fruit => <SelectItem value={fruit}>{fruit}</SelectItem>}
-							</For>
-						</Select>
+							options={["Apple", "Banana", "Blueberry", "Grapes", "Pineapple"]}
+						/>
 					</DemoSectionRow>
 				)}
 			</For>
@@ -131,11 +106,8 @@ export function SelectDemo() {
 							size={size}
 							validationState={"invalid"}
 							errorMessage={"Fruit is not valid"}
-						>
-							<For each={["Apple", "Banana", "Blueberry", "Grapes", "Pineapple"]}>
-								{fruit => <SelectItem value={fruit}>{fruit}</SelectItem>}
-							</For>
-						</Select>
+							options={["Apple", "Banana", "Blueberry", "Grapes", "Pineapple"]}
+						/>
 					)}
 				</For>
 			</DemoSectionRow>

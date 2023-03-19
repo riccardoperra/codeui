@@ -54,6 +54,7 @@ export const content = style([
 		rowGap: themeTokens.spacing["1"],
 		outline: "none",
 		animation: `${contentHide} 250ms ease-in-out`,
+		border: `1px solid ${tokens.accent6}`,
 	},
 	componentStateStyles({
 		expanded: {

@@ -23,6 +23,6 @@ export {
 	DropdownMenuSeparator,
 } from "./components/Dropdown/Dropdown";
 export { Popover, PopoverTrigger, PopoverContent } from "./components/Popover/Popover";
-export { SelectItem, Select, SelectSeparator } from "./components/Select/Select";
+export { SelectItem, Select } from "./components/Select/Select";
 export { tokens } from "./foundation/tokens";
 export { theme, themeTokens } from "./foundation/themes.css";
