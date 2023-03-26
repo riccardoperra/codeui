@@ -1,6 +1,5 @@
 import { Select as KSelect } from "@kobalte/core";
-import { JSX, JSXElement, ParentProps, Show, splitProps } from "solid-js";
-import { GetKobalteParams } from "../../utils/types";
+import { JSX, ParentProps, Show, splitProps } from "solid-js";
 import * as styles from "./Select.css";
 import { createFieldLabelProps } from "../Field/FieldLabel/createFieldLabelProps";
 import { createFieldMessageProps } from "../Field/FieldMessage/createFieldMessageProps";
@@ -47,7 +46,7 @@ function SelectContent(props: KSelect.SelectContentProps) {
 
 export function SelectItem(props: KSelect.SelectItemProps) {
 	return (
-		<KSelect.Item class={styles.item} {...props}>
+		<KSelect.Item class={styles.item} item={props.item}>
 			<KSelect.ItemLabel>{props.item.rawValue}</KSelect.ItemLabel>
 			<KSelect.ItemIndicator />
 		</KSelect.Item>
@@ -72,33 +71,30 @@ export function Select<T>(props: ParentProps<SelectProps<T>>) {
 	return (
 		<KSelect.Root
 			{...props}
-			renderValue={selectedOption => selectedOption() as JSXElement}
-			renderItem={item => <SelectItem item={item()} />}
+			class={styles.field}
+			valueComponent={props => props.item.rawValue as string}
+			itemComponent={SelectItem}
 		>
-			<div class={styles.field}>
-				<Show when={local.label} keyed={false}>
-					<KSelect.Label {...labelProps}>{local.label}</KSelect.Label>
-				</Show>
-				<KSelect.Trigger
-					aria-label={local["aria-label"]}
-					class={mergeClasses(baseFieldProps.baseStyle(), styles.selectField)}
-				>
-					<KSelect.Value />
-					<KSelect.Icon>
-						<SelectorIcon />
-					</KSelect.Icon>
-				</KSelect.Trigger>
-				<Show when={local.description} keyed={false}>
-					<KSelect.Description {...descriptionProps}>
-						{local.description}
-					</KSelect.Description>
-				</Show>
-				<Show when={local.errorMessage} keyed={false}>
-					<KSelect.ErrorMessage {...errorProps}>
-						{local.errorMessage}
-					</KSelect.ErrorMessage>
-				</Show>
-			</div>
+			<Show when={local.label} keyed={false}>
+				<KSelect.Label {...labelProps}>{local.label}</KSelect.Label>
+			</Show>
+			<KSelect.Trigger
+				aria-label={local["aria-label"]}
+				class={mergeClasses(baseFieldProps.baseStyle(), styles.selectField)}
+			>
+				<KSelect.Value />
+				<KSelect.Icon>
+					<SelectorIcon />
+				</KSelect.Icon>
+			</KSelect.Trigger>
+			<Show when={local.description} keyed={false}>
+				<KSelect.Description {...descriptionProps}>
+					{local.description}
+				</KSelect.Description>
+			</Show>
+			<Show when={local.errorMessage} keyed={false}>
+				<KSelect.ErrorMessage {...errorProps}>{local.errorMessage}</KSelect.ErrorMessage>
+			</Show>
 			<KSelect.Portal>
 				<SelectContent>
 					<KSelect.Listbox />
