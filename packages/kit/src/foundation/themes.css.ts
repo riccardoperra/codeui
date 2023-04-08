@@ -84,7 +84,7 @@ createGlobalTheme("[data-cui-theme=dark]", contract, {
 	dropdownItemHoverBackground: getHoverColor(brand),
 	dropdownItemHoverTextColor: "#fff",
 	// dialog
-	dialogBackground: grayDarkScale.gray4,
+	dialogBackground: grayDarkScale.gray3,
 	dialogBoxShadow: "0 1px #0000000d,0 4px 10px rgba(0, 0, 0, .3)",
 	dialogTextColor: "#fff",
 	dialogOverlayBackground: "rgba(0,0,0,.7)",

@@ -22,22 +22,6 @@ export function Popover(props: ParentProps<PopoverProps>) {
 }
 
 export function PopoverContent(props: ParentProps<{ title?: string }>) {
-	// const { setRef, registerOnExit, registerOnEnter } = useAnimationContext();
-	//
-	// registerOnEnter(ref =>
-	// 	animate(ref, {
-	// 		opacity: [0, 1],
-	// 		transform: ["translateY(-10px)", "translateY(0px)"],
-	// 	}),
-	// );
-	//
-	// registerOnExit(ref =>
-	// 	animate(ref, {
-	// 		opacity: 0,
-	// 		transform: "translateY(-10px)",
-	// 	}),
-	// );
-
 	return (
 		<KPopover.Portal>
 			<KPopover.Content class={styles.content}>

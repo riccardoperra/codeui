@@ -2,7 +2,6 @@ import { createTheme, keyframes, style } from "@vanilla-extract/css";
 import { themeTokens } from "../../foundation/themes.css";
 import { componentStateStyles } from "@kobalte/vanilla-extract";
 import { tokens } from "../../foundation/contract.css";
-import { selectThemeVars } from "../Select/Select.css";
 
 export const [dropdownMenuTheme, dropdownMenuThemeVars] = createTheme({
 	contentBackground: tokens.dropdownBackground,
@@ -103,14 +102,14 @@ export const item = style([
 			boxShadow: "none",
 			outline: "none",
 			backgroundColor: dropdownMenuThemeVars.itemHoverBackground,
-			color: selectThemeVars.itemHoverTextColor,
+			color: dropdownMenuThemeVars.itemHoverTextColor,
 		},
 		":hover": {
 			backgroundColor: dropdownMenuThemeVars.itemHoverBackground,
 			color: dropdownMenuThemeVars.itemHoverTextColor,
 		},
 		":disabled": {
-			opacity: selectThemeVars.itemDisabledOpacity,
+			opacity: dropdownMenuThemeVars.itemDisabledOpacity,
 		},
 		":focus-visible": {
 			backgroundColor: dropdownMenuThemeVars.itemHoverBackground,
@@ -122,10 +121,10 @@ export const item = style([
 			boxShadow: "none",
 			outline: "none",
 			backgroundColor: dropdownMenuThemeVars.itemHoverBackground,
-			color: selectThemeVars.itemHoverTextColor,
+			color: dropdownMenuThemeVars.itemHoverTextColor,
 		},
 		disabled: {
-			opacity: selectThemeVars.itemDisabledOpacity,
+			opacity: dropdownMenuThemeVars.itemDisabledOpacity,
 		},
 	}),
 ]);
