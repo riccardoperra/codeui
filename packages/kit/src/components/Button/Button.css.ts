@@ -35,10 +35,7 @@ const ButtonThemes = {
 
 const buttonPopKf = keyframes({
 	"0%": {
-		transform: "scale(0.95)",
-	},
-	"40%": {
-		transform: "scale(1.02)",
+		transform: "scale(0.98)",
 	},
 	"100%": {
 		transform: "scale(1)",
@@ -65,7 +62,6 @@ export const button = recipe({
 			borderRadius: buttonVars.borderRadius,
 			padding: `0 ${buttonVars.padding}`,
 			fontWeight: themeTokens.fontWeight.medium,
-			animation: `${buttonPopKf} .25s ease-out`,
 			fontSize: buttonVars.fontSize,
 			border: `1px solid ${buttonVars.borderColor}`,
 			transition: "opacity .2s, background-color .2s, transform .2s",
@@ -82,7 +78,7 @@ export const button = recipe({
 				"&:not([data-disabled]):active": {
 					background: buttonVars.activeBackground,
 					animation: "none",
-					transform: "scale(0.95)",
+					transform: "scale(0.98)",
 				},
 			},
 		},

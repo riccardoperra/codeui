@@ -2,6 +2,7 @@ import { Popover as KPopover } from "@kobalte/core";
 import { ParentProps, Show, splitProps } from "solid-js";
 import * as styles from "./Popover.css";
 import { GetKobalteParams } from "../../utils/types";
+import { mergeClasses } from "../../utils/css";
 
 type PopoverProps = KPopover.PopoverRootOptions & {
 	title?: string;
@@ -21,17 +22,25 @@ export function Popover(props: ParentProps<PopoverProps>) {
 	);
 }
 
-export function PopoverContent(props: ParentProps<{ title?: string }>) {
+interface PopoverContentProps extends KPopover.PopoverContentProps {
+	title: string;
+}
+
+export function PopoverContent(props: ParentProps<PopoverContentProps>) {
+	const [local, others] = splitProps(props, ["title", "children", "class"]);
+
+	const contentClass = () => mergeClasses(styles.content, props.class);
+
 	return (
 		<KPopover.Portal>
-			<KPopover.Content class={styles.content}>
-				<Show when={props.title} keyed={false}>
+			<KPopover.Content class={contentClass()} {...others}>
+				<Show when={local.title} keyed={false}>
 					<div class={styles.title}>
-						<KPopover.Title>{props.title}</KPopover.Title>
+						<KPopover.Title>{local.title}</KPopover.Title>
 					</div>
 				</Show>
 				<KPopover.Description class={styles.description}>
-					{props.children}
+					{local.children}
 				</KPopover.Description>
 			</KPopover.Content>
 		</KPopover.Portal>

@@ -50,6 +50,18 @@ export function PopoverDemo() {
 					</PopoverTrigger>
 					<PopoverContent title={"Title"}>About Kobalte A UI toolkit</PopoverContent>
 				</Popover>
+
+				<Popover placement={"bottom-start"}>
+					<PopoverTrigger asChild>
+						<As component={Button} theme={"secondary"}>
+							Custom position
+						</As>
+					</PopoverTrigger>
+					<PopoverContent title={"Title"}>
+						About Kobalte A UI toolkit for building accessible web apps and design systems
+						with SolidJS.
+					</PopoverContent>
+				</Popover>
 			</DemoSectionRow>
 		</div>
 	);
