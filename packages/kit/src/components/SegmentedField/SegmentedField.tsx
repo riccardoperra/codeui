@@ -10,6 +10,7 @@ import {
 	createUniqueId,
 	JSX,
 	on,
+	Show,
 	splitProps,
 	useContext,
 } from "solid-js";
@@ -52,6 +53,7 @@ export function SegmentedField(props: SegmentedFieldProps) {
 				items,
 				registerItem(itemId: string, value: unknown) {
 					setItems(items => ({ ...items, [itemId]: value }));
+					console.log("registering new item aaaa", itemId, value);
 				},
 				onItemValuePropChange(itemId: string, value: unknown) {
 					setItems(items => {
@@ -96,7 +98,6 @@ export function SegmentedFieldIndicator() {
 
 	return (
 		<InternalSegmentedField.Indicator
-			as={"div"}
 			class={styles.indicator}
 			style={assignInlineVars({
 				[styles.segmentedFieldVars.activeSegmentedWidth]: segmentWidth(),
@@ -115,19 +116,21 @@ export function SegmentedFieldItem(
 
 	createEffect(
 		on(
-			() => props.value,
+			createMemo(() => props.value),
 			value => context.onItemValuePropChange(id, value),
 			{ defer: true },
 		),
 	);
 
 	return (
-		<InternalSegmentedField.Item {...props} class={styles.segment}>
-			<InternalSegmentedField.ItemInput />
-			<InternalSegmentedField.ItemControl />
-			<InternalSegmentedField.ItemLabel>
-				{props.children}
-			</InternalSegmentedField.ItemLabel>
-		</InternalSegmentedField.Item>
+		<>
+			<InternalSegmentedField.Item {...props} class={styles.segment}>
+				<InternalSegmentedField.ItemInput />
+				<InternalSegmentedField.ItemControl />
+				<InternalSegmentedField.ItemLabel>
+					{props.children}
+				</InternalSegmentedField.ItemLabel>
+			</InternalSegmentedField.Item>
+		</>
 	);
 }

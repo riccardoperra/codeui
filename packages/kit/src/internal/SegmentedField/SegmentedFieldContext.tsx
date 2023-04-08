@@ -13,7 +13,7 @@ export function useSegmentedFieldContext() {
 
 	if (context === undefined) {
 		throw new Error(
-			"[kobalte][@codeui/core]: `useSegmentedFieldContext` must be used within a `SegmentedField` component",
+			"[@codeui/core]: `useSegmentedFieldContext` must be used within a `SegmentedField` component",
 		);
 	}
 

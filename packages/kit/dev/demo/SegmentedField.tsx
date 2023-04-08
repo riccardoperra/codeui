@@ -27,31 +27,11 @@ export function SegmentedFieldDemo() {
 			<h1 class={"title"}>SegmentedField</h1>
 
 			<DemoSectionRow>
-				<DemoSectionRow>
-					<For each={["xs", "sm", "md", "lg", "xl"] as TextFieldProps["size"][]}>
-						{size => (
-							<div style={{ width: "300px" }}>
-								<SegmentedField size={size} defaultValue={"1"}>
-									<SegmentedFieldItem value={"1"}>Item - 1</SegmentedFieldItem>
-									<SegmentedFieldItem value={"2"}>Item - 2</SegmentedFieldItem>
-									<SegmentedFieldItem value={"3"}>Item - 3</SegmentedFieldItem>
-								</SegmentedField>
-							</div>
-						)}
-					</For>
-
-					<For each={["xs", "sm", "md", "lg", "xl"] as TextFieldProps["size"][]}>
-						{size => (
-							<div style={{ width: "300px" }}>
-								<SegmentedField size={size} theme={"outline"} defaultValue={"1"}>
-									<SegmentedFieldItem value={"1"}>Item - 1</SegmentedFieldItem>
-									<SegmentedFieldItem value={"2"}>Item - 2</SegmentedFieldItem>
-									<SegmentedFieldItem value={"3"}>Item - 3</SegmentedFieldItem>
-								</SegmentedField>
-							</div>
-						)}
-					</For>
-				</DemoSectionRow>
+				<SegmentedField size={"md"} defaultValue={"1"}>
+					<SegmentedFieldItem value={"1"}>Item - 1</SegmentedFieldItem>
+					<SegmentedFieldItem value={"2"}>Item - 2</SegmentedFieldItem>
+					<SegmentedFieldItem value={"3"}>Item - 3</SegmentedFieldItem>
+				</SegmentedField>
 			</DemoSectionRow>
 		</div>
 	);

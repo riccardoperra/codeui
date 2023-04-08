@@ -21,7 +21,7 @@ import {
 	JSX,
 	splitProps,
 } from "solid-js";
-import { useFormControlContext } from "@kobalte/core";
+import { AsChildProp, useFormControlContext } from "@kobalte/core";
 import {
 	SegmentedFieldItemContext,
 	SegmentedFieldItemContextValue,
@@ -29,7 +29,7 @@ import {
 } from "./SegmentedFieldItemContext";
 import { useSegmentedFieldContext } from "./SegmentedFieldContext";
 
-export interface SegmentedFieldItemOptions {
+export interface SegmentedFieldItemOptions extends AsChildProp {
 	/**
 	 * The value of the radio button, used when submitting an HTML form.
 	 * See [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio#Value).

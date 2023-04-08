@@ -1,24 +1,24 @@
-import { createPolymorphicComponent, mergeDefaultProps } from "@kobalte/utils";
+import { mergeDefaultProps, OverrideComponentProps } from "@kobalte/utils";
 import { splitProps } from "solid-js";
-import { Dynamic } from "solid-js/web";
 
 import { useSegmentedFieldItemContext } from "./SegmentedFieldItemContext";
+import { AsChildProp, Polymorphic } from "@kobalte/core";
 
 /**
  * The label that gives the user information on the radio button.
  */
-export const SegmentedFieldItemLabel = createPolymorphicComponent<"span">(props => {
+interface SegmentedFieldItemLabelProps
+	extends OverrideComponentProps<"span", AsChildProp> {}
+
+export function SegmentedFieldItemLabel(props: SegmentedFieldItemLabelProps) {
 	const context = useSegmentedFieldItemContext();
 
 	props = mergeDefaultProps(
 		{
-			as: "span",
 			id: context.generateId("label"),
 		},
 		props,
 	);
 
-	const [local, others] = splitProps(props, ["as"]);
-
-	return <Dynamic component={local.as} {...context.dataset()} {...others} />;
-});
+	return <Polymorphic fallback={"span"} {...context.dataset()} {...props} />;
+}

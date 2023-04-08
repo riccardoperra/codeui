@@ -1,26 +1,27 @@
 import {
+	AsChildProp,
 	createControllableSignal,
 	createFormControl,
 	createFormResetListener,
 	FORM_CONTROL_PROP_NAMES,
 	FormControlContext,
+	Polymorphic,
 } from "@kobalte/core";
 import {
 	access,
-	createPolymorphicComponent,
 	mergeDefaultProps,
 	mergeRefs,
 	Orientation,
+	OverrideComponentProps,
 	ValidationState,
 } from "@kobalte/utils";
 import { createUniqueId, splitProps } from "solid-js";
-import { Dynamic } from "solid-js/web";
 import {
 	SegmentedFieldContext,
 	SegmentedFieldContextValue,
 } from "./SegmentedFieldContext";
 
-export interface SegmentedFieldRootOptions {
+export interface SegmentedFieldRootOptions extends AsChildProp {
 	/** The controlled value of the radio button to check. */
 	value?: string;
 
@@ -63,20 +64,20 @@ export interface SegmentedFieldRootOptions {
 }
 
 /**
+ *
+ *
  * A set of checkable buttons, known as radio buttons, where no more than one of the buttons can be checked at a time.
  * This component is based on the [WAI-ARIA Radio Group Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/radiobutton/)
  */
-export const SegmentedFieldRoot = createPolymorphicComponent<
-	"div",
-	SegmentedFieldRootOptions
->(props => {
+export function SegmentedFieldRoot(
+	props: OverrideComponentProps<"div", SegmentedFieldRootOptions>,
+) {
 	let ref: HTMLDivElement | undefined;
 
 	const defaultId = `segmentedField-${createUniqueId()}`;
 
 	props = mergeDefaultProps(
 		{
-			as: "div",
 			id: defaultId,
 			orientation: "vertical",
 		},
@@ -86,7 +87,6 @@ export const SegmentedFieldRoot = createPolymorphicComponent<
 	const [local, formControlProps, others] = splitProps(
 		props,
 		[
-			"as",
 			"ref",
 			"value",
 			"defaultValue",
@@ -150,11 +150,11 @@ export const SegmentedFieldRoot = createPolymorphicComponent<
 	return (
 		<FormControlContext.Provider value={formControlContext}>
 			<SegmentedFieldContext.Provider value={context}>
-				<Dynamic
-					component={local.as}
+				<Polymorphic
+					fallback="div"
 					ref={mergeRefs(el => (ref = el), local.ref)}
-					id={access(formControlProps.id)}
 					role="radiogroup"
+					id={access(formControlProps.id)}
 					aria-invalid={formControlContext.validationState() === "invalid" || undefined}
 					aria-required={formControlContext.isRequired() || undefined}
 					aria-disabled={formControlContext.isDisabled() || undefined}
@@ -168,4 +168,4 @@ export const SegmentedFieldRoot = createPolymorphicComponent<
 			</SegmentedFieldContext.Provider>
 		</FormControlContext.Provider>
 	);
-});
+}
