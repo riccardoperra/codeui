@@ -1,11 +1,11 @@
-import { Dialog as KDialog } from "@kobalte/core";
+import { As, Dialog as KDialog } from "@kobalte/core";
 import { JSXElement, ParentProps, Show, splitProps } from "solid-js";
 import * as styles from "./Dialog.css";
 import { mergeClasses } from "../../utils/css";
 import { IconButton } from "../IconButton/IconButton";
 
-type DialogProps = KDialog.DialogRootOptions &
-	DialogPanelProps & {
+export type DialogProps = KDialog.DialogRootOptions &
+	styles.DialogPanelVariants & {
 		title?: string;
 	};
 
@@ -31,7 +31,7 @@ export function DialogPanelFooter(props: ParentProps): JSXElement {
 	return <div class={styles.panelFooter}>{props.children}</div>;
 }
 
-export type DialogPanelProps = styles.DialogPanelVariants &
+type DialogPanelProps = styles.DialogPanelVariants &
 	Parameters<typeof KDialog.Content>[0];
 
 export function DialogPanel(props: ParentProps<DialogPanelProps>): JSXElement {
@@ -58,8 +58,15 @@ export function Dialog(props: ParentProps<DialogProps>) {
 						<Show when={local.title} keyed={false}>
 							<div class={styles.title}>
 								<KDialog.Title>{props.title}</KDialog.Title>
-								<KDialog.CloseButton as={IconButton} size={"xs"} aria-label={"close"}>
-									<CloseIcon />
+								<KDialog.CloseButton asChild>
+									<As
+										component={IconButton}
+										theme={"secondary"}
+										size={"xs"}
+										aria-label={"close"}
+									>
+										<CloseIcon />
+									</As>
 								</KDialog.CloseButton>
 							</div>
 						</Show>

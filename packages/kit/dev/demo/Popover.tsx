@@ -1,6 +1,7 @@
 import { Button, Popover, PopoverContent, PopoverTrigger } from "@codeui/kit";
 import { DemoSectionRow } from "../ui/DemoSection";
 import { createSignal, JSX } from "solid-js";
+import { As } from "@kobalte/core";
 
 function ArrowRightIcon(props: JSX.IntrinsicElements["svg"]) {
 	return (
@@ -30,8 +31,10 @@ export function PopoverDemo() {
 
 			<DemoSectionRow>
 				<Popover>
-					<PopoverTrigger as={Button} theme={"secondary"}>
-						Open
+					<PopoverTrigger asChild>
+						<As component={Button} theme={"secondary"}>
+							Open
+						</As>
 					</PopoverTrigger>
 					<PopoverContent title={"Title"}>
 						About Kobalte A UI toolkit for building accessible web apps and design systems
@@ -40,10 +43,24 @@ export function PopoverDemo() {
 				</Popover>
 
 				<Popover isOpen={open()} onOpenChange={setOpen}>
-					<PopoverTrigger as={Button} theme={"secondary"}>
-						Open (controlled)
+					<PopoverTrigger asChild>
+						<As component={Button} theme={"secondary"}>
+							Open (controlled)
+						</As>
 					</PopoverTrigger>
 					<PopoverContent title={"Title"}>About Kobalte A UI toolkit</PopoverContent>
+				</Popover>
+
+				<Popover placement={"bottom-start"}>
+					<PopoverTrigger asChild>
+						<As component={Button} theme={"secondary"}>
+							Custom position
+						</As>
+					</PopoverTrigger>
+					<PopoverContent title={"Title"}>
+						About Kobalte A UI toolkit for building accessible web apps and design systems
+						with SolidJS.
+					</PopoverContent>
 				</Popover>
 			</DemoSectionRow>
 		</div>

@@ -2,13 +2,13 @@ import { createTheme, keyframes, style } from "@vanilla-extract/css";
 import { themeTokens } from "../../foundation/themes.css";
 import { componentStateStyles } from "@kobalte/vanilla-extract";
 import { tokens } from "../../foundation/contract.css";
-import { selectThemeVars } from "../Select/Select.css";
 
 export const [dropdownMenuTheme, dropdownMenuThemeVars] = createTheme({
 	contentBackground: tokens.dropdownBackground,
 	contentRadius: themeTokens.radii.lg,
 	contentBoxShadow: tokens.dropdownBoxShadow,
 	contentPadding: themeTokens.spacing["2"],
+	contentBorderColor: tokens.dropdownBorder,
 	separator: tokens.separator,
 	itemTextColor: tokens.dropdownItemTextColor,
 	itemHoverBackground: tokens.dropdownItemHoverBackground,
@@ -54,7 +54,7 @@ export const content = style([
 		rowGap: themeTokens.spacing["1"],
 		outline: "none",
 		animation: `${contentHide} 250ms ease-in-out`,
-		border: `1px solid ${tokens.accent6}`,
+		border: `1px solid ${dropdownMenuThemeVars.contentBorderColor}`,
 	},
 	componentStateStyles({
 		expanded: {
@@ -102,14 +102,14 @@ export const item = style([
 			boxShadow: "none",
 			outline: "none",
 			backgroundColor: dropdownMenuThemeVars.itemHoverBackground,
-			color: selectThemeVars.itemHoverTextColor,
+			color: dropdownMenuThemeVars.itemHoverTextColor,
 		},
 		":hover": {
 			backgroundColor: dropdownMenuThemeVars.itemHoverBackground,
 			color: dropdownMenuThemeVars.itemHoverTextColor,
 		},
 		":disabled": {
-			opacity: selectThemeVars.itemDisabledOpacity,
+			opacity: dropdownMenuThemeVars.itemDisabledOpacity,
 		},
 		":focus-visible": {
 			backgroundColor: dropdownMenuThemeVars.itemHoverBackground,
@@ -121,10 +121,10 @@ export const item = style([
 			boxShadow: "none",
 			outline: "none",
 			backgroundColor: dropdownMenuThemeVars.itemHoverBackground,
-			color: selectThemeVars.itemHoverTextColor,
+			color: dropdownMenuThemeVars.itemHoverTextColor,
 		},
 		disabled: {
-			opacity: selectThemeVars.itemDisabledOpacity,
+			opacity: dropdownMenuThemeVars.itemDisabledOpacity,
 		},
 	}),
 ]);
