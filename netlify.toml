@@ -1,4 +1,5 @@
 # repository root netlify.toml
 [build]
+base = "/"
+publish = "packages/playground/dist"
 command = "pnpm build"
-publish = "/packages/playground/dist"
