@@ -1,4 +1,4 @@
-import { For, JSX } from "solid-js";
+import { For } from "solid-js";
 import { Button, ButtonProps, IconButton } from "@codeui/kit";
 import { DemoSectionRow } from "../ui/DemoSection";
 

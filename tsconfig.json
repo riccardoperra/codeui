@@ -30,6 +30,11 @@
 			"jest",
 			"@testing-library/jest-dom"
 		],
+		"paths": {
+			"@codeui/kit": [
+				"./packages/kit/src/index.tsx"
+			]
+		}
 	},
 	"exclude": [
 		"node_modules"

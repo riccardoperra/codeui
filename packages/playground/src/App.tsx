@@ -1,7 +1,6 @@
 import type { Component } from "solid-js";
 import { createEffect, createSignal } from "solid-js";
 import { DialogDemo } from "./demo/Dialog";
-import { ButtonDemo } from "./demo/Button";
 import { TextInputDemo } from "./demo/TextInput";
 import { DemoSection } from "./ui/DemoSection";
 import { DropdownMenuDemo } from "./demo/DropdownMenu";
@@ -33,9 +32,7 @@ const App: Component = () => {
 				onChange={v => setTheme(v.currentTarget.value)}
 			/>
 
-			<DemoSection>
-				<ButtonDemo />
-			</DemoSection>
+			<DemoSection></DemoSection>
 			<DemoSection>
 				<TextInputDemo />
 			</DemoSection>

@@ -69,7 +69,6 @@
 	},
 	"packageManager": "pnpm@7.5.0",
 	"dependencies": {
-		"@codeui/kit": "workspace:*",
 		"@kobalte/core": "^0.8.2",
 		"@kobalte/utils": "^0.6.1",
 		"@kobalte/vanilla-extract": "^0.3.0",
