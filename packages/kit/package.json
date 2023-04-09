@@ -1,20 +1,25 @@
 {
 	"name": "@codeui/kit",
 	"version": "0.0.8",
-	"description": "Example hello world package in the your-repository-name repository.",
+	"description": "Open-Source UI Kit library for CodeImage",
 	"license": "MIT",
-	"author": "your-author-name",
+	"author": "riccardoperra",
 	"contributors": [],
-	"homepage": "https://github.com/your-nickname/your-repository-name#readme",
+	"homepage": "https://github.com/riccardoperra/codeui#readme",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/your-nickname/your-repository-name.git"
+		"url": "git+https://github.com/riccardoperra/codeui.git"
 	},
 	"bugs": {
-		"url": "https://github.com/your-nickname/your-repository-name/issues"
+		"url": "https://github.com/riccardoperra/codeui/issues"
 	},
 	"keywords": [
-		"solid"
+		"solid",
+		"codeui",
+		"codeimage",
+		"uikit",
+		"kobalte",
+		"headless"
 	],
 	"private": false,
 	"sideEffects": false,
@@ -33,8 +38,7 @@
 			"solid": "./dist/source/index.jsx",
 			"import": "./dist/esm/index.js",
 			"browser": {
-				"import": "./dist/esm/index.js",
-				"require": "./dist/cjs/index.js"
+				"import": "./dist/esm/index.js"
 			},
 			"require": "./dist/cjs/index.js",
 			"node": "./dist/cjs/index.js"

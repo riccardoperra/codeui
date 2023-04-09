@@ -1,9 +1,9 @@
 {
-	"name": "your-repository-name-monorepo",
-	"description": "your-repository-desc",
+	"name": "codeui-monorepo",
+	"description": "Monorepo for CodeUI library",
 	"version": "0.0.1",
 	"license": "MIT",
-	"author": "your-author-name",
+	"author": "riccardoperra",
 	"contributors": [],
 	"scripts": {
 		"dev": "turbo run dev --parallel",
