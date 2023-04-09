@@ -22,13 +22,19 @@
 		"skipLibCheck": true,
 		"strict": true,
 		"sourceMap": true,
+		"baseUrl": "./",
 		"types": [
 			"solid-js",
 			"vite/client",
 			"node",
 			"jest",
 			"@testing-library/jest-dom"
-		]
+		],
+		"paths": {
+			"@codeui/kit": [
+				"./packages/kit/src/index.tsx"
+			]
+		}
 	},
 	"exclude": [
 		"node_modules"

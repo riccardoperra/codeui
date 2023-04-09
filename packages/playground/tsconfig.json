@@ -12,16 +12,9 @@
 		"resolveJsonModule": true,
 		"skipLibCheck": true,
 		"strict": true,
-		"paths": {
-			"@codeui/kit": ["../kit/src/index.tsx"]
-		}
 	},
 	"extends": "../../tsconfig.json",
-	"include": [
-		"src/**/*",
-		"test/**/*",
-	],
 	"exclude": [
-		"node_modules",
+		"node_modules"
 	]
 }
