@@ -1,5 +1,11 @@
 # @codeui/kit
 
+## 0.0.7
+
+### Patch Changes
+
+- 44ca65c: fix button tokens and `block` support
+
 ## 0.0.6
 
 ### Patch Changes
