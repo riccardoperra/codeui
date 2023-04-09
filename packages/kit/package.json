@@ -48,7 +48,8 @@
 		"test": "pnpm run test:client && pnpm run test:ssr",
 		"test:client": "jest --config jest.config.ts",
 		"test:ssr": "jest --config jest.config.ssr.ts",
-		"typecheck": "tsc --noEmit"
+		"typecheck": "tsc --noEmit",
+		"prepublish": "pnpm build"
 	},
 	"devDependencies": {
 		"@codeimage/vanilla-extract": "workspace:^0.2.0",
