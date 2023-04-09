@@ -2,15 +2,28 @@
 	"$schema": "https://turborepo.org/schema.json",
 	"baseBranch": "origin/main",
 	"pipeline": {
+		"@codeui/playground#build": {
+			"dependsOn": [
+				"@codeui/kit#build"
+			]
+		},
 		"build": {
-			"dependsOn": ["^build"],
-			"outputs": ["dist/**"]
+			"dependsOn": [
+				"^build"
+			],
+			"outputs": [
+				"dist/**"
+			]
 		},
 		"test": {
-			"dependsOn": ["^build"]
+			"dependsOn": [
+				"^build"
+			]
 		},
 		"typecheck": {
-			"dependsOn": ["^build"]
+			"dependsOn": [
+				"^build"
+			]
 		},
 		"dev": {
 			"cache": false

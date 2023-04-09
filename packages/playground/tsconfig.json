@@ -1,0 +1,27 @@
+{
+	"compilerOptions": {
+		"allowJs": false,
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"noFallthroughCasesInSwitch": false,
+		"isolatedModules": true,
+		"jsx": "preserve",
+		"jsxImportSource": "solid-js",
+		"moduleResolution": "Node",
+		"resolveJsonModule": true,
+		"skipLibCheck": true,
+		"strict": true,
+		"paths": {
+			"@codeui/kit": ["../kit/src/index.tsx"]
+		}
+	},
+	"extends": "../../tsconfig.json",
+	"include": [
+		"src/**/*",
+		"test/**/*",
+	],
+	"exclude": [
+		"node_modules",
+	]
+}

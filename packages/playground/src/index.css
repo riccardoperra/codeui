@@ -1,0 +1,29 @@
+body {
+	margin: 0;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	background: hsl(246 6.0% 9.0%);
+}
+
+code {
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+html, body {
+	font-family: Lexend, sans-serif;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+@supports (font-variation-settings: normal) {
+	html, body {
+		font-family: 'Lexend', sans-serif;
+	}
+}
+
+.title {
+	font-size: 2rem;
+	font-weight: bold;
+}
