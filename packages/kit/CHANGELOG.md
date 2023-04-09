@@ -1,5 +1,11 @@
 # @codeui/kit
 
+## 0.0.4
+
+### Patch Changes
+
+- 7bcef57: fix: build dist fix
+
 ## 0.0.3
 
 ### Patch Changes
