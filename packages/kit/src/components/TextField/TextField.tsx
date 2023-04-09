@@ -1,5 +1,5 @@
 import { TextField as KTextField } from "@kobalte/core";
-import { JSX, Show, splitProps } from "solid-js";
+import { JSX, Ref, Show, splitProps } from "solid-js";
 import * as styles from "./TextField.css";
 import { baseFieldContainer } from "./TextField.css";
 import { mergeClasses } from "../../utils/css";
@@ -12,11 +12,13 @@ import {
 import { BaseFieldProps, createBaseFieldProps } from "../Field/createBaseFieldProps";
 
 export type TextFieldProps = KTextField.TextFieldRootOptions &
-	BaseFieldProps & {
+	BaseFieldProps &
+	FieldWithErrorMessageSupport & {
 		description?: string;
 		label?: JSX.Element;
 		placeholder?: string;
-	} & FieldWithErrorMessageSupport;
+		ref?: Ref<HTMLInputElement>;
+	};
 
 export function TextField(props: TextFieldProps) {
 	const [local, others] = splitProps(props, [
@@ -26,6 +28,7 @@ export function TextField(props: TextFieldProps) {
 		"theme",
 		"errorMessage",
 		"placeholder",
+		"ref",
 	]);
 
 	const baseFieldProps = createBaseFieldProps(props);
@@ -43,7 +46,11 @@ export function TextField(props: TextFieldProps) {
 			<Show when={local.label} keyed={false}>
 				<TextFieldLabel>{local.label}</TextFieldLabel>
 			</Show>
-			<KTextField.Input class={inputClasses()} placeholder={local.placeholder} />
+			<KTextField.Input
+				ref={props.ref}
+				class={inputClasses()}
+				placeholder={local.placeholder}
+			/>
 			<Show when={local.description} keyed={false}>
 				<TextFieldMessage>{local.description}</TextFieldMessage>
 			</Show>
