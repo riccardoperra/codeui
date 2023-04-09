@@ -173,6 +173,12 @@ export const button = recipe({
 				},
 			},
 		},
+		block: {
+			true: {
+				width: "100%",
+				flex: 1,
+			},
+		},
 		pill: {
 			true: {
 				vars: {
