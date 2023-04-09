@@ -94,6 +94,7 @@ importers:
   packages/playground:
     specifiers:
       '@codeimage/vanilla-extract': workspace:^0.2.0
+      '@codeui/kit': workspace:*
       '@kobalte/core': ^0.8.2
       '@kobalte/utils': ^0.6.1
       '@kobalte/vanilla-extract': ^0.3.0
@@ -117,6 +118,7 @@ importers:
       typescript: ^4.9.5
       vite-tsconfig-paths: ^4.0.7
     dependencies:
+      '@codeui/kit': link:../kit
       '@kobalte/core': 0.8.2_solid-js@1.6.15
       '@kobalte/utils': 0.6.1_solid-js@1.6.15
       '@kobalte/vanilla-extract': 0.3.0_sj7ql4kjoy7ivqenazaubmmhp4
