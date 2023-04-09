@@ -1,5 +1,11 @@
 # @codeui/kit
 
+## 0.0.9
+
+### Patch Changes
+
+- b332397: update README
+
 ## 0.0.8
 
 ### Patch Changes
