@@ -4,10 +4,11 @@
 
 <div align="center">
 
-# CodeUI
+# CodeUI - [CodeImage](https://github.com/riccardoperra/codeimage) UI Kit
 
-[![pnpm](https://img.shields.io/badge/maintained%20with-pnpm-cc00ff.svg?style=for-the-badge&logo=pnpm)](https://pnpm.io/)
-[![turborepo](https://img.shields.io/badge/built%20with-turborepo-cc00ff.svg?style=for-the-badge&logo=turborepo)](https://turborepo.org/)
+[![pnpm](https://img.shields.io/badge/maintained%20with-pnpm-cc00ff.svg?logo=pnpm)](https://pnpm.io/)
+[![turborepo](https://img.shields.io/badge/built%20with-turborepo-cc00ff.svg?logo=turborepo)](https://turborepo.org/)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/bcc7a6d1-e9dc-4650-a465-ced9cd676f6b/deploy-status?style=for=t)](https://app.netlify.com/sites/codeui/deploys)
 
 > **Warning** This is Still WIP
 
