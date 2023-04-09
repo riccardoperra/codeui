@@ -151,7 +151,7 @@ export const button = recipe({
 					[buttonVars.background]: tokens.accent5,
 					[buttonVars.hoverBackground]: tokens.accent4,
 					[buttonVars.activeBackground]: tokens.accent3,
-					[buttonVars.color]: tokens.accent10,
+					[buttonVars.color]: tokens.foreground,
 					[buttonVars.borderColor]: tokens.accent5,
 				},
 			},

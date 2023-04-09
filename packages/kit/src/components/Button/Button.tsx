@@ -13,7 +13,7 @@ export type ButtonProps = KButton.ButtonRootProps &
 export function Button(props: ButtonProps) {
 	const [local, internal, others] = splitProps(
 		props,
-		["size", "theme", "pill"],
+		["size", "theme", "pill", "block"],
 		["class", "children", "leftIcon"],
 	);
 	const classes = () =>
@@ -22,6 +22,7 @@ export function Button(props: ButtonProps) {
 				size: local.size,
 				theme: local.theme,
 				pill: local.pill,
+				block: local.block,
 			}),
 			internal.class,
 		);
