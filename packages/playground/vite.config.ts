@@ -7,10 +7,6 @@ export default defineConfig({
 	plugins: [solidPlugin(), vanillaExtractPlugin(), tsconfigPaths()],
 	base: "/",
 	build: {
-		rollupOptions: {
-			treeshake: false,
-		},
-		minify: false,
 		target: "esnext",
 		modulePreload: {
 			polyfill: true,
