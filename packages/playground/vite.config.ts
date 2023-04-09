@@ -8,6 +8,9 @@ export default defineConfig({
 	base: "/",
 	build: {
 		target: "esnext",
+		rollupOptions: {
+			treeshake: false,
+		},
 		modulePreload: {
 			polyfill: true,
 		},

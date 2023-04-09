@@ -63,7 +63,7 @@
 		"vite-tsconfig-paths": "^4.0.7"
 	},
 	"peerDependencies": {
-		"solid-js": "^1.4.4"
+		"solid-js": "^1.7.0"
 	},
 	"packageManager": "pnpm@7.5.0",
 	"dependencies": {

@@ -7,7 +7,10 @@ import { DropdownMenuDemo } from "./demo/DropdownMenu";
 import { PopoverDemo } from "./demo/Popover";
 import { SelectDemo } from "./demo/Select";
 import "./App.css";
-import { theme as themeClass } from "@codeui/kit";
+import { Button, theme as themeClass } from "@codeui/kit";
+import { content, header } from "./App.css";
+import { As, ToggleButton } from "@kobalte/core";
+import { ButtonDemo } from "./demo/Button";
 
 const App: Component = () => {
 	const [theme, setTheme] = createSignal("dark");
@@ -19,35 +22,40 @@ const App: Component = () => {
 
 	return (
 		<div>
-			<input
-				name={"theme"}
-				type={"radio"}
-				value={"light"}
-				onChange={v => setTheme(v.currentTarget.value)}
-			/>
-			<input
-				name={"theme"}
-				type={"radio"}
-				value={"dark"}
-				onChange={v => setTheme(v.currentTarget.value)}
-			/>
-
-			<DemoSection></DemoSection>
-			<DemoSection>
-				<TextInputDemo />
-			</DemoSection>
-			<DemoSection>
-				<SelectDemo />
-			</DemoSection>
-			<DemoSection>
-				<DropdownMenuDemo />
-			</DemoSection>
-			<DemoSection>
-				<DialogDemo />
-			</DemoSection>
-			<DemoSection>
-				<PopoverDemo />
-			</DemoSection>
+			<div class={header}>
+				<ToggleButton.Root asChild>
+					{state => (
+						<As
+							component={Button}
+							size={"xs"}
+							theme={"secondary"}
+							onClick={() => setTheme(theme => (theme === "dark" ? "light" : "dark"))}
+						>
+							{state.isPressed() ? "Dark" : "Light"} theme
+						</As>
+					)}
+				</ToggleButton.Root>
+			</div>
+			<div class={content}>
+				<DemoSection>
+					<ButtonDemo />
+				</DemoSection>
+				<DemoSection>
+					<TextInputDemo />
+				</DemoSection>
+				<DemoSection>
+					<SelectDemo />
+				</DemoSection>
+				<DemoSection>
+					<DropdownMenuDemo />
+				</DemoSection>
+				<DemoSection>
+					<DialogDemo />
+				</DemoSection>
+				<DemoSection>
+					<PopoverDemo />
+				</DemoSection>
+			</div>
 		</div>
 	);
 };

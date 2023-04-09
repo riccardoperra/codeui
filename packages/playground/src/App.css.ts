@@ -1,4 +1,4 @@
-import { globalStyle } from "@vanilla-extract/css";
+import { globalStyle, style } from "@vanilla-extract/css";
 import { tokens } from "../../kit/src/foundation/contract.css";
 
 globalStyle("html, body", {
@@ -18,4 +18,26 @@ globalStyle("[data-cui-theme=light] body", {
 
 globalStyle("#root", {
 	height: "100%",
+});
+
+export const container = style({
+	display: "grid",
+	gridTemplateColumns: "1fr 1fr",
+});
+
+export const header = style({
+	height: "40px",
+	position: "fixed",
+	top: 0,
+	left: 0,
+	width: "100%",
+	background: tokens.brand,
+	display: "flex",
+	alignItems: "center",
+	paddingLeft: "1rem",
+	zIndex: 10,
+});
+
+export const content = style({
+	marginTop: "40px",
 });
