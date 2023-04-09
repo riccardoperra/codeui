@@ -47,9 +47,9 @@ export function TextField(props: TextFieldProps) {
 				<TextFieldLabel>{local.label}</TextFieldLabel>
 			</Show>
 			<KTextField.Input
-				ref={props.ref}
 				class={inputClasses()}
 				placeholder={local.placeholder}
+				ref={local.ref}
 			/>
 			<Show when={local.description} keyed={false}>
 				<TextFieldMessage>{local.description}</TextFieldMessage>
