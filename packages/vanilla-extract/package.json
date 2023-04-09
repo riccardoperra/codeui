@@ -3,7 +3,7 @@
   "version": "0.2.0",
   "description": "Vanilla extract customizations for @codeimage styles",
   "main": "./dist/index.cjs",
-	"private": "true",
+	"private": true,
 	"types": "./dist/types/index.d.ts",
   "module": "./dist/index.mjs",
   "scripts": {

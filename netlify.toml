@@ -1,4 +1,4 @@
 # repository root netlify.toml
 [build]
-command = "pnpm --filter=@codeimage/vanilla-extract build && pnpm --filter=@codeui/kit build && pnpm --filter=@codeui/kit build:playground"
+command = "pnpm build"
 publish = "/packages/kit/dev/dist"
