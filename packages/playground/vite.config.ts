@@ -5,11 +5,15 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
 	plugins: [solidPlugin(), vanillaExtractPlugin(), tsconfigPaths()],
+	base: "/",
 	build: {
 		rollupOptions: {
 			treeshake: false,
 		},
+		minify: false,
 		target: "esnext",
-		polyfillModulePreload: true,
+		modulePreload: {
+			polyfill: true,
+		},
 	},
 });
