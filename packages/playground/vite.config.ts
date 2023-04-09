@@ -5,9 +5,4 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
 	plugins: [solidPlugin(), vanillaExtractPlugin(), tsconfigPaths()],
-	build: {
-		rollupOptions: {
-			treeshake: false,
-		},
-	},
 });

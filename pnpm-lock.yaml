@@ -116,7 +116,7 @@ importers:
       statebuilder: ^0.3.1
       ts-node: ^10.9.1
       typescript: ^4.9.5
-      vite: ^3.2.5
+      vite: ^4.2.1
       vite-plugin-solid: ^2.7.0
       vite-tsconfig-paths: ^4.0.8
     dependencies:
@@ -129,7 +129,7 @@ importers:
       '@vanilla-extract/css': 1.11.0
       '@vanilla-extract/dynamic': 2.0.3
       '@vanilla-extract/recipes': 0.4.0_sj7ql4kjoy7ivqenazaubmmhp4
-      '@vanilla-extract/vite-plugin': 3.8.0_bgzpjv6fjnqkxr4ebyo5k6vahu
+      '@vanilla-extract/vite-plugin': 3.8.0_uxyhekaiskgs3pydbel3rm2k3e
       motion: 10.15.5
       polished: 4.2.2
       statebuilder: 0.3.1
@@ -144,9 +144,9 @@ importers:
       solid-testing-library: 0.5.1_solid-js@1.7.3
       ts-node: 10.9.1_z3vu5dg2hu3jqyh3anri5tms2q
       typescript: 4.9.5
-      vite: 3.2.5_@types+node@18.15.10
-      vite-plugin-solid: 2.7.0_solid-js@1.7.3+vite@3.2.5
-      vite-tsconfig-paths: 4.0.8_mmfldfnusamjexuwtlvii3fpxu
+      vite: 4.2.1_@types+node@18.15.10
+      vite-plugin-solid: 2.7.0_solid-js@1.7.3+vite@4.2.1
+      vite-tsconfig-paths: 4.0.8_27d6rnnqnnz33bvg4pqy2xno6y
 
   packages/vanilla-extract:
     specifiers:
@@ -3393,27 +3393,6 @@ packages:
       '@vanilla-extract/css': ^1.0.0
     dependencies:
       '@vanilla-extract/css': 1.11.0
-    dev: false
-
-  /@vanilla-extract/vite-plugin/3.8.0_bgzpjv6fjnqkxr4ebyo5k6vahu:
-    resolution: {integrity: sha512-HBCecR4eTbweo7wQPq9g/HBvxUi6Cua8O4Xk6t1by4W/imgEsHbRCCa9SowzZwg8lub7uJHBAdzWWpqY+LdH0w==}
-    peerDependencies:
-      vite: ^2.2.3 || ^3.0.0 || ^4.0.3
-    dependencies:
-      '@vanilla-extract/integration': 6.2.1_@types+node@18.15.10
-      outdent: 0.8.0
-      postcss: 8.4.21
-      postcss-load-config: 3.1.4_aesdjsunmf4wiehhujt67my7tu
-      vite: 3.2.5_@types+node@18.15.10
-    transitivePeerDependencies:
-      - '@types/node'
-      - less
-      - sass
-      - stylus
-      - sugarss
-      - supports-color
-      - terser
-      - ts-node
     dev: false
 
   /@vanilla-extract/vite-plugin/3.8.0_uxyhekaiskgs3pydbel3rm2k3e:
@@ -9018,7 +8997,7 @@ packages:
       - supports-color
     dev: true
 
-  /vite-plugin-solid/2.7.0_solid-js@1.7.3+vite@3.2.5:
+  /vite-plugin-solid/2.7.0_solid-js@1.7.3+vite@4.2.1:
     resolution: {integrity: sha512-avp/Jl5zOp/Itfo67xtDB2O61U7idviaIp4mLsjhCa13PjKNasz+IID0jYTyqUp9SFx6/PmBr6v4KgDppqompg==}
     peerDependencies:
       solid-js: ^1.7.2
@@ -9031,8 +9010,8 @@ packages:
       merge-anything: 5.1.4
       solid-js: 1.7.3
       solid-refresh: 0.5.2_solid-js@1.7.3
-      vite: 3.2.5_@types+node@18.15.10
-      vitefu: 0.2.4_vite@3.2.5
+      vite: 4.2.1_@types+node@18.15.10
+      vitefu: 0.2.4_vite@4.2.1
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -9054,7 +9033,7 @@ packages:
       - typescript
     dev: true
 
-  /vite-tsconfig-paths/4.0.8_mmfldfnusamjexuwtlvii3fpxu:
+  /vite-tsconfig-paths/4.0.8_27d6rnnqnnz33bvg4pqy2xno6y:
     resolution: {integrity: sha512-p04zH+Ey+NT78571x0pdX7nVRIJSlmKVvYryFglSWOK3Hc72eDL0+JJfbyQiugaIBApJkaEqbBQvqpsFZOSVGg==}
     peerDependencies:
       vite: '*'
@@ -9065,7 +9044,7 @@ packages:
       debug: 4.3.4
       globrex: 0.1.2
       tsconfck: 2.1.1_typescript@4.9.5
-      vite: 3.2.5_@types+node@18.15.10
+      vite: 4.2.1_@types+node@18.15.10
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -9104,39 +9083,6 @@ packages:
     optionalDependencies:
       fsevents: 2.3.2
     dev: false
-
-  /vite/3.2.5_@types+node@18.15.10:
-    resolution: {integrity: sha512-4mVEpXpSOgrssFZAOmGIr85wPHKvaDAcXqxVxVRZhljkJOMZi1ibLibzjLHzJvcok8BMguLc7g1W6W/GqZbLdQ==}
-    engines: {node: ^14.18.0 || >=16.0.0}
-    hasBin: true
-    peerDependencies:
-      '@types/node': '>= 14'
-      less: '*'
-      sass: '*'
-      stylus: '*'
-      sugarss: '*'
-      terser: ^5.4.0
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
-      less:
-        optional: true
-      sass:
-        optional: true
-      stylus:
-        optional: true
-      sugarss:
-        optional: true
-      terser:
-        optional: true
-    dependencies:
-      '@types/node': 18.15.10
-      esbuild: 0.15.18
-      postcss: 8.4.21
-      resolve: 1.22.1
-      rollup: 2.79.1
-    optionalDependencies:
-      fsevents: 2.3.2
 
   /vite/3.2.5_@types+node@18.15.3:
     resolution: {integrity: sha512-4mVEpXpSOgrssFZAOmGIr85wPHKvaDAcXqxVxVRZhljkJOMZi1ibLibzjLHzJvcok8BMguLc7g1W6W/GqZbLdQ==}
@@ -9213,7 +9159,18 @@ packages:
       vite:
         optional: true
     dependencies:
-      vite: 3.2.5_@types+node@18.15.10
+      vite: 3.2.5_@types+node@18.15.3
+    dev: true
+
+  /vitefu/0.2.4_vite@4.2.1:
+    resolution: {integrity: sha512-fanAXjSaf9xXtOOeno8wZXIhgia+CZury481LsDaV++lSvcU2R9Ch2bPh3PYFyoHW+w9LqAeYRISVQjUIew14g==}
+    peerDependencies:
+      vite: ^3.0.0 || ^4.0.0
+    peerDependenciesMeta:
+      vite:
+        optional: true
+    dependencies:
+      vite: 4.2.1_@types+node@18.15.10
     dev: true
 
   /w3c-hr-time/1.0.2:
