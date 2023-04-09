@@ -1,5 +1,11 @@
 # @codeui/kit
 
+## 0.0.6
+
+### Patch Changes
+
+- 5eee230: fix button tokens and text input ref
+
 ## 0.0.5
 
 ### Patch Changes

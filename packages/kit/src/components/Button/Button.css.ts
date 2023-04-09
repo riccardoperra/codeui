@@ -148,7 +148,7 @@ export const button = recipe({
 			},
 			[ButtonThemes.secondary]: {
 				vars: {
-it ad					[buttonVars.background]: tokens.accent5,
+					[buttonVars.background]: tokens.accent5,
 					[buttonVars.hoverBackground]: tokens.accent4,
 					[buttonVars.activeBackground]: tokens.accent3,
 					[buttonVars.color]: tokens.accent10,
