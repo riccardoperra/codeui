@@ -6,6 +6,8 @@ import tsconfigPaths from "vite-tsconfig-paths";
 export default defineConfig({
 	plugins: [solidPlugin(), vanillaExtractPlugin(), tsconfigPaths()],
 	build: {
-		target: "esnext",
+		rollupOptions: {
+			treeshake: false,
+		},
 	},
 });
