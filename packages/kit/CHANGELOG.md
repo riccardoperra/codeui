@@ -1,5 +1,11 @@
 # @codeui/kit
 
+## 0.0.10
+
+### Patch Changes
+
+- 368e8a5: improve tokens
+
 ## 0.0.9
 
 ### Patch Changes
