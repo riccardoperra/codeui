@@ -49,11 +49,12 @@ export const tokens = {
 	},
 	radii: {
 		none: "0",
-		sm: "0.125rem",
-		default: "0.25rem",
-		md: "0.375rem",
-		lg: "0.5rem",
-		xl: "1rem",
+		xs: "7px",
+		sm: "9px",
+		default: "14px",
+		md: "12px",
+		lg: "14px",
+		xl: "18px",
 		full: "9999px",
 	},
 	boxShadow: {

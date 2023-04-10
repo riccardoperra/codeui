@@ -45,6 +45,18 @@ export function ButtonDemo() {
 		<>
 			<h1 class={"title"}>Button</h1>
 
+			<h2>Sizes</h2>
+			<DemoSectionRow>
+				<For each={["xs", "sm", "md", "lg", "xl"] as ButtonProps["size"][]}>
+					{size => (
+						<Button size={size} theme={"primary"}>
+							Button
+						</Button>
+					)}
+				</For>
+			</DemoSectionRow>
+
+			<h2>Themes</h2>
 			<DemoSectionRow>
 				<For
 					each={
@@ -69,16 +81,7 @@ export function ButtonDemo() {
 				</Button>
 			</DemoSectionRow>
 
-			<DemoSectionRow>
-				<For each={["xs", "sm", "md", "lg", "xl"] as ButtonProps["size"][]}>
-					{size => (
-						<Button size={size} theme={"secondary"}>
-							Button
-						</Button>
-					)}
-				</For>
-			</DemoSectionRow>
-
+			<h2>Left icon</h2>
 			<DemoSectionRow>
 				<For each={["xs", "sm", "md", "lg", "xl"] as ButtonProps["size"][]}>
 					{size => (
@@ -89,6 +92,7 @@ export function ButtonDemo() {
 				</For>
 			</DemoSectionRow>
 
+			<h2>Rounded</h2>
 			<DemoSectionRow>
 				<For each={["xs", "sm", "md", "lg", "xl"] as ButtonProps["size"][]}>
 					{size => (
@@ -101,10 +105,30 @@ export function ButtonDemo() {
 
 			<h1 class={"title"}>Icon Button</h1>
 
+			<h2>Sizes</h2>
+
+			<DemoSectionRow>
+				<For each={["xs", "sm", "md", "lg", "xl"] as ButtonProps["size"][]}>
+					{size => (
+						<IconButton aria-label="Search" size={size} theme={"primary"}>
+							<SearchIcon />
+						</IconButton>
+					)}
+				</For>
+			</DemoSectionRow>
+
+			<h2>Themes</h2>
+
 			<DemoSectionRow>
 				<For
 					each={
-						["primary", "secondary", "tertiary", "negative"] as ButtonProps["theme"][]
+						[
+							"primary",
+							"secondary",
+							"tertiary",
+							"negative",
+							"caution",
+						] as ButtonProps["theme"][]
 					}
 				>
 					{variant => (
@@ -113,17 +137,13 @@ export function ButtonDemo() {
 						</IconButton>
 					)}
 				</For>
+
+				<IconButton aria-label="Search" size={"md"} theme={"primary"} isDisabled>
+					<SearchIcon />
+				</IconButton>
 			</DemoSectionRow>
 
-			<DemoSectionRow>
-				<For each={["xs", "sm", "md", "lg", "xl"] as ButtonProps["size"][]}>
-					{size => (
-						<IconButton aria-label="Search" size={size} theme={"secondary"}>
-							<SearchIcon />
-						</IconButton>
-					)}
-				</For>
-			</DemoSectionRow>
+			<h2>Rounded</h2>
 
 			<DemoSectionRow>
 				<For each={["xs", "sm", "md", "lg", "xl"] as ButtonProps["size"][]}>
@@ -133,12 +153,6 @@ export function ButtonDemo() {
 						</IconButton>
 					)}
 				</For>
-			</DemoSectionRow>
-
-			<DemoSectionRow>
-				<IconButton aria-label="Search" size={"md"} theme={"secondary"}>
-					<SearchIcon />
-				</IconButton>
 			</DemoSectionRow>
 		</>
 	);

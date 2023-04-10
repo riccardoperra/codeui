@@ -78,7 +78,7 @@ export const button = recipe({
 				"&:not([data-disabled]):active": {
 					background: buttonVars.activeBackground,
 					animation: "none",
-					transform: "scale(0.98)",
+					transform: "scale(0.97)",
 				},
 			},
 		},
@@ -98,6 +98,7 @@ export const button = recipe({
 					[buttonVars.buttonHeight]: mapSizeValue("xl"),
 					[buttonVars.fontSize]: themeTokens.fontSize.xl,
 					[buttonVars.padding]: themeTokens.spacing["6"],
+					[buttonVars.borderRadius]: themeTokens.radii.xl,
 				},
 			},
 			[ButtonSizes.lg]: {
@@ -105,6 +106,7 @@ export const button = recipe({
 					[buttonVars.buttonHeight]: mapSizeValue("lg"),
 					[buttonVars.fontSize]: themeTokens.fontSize.lg,
 					[buttonVars.padding]: themeTokens.spacing["5"],
+					[buttonVars.borderRadius]: themeTokens.radii.lg,
 				},
 			},
 			[ButtonSizes.md]: {
@@ -112,6 +114,7 @@ export const button = recipe({
 					[buttonVars.buttonHeight]: mapSizeValue("md"),
 					[buttonVars.fontSize]: themeTokens.fontSize.md,
 					[buttonVars.padding]: themeTokens.spacing["5"],
+					[buttonVars.borderRadius]: themeTokens.radii.md,
 				},
 			},
 			[ButtonSizes.sm]: {
@@ -119,6 +122,7 @@ export const button = recipe({
 					[buttonVars.buttonHeight]: mapSizeValue("sm"),
 					[buttonVars.fontSize]: themeTokens.fontSize.sm,
 					[buttonVars.padding]: themeTokens.spacing["4"],
+					[buttonVars.borderRadius]: themeTokens.radii.sm,
 				},
 			},
 			[ButtonSizes.xs]: {
@@ -126,6 +130,7 @@ export const button = recipe({
 					[buttonVars.buttonHeight]: mapSizeValue("xs"),
 					[buttonVars.fontSize]: themeTokens.fontSize.xs,
 					[buttonVars.padding]: themeTokens.spacing["2"],
+					[buttonVars.borderRadius]: themeTokens.radii.xs,
 				},
 			},
 		},
@@ -148,11 +153,11 @@ export const button = recipe({
 			},
 			[ButtonThemes.secondary]: {
 				vars: {
-					[buttonVars.background]: tokens.accent5,
-					[buttonVars.hoverBackground]: tokens.accent4,
-					[buttonVars.activeBackground]: tokens.accent3,
+					[buttonVars.background]: tokens.brandSecondary,
+					[buttonVars.hoverBackground]: tokens.brandSecondaryAccentHover,
+					[buttonVars.activeBackground]: tokens.brandSecondaryAccentActive,
 					[buttonVars.color]: tokens.foreground,
-					[buttonVars.borderColor]: tokens.accent5,
+					[buttonVars.borderColor]: tokens.brandSecondary,
 				},
 			},
 			[ButtonThemes.negative]: {

@@ -8,7 +8,7 @@ export const [theme, themeTokens] = createTheme({
 	...tokens,
 });
 
-const brand = "#0072d6";
+const brand = "#0072F5";
 const brandSoft = "#102A4CFF";
 const critical = "#E03131FF";
 const caution = "#F08C00FF";
@@ -60,8 +60,12 @@ createGlobalTheme("[data-cui-theme=dark]", contract, {
 	accent9: grayDarkScale.gray10,
 	accent10: grayDarkScale.gray11,
 	brand: brand,
+
 	brandAccentActive: getActiveColor(brand),
 	brandAccentHover: getHoverColor(brand),
+	brandSecondary: grayDarkScale.gray6,
+	brandSecondaryAccentHover: getHoverColor(grayDarkScale.gray6),
+	brandSecondaryAccentActive: getActiveColor(grayDarkScale.gray6),
 	brandSoft: brandSoft,
 	brandSoftAccentActive: getActiveColor(brandSoft),
 	brandSoftAccentHover: getHoverColor(brandSoft),
@@ -106,6 +110,9 @@ createGlobalTheme("[data-cui-theme=light]", contract, {
 	brand: brand,
 	brandAccentActive: getActiveColor(brand),
 	brandAccentHover: getHoverColor(brand),
+	brandSecondary: grayLightScale.gray3,
+	brandSecondaryAccentHover: getHoverColor(grayLightScale.gray3),
+	brandSecondaryAccentActive: getActiveColor(grayLightScale.gray3),
 	brandSoft: tint(0.85, brand),
 	brandSoftAccentActive: getActiveColor(tint(0.85, brand)),
 	brandSoftAccentHover: getHoverColor(tint(0.85, brand)),

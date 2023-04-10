@@ -48,12 +48,6 @@ export const baseFieldVariants = recipe({
 			},
 		},
 		componentStateStyles({
-			focus: {
-				borderColor: themeTokens.colors.blue8,
-			},
-			"focus-visible": {
-				borderColor: themeTokens.colors.blue9,
-			},
 			invalid: {
 				borderColor: tokens.critical,
 				color: tokens.critical,
@@ -64,12 +58,6 @@ export const baseFieldVariants = recipe({
 			},
 		}),
 		componentStateStyles({
-			focus: {
-				borderColor: themeTokens.colors.blue8,
-			},
-			"focus-visible": {
-				borderColor: themeTokens.colors.blue9,
-			},
 			invalid: {
 				borderColor: tokens.critical,
 				color: tokens.critical,
@@ -107,30 +95,35 @@ export const baseFieldVariants = recipe({
 					[baseFieldVars.inputHeight]: mapSizeValue("xs"),
 					[baseFieldVars.fontSize]: mapFontSizeValue("xs"),
 				},
+				borderRadius: themeTokens.radii.xs,
 			},
 			[FieldSizes.sm]: {
 				vars: {
 					[baseFieldVars.inputHeight]: mapSizeValue("sm"),
 					[baseFieldVars.fontSize]: mapFontSizeValue("sm"),
 				},
+				borderRadius: themeTokens.radii.sm,
 			},
 			[FieldSizes.md]: {
 				vars: {
 					[baseFieldVars.inputHeight]: mapSizeValue("md"),
 					[baseFieldVars.fontSize]: mapFontSizeValue("md"),
 				},
+				borderRadius: themeTokens.radii.md,
 			},
 			[FieldSizes.lg]: {
 				vars: {
 					[baseFieldVars.inputHeight]: mapSizeValue("lg"),
 					[baseFieldVars.fontSize]: mapFontSizeValue("md"),
 				},
+				borderRadius: themeTokens.radii.lg,
 			},
 			[FieldSizes.xl]: {
 				vars: {
 					[baseFieldVars.inputHeight]: mapSizeValue("xl"),
 					[baseFieldVars.fontSize]: mapFontSizeValue("lg"),
 				},
+				borderRadius: themeTokens.radii.xl,
 			},
 		},
 	},
