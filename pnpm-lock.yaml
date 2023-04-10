@@ -6,6 +6,7 @@ importers:
     specifiers:
       '@babel/core': ^7.21.3
       '@babel/preset-env': ^7.20.2
+      '@changesets/changelog-git': ^0.1.14
       '@changesets/cli': ^2.26.0
       '@jest/types': ^29.5.0
       '@types/jest': ^29.5.0
@@ -21,6 +22,8 @@ importers:
       typescript: ^4.9.5
       vite: ^4.2.1
       vite-plugin-solid: ^2.7.0
+    dependencies:
+      '@changesets/changelog-git': 0.1.14
     devDependencies:
       '@babel/core': 7.21.3
       '@babel/preset-env': 7.20.2_@babel+core@7.21.3
@@ -1553,7 +1556,6 @@ packages:
     resolution: {integrity: sha512-+vRfnKtXVWsDDxGctOfzJsPhaCdXRYoe+KyWYoq5X/GqoISREiat0l3L8B0a453B2B4dfHGcZaGyowHbp9BSaA==}
     dependencies:
       '@changesets/types': 5.2.1
-    dev: true
 
   /@changesets/cli/2.26.0:
     resolution: {integrity: sha512-0cbTiDms+ICTVtEwAFLNW0jBNex9f5+fFv3I771nBvdnV/mOjd1QJ4+f8KtVSOrwD9SJkk9xbDkWFb0oXd8d1Q==}
@@ -1692,7 +1694,6 @@ packages:
 
   /@changesets/types/5.2.1:
     resolution: {integrity: sha512-myLfHbVOqaq9UtUKqR/nZA/OY7xFjQMdfgfqeZIBK4d0hA6pgxArvdv8M+6NUzzBsjWLOtvApv8YHr4qM+Kpfg==}
-    dev: true
 
   /@changesets/write/0.2.3:
     resolution: {integrity: sha512-Dbamr7AIMvslKnNYsLFafaVORx4H0pvCA2MHqgtNCySMe1blImEyAEOzDmcgKAkgz4+uwoLz7demIrX+JBr/Xw==}
@@ -8513,7 +8514,7 @@ packages:
       merge-anything: 5.1.4
       solid-js: 1.7.3
       solid-refresh: 0.5.2_solid-js@1.7.3
-      vite: 4.2.1_@types+node@18.15.10
+      vite: 4.2.1_@types+node@18.15.3
       vitefu: 0.2.4_vite@4.2.1
     transitivePeerDependencies:
       - supports-color
@@ -8662,7 +8663,7 @@ packages:
       vite:
         optional: true
     dependencies:
-      vite: 4.2.1_@types+node@18.15.10
+      vite: 4.2.1_@types+node@18.15.3
     dev: true
 
   /w3c-hr-time/1.0.2:
