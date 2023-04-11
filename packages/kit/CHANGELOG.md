@@ -1,5 +1,11 @@
 # @codeui/kit
 
+## 0.0.11
+
+### Patch Changes
+
+- a16ed4c: improve dropdown/select tokens and types
+
 ## 0.0.10
 
 ### Patch Changes
