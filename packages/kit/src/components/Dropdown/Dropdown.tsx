@@ -1,11 +1,10 @@
 import { GetKobalteParams } from "../../utils/types";
-import { DropdownMenu as KDropdownMenu } from "@kobalte/core";
+import { As, DropdownMenu as KDropdownMenu } from "@kobalte/core";
 import * as styles from "./Dropdown.css";
-import { JSX, JSXElement, Show } from "solid-js";
+import { JSX, JSXElement, Show, splitProps } from "solid-js";
+import { OverrideComponentProps } from "@kobalte/utils";
 
-export function DropdownMenuContent(
-	props: GetKobalteParams<typeof KDropdownMenu.Content>,
-) {
+export function DropdownMenuContent(props: KDropdownMenu.DropdownMenuContentProps) {
 	return <KDropdownMenu.Content {...props} class={styles.content} />;
 }
 
@@ -14,13 +13,15 @@ export function DropdownMenuPortal(props: GetKobalteParams<typeof KDropdownMenu.
 }
 
 export function DropdownMenuItem(
-	props: GetKobalteParams<typeof KDropdownMenu.Item> & {
+	props: KDropdownMenu.DropdownMenuItemProps & {
 		rightSlot?: JSXElement;
 	},
 ) {
+	const [local, others] = splitProps(props, ["rightSlot", "children"]);
+
 	return (
-		<KDropdownMenu.Item {...props} class={styles.item}>
-			{props.children}
+		<KDropdownMenu.Item {...others} class={styles.item}>
+			{local.children}
 			<Show when={props.rightSlot} keyed={false}>
 				<div class={styles.rightSlot}>{props.rightSlot}</div>
 			</Show>
@@ -28,7 +29,11 @@ export function DropdownMenuItem(
 	);
 }
 
-export function DropdownSubMenu(props: GetKobalteParams<(typeof KDropdownMenu)["Sub"]>) {
+export function DropdownSubMenu(
+	props: KDropdownMenu.DropdownMenuSubProps & {
+		rightSlot?: JSXElement;
+	},
+) {
 	return <KDropdownMenu.Sub {...props} gutter={-4} />;
 }
 
@@ -37,11 +42,13 @@ export function DropdownSubMenuTrigger(
 		rightSlot: JSX.Element;
 	},
 ) {
+	const [local, others] = splitProps(props, ["rightSlot", "children"]);
+
 	return (
-		<KDropdownMenu.SubTrigger {...props} class={styles.item}>
-			{props.children}
-			<Show when={props.rightSlot} keyed={false}>
-				<div class={styles.rightSlot}>{props.rightSlot}</div>
+		<KDropdownMenu.SubTrigger {...others} class={styles.item}>
+			{local.children}
+			<Show when={local.rightSlot} keyed={false}>
+				<div class={styles.rightSlot}>{local.rightSlot}</div>
 			</Show>
 		</KDropdownMenu.SubTrigger>
 	);
