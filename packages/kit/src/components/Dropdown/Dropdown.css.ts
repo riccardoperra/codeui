@@ -85,8 +85,8 @@ export const item = style([
 		justifyContent: "flex-start",
 		border: 0,
 		margin: 0,
-		padding: themeTokens.spacing["2"],
-		borderRadius: themeTokens.radii.md,
+		padding: `${themeTokens.spacing["2"]} ${themeTokens.spacing["3"]}`,
+		borderRadius: themeTokens.radii.sm,
 		background: "transparent",
 		color: dropdownMenuThemeVars.itemTextColor,
 		userSelect: "none",
@@ -94,26 +94,20 @@ export const item = style([
 		alignItems: "center",
 		outline: "none",
 		fontWeight: themeTokens.fontWeight.normal,
-		transition: "opacity .2s, background-color .2s, transform .2s",
+		transition: "opacity .2s, background-color .2s, transform .2s, color .2s",
 		gap: themeTokens.spacing["2"],
 	},
 	{
 		":focus": {
 			boxShadow: "none",
 			outline: "none",
-			backgroundColor: dropdownMenuThemeVars.itemHoverBackground,
-			color: dropdownMenuThemeVars.itemHoverTextColor,
-		},
-		":hover": {
-			backgroundColor: dropdownMenuThemeVars.itemHoverBackground,
-			color: dropdownMenuThemeVars.itemHoverTextColor,
 		},
 		":disabled": {
 			opacity: dropdownMenuThemeVars.itemDisabledOpacity,
 		},
 		":focus-visible": {
-			backgroundColor: dropdownMenuThemeVars.itemHoverBackground,
-			color: dropdownMenuThemeVars.itemHoverTextColor,
+			boxShadow: "none",
+			outline: "none",
 		},
 	},
 	componentStateStyles({
@@ -133,6 +127,9 @@ export const rightSlot = style([
 	{
 		paddingLeft: themeTokens.spacing["8"],
 		marginLeft: "auto",
+		display: "inline-flex",
+		alignItems: "center",
+		justifyContent: "center",
 		color: tokens.accent9,
 		selectors: {
 			[`${item}[data-hover] &`]: {
