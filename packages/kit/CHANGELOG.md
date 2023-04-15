@@ -1,5 +1,11 @@
 # @codeui/kit
 
+## 0.0.15
+
+### Patch Changes
+
+- a533324: select improve style with indicator
+
 ## 0.0.14
 
 ### Patch Changes
