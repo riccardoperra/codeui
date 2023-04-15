@@ -19,6 +19,7 @@ export const [selectTheme, selectThemeVars] = createTheme({
 	itemHoverBackground: tokens.dropdownItemHoverBackground,
 	itemHoverTextColor: tokens.dropdownItemHoverTextColor,
 	itemDisabledOpacity: ".4",
+	indicatorSize: "20px",
 });
 
 const contentShow = keyframes({
@@ -130,6 +131,11 @@ export const item = style([
 			backgroundColor: selectThemeVars.itemHoverBackground,
 			color: selectThemeVars.itemHoverTextColor,
 		},
+		selected: {
+			not: {
+				paddingRight: `calc(${themeTokens.spacing["3"]} + ${selectThemeVars.indicatorSize} + ${themeTokens.spacing["2"]})`,
+			},
+		},
 		disabled: {
 			opacity: selectThemeVars.itemDisabledOpacity,
 			not: {
@@ -167,6 +173,6 @@ export const selectField = style([
 
 export const itemIndicator = style({
 	marginLeft: "auto",
-	height: "20px",
-	width: "20px",
+	height: selectThemeVars.indicatorSize,
+	width: selectThemeVars.indicatorSize,
 });
