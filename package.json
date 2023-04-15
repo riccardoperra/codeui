@@ -1,8 +1,8 @@
 {
 	"name": "codeui-monorepo",
+	"private": true,
 	"description": "Monorepo for CodeUI library",
 	"version": "0.0.1",
-	"private": true,
 	"license": "MIT",
 	"author": "riccardoperra",
 	"contributors": [],
