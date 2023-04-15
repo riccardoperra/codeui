@@ -69,26 +69,6 @@ export const baseFieldVariants = recipe({
 		}),
 	],
 	variants: {
-		theme: {
-			filled: {
-				vars: {
-					[baseFieldVars.borderColor]: "transparent",
-				},
-			},
-			outline: {},
-			inline: [
-				{
-					backgroundColor: "transparent",
-					border: "none",
-					borderBottom: `2px solid ${baseFieldVars.background}`,
-					borderRadius: 0,
-					paddingLeft: 0,
-					paddingRight: 0,
-				},
-				componentStateStyles({ disabled: { backgroundColor: "transparent" } }),
-			],
-		},
-
 		size: {
 			[FieldSizes.xs]: {
 				vars: {
@@ -125,6 +105,25 @@ export const baseFieldVariants = recipe({
 				},
 				borderRadius: themeTokens.radii.xl,
 			},
+		},
+
+		theme: {
+			filled: {
+				vars: {
+					[baseFieldVars.borderColor]: "transparent",
+				},
+			},
+			inline: [
+				{
+					backgroundColor: "transparent",
+					border: "none",
+					borderBottom: `2px solid ${baseFieldVars.background}`,
+					borderRadius: 0,
+					paddingLeft: 0,
+					paddingRight: 0,
+				},
+				componentStateStyles({ disabled: { backgroundColor: "transparent" } }),
+			],
 		},
 	},
 	defaultVariants: {

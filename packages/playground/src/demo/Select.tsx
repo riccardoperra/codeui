@@ -3,11 +3,24 @@ import { DemoSectionRow } from "../ui/DemoSection";
 import { createSignal, For } from "solid-js";
 
 export function SelectDemo() {
-	const [open, setOpen] = createSignal(false);
-
 	return (
 		<div style={{ "min-height": "300px" }}>
 			<h1 class={"title"}>Select</h1>
+
+			<Select
+				aria-label={"Fruit"}
+				size={"md"}
+				theme={"outline"}
+				options={[
+					{ label: "Apple", value: "A" },
+					{ label: "Banana", value: "B" },
+					{ label: "Blueberry", value: "C" },
+				]}
+				optionValue="value"
+				optionTextValue="label"
+				itemLabel={props => props.label}
+				valueComponent={props => props.item.rawValue.label}
+			/>
 
 			<DemoSectionRow>
 				<For each={["xs", "sm", "md", "lg", "xl"] as TextFieldProps["size"][]}>
