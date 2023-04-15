@@ -1,5 +1,11 @@
 # @codeui/kit
 
+## 0.0.12
+
+### Patch Changes
+
+- 7c119b3: support objects value for select component
+
 ## 0.0.11
 
 ### Patch Changes
