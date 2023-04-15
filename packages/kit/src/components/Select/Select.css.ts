@@ -4,15 +4,17 @@ import { componentStateStyles } from "@kobalte/vanilla-extract";
 import { tokens } from "../../foundation/contract.css";
 import { baseFieldTheme, baseFieldVars } from "../Field/Field.css";
 import { responsiveStyle } from "../../foundation/responsive";
+import { dropdownMenuThemeVars } from "../Dropdown/Dropdown.css";
 
 export const [selectTheme, selectThemeVars] = createTheme({
 	contentBackground: tokens.dropdownBackground,
 	contentRadius: themeTokens.radii.lg,
 	contentBoxShadow: tokens.dropdownBoxShadow,
 	contentPadding: themeTokens.spacing["2"],
+	contentBorderColor: tokens.dropdownBorder,
 	contentMaxHeight: "400px",
 	contentMaxHeightXs: "270px",
-	separator: tokens.separator,
+	separator: tokens.dropdownBorder,
 	itemTextColor: tokens.dropdownItemTextColor,
 	itemHoverBackground: tokens.dropdownItemHoverBackground,
 	itemHoverTextColor: tokens.dropdownItemHoverTextColor,
@@ -57,8 +59,8 @@ export const content = style([
 		rowGap: themeTokens.spacing["1"],
 		outline: "none",
 		maxHeight: selectThemeVars.contentMaxHeight,
-		border: `1px solid ${tokens.accent6}`,
 		animation: `${contentHide} 250ms ease-in-out`,
+		border: `1px solid ${selectThemeVars.contentBorderColor}`,
 	},
 	responsiveStyle({
 		xs: {
@@ -68,7 +70,7 @@ export const content = style([
 		},
 		sm: {
 			vars: {
-				[selectThemeVars.contentMaxHeight]: selectThemeVars.contentMaxHeight,
+				[selectThemeVars.contentMaxHeight]: "400px",
 			},
 		},
 	}),
@@ -90,9 +92,8 @@ export const input = style([
 export const item = style([
 	{
 		textAlign: "left",
-		justifyContent: "flex-start",
+		justifyContent: "space-between",
 		border: 0,
-		margin: 0,
 		padding: `${themeTokens.spacing["2"]} ${themeTokens.spacing["3"]}`,
 		borderRadius: themeTokens.radii.sm,
 		background: "transparent",
@@ -104,6 +105,8 @@ export const item = style([
 		fontWeight: themeTokens.fontWeight.normal,
 		transition: "opacity .2s, background-color .2s, transform .2s",
 		gap: themeTokens.spacing["2"],
+		margin: `${themeTokens.spacing["1"]} 0`,
+		minHeight: "2.50rem",
 	},
 	{
 		":disabled": {
@@ -161,3 +164,9 @@ export const selectField = style([
 		fontSize: baseFieldVars.fontSize,
 	},
 ]);
+
+export const itemIndicator = style({
+	marginLeft: "auto",
+	height: "20px",
+	width: "20px",
+});

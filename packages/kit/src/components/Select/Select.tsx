@@ -46,6 +46,23 @@ function SelectContent(props: KSelect.SelectContentProps) {
 	return <KSelect.Content class={styles.content} {...props} />;
 }
 
+function SelectIndicatorIcon() {
+	return (
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 20 20"
+			fill="currentColor"
+			class={styles.itemIndicator}
+		>
+			<path
+				fill-rule="evenodd"
+				d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+				clip-rule="evenodd"
+			/>
+		</svg>
+	);
+}
+
 export function SelectItem<T>(
 	props: KSelect.SelectItemProps & {
 		itemLabel?: (item: T) => JSXElement;
@@ -56,7 +73,9 @@ export function SelectItem<T>(
 			<KSelect.ItemLabel>
 				{props.itemLabel ? props.itemLabel(props.item.rawValue) : props.item.rawValue}
 			</KSelect.ItemLabel>
-			<KSelect.ItemIndicator />
+			<KSelect.ItemIndicator>
+				<SelectIndicatorIcon />
+			</KSelect.ItemIndicator>
 		</KSelect.Item>
 	);
 }
