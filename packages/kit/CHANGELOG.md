@@ -1,5 +1,11 @@
 # @codeui/kit
 
+## 0.0.13
+
+### Patch Changes
+
+- 9a5fd05: select max content dropdown for small devices
+
 ## 0.0.12
 
 ### Patch Changes
