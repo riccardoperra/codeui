@@ -1,5 +1,5 @@
 import { Select as KSelect } from "@kobalte/core";
-import { JSX, ParentProps, Show, splitProps } from "solid-js";
+import { JSX, JSXElement, ParentProps, Show, splitProps } from "solid-js";
 import * as styles from "./Select.css";
 import { createFieldLabelProps } from "../Field/FieldLabel/createFieldLabelProps";
 import { createFieldMessageProps } from "../Field/FieldMessage/createFieldMessageProps";
@@ -17,7 +17,9 @@ type SelectProps<T> = KSelect.SelectRootProps<T> &
 
 		description?: string;
 		label?: JSX.Element;
-	} & FieldWithErrorMessageSupport;
+	} & FieldWithErrorMessageSupport & {
+		itemLabel?: (item: T) => JSXElement;
+	};
 
 function SelectorIcon(props: JSX.IntrinsicElements["svg"]): JSX.Element {
 	return (
@@ -44,10 +46,16 @@ function SelectContent(props: KSelect.SelectContentProps) {
 	return <KSelect.Content class={styles.content} {...props} />;
 }
 
-export function SelectItem(props: KSelect.SelectItemProps) {
+export function SelectItem<T>(
+	props: KSelect.SelectItemProps & {
+		itemLabel?: (item: T) => JSXElement;
+	},
+) {
 	return (
 		<KSelect.Item class={styles.item} item={props.item}>
-			<KSelect.ItemLabel>{props.item.rawValue}</KSelect.ItemLabel>
+			<KSelect.ItemLabel>
+				{props.itemLabel ? props.itemLabel(props.item.rawValue) : props.item.rawValue}
+			</KSelect.ItemLabel>
 			<KSelect.ItemIndicator />
 		</KSelect.Item>
 	);
@@ -62,6 +70,8 @@ export function Select<T>(props: ParentProps<SelectProps<T>>) {
 		"errorMessage",
 		"description",
 		"label",
+		"itemLabel",
+		"valueComponent",
 	]);
 	const baseFieldProps = createBaseFieldProps(props);
 	const labelProps = createFieldLabelProps({});
@@ -72,8 +82,14 @@ export function Select<T>(props: ParentProps<SelectProps<T>>) {
 		<KSelect.Root
 			{...props}
 			class={styles.field}
-			valueComponent={props => props.item.rawValue as string}
-			itemComponent={SelectItem}
+			valueComponent={props => {
+				return local.valueComponent
+					? local.valueComponent(props)
+					: (props.item.rawValue as string);
+			}}
+			itemComponent={itemProps => (
+				<SelectItem item={itemProps.item} itemLabel={local.itemLabel} />
+			)}
 		>
 			<Show when={local.label} keyed={false}>
 				<KSelect.Label {...labelProps}>{local.label}</KSelect.Label>
