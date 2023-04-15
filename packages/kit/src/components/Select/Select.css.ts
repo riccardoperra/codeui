@@ -2,7 +2,8 @@ import { createTheme, keyframes, style } from "@vanilla-extract/css";
 import { themeTokens } from "../../foundation/themes.css";
 import { componentStateStyles } from "@kobalte/vanilla-extract";
 import { tokens } from "../../foundation/contract.css";
-import { baseFieldTheme } from "../Field/Field.css";
+import { baseFieldTheme, baseFieldVars } from "../Field/Field.css";
+import { responsiveStyle } from "../../foundation/responsive";
 
 export const [selectTheme, selectThemeVars] = createTheme({
 	contentBackground: tokens.dropdownBackground,
@@ -10,6 +11,7 @@ export const [selectTheme, selectThemeVars] = createTheme({
 	contentBoxShadow: tokens.dropdownBoxShadow,
 	contentPadding: themeTokens.spacing["2"],
 	contentMaxHeight: "400px",
+	contentMaxHeightXs: "270px",
 	separator: tokens.separator,
 	itemTextColor: tokens.dropdownItemTextColor,
 	itemHoverBackground: tokens.dropdownItemHoverBackground,
@@ -55,10 +57,21 @@ export const content = style([
 		rowGap: themeTokens.spacing["1"],
 		outline: "none",
 		maxHeight: selectThemeVars.contentMaxHeight,
-		// TODO: fix
 		border: `1px solid ${tokens.accent6}`,
 		animation: `${contentHide} 250ms ease-in-out`,
 	},
+	responsiveStyle({
+		xs: {
+			vars: {
+				[selectThemeVars.contentMaxHeight]: selectThemeVars.contentMaxHeightXs,
+			},
+		},
+		sm: {
+			vars: {
+				[selectThemeVars.contentMaxHeight]: selectThemeVars.contentMaxHeight,
+			},
+		},
+	}),
 	componentStateStyles({
 		expanded: {
 			animation: `${contentShow} 250ms ease-in-out`,
@@ -145,5 +158,6 @@ export const selectField = style([
 		paddingBottom: 0,
 		outline: "none",
 		width: "100%",
+		fontSize: baseFieldVars.fontSize,
 	},
 ]);
