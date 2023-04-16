@@ -1,5 +1,11 @@
 # @codeui/kit
 
+## 0.0.16
+
+### Patch Changes
+
+- d3f94f8: select improve tokens and error handling when value not present
+
 ## 0.0.15
 
 ### Patch Changes
