@@ -31,7 +31,7 @@ interface RadioGroupItemProps extends RadioGroup.RadioGroupItemProps {
 	label: string;
 }
 
-export function RadioGroupItem(props: RadioGroupItemProps) {
+export function RadioListItem(props: RadioGroupItemProps) {
 	return (
 		<RadioGroup.Item value={props.value} class={styles.radioItem}>
 			<RadioGroup.ItemInput />
@@ -57,23 +57,23 @@ export function RadioList(props: RadioListProps) {
 		"ref",
 	]);
 
-	const errorMessageProps = createFieldErrorMessageProps(props);
+	const size = () => local.size ?? "md";
 
-	const baseFieldProps = createBaseFieldProps(props);
+	const errorMessageProps = createFieldErrorMessageProps(props);
 
 	return (
 		<RadioGroup.Root
 			data-cui={"radio-group-field"}
-			data-field-size={local.size}
+			data-field-size={size()}
 			{...others}
 			class={mergeClasses(baseFieldContainer)}
 		>
 			<Show when={local.label} keyed={false}>
-				<RadioGroupLabel>Favorite fruit</RadioGroupLabel>
+				<RadioGroupLabel>{local.label}</RadioGroupLabel>
 			</Show>
 			<div
 				class={styles.radioList({
-					size: local.size ?? "lg",
+					size: size(),
 					orientation: props.orientation,
 				})}
 			>
