@@ -107,7 +107,12 @@ export const item = style([
 		transition: "opacity .2s, background-color .2s, transform .2s",
 		gap: themeTokens.spacing["2"],
 		margin: `${themeTokens.spacing["1"]} 0`,
-		minHeight: "2.50rem",
+		minHeight: "2.60rem",
+		selectors: {
+			"&:first-child,&:last-child": {
+				margin: 0,
+			},
+		},
 	},
 	{
 		":disabled": {

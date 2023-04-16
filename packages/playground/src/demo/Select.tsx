@@ -3,24 +3,51 @@ import { DemoSectionRow } from "../ui/DemoSection";
 import { createSignal, For } from "solid-js";
 
 export function SelectDemo() {
+	const [state1, setState1] = createSignal<any>("C");
+
 	return (
 		<div style={{ "min-height": "300px" }}>
 			<h1 class={"title"}>Select</h1>
 
-			<Select
-				aria-label={"Fruit"}
-				size={"md"}
-				theme={"outline"}
-				options={[
-					{ label: "Apple", value: "A" },
-					{ label: "Banana", value: "B" },
-					{ label: "Blueberry", value: "C" },
-				]}
-				optionValue="value"
-				optionTextValue="label"
-				itemLabel={props => props.label}
-				valueComponent={props => props.item.rawValue.label}
-			/>
+			<h2>Object items</h2>
+
+			<DemoSectionRow>
+				<Select
+					aria-label={"Fruit"}
+					size={"md"}
+					options={[
+						{ label: "Apple", value: "A" },
+						{ label: "Banana", value: "B" },
+						{ label: "Blueberry", value: "C" },
+					]}
+					optionValue="value"
+					optionTextValue="label"
+					itemLabel={props => props.label}
+					valueComponent={props => props.item.rawValue.label}
+				/>
+			</DemoSectionRow>
+
+			<h2>Invalid items items</h2>
+
+			<DemoSectionRow>
+				<Select
+					aria-label={"Fruit"}
+					size={"md"}
+					options={[
+						{ label: "Apple", value: "A" },
+						{ label: "Banana", value: "B" },
+						{ label: "Blueberry", value: "C" },
+					]}
+					value={state1()}
+					onValueChange={setState1}
+					optionValue="value"
+					optionTextValue="label"
+					itemLabel={props => props.label}
+					valueComponent={props => props.item.rawValue.label}
+				/>
+			</DemoSectionRow>
+
+			<h2>Filled</h2>
 
 			<DemoSectionRow>
 				<For each={["xs", "sm", "md", "lg", "xl"] as TextFieldProps["size"][]}>
@@ -36,6 +63,8 @@ export function SelectDemo() {
 				</For>
 			</DemoSectionRow>
 
+			<h2>Outline</h2>
+
 			<DemoSectionRow>
 				<For each={["xs", "sm", "md", "lg", "xl"] as TextFieldProps["size"][]}>
 					{size => (
@@ -50,6 +79,8 @@ export function SelectDemo() {
 				</For>
 			</DemoSectionRow>
 
+			<h2>Inline</h2>
+
 			<DemoSectionRow>
 				<For each={["xs", "sm", "md", "lg", "xl"] as TextFieldProps["size"][]}>
 					{size => (
@@ -63,6 +94,8 @@ export function SelectDemo() {
 					)}
 				</For>
 			</DemoSectionRow>
+
+			<h2>With description</h2>
 
 			<DemoSectionRow>
 				<For each={["xs", "sm", "md", "lg", "xl"] as TextFieldProps["size"][]}>
@@ -78,6 +111,8 @@ export function SelectDemo() {
 					)}
 				</For>
 			</DemoSectionRow>
+
+			<h2>Disabled</h2>
 
 			<For each={["outline", "filled", "inline"] as TextFieldProps["theme"][]}>
 				{theme => (
@@ -109,6 +144,8 @@ export function SelectDemo() {
 					</DemoSectionRow>
 				)}
 			</For>
+
+			<h2>Validation</h2>
 
 			<DemoSectionRow>
 				<For each={["xs", "sm", "md", "lg", "xl"] as TextFieldProps["size"][]}>

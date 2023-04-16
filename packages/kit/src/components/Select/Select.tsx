@@ -102,6 +102,7 @@ export function Select<T>(props: ParentProps<SelectProps<T>>) {
 			{...props}
 			class={styles.field}
 			valueComponent={props => {
+				if (!props.item) return null;
 				return local.valueComponent
 					? local.valueComponent(props)
 					: (props.item.rawValue as string);

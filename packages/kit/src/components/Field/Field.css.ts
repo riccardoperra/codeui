@@ -17,7 +17,7 @@ export const inputHeight = createVar();
 export const fontSize = createVar();
 
 export const [baseFieldTheme, baseFieldVars] = createTheme({
-	borderColor: themeTokens.colors.gray7,
+	borderColor: tokens.formAccentBorder,
 	background: tokens.formAccent,
 	color: tokens.foreground,
 	inputHeight: inputHeight,

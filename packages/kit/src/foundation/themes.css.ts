@@ -79,13 +79,14 @@ createGlobalTheme("[data-cui-theme=dark]", contract, {
 	neutral,
 	neutralSoft,
 	formAccent: neutralDark,
+	formAccentBorder: grayDarkScale.gray6,
 	separator: grayDarkScale.gray7,
 	// dropdown
 	dropdownBackground: grayDarkScale.gray4,
 	dropdownBoxShadow: "0 1px #0000000d,0 4px 10px rgba(0, 0, 0, .3)",
 	dropdownBorder: grayDarkScale.gray6,
 	dropdownItemTextColor: "#fff",
-	dropdownItemHoverBackground: getHoverColor(brand),
+	dropdownItemHoverBackground: getHoverColor(grayDarkScale.gray6),
 	dropdownItemHoverTextColor: "#fff",
 	// dialog
 	dialogBackground: grayDarkScale.gray2,
@@ -126,14 +127,15 @@ createGlobalTheme("[data-cui-theme=light]", contract, {
 	neutral,
 	neutralSoft,
 	formAccent: neutralSoft,
+	formAccentBorder: grayLightScale.gray5,
 	separator: grayLightScale.gray4,
 	// dropdown
 	dropdownBackground: "#fff",
 	dropdownBoxShadow: "0 1px #0000000d,0 4px 10px rgba(0, 0, 0, .1)",
 	dropdownBorder: grayLightScale.gray4,
 	dropdownItemTextColor: "#000",
-	dropdownItemHoverBackground: getHoverColor(brand),
-	dropdownItemHoverTextColor: "#fff",
+	dropdownItemHoverBackground: grayLightScale.gray2,
+	dropdownItemHoverTextColor: "#000",
 	// dialog
 	dialogBackground: "#fff",
 	dialogBoxShadow: "0 1px #0000000d,0 4px 10px rgba(0, 0, 0, .1)",

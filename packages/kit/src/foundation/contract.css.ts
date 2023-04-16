@@ -34,6 +34,8 @@ export const tokens = createThemeContract({
 	neutralSoft: null,
 	// ================================ forms ================================ //
 	formAccent: null,
+	// TODO: default border
+	formAccentBorder: null,
 	// ================================ component ================================ //
 	separator: null,
 	// dropdown
