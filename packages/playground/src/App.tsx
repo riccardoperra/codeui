@@ -11,6 +11,7 @@ import { Button, theme as themeClass } from "@codeui/kit";
 import { content, header } from "./App.css";
 import { As, ToggleButton } from "@kobalte/core";
 import { ButtonDemo } from "./demo/Button";
+import { RadioInputDemo } from "./demo/Radio";
 
 const App: Component = () => {
 	const [theme, setTheme] = createSignal("dark");
@@ -42,6 +43,9 @@ const App: Component = () => {
 				</DemoSection>
 				<DemoSection>
 					<TextInputDemo />
+				</DemoSection>
+				<DemoSection>
+					<RadioInputDemo />
 				</DemoSection>
 				<DemoSection>
 					<SelectDemo />
