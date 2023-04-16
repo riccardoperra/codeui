@@ -3,7 +3,7 @@ import { tokens } from "../../kit/src/foundation/contract.css";
 
 globalStyle("html, body", {
 	fontFamily:
-		'Mona Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
+		'"Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
 });
 
 globalStyle("[data-cui-theme=dark] body", {

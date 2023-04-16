@@ -29,6 +29,9 @@ importers:
       babel-preset-solid:
         specifier: ^1.7.3
         version: 1.7.3(@babel/core@7.21.3)
+      pnpm:
+        specifier: 8.1.1
+        version: 8.1.1
       prettier:
         specifier: 2.8.2
         version: 2.8.2
@@ -7323,6 +7326,12 @@ packages:
       mlly: 1.2.0
       pathe: 1.1.0
     dev: false
+
+  /pnpm@8.1.1:
+    resolution: {integrity: sha512-XLzcc4O8YrqfQ1+qjPtHGDFcdUeno2Zk+kuuSc9CagIiY8y4uhnqQ2B7jW8tgwQDNmehewGZuqrAoskgCkbTnw==}
+    engines: {node: '>=16.14'}
+    hasBin: true
+    dev: true
 
   /polished@4.2.2:
     resolution: {integrity: sha512-Sz2Lkdxz6F2Pgnpi9U5Ng/WdWAUZxmHrNPoVlm3aAemxoy2Qy7LGjQg4uf8qKelDAUW94F4np3iH2YPf2qefcQ==}
