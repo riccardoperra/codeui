@@ -22,6 +22,7 @@ export const radioList = recipe({
 			display: "flex",
 			gap: "16px",
 			lineHeight: "1.5",
+			marginTop: themeTokens.spacing["1"],
 		},
 	],
 	variants: {

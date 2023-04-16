@@ -27,7 +27,7 @@ export {
 } from "./components/Dropdown/Dropdown";
 export { Popover, PopoverTrigger, PopoverContent } from "./components/Popover/Popover";
 export { SelectItem, Select } from "./components/Select/Select";
-export { RadioList, RadioGroupItem } from "./components/RadioList/RadioList";
+export { RadioList, RadioListItem } from "./components/RadioList/RadioList";
 
 export { tokens } from "./foundation/tokens";
 export { theme, themeTokens } from "./foundation/themes.css";

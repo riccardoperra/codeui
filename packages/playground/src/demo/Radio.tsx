@@ -1,11 +1,5 @@
 import { For } from "solid-js";
-import {
-	RadioGroupItem,
-	RadioList,
-	TextField,
-	TextFieldLabel,
-	TextFieldProps,
-} from "@codeui/kit";
+import { RadioList, RadioListItem, TextFieldProps } from "@codeui/kit";
 import { DemoSectionRow } from "../ui/DemoSection";
 
 export function RadioInputDemo() {
@@ -21,12 +15,12 @@ export function RadioInputDemo() {
 						<RadioList
 							name={`radio-${size}`}
 							description={"Description test"}
-							label={"Username"}
+							label={"Fruit"}
 							size={size}
 						>
-							<RadioGroupItem label={"Apple"} value={"Apple"} />
-							<RadioGroupItem label={"Fruit"} value={"Fruit"} />
-							<RadioGroupItem label={"Garden"} value={"Garden"} />
+							<RadioListItem label={"Apple"} value={"Apple"} />
+							<RadioListItem label={"Fruit"} value={"Fruit"} />
+							<RadioListItem label={"Garden"} value={"Garden"} />
 						</RadioList>
 					)}
 				</For>
@@ -40,12 +34,12 @@ export function RadioInputDemo() {
 							orientation={"vertical"}
 							name={`radio-${size}`}
 							description={"Description test"}
-							label={"Username"}
+							label={"Fruit"}
 							size={size}
 						>
-							<RadioGroupItem label={"Apple"} value={"Apple"} />
-							<RadioGroupItem label={"Fruit"} value={"Fruit"} />
-							<RadioGroupItem label={"Garden"} value={"Garden"} />
+							<RadioListItem label={"Apple"} value={"Apple"} />
+							<RadioListItem label={"Fruit"} value={"Fruit"} />
+							<RadioListItem label={"Garden"} value={"Garden"} />
 						</RadioList>
 					)}
 				</For>
@@ -58,15 +52,15 @@ export function RadioInputDemo() {
 						<RadioList
 							orientation={"vertical"}
 							name={`radio-${size}`}
-							label={"Username"}
+							label={"Fruit"}
 							value={"Apple"}
 							size={size}
 							validationState={"invalid"}
 							errorMessage={"Invalid value"}
 						>
-							<RadioGroupItem label={"Apple"} value={"Apple"} />
-							<RadioGroupItem label={"Fruit"} value={"Fruit"} />
-							<RadioGroupItem label={"Garden"} value={"Garden"} />
+							<RadioListItem label={"Apple"} value={"Apple"} />
+							<RadioListItem label={"Fruit"} value={"Fruit"} />
+							<RadioListItem label={"Garden"} value={"Garden"} />
 						</RadioList>
 					)}
 				</For>
