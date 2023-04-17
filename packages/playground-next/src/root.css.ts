@@ -1,5 +1,6 @@
 import { globalStyle, style } from "@vanilla-extract/css";
 import { tokens } from "../../kit/src/foundation/contract.css";
+import { themeTokens } from "../../kit/src/foundation/themes.css";
 
 globalStyle("html, body", {
 	fontFamily:
@@ -40,4 +41,13 @@ export const header = style({
 
 export const content = style({
 	marginTop: "40px",
+});
+
+export const scaffold = style({
+	display: "flex",
+	gap: themeTokens.spacing["4"],
+});
+
+export const layoutContent = style({
+	flex: 1,
 });

@@ -17,6 +17,7 @@
     "vite-tsconfig-paths": "^4.2.0"
   },
   "dependencies": {
+    "@kobalte/core": "^0.8.2",
     "@solidjs/meta": "^0.28.2",
     "@solidjs/router": "^0.8.2",
     "@vanilla-extract/css": "^1.11.0",

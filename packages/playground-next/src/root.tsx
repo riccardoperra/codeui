@@ -13,9 +13,10 @@ import {
 	Title,
 } from "solid-start";
 import "./root.css";
-import "./root.css.ts";
+import * as styles from "./root.css.ts";
 import "./preflight.css";
 import { theme as themeClass } from "@codeui/kit";
+import { Sidebar, SidebarItem } from "./components/ui/Sidebar";
 
 export default function Root() {
 	const [theme, setTheme] = createSignal("dark");
@@ -36,12 +37,36 @@ export default function Root() {
 			<Body>
 				<Suspense>
 					<ErrorBoundary>
-						<A href="/">Index</A>
-						<A href="/button">Button</A>
-						<A href="/icon-button">IconButton</A>
-						<Routes>
-							<FileRoutes />
-						</Routes>
+						<div class={styles.scaffold}>
+							<Sidebar>
+								<SidebarItem>
+									<A href="/">Index</A>
+								</SidebarItem>
+								<SidebarItem>
+									<A href="/button">Button</A>
+								</SidebarItem>
+								<SidebarItem>
+									<A href="/icon-button">IconButton</A>
+								</SidebarItem>
+								<SidebarItem>
+									<A href="/radio">Radio</A>
+								</SidebarItem>
+								<SidebarItem>
+									<A href="/dropdown-menu">Dropdown Menu</A>
+								</SidebarItem>
+								<SidebarItem>
+									<A href="/dialog">Dialog</A>
+								</SidebarItem>
+								<SidebarItem>
+									<A href="/popover">popover</A>
+								</SidebarItem>
+							</Sidebar>
+							<div class={styles.layoutContent}>
+								<Routes>
+									<FileRoutes />
+								</Routes>
+							</div>
+						</div>
 					</ErrorBoundary>
 				</Suspense>
 				<Scripts />
