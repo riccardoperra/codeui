@@ -214,6 +214,9 @@ importers:
 
   packages/playground-next:
     dependencies:
+      '@kobalte/core':
+        specifier: ^0.8.2
+        version: 0.8.2(solid-js@1.7.3)
       '@solidjs/meta':
         specifier: ^0.28.2
         version: 0.28.2(solid-js@1.7.3)

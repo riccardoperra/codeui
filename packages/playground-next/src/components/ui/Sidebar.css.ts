@@ -16,5 +16,3 @@ export const sidebarItem = style({
 	listStyle: "none",
 	color: tokens.foreground,
 });
-
-export const sidebar

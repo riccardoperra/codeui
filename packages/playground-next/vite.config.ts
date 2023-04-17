@@ -5,5 +5,5 @@ import { vanillaExtractPlugin } from "@codeimage/vanilla-extract";
 
 export default defineConfig({
 	// @ts-ignore
-	plugins: [solid(), vanillaExtractPlugin(), tsconfigPaths()],
+	plugins: [solid({ ssr: false }), vanillaExtractPlugin(), tsconfigPaths()],
 });

@@ -58,7 +58,13 @@ export default function Root() {
 									<A href="/dialog">Dialog</A>
 								</SidebarItem>
 								<SidebarItem>
-									<A href="/popover">popover</A>
+									<A href="/popover">Popover</A>
+								</SidebarItem>
+								<SidebarItem>
+									<A href="/text-input">Text Input</A>
+								</SidebarItem>
+								<SidebarItem>
+									<A href="/select">Select</A>
 								</SidebarItem>
 							</Sidebar>
 							<div class={styles.layoutContent}>
