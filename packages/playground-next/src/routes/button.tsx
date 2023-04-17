@@ -1,4 +1,4 @@
-import { For } from "solid-js";
+import { createSignal, For } from "solid-js";
 import { Button, ButtonProps, IconButton } from "@codeui/kit";
 import { DemoSectionRow } from "~/components/ui/DemoSection";
 
@@ -40,6 +40,22 @@ function SearchIcon() {
 	);
 }
 
+const ButtonSizes = {
+	xs: "Mini",
+	sm: "Small",
+	md: "Medium",
+	lg: "Large",
+	xl: "Extra Large",
+} satisfies { [key in NonNullable<ButtonProps["size"]>]: string };
+
+const ButtonVariants = {
+	primary: "Primary",
+	secondary: "Secondary",
+	tertiary: "Tertiary",
+	negative: "Negative",
+	caution: "Caution",
+} satisfies { [key in NonNullable<ButtonProps["theme"]>]: string };
+
 export default function ButtonDemo() {
 	return (
 		<>
@@ -47,10 +63,10 @@ export default function ButtonDemo() {
 
 			<h2>Sizes</h2>
 			<DemoSectionRow>
-				<For each={["xs", "sm", "md", "lg", "xl"] as ButtonProps["size"][]}>
-					{size => (
-						<Button size={size} theme={"primary"}>
-							Button
+				<For each={Object.entries(ButtonSizes)}>
+					{([size, label]) => (
+						<Button size={size as ButtonProps["size"]} theme={"primary"}>
+							{label}
 						</Button>
 					)}
 				</For>
@@ -58,20 +74,10 @@ export default function ButtonDemo() {
 
 			<h2>Themes</h2>
 			<DemoSectionRow>
-				<For
-					each={
-						[
-							"primary",
-							"secondary",
-							"tertiary",
-							"negative",
-							"caution",
-						] as ButtonProps["theme"][]
-					}
-				>
-					{variant => (
-						<Button size={"md"} theme={variant}>
-							Button
+				<For each={Object.entries(ButtonVariants)}>
+					{([variant, label]) => (
+						<Button size={"md"} theme={variant as ButtonProps["theme"]}>
+							{label}
 						</Button>
 					)}
 				</For>
@@ -79,6 +85,61 @@ export default function ButtonDemo() {
 				<Button size={"md"} theme={"primary"} isDisabled>
 					Disabled
 				</Button>
+			</DemoSectionRow>
+
+			<h2>Ghost</h2>
+			<DemoSectionRow>
+				<For each={Object.entries(ButtonVariants)}>
+					{([variant, label]) => (
+						<Button size={"md"} variant={"ghost"} theme={variant as ButtonProps["theme"]}>
+							{label}
+						</Button>
+					)}
+				</For>
+
+				<Button size={"md"} theme={"primary"} isDisabled>
+					Disabled
+				</Button>
+			</DemoSectionRow>
+
+			<h2>Loading</h2>
+			<DemoSectionRow>
+				<For each={Object.entries(ButtonVariants)}>
+					{([variant, label]) => {
+						return (
+							<Button size={"md"} loading={true} theme={variant as ButtonProps["theme"]}>
+								{label}
+							</Button>
+						);
+					}}
+				</For>
+			</DemoSectionRow>
+			<DemoSectionRow>
+				<For each={Object.entries(ButtonVariants)}>
+					{([variant, label]) => {
+						return (
+							<Button
+								size={"md"}
+								variant={"ghost"}
+								loading={true}
+								theme={variant as ButtonProps["theme"]}
+							>
+								{label}
+							</Button>
+						);
+					}}
+				</For>
+			</DemoSectionRow>
+			<DemoSectionRow>
+				<For each={Object.entries(ButtonSizes)}>
+					{([size, label]) => {
+						return (
+							<Button loading={true} size={size as ButtonProps["size"]} theme={"primary"}>
+								{label}
+							</Button>
+						);
+					}}
+				</For>
 			</DemoSectionRow>
 
 			<h2>Left icon</h2>

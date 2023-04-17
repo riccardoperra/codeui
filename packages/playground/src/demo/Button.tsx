@@ -40,6 +40,14 @@ function SearchIcon() {
 	);
 }
 
+const ButtonSizes: { [key in ButtonProps["size"] & string]: string } = {
+	xs: "Mini",
+	sm: "Small",
+	md: "Medium",
+	lg: "Large",
+	xl: "Extra Large",
+} as const;
+
 export function ButtonDemo() {
 	return (
 		<>
@@ -47,10 +55,10 @@ export function ButtonDemo() {
 
 			<h2>Sizes</h2>
 			<DemoSectionRow>
-				<For each={["xs", "sm", "md", "lg", "xl"] as ButtonProps["size"][]}>
-					{size => (
+				<For each={Object.entries(ButtonSizes)}>
+					{([size, label]) => (
 						<Button size={size} theme={"primary"}>
-							Button
+							{label}
 						</Button>
 					)}
 				</For>

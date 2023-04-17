@@ -33,15 +33,6 @@ const ButtonThemes = {
 	caution: "caution",
 } as const;
 
-const buttonPopKf = keyframes({
-	"0%": {
-		transform: "scale(0.98)",
-	},
-	"100%": {
-		transform: "scale(1)",
-	},
-});
-
 export const button = recipe({
 	base: [
 		buttonTheme,
@@ -53,7 +44,6 @@ export const button = recipe({
 			justifyContent: "center",
 			alignItems: "center",
 			flexShrink: 0,
-			outline: "none",
 			whiteSpace: "nowrap",
 			verticalAlign: "middle",
 			height: buttonVars.buttonHeight,
@@ -64,8 +54,11 @@ export const button = recipe({
 			fontWeight: themeTokens.fontWeight.medium,
 			fontSize: buttonVars.fontSize,
 			border: `1px solid ${buttonVars.borderColor}`,
-			transition: "opacity .2s, background-color .2s, transform .2s",
+			transition:
+				"opacity .2s, background-color .2s, transform .2s, outline-color 150ms ease-in-out, outline-offset 150ms ease-in",
 			gap: themeTokens.spacing["2"],
+			outlineColor: `transparent`,
+			outlineOffset: "0px",
 			vars: {
 				[buttonVars.borderColor]: buttonVars.background,
 			},
@@ -79,6 +72,10 @@ export const button = recipe({
 					background: buttonVars.activeBackground,
 					animation: "none",
 					transform: "scale(0.97)",
+				},
+				"&:focus-visible": {
+					outlineOffset: "2px",
+					outline: `2px solid ${buttonVars.background}`,
 				},
 			},
 		},
@@ -178,6 +175,16 @@ export const button = recipe({
 				},
 			},
 		},
+		variant: {
+			ghost: {
+				background: "transparent",
+				selectors: {
+					"&:not(:hover)": {
+						borderColor: "transparent",
+					},
+				},
+			},
+		},
 		block: {
 			true: {
 				width: "100%",
@@ -191,16 +198,49 @@ export const button = recipe({
 				},
 			},
 		},
+		loading: {
+			true: {
+				opacity: 0.7,
+				pointerEvents: "none",
+			},
+		},
 	} as const,
 	defaultVariants: {
 		size: "md",
 	},
+	compoundVariants: [
+		{
+			style: {
+				background: "transparent",
+				selectors: {
+					"&:not(:hover)": {
+						borderColor: buttonVars.borderColor,
+					},
+				},
+			},
+			variants: {
+				variant: "ghost",
+				loading: true,
+			},
+		},
+	],
 });
 
 export const buttonIcon = style({
 	display: "inline-flex",
 	alignSelf: "center",
 	flexShrink: 0,
+});
+
+export const buttonText = style({
+	transition: "opacity .2s ease-in-out",
+	display: "contents",
+	selectors: {
+		"[data-loading] &": {
+			opacity: 0,
+			display: "block",
+		},
+	},
 });
 
 export type ButtonVariants = RecipeVariants<typeof button>;
