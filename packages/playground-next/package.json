@@ -1,0 +1,33 @@
+{
+  "name": "@codeui/playground-next",
+  "scripts": {
+    "dev": "solid-start dev",
+    "build": "solid-start build",
+    "start": "solid-start start"
+  },
+  "type": "module",
+  "devDependencies": {
+    "@codeimage/vanilla-extract": "workspace:^",
+    "@types/node": "^18.11.18",
+    "esbuild": "^0.17.16",
+    "postcss": "^8.4.21",
+    "solid-start-node": "^0.2.26",
+    "typescript": "^5.0.4",
+    "vite": "^4.1.4",
+    "vite-tsconfig-paths": "^4.2.0"
+  },
+  "dependencies": {
+    "@kobalte/core": "^0.8.2",
+    "@solidjs/meta": "^0.28.2",
+    "@solidjs/router": "^0.8.2",
+    "@vanilla-extract/css": "^1.11.0",
+    "@vanilla-extract/dynamic": "^2.0.3",
+    "@vanilla-extract/vite-plugin": "^3.8.0",
+    "solid-js": "^1.7.2",
+    "solid-start": "^0.2.26",
+    "undici": "^5.15.1"
+  },
+  "engines": {
+    "node": ">=16.8"
+  }
+}
