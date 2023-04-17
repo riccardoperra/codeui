@@ -1,5 +1,5 @@
 {
-  "name": "playground-next",
+  "name": "@codeui/playground-next",
   "scripts": {
     "dev": "solid-start dev",
     "build": "solid-start build",
