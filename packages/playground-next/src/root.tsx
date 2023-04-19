@@ -49,6 +49,9 @@ export default function Root() {
 									<A href="/icon-button">IconButton</A>
 								</SidebarItem>
 								<SidebarItem>
+									<A href="/link">Link</A>
+								</SidebarItem>
+								<SidebarItem>
 									<A href="/radio">Radio</A>
 								</SidebarItem>
 								<SidebarItem>

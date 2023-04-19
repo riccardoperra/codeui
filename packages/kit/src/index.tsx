@@ -1,4 +1,6 @@
 export { Button } from "./components/Button/Button";
+export * as buttonStyles from "./components/Button/Button.css";
+
 export type { ButtonProps } from "./components/Button/Button";
 
 export { TextField, TextFieldLabel } from "./components/TextField/TextField";
@@ -28,6 +30,8 @@ export {
 export { Popover, PopoverTrigger, PopoverContent } from "./components/Popover/Popover";
 export { SelectItem, Select } from "./components/Select/Select";
 export { RadioList, RadioListItem } from "./components/RadioList/RadioList";
+
+export { Link } from "./components/Link/Link";
 
 export { tokens } from "./foundation/tokens";
 export { theme, themeTokens } from "./foundation/themes.css";
