@@ -4,8 +4,6 @@ import * as styles from "./Button.css";
 import { mergeClasses } from "../../utils/css";
 import { ButtonIcon } from "./ButtonIcon";
 import { Loading } from "./Loading";
-import { Motion } from "@motionone/solid";
-import { buttonLoadingWrapper, buttonText } from "./Button.css";
 
 export type ButtonProps = KButton.ButtonRootProps &
 	styles.ButtonVariants & {

@@ -1,5 +1,5 @@
-import { createSignal, For } from "solid-js";
-import { Button, ButtonProps, IconButton } from "@codeui/kit";
+import { For } from "solid-js";
+import { Button, ButtonProps } from "@codeui/kit";
 import { DemoSectionRow } from "~/components/ui/DemoSection";
 
 function Clipboard() {
