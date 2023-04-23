@@ -8,7 +8,8 @@
 	"contributors": [],
 	"scripts": {
 		"dev": "turbo run dev --parallel",
-		"build": "turbo run build --filter=!./playgrounds/*",
+		"build": "turbo run build",
+		"build:kit": "turbo run build --filter=@codeui/kit",
 		"test": "turbo run test --filter=!./playgrounds/*",
 		"typecheck": "turbo run typecheck --filter=!./playgrounds/*",
 		"build-test": "turbo run build test typecheck --filter=!./playgrounds/*",
