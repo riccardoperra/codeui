@@ -1,4 +1,4 @@
-import { createTheme, keyframes, style } from "@vanilla-extract/css";
+import { createTheme, style } from "@vanilla-extract/css";
 import { recipe, RecipeVariants } from "@vanilla-extract/recipes";
 import { themeTokens } from "../../foundation/themes.css";
 import { mapSizeValue } from "../../foundation/sizes.css";

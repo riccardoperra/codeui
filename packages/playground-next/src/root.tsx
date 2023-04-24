@@ -69,6 +69,9 @@ export default function Root() {
 								<SidebarItem>
 									<A href="/select">Select</A>
 								</SidebarItem>
+								<SidebarItem>
+									<A href="/tooltip">Tooltip</A>
+								</SidebarItem>
 							</Sidebar>
 							<div class={styles.layoutContent}>
 								<Routes>
