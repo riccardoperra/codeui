@@ -82,7 +82,7 @@ export default function ButtonDemo() {
 					)}
 				</For>
 
-				<Button size={"md"} theme={"primary"} isDisabled>
+				<Button size={"md"} theme={"primary"} disabled>
 					Disabled
 				</Button>
 			</DemoSectionRow>
@@ -97,7 +97,7 @@ export default function ButtonDemo() {
 					)}
 				</For>
 
-				<Button size={"md"} theme={"primary"} isDisabled>
+				<Button size={"md"} theme={"primary"} disabled>
 					Disabled
 				</Button>
 			</DemoSectionRow>

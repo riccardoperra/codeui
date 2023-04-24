@@ -56,11 +56,7 @@ export default function DropdownMenuDemo() {
 					</DropdownMenuPortal>
 				</DropdownMenu>
 
-				<DropdownMenu
-					gutter={6}
-					isOpen={menuControlled()}
-					onOpenChange={setMenuControlled}
-				>
+				<DropdownMenu gutter={6} open={menuControlled()} onOpenChange={setMenuControlled}>
 					<DropdownMenuTrigger asChild>
 						<As component={Button} theme={"tertiary"}>
 							Menu {menuControlled() ? "Close" : "Open"}
@@ -73,7 +69,7 @@ export default function DropdownMenuDemo() {
 							<DropdownMenuItem rightSlot={"⇧+⌘+K"}>Push</DropdownMenuItem>
 							<DropdownMenuSeparator />
 
-							<DropdownMenuItem isDisabled rightSlot={"⌘+T"}>
+							<DropdownMenuItem disabled rightSlot={"⌘+T"}>
 								Update Project
 							</DropdownMenuItem>
 							<DropdownSubMenu>

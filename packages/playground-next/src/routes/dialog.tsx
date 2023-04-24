@@ -31,7 +31,7 @@ export default function DialogDemo() {
 								Open Dialog ({size})
 							</Button>
 							<Dialog
-								isOpen={dialogState[size!]}
+								open={dialogState[size!]}
 								title={`Dialog title ${size}`}
 								size={size}
 								onOpenChange={value => setDialogState(size!, value)}

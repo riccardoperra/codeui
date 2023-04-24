@@ -23,7 +23,7 @@ export default function PopoverDemo() {
 					</PopoverContent>
 				</Popover>
 
-				<Popover isOpen={open()} onOpenChange={setOpen}>
+				<Popover open={open()} onOpenChange={setOpen}>
 					<PopoverTrigger asChild>
 						<As component={Button} theme={"secondary"}>
 							Open (controlled)

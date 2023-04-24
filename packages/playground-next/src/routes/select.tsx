@@ -23,7 +23,7 @@ export default function SelectDemo() {
 					optionValue="value"
 					optionTextValue="label"
 					itemLabel={props => props.label}
-					valueComponent={props => props.item.rawValue.label}
+					valueComponent={value => value().label}
 				/>
 			</DemoSectionRow>
 
@@ -39,11 +39,11 @@ export default function SelectDemo() {
 						{ label: "Blueberry", value: "C" },
 					]}
 					value={state1()}
-					onValueChange={setState1}
+					onChange={setState1}
 					optionValue="value"
 					optionTextValue="label"
 					itemLabel={props => props.label}
-					valueComponent={props => props.item.rawValue.label}
+					valueComponent={value => value().label}
 				/>
 			</DemoSectionRow>
 
@@ -73,7 +73,7 @@ export default function SelectDemo() {
 							aria-label={"Fruit"}
 							size={size}
 							options={["Apple", "Banana", "Blueberry", "Grapes", "Pineapple"]}
-						></Select>
+						/>
 					)}
 				</For>
 			</DemoSectionRow>
@@ -121,7 +121,7 @@ export default function SelectDemo() {
 							aria-label={"Fruit"}
 							theme={theme}
 							size={"md"}
-							isDisabled
+							disabled
 							options={["Apple", "Banana", "Blueberry", "Grapes", "Pineapple"]}
 						/>
 						<Select
@@ -129,7 +129,7 @@ export default function SelectDemo() {
 							aria-label={"Fruit"}
 							theme={theme}
 							size={"md"}
-							isReadOnly
+							readOnly
 							options={["Apple", "Banana", "Blueberry", "Grapes", "Pineapple"]}
 						/>
 						<Select
@@ -137,7 +137,7 @@ export default function SelectDemo() {
 							aria-label={"Fruit"}
 							theme={theme}
 							size={"md"}
-							isRequired
+							required
 							options={["Apple", "Banana", "Blueberry", "Grapes", "Pineapple"]}
 						/>
 					</DemoSectionRow>
