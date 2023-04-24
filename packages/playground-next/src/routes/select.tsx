@@ -1,54 +1,43 @@
-import { Select, TextFieldProps } from "@codeui/kit";
-import { createSignal, For } from "solid-js";
+import { createSelectOptions, Select, TextFieldProps } from "@codeui/kit";
+import { createEffect, createSignal, For } from "solid-js";
 import { DemoSectionRow } from "~/components/ui/DemoSection";
+
+interface Fruit {
+	value: string;
+	label: string;
+	disabled: boolean;
+}
+
+const options: Fruit[] = [
+	{ value: "apple", label: "Apple", disabled: false },
+	{ value: "banana", label: "Banana", disabled: false },
+	{ value: "blueberry", label: "Blueberry", disabled: false },
+	{ value: "grapes", label: "Grapes", disabled: true },
+	{ value: "pineapple", label: "Pineapple", disabled: false },
+];
 
 export default function SelectDemo() {
 	const [state1, setState1] = createSignal<any>("C");
 
+	const selectOptions = createSelectOptions(options, { key: "label", valueKey: "value" });
+
 	return (
 		<div style={{ "min-height": "300px" }}>
 			<h1 class={"title"}>Select</h1>
-
 			<h2>Object items</h2>
-
 			<DemoSectionRow>
 				<Select
+					{...selectOptions.props()}
 					aria-label={"Fruit"}
 					size={"md"}
-					options={[
-						{ label: "Apple", value: "A" },
-						{ label: "Banana", value: "B" },
-						{ label: "Blueberry", value: "C" },
-					]}
-					optionValue="value"
-					optionTextValue="label"
-					itemLabel={props => props.label}
-					valueComponent={value => value().label}
+					value={selectOptions.optionFromValue(state1())}
+					options={selectOptions.options()}
+					onChange={item => {
+						setState1(selectOptions.optionToValue(item));
+					}}
 				/>
 			</DemoSectionRow>
-
-			<h2>Invalid items items</h2>
-
-			<DemoSectionRow>
-				<Select
-					aria-label={"Fruit"}
-					size={"md"}
-					options={[
-						{ label: "Apple", value: "A" },
-						{ label: "Banana", value: "B" },
-						{ label: "Blueberry", value: "C" },
-					]}
-					value={state1()}
-					onChange={setState1}
-					optionValue="value"
-					optionTextValue="label"
-					itemLabel={props => props.label}
-					valueComponent={value => value().label}
-				/>
-			</DemoSectionRow>
-
-			<h2>Filled</h2>
-
+			;<h2>Filled</h2>;
 			<DemoSectionRow>
 				<For each={["xs", "sm", "md", "lg", "xl"] as TextFieldProps["size"][]}>
 					{size => (
@@ -62,9 +51,7 @@ export default function SelectDemo() {
 					)}
 				</For>
 			</DemoSectionRow>
-
-			<h2>Outline</h2>
-
+			;<h2>Outline</h2>;
 			<DemoSectionRow>
 				<For each={["xs", "sm", "md", "lg", "xl"] as TextFieldProps["size"][]}>
 					{size => (
@@ -77,9 +64,7 @@ export default function SelectDemo() {
 					)}
 				</For>
 			</DemoSectionRow>
-
-			<h2>Inline</h2>
-
+			;<h2>Inline</h2>;
 			<DemoSectionRow>
 				<For each={["xs", "sm", "md", "lg", "xl"] as TextFieldProps["size"][]}>
 					{size => (
@@ -93,9 +78,7 @@ export default function SelectDemo() {
 					)}
 				</For>
 			</DemoSectionRow>
-
-			<h2>With description</h2>
-
+			;<h2>With description</h2>;
 			<DemoSectionRow>
 				<For each={["xs", "sm", "md", "lg", "xl"] as TextFieldProps["size"][]}>
 					{size => (
@@ -110,9 +93,7 @@ export default function SelectDemo() {
 					)}
 				</For>
 			</DemoSectionRow>
-
-			<h2>Disabled</h2>
-
+			;<h2>Disabled</h2>;
 			<For each={["outline", "filled", "inline"] as TextFieldProps["theme"][]}>
 				{theme => (
 					<DemoSectionRow>
@@ -143,9 +124,7 @@ export default function SelectDemo() {
 					</DemoSectionRow>
 				)}
 			</For>
-
-			<h2>Validation</h2>
-
+			;<h2>Validation</h2>;
 			<DemoSectionRow>
 				<For each={["xs", "sm", "md", "lg", "xl"] as TextFieldProps["size"][]}>
 					{size => (
@@ -159,6 +138,7 @@ export default function SelectDemo() {
 					)}
 				</For>
 			</DemoSectionRow>
+			;
 		</div>
 	);
 }

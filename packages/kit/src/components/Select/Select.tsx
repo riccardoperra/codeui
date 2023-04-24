@@ -10,7 +10,7 @@ import { createFieldLabelProps } from "../Field/FieldLabel/createFieldLabelProps
 import { createFieldMessageProps } from "../Field/FieldMessage/createFieldMessageProps";
 import * as styles from "./Select.css";
 
-type SelectProps<T> = Omit<KSelect.SelectRootProps<T>, "multiple"> &
+export type SelectProps<T> = KSelect.SelectRootProps<T> &
 	BaseFieldProps & {
 		"aria-label": string;
 		placeholder?: string;
@@ -100,9 +100,9 @@ export function Select<T>(props: ParentProps<SelectProps<T>>) {
 
 	return (
 		<KSelect.Root
-			multiple={false}
-			{...(others as KSelect.SelectRootProps<T>)}
+			{...others}
 			class={styles.field}
+			multiple={false}
 			itemComponent={itemProps => (
 				<SelectItem item={itemProps.item} itemLabel={local.itemLabel} />
 			)}
