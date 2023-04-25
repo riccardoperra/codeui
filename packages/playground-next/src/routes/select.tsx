@@ -32,6 +32,12 @@ export default function SelectDemo() {
 					{...selectOptions.controlled(state1, setState1)}
 					aria-label={"Fruit"}
 					size={"md"}
+					value={state1()}
+					onChange={setState1}
+					optionValue="value"
+					optionTextValue="label"
+					itemLabel={props => props.label}
+					valueComponent={value => value().label}
 					options={selectOptions.options()}
 				/>
 			</DemoSectionRow>

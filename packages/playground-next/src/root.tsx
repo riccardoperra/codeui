@@ -83,6 +83,9 @@ export default function Root() {
 									<A href="/select">Select</A>
 								</SidebarItem>
 								<SidebarItem>
+									<A href="/tooltip">Tooltip</A>
+								</SidebarItem>
+								<SidebarItem>
 									<A href="/pagination">Pagination</A>
 								</SidebarItem>
 							</Sidebar>

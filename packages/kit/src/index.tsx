@@ -39,4 +39,5 @@ export { Pagination } from "./components/Pagination/Pagination";
 export { tokens } from "./foundation/tokens";
 export { theme, themeTokens } from "./foundation/themes.css";
 
+export { Tooltip } from "./components/Tooltip/Tooltip";
 export * as layoutVars from "./foundation/layout.css";

@@ -67,4 +67,14 @@ export const tokens = {
 		outline: "0 0 0 3px rgba(66, 153, 225, 0.5)",
 		none: "none",
 	},
+	zIndex: {
+		"-1": "-1",
+		0: "0",
+		10: "10",
+		20: "20",
+		30: "30",
+		40: "40",
+		50: "50",
+		auto: "auto",
+	},
 } as const;
