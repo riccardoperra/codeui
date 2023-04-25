@@ -178,7 +178,7 @@ export const button = recipe({
 		},
 		variant: {
 			ghost: {
-				background: fallbackVar(layoutBackgroundColor, buttonVars.background),
+				background: "transparent",
 				selectors: {
 					"&:not(:hover)": {
 						borderColor: "transparent",
@@ -213,6 +213,7 @@ export const button = recipe({
 	compoundVariants: [
 		{
 			style: {
+				background: fallbackVar(layoutBackgroundColor, buttonVars.background),
 				selectors: {
 					"&:not(:hover)": {
 						borderColor: buttonVars.borderColor,
