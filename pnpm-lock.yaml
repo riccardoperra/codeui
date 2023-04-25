@@ -133,85 +133,6 @@ importers:
         specifier: ^4.0.7
         version: 4.2.0(typescript@4.9.5)(vite@4.3.1)
 
-  packages/playground:
-    dependencies:
-      '@kobalte/core':
-        specifier: ^0.9.1
-        version: 0.9.1(solid-js@1.7.3)
-      '@kobalte/utils':
-        specifier: ^0.7.0
-        version: 0.7.0(solid-js@1.7.3)
-      '@kobalte/vanilla-extract':
-        specifier: ^0.4.0
-        version: 0.4.0(@vanilla-extract/css@1.11.0)
-      '@motionone/solid':
-        specifier: ^10.16.0
-        version: 10.16.0(solid-js@1.7.3)
-      '@radix-ui/colors':
-        specifier: ^0.1.8
-        version: 0.1.8
-      '@vanilla-extract/css':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@vanilla-extract/dynamic':
-        specifier: ^2.0.3
-        version: 2.0.3
-      '@vanilla-extract/recipes':
-        specifier: ^0.4.0
-        version: 0.4.0(@vanilla-extract/css@1.11.0)
-      '@vanilla-extract/vite-plugin':
-        specifier: ^3.8.0
-        version: 3.8.0(@types/node@18.16.0)(ts-node@10.9.1)(vite@4.2.1)
-      motion:
-        specifier: ^10.15.5
-        version: 10.15.5
-      polished:
-        specifier: ^4.2.2
-        version: 4.2.2
-      statebuilder:
-        specifier: ^0.3.1
-        version: 0.3.1
-    devDependencies:
-      '@codeui/vanilla-extract':
-        specifier: workspace:^0.2.0
-        version: link:../vanilla-extract
-      '@testing-library/jest-dom':
-        specifier: ^5.16.5
-        version: 5.16.5
-      jest:
-        specifier: ^28.1.3
-        version: 28.1.3(@types/node@18.16.0)(ts-node@10.9.1)
-      jest-environment-jsdom:
-        specifier: ^28.1.3
-        version: 28.1.3
-      rollup:
-        specifier: ^3.20.2
-        version: 3.20.3
-      rollup-preset-solid:
-        specifier: ^2.0.1
-        version: 2.0.1
-      solid-js:
-        specifier: ^1.7.3
-        version: 1.7.3
-      solid-testing-library:
-        specifier: ^0.5.1
-        version: 0.5.1(solid-js@1.7.3)
-      ts-node:
-        specifier: ^10.9.1
-        version: 10.9.1(@types/node@18.16.0)(typescript@4.9.5)
-      typescript:
-        specifier: ^4.9.5
-        version: 4.9.5
-      vite:
-        specifier: ^4.2.1
-        version: 4.2.1(@types/node@18.16.0)
-      vite-plugin-solid:
-        specifier: ^2.7.0
-        version: 2.7.0(solid-js@1.7.3)(vite@4.2.1)
-      vite-tsconfig-paths:
-        specifier: ^4.0.8
-        version: 4.2.0(typescript@4.9.5)(vite@4.2.1)
-
   packages/playground-next:
     dependencies:
       '@kobalte/core':
@@ -234,7 +155,7 @@ importers:
         version: 2.0.3
       '@vanilla-extract/vite-plugin':
         specifier: ^3.8.0
-        version: 3.8.0(@types/node@18.16.0)(ts-node@10.9.1)(vite@4.2.1)
+        version: 3.8.0(@types/node@18.16.0)(ts-node@10.9.1)(vite@4.3.1)
       solid-js:
         specifier: ^1.7.2
         version: 1.7.3
@@ -246,7 +167,7 @@ importers:
         version: 5.15.1
     devDependencies:
       '@codeui/vanilla-extract':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../vanilla-extract
       '@types/node':
         specifier: ^18.11.18
@@ -2340,7 +2261,7 @@ packages:
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     dependencies:
       '@jest/types': 29.5.0
-      '@types/node': 18.15.11
+      '@types/node': 18.16.0
       chalk: 4.1.2
       jest-message-util: 29.5.0
       jest-util: 29.5.0
@@ -2404,14 +2325,14 @@ packages:
       '@jest/test-result': 29.5.0
       '@jest/transform': 29.5.0
       '@jest/types': 29.5.0
-      '@types/node': 18.15.11
+      '@types/node': 18.16.0
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       ci-info: 3.8.0
       exit: 0.1.2
       graceful-fs: 4.2.11
       jest-changed-files: 29.5.0
-      jest-config: 29.5.0(@types/node@18.15.11)
+      jest-config: 29.5.0(@types/node@18.16.0)
       jest-haste-map: 29.5.0
       jest-message-util: 29.5.0
       jest-regex-util: 29.4.3
@@ -2448,7 +2369,7 @@ packages:
     dependencies:
       '@jest/fake-timers': 29.5.0
       '@jest/types': 29.5.0
-      '@types/node': 18.15.11
+      '@types/node': 18.16.0
       jest-mock: 29.5.0
     dev: true
 
@@ -2504,7 +2425,7 @@ packages:
     dependencies:
       '@jest/types': 29.5.0
       '@sinonjs/fake-timers': 10.0.2
-      '@types/node': 18.15.11
+      '@types/node': 18.16.0
       jest-message-util: 29.5.0
       jest-mock: 29.5.0
       jest-util: 29.5.0
@@ -2586,7 +2507,7 @@ packages:
       '@jest/transform': 29.5.0
       '@jest/types': 29.5.0
       '@jridgewell/trace-mapping': 0.3.18
-      '@types/node': 18.15.11
+      '@types/node': 18.16.0
       chalk: 4.1.2
       collect-v8-coverage: 1.0.1
       exit: 0.1.2
@@ -3367,20 +3288,6 @@ packages:
       pretty-format: 26.6.2
     dev: true
 
-  /@testing-library/dom@8.20.0:
-    resolution: {integrity: sha512-d9ULIT+a4EXLX3UU8FBjauG9NnsZHkHztXoIcTsOKoOw030fyjheN9svkTULjJxtYag9DZz5Jz5qkWZDPxTFwA==}
-    engines: {node: '>=12'}
-    dependencies:
-      '@babel/code-frame': 7.21.4
-      '@babel/runtime': 7.21.0
-      '@types/aria-query': 5.0.1
-      aria-query: 5.1.3
-      chalk: 4.1.2
-      dom-accessibility-api: 0.5.16
-      lz-string: 1.5.0
-      pretty-format: 27.5.1
-    dev: true
-
   /@testing-library/jest-dom@5.16.5:
     resolution: {integrity: sha512-N5ixQ2qKpi5OLYfwQmUb/5mSV9LneAcaUfp32pn4yCnpb8r/Yz0pXFPck21dIicKmi+ta5WRAknkZCfA8refMA==}
     engines: {node: '>=8', npm: '>=6', yarn: '>=1'}
@@ -3415,10 +3322,6 @@ packages:
 
   /@types/aria-query@4.2.2:
     resolution: {integrity: sha512-HnYpAE1Y6kRyKM/XkEuiRQhTHvkzMBurTHnpFLYLBGPIylZNPs9jJcuOOYWxPLJCSEtmZT0Y8rHDokKN7rRTig==}
-    dev: true
-
-  /@types/aria-query@5.0.1:
-    resolution: {integrity: sha512-XTIieEY+gvJ39ChLcB4If5zHtPxt3Syj5rgZR+e1ctpmK8NjPf0zFqsz4JpLJT0xla9GFDKjy8Cpu331nrmE1Q==}
     dev: true
 
   /@types/babel__core@7.20.0:
@@ -3653,27 +3556,6 @@ packages:
       '@vanilla-extract/css': ^1.0.0
     dependencies:
       '@vanilla-extract/css': 1.11.0
-    dev: false
-
-  /@vanilla-extract/vite-plugin@3.8.0(@types/node@18.16.0)(ts-node@10.9.1)(vite@4.2.1):
-    resolution: {integrity: sha512-HBCecR4eTbweo7wQPq9g/HBvxUi6Cua8O4Xk6t1by4W/imgEsHbRCCa9SowzZwg8lub7uJHBAdzWWpqY+LdH0w==}
-    peerDependencies:
-      vite: ^2.2.3 || ^3.0.0 || ^4.0.3
-    dependencies:
-      '@vanilla-extract/integration': 6.2.1(@types/node@18.16.0)
-      outdent: 0.8.0
-      postcss: 8.4.22
-      postcss-load-config: 3.1.4(postcss@8.4.22)(ts-node@10.9.1)
-      vite: 4.2.1(@types/node@18.16.0)
-    transitivePeerDependencies:
-      - '@types/node'
-      - less
-      - sass
-      - stylus
-      - sugarss
-      - supports-color
-      - terser
-      - ts-node
     dev: false
 
   /@vanilla-extract/vite-plugin@3.8.0(@types/node@18.16.0)(ts-node@10.9.1)(vite@4.3.1):
@@ -6217,7 +6099,7 @@ packages:
       '@jest/expect': 29.5.0
       '@jest/test-result': 29.5.0
       '@jest/types': 29.5.0
-      '@types/node': 18.15.11
+      '@types/node': 18.16.0
       chalk: 4.1.2
       co: 4.6.0
       dedent: 0.7.0
@@ -6412,6 +6294,45 @@ packages:
       - supports-color
     dev: true
 
+  /jest-config@29.5.0(@types/node@18.16.0):
+    resolution: {integrity: sha512-kvDUKBnNJPNBmFFOhDbm59iu1Fii1Q6SxyhXfvylq3UTHbg6o7j/g8k2dZyXWLvfdKB1vAPxNZnMgtKJcmu3kA==}
+    engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
+    peerDependencies:
+      '@types/node': '*'
+      ts-node: '>=9.0.0'
+    peerDependenciesMeta:
+      '@types/node':
+        optional: true
+      ts-node:
+        optional: true
+    dependencies:
+      '@babel/core': 7.21.4
+      '@jest/test-sequencer': 29.5.0
+      '@jest/types': 29.5.0
+      '@types/node': 18.16.0
+      babel-jest: 29.5.0(@babel/core@7.21.4)
+      chalk: 4.1.2
+      ci-info: 3.8.0
+      deepmerge: 4.3.1
+      glob: 7.2.3
+      graceful-fs: 4.2.11
+      jest-circus: 29.5.0
+      jest-environment-node: 29.5.0
+      jest-get-type: 29.4.3
+      jest-regex-util: 29.4.3
+      jest-resolve: 29.5.0
+      jest-runner: 29.5.0
+      jest-util: 29.5.0
+      jest-validate: 29.5.0
+      micromatch: 4.0.5
+      parse-json: 5.2.0
+      pretty-format: 29.5.0
+      slash: 3.0.0
+      strip-json-comments: 3.1.1
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
   /jest-diff@28.1.3:
     resolution: {integrity: sha512-8RqP1B/OXzjjTWkqMX67iqgwBVJRgCyKD3L9nq+6ZqJMdvjE8RgHktqZ6jNrkdMT+dJuYNI3rhQpxaz7drJHfw==}
     engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
@@ -6506,7 +6427,7 @@ packages:
       '@jest/environment': 29.5.0
       '@jest/fake-timers': 29.5.0
       '@jest/types': 29.5.0
-      '@types/node': 18.15.11
+      '@types/node': 18.16.0
       jest-mock: 29.5.0
       jest-util: 29.5.0
     dev: true
@@ -6546,7 +6467,7 @@ packages:
     dependencies:
       '@jest/types': 29.5.0
       '@types/graceful-fs': 4.1.6
-      '@types/node': 18.15.11
+      '@types/node': 18.16.0
       anymatch: 3.1.3
       fb-watchman: 2.0.2
       graceful-fs: 4.2.11
@@ -6638,7 +6559,7 @@ packages:
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     dependencies:
       '@jest/types': 29.5.0
-      '@types/node': 18.15.11
+      '@types/node': 18.16.0
       jest-util: 29.5.0
     dev: true
 
@@ -6764,7 +6685,7 @@ packages:
       '@jest/test-result': 29.5.0
       '@jest/transform': 29.5.0
       '@jest/types': 29.5.0
-      '@types/node': 18.15.11
+      '@types/node': 18.16.0
       chalk: 4.1.2
       emittery: 0.13.1
       graceful-fs: 4.2.11
@@ -6825,7 +6746,7 @@ packages:
       '@jest/test-result': 29.5.0
       '@jest/transform': 29.5.0
       '@jest/types': 29.5.0
-      '@types/node': 18.15.11
+      '@types/node': 18.16.0
       chalk: 4.1.2
       cjs-module-lexer: 1.2.2
       collect-v8-coverage: 1.0.1
@@ -6974,7 +6895,7 @@ packages:
     dependencies:
       '@jest/test-result': 29.5.0
       '@jest/types': 29.5.0
-      '@types/node': 18.15.11
+      '@types/node': 18.16.0
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       emittery: 0.13.1
@@ -6995,7 +6916,7 @@ packages:
     resolution: {integrity: sha512-NcrQnevGoSp4b5kg+akIpthoAFHxPBcb5P6mYPY0fUNT+sSvmtu6jlkEle3anczUKIKEbMxFimk9oTP/tpIPgA==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     dependencies:
-      '@types/node': 18.15.11
+      '@types/node': 18.16.0
       jest-util: 29.5.0
       merge-stream: 2.0.0
       supports-color: 8.1.1
@@ -8067,15 +7988,6 @@ packages:
       react-is: 17.0.2
     dev: true
 
-  /pretty-format@27.5.1:
-    resolution: {integrity: sha512-Qb1gy5OrP5+zDf2Bvnzdl3jsTf1qXVMazbvCoKhtKqVs4/YK4ozX4gKQJJVyNe+cajNPn0KoC0MC3FUmaHWEmQ==}
-    engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
-    dependencies:
-      ansi-regex: 5.0.1
-      ansi-styles: 5.2.0
-      react-is: 17.0.2
-    dev: true
-
   /pretty-format@28.1.3:
     resolution: {integrity: sha512-8gFb/To0OmxHR9+ZTb14Df2vNxdGCX8g1xWGUTqUw5TiZvcQf5sHKObd5UcPyLLyowNwDAMTF3XWOG1B6mxl1Q==}
     engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
@@ -8712,17 +8624,6 @@ packages:
       solid-js: '>=1.0.0'
     dependencies:
       '@testing-library/dom': 7.31.2
-      solid-js: 1.7.3
-    dev: true
-
-  /solid-testing-library@0.5.1(solid-js@1.7.3):
-    resolution: {integrity: sha512-CfcCWsI5zIJz2zcyZQz2weq+6cCS5QrcmWeEmUEy03fElJ/BV5Ly4MMTsmwdOK803zY3wJP5pPf026C40VrE1Q==}
-    engines: {node: '>= 14'}
-    deprecated: This package is now available at @solidjs/testing-library
-    peerDependencies:
-      solid-js: '>=1.0.0'
-    dependencies:
-      '@testing-library/dom': 8.20.0
       solid-js: 1.7.3
     dev: true
 
@@ -9495,23 +9396,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /vite-tsconfig-paths@4.2.0(typescript@4.9.5)(vite@4.2.1):
-    resolution: {integrity: sha512-jGpus0eUy5qbbMVGiTxCL1iB9ZGN6Bd37VGLJU39kTDD6ZfULTTb1bcc5IeTWqWJKiWV5YihCaibeASPiGi8kw==}
-    peerDependencies:
-      vite: '*'
-    peerDependenciesMeta:
-      vite:
-        optional: true
-    dependencies:
-      debug: 4.3.4
-      globrex: 0.1.2
-      tsconfck: 2.1.1(typescript@4.9.5)
-      vite: 4.2.1(@types/node@18.16.0)
-    transitivePeerDependencies:
-      - supports-color
-      - typescript
-    dev: true
-
   /vite-tsconfig-paths@4.2.0(typescript@4.9.5)(vite@4.3.1):
     resolution: {integrity: sha512-jGpus0eUy5qbbMVGiTxCL1iB9ZGN6Bd37VGLJU39kTDD6ZfULTTb1bcc5IeTWqWJKiWV5YihCaibeASPiGi8kw==}
     peerDependencies:
@@ -9679,6 +9563,7 @@ packages:
       rollup: 3.20.3
     optionalDependencies:
       fsevents: 2.3.2
+    dev: false
 
   /vite@4.3.1(@types/node@18.16.0):
     resolution: {integrity: sha512-EPmfPLAI79Z/RofuMvkIS0Yr091T2ReUoXQqc5ppBX/sjFRhHKiPPF/R46cTdoci/XgeQpB23diiJxq5w30vdg==}
