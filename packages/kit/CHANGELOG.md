@@ -1,5 +1,12 @@
 # @codeui/kit
 
+## 0.0.23
+
+### Patch Changes
+
+- 56b5d6f: fix tooltip styles
+- 71a48f1: fix button disabled styles
+
 ## 0.0.22
 
 ### Patch Changes
