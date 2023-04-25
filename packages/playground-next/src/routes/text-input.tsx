@@ -8,11 +8,15 @@ export default function TextInputDemo() {
 			{/*	Text Input */}
 			<h1 class={"title"}>Text Input</h1>
 
+			<h2>Sizes</h2>
+
 			<DemoSectionRow>
 				<For each={["xs", "sm", "md", "lg", "xl"] as TextFieldProps["size"][]}>
 					{size => <TextField value={"Username"} label={"Username"} size={size} />}
 				</For>
 			</DemoSectionRow>
+
+			<h2>Outline</h2>
 
 			<DemoSectionRow>
 				<For each={["xs", "sm", "md", "lg", "xl"] as TextFieldProps["size"][]}>
@@ -27,6 +31,8 @@ export default function TextInputDemo() {
 				</For>
 			</DemoSectionRow>
 
+			<h2>Inline</h2>
+
 			<DemoSectionRow>
 				<For each={["xs", "sm", "md", "lg", "xl"] as TextFieldProps["size"][]}>
 					{size => (
@@ -40,6 +46,8 @@ export default function TextInputDemo() {
 				</For>
 			</DemoSectionRow>
 
+			<h2>With custom label and description</h2>
+
 			<DemoSectionRow>
 				<For each={["xs", "sm", "md", "lg", "xl"] as TextFieldProps["size"][]}>
 					{size => (
@@ -52,6 +60,8 @@ export default function TextInputDemo() {
 					)}
 				</For>
 			</DemoSectionRow>
+
+			<h2>States</h2>
 
 			<For each={["outline", "filled", "inline"] as TextFieldProps["theme"][]}>
 				{theme => (
@@ -81,6 +91,8 @@ export default function TextInputDemo() {
 				)}
 			</For>
 
+			<h2>Validation</h2>
+
 			<DemoSectionRow>
 				<For each={["xs", "sm", "md", "lg", "xl"] as TextFieldProps["size"][]}>
 					{size => (
@@ -95,10 +107,12 @@ export default function TextInputDemo() {
 				</For>
 			</DemoSectionRow>
 
-			<h1 class={"title"}>Custom</h1>
+			<h2>Custom</h2>
 
 			<DemoSectionRow>
 				<TextField
+					defaultValue={"Centered"}
+					label={"Label"}
 					size={"md"}
 					slotClasses={{
 						input: "text-center",

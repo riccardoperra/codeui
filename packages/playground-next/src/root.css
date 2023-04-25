@@ -45,3 +45,11 @@ p {
 	margin-bottom: 2rem;
 	margin-top: 2rem;
 }
+
+.text-center {
+	text-align: center;
+}
+
+.font-italic {
+	font-style: italic;
+}
