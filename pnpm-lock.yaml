@@ -63,11 +63,11 @@ importers:
   packages/kit:
     dependencies:
       '@kobalte/core':
-        specifier: ^0.9.0
-        version: 0.9.0(solid-js@1.7.3)
+        specifier: ^0.9.2
+        version: 0.9.2(solid-js@1.7.3)
       '@kobalte/utils':
-        specifier: ^0.7.0
-        version: 0.7.0(solid-js@1.7.3)
+        specifier: ^0.7.1
+        version: 0.7.1(solid-js@1.7.3)
       '@kobalte/vanilla-extract':
         specifier: ^0.4.0
         version: 0.4.0(@vanilla-extract/css@1.11.0)
@@ -99,8 +99,8 @@ importers:
         specifier: ^0.3.1
         version: 0.3.1
     devDependencies:
-      '@codeimage/vanilla-extract':
-        specifier: workspace:^0.2.0
+      '@codeui/vanilla-extract':
+        specifier: workspace:*
         version: link:../vanilla-extract
       '@testing-library/jest-dom':
         specifier: ^5.16.5
@@ -136,14 +136,14 @@ importers:
   packages/playground:
     dependencies:
       '@kobalte/core':
-        specifier: ^0.8.2
-        version: 0.8.2(solid-js@1.7.3)
+        specifier: ^0.9.1
+        version: 0.9.1(solid-js@1.7.3)
       '@kobalte/utils':
-        specifier: ^0.6.1
-        version: 0.6.1(solid-js@1.7.3)
+        specifier: ^0.7.0
+        version: 0.7.0(solid-js@1.7.3)
       '@kobalte/vanilla-extract':
-        specifier: ^0.3.0
-        version: 0.3.0(@vanilla-extract/css@1.11.0)
+        specifier: ^0.4.0
+        version: 0.4.0(@vanilla-extract/css@1.11.0)
       '@motionone/solid':
         specifier: ^10.16.0
         version: 10.16.0(solid-js@1.7.3)
@@ -172,7 +172,7 @@ importers:
         specifier: ^0.3.1
         version: 0.3.1
     devDependencies:
-      '@codeimage/vanilla-extract':
+      '@codeui/vanilla-extract':
         specifier: workspace:^0.2.0
         version: link:../vanilla-extract
       '@testing-library/jest-dom':
@@ -215,8 +215,11 @@ importers:
   packages/playground-next:
     dependencies:
       '@kobalte/core':
-        specifier: ^0.8.2
-        version: 0.8.2(solid-js@1.7.3)
+        specifier: ^0.9.1
+        version: 0.9.1(solid-js@1.7.3)
+      '@solid-primitives/utils':
+        specifier: ^6.1.0
+        version: 6.1.0(solid-js@1.7.3)
       '@solidjs/meta':
         specifier: ^0.28.2
         version: 0.28.2(solid-js@1.7.3)
@@ -242,7 +245,7 @@ importers:
         specifier: ^5.15.1
         version: 5.15.1
     devDependencies:
-      '@codeimage/vanilla-extract':
+      '@codeui/vanilla-extract':
         specifier: workspace:^
         version: link:../vanilla-extract
       '@types/node':
@@ -2304,12 +2307,6 @@ packages:
       '@swc/helpers': 0.4.14
     dev: false
 
-  /@internationalized/string@3.1.0:
-    resolution: {integrity: sha512-TJQKiyUb+wyAfKF59UNeZ/kELMnkxyecnyPCnBI1ma4NaXReJW+7Cc2mObXAqraIBJUVv7rgI46RLKrLgi35ng==}
-    dependencies:
-      '@swc/helpers': 0.4.14
-    dev: false
-
   /@istanbuljs/load-nyc-config@1.1.0:
     resolution: {integrity: sha512-VjeHSlIzpv/NyD3N0YuHfXOPDIixcA1q2ZV98wsMqcYlPmv2n3Yb2lYP9XMElnaFVXg5A7YLTeLu6V84uQDjmQ==}
     engines: {node: '>=8'}
@@ -2808,21 +2805,8 @@ packages:
       '@jridgewell/resolve-uri': 3.1.1
       '@jridgewell/sourcemap-codec': 1.4.15
 
-  /@kobalte/core@0.8.2(solid-js@1.7.3):
-    resolution: {integrity: sha512-EoBYKpYa3+Csr5Zh7l3aY3yAg7fk1O3ZM9lGyD1mdQ1FutTuwTkyj8z1CvSSj1Klb+rBL+X1N662Occ8Bmsi2w==}
-    peerDependencies:
-      solid-js: ^1.6.15
-    dependencies:
-      '@floating-ui/dom': 1.2.6
-      '@internationalized/date': 3.2.0
-      '@internationalized/number': 3.2.0
-      '@internationalized/string': 3.1.0
-      '@kobalte/utils': 0.6.1(solid-js@1.7.3)
-      solid-js: 1.7.3
-    dev: false
-
-  /@kobalte/core@0.9.0(solid-js@1.7.3):
-    resolution: {integrity: sha512-zAhEia35usznRqUA8aHog3XmjL5M1V3PCxlpKMq66/7uuNrAcmBxGHtSDi5TfIifDLqvwlo8eR1A+Tt+4aYwCg==}
+  /@kobalte/core@0.9.1(solid-js@1.7.3):
+    resolution: {integrity: sha512-q/y06y5904UhfiPSbIisuUd3/UYcOBrZUpdJ1ETpR5Tu2K2/0Za6R5AOOik6vdfX/8fb0JlFJxx3yWmuoFCTEg==}
     peerDependencies:
       solid-js: ^1.7.3
     dependencies:
@@ -2834,17 +2818,16 @@ packages:
       solid-js: 1.7.3
     dev: false
 
-  /@kobalte/utils@0.6.1(solid-js@1.7.3):
-    resolution: {integrity: sha512-YvBqe9t9j0iYFUHfKXSMLQKM3s5+nL72RvT9b75W+IOxUpSpN4rdaI8C2j97k3LsEt7qY4ktJdt8lPM1rr8JXw==}
+  /@kobalte/core@0.9.2(solid-js@1.7.3):
+    resolution: {integrity: sha512-urWKQ4uBb2QcuOo31q9mzATX+lXmUtOZr2Qiw46asZI8hD0e2n8p15G1j9eA2VQ14RVIm6hqFN9SDqHiTDFzYg==}
     peerDependencies:
-      solid-js: ^1.6.12
+      solid-js: ^1.7.3
     dependencies:
-      '@solid-primitives/event-listener': 2.2.10(solid-js@1.7.3)
-      '@solid-primitives/keyed': 1.2.0(solid-js@1.7.3)
-      '@solid-primitives/media': 2.1.6(solid-js@1.7.3)
-      '@solid-primitives/props': 3.1.4(solid-js@1.7.3)
-      '@solid-primitives/refs': 1.0.2(solid-js@1.7.3)
-      '@solid-primitives/utils': 5.5.2(solid-js@1.7.3)
+      '@floating-ui/dom': 1.2.6
+      '@internationalized/date': 3.2.0
+      '@internationalized/message': 3.1.0
+      '@internationalized/number': 3.2.0
+      '@kobalte/utils': 0.7.1(solid-js@1.7.3)
       solid-js: 1.7.3
     dev: false
 
@@ -2862,12 +2845,18 @@ packages:
       solid-js: 1.7.3
     dev: false
 
-  /@kobalte/vanilla-extract@0.3.0(@vanilla-extract/css@1.11.0):
-    resolution: {integrity: sha512-aJ/lqzyxT+LZo5Hyvwh4LUgL+AT5TI7W6naHUOyDpqKZ2WjhYZf/w9Zc++KJALX315v/bIxceCtPMgpzJMMvxw==}
+  /@kobalte/utils@0.7.1(solid-js@1.7.3):
+    resolution: {integrity: sha512-5B5MvtBdg6NrLqAylBkmOzb16pAq8FXwxUQCbX/A3RlwMYc2ekA1NSgJt2WvPWr+MLvqc9y8MjwwXW/zczx3pA==}
     peerDependencies:
-      '@vanilla-extract/css': ^1.9.5
+      solid-js: ^1.7.3
     dependencies:
-      '@vanilla-extract/css': 1.11.0
+      '@solid-primitives/event-listener': 2.2.10(solid-js@1.7.3)
+      '@solid-primitives/keyed': 1.2.0(solid-js@1.7.3)
+      '@solid-primitives/media': 2.1.6(solid-js@1.7.3)
+      '@solid-primitives/props': 3.1.4(solid-js@1.7.3)
+      '@solid-primitives/refs': 1.0.2(solid-js@1.7.3)
+      '@solid-primitives/utils': 6.1.0(solid-js@1.7.3)
+      solid-js: 1.7.3
     dev: false
 
   /@kobalte/vanilla-extract@0.4.0(@vanilla-extract/css@1.11.0):
@@ -3330,14 +3319,6 @@ packages:
 
   /@solid-primitives/transition-group@1.0.1(solid-js@1.7.3):
     resolution: {integrity: sha512-StVQs7BVGQa1uo6dD19wqOgfGMxu3gL/bvPHUV/NBJaiNX5R5e7dPb6lz6zR1RdTho3M+3Mv8jUHKd/aKuhL4w==}
-    peerDependencies:
-      solid-js: ^1.6.12
-    dependencies:
-      solid-js: 1.7.3
-    dev: false
-
-  /@solid-primitives/utils@5.5.2(solid-js@1.7.3):
-    resolution: {integrity: sha512-L52ig3eHKU6CqbPCKJIb4lweBuINHBOERcE1duApyKozEN8+zCqEKwD1Qo9ljKeEzJTBGWClxNpwEiNTUWTGvg==}
     peerDependencies:
       solid-js: ^1.6.12
     dependencies:
@@ -6249,7 +6230,7 @@ packages:
       jest-util: 29.5.0
       p-limit: 3.1.0
       pretty-format: 29.5.0
-      pure-rand: 6.0.1
+      pure-rand: 6.0.2
       slash: 3.0.0
       stack-utils: 2.0.6
     transitivePeerDependencies:
@@ -8162,8 +8143,8 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /pure-rand@6.0.1:
-    resolution: {integrity: sha512-t+x1zEHDjBwkDGY5v5ApnZ/utcd4XYDiJsaQQoptTXgUXX95sDg1elCdJghzicm7n2mbCBJ3uYWr6M22SO19rg==}
+  /pure-rand@6.0.2:
+    resolution: {integrity: sha512-6Yg0ekpKICSjPswYOuC5sku/TSWaRYlA0qsXqJgM/d/4pLPHPuTxK7Nbf7jFKzAeedUhR8C7K9Uv63FBsSo8xQ==}
     dev: true
 
   /querystringify@2.2.0:
