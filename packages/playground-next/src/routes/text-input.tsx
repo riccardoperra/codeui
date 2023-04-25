@@ -94,6 +94,18 @@ export default function TextInputDemo() {
 					)}
 				</For>
 			</DemoSectionRow>
+
+			<h1 class={"title"}>Custom</h1>
+
+			<DemoSectionRow>
+				<TextField
+					size={"md"}
+					slotClasses={{
+						input: "text-center",
+						label: "font-italic",
+					}}
+				/>
+			</DemoSectionRow>
 		</>
 	);
 }

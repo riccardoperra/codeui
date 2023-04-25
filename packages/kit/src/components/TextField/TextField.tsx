@@ -10,6 +10,10 @@ import {
 	FieldWithErrorMessageSupport,
 } from "../Field/FieldError/createFieldErrorMessageProps";
 import { BaseFieldProps, createBaseFieldProps } from "../Field/createBaseFieldProps";
+import { SlotProp } from "../../utils/component";
+
+// TODO: add to base field slot that respect the BaseFieldProps signature?
+type TextFieldSlot = "root" | "input" | "label" | "errorLabel";
 
 export type TextFieldProps = KTextField.TextFieldRootOptions &
 	BaseFieldProps &
@@ -18,7 +22,7 @@ export type TextFieldProps = KTextField.TextFieldRootOptions &
 		label?: JSX.Element;
 		placeholder?: string;
 		ref?: Ref<HTMLInputElement>;
-	};
+	} & SlotProp<TextFieldSlot>;
 
 export function TextField(props: TextFieldProps) {
 	const [local, others] = splitProps(props, [
@@ -29,22 +33,24 @@ export function TextField(props: TextFieldProps) {
 		"errorMessage",
 		"placeholder",
 		"ref",
+		"slotClasses",
 	]);
 
 	const baseFieldProps = createBaseFieldProps(props);
 	const errorMessageProps = createFieldErrorMessageProps(props);
 
-	const inputClasses = () => mergeClasses(baseFieldProps.baseStyle(), styles.textField);
+	const inputClasses = () =>
+		mergeClasses(baseFieldProps.baseStyle(), styles.textField, local.slotClasses?.input);
 
 	return (
 		<KTextField.Root
 			data-cui={"text-field"}
 			data-field-size={local.size}
+			class={mergeClasses(baseFieldContainer, local?.slotClasses?.root)}
 			{...others}
-			class={mergeClasses(baseFieldContainer)}
 		>
 			<Show when={local.label} keyed={false}>
-				<TextFieldLabel>{local.label}</TextFieldLabel>
+				<TextFieldLabel class={local.slotClasses?.label}>{local.label}</TextFieldLabel>
 			</Show>
 			<KTextField.Input
 				class={inputClasses()}
@@ -56,7 +62,9 @@ export function TextField(props: TextFieldProps) {
 			</Show>
 
 			<Show when={errorMessageProps.errorMessage} keyed={false}>
-				<KTextField.ErrorMessage class={errorMessageProps.class}>
+				<KTextField.ErrorMessage
+					class={mergeClasses(errorMessageProps.class, local.slotClasses?.errorLabel)}
+				>
 					{local.errorMessage}
 				</KTextField.ErrorMessage>
 			</Show>
