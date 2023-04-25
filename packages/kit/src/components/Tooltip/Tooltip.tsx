@@ -1,5 +1,5 @@
-import { Tooltip as KTooltip } from "@kobalte/core";
-import { createSignal, splitProps } from "solid-js";
+import { Tooltip as KTooltip, As } from "@kobalte/core";
+import { createSignal, splitProps, mergeProps } from "solid-js";
 import * as styles from "./Tooltip.css";
 import { mergeClasses } from "../../utils/css";
 
@@ -9,7 +9,17 @@ type TooltipProps = KTooltip.TooltipRootProps &
 	};
 
 export function Tooltip(props: TooltipProps) {
-	const [open, setOpen] = createSignal(true);
+	props = mergeProps(
+		{
+			gutter: 4,
+			shift: 0,
+			openDelay: 200,
+			closeDelay: 0,
+		},
+		props,
+	);
+
+	const [open, setOpen] = createSignal(false);
 	const [local, internal, others] = splitProps(props, ["theme"], ["children", "content"]);
 	const classes = () =>
 		mergeClasses(
@@ -17,9 +27,14 @@ export function Tooltip(props: TooltipProps) {
 				theme: local.theme,
 			}),
 		);
+
 	return (
 		<KTooltip.Root open={open()} onOpenChange={setOpen} {...others}>
-			<KTooltip.Trigger>{internal.children}</KTooltip.Trigger>
+			<KTooltip.Trigger asChild>
+				<As component={"span"} class={styles.trigger}>
+					{internal.children}
+				</As>
+			</KTooltip.Trigger>
 			<KTooltip.Portal>
 				<KTooltip.Content class={classes()}>{internal.content}</KTooltip.Content>
 			</KTooltip.Portal>

@@ -1,59 +1,56 @@
-import { createTheme, keyframes } from "@vanilla-extract/css";
+import { createTheme, keyframes, style } from "@vanilla-extract/css";
 import { themeTokens } from "../../foundation/themes.css";
 import { RecipeVariants, recipe } from "@vanilla-extract/recipes";
 import { tokens } from "../../foundation/contract.css";
 
 export const [tooltipTheme, tooltipVars] = createTheme({
-	fontSize: "",
-	background: "",
+	fontSize: themeTokens.fontSize.sm,
 	backgroundColor: tokens.neutral,
-	hoverBackground: "",
-	activeBackground: "",
 	color: themeTokens.colors.gray12,
-	borderColor: "",
-	padding: "",
+	padding: `${themeTokens.spacing["2"]} ${themeTokens.spacing["4"]}`,
 	borderRadius: themeTokens.radii.md,
-	boxShadow: "",
 });
 
 const TooltipThemes = {
 	primary: "primary",
 	secondary: "secondary",
 } as const;
+
 const contentShow = keyframes({
 	from: {
-		opacity: "0",
+		opacity: 0,
 		transform: "scale(0.96)",
 	},
 	to: {
-		opacity: "1",
+		opacity: 1,
 		transform: "scale(1)",
 	},
 });
+
 const contentHide = keyframes({
 	from: {
-		opacity: "1",
+		opacity: 1,
 		transform: "scale(1)",
 	},
 	to: {
-		opacity: "0",
+		opacity: 0,
 		transform: "scale(0.96)",
 	},
 });
+
 export const tooltipContent = recipe({
 	base: [
 		tooltipTheme,
 		{
-			zIndex: 50,
-			marginTop: themeTokens.spacing["1"],
+			margin: 0,
 			width: "auto",
-			padding: themeTokens.spacing["2"],
+			fontSize: tooltipVars.fontSize,
+			padding: tooltipVars.padding,
 			borderRadius: themeTokens.radii.xl,
 			color: tooltipVars.color,
 			backgroundColor: tooltipVars.backgroundColor,
-			boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);",
-			// animation: `${contentHide} 250ms ease-in forwards`,
-			transformOrigin: "var(--kb-tooltip-content-transform-origin)",
+			boxShadow: themeTokens.boxShadow.md,
+			animation: `${contentShow} 250ms ease-in forwards`,
 		},
 		{
 			selectors: {
@@ -67,17 +64,24 @@ export const tooltipContent = recipe({
 		theme: {
 			[TooltipThemes.primary]: {
 				vars: {
+					// TODO: add generic tokens `foreground` for colors (brand, neutral, negative etc) to use in all components
 					[tooltipVars.color]: "#fff",
-					[tooltipVars.backgroundColor]: "#3565CA",
+					[tooltipVars.backgroundColor]: tokens.brand,
 				},
 			},
 			[TooltipThemes.secondary]: {
 				vars: {
 					[tooltipVars.color]: "#fff",
-					[tooltipVars.backgroundColor]: "#7928CA",
+					[tooltipVars.backgroundColor]: tokens.neutral,
 				},
 			},
 		},
 	},
 });
+
+export const trigger = style({
+	display: "inline-block",
+	appearance: "none",
+});
+
 export type TooltipVariants = RecipeVariants<typeof tooltipContent>;
