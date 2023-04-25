@@ -1,54 +1,41 @@
-import { Select, TextFieldProps } from "@codeui/kit";
-import { createSignal, For } from "solid-js";
+import { createSelectOptions, Select, TextFieldProps } from "@codeui/kit";
+import { createSignal, For, NoInfer } from "solid-js";
 import { DemoSectionRow } from "~/components/ui/DemoSection";
 
+interface Fruit {
+	value: string;
+	name: string;
+	disabled: boolean;
+}
+
+const options: Fruit[] = [
+	{ value: "apple", name: "Apple", disabled: false },
+	{ value: "banana", name: "Banana", disabled: false },
+	{ value: "blueberry", name: "Blueberry", disabled: false },
+	{ value: "grapes", name: "Grapes", disabled: true },
+	{ value: "pineapple", name: "Pineapple", disabled: false },
+];
+
 export default function SelectDemo() {
-	const [state1, setState1] = createSignal<any>("C");
+	const [state1, setState1] = createSignal<string>("apple");
+
+	const selectOptions = createSelectOptions(options, { key: "name", valueKey: "value" });
 
 	return (
 		<div style={{ "min-height": "300px" }}>
 			<h1 class={"title"}>Select</h1>
-
 			<h2>Object items</h2>
-
+			<button onClick={() => setState1("banana")}>Reset</button>
 			<DemoSectionRow>
 				<Select
+					{...selectOptions.props()}
+					{...selectOptions.controlled(state1, setState1)}
 					aria-label={"Fruit"}
 					size={"md"}
-					options={[
-						{ label: "Apple", value: "A" },
-						{ label: "Banana", value: "B" },
-						{ label: "Blueberry", value: "C" },
-					]}
-					optionValue="value"
-					optionTextValue="label"
-					itemLabel={props => props.label}
-					valueComponent={props => props.item.rawValue.label}
+					options={selectOptions.options()}
 				/>
 			</DemoSectionRow>
-
-			<h2>Invalid items items</h2>
-
-			<DemoSectionRow>
-				<Select
-					aria-label={"Fruit"}
-					size={"md"}
-					options={[
-						{ label: "Apple", value: "A" },
-						{ label: "Banana", value: "B" },
-						{ label: "Blueberry", value: "C" },
-					]}
-					value={state1()}
-					onValueChange={setState1}
-					optionValue="value"
-					optionTextValue="label"
-					itemLabel={props => props.label}
-					valueComponent={props => props.item.rawValue.label}
-				/>
-			</DemoSectionRow>
-
 			<h2>Filled</h2>
-
 			<DemoSectionRow>
 				<For each={["xs", "sm", "md", "lg", "xl"] as TextFieldProps["size"][]}>
 					{size => (
@@ -62,9 +49,7 @@ export default function SelectDemo() {
 					)}
 				</For>
 			</DemoSectionRow>
-
 			<h2>Outline</h2>
-
 			<DemoSectionRow>
 				<For each={["xs", "sm", "md", "lg", "xl"] as TextFieldProps["size"][]}>
 					{size => (
@@ -73,13 +58,11 @@ export default function SelectDemo() {
 							aria-label={"Fruit"}
 							size={size}
 							options={["Apple", "Banana", "Blueberry", "Grapes", "Pineapple"]}
-						></Select>
+						/>
 					)}
 				</For>
 			</DemoSectionRow>
-
 			<h2>Inline</h2>
-
 			<DemoSectionRow>
 				<For each={["xs", "sm", "md", "lg", "xl"] as TextFieldProps["size"][]}>
 					{size => (
@@ -93,9 +76,7 @@ export default function SelectDemo() {
 					)}
 				</For>
 			</DemoSectionRow>
-
 			<h2>With description</h2>
-
 			<DemoSectionRow>
 				<For each={["xs", "sm", "md", "lg", "xl"] as TextFieldProps["size"][]}>
 					{size => (
@@ -110,9 +91,7 @@ export default function SelectDemo() {
 					)}
 				</For>
 			</DemoSectionRow>
-
 			<h2>Disabled</h2>
-
 			<For each={["outline", "filled", "inline"] as TextFieldProps["theme"][]}>
 				{theme => (
 					<DemoSectionRow>
@@ -121,7 +100,7 @@ export default function SelectDemo() {
 							aria-label={"Fruit"}
 							theme={theme}
 							size={"md"}
-							isDisabled
+							disabled
 							options={["Apple", "Banana", "Blueberry", "Grapes", "Pineapple"]}
 						/>
 						<Select
@@ -129,7 +108,7 @@ export default function SelectDemo() {
 							aria-label={"Fruit"}
 							theme={theme}
 							size={"md"}
-							isReadOnly
+							readOnly
 							options={["Apple", "Banana", "Blueberry", "Grapes", "Pineapple"]}
 						/>
 						<Select
@@ -137,15 +116,13 @@ export default function SelectDemo() {
 							aria-label={"Fruit"}
 							theme={theme}
 							size={"md"}
-							isRequired
+							required
 							options={["Apple", "Banana", "Blueberry", "Grapes", "Pineapple"]}
 						/>
 					</DemoSectionRow>
 				)}
 			</For>
-
 			<h2>Validation</h2>
-
 			<DemoSectionRow>
 				<For each={["xs", "sm", "md", "lg", "xl"] as TextFieldProps["size"][]}>
 					{size => (

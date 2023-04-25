@@ -14,6 +14,7 @@ export const [dropdownMenuTheme, dropdownMenuThemeVars] = createTheme({
 	itemHoverBackground: tokens.dropdownItemHoverBackground,
 	itemHoverTextColor: tokens.dropdownItemHoverTextColor,
 	itemDisabledOpacity: ".4",
+	itemMinHeight: "2.60rem",
 });
 
 const contentShow = keyframes({
@@ -96,6 +97,7 @@ export const item = style([
 		fontWeight: themeTokens.fontWeight.normal,
 		transition: "opacity .2s, background-color .2s, transform .2s, color .2s",
 		gap: themeTokens.spacing["2"],
+		minHeight: dropdownMenuThemeVars.itemMinHeight,
 	},
 	{
 		":focus": {

@@ -78,7 +78,7 @@ export default function ButtonDemo() {
 					)}
 				</For>
 
-				<IconButton aria-label="Search" size={"md"} theme={"primary"} isDisabled>
+				<IconButton aria-label="Search" size={"md"} theme={"primary"} disabled>
 					<SearchIcon />
 				</IconButton>
 			</DemoSectionRow>

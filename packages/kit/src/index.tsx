@@ -28,7 +28,8 @@ export {
 	DropdownMenuSeparator,
 } from "./components/Dropdown/Dropdown";
 export { Popover, PopoverTrigger, PopoverContent } from "./components/Popover/Popover";
-export { SelectItem, Select } from "./components/Select/Select";
+export { Select } from "./components/Select/Select";
+export { createSelectOptions } from "./components/Select/createSelectValue";
 export { RadioList, RadioListItem } from "./components/RadioList/RadioList";
 
 export { Link } from "./components/Link/Link";

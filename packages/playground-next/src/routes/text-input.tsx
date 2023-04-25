@@ -61,21 +61,21 @@ export default function TextInputDemo() {
 							theme={theme}
 							label={"Disabled input"}
 							size={"md"}
-							isDisabled
+							disabled
 						/>
 						<TextField
 							placeholder={"Enter text..."}
 							theme={theme}
 							label={"Readonly input"}
 							size={"md"}
-							isReadOnly
+							readOnly
 						/>
 						<TextField
 							placeholder={"Enter text..."}
 							theme={theme}
 							label={"Required input"}
 							size={"md"}
-							isRequired
+							required
 						/>
 					</DemoSectionRow>
 				)}

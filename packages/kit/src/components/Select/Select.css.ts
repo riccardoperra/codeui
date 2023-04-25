@@ -15,6 +15,7 @@ export const [selectTheme, selectThemeVars] = createTheme({
 	contentMaxHeight: "400px",
 	contentMaxHeightXs: "270px",
 	separator: tokens.dropdownBorder,
+	itemMinHeight: "2.60rem",
 	itemTextColor: tokens.dropdownItemTextColor,
 	itemHoverBackground: tokens.dropdownItemHoverBackground,
 	itemHoverTextColor: tokens.dropdownItemHoverTextColor,
@@ -107,7 +108,7 @@ export const item = style([
 		transition: "opacity .2s, background-color .2s, transform .2s",
 		gap: themeTokens.spacing["2"],
 		margin: `${themeTokens.spacing["1"]} 0`,
-		minHeight: "2.60rem",
+		minHeight: selectThemeVars.itemMinHeight,
 		selectors: {
 			"&:first-child,&:last-child": {
 				margin: 0,

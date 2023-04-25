@@ -1,16 +1,16 @@
 import { Select as KSelect } from "@kobalte/core";
-import { JSX, JSXElement, ParentProps, Show, splitProps } from "solid-js";
-import * as styles from "./Select.css";
-import { createFieldLabelProps } from "../Field/FieldLabel/createFieldLabelProps";
-import { createFieldMessageProps } from "../Field/FieldMessage/createFieldMessageProps";
+import { Accessor, JSX, JSXElement, ParentProps, Show, splitProps } from "solid-js";
+import { mergeClasses } from "../../utils/css";
+import { BaseFieldProps, createBaseFieldProps } from "../Field/createBaseFieldProps";
 import {
 	createFieldErrorMessageProps,
 	FieldWithErrorMessageSupport,
 } from "../Field/FieldError/createFieldErrorMessageProps";
-import { BaseFieldProps, createBaseFieldProps } from "../Field/createBaseFieldProps";
-import { mergeClasses } from "../../utils/css";
+import { createFieldLabelProps } from "../Field/FieldLabel/createFieldLabelProps";
+import { createFieldMessageProps } from "../Field/FieldMessage/createFieldMessageProps";
+import * as styles from "./Select.css";
 
-type SelectProps<T> = KSelect.SelectRootProps<T> &
+export type SelectProps<T> = KSelect.SelectRootProps<T> &
 	BaseFieldProps & {
 		"aria-label": string;
 		placeholder?: string;
@@ -19,6 +19,7 @@ type SelectProps<T> = KSelect.SelectRootProps<T> &
 		label?: JSX.Element;
 	} & FieldWithErrorMessageSupport & {
 		itemLabel?: (item: T) => JSXElement;
+		valueComponent?: (state: Accessor<T>) => JSXElement;
 	};
 
 function SelectorIcon(props: JSX.IntrinsicElements["svg"]): JSX.Element {
@@ -81,17 +82,21 @@ export function SelectItem<T>(
 }
 
 export function Select<T>(props: ParentProps<SelectProps<T>>) {
-	const [local, others] = splitProps(props, [
-		"aria-label",
-		"children",
-		"size",
-		"theme",
-		"errorMessage",
-		"description",
-		"label",
-		"itemLabel",
-		"valueComponent",
-	]);
+	const [local, internal, others] = splitProps(
+		props,
+		[
+			"aria-label",
+			"children",
+			"size",
+			"theme",
+			"errorMessage",
+			"description",
+			"label",
+			"itemLabel",
+			"valueComponent",
+		],
+		["options", "value"],
+	);
 	const baseFieldProps = createBaseFieldProps(props);
 	const labelProps = createFieldLabelProps({});
 	const descriptionProps = createFieldMessageProps({});
@@ -99,14 +104,10 @@ export function Select<T>(props: ParentProps<SelectProps<T>>) {
 
 	return (
 		<KSelect.Root
-			{...props}
+			{...(others as Record<string, unknown>)}
+			options={internal.options}
+			value={internal.value}
 			class={styles.field}
-			valueComponent={props => {
-				if (!props.item) return null;
-				return local.valueComponent
-					? local.valueComponent(props)
-					: (props.item.rawValue as string);
-			}}
 			itemComponent={itemProps => (
 				<SelectItem item={itemProps.item} itemLabel={local.itemLabel} />
 			)}
@@ -118,7 +119,15 @@ export function Select<T>(props: ParentProps<SelectProps<T>>) {
 				aria-label={local["aria-label"]}
 				class={mergeClasses(baseFieldProps.baseStyle(), styles.selectField)}
 			>
-				<KSelect.Value />
+				<KSelect.Value<T>>
+					{state => {
+						const value = state.selectedOption();
+						if (!value) return null;
+						return local.valueComponent
+							? local.valueComponent(state.selectedOption)
+							: (state.selectedOption() as string);
+					}}
+				</KSelect.Value>
 				<KSelect.Icon>
 					<SelectorIcon />
 				</KSelect.Icon>
