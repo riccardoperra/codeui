@@ -1,5 +1,6 @@
+import { createControllableSetSignal, createControllableSignal } from "@kobalte/core";
 import { createPagination, PaginationOptions } from "@solid-primitives/pagination";
-import { For, JSX, mergeProps } from "solid-js";
+import { createEffect, For, JSX, mergeProps, on } from "solid-js";
 import { IconButton } from "../IconButton/IconButton";
 import * as styles from "./Pagination.css";
 
@@ -7,7 +8,9 @@ type PaginationItemSize = "xs" | "sm" | "md" | "lg" | "xl";
 
 interface PaginationProps extends PaginationOptions {
 	rounded?: boolean;
+	page?: number;
 	size?: PaginationItemSize;
+	onChange?: (page: number) => void;
 }
 
 function NextIcon(props: JSX.IntrinsicElements["svg"]) {
@@ -56,13 +59,23 @@ export function Pagination(props: PaginationProps) {
 			maxPages: 5,
 			showNext: true,
 			showPrev: true,
-			initialPage: 1,
+			initialPage: props.page || props.initialPage || 1,
 		} satisfies Partial<PaginationOptions>,
 		{ size: "md" as const, rounded: false },
 		props,
 	);
 
-	const [paginationProps, page] = createPagination(props);
+	const [paginationProps, page, setPage] = createPagination(props);
+
+	createEffect(
+		on(
+			() => props.page,
+			currentPage => currentPage && setPage(currentPage),
+			{ defer: true },
+		),
+	);
+
+	createEffect(on(page, page => props.onChange?.(page), { defer: true }));
 
 	const getAriaLabel = (currentPage: number | undefined) => {
 		if (!currentPage) return undefined;
@@ -72,6 +85,7 @@ export function Pagination(props: PaginationProps) {
 		}
 		return label;
 	};
+
 	return (
 		<nav data-cui={"pagination"} class={styles.pagination}>
 			<For each={paginationProps()}>
