@@ -1,5 +1,6 @@
+import { Button, ButtonProps, layoutVars } from "@codeui/kit";
+import { assignInlineVars } from "@vanilla-extract/dynamic";
 import { For } from "solid-js";
-import { Button, ButtonProps } from "@codeui/kit";
 import { DemoSectionRow } from "~/components/ui/DemoSection";
 
 function Clipboard() {
@@ -62,6 +63,7 @@ export default function ButtonDemo() {
 			<h1 class={"title"}>Button</h1>
 
 			<h2>Sizes</h2>
+
 			<DemoSectionRow>
 				<For each={Object.entries(ButtonSizes)}>
 					{([size, label]) => (
@@ -118,14 +120,20 @@ export default function ButtonDemo() {
 				<For each={Object.entries(ButtonVariants)}>
 					{([variant, label]) => {
 						return (
-							<Button
-								size={"md"}
-								variant={"ghost"}
-								loading={true}
-								theme={variant as ButtonProps["theme"]}
+							<div
+								style={assignInlineVars({
+									[layoutVars.layoutBackgroundColor]: "black",
+								})}
 							>
-								{label}
-							</Button>
+								<Button
+									size={"md"}
+									variant={"ghost"}
+									loading={true}
+									theme={variant as ButtonProps["theme"]}
+								>
+									{label}
+								</Button>
+							</div>
 						);
 					}}
 				</For>

@@ -1,7 +1,8 @@
 import { componentStateStyles } from "@kobalte/vanilla-extract";
-import { createTheme, style } from "@vanilla-extract/css";
+import { createTheme, fallbackVar, style } from "@vanilla-extract/css";
 import { recipe, RecipeVariants } from "@vanilla-extract/recipes";
 import { tokens } from "../../foundation/contract.css";
+import { layoutBackgroundColor } from "../../foundation/layout.css";
 import { mapSizeValue } from "../../foundation/sizes.css";
 import { themeTokens } from "../../foundation/themes.css";
 
@@ -177,7 +178,7 @@ export const button = recipe({
 		},
 		variant: {
 			ghost: {
-				background: "transparent",
+				background: fallbackVar(layoutBackgroundColor, buttonVars.background),
 				selectors: {
 					"&:not(:hover)": {
 						borderColor: "transparent",
@@ -212,7 +213,6 @@ export const button = recipe({
 	compoundVariants: [
 		{
 			style: {
-				background: "transparent",
 				selectors: {
 					"&:not(:hover)": {
 						borderColor: buttonVars.borderColor,
