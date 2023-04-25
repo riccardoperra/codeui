@@ -43,12 +43,10 @@ export function Button(props: ButtonProps) {
 			<Show when={props.loading}>
 				<Loading />
 			</Show>
-			<span class={styles.buttonText}>
-				<Show when={internal.leftIcon} keyed={false}>
-					<ButtonIcon>{internal.leftIcon}</ButtonIcon>
-				</Show>
-				{internal.children}
-			</span>
+			<Show when={internal.leftIcon} keyed={false}>
+				<ButtonIcon>{internal.leftIcon}</ButtonIcon>
+			</Show>
+			{internal.children}
 		</KButton.Root>
 	);
 }

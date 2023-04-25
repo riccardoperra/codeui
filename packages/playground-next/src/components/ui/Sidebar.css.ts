@@ -6,7 +6,10 @@ export const sidebar = style({
 	width: "256px",
 	backgroundColor: tokens.formAccent,
 	height: "100vh",
+	gap: "1rem",
 	padding: themeTokens.spacing["4"],
+	display: "flex",
+	flexDirection: "column",
 });
 
 export const sidebarItem = style({

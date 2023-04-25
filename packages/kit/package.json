@@ -1,6 +1,6 @@
 {
 	"name": "@codeui/kit",
-	"version": "0.0.20",
+	"version": "0.0.21",
 	"description": "Open-Source UI Kit library for CodeImage",
 	"license": "MIT",
 	"author": "riccardoperra",
@@ -76,6 +76,7 @@
 		"@kobalte/vanilla-extract": "^0.4.0",
 		"@motionone/solid": "^10.16.0",
 		"@radix-ui/colors": "^0.1.8",
+		"@solid-primitives/pagination": "^0.2.5",
 		"@vanilla-extract/css": "^1.11.0",
 		"@vanilla-extract/dynamic": "^2.0.3",
 		"@vanilla-extract/recipes": "^0.4.0",
