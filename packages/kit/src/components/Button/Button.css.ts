@@ -1,9 +1,9 @@
-import { createTheme, keyframes, style } from "@vanilla-extract/css";
-import { recipe, RecipeVariants } from "@vanilla-extract/recipes";
-import { themeTokens } from "../../foundation/themes.css";
-import { mapSizeValue } from "../../foundation/sizes.css";
 import { componentStateStyles } from "@kobalte/vanilla-extract";
+import { createTheme, style } from "@vanilla-extract/css";
+import { recipe, RecipeVariants } from "@vanilla-extract/recipes";
 import { tokens } from "../../foundation/contract.css";
+import { mapSizeValue } from "../../foundation/sizes.css";
+import { themeTokens } from "../../foundation/themes.css";
 
 export const [buttonTheme, buttonVars] = createTheme({
 	buttonHeight: "",
@@ -200,8 +200,9 @@ export const button = recipe({
 		},
 		loading: {
 			true: {
-				opacity: 0.7,
+				opacity: 0.8,
 				pointerEvents: "none",
+				overflow: "hidden",
 			},
 		},
 	} as const,
@@ -233,12 +234,11 @@ export const buttonIcon = style({
 });
 
 export const buttonText = style({
-	transition: "opacity .2s ease-in-out",
+	transition: "opacity 100ms ease-in-out",
 	display: "contents",
 	selectors: {
 		"[data-loading] &": {
 			opacity: 0,
-			display: "block",
 		},
 	},
 });
