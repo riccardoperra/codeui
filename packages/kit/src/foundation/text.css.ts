@@ -1,6 +1,6 @@
 import { styleVariants } from "@vanilla-extract/css";
-import { themeTokens } from "@codeui/kit";
 import { mapToProperty } from "./mapToProperty";
+import { themeTokens } from "./themes.css";
 
 export const fontWeight = styleVariants(
 	themeTokens.fontWeight,

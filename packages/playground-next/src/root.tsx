@@ -15,7 +15,8 @@ import {
 import "./root.css";
 import * as styles from "./root.css.ts";
 import "./preflight.css";
-import { theme as themeClass } from "@codeui/kit";
+import "./tailwind-preflight.css";
+import { Button, theme as themeClass } from "@codeui/kit";
 import { Sidebar, SidebarItem } from "./components/ui/Sidebar";
 
 export default function Root() {
@@ -39,6 +40,18 @@ export default function Root() {
 					<ErrorBoundary>
 						<div class={styles.scaffold}>
 							<Sidebar>
+								<div>
+									<Button
+										onClick={() =>
+											setTheme(theme => (theme === "light" ? "dark" : "light"))
+										}
+										theme={"tertiary"}
+										block
+									>
+										Switch theme
+									</Button>
+								</div>
+
 								<SidebarItem>
 									<A href="/">Index</A>
 								</SidebarItem>
@@ -68,6 +81,9 @@ export default function Root() {
 								</SidebarItem>
 								<SidebarItem>
 									<A href="/select">Select</A>
+								</SidebarItem>
+								<SidebarItem>
+									<A href="/pagination">Pagination</A>
 								</SidebarItem>
 							</Sidebar>
 							<div class={styles.layoutContent}>
