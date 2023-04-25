@@ -51,12 +51,12 @@ export const tooltipContent = recipe({
 			color: tooltipVars.color,
 			backgroundColor: tooltipVars.backgroundColor,
 			boxShadow: themeTokens.boxShadow.md,
-			animation: `${contentShow} 250ms ease-in forwards`,
+			animation: `${contentHide} 150ms ease-in forwards`,
 			transformOrigin: "var(--kb-tooltip-content-transform-origin)",
 		},
 		componentStateStyles({
 			expanded: {
-				animation: `${contentShow} 250ms ease-out;`,
+				animation: `${contentShow} 250ms ease-out`,
 			},
 		}),
 	],
