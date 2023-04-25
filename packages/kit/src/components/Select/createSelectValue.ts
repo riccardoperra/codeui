@@ -9,7 +9,7 @@ interface Option<T = any> {
 }
 
 interface ConfigFor<T> {
-	key?: string;
+	key?: keyof T | string;
 	valueKey?: (keyof T & string) | string;
 }
 
@@ -28,13 +28,21 @@ interface CreateSelectOptionsReturn<T, C extends ConfigFor<T>> {
 	): Option<MapOptionToValue<T, C["valueKey"]>> | undefined;
 
 	props(): Record<string, unknown>;
+
+	controlled<Value extends MapOptionToValue<T, C["valueKey"]>>(
+		value: Accessor<Value | undefined>,
+		onChange: (value: Value | undefined, option: Option<Value> | undefined) => void,
+	): {
+		value: Option<MapOptionToValue<T, C["valueKey"]>> | undefined;
+		onChange: (item: Option<Value>) => void;
+	};
 }
 
 export function createSelectOptions<T, C extends ConfigFor<T>>(
-	values: readonly T[],
+	values: readonly T[] | Accessor<readonly T[]>,
 	config?: C,
 ): CreateSelectOptionsReturn<T, C> {
-	const optionToValue = (option: Option) => getValue(option.value);
+	const internalValue = () => (typeof values === "function" ? values() : values);
 
 	const getValue = (value: Value) =>
 		config?.valueKey !== undefined ? value[config.valueKey] : value;
@@ -43,7 +51,7 @@ export function createSelectOptions<T, C extends ConfigFor<T>>(
 		config?.key !== undefined ? value[config.key] : value;
 
 	const options = () => {
-		const initialValues = values;
+		const initialValues = internalValue();
 
 		return initialValues.map(value => {
 			return {
@@ -51,6 +59,11 @@ export function createSelectOptions<T, C extends ConfigFor<T>>(
 				value: getValue(value),
 			};
 		});
+	};
+
+	const optionToValue = (option?: Option) => {
+		if (!option) return undefined;
+		return option.value;
 	};
 
 	const optionFromValue = (value: MapOptionToValue<T, C["valueKey"]>) => {
@@ -64,6 +77,18 @@ export function createSelectOptions<T, C extends ConfigFor<T>>(
 		options,
 		optionToValue,
 		optionFromValue,
+		controlled(value, onChange) {
+			return {
+				get value() {
+					const internalValue = value();
+					return internalValue ? optionFromValue(internalValue) : undefined;
+				},
+				onChange(option) {
+					const value = optionToValue(option);
+					return onChange(value, option);
+				},
+			};
+		},
 		props() {
 			return {
 				get optionValue() {

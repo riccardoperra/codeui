@@ -82,17 +82,21 @@ export function SelectItem<T>(
 }
 
 export function Select<T>(props: ParentProps<SelectProps<T>>) {
-	const [local, others] = splitProps(props, [
-		"aria-label",
-		"children",
-		"size",
-		"theme",
-		"errorMessage",
-		"description",
-		"label",
-		"itemLabel",
-		"valueComponent",
-	]);
+	const [local, internal, others] = splitProps(
+		props,
+		[
+			"aria-label",
+			"children",
+			"size",
+			"theme",
+			"errorMessage",
+			"description",
+			"label",
+			"itemLabel",
+			"valueComponent",
+		],
+		["options", "value"],
+	);
 	const baseFieldProps = createBaseFieldProps(props);
 	const labelProps = createFieldLabelProps({});
 	const descriptionProps = createFieldMessageProps({});
@@ -100,9 +104,10 @@ export function Select<T>(props: ParentProps<SelectProps<T>>) {
 
 	return (
 		<KSelect.Root
-			{...others}
+			{...(others as Record<string, unknown>)}
+			options={internal.options}
+			value={internal.value}
 			class={styles.field}
-			multiple={false}
 			itemComponent={itemProps => (
 				<SelectItem item={itemProps.item} itemLabel={local.itemLabel} />
 			)}
