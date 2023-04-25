@@ -9,7 +9,7 @@ export const [tooltipTheme, tooltipVars] = createTheme({
 	backgroundColor: tokens.neutral,
 	color: themeTokens.colors.gray12,
 	padding: `${themeTokens.spacing["2"]} ${themeTokens.spacing["4"]}`,
-	borderRadius: themeTokens.radii.md,
+	borderRadius: themeTokens.radii.xl,
 	zIndex: themeTokens.zIndex[50],
 });
 
@@ -49,7 +49,7 @@ export const tooltipContent = recipe({
 			zIndex: tooltipVars.zIndex,
 			fontSize: tooltipVars.fontSize,
 			padding: tooltipVars.padding,
-			borderRadius: themeTokens.radii.xl,
+			borderRadius: tooltipVars.borderRadius,
 			color: tooltipVars.color,
 			backgroundColor: tooltipVars.backgroundColor,
 			boxShadow: themeTokens.boxShadow.md,
@@ -73,8 +73,8 @@ export const tooltipContent = recipe({
 			},
 			[TooltipThemes.secondary]: {
 				vars: {
-					[tooltipVars.color]: "#fff",
-					[tooltipVars.backgroundColor]: tokens.neutral,
+					[tooltipVars.color]: tokens.foreground,
+					[tooltipVars.backgroundColor]: tokens.brandSecondary,
 				},
 			},
 		},

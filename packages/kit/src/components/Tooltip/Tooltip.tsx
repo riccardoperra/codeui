@@ -42,7 +42,7 @@ export function Tooltip(props: TooltipProps) {
 		<KTooltip.Root open={open()} onOpenChange={setOpen} {...others}>
 			<KTooltip.Trigger asChild>
 				<As
-					component={"span"}
+					component={"div"}
 					class={mergeClasses(local.slotClasses?.trigger, styles.trigger)}
 				>
 					{internal.children}
