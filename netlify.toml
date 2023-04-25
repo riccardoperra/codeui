@@ -2,4 +2,4 @@
 [build]
 base = "/"
 publish = "packages/playground-next/dist/public"
-command = "pnpm --filter=@codeimage/vanilla-extract build && pnpm --filter=@codeui/playground-next build"
+command = "pnpm --filter=@codeui/vanilla-extract build && pnpm --filter=@codeui/playground-next build"
