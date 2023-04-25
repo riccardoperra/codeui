@@ -10,6 +10,7 @@ export const [tooltipTheme, tooltipVars] = createTheme({
 	color: themeTokens.colors.gray12,
 	padding: `${themeTokens.spacing["2"]} ${themeTokens.spacing["4"]}`,
 	borderRadius: themeTokens.radii.md,
+	zIndex: themeTokens.zIndex[50],
 });
 
 const TooltipThemes = {
@@ -45,6 +46,7 @@ export const tooltipContent = recipe({
 		{
 			margin: 0,
 			width: "auto",
+			zIndex: tooltipVars.zIndex,
 			fontSize: tooltipVars.fontSize,
 			padding: tooltipVars.padding,
 			borderRadius: themeTokens.radii.xl,
