@@ -8,7 +8,7 @@
   },
   "type": "module",
   "devDependencies": {
-    "@codeui/vanilla-extract": "workspace:^",
+    "@codeui/vanilla-extract": "workspace:*",
     "@types/node": "^18.11.18",
     "esbuild": "^0.17.16",
     "postcss": "^8.4.21",
