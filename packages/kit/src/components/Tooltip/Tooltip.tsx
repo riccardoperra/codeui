@@ -1,11 +1,11 @@
 import { Tooltip as KTooltip, As } from "@kobalte/core";
-import { createSignal, splitProps, mergeProps } from "solid-js";
+import { createSignal, splitProps, mergeProps, JSX } from "solid-js";
 import * as styles from "./Tooltip.css";
 import { mergeClasses } from "../../utils/css";
 
 type TooltipProps = KTooltip.TooltipRootProps &
 	styles.TooltipVariants & {
-		content: string;
+		content: JSX.Element;
 	};
 
 export function Tooltip(props: TooltipProps) {

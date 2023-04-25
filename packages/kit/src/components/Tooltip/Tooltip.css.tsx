@@ -77,6 +77,9 @@ export const tooltipContent = recipe({
 			},
 		},
 	},
+	defaultVariants: {
+		theme: TooltipThemes.primary,
+	},
 });
 
 export const trigger = style({
