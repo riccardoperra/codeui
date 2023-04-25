@@ -1,5 +1,6 @@
+import { mergeClasses } from "../../utils/css";
 import { Button, ButtonProps as CoreButtonProps } from "../Button/Button";
-import { ParentProps } from "solid-js";
+import { ParentProps, splitProps } from "solid-js";
 import * as styles from "./IconButton.css";
 
 export type IconButtonProps = Omit<
@@ -10,5 +11,13 @@ export type IconButtonProps = Omit<
 >;
 
 export function IconButton(props: ParentProps<IconButtonProps>) {
-	return <Button class={styles.iconButton} data-cui="icon-button" {...props} />;
+	const [local, others] = splitProps(props, ["class"]);
+
+	return (
+		<Button
+			class={mergeClasses(styles.iconButton, local.class)}
+			data-cui="icon-button"
+			{...others}
+		/>
+	);
 }
