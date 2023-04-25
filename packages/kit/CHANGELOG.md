@@ -1,5 +1,14 @@
 # @codeui/kit
 
+## 0.0.22
+
+### Patch Changes
+
+- 54a83f5: Add `tooltip` component
+- 98b8fd4: improve button loading style
+- f139492: Add support for TextField slot classes
+- 6b560d4: feat: add pagination component
+
 ## 0.0.21
 
 ### Patch Changes
