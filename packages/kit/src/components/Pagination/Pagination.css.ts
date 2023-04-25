@@ -20,5 +20,5 @@ export const paginationItem = style({
 });
 
 export const paginationIcon = style({
-	width: "1em",
+	width: "1.1em",
 });
