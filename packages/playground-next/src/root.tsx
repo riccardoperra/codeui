@@ -84,6 +84,8 @@ export default function Root() {
 								</SidebarItem>
 								<SidebarItem>
 									<A href="/tooltip">Tooltip</A>
+								</SidebarItem>
+								<SidebarItem>
 									<A href="/pagination">Pagination</A>
 								</SidebarItem>
 							</Sidebar>
