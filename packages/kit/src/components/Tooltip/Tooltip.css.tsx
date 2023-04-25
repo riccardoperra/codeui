@@ -2,6 +2,7 @@ import { createTheme, keyframes, style } from "@vanilla-extract/css";
 import { themeTokens } from "../../foundation/themes.css";
 import { RecipeVariants, recipe } from "@vanilla-extract/recipes";
 import { tokens } from "../../foundation/contract.css";
+import { componentStateStyles } from "@kobalte/vanilla-extract";
 
 export const [tooltipTheme, tooltipVars] = createTheme({
 	fontSize: themeTokens.fontSize.sm,
@@ -19,7 +20,7 @@ const TooltipThemes = {
 const contentShow = keyframes({
 	from: {
 		opacity: 0,
-		transform: "scale(0.96)",
+		transform: "scale(0.95)",
 	},
 	to: {
 		opacity: 1,
@@ -34,7 +35,7 @@ const contentHide = keyframes({
 	},
 	to: {
 		opacity: 0,
-		transform: "scale(0.96)",
+		transform: "scale(0.95)",
 	},
 });
 
@@ -51,14 +52,13 @@ export const tooltipContent = recipe({
 			backgroundColor: tooltipVars.backgroundColor,
 			boxShadow: themeTokens.boxShadow.md,
 			animation: `${contentShow} 250ms ease-in forwards`,
+			transformOrigin: "var(--kb-tooltip-content-transform-origin)",
 		},
-		{
-			selectors: {
-				"[data-expanded] &": {
-					animation: `${contentShow} 250ms ease-out;`,
-				},
+		componentStateStyles({
+			expanded: {
+				animation: `${contentShow} 250ms ease-out;`,
 			},
-		},
+		}),
 	],
 	variants: {
 		theme: {
