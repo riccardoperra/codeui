@@ -36,3 +36,5 @@ export { Link } from "./components/Link/Link";
 
 export { tokens } from "./foundation/tokens";
 export { theme, themeTokens } from "./foundation/themes.css";
+
+export * as layoutVars from "./foundation/layout.css";

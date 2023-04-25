@@ -1,5 +1,14 @@
 import { createVar, fallbackVar, keyframes, style } from "@vanilla-extract/css";
 
+const wrapperAnimation = keyframes({
+	"0%": {
+		opacity: 0,
+	},
+	"100%": {
+		opacity: 1,
+	},
+});
+
 const opacityAnimation = keyframes({
 	"0%": {
 		opacity: 0.2,
@@ -18,6 +27,11 @@ export const wrapper = style({
 	top: 0,
 	width: "100%",
 	height: "100%",
+	background: "inherit",
+	opacity: 0,
+	transition: "opacity .250ms ease-in-out",
+	animation: `${wrapperAnimation} 250ms`,
+	animationFillMode: "forwards",
 });
 
 export const pointerAnimationDelay = createVar();
