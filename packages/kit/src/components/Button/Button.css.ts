@@ -83,9 +83,10 @@ export const button = recipe({
 		componentStateStyles({
 			disabled: {
 				vars: {
-					[buttonVars.background]: themeTokens.colors.gray2,
-					[buttonVars.color]: themeTokens.colors.gray8,
+					[buttonVars.background]: tokens.accent3,
+					[buttonVars.color]: tokens.foreground,
 				},
+				opacity: 0.5,
 			},
 		}),
 	],
