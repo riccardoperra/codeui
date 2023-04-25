@@ -1,5 +1,5 @@
 {
-  "name": "@codeimage/vanilla-extract",
+  "name": "@codeui/vanilla-extract",
   "version": "0.2.0",
   "description": "Vanilla extract customizations for @codeimage styles",
   "main": "./dist/index.cjs",
