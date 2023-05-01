@@ -43,6 +43,18 @@ export default function PopoverDemo() {
 						with SolidJS.
 					</PopoverContent>
 				</Popover>
+
+				<Popover placement={"bottom-start"}>
+					<PopoverTrigger asChild>
+						<As component={Button} theme={"secondary"}>
+							Bordered
+						</As>
+					</PopoverTrigger>
+					<PopoverContent variant={"bordered"}>
+						About Kobalte A UI toolkit for building accessible web apps and design systems
+						with SolidJS.
+					</PopoverContent>
+				</Popover>
 			</DemoSectionRow>
 		</div>
 	);

@@ -1,4 +1,5 @@
 // @refresh reload
+import { Button } from "@codeui/kit";
 import { createSignal, Suspense } from "solid-js";
 import {
 	A,
@@ -12,18 +13,17 @@ import {
 	Scripts,
 	Title,
 } from "solid-start";
+import { Sidebar, SidebarItem } from "./components/ui/Sidebar";
+import "./preflight.css";
 import "./root.css";
 import * as styles from "./root.css.ts";
-import "./preflight.css";
 import "./tailwind-preflight.css";
-import { Button, theme as themeClass } from "@codeui/kit";
-import { Sidebar, SidebarItem } from "./components/ui/Sidebar";
 
 export default function Root() {
 	const [theme, setTheme] = createSignal("dark");
 
 	return (
-		<Html lang="en" class={themeClass} data-cui-theme={theme()}>
+		<Html lang="en" data-cui-theme={theme()}>
 			<Head>
 				<Title>SolidStart - Bare</Title>
 				<Meta charset="utf-8" />
@@ -87,6 +87,9 @@ export default function Root() {
 								</SidebarItem>
 								<SidebarItem>
 									<A href="/pagination">Pagination</A>
+								</SidebarItem>
+								<SidebarItem>
+									<A href="/icons">Icons</A>
 								</SidebarItem>
 							</Sidebar>
 							<div class={styles.layoutContent}>
