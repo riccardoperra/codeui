@@ -18,6 +18,7 @@ import "./preflight.css";
 import "./root.css";
 import * as styles from "./root.css.ts";
 import "./tailwind-preflight.css";
+import "@codeui/kit";
 
 export default function Root() {
 	const [theme, setTheme] = createSignal("dark");
