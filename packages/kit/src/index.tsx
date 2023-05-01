@@ -36,19 +36,8 @@ export { Link } from "./components/Link/Link";
 
 export { Pagination } from "./components/Pagination/Pagination";
 
-<<<<<<< HEAD
 export { Tooltip } from "./components/Tooltip/Tooltip";
 
 export * as icons from "./icons";
 
-export * from "./foundation";
-=======
-export { tokens as staticTokens } from "./foundation/tokens";
-export { tokens as contract } from "./foundation/contract.css";
-export { themeTokens, themeClass } from "./foundation/themes.css";
-
-export { Tooltip } from "./components/Tooltip/Tooltip";
-export * as layoutVars from "./foundation/layout.css";
-
-export * as icons from "./icons";
->>>>>>> origin/main
+export * from './foundation';
