@@ -16,7 +16,7 @@ import "./root.css";
 import * as styles from "./root.css.ts";
 import "./preflight.css";
 import "./tailwind-preflight.css";
-import { Button, theme as themeClass } from "@codeui/kit";
+import { Button, themeClass } from "@codeui/kit";
 import { Sidebar, SidebarItem } from "./components/ui/Sidebar";
 
 export default function Root() {
@@ -87,6 +87,9 @@ export default function Root() {
 								</SidebarItem>
 								<SidebarItem>
 									<A href="/pagination">Pagination</A>
+								</SidebarItem>
+								<SidebarItem>
+									<A href="/icons">Icons</A>
 								</SidebarItem>
 							</Sidebar>
 							<div class={styles.layoutContent}>

@@ -1,6 +1,5 @@
 import { globalStyle, style } from "@vanilla-extract/css";
-import { tokens } from "../../kit/src/foundation/contract.css";
-import { themeTokens } from "../../kit/src/foundation/themes.css";
+import { themeTokens, contract } from "@codeui/kit";
 
 globalStyle("html, body", {
 	fontFamily:
@@ -8,13 +7,13 @@ globalStyle("html, body", {
 });
 
 globalStyle("[data-cui-theme=dark] body", {
-	background: tokens.accent1,
-	color: tokens.foreground,
+	background: contract.accent1,
+	color: contract.foreground,
 });
 
 globalStyle("[data-cui-theme=light] body", {
-	background: tokens.background,
-	color: tokens.foreground,
+	background: contract.background,
+	color: contract.foreground,
 });
 
 globalStyle("#root", {
@@ -32,7 +31,7 @@ export const header = style({
 	top: 0,
 	left: 0,
 	width: "100%",
-	background: tokens.brand,
+	background: contract.brand,
 	display: "flex",
 	alignItems: "center",
 	paddingLeft: "1rem",

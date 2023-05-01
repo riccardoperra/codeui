@@ -1,19 +1,18 @@
 import { Popover as KPopover } from "@kobalte/core";
 import { ParentProps, Show, splitProps } from "solid-js";
-import * as styles from "./Popover.css";
-import { GetKobalteParams } from "../../utils/types";
 import { mergeClasses } from "../../utils/css";
+import { GetKobalteParams } from "../../utils/types";
+import * as styles from "./Popover.css";
+import { PopoverVariants } from "./Popover.css";
 
-type PopoverProps = KPopover.PopoverRootOptions & {
-	title?: string;
-};
+type PopoverProps = KPopover.PopoverRootOptions;
 
 export function PopoverTrigger(props: GetKobalteParams<(typeof KPopover)["Trigger"]>) {
 	return <KPopover.Trigger {...props} />;
 }
 
 export function Popover(props: ParentProps<PopoverProps>) {
-	const [local, others] = splitProps(props, ["children", "title"]);
+	const [local, others] = splitProps(props, ["children"]);
 
 	return (
 		<KPopover.Root {...others} gutter={6}>
@@ -22,14 +21,21 @@ export function Popover(props: ParentProps<PopoverProps>) {
 	);
 }
 
-interface PopoverContentProps extends KPopover.PopoverContentProps {
-	title: string;
-}
+type PopoverContentProps = KPopover.PopoverContentProps &
+	PopoverVariants & {
+		title?: string;
+	};
 
 export function PopoverContent(props: ParentProps<PopoverContentProps>) {
-	const [local, others] = splitProps(props, ["title", "children", "class"]);
+	const [local, others] = splitProps(props, ["title", "children", "class", "variant"]);
 
-	const contentClass = () => mergeClasses(styles.content, props.class);
+	const contentClass = () =>
+		mergeClasses(
+			styles.content({
+				variant: local.variant,
+			}),
+			props.class,
+		);
 
 	return (
 		<KPopover.Portal>

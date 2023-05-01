@@ -1,22 +1,14 @@
-import { JSX } from "solid-js";
+import { SvgIcon, SvgIconProps } from "./SvgIcon";
 
-export function SelectorIcon(props: JSX.IntrinsicElements["svg"]) {
+export function SelectorIcon(props: SvgIconProps) {
 	return (
-		<svg
-			xmlns="http://www.w3.org/2000/svg"
-			fill="none"
-			viewBox="0 0 24 24"
-			stroke="currentColor"
-			width={"1.1em"}
-			height={"1.1em"}
-			{...props}
-		>
+		<SvgIcon fill="none" viewBox="0 0 24 24" stroke="currentColor" {...props}>
 			<path
 				stroke-linecap="round"
 				stroke-linejoin="round"
 				stroke-width="2"
 				d="M8 9l4-4 4 4m0 6l-4 4-4-4"
 			/>
-		</svg>
+		</SvgIcon>
 	);
 }

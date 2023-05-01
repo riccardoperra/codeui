@@ -99,7 +99,7 @@ export function createSelectOptions<T, C extends ConfigFor<T>>(
 				},
 				itemLabel: (option: Option) => option.label,
 				valueComponent: (value: Accessor<Option>) => value().label,
-			} satisfies Partial<SelectProps<Option<T>>>;
+			} as Partial<SelectProps<Option<T>>>;
 		},
 	};
 }
