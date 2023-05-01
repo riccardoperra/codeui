@@ -47,7 +47,7 @@ const ButtonSizes = {
 	md: "Medium",
 	lg: "Large",
 	xl: "Extra Large",
-} satisfies { [key in NonNullable<ButtonProps["size"]>]: string };
+} as { [key in NonNullable<ButtonProps["size"]>]: string };
 
 const ButtonVariants = {
 	primary: "Primary",
@@ -55,7 +55,7 @@ const ButtonVariants = {
 	tertiary: "Tertiary",
 	negative: "Negative",
 	caution: "Caution",
-} satisfies { [key in NonNullable<ButtonProps["theme"]>]: string };
+} as { [key in NonNullable<ButtonProps["theme"]>]: string };
 
 export default function ButtonDemo() {
 	return (

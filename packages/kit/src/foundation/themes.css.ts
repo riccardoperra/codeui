@@ -4,7 +4,7 @@ import { tokens as contract } from "./contract.css";
 import { getActiveColor, getHoverColor, getLightVariant } from "../utils/color";
 import { darken, lighten, tint } from "polished";
 
-export const themeTokens = createGlobalTheme(":root", {
+export const [themeClass, themeTokens] = createTheme({
 	...tokens,
 });
 

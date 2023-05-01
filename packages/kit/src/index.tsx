@@ -38,7 +38,7 @@ export { Pagination } from "./components/Pagination/Pagination";
 
 export { tokens as staticTokens } from "./foundation/tokens";
 export { tokens as contract } from "./foundation/contract.css";
-export { themeTokens } from "./foundation/themes.css";
+export { themeTokens, themeClass } from "./foundation/themes.css";
 
 export { Tooltip } from "./components/Tooltip/Tooltip";
 export * as layoutVars from "./foundation/layout.css";
