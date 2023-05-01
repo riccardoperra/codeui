@@ -2,7 +2,7 @@ import { createTheme, keyframes, style } from "@vanilla-extract/css";
 import { recipe, RecipeVariants } from "@vanilla-extract/recipes";
 import { themeTokens } from "../../foundation/themes.css";
 import { responsiveStyle } from "../../foundation/responsive";
-import { ComponentSizes } from "../../foundation/sizes.css";
+import { ComponentSizes } from "../../foundation/sizes";
 import { tokens } from "../../foundation/contract.css";
 import { componentStateStyles } from "@kobalte/vanilla-extract";
 

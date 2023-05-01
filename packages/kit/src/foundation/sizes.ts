@@ -10,7 +10,7 @@ export const ComponentSizes = {
 	xl: "xl",
 } as const;
 
-const sizesCss = {
+const sizes = {
 	xs: "30px",
 	sm: "36px",
 	md: "40px",
@@ -27,7 +27,7 @@ const fontSizesCss = {
 };
 
 export const mapSizeValue = (size: keyof typeof ComponentSizes) => {
-	return sizesCss[size];
+	return sizes[size];
 };
 
 export const mapFontSizeValue = (size: BaseComponentSize) => {

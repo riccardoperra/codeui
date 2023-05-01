@@ -1,12 +1,12 @@
-import { createGlobalTheme, createTheme } from "@vanilla-extract/css";
-import { tokens } from "./tokens";
-import { tokens as contract } from "./contract.css";
-import { getActiveColor, getHoverColor, getLightVariant } from "../utils/color";
+import { createGlobalTheme } from "@vanilla-extract/css";
 import { darken, lighten, tint } from "polished";
+import { getActiveColor, getHoverColor, getLightVariant } from "../utils/color";
+import { tokens as contract } from "./contract.css";
+import { tokens } from "./tokens";
 
-export const [themeClass, themeTokens] = createTheme({
+export const themeTokens = createGlobalTheme(":root", {
 	...tokens,
-});
+} as const);
 
 const brand = "#0072F5";
 const brandSoft = "#102A4CFF";

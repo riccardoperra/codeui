@@ -4,7 +4,7 @@ import { tokens } from "../../foundation/contract.css";
 import { componentStateStyles } from "@kobalte/vanilla-extract";
 import { FieldSizes } from "../Field/Field.css";
 import { recipe } from "@vanilla-extract/recipes";
-import { mapFontSizeValue } from "../../foundation/sizes.css";
+import { mapFontSizeValue } from "../../foundation/sizes";
 
 export const [radioTheme, radioVars] = createTheme({
 	inputColor: tokens.formAccentBorder,
