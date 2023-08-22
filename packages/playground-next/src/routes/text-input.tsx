@@ -22,6 +22,7 @@ export default function TextInputDemo() {
 				<For each={["xs", "sm", "md", "lg", "xl"] as TextFieldProps["size"][]}>
 					{size => (
 						<TextField
+							ref={el => (el.type = "number")}
 							value={"Username"}
 							theme={"outline"}
 							label={"Username"}

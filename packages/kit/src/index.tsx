@@ -6,6 +6,8 @@ export type { ButtonProps } from "./components/Button/Button";
 export { TextField, TextFieldLabel } from "./components/TextField/TextField";
 export type { TextFieldProps } from "./components/TextField/TextField";
 
+export { NumberField, NumberFieldLabel } from "./components/NumberField/NumberField";
+export type { NumberFieldProps } from "./components/NumberField/NumberField";
 export { IconButton } from "./components/IconButton/IconButton";
 
 export {
@@ -40,4 +42,4 @@ export { Tooltip } from "./components/Tooltip/Tooltip";
 
 export * as icons from "./icons";
 
-export * from './foundation';
+export * from "./foundation";

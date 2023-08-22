@@ -71,6 +71,12 @@ importers:
       '@kobalte/vanilla-extract':
         specifier: ^0.4.0
         version: 0.4.0(@vanilla-extract/css@1.11.0)
+      '@maskito/core':
+        specifier: ^1.4.0
+        version: 1.4.0
+      '@maskito/kit':
+        specifier: ^1.4.0
+        version: 1.4.0(@maskito/core@1.4.0)
       '@motionone/solid':
         specifier: ^10.16.0
         version: 10.16.0(solid-js@1.7.3)
@@ -2610,6 +2616,18 @@ packages:
       globby: 11.1.0
       read-yaml-file: 1.1.0
     dev: true
+
+  /@maskito/core@1.4.0:
+    resolution: {integrity: sha512-Q5o3vQ4c52VzJf6dvA1RgruMHM3uwPCjw2ghwJDNeU7W9xn/iuI61KN/kyuMeZDicRQwE+ddVokg2jEtYiPfJw==}
+    dev: false
+
+  /@maskito/kit@1.4.0(@maskito/core@1.4.0):
+    resolution: {integrity: sha512-1hILMNvXbX2GisdrvnFmqqWrjsD4jhUJUWAviIXUBXlxGuh++yqBxx07XEC6BwtYeMDxHD/dF0i5xQ9/oNdxcg==}
+    peerDependencies:
+      '@maskito/core': ^1.4.0
+    dependencies:
+      '@maskito/core': 1.4.0
+    dev: false
 
   /@motionone/animation@10.15.1:
     resolution: {integrity: sha512-mZcJxLjHor+bhcPuIFErMDNyrdb2vJur8lSfMCsuCB4UyV8ILZLvK+t+pg56erv8ud9xQGK/1OGPt10agPrCyQ==}

@@ -13,17 +13,17 @@ import {
 	Title,
 } from "solid-start";
 import "./root.css";
-import * as styles from "./root.css.ts";
+import * as styles from "./root.css.js";
 import "./preflight.css";
 import "./tailwind-preflight.css";
-import { Button, themeClass } from "@codeui/kit";
+import { Button } from "@codeui/kit";
 import { Sidebar, SidebarItem } from "./components/ui/Sidebar";
 
 export default function Root() {
 	const [theme, setTheme] = createSignal("dark");
 
 	return (
-		<Html lang="en" class={themeClass} data-cui-theme={theme()}>
+		<Html lang="en" data-cui-theme={theme()}>
 			<Head>
 				<Title>SolidStart - Bare</Title>
 				<Meta charset="utf-8" />
@@ -78,6 +78,9 @@ export default function Root() {
 								</SidebarItem>
 								<SidebarItem>
 									<A href="/text-input">Text Input</A>
+								</SidebarItem>
+								<SidebarItem>
+									<A href="/number-input">Number Input</A>
 								</SidebarItem>
 								<SidebarItem>
 									<A href="/select">Select</A>
