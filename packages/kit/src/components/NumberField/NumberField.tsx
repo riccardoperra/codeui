@@ -1,11 +1,10 @@
-import { TextField as KTextField } from "@kobalte/core";
+import { createControllableSignal, TextField as KTextField } from "@kobalte/core";
 import { TextFieldRootOptions } from "@kobalte/core/dist/types/text-field";
 import {
 	maskitoCaretGuard,
 	maskitoNumberOptionsGenerator,
 	maskitoParseNumber,
 } from "@maskito/kit";
-import { createControllableSignal } from "@kobalte/core";
 import { JSX, mergeProps, onMount, Ref, Show, splitProps } from "solid-js";
 import { SlotProp } from "../../utils/component";
 import { mergeClasses } from "../../utils/css";
@@ -15,78 +14,14 @@ import {
 	createFieldErrorMessageProps,
 	FieldWithErrorMessageSupport,
 } from "../Field/FieldError/createFieldErrorMessageProps";
+import { INPUT_NUMBER_OPTIONS as defaultOptions, defaultNumberFormat } from "./options";
 import * as styles from "./NumberField.css";
 import { NumberFieldLabel } from "./NumberFieldLabel";
 import { NumberFieldMessage } from "./NumberFieldMessage";
+import { InputNumberOptions } from "./options";
 
 // TODO: add to base field slot that respect the BaseFieldProps signature?
 type TextFieldSlot = "root" | "input" | "label" | "errorLabel";
-
-export const TUI_DECIMAL_SYMBOLS: readonly string[] = [`,`, `.`];
-
-/**
- * Clamps a value between two inclusive limits
- *
- * @param value
- * @param min lower limit
- * @param max upper limit
- */
-export function clamp(value: number, min: number, max: number): number {
-	// isDev && tuiAssert.assert(!Number.isNaN(value));
-	// isDev && tuiAssert.assert(!Number.isNaN(min));
-	// isDev && tuiAssert.assert(!Number.isNaN(max));
-	// isDev && tuiAssert.assert(max >= min);
-	//
-	return Math.min(max, Math.max(min, value));
-}
-
-export interface InputNumberOptions {
-	readonly min: number;
-	readonly max: number;
-	readonly step: number;
-	readonly precision: number;
-	readonly prefix: string;
-	readonly postfix: string;
-}
-
-export type Rounding = "ceil" | "floor" | "round" | "truncate";
-
-export interface NumberFormatSettings {
-	/**
-	 * Number of digits of decimal part.
-	 * @note Use `Infinity` to keep untouched.
-	 */
-	readonly decimalLimit: number;
-	/**
-	 * Separator between the integer and the decimal part.
-	 * @example 0,42 (',' by default)
-	 */
-	readonly decimalSeparator: string;
-	/**
-	 * Separator between thousands.
-	 * @example 360 000 (' ' by default)
-	 */
-	readonly thousandSeparator: string;
-	/**
-	 * Enable zeros at the end of decimal part.
-	 */
-	readonly zeroPadding: boolean;
-	/**
-	 * Rounding method.
-	 */
-	readonly rounding: Rounding;
-}
-
-/**
- * TODO FIX
- */
-export const defaultNumberFormat: NumberFormatSettings = {
-	decimalLimit: Infinity,
-	decimalSeparator: `,`,
-	thousandSeparator: "\u00A0",
-	zeroPadding: true,
-	rounding: `truncate`,
-};
 
 type NumberFieldRootOptions = Omit<
 	TextFieldRootOptions,
@@ -106,15 +41,6 @@ export type NumberFieldProps = NumberFieldRootOptions &
 		ref?: Ref<HTMLInputElement>;
 	} & SlotProp<TextFieldSlot> &
 	Partial<InputNumberOptions>;
-
-const defaultOptions: InputNumberOptions = {
-	min: Number.MIN_SAFE_INTEGER,
-	max: Number.MAX_SAFE_INTEGER,
-	step: 1,
-	precision: 2,
-	prefix: "",
-	postfix: "",
-};
 
 export function NumberField(props: NumberFieldProps) {
 	const [local, options, state, others] = splitProps(
@@ -194,6 +120,8 @@ export function NumberField(props: NumberFieldProps) {
 		const step =
 			event.key === "ArrowDown" ? -optionsWithDefault.step : optionsWithDefault.step;
 
+		// TODO: should add clamp
+		// clamp(value() || 0 + step, computeMin(), computeMax());
 		setValue((value() || 0) + step);
 	};
 
