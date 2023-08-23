@@ -1,5 +1,3 @@
-import { InputNumberOptions } from "./NumberField";
-
 export interface InputNumberOptions {
 	readonly min: number;
 	readonly max: number;

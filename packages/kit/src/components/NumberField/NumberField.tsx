@@ -1,5 +1,4 @@
 import { createControllableSignal, TextField as KTextField } from "@kobalte/core";
-import { TextFieldRootOptions } from "@kobalte/core/dist/types/text-field";
 import {
 	maskitoCaretGuard,
 	maskitoNumberOptionsGenerator,
@@ -18,13 +17,13 @@ import { INPUT_NUMBER_OPTIONS as defaultOptions, defaultNumberFormat } from "./o
 import * as styles from "./NumberField.css";
 import { NumberFieldLabel } from "./NumberFieldLabel";
 import { NumberFieldMessage } from "./NumberFieldMessage";
-import { InputNumberOptions } from "./options";
+import type { InputNumberOptions } from "./options";
 
 // TODO: add to base field slot that respect the BaseFieldProps signature?
 type TextFieldSlot = "root" | "input" | "label" | "errorLabel";
 
 type NumberFieldRootOptions = Omit<
-	TextFieldRootOptions,
+	KTextField.TextFieldRootOptions,
 	"value" | "defaultValue" | "onChange"
 > & {
 	value?: number;
