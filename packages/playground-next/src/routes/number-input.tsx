@@ -39,14 +39,7 @@ export default function NumberInputDemo() {
 			<h2>Steps</h2>
 
 			<DemoSectionRow>
-				<NumberField
-					precision={2}
-					step={0.1}
-					prefix={"$"}
-					postfix={",00"}
-					label={"Type a sum"}
-					size={"md"}
-				/>
+				<NumberField precision={2} step={0.01} label={"Type a sum"} size={"md"} />
 			</DemoSectionRow>
 		</>
 	);

@@ -1,23 +1,38 @@
 import { createControllableSignal, TextField as KTextField } from "@kobalte/core";
+import { clamp, isNumber, mergeRefs } from "@kobalte/utils";
 import {
 	maskitoCaretGuard,
 	maskitoNumberOptionsGenerator,
 	maskitoParseNumber,
 } from "@maskito/kit";
-import { JSX, mergeProps, onMount, Ref, Show, splitProps } from "solid-js";
+import {
+	createEffect,
+	JSX,
+	mergeProps,
+	on,
+	onMount,
+	Ref,
+	Show,
+	splitProps,
+} from "solid-js";
+import { ChevronDownIcon } from "../../icons/ChevronDownIcon";
+import { ChevronUpIcon } from "../../icons/ChevronUpIcon";
 import { SlotProp } from "../../utils/component";
 import { mergeClasses } from "../../utils/css";
 import { createMaskito } from "../../utils/maskito";
+import { Button } from "../Button/Button";
 import { BaseFieldProps, createBaseFieldProps } from "../Field/createBaseFieldProps";
 import {
 	createFieldErrorMessageProps,
 	FieldWithErrorMessageSupport,
 } from "../Field/FieldError/createFieldErrorMessageProps";
-import { INPUT_NUMBER_OPTIONS as defaultOptions, defaultNumberFormat } from "./options";
+import { tuiFormatNumber } from "./formatNumber";
 import * as styles from "./NumberField.css";
 import { NumberFieldLabel } from "./NumberFieldLabel";
 import { NumberFieldMessage } from "./NumberFieldMessage";
 import type { InputNumberOptions } from "./options";
+import { defaultNumberFormat, INPUT_NUMBER_OPTIONS as defaultOptions } from "./options";
+import { CHAR_HYPHEN, CHAR_MINUS } from "./unicodeCharacters";
 
 // TODO: add to base field slot that respect the BaseFieldProps signature?
 type TextFieldSlot = "root" | "input" | "label" | "errorLabel";
@@ -66,6 +81,8 @@ export function NumberField(props: NumberFieldProps) {
 		},
 	});
 
+	let internalRef: HTMLInputElement;
+
 	const optionsWithDefault = mergeProps(defaultOptions, options);
 	const baseFieldProps = createBaseFieldProps(props);
 	const errorMessageProps = createFieldErrorMessageProps(props);
@@ -94,7 +111,6 @@ export function NumberField(props: NumberFieldProps) {
 		},
 	});
 
-	// TODO: fix
 	onMount(() => mask(local.ref as any));
 
 	const computeMin = () => {
@@ -109,6 +125,7 @@ export function NumberField(props: NumberFieldProps) {
 		if (!(event.key === "ArrowDown" || event.key === "ArrowUp")) {
 			return;
 		}
+
 		event.preventDefault();
 		event.stopImmediatePropagation();
 
@@ -116,12 +133,21 @@ export function NumberField(props: NumberFieldProps) {
 			return;
 		}
 
-		const step =
-			event.key === "ArrowDown" ? -optionsWithDefault.step : optionsWithDefault.step;
+		if (event.key === "ArrowDown") {
+			decrement();
+		} else {
+			increment();
+		}
 
-		// TODO: should add clamp
-		// clamp(value() || 0 + step, computeMin(), computeMax());
-		setValue((value() || 0) + step);
+		internalRef.value = formattedValue();
+	};
+
+	const increment = () => {
+		setValue(clamp((value() || 0) + optionsWithDefault.step, computeMin(), computeMax()));
+	};
+
+	const decrement = () => {
+		setValue(clamp((value() || 0) - optionsWithDefault.step, computeMin(), computeMax()));
 	};
 
 	const onValueChange = (nativeValue: string) => {
@@ -140,6 +166,42 @@ export function NumberField(props: NumberFieldProps) {
 		}
 
 		setValue(parsedValue);
+		internalRef.value = formattedValue();
+	};
+
+	const formattedValue = (): string => {
+		return value() !== null ? getFormattedValue(value() || 0) : "";
+	};
+
+	const getFormattedValue = (value: number): string => {
+		let decimalLimit = optionsWithDefault.precision;
+		return (
+			optionsWithDefault.prefix +
+			tuiFormatNumber(value, {
+				...defaultNumberFormat,
+				decimalLimit,
+			}).replace(CHAR_HYPHEN, CHAR_MINUS) +
+			optionsWithDefault.postfix
+		);
+	};
+
+	const onFocused = (focused: boolean) => {
+		const nativeNumberValue = value()
+			? maskitoParseNumber(String(value() ?? ""), defaultNumberFormat.decimalSeparator)
+			: value();
+
+		if (Number.isNaN(nativeNumberValue)) {
+			internalRef.value = focused
+				? optionsWithDefault.prefix + optionsWithDefault.postfix
+				: "";
+			setValue(undefined);
+			return;
+		}
+
+		if (!focused) {
+			setValue(nativeNumberValue);
+			internalRef.value = formattedValue();
+		}
 	};
 
 	return (
@@ -156,13 +218,42 @@ export function NumberField(props: NumberFieldProps) {
 					{local.label}
 				</NumberFieldLabel>
 			</Show>
-			<KTextField.Input
-				class={inputClasses()}
-				placeholder={local.placeholder}
-				ref={local.ref}
-				type={"text"}
-				onKeyDown={onKeyDown}
-			/>
+
+			<div class={styles.numberFieldContainer}>
+				<KTextField.Input
+					class={inputClasses()}
+					placeholder={local.placeholder}
+					ref={mergeRefs(local.ref, el => (internalRef = el))}
+					type={"text"}
+					onKeyDown={onKeyDown}
+					onBlur={() => onFocused(false)}
+					onFocus={() => onFocused(true)}
+				/>
+
+				<div class={styles.controlsContainer}>
+					<Button
+						type={"button"}
+						variant={"ghost"}
+						theme={"secondary"}
+						aria-label={`Increment by ${optionsWithDefault.step}`}
+						class={styles.controlButton}
+						onClick={increment}
+					>
+						<ChevronUpIcon class={styles.control} />
+					</Button>
+					<Button
+						type={"button"}
+						variant={"ghost"}
+						theme={"secondary"}
+						aria-label={`Decrement by ${optionsWithDefault.step}`}
+						class={styles.controlButton}
+						onClick={decrement}
+					>
+						<ChevronDownIcon class={styles.control} />
+					</Button>
+				</div>
+			</div>
+
 			<Show when={local.description} keyed={false}>
 				<NumberFieldMessage>{local.description}</NumberFieldMessage>
 			</Show>
