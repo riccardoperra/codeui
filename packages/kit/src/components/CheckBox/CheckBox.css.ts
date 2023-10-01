@@ -1,6 +1,6 @@
 import { createTheme, style, StyleRule } from "@vanilla-extract/css";
 import { recipe } from "@vanilla-extract/recipes";
-import { mapFontSizeValue, mapSizeValue } from "../../foundation/sizes.css";
+import { mapFontSizeValue, mapSizeValue } from "../../foundation/sizes";
 import { themeTokens } from "../../foundation/themes.css";
 import { baseFieldTheme, FieldSizes } from "../Field/Field.css";
 import { tokens } from "../../foundation/contract.css";
