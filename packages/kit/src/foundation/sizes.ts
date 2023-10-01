@@ -10,7 +10,7 @@ export const ComponentSizes = {
 	xl: "xl",
 } as const;
 
-const sizes = {
+const sizesCss = {
 	xs: "30px",
 	sm: "36px",
 	md: "40px",
@@ -26,7 +26,10 @@ const fontSizesCss = {
 	xl: themeTokens.fontSize.xl,
 };
 
-export const mapSizeValue = (size: keyof typeof ComponentSizes) => {
+export const mapSizeValue = (
+	size: keyof typeof ComponentSizes,
+	sizes: Record<string, string> = sizesCss,
+) => {
 	return sizes[size];
 };
 

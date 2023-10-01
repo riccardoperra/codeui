@@ -43,9 +43,6 @@ export const baseFieldVariants = recipe({
 			":focus": {
 				borderColor: themeTokens.colors.blue8,
 			},
-			":focus-visible": {
-				borderColor: themeTokens.colors.blue9,
-			},
 		},
 		componentStateStyles({
 			invalid: {
