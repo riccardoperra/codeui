@@ -25,7 +25,7 @@ export function Pagination(props: PaginationProps) {
 			showNext: true,
 			showPrev: true,
 			initialPage: props.page || props.initialPage || 1,
-		} satisfies Partial<PaginationOptions>,
+		} as Partial<PaginationOptions>,
 		{ size: "md" as const, rounded: false },
 		props,
 	);

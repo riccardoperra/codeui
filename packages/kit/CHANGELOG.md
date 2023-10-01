@@ -1,5 +1,11 @@
 # @codeui/kit
 
+## 0.0.24
+
+### Patch Changes
+
+- 6f36ce2: feat: missing exports
+
 ## 0.0.23
 
 ### Patch Changes

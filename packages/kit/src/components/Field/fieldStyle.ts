@@ -1,4 +1,4 @@
-import { BaseComponentSize, mapFontSizeValue } from "../../foundation/sizes.css";
+import { BaseComponentSize, mapFontSizeValue } from "../../foundation/sizes";
 import { StyleRule } from "@vanilla-extract/css";
 
 function makeFieldMessageSize(

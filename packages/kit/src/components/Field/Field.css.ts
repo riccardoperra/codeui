@@ -1,5 +1,5 @@
 import { createTheme, createVar, fallbackVar } from "@vanilla-extract/css";
-import { mapFontSizeValue, mapSizeValue } from "../../foundation/sizes.css";
+import { mapFontSizeValue, mapSizeValue } from "../../foundation/sizes";
 import { recipe, RecipeVariants } from "@vanilla-extract/recipes";
 import { componentStateStyles } from "@kobalte/vanilla-extract";
 import { themeTokens } from "../../foundation/themes.css";

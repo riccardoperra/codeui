@@ -3,7 +3,7 @@ import { createTheme, fallbackVar, style } from "@vanilla-extract/css";
 import { recipe, RecipeVariants } from "@vanilla-extract/recipes";
 import { tokens } from "../../foundation/contract.css";
 import { layoutBackgroundColor } from "../../foundation/layout.css";
-import { mapSizeValue } from "../../foundation/sizes.css";
+import { mapSizeValue } from "../../foundation/sizes";
 import { themeTokens } from "../../foundation/themes.css";
 
 export const [buttonTheme, buttonVars] = createTheme({
