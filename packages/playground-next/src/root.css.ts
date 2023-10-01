@@ -1,5 +1,5 @@
 import { globalStyle, style } from "@vanilla-extract/css";
-import { themeTokens, contract } from "@codeui/kit";
+import { themeTokens, themeVars } from "@codeui/kit";
 
 globalStyle("html, body", {
 	fontFamily:
@@ -7,13 +7,13 @@ globalStyle("html, body", {
 });
 
 globalStyle("[data-cui-theme=dark] body", {
-	background: contract.accent1,
-	color: contract.foreground,
+	background: themeVars.accent1,
+	color: themeVars.foreground,
 });
 
 globalStyle("[data-cui-theme=light] body", {
-	background: contract.background,
-	color: contract.foreground,
+	background: themeVars.background,
+	color: themeVars.foreground,
 });
 
 globalStyle("#root", {
@@ -31,7 +31,7 @@ export const header = style({
 	top: 0,
 	left: 0,
 	width: "100%",
-	background: contract.brand,
+	background: themeVars.brand,
 	display: "flex",
 	alignItems: "center",
 	paddingLeft: "1rem",
