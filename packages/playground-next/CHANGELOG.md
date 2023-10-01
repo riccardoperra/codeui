@@ -4,6 +4,12 @@
 
 ### Patch Changes
 
+- 0d2a10b: feat: checkbox
+
+## null
+
+### Patch Changes
+
 - 6f36ce2: feat: missing exports
 
 ## null

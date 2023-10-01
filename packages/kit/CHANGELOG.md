@@ -1,5 +1,13 @@
 # @codeui/kit
 
+## 0.0.25
+
+### Patch Changes
+
+- 0d2a10b: feat: checkbox
+- 46bb9a1: Fix/missing exports
+- 8eedf29: export breakpoint and responsive style
+
 ## 0.0.24
 
 ### Patch Changes
