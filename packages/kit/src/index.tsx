@@ -8,6 +8,9 @@ export type { TextFieldProps } from "./components/TextField/TextField";
 
 export { IconButton } from "./components/IconButton/IconButton";
 
+export { Checkbox } from "./components/CheckBox/CheckBox";
+export type { CheckBoxProps } from "./components/CheckBox/CheckBox";
+
 export {
 	Dialog,
 	DialogPanel,

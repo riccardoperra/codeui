@@ -26,8 +26,11 @@ const fontSizesCss = {
 	xl: themeTokens.fontSize.xl,
 };
 
-export const mapSizeValue = (size: keyof typeof ComponentSizes) => {
-	return sizesCss[size];
+export const mapSizeValue = (
+	size: keyof typeof ComponentSizes,
+	sizes: Record<string, string> = sizesCss,
+) => {
+	return sizes[size];
 };
 
 export const mapFontSizeValue = (size: BaseComponentSize) => {

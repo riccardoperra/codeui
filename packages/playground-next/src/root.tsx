@@ -68,6 +68,9 @@ export default function Root() {
 									<A href="/radio">Radio</A>
 								</SidebarItem>
 								<SidebarItem>
+									<A href="/checkbox">Checkbox</A>
+								</SidebarItem>
+								<SidebarItem>
 									<A href="/dropdown-menu">Dropdown Menu</A>
 								</SidebarItem>
 								<SidebarItem>
