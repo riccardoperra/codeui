@@ -83,6 +83,9 @@ export default function Root() {
 									<A href="/text-input">Text Input</A>
 								</SidebarItem>
 								<SidebarItem>
+									<A href="/textarea">TextArea</A>
+								</SidebarItem>
+								<SidebarItem>
 									<A href="/select">Select</A>
 								</SidebarItem>
 								<SidebarItem>
@@ -93,6 +96,9 @@ export default function Root() {
 								</SidebarItem>
 								<SidebarItem>
 									<A href="/icons">Icons</A>
+								</SidebarItem>
+								<SidebarItem>
+									<A href="/tabs">Tabs</A>
 								</SidebarItem>
 							</Sidebar>
 							<div class={styles.layoutContent}>

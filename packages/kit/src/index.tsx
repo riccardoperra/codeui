@@ -5,6 +5,8 @@ export type { ButtonProps } from "./components/Button/Button";
 
 export { TextField, TextFieldLabel } from "./components/TextField/TextField";
 export type { TextFieldProps } from "./components/TextField/TextField";
+export { TextArea, TextAreaLabel } from "./components/TextArea/TextArea";
+export type { TextAreaProps } from "./components/TextArea/TextArea";
 
 export { IconButton } from "./components/IconButton/IconButton";
 
@@ -41,6 +43,8 @@ export { Pagination } from "./components/Pagination/Pagination";
 
 export { Tooltip } from "./components/Tooltip/Tooltip";
 
+export { Tabs, TabsHeader, TabsList, TabsContent } from "./components/Tabs/Tabs";
+
 export * as icons from "./icons";
 
-export * from './foundation';
+export * from "./foundation";
