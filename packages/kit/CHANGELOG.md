@@ -1,5 +1,11 @@
 # @codeui/kit
 
+## 0.0.26
+
+### Patch Changes
+
+- 6b3361c: add text area
+
 ## 0.0.25
 
 ### Patch Changes
