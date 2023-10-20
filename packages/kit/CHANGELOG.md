@@ -1,5 +1,11 @@
 # @codeui/kit
 
+## 0.0.27
+
+### Patch Changes
+
+- 656ff37: fix select, dialog, popover z-index
+
 ## 0.0.26
 
 ### Patch Changes
