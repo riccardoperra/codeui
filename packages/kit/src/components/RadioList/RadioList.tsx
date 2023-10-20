@@ -1,10 +1,10 @@
 import { RadioGroup } from "@kobalte/core";
-import { BaseFieldProps, createBaseFieldProps } from "../Field/createBaseFieldProps";
+import { BaseFieldProps } from "../Field/createBaseFieldProps";
 import {
 	createFieldErrorMessageProps,
 	FieldWithErrorMessageSupport,
 } from "../Field/FieldError/createFieldErrorMessageProps";
-import { For, JSXElement, Show, splitProps } from "solid-js";
+import { JSXElement, Show, splitProps } from "solid-js";
 import { createFieldLabelProps } from "../Field/FieldLabel/createFieldLabelProps";
 import { mergeClasses } from "../../utils/css";
 import { baseFieldContainer } from "../TextField/TextField.css";

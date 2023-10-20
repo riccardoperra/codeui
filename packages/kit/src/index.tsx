@@ -45,6 +45,13 @@ export { Tooltip } from "./components/Tooltip/Tooltip";
 
 export { Tabs, TabsHeader, TabsList, TabsContent } from "./components/Tabs/Tabs";
 
+export { SvgIcon } from "./icons/SvgIcon";
 export * as icons from "./icons";
 
-export * from "./foundation";
+export {
+	themeTokens,
+	themeVars,
+	breakpoints,
+	layoutVars,
+	responsiveStyle,
+} from "./foundation";

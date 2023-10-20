@@ -43,7 +43,7 @@ export const overlay = style([
 	dialogTheme,
 	{
 		position: "fixed",
-		zIndex: "50",
+		zIndex: themeTokens.zIndex["40"],
 		top: 0,
 		inset: 0,
 		left: 0,
@@ -77,7 +77,7 @@ export const panelFooter = style({
 export const positioner = style({
 	position: "fixed",
 	inset: 0,
-	zIndex: 50,
+	zIndex: themeTokens.zIndex["40"],
 	backgroundColor: dialogThemeVars.overlayBackground,
 	display: "flex",
 	alignItems: "center",

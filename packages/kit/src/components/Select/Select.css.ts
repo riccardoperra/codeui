@@ -54,7 +54,7 @@ export const content = style([
 		borderRadius: selectThemeVars.contentRadius,
 		padding: selectThemeVars.contentPadding,
 		overflow: "auto",
-		zIndex: "40",
+		zIndex: themeTokens.zIndex["50"],
 		listStyleType: "none",
 		display: "flex",
 		flexDirection: "column",
