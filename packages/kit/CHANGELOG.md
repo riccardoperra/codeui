@@ -1,5 +1,11 @@
 # @codeui/kit
 
+## 0.0.29
+
+### Patch Changes
+
+- 8078c54: fix dialog max height
+
 ## 0.0.28
 
 ### Patch Changes
