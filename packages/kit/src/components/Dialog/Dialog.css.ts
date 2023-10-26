@@ -11,6 +11,7 @@ export const [dialogTheme, dialogThemeVars] = createTheme({
 	contentBoxShadow: tokens.dialogBoxShadow,
 	contentTextColor: tokens.dialogTextColor,
 	contentPadding: themeTokens.spacing["6"],
+	titleHeight: "56px",
 	panelRadius: themeTokens.radii.lg,
 	dividerColor: tokens.separator,
 	titleFontSize: themeTokens.fontSize.lg,
@@ -55,9 +56,9 @@ export const overlay = style([
 export const panelContent = style([
 	{
 		padding: `${dialogThemeVars.contentPadding}`,
+		overflow: "auto",
 		selectors: {
-			"[data-full-screen=true] &": {
-				overflow: "auto",
+			"[data-panel-size=full] &": {
 				flex: 1,
 			},
 		},
@@ -67,7 +68,7 @@ export const panelContent = style([
 export const panelFooter = style({
 	padding: `${dialogThemeVars.contentPadding}`,
 	selectors: {
-		"[data-full-screen=true] &": {
+		"[data-panel-size=full] &": {
 			marginTop: "auto",
 			marginBottom: "env(safe-area-inset-bottom, 20px)",
 		},
@@ -82,12 +83,14 @@ export const positioner = style({
 	display: "flex",
 	alignItems: "center",
 	justifyContent: "center",
+	paddingTop: themeTokens.spacing['2'],
+	paddingBottom: themeTokens.spacing['2']
 });
 
 export const title = style([
 	{
 		color: dialogThemeVars.contentTextColor,
-		height: "52px",
+		height: dialogThemeVars.titleHeight,
 		borderBottom: `1px solid ${dialogThemeVars.dividerColor}`,
 		padding: `0 ${dialogThemeVars.contentPadding}`,
 		display: "flex",
@@ -95,6 +98,7 @@ export const title = style([
 		fontSize: dialogThemeVars.titleFontSize,
 		fontWeight: themeTokens.fontWeight.medium,
 		justifyContent: "space-between",
+		flexShrink: 0
 	},
 ]);
 
@@ -104,6 +108,7 @@ export const panel = recipe({
 			display: "inline-flex",
 			flexDirection: "column",
 			width: "100%",
+			height: "100%",
 			padding: 0,
 			overflow: "hidden",
 			textAlign: "left",
