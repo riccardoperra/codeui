@@ -108,7 +108,7 @@ export const panel = recipe({
 			display: "inline-flex",
 			flexDirection: "column",
 			width: "100%",
-			height: "100%",
+			maxHeight: "100%",
 			padding: 0,
 			overflow: "hidden",
 			textAlign: "left",
