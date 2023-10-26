@@ -1,5 +1,11 @@
 # @codeui/kit
 
+## 0.0.28
+
+### Patch Changes
+
+- ce300a3: Dialog improve styles
+
 ## 0.0.27
 
 ### Patch Changes
