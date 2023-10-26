@@ -84,7 +84,12 @@ export const positioner = style({
 	alignItems: "center",
 	justifyContent: "center",
 	paddingTop: themeTokens.spacing['2'],
-	paddingBottom: themeTokens.spacing['2']
+	paddingBottom: themeTokens.spacing['2'],
+	selectors: { 
+		'&[data-panel-size=full]': {
+			padding: 0
+		}
+	}
 });
 
 export const title = style([
