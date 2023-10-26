@@ -1,5 +1,11 @@
 # @codeui/kit
 
+## 0.0.30
+
+### Patch Changes
+
+- bc0aedd: dialog panel full fix padding
+
 ## 0.0.29
 
 ### Patch Changes
