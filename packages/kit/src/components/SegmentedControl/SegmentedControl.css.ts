@@ -141,7 +141,7 @@ export const segmentedControlWrapper = recipe({
 
 export const list = style({
 	display: "flex",
-	gap: themeTokens.spacing["2"],
+	gap: 0,
 	position: "relative",
 	flex: 1,
 	flexWrap: "nowrap",
@@ -183,6 +183,10 @@ export const segment = style([
 			"&[data-selected]": {
 				opacity: 1,
 				color: segmentedFieldVars.activeSegmentedTextColor,
+			},
+			[`${segmentedFieldTheme}[data-autoWidth] &`]: {
+				width: "1px",
+				flexGrow: 1,
 			},
 		},
 		":focus-visible": {
