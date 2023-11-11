@@ -153,6 +153,9 @@ export type SegmentedControlVariants = RecipeVariants<typeof segmentedControlWra
 
 export const segment = style([
 	{
+		appearance: "none",
+		border: 0,
+		backgroundColor: "transparent",
 		width: "100%",
 		height: "100%",
 		position: "relative",
