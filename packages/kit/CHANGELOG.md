@@ -1,5 +1,11 @@
 # @codeui/kit
 
+## 0.0.33
+
+### Patch Changes
+
+- 96bae68: improve segmented control size
+
 ## 0.0.32
 
 ### Patch Changes
