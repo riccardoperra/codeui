@@ -45,10 +45,10 @@ export { Tooltip } from "./components/Tooltip/Tooltip";
 
 export { Tabs, TabsHeader, TabsList, TabsContent } from "./components/Tabs/Tabs";
 
-export {
-	SegmentedControl,
-	SegmentedControlItem,
-} from "./components/SegmentedControl/SegmentedControl";
+export { SegmentedControl } from "./components/SegmentedControl/SegmentedControl";
+export type { SegmentedControlProps } from "./components/SegmentedControl/SegmentedControl";
+export { SegmentedControlItem } from "./components/SegmentedControl/SegmentedControlItem";
+export type { SegmentedControlItemProps } from "./components/SegmentedControl/SegmentedControlItem";
 
 export { SvgIcon } from "./icons/SvgIcon";
 export * as icons from "./icons";
