@@ -12,3 +12,11 @@ export const row = style({
 	alignItems: "center",
 	flexWrap: "wrap",
 });
+
+export const rowInline = style({
+	display: "inline-flex",
+	gap: "2rem",
+	padding: "1rem",
+	alignItems: "center",
+	flexWrap: "wrap",
+});
