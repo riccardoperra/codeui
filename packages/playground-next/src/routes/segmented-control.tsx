@@ -105,6 +105,20 @@ export default function SegmentedControlDemo() {
 				</div>
 			</DemoSectionRow>
 
+			<h2>Auto width</h2>
+			{() => {
+				return (
+					<DemoSectionRow>
+						<SegmentedControl defaultValue={"1"} size={"md"} autoWidth>
+							<SegmentedControlItem value={"24"}>24</SegmentedControlItem>
+							<SegmentedControlItem value={"32"}>32</SegmentedControlItem>
+							<SegmentedControlItem value={"64"}>64</SegmentedControlItem>
+							<SegmentedControlItem value={"128"}>128</SegmentedControlItem>
+						</SegmentedControl>
+					</DemoSectionRow>
+				);
+			}}
+
 			<h2>Disabled tab</h2>
 
 			<DemoSectionRow>

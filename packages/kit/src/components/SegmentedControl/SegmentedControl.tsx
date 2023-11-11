@@ -48,7 +48,6 @@ export function SegmentedControl(props: SegmentedControlProps) {
 		"size",
 		"variant",
 		"pill",
-		"autoWidth",
 		"slotClasses",
 		"class",
 	]);
@@ -57,7 +56,7 @@ export function SegmentedControl(props: SegmentedControlProps) {
 	let listRef!: HTMLDivElement;
 
 	const disabled = () => (props.disabled ? "" : undefined);
-	const autoWidth = () => (local.autoWidth ? "" : undefined);
+	const autoWidth = () => (props.autoWidth ? "" : undefined);
 
 	const rootClasses = () =>
 		mergeClasses(
@@ -85,10 +84,7 @@ export function SegmentedControl(props: SegmentedControlProps) {
 	};
 
 	const handleListResize = debounce(() => {
-		const selectedItem = items().find(item => {
-			console.log(item, item.hasAttribute("data-selected"));
-			return item.hasAttribute("data-selected");
-		});
+		const selectedItem = items().find(item => item.hasAttribute("data-selected"));
 		if (!selectedItem) {
 			return;
 		}
