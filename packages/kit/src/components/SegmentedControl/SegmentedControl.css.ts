@@ -111,9 +111,9 @@ export const segmentedControlWrapper = recipe({
 			},
 			[SegmentedControlSizes.xs]: {
 				vars: {
-					[segmentedFieldVars.segmentWrapperPadding]: themeTokens.spacing["1"],
+					[segmentedFieldVars.segmentWrapperPadding]: `calc(${themeTokens.spacing["1"]} - 1px)`,
 					[segmentedFieldVars.segmentHeight]: mapSizeValue("xs"),
-					[segmentedFieldVars.segmentFontSize]: themeTokens.fontSize.xs,
+					[segmentedFieldVars.segmentFontSize]: `calc(${themeTokens.fontSize.xs} - 1px)`,
 					[segmentedFieldVars.segmentPadding]: themeTokens.spacing["2"],
 					[segmentedFieldVars.segmentRadius]: themeTokens.radii.xs,
 					[segmentedFieldVars.segmentWrapperRadius]: themeTokens.radii.sm,
@@ -141,7 +141,7 @@ export const segmentedControlWrapper = recipe({
 
 export const list = style({
 	display: "flex",
-	gap: 0,
+	gap: themeTokens.spacing["1"],
 	position: "relative",
 	flex: 1,
 	flexWrap: "nowrap",
@@ -176,10 +176,8 @@ export const segment = style([
 			"opacity .2s, background-color .2s, transform .2s, outline-color 150ms ease-in-out, outline-offset 150ms ease-in",
 		outlineColor: `transparent`,
 		outlineOffset: "0px",
+		cursor: "pointer",
 		selectors: {
-			"&:not(:disabled)": {
-				cursor: "pointer",
-			},
 			"&[data-selected]": {
 				opacity: 1,
 				color: segmentedFieldVars.activeSegmentedTextColor,
@@ -187,6 +185,7 @@ export const segment = style([
 			[`${segmentedFieldTheme}[data-autoWidth] &`]: {
 				width: "1px",
 				flexGrow: 1,
+				padding: 0,
 			},
 		},
 		":focus-visible": {
@@ -197,6 +196,7 @@ export const segment = style([
 	componentStateStyles({
 		disabled: {
 			opacity: 0.2,
+			cursor: "not-allowed",
 		},
 	}),
 ]);
