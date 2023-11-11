@@ -100,6 +100,9 @@ export default function Root() {
 								<SidebarItem>
 									<A href="/tabs">Tabs</A>
 								</SidebarItem>
+								<SidebarItem>
+									<A href="/segmented-control">Segmented Control</A>
+								</SidebarItem>
 							</Sidebar>
 							<div class={styles.layoutContent}>
 								<Routes>

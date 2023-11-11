@@ -45,6 +45,11 @@ export { Tooltip } from "./components/Tooltip/Tooltip";
 
 export { Tabs, TabsHeader, TabsList, TabsContent } from "./components/Tabs/Tabs";
 
+export {
+	SegmentedControl,
+	SegmentedControlItem,
+} from "./components/SegmentedControl/SegmentedControl";
+
 export { SvgIcon } from "./icons/SvgIcon";
 export * as icons from "./icons";
 

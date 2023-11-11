@@ -8,3 +8,7 @@ export function DemoSection(props: ParentProps) {
 export function DemoSectionRow(props: ParentProps) {
 	return <div class={row}>{props.children}</div>;
 }
+
+export function DemoSectionRowInline(props: ParentProps) {
+	return <div class={row}>{props.children}</div>;
+}
