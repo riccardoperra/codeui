@@ -1,5 +1,11 @@
 # @codeui/kit
 
+## 0.0.32
+
+### Patch Changes
+
+- 61d8687: improve SegmentedControl
+
 ## 0.0.31
 
 ### Patch Changes
