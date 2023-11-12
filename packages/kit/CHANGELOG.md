@@ -1,5 +1,11 @@
 # @codeui/kit
 
+## 0.0.34
+
+### Patch Changes
+
+- 7223c92: fix: segmented control light theme active bg
+
 ## 0.0.33
 
 ### Patch Changes
