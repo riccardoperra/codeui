@@ -1,5 +1,5 @@
 # repository root netlify.toml
 [build]
 base = "/"
-publish = "packages/playground-next/dist/public"
-command = "pnpm --filter=@codeui/vanilla-extract build && pnpm --filter=@codeui/playground-next build"
+publish = "packages/storybook/storybook-static"
+command = "pnpm --filter=@codeui/storybook-playground build-storybook"
