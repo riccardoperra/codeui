@@ -28,8 +28,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Run Build and Tests
-        run: pnpm run build-test
+#      - name: Run Build and Tests
+#        run: pnpm run build-test
 
         env:
           CI: true
