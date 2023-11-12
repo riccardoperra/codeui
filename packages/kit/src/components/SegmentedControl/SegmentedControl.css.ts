@@ -212,4 +212,13 @@ export const indicator = style([
 		boxShadow: themeTokens.boxShadow.default,
 		borderRadius: segmentedFieldVars.segmentRadius,
 	},
+	{
+		selectors: {
+			[`[data-cui-theme=light] ${segmentedFieldTheme} &`]: {
+				vars: {
+					[segmentedFieldVars.activeSegmentedBackgroundColor]: "#fff",
+				},
+			},
+		},
+	},
 ]);
