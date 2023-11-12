@@ -1,10 +1,7 @@
 import { createTheme } from "@vanilla-extract/css";
 import { recipe, RecipeVariants } from "@vanilla-extract/recipes";
-import { themeTokens } from "../../foundation/themes.css";
 
-const [linkTheme, linkVars] = createTheme({
-	blockBorderRadius: themeTokens.radii.sm,
-});
+const [linkTheme] = createTheme({});
 
 export const link = recipe({
 	base: [

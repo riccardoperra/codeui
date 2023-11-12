@@ -62,7 +62,7 @@ export function Select<T>(props: ParentProps<SelectProps<T>>) {
 		["options", "value"],
 	);
 	const baseFieldProps = createBaseFieldProps(props);
-	const labelProps = createFieldLabelProps({});
+	const labelProps = createFieldLabelProps<"span">({});
 	const descriptionProps = createFieldMessageProps({});
 	const errorProps = createFieldErrorMessageProps(props);
 

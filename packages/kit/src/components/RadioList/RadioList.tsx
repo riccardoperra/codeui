@@ -16,7 +16,7 @@ export type RadioListProps = RadioGroup.RadioGroupRootProps &
 	FieldWithErrorMessageSupport & { label?: JSXElement; description?: string };
 
 function RadioGroupLabel(props: RadioGroup.RadioGroupLabelProps) {
-	const fieldLabelProps = createFieldLabelProps(props);
+	const fieldLabelProps = createFieldLabelProps<"span">(props);
 
 	return <RadioGroup.Label {...fieldLabelProps} />;
 }

@@ -34,7 +34,7 @@ export function Checkbox(props: CheckBoxProps) {
 	]);
 
 	const errorMessageProps = createFieldErrorMessageProps(props);
-	const fieldLabelProps = createFieldMessageProps(props);
+	const fieldLabelProps = createFieldMessageProps({});
 
 	const inputClasses = () => mergeClasses(styles.input, local.slotClasses?.input);
 
