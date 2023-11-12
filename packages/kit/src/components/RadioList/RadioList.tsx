@@ -11,7 +11,7 @@ import { baseFieldContainer } from "../TextField/TextField.css";
 import { createFieldMessageProps } from "../Field/FieldMessage/createFieldMessageProps";
 import * as styles from "./Radio.css";
 
-type RadioListProps = RadioGroup.RadioGroupRootProps &
+export type RadioListProps = RadioGroup.RadioGroupRootProps &
 	BaseFieldProps &
 	FieldWithErrorMessageSupport & { label?: JSXElement; description?: string };
 

@@ -35,7 +35,9 @@ export {
 export { Popover, PopoverTrigger, PopoverContent } from "./components/Popover/Popover";
 export { Select } from "./components/Select/Select";
 export { createSelectOptions } from "./components/Select/createSelectValue";
+
 export { RadioList, RadioListItem } from "./components/RadioList/RadioList";
+export type { RadioListProps } from "./components/RadioList/RadioList";
 
 export { Link } from "./components/Link/Link";
 
@@ -60,3 +62,5 @@ export {
 	layoutVars,
 	responsiveStyle,
 } from "./foundation";
+
+export { As } from "@kobalte/core";
