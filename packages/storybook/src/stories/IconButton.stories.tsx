@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from "storybook-solidjs";
 
-import { Button, IconButton } from "@codeui/kit";
+import { IconButton } from "@codeui/kit";
 import { For } from "solid-js";
 import { ShareIcon } from "./components/ShareIcon.jsx";
+import { DocsItemsContainer, DocsMultipleItemsContainer } from "./components/Section.jsx";
 
 const buttonThemes = ["primary", "secondary", "tertiary", "negative", "caution"] as const;
 
@@ -12,7 +13,7 @@ const buttonSizes = ["xs", "sm", "md", "lg", "xl"] as const;
 const meta = {
 	title: "DesignSystem/IconButton",
 	component: props => (
-		<IconButton aria-label={"Icon"} {...props}>
+		<IconButton {...props}>
 			<ShareIcon />
 		</IconButton>
 	),
@@ -37,7 +38,7 @@ const meta = {
 	// argTypes: {
 	// 	backgroundColor: { control: "color" },
 	// },
-} satisfies Meta<typeof Button>;
+} satisfies Meta<typeof IconButton>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -122,10 +123,10 @@ export const Pill: Story = {
 
 export const Loading: Story = {
 	render: () => (
-		<div class={"multipleItemsContainer"}>
+		<DocsMultipleItemsContainer>
 			<For each={buttonThemes}>
 				{theme => (
-					<div class={"itemsContainer"}>
+					<DocsItemsContainer>
 						<For each={buttonSizes}>
 							{size => (
 								<IconButton aria-label={"Icon"} size={size} theme={theme} loading>
@@ -133,9 +134,9 @@ export const Loading: Story = {
 								</IconButton>
 							)}
 						</For>
-					</div>
+					</DocsItemsContainer>
 				)}
 			</For>
-		</div>
+		</DocsMultipleItemsContainer>
 	),
 };

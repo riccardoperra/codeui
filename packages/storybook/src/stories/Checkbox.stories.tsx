@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "storybook-solidjs";
 
 import { Checkbox, CheckBoxProps } from "@codeui/kit";
 import { For } from "solid-js";
+import { DocsMultipleItemsContainer } from "./components/Section.jsx";
 
 const checkboxSizes = ["xs", "sm", "md", "lg", "xl"] as const;
 
@@ -43,7 +44,7 @@ export const CheckboxDefault: Story = {
 
 export const Sizes: Story = {
 	render: props => (
-		<div class={"multipleItemsContainer"}>
+		<DocsMultipleItemsContainer>
 			<For each={checkboxSizes}>
 				{size => (
 					<Checkbox
@@ -54,13 +55,13 @@ export const Sizes: Story = {
 					/>
 				)}
 			</For>
-		</div>
+		</DocsMultipleItemsContainer>
 	),
 };
 
 export const Validation: Story = {
 	render: props => (
-		<div class={"multipleItemsContainer"}>
+		<DocsMultipleItemsContainer>
 			<For each={checkboxSizes}>
 				{size => (
 					<Checkbox
@@ -72,6 +73,6 @@ export const Validation: Story = {
 					/>
 				)}
 			</For>
-		</div>
+		</DocsMultipleItemsContainer>
 	),
 };

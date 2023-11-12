@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from "storybook-solidjs";
 import { Button } from "@codeui/kit";
 import { For } from "solid-js";
 import { ShareIcon } from "./components/ShareIcon.jsx";
+import { DocsItemsContainer, DocsMultipleItemsContainer } from "./components/Section.jsx";
 
 const buttonThemes = ["primary", "secondary", "tertiary", "negative", "caution"] as const;
 
@@ -137,10 +138,10 @@ export const Ghost: Story = {
 
 export const Loading: Story = {
 	render: () => (
-		<div class={"multipleItemsContainer"}>
+		<DocsMultipleItemsContainer>
 			<For each={buttonThemes}>
 				{theme => (
-					<div class={"itemsContainer"}>
+					<DocsItemsContainer>
 						<For each={buttonSizes}>
 							{size => (
 								<Button size={size} theme={theme} loading>
@@ -148,9 +149,9 @@ export const Loading: Story = {
 								</Button>
 							)}
 						</For>
-					</div>
+					</DocsItemsContainer>
 				)}
 			</For>
-		</div>
+		</DocsMultipleItemsContainer>
 	),
 };

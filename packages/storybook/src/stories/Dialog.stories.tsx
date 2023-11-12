@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "storybook-solidjs";
 
 import { Button, Dialog, DialogPanelContent, DialogPanelFooter } from "@codeui/kit";
 import { createSignal, For } from "solid-js";
+import { DocsItemsContainer } from "./components/Section.jsx";
 
 // More on how to set up stories at: https://storybook.js.org/docs/7.0/solid/writing-stories/introduction
 const meta = {
@@ -12,11 +13,12 @@ const meta = {
 } satisfies Meta<typeof Dialog>;
 
 export default meta;
+
 type Story = StoryObj<typeof meta>;
 
 export const Sizes: Story = {
 	render: () => (
-		<div class={"itemsContainer"}>
+		<DocsItemsContainer>
 			<For each={["xs", "sm", "md", "lg", "xl", "full"] as const}>
 				{size => {
 					const [open, setOpen] = createSignal(false);
@@ -42,7 +44,7 @@ export const Sizes: Story = {
 					);
 				}}
 			</For>
-		</div>
+		</DocsItemsContainer>
 	),
 };
 
@@ -50,7 +52,7 @@ export const OverflowContent: Story = {
 	render: () => {
 		const [open, setOpen] = createSignal(false);
 		return (
-			<div class={"itemsContainer"}>
+			<DocsItemsContainer>
 				<Button theme={"secondary"} onClick={() => setOpen(true)}>
 					Open Dialog
 				</Button>
@@ -94,7 +96,7 @@ export const OverflowContent: Story = {
 						<Button theme={"primary"}>Confirm</Button>
 					</DialogPanelFooter>
 				</Dialog>
-			</div>
+			</DocsItemsContainer>
 		);
 	},
 };

@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "storybook-solidjs";
 
 import { RadioList, RadioListItem, RadioListProps } from "@codeui/kit";
 import { For } from "solid-js";
+import { DocsMultipleItemsContainer } from "./components/Section.jsx";
 
 const radioSizes = ["xs", "sm", "md", "lg", "xl"] as const;
 
@@ -63,7 +64,7 @@ export const RadioListVertical: Story = {
 
 export const Sizes: Story = {
 	render: (props: RadioListProps) => (
-		<div class={"multipleItemsContainer"}>
+		<DocsMultipleItemsContainer>
 			<For each={radioSizes}>
 				{size => (
 					<meta.component
@@ -74,13 +75,13 @@ export const Sizes: Story = {
 					/>
 				)}
 			</For>
-		</div>
+		</DocsMultipleItemsContainer>
 	),
 };
 
 export const Validation: Story = {
 	render: (props: RadioListProps) => (
-		<div class={"multipleItemsContainer"}>
+		<DocsMultipleItemsContainer>
 			<For each={radioSizes}>
 				{size => (
 					<meta.component
@@ -92,6 +93,6 @@ export const Validation: Story = {
 					/>
 				)}
 			</For>
-		</div>
+		</DocsMultipleItemsContainer>
 	),
 };
