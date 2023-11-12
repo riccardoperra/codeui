@@ -36,7 +36,8 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const CheckboxDefault: Story = {
+export const CheckboxStory: Story = {
+	name: "Checkbox",
 	args: {
 		label: "My label",
 	},
