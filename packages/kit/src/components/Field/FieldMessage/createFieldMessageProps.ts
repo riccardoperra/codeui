@@ -1,7 +1,7 @@
 import { description } from "./FieldMessage.css";
-import { PolymorphicProps } from "@kobalte/utils/dist/types/polymorphic";
 import { mergeProps } from "solid-js";
 import { mergeClasses } from "../../../utils/css";
+import { PolymorphicProps } from "@kobalte/core";
 
 export function createFieldMessageProps<T extends PolymorphicProps<"div">>(props: T) {
 	return mergeProps(props, {

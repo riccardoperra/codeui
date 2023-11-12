@@ -4,6 +4,7 @@ import { recipe, RecipeVariants } from "@vanilla-extract/recipes";
 import { componentStateStyles } from "@kobalte/vanilla-extract";
 import { themeTokens } from "../../foundation/themes.css";
 import { tokens } from "../../foundation/contract.css";
+import { themeVars } from "../../foundation";
 
 export const FieldSizes = {
 	xs: "xs",
@@ -41,7 +42,7 @@ export const baseFieldVariants = recipe({
 		},
 		{
 			":focus": {
-				borderColor: themeTokens.colors.blue8,
+				borderColor: themeVars.brand,
 			},
 		},
 		componentStateStyles({

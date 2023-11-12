@@ -73,6 +73,6 @@ type TabsIndicatorProps = KTabs.TabsIndicatorProps;
 export function TabsIndicator(props: TabsIndicatorProps) {
 	const [local, others] = splitProps(props, ["class"]);
 	return (
-		<KTabs.Indicator {...props} class={mergeClasses(styles.indicator, local.class)} />
+		<KTabs.Indicator {...others} class={mergeClasses(styles.indicator, local.class)} />
 	);
 }

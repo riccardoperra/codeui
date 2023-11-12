@@ -4,7 +4,6 @@ import { componentStateStyles } from "@kobalte/vanilla-extract";
 import { tokens } from "../../foundation/contract.css";
 import { baseFieldTheme, baseFieldVars } from "../Field/Field.css";
 import { responsiveStyle } from "../../foundation/responsive";
-import { dropdownMenuThemeVars } from "../Dropdown/Dropdown.css";
 
 export const [selectTheme, selectThemeVars] = createTheme({
 	contentBackground: tokens.dropdownBackground,

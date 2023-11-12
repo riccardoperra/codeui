@@ -1,7 +1,7 @@
 import { TextField as KTextField } from "@kobalte/core";
 import { JSX, Ref, Show, splitProps } from "solid-js";
 import * as styles from "./TextArea.css";
-import { baseFieldContainer, textArea } from "./TextArea.css";
+import { baseFieldContainer } from "./TextArea.css";
 import { mergeClasses } from "../../utils/css";
 import { TextAreaLabel } from "./TextAreaLabel";
 import { TextAreaMessage } from "./TextAreaMessage";

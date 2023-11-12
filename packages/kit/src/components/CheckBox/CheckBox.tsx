@@ -1,7 +1,7 @@
 import { Checkbox as KCheckbox } from "@kobalte/core";
 import { JSX, Ref, Show, splitProps } from "solid-js";
 import * as styles from "./CheckBox.css";
-import { BaseFieldProps, createBaseFieldProps } from "../Field/createBaseFieldProps";
+import { BaseFieldProps } from "../Field/createBaseFieldProps";
 import {
 	createFieldErrorMessageProps,
 	FieldWithErrorMessageSupport,
