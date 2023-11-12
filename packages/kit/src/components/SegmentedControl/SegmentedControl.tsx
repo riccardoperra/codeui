@@ -70,6 +70,9 @@ export function SegmentedControl(props: SegmentedControlProps) {
 	}, 0);
 
 	onMount(() => {
+		if (!listRef) {
+			return;
+		}
 		const resizeObserver = new ResizeObserver(handleListResize);
 		resizeObserver.observe(listRef);
 	});

@@ -24,12 +24,8 @@ function ThemeWrapper(props: FlowProps) {
 }
 
 export const decorators = [
-	(Story: Component) => {
-		return (
-			<ThemeWrapper>
-				<Story />
-			</ThemeWrapper>
-		);
+	(Story: () => any) => {
+		return <ThemeWrapper>{Story()}</ThemeWrapper>;
 	},
 ];
 

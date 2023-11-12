@@ -62,3 +62,5 @@ export {
 	layoutVars,
 	responsiveStyle,
 } from "./foundation";
+
+export { As } from "@kobalte/core";
