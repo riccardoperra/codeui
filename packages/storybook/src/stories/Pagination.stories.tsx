@@ -5,7 +5,7 @@ import {
 	DocsContainerFlex,
 	DocsContainerTitle,
 	DocsMultipleItemsContainer,
-} from "./components/Section.tsx";
+} from "./components/Section.jsx";
 import { For } from "solid-js";
 
 const sizes = ["xs", "sm", "md", "lg", "xl"] as const;

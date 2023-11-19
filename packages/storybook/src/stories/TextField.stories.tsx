@@ -1,6 +1,6 @@
 import { Button, TextField, TextFieldProps } from "@codeui/kit";
 import type { Meta, StoryObj } from "storybook-solidjs";
-import { DocsItemsContainer, DocsMultipleItemsContainer } from "./components/Section.tsx";
+import { DocsItemsContainer, DocsMultipleItemsContainer } from "./components/Section.jsx";
 import { For } from "solid-js";
 
 // TODO: fix
