@@ -1,6 +1,7 @@
 import type { StorybookConfig } from "storybook-solidjs-vite";
 
-import { join, dirname } from "path";
+import { dirname, join } from "path";
+import { mergeConfig } from "vite";
 
 /**
  * This function is used to resolve the absolute path of a package.
@@ -24,6 +25,20 @@ const config: StorybookConfig = {
 	},
 	docs: {
 		autodocs: "tag",
+	},
+	async viteFinal(config) {
+		// Merge custom configuration into the default config
+		return mergeConfig(config, {
+			// Add dependencies to pre-optimization
+			optimizeDeps: {
+				include: [
+					"storybook-dark-mode",
+					"@codeui/kit",
+					"@kobalte/core",
+					"@kobalte/utils",
+				],
+			},
+		});
 	},
 };
 
