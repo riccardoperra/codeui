@@ -1,5 +1,5 @@
 import { Select as KSelect } from "@kobalte/core";
-import { Accessor, JSX, JSXElement, ParentProps, Show, splitProps } from "solid-js";
+import { Accessor, JSX, JSXElement, Show, splitProps } from "solid-js";
 import { CheckIcon } from "../../icons/CheckIcon";
 import { SelectorIcon } from "../../icons/SelectorIcon";
 import { mergeClasses } from "../../utils/css";
@@ -12,16 +12,18 @@ import { createFieldLabelProps } from "../Field/FieldLabel/createFieldLabelProps
 import { createFieldMessageProps } from "../Field/FieldMessage/createFieldMessageProps";
 import * as styles from "./Select.css";
 
-export type SelectProps<T> = KSelect.SelectRootProps<T> &
+export type SelectProps<Option, OptGroup = never> = KSelect.SelectRootProps<
+	Option,
+	OptGroup
+> &
 	BaseFieldProps & {
 		"aria-label": string;
 		placeholder?: string;
-
 		description?: string;
 		label?: JSX.Element;
 	} & FieldWithErrorMessageSupport & {
-		itemLabel?: (item: T) => JSXElement;
-		valueComponent?: (state: Accessor<T>) => JSXElement;
+		itemLabel?: (item: Option) => JSXElement;
+		valueComponent?: (state: Accessor<Option>) => JSXElement;
 	};
 
 function SelectContent(props: KSelect.SelectContentProps) {
@@ -45,7 +47,7 @@ export function SelectItem<T>(
 	);
 }
 
-export function Select<T>(props: ParentProps<SelectProps<T>>) {
+export function Select<Option, OptGroup = never>(props: SelectProps<Option, OptGroup>) {
 	const [local, internal, others] = splitProps(
 		props,
 		[
@@ -83,7 +85,7 @@ export function Select<T>(props: ParentProps<SelectProps<T>>) {
 				aria-label={local["aria-label"]}
 				class={mergeClasses(baseFieldProps.baseStyle(), styles.selectField)}
 			>
-				<KSelect.Value<T>>
+				<KSelect.Value<Option>>
 					{state => {
 						const value = state.selectedOption();
 						if (!value) return null;

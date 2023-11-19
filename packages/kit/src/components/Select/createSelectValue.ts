@@ -38,6 +38,7 @@ interface CreateSelectOptionsReturn<T, C extends ConfigFor<T>> {
 	};
 }
 
+// TODO should support disabled and nested groups?
 export function createSelectOptions<T, C extends ConfigFor<T>>(
 	values: readonly T[] | Accessor<readonly T[]>,
 	config?: C,
