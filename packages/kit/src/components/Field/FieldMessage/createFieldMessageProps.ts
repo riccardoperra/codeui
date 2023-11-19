@@ -6,7 +6,7 @@ import { PolymorphicProps } from "@kobalte/core";
 export function createFieldMessageProps<TComponent extends ValidComponent = "div">(
 	props: PolymorphicProps<TComponent>,
 ) {
-	const [local] = splitProps(props, []);
+	const [local] = splitProps(props, ["children"]);
 	return mergeProps(local, {
 		get class() {
 			return mergeClasses(props.class, description);

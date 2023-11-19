@@ -3,6 +3,7 @@ import { createFieldMessageProps } from "../Field/FieldMessage/createFieldMessag
 
 type TextFieldLabelProps = Parameters<(typeof KTextField)["Description"]>[0] & {};
 
+// TODO: this is bad
 export function TextFieldMessage(props: TextFieldLabelProps) {
 	const fieldLabelProps = createFieldMessageProps(props);
 
