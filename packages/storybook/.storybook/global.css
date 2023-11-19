@@ -16,3 +16,15 @@ html, body {
 	gap: 2rem;
 }
 
+.containerCustom {
+	--ic-gap: 2rem;
+	display: flex;
+	flex-direction: column;
+	gap: var(--ic-gap);
+}
+
+.itemsContainerTitle {
+	font-weight: 600;
+	display: block;
+	font-size: 1rem;
+}
