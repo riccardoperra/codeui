@@ -19,8 +19,10 @@ html, body {
 .containerCustom {
 	--custom-gap: 2rem;
 	--custom-direction: column;
+	--custom-wrap: initial;
 	display: flex;
 	flex-direction: var(--custom-direction);
+	flex-wrap: var(--custom-wrap);
 	gap: var(--custom-gap);
 }
 

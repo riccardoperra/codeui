@@ -16,6 +16,7 @@ export function DocsContainerFlex(
 	props: JSX.IntrinsicElements["div"] & {
 		gap?: string;
 		direction?: "row" | "column";
+		wrap?: boolean;
 	},
 ) {
 	return (
@@ -24,6 +25,7 @@ export function DocsContainerFlex(
 			style={{
 				"--custom-gap": props.gap ?? "1rem",
 				"--custom-direction": props.direction ?? "column",
+				"--custom-wrap": props.wrap ? "wrap" : "nowrap",
 			}}
 			{...props}
 		/>
