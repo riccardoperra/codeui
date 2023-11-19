@@ -11,15 +11,31 @@ export const [tabsTheme, tabsVars] = createTheme({
 	tabIndicatorColor: tokens.brandAccentActive,
 });
 
+export const tabsRoot = style([
+	tabsTheme,
+	{
+		selectors: {
+			"&[data-orientation=vertical]": {
+				display: "flex",
+				flex: 1,
+				flexShrink: 0,
+			},
+		},
+	},
+]);
+
 export const tabsList = style({
 	display: "flex",
 	position: "relative",
-	borderBottom: `1px solid ${tabsVars.tabListIndicatorColor}`,
 
 	selectors: {
+		"&[data-orientation=horizontal]": {
+			borderBottom: `1px solid ${tabsVars.tabListIndicatorColor}`,
+		},
 		"&[data-orientation=vertical]": {
 			alignItems: "stretch",
 			flexDirection: "column",
+			borderRight: `1px solid ${tabsVars.tabListIndicatorColor}`,
 		},
 	},
 });

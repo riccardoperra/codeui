@@ -2,6 +2,7 @@ import { Tabs as KTabs } from "@kobalte/core";
 import { mergeClasses } from "../../utils/css";
 import * as styles from "./Tabs.css";
 import { createContext, Show, splitProps, useContext } from "solid-js";
+import { tabsRoot } from "./Tabs.css";
 
 type TabsProps = KTabs.TabsRootProps & {
 	theme?: "inline" | "default";
@@ -15,7 +16,7 @@ const TabsContext = createContext<{
 
 export function Tabs(props: TabsProps) {
 	const [local, others] = splitProps(props, ["class", "theme"]);
-	const classes = () => mergeClasses(styles.tabsTheme, local.class);
+	const classes = () => mergeClasses(styles.tabsRoot, local.class);
 
 	return (
 		<TabsContext.Provider

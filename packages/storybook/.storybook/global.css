@@ -17,10 +17,11 @@ html, body {
 }
 
 .containerCustom {
-	--ic-gap: 2rem;
+	--custom-gap: 2rem;
+	--custom-direction: column;
 	display: flex;
-	flex-direction: column;
-	gap: var(--ic-gap);
+	flex-direction: var(--custom-direction);
+	gap: var(--custom-gap);
 }
 
 .itemsContainerTitle {

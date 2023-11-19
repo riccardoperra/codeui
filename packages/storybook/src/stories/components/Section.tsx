@@ -15,13 +15,15 @@ export function DocsContainerTitle(props: JSX.IntrinsicElements["h3"]) {
 export function DocsContainerFlex(
 	props: JSX.IntrinsicElements["div"] & {
 		gap?: string;
+		direction?: "row" | "column";
 	},
 ) {
 	return (
 		<h3
 			class={"containerCustom"}
 			style={{
-				gap: props.gap ?? "1rem",
+				"--custom-gap": props.gap ?? "1rem",
+				"--custom-direction": props.direction ?? "column",
 			}}
 			{...props}
 		/>
