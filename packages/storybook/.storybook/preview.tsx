@@ -2,12 +2,11 @@ import { Preview } from "storybook-solidjs";
 import { themes, ThemeVars } from "@storybook/theming";
 import { DARK_MODE_EVENT_NAME, useDarkMode } from "storybook-dark-mode";
 import { addons } from "@storybook/addons";
-import { Component, createEffect, createSignal, FlowProps } from "solid-js";
+import { createEffect, createSignal, FlowProps } from "solid-js";
 import "./reset.css";
 import "./global.css";
 import "./global-ve.css";
 import { DocsContainer, DocsContainerProps } from "@storybook/blocks";
-import { themeVars } from "@codeui/kit";
 
 function ThemeWrapper(props: FlowProps) {
 	const [darkMode, setDarkMode] = createSignal<boolean>(true);
@@ -25,7 +24,11 @@ function ThemeWrapper(props: FlowProps) {
 
 export const decorators = [
 	(Story: () => any) => {
-		return <ThemeWrapper>{Story()}</ThemeWrapper>;
+		return (
+			<ThemeWrapper>
+				<Story />
+			</ThemeWrapper>
+		);
 	},
 ];
 

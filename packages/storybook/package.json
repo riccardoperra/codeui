@@ -32,11 +32,12 @@
     "storybook-solidjs-vite": "1.0.0-beta.2",
     "typescript": "^5.0.2",
     "vite": "^4.4.5",
+    "vite-plugin-solid": "^2.7.0",
     "vite-tsconfig-paths": "^4.2.1"
   },
   "dependencies": {
-		"@kobalte/core": "^0.11.0",
-		"@kobalte/utils": "^0.9.0",
+    "@kobalte/core": "^0.11.0",
+    "@kobalte/utils": "^0.9.0",
     "@vanilla-extract/css": "^1.11.0",
     "solid-js": "^1.7.3"
   }
