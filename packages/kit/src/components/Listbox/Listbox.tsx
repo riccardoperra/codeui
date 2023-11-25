@@ -28,6 +28,7 @@ export function Listbox<Option, OptGroup = never>(props: ListboxProps<Option, Op
 			data-bordered={local.bordered ? "" : undefined}
 			data-theme={local.theme ?? "neutral"}
 			class={mergeClasses(styles.list)}
+			shouldFocusOnHover
 			renderItem={node => (
 				<ListboxItem itemLabel={local.itemLabel} size={local.size} item={node} />
 			)}

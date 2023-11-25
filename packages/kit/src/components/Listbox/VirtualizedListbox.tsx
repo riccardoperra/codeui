@@ -1,11 +1,18 @@
 import { createVirtualizer } from "@tanstack/solid-virtual";
 import { Listbox, ListboxItem, ListboxProps } from "./Listbox";
-import { For } from "solid-js";
+import { For, splitProps } from "solid-js";
 import { LISTBOX_ITEM_SIZE } from "./sizes";
 
-type VirtualizedListboxProps<Option, OptGroup> = Omit<
-	ListboxProps<Option, OptGroup>,
-	"virtualized" | "children" | "options"
+type VirtualizedListboxProps<OptGroup> = Omit<
+	ListboxProps<Item, OptGroup>,
+	| "virtualized"
+	| "children"
+	| "options"
+	| "optionValue"
+	| "optionDisabled"
+	| "optionLabel"
+	| "optionTextValue"
+	| "scrollToItem"
 > & {
 	options: Item[];
 	virtualizerOptions?: {
@@ -18,15 +25,15 @@ type VirtualizedListboxProps<Option, OptGroup> = Omit<
 interface Item {
 	value: string;
 	label: string;
-	disabled: boolean;
+	disabled?: boolean;
 }
 
-export function VirtualizedListbox<Option, OptGroup = never>(
-	props: VirtualizedListboxProps<Option, OptGroup>,
+export function VirtualizedListbox<OptGroup = never>(
+	props: VirtualizedListboxProps<OptGroup>,
 ) {
 	let listboxRef: HTMLUListElement | undefined;
 
-	const virtualizer = createVirtualizer<HTMLUListElement | undefined, Option>({
+	const virtualizer = createVirtualizer<HTMLUListElement | undefined, Item>({
 		get count() {
 			return props.options.length;
 		},
@@ -48,9 +55,12 @@ export function VirtualizedListbox<Option, OptGroup = never>(
 		},
 	});
 
+	const [local, others] = splitProps(props, ["options", "itemLabel"]);
+
 	return (
-		<Listbox
-			options={props.options}
+		// TODO fix type
+		<Listbox<any>
+			options={local.options}
 			optionValue="value"
 			optionTextValue="label"
 			optionDisabled="disabled"
@@ -59,7 +69,7 @@ export function VirtualizedListbox<Option, OptGroup = never>(
 				virtualizer.scrollToIndex(props.options.findIndex(option => option.value === key))
 			}
 			virtualized
-			style={{ height: "200px", width: "100%", overflow: "auto" }}
+			{...others}
 		>
 			{items => (
 				<div
@@ -79,7 +89,7 @@ export function VirtualizedListbox<Option, OptGroup = never>(
 										size={props.size}
 										item={item}
 										itemLabel={item => {
-											return item.label;
+											return local.itemLabel ? local.itemLabel(item) : item.label;
 										}}
 										style={{
 											position: "absolute",
