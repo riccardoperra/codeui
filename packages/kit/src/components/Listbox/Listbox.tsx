@@ -9,15 +9,28 @@ export type ListboxProps<Option, OptGroup> = Omit<
 	"renderItem"
 > & {
 	size?: "xs" | "sm" | "md";
+	theme?: "primary" | "neutral";
+	itemLabel?: (item: Option) => JSXElement;
+	bordered?: boolean;
 };
 
 export function Listbox<Option, OptGroup = never>(props: ListboxProps<Option, OptGroup>) {
-	const [local, others] = splitProps(props, ["class"]);
+	const [local, others] = splitProps(props, [
+		"class",
+		"size",
+		"itemLabel",
+		"bordered",
+		"theme",
+	]);
 
 	return (
 		<KListbox.Root
+			data-bordered={local.bordered ? "" : undefined}
+			data-theme={local.theme ?? "neutral"}
 			class={mergeClasses(styles.list)}
-			renderItem={node => <ListboxItem size={props.size} item={node} />}
+			renderItem={node => (
+				<ListboxItem itemLabel={local.itemLabel} size={local.size} item={node} />
+			)}
 			{...others}
 		/>
 	);

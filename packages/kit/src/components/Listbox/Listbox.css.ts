@@ -1,7 +1,9 @@
 import { createTheme, style } from "@vanilla-extract/css";
 import { tokens } from "../../foundation/contract.css";
-import { themeTokens } from "../../foundation";
+import { themeTokens, themeVars } from "../../foundation";
 import { componentStateStyles } from "@kobalte/vanilla-extract";
+import { LISTBOX_ITEM_SIZE } from "./sizes";
+import { toPx } from "../../utils/css";
 
 export const [listTheme, listThemeVars] = createTheme({
 	contentBackground: tokens.dropdownBackground,
@@ -20,14 +22,6 @@ export const [listTheme, listThemeVars] = createTheme({
 	indicatorSize: "20px",
 });
 
-const sizesCss = {
-	xs: "30px",
-	sm: "36px",
-	md: "40px",
-	lg: "48px",
-	xl: "56px",
-};
-
 const ButtonSizes = {
 	xs: "xs",
 	sm: "sm",
@@ -36,7 +30,32 @@ const ButtonSizes = {
 	xl: "xl",
 } as const;
 
-export const list = style([listTheme]);
+export const list = style([
+	listTheme,
+	{
+		borderRadius: themeTokens.radii.sm,
+		selectors: {
+			"&[data-bordered]": {
+				padding: themeTokens.spacing["2"],
+				border: `1px solid ${themeVars.separator}`,
+			},
+			"&[data-theme=primary]": {
+				vars: {
+					[listThemeVars.itemTextColor]: tokens.dropdownItemTextColor,
+					[listThemeVars.itemHoverBackground]: tokens.brandAccentHover,
+					[listThemeVars.itemHoverTextColor]: tokens.dropdownItemHoverTextColor,
+				},
+			},
+			"&[data-theme=neutral]": {
+				vars: {
+					[listThemeVars.itemTextColor]: tokens.dropdownItemTextColor,
+					[listThemeVars.itemHoverBackground]: tokens.dropdownItemHoverBackground,
+					[listThemeVars.itemHoverTextColor]: tokens.dropdownItemHoverTextColor,
+				},
+			},
+		},
+	},
+]);
 
 /**
  * TODO: same as select!
@@ -68,17 +87,18 @@ export const item = style([
 	{
 		selectors: {
 			[`&[data-size=${ButtonSizes.xs}]`]: {
-				height: "30px",
+				height: toPx(LISTBOX_ITEM_SIZE.xs),
 				fontSize: themeTokens.fontSize.sm,
-				minHeight: "1.25rem",
+				borderRadius: themeTokens.radii.xs,
+				minHeight: 0,
 			},
 			[`&[data-size=${ButtonSizes.sm}]`]: {
-				height: "36px",
+				height: toPx(LISTBOX_ITEM_SIZE.sm),
 				fontSize: themeTokens.fontSize.md,
-				minHeight: "1.25rem",
+				minHeight: 0,
 			},
 			[`&[data-size=${ButtonSizes.md}]`]: {
-				height: "42px",
+				height: toPx(LISTBOX_ITEM_SIZE.md),
 				fontSize: themeTokens.fontSize.md,
 			},
 		},

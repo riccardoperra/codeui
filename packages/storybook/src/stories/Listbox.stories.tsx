@@ -11,6 +11,17 @@ const meta = {
 			control: { type: "radio" },
 			options: ["multiple", "none", "single"],
 		},
+		size: {
+			control: { type: "radio" },
+			options: ["xs", "sm", "md"],
+		},
+		bordered: {
+			type: "boolean",
+		},
+		theme: {
+			control: { type: "radio" },
+			options: ["primary", "neutral"],
+		},
 	},
 
 	tags: ["autodocs"],
@@ -67,6 +78,17 @@ export const ListboxMedium: Story = {
 		defaultValue: ["Item1"],
 		options: ["Item1", "Item2", "Item3"],
 		selectionMode: "multiple",
+	},
+};
+
+export const ListboxOptionWithCustomItemLabel: Story = {
+	name: "Listbox - Custom Item Label",
+	args: {
+		size: "md",
+		defaultValue: ["Item1"],
+		options: ["Item1", "Item2", "Item3"],
+		selectionMode: "multiple",
+		itemLabel: (item: string) => <span style={{ color: "yellow" }}>Custom {item}</span>,
 	},
 };
 

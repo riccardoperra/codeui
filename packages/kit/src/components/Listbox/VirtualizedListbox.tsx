@@ -1,6 +1,7 @@
 import { createVirtualizer } from "@tanstack/solid-virtual";
 import { Listbox, ListboxItem, ListboxProps } from "./Listbox";
 import { For } from "solid-js";
+import { LISTBOX_ITEM_SIZE } from "./sizes";
 
 type VirtualizedListboxProps<Option, OptGroup> = Omit<
 	ListboxProps<Option, OptGroup>,
@@ -38,7 +39,8 @@ export function VirtualizedListbox<Option, OptGroup = never>(
 		getScrollElement: () => listboxRef,
 		estimateSize: (index: number) =>
 			// TODO: fix that size
-			props.virtualizerOptions?.estimateSize?.(index) ?? 42,
+			props.virtualizerOptions?.estimateSize?.(index) ??
+			LISTBOX_ITEM_SIZE[props.size ?? "md"],
 		// TODO: why error?
 		// @ts-ignore
 		getItemKey: (index: number) => {
