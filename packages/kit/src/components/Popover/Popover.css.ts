@@ -49,7 +49,7 @@ export const content = recipe({
 			padding: popoverThemeVars.contentPadding,
 			maxWidth: popoverThemeVars.contentMaxWidth,
 			overflow: "hidden",
-			zIndex: "40",
+			zIndex: themeTokens.zIndex["50"],
 			listStyleType: "none",
 			display: "flex",
 			flexDirection: "column",

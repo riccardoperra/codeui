@@ -75,7 +75,7 @@ export const button = recipe({
 					transform: "scale(0.97)",
 				},
 				"&:focus-visible": {
-					outlineOffset: "2px",
+					outlineOffset: "4px",
 					outline: `2px solid ${buttonVars.background}`,
 				},
 			},

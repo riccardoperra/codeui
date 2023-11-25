@@ -1,22 +1,22 @@
 import { RadioGroup } from "@kobalte/core";
-import { BaseFieldProps, createBaseFieldProps } from "../Field/createBaseFieldProps";
+import { BaseFieldProps } from "../Field/createBaseFieldProps";
 import {
 	createFieldErrorMessageProps,
 	FieldWithErrorMessageSupport,
 } from "../Field/FieldError/createFieldErrorMessageProps";
-import { For, JSXElement, Show, splitProps } from "solid-js";
+import { JSXElement, Show, splitProps } from "solid-js";
 import { createFieldLabelProps } from "../Field/FieldLabel/createFieldLabelProps";
 import { mergeClasses } from "../../utils/css";
 import { baseFieldContainer } from "../TextField/TextField.css";
 import { createFieldMessageProps } from "../Field/FieldMessage/createFieldMessageProps";
 import * as styles from "./Radio.css";
 
-type RadioListProps = RadioGroup.RadioGroupRootProps &
+export type RadioListProps = RadioGroup.RadioGroupRootProps &
 	BaseFieldProps &
 	FieldWithErrorMessageSupport & { label?: JSXElement; description?: string };
 
 function RadioGroupLabel(props: RadioGroup.RadioGroupLabelProps) {
-	const fieldLabelProps = createFieldLabelProps(props);
+	const fieldLabelProps = createFieldLabelProps<"span">(props);
 
 	return <RadioGroup.Label {...fieldLabelProps} />;
 }

@@ -11,11 +11,11 @@ export type DialogProps = KDialog.DialogRootOptions &
 	};
 
 export function DialogPanelContent(props: ParentProps): JSXElement {
-	return <div class={styles.panelContent}>{props.children}</div>;
+	return <div data-cui="dialog-panel-content" class={styles.panelContent}>{props.children}</div>;
 }
 
 export function DialogPanelFooter(props: ParentProps): JSXElement {
-	return <div class={styles.panelFooter}>{props.children}</div>;
+	return <div data-cui="dialog-panel-footer" class={styles.panelFooter}>{props.children}</div>;
 }
 
 type DialogPanelProps = styles.DialogPanelVariants &
@@ -37,13 +37,13 @@ export function DialogPanel(props: ParentProps<DialogPanelProps>): JSXElement {
 export function Dialog(props: ParentProps<DialogProps>) {
 	const [local, others] = splitProps(props, ["size", "children", "title"]);
 	return (
-		<KDialog.Root {...others}>
+		<KDialog.Root {...others} data-cui="cui-dialog-root">
 			<KDialog.Portal>
 				<KDialog.Overlay class={styles.overlay} />
-				<div class={mergeClasses(styles.dialogTheme, styles.positioner)}>
+				<div class={mergeClasses(styles.dialogTheme, styles.positioner)} data-panel-size={local.size}>
 					<DialogPanel size={local.size}>
 						<Show when={local.title} keyed={false}>
-							<div class={styles.title}>
+							<div class={styles.title} data-cui="dialog-panel-title">
 								<KDialog.Title>{props.title}</KDialog.Title>
 								<KDialog.CloseButton asChild>
 									<As

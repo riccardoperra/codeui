@@ -13,7 +13,7 @@ import {
 	Title,
 } from "solid-start";
 import "./root.css";
-import * as styles from "./root.css.js";
+import * as styles from "./root-ve.css";
 import "./preflight.css";
 import "./tailwind-preflight.css";
 import { Button } from "@codeui/kit";
@@ -68,6 +68,9 @@ export default function Root() {
 									<A href="/radio">Radio</A>
 								</SidebarItem>
 								<SidebarItem>
+									<A href="/checkbox">Checkbox</A>
+								</SidebarItem>
+								<SidebarItem>
 									<A href="/dropdown-menu">Dropdown Menu</A>
 								</SidebarItem>
 								<SidebarItem>
@@ -80,7 +83,7 @@ export default function Root() {
 									<A href="/text-input">Text Input</A>
 								</SidebarItem>
 								<SidebarItem>
-									<A href="/number-input">Number Input</A>
+									<A href="/textarea">TextArea</A>
 								</SidebarItem>
 								<SidebarItem>
 									<A href="/select">Select</A>
@@ -93,6 +96,12 @@ export default function Root() {
 								</SidebarItem>
 								<SidebarItem>
 									<A href="/icons">Icons</A>
+								</SidebarItem>
+								<SidebarItem>
+									<A href="/tabs">Tabs</A>
+								</SidebarItem>
+								<SidebarItem>
+									<A href="/segmented-control">Segmented Control</A>
 								</SidebarItem>
 							</Sidebar>
 							<div class={styles.layoutContent}>

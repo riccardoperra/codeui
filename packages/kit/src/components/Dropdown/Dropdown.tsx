@@ -1,8 +1,7 @@
 import { GetKobalteParams } from "../../utils/types";
-import { As, DropdownMenu as KDropdownMenu } from "@kobalte/core";
+import { DropdownMenu as KDropdownMenu } from "@kobalte/core";
 import * as styles from "./Dropdown.css";
 import { JSX, JSXElement, Show, splitProps } from "solid-js";
-import { OverrideComponentProps } from "@kobalte/utils";
 
 export function DropdownMenuContent(props: KDropdownMenu.DropdownMenuContentProps) {
 	return <KDropdownMenu.Content {...props} class={styles.content} />;

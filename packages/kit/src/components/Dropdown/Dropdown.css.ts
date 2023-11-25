@@ -48,7 +48,7 @@ export const content = style([
 		borderRadius: dropdownMenuThemeVars.contentRadius,
 		padding: dropdownMenuThemeVars.contentPadding,
 		overflow: "hidden",
-		zIndex: 40,
+		zIndex: themeTokens.zIndex["50"],
 		listStyleType: "none",
 		display: "flex",
 		flexDirection: "column",

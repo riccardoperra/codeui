@@ -1,4 +1,3 @@
-import { JSX } from "solid-js";
 import { SvgIcon, SvgIconProps } from "./SvgIcon";
 
 export function CloseIcon(props: SvgIconProps) {

@@ -1,5 +1,67 @@
 # @codeui/kit
 
+## 0.0.34
+
+### Patch Changes
+
+- 7223c92: fix: segmented control light theme active bg
+
+## 0.0.33
+
+### Patch Changes
+
+- 96bae68: improve segmented control size
+
+## 0.0.32
+
+### Patch Changes
+
+- 61d8687: improve SegmentedControl
+
+## 0.0.31
+
+### Patch Changes
+
+- 251a766: Add segmented control
+
+## 0.0.30
+
+### Patch Changes
+
+- bc0aedd: dialog panel full fix padding
+
+## 0.0.29
+
+### Patch Changes
+
+- 8078c54: fix dialog max height
+
+## 0.0.28
+
+### Patch Changes
+
+- ce300a3: Dialog improve styles
+
+## 0.0.27
+
+### Patch Changes
+
+- 656ff37: fix select, dialog, popover z-index
+
+## 0.0.26
+
+### Patch Changes
+
+- 6b3361c: add text area
+
+## 0.0.25
+
+### Patch Changes
+
+- 0d2a10b: feat: checkbox
+- 46bb9a1: Fix/missing exports
+- 8eedf29: export breakpoint and responsive style
+
 ## 0.0.24
 
 ### Patch Changes

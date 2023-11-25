@@ -1,10 +1,13 @@
 import { description } from "./FieldMessage.css";
-import { PolymorphicProps } from "@kobalte/utils/dist/types/polymorphic";
-import { mergeProps } from "solid-js";
+import { mergeProps, splitProps, ValidComponent } from "solid-js";
 import { mergeClasses } from "../../../utils/css";
+import { PolymorphicProps } from "@kobalte/core";
 
-export function createFieldMessageProps<T extends PolymorphicProps<"div">>(props: T) {
-	return mergeProps(props, {
+export function createFieldMessageProps<TComponent extends ValidComponent = "div">(
+	props: PolymorphicProps<TComponent>,
+) {
+	const [local] = splitProps(props, ["children"]);
+	return mergeProps(local, {
 		get class() {
 			return mergeClasses(props.class, description);
 		},
