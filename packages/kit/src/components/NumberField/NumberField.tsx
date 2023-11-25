@@ -1,26 +1,14 @@
 import { createControllableSignal, TextField as KTextField } from "@kobalte/core";
-import { clamp, isNumber, mergeRefs } from "@kobalte/utils";
+import { clamp, mergeRefs } from "@kobalte/utils";
 import {
 	maskitoCaretGuard,
 	maskitoNumberOptionsGenerator,
 	maskitoParseNumber,
 } from "@maskito/kit";
-import {
-	createEffect,
-	JSX,
-	mergeProps,
-	on,
-	onMount,
-	Ref,
-	Show,
-	splitProps,
-} from "solid-js";
-import { ChevronDownIcon } from "../../icons/ChevronDownIcon";
-import { ChevronUpIcon } from "../../icons/ChevronUpIcon";
+import { JSX, mergeProps, onMount, Ref, Show, splitProps } from "solid-js";
 import { SlotProp } from "../../utils/component";
 import { mergeClasses } from "../../utils/css";
 import { createMaskito } from "../../utils/maskito";
-import { Button } from "../Button/Button";
 import { BaseFieldProps, createBaseFieldProps } from "../Field/createBaseFieldProps";
 import {
 	createFieldErrorMessageProps,
@@ -33,6 +21,7 @@ import { NumberFieldMessage } from "./NumberFieldMessage";
 import type { InputNumberOptions } from "./options";
 import { defaultNumberFormat, INPUT_NUMBER_OPTIONS as defaultOptions } from "./options";
 import { CHAR_HYPHEN, CHAR_MINUS } from "./unicodeCharacters";
+import { NumberFieldControls } from "./NumberFieldControls";
 
 // TODO: add to base field slot that respect the BaseFieldProps signature?
 type TextFieldSlot = "root" | "input" | "label" | "errorLabel";
@@ -58,7 +47,7 @@ export type NumberFieldProps = NumberFieldRootOptions &
 
 export function NumberField(props: NumberFieldProps) {
 	const [local, options, state, others] = splitProps(
-		props,
+		mergeProps({ size: "md" }, props),
 		[
 			"description",
 			"size",
@@ -73,6 +62,7 @@ export function NumberField(props: NumberFieldProps) {
 		["value", "onChange", "defaultValue"],
 	);
 
+	let unfinishedValue: string | null = null;
 	const [value, setValue] = createControllableSignal<number | undefined>({
 		value: () => state.value,
 		defaultValue: () => state.defaultValue,
@@ -150,14 +140,32 @@ export function NumberField(props: NumberFieldProps) {
 		setValue(clamp((value() || 0) - optionsWithDefault.step, computeMin(), computeMax()));
 	};
 
+	const isNativeValueNotFinished = (): boolean => {
+		const nativeNumberValue = maskitoParseNumber(
+			formattedValue(),
+			defaultNumberFormat.decimalSeparator,
+		);
+		return nativeNumberValue < 0
+			? nativeNumberValue > computeMax()
+			: nativeNumberValue < computeMin();
+	};
+
 	const onValueChange = (nativeValue: string) => {
 		const parsedValue = maskitoParseNumber(
 			nativeValue,
 			defaultNumberFormat.decimalSeparator,
 		);
 
+		unfinishedValue = null;
+
 		if (Number.isNaN(parsedValue)) {
 			setValue(undefined);
+			return;
+		}
+
+		if (isNativeValueNotFinished()) {
+			console.log("is unfinished");
+			unfinishedValue = nativeValue;
 			return;
 		}
 
@@ -166,6 +174,7 @@ export function NumberField(props: NumberFieldProps) {
 		}
 
 		setValue(parsedValue);
+		// todo: fix
 		internalRef.value = formattedValue();
 	};
 
@@ -186,8 +195,8 @@ export function NumberField(props: NumberFieldProps) {
 	};
 
 	const onFocused = (focused: boolean) => {
-		const nativeNumberValue = value()
-			? maskitoParseNumber(String(value() ?? ""), defaultNumberFormat.decimalSeparator)
+		const nativeNumberValue = unfinishedValue
+			? maskitoParseNumber(unfinishedValue, defaultNumberFormat.decimalSeparator)
 			: value();
 
 		if (Number.isNaN(nativeNumberValue)) {
@@ -207,7 +216,7 @@ export function NumberField(props: NumberFieldProps) {
 	return (
 		<KTextField.Root
 			data-cui={"number-field"}
-			data-field-size={local.size}
+			data-field-size={local.size ?? "md"}
 			class={mergeClasses(styles.baseFieldContainer, local?.slotClasses?.root)}
 			value={value() as unknown as string}
 			onChange={onValueChange}
@@ -230,28 +239,11 @@ export function NumberField(props: NumberFieldProps) {
 					onFocus={() => onFocused(true)}
 				/>
 
-				<div class={styles.controlsContainer}>
-					<Button
-						type={"button"}
-						variant={"ghost"}
-						theme={"secondary"}
-						aria-label={`Increment by ${optionsWithDefault.step}`}
-						class={styles.controlButton}
-						onClick={increment}
-					>
-						<ChevronUpIcon class={styles.control} />
-					</Button>
-					<Button
-						type={"button"}
-						variant={"ghost"}
-						theme={"secondary"}
-						aria-label={`Decrement by ${optionsWithDefault.step}`}
-						class={styles.controlButton}
-						onClick={decrement}
-					>
-						<ChevronDownIcon class={styles.control} />
-					</Button>
-				</div>
+				<NumberFieldControls
+					increment={increment}
+					decrement={decrement}
+					step={optionsWithDefault.step}
+				/>
 			</div>
 
 			<Show when={local.description} keyed={false}>

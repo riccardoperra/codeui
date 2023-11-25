@@ -39,7 +39,7 @@ export const INPUT_NUMBER_OPTIONS: InputNumberOptions = {
 	min: Number.MIN_SAFE_INTEGER,
 	max: Number.MAX_SAFE_INTEGER,
 	step: 1,
-	precision: 2,
+	precision: 0,
 	prefix: "",
 	postfix: "",
 };
