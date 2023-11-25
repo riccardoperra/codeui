@@ -37,6 +37,7 @@ const config: StorybookConfig = {
 					"@codeui/kit",
 					"@kobalte/core",
 					"@kobalte/utils",
+					"@tanstack/solid-virtual",
 				],
 			},
 		});
