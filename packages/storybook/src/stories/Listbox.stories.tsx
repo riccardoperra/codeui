@@ -95,7 +95,7 @@ export const ListboxOptionWithCustomItemLabel: Story = {
 export const ListboxVirtualized: Story = {
 	name: "Listbox Virtualized",
 	render: args => {
-		const options = args.options!.map((option, index) => ({
+		const options = (args.options! as string[]).map((option, index) => ({
 			label: option as string,
 			value: String(index),
 			disabled: false,
