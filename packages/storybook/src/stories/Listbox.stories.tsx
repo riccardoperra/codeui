@@ -102,13 +102,13 @@ export const ListboxVirtualized: Story = {
 			disabled: false,
 		}));
 
-		return <VirtualizedListbox options={options} />;
+		return <VirtualizedListbox options={options} style={args.style} />;
 	},
 	args: {
-		options: new Array(100_000).fill(null).map((_, index) => `Item ${index}`),
-		virtualized: true,
+		options: new Array(100_000).fill(null).map((_, index) => `Item ${index + 1}`),
 		style: {
 			height: "400px",
+			overflow: "auto",
 		},
 	},
 };
