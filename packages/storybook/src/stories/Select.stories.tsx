@@ -86,7 +86,6 @@ export const SelectOutlineVariant: Story = {
 	name: "Outline variant",
 	args: {
 		...SelectStory.args,
-		// @ts-expect-error fix type
 		theme: "outline",
 	},
 };

@@ -77,7 +77,6 @@ export const TextFieldOutlineVariant: Story = {
 	args: {
 		placeholder: "Insert a value",
 		label: "Input label",
-		// @ts-expect-error TODO: fix type
 		theme: "outline",
 		description: "Lorem ipsum dolor sit amet",
 	},
