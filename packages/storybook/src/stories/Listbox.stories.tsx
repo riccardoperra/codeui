@@ -88,6 +88,7 @@ export const ListboxOptionWithCustomItemLabel: Story = {
 		defaultValue: ["Item1"],
 		options: ["Item1", "Item2", "Item3"],
 		selectionMode: "multiple",
+		// @ts-ignore
 		itemLabel: (item: string) => <span style={{ color: "yellow" }}>Custom {item}</span>,
 	},
 };

@@ -4,12 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
+    "dev": "storybook dev -p 6006",
+    "build": "storybook build",
     "preview": "vite preview",
-    "storybook:run": "storybook",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "storybook:run": "storybook"
   },
   "devDependencies": {
     "@storybook/addon-a11y": "^7.5.3",

@@ -84,6 +84,7 @@ export const TextAreaOutlineVariant: Story = {
 		options: { autoResize: true },
 		placeholder: "Insert a value",
 		label: "Textarea label",
+		// @ts-expect-error Fix
 		theme: "outline",
 		description: "Lorem ipsum dolor sit amet",
 	},
