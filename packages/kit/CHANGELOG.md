@@ -1,5 +1,11 @@
 # @codeui/kit
 
+## 0.0.36
+
+### Patch Changes
+
+- 2f3d856: listbox handle focus-visible and classes from outside
+
 ## 0.0.35
 
 ### Patch Changes
