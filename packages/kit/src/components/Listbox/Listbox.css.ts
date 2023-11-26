@@ -34,10 +34,19 @@ export const list = style([
 	listTheme,
 	{
 		borderRadius: themeTokens.radii.sm,
+
+		":focus-visible": {
+			outline: "none",
+		},
+
 		selectors: {
 			"&[data-bordered]": {
+				outline: "none",
 				padding: themeTokens.spacing["2"],
 				border: `1px solid ${themeVars.separator}`,
+			},
+			"&[data-bordered]:focus-visible": {
+				borderColor: themeVars.brand,
 			},
 			"&[data-theme=primary]": {
 				vars: {
