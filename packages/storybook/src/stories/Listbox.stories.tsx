@@ -7,6 +7,18 @@ const meta = {
 	title: "DesignSystem/Listbox",
 	component: Listbox,
 	argTypes: {
+		shouldSelectOnPressUp: {
+			type: "boolean",
+		},
+		shouldFocusOnHover: {
+			type: "boolean",
+		},
+		disallowEmptySelection: {
+			type: "boolean",
+		},
+		allowsTabNavigation: {
+			type: "boolean",
+		},
 		selectionMode: {
 			control: { type: "radio" },
 			options: ["multiple", "none", "single"],
@@ -36,8 +48,15 @@ export default meta;
 export const ListboxStory: Story = {
 	name: "Listbox",
 	args: {
+		theme: "neutral",
+		size: "md",
+		bordered: false,
 		options: ["Item1", "Item2", "Item3"],
 		selectionMode: "single",
+		shouldFocusOnHover: true,
+		shouldSelectOnPressUp: false,
+		disallowEmptySelection: false,
+		allowsTabNavigation: false,
 	},
 };
 
@@ -75,6 +94,17 @@ export const ListboxMedium: Story = {
 	name: "Listbox - Medium Size",
 	args: {
 		size: "md",
+		defaultValue: ["Item1"],
+		options: ["Item1", "Item2", "Item3"],
+		selectionMode: "multiple",
+	},
+};
+
+export const ListboxBordered: Story = {
+	name: "Listbox - Bordered",
+	args: {
+		size: "md",
+		bordered: true,
 		defaultValue: ["Item1"],
 		options: ["Item1", "Item2", "Item3"],
 		selectionMode: "multiple",
