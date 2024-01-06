@@ -74,6 +74,8 @@
 		"@kobalte/core": "^0.11.0",
 		"@kobalte/utils": "^0.9.0",
 		"@kobalte/vanilla-extract": "^0.4.0",
+		"@maskito/core": "^1.9.0",
+		"@maskito/kit": "^1.9.0",
 		"@motionone/solid": "^10.16.0",
 		"@radix-ui/colors": "^0.1.8",
 		"@solid-primitives/pagination": "^0.2.5",

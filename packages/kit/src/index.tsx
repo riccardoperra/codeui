@@ -8,6 +8,8 @@ export type { TextFieldProps } from "./components/TextField/TextField";
 export { TextArea, TextAreaLabel } from "./components/TextArea/TextArea";
 export type { TextAreaProps } from "./components/TextArea/TextArea";
 
+export { NumberField, NumberFieldLabel } from "./components/NumberField/NumberField";
+export type { NumberFieldProps } from "./components/NumberField/NumberField";
 export { IconButton } from "./components/IconButton/IconButton";
 
 export { Checkbox } from "./components/CheckBox/CheckBox";
