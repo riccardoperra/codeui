@@ -1,7 +1,8 @@
 import { Button, NumberField, NumberFieldProps } from "@codeui/kit";
 import type { Meta, StoryObj } from "storybook-solidjs";
 import { DocsItemsContainer, DocsMultipleItemsContainer } from "./components/Section.jsx";
-import { For } from "solid-js";
+import { For, createSignal } from "solid-js";
+import { render } from "solid-js/web";
 
 // TODO: fix
 const sizes = ["xs", "sm", "md", "lg", "xl"] as NumberFieldProps["size"][];
@@ -84,11 +85,19 @@ export const TextFieldStory: Story = {
 	},
 };
 
+const [d, setX] = createSignal(60);
 export const MinMax: Story = {
 	name: "NumberField with min/max value",
+	render: args => (
+		<NumberField
+			value={d()}
+			onChange={x => console.warn("value change", x, setX(x))}
+			{...args}
+		/>
+	),
 	args: {
-		min: 5,
-		max: 50,
+		min: 40,
+		max: 500,
 		placeholder: "Insert a value...",
 		label: "Input label",
 		theme: "filled",

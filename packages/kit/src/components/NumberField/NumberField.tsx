@@ -1,11 +1,20 @@
 import { createControllableSignal, TextField as KTextField } from "@kobalte/core";
-import { clamp, mergeRefs } from "@kobalte/utils";
+import { clamp, isNumber, mergeRefs } from "@kobalte/utils";
 import {
 	maskitoCaretGuard,
 	maskitoNumberOptionsGenerator,
 	maskitoParseNumber,
 } from "@maskito/kit";
-import { JSX, mergeProps, onMount, Ref, Show, splitProps } from "solid-js";
+import {
+	createEffect,
+	createSignal,
+	JSX,
+	mergeProps,
+	onMount,
+	Ref,
+	Show,
+	splitProps,
+} from "solid-js";
 import { SlotProp } from "../../utils/component";
 import { mergeClasses } from "../../utils/css";
 import { createMaskito } from "../../utils/maskito";
@@ -16,12 +25,12 @@ import {
 } from "../Field/FieldError/createFieldErrorMessageProps";
 import { tuiFormatNumber } from "./formatNumber";
 import * as styles from "./NumberField.css";
+import { NumberFieldControls } from "./NumberFieldControls";
 import { NumberFieldLabel } from "./NumberFieldLabel";
 import { NumberFieldMessage } from "./NumberFieldMessage";
 import type { InputNumberOptions } from "./options";
 import { defaultNumberFormat, INPUT_NUMBER_OPTIONS as defaultOptions } from "./options";
 import { CHAR_HYPHEN, CHAR_MINUS } from "./unicodeCharacters";
-import { NumberFieldControls } from "./NumberFieldControls";
 
 // TODO: add to base field slot that respect the BaseFieldProps signature?
 type TextFieldSlot = "root" | "input" | "label" | "errorLabel";
@@ -30,9 +39,9 @@ type NumberFieldRootOptions = Omit<
 	KTextField.TextFieldRootOptions,
 	"value" | "defaultValue" | "onChange"
 > & {
-	value?: number;
+	value?: number | null;
 	defaultValue?: number;
-	onChange?: (value: number | undefined) => void;
+	onChange?: (value: number | undefined | null) => void;
 };
 
 export type NumberFieldProps = NumberFieldRootOptions &
@@ -62,15 +71,16 @@ export function NumberField(props: NumberFieldProps) {
 		["value", "onChange", "defaultValue"],
 	);
 
-	let unfinishedValue: string | null = null;
-	const [value, setValue] = createControllableSignal<number | undefined>({
+	const [focused, setFocused] = createSignal(false);
+	const [forcedChange, forceChange] = createSignal<true>(true, { equals: false });
+	const [value, setValue] = createControllableSignal<number | undefined | null>({
 		value: () => state.value,
 		defaultValue: () => state.defaultValue,
 		onChange: value => {
 			state.onChange?.(value);
 		},
 	});
-
+	const [unfinishedValue, setUnfinishedValue] = createSignal("" as string | null);
 	let internalRef: HTMLInputElement;
 
 	const optionsWithDefault = mergeProps(defaultOptions, options);
@@ -90,6 +100,7 @@ export function NumberField(props: NumberFieldProps) {
 				precision: optionsWithDefault.precision,
 				prefix: optionsWithDefault.prefix,
 				postfix: optionsWithDefault.postfix,
+				decimalZeroPadding: true, // TODO: decimalMode === 'always'
 			});
 			return {
 				...options,
@@ -103,6 +114,14 @@ export function NumberField(props: NumberFieldProps) {
 
 	onMount(() => mask(local.ref as any));
 
+	const displayValue = () => {
+		const isFocused = focused();
+		const dirtyValue = unfinishedValue();
+		const sanitizedValue = value();
+		const newValue = isFocused ? dirtyValue : sanitizedValue || null;
+		return newValue ? String(newValue) : undefined;
+	};
+
 	const computeMin = () => {
 		return Math.min(optionsWithDefault.min, optionsWithDefault.max);
 	};
@@ -110,44 +129,37 @@ export function NumberField(props: NumberFieldProps) {
 	const computeMax = () => {
 		return Math.max(optionsWithDefault.min, optionsWithDefault.max);
 	};
+	const nativeValue = () => internalRef?.value || "";
+	const nativeNumberValue = () =>
+		maskitoParseNumber(nativeValue(), defaultNumberFormat.decimalSeparator);
+
+	const setNativeValue = (value: string) => (internalRef.value = value);
 
 	const onKeyDown = (event: KeyboardEvent) => {
 		if (!(event.key === "ArrowDown" || event.key === "ArrowUp")) {
 			return;
 		}
-
 		event.preventDefault();
-		event.stopImmediatePropagation();
-
-		if (!optionsWithDefault.step) {
-			return;
-		}
-
 		if (event.key === "ArrowDown") {
 			decrement();
 		} else {
 			increment();
 		}
-
-		internalRef.value = formattedValue();
+		setNativeValue(formattedValue());
 	};
 
 	const increment = () => {
-		setValue(clamp((value() || 0) + optionsWithDefault.step, computeMin(), computeMax()));
+		updateValue((value() || 0) + optionsWithDefault.step);
 	};
 
 	const decrement = () => {
-		setValue(clamp((value() || 0) - optionsWithDefault.step, computeMin(), computeMax()));
+		updateValue((value() || 0) - optionsWithDefault.step);
 	};
 
-	const isNativeValueNotFinished = (): boolean => {
-		const nativeNumberValue = maskitoParseNumber(
-			formattedValue(),
-			defaultNumberFormat.decimalSeparator,
-		);
-		return nativeNumberValue < 0
-			? nativeNumberValue > computeMax()
-			: nativeNumberValue < computeMin();
+	const updateValue = (value: number, clampValue: boolean = true) => {
+		const newValue = clampValue ? clamp(value || 0, computeMin(), computeMax()) : value;
+		setValue(newValue);
+		setNativeValue(formattedValue());
 	};
 
 	const onValueChange = (nativeValue: string) => {
@@ -156,37 +168,37 @@ export function NumberField(props: NumberFieldProps) {
 			defaultNumberFormat.decimalSeparator,
 		);
 
-		unfinishedValue = null;
+		let value: number | undefined = undefined;
+
+		setUnfinishedValue(null);
 
 		if (Number.isNaN(parsedValue)) {
-			setValue(undefined);
+			value = undefined;
+			setUnfinishedValue("");
 			return;
+		} else {
+			if (focused()) {
+				setUnfinishedValue(nativeValue);
+				updateValue(parsedValue, false);
+			} else {
+				updateValue(parsedValue);
+				setUnfinishedValue(nativeValue);
+			}
 		}
-
-		if (isNativeValueNotFinished()) {
-			console.log("is unfinished");
-			unfinishedValue = nativeValue;
-			return;
-		}
-
-		if (parsedValue < computeMin() || parsedValue > computeMax()) {
-			return;
-		}
-
-		setValue(parsedValue);
-		// todo: fix
-		internalRef.value = formattedValue();
 	};
 
 	const formattedValue = (): string => {
-		return value() !== null ? getFormattedValue(value() || 0) : "";
-	};
+		if (value() === null) {
+			return "";
+		}
+		const currentValue = value() || 0;
+		const hasFraction = Math.abs(currentValue) % 1 > 0;
+		let decimalLimit = hasFraction ? optionsWithDefault.precision : 0;
 
-	const getFormattedValue = (value: number): string => {
-		let decimalLimit = optionsWithDefault.precision;
+		// add focused
 		return (
 			optionsWithDefault.prefix +
-			tuiFormatNumber(value, {
+			tuiFormatNumber(currentValue, {
 				...defaultNumberFormat,
 				decimalLimit,
 			}).replace(CHAR_HYPHEN, CHAR_MINUS) +
@@ -195,22 +207,27 @@ export function NumberField(props: NumberFieldProps) {
 	};
 
 	const onFocused = (focused: boolean) => {
-		const nativeNumberValue = unfinishedValue
-			? maskitoParseNumber(unfinishedValue, defaultNumberFormat.decimalSeparator)
-			: value();
+		setFocused(focused);
 
-		if (Number.isNaN(nativeNumberValue)) {
-			internalRef.value = focused
-				? optionsWithDefault.prefix + optionsWithDefault.postfix
-				: "";
-			setValue(undefined);
+		const nativeNumber = unfinishedValue()
+			? maskitoParseNumber(unfinishedValue()!, defaultNumberFormat.decimalSeparator)
+			: nativeNumberValue();
+
+		if (Number.isNaN(nativeNumber)) {
+			setNativeValue(
+				focused ? optionsWithDefault.prefix + optionsWithDefault.postfix : "",
+			);
+			setUnfinishedValue(null);
+			setValue(null);
 			return;
 		}
 
 		if (!focused) {
-			setValue(nativeNumberValue);
-			internalRef.value = formattedValue();
+			updateValue(nativeNumber);
+			setUnfinishedValue(String(nativeNumber));
 		}
+
+		setNativeValue(formattedValue());
 	};
 
 	return (
@@ -218,7 +235,7 @@ export function NumberField(props: NumberFieldProps) {
 			data-cui={"number-field"}
 			data-field-size={local.size ?? "md"}
 			class={mergeClasses(styles.baseFieldContainer, local?.slotClasses?.root)}
-			value={value() as unknown as string}
+			value={displayValue()}
 			onChange={onValueChange}
 			{...others}
 		>

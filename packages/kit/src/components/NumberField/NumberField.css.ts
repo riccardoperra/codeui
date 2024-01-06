@@ -1,6 +1,7 @@
 import { createTheme, style } from "@vanilla-extract/css";
 import { themeTokens } from "../../foundation/themes.css";
 import { baseFieldTheme, FieldSizes } from "../Field/Field.css";
+import { themeVars } from "../../foundation";
 
 export const [numberFieldTheme, numberFieldVars] = createTheme({
 	controlSize: "",
@@ -31,7 +32,7 @@ export const numberFieldContainer = style({
 
 export const controlsContainer = style({
 	position: "absolute",
-	right: "16px",
+	right: "8px",
 	top: "50%",
 	transform: `translateY(-50%)`,
 	flexDirection: "column",
@@ -39,6 +40,8 @@ export const controlsContainer = style({
 	gap: "0px",
 	zIndex: themeTokens.zIndex["10"],
 	display: "none",
+	backgroundColor: themeVars.formAccentBorder,
+	borderRadius: themeTokens.radii.md,
 
 	selectors: {
 		[`${numberFieldContainer}:hover &`]: {
