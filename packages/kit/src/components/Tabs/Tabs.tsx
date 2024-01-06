@@ -2,7 +2,6 @@ import { Tabs as KTabs } from "@kobalte/core";
 import { mergeClasses } from "../../utils/css";
 import * as styles from "./Tabs.css";
 import { createContext, Show, splitProps, useContext } from "solid-js";
-import { tabsRoot } from "./Tabs.css";
 
 type TabsProps = KTabs.TabsRootProps & {
 	theme?: "inline" | "default";

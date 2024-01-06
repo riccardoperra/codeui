@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  '@storybook/manager-api@7.5.3':
+    hash: twatmsb4rqm67drtouofs7dney
+    path: patches/@storybook__manager-api@7.5.3.patch
+
 importers:
 
   .:
@@ -93,6 +98,12 @@ importers:
       '@solid-primitives/scheduled':
         specifier: ^1.4.1
         version: 1.4.1(solid-js@1.8.5)
+      '@tanstack/solid-virtual':
+        specifier: ^3.0.0-beta.6
+        version: 3.0.0-beta.6
+      '@tanstack/virtual-core':
+        specifier: ^3.0.0-alpha.1
+        version: 3.0.0-alpha.1
       '@vanilla-extract/css':
         specifier: ^1.11.0
         version: 1.14.0
@@ -255,15 +266,15 @@ importers:
       '@storybook/components':
         specifier: ^7.5.3
         version: 7.5.3(react-dom@18.2.0)(react@18.2.0)
-      '@storybook/manager-api':
-        specifier: ^7.5.3
-        version: 7.5.3(react-dom@18.2.0)(react@18.2.0)
       '@storybook/testing-library':
         specifier: ^0.2.2
         version: 0.2.2
       '@storybook/theming':
         specifier: ^7.5.3
         version: 7.5.3(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/types':
+        specifier: ^7.5.3
+        version: 7.5.3
       '@vanilla-extract/vite-plugin':
         specifier: ^3.9.1
         version: 3.9.1(@types/node@18.16.3)(less@4.2.0)(vite@4.5.0)
@@ -286,7 +297,7 @@ importers:
         specifier: ^1.0.0-beta.2
         version: 1.0.0-beta.2(typescript@5.0.4)(vite@4.5.0)
       typescript:
-        specifier: ^5.0.2
+        specifier: 5.0.4
         version: 5.0.4
       vite:
         specifier: ^4.4.5
@@ -3776,6 +3787,10 @@ packages:
       '@babel/runtime': 7.21.0
     dev: true
 
+  /@reach/observe-rect@1.2.0:
+    resolution: {integrity: sha512-Ba7HmkFgfQxZqqaeIWWkNK0rEhpxVQHIoVyW1YDSkGsGIXzcaW4deC8B0pZrNSSyLTdIk7y+5olKt5+g0GmFIQ==}
+    dev: false
+
   /@rollup/plugin-babel@6.0.3(@babel/core@7.23.3)(rollup@3.29.4):
     resolution: {integrity: sha512-fKImZKppa1A/gX73eg4JGo+8kQr/q1HBQaCGKECZ0v4YBBv3lFqi14+7xyApECzvkLTHCifx+7ntcrvtBIRcpg==}
     engines: {node: '>=14.0.0'}
@@ -4092,7 +4107,7 @@ packages:
       '@storybook/components': 7.5.3(react-dom@18.2.0)(react@18.2.0)
       '@storybook/core-events': 7.5.3
       '@storybook/global': 5.0.0
-      '@storybook/manager-api': 7.5.3(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/manager-api': 7.5.3(patch_hash=twatmsb4rqm67drtouofs7dney)(react-dom@18.2.0)(react@18.2.0)
       '@storybook/preview-api': 7.5.3
       '@storybook/theming': 7.5.3(react-dom@18.2.0)(react@18.2.0)
       '@storybook/types': 7.5.3
@@ -4121,7 +4136,7 @@ packages:
       '@storybook/components': 7.5.3(react-dom@18.2.0)(react@18.2.0)
       '@storybook/core-events': 7.5.3
       '@storybook/global': 5.0.0
-      '@storybook/manager-api': 7.5.3(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/manager-api': 7.5.3(patch_hash=twatmsb4rqm67drtouofs7dney)(react-dom@18.2.0)(react@18.2.0)
       '@storybook/preview-api': 7.5.3
       '@storybook/theming': 7.5.3(react-dom@18.2.0)(react@18.2.0)
       '@storybook/types': 7.5.3
@@ -4155,7 +4170,7 @@ packages:
       '@storybook/components': 7.5.3(react-dom@18.2.0)(react@18.2.0)
       '@storybook/core-events': 7.5.3
       '@storybook/global': 5.0.0
-      '@storybook/manager-api': 7.5.3(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/manager-api': 7.5.3(patch_hash=twatmsb4rqm67drtouofs7dney)(react-dom@18.2.0)(react@18.2.0)
       '@storybook/preview-api': 7.5.3
       '@storybook/theming': 7.5.3(react-dom@18.2.0)(react@18.2.0)
       '@storybook/types': 7.5.3
@@ -4184,7 +4199,7 @@ packages:
       '@storybook/components': 7.5.3(react-dom@18.2.0)(react@18.2.0)
       '@storybook/core-common': 7.5.3
       '@storybook/core-events': 7.5.3
-      '@storybook/manager-api': 7.5.3(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/manager-api': 7.5.3(patch_hash=twatmsb4rqm67drtouofs7dney)(react-dom@18.2.0)(react@18.2.0)
       '@storybook/node-logger': 7.5.3
       '@storybook/preview-api': 7.5.3
       '@storybook/theming': 7.5.3(react-dom@18.2.0)(react@18.2.0)
@@ -4250,7 +4265,7 @@ packages:
       '@storybook/addon-toolbars': 7.5.3(react-dom@18.2.0)(react@18.2.0)
       '@storybook/addon-viewport': 7.5.3(react-dom@18.2.0)(react@18.2.0)
       '@storybook/core-common': 7.5.3
-      '@storybook/manager-api': 7.5.3(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/manager-api': 7.5.3(patch_hash=twatmsb4rqm67drtouofs7dney)(react-dom@18.2.0)(react@18.2.0)
       '@storybook/node-logger': 7.5.3
       '@storybook/preview-api': 7.5.3
       react: 18.2.0
@@ -4288,7 +4303,7 @@ packages:
       '@storybook/core-events': 7.5.3
       '@storybook/global': 5.0.0
       '@storybook/instrumenter': 7.5.3
-      '@storybook/manager-api': 7.5.3(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/manager-api': 7.5.3(patch_hash=twatmsb4rqm67drtouofs7dney)(react-dom@18.2.0)(react@18.2.0)
       '@storybook/preview-api': 7.5.3
       '@storybook/theming': 7.5.3(react-dom@18.2.0)(react@18.2.0)
       '@storybook/types': 7.5.3
@@ -4319,7 +4334,7 @@ packages:
       '@storybook/core-events': 7.5.3
       '@storybook/csf': 0.1.1
       '@storybook/global': 5.0.0
-      '@storybook/manager-api': 7.5.3(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/manager-api': 7.5.3(patch_hash=twatmsb4rqm67drtouofs7dney)(react-dom@18.2.0)(react@18.2.0)
       '@storybook/preview-api': 7.5.3
       '@storybook/router': 7.5.3(react-dom@18.2.0)(react@18.2.0)
       '@storybook/types': 7.5.3
@@ -4344,7 +4359,7 @@ packages:
       '@storybook/components': 7.5.3(react-dom@18.2.0)(react@18.2.0)
       '@storybook/core-events': 7.5.3
       '@storybook/global': 5.0.0
-      '@storybook/manager-api': 7.5.3(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/manager-api': 7.5.3(patch_hash=twatmsb4rqm67drtouofs7dney)(react-dom@18.2.0)(react@18.2.0)
       '@storybook/preview-api': 7.5.3
       '@storybook/types': 7.5.3
       react: 18.2.0
@@ -4370,7 +4385,7 @@ packages:
       '@storybook/components': 7.5.3(react-dom@18.2.0)(react@18.2.0)
       '@storybook/core-events': 7.5.3
       '@storybook/global': 5.0.0
-      '@storybook/manager-api': 7.5.3(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/manager-api': 7.5.3(patch_hash=twatmsb4rqm67drtouofs7dney)(react-dom@18.2.0)(react@18.2.0)
       '@storybook/preview-api': 7.5.3
       '@storybook/types': 7.5.3
       react: 18.2.0
@@ -4408,7 +4423,7 @@ packages:
       '@storybook/components': 7.5.3(react-dom@18.2.0)(react@18.2.0)
       '@storybook/core-common': 7.5.3
       '@storybook/core-events': 7.5.3
-      '@storybook/manager-api': 7.5.3(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/manager-api': 7.5.3(patch_hash=twatmsb4rqm67drtouofs7dney)(react-dom@18.2.0)(react@18.2.0)
       '@storybook/node-logger': 7.5.3
       '@storybook/preview-api': 7.5.3
       '@storybook/theming': 7.5.3(react-dom@18.2.0)(react@18.2.0)
@@ -4450,7 +4465,7 @@ packages:
     dependencies:
       '@storybook/client-logger': 7.5.3
       '@storybook/components': 7.5.3(react-dom@18.2.0)(react@18.2.0)
-      '@storybook/manager-api': 7.5.3(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/manager-api': 7.5.3(patch_hash=twatmsb4rqm67drtouofs7dney)(react-dom@18.2.0)(react@18.2.0)
       '@storybook/preview-api': 7.5.3
       '@storybook/theming': 7.5.3(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
@@ -4475,7 +4490,7 @@ packages:
       '@storybook/components': 7.5.3(react-dom@18.2.0)(react@18.2.0)
       '@storybook/core-events': 7.5.3
       '@storybook/global': 5.0.0
-      '@storybook/manager-api': 7.5.3(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/manager-api': 7.5.3(patch_hash=twatmsb4rqm67drtouofs7dney)(react-dom@18.2.0)(react@18.2.0)
       '@storybook/preview-api': 7.5.3
       '@storybook/theming': 7.5.3(react-dom@18.2.0)(react@18.2.0)
       memoizerific: 1.11.3
@@ -4493,7 +4508,7 @@ packages:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
-      '@storybook/manager-api': 7.5.3(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/manager-api': 7.5.3(patch_hash=twatmsb4rqm67drtouofs7dney)(react-dom@18.2.0)(react@18.2.0)
       '@storybook/preview-api': 7.5.3
       '@storybook/types': 7.5.3
       react: 18.2.0
@@ -4512,7 +4527,7 @@ packages:
         optional: true
     dependencies:
       '@storybook/client-logger': 7.5.3
-      '@storybook/manager-api': 7.5.3(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/manager-api': 7.5.3(patch_hash=twatmsb4rqm67drtouofs7dney)(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: true
@@ -4530,7 +4545,7 @@ packages:
       '@storybook/csf': 0.1.1
       '@storybook/docs-tools': 7.5.3
       '@storybook/global': 5.0.0
-      '@storybook/manager-api': 7.5.3(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/manager-api': 7.5.3(patch_hash=twatmsb4rqm67drtouofs7dney)(react-dom@18.2.0)(react@18.2.0)
       '@storybook/preview-api': 7.5.3
       '@storybook/theming': 7.5.3(react-dom@18.2.0)(react@18.2.0)
       '@storybook/types': 7.5.3
@@ -4966,7 +4981,7 @@ packages:
       '@storybook/preview-api': 7.5.3
     dev: true
 
-  /@storybook/manager-api@7.5.3(react-dom@18.2.0)(react@18.2.0):
+  /@storybook/manager-api@7.5.3(patch_hash=twatmsb4rqm67drtouofs7dney)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-d8mVLr/5BEG4bAS2ZeqYTy/aX4jPEpZHdcLaWoB4mAM+PAL9wcWsirUyApKtDVYLITJf/hd8bb2Dm2ok6E45gA==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -4990,6 +5005,7 @@ packages:
       telejson: 7.2.0
       ts-dedent: 2.2.0
     dev: true
+    patched: true
 
   /@storybook/manager@7.5.3:
     resolution: {integrity: sha512-3ZZrHYcXWAQXpDQZBvKyScGgQaAaBc63i+KC2mXqzTdXuJhVDUiylvqLRprBnrEprgePQLFrxGC2JSHUwH7dqg==}
@@ -5136,6 +5152,20 @@ packages:
     resolution: {integrity: sha512-E4KcWTpoLHqwPHLxidpOqQbcrZVgi0rsmmZXUle1jXmJfuIf/UWpczUJ7MZZ5tlxytgJXyp0w4PGkkeLiuIdZw==}
     dependencies:
       tslib: 2.5.0
+    dev: false
+
+  /@tanstack/solid-virtual@3.0.0-beta.6:
+    resolution: {integrity: sha512-/HjeHZb4UZxxFSAkICUEWOozGwHQpKlvtnUoS5uSMSuLOz0XM5vFq6zR6ENwAczKWDtkh8ntddk+zXAhyXOlEw==}
+    engines: {node: '>=12'}
+    dependencies:
+      '@reach/observe-rect': 1.2.0
+    dev: false
+
+  /@tanstack/virtual-core@3.0.0-alpha.1:
+    resolution: {integrity: sha512-Fa82aHSjxMVpqIg+yuxEj+mlSVadOjcqaMeD7uJ39JE8FHpGoO+53kyedIf+ypWD7zYlSWXB4ah/3W9NNHaI6g==}
+    engines: {node: '>=12'}
+    dependencies:
+      '@reach/observe-rect': 1.2.0
     dev: false
 
   /@testing-library/dom@7.31.2:

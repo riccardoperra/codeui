@@ -13,4 +13,12 @@ export default defineConfig({
 			},
 		}),
 	],
+	ssr: {
+		noExternal: [
+			"@kobalte/core",
+			"@internationalized/message",
+			"@formatjs/**",
+			"@tanstack/solid-virtual",
+		],
+	},
 });

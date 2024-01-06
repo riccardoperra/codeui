@@ -1,0 +1,28 @@
+diff --git a/dist/index.mjs b/dist/index.mjs
+index 27e13b13cd76ea3cbd4bcee15aaeb1e3a36590ed..72eecca9e2fb470f7009bac8f69facde1c314ea9 100644
+--- a/dist/index.mjs
++++ b/dist/index.mjs
+@@ -6,7 +6,6 @@ import store from 'store2';
+ import { stringify, parse } from 'telejson';
+ import isEqual from 'lodash/isEqual.js';
+ import { Addon_TypesEnum } from '@storybook/types';
+-export { Addon_TypesEnum as types } from '@storybook/types';
+ import { global } from '@storybook/global';
+ import { toId, sanitize } from '@storybook/csf';
+ import { dedent } from 'ts-dedent';
+diff --git a/package.json b/package.json
+index 4ac7876a4d40884cd18682d55cb223d77b22a586..15f81469815ce6cbeb983b201d275415af08341b 100644
+--- a/package.json
++++ b/package.json
+@@ -79,5 +79,10 @@
+       "./src/index.tsx"
+     ]
+   },
+-  "gitHead": "e6a7fd8a655c69780bc20b9749c2699e44beae17"
++  "gitHead": "e6a7fd8a655c69780bc20b9749c2699e44beae17",
++  "pnpm": {
++    "patchedDependencies": {
++      "@storybook/manager-api@7.5.3": "patches/@storybook__manager-api@7.5.3.patch"
++    }
++  }
+ }

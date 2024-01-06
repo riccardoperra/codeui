@@ -2,4 +2,4 @@
 [build]
 base = "/"
 publish = "packages/storybook/storybook-static"
-command = "pnpm --filter=@codeui/storybook-playground build-storybook"
+command = "pnpm --filter=@codeui/storybook-playground build"
