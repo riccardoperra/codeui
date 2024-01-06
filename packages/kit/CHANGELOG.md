@@ -1,5 +1,11 @@
 # @codeui/kit
 
+## 0.0.37
+
+### Patch Changes
+
+- a01e545: feat: number input
+
 ## 0.0.36
 
 ### Patch Changes
