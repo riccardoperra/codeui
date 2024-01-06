@@ -1,13 +1,13 @@
-import { Button, NumberField, TextField, TextFieldProps } from "@codeui/kit";
+import { Button, NumberField, NumberFieldProps } from "@codeui/kit";
 import type { Meta, StoryObj } from "storybook-solidjs";
 import { DocsItemsContainer, DocsMultipleItemsContainer } from "./components/Section.jsx";
 import { For } from "solid-js";
 
 // TODO: fix
-const sizes = ["xs", "sm", "md", "lg", "xl"] as TextFieldProps["size"][];
+const sizes = ["xs", "sm", "md", "lg", "xl"] as NumberFieldProps["size"][];
 
 // TODO: why outline not exist in type?
-const themes = ["inline", "outline", "filled"] as TextFieldProps["theme"][];
+const themes = ["inline", "outline", "filled"] as NumberFieldProps["theme"][];
 
 type Story = StoryObj<typeof meta>;
 
@@ -139,7 +139,7 @@ export const Postfix: Story = {
 };
 
 // More on writing stories with args: https://storybook.js.org/docs/7.0/solid/writing-stories/args
-export const TextFieldFilledVariant: Story = {
+export const NumberFieldFilledVariant: Story = {
 	name: "Filled variant",
 	args: {
 		placeholder: "Insert a value",
@@ -150,19 +150,18 @@ export const TextFieldFilledVariant: Story = {
 };
 
 // More on writing stories with args: https://storybook.js.org/docs/7.0/solid/writing-stories/args
-export const TextFieldOutlineVariant: Story = {
+export const NumberFieldOutlineVariant: Story = {
 	name: "Outline variant",
 	args: {
 		placeholder: "Insert a value",
 		label: "Input label",
-		// @ts-expect-error TODO: fix type
 		theme: "outline",
 		description: "Lorem ipsum dolor sit amet",
 	},
 };
 
 // More on writing stories with args: https://storybook.js.org/docs/7.0/solid/writing-stories/args
-export const TextFieldInlineVariant: Story = {
+export const NumberFieldInlineVariant: Story = {
 	name: "Inline variant",
 	args: {
 		placeholder: "Insert a value",
@@ -173,7 +172,7 @@ export const TextFieldInlineVariant: Story = {
 };
 
 // More on writing stories with args: https://storybook.js.org/docs/7.0/solid/writing-stories/args
-export const TextFieldDisabled: Story = {
+export const NumberFieldDisabled: Story = {
 	name: "Disabled",
 	render: () => (
 		<DocsItemsContainer>
@@ -193,7 +192,7 @@ export const TextFieldDisabled: Story = {
 };
 
 // More on writing stories with args: https://storybook.js.org/docs/7.0/solid/writing-stories/args
-export const TextFieldReadonly: Story = {
+export const NumberFieldReadonly: Story = {
 	name: "Readonly",
 	render: () => (
 		<DocsItemsContainer>
@@ -213,7 +212,7 @@ export const TextFieldReadonly: Story = {
 };
 
 // More on writing stories with args: https://storybook.js.org/docs/7.0/solid/writing-stories/args
-export const TextFieldRequired: Story = {
+export const NumberFieldRequired: Story = {
 	name: "Required",
 	render: () => (
 		<form>
