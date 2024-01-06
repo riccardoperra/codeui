@@ -1,12 +1,12 @@
 import { createControllableSignal, TextField as KTextField } from "@kobalte/core";
-import { clamp, isNumber, mergeRefs } from "@kobalte/utils";
+import { clamp, mergeRefs } from "@kobalte/utils";
 import {
 	maskitoCaretGuard,
 	maskitoNumberOptionsGenerator,
 	maskitoParseNumber,
 } from "@maskito/kit";
 import {
-	createEffect,
+	batch,
 	createSignal,
 	JSX,
 	mergeProps,
@@ -72,7 +72,6 @@ export function NumberField(props: NumberFieldProps) {
 	);
 
 	const [focused, setFocused] = createSignal(false);
-	const [forcedChange, forceChange] = createSignal<true>(true, { equals: false });
 	const [value, setValue] = createControllableSignal<number | undefined | null>({
 		value: () => state.value,
 		defaultValue: () => state.defaultValue,
@@ -80,7 +79,12 @@ export function NumberField(props: NumberFieldProps) {
 			state.onChange?.(value);
 		},
 	});
-	const [unfinishedValue, setUnfinishedValue] = createSignal("" as string | null);
+
+	const initialValue = state.value ?? state.defaultValue ?? "";
+	const [unfinishedValue, setUnfinishedValue] = createSignal<string | null>(
+		String(initialValue),
+	);
+
 	let internalRef: HTMLInputElement;
 
 	const optionsWithDefault = mergeProps(defaultOptions, options);
@@ -145,7 +149,6 @@ export function NumberField(props: NumberFieldProps) {
 		} else {
 			increment();
 		}
-		setNativeValue(formattedValue());
 	};
 
 	const increment = () => {
@@ -160,31 +163,32 @@ export function NumberField(props: NumberFieldProps) {
 		const newValue = clampValue ? clamp(value || 0, computeMin(), computeMax()) : value;
 		setValue(newValue);
 		setNativeValue(formattedValue());
+		setUnfinishedValue(String(newValue));
 	};
 
 	const onValueChange = (nativeValue: string) => {
-		const parsedValue = maskitoParseNumber(
-			nativeValue,
-			defaultNumberFormat.decimalSeparator,
-		);
+		batch(() => {
+			const parsedValue = maskitoParseNumber(
+				nativeValue,
+				defaultNumberFormat.decimalSeparator,
+			);
 
-		let value: number | undefined = undefined;
+			setUnfinishedValue(null);
 
-		setUnfinishedValue(null);
-
-		if (Number.isNaN(parsedValue)) {
-			value = undefined;
-			setUnfinishedValue("");
-			return;
-		} else {
-			if (focused()) {
-				setUnfinishedValue(nativeValue);
-				updateValue(parsedValue, false);
+			if (Number.isNaN(parsedValue)) {
+				setUnfinishedValue("");
+				setValue(null);
+				return;
 			} else {
-				updateValue(parsedValue);
-				setUnfinishedValue(nativeValue);
+				if (focused()) {
+					setUnfinishedValue(nativeValue);
+					updateValue(parsedValue, false);
+				} else {
+					updateValue(parsedValue);
+					setUnfinishedValue(nativeValue);
+				}
 			}
-		}
+		});
 	};
 
 	const formattedValue = (): string => {
@@ -195,7 +199,6 @@ export function NumberField(props: NumberFieldProps) {
 		const hasFraction = Math.abs(currentValue) % 1 > 0;
 		let decimalLimit = hasFraction ? optionsWithDefault.precision : 0;
 
-		// add focused
 		return (
 			optionsWithDefault.prefix +
 			tuiFormatNumber(currentValue, {
@@ -209,25 +212,25 @@ export function NumberField(props: NumberFieldProps) {
 	const onFocused = (focused: boolean) => {
 		setFocused(focused);
 
-		const nativeNumber = unfinishedValue()
-			? maskitoParseNumber(unfinishedValue()!, defaultNumberFormat.decimalSeparator)
-			: nativeNumberValue();
+		batch(() => {
+			const nativeNumber = unfinishedValue()
+				? maskitoParseNumber(unfinishedValue()!, defaultNumberFormat.decimalSeparator)
+				: nativeNumberValue();
 
-		if (Number.isNaN(nativeNumber)) {
-			setNativeValue(
-				focused ? optionsWithDefault.prefix + optionsWithDefault.postfix : "",
-			);
-			setUnfinishedValue(null);
-			setValue(null);
-			return;
-		}
+			if (Number.isNaN(nativeNumber)) {
+				setNativeValue(
+					focused ? optionsWithDefault.prefix + optionsWithDefault.postfix : "",
+				);
+				setUnfinishedValue(null);
+				setValue(null);
+				return;
+			}
 
-		if (!focused) {
-			updateValue(nativeNumber);
-			setUnfinishedValue(String(nativeNumber));
-		}
-
-		setNativeValue(formattedValue());
+			if (!focused) {
+				updateValue(nativeNumber);
+				setUnfinishedValue(String(nativeNumber));
+			}
+		});
 	};
 
 	return (
@@ -257,6 +260,8 @@ export function NumberField(props: NumberFieldProps) {
 				/>
 
 				<NumberFieldControls
+					canIncrement={(value() ?? 0) + 1 <= computeMax()}
+					canDecrement={(value() ?? 0) - 1 >= computeMin()}
 					increment={increment}
 					decrement={decrement}
 					step={optionsWithDefault.step}

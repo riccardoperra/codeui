@@ -3,6 +3,8 @@ import { Button } from "../Button/Button";
 import { ChevronDownIcon, ChevronUpIcon } from "../../icons";
 
 interface NumberFieldControlsProps {
+	canIncrement: boolean;
+	canDecrement: boolean;
 	increment: () => void;
 	decrement: () => void;
 	step: number;
@@ -12,6 +14,7 @@ export function NumberFieldControls(props: NumberFieldControlsProps) {
 	return (
 		<div class={styles.controlsContainer}>
 			<Button
+				disabled={!props.canIncrement}
 				type={"button"}
 				variant={"ghost"}
 				theme={"secondary"}
@@ -22,6 +25,7 @@ export function NumberFieldControls(props: NumberFieldControlsProps) {
 				<ChevronUpIcon class={styles.control} />
 			</Button>
 			<Button
+				disabled={!props.canDecrement}
 				type={"button"}
 				variant={"ghost"}
 				theme={"secondary"}
