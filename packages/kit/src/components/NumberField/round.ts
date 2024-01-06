@@ -14,19 +14,19 @@
  */
 const MAX_PRECISION = 292;
 
-export function tuiRound(value: number, precision: number = 0): number {
+export function round(value: number, precision: number = 0): number {
 	return calculate(value, precision, Math.round);
 }
 
-export function tuiCeil(value: number, precision: number = 0): number {
+export function ceil(value: number, precision: number = 0): number {
 	return calculate(value, precision, Math.ceil);
 }
 
-export function tuiFloor(value: number, precision: number = 0): number {
+export function floor(value: number, precision: number = 0): number {
 	return calculate(value, precision, Math.floor);
 }
 
-export function tuiTrunc(value: number, precision: number = 0): number {
+export function trunc(value: number, precision: number = 0): number {
 	return calculate(value, precision, Math.trunc);
 }
 

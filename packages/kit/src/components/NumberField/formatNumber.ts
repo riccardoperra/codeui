@@ -1,6 +1,20 @@
+/*
+ *
+ * Portions of this file are based on code from Taiga UI.
+ * Copyright 2020 Tinkoff Bank
+ *
+ * This file is licensed to you under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License. You may obtain a copy
+ * of the License at http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+ * OF ANY KIND, either express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
+ */
 import { isNumber } from "@kobalte/utils";
 import { defaultNumberFormat, NumberFormatSettings } from "./options";
-import { tuiCeil, tuiFloor, tuiRound, tuiTrunc } from "./round";
+import { ceil, floor, round, trunc } from "./round";
 import { CHAR_HYPHEN } from "./unicodeCharacters";
 
 export type TuiRounding = "ceil" | "floor" | "round" | "truncate";
@@ -16,17 +30,17 @@ export function tuiRoundWith({
 }): number {
 	switch (method) {
 		case `round`:
-			return tuiRound(value, precision);
+			return round(value, precision);
 		case `ceil`:
-			return tuiCeil(value, precision);
+			return ceil(value, precision);
 		case `floor`:
-			return tuiFloor(value, precision);
+			return floor(value, precision);
 		default:
-			return tuiTrunc(value, precision);
+			return trunc(value, precision);
 	}
 }
 
-export function tuiFormatNumber(
+export function formatNumber(
 	value: number,
 	settings: Partial<NumberFormatSettings> = {},
 ): string {

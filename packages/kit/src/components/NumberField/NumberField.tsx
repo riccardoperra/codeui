@@ -23,7 +23,7 @@ import {
 	createFieldErrorMessageProps,
 	FieldWithErrorMessageSupport,
 } from "../Field/FieldError/createFieldErrorMessageProps";
-import { tuiFormatNumber } from "./formatNumber";
+import { formatNumber } from "./formatNumber";
 import * as styles from "./NumberField.css";
 import { NumberFieldControls } from "./NumberFieldControls";
 import { NumberFieldLabel } from "./NumberFieldLabel";
@@ -201,7 +201,7 @@ export function NumberField(props: NumberFieldProps) {
 
 		return (
 			optionsWithDefault.prefix +
-			tuiFormatNumber(currentValue, {
+			formatNumber(currentValue, {
 				...defaultNumberFormat,
 				decimalLimit,
 			}).replace(CHAR_HYPHEN, CHAR_MINUS) +
