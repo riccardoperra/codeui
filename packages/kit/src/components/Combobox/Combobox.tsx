@@ -1,17 +1,17 @@
-import { Combobox as KCombobox } from "@kobalte/core";
+import { Combobox as KCombobox, createControllableBooleanSignal } from "@kobalte/core";
 import { Accessor, JSX, JSXElement, Show, createSignal, splitProps } from "solid-js";
 import { CheckIcon } from "../../icons/CheckIcon";
 import { SelectorIcon } from "../../icons/SelectorIcon";
 import { mergeClasses } from "../../utils/css";
-import { BaseFieldProps, createBaseFieldProps } from "../Field/createBaseFieldProps";
+import { highlight } from "../../utils/highlight/highlight";
 import {
-	createFieldErrorMessageProps,
 	FieldWithErrorMessageSupport,
+	createFieldErrorMessageProps,
 } from "../Field/FieldError/createFieldErrorMessageProps";
 import { createFieldLabelProps } from "../Field/FieldLabel/createFieldLabelProps";
 import { createFieldMessageProps } from "../Field/FieldMessage/createFieldMessageProps";
+import { BaseFieldProps, createBaseFieldProps } from "../Field/createBaseFieldProps";
 import * as styles from "./Combobox.css";
-import { highlight } from "../../utils/highlight/highlight";
 
 void highlight;
 
@@ -28,10 +28,6 @@ export type ComboboxProps<Option, OptGroup = never> = KCombobox.ComboboxRootProp
 		itemLabel?: (item: Option) => JSXElement;
 		valueComponent?: (state: Accessor<Option>) => JSXElement;
 	};
-
-function ComboboxContent(props: KCombobox.ComboboxContentProps) {
-	return <KCombobox.Content class={styles.content} {...props} />;
-}
 
 export function ComboboxItem<T>(
 	props: KCombobox.ComboboxItemProps & {
@@ -54,44 +50,96 @@ export function ComboboxItem<T>(
 export function Combobox<Option, OptGroup = never>(
 	props: ComboboxProps<Option, OptGroup>,
 ) {
-	const [local, internal, others] = splitProps(
-		props,
-		[
-			"aria-label",
-			"children",
-			"size",
-			"theme",
-			"errorMessage",
-			"description",
-			"label",
-			"itemLabel",
-			"valueComponent",
-		],
-		["options", "value"],
-	);
+	const [local, others] = splitProps(props, [
+		"aria-label",
+		"size",
+		"theme",
+		"errorMessage",
+		"description",
+		"label",
+		"itemLabel",
+		"value",
+		"onChange",
+		"open",
+		"onOpenChange",
+		"onInputChange",
+	]);
 	const baseFieldProps = createBaseFieldProps(props);
 	const labelProps = createFieldLabelProps<"label">({});
 	const descriptionProps = createFieldMessageProps({});
 	const errorProps = createFieldErrorMessageProps(props);
 
+	const [open, setOpen] = createControllableBooleanSignal({
+		value: () => local.open,
+		defaultValue: () => local.open,
+		onChange(value) {
+			local.onOpenChange?.(value);
+		},
+	});
+
 	const [textValue, setTextValue] = createSignal("");
+	let control!: HTMLInputElement;
+
+	const onInputFocus = (event: FocusEvent) => {
+		if (isChangingValue) {
+			setOpen(false);
+		} else {
+			setOpen(true);
+		}
+	};
+
+	let controlWorkaround!: HTMLInputElement;
+
+	type TriggerMode = KCombobox.ComboboxRootOptions<any, any>["triggerMode"];
+
+	const handleOpenChange = (open: boolean, mode: TriggerMode) => {
+		setOpen(open);
+		if (!open && mode === "focus") {
+			// If open is false and mode is focus, then portal will be closed. Currently
+			// there is a behavior where input is automatically focused triggering the modal opening.
+			// As a workaround, i'm focusing another input in order to don't retrigger the portal content opening.
+			setTimeout(() => {
+				controlWorkaround.focus();
+				setOpen(false);
+			});
+		}
+	};
+
+	const handleOnChange = (value: Option & Option[]) => {
+		local.onChange?.(value as Option & Option[]);
+		// On handle change we set `isChangingValue` to true in order to force close the modal.
+		// Read `onInputFocus`;
+		isChangingValue = true;
+		setTimeout(() => (isChangingValue = false), 0);
+	};
+
+	let isChangingValue = false;
 
 	return (
 		<KCombobox.Root
 			data-cui="combobox"
-			{...(others as Record<string, unknown>)}
-			options={internal.options}
-			value={internal.value}
 			class={styles.field}
 			itemComponent={itemProps => (
 				<ComboboxItem
 					item={itemProps.item}
-					textValue={textValue()}
 					itemLabel={local.itemLabel}
+					textValue={textValue()}
 				/>
 			)}
+			open={open()}
+			onInputChange={text => {
+				setTextValue(text);
+				local.onInputChange?.(text);
+			}}
+			onChange={handleOnChange}
+			onOpenChange={(isOpen, mode) => {
+				handleOpenChange(isOpen, mode);
+				local.onOpenChange?.(isOpen, mode);
+			}}
+			{...(others as Record<string, unknown>)}
+			triggerMode={"input"}
 		>
-			<Show when={local.label} keyed={false}>
+			<Show when={local.label}>
 				<KCombobox.Label {...labelProps}>{local.label}</KCombobox.Label>
 			</Show>
 
@@ -101,9 +149,16 @@ export function Combobox<Option, OptGroup = never>(
 				aria-label={local["aria-label"]}
 			>
 				<KCombobox.Input
-					onInput={el => setTextValue(el.currentTarget.value)}
+					onFocus={onInputFocus}
+					ref={control}
 					class={styles.comboboxInput}
 				/>
+				<input
+					aria-hidden="true"
+					ref={controlWorkaround}
+					class={styles.comboboxInputWorkaround}
+				/>
+
 				<KCombobox.Trigger>
 					<KCombobox.Icon>
 						<SelectorIcon />
@@ -111,21 +166,21 @@ export function Combobox<Option, OptGroup = never>(
 				</KCombobox.Trigger>
 			</KCombobox.Control>
 
-			<Show when={local.description} keyed={false}>
+			<KCombobox.Portal>
+				<KCombobox.Content class={styles.content}>
+					<KCombobox.Listbox />
+				</KCombobox.Content>
+			</KCombobox.Portal>
+			<Show when={local.description}>
 				<KCombobox.Description {...descriptionProps}>
 					{local.description}
 				</KCombobox.Description>
 			</Show>
-			<Show when={local.errorMessage} keyed={false}>
+			<Show when={local.errorMessage}>
 				<KCombobox.ErrorMessage {...errorProps}>
 					{local.errorMessage}
 				</KCombobox.ErrorMessage>
 			</Show>
-			<KCombobox.Portal>
-				<ComboboxContent>
-					<KCombobox.Listbox />
-				</ComboboxContent>
-			</KCombobox.Portal>
 		</KCombobox.Root>
 	);
 }

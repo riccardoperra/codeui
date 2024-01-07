@@ -58,8 +58,6 @@ export default meta;
 export const ComboboxStory: Story = {
 	name: "Combobox",
 	args: {
-		triggerMode: "focus",
-		// TODO is this correct?
 		"aria-label": "Fruit",
 		placeholder: "Insert a value...",
 		label: "Input label",

@@ -183,9 +183,18 @@ export const comboboxInput = style({
 	appearance: "none",
 	background: "transparent",
 	outline: "none",
+	border: 0,
 	display: "inline-flex",
 	minWidth: 0,
-	flex: 1,
+	width: "100%",
+});
+
+export const comboboxTrigger = style({
+	border: 0,
+	background: "transparent",
+	outline: "none",
+	padding: 0,
+	color: themeVars.foreground,
 });
 
 export const itemIndicator = style({
@@ -193,4 +202,10 @@ export const itemIndicator = style({
 	height: selectThemeVars.indicatorSize,
 	width: selectThemeVars.indicatorSize,
 	flexShrink: 0,
+});
+
+export const comboboxInputWorkaround = style({
+	width: 0,
+	height: 0,
+	opacity: 0,
 });
