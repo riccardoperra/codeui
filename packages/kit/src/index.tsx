@@ -57,6 +57,9 @@ export type { SegmentedControlItemProps } from "./components/SegmentedControl/Se
 export { Listbox, ListboxItem } from "./components/Listbox/Listbox";
 export { VirtualizedListbox } from "./components/Listbox/VirtualizedListbox";
 
+export { Combobox, ComboboxItem } from "./components/Combobox/Combobox";
+export type { ComboboxProps } from "./components/Combobox/Combobox";
+
 export { SvgIcon } from "./icons/SvgIcon";
 export * as icons from "./icons";
 
