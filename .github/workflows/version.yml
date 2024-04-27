@@ -9,23 +9,20 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   version:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        node-version: [ 15 ]
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v3
         with:
-          fetch-depth: 0
-
-      - uses: pnpm/action-setup@v2.2.2
-
-      - name: Setup Node.js 17.x
-        uses: actions/setup-node@v2
+          version: 8
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
         with:
-          node-version: 17.x
-          cache: pnpm
-
-      - name: Install Dependencies
-        run: pnpm install
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
 
       - name: Create Update Version Pull Request
         id: changesets
