@@ -1,7 +1,7 @@
 import { Preview } from "storybook-solidjs";
 import { themes, ThemeVars } from "@storybook/theming";
 import { DARK_MODE_EVENT_NAME, useDarkMode } from "storybook-dark-mode";
-import { addons } from "@storybook/addons";
+import { addons } from "@storybook/preview-api";
 import { createEffect, createRoot, createSignal, FlowProps } from "solid-js";
 import "./reset.css";
 import "./global.css";
