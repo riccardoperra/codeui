@@ -24,6 +24,17 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
 
+      - uses: pnpm/action-setup@v2.2.2
+
+      - name: Setup Node.js environment ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
       - name: Create Update Version Pull Request
         id: changesets
         uses: changesets/action@v1
