@@ -8,11 +8,11 @@ on:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-  version:
+  release:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        node-version: [ 15 ]
+        node-version: [ 20.12.2 ]
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v3
