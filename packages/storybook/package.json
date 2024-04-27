@@ -25,7 +25,7 @@
     "@storybook/types": "^8.0.9",
     "@vanilla-extract/vite-plugin": "^4.0.7",
     "storybook": "^8.0.9",
-    "storybook-dark-mode": "^3.0.1",
+    "storybook-dark-mode": "^4.0.1",
     "storybook-solidjs": "^1.0.0-beta.2",
     "storybook-solidjs-vite": "^1.0.0-beta.2",
 		"typescript": "^5.4.5",

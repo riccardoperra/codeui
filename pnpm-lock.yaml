@@ -224,8 +224,8 @@ importers:
         specifier: ^8.0.9
         version: 8.0.9(@babel/preset-env@7.23.3)(react-dom@18.2.0)(react@18.2.0)
       storybook-dark-mode:
-        specifier: ^3.0.1
-        version: 3.0.1(@types/react@18.2.37)(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^4.0.1
+        version: 4.0.1(@types/react@18.2.37)(react-dom@18.2.0)(react@18.2.0)
       storybook-solidjs:
         specifier: ^1.0.0-beta.2
         version: 1.0.0-beta.2(babel-preset-solid@1.8.4)(solid-js@1.8.17)
@@ -5390,19 +5390,6 @@ packages:
     resolution: {integrity: sha512-Ao4+D56cO7biaw+iTlMU1FBec1idX0cmdosDeCFZin06MSawcPkeBlRBeruaSQYdLes8TBMdZPFgfuqI5yIk6g==}
     dependencies:
       memoizerific: 1.11.3
-    dev: true
-
-  /@storybook/addons@7.5.3(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-1JDndMZ/Pju4YJ4aXegeF0O6BVT19c+Gu7WOlsD0aHbmAsPK5qH9QvcpR04nby6VrVZYtBOEJhGsWtAytzLVZw==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-    dependencies:
-      '@storybook/manager-api': 7.5.3(patch_hash=twatmsb4rqm67drtouofs7dney)(react-dom@18.2.0)(react@18.2.0)
-      '@storybook/preview-api': 7.5.3
-      '@storybook/types': 7.5.3
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
     dev: true
 
   /@storybook/api@7.5.3(react-dom@18.2.0)(react@18.2.0):
@@ -13456,30 +13443,21 @@ packages:
     resolution: {integrity: sha512-siT1RiqlfQnGqgT/YzXVUNsom9S0H1OX+dpdGN1xkyYATo4I6sep5NmsRD/40s3IIOvlCq6akxkqG82urIZW1w==}
     dev: true
 
-  /storybook-dark-mode@3.0.1(@types/react@18.2.37)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-3V6XBhkUq63BF6KzyDBbfV5/8sYtF4UtVccH1tK+Lrd4p0tF8k7yHOvVDhFL9hexnKXcLEnbC+42YDTPvjpK+A==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
+  /storybook-dark-mode@4.0.1(@types/react@18.2.37)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-9l3qY8NdgwZnY+NlO1XHB3eUb6FmZo9GazJeUSeFkjRqwA5FmnMSeq0YVqEOqfwniM/TvQwOiTYd5g/hC2wugA==}
     dependencies:
-      '@storybook/addons': 7.5.3(react-dom@18.2.0)(react@18.2.0)
-      '@storybook/api': 7.5.3(react-dom@18.2.0)(react@18.2.0)
-      '@storybook/components': 7.5.3(@types/react@18.2.37)(react-dom@18.2.0)(react@18.2.0)
-      '@storybook/core-events': 7.5.3
+      '@storybook/components': 8.0.9(@types/react@18.2.37)(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/core-events': 8.0.9
       '@storybook/global': 5.0.0
-      '@storybook/theming': 7.5.3(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/icons': 1.2.9(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/manager-api': 8.0.9(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/theming': 8.0.9(react-dom@18.2.0)(react@18.2.0)
       fast-deep-equal: 3.1.3
       memoizerific: 1.11.3
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
     transitivePeerDependencies:
       - '@types/react'
-      - '@types/react-dom'
+      - react
+      - react-dom
     dev: true
 
   /storybook-solidjs-vite@1.0.0-beta.2(typescript@5.4.5)(vite@5.2.10):
