@@ -1,12 +1,12 @@
 import { Preview } from "storybook-solidjs";
 import { themes, ThemeVars } from "@storybook/theming";
 import { DARK_MODE_EVENT_NAME, useDarkMode } from "storybook-dark-mode";
-import { addons } from "@storybook/addons";
-import { createEffect, createRoot, createSignal, FlowProps } from "solid-js";
 import "./reset.css";
 import "./global.css";
 import "./global-ve.css";
 import { DocsContainer, DocsContainerProps } from "@storybook/blocks";
+import { createEffect, createRoot, createSignal, FlowProps } from "solid-js";
+import { addons } from "@storybook/preview-api";
 
 function ThemeWrapper(props: FlowProps) {
 	const [darkMode, setDarkMode] = createSignal<boolean>(true);
@@ -19,6 +19,7 @@ function ThemeWrapper(props: FlowProps) {
 			darkMode() ? "dark" : "light",
 		);
 	});
+
 	return <div>{props.children}</div>;
 }
 
@@ -61,9 +62,11 @@ const preview: Preview = {
 		docs: {
 			container: (props: DocsContainerProps) => {
 				const dark = useDarkMode();
-				return createRoot(() => {
-					return <DocsContainer {...props} theme={dark ? darkTheme : lightTheme} />;
-				});
+				return createRoot(
+					() => {
+						// @ts-expect-error Render react
+						return <DocsContainer {...props} theme={dark ? darkTheme : lightTheme} />;
+					});
 			},
 		},
 	},

@@ -19,6 +19,7 @@ const config: StorybookConfig = {
 		getAbsolutePath("@storybook/addon-interactions"),
 		getAbsolutePath("storybook-dark-mode"),
 		getAbsolutePath("@storybook/addon-a11y"),
+		getAbsolutePath("@storybook/addon-mdx-gfm"),
 	],
 	framework: {
 		name: getAbsolutePath("storybook-solidjs-vite"),

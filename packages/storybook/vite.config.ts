@@ -8,9 +8,7 @@ export default defineConfig({
 		tsconfigPaths(),
 		solidPlugin(),
 		vanillaExtractPlugin({
-			esbuildOptions: {
-				external: ["solid-js/web", "solid-js"],
-			},
+			unstable_mode: 'transform'
 		}),
 	],
 	ssr: {

@@ -11,8 +11,8 @@ import {
 	DropdownSubMenu,
 	DropdownSubMenuContent,
 	DropdownSubMenuTrigger,
+	As
 } from "@codeui/kit";
-import { As } from "@kobalte/core";
 import { JSX } from "solid-js";
 
 const meta = {
