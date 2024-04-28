@@ -1,5 +1,11 @@
 # @codeui/kit
 
+## 0.0.38
+
+### Patch Changes
+
+- 41b084edacd2a22fe88b5f1a007e688f40ab2aa5: Update dependencies
+
 ## 0.0.37
 
 ### Patch Changes
