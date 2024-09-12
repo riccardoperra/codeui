@@ -12,13 +12,13 @@ jobs:
         node-version: [ 20.12.2 ]
     steps:
       - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v3
+      - uses: pnpm/action-setup@v4
         with:
-          version: 8
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+          version: 9
+      - name: Install Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 20
           cache: 'pnpm'
 
       - name: Creating .npmrc
@@ -31,6 +31,9 @@ jobs:
 
       - name: Install Dependencies
         run: pnpm install
+
+      - name: Build deps
+        run: pnpm build
 
       - name: Publish to npm
         id: changesets
