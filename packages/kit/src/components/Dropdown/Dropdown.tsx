@@ -1,9 +1,20 @@
 import { GetKobalteParams } from "../../utils/types";
-import { DropdownMenu as KDropdownMenu } from "@kobalte/core";
+import {
+	DropdownMenu as KDropdownMenu,
+	DropdownMenuContentProps as KDropdownMenuContentProps,
+	DropdownMenuItemProps as KDropdownMenuItemProps,
+	DropdownMenuRootProps as KDropdownMenuRootProps,
+	DropdownMenuSeparatorProps as KDropdownMenuSeparatorProps,
+	DropdownMenuSubContentProps as KDropdownMenuSubContentProps,
+	DropdownMenuSubProps as KDropdownMenuSubProps,
+	DropdownMenuSubTriggerProps as KDropdownMenuSubTriggerProps,
+	DropdownMenuTriggerProps as KDropdownMenuTriggerProps,
+} from "@kobalte/core/dropdown-menu";
 import * as styles from "./Dropdown.css";
-import { JSX, JSXElement, Show, splitProps } from "solid-js";
+import { JSXElement, Show, splitProps, ValidComponent } from "solid-js";
+import { PolymorphicProps } from "@kobalte/core/polymorphic";
 
-export function DropdownMenuContent(props: KDropdownMenu.DropdownMenuContentProps) {
+export function DropdownMenuContent<T extends ValidComponent = "div">(props: PolymorphicProps<T, KDropdownMenuContentProps<T>>) {
 	return <KDropdownMenu.Content {...props} class={styles.content} />;
 }
 
@@ -11,12 +22,14 @@ export function DropdownMenuPortal(props: GetKobalteParams<typeof KDropdownMenu.
 	return <KDropdownMenu.Portal {...props} />;
 }
 
-export function DropdownMenuItem(
-	props: KDropdownMenu.DropdownMenuItemProps & {
-		rightSlot?: JSXElement;
-	},
+export interface DropdownMenuItemProps<T> extends KDropdownMenuItemProps {
+	rightSlot?: JSXElement;
+}
+
+export function DropdownMenuItem<T extends ValidComponent = "div">(
+	props: PolymorphicProps<T, DropdownMenuItemProps<T>>,
 ) {
-	const [local, others] = splitProps(props, ["rightSlot", "children"]);
+	const [local, others] = splitProps(props as PolymorphicProps<"div", DropdownMenuItemProps<T>>, ["rightSlot", "children"]);
 
 	return (
 		<KDropdownMenu.Item {...others} class={styles.item}>
@@ -28,20 +41,24 @@ export function DropdownMenuItem(
 	);
 }
 
-export function DropdownSubMenu(
-	props: KDropdownMenu.DropdownMenuSubProps & {
-		rightSlot?: JSXElement;
-	},
+export interface DropdownSubMenuProps<T> extends KDropdownMenuSubProps {
+	rightSlot?: JSXElement;
+}
+
+export function DropdownSubMenu<T extends ValidComponent = "div">(
+	props: PolymorphicProps<T, DropdownSubMenuProps<T>>,
 ) {
 	return <KDropdownMenu.Sub {...props} gutter={-4} />;
 }
 
-export function DropdownSubMenuTrigger(
-	props: KDropdownMenu.DropdownMenuSubTriggerProps & {
-		rightSlot: JSX.Element;
-	},
+export interface DropdownSubMenuTriggerProps<T> extends KDropdownMenuSubTriggerProps {
+	rightSlot?: JSXElement;
+}
+
+export function DropdownSubMenuTrigger<T extends ValidComponent = "div">(
+	props: PolymorphicProps<T, DropdownSubMenuTriggerProps<T>>,
 ) {
-	const [local, others] = splitProps(props, ["rightSlot", "children"]);
+	const [local, others] = splitProps(props as PolymorphicProps<"button", DropdownSubMenuTriggerProps<T>>, ["rightSlot", "children"]);
 
 	return (
 		<KDropdownMenu.SubTrigger {...others} class={styles.item}>
@@ -53,18 +70,18 @@ export function DropdownSubMenuTrigger(
 	);
 }
 
-export function DropdownSubMenuContent(props: KDropdownMenu.DropdownMenuSubContentProps) {
+export function DropdownSubMenuContent<T extends ValidComponent = "div">(props: PolymorphicProps<T, KDropdownMenuSubContentProps<T>>) {
 	return <KDropdownMenu.SubContent {...props} class={styles.subMenuContent} />;
 }
 
-export function DropdownMenuSeparator(props: KDropdownMenu.DropdownMenuSeparatorProps) {
+export function DropdownMenuSeparator<T extends ValidComponent = "div">(props: PolymorphicProps<T, KDropdownMenuSeparatorProps<T>>) {
 	return <KDropdownMenu.Separator {...props} class={styles.separator} />;
 }
 
-export function DropdownMenuTrigger(props: KDropdownMenu.DropdownMenuTriggerProps) {
+export function DropdownMenuTrigger<T extends ValidComponent = "div">(props: PolymorphicProps<T, KDropdownMenuTriggerProps<T>>) {
 	return <KDropdownMenu.Trigger {...props} />;
 }
 
-export function DropdownMenu(props: KDropdownMenu.DropdownMenuRootProps) {
-	return <KDropdownMenu.Root {...props} gutter={6} />;
+export function DropdownMenu<T extends ValidComponent = "div">(props: PolymorphicProps<T, KDropdownMenuRootProps>) {
+	return <KDropdownMenu gutter={6} {...props} />;
 }

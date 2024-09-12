@@ -1,33 +1,41 @@
-import { RadioGroup } from "@kobalte/core";
+import {
+	RadioGroup,
+	RadioGroupDescriptionProps as KRadioGroupDescriptionProps,
+	RadioGroupItemProps as KRadioGroupItemProps,
+	RadioGroupLabelProps as KRadioGroupLabelProps,
+	RadioGroupRootProps as KRadioGroupRootProps,
+} from "@kobalte/core/radio-group";
 import { BaseFieldProps } from "../Field/createBaseFieldProps";
 import {
 	createFieldErrorMessageProps,
 	FieldWithErrorMessageSupport,
 } from "../Field/FieldError/createFieldErrorMessageProps";
-import { JSXElement, Show, splitProps } from "solid-js";
+import { JSXElement, Show, splitProps, ValidComponent } from "solid-js";
 import { createFieldLabelProps } from "../Field/FieldLabel/createFieldLabelProps";
 import { mergeClasses } from "../../utils/css";
 import { baseFieldContainer } from "../TextField/TextField.css";
 import { createFieldMessageProps } from "../Field/FieldMessage/createFieldMessageProps";
 import * as styles from "./Radio.css";
+import { PolymorphicProps } from "@kobalte/core/polymorphic";
 
-export type RadioListProps = RadioGroup.RadioGroupRootProps &
+
+export type RadioListProps<T extends ValidComponent = "div"> = KRadioGroupRootProps<T> &
 	BaseFieldProps &
 	FieldWithErrorMessageSupport & { label?: JSXElement; description?: string };
 
-function RadioGroupLabel(props: RadioGroup.RadioGroupLabelProps) {
+function RadioGroupLabel(props: KRadioGroupLabelProps) {
 	const fieldLabelProps = createFieldLabelProps<"span">(props);
 
 	return <RadioGroup.Label {...fieldLabelProps} />;
 }
 
-function RadioGroupDescription(props: RadioGroup.RadioGroupDescriptionProps) {
+function RadioGroupDescription(props: KRadioGroupDescriptionProps) {
 	const fieldLabelProps = createFieldMessageProps(props);
 
 	return <RadioGroup.Description {...fieldLabelProps} />;
 }
 
-interface RadioGroupItemProps extends RadioGroup.RadioGroupItemProps {
+interface RadioGroupItemProps extends KRadioGroupItemProps {
 	label: string;
 }
 
@@ -47,8 +55,8 @@ export function RadioListItem(props: RadioGroupItemProps) {
 	);
 }
 
-export function RadioList(props: RadioListProps) {
-	const [local, others] = splitProps(props, [
+export function RadioList<T extends ValidComponent = "div">(props: PolymorphicProps<T, RadioListProps<T>>) {
+	const [local, others] = splitProps(props as PolymorphicProps<"button", RadioListProps>, [
 		"description",
 		"size",
 		"label",
@@ -62,7 +70,7 @@ export function RadioList(props: RadioListProps) {
 	const errorMessageProps = createFieldErrorMessageProps(props);
 
 	return (
-		<RadioGroup.Root
+		<RadioGroup
 			data-cui={"radio-group-field"}
 			data-field-size={size()}
 			{...others}
@@ -88,6 +96,6 @@ export function RadioList(props: RadioListProps) {
 					{local.errorMessage}
 				</RadioGroup.ErrorMessage>
 			</Show>
-		</RadioGroup.Root>
+		</RadioGroup>
 	);
 }

@@ -1,14 +1,15 @@
-import { onCleanup, onMount, splitProps } from "solid-js";
+import { onCleanup, onMount, splitProps, ValidComponent } from "solid-js";
 import { mergeClasses } from "../../utils/css";
 import * as styles from "./SegmentedControl.css";
-import { Tabs } from "@kobalte/core";
+import { Tabs, TabsTriggerProps } from "@kobalte/core/tabs";
 import { mergeRefs } from "@kobalte/utils";
 import { useSegmentedControlContext } from "./SegmentedControlContext";
+import { PolymorphicProps } from "@kobalte/core/polymorphic";
 
-export type SegmentedControlItemProps = Tabs.TabsTriggerProps;
+export type SegmentedControlItemProps<T extends ValidComponent = "button"> = TabsTriggerProps<T>;
 
-export function SegmentedControlItem(props: SegmentedControlItemProps) {
-	const [local, others] = splitProps(props, ["class"]);
+export function SegmentedControlItem<T extends ValidComponent = "button">(props: PolymorphicProps<T, SegmentedControlItemProps<T>>) {
+	const [local, others] = splitProps(props as PolymorphicProps<"button", SegmentedControlItemProps>, ["class"]);
 	const context = useSegmentedControlContext();
 	let ref: HTMLElement;
 

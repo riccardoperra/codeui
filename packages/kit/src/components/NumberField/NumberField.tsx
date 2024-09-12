@@ -1,4 +1,4 @@
-import { createControllableSignal, TextField as KTextField } from "@kobalte/core";
+import { TextField as KTextField, TextFieldRootOptions as KTextFieldRootOptions } from "@kobalte/core/text-field";
 import { clamp, mergeRefs } from "@kobalte/utils";
 import {
 	maskitoCaretGuard,
@@ -31,12 +31,13 @@ import { NumberFieldMessage } from "./NumberFieldMessage";
 import type { InputNumberOptions } from "./options";
 import { defaultNumberFormat, INPUT_NUMBER_OPTIONS as defaultOptions } from "./options";
 import { CHAR_HYPHEN, CHAR_MINUS } from "./unicodeCharacters";
+import { createControllableSignal } from "@kobalte/core/primitives/create-controllable-signal";
 
 // TODO: add to base field slot that respect the BaseFieldProps signature?
 type TextFieldSlot = "root" | "input" | "label" | "errorLabel";
 
 type NumberFieldRootOptions = Omit<
-	KTextField.TextFieldRootOptions,
+	KTextFieldRootOptions,
 	"value" | "defaultValue" | "onChange"
 > & {
 	value?: number | null;
@@ -47,11 +48,11 @@ type NumberFieldRootOptions = Omit<
 export type NumberFieldProps = NumberFieldRootOptions &
 	BaseFieldProps &
 	FieldWithErrorMessageSupport & {
-		description?: string;
-		label?: JSX.Element;
-		placeholder?: string;
-		ref?: Ref<HTMLInputElement>;
-	} & SlotProp<TextFieldSlot> &
+	description?: string;
+	label?: JSX.Element;
+	placeholder?: string;
+	ref?: Ref<HTMLInputElement>;
+} & SlotProp<TextFieldSlot> &
 	Partial<InputNumberOptions>;
 
 export function NumberField(props: NumberFieldProps) {
@@ -234,7 +235,7 @@ export function NumberField(props: NumberFieldProps) {
 	};
 
 	return (
-		<KTextField.Root
+		<KTextField
 			data-cui={"number-field"}
 			data-field-size={local.size ?? "md"}
 			class={mergeClasses(styles.baseFieldContainer, local?.slotClasses?.root)}
@@ -279,7 +280,7 @@ export function NumberField(props: NumberFieldProps) {
 					{local.errorMessage}
 				</KTextField.ErrorMessage>
 			</Show>
-		</KTextField.Root>
+		</KTextField>
 	);
 }
 

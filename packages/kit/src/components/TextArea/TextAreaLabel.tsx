@@ -1,4 +1,4 @@
-import { TextField as KTextField } from "@kobalte/core";
+import { TextField as KTextField } from "@kobalte/core/text-field";
 import { createFieldLabelProps } from "../Field/FieldLabel/createFieldLabelProps";
 
 type TextFieldLabelProps = Parameters<(typeof KTextField)["Label"]>[0] & {};

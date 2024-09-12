@@ -1,4 +1,8 @@
-import { TextField as KTextField } from "@kobalte/core";
+import {
+	TextField as KTextField,
+	TextFieldRootOptions as KTextFieldRootOptions,
+	TextFieldTextAreaProps as KTextFieldTextAreaProps,
+} from "@kobalte/core/text-field";
 import { JSX, Ref, Show, splitProps } from "solid-js";
 import * as styles from "./TextArea.css";
 import { baseFieldContainer } from "./TextArea.css";
@@ -15,15 +19,15 @@ import { SlotProp } from "../../utils/component";
 // TODO: add to base field slot that respect the BaseFieldProps signature?
 type TextAreaSlot = "root" | "input" | "label" | "errorLabel";
 
-export type TextAreaProps = KTextField.TextFieldRootOptions &
+export type TextAreaProps = KTextFieldRootOptions &
 	BaseFieldProps &
 	FieldWithErrorMessageSupport & {
-		description?: string;
-		label?: JSX.Element;
-		placeholder?: string;
-		ref?: Ref<HTMLTextAreaElement>;
-		options?: KTextField.TextFieldTextAreaProps;
-	} & SlotProp<TextAreaSlot>;
+	description?: string;
+	label?: JSX.Element;
+	placeholder?: string;
+	ref?: Ref<HTMLTextAreaElement>;
+	options?: KTextFieldTextAreaProps;
+} & SlotProp<TextAreaSlot>;
 
 export function TextArea(props: TextAreaProps) {
 	const [local, others] = splitProps(props, [
@@ -45,7 +49,7 @@ export function TextArea(props: TextAreaProps) {
 		mergeClasses(baseFieldProps.baseStyle(), styles.textArea, local.slotClasses?.input);
 
 	return (
-		<KTextField.Root
+		<KTextField
 			data-cui={"text-field"}
 			data-field-size={local.size}
 			class={mergeClasses(baseFieldContainer, local?.slotClasses?.root)}
@@ -71,7 +75,7 @@ export function TextArea(props: TextAreaProps) {
 					{local.errorMessage}
 				</KTextField.ErrorMessage>
 			</Show>
-		</KTextField.Root>
+		</KTextField>
 	);
 }
 

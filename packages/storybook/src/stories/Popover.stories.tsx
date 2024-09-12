@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "storybook-solidjs";
 
-import { As, Button, Popover, PopoverContent, PopoverTrigger } from "@codeui/kit";
+import { Button, Popover, PopoverContent, PopoverTrigger } from "@codeui/kit";
 import { DocsItemsContainer } from "./components/Section.jsx";
 import { For } from "solid-js";
 
@@ -33,10 +33,8 @@ export const PopoverStory: Story = {
 	name: "Popover",
 	render: props => (
 		<Popover {...props}>
-			<PopoverTrigger asChild>
-				<As component={Button} theme={"secondary"}>
-					Click me
-				</As>
+			<PopoverTrigger asChild as={Button} theme={"secondary"}>
+				Click me
 			</PopoverTrigger>
 			<PopoverContent title={"Title"}>
 				About Kobalte A UI toolkit for building accessible web apps and design systems
@@ -50,10 +48,8 @@ export const PopoverBordered: Story = {
 	name: "Popover Bordered",
 	render: props => (
 		<Popover {...props}>
-			<PopoverTrigger asChild>
-				<As component={Button} theme={"secondary"}>
-					Click me
-				</As>
+			<PopoverTrigger asChild as={Button} theme={"secondary"}>
+				Click me
 			</PopoverTrigger>
 			<PopoverContent title={"Title"} variant={"bordered"}>
 				About Kobalte A UI toolkit for building accessible web apps and design systems
@@ -69,10 +65,8 @@ export const CustomPosition: Story = {
 			<For each={placements}>
 				{position => (
 					<Popover placement={position}>
-						<PopoverTrigger asChild>
-							<As component={Button} theme={"secondary"}>
-								{position}
-							</As>
+						<PopoverTrigger as={Button} theme={"secondary"}>
+							{position}
 						</PopoverTrigger>
 						<PopoverContent title={"Title"}>
 							About Kobalte A UI toolkit for building accessible web apps and design

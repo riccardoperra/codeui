@@ -1,12 +1,13 @@
-import { Link as KLink } from "@kobalte/core";
-import { splitProps } from "solid-js";
+import { Link as KLink, LinkRootProps as KLinkRootProps } from "@kobalte/core/link";
+import { splitProps, ValidComponent } from "solid-js";
 import { mergeClasses } from "../../utils/css";
 import * as styles from "./Link.css";
+import { PolymorphicProps } from "@kobalte/core/polymorphic";
 
-type LinkProps = KLink.LinkRootProps & styles.LinkVariants;
+type LinkProps<T extends ValidComponent | HTMLElement = HTMLElement> = KLinkRootProps<T> & styles.LinkVariants;
 
-export function Link(props: LinkProps) {
-	const [local, others] = splitProps(props, ["class", "variant"]);
+export function Link<T extends ValidComponent = "a">(props: PolymorphicProps<T, LinkProps<T>>) {
+	const [local, others] = splitProps(props as PolymorphicProps<"a", LinkProps>, ["class", "variant"]);
 
 	const classes = () =>
 		mergeClasses(
@@ -16,5 +17,5 @@ export function Link(props: LinkProps) {
 			local.class,
 		);
 
-	return <KLink.Root data-cui={"link"} class={classes()} {...others} />;
+	return <KLink data-cui={"link"} {...others} class={classes()} />;
 }

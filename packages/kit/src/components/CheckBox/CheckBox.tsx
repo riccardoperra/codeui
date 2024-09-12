@@ -1,4 +1,4 @@
-import { Checkbox as KCheckbox } from "@kobalte/core";
+import { Checkbox as KCheckbox, CheckboxRootOptions } from "@kobalte/core/checkbox";
 import { JSX, Ref, Show, splitProps } from "solid-js";
 import * as styles from "./CheckBox.css";
 import { BaseFieldProps } from "../Field/createBaseFieldProps";
@@ -13,7 +13,7 @@ import { createFieldMessageProps } from "../Field/FieldMessage/createFieldMessag
 
 type CheckBoxSlot = "root" | "input" | "label" | "errorLabel" | "control";
 
-export type CheckBoxProps = KCheckbox.CheckboxRootOptions &
+export type CheckBoxProps = CheckboxRootOptions &
 	BaseFieldProps &
 	FieldWithErrorMessageSupport &
 	SlotProp<CheckBoxSlot> & {
@@ -49,7 +49,7 @@ export function Checkbox(props: CheckBoxProps) {
 		);
 
 	return (
-		<KCheckbox.Root
+		<KCheckbox
 			data-cui={"checkbox"}
 			data-field-size={local.size}
 			class={mergeClasses(styles.container, local?.slotClasses?.root)}
@@ -81,6 +81,6 @@ export function Checkbox(props: CheckBoxProps) {
 					</KCheckbox.ErrorMessage>
 				</Show>
 			</div>
-		</KCheckbox.Root>
+		</KCheckbox>
 	);
 }
