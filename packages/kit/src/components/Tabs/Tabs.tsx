@@ -1,9 +1,17 @@
-import { Tabs as KTabs } from "@kobalte/core";
+import {
+	Tabs as KTabs,
+	TabsContentProps as KTabsContentProps,
+	TabsIndicatorProps as KTabsIndicatorProps,
+	TabsListProps as KTabsListProps,
+	TabsRootProps as KTabsRootProps,
+	TabsTriggerProps as KTabsTriggerProps,
+} from "@kobalte/core/tabs";
 import { mergeClasses } from "../../utils/css";
 import * as styles from "./Tabs.css";
-import { createContext, Show, splitProps, useContext } from "solid-js";
+import { createContext, Show, splitProps, useContext, ValidComponent } from "solid-js";
+import { PolymorphicProps } from "@kobalte/core/polymorphic";
 
-type TabsProps = KTabs.TabsRootProps & {
+export type TabsProps<T extends ValidComponent = "div"> = KTabsRootProps<T> & {
 	theme?: "inline" | "default";
 };
 
@@ -13,8 +21,8 @@ const TabsContext = createContext<{
 	theme: "default",
 });
 
-export function Tabs(props: TabsProps) {
-	const [local, others] = splitProps(props, ["class", "theme"]);
+export function Tabs<T extends ValidComponent = "div">(props: PolymorphicProps<T, TabsProps<T>>) {
+	const [local, others] = splitProps(props as PolymorphicProps<"div", TabsProps<T>>, ["class", "theme"]);
 	const classes = () => mergeClasses(styles.tabsRoot, local.class);
 
 	return (
@@ -23,7 +31,7 @@ export function Tabs(props: TabsProps) {
 				theme: local.theme,
 			}}
 		>
-			<KTabs.Root
+			<KTabs
 				data-cui={"tabs"}
 				data-tabs-theme={local.theme}
 				{...others}
@@ -33,11 +41,11 @@ export function Tabs(props: TabsProps) {
 	);
 }
 
-type TabsListProps = KTabs.TabsListProps;
+export type TabsListProps<T extends ValidComponent = "div"> = KTabsListProps<T>;
 
-export function TabsList(props: TabsListProps) {
+export function TabsList<T extends ValidComponent = "div">(props: PolymorphicProps<T, TabsListProps<T>>) {
 	const context = useContext(TabsContext);
-	const [local, others] = splitProps(props, ["class", "children"]);
+	const [local, others] = splitProps(props as PolymorphicProps<"div", TabsListProps>, ["class", "children"]);
 	const classes = () => mergeClasses(styles.tabsList, local.class);
 
 	return (
@@ -50,28 +58,28 @@ export function TabsList(props: TabsListProps) {
 	);
 }
 
-type TabsTriggerProps = KTabs.TabsTriggerProps;
+export type TabsTriggerProps<T extends ValidComponent = "button"> = KTabsTriggerProps<T>;
 
-export function TabsHeader(props: TabsTriggerProps) {
-	const [local, others] = splitProps(props, ["class"]);
+export function TabsHeader<T extends ValidComponent = "button">(props: PolymorphicProps<T, TabsTriggerProps<T>>) {
+	const [local, others] = splitProps(props as PolymorphicProps<"button", TabsTriggerProps>, ["class"]);
 	const classes = () => mergeClasses(styles.tabsHeader, local.class);
 
 	return <KTabs.Trigger {...others} class={classes()} />;
 }
 
-type TabsContentProps = KTabs.TabsContentProps;
+export type TabsContentProps<T extends ValidComponent = "div"> = KTabsContentProps<T>;
 
-export function TabsContent(props: TabsContentProps) {
-	const [local, others] = splitProps(props, ["class"]);
+export function TabsContent<T extends ValidComponent = "div">(props: PolymorphicProps<T, TabsContentProps<T>>) {
+	const [local, others] = splitProps(props as PolymorphicProps<"div", TabsContentProps>, ["class"]);
 	const classes = () => mergeClasses(styles.tabsContent, local.class);
 
 	return <KTabs.Content {...others} class={classes()} />;
 }
 
-type TabsIndicatorProps = KTabs.TabsIndicatorProps;
+export type TabsIndicatorProps<T extends ValidComponent = "div"> = KTabsIndicatorProps<T>;
 
-export function TabsIndicator(props: TabsIndicatorProps) {
-	const [local, others] = splitProps(props, ["class"]);
+export function TabsIndicator<T extends ValidComponent = "div">(props: PolymorphicProps<T, TabsIndicatorProps<T>>) {
+	const [local, others] = splitProps(props as PolymorphicProps<"div", TabsIndicatorProps>, ["class"]);
 	return (
 		<KTabs.Indicator {...others} class={mergeClasses(styles.indicator, local.class)} />
 	);

@@ -1,14 +1,12 @@
-import { Tabs } from "@kobalte/core";
+import { Tabs, TabsRootProps } from "@kobalte/core/tabs";
 import { debounce } from "@solid-primitives/scheduled";
 import { onMount, splitProps } from "solid-js";
 import { SlotProp } from "../../utils/component";
 import { mergeClasses } from "../../utils/css";
 import * as styles from "./SegmentedControl.css";
 import { SegmentedControlVariants } from "./SegmentedControl.css";
-import {
-	createSegmentedControlContextState,
-	SegmentedControlContext,
-} from "./SegmentedControlContext";
+import { createSegmentedControlContextState, SegmentedControlContext } from "./SegmentedControlContext";
+import { PolymorphicProps } from "@kobalte/core/polymorphic";
 
 type TypedTabsRootProps<T> = {
 	value?: T;
@@ -17,7 +15,7 @@ type TypedTabsRootProps<T> = {
 };
 
 export type SegmentedControlProps = Omit<
-	Tabs.TabsRootProps,
+	TabsRootProps,
 	"orientation" | keyof TypedTabsRootProps<string>
 > &
 	TypedTabsRootProps<string> &
@@ -25,7 +23,7 @@ export type SegmentedControlProps = Omit<
 
 type SegmentedControlSlot = "root" | "list" | "indicator";
 
-export function SegmentedControl(props: SegmentedControlProps) {
+export function SegmentedControl(props: PolymorphicProps<"div", SegmentedControlProps>) {
 	const [local, others] = splitProps(props, [
 		"class",
 		"theme",
@@ -79,7 +77,7 @@ export function SegmentedControl(props: SegmentedControlProps) {
 
 	return (
 		<SegmentedControlContext.Provider value={contextState}>
-			<Tabs.Root
+			<Tabs
 				data-cui={"segmentedControl"}
 				data-disabled={disabled()}
 				data-autoWidth={autoWidth()}
@@ -100,7 +98,7 @@ export function SegmentedControl(props: SegmentedControlProps) {
 						ref={indicatorRef}
 					/>
 				</Tabs.List>
-			</Tabs.Root>
+			</Tabs>
 		</SegmentedControlContext.Provider>
 	);
 }

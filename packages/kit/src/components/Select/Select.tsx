@@ -1,5 +1,10 @@
-import { Select as KSelect } from "@kobalte/core";
-import { Accessor, JSX, JSXElement, Show, splitProps } from "solid-js";
+import {
+	Select as KSelect,
+	SelectContentProps as KSelectContentProps,
+	SelectItemProps as KSelectItemProps,
+	SelectRootProps as KSelectRootProps,
+} from "@kobalte/core/select";
+import { Accessor, JSX, JSXElement, ParentProps, Show, splitProps } from "solid-js";
 import { CheckIcon } from "../../icons/CheckIcon";
 import { SelectorIcon } from "../../icons/SelectorIcon";
 import { mergeClasses } from "../../utils/css";
@@ -12,26 +17,26 @@ import { createFieldLabelProps } from "../Field/FieldLabel/createFieldLabelProps
 import { createFieldMessageProps } from "../Field/FieldMessage/createFieldMessageProps";
 import * as styles from "./Select.css";
 
-export type SelectProps<Option, OptGroup = never> = KSelect.SelectRootProps<
+export type SelectProps<Option, OptGroup = never> = KSelectRootProps<
 	Option,
 	OptGroup
 > &
 	BaseFieldProps & {
-		"aria-label": string;
-		placeholder?: string;
-		description?: string;
-		label?: JSX.Element;
-	} & FieldWithErrorMessageSupport & {
-		itemLabel?: (item: Option) => JSXElement;
-		valueComponent?: (state: Accessor<Option>) => JSXElement;
-	};
+	"aria-label": string;
+	placeholder?: string;
+	description?: string;
+	label?: JSX.Element;
+} & FieldWithErrorMessageSupport & {
+	itemLabel?: (item: Option) => JSXElement;
+	valueComponent?: (state: Accessor<Option>) => JSXElement;
+};
 
-function SelectContent(props: KSelect.SelectContentProps) {
+function SelectContent(props: ParentProps<KSelectContentProps>) {
 	return <KSelect.Content class={styles.content} {...props} />;
 }
 
 export function SelectItem<T>(
-	props: KSelect.SelectItemProps & {
+	props: KSelectItemProps & {
 		itemLabel?: (item: T) => JSXElement;
 	},
 ) {
@@ -47,7 +52,7 @@ export function SelectItem<T>(
 	);
 }
 
-export function Select<Option, OptGroup = never>(props: SelectProps<Option, OptGroup>) {
+export function Select<Option, OptGroup = never>(props: ParentProps<SelectProps<Option, OptGroup>>) {
 	const [local, internal, others] = splitProps(
 		props,
 		[
@@ -69,7 +74,7 @@ export function Select<Option, OptGroup = never>(props: SelectProps<Option, OptG
 	const errorProps = createFieldErrorMessageProps(props);
 
 	return (
-		<KSelect.Root
+		<KSelect
 			{...(others as Record<string, unknown>)}
 			options={internal.options}
 			value={internal.value}
@@ -111,6 +116,6 @@ export function Select<Option, OptGroup = never>(props: SelectProps<Option, OptG
 					<KSelect.Listbox />
 				</SelectContent>
 			</KSelect.Portal>
-		</KSelect.Root>
+		</KSelect>
 	);
 }

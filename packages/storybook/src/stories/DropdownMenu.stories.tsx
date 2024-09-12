@@ -11,7 +11,7 @@ import {
 	DropdownSubMenu,
 	DropdownSubMenuContent,
 	DropdownSubMenuTrigger,
-	As
+	As,
 } from "@codeui/kit";
 import { JSX } from "solid-js";
 
@@ -30,10 +30,8 @@ export const DropdownMenuStory: Story = {
 	name: "DropdownMenu",
 	render: () => (
 		<DropdownMenu>
-			<DropdownMenuTrigger asChild>
-				<As component={Button} theme={"primary"}>
-					Menu
-				</As>
+			<DropdownMenuTrigger as={Button} theme={"primary"}>
+				Menu
 			</DropdownMenuTrigger>
 			<DropdownMenuPortal>
 				<DropdownMenuContent>
@@ -50,10 +48,8 @@ export const DropdownMenuNestedStory: Story = {
 	name: "DropdownMenu Nested",
 	render: () => (
 		<DropdownMenu gutter={6}>
-			<DropdownMenuTrigger asChild>
-				<As component={Button} theme={"tertiary"}>
-					Menu
-				</As>
+			<DropdownMenuTrigger as={Button} theme={"tertiary"}>
+				Menu
 			</DropdownMenuTrigger>
 
 			<DropdownMenuPortal>
