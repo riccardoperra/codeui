@@ -1,5 +1,11 @@
 # @codeui/kit
 
+## 0.1.2
+
+### Patch Changes
+
+- 0082a8a: Fix build
+
 ## 0.1.1
 
 ### Patch Changes
