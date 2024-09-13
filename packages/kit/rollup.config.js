@@ -27,8 +27,8 @@ function tsTypes() {
 
 const config = withSolid({
 	input: "src/index.tsx",
-	targets: ["esm", "cjs"],
-	output: [{ preserveModules: true, dir: "dist" }],
+	targets: ["esm"],
+	output: [{ preserveModules: true, dir: "dist/esm" }],
 });
 
 config.external = [...config.external,
