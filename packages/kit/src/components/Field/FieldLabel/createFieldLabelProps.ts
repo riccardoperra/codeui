@@ -1,7 +1,7 @@
 import { label } from "./FieldLabel.css";
 import { mergeProps, ValidComponent } from "solid-js";
 import { mergeClasses } from "../../../utils/css";
-import { PolymorphicProps } from "@kobalte/core";
+import { PolymorphicProps } from "@kobalte/core/polymorphic";
 
 export function createFieldLabelProps<TValidComponent extends ValidComponent = "label">(
 	props: PolymorphicProps<TValidComponent>,

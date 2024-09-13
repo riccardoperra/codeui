@@ -27,9 +27,21 @@ function tsTypes() {
 
 const config = withSolid({
 	input: "src/index.tsx",
-	targets: ["esm"],
-	output: [{ preserveModules: true, dir: "dist/esm" }],
+	targets: ["esm", "cjs"],
+	output: [{ preserveModules: true, dir: "dist" }],
 });
+
+config.external = [...config.external,
+	"solid-presence",
+	"solid-prevent-scroll",
+	/node_modules\/@kobalte/,
+	/node_modules\/@floating-ui/,
+	/node_modules\/@solid-primitives/,
+	/node_modules\/@corvu/,
+
+];
+
+console.log(config);
 
 if (Array.isArray(config.plugins)) {
 	config.plugins = config.plugins.map(plugin => {
