@@ -225,6 +225,7 @@ export const SelectCustomObjectWithControlledFunction: Story = {
 			<Select
 				options={selectOptions.options()}
 				{...selectOptions.props()}
+				{...selectOptions.controlled()}
 				aria-label={"Fruit"}
 				placeholder={"Choose a fruit."}
 				label={"Fruit"}

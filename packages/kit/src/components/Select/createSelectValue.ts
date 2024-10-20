@@ -3,7 +3,7 @@ import { SelectProps } from "./Select";
 
 type Value = any;
 
-interface Option<T = any> {
+export interface Option<T = any> {
 	label: JSXElement;
 	value: T;
 }
@@ -37,6 +37,7 @@ interface CreateSelectOptionsReturn<T, C extends ConfigFor<T>> {
 		onChange: (item: Option<Value>) => void;
 	};
 }
+
 
 // TODO should support disabled and nested groups?
 export function createSelectOptions<T, C extends ConfigFor<T>>(

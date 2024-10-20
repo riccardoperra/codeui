@@ -30,18 +30,16 @@
 		"dist"
 	],
 	"type": "module",
-	"main": "dist/cjs/index.js",
 	"module": "dist/esm/index.js",
 	"types": "dist/types/index.d.ts",
 	"exports": {
 		".": {
+			"types": "./dist/types/index.d.ts",
 			"solid": "./dist/source/index.jsx",
 			"import": "./dist/esm/index.js",
 			"browser": {
 				"import": "./dist/esm/index.js"
-			},
-			"require": "./dist/cjs/index.js",
-			"node": "./dist/cjs/index.js"
+			}
 		}
 	},
 	"scripts": {
@@ -86,6 +84,7 @@
 		"@vanilla-extract/dynamic": "^2.1.2",
 		"@vanilla-extract/recipes": "^0.5.5",
 		"@vanilla-extract/vite-plugin": "^4.0.15",
+		"example-basic": "link:/Users/riccardoperra/WebstormProjects/pipelineui/packages/app",
 		"motion": "^10.18.0",
 		"polished": "^4.3.1",
 		"statebuilder": "^0.6.0"

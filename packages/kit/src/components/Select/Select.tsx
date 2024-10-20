@@ -16,6 +16,10 @@ import {
 import { createFieldLabelProps } from "../Field/FieldLabel/createFieldLabelProps";
 import { createFieldMessageProps } from "../Field/FieldMessage/createFieldMessageProps";
 import * as styles from "./Select.css";
+import { SlotProp } from "../../utils/component";
+
+// TODO: add to base field slot that respect the BaseFieldProps signature?
+type SelectSlot = "root" | "input" | "label" | "errorLabel";
 
 export type SelectProps<Option, OptGroup = never> = KSelectRootProps<
 	Option,
@@ -29,7 +33,7 @@ export type SelectProps<Option, OptGroup = never> = KSelectRootProps<
 } & FieldWithErrorMessageSupport & {
 	itemLabel?: (item: Option) => JSXElement;
 	valueComponent?: (state: Accessor<Option>) => JSXElement;
-};
+} & SlotProp<SelectSlot>;
 
 function SelectContent(props: ParentProps<KSelectContentProps>) {
 	return <KSelect.Content class={styles.content} {...props} />;
@@ -69,7 +73,13 @@ export function Select<Option, OptGroup = never>(props: ParentProps<SelectProps<
 		["options", "value"],
 	);
 	const baseFieldProps = createBaseFieldProps(props);
-	const labelProps = createFieldLabelProps<"span">({});
+
+	const labelProps = createFieldLabelProps<"span">({
+		get class() {
+			return props.slotClasses?.label
+		}
+	});
+
 	const descriptionProps = createFieldMessageProps({});
 	const errorProps = createFieldErrorMessageProps(props);
 
@@ -78,7 +88,8 @@ export function Select<Option, OptGroup = never>(props: ParentProps<SelectProps<
 			{...(others as Record<string, unknown>)}
 			options={internal.options}
 			value={internal.value}
-			class={styles.field}
+			class={mergeClasses(styles.field, props.slotClasses?.root)}
+			data-field-size={local.size}
 			itemComponent={itemProps => (
 				<SelectItem item={itemProps.item} itemLabel={local.itemLabel} />
 			)}

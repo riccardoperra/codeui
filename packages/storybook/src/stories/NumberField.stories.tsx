@@ -1,8 +1,7 @@
 import { Button, NumberField, NumberFieldProps } from "@codeui/kit";
 import type { Meta, StoryObj } from "storybook-solidjs";
 import { DocsItemsContainer, DocsMultipleItemsContainer } from "./components/Section.jsx";
-import { For, createSignal } from "solid-js";
-import { render } from "solid-js/web";
+import { createSignal, For } from "solid-js";
 
 // TODO: fix
 const sizes = ["xs", "sm", "md", "lg", "xl"] as NumberFieldProps["size"][];
