@@ -15,6 +15,7 @@ export const [dropdownMenuTheme, dropdownMenuThemeVars] = createTheme({
 	itemHoverTextColor: tokens.dropdownItemHoverTextColor,
 	itemDisabledOpacity: ".4",
 	itemMinHeight: "2.60rem",
+	itemPadding: `${themeTokens.spacing["2"]} ${themeTokens.spacing["3"]}`
 });
 
 const contentShow = keyframes({
@@ -86,7 +87,7 @@ export const item = style([
 		justifyContent: "flex-start",
 		border: 0,
 		margin: 0,
-		padding: `${themeTokens.spacing["2"]} ${themeTokens.spacing["3"]}`,
+		padding: dropdownMenuThemeVars.itemPadding,
 		borderRadius: themeTokens.radii.sm,
 		background: "transparent",
 		color: dropdownMenuThemeVars.itemTextColor,

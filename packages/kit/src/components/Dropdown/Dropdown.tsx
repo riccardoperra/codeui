@@ -13,9 +13,12 @@ import {
 import * as styles from "./Dropdown.css";
 import { JSXElement, Show, splitProps, ValidComponent } from "solid-js";
 import { PolymorphicProps } from "@kobalte/core/polymorphic";
+import { mergeClasses } from "../../utils/css";
 
 export function DropdownMenuContent<T extends ValidComponent = "div">(props: PolymorphicProps<T, KDropdownMenuContentProps<T>>) {
-	return <KDropdownMenu.Content {...props} class={styles.content} />;
+	return <KDropdownMenu.Content
+		data-cui={"dropdown-menu-content"}
+		{...props} class={mergeClasses(styles.content, props.class)} />;
 }
 
 export function DropdownMenuPortal(props: GetKobalteParams<typeof KDropdownMenu.Portal>) {
@@ -32,7 +35,9 @@ export function DropdownMenuItem<T extends ValidComponent = "div">(
 	const [local, others] = splitProps(props as PolymorphicProps<"div", DropdownMenuItemProps<T>>, ["rightSlot", "children"]);
 
 	return (
-		<KDropdownMenu.Item {...others} class={styles.item}>
+		<KDropdownMenu.Item
+			data-cui={"dropdown-menu-item"}
+			{...others} class={mergeClasses(styles.item, props.class)}>
 			{local.children}
 			<Show when={props.rightSlot} keyed={false}>
 				<div class={styles.rightSlot}>{props.rightSlot}</div>

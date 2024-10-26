@@ -46,7 +46,11 @@ export {
 	DropdownSubMenuContent,
 	DropdownMenuSeparator,
 } from "./components/Dropdown/Dropdown";
+export * as dropdownMenuStyles from "./components/Dropdown/Dropdown.css";
+
 export { Popover, PopoverTrigger, PopoverContent } from "./components/Popover/Popover";
+export * as popoverStyles from "./components/Popover/Popover.css";
+
 export { Select } from "./components/Select/Select";
 export { createSelectOptions } from "./components/Select/createSelectValue";
 
@@ -80,4 +84,4 @@ export {
 	responsiveStyle,
 } from "./foundation";
 
-export {mergeClasses} from './utils/css';
+export { mergeClasses } from "./utils/css";
