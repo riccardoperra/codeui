@@ -1,5 +1,11 @@
 # @codeui/kit
 
+## 0.1.5
+
+### Patch Changes
+
+- a42d903: support multiple select text value
+
 ## 0.1.4
 
 ### Patch Changes
