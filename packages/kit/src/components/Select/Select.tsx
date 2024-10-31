@@ -4,7 +4,7 @@ import {
 	SelectItemProps as KSelectItemProps,
 	SelectRootProps as KSelectRootProps,
 } from "@kobalte/core/select";
-import { Accessor, JSX, JSXElement, ParentProps, Show, splitProps } from "solid-js";
+import { Accessor, For, JSX, JSXElement, ParentProps, Show, splitProps } from "solid-js";
 import { CheckIcon } from "../../icons/CheckIcon";
 import { SelectorIcon } from "../../icons/SelectorIcon";
 import { mergeClasses } from "../../utils/css";
@@ -19,7 +19,7 @@ import * as styles from "./Select.css";
 import { SlotProp } from "../../utils/component";
 
 // TODO: add to base field slot that respect the BaseFieldProps signature?
-type SelectSlot = "root" | "input" | "label" | "errorLabel";
+type SelectSlot = "root" | "input" | "label" | "errorLabel" | "itemValue";
 
 export type SelectProps<Option, OptGroup = never> = KSelectRootProps<
 	Option,
@@ -33,6 +33,7 @@ export type SelectProps<Option, OptGroup = never> = KSelectRootProps<
 } & FieldWithErrorMessageSupport & {
 	itemLabel?: (item: Option) => JSXElement;
 	valueComponent?: (state: Accessor<Option>) => JSXElement;
+	valueComponentMultiple?: (state: Accessor<Option[]>) => JSXElement;
 } & SlotProp<SelectSlot>;
 
 function SelectContent(props: ParentProps<KSelectContentProps>) {
@@ -76,8 +77,8 @@ export function Select<Option, OptGroup = never>(props: ParentProps<SelectProps<
 
 	const labelProps = createFieldLabelProps<"span">({
 		get class() {
-			return props.slotClasses?.label
-		}
+			return props.slotClasses?.label;
+		},
 	});
 
 	const descriptionProps = createFieldMessageProps({});
@@ -101,13 +102,30 @@ export function Select<Option, OptGroup = never>(props: ParentProps<SelectProps<
 				aria-label={local["aria-label"]}
 				class={mergeClasses(baseFieldProps.baseStyle(), styles.selectField)}
 			>
-				<KSelect.Value<Option>>
+				<KSelect.Value<Option> class={others.slotClasses?.itemValue}>
 					{state => {
-						const value = state.selectedOption();
-						if (!value) return null;
-						return local.valueComponent
-							? local.valueComponent(state.selectedOption)
-							: (state.selectedOption() as string);
+
+						return (
+							<Show
+								fallback={(() => {
+									const value = state.selectedOption();
+									if (!value) return null;
+									return local.valueComponent
+										? local.valueComponent(state.selectedOption)
+										: (state.selectedOption() as string);
+								})()}
+								when={props.multiple}>
+								<Show
+									fallback={state.selectedOptions().join(", ")}
+									when={props.valueComponentMultiple}>
+									{callback => (
+										<>
+											{callback()(state.selectedOptions)}
+										</>
+									)}
+								</Show>
+							</Show>
+						);
 					}}
 				</KSelect.Value>
 				<KSelect.Icon>
