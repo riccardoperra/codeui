@@ -53,3 +53,20 @@ it("server renders a switch label linked to its input", () => {
 	expect(inputId).toBeTruthy();
 	expect(labelFor).toBe(inputId);
 });
+
+import { Slider } from "../src/components/Slider/Slider";
+import { Progress } from "../src/components/Progress/Progress";
+it("server renders slider field content and determinate and indeterminate progress", () => {
+	const html = renderToString(() => (
+		<>
+			<Slider label="Opacity" defaultValue={0.5} minValue={0} maxValue={1} step={0.01} />
+			<Progress label="Export" value={5} maxValue={20} />
+			<Progress aria-label="Preparing" indeterminate />
+		</>
+	));
+	expect(html).toContain('role="slider"');
+	expect(html).toContain('aria-valuenow="0.5"');
+	expect(html).toContain('aria-valuenow="5"');
+	expect(html).toContain("data-indeterminate");
+	expect(html).toContain("Opacity");
+});

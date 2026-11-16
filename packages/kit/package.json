@@ -117,6 +117,34 @@
 				"types": "./dist/types-cjs/parts/switch.d.cts",
 				"default": "./dist/cjs/parts/switch.cjs"
 			}
+		},
+		"./slider": {
+			"solid": {
+				"types": "./dist/types/parts/slider.d.ts",
+				"default": "./dist/source/parts/slider.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/slider.d.ts",
+				"default": "./dist/esm/parts/slider.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/slider.d.cts",
+				"default": "./dist/cjs/parts/slider.cjs"
+			}
+		},
+		"./progress": {
+			"solid": {
+				"types": "./dist/types/parts/progress.d.ts",
+				"default": "./dist/source/parts/progress.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/progress.d.ts",
+				"default": "./dist/esm/parts/progress.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/progress.d.cts",
+				"default": "./dist/cjs/parts/progress.cjs"
+			}
 		}
 	},
 	"typesVersions": {
@@ -135,6 +163,12 @@
 			],
 			"switch": [
 				"dist/types/parts/switch.d.ts"
+			],
+			"slider": [
+				"dist/types/parts/slider.d.ts"
+			],
+			"progress": [
+				"dist/types/parts/progress.d.ts"
 			]
 		}
 	},

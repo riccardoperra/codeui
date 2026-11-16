@@ -657,6 +657,25 @@ export type PopoverContentProps<T extends ValidComponent = "div"> = P.ContentPro
 export declare function PopoverContent<T extends ValidComponent = "div">(props: PolymorphicProps<T, PopoverContentProps<T>>): JSX.Element;
 ```
 
+## components/Progress/Progress.d.ts
+
+```ts
+import { type JSX } from "solid-js";
+import * as P from "../../parts/progress.js";
+export type ProgressProps = Omit<P.RootProps, "children"> & {
+    class?: string;
+    classes?: P.ProgressClasses;
+    label?: JSX.Element;
+    showValue?: boolean;
+    size?: "sm" | "md";
+    "aria-label"?: string;
+    "aria-labelledby"?: string;
+};
+export declare function Progress(props: ProgressProps): JSX.Element;
+export { progressStyles, ProgressParts } from "../../parts/progress.js";
+export type { ProgressClasses, ProgressPart, ProgressVariants, ProgressStyles, } from "../../parts/progress.js";
+```
+
 ## components/RadioList/RadioList.d.ts
 
 ```ts
@@ -870,6 +889,69 @@ interface CreateSelectOptionsReturn<T, C extends ConfigFor<T>> {
 }
 export declare function createSelectOptions<T, C extends ConfigFor<T>>(values: readonly T[] | Accessor<readonly T[]>, config?: C): CreateSelectOptionsReturn<T, C>;
 export {};
+```
+
+## components/Slider/Slider.d.ts
+
+```ts
+import { type Accessor } from "solid-js";
+import * as P from "../../parts/slider.js";
+import { type FieldContent } from "../Field/createBaseFieldProps.js";
+export type SliderProps = Omit<P.RootProps, "value" | "defaultValue" | "onChange" | "onChangeEnd" | "children"> & FieldContent & {
+    class?: string;
+    classes?: P.SliderClasses;
+    value?: number;
+    defaultValue?: number;
+    onChange?: (value: number) => void;
+    onChangeEnd?: (value: number) => void;
+    inputId?: string;
+    "aria-label"?: string;
+    "aria-labelledby"?: string;
+    showValue?: boolean;
+};
+export declare function createSliderProps(props: Accessor<SliderProps>): {
+    root: () => {
+        value: number[] | undefined;
+        defaultValue: number[] | undefined;
+        onChange: (values: number[]) => void | undefined;
+        onChangeEnd: (values: number[]) => void | undefined;
+        name?: string | undefined;
+        required?: boolean | undefined;
+        id?: string | undefined;
+        disabled?: boolean | undefined;
+        orientation?: ("horizontal" | "vertical") | undefined;
+        ref?: HTMLDivElement | ((el: HTMLDivElement) => void) | undefined;
+        step?: number | undefined;
+        readOnly?: boolean | undefined;
+        validationState?: import("@kobalte/utils").ValidationState | undefined;
+        inverted?: boolean | undefined;
+        minValue?: number | undefined;
+        maxValue?: number | undefined;
+        minStepsBetweenThumbs?: number | undefined;
+        getValueLabel?: ((params: import("@kobalte/core/slider").SliderGetValueLabelParams) => string) | undefined;
+        class?: string | undefined;
+    };
+    input: () => {
+        id: string;
+        "aria-hidden": true;
+        class: string | undefined;
+    };
+    label: () => {
+        id: string;
+        class: string | undefined;
+    };
+    description: () => {
+        id: string;
+        class: string | undefined;
+    };
+    errorMessage: () => {
+        id: string;
+        class: string | undefined;
+    };
+};
+export declare function Slider(props: SliderProps): import("solid-js").JSX.Element;
+export { sliderStyles, SliderParts } from "../../parts/slider.js";
+export type { SliderClasses, SliderPart, SliderVariants, SliderStyles, } from "../../parts/slider.js";
 ```
 
 ## components/Stack/Stack.d.ts
@@ -1616,6 +1698,8 @@ import { Switch } from "./components/Switch/Switch.js";
 export { Switch };
 export { createSwitchProps, switchStyles, SwitchParts } from "./components/Switch/Switch.js";
 export type { SwitchProps, SwitchClasses, SwitchPart, SwitchVariants, SwitchStyles, } from "./components/Switch/Switch.js";
+export * from "./components/Slider/Slider.js";
+export * from "./components/Progress/Progress.js";
 ```
 
 ## parts/dialog.d.ts
@@ -1720,6 +1804,102 @@ export type CloseButtonProps = Omit<PolymorphicProps<"button", IconButtonProps>,
     "aria-label"?: string;
 };
 export declare function CloseButton(props: CloseButtonProps): import("solid-js").JSX.Element;
+```
+
+## parts/progress.d.ts
+
+```ts
+import * as K from "@kobalte/core/progress";
+import type { PolymorphicProps } from "@kobalte/core/polymorphic";
+import { type ValidComponent } from "solid-js";
+export { useProgressContext } from "@kobalte/core/progress";
+export type ProgressVariants = {
+    size?: "sm" | "md";
+};
+export declare const progressParts: {
+    readonly root: "progress-root";
+    readonly label: "progress-label";
+    readonly track: "progress-track";
+    readonly fill: "progress-fill";
+    readonly valueLabel: "progress-value-label";
+};
+export type ProgressPart = keyof typeof progressParts;
+export type ProgressClasses = Partial<Record<ProgressPart, string>>;
+export type ProgressStyles = Record<ProgressPart, (variants?: ProgressVariants) => string>;
+export declare const progressStyles: ProgressStyles;
+export type RootProps<T extends ValidComponent = "div"> = K.ProgressRootProps<T> & ProgressVariants;
+export declare function Root<T extends ValidComponent = "div">(props: PolymorphicProps<T, RootProps<T>>): import("solid-js").JSX.Element;
+export type LabelProps<T extends ValidComponent = "span"> = K.ProgressLabelProps<T> & ProgressVariants;
+export declare function Label<T extends ValidComponent = "span">(props: PolymorphicProps<T, LabelProps<T>>): import("solid-js").JSX.Element;
+export type TrackProps<T extends ValidComponent = "div"> = K.ProgressTrackProps<T> & ProgressVariants;
+export declare function Track<T extends ValidComponent = "div">(props: PolymorphicProps<T, TrackProps<T>>): import("solid-js").JSX.Element;
+export type FillProps<T extends ValidComponent = "div"> = K.ProgressFillProps<T> & ProgressVariants;
+export declare function Fill<T extends ValidComponent = "div">(props: PolymorphicProps<T, FillProps<T>>): import("solid-js").JSX.Element;
+export type ValueLabelProps<T extends ValidComponent = "div"> = K.ProgressValueLabelProps<T> & ProgressVariants;
+export declare function ValueLabel<T extends ValidComponent = "div">(props: PolymorphicProps<T, ValueLabelProps<T>>): import("solid-js").JSX.Element;
+export declare const ProgressParts: {
+    Root: typeof Root;
+    Label: typeof Label;
+    Track: typeof Track;
+    Fill: typeof Fill;
+    ValueLabel: typeof ValueLabel;
+};
+```
+
+## parts/slider.d.ts
+
+```ts
+import * as K from "@kobalte/core/slider";
+import type { PolymorphicProps } from "@kobalte/core/polymorphic";
+import { type ValidComponent } from "solid-js";
+export { useSliderContext } from "@kobalte/core/slider";
+export type SliderVariants = {
+    orientation?: "horizontal" | "vertical";
+};
+export declare const sliderParts: {
+    readonly root: "slider-root";
+    readonly label: "slider-label";
+    readonly description: "slider-description";
+    readonly errorMessage: "slider-error-message";
+    readonly track: "slider-track";
+    readonly fill: "slider-fill";
+    readonly thumb: "slider-thumb";
+    readonly input: "slider-input";
+    readonly valueLabel: "slider-value-label";
+};
+export type SliderPart = keyof typeof sliderParts;
+export type SliderClasses = Partial<Record<SliderPart, string>>;
+export type SliderStyles = Record<SliderPart, (variants?: SliderVariants) => string>;
+export declare const sliderStyles: SliderStyles;
+export type RootProps<T extends ValidComponent = "div"> = K.SliderRootProps<T> & SliderVariants;
+export declare function Root<T extends ValidComponent = "div">(props: PolymorphicProps<T, RootProps<T>>): import("solid-js").JSX.Element;
+export type LabelProps<T extends ValidComponent = "label"> = K.SliderLabelProps<T> & SliderVariants;
+export declare function Label<T extends ValidComponent = "label">(props: PolymorphicProps<T, LabelProps<T>>): import("solid-js").JSX.Element;
+export type DescriptionProps<T extends ValidComponent = "div"> = K.SliderDescriptionProps<T> & SliderVariants;
+export declare function Description<T extends ValidComponent = "div">(props: PolymorphicProps<T, DescriptionProps<T>>): import("solid-js").JSX.Element;
+export type ErrorMessageProps<T extends ValidComponent = "div"> = K.SliderErrorMessageProps<T> & SliderVariants;
+export declare function ErrorMessage<T extends ValidComponent = "div">(props: PolymorphicProps<T, ErrorMessageProps<T>>): import("solid-js").JSX.Element;
+export type TrackProps<T extends ValidComponent = "div"> = K.SliderTrackProps<T> & SliderVariants;
+export declare function Track<T extends ValidComponent = "div">(props: PolymorphicProps<T, TrackProps<T>>): import("solid-js").JSX.Element;
+export type FillProps<T extends ValidComponent = "div"> = K.SliderFillProps<T> & SliderVariants;
+export declare function Fill<T extends ValidComponent = "div">(props: PolymorphicProps<T, FillProps<T>>): import("solid-js").JSX.Element;
+export type ThumbProps<T extends ValidComponent = "span"> = K.SliderThumbProps<T> & SliderVariants;
+export declare function Thumb<T extends ValidComponent = "span">(props: PolymorphicProps<T, ThumbProps<T>>): import("solid-js").JSX.Element;
+export type InputProps = K.SliderInputProps;
+export declare function Input(props: InputProps): import("solid-js").JSX.Element;
+export type ValueLabelProps<T extends ValidComponent = "div"> = K.SliderValueLabelProps<T> & SliderVariants;
+export declare function ValueLabel<T extends ValidComponent = "div">(props: PolymorphicProps<T, ValueLabelProps<T>>): import("solid-js").JSX.Element;
+export declare const SliderParts: {
+    Root: typeof Root;
+    Label: typeof Label;
+    Description: typeof Description;
+    ErrorMessage: typeof ErrorMessage;
+    Track: typeof Track;
+    Fill: typeof Fill;
+    Thumb: typeof Thumb;
+    Input: typeof Input;
+    ValueLabel: typeof ValueLabel;
+};
 ```
 
 ## parts/stack.d.ts

@@ -116,3 +116,6 @@ export type {
 	SwitchVariants,
 	SwitchStyles,
 } from "./components/Switch/Switch";
+
+export * from "./components/Slider/Slider";
+export * from "./components/Progress/Progress";
