@@ -145,6 +145,20 @@
 				"types": "./dist/types-cjs/parts/progress.d.cts",
 				"default": "./dist/cjs/parts/progress.cjs"
 			}
+		},
+		"./combobox": {
+			"solid": {
+				"types": "./dist/types/parts/combobox.d.ts",
+				"default": "./dist/source/parts/combobox.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/combobox.d.ts",
+				"default": "./dist/esm/parts/combobox.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/combobox.d.cts",
+				"default": "./dist/cjs/parts/combobox.cjs"
+			}
 		}
 	},
 	"typesVersions": {
@@ -169,6 +183,9 @@
 			],
 			"progress": [
 				"dist/types/parts/progress.d.ts"
+			],
+			"combobox": [
+				"dist/types/parts/combobox.d.ts"
 			]
 		}
 	},

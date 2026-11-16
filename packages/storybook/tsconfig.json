@@ -35,6 +35,9 @@
 			],
 			"@codeui/kit/popover": [
 				"../kit/src/parts/popover.tsx"
+			],
+			"@codeui/kit/combobox": [
+				"../kit/src/parts/combobox.tsx"
 			]
 		}
 	},

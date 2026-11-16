@@ -142,6 +142,48 @@ export declare function Checkbox(props: CheckBoxProps): JSX.Element;
 export {};
 ```
 
+## components/Combobox/createComboboxOptions.d.ts
+
+```ts
+import type { Accessor } from "solid-js";
+type KeysOfType<T, V> = {
+    [K in keyof T]-?: T[K] extends V ? K : never;
+}[keyof T];
+/** One normalized option. `label` is the string the input shows and filters by. */
+export interface ComboboxOption<Value, Item = Value> {
+    value: Value;
+    label: string;
+    disabled: boolean;
+    item: Item;
+}
+export interface ComboboxOptionsConfig<T> {
+    valueKey: KeysOfType<T, string | number>;
+    labelKey: KeysOfType<T, string>;
+    disabledKey?: KeysOfType<T, boolean | undefined>;
+}
+export interface CreateComboboxOptionsReturn<Value, Item> {
+    options: Accessor<ComboboxOption<Value, Item>[]>;
+    optionToValue(option: ComboboxOption<Value, Item> | null | undefined): Value | undefined;
+    optionFromValue(value: Value | null | undefined): ComboboxOption<Value, Item> | undefined;
+    /** Spread on a Combobox root: options and the keys Kobalte reads from each option. */
+    props(): {
+        options: ComboboxOption<Value, Item>[];
+        optionValue: "value";
+        optionTextValue: "label";
+        optionLabel: "label";
+        optionDisabled: "disabled";
+    };
+    controlled(value: Accessor<Value | null | undefined>, onChange: (value: Value | undefined, option: ComboboxOption<Value, Item> | undefined) => void): {
+        value: ComboboxOption<Value, Item> | null;
+        onChange: (option: ComboboxOption<Value, Item> | null) => void;
+    };
+}
+type Source<T> = readonly T[] | Accessor<readonly T[]>;
+export declare function createComboboxOptions<T extends string | number>(values: Source<T>): CreateComboboxOptionsReturn<T, T>;
+export declare function createComboboxOptions<T extends object, C extends ComboboxOptionsConfig<T>>(values: Source<T>, config: C): CreateComboboxOptionsReturn<T[C["valueKey"]], T>;
+export {};
+```
+
 ## components/Dialog/Dialog.d.ts
 
 ```ts
@@ -1706,6 +1748,100 @@ import { Progress } from "./components/Progress/Progress.js";
 export { Progress };
 export { ProgressParts, progressStyles } from "./components/Progress/Progress.js";
 export type { ProgressProps, ProgressClasses, ProgressPart, ProgressVariants, ProgressStyles, } from "./components/Progress/Progress.js";
+export { ComboboxParts, comboboxStyles, createComboboxOptions } from "./parts/combobox.js";
+export type { ComboboxClasses, ComboboxOption, ComboboxOptionsConfig, ComboboxPart, ComboboxStyles, ComboboxVariants, CreateComboboxOptionsReturn, } from "./parts/combobox.js";
+```
+
+## parts/combobox.d.ts
+
+```ts
+import * as K from "@kobalte/core/combobox";
+import type { PolymorphicProps } from "@kobalte/core/polymorphic";
+import { type ValidComponent } from "solid-js";
+export { useComboboxContext } from "@kobalte/core/combobox";
+export { createComboboxOptions, type ComboboxOption, type ComboboxOptionsConfig, type CreateComboboxOptionsReturn, } from "../components/Combobox/createComboboxOptions.js";
+export type ComboboxVariants = {
+    size?: "sm" | "md";
+};
+export declare const comboboxParts: {
+    readonly root: "combobox-root";
+    readonly control: "combobox-control";
+    readonly input: "combobox-input";
+    readonly trigger: "combobox-trigger";
+    readonly icon: "combobox-icon";
+    readonly content: "combobox-content";
+    readonly arrow: "combobox-arrow";
+    readonly listbox: "combobox-listbox";
+    readonly item: "combobox-item";
+    readonly itemLabel: "combobox-item-label";
+    readonly itemDescription: "combobox-item-description";
+    readonly itemIndicator: "combobox-item-indicator";
+    readonly section: "combobox-section";
+    readonly hiddenSelect: "combobox-hidden-select";
+    readonly label: "combobox-label";
+    readonly description: "combobox-description";
+    readonly errorMessage: "combobox-error-message";
+};
+export type ComboboxPart = keyof typeof comboboxParts;
+export type ComboboxClasses = Partial<Record<ComboboxPart, string>>;
+export type ComboboxStyles = Record<ComboboxPart, (variants?: ComboboxVariants) => string>;
+export declare const comboboxStyles: ComboboxStyles;
+export type RootProps<Option, OptGroup = never, T extends ValidComponent = "div"> = K.ComboboxRootProps<Option, OptGroup, T> & ComboboxVariants;
+export declare function Root<Option, OptGroup = never, T extends ValidComponent = "div">(props: PolymorphicProps<T, RootProps<Option, OptGroup, T>>): import("solid-js").JSX.Element;
+export type ControlProps<Option, T extends ValidComponent = "div"> = K.ComboboxControlProps<Option, T> & ComboboxVariants;
+export declare function Control<Option, T extends ValidComponent = "div">(props: PolymorphicProps<T, ControlProps<Option, T>>): import("solid-js").JSX.Element;
+export type InputProps<T extends ValidComponent = "input"> = K.ComboboxInputProps<T> & ComboboxVariants;
+export declare function Input<T extends ValidComponent = "input">(props: PolymorphicProps<T, InputProps<T>>): import("solid-js").JSX.Element;
+export type TriggerProps<T extends ValidComponent = "button"> = K.ComboboxTriggerProps<T> & ComboboxVariants;
+export declare function Trigger<T extends ValidComponent = "button">(props: PolymorphicProps<T, TriggerProps<T>>): import("solid-js").JSX.Element;
+export type IconProps<T extends ValidComponent = "span"> = K.ComboboxIconProps<T> & ComboboxVariants;
+export declare function Icon<T extends ValidComponent = "span">(props: PolymorphicProps<T, IconProps<T>>): import("solid-js").JSX.Element;
+export type PortalProps = K.ComboboxPortalProps;
+export declare function Portal(props: PortalProps): import("solid-js").JSX.Element;
+export type ContentProps<T extends ValidComponent = "div"> = K.ComboboxContentProps<T> & ComboboxVariants;
+export declare function Content<T extends ValidComponent = "div">(props: PolymorphicProps<T, ContentProps<T>>): import("solid-js").JSX.Element;
+export type ArrowProps<T extends ValidComponent = "div"> = K.ComboboxArrowProps<T> & ComboboxVariants;
+export declare function Arrow<T extends ValidComponent = "div">(props: PolymorphicProps<T, ArrowProps<T>>): import("solid-js").JSX.Element;
+export type ListboxProps<Option = unknown, OptGroup = never, T extends ValidComponent = "ul"> = K.ComboboxListboxProps<Option, OptGroup, T> & ComboboxVariants;
+export declare function Listbox<Option = unknown, OptGroup = never, T extends ValidComponent = "ul">(props: PolymorphicProps<T, ListboxProps<Option, OptGroup, T>>): import("solid-js").JSX.Element;
+export type ItemProps<T extends ValidComponent = "li"> = K.ComboboxItemProps<T> & ComboboxVariants;
+export declare function Item<T extends ValidComponent = "li">(props: PolymorphicProps<T, ItemProps<T>>): import("solid-js").JSX.Element;
+export type ItemLabelProps<T extends ValidComponent = "div"> = K.ComboboxItemLabelProps<T> & ComboboxVariants;
+export declare function ItemLabel<T extends ValidComponent = "div">(props: PolymorphicProps<T, ItemLabelProps<T>>): import("solid-js").JSX.Element;
+export type ItemDescriptionProps<T extends ValidComponent = "div"> = K.ComboboxItemDescriptionProps<T> & ComboboxVariants;
+export declare function ItemDescription<T extends ValidComponent = "div">(props: PolymorphicProps<T, ItemDescriptionProps<T>>): import("solid-js").JSX.Element;
+export type ItemIndicatorProps<T extends ValidComponent = "div"> = K.ComboboxItemIndicatorProps<T> & ComboboxVariants;
+export declare function ItemIndicator<T extends ValidComponent = "div">(props: PolymorphicProps<T, ItemIndicatorProps<T>>): import("solid-js").JSX.Element;
+export type SectionProps<T extends ValidComponent = "li"> = K.ComboboxSectionProps<T> & ComboboxVariants;
+export declare function Section<T extends ValidComponent = "li">(props: PolymorphicProps<T, SectionProps<T>>): import("solid-js").JSX.Element;
+export type HiddenSelectProps = K.ComboboxHiddenSelectProps & ComboboxVariants;
+export declare function HiddenSelect(props: HiddenSelectProps): import("solid-js").JSX.Element;
+export type LabelProps<T extends ValidComponent = "span"> = K.ComboboxLabelProps<T> & ComboboxVariants;
+export declare function Label<T extends ValidComponent = "span">(props: PolymorphicProps<T, LabelProps<T>>): import("solid-js").JSX.Element;
+export type DescriptionProps<T extends ValidComponent = "div"> = K.ComboboxDescriptionProps<T> & ComboboxVariants;
+export declare function Description<T extends ValidComponent = "div">(props: PolymorphicProps<T, DescriptionProps<T>>): import("solid-js").JSX.Element;
+export type ErrorMessageProps<T extends ValidComponent = "div"> = K.ComboboxErrorMessageProps<T> & ComboboxVariants;
+export declare function ErrorMessage<T extends ValidComponent = "div">(props: PolymorphicProps<T, ErrorMessageProps<T>>): import("solid-js").JSX.Element;
+export declare const ComboboxParts: {
+    Root: typeof Root;
+    Control: typeof Control;
+    Input: typeof Input;
+    Trigger: typeof Trigger;
+    Icon: typeof Icon;
+    Portal: typeof Portal;
+    Content: typeof Content;
+    Arrow: typeof Arrow;
+    Listbox: typeof Listbox;
+    Item: typeof Item;
+    ItemLabel: typeof ItemLabel;
+    ItemDescription: typeof ItemDescription;
+    ItemIndicator: typeof ItemIndicator;
+    Section: typeof Section;
+    HiddenSelect: typeof HiddenSelect;
+    Label: typeof Label;
+    Description: typeof Description;
+    ErrorMessage: typeof ErrorMessage;
+};
 ```
 
 ## parts/dialog.d.ts

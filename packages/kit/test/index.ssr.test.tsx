@@ -71,3 +71,25 @@ it("server renders slider field content and determinate and indeterminate progre
 	expect(html).toContain("data-indeterminate");
 	expect(html).toContain("Opacity");
 });
+
+import { ComboboxParts } from "../src/parts/combobox";
+it("server renders closed combobox parts with a label and an input", () => {
+	const html = renderToString(() => (
+		<ComboboxParts.Root options={["TypeScript", "Rust"]} defaultValue="Rust">
+			<ComboboxParts.Label>Language</ComboboxParts.Label>
+			<ComboboxParts.Control>
+				<ComboboxParts.Input />
+			</ComboboxParts.Control>
+			<ComboboxParts.Portal>
+				<ComboboxParts.Content>
+					<ComboboxParts.Listbox />
+				</ComboboxParts.Content>
+			</ComboboxParts.Portal>
+		</ComboboxParts.Root>
+	));
+	expect(html).toContain('role="combobox"');
+	expect(html).toContain('data-cui="combobox-input"');
+	expect(html).toContain('aria-expanded="false"');
+	expect(html).not.toContain('role="listbox"');
+	expect(html).toContain("Language");
+});

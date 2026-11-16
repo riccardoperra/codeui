@@ -137,3 +137,14 @@ export type {
 	ProgressVariants,
 	ProgressStyles,
 } from "./components/Progress/Progress";
+
+export { ComboboxParts, comboboxStyles, createComboboxOptions } from "./parts/combobox";
+export type {
+	ComboboxClasses,
+	ComboboxOption,
+	ComboboxOptionsConfig,
+	ComboboxPart,
+	ComboboxStyles,
+	ComboboxVariants,
+	CreateComboboxOptionsReturn,
+} from "./parts/combobox";
