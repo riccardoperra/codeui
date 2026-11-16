@@ -6,7 +6,6 @@ import {
 	createSignal,
 	createUniqueId,
 	createEffect,
-	onMount,
 	onCleanup,
 	useContext,
 	splitProps,
@@ -160,36 +159,41 @@ export function Content<T extends ValidComponent = "div">(
 	const [local, others] = splitProps(props as PolymorphicProps<"div", ContentProps>, [
 		"class",
 		"children",
+		"style",
 	]);
 	const item = useItem();
-	let body: HTMLDivElement | undefined;
-	onMount(() => {
-		const measure = () =>
-			body?.parentElement?.style.setProperty(
-				"--kb-accordion-content-height",
-				`${body.scrollHeight}px`,
-			);
+	const [body, setBody] = createSignal<HTMLDivElement>();
+	const [height, setHeight] = createSignal(0);
+	createEffect(() => {
+		const element = body();
+		if (!element) return;
+		const measure = () => setHeight(element.scrollHeight);
 		measure();
-		if (typeof ResizeObserver === "undefined" || !body) return;
+		if (typeof ResizeObserver === "undefined") return;
 		const observer = new ResizeObserver(measure);
-		observer.observe(body);
+		observer.observe(element);
 		onCleanup(() => observer.disconnect());
 	});
 	createEffect(() => {
-		if (item.expanded() && body?.parentElement)
-			body.parentElement.style.animationName = "";
+		const parent = body()?.parentElement;
+		if (item.expanded() && parent) parent.style.animationName = "";
 	});
 	return (
 		<K.Content
 			id={item.contentId}
 			aria-labelledby={item.triggerId()}
 			{...others}
+			style={
+				typeof local.style === "string"
+					? `${local.style};--cui-accordion-content-height:${height()}px`
+					: { ...local.style, "--cui-accordion-content-height": `${height()}px` }
+			}
 			data-cui={accordionParts.content}
 			class={mergeClasses(accordionStyles.content(), local.class)}
 			inert={!item.expanded()}
 			aria-hidden={!item.expanded()}
 		>
-			<div ref={body} class={styles.contentBody}>
+			<div ref={setBody} class={styles.contentBody}>
 				{local.children}
 			</div>
 		</K.Content>

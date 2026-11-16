@@ -4,10 +4,16 @@ import { tokens } from "../../foundation/cui.css";
 import { presenceAnimation } from "../../foundation/motion.css";
 const expand = keyframes({
 	from: { height: 0, opacity: 0 },
-	to: { height: "var(--kb-accordion-content-height)", opacity: 1 },
+	to: {
+		height: "var(--cui-accordion-content-height, var(--kb-accordion-content-height))",
+		opacity: 1,
+	},
 });
 const collapse = keyframes({
-	from: { height: "var(--kb-accordion-content-height)", opacity: 1 },
+	from: {
+		height: "var(--cui-accordion-content-height, var(--kb-accordion-content-height))",
+		opacity: 1,
+	},
 	to: { height: 0, opacity: 0 },
 });
 export const root = style({
