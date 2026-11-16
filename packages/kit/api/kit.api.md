@@ -1701,11 +1701,11 @@ export type { SwitchProps, SwitchClasses, SwitchPart, SwitchVariants, SwitchStyl
 import { Slider } from "./components/Slider/Slider.js";
 export { Slider };
 export { createSliderProps, SliderParts, sliderStyles } from "./components/Slider/Slider.js";
-export type { SliderProps, SliderClasses, SliderPart, SliderVariants, SliderStyles } from "./components/Slider/Slider.js";
+export type { SliderProps, SliderClasses, SliderPart, SliderVariants, SliderStyles, } from "./components/Slider/Slider.js";
 import { Progress } from "./components/Progress/Progress.js";
 export { Progress };
 export { ProgressParts, progressStyles } from "./components/Progress/Progress.js";
-export type { ProgressProps, ProgressClasses, ProgressPart, ProgressVariants, ProgressStyles } from "./components/Progress/Progress.js";
+export type { ProgressProps, ProgressClasses, ProgressPart, ProgressVariants, ProgressStyles, } from "./components/Progress/Progress.js";
 ```
 
 ## parts/dialog.d.ts
