@@ -1,0 +1,91 @@
+---
+title: Theming
+description: Every kit value is a --cui-* CSS custom property. Change them with plain CSS, per app, per mode or per subtree.
+---
+
+The CodeImage look is the default. Every color, radius, spacing, shadow and motion value is a `--cui-*` custom property, and every component reads only those properties.
+You do not need vanilla-extract to change the theme.
+
+<SolidDemo name="theme-scope" />
+
+The three groups above render the same components. The first sets `data-cui-theme="dark"`, the second `data-cui-theme="light"`, and the third overrides the brand color and two radii inline.
+
+## Light and dark
+
+The kit has one theme attribute, `data-cui-theme`, with the values `dark` and `light`.
+
+- Set it on `<html>` to theme the whole page.
+- Set it on any element to theme that subtree. Values inherit, so nested scopes work.
+- Without the attribute, the kit follows `prefers-color-scheme`.
+
+This site sets the attribute from its theme toggle, so the page and the demos switch together.
+
+## Token names
+
+Names follow `--cui-<role>-<name>`. The roles are `surface`, `text`, `action`, `accent`, `border`, `focus`, `shadow`, `radius`, `space`, `control`, `font` and `motion`.
+
+| Example | Role |
+| --- | --- |
+| `--cui-surface-canvas` | Island background, such as the content area. See [Colour](/docs/design/color) |
+| `--cui-surface-panel` | Page background, and the inset of an open section |
+| `--cui-text-default` | Body text |
+| `--cui-action-brand-base` | Primary button background |
+| `--cui-accent-focus` | Focus ring color |
+| `--cui-radius-md` | Medium corner radius |
+| `--cui-motion-ease-out` | The one easing curve |
+
+[`k5-token-map.json`](https://github.com/riccardoperra/codeui/blob/main/docs/kit-2026/design/k5-token-map.json) lists every name with its dark and light value.
+In TypeScript, `tokens` from `@codeui/kit` holds the same names as `var(--cui-...)` strings.
+
+```ts
+import { tokens } from '@codeui/kit';
+
+tokens.surface.canvas; // 'var(--cui-surface-canvas)'
+```
+
+## Override with plain CSS
+
+```css title="app.css"
+/* Change the whole app. */
+:root {
+  --cui-action-brand-base: #7c3aed;
+  --cui-action-brand-hover: #6d28d9;
+  --cui-action-brand-active: #5b21b6;
+  --cui-accent-focus: #a78bfa;
+  --cui-radius-md: 6px;
+  --cui-font-family-sans: 'IBM Plex Sans', system-ui, sans-serif;
+}
+
+/* Different values per mode. */
+[data-cui-theme='light'] {
+  --cui-surface-canvas: #fafaf9;
+}
+
+[data-cui-theme='dark'] {
+  --cui-surface-canvas: #0c0a09;
+}
+
+/* Change one instance with a class. */
+.danger-zone-button {
+  --cui-action-danger-base: #b91c1c;
+  border-radius: 0;
+}
+```
+
+## The `cui` cascade layer
+
+All kit rules live in the `cui` cascade layer. Unlayered CSS in your app always wins over a layered rule, whatever the stylesheet order. So the overrides above need no extra specificity.
+
+A CSS reset is the exception. If your reset is unlayered, it also wins, and it overrides kit components. Put the reset in a layer declared before `cui`, in the first stylesheet the page loads:
+
+```css
+@layer reset, cui;
+
+@layer reset {
+  button {
+    background: none;
+  }
+}
+```
+
+This site does the same with Tailwind: its first line is `@layer theme, base, cui, components, utilities;`, so Tailwind's base reset sits below the kit.

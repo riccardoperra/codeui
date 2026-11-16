@@ -27,7 +27,8 @@
 		"access": "public"
 	},
 	"files": [
-		"dist"
+		"dist",
+		"DESIGN.md"
 	],
 	"type": "module",
 	"module": "dist/esm/index.js",

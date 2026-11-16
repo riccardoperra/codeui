@@ -1,0 +1,61 @@
+---
+title: Installation
+description: Add @codeui/kit to a Vite and Solid app.
+---
+
+## Requirements
+
+- Solid `^1.9.8`.
+- Vite, with the vanilla-extract plugin.
+
+The kit does not ship compiled CSS yet. Its styles are vanilla-extract modules, so your build must run the vanilla-extract Vite plugin to turn them into CSS.
+Without the plugin, the import fails at build time or the components render without styles.
+Shipping plain CSS is planned, and this page will change when it lands.
+
+## Install
+
+```bash
+pnpm add @codeui/kit solid-js
+pnpm add -D @vanilla-extract/vite-plugin vite-plugin-solid
+```
+
+## Configure Vite
+
+```ts title="vite.config.ts"
+import { defineConfig } from 'vite';
+import solid from 'vite-plugin-solid';
+import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
+
+export default defineConfig({
+  plugins: [solid(), vanillaExtractPlugin()],
+});
+```
+
+For server rendering, bundle dependencies into the server build, so the plugin also processes the kit styles there.
+The demos on this site are rendered this way:
+
+```ts title="vite.config.ts"
+export default defineConfig({
+  plugins: [solid({ ssr: true }), vanillaExtractPlugin()],
+  ssr: { noExternal: true },
+});
+```
+
+## Use a component
+
+```tsx
+import { Button } from '@codeui/kit';
+
+export function ExportButton() {
+  return <Button theme="primary">Export</Button>;
+}
+```
+
+## Pick a theme
+
+Set `data-cui-theme` on `<html>` to `dark` or `light`. Without it, the kit follows the system color scheme.
+See [Theming](/docs/theming) for the full contract.
+
+```html
+<html data-cui-theme="dark">
+```

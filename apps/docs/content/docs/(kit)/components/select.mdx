@@ -1,0 +1,92 @@
+---
+title: Select
+description: A button that opens a list of options and shows the selected one.
+---
+
+<SolidDemo name="select" />
+
+## Usage
+
+```tsx
+import { createSignal } from 'solid-js';
+import { Select } from '@codeui/kit';
+
+const fonts = ['Jetbrains Mono', 'Fira Code', 'Source Code Pro', 'Cascadia Code'];
+
+export function FontPicker() {
+  const [font, setFont] = createSignal('Jetbrains Mono');
+  return (
+    <Select
+      aria-label="Font"
+      label="Font"
+      placeholder="Choose a font"
+      options={fonts}
+      value={font()}
+      onChange={value => value && setFont(value)}
+    />
+  );
+}
+```
+
+## API
+
+`Select` wraps Kobalte's `Select` and renders the label, the trigger, the messages, and a portaled list.
+Kobalte's root props such as `multiple`, `disabled`, `optionValue`, `optionTextValue`, and `optionDisabled` pass through.
+`aria-label` is required and names the trigger.
+
+<TypeTable
+  type={{
+    'aria-label': { type: 'string', required: true, description: 'Accessible name of the trigger.' },
+    options: { type: 'Option[]', description: 'Items of the list. Strings work as is. Objects need optionValue and optionTextValue.' },
+    value: { type: 'Option', description: 'Controlled selected option.' },
+    defaultValue: { type: 'Option', description: 'Selected option on first render, when uncontrolled.' },
+    onChange: { type: '(value: Option | null) => void', description: 'Called when the selection changes.' },
+    placeholder: { type: 'string', description: 'Shown in the trigger when nothing is selected.' },
+    label: { type: 'JSX.Element', description: 'Label above the trigger.' },
+    description: { type: 'string', description: 'Hint text under the trigger.' },
+    errorMessage: { type: 'JSX.Element', description: "Shown under the trigger when validationState is 'invalid'." },
+    itemLabel: { type: '(item: Option) => JSX.Element', description: 'Renders the label of each item in the list.' },
+    valueComponent: { type: '(option: Accessor<Option>) => JSX.Element', description: 'Renders the selected option in the trigger.' },
+    valueComponentMultiple: { type: '(options: Accessor<Option[]>) => JSX.Element', description: 'Renders the selected options when multiple is set.' },
+    size: { type: "'xs' | 'sm' | 'md' | 'lg' | 'xl'", default: "'md'", description: 'Height and font size of the trigger.' },
+    theme: { type: "'filled' | 'inline'", default: "'filled'", description: "'inline' drops the box and keeps a bottom border." },
+    classes: {
+      type: 'Partial<Record<SelectPart, string>>',
+      description: 'Classes for the parts it renders: root, label, trigger, value, icon, description, errorMessage, content, listbox, item, itemLabel, itemIndicator.',
+    },
+  }}
+/>
+
+## Object options
+
+`createSelectOptions` maps a list of objects to options, using `key` for the label and `valueKey` for the value.
+Spread its `props()` into the select, and convert between your value and the option with `optionFromValue`.
+
+<SolidDemo name="select-options" />
+
+```tsx
+import { createSignal } from 'solid-js';
+import { createSelectOptions, Select } from '@codeui/kit';
+
+const themes = [
+  { name: 'Dracula', id: 'dracula' },
+  { name: 'One Dark', id: 'one-dark' },
+  { name: 'Night Owl', id: 'night-owl' },
+];
+
+export function ThemePicker() {
+  const [theme, setTheme] = createSignal('dracula');
+  const themeOptions = createSelectOptions(themes, { key: 'name', valueKey: 'id' });
+  return (
+    <Select
+      aria-label="Theme"
+      label="Theme"
+      placeholder="Choose a theme"
+      options={themeOptions.options()}
+      {...themeOptions.props()}
+      value={themeOptions.optionFromValue(theme())}
+      onChange={option => option && setTheme(option.value)}
+    />
+  );
+}
+```

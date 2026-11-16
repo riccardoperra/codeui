@@ -1,0 +1,43 @@
+---
+title: Tooltip
+description: A short label that appears when the user hovers or focuses an element.
+---
+
+<SolidDemo name="tooltip" />
+
+## Usage
+
+```tsx
+import { Button, Tooltip } from '@codeui/kit';
+
+export function ToolbarActions() {
+  return (
+    <>
+      <Tooltip content="Copy the snippet to the clipboard">
+        <Button theme="primary">Copy</Button>
+      </Tooltip>
+      <Tooltip content="Download as PNG" theme="secondary" placement="bottom">
+        <Button theme="secondary">Export</Button>
+      </Tooltip>
+    </>
+  );
+}
+```
+
+## API
+
+`Tooltip` wraps its children in the trigger and portals `content` into `document.body`.
+It wraps Kobalte's `Tooltip`, so Kobalte's root props such as `placement`, `disabled`, and `open` pass through.
+
+<TypeTable
+  type={{
+    content: { type: 'JSX.Element', description: 'Content of the tooltip.', required: true },
+    theme: { type: "'primary' | 'secondary'", default: "'primary'", description: 'Color of the tooltip.' },
+    placement: { type: 'Placement', description: "Side and alignment, such as 'top' or 'bottom-start'." },
+    openDelay: { type: 'number', default: '200', description: 'Milliseconds before it opens.' },
+    closeDelay: { type: 'number', default: '0', description: 'Milliseconds before it closes.' },
+    gutter: { type: 'number', default: '4', description: 'Distance from the trigger in pixels.' },
+    shift: { type: 'number', default: '0', description: 'Offset along the trigger in pixels.' },
+    slotClasses: { type: "Partial<Record<'trigger' | 'content', string>>", description: 'Classes for the trigger wrapper and the content.' },
+  }}
+/>

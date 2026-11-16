@@ -1,0 +1,62 @@
+---
+title: RadioList
+description: A group of radio buttons for picking one option from a short list.
+---
+
+<SolidDemo name="radio-list" />
+
+## Usage
+
+```tsx
+import { createSignal } from 'solid-js';
+import { RadioList, RadioListItem } from '@codeui/kit';
+
+export function ExportFormat() {
+  const [format, setFormat] = createSignal('png');
+  return (
+    <RadioList
+      label="Export format"
+      description="SVG keeps the text selectable."
+      value={format()}
+      onChange={setFormat}
+    >
+      <RadioListItem value="png" label="PNG" />
+      <RadioListItem value="svg" label="SVG" />
+      <RadioListItem value="jpeg" label="JPEG" />
+    </RadioList>
+  );
+}
+```
+
+## API
+
+`RadioList` renders the label, the items, the description, and the error message. Each option is a `RadioListItem`.
+It wraps Kobalte's `RadioGroup`, so Kobalte's root props such as `name`, `disabled`, `required`, and `validationState` pass through.
+
+<TypeTable
+  type={{
+    value: { type: 'string', description: 'Controlled selected value.' },
+    defaultValue: { type: 'string', description: 'Selected value on first render, when uncontrolled.' },
+    onChange: { type: '(value: string) => void', description: 'Called when the selection changes.' },
+    label: { type: 'JSX.Element', description: 'Label above the items.' },
+    description: { type: 'JSX.Element', description: 'Helper text under the items.' },
+    errorMessage: { type: 'JSX.Element', description: "Message shown when validationState is 'invalid'." },
+    size: { type: "'xs' | 'sm' | 'md' | 'lg' | 'xl'", default: "'md'", description: 'Size of the radios and the gap between them.' },
+    orientation: { type: "'horizontal' | 'vertical'", description: 'Direction of the items.' },
+    classes: {
+      type: 'RadioListClasses',
+      description: 'Classes for root, label, items, description, errorMessage, item, itemControl, itemIndicator, itemLabel.',
+    },
+  }}
+/>
+
+`RadioListItem` wraps Kobalte's `RadioGroup.Item`. Its `classes` apply to that item only and merge with the list's `classes`.
+
+<TypeTable
+  type={{
+    value: { type: 'string', description: 'Value selected by this item.', required: true },
+    label: { type: 'JSX.Element', description: 'Text next to the radio.' },
+    disabled: { type: 'boolean', description: 'Disables this item.' },
+    classes: { type: 'RadioListClasses', description: 'Classes for item, itemControl, itemIndicator, itemLabel.' },
+  }}
+/>

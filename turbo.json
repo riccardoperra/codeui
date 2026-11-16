@@ -26,6 +26,18 @@
 		},
 		"dev": {
 			"cache": false
+		},
+		"@codeui/docs#build": {
+			"dependsOn": [
+				"^build"
+			],
+			"env": [
+				"NITRO_PRESET"
+			],
+			"outputs": [
+				".output/**",
+				"dist/**"
+			]
 		}
 	}
 }

@@ -1,0 +1,71 @@
+---
+title: Tabs
+description: Panels of content that share one space, switched by a row of headers.
+---
+
+<SolidDemo name="tabs" />
+
+## Usage
+
+```tsx
+import { createSignal } from 'solid-js';
+import { Tabs, TabsContent, TabsHeader, TabsList } from '@codeui/kit';
+
+export function EditorSettings() {
+  const [tab, setTab] = createSignal('editor');
+  return (
+    <Tabs value={tab()} onChange={setTab}>
+      <TabsList>
+        <TabsHeader value="editor">Editor</TabsHeader>
+        <TabsHeader value="theme">Theme</TabsHeader>
+        <TabsHeader value="font">Font</TabsHeader>
+      </TabsList>
+      <TabsContent value="editor">Language, tab size and line numbers.</TabsContent>
+      <TabsContent value="theme">Background, padding and window style.</TabsContent>
+      <TabsContent value="font">Family, weight and ligatures.</TabsContent>
+    </Tabs>
+  );
+}
+```
+
+### Inline theme
+
+`theme="inline"` drops the header background and adds a sliding indicator under the selected header.
+
+<SolidDemo name="tabs-inline" />
+
+```tsx
+<Tabs theme="inline" defaultValue="snippets">
+  <TabsList>
+    <TabsHeader value="snippets">Snippets</TabsHeader>
+    <TabsHeader value="presets">Presets</TabsHeader>
+    <TabsHeader value="shared">Shared</TabsHeader>
+  </TabsList>
+  <TabsContent value="snippets">Your saved snippets.</TabsContent>
+  <TabsContent value="presets">Saved theme and font combinations.</TabsContent>
+  <TabsContent value="shared">Snippets shared with a public link.</TabsContent>
+</Tabs>
+```
+
+## API
+
+Tabs is a compound component. Each piece wraps the matching Kobalte `Tabs` part and takes its props.
+
+| Export | Wraps | Role |
+| --- | --- | --- |
+| `Tabs` | `Tabs` | Root. Holds the selected value and the theme. |
+| `TabsList` | `Tabs.List` | Row of headers. Adds the indicator in the inline theme. |
+| `TabsHeader` | `Tabs.Trigger` | One header. Its `value` matches a `TabsContent`. |
+| `TabsContent` | `Tabs.Content` | Panel shown when its `value` is selected. |
+
+The root accepts Kobalte's root props such as `orientation`, `activationMode`, and `disabled`. It adds `theme`.
+
+<TypeTable
+  type={{
+    value: { type: 'string', description: 'Controlled selected value.' },
+    defaultValue: { type: 'string', description: 'Selected value on first render, when uncontrolled.' },
+    onChange: { type: '(value: string) => void', description: 'Called when the selection changes.' },
+    theme: { type: "'default' | 'inline'", default: "'default'", description: 'Header style. The inline theme adds a sliding indicator.' },
+    orientation: { type: "'horizontal' | 'vertical'", default: "'horizontal'", description: 'Direction of the header row and the arrow keys.' },
+  }}
+/>

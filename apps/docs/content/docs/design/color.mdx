@@ -1,0 +1,108 @@
+---
+title: Colour
+description: Carved surfaces, two text tones and one accent with five jobs.
+---
+
+## Surfaces are carved
+
+<FigSurfaces n={1} caption={<><b>Five surfaces, no borders.</b> Each level sits on the one below it. Only the floating menu has a shadow, because only it floats.</>} />
+
+Most dark interfaces stack lighter cards on a dark page and separate them with shadows. Inkstone does the opposite. The page is the lighter surface (`#151516`), and islands are carved into it (`#0f0f10`). An open section inside an island goes back to the page colour, and fields sit one step lighter again (`#232323`).
+
+This came from reviewing CodeImage's editor. A compact build with bordered panels was rejected because it felt fragmented. The maintainer asked for "un layout più unito e a isole", a more unified layout made of islands. Fill steps group controls without adding lines, and lines would compete with the user's content for attention.
+
+Each surface sits only on the level directly below it. A field goes inside an island, not straight on the page.
+
+<DoDont>
+  <Do note="Group with islands and space. The open section sits on an inset, and rows inside it need no separators.">
+    <ArtIslandsDo />
+  </Do>
+  <Dont note="Frame every group with a border and divide every row with a line. Each line is one more thing competing with the user's work.">
+    <ArtIslandsDont />
+  </Dont>
+</DoDont>
+
+### State is a step of fill
+
+Hover raises an element's fill by one step. A selected item is also one step up. A pressed element changes its fill but keeps the same shape as when hovered. There is no underline, no thicker border and no glow.
+
+One case needs more than fill. A selected card must differ from its island by its fill **and** an accent ring. In CodeImage's light mode, a card on a grey island could only be told apart by its ring, so cards had to be lifted to white.
+
+### A known weakness
+
+The page and an island differ by only 1.05:1. On a dim or cheap screen an island can almost vanish. The layout still holds because islands are also defined by their rounded shape and their position. For the same reason, never rely on a change of fill alone to show that something can be clicked.
+
+### The token names are inverted
+
+The kit's tokens were named before the carved layout existed. `--cui-surface-canvas` is the island, and `--cui-surface-panel` is the page. Until they are renamed, go by the table in `DESIGN.md` §2.1, not by the token names. The proposed names are `surface-page`, `surface-island`, `surface-field` and `surface-floating`.
+
+## Text has two working tones
+
+In CodeImage the secondary grey (`#999`) is used more than twice as often as the primary (`#ededed`). Descriptions, summaries, hints and unselected navigation items are all secondary. Primary text marks what matters: a title, a value the user set, the selected item.
+
+This is what keeps the screen calm. A panel full of bright labels looks busy even when it has few controls. Visual weight comes from tone first, then from weight, and only then from size.
+
+<DoDont>
+  <Do note="Titles in the primary tone at weight 500, descriptions in the secondary tone at weight 400. The eye finds the titles first.">
+    <ArtTextDo />
+  </Do>
+  <Dont note="Everything bright and bold. When every line asks for attention, none of them gets it.">
+    <ArtTextDont />
+  </Dont>
+</DoDont>
+
+The kit has more greys than these two tones. Over time it added `#ccc`, `#a0a0a0`, `#fff` and a `#404040` fill for the segmented control. These all collapse into the two tones plus a disabled tone. **Do not add a new grey.**
+
+The light theme has a real bug. Its default and muted text tokens are both `#4a5568`, and in CodeImage the row labels inside a section render black while the section title above them is grey. The hierarchy is inverted. The light theme needs its own two tones, checked for AA contrast.
+
+## One accent, five jobs
+
+| Job | Shape |
+| --- | --- |
+| Keyboard focus | A 2px ring with a 2px offset |
+| The selected card | A 2px ring |
+| On or active | A switch track, the icon of the open section, a check, a 15% wash |
+| New or unread | A 6–7px dot |
+| The one primary action | A filled button |
+
+Blue appears rarely, so users notice it when it does.
+
+- **One filled accent button per surface.** If two actions both seem primary, one of them is not.
+- **Selected rows stay neutral.** In a list, menu, command menu or settings navigation, the selected row gets the field fill and primary text. An accent fill on every selected row would put blue all over the screen, and it would no longer stand out where it matters.
+- **"On" and "do" look different.** CodeImage once had a blue Play button next to a pressed, blue Animate button, and the two read as one control. Use the soft wash for "on" and the filled button for "do".
+
+<DoDont>
+  <Do note="A neutral selected row with a check, one switch that is on, one filled primary action.">
+    <ArtAccentDo />
+  </Do>
+  <Dont note="A blue selected row, blue labels and two filled blue buttons. Blue stops meaning anything.">
+    <ArtAccentDont />
+  </Dont>
+</DoDont>
+
+<DoDont>
+  <Do note="The pressed mode uses the soft wash. The action next to it stays the only filled button.">
+    <ArtOnDo />
+  </Do>
+  <Dont note="Two filled blue buttons side by side read as one control, and the user cannot tell which one is on.">
+    <ArtOnDont />
+  </Dont>
+</DoDont>
+
+### Why there are two blues
+
+CodeImage's brand blue is `#0099ff`. White text on it has a contrast of 3.0:1, which fails WCAG AA for 14px text. Filled buttons therefore use `#0070f0` (4.6:1), and `#0099ff` is kept for rings, dots and washes, which carry no text. If a button looks darker than the brand blue, that is intended, so don't "fix" it.
+
+## Status colours
+
+Danger, caution and success mark states the user must notice: an error, a destructive confirmation, a failed export. They do not decorate anything and are not used to label categories. Danger fills only the confirm button of a destructive dialog, and an error always pairs its colour with an icon.
+
+## Lines
+
+A line is allowed only where a fill would disappear:
+
+1. **The inner ring of a floating surface in dark mode.** A shadow does not show on a near-black page, so a 1px ring traces the edge instead.
+2. **Focus and selection rings.**
+3. **A ring around a colour swatch, orb or avatar** whose colour could match the background. Use a neutral grey at 16–35% opacity.
+
+A split button such as Export is still a single control. Its two parts are separated by a 2px gap and 4px inner corners, not by a border.

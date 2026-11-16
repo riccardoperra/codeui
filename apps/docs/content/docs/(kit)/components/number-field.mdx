@@ -1,0 +1,57 @@
+---
+title: NumberField
+description: A numeric input with step buttons, bounds, and a fixed precision.
+---
+
+<SolidDemo name="number-field" />
+
+## Usage
+
+```tsx
+import { createSignal } from 'solid-js';
+import { NumberField } from '@codeui/kit';
+
+export function FontSize() {
+  const [fontSize, setFontSize] = createSignal<number | null | undefined>(14);
+  return (
+    <NumberField
+      label="Font size"
+      description="Between 8 and 32 pixels."
+      min={8}
+      max={32}
+      value={fontSize()}
+      onChange={setFontSize}
+    />
+  );
+}
+```
+
+## API
+
+`NumberField` wraps Kobalte's `TextField` root and adds increment and decrement buttons.
+Arrow Up and Arrow Down step the value, and the value is clamped to `min` and `max` on blur.
+Kobalte's root props such as `name`, `disabled`, and `required` pass through.
+The value is a number, or `null` when the input is empty.
+
+<TypeTable
+  type={{
+    value: { type: 'number | null', description: 'Controlled value.' },
+    defaultValue: { type: 'number', description: 'Value on first render, when uncontrolled.' },
+    onChange: { type: '(value: number | null | undefined) => void', description: 'Called with the parsed number. Receives null when the input is cleared.' },
+    min: { type: 'number', default: 'Number.MIN_SAFE_INTEGER', description: 'Lowest allowed value.' },
+    max: { type: 'number', default: 'Number.MAX_SAFE_INTEGER', description: 'Highest allowed value.' },
+    step: { type: 'number', default: '1', description: 'Amount added or removed by the buttons and arrow keys.' },
+    precision: { type: 'number', default: '0', description: 'Number of decimal digits the input accepts.' },
+    prefix: { type: 'string', default: "''", description: 'Text shown before the number.' },
+    postfix: { type: 'string', default: "''", description: 'Text shown after the number.' },
+    label: { type: 'JSX.Element', description: 'Label above the input, linked to it.' },
+    description: { type: 'JSX.Element', description: 'Hint text under the input.' },
+    errorMessage: { type: 'JSX.Element', description: "Shown under the input when validationState is 'invalid'." },
+    size: { type: "'xs' | 'sm' | 'md' | 'lg' | 'xl'", default: "'md'", description: 'Height and font size of the input.' },
+    theme: { type: "'filled' | 'inline'", default: "'filled'", description: "'inline' drops the box and keeps a bottom border." },
+    classes: {
+      type: 'Partial<Record<FieldPart, string>>',
+      description: 'Classes for the parts it renders: root, input, label, description, errorMessage.',
+    },
+  }}
+/>

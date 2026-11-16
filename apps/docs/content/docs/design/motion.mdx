@@ -1,0 +1,83 @@
+---
+title: Motion
+description: The work moves, controls respond, the keyboard is instant. Ten named movements and the rules behind them.
+---
+
+Inkstone motion follows Emil Kowalski's rules for interface animation, and Apple's rules from *Designing Fluid Interfaces* for anything the user drags. In one sentence: **the work moves, controls respond, the keyboard is instant.**
+
+The values on this page were measured in CodeImage's editor by recording every transition and animation while using it.
+
+## First question: should it animate?
+
+The more often something happens, the less it should animate. An animation that is pleasant once a day gets tiring at fifty times a day.
+
+| How often | Decision | In CodeImage |
+| --- | --- | --- |
+| Keyboard action, or 100+ times a day | Never | The command menu, Escape, arrow keys, shortcuts |
+| Tens of times a day | 120ms or nothing | Switch, press, segments in a working panel |
+| Occasionally | Standard | Accordion, a popover opened by click, the settings dialog |
+| Rarely | May delight | What's new, onboarding |
+
+Every animation also needs a purpose you can name: feedback, showing where something came from, explaining a change of state, or avoiding a jump. If you cannot name one, don't animate.
+
+## The movements
+
+Naming the movements gives designers, developers and agents a shared vocabulary. Use these names in reviews and pull requests.
+
+| Name | Where | Recipe |
+| --- | --- | --- |
+| **Press** | Buttons, cards | `scale(0.97)` on pointer-down, 120ms ease-out |
+| **Toggle** | Switch | Thumb slides 120ms ease-out; track colour 120ms |
+| **Pop** | Popover, menu, tooltip opened by pointer | From `scale(0.96)` with a fade, 160–180ms; out 120ms; grows from the trigger |
+| **Expand** | Accordion | Height and opacity 200ms, reversible mid-way |
+| **Morph** | The content after a value changes | The changed property, 150–200ms |
+| **Collapse to origin** | Closing something that lives on elsewhere | Shrinks into where it can be found again, 200ms |
+| **Rise** | Corner card, toast | From the edge 400ms; leaves in 200ms |
+| **Reveal** | A surface growing in place | `clip-path`, 260ms |
+| **Slide** | Phone sheet | Up from below, 280ms drawer curve; follows the finger when dragged |
+| **Ring** | Selection ring | From `scale(0.92)` with a fade, 200ms |
+
+### The best example: collapse to origin
+
+When you minimise CodeImage's large "What's new" dialog, it does not just fade out. It shrinks to a third of its size and slides into the small card in the bottom-left corner, in 200ms. The motion tells the user where the content went, so they know where to find it again. This is what motion is for in Inkstone.
+
+### What stays still
+
+In CodeImage's side panel, the segmented control's indicator **jumps** to the new option instead of sliding. That is deliberate. The control is used many times while working, and the content it changes, such as the frame radius, animates instead. The control responds instantly and the content changes smoothly.
+
+The command menu opens with no animation because it is opened from the keyboard. Moving through its rows changes the theme on the canvas immediately, and Escape puts it back.
+
+## The ingredients
+
+<FigEasing n={1} caption={<><b>Ease-out moves first and settles last.</b> The user sees the response at once. Ease-in waits at the start, which is exactly when the user is watching.</>} />
+
+<FigPress n={2} caption={<><b>Press and hold.</b> At 120ms ease-out the button answers under the finger. At 200ms ease, the kit's current value, it lags behind.</>} />
+
+<FigPop n={3} caption={<><b>A popover grows out of what opened it.</b> From the centre it seems to come from nowhere. Modals are the exception: they belong to the whole page, so they open from the centre.</>} />
+
+- **Ease-out for anything entering or responding.** The curve is `cubic-bezier(0.23, 1, 0.32, 1)`: it starts fast and settles gently. Never use `ease-in` on interface elements, because it delays the start of the motion, which is exactly the moment the user is watching. Use `ease-in-out` only for something travelling across the screen.
+- **Exits are faster than entrances**, and they go back the way the element came in.
+- **Only `transform`, `opacity` and `clip-path`.** These animate on the GPU. The accordion's height is the one exception.
+- **Transitions, not keyframes.** A transition can be reversed from wherever it is. A keyframe animation restarts from the beginning. If the user clicks twice, the motion should turn around, not jump.
+- **Never start from nothing.** Start at 0.96 scale, not 0.
+- **Tooltips:** after the first one opens, the next ones open instantly, with no delay and no animation.
+- **Drags** track the finger 1:1 from where it was grabbed. On release, the settle animation continues at the finger's speed, and the element rubber-bands at its limits.
+- **Reduced motion** keeps fades and colour changes and drops movement and scaling.
+- **Hover effects only on devices with a mouse**, using `@media (hover: hover) and (pointer: fine)`. Otherwise a tap leaves an element stuck in its hover state.
+
+## What Inkstone does not take from Apple
+
+Apple's design language uses translucent materials: blurred, frosted toolbars and sheets that let content show through. Inkstone does not. **Matte** is one of its traits, and a blurred panel would put a softened copy of the user's work behind the interface, which is the opposite of keeping the two apart. Inkstone uses Apple's guidance on motion and gestures, not on materials.
+
+## Where the kit lags behind
+
+The kit's own components are slower and softer than the app that uses them.
+
+| Today in the kit | Should be |
+| --- | --- |
+| Button press: 200ms `ease` | Press, 120ms ease-out |
+| Focus ring: 150ms `ease-in` | A 120ms colour change, ease-out |
+| Dialog entrance: 250ms `ease-in-out` keyframe | Pop, as a reversible transition |
+| Segmented indicator: 250ms `cubic-bezier(0.2, 0, 0, 1)` | 200ms ease-out, or no animation in working panels |
+
+Two curves are also missing from the tokens: `--cui-motion-ease-in-out` and `--cui-motion-ease-drawer`.
