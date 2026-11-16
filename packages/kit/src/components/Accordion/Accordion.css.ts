@@ -86,7 +86,7 @@ globalStyle(
 globalStyle('[data-cui="accordion-content"][inert]', { pointerEvents: "none" });
 globalStyle('[data-cui="accordion-content"][hidden]', { display: "none" });
 export const icon = style({ display: "inline-flex", flexShrink: 0 });
-export const title = style({ minWidth: 0, overflowWrap: "anywhere" });
+export const title = style({ flex: 1, minWidth: 0, overflowWrap: "anywhere" });
 export const summary = style({
 	marginLeft: "auto",
 	fontSize: tokens.font.size.xs,
@@ -108,3 +108,5 @@ globalStyle('[data-cui="accordion-content"]', {
 globalStyle('[data-cui="accordion-item"][data-expanded] [data-cui="accordion-icon"]', {
 	color: tokens.action.brand.base,
 });
+
+export const contentBody = style({ paddingBottom: tokens.space["3"] });

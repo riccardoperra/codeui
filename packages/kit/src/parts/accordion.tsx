@@ -156,6 +156,7 @@ export function Content<T extends ValidComponent = "div">(
 ) {
 	const [local, others] = splitProps(props as PolymorphicProps<"div", ContentProps>, [
 		"class",
+		"children",
 	]);
 	const item = useItem();
 	return (
@@ -167,7 +168,9 @@ export function Content<T extends ValidComponent = "div">(
 			class={mergeClasses(accordionStyles.content(), local.class)}
 			inert={!item.expanded()}
 			aria-hidden={!item.expanded()}
-		/>
+		>
+			<div class={styles.contentBody}>{local.children}</div>
+		</K.Content>
 	);
 }
 export type IconProps = JSX.HTMLAttributes<HTMLSpanElement>;
