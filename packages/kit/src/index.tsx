@@ -95,6 +95,9 @@ export type { SpinnerProps } from "./components/Spinner/Spinner";
 export { Skeleton } from "./components/Skeleton/Skeleton";
 export type { SkeletonProps } from "./components/Skeleton/Skeleton";
 
+export { Alert } from "./components/Alert/Alert";
+export type { AlertProps } from "./components/Alert/Alert";
+
 export { SvgIcon } from "./icons/SvgIcon";
 export * as icons from "./icons";
 

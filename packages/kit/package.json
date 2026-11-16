@@ -131,6 +131,34 @@
 				"default": "./dist/cjs/parts/skeleton.cjs"
 			}
 		},
+		"./alert": {
+			"solid": {
+				"types": "./dist/types/parts/alert.d.ts",
+				"default": "./dist/source/parts/alert.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/alert.d.ts",
+				"default": "./dist/esm/parts/alert.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/alert.d.cts",
+				"default": "./dist/cjs/parts/alert.cjs"
+			}
+		},
+		"./toast": {
+			"solid": {
+				"types": "./dist/types/parts/toast.d.ts",
+				"default": "./dist/source/parts/toast.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/toast.d.ts",
+				"default": "./dist/esm/parts/toast.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/toast.d.cts",
+				"default": "./dist/cjs/parts/toast.cjs"
+			}
+		},
 		"./package.json": "./package.json"
 	},
 	"typesVersions": {
@@ -152,6 +180,12 @@
 			],
 			"skeleton": [
 				"dist/types/parts/skeleton.d.ts"
+			],
+			"alert": [
+				"dist/types/parts/alert.d.ts"
+			],
+			"toast": [
+				"dist/types/parts/toast.d.ts"
 			]
 		}
 	},

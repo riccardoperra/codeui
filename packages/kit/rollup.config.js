@@ -11,6 +11,8 @@ const entries = [
 	"src/parts/badge.tsx",
 	"src/parts/spinner.tsx",
 	"src/parts/skeleton.tsx",
+	"src/parts/alert.tsx",
+	"src/parts/toast.tsx",
 ];
 
 function tsTypes() {

@@ -1,3 +1,5 @@
+import { Alert } from "../src/components/Alert/Alert";
+import * as T from "../src/parts/toast";
 import { Badge } from "../src/components/Badge/Badge";
 import { Kbd } from "../src/components/Kbd/Kbd";
 import { Skeleton } from "../src/components/Skeleton/Skeleton";
@@ -51,4 +53,22 @@ it("server-renders the badge and key labels", () => {
 	));
 	expect(html).toContain("Default");
 	expect(html).toMatch(/<kbd[^>]*>⌘K<\/kbd>/);
+});
+
+it("server-renders an alert with its message", () => {
+	const html = renderToString(() => (
+		<Alert title="Offline">Changes are saved locally.</Alert>
+	));
+	expect(html).toMatch(/role="alert"/);
+	expect(html).toContain("Changes are saved locally.");
+});
+
+it("server-renders an empty toast region", () => {
+	const html = renderToString(() => (
+		<T.Region>
+			<T.List />
+		</T.Region>
+	));
+	expect(html).toMatch(/<div[^>]*role="region"/);
+	expect(html).toMatch(/<div[^>]*data-cui="toast-list"[^>]*><\/div>/);
 });
