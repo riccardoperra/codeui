@@ -5,7 +5,7 @@ import {
 	DocsItemsContainer,
 	DocsMultipleItemsContainer,
 } from "./components/Section.jsx";
-import { For } from "solid-js";
+import { createSignal, For } from "solid-js";
 
 // TODO: fix
 const sizes = ["xs", "sm", "md", "lg", "xl"] as TextFieldProps["size"][];
@@ -216,6 +216,7 @@ export const SelectCustomObjectWithControlledFunction: Story = {
 	},
 	name: "Custom Object (Controlled Helper)",
 	render: () => {
+		const [value, setValue] = createSignal<string>();
 		const selectOptions = createSelectOptions(options, {
 			key: "name",
 			valueKey: "value",
@@ -225,7 +226,7 @@ export const SelectCustomObjectWithControlledFunction: Story = {
 			<Select
 				options={selectOptions.options()}
 				{...selectOptions.props()}
-				{...selectOptions.controlled()}
+				{...selectOptions.controlled(value, setValue)}
 				aria-label={"Fruit"}
 				placeholder={"Choose a fruit."}
 				label={"Fruit"}
