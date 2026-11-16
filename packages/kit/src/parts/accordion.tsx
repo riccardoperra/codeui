@@ -4,6 +4,7 @@ import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import {
 	createContext,
 	createSignal,
+	createUniqueId,
 	useContext,
 	splitProps,
 	type JSX,
@@ -42,7 +43,16 @@ export const accordionStyles: AccordionStyles = {
 	chevron: () => styles.chevron,
 };
 export const useAccordionContext = K.useAccordionContext;
-const ItemContext = createContext<() => boolean>(() => false);
+const ItemContext = createContext<{
+	expanded: () => boolean;
+	triggerId: () => string;
+	contentId: string;
+}>();
+function useItem() {
+	const context = useContext(ItemContext);
+	if (!context) throw new Error("Accordion parts require an Item");
+	return context;
+}
 export type RootProps<T extends ValidComponent = "div"> = K.AccordionRootProps<T> & {
 	motion?: "auto" | "none";
 };
@@ -83,13 +93,19 @@ export function Item<T extends ValidComponent = "div">(
 	]);
 	const context = K.useAccordionContext();
 	const expanded = () => context.listState().selectionManager().isSelected(props.value);
+	const id = createUniqueId();
+	const item = {
+		expanded,
+		triggerId: () => `cui-accordion-${id}-trigger`,
+		contentId: `cui-accordion-${id}-content`,
+	};
 	return (
 		<K.Item
 			{...others}
 			data-cui={accordionParts.item}
 			class={mergeClasses(accordionStyles.item(), local.class)}
 		>
-			<ItemContext.Provider value={expanded}>{local.children}</ItemContext.Provider>
+			<ItemContext.Provider value={item}>{local.children}</ItemContext.Provider>
 		</K.Item>
 	);
 }
@@ -118,8 +134,12 @@ export function Trigger<T extends ValidComponent = "button">(
 		"onFocus",
 	]);
 	const context = K.useAccordionContext();
+	const item = useItem();
+	const defaultTriggerId = item.triggerId;
+	item.triggerId = () => props.id ?? defaultTriggerId();
 	return (
 		<K.Trigger
+			id={item.triggerId()}
 			onFocus={event => {
 				context.listState().selectionManager().setFocused(true);
 				callHandler(event, local.onFocus);
@@ -137,14 +157,16 @@ export function Content<T extends ValidComponent = "div">(
 	const [local, others] = splitProps(props as PolymorphicProps<"div", ContentProps>, [
 		"class",
 	]);
-	const expanded = useContext(ItemContext);
+	const item = useItem();
 	return (
 		<K.Content
+			id={item.contentId}
+			aria-labelledby={item.triggerId()}
 			{...others}
 			data-cui={accordionParts.content}
 			class={mergeClasses(accordionStyles.content(), local.class)}
-			inert={!expanded()}
-			aria-hidden={!expanded()}
+			inert={!item.expanded()}
+			aria-hidden={!item.expanded()}
 		/>
 	);
 }
