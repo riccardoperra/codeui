@@ -142,6 +142,9 @@ importers:
       '@codeui/kit':
         specifier: workspace:*
         version: link:../kit
+      '@kobalte/core':
+        specifier: ^0.13.14
+        version: 0.13.14(solid-js@1.9.19)
       solid-js:
         specifier: ^1.9.8
         version: 1.9.19
