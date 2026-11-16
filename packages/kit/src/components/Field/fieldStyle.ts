@@ -14,7 +14,7 @@ function makeFieldMessageSize(
 
 export function styleFieldMessage(
 	sizesMap: Record<BaseComponentSize, BaseComponentSize>,
-) {
+): { selectors: StyleRule["selectors"] } {
 	return {
 		selectors: {
 			...makeFieldMessageSize(sizesMap, "xs"),
