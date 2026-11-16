@@ -1,77 +1,151 @@
 ---
 title: "Stack"
 description: "A flex container that spaces its children with token gaps."
-status: draft
 ---
-
-{/* TODO(docs): Scope from the docs plan. Row and column, wrap, align start, center, end, stretch, baseline, justify start, center, end, between, around, evenly. Every Gap value. Follow apps/docs/CONTRIBUTING-DOCS.md. Delete each TODO(docs) as you finish its section, and delete status: draft when the page is done. */}
 
 ## When to use
 
-{/* TODO(docs): One short paragraph: the job this component does in an app. */}
+Use `Stack` to lay out a group of siblings in one row or one column with a gap from the space scale. It covers the layout work inside a panel: a title over its description, a row of buttons, a label and its control. `Stack` adds no color, padding or border, so it stays invisible and only places its children.
 
 ## When to choose another component
 
-{/* TODO(docs): Name the nearest alternatives and the deciding difference, such as Select versus Combobox. */}
+- Use CSS grid in your own class when you need two axes, such as a form with aligned label and value columns. `Stack` is one-dimensional.
+- Use [`SegmentedControl`](/docs/components/segmented-control) or [`Tabs`](/docs/components/tabs) when the row is a set of choices. `Stack` has no keyboard behavior or selection.
+- Use the `gap` or `leftIcon` built into a component, such as the 8px gap inside [`Button`](/docs/components/button), before you wrap its content in a `Stack`.
 
 ## Live demo
 
-{/* TODO(docs): Add packages/docs-demos/src/demos/PAGE/basic.tsx and render it with a SolidDemo named PAGE/basic. The build prints the demo source under it. */}
+<SolidDemo name="stack/basic" />
 
 ## Anatomy
 
-{/* TODO(docs): Table with columns Export, Renders, `classes` key, `data-cui`, Role. Root and Portal without DOM get none. Copy data-cui names from the source, never derive them from export names. */}
+| Export  | Renders                     | `classes` key | `data-cui`   | Role |
+| ------- | --------------------------- | ------------- | ------------ | ---- |
+| `Stack` | `div`, or the element in `as` | `root`        | `stack-root` | None |
+
+The root also renders these attributes, which the stylesheet reads:
+
+| Attribute        | Values                                                   | Default   |
+| ---------------- | -------------------------------------------------------- | --------- |
+| `data-direction` | `row`, `column`                                          | `column`  |
+| `data-gap`       | A `Gap` key                                              | `2`       |
+| `data-align`     | `start`, `center`, `end`, `stretch`, `baseline`          | `stretch` |
+| `data-justify`   | `start`, `center`, `end`, `between`, `around`, `evenly`  | `start`   |
+| `data-wrap`      | `true`, `false`                                          | `false`   |
 
 ## Variants
 
-{/* TODO(docs): One named demo per variant axis or distinct mode, each a SolidDemo named PAGE/AXIS. Use a size gallery, not every combination. */}
+### Direction
 
-## States
+<SolidDemo name="stack/direction" />
 
-{/* TODO(docs): Only the states this component supports: disabled, readOnly, required, invalid, empty, loading, selected, open, controlled. Never invent states for presentational components. */}
+`direction` sets the main axis. The default is `column`, because most stacks in a panel are vertical.
+
+### Gap
+
+<SolidDemo name="stack/gap" />
+
+`gap` takes a key of the space scale. The `Gap` type lists every accepted key: `0`, `px`, `0.5`, `1`, `1.5`, `2`, `3`, `4`, `6`, `8`, `10`, `12`, `16`, `20`, `24`, `32`, `40`, `48`, `56` and `64`. Key `1` is 4px and each step follows the 4px grid, `0.5` is 2px, `1.5` is 6px and `px` is 1px. The default is `2`, which is 8px.
+
+Inkstone keeps space inside a group smaller than space between groups. Use `0.5` or `1` from a title to its description and `4` to `6` between groups. See [Space and shape](/docs/design/space-and-shape).
+
+### Align
+
+<SolidDemo name="stack/align" />
+
+`align` sets `align-items` on the cross axis. The default is `stretch`. Use `center` for a row of controls, and `baseline` when the row mixes text sizes and the text must sit on one line.
+
+### Justify
+
+<SolidDemo name="stack/justify" />
+
+`justify` sets `justify-content` on the main axis. `between`, `around` and `evenly` map to `space-between`, `space-around` and `space-evenly`. The default is `start`.
+
+### Wrap
+
+<SolidDemo name="stack/wrap" />
+
+`wrap` lets children flow onto new lines when the row runs out of space. The default is `false`, so children stay on one line and can overflow.
+
+### Polymorphic element
+
+<SolidDemo name="stack/as" />
+
+`as` renders a different element or component. Use it to give the group its real meaning, such as `nav`, `ul`, `ol` or `kbd`. Every other prop goes to that element.
+
+## Why Stack uses data attributes and one CSS variable
+
+The stylesheet for `Stack` is fixed. Vanilla Extract compiles it at build time into one class, and that class holds one rule per prop value, keyed on a data attribute such as `[data-align="center"]`. The props only write attributes. Nothing generates or injects CSS at runtime.
+
+The gap is the one open value. `Stack` writes it as an inline custom property, `--cui-stack-gap: var(--cui-space-4)`, and the stylesheet reads `gap: var(--cui-stack-gap, var(--cui-space-2))`. One rule then covers all twenty keys, and the value still comes from the token, so a theme that changes `--cui-space-4` changes every stack that uses it.
+
+This design has three results that matter in an app:
+
+- `Stack` works next to any styling engine. Tailwind, CSS Modules, plain CSS and Vanilla Extract all see a normal element with one class and a few attributes.
+- The server renders the same markup the client renders. There is no style tag to hydrate and no class that depends on render order.
+- You can target any state with an attribute selector, such as `[data-cui="stack-root"][data-direction="row"]`. The kit rules sit in the `cui` cascade layer, so your unlayered CSS wins.
+
+To change the gap from CSS, set `gap` in your own class. Do not set `--cui-stack-gap` in a class, because the inline value on the element always wins over it.
 
 ## Ready API
 
-{/* TODO(docs): One H3 per ready export below. Under each, one sentence on what it renders, then a PropsTable of a projection exported from packages/docs-demos/src/props/PAGE.ts. Add a short inherited-props table and link the Kobalte contract for the rest. */}
-
 ### `Stack`
 
-{/* TODO(docs): Props of `Stack`, and the types listed in export-manifest.json for this anchor. */}
+`Stack` renders a flex container, a `div` by default, with the kit layout class and the data attributes listed in [Anatomy](#anatomy).
+
+<PropsTable name="Stack" />
+
+`Stack` takes every prop of the element in `as`, so there is no inherited Kobalte table. The exported types are `StackProps`, `StackVariants`, `StackClasses`, `StackPart` and `Gap`.
 
 ## Styled parts API
 
 Import the parts from `@codeui/kit/stack`.
 
-{/* TODO(docs): One H3 per part: what it renders, its props, and the matching Kobalte primitive. Document namespace aliases where they are exported. */}
-
 ### `Root`
 
-{/* TODO(docs): Document @codeui/kit/stack Root, @codeui/kit/stack RootProps. */}
+`Root` is the same component as `Stack`. `@codeui/kit` exports it as `Stack`, and `@codeui/kit/stack` exports it as `Root`, with `RootProps` equal to `StackProps`. It wraps no Kobalte primitive. Use the parts entry when you compose your own layout primitives and want the namespace import.
+
+<SolidDemo name="stack/parts" />
 
 ## Styles export
 
-{/* TODO(docs): What each part function returns, which variants it takes, and when to call it instead of rendering a part. */}
-
 ### `stackStyles`
 
-{/* TODO(docs): Document @codeui/kit stackStyles, @codeui/kit StackStyles, @codeui/kit/stack stackStyles, @codeui/kit/stack StackStyles. */}
+`stackStyles.root()` returns the class that holds every `Stack` rule. It takes a `StackVariants` argument, but it ignores it and returns the same class. The variants live in the data attributes and in `--cui-stack-gap`, so an element that uses the class must set them itself. This list sets the row direction, center alignment and the gap by hand:
+
+<SolidDemo name="stack/styles" />
+
+Prefer `<Stack as="ul">`. Call `stackStyles` only when you cannot render the component, for example on markup that another library renders. `stackParts.root` holds the `data-cui` value, `stack-root`.
 
 ## Accessibility
 
-{/* TODO(docs): H3 Keyboard, ARIA, and Focus where relevant. For layout and text, state the semantic element instead of an empty keyboard map. */}
+`Stack` renders a `div` with no role, so assistive technology ignores it. Set `as` when the group has meaning: `ul` or `ol` for a list, `nav` with an `aria-label` for navigation, `kbd` for a key combination.
+
+Visual order follows DOM order, because `Stack` has no `reverse` direction. Keyboard focus moves in the same order that the reader sees.
 
 ## SSR notes
 
-{/* TODO(docs): Portal availability, deterministic IDs, request-local state, hydration, and client-only effects, as they apply. */}
+`Stack` renders completely on the server: the element, the class, the data attributes and the inline `--cui-stack-gap`. It has no effects, IDs or portals, so the client hydrates the same markup.
 
 ## Theming hooks
 
-{/* TODO(docs): The --cui-* properties this component reads, directly or through shared field and button styles. Link the defaults in Foundations. */}
+| Variable          | Use                                                                       |
+| ----------------- | ------------------------------------------------------------------------- |
+| `--cui-stack-gap` | Set inline by `Stack` from `gap`. Read by the `gap` declaration.          |
+| `--cui-space-*`   | The value of `--cui-stack-gap`. The fallback is `--cui-space-2`.          |
+
+The defaults are in [Typography and spacing](/docs/foundations/typography-and-spacing).
 
 ## Composition examples
 
-{/* TODO(docs): Link complete examples. Keep long procedures in Patterns. */}
+A settings row puts a title and description on the left and a control on the right:
+
+<SolidDemo name="stack/settings-row" />
+
+For a full settings panel, see [Build settings](/docs/patterns/build-settings).
 
 ## Related
 
-{/* TODO(docs): Links to related pages, each with the one difference that matters. */}
+- [`Text`](/docs/components/text) sets type inside a stack. `Stack` places the elements, and `Text` styles them.
+- [Space and shape](/docs/design/space-and-shape) gives the Inkstone rules for which gap to use.
+- [Cascade layers](/docs/foundations/cascade-layers) explains why your CSS wins over the kit rules.
