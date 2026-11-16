@@ -1,0 +1,5 @@
+/* Unlayered app CSS. One class beats every kit rule in @layer cui. */
+.export-pill {
+	border-radius: 9999px;
+	padding-inline: 20px;
+}

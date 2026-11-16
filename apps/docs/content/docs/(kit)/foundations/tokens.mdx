@@ -1,7 +1,263 @@
 ---
 title: "Tokens"
 description: "The --cui-* custom properties every kit style reads."
-status: draft
 ---
 
-{/* TODO(docs): Scope from the docs plan. Explain the token contract. Link the token tables in the Token exports utility page instead of copying them. Follow apps/docs/CONTRIBUTING-DOCS.md. Delete each TODO(docs) as you finish its section, and delete status: draft when the page is done. */}
+Every color, radius, space, size, shadow and motion value in the kit is a `--cui-*` CSS custom property. Kit components read only these properties, so changing one changes every component that uses it. The kit defines 129 of them.
+
+<SolidDemo name="tokens/usage" />
+
+The card above reads four tokens with `var()`. The button reads the same tokens through its own styles.
+
+## How a name is built
+
+A name is `--cui-` followed by the token path in kebab case. The path `surface.menuHover` becomes `--cui-surface-menu-hover`. A half step uses a hyphen, so `space.1.5` becomes `--cui-space-1-5`.
+
+The CSS name is the stable public API. In TypeScript, the [`tokens`](/docs/utilities/token-exports#tokens) export holds the same paths, and each leaf is a `var(--cui-…)` string.
+
+Each mode sets every token. Most color tokens differ between dark and light, and `data-cui-theme` picks the mode. [Theming](/docs/theming) covers the attribute and overrides.
+
+The design rules for each role live in Inkstone: [Colour](/docs/design/color), [Typography](/docs/design/typography), [Space and shape](/docs/design/space-and-shape) and [Motion](/docs/design/motion). This page lists the values.
+
+## Read the tables
+
+Each group has a live table and a static table. The live table reads every value from your browser with `getComputedStyle`, inside a `data-cui-theme="dark"` scope and a `data-cui-theme="light"` scope. It shows what the kit really ships. The static table lists the values in `packages/kit/src/foundation/theme-values.ts`, the one registry that both modes come from. Agents and the Markdown route read the static table.
+
+`pnpm --filter @codeui/kit test` checks every name and value against `docs/kit-2026/design/k5-token-map.json`.
+
+## Surfaces
+
+The backgrounds of pages, islands, fields and floating layers. The names are inverted today. `surface.canvas` is the island and `surface.panel` is the page. See [Colour](/docs/design/color) for the level each one fills.
+
+<SolidDemo name="tokens/surfaces" source="hidden" />
+
+| Token | CSS variable | Dark | Light |
+| --- | --- | --- | --- |
+| `surface.canvas` | `--cui-surface-canvas` | `#0f0f10` | `#f7fafc` |
+| `surface.toolbar` | `--cui-surface-toolbar` | `#2b2b2b` | `#fff` |
+| `surface.scrim` | `--cui-surface-scrim` | `#000000b3` | `#0006` |
+| `surface.dialog` | `--cui-surface-dialog` | `#1d1d1d` | `#fff` |
+| `surface.inputAccent` | `--cui-surface-input-accent` | `#505050` | `#fff` |
+| `surface.input` | `--cui-surface-input` | `#232323` | `#f3f3f3` |
+| `surface.menuHover` | `--cui-surface-menu-hover` | `#333` | `#f7fafc` |
+| `surface.menu` | `--cui-surface-menu` | `#282828` | `#fff` |
+| `surface.panel` | `--cui-surface-panel` | `#151516` | `#fff` |
+| `surface.scrollThumb` | `--cui-surface-scroll-thumb` | `#505050` | `#cbd5e0` |
+| `surface.scrollThumbHover` | `--cui-surface-scroll-thumb-hover` | `#333` | `#a0aec0` |
+| `surface.secondary` | `--cui-surface-secondary` | `#edf2f7` | `#edf2f7` |
+| `surface.toast` | `--cui-surface-toast` | `#2b2b2b` | `#fff` |
+
+`surface.secondary` is `#edf2f7` in both modes. No component reads it. Only the deprecated `themeVars.neutralSoft` alias points at it.
+
+## Text
+
+<SolidDemo name="tokens/text" source="hidden" />
+
+| Token | CSS variable | Dark | Light |
+| --- | --- | --- | --- |
+| `text.default` | `--cui-text-default` | `#ededed` | `#4a5568` |
+| `text.toolbar` | `--cui-text-toolbar` | `#a0a0a0` | `#4a5568` |
+| `text.muted` | `--cui-text-muted` | `#999` | `#4a5568` |
+| `text.dialog` | `--cui-text-dialog` | `#ededed` | `#2d3748` |
+| `text.dialogTitle` | `--cui-text-dialog-title` | `#ededed` | `#2d3748` |
+| `text.label` | `--cui-text-label` | `#ededed` | `#2d3748` |
+| `text.hint` | `--cui-text-hint` | `#a0a0a0` | `#4a5568` |
+| `text.input` | `--cui-text-input` | `#ededed` | `#333` |
+| `text.selected` | `--cui-text-selected` | `#fff` | `#fff` |
+| `text.menu` | `--cui-text-menu` | `#ededed` | `#2d3748` |
+| `text.panelMuted` | `--cui-text-panel-muted` | `#ccc` | `#666` |
+| `text.panel` | `--cui-text-panel` | `#fff` | `#000` |
+| `text.toast` | `--cui-text-toast` | `#fff` | `#333` |
+| `text.danger` | `--cui-text-danger` | `#fc8181` | `#c53030` |
+
+In light mode, `text.default` and `text.muted` share `#4a5568`. Inkstone records this as a bug.
+
+## Action and accent
+
+`action.*` colors fill buttons and other controls. Each action has `base`, `hover`, `active` and `text`. `accent.focus` is the focus ring, and `accent.selection` marks a selected item.
+
+<SolidDemo name="tokens/action" source="hidden" />
+
+| Token | CSS variable | Dark | Light |
+| --- | --- | --- | --- |
+| `action.neutral.active` | `--cui-action-neutral-active` | `#505050` | `#a0aec0` |
+| `action.neutral.base` | `--cui-action-neutral-base` | `#333` | `#e2e8f0` |
+| `action.neutral.hover` | `--cui-action-neutral-hover` | `#3e3e3e` | `#cbd5e0` |
+| `action.neutral.text` | `--cui-action-neutral-text` | `#ededed` | `#2d3748` |
+| `action.brand.active` | `--cui-action-brand-active` | `#07f` | `#07f` |
+| `action.brand.base` | `--cui-action-brand-base` | `#09f` | `#09f` |
+| `action.brand.hover` | `--cui-action-brand-hover` | `#08f` | `#08f` |
+| `action.brand.text` | `--cui-action-brand-text` | `#fff` | `#fff` |
+| `action.brandSoft.base` | `--cui-action-brand-soft-base` | `#0099ff26` | `#0099ff26` |
+| `action.brandSoft.hover` | `--cui-action-brand-soft-hover` | `#007acc26` | `#007acc26` |
+| `action.brandSoft.text` | `--cui-action-brand-soft-text` | `#09f` | `#09f` |
+| `action.brandSoft.active` | `--cui-action-brand-soft-active` | `#007acc26` | `#007acc26` |
+| `accent.selection` | `--cui-accent-selection` | `#07f` | `#09f` |
+| `accent.focus` | `--cui-accent-focus` | `#63b3ed` | `#09f` |
+
+White text on `action.brand.base` (`#09f`) is 3.0:1. [Accessibility](/docs/foundations/accessibility#contrast) explains where that falls short.
+
+## Status
+
+Danger, caution and success. They mark a state the user must notice and never decorate.
+
+<SolidDemo name="tokens/status" source="hidden" />
+
+| Token | CSS variable | Dark | Light |
+| --- | --- | --- | --- |
+| `action.danger.active` | `--cui-action-danger-active` | `#9b2c2c` | `#9b2c2c` |
+| `action.danger.base` | `--cui-action-danger-base` | `#c53030` | `#c53030` |
+| `action.danger.hover` | `--cui-action-danger-hover` | `#b52b2b` | `#b52b2b` |
+| `action.danger.text` | `--cui-action-danger-text` | `#fff` | `#fff` |
+| `action.caution.base` | `--cui-action-caution-base` | `#F08C00` | `#F08C00` |
+| `action.caution.hover` | `--cui-action-caution-hover` | `#d77d00` | `#d77d00` |
+| `action.caution.active` | `--cui-action-caution-active` | `#bd6e00` | `#bd6e00` |
+| `action.caution.text` | `--cui-action-caution-text` | `#000` | `#000` |
+| `action.success.base` | `--cui-action-success-base` | `#48bb78` | `#48bb78` |
+| `action.success.hover` | `--cui-action-success-hover` | `#38a169` | `#38a169` |
+| `action.success.active` | `--cui-action-success-active` | `#2f855a` | `#2f855a` |
+| `action.success.text` | `--cui-action-success-text` | `#000` | `#000` |
+
+## Borders
+
+<SolidDemo name="tokens/borders" source="hidden" />
+
+| Token | CSS variable | Dark | Light |
+| --- | --- | --- | --- |
+| `border.dialogTitle` | `--cui-border-dialog-title` | `#2b2b2b` | `#e2e8f0` |
+| `border.divider` | `--cui-border-divider` | `#252525` | `#e2e8f0` |
+| `border.input` | `--cui-border-input` | `transparent` | `transparent` |
+| `border.menu` | `--cui-border-menu` | `#333` | `#e8e8e8` |
+| `border.width` | `--cui-border-width` | `1px` | `1px` |
+| `border.widthStrong` | `--cui-border-width-strong` | `2px` | `2px` |
+
+`border.input` is `transparent`. Fields are separated by fill, not by a line.
+
+## Focus
+
+<SolidDemo name="tokens/focus" source="hidden" />
+
+| Token | CSS variable | Dark | Light |
+| --- | --- | --- | --- |
+| `focus.color` | `--cui-focus-color` | `var(--cui-accent-focus)` | `var(--cui-accent-focus)` |
+| `focus.width` | `--cui-focus-width` | `2px` | `2px` |
+| `focus.offset` | `--cui-focus-offset` | `2px` | `2px` |
+
+`focus.color` points at `accent.focus`. Override `--cui-accent-focus` to change the ring color everywhere.
+
+## Radii
+
+<SolidDemo name="tokens/radii" source="hidden" />
+
+| Token | CSS variable | Value |
+| --- | --- | --- |
+| `radius.none` | `--cui-radius-none` | `0px` |
+| `radius.badge` | `--cui-radius-badge` | `6px` |
+| `radius.xs` | `--cui-radius-xs` | `7px` |
+| `radius.sm` | `--cui-radius-sm` | `9px` |
+| `radius.nav` | `--cui-radius-nav` | `10px` |
+| `radius.md` | `--cui-radius-md` | `12px` |
+| `radius.lg` | `--cui-radius-lg` | `14px` |
+| `radius.card` | `--cui-radius-card` | `16px` |
+| `radius.xl` | `--cui-radius-xl` | `18px` |
+| `radius.command` | `--cui-radius-command` | `22px` |
+| `radius.full` | `--cui-radius-full` | `9999px` |
+
+## Spacing
+
+<SolidDemo name="tokens/spacing" source="hidden" />
+
+| Token | CSS variable | Value |
+| --- | --- | --- |
+| `space.0` | `--cui-space-0` | `0` |
+| `space.1` | `--cui-space-1` | `0.25rem` |
+| `space.2` | `--cui-space-2` | `0.5rem` |
+| `space.3` | `--cui-space-3` | `0.75rem` |
+| `space.4` | `--cui-space-4` | `1rem` |
+| `space.5` | `--cui-space-5` | `1.25rem` |
+| `space.6` | `--cui-space-6` | `1.5rem` |
+| `space.8` | `--cui-space-8` | `2rem` |
+| `space.10` | `--cui-space-10` | `2.5rem` |
+| `space.12` | `--cui-space-12` | `3rem` |
+| `space.16` | `--cui-space-16` | `4rem` |
+| `space.20` | `--cui-space-20` | `5rem` |
+| `space.24` | `--cui-space-24` | `6rem` |
+| `space.32` | `--cui-space-32` | `8rem` |
+| `space.40` | `--cui-space-40` | `10rem` |
+| `space.48` | `--cui-space-48` | `12rem` |
+| `space.56` | `--cui-space-56` | `14rem` |
+| `space.64` | `--cui-space-64` | `16rem` |
+| `space.auto` | `--cui-space-auto` | `auto` |
+| `space.px` | `--cui-space-px` | `1px` |
+| `space.0.5` | `--cui-space-0-5` | `2px` |
+| `space.1.5` | `--cui-space-1-5` | `6px` |
+| `space.2.5` | `--cui-space-2-5` | `10px` |
+
+`space.0.5`, `space.1.5` and `space.2.5` are in pixels. The other steps are in `rem`.
+
+## Control heights
+
+<SolidDemo name="tokens/control-heights" source="hidden" />
+
+| Token | CSS variable | Value |
+| --- | --- | --- |
+| `control.height.compact` | `--cui-control-height-compact` | `28px` |
+| `control.height.xs` | `--cui-control-height-xs` | `30px` |
+| `control.height.sm` | `--cui-control-height-sm` | `36px` |
+| `control.height.md` | `--cui-control-height-md` | `40px` |
+| `control.height.lg` | `--cui-control-height-lg` | `48px` |
+| `control.height.xl` | `--cui-control-height-xl` | `56px` |
+
+A component's `size` prop maps `xs`, `sm`, `md`, `lg` and `xl` to these heights. `compact` is the item inside a segmented control.
+
+## Type scale
+
+<SolidDemo name="tokens/type-scale" source="hidden" />
+
+| Token | CSS variable | Value |
+| --- | --- | --- |
+| `font.size.badge` | `--cui-font-size-badge` | `11px` |
+| `font.size.xs` | `--cui-font-size-xs` | `12px` |
+| `font.size.caption` | `--cui-font-size-caption` | `13px` |
+| `font.size.sm` | `--cui-font-size-sm` | `14px` |
+| `font.size.md` | `--cui-font-size-md` | `16px` |
+| `font.size.lg` | `--cui-font-size-lg` | `18px` |
+| `font.size.xl` | `--cui-font-size-xl` | `20px` |
+| `font.size.2xl` | `--cui-font-size-2xl` | `24px` |
+| `font.family.sans` | `--cui-font-family-sans` | `"Inter var", system-ui, -apple-system, sans-serif` |
+| `font.family.mono` | `--cui-font-family-mono` | `ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace` |
+| `font.weight.normal` | `--cui-font-weight-normal` | `400` |
+| `font.weight.medium` | `--cui-font-weight-medium` | `500` |
+| `font.weight.semibold` | `--cui-font-weight-semibold` | `600` |
+| `font.lineHeight.compact` | `--cui-font-line-height-compact` | `1.15` |
+| `font.lineHeight.normal` | `--cui-font-line-height-normal` | `1.5` |
+| `font.tracking.normal` | `--cui-font-tracking-normal` | `normal` |
+
+The kit does not load a font file. Without Inter, the stack falls back to the system font. [Typography and spacing](/docs/foundations/typography-and-spacing) shows the scale in use.
+
+## Shadows
+
+<SolidDemo name="tokens/shadows" source="hidden" />
+
+| Token | CSS variable | Dark | Light |
+| --- | --- | --- | --- |
+| `shadow.dialog` | `--cui-shadow-dialog` | `0 10px 30px 0 #00000026, inset 0 0 0 1px #232323` | `0 10px 15px -3px #0000001a, 0 4px 6px -2px #0000000d` |
+| `shadow.menu` | `--cui-shadow-menu` | `0 1px #0000000d, 0 4px 10px #0000004d` | `0 1px #0000000d, 0 4px 10px #0000001a` |
+| `shadow.none` | `--cui-shadow-none` | `none` | `none` |
+| `shadow.sm` | `--cui-shadow-sm` | `0 1px 3px 0 #0000001a, 0 1px 2px 0 #0000000f` | `0 1px 3px 0 #0000001a, 0 1px 2px 0 #0000000f` |
+| `shadow.md` | `--cui-shadow-md` | `0 4px 6px -1px #0000001a, 0 2px 4px -1px #0000000f` | `0 4px 6px -1px #0000001a, 0 2px 4px -1px #0000000f` |
+
+## Motion
+
+<SolidDemo name="tokens/motion" source="hidden" />
+
+| Token | CSS variable | Value |
+| --- | --- | --- |
+| `motion.duration.none` | `--cui-motion-duration-none` | `0ms` |
+| `motion.duration.fast` | `--cui-motion-duration-fast` | `120ms` |
+| `motion.duration.normal` | `--cui-motion-duration-normal` | `160ms` |
+| `motion.duration.panel` | `--cui-motion-duration-panel` | `200ms` |
+| `motion.duration.slow` | `--cui-motion-duration-slow` | `260ms` |
+| `motion.ease.out` | `--cui-motion-ease-out` | `cubic-bezier(0.23, 1, 0.32, 1)` |
+
+[Motion](/docs/foundations/motion) explains when to use each duration.

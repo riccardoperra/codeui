@@ -1,7 +1,92 @@
 ---
 title: "Typography and spacing"
 description: "The type scale and the spacing scale the components use."
-status: draft
 ---
 
-{/* TODO(docs): Scope from the docs plan. Font size and weight tokens, regenerated from keyof tokens.font.size and tokens.font.weight. The Gap scale. Follow apps/docs/CONTRIBUTING-DOCS.md. Delete each TODO(docs) as you finish its section, and delete status: draft when the page is done. */}
+Interface text is small and steady. Most of a screen is 12 to 14px, and nothing is smaller than 11px. Spacing sits on a 4px grid with 2px half steps.
+
+<SolidDemo name="typography-and-spacing/type-scale" />
+
+## Font sizes
+
+`Text` takes `size`, and its type is `keyof typeof tokens.font.size`. Each size maps to one token.
+
+| `size` | Token | Value | Inkstone step | Use |
+| --- | --- | --- | --- | --- |
+| `badge` | `--cui-font-size-badge` | `11px` | Micro | Badge, tag, keycap. One word. |
+| `xs` | `--cui-font-size-xs` | `12px` | Meta | Description, summary, group label. |
+| `caption` | `--cui-font-size-caption` | `13px` | Base | Running text, row labels inside a section. |
+| `sm` | `--cui-font-size-sm` | `14px` | Label | Row title, menu item, button, section header. The `Text` default. |
+| `md` | `--cui-font-size-md` | `16px` | Title | Group title. Phone inputs, so iOS does not zoom. |
+| `lg` | `--cui-font-size-lg` | `18px` | Display | Sheet titles and announcements only. |
+| `xl` | `--cui-font-size-xl` | `20px` | Display | Sheet titles and announcements only. |
+| `2xl` | `--cui-font-size-2xl` | `24px` | Display | Sheet titles and announcements only. |
+
+`11px` is the floor. Do not set interface text smaller, even in a dense table. The reasons and the line height for each step are in [Typography](/docs/design/typography).
+
+`Text` sets `line-height: var(--cui-font-line-height-normal)`, which is `1.5`. `--cui-font-line-height-compact` is `1.15`. `Kbd` uses it for keycaps.
+
+## Weights and tones
+
+<SolidDemo name="typography-and-spacing/weights-and-tones" />
+
+`Text` takes `weight`, and its type is `keyof typeof tokens.font.weight`.
+
+| `weight` | Token | Value | Use |
+| --- | --- | --- | --- |
+| `normal` | `--cui-font-weight-normal` | `400` | Text you read. The default. |
+| `medium` | `--cui-font-weight-medium` | `500` | Text you act on, such as a label or a button. |
+| `semibold` | `--cui-font-weight-semibold` | `600` | Headings. |
+
+The kit has no other weights. Hierarchy comes from tone first, then weight, then size. Most text is the muted tone.
+
+`tone` takes `default`, `muted`, `hint`, `label`, `danger` and `success`. Each reads the `--cui-text-*` token of the same name, except `success`. See [Text](/docs/components/text).
+
+## Font families
+
+| Token | Value |
+| --- | --- |
+| `--cui-font-family-sans` | `"Inter var", system-ui, -apple-system, sans-serif` |
+| `--cui-font-family-mono` | `ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace` |
+
+The kit does not load font files. To get Inter, load it in your app, or set `--cui-font-family-sans` to your own font. Use the mono family only for code, file paths and hex values.
+
+## The spacing scale
+
+<SolidDemo name="typography-and-spacing/gap-scale" />
+
+Each row is a `Stack` with a different `gap`. `Gap` is the type of that prop, and each value maps to a `--cui-space-*` token.
+
+| `Gap` | Token | Value |
+| --- | --- | --- |
+| `px` | `--cui-space-px` | `1px` |
+| `0` | `--cui-space-0` | `0` |
+| `0.5` | `--cui-space-0-5` | `2px` |
+| `1` | `--cui-space-1` | `0.25rem` (4px) |
+| `1.5` | `--cui-space-1-5` | `6px` |
+| `2` | `--cui-space-2` | `0.5rem` (8px). The `Stack` default. |
+| `3` | `--cui-space-3` | `0.75rem` (12px) |
+| `4` | `--cui-space-4` | `1rem` (16px) |
+| `6` | `--cui-space-6` | `1.5rem` (24px) |
+| `8` | `--cui-space-8` | `2rem` (32px) |
+| `10` | `--cui-space-10` | `2.5rem` (40px) |
+| `12` | `--cui-space-12` | `3rem` (48px) |
+| `16` to `64` | `--cui-space-16` to `--cui-space-64` | `4rem` to `16rem` |
+
+The pixel values assume a 16px root font size. Three tokens have no `Gap` value: `--cui-space-2-5` (`10px`), `--cui-space-5` (`1.25rem`) and `--cui-space-auto`. Use them in CSS. [Tokens](/docs/foundations/tokens#spacing) lists every step.
+
+Inkstone uses `2 · 4 · 6 · 8 · 12 · 16 · 24 · 32` for almost everything. Keep `10px` for the inside of compact controls. Space inside a group is smaller than the space between groups. See [Space and shape](/docs/design/space-and-shape).
+
+## Control heights
+
+Fields, buttons and other controls with a `size` prop take their height from `--cui-control-height-*`.
+
+| `size` | Token | Value |
+| --- | --- | --- |
+| `xs` | `--cui-control-height-xs` | `30px` |
+| `sm` | `--cui-control-height-sm` | `36px` |
+| `md` | `--cui-control-height-md` | `40px` |
+| `lg` | `--cui-control-height-lg` | `48px` |
+| `xl` | `--cui-control-height-xl` | `56px` |
+
+`--cui-control-height-compact` is `28px`, the height of an item inside a segmented control. Inkstone sizes buttons, fields and menu rows at 36px on desktop and 40 to 44px on a phone.

@@ -1,35 +1,171 @@
 ---
 title: "Token exports"
 description: "The JavaScript token objects and the @codeui/kit/tokens entry."
-status: draft
 ---
 
-{/* TODO(docs): Scope from the docs plan. One section per symbol. The @codeui/kit/tokens entry: named exports, parity with the root, side effects, packed-consumer behavior. Follow apps/docs/CONTRIBUTING-DOCS.md. Delete each TODO(docs) as you finish its section, and delete status: draft when the page is done. */}
+The kit exports its tokens as JavaScript objects, so TypeScript and vanilla-extract code can reference them by path. Every leaf is a `var(--cui-…)` string. The values themselves are listed on [Tokens](/docs/foundations/tokens).
+
+| Export | Status | What it holds |
+| --- | --- | --- |
+| [`tokens`](#tokens) | Current | Every `--cui-*` token, by role. |
+| [`themeTokens`](#themetokens) | Deprecated | The old scale names. |
+| [`themeVars`](#themevars) | Deprecated | The old color names. |
+| [`breakpoints`](#breakpoints) | Current | Viewport widths in pixels. |
+| [`layoutVars`](#layoutvars) | Current | One layout variable, `layoutBackgroundColor`. |
+| [`responsiveStyle`](#responsivestyle) | Current | A helper that writes min-width media queries. |
 
 ## The `@codeui/kit/tokens` entry
 
-{/* TODO(docs): Named exports, parity with the root entry, side effects, and packed-consumer behavior. */}
+```ts title="consumer.css.ts"
+import { style } from "@vanilla-extract/css";
+import {
+	tokens,
+	themeVars,
+	themeTokens,
+	layoutVars,
+	breakpoints,
+	responsiveStyle,
+} from "@codeui/kit/tokens";
+
+export const consumer = style({
+	color: tokens.text.default,
+	background: themeVars.background,
+	borderColor: themeTokens.colors.background,
+	padding: tokens.space["2"],
+	vars: { [layoutVars.layoutBackgroundColor]: tokens.surface.canvas },
+	"@media": {
+		[`(min-width: ${breakpoints.md}px)`]: { margin: themeTokens.spacing["2"] },
+	},
+	...responsiveStyle({ lg: { color: tokens.text.muted } }),
+});
+```
+
+This file is `packages/kit/fixtures/tokens-consumer/consumer.css.ts`. `pnpm --filter @codeui/kit test:tokens-consumer` builds it against the packed `dist` output, once with the `import` export condition and once with `solid`.
+
+Import from `@codeui/kit/tokens` in every vanilla-extract `.css.ts` file. Import from `@codeui/kit` everywhere else.
+
+- **Named exports.** `tokens`, `themeTokens`, `themeVars`, `breakpoints`, `layoutVars` and `responsiveStyle`. Nothing else.
+- **Parity with the root.** `@codeui/kit` re-exports the same six objects from the same modules. A value from one entry is identical to the value from the other.
+- **No component code.** The entry imports nothing from `solid-js` or `@kobalte/*`. The fixture check fails the test if any file it reaches does.
+- **Side effects.** Its modules are vanilla-extract style modules. They declare the `cui` cascade layer and set the `--cui-*` values for both modes. Your bundler needs the vanilla-extract plugin to load them, as it does for the root entry.
+
+### Why the root entry fails in a style file
+
+vanilla-extract evaluates every `.css.ts` file in Node during the build. The root entry imports every component, and with them Solid, Kobalte and JSX. That component code does not evaluate in the style build, so a `.css.ts` file that imports from `@codeui/kit` breaks the build. The kit's fixture reproduced this failure before the `tokens` entry existed. The entry gives style files the token objects without the components.
 
 ## `tokens`
 
-{/* TODO(docs): Import path, signature, parameters, return value, one example, and edge cases. Covers @codeui/kit tokens, @codeui/kit/tokens tokens. */}
+```ts
+import { tokens } from "@codeui/kit"; // in components
+import { tokens } from "@codeui/kit/tokens"; // in .css.ts files
+```
+
+<SolidDemo name="token-exports/inline-style" />
+
+`tokens` is a nested object with one leaf per `--cui-*` token, 129 in all. Its top-level groups are `surface`, `text`, `action`, `shadow`, `border`, `accent`, `focus`, `radius`, `space`, `control`, `font` and `motion`. Each leaf is the string `var(--cui-<path>)`.
+
+| Path | Value |
+| --- | --- |
+| `tokens.surface.canvas` | `"var(--cui-surface-canvas)"` |
+| `tokens.action.brandSoft.text` | `"var(--cui-action-brand-soft-text)"` |
+| `tokens.space["1.5"]` | `"var(--cui-space-1-5)"` |
+| `tokens.font.lineHeight.normal` | `"var(--cui-font-line-height-normal)"` |
+
+- A leaf is a reference, not a value. It resolves in the browser against the nearest `data-cui-theme` scope. To read the resolved value, call `getComputedStyle(element).getPropertyValue("--cui-surface-canvas")`.
+- Numeric keys are strings. Write `tokens.space["2"]`, not `tokens.space[2]`.
+- `keyof typeof tokens.font.size` and `keyof typeof tokens.font.weight` are the types of the `size` and `weight` props on `Text`.
 
 ## `themeTokens`
 
-{/* TODO(docs): Import path, signature, parameters, return value, one example, and edge cases. Covers @codeui/kit themeTokens, @codeui/kit/tokens themeTokens. */}
+```ts
+import { themeTokens } from "@codeui/kit";
+```
+
+**Deprecated.** Use `tokens`. `themeTokens` keeps the scale names from before the `--cui-*` contract, so old style files keep compiling.
+
+| Group | Points at |
+| --- | --- |
+| `fontSize` | `tokens.font.size`: `xs`, `sm`, `md`, `lg`, `xl`. |
+| `fontWeight` | `normal`, `medium` and `semibold` point at `tokens.font.weight`. `hairline`, `thin`, `light`, `bold`, `extrabold` and `black` keep their old values. |
+| `spacing` | `tokens.space`. |
+| `radii` | `tokens.radius`. `radii.default` points at `tokens.radius.lg`. |
+| `boxShadow` | `default`, `md` and `none` point at `tokens.shadow`. `lg`, `xl`, `2xl`, `inner` and `outline` keep their old values. |
+| `colors` | The Radix `grayDark` scale, with the old values. |
+| `zIndex` | `-1`, `0`, `10`, `20`, `30`, `40`, `50` and `auto`, with the old values. |
+
+The groups that keep their old values use hashed variable names, not `--cui-*` names. You can change them only from vanilla-extract, and they do not follow `data-cui-theme`.
 
 ## `themeVars`
 
-{/* TODO(docs): Import path, signature, parameters, return value, one example, and edge cases. Covers @codeui/kit themeVars, @codeui/kit/tokens themeVars. */}
+```ts
+import { themeVars } from "@codeui/kit";
+```
+
+**Deprecated.** Use `tokens`. `themeVars` keeps the color names from before the `--cui-*` contract. Each name points at the closest `--cui-*` role, so it follows the theme.
+
+| Old name | Points at |
+| --- | --- |
+| `background` | `tokens.surface.canvas` |
+| `foreground` | `tokens.text.default` |
+| `brand` | `tokens.action.brand.base` |
+| `brandLink` | `tokens.accent.focus` |
+| `critical` | `tokens.action.danger.base` |
+| `caution` | `tokens.action.caution.base` |
+| `separator` | `tokens.border.divider` |
+| `dropdownBackground` | `tokens.surface.menu` |
+| `dialogBackground` | `tokens.surface.dialog` |
+| `dialogOverlayBackground` | `tokens.surface.scrim` |
+
+The table shows 10 of the 43 names. `packages/kit/src/foundation/contract.css.ts` lists all of them. `accent8` and `accent9` both point at `tokens.text.muted`.
 
 ## `breakpoints`
 
-{/* TODO(docs): Import path, signature, parameters, return value, one example, and edge cases. Covers @codeui/kit breakpoints, @codeui/kit/tokens breakpoints. */}
+```ts
+import { breakpoints } from "@codeui/kit";
+```
+
+<SolidDemo name="token-exports/breakpoints" />
+
+`breakpoints` is a read-only object of minimum viewport widths in pixels. The values are numbers, so add the unit yourself, as in `` `(min-width: ${breakpoints.md}px)` ``.
+
+`xs` is `0` and has no media query. [`responsiveStyle`](#responsivestyle) uses the other five.
 
 ## `layoutVars`
 
-{/* TODO(docs): Import path, signature, parameters, return value, one example, and edge cases. Covers @codeui/kit layoutVars, @codeui/kit/tokens layoutVars. */}
+```ts
+import { layoutVars } from "@codeui/kit";
+
+layoutVars.layoutBackgroundColor; // "var(--…)"
+```
+
+`layoutVars` is a namespace with one member, `layoutBackgroundColor`. It is a vanilla-extract variable with a hashed name, unset by default.
+
+Only one kit rule reads it. A `Button` with `variant="ghost"` and `loading` uses it as its background while the spinner shows, and falls back to the button's own background when it is unset. Set it on a container so that loading ghost buttons inside it match the surface they sit on:
+
+```ts
+vars: { [layoutVars.layoutBackgroundColor]: tokens.surface.canvas }
+```
+
+The name is hashed, so set it from a vanilla-extract style, as the fixture above does. Plain CSS cannot name it.
 
 ## `responsiveStyle`
 
-{/* TODO(docs): Import path, signature, parameters, return value, one example, and edge cases. Covers @codeui/kit responsiveStyle, @codeui/kit/tokens responsiveStyle. */}
+```ts
+import { responsiveStyle } from "@codeui/kit/tokens";
+
+responsiveStyle(style: {
+	xs?: CSSProps;
+	sm?: CSSProps;
+	md?: CSSProps;
+	lg?: CSSProps;
+	xl?: CSSProps;
+	"2xl"?: CSSProps;
+}): StyleRule;
+```
+
+`responsiveStyle` turns per-breakpoint styles into one vanilla-extract `StyleRule`. `CSSProps` is a `StyleRule` without `@media` and `@supports`.
+
+- `xs` styles apply at every width, outside any media query.
+- `sm`, `md`, `lg`, `xl` and `2xl` go into `screen and (min-width: <width>px)` queries, from the [`breakpoints`](#breakpoints) values. Larger widths come later, so they win.
+- An empty or missing breakpoint adds no query.
+- Spread the result into `style()`, as `consumer.css.ts` above does. A spread replaces any `@media` key you wrote before it, so put your own `@media` after the spread, or pass everything through `responsiveStyle`.
