@@ -11,12 +11,15 @@ import {
 	useDialogContext,
 } from "@kobalte/core/dialog";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
+import { callHandler, mergeRefs } from "@kobalte/utils";
 import {
 	type Accessor,
 	type ComponentProps,
 	createContext,
 	createMemo,
+	createSignal,
 	type JSX,
+	onCleanup,
 	onMount,
 	splitProps,
 	useContext,
@@ -27,6 +30,7 @@ import { IconButton, type IconButtonProps } from "../components/IconButton/IconB
 import { CloseIcon } from "../icons";
 import { mergeClasses } from "../utils/css";
 import { createFocusReturn } from "./dialog-focus";
+import { createSheetDrag } from "./sheet-drag";
 
 export const sheetParts = {
 	trigger: "sheet-trigger",
@@ -81,15 +85,35 @@ function trackInput() {
 // press shortly before. Keyboard and programmatic changes do not move.
 const pointerInitiated = () => !!lastInput?.pointer && performance.now() - lastInput.time < 1000;
 
-const SheetContext = createContext<{ moves: Accessor<boolean> }>();
+type SheetContextValue = {
+	moves: Accessor<boolean>;
+	overlay: Accessor<HTMLElement | undefined>;
+	setOverlay: (element: HTMLElement | undefined) => void;
+	/** Closes without the exit slide, for a sheet a drag already moved off screen. */
+	closeInPlace: () => void;
+};
+
+const SheetContext = createContext<SheetContextValue>();
 
 function MotionScope(props: { motion?: SheetMotion; children?: JSX.Element }) {
 	const dialog = useDialogContext();
+	const [overlay, setOverlay] = createSignal<HTMLElement>();
+	let inPlace = false;
 	const moves = createMemo(() => {
 		dialog.isOpen();
-		return props.motion !== "none" && pointerInitiated();
+		const still = inPlace;
+		inPlace = false;
+		return !still && props.motion !== "none" && pointerInitiated();
 	});
-	return <SheetContext.Provider value={{ moves }}>{props.children}</SheetContext.Provider>;
+	const closeInPlace = () => {
+		inPlace = true;
+		dialog.close();
+	};
+	return (
+		<SheetContext.Provider value={{ moves, overlay, setOverlay, closeInPlace }}>
+			{props.children}
+		</SheetContext.Provider>
+	);
 }
 
 const motionAttribute = () => {
@@ -129,10 +153,16 @@ export function Trigger<T extends ValidComponent = "button">(
 export function Overlay<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, KDialogOverlayProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"div", KDialogOverlayProps>, ["class"]);
+	const [local, others] = splitProps(props as PolymorphicProps<"div", KDialogOverlayProps>, [
+		"class",
+		"ref",
+	]);
 	const motion = motionAttribute();
+	const context = useContext(SheetContext);
+	onCleanup(() => context?.setOverlay(undefined));
 	return (
 		<KDialog.Overlay
+			ref={mergeRefs(local.ref, (element: HTMLElement) => context?.setOverlay(element))}
 			data-cui={sheetParts.overlay}
 			data-motion={motion()}
 			class={mergeClasses(sheetStyles.overlay(), local.class)}
@@ -235,16 +265,58 @@ export type HandleProps = Omit<ComponentProps<"button">, "aria-label"> & {
 	"aria-label"?: string;
 };
 
-/** The grabber at the top of a bottom sheet. A tap, Enter or Space closes the sheet. */
+/**
+ * The grabber at the top of a bottom sheet. A tap, Enter or Space closes the
+ * sheet. Dragging it down past a distance, or flicking it, dismisses the sheet.
+ * A drag that is cancelled or does not go far enough settles back open.
+ */
 export function Handle(props: HandleProps) {
-	const [local, others] = splitProps(props, ["class", "aria-label"]);
+	const [local, others] = splitProps(props, [
+		"class",
+		"aria-label",
+		"onClick",
+		"onPointerDown",
+		"onPointerMove",
+		"onPointerUp",
+		"onPointerCancel",
+	]);
+	const dialog = useDialogContext();
+	const context = useContext(SheetContext);
+	let handle: HTMLButtonElement | undefined;
+	const drag = createSheetDrag({
+		content: () => handle?.closest<HTMLElement>(`[data-cui="${sheetParts.content}"]`) ?? null,
+		overlay: () => context?.overlay(),
+		dismiss: () => (context ? context.closeInPlace() : dialog.close()),
+	});
 	return (
-		<KDialog.CloseButton
+		<button
 			type="button"
 			{...others}
+			ref={mergeRefs(others.ref, (element: HTMLButtonElement) => (handle = element))}
 			data-cui={sheetParts.handle}
 			aria-label={local["aria-label"] ?? "close"}
 			class={mergeClasses(sheetStyles.handle(), local.class)}
+			onPointerDown={event => {
+				callHandler(event, local.onPointerDown);
+				drag.onPointerDown(event);
+			}}
+			onPointerMove={event => {
+				callHandler(event, local.onPointerMove);
+				drag.onPointerMove(event);
+			}}
+			onPointerUp={event => {
+				callHandler(event, local.onPointerUp);
+				drag.onPointerUp(event);
+			}}
+			onPointerCancel={event => {
+				callHandler(event, local.onPointerCancel);
+				drag.onPointerCancel(event);
+			}}
+			onClick={event => {
+				callHandler(event, local.onClick);
+				if (drag.consumeClick() || event.defaultPrevented) return;
+				dialog.close();
+			}}
 		/>
 	);
 }

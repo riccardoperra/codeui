@@ -99,9 +99,20 @@ export const Right: Story = {
 	),
 };
 
+/** Opened on load. Drag the handle down to dismiss, or tap it to close. */
+export const Draggable: Story = {
+	tags: ["!autodocs"],
+	render: () => (
+		<Sheet defaultOpen draggable title="Layers" closeLabel="Close layers">
+			<LayerList />
+		</Sheet>
+	),
+};
+
 /**
  * A nonmodal sheet built from parts and mounted in the layout, like the
  * CodeImage phone dock. There is no scrim, so the frame above stays usable.
+ * Its handle drags the sheet down to dismiss it.
  */
 export const DockedParts: Story = {
 	tags: ["!autodocs"],

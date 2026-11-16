@@ -3,13 +3,23 @@ import { type JSX, Show, splitProps } from "solid-js";
 import * as S from "../../parts/sheet";
 import { mergeClasses } from "../../utils/css";
 
-export type SheetProps = Omit<S.RootProps, "children"> & {
+/** Only a bottom sheet can be dragged to dismiss. */
+export type SheetPlacement =
+	| {
+			/** Edge the sheet is attached to. Defaults to `bottom`. */
+			side?: "bottom";
+			/** Shows a handle that closes the sheet on a tap or a downward drag. Defaults to false. */
+			draggable?: boolean;
+	  }
+	| { side: "left" | "right"; draggable?: false };
+
+export type SheetProps = SheetPlacement & SheetOptions;
+
+type SheetOptions = Omit<S.RootProps, "children"> & {
 	children?: JSX.Element;
 	title?: JSX.Element;
 	description?: JSX.Element;
 	footer?: JSX.Element;
-	/** Edge the sheet is attached to. Defaults to `bottom`. */
-	side?: S.SheetSide;
 	/** Node the sheet is portaled into. Defaults to `document.body`. */
 	mount?: HTMLElement;
 	/** Shows the close button in the header. Defaults to true. */
@@ -43,6 +53,7 @@ export function Sheet(props: SheetProps) {
 		"description",
 		"footer",
 		"side",
+		"draggable",
 		"mount",
 		"showCloseButton",
 		"closeLabel",
@@ -64,6 +75,9 @@ export function Sheet(props: SheetProps) {
 					aria-label={local["aria-label"]}
 					class={mergeClasses(local.class, local.classes?.content)}
 				>
+					<Show when={local.draggable && (local.side ?? "bottom") === "bottom"}>
+						<S.Handle aria-label={local.closeLabel} class={local.classes?.handle} />
+					</Show>
 					<Show when={local.title || showCloseButton()}>
 						<S.Header class={local.classes?.header}>
 							<Show when={local.title}>

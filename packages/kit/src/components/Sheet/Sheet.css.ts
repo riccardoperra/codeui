@@ -152,7 +152,7 @@ export const handle = style({
 	padding: 0,
 	border: 0,
 	background: "transparent",
-	cursor: "pointer",
+	cursor: "grab",
 	touchAction: "none",
 	outline: "none",
 	selectors: {
@@ -163,6 +163,7 @@ export const handle = style({
 			borderRadius: tokens.radius.full,
 			backgroundColor: tokens.action.neutral.active,
 		},
+		"&:active": { cursor: "grabbing" },
 		"&:focus-visible::before": {
 			outline: `${tokens.focus.width} solid ${tokens.focus.color}`,
 			outlineOffset: tokens.focus.offset,

@@ -855,13 +855,22 @@ export {};
 import type { DialogContentProps as KDialogContentProps } from "@kobalte/core/dialog";
 import { type JSX } from "solid-js";
 import * as S from "../../parts/sheet.js";
-export type SheetProps = Omit<S.RootProps, "children"> & {
+/** Only a bottom sheet can be dragged to dismiss. */
+export type SheetPlacement = {
+    /** Edge the sheet is attached to. Defaults to `bottom`. */
+    side?: "bottom";
+    /** Shows a handle that closes the sheet on a tap or a downward drag. Defaults to false. */
+    draggable?: boolean;
+} | {
+    side: "left" | "right";
+    draggable?: false;
+};
+export type SheetProps = SheetPlacement & SheetOptions;
+type SheetOptions = Omit<S.RootProps, "children"> & {
     children?: JSX.Element;
     title?: JSX.Element;
     description?: JSX.Element;
     footer?: JSX.Element;
-    /** Edge the sheet is attached to. Defaults to `bottom`. */
-    side?: S.SheetSide;
     /** Node the sheet is portaled into. Defaults to `document.body`. */
     mount?: HTMLElement;
     /** Shows the close button in the header. Defaults to true. */
@@ -880,6 +889,7 @@ export type SheetProps = Omit<S.RootProps, "children"> & {
  * scrim. A nonmodal sheet has no scrim and leaves the page usable.
  */
 export declare function Sheet(props: SheetProps): JSX.Element;
+export {};
 ```
 
 ## components/Tabs/Tabs.d.ts
@@ -1714,7 +1724,11 @@ export type HandleProps = Omit<ComponentProps<"button">, "aria-label"> & {
     /** Accessible name of the handle, which closes the sheet. Defaults to "close". */
     "aria-label"?: string;
 };
-/** The grabber at the top of a bottom sheet. A tap, Enter or Space closes the sheet. */
+/**
+ * The grabber at the top of a bottom sheet. A tap, Enter or Space closes the
+ * sheet. Dragging it down past a distance, or flicking it, dismisses the sheet.
+ * A drag that is cancelled or does not go far enough settles back open.
+ */
 export declare function Handle(props: HandleProps): JSX.Element;
 export declare function Body(props: ComponentProps<"div">): JSX.Element;
 export declare function Footer(props: ComponentProps<"div">): JSX.Element;
