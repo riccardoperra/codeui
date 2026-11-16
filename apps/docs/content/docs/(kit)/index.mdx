@@ -1,40 +1,27 @@
 ---
-title: Introduction
-description: '@codeui/kit is the Solid UI kit behind CodeImage. It gives you accessible components with the CodeImage look, and every value is a CSS custom property you can change.'
-status: draft
+title: "Introduction"
+description: "CodeImage’s design system for Solid apps."
 ---
-
-{/* TODO(docs): Rewrite into the page template. Run node tools/docs/scaffold.mjs --print index to see it, and keep the useful content below. */}
-
-<SolidDemo name="dialog" source="hidden" />
 
 ## What the kit is
 
-`@codeui/kit` holds the controls, fields and overlays that [CodeImage](https://codeimage.dev) is built from.
-It is written for [Solid](https://www.solidjs.com) and renders on the server and in the browser.
-The default theme is CodeImage's dark and light look. You can replace any color, radius or spacing with plain CSS.
+`@codeui/kit` is CodeImage's design system. It combines Solid components, Kobalte behavior, and the Inkstone visual specification.
+It is for CodeImage contributors and other Solid app authors who want the same controls and theme contract.
 
 ## Three layers
 
-The kit is built in three layers. Use the highest one that fits, and step down when you need more control.
-
-| Layer | Import | Use it when |
+| Layer | Import | Responsibility |
 | --- | --- | --- |
-| Kobalte engine | `@kobalte/core` | You need behavior and accessibility with no styles at all. The kit depends on [Kobalte](https://kobalte.dev) for focus, keyboard and ARIA. |
-| Styled parts | `@codeui/kit/<component>` | You need a custom layout. Each part wraps one Kobalte primitive and carries the kit styles and a `data-cui` attribute. Today `@codeui/kit/dialog` and `@codeui/kit/popover` exist. |
-| Ready components | `@codeui/kit` | You want the CodeImage component as is. `Dialog`, `Button`, `Select` and the others compose the styled parts for you. |
+| Kobalte engine | `@kobalte/core/<component>` | Keyboard interaction, focus, state, and ARIA without kit styles. |
+| Styled parts | `@codeui/kit/<component>` | Individual elements with kit styles and stable `data-cui` markers. |
+| Ready components | `@codeui/kit` | Common compositions with labels, icons, and messages wired together. |
 
-```tsx
-// Ready component
-import { Dialog } from '@codeui/kit';
-
-// Styled parts, for a custom layout
-import * as D from '@codeui/kit/dialog';
-```
-
-The [Dialog](/docs/components/dialog) and [Popover](/docs/components/popover) pages show the same component in both layers.
+Start with ready components. Use parts when you need to change the composition. Use Kobalte directly when you need to own the styling too.
+[Choose ready components or parts](/docs/ready-or-parts) compares all three with live examples.
 
 ## Next steps
 
-- [Installation](/docs/installation) sets up the kit in a Vite and Solid app.
-- [Theming](/docs/theming) explains the `--cui-*` tokens and `data-cui-theme`.
+- [Installation](/docs/installation) configures the required build plugin and theme.
+- [First component](/docs/first-component) builds a snippet export screen.
+- [Components](/docs/components) lists every component by purpose.
+- [Theming](/docs/theming) describes the CSS custom properties.

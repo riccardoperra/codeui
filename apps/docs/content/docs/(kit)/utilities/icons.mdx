@@ -1,15 +1,26 @@
 ---
 title: "Icons"
-description: "The icons the kit ships and the SvgIcon wrapper."
-status: draft
+description: "Every exported icon and its accessible usage."
 ---
-
-{/* TODO(docs): Scope from the docs plan. Rendered gallery of CheckIcon, ChevronDownIcon, ChevronUpIcon, CloseIcon, NextIcon, PreviousIcon, SelectorIcon. Size, color inheritance, accessible and decorative usage. Follow apps/docs/CONTRIBUTING-DOCS.md. Delete each TODO(docs) as you finish its section, and delete status: draft when the page is done. */}
 
 ## `icons`
 
-{/* TODO(docs): Import path, signature, parameters, return value, one example, and edge cases. Covers @codeui/kit icons. */}
+<SolidDemo name="icons/gallery" />
+
+Import the `icons` namespace from `@codeui/kit`. It exports `CheckIcon`, `ChevronDownIcon`, `ChevronUpIcon`, `CloseIcon`, `NextIcon`, `PreviousIcon`, and `SelectorIcon`.
+Each component accepts SVG attributes and a `size` string. The default size is `1.1em`. Set `size="16px"` for an icon inside a control.
+The drawings use `currentColor`, so they inherit the surrounding text color.
 
 ## `SvgIcon`
 
-{/* TODO(docs): Import path, signature, parameters, return value, one example, and edge cases. Covers @codeui/kit SvgIcon. */}
+<SolidDemo name="icons/labeling" />
+
+`SvgIcon` is a public root export. It wraps SVG children, applies the shared size class, and accepts SVG attributes plus `size?: string`.
+Supply a `viewBox` that matches your drawing.
+
+Set `aria-hidden="true"` on an icon beside visible text that conveys the same meaning.
+For a meaningful standalone icon, set `role="img"` and an `aria-label`.
+An icon alone does not create a button. Use [IconButton](/docs/components/icon-button) with an accessible name and a [Tooltip](/docs/components/tooltip) for an icon action.
+Do not use an SVG title as a tooltip.
+
+Icons do not handle keys or move focus. SVG markup renders on the server and remains after hydration.

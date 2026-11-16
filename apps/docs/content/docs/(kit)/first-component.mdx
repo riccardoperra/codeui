@@ -1,7 +1,32 @@
 ---
 title: "First component"
-description: "Render a kit component in a Solid app and customize it."
-status: draft
+description: "Build a snippet export settings screen."
 ---
 
-{/* TODO(docs): Scope from the docs plan. Tutorial. The reader builds one screen with a ready component, sees it render on the server and hydrate, then changes one token. Follow apps/docs/CONTRIBUTING-DOCS.md. Delete each TODO(docs) as you finish its section, and delete status: draft when the page is done. */}
+## Build the screen
+
+<SolidDemo name="first-component/export-screen" />
+
+Copy the demo into your Solid app after [installation](/docs/installation). Render its default export from your app root.
+You see a snippet name, a description, a save action, and a status message.
+
+## Save the settings
+
+Change the snippet name. Activate **Save export settings**. The status message includes the current name.
+Clear the name. The button becomes disabled until you enter a name again.
+This example saves local UI state. It does not create an image or send a request.
+
+## Change a token
+
+Set `--cui-surface-canvas` on a parent of the screen in your app stylesheet. The recessed background changes without replacing any component classes.
+Keep the page background lighter than the island in dark mode. [Theming](/docs/theming) lists the token contract.
+
+## Check the result
+
+| Key | Action |
+| --- | --- |
+| Tab | Moves between the name field and the enabled save button. |
+| Enter or Space on the button | Saves the current settings. |
+
+The field label provides its accessible name. The status region announces the saved message without moving focus.
+The screen renders its initial field, button, and message on the server. Solid hydrates the signal handlers in the browser. This screen has no portal.

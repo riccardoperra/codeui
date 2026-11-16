@@ -1,64 +1,46 @@
 ---
-title: Installation
-description: Add @codeui/kit to a Vite and Solid app.
-status: draft
+title: "Installation"
+description: "Set up the kit in a Vite and Solid app."
 ---
-
-{/* TODO(docs): Rewrite into the page template. Run node tools/docs/scaffold.mjs --print installation to see it, and keep the useful content below. */}
 
 ## Requirements
 
-- Solid `^1.9.8`.
-- Vite, with the vanilla-extract plugin.
-
-The kit does not ship compiled CSS yet. Its styles are vanilla-extract modules, so your build must run the vanilla-extract Vite plugin to turn them into CSS.
-Without the plugin, the import fails at build time or the components render without styles.
-Shipping plain CSS is planned, and this page will change when it lands.
+Use Solid `^1.9.8`, Vite, and `vite-plugin-solid`. The current package ships vanilla-extract `.css.js` modules. The vanilla-extract Vite plugin is required to process them.
+Without the plugin, style evaluation can throw “Styles were unable to be assigned to a file” before any component renders.
 
 ## Install
 
-```bash
-pnpm add @codeui/kit solid-js
-pnpm add -D @vanilla-extract/vite-plugin vite-plugin-solid
+```sh
+pnpm add @codeui/kit solid-js@^1.9.8
+pnpm add -D vite vite-plugin-solid @vanilla-extract/vite-plugin@4.0.15
 ```
 
 ## Configure Vite
 
 ```ts title="vite.config.ts"
-import { defineConfig } from 'vite';
-import solid from 'vite-plugin-solid';
-import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
+import { defineConfig } from "vite";
+import solid from "vite-plugin-solid";
+import { vanillaExtractPlugin } from "@vanilla-extract/vite-plugin";
 
 export default defineConfig({
-  plugins: [solid(), vanillaExtractPlugin()],
+	plugins: [vanillaExtractPlugin(), solid()],
 });
 ```
 
-For server rendering, bundle dependencies into the server build, so the plugin also processes the kit styles there.
-The demos on this site are rendered this way:
-
-```ts title="vite.config.ts"
-export default defineConfig({
-  plugins: [solid({ ssr: true }), vanillaExtractPlugin()],
-  ssr: { noExternal: true },
-});
-```
+This is the verified browser workaround from `examples/run-consumer-check.mjs --with-vanilla-extract`.
+For SSR, the fixture uses `solid({ ssr: true })`, `ssr.noExternal: ["@codeui/kit"]`, and `ssr.resolve.conditions: ["solid", "node"]`.
+The plugin fixes SSR style evaluation, but the consumer check still fails because portalled Dialog and Popover bodies are absent from server markup. Do not rely on those bodies for server content.
+The reproducible setup and results live in `docs/kit-2026/consumer.md` and `examples/` in the repository.
 
 ## Use a component
 
-```tsx
-import { Button } from '@codeui/kit';
+<SolidDemo name="first-component/export-screen" />
 
-export function ExportButton() {
-  return <Button theme="primary">Export</Button>;
-}
-```
+Import ready components from `@codeui/kit`. Import styled parts as a namespace from the component subpath, as in the [parts example](/docs/ready-or-parts).
 
 ## Pick a theme
 
-Set `data-cui-theme` on `<html>` to `dark` or `light`. Without it, the kit follows the system color scheme.
-See [Theming](/docs/theming) for the full contract.
-
-```html
-<html data-cui-theme="dark">
-```
+Set `data-cui-theme="dark"` or `data-cui-theme="light"` on the document's `html` element. This lets content portalled to the document body inherit the theme too.
+Without an explicit theme attribute, the theme follows the system color scheme.
+No separate `@codeui/kit/theme.css` import is exported by the current package. Component imports include the style modules that the plugin processes.
+See [Theming](/docs/theming) for token overrides.
