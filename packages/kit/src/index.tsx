@@ -87,6 +87,7 @@ export { SvgIcon } from "./icons/SvgIcon";
 export * as icons from "./icons";
 
 export {
+	tokens,
 	themeTokens,
 	themeVars,
 	breakpoints,

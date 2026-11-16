@@ -1,4 +1,4 @@
-import { themeTokens } from "./themes.css";
+import { tokens } from "./cui.css";
 
 export type BaseComponentSize = "xs" | "sm" | "md" | "lg" | "xl";
 
@@ -10,20 +10,14 @@ export const ComponentSizes = {
 	xl: "xl",
 } as const;
 
-const sizesCss = {
-	xs: "30px",
-	sm: "36px",
-	md: "40px",
-	lg: "48px",
-	xl: "56px",
-};
+const sizesCss: Record<string, string> = tokens.control.height;
 
 const fontSizesCss = {
-	xs: themeTokens.fontSize.xs,
-	sm: themeTokens.fontSize.sm,
-	md: themeTokens.fontSize.md,
-	lg: themeTokens.fontSize.lg,
-	xl: themeTokens.fontSize.xl,
+	xs: tokens.font.size.xs,
+	sm: tokens.font.size.sm,
+	md: tokens.font.size.md,
+	lg: tokens.font.size.lg,
+	xl: tokens.font.size.xl,
 };
 
 export const mapSizeValue = (

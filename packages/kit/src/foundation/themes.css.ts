@@ -1,144 +1,109 @@
-import { createGlobalTheme } from "@vanilla-extract/css";
-import { darken, lighten, tint } from "polished";
-import { getActiveColor, getHoverColor, getLightVariant } from "../utils/color";
-import { tokens as contract } from "./contract.css";
-import { tokens } from "./tokens";
+import { createThemeContract } from "@vanilla-extract/css";
+import { tokens as cui } from "./cui.css";
+import { globalStyle } from "./layer.css";
+import { tokens as legacyValues } from "./tokens";
 
-export const themeTokens = createGlobalTheme(":root", {
-	...tokens,
-} as const);
+const nullLeaves = <T extends Record<string, string>>(group: T) =>
+	Object.fromEntries(Object.keys(group).map(key => [key, null])) as { [Key in keyof T]: null };
 
-const brand = "#0072F5";
-const brandSoft = "#102A4CFF";
-const critical = "#E03131FF";
-const caution = "#F08C00FF";
+const {
+	normal: _normal,
+	medium: _medium,
+	semibold: _semibold,
+	...legacyFontWeight
+} = legacyValues.fontWeight;
+const { default: _sm, md: _md, none: _none, ...legacyBoxShadow } = legacyValues.boxShadow;
 
-const grayDarkScale = {
-	gray1: "#111111",
-	gray2: "#1d1d1d",
-	gray3: "#232323",
-	gray4: "#282828",
-	gray5: "#2B2B2B",
-	gray6: "#333333",
-	gray7: "#3e3e3e",
-	gray8: "#505050",
-	gray9: "#707070",
-	gray10: "#7e7e7e",
-	gray11: "#a0a0a0",
-	gray12: "#ededed",
-} as const;
+const legacyGroups = {
+	colors: legacyValues.colors,
+	fontWeight: legacyFontWeight,
+	boxShadow: legacyBoxShadow,
+	zIndex: legacyValues.zIndex,
+};
 
-const neutral = "#424242";
-const neutralDark = darken(0.02, grayDarkScale.gray4);
-const neutralSoft = lighten(0.02, getLightVariant(grayDarkScale.gray5));
-
-const grayLightScale = {
-	gray1: "hsl(0, 0%, 97.3%)",
-	gray2: "hsl(0, 0%, 95.1%)",
-	gray3: "hsl(0, 0%, 93.0%)",
-	gray4: "hsl(0, 0%, 90.9%)",
-	gray5: "hsl(0, 0%, 85.8%)",
-	gray6: "hsl(0, 0%, 78.0%)",
-	gray7: "hsl(0, 0%, 56.1%)",
-	gray8: "hsl(0, 0%, 52.3%)",
-	gray9: "hsl(0, 0%, 43.5%)",
-	gray10: "#1d1d1d",
-	gray11: "#111111",
-} as const;
-
-createGlobalTheme("[data-cui-theme=dark]", contract, {
-	background: "#000",
-	foreground: "#fff",
-	accent1: grayDarkScale.gray1,
-	accent2: grayDarkScale.gray2,
-	accent3: grayDarkScale.gray3,
-	accent4: grayDarkScale.gray4,
-	accent5: grayDarkScale.gray5,
-	accent6: grayDarkScale.gray7,
-	accent7: grayDarkScale.gray8,
-	accent8: grayDarkScale.gray9,
-	accent9: grayDarkScale.gray10,
-	accent10: grayDarkScale.gray11,
-	brand: brand,
-
-	brandAccentActive: getActiveColor(brand),
-	brandAccentHover: getHoverColor(brand),
-	brandSecondary: grayDarkScale.gray6,
-	brandSecondaryAccentHover: getHoverColor(grayDarkScale.gray6),
-	brandSecondaryAccentActive: getActiveColor(grayDarkScale.gray6),
-	brandSoft: brandSoft,
-	brandSoftAccentActive: getActiveColor(brandSoft),
-	brandSoftAccentHover: getHoverColor(brandSoft),
-	brandLink: lighten(0.2, brand),
-	critical: critical,
-	criticalAccentActive: getActiveColor(critical),
-	criticalAccentHover: getHoverColor(critical),
-	caution: caution,
-	cautionAccentActive: getActiveColor(caution),
-	cautionAccentHover: getHoverColor(caution),
-	neutral,
-	neutralSoft,
-	formAccent: neutralDark,
-	formAccentBorder: grayDarkScale.gray6,
-	separator: grayDarkScale.gray7,
-	// dropdown
-	dropdownBackground: grayDarkScale.gray4,
-	dropdownBoxShadow: "0 1px #0000000d,0 4px 10px rgba(0, 0, 0, .3)",
-	dropdownBorder: grayDarkScale.gray6,
-	dropdownItemTextColor: "#fff",
-	dropdownItemHoverBackground: getHoverColor(grayDarkScale.gray6),
-	dropdownItemHoverTextColor: "#fff",
-	// dialog
-	dialogBackground: grayDarkScale.gray2,
-	dialogBoxShadow: "0 1px #0000000d,0 4px 10px rgba(0, 0, 0, .3)",
-	dialogTextColor: "#fff",
-	dialogOverlayBackground: "rgba(0,0,0,.7)",
+const legacy = createThemeContract({
+	colors: nullLeaves(legacyGroups.colors),
+	fontWeight: nullLeaves(legacyGroups.fontWeight),
+	boxShadow: nullLeaves(legacyGroups.boxShadow),
+	zIndex: nullLeaves(legacyGroups.zIndex),
 });
 
-createGlobalTheme("[data-cui-theme=light]", contract, {
-	background: "#fff",
-	foreground: "#000",
-	accent1: grayLightScale.gray1,
-	accent2: grayLightScale.gray2,
-	accent3: grayLightScale.gray3,
-	accent4: grayLightScale.gray4,
-	accent5: grayLightScale.gray5,
-	accent6: grayLightScale.gray7,
-	accent7: grayLightScale.gray8,
-	accent8: grayLightScale.gray9,
-	accent9: grayLightScale.gray10,
-	accent10: grayLightScale.gray11,
-	brand: brand,
-	brandAccentActive: getActiveColor(brand),
-	brandAccentHover: getHoverColor(brand),
-	brandSecondary: grayLightScale.gray3,
-	brandSecondaryAccentHover: getHoverColor(grayLightScale.gray3),
-	brandSecondaryAccentActive: getActiveColor(grayLightScale.gray3),
-	brandSoft: tint(0.85, brand),
-	brandSoftAccentActive: getActiveColor(tint(0.85, brand)),
-	brandSoftAccentHover: getHoverColor(tint(0.85, brand)),
-	brandLink: darken(0.2, brand),
-	critical: critical,
-	criticalAccentActive: getActiveColor(critical),
-	criticalAccentHover: getHoverColor(critical),
-	caution: caution,
-	cautionAccentActive: getActiveColor(caution),
-	cautionAccentHover: getHoverColor(caution),
-	neutral,
-	neutralSoft,
-	formAccent: neutralSoft,
-	formAccentBorder: grayLightScale.gray5,
-	separator: grayLightScale.gray4,
-	// dropdown
-	dropdownBackground: "#fff",
-	dropdownBoxShadow: "0 1px #0000000d,0 4px 10px rgba(0, 0, 0, .1)",
-	dropdownBorder: grayLightScale.gray4,
-	dropdownItemTextColor: "#000",
-	dropdownItemHoverBackground: grayLightScale.gray2,
-	dropdownItemHoverTextColor: "#000",
-	// dialog
-	dialogBackground: "#fff",
-	dialogBoxShadow: "0 1px #0000000d,0 4px 10px rgba(0, 0, 0, .1)",
-	dialogTextColor: "#000",
-	dialogOverlayBackground: "#091e427d",
+globalStyle(":root", {
+	vars: Object.fromEntries(
+		Object.entries(legacyGroups).flatMap(([group, values]) =>
+			Object.entries(values).map(([key, value]) => [
+				(legacy as Record<string, Record<string, string>>)[group][key],
+				value,
+			]),
+		),
+	),
 });
+
+/**
+ * @deprecated Use `tokens`. Spacing, radii, font sizes and the shared weights
+ * and shadows point at `--cui-*` variables; the rest keep their old values.
+ */
+export const themeTokens = {
+	colors: legacy.colors,
+	fontSize: {
+		xs: cui.font.size.xs,
+		sm: cui.font.size.sm,
+		md: cui.font.size.md,
+		lg: cui.font.size.lg,
+		xl: cui.font.size.xl,
+	},
+	fontWeight: {
+		hairline: legacy.fontWeight.hairline,
+		thin: legacy.fontWeight.thin,
+		light: legacy.fontWeight.light,
+		normal: cui.font.weight.normal,
+		medium: cui.font.weight.medium,
+		semibold: cui.font.weight.semibold,
+		bold: legacy.fontWeight.bold,
+		extrabold: legacy.fontWeight.extrabold,
+		black: legacy.fontWeight.black,
+	},
+	spacing: {
+		auto: cui.space.auto,
+		px: cui.space.px,
+		0: cui.space["0"],
+		1: cui.space["1"],
+		2: cui.space["2"],
+		3: cui.space["3"],
+		4: cui.space["4"],
+		5: cui.space["5"],
+		6: cui.space["6"],
+		8: cui.space["8"],
+		10: cui.space["10"],
+		12: cui.space["12"],
+		16: cui.space["16"],
+		20: cui.space["20"],
+		24: cui.space["24"],
+		32: cui.space["32"],
+		40: cui.space["40"],
+		48: cui.space["48"],
+		56: cui.space["56"],
+		64: cui.space["64"],
+	},
+	radii: {
+		none: cui.radius.none,
+		xs: cui.radius.xs,
+		sm: cui.radius.sm,
+		default: cui.radius.lg,
+		md: cui.radius.md,
+		lg: cui.radius.lg,
+		xl: cui.radius.xl,
+		full: cui.radius.full,
+	},
+	boxShadow: {
+		default: cui.shadow.sm,
+		md: cui.shadow.md,
+		lg: legacy.boxShadow.lg,
+		xl: legacy.boxShadow.xl,
+		"2xl": legacy.boxShadow["2xl"],
+		inner: legacy.boxShadow.inner,
+		outline: legacy.boxShadow.outline,
+		none: cui.shadow.none,
+	},
+	zIndex: legacy.zIndex,
+} as const;
