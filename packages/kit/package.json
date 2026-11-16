@@ -299,6 +299,20 @@
 				"types": "./dist/types-cjs/parts/accordion.d.cts",
 				"default": "./dist/cjs/parts/accordion.cjs"
 			}
+		},
+		"./sheet": {
+			"solid": {
+				"types": "./dist/types/parts/sheet.d.ts",
+				"default": "./dist/source/parts/sheet.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/sheet.d.ts",
+				"default": "./dist/esm/parts/sheet.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/sheet.d.cts",
+				"default": "./dist/cjs/parts/sheet.cjs"
+			}
 		}
 	},
 	"typesVersions": {
@@ -356,6 +370,9 @@
 			],
 			"accordion": [
 				"dist/types/parts/accordion.d.ts"
+			],
+			"sheet": [
+				"dist/types/parts/sheet.d.ts"
 			]
 		}
 	},

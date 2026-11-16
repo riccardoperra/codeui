@@ -8,7 +8,6 @@ import {
 	type DialogRootProps as KDialogRootProps,
 	type DialogTitleProps as KDialogTitleProps,
 	type DialogTriggerProps as KDialogTriggerProps,
-	useDialogContext,
 } from "@kobalte/core/dialog";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import { type ComponentProps, splitProps, type ValidComponent } from "solid-js";
@@ -16,6 +15,7 @@ import * as styles from "../components/Dialog/Dialog.css";
 import { IconButton, type IconButtonProps } from "../components/IconButton/IconButton";
 import { CloseIcon } from "../icons";
 import { mergeClasses } from "../utils/css";
+import { createFocusReturn } from "./dialog-focus";
 
 export const dialogParts = {
 	trigger: "dialog-trigger",
@@ -118,36 +118,13 @@ export function Content<T extends ValidComponent = "div">(props: PolymorphicProp
 		"onCloseAutoFocus",
 		"onInteractOutside",
 	]);
-	const context = useDialogContext();
-	let opener: HTMLElement | null = null;
-	let interactedOutside = false;
-
-	const onOpenAutoFocus = (event: Event) => {
-		opener = document.activeElement instanceof HTMLElement ? document.activeElement : null;
-		interactedOutside = false;
-		local.onOpenAutoFocus?.(event);
-	};
-
-	const onInteractOutside: KDialogContentProps["onInteractOutside"] = event => {
-		local.onInteractOutside?.(event);
-		if (!context.modal() && !event.defaultPrevented) interactedOutside = true;
-	};
-
-	const onCloseAutoFocus = (event: Event) => {
-		local.onCloseAutoFocus?.(event);
-		const target = opener;
-		opener = null;
-		if (event.defaultPrevented || context.triggerRef() || interactedOutside) return;
-		if (target?.isConnected) target.focus({ preventScroll: true });
-	};
+	const focus = createFocusReturn(local);
 
 	return (
 		<KDialog.Content
 			data-cui={dialogParts.panel}
 			class={mergeClasses(dialogStyles.panel({ size: local.size }), local.class)}
-			onOpenAutoFocus={onOpenAutoFocus}
-			onCloseAutoFocus={onCloseAutoFocus}
-			onInteractOutside={onInteractOutside}
+			{...focus}
 			{...others}
 		/>
 	);

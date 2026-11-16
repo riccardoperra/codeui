@@ -50,6 +50,9 @@
 			],
 			"@codeui/kit/toast": [
 				"../kit/src/parts/toast.tsx"
+			],
+			"@codeui/kit/sheet": [
+				"../kit/src/parts/sheet.tsx"
 			]
 		}
 	},

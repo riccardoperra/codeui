@@ -56,6 +56,9 @@ export { Popover, PopoverTrigger, PopoverContent } from "./components/Popover/Po
 export type { PopoverProps, PopoverContentProps } from "./components/Popover/Popover";
 export * as popoverStyles from "./components/Popover/Popover.css";
 
+export { Sheet } from "./components/Sheet/Sheet";
+export type { SheetProps } from "./components/Sheet/Sheet";
+
 export { Select } from "./components/Select/Select";
 export type { SelectClasses } from "./components/Select/Select";
 export { createSelectOptions } from "./components/Select/createSelectValue";
