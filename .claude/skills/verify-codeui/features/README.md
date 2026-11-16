@@ -34,4 +34,4 @@ Each feature file has an H1, one paragraph of user-visible behavior, and exactly
 - [Overlays](./overlays.md): Dialog and Popover open, focus, dismiss and focus return. Proven journey: `journeys/dialog-keyboard.mjs`.
 - [Form fields](./form-fields.md): TextField, Select, Listbox, NumberField, SegmentedControl, RadioList, Checkbox input by keyboard, validation states.
 - [Theming](./theming.md): `data-cui-theme` modes, `--cui-*` tokens, and the `@layer cui` override contract.
-- [Feedback](./feedback.md): Tooltip on hover and focus.
+- [Feedback](./feedback.md): Tooltip on hover and focus. Keyboard journey: `journeys/tooltip-keyboard.mjs`.
