@@ -39,7 +39,7 @@ Token paths refer to the proposed exported `tokens` object. The CSS name is stab
 | `action.neutral.text` | `--cui-action-neutral-text` | `#ededed` | `#2d3748` | measured preview, semanticTokens.button-base-textColor |
 | `action.danger.text` | `--cui-action-danger-text` | `#fff` | `#fff` | measured preview, semanticTokens.button-danger-textColor |
 | `action.brand.text` | `--cui-action-brand-text` | `#fff` | `#fff` | measured preview, semanticTokens.button-primary-textColor |
-| `action.brandSoft.text` | `--cui-action-brand-soft-text` | `#33adff` | `#0062d1` | K5 implementation, raised to WCAG AA text contrast; design #09f / #09f |
+| `action.brandSoft.text` | `--cui-action-brand-soft-text` | `#09f` | `#09f` | measured preview. The maintainer chose the CodeImage primary over AA contrast for white text |
 | `text.muted` | `--cui-text-muted` | `#999` | `#4a5568` | measured preview, semanticTokens.descriptionTextColor |
 | `text.dialog` | `--cui-text-dialog` | `#ededed` | `#2d3748` | measured preview, semanticTokens.dialog-panelTextColor |
 | `text.dialogTitle` | `--cui-text-dialog-title` | `#ededed` | `#2d3748` | measured preview, semanticTokens.dialog-titleTextColor |
@@ -63,12 +63,12 @@ Token paths refer to the proposed exported `tokens` object. The CSS name is stab
 | `action.danger.active` | `--cui-action-danger-active` | `#9b2c2c` | `#9b2c2c` | K5 implementation, raised to WCAG AA text contrast; design #c53030 / #c53030 |
 | `action.danger.base` | `--cui-action-danger-base` | `#c53030` | `#c53030` | K5 implementation, raised to WCAG AA text contrast; design #f56565 / #f56565 |
 | `action.danger.hover` | `--cui-action-danger-hover` | `#b52b2b` | `#b52b2b` | K5 implementation, raised to WCAG AA text contrast; design #e53e3e / #e53e3e |
-| `action.brand.active` | `--cui-action-brand-active` | `#005bc4` | `#005bc4` | K5 implementation, raised to WCAG AA text contrast; design #07f / #07f |
-| `action.brand.base` | `--cui-action-brand-base` | `#0070f0` | `#0070f0` | K5 implementation, raised to WCAG AA text contrast; design #09f / #09f |
-| `action.brand.hover` | `--cui-action-brand-hover` | `#0066dc` | `#0066dc` | K5 implementation, raised to WCAG AA text contrast; design #08f / #08f |
+| `action.brand.active` | `--cui-action-brand-active` | `#07f` | `#07f` | measured preview. The maintainer chose the CodeImage primary over AA contrast for white text |
+| `action.brand.base` | `--cui-action-brand-base` | `#09f` | `#09f` | measured preview. The maintainer chose the CodeImage primary over AA contrast for white text |
+| `action.brand.hover` | `--cui-action-brand-hover` | `#08f` | `#08f` | measured preview. The maintainer chose the CodeImage primary over AA contrast for white text |
 | `action.brandSoft.base` | `--cui-action-brand-soft-base` | `#0099ff26` | `#0099ff26` | measured preview, semanticTokens.button-primaryAlt-backgroundColor |
 | `action.brandSoft.hover` | `--cui-action-brand-soft-hover` | `#007acc26` | `#007acc26` | measured preview, semanticTokens.button-primaryAlt-hoverColor |
-| `accent.selection` | `--cui-accent-selection` | `#0070f0` | `#0070f0` | K5 implementation, raised to WCAG AA text contrast; design #07f / #09f |
+| `accent.selection` | `--cui-accent-selection` | `#07f` | `#09f` | measured preview. The maintainer chose the CodeImage primary over AA contrast for white text |
 | `accent.focus` | `--cui-accent-focus` | `#63b3ed` | `#09f` | measured preview, semanticTokens.primary |
 | `action.brandSoft.active` | `--cui-action-brand-soft-active` | `#007acc26` | `#007acc26` | packages/ui hover value reused, proposed active |
 | `action.caution.base` | `--cui-action-caution-base` | `#F08C00` | `#F08C00` | kit caution |

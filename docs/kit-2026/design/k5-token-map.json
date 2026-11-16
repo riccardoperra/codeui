@@ -101,25 +101,25 @@
       "group": "accent and status colors",
       "token": "action.brand.active",
       "css": "--cui-action-brand-active",
-      "dark": "#005bc4",
-      "light": "#005bc4",
-      "source": "K5 implementation, raised to WCAG AA text contrast; design #07f / #07f"
+      "dark": "#07f",
+      "light": "#07f",
+      "source": "measured preview, maintainer chose the CodeImage primary over AA contrast for white text"
     },
     {
       "group": "accent and status colors",
       "token": "action.brand.base",
       "css": "--cui-action-brand-base",
-      "dark": "#0070f0",
-      "light": "#0070f0",
-      "source": "K5 implementation, raised to WCAG AA text contrast; design #09f / #09f"
+      "dark": "#09f",
+      "light": "#09f",
+      "source": "measured preview, maintainer chose the CodeImage primary over AA contrast for white text"
     },
     {
       "group": "accent and status colors",
       "token": "action.brand.hover",
       "css": "--cui-action-brand-hover",
-      "dark": "#0066dc",
-      "light": "#0066dc",
-      "source": "K5 implementation, raised to WCAG AA text contrast; design #08f / #08f"
+      "dark": "#08f",
+      "light": "#08f",
+      "source": "measured preview, maintainer chose the CodeImage primary over AA contrast for white text"
     },
     {
       "group": "text",
@@ -149,9 +149,9 @@
       "group": "text",
       "token": "action.brandSoft.text",
       "css": "--cui-action-brand-soft-text",
-      "dark": "#33adff",
-      "light": "#0062d1",
-      "source": "K5 implementation, raised to WCAG AA text contrast; design #09f / #09f"
+      "dark": "#09f",
+      "light": "#09f",
+      "source": "measured preview, maintainer chose the CodeImage primary over AA contrast for white text"
     },
     {
       "group": "text",
@@ -269,9 +269,9 @@
       "group": "accent and status colors",
       "token": "accent.selection",
       "css": "--cui-accent-selection",
-      "dark": "#0070f0",
-      "light": "#0070f0",
-      "source": "K5 implementation, raised to WCAG AA text contrast; design #07f / #09f"
+      "dark": "#07f",
+      "light": "#09f",
+      "source": "measured preview, maintainer chose the CodeImage primary over AA contrast for white text"
     },
     {
       "group": "text",
