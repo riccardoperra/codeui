@@ -142,71 +142,28 @@ export declare function Checkbox(props: CheckBoxProps): JSX.Element;
 export {};
 ```
 
-## components/Dialog/Dialog.css.d.ts
-
-```ts
-import { RecipeVariants } from "@vanilla-extract/recipes";
-export declare const dialogTheme: string, dialogThemeVars: {
-    contentBackground: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
-    contentBoxShadow: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
-    contentTextColor: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
-    contentPadding: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
-    titleHeight: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
-    panelRadius: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
-    dividerColor: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
-    titleFontSize: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
-    overlayBackground: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
-};
-export declare const overlay: string;
-export declare const panelContent: string;
-export declare const panelFooter: string;
-export declare const positioner: string;
-export declare const title: string;
-export declare const panel: import("@vanilla-extract/recipes").RuntimeFn<{
-    size: {
-        xs: {
-            width: "24rem";
-        };
-        sm: {
-            width: "28rem";
-        };
-        md: {
-            width: "32rem";
-        };
-        lg: import("@vanilla-extract/css").StyleRule;
-        xl: import("@vanilla-extract/css").StyleRule;
-        full: {
-            padding: number;
-            margin: number;
-            minHeight: "100%";
-            width: "100%";
-            borderRadius: number;
-            height: "100%";
-            ":focus-visible": {
-                boxShadow: "none";
-                outline: "none";
-            };
-        };
-    };
-}>;
-export type DialogPanelVariants = RecipeVariants<typeof panel>;
-```
-
 ## components/Dialog/Dialog.d.ts
 
 ```ts
-import { Dialog as KDialog, DialogRootOptions as KDialogRootOptions } from "@kobalte/core/dialog";
-import { JSXElement, ParentProps } from "solid-js";
-import * as styles from "./Dialog.css.js";
-export type DialogProps = KDialogRootOptions & styles.DialogPanelVariants & {
-    title?: string;
+import type { DialogContentOptions as KDialogContentOptions, DialogRootOptions as KDialogRootOptions } from "@kobalte/core/dialog";
+import { type JSX, type ParentProps } from "solid-js";
+import * as D from "../../parts/dialog.js";
+export type DialogProps = KDialogRootOptions & Pick<KDialogContentOptions, "onOpenAutoFocus" | "onCloseAutoFocus" | "onEscapeKeyDown" | "onPointerDownOutside" | "onFocusOutside" | "onInteractOutside"> & {
+    size?: D.DialogSize;
+    title?: JSX.Element;
+    description?: JSX.Element;
+    /** Accessible name of the close button. Defaults to "close". */
+    closeLabel?: string;
+    /** Node the dialog is portaled into. Defaults to `document.body`. */
+    mount?: Node;
+    /** Classes for the parts this component renders, keyed by part name. */
+    classes?: Pick<D.DialogClasses, "overlay" | "positioner" | "panel" | "header" | "title" | "description" | "closeButton">;
+    "aria-label"?: string;
 };
-export declare function DialogPanelContent(props: ParentProps): JSXElement;
-export declare function DialogPanelFooter(props: ParentProps): JSXElement;
-type DialogPanelProps = styles.DialogPanelVariants & Parameters<typeof KDialog.Content>[0];
-export declare function DialogPanel(props: ParentProps<DialogPanelProps>): JSXElement;
-export declare function Dialog(props: ParentProps<DialogProps>): import("solid-js").JSX.Element;
-export {};
+export declare const DialogPanel: typeof D.Content;
+export declare const DialogPanelContent: typeof D.Body;
+export declare const DialogPanelFooter: typeof D.Footer;
+export declare function Dialog(props: ParentProps<DialogProps>): JSX.Element;
 ```
 
 ## components/Dropdown/Dropdown.css.d.ts
@@ -640,19 +597,23 @@ export type PopoverVariants = RecipeVariants<typeof content>;
 ## components/Popover/Popover.d.ts
 
 ```ts
-import { Popover as KPopover, PopoverContentProps as KPopoverContentProps, PopoverRootOptions as KPopoverRootOptions } from "@kobalte/core/popover";
-import { ParentProps, ValidComponent } from "solid-js";
-import { GetKobalteParams } from "../../utils/types.js";
-import { PopoverVariants } from "./Popover.css.js";
-import { PolymorphicProps } from "@kobalte/core/polymorphic";
-export declare function PopoverTrigger(props: GetKobalteParams<(typeof KPopover)["Trigger"]>): import("solid-js").JSX.Element;
+import type { PopoverRootOptions as KPopoverRootOptions } from "@kobalte/core/popover";
+import type { PolymorphicProps } from "@kobalte/core/polymorphic";
+import { type JSX, type ParentProps, type ValidComponent } from "solid-js";
+import * as P from "../../parts/popover.js";
+export declare const PopoverTrigger: typeof P.Trigger;
 export type PopoverProps = KPopoverRootOptions;
-export declare function Popover(props: ParentProps<PopoverProps>): import("solid-js").JSX.Element;
-type PopoverContentProps<T extends ValidComponent = "div"> = KPopoverContentProps<T> & PopoverVariants & {
-    title?: string;
+export declare function Popover(props: ParentProps<PopoverProps>): JSX.Element;
+export type PopoverContentProps<T extends ValidComponent = "div"> = P.ContentProps<T> & {
+    title?: JSX.Element;
+    /** Short text that describes the popover. It is linked with `aria-describedby`. */
+    description?: JSX.Element;
+    /** Node the popover is portaled into. Defaults to `document.body`. */
+    mount?: Node;
+    /** Classes for the parts this component renders, keyed by part name. */
+    classes?: Pick<P.PopoverClasses, "content" | "title" | "description">;
 };
-export declare function PopoverContent<T extends ValidComponent = "div">(props: PolymorphicProps<T, PopoverContentProps<T>>): import("solid-js").JSX.Element;
-export {};
+export declare function PopoverContent<T extends ValidComponent = "div">(props: PolymorphicProps<T, PopoverContentProps<T>>): JSX.Element;
 ```
 
 ## components/RadioList/RadioList.d.ts
@@ -1276,6 +1237,7 @@ export type { DialogProps } from "./components/Dialog/Dialog.js";
 export { DropdownMenu, DropdownMenuContent, DropdownMenuPortal, DropdownMenuItem, DropdownMenuTrigger, DropdownSubMenu, DropdownSubMenuTrigger, DropdownSubMenuContent, DropdownMenuSeparator, } from "./components/Dropdown/Dropdown.js";
 export * as dropdownMenuStyles from "./components/Dropdown/Dropdown.css.js";
 export { Popover, PopoverTrigger, PopoverContent } from "./components/Popover/Popover.js";
+export type { PopoverProps, PopoverContentProps } from "./components/Popover/Popover.js";
 export * as popoverStyles from "./components/Popover/Popover.css.js";
 export { Select } from "./components/Select/Select.js";
 export { createSelectOptions } from "./components/Select/createSelectValue.js";
@@ -1295,6 +1257,110 @@ export { SvgIcon } from "./icons/SvgIcon.js";
 export * as icons from "./icons/index.js";
 export { themeTokens, themeVars, breakpoints, layoutVars, responsiveStyle, } from "./foundation/index.js";
 export { mergeClasses } from "./utils/css.js";
+```
+
+## parts/dialog.d.ts
+
+```ts
+import { type DialogCloseButtonProps as KDialogCloseButtonProps, type DialogContentProps as KDialogContentProps, type DialogDescriptionProps as KDialogDescriptionProps, type DialogOverlayProps as KDialogOverlayProps, type DialogPortalProps as KDialogPortalProps, type DialogRootProps as KDialogRootProps, type DialogTitleProps as KDialogTitleProps, type DialogTriggerProps as KDialogTriggerProps } from "@kobalte/core/dialog";
+import type { PolymorphicProps } from "@kobalte/core/polymorphic";
+import { type ComponentProps, type ValidComponent } from "solid-js";
+import { type IconButtonProps } from "../components/IconButton/IconButton.js";
+export declare const dialogParts: {
+    readonly trigger: "dialog-trigger";
+    readonly overlay: "dialog-overlay";
+    readonly positioner: "dialog-positioner";
+    readonly panel: "dialog-panel";
+    readonly header: "dialog-panel-title";
+    readonly title: "dialog-title";
+    readonly description: "dialog-description";
+    readonly closeButton: "dialog-close-button";
+    readonly body: "dialog-panel-content";
+    readonly footer: "dialog-panel-footer";
+};
+export type DialogPart = keyof typeof dialogParts;
+export type DialogClasses = Partial<Record<DialogPart, string>>;
+export type DialogSize = "xs" | "sm" | "md" | "lg" | "xl" | "full";
+export type DialogStyles = {
+    [P in DialogPart]: P extends "panel" ? (variants?: {
+        size?: DialogSize;
+    }) => string : () => string;
+};
+export declare const dialogStyles: DialogStyles;
+export type RootProps = KDialogRootProps;
+export declare function Root(props: RootProps): import("solid-js").JSX.Element;
+export declare function Portal(props: KDialogPortalProps): import("solid-js").JSX.Element;
+export declare function Trigger<T extends ValidComponent = "button">(props: PolymorphicProps<T, KDialogTriggerProps<T>>): import("solid-js").JSX.Element;
+export declare function Overlay<T extends ValidComponent = "div">(props: PolymorphicProps<T, KDialogOverlayProps<T>>): import("solid-js").JSX.Element;
+export type PositionerProps = ComponentProps<"div"> & {
+    size?: DialogSize;
+};
+export declare function Positioner(props: PositionerProps): import("solid-js").JSX.Element;
+export type ContentProps<T extends ValidComponent = "div"> = KDialogContentProps<T> & {
+    size?: DialogSize;
+    class?: string;
+};
+/**
+ * Kobalte returns focus to the Trigger part only. Without a Trigger, Content
+ * returns focus to the element that had it when the dialog opened.
+ */
+export declare function Content<T extends ValidComponent = "div">(props: PolymorphicProps<T, ContentProps<T>>): import("solid-js").JSX.Element;
+export declare function Header(props: ComponentProps<"div">): import("solid-js").JSX.Element;
+export declare function Title<T extends ValidComponent = "h2">(props: PolymorphicProps<T, KDialogTitleProps<T>>): import("solid-js").JSX.Element;
+export declare function Description<T extends ValidComponent = "p">(props: PolymorphicProps<T, KDialogDescriptionProps<T>>): import("solid-js").JSX.Element;
+export type CloseButtonProps = Omit<PolymorphicProps<"button", IconButtonProps>, "aria-label"> & KDialogCloseButtonProps & {
+    /** Accessible name of the button. Defaults to "close". */
+    "aria-label"?: string;
+};
+export declare function CloseButton(props: CloseButtonProps): import("solid-js").JSX.Element;
+export declare function Body(props: ComponentProps<"div">): import("solid-js").JSX.Element;
+export declare function Footer(props: ComponentProps<"div">): import("solid-js").JSX.Element;
+```
+
+## parts/popover.d.ts
+
+```ts
+import type { PolymorphicProps } from "@kobalte/core/polymorphic";
+import { type PopoverAnchorProps as KPopoverAnchorProps, type PopoverArrowProps as KPopoverArrowProps, type PopoverCloseButtonProps as KPopoverCloseButtonProps, type PopoverContentProps as KPopoverContentProps, type PopoverDescriptionProps as KPopoverDescriptionProps, type PopoverPortalProps as KPopoverPortalProps, type PopoverRootProps as KPopoverRootProps, type PopoverTitleProps as KPopoverTitleProps, type PopoverTriggerProps as KPopoverTriggerProps } from "@kobalte/core/popover";
+import { type ValidComponent } from "solid-js";
+import { type IconButtonProps } from "../components/IconButton/IconButton.js";
+export declare const popoverParts: {
+    readonly trigger: "popover-trigger";
+    readonly anchor: "popover-anchor";
+    readonly content: "popover-content";
+    readonly arrow: "popover-arrow";
+    readonly title: "popover-title";
+    readonly description: "popover-description";
+    readonly closeButton: "popover-close-button";
+};
+export type PopoverPart = keyof typeof popoverParts;
+export type PopoverClasses = Partial<Record<PopoverPart, string>>;
+export type PopoverVariant = "bordered";
+export type PopoverStyles = {
+    [P in PopoverPart]: P extends "content" ? (variants?: {
+        variant?: PopoverVariant;
+    }) => string : () => string;
+};
+export declare const popoverStyles: PopoverStyles;
+export type RootProps = KPopoverRootProps;
+/** Kobalte's Popover root with a default `gutter` of 6. */
+export declare function Root(props: RootProps): import("solid-js").JSX.Element;
+export declare function Portal(props: KPopoverPortalProps): import("solid-js").JSX.Element;
+export declare function Trigger<T extends ValidComponent = "button">(props: PolymorphicProps<T, KPopoverTriggerProps<T>>): import("solid-js").JSX.Element;
+export declare function Anchor<T extends ValidComponent = "div">(props: PolymorphicProps<T, KPopoverAnchorProps<T>>): import("solid-js").JSX.Element;
+export type ContentProps<T extends ValidComponent = "div"> = KPopoverContentProps<T> & {
+    variant?: PopoverVariant;
+    class?: string;
+};
+export declare function Content<T extends ValidComponent = "div">(props: PolymorphicProps<T, ContentProps<T>>): import("solid-js").JSX.Element;
+export declare function Arrow<T extends ValidComponent = "div">(props: PolymorphicProps<T, KPopoverArrowProps<T>>): import("solid-js").JSX.Element;
+export declare function Title<T extends ValidComponent = "h2">(props: PolymorphicProps<T, KPopoverTitleProps<T>>): import("solid-js").JSX.Element;
+export declare function Description<T extends ValidComponent = "p">(props: PolymorphicProps<T, KPopoverDescriptionProps<T>>): import("solid-js").JSX.Element;
+export type CloseButtonProps = Omit<PolymorphicProps<"button", IconButtonProps>, "aria-label"> & KPopoverCloseButtonProps & {
+    /** Accessible name of the button. Defaults to "close". */
+    "aria-label"?: string;
+};
+export declare function CloseButton(props: CloseButtonProps): import("solid-js").JSX.Element;
 ```
 
 ## utils/component.d.ts

@@ -48,6 +48,8 @@ export const content = recipe({
 			borderRadius: popoverThemeVars.contentRadius,
 			padding: popoverThemeVars.contentPadding,
 			maxWidth: popoverThemeVars.contentMaxWidth,
+			color: popoverThemeVars.descriptionColor,
+			fontSize: popoverThemeVars.contentFontSize,
 			overflow: "hidden",
 			zIndex: themeTokens.zIndex["50"],
 			listStyleType: "none",

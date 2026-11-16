@@ -12,29 +12,9 @@ import {
 } from "../src/components/Dropdown/Dropdown";
 import { Listbox } from "../src/components/Listbox/Listbox";
 import { Tooltip } from "../src/components/Tooltip/Tooltip";
+import { expectDismissed, press, tick } from "./helpers";
 
 afterEach(cleanup);
-
-function press(key: string) {
-	const target = document.activeElement ?? document.body;
-	fireEvent.keyDown(target, { key });
-	fireEvent.keyUp(target, { key });
-}
-
-function tick() {
-	return new Promise(resolve => setTimeout(resolve, 0));
-}
-
-// jsdom never runs CSS animations, so end the exit animation the way a browser would.
-async function expectDismissed(element: HTMLElement) {
-	for (let node: HTMLElement | null = element; node && node !== document.body; node = node.parentElement) {
-		const end = new Event("animationend");
-		Object.defineProperty(end, "animationName", { value: getComputedStyle(node).animationName });
-		node.dispatchEvent(end);
-	}
-	await tick();
-	expect(element).not.toBeInTheDocument();
-}
 
 beforeAll(() => {
 	window.scrollTo = () => {};
@@ -122,12 +102,14 @@ describe("Dialog", () => {
 		await expectDismissed(dialog);
 	});
 
-	// Known gap, same in Kobalte 0.13.6: the kit Dialog has no Trigger part, so Kobalte has no element to refocus.
-	it.failing("returns focus to the button that opened it", async () => {
+	it("returns focus to the button that opened it", async () => {
 		const { opener, dialog } = await openDialog();
+		const overlay = document.querySelector<HTMLElement>('[data-cui="dialog-overlay"]')!;
 		press("Escape");
 		await tick();
 		await expectDismissed(dialog);
+		await expectDismissed(overlay);
+		await tick();
 		expect(document.activeElement).toBe(opener);
 	});
 });

@@ -177,3 +177,8 @@ export const panel = recipe({
 });
 
 export type DialogPanelVariants = RecipeVariants<typeof panel>;
+
+export const description = style({
+	color: dialogThemeVars.contentTextColor,
+	padding: `${dialogThemeVars.contentPadding} ${dialogThemeVars.contentPadding} 0`,
+});

@@ -46,6 +46,45 @@
 				"types": "./dist/types-cjs/index.d.cts",
 				"default": "./dist/cjs/index.cjs"
 			}
+		},
+		"./dialog": {
+			"solid": {
+				"types": "./dist/types/parts/dialog.d.ts",
+				"default": "./dist/source/parts/dialog.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/dialog.d.ts",
+				"default": "./dist/esm/parts/dialog.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/dialog.d.cts",
+				"default": "./dist/cjs/parts/dialog.cjs"
+			}
+		},
+		"./popover": {
+			"solid": {
+				"types": "./dist/types/parts/popover.d.ts",
+				"default": "./dist/source/parts/popover.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/popover.d.ts",
+				"default": "./dist/esm/parts/popover.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/popover.d.cts",
+				"default": "./dist/cjs/parts/popover.cjs"
+			}
+		},
+		"./package.json": "./package.json"
+	},
+	"typesVersions": {
+		"*": {
+			"dialog": [
+				"dist/types/parts/dialog.d.ts"
+			],
+			"popover": [
+				"dist/types/parts/popover.d.ts"
+			]
 		}
 	},
 	"scripts": {

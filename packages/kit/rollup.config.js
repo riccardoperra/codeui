@@ -3,11 +3,13 @@ import ts from "typescript";
 import path from "node:path";
 import { mkdirSync, writeFileSync } from "node:fs";
 
+const entries = ["src/index.tsx", "src/parts/dialog.tsx", "src/parts/popover.tsx"];
+
 function tsTypes() {
 	return {
 		name: "ts",
 		buildEnd() {
-			const program = ts.createProgram(["./src/index.tsx"], {
+			const program = ts.createProgram(entries, {
 				target: ts.ScriptTarget.ESNext,
 				module: ts.ModuleKind.ESNext,
 				moduleResolution: ts.ModuleResolutionKind.NodeJs,
@@ -76,18 +78,22 @@ function tsTypes() {
 }
 
 const config = withSolid({
-	input: "src/index.tsx",
+	input: entries[0],
 	targets: ["esm"],
 	output: [
-		{ format: "esm", preserveModules: true, dir: "dist/esm" },
+		{ format: "esm", preserveModules: true, preserveModulesRoot: "src", dir: "dist/esm" },
 		{
 			format: "cjs",
 			preserveModules: true,
+			preserveModulesRoot: "src",
 			dir: "dist/cjs",
 			entryFileNames: "[name].cjs",
 		},
 	],
 });
+
+// rollup-preset-solid accepts one input; the subpath entries are added afterwards.
+config.input = entries;
 
 config.external = [
 	...config.external,
