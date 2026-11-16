@@ -26,7 +26,7 @@ const config: StorybookConfig = {
 
 	framework: {
 		name: "storybook-solidjs-vite",
-		options: {},
+		options: { docgen: false },
 	},
 
 	async viteFinal(config) {
