@@ -1,21 +1,22 @@
-import { createTheme, keyframes, style } from "@vanilla-extract/css";
-import { themeTokens } from "../../foundation/themes.css";
+import { createTheme, style } from "../../foundation/layer.css";
+import { keyframes } from "@vanilla-extract/css";
 import { componentStateStyles } from "@kobalte/vanilla-extract";
-import { tokens } from "../../foundation/contract.css";
+import { tokens } from "../../foundation/cui.css";
+import { presenceAnimation } from "../../foundation/motion.css";
 
 export const [dropdownMenuTheme, dropdownMenuThemeVars] = createTheme({
-	contentBackground: tokens.dropdownBackground,
-	contentRadius: themeTokens.radii.lg,
-	contentBoxShadow: tokens.dropdownBoxShadow,
-	contentPadding: themeTokens.spacing["2"],
-	contentBorderColor: tokens.dropdownBorder,
-	separator: tokens.separator,
-	itemTextColor: tokens.dropdownItemTextColor,
-	itemHoverBackground: tokens.dropdownItemHoverBackground,
-	itemHoverTextColor: tokens.dropdownItemHoverTextColor,
+	contentBackground: tokens.surface.menu,
+	contentRadius: tokens.radius.lg,
+	contentBoxShadow: tokens.shadow.menu,
+	contentPadding: tokens.space["2"],
+	contentBorderColor: tokens.border.menu,
+	separator: tokens.border.menu,
+	itemTextColor: tokens.text.menu,
+	itemHoverBackground: tokens.surface.menuHover,
+	itemHoverTextColor: tokens.text.menu,
 	itemDisabledOpacity: ".4",
-	itemMinHeight: "2.60rem",
-	itemPadding: `${themeTokens.spacing["2"]} ${themeTokens.spacing["3"]}`
+	itemMinHeight: tokens.control.height.md,
+	itemPadding: `${tokens.space["2"]} ${tokens.space["3"]}`,
 });
 
 const contentShow = keyframes({
@@ -49,35 +50,30 @@ export const content = style([
 		borderRadius: dropdownMenuThemeVars.contentRadius,
 		padding: dropdownMenuThemeVars.contentPadding,
 		overflow: "hidden",
-		zIndex: themeTokens.zIndex["50"],
+		zIndex: 50,
 		listStyleType: "none",
 		display: "flex",
 		flexDirection: "column",
-		rowGap: themeTokens.spacing["1"],
+		rowGap: tokens.space["1"],
 		outline: "none",
-		animation: `${contentHide} 250ms ease-in-out`,
-		border: `1px solid ${dropdownMenuThemeVars.contentBorderColor}`,
+		border: `${tokens.border.width} solid ${dropdownMenuThemeVars.contentBorderColor}`,
 	},
-	componentStateStyles({
-		expanded: {
-			animation: `${contentShow} 250ms ease-in-out`,
-		},
-	}),
+	presenceAnimation({ enter: contentShow, exit: contentHide }),
 ]);
 
 export const subMenuContent = style([
 	content,
 	{
-		boxShadow: themeTokens.boxShadow.xl,
+		boxShadow: tokens.shadow.menu,
 		zIndex: 50,
 	},
 ]);
 
 export const separator = style([
 	{
-		height: "1px",
-		margin: "6px",
-		borderTop: `1px solid ${dropdownMenuThemeVars.separator}`,
+		height: tokens.space.px,
+		margin: tokens.space["1.5"],
+		borderTop: `${tokens.border.width} solid ${dropdownMenuThemeVars.separator}`,
 	},
 ]);
 
@@ -88,16 +84,15 @@ export const item = style([
 		border: 0,
 		margin: 0,
 		padding: dropdownMenuThemeVars.itemPadding,
-		borderRadius: themeTokens.radii.sm,
+		borderRadius: tokens.radius.sm,
 		background: "transparent",
 		color: dropdownMenuThemeVars.itemTextColor,
 		userSelect: "none",
 		display: "flex",
 		alignItems: "center",
 		outline: "none",
-		fontWeight: themeTokens.fontWeight.normal,
-		transition: "opacity .2s, background-color .2s, transform .2s, color .2s",
-		gap: themeTokens.spacing["2"],
+		fontWeight: tokens.font.weight.normal,
+		gap: tokens.space["2"],
 		minHeight: dropdownMenuThemeVars.itemMinHeight,
 	},
 	{
@@ -128,21 +123,21 @@ export const item = style([
 
 export const rightSlot = style([
 	{
-		paddingLeft: themeTokens.spacing["8"],
+		paddingLeft: tokens.space["8"],
 		marginLeft: "auto",
 		display: "inline-flex",
 		alignItems: "center",
 		justifyContent: "center",
-		color: tokens.accent9,
+		color: tokens.text.muted,
 		selectors: {
 			[`${item}[data-hover] &`]: {
-				color: tokens.foreground,
+				color: dropdownMenuThemeVars.itemHoverTextColor,
 			},
 			[`${item}[data-focus] &`]: {
-				color: tokens.foreground,
+				color: dropdownMenuThemeVars.itemHoverTextColor,
 			},
 			[`${item}[data-highlighted] &`]: {
-				color: tokens.foreground,
+				color: dropdownMenuThemeVars.itemHoverTextColor,
 			},
 		},
 	},

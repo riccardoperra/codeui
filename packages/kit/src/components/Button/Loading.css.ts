@@ -1,4 +1,7 @@
-import { createVar, fallbackVar, keyframes, style } from "@vanilla-extract/css";
+import { tokens } from "../../foundation/cui.css";
+import { transition } from "../../foundation/motion.css";
+import { style } from "../../foundation/layer.css";
+import { createVar, fallbackVar, keyframes } from "@vanilla-extract/css";
 
 const wrapperAnimation = keyframes({
 	"0%": {
@@ -29,8 +32,8 @@ export const wrapper = style({
 	height: "100%",
 	background: "inherit",
 	opacity: 0,
-	transition: "opacity .250ms ease-in-out",
-	animation: `${wrapperAnimation} 250ms`,
+	transition: transition(["opacity"], tokens.motion.duration.normal),
+	animation: `${wrapperAnimation} ${tokens.motion.duration.normal} ${tokens.motion.ease.out}`,
 	animationFillMode: "forwards",
 });
 
@@ -51,9 +54,9 @@ export const pointerGroup = style({
 
 export const pointer = style({
 	display: "inline-block",
-	width: "0.25rem",
-	height: "0.25rem",
-	borderRadius: "50%",
+	width: tokens.space["1"],
+	height: tokens.space["1"],
+	borderRadius: tokens.radius.full,
 	background: "currentColor",
 	margin: "0px 1.5px",
 	animation: `1.4s ease 0s infinite normal both running ${opacityAnimation}`,

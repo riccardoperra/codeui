@@ -1,10 +1,11 @@
+import { createTheme, recipe, style } from "../../foundation/layer.css";
 import { componentStateStyles } from "@kobalte/vanilla-extract";
-import { createTheme, fallbackVar, style } from "@vanilla-extract/css";
-import { recipe, RecipeVariants } from "@vanilla-extract/recipes";
-import { tokens } from "../../foundation/contract.css";
+import { fallbackVar } from "@vanilla-extract/css";
+import { RecipeVariants } from "@vanilla-extract/recipes";
+import { tokens } from "../../foundation/cui.css";
 import { layoutBackgroundColor } from "../../foundation/layout.css";
 import { mapSizeValue } from "../../foundation/sizes";
-import { themeTokens } from "../../foundation/themes.css";
+import { transition } from "../../foundation/motion.css";
 
 export const [buttonTheme, buttonVars] = createTheme({
 	buttonHeight: "",
@@ -12,10 +13,10 @@ export const [buttonTheme, buttonVars] = createTheme({
 	background: "",
 	hoverBackground: "",
 	activeBackground: "",
-	color: themeTokens.colors.gray12,
+	color: tokens.action.neutral.text,
 	borderColor: "",
 	padding: "",
-	borderRadius: themeTokens.radii.md,
+	borderRadius: tokens.radius.md,
 });
 
 const ButtonSizes = {
@@ -52,14 +53,11 @@ export const button = recipe({
 			background: buttonVars.background,
 			borderRadius: buttonVars.borderRadius,
 			padding: `0 ${buttonVars.padding}`,
-			fontWeight: themeTokens.fontWeight.medium,
+			fontWeight: tokens.font.weight.medium,
 			fontSize: buttonVars.fontSize,
-			border: `1px solid ${buttonVars.borderColor}`,
-			transition:
-				"opacity .2s, background-color .2s, transform .2s, outline-color 150ms ease-in-out, outline-offset 150ms ease-in",
-			gap: themeTokens.spacing["2"],
-			outlineColor: `transparent`,
-			outlineOffset: "0px",
+			border: `${tokens.border.width} solid ${buttonVars.borderColor}`,
+			transition: transition(["opacity", "background-color", "transform"]),
+			gap: tokens.space["2"],
 			vars: {
 				[buttonVars.borderColor]: buttonVars.background,
 			},
@@ -75,16 +73,16 @@ export const button = recipe({
 					transform: "scale(0.97)",
 				},
 				"&:focus-visible": {
-					outlineOffset: "4px",
-					outline: `2px solid ${buttonVars.background}`,
+					outline: `${tokens.focus.width} solid ${tokens.focus.color}`,
+					outlineOffset: tokens.focus.offset,
 				},
 			},
 		},
 		componentStateStyles({
 			disabled: {
 				vars: {
-					[buttonVars.background]: tokens.accent3,
-					[buttonVars.color]: tokens.foreground,
+					[buttonVars.background]: tokens.action.neutral.base,
+					[buttonVars.color]: tokens.action.neutral.text,
 				},
 				opacity: 0.5,
 			},
@@ -95,85 +93,84 @@ export const button = recipe({
 			[ButtonSizes.xl]: {
 				vars: {
 					[buttonVars.buttonHeight]: mapSizeValue("xl"),
-					[buttonVars.fontSize]: themeTokens.fontSize.xl,
-					[buttonVars.padding]: themeTokens.spacing["6"],
-					[buttonVars.borderRadius]: themeTokens.radii.xl,
+					[buttonVars.fontSize]: tokens.font.size.xl,
+					[buttonVars.padding]: tokens.space["6"],
+					[buttonVars.borderRadius]: tokens.radius.xl,
 				},
 			},
 			[ButtonSizes.lg]: {
 				vars: {
 					[buttonVars.buttonHeight]: mapSizeValue("lg"),
-					[buttonVars.fontSize]: themeTokens.fontSize.lg,
-					[buttonVars.padding]: themeTokens.spacing["5"],
-					[buttonVars.borderRadius]: themeTokens.radii.lg,
+					[buttonVars.fontSize]: tokens.font.size.lg,
+					[buttonVars.padding]: tokens.space["5"],
+					[buttonVars.borderRadius]: tokens.radius.lg,
 				},
 			},
 			[ButtonSizes.md]: {
 				vars: {
 					[buttonVars.buttonHeight]: mapSizeValue("md"),
-					[buttonVars.fontSize]: themeTokens.fontSize.md,
-					[buttonVars.padding]: themeTokens.spacing["5"],
-					[buttonVars.borderRadius]: themeTokens.radii.md,
+					[buttonVars.fontSize]: tokens.font.size.md,
+					[buttonVars.padding]: tokens.space["5"],
+					[buttonVars.borderRadius]: tokens.radius.md,
 				},
 			},
 			[ButtonSizes.sm]: {
 				vars: {
 					[buttonVars.buttonHeight]: mapSizeValue("sm"),
-					[buttonVars.fontSize]: themeTokens.fontSize.sm,
-					[buttonVars.padding]: themeTokens.spacing["4"],
-					[buttonVars.borderRadius]: themeTokens.radii.sm,
+					[buttonVars.fontSize]: tokens.font.size.sm,
+					[buttonVars.padding]: tokens.space["4"],
+					[buttonVars.borderRadius]: tokens.radius.sm,
 				},
 			},
 			[ButtonSizes.xs]: {
 				vars: {
 					[buttonVars.buttonHeight]: mapSizeValue("xs"),
-					[buttonVars.fontSize]: themeTokens.fontSize.xs,
-					[buttonVars.padding]: themeTokens.spacing["2"],
-					[buttonVars.borderRadius]: themeTokens.radii.xs,
+					[buttonVars.fontSize]: tokens.font.size.xs,
+					[buttonVars.padding]: tokens.space["2"],
+					[buttonVars.borderRadius]: tokens.radius.xs,
 				},
 			},
 		},
 		theme: {
 			[ButtonThemes.primary]: {
 				vars: {
-					[buttonVars.background]: tokens.brand,
-					[buttonVars.hoverBackground]: tokens.brandAccentHover,
-					[buttonVars.activeBackground]: tokens.brandAccentActive,
-					[buttonVars.color]: themeTokens.colors.gray12,
+					[buttonVars.background]: tokens.action.brand.base,
+					[buttonVars.hoverBackground]: tokens.action.brand.hover,
+					[buttonVars.activeBackground]: tokens.action.brand.active,
+					[buttonVars.color]: tokens.action.brand.text,
 				},
 			},
 			[ButtonThemes.tertiary]: {
 				vars: {
-					[buttonVars.background]: tokens.brandSoft,
-					[buttonVars.hoverBackground]: tokens.brandSoftAccentHover,
-					[buttonVars.activeBackground]: tokens.brandSoftAccentActive,
-					[buttonVars.color]: tokens.brandLink,
+					[buttonVars.background]: tokens.action.brandSoft.base,
+					[buttonVars.hoverBackground]: tokens.action.brandSoft.hover,
+					[buttonVars.activeBackground]: tokens.action.brandSoft.active,
+					[buttonVars.color]: tokens.action.brandSoft.text,
 				},
 			},
 			[ButtonThemes.secondary]: {
 				vars: {
-					[buttonVars.background]: tokens.brandSecondary,
-					[buttonVars.hoverBackground]: tokens.brandSecondaryAccentHover,
-					[buttonVars.activeBackground]: tokens.brandSecondaryAccentActive,
-					[buttonVars.color]: tokens.foreground,
-					[buttonVars.borderColor]: tokens.brandSecondary,
+					[buttonVars.background]: tokens.action.neutral.base,
+					[buttonVars.hoverBackground]: tokens.action.neutral.hover,
+					[buttonVars.activeBackground]: tokens.action.neutral.active,
+					[buttonVars.color]: tokens.action.neutral.text,
+					[buttonVars.borderColor]: tokens.action.neutral.base,
 				},
 			},
 			[ButtonThemes.negative]: {
 				vars: {
-					[buttonVars.background]: tokens.critical,
-					[buttonVars.hoverBackground]: tokens.criticalAccentHover,
-					[buttonVars.activeBackground]: tokens.criticalAccentActive,
-					// TODO: add custom colors
-					[buttonVars.color]: tokens.foreground,
+					[buttonVars.background]: tokens.action.danger.base,
+					[buttonVars.hoverBackground]: tokens.action.danger.hover,
+					[buttonVars.activeBackground]: tokens.action.danger.active,
+					[buttonVars.color]: tokens.action.danger.text,
 				},
 			},
 			[ButtonThemes.caution]: {
 				vars: {
-					[buttonVars.background]: tokens.caution,
-					[buttonVars.hoverBackground]: tokens.cautionAccentHover,
-					[buttonVars.activeBackground]: tokens.cautionAccentActive,
-					[buttonVars.color]: tokens.foreground,
+					[buttonVars.background]: tokens.action.caution.base,
+					[buttonVars.hoverBackground]: tokens.action.caution.hover,
+					[buttonVars.activeBackground]: tokens.action.caution.active,
+					[buttonVars.color]: tokens.action.caution.text,
 				},
 			},
 		},
@@ -183,6 +180,7 @@ export const button = recipe({
 				selectors: {
 					"&:not(:hover)": {
 						borderColor: "transparent",
+						color: tokens.text.default,
 					},
 				},
 			},
@@ -196,13 +194,12 @@ export const button = recipe({
 		pill: {
 			true: {
 				vars: {
-					[buttonVars.borderRadius]: themeTokens.radii.full,
+					[buttonVars.borderRadius]: tokens.radius.full,
 				},
 			},
 		},
 		loading: {
 			true: {
-				opacity: 0.8,
 				pointerEvents: "none",
 				overflow: "hidden",
 			},
@@ -236,7 +233,7 @@ export const buttonIcon = style({
 });
 
 export const buttonText = style({
-	transition: "opacity 100ms ease-in-out",
+	transition: transition(["opacity"]),
 	display: "contents",
 	selectors: {
 		"[data-loading] &": {

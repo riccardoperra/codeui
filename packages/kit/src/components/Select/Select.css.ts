@@ -1,23 +1,24 @@
-import { createTheme, keyframes, style } from "@vanilla-extract/css";
-import { themeTokens } from "../../foundation/themes.css";
+import { createTheme, style } from "../../foundation/layer.css";
+import { keyframes } from "@vanilla-extract/css";
 import { componentStateStyles } from "@kobalte/vanilla-extract";
-import { tokens } from "../../foundation/contract.css";
+import { tokens } from "../../foundation/cui.css";
+import { presenceAnimation } from "../../foundation/motion.css";
 import { baseFieldTheme, baseFieldVars } from "../Field/Field.css";
 import { responsiveStyle } from "../../foundation/responsive";
 
 export const [selectTheme, selectThemeVars] = createTheme({
-	contentBackground: tokens.dropdownBackground,
-	contentRadius: themeTokens.radii.lg,
-	contentBoxShadow: tokens.dropdownBoxShadow,
-	contentPadding: themeTokens.spacing["2"],
-	contentBorderColor: tokens.dropdownBorder,
+	contentBackground: tokens.surface.menu,
+	contentRadius: tokens.radius.lg,
+	contentBoxShadow: tokens.shadow.menu,
+	contentPadding: tokens.space["2"],
+	contentBorderColor: tokens.border.menu,
 	contentMaxHeight: "400px",
 	contentMaxHeightXs: "270px",
-	separator: tokens.dropdownBorder,
-	itemMinHeight: "2.60rem",
-	itemTextColor: tokens.dropdownItemTextColor,
-	itemHoverBackground: tokens.dropdownItemHoverBackground,
-	itemHoverTextColor: tokens.dropdownItemHoverTextColor,
+	separator: tokens.border.menu,
+	itemMinHeight: tokens.control.height.md,
+	itemTextColor: tokens.text.menu,
+	itemHoverBackground: tokens.surface.menuHover,
+	itemHoverTextColor: tokens.text.menu,
 	itemDisabledOpacity: ".4",
 	indicatorSize: "20px",
 });
@@ -53,15 +54,14 @@ export const content = style([
 		borderRadius: selectThemeVars.contentRadius,
 		padding: selectThemeVars.contentPadding,
 		overflow: "auto",
-		zIndex: themeTokens.zIndex["50"],
+		zIndex: 50,
 		listStyleType: "none",
 		display: "flex",
 		flexDirection: "column",
-		rowGap: themeTokens.spacing["1"],
+		rowGap: tokens.space["1"],
 		outline: "none",
 		maxHeight: selectThemeVars.contentMaxHeight,
-		animation: `${contentHide} 250ms ease-in-out`,
-		border: `1px solid ${selectThemeVars.contentBorderColor}`,
+		border: `${tokens.border.width} solid ${selectThemeVars.contentBorderColor}`,
 	},
 	responsiveStyle({
 		xs: {
@@ -75,11 +75,7 @@ export const content = style([
 			},
 		},
 	}),
-	componentStateStyles({
-		expanded: {
-			animation: `${contentShow} 250ms ease-in-out`,
-		},
-	}),
+	presenceAnimation({ enter: contentShow, exit: contentHide }),
 ]);
 
 export const input = style([
@@ -95,18 +91,17 @@ export const item = style([
 		textAlign: "left",
 		justifyContent: "space-between",
 		border: 0,
-		padding: `${themeTokens.spacing["2"]} ${themeTokens.spacing["3"]}`,
-		borderRadius: themeTokens.radii.sm,
+		padding: `${tokens.space["2"]} ${tokens.space["3"]}`,
+		borderRadius: tokens.radius.sm,
 		background: "transparent",
 		color: selectThemeVars.itemTextColor,
 		userSelect: "none",
 		display: "flex",
 		alignItems: "center",
 		outline: "none",
-		fontWeight: themeTokens.fontWeight.normal,
-		transition: "opacity .2s, background-color .2s, transform .2s",
-		gap: themeTokens.spacing["2"],
-		margin: `${themeTokens.spacing["1"]} 0`,
+		fontWeight: tokens.font.weight.normal,
+		gap: tokens.space["2"],
+		margin: `${tokens.space["1"]} 0`,
 		minHeight: selectThemeVars.itemMinHeight,
 		selectors: {
 			"&:first-child,&:last-child": {
@@ -138,7 +133,7 @@ export const item = style([
 		},
 		selected: {
 			not: {
-				paddingRight: `calc(${themeTokens.spacing["3"]} + ${selectThemeVars.indicatorSize} + ${themeTokens.spacing["2"]})`,
+				paddingRight: `calc(${tokens.space["3"]} + ${selectThemeVars.indicatorSize} + ${tokens.space["2"]})`,
 			},
 		},
 		disabled: {
@@ -155,7 +150,7 @@ export const field = style([
 	{
 		display: "flex",
 		flexDirection: "column",
-		gap: themeTokens.spacing["3"],
+		gap: tokens.space["3"],
 		flex: 1,
 		height: "100%",
 	},
@@ -166,8 +161,8 @@ export const selectField = style([
 		display: "inline-flex",
 		alignItems: "center",
 		justifyContent: "space-between",
-		paddingRight: themeTokens.spacing["3"],
-		paddingLeft: themeTokens.spacing["3"],
+		paddingRight: tokens.space["3"],
+		paddingLeft: tokens.space["3"],
 		paddingTop: 0,
 		paddingBottom: 0,
 		outline: "none",

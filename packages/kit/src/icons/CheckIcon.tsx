@@ -16,7 +16,7 @@ export function CheckIcon(props: SvgIconProps) {
 			stroke-dashoffset="0"
 			{...props}
 		>
-			<path style="transition: stroke-dashoffset 200ms ease 0s;" d="M20 6 9 17l-5-5" />
+			<path style="transition: stroke-dashoffset var(--cui-motion-duration-fast) var(--cui-motion-ease-out);" d="M20 6 9 17l-5-5" />
 		</SvgIcon>
 	);
 }

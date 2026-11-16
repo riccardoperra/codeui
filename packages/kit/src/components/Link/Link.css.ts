@@ -1,5 +1,5 @@
-import { createTheme } from "@vanilla-extract/css";
-import { recipe, RecipeVariants } from "@vanilla-extract/recipes";
+import { createTheme, recipe } from "../../foundation/layer.css";
+import { RecipeVariants } from "@vanilla-extract/recipes";
 
 const [linkTheme] = createTheme({});
 

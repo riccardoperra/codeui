@@ -1,19 +1,19 @@
-import { componentStateStyles } from "@kobalte/vanilla-extract";
-import { createTheme, keyframes, style } from "@vanilla-extract/css";
-import { recipe, RecipeVariants } from "@vanilla-extract/recipes";
-import { tokens } from "../../foundation/contract.css";
-import { themeTokens } from "../../foundation/themes.css";
+import { createTheme, recipe, style } from "../../foundation/layer.css";
+import { keyframes } from "@vanilla-extract/css";
+import { RecipeVariants } from "@vanilla-extract/recipes";
+import { tokens } from "../../foundation/cui.css";
+import { presenceAnimation } from "../../foundation/motion.css";
 
 export const [popoverTheme, popoverThemeVars] = createTheme({
-	contentBackground: tokens.dropdownBackground,
-	contentBoxShadow: tokens.dropdownBoxShadow,
+	contentBackground: tokens.surface.menu,
+	contentBoxShadow: tokens.shadow.menu,
 	contentMaxWidth: "276px",
-	contentRadius: themeTokens.radii.lg,
-	contentPadding: themeTokens.spacing["4"],
-	contentFontSize: themeTokens.fontSize.md,
-	titleColor: tokens.foreground,
-	descriptionColor: tokens.foreground,
-	contentBorderColor: tokens.dropdownBorder,
+	contentRadius: tokens.radius.lg,
+	contentPadding: tokens.space["4"],
+	contentFontSize: tokens.font.size.md,
+	titleColor: tokens.text.menu,
+	descriptionColor: tokens.text.menu,
+	contentBorderColor: tokens.border.menu,
 });
 
 const contentShow = keyframes({
@@ -51,24 +51,19 @@ export const content = recipe({
 			color: popoverThemeVars.descriptionColor,
 			fontSize: popoverThemeVars.contentFontSize,
 			overflow: "hidden",
-			zIndex: themeTokens.zIndex["50"],
+			zIndex: 50,
 			listStyleType: "none",
 			display: "flex",
 			flexDirection: "column",
-			rowGap: themeTokens.spacing["2"],
+			rowGap: tokens.space["2"],
 			outline: "none",
-			animation: `${contentHide} 250ms ease-in-out`,
 		},
-		componentStateStyles({
-			expanded: {
-				animation: `${contentShow} 250ms ease-in-out`,
-			},
-		}),
+		presenceAnimation({ enter: contentShow, exit: contentHide }),
 	],
 	variants: {
 		variant: {
 			bordered: {
-				border: `1px solid ${popoverThemeVars.contentBorderColor}`,
+				border: `${tokens.border.width} solid ${popoverThemeVars.contentBorderColor}`,
 			},
 		},
 	},
@@ -79,8 +74,8 @@ export const title = style([
 		color: popoverThemeVars.titleColor,
 		display: "flex",
 		alignItems: "center",
-		fontSize: themeTokens.fontSize.lg,
-		fontWeight: themeTokens.fontWeight.medium,
+		fontSize: tokens.font.size.lg,
+		fontWeight: tokens.font.weight.medium,
 		justifyContent: "space-between",
 	},
 ]);

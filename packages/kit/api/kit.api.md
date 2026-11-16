@@ -79,6 +79,7 @@ export declare const button: import("@vanilla-extract/recipes").RuntimeFn<{
             readonly selectors: {
                 readonly "&:not(:hover)": {
                     readonly borderColor: "transparent";
+                    readonly color: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
                 };
             };
         };
@@ -98,7 +99,6 @@ export declare const button: import("@vanilla-extract/recipes").RuntimeFn<{
     };
     readonly loading: {
         readonly true: {
-            readonly opacity: 0.8;
             readonly pointerEvents: "none";
             readonly overflow: "hidden";
         };
@@ -603,7 +603,7 @@ export declare const popoverTheme: string, popoverThemeVars: {
 export declare const content: import("@vanilla-extract/recipes").RuntimeFn<{
     variant: {
         bordered: {
-            border: `1px solid var(--${string})` | `1px solid var(--${string}, ${string})` | `1px solid var(--${string}, ${number})`;
+            border: `var(--${string}) solid var(--${string})` | `var(--${string}) solid var(--${string}, ${string})` | `var(--${string}) solid var(--${string}, ${number})` | `var(--${string}, ${string}) solid var(--${string})` | `var(--${string}, ${string}) solid var(--${string}, ${string})` | `var(--${string}, ${string}) solid var(--${string}, ${number})` | `var(--${string}, ${number}) solid var(--${string})` | `var(--${string}, ${number}) solid var(--${string}, ${string})` | `var(--${string}, ${number}) solid var(--${string}, ${number})`;
         };
     };
 }>;
@@ -690,7 +690,7 @@ export declare const segmentedControlWrapper: import("@vanilla-extract/recipes")
         };
         bordered: {
             backgroundColor: "transparent";
-            boxShadow: `0 0 0 2px var(--${string})` | `0 0 0 2px var(--${string}, ${string})` | `0 0 0 2px var(--${string}, ${number})`;
+            boxShadow: `0 0 0 var(--${string}) var(--${string})` | `0 0 0 var(--${string}) var(--${string}, ${string})` | `0 0 0 var(--${string}) var(--${string}, ${number})` | `0 0 0 var(--${string}, ${string}) var(--${string})` | `0 0 0 var(--${string}, ${string}) var(--${string}, ${string})` | `0 0 0 var(--${string}, ${string}) var(--${string}, ${number})` | `0 0 0 var(--${string}, ${number}) var(--${string})` | `0 0 0 var(--${string}, ${number}) var(--${string}, ${string})` | `0 0 0 var(--${string}, ${number}) var(--${string}, ${number})`;
         };
     };
     size: {
@@ -957,7 +957,7 @@ export declare const tooltipContent: import("@vanilla-extract/recipes").RuntimeF
     theme: {
         primary: {
             vars: {
-                [x: string]: string;
+                [x: string]: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
             };
         };
         secondary: {
@@ -1003,6 +1003,10 @@ export type Breakpoint = keyof typeof breakpoints;
 ## foundation/contract.css.d.ts
 
 ```ts
+/**
+ * @deprecated Use `tokens`. Each name points at the `--cui-*` role closest to
+ * what it meant before the K5 token contract.
+ */
 export declare const tokens: {
     readonly background: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
     readonly foreground: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
@@ -1050,9 +1054,202 @@ export declare const tokens: {
 };
 ```
 
+## foundation/cui.css.d.ts
+
+```ts
+/**
+ * The kit design tokens. Every leaf is `var(--cui-…)`, a stable name that
+ * apps can override with plain CSS.
+ */
+export declare const tokens: {
+    surface: {
+        canvas: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        toolbar: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        scrim: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        dialog: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        inputAccent: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        input: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        menuHover: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        menu: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        panel: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        scrollThumb: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        scrollThumbHover: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        secondary: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        toast: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+    };
+    text: {
+        default: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        toolbar: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        muted: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        dialog: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        dialogTitle: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        label: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        hint: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        input: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        selected: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        menu: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        panelMuted: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        panel: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        toast: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        danger: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+    };
+    action: {
+        neutral: {
+            active: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            base: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            hover: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            text: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        };
+        danger: {
+            active: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            base: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            hover: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            text: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        };
+        brand: {
+            active: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            base: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            hover: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            text: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        };
+        brandSoft: {
+            base: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            hover: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            text: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            active: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        };
+        caution: {
+            base: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            hover: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            active: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            text: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        };
+        success: {
+            base: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            hover: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            active: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            text: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        };
+    };
+    shadow: {
+        dialog: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        menu: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        none: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        sm: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        md: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+    };
+    border: {
+        dialogTitle: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        divider: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        input: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        menu: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        width: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        widthStrong: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+    };
+    accent: {
+        selection: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        focus: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+    };
+    focus: {
+        color: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        width: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        offset: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+    };
+    radius: {
+        none: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        badge: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        xs: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        sm: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        nav: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        md: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        lg: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        card: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        xl: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        command: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        full: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+    };
+    space: {
+        "0": `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        "1": `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        "2": `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        "3": `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        "4": `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        "5": `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        "6": `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        "8": `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        "10": `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        "12": `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        "16": `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        "20": `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        "24": `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        "32": `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        "40": `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        "48": `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        "56": `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        "64": `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        auto: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        px: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        "0.5": `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        "1.5": `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        "2.5": `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+    };
+    control: {
+        height: {
+            compact: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            xs: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            sm: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            md: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            lg: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            xl: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        };
+    };
+    font: {
+        size: {
+            badge: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            xs: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            caption: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            sm: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            md: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            lg: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            xl: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            "2xl": `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        };
+        family: {
+            sans: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            mono: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        };
+        weight: {
+            normal: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            medium: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            semibold: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        };
+        lineHeight: {
+            compact: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            normal: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        };
+        tracking: {
+            normal: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        };
+    };
+    motion: {
+        duration: {
+            none: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            fast: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            normal: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            panel: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            slow: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        };
+        ease: {
+            out: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        };
+    };
+};
+```
+
 ## foundation/index.d.ts
 
 ```ts
+export { tokens } from "./cui.css.js";
 export { tokens as themeVars } from "./contract.css.js";
 export { themeTokens } from "./themes.css.js";
 export * as layoutVars from "./layout.css.js";
@@ -1102,6 +1299,10 @@ export declare const mapFontSizeValue: (size: BaseComponentSize) => `var(--${str
 ## foundation/themes.css.d.ts
 
 ```ts
+/**
+ * @deprecated Use `tokens`. Spacing, radii, font sizes and the shared weights
+ * and shadows point at `--cui-*` variables; the rest keep their old values.
+ */
 export declare const themeTokens: {
     readonly colors: {
         readonly gray1: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
@@ -1308,7 +1509,7 @@ export { Listbox, ListboxItem } from "./components/Listbox/Listbox.js";
 export { VirtualizedListbox } from "./components/Listbox/VirtualizedListbox.js";
 export { SvgIcon } from "./icons/SvgIcon.js";
 export * as icons from "./icons/index.js";
-export { themeTokens, themeVars, breakpoints, layoutVars, responsiveStyle, } from "./foundation/index.js";
+export { tokens, themeTokens, themeVars, breakpoints, layoutVars, responsiveStyle, } from "./foundation/index.js";
 export { mergeClasses } from "./utils/css.js";
 export type { FieldClasses } from "./components/Field/inputProps.js";
 export type { ListboxProps, ListboxClasses } from "./components/Listbox/Listbox.js";

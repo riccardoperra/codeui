@@ -1,16 +1,16 @@
-import { createTheme, keyframes, style } from "@vanilla-extract/css";
-import { themeTokens } from "../../foundation/themes.css";
-import { RecipeVariants, recipe } from "@vanilla-extract/recipes";
-import { tokens } from "../../foundation/contract.css";
-import { componentStateStyles } from "@kobalte/vanilla-extract";
+import { createTheme, recipe, style } from "../../foundation/layer.css";
+import { keyframes } from "@vanilla-extract/css";
+import { RecipeVariants } from "@vanilla-extract/recipes";
+import { tokens } from "../../foundation/cui.css";
+import { presenceAnimation } from "../../foundation/motion.css";
 
 export const [tooltipTheme, tooltipVars] = createTheme({
-	fontSize: themeTokens.fontSize.sm,
-	backgroundColor: tokens.neutral,
-	color: themeTokens.colors.gray12,
-	padding: `${themeTokens.spacing["2"]} ${themeTokens.spacing["4"]}`,
-	borderRadius: themeTokens.radii.xl,
-	zIndex: themeTokens.zIndex[50],
+	fontSize: tokens.font.size.sm,
+	backgroundColor: tokens.action.neutral.base,
+	color: tokens.action.neutral.text,
+	padding: `${tokens.space["2"]} ${tokens.space["4"]}`,
+	borderRadius: tokens.radius.xl,
+	zIndex: "50",
 });
 
 const TooltipThemes = {
@@ -52,29 +52,23 @@ export const tooltipContent = recipe({
 			borderRadius: tooltipVars.borderRadius,
 			color: tooltipVars.color,
 			backgroundColor: tooltipVars.backgroundColor,
-			boxShadow: themeTokens.boxShadow.md,
-			animation: `${contentHide} 150ms ease-in forwards`,
+			boxShadow: tokens.shadow.md,
 			transformOrigin: "var(--kb-tooltip-content-transform-origin)",
 		},
-		componentStateStyles({
-			expanded: {
-				animation: `${contentShow} 250ms ease-out`,
-			},
-		}),
+		presenceAnimation({ enter: contentShow, exit: contentHide, fillMode: "forwards" }),
 	],
 	variants: {
 		theme: {
 			[TooltipThemes.primary]: {
 				vars: {
-					// TODO: add generic tokens `foreground` for colors (brand, neutral, negative etc) to use in all components
-					[tooltipVars.color]: "#fff",
-					[tooltipVars.backgroundColor]: tokens.brand,
+					[tooltipVars.color]: tokens.action.brand.text,
+					[tooltipVars.backgroundColor]: tokens.action.brand.base,
 				},
 			},
 			[TooltipThemes.secondary]: {
 				vars: {
-					[tooltipVars.color]: tokens.foreground,
-					[tooltipVars.backgroundColor]: tokens.brandSecondary,
+					[tooltipVars.color]: tokens.action.neutral.text,
+					[tooltipVars.backgroundColor]: tokens.action.neutral.base,
 				},
 			},
 		},

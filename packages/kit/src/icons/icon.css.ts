@@ -1,4 +1,5 @@
-import { createVar, fallbackVar, style } from "@vanilla-extract/css";
+import { style } from "../foundation/layer.css";
+import { createVar, fallbackVar } from "@vanilla-extract/css";
 
 export const iconSize = createVar();
 

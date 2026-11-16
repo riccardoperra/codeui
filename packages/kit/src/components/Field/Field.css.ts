@@ -1,10 +1,10 @@
-import { createTheme, createVar, fallbackVar } from "@vanilla-extract/css";
+import { createTheme, recipe } from "../../foundation/layer.css";
+import { createVar, fallbackVar } from "@vanilla-extract/css";
 import { mapFontSizeValue, mapSizeValue } from "../../foundation/sizes";
-import { recipe, RecipeVariants } from "@vanilla-extract/recipes";
+import { RecipeVariants } from "@vanilla-extract/recipes";
 import { componentStateStyles } from "@kobalte/vanilla-extract";
-import { themeTokens } from "../../foundation/themes.css";
-import { tokens } from "../../foundation/contract.css";
-import { themeVars } from "../../foundation";
+import { tokens } from "../../foundation/cui.css";
+import { transition } from "../../foundation/motion.css";
 
 export const FieldSizes = {
 	xs: "xs",
@@ -18,47 +18,42 @@ export const inputHeight = createVar();
 export const fontSize = createVar();
 
 export const [baseFieldTheme, baseFieldVars] = createTheme({
-	borderColor: tokens.formAccentBorder,
-	background: tokens.formAccent,
-	color: tokens.foreground,
+	borderColor: tokens.border.input,
+	background: tokens.surface.input,
+	color: tokens.text.input,
 	inputHeight: inputHeight,
 	fontSize: fontSize,
-	descriptionColor: themeTokens.colors.gray11,
-	disabledBackground: themeTokens.colors.gray2,
+	descriptionColor: tokens.text.hint,
+	disabledBackground: tokens.surface.dialog,
 });
 
 export const baseFieldVariants = recipe({
 	base: [
 		{
 			appearance: "none",
-			border: `1px solid ${baseFieldVars.borderColor}`,
+			border: `${tokens.border.width} solid ${baseFieldVars.borderColor}`,
 			backgroundColor: baseFieldVars.background,
-			borderRadius: themeTokens.radii.md,
+			borderRadius: tokens.radius.md,
 			width: "100%",
 			minWidth: "0px",
 			fontSize: baseFieldVars.fontSize,
 			height: fallbackVar(baseFieldVars.inputHeight, "100%"),
-			color: "currentcolor",
+			color: baseFieldVars.color,
+			transition: transition(["border-color"]),
+			"::placeholder": {
+				color: tokens.text.hint,
+				opacity: 1,
+			},
 		},
 		{
 			":focus": {
-				borderColor: themeVars.brand,
+				borderColor: tokens.focus.color,
 			},
 		},
 		componentStateStyles({
 			invalid: {
-				borderColor: tokens.critical,
-				color: tokens.critical,
-			},
-			disabled: {
-				cursor: "not-allowed",
-				opacity: 0.4,
-			},
-		}),
-		componentStateStyles({
-			invalid: {
-				borderColor: tokens.critical,
-				color: tokens.critical,
+				borderColor: tokens.text.danger,
+				color: tokens.text.danger,
 			},
 			disabled: {
 				cursor: "not-allowed",
@@ -73,35 +68,35 @@ export const baseFieldVariants = recipe({
 					[baseFieldVars.inputHeight]: mapSizeValue("xs"),
 					[baseFieldVars.fontSize]: mapFontSizeValue("xs"),
 				},
-				borderRadius: themeTokens.radii.xs,
+				borderRadius: tokens.radius.xs,
 			},
 			[FieldSizes.sm]: {
 				vars: {
 					[baseFieldVars.inputHeight]: mapSizeValue("sm"),
 					[baseFieldVars.fontSize]: mapFontSizeValue("sm"),
 				},
-				borderRadius: themeTokens.radii.sm,
+				borderRadius: tokens.radius.sm,
 			},
 			[FieldSizes.md]: {
 				vars: {
 					[baseFieldVars.inputHeight]: mapSizeValue("md"),
 					[baseFieldVars.fontSize]: mapFontSizeValue("md"),
 				},
-				borderRadius: themeTokens.radii.md,
+				borderRadius: tokens.radius.md,
 			},
 			[FieldSizes.lg]: {
 				vars: {
 					[baseFieldVars.inputHeight]: mapSizeValue("lg"),
 					[baseFieldVars.fontSize]: mapFontSizeValue("md"),
 				},
-				borderRadius: themeTokens.radii.lg,
+				borderRadius: tokens.radius.lg,
 			},
 			[FieldSizes.xl]: {
 				vars: {
 					[baseFieldVars.inputHeight]: mapSizeValue("xl"),
 					[baseFieldVars.fontSize]: mapFontSizeValue("lg"),
 				},
-				borderRadius: themeTokens.radii.xl,
+				borderRadius: tokens.radius.xl,
 			},
 		},
 
@@ -115,7 +110,7 @@ export const baseFieldVariants = recipe({
 				{
 					backgroundColor: "transparent",
 					border: "none",
-					borderBottom: `2px solid ${baseFieldVars.background}`,
+					borderBottom: `${tokens.border.widthStrong} solid ${baseFieldVars.background}`,
 					borderRadius: 0,
 					paddingLeft: 0,
 					paddingRight: 0,

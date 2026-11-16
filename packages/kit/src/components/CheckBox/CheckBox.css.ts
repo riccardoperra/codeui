@@ -1,20 +1,20 @@
-import { createTheme, style, StyleRule } from "@vanilla-extract/css";
-import { recipe } from "@vanilla-extract/recipes";
+import { createTheme, recipe, style } from "../../foundation/layer.css";
+import { StyleRule } from "@vanilla-extract/css";
 import { mapFontSizeValue, mapSizeValue } from "../../foundation/sizes";
-import { themeTokens } from "../../foundation/themes.css";
 import { baseFieldTheme, FieldSizes } from "../Field/Field.css";
-import { tokens } from "../../foundation/contract.css";
+import { tokens } from "../../foundation/cui.css";
+import { transition } from "../../foundation/motion.css";
 import { styleFieldMessage } from "../Field/fieldStyle";
 
 export const [checkboxTheme, checkboxVars] = createTheme({
 	size: "",
 	fontSize: "",
-	borderColor: tokens.formAccentBorder,
-	background: tokens.brand,
-	activeHoverBackground: tokens.brandAccentHover,
-	nonActiveHoverBackground: tokens.formAccent,
-	color: tokens.foreground,
-	radius: `calc(${themeTokens.radii.md} * .6)`,
+	borderColor: tokens.text.hint,
+	background: tokens.action.brand.base,
+	activeHoverBackground: tokens.action.brand.hover,
+	nonActiveHoverBackground: tokens.surface.input,
+	color: tokens.action.brand.text,
+	radius: `calc(${tokens.radius.md} * .6)`,
 });
 
 export const container = style([
@@ -38,8 +38,8 @@ export const input = style({
 	width: "1px",
 	whiteSpace: "nowrap",
 	":focus-visible": {
-		outline: `2px solid ${tokens.brand}`,
-		outlineOffset: "2px",
+		outline: `${tokens.focus.width} solid ${tokens.focus.color}`,
+		outlineOffset: tokens.focus.offset,
 		borderRadius: checkboxVars.radius,
 	},
 });
@@ -66,7 +66,8 @@ export const control = recipe({
 			overflow: "hidden",
 			borderRadius: checkboxVars.radius,
 			":focus-visible": {
-				outline: `2px solid ${checkboxVars.background}`,
+				outline: `${tokens.focus.width} solid ${tokens.focus.color}`,
+				outlineOffset: tokens.focus.offset,
 			},
 		},
 		{
@@ -76,7 +77,7 @@ export const control = recipe({
 				},
 				"&:before": {
 					content: "",
-					border: `2px solid ${checkboxVars.borderColor}`,
+					border: `${tokens.border.widthStrong} solid ${checkboxVars.borderColor}`,
 					borderRadius: checkboxVars.radius,
 					position: "absolute",
 					width: "100%",
@@ -94,9 +95,7 @@ export const control = recipe({
 					height: "100%",
 					top: 0,
 					left: 0,
-					transitionProperty: "transform, opacity",
-					transitionTimingFunction: "ease",
-					transitionDuration: ".25s",
+					transition: transition(["transform", "opacity"]),
 					transform: `scale(0.5)`,
 					transformOrigin: "center",
 				},
@@ -116,7 +115,7 @@ export const control = recipe({
 				vars: {
 					[checkboxVars.size]: mapSizeValue("xs", sizesCss),
 					[checkboxVars.fontSize]: mapFontSizeValue("xs"),
-					[checkboxVars.radius]: `calc(${themeTokens.radii.md} * .5)`,
+					[checkboxVars.radius]: `calc(${tokens.radius.md} * .5)`,
 				},
 			},
 			[FieldSizes.sm]: {
@@ -135,14 +134,14 @@ export const control = recipe({
 				vars: {
 					[checkboxVars.size]: mapSizeValue("lg", sizesCss),
 					[checkboxVars.fontSize]: mapFontSizeValue("md"),
-					[checkboxVars.radius]: `calc(${themeTokens.radii.md} * .7)`,
+					[checkboxVars.radius]: `calc(${tokens.radius.md} * .7)`,
 				},
 			},
 			[FieldSizes.xl]: {
 				vars: {
 					[checkboxVars.size]: mapSizeValue("xl", sizesCss),
 					[checkboxVars.fontSize]: mapFontSizeValue("lg"),
-					[checkboxVars.radius]: `calc(${themeTokens.radii.md} * .8)`,
+					[checkboxVars.radius]: `calc(${tokens.radius.md} * .8)`,
 				},
 			},
 		},
@@ -159,11 +158,10 @@ export const indicator = style({
 	height: "100%",
 	alignItems: "center",
 	justifyContent: "center",
-	zIndex: themeTokens.zIndex["10"],
+	zIndex: 10,
+	color: checkboxVars.color,
 	opacity: 0,
-	transitionProperty: "transform, opacity",
-	transitionTimingFunction: "ease",
-	transitionDuration: ".25s",
+	transition: transition(["transform", "opacity"]),
 	selectors: {
 		"[data-checked] &": {
 			opacity: 1,
@@ -197,5 +195,5 @@ export const content = style({
 	display: "flex",
 	flexDirection: "column",
 	alignItems: "flex-start",
-	marginLeft: themeTokens.spacing["2"],
+	marginLeft: tokens.space["2"],
 });

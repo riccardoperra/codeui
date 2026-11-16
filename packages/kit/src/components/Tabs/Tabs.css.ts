@@ -1,14 +1,15 @@
-import { createTheme, style } from "@vanilla-extract/css";
-import { themeTokens } from "../../foundation";
-import { tokens } from "../../foundation/contract.css";
+import { createTheme, style } from "../../foundation/layer.css";
+import { tokens } from "../../foundation/cui.css";
+import { transition } from "../../foundation/motion.css";
 import { componentStateStyles } from "@kobalte/vanilla-extract";
 
 export const [tabsTheme, tabsVars] = createTheme({
-	tabListIndicatorColor: tokens.accent5,
-	tabHeaderHoverBackgroundColor: tokens.brandSecondaryAccentHover,
-	tabHeaderHoverColor: tokens.accent7,
-	tabHeaderSelectedColor: tokens.brandAccentActive,
-	tabIndicatorColor: tokens.brandAccentActive,
+	tabListIndicatorColor: tokens.border.divider,
+	tabHeaderHoverBackgroundColor: tokens.action.neutral.hover,
+	tabHeaderColor: tokens.text.muted,
+	tabHeaderHoverColor: tokens.text.default,
+	tabHeaderSelectedColor: tokens.text.default,
+	tabIndicatorColor: tokens.accent.selection,
 });
 
 export const tabsRoot = style([
@@ -30,12 +31,12 @@ export const tabsList = style({
 
 	selectors: {
 		"&[data-orientation=horizontal]": {
-			borderBottom: `1px solid ${tabsVars.tabListIndicatorColor}`,
+			borderBottom: `${tokens.border.width} solid ${tabsVars.tabListIndicatorColor}`,
 		},
 		"&[data-orientation=vertical]": {
 			alignItems: "stretch",
 			flexDirection: "column",
-			borderRight: `1px solid ${tabsVars.tabListIndicatorColor}`,
+			borderRight: `${tokens.border.width} solid ${tabsVars.tabListIndicatorColor}`,
 		},
 	},
 });
@@ -45,10 +46,11 @@ export const tabsHeader = style([
 		display: "inline-block",
 		position: "relative",
 		outline: "none",
-		padding: `${themeTokens.spacing["2"]} ${themeTokens.spacing["4"]}`,
-		fontSize: themeTokens.fontSize.sm,
-		fontWeight: themeTokens.fontWeight.semibold,
-		transition: "color 250ms ease-in-out",
+		padding: `${tokens.space["2"]} ${tokens.space["4"]}`,
+		fontSize: tokens.font.size.sm,
+		fontWeight: tokens.font.weight.semibold,
+		color: tabsVars.tabHeaderColor,
+		transition: transition(["color"]),
 		":hover": {
 			color: tabsVars.tabHeaderHoverColor,
 		},
@@ -61,12 +63,12 @@ export const tabsHeader = style([
 ]);
 
 export const tabsContent = style({
-	padding: themeTokens.spacing["2"],
+	padding: tokens.space["2"],
 });
 
 export const indicator = style({
 	position: "absolute",
-	transition: "all .25s",
+	transition: transition(["width", "height", "transform", "left", "top"], tokens.motion.duration.normal),
 	backgroundColor: tabsVars.tabIndicatorColor,
 	selectors: {
 		"&[data-orientation=horizontal]": {

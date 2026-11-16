@@ -1,21 +1,21 @@
-import { createTheme, keyframes, style } from "@vanilla-extract/css";
-import { recipe, RecipeVariants } from "@vanilla-extract/recipes";
-import { themeTokens } from "../../foundation/themes.css";
+import { createTheme, recipe, style } from "../../foundation/layer.css";
+import { keyframes } from "@vanilla-extract/css";
+import { RecipeVariants } from "@vanilla-extract/recipes";
 import { responsiveStyle } from "../../foundation/responsive";
 import { ComponentSizes } from "../../foundation/sizes";
-import { tokens } from "../../foundation/contract.css";
-import { componentStateStyles } from "@kobalte/vanilla-extract";
+import { tokens } from "../../foundation/cui.css";
+import { presenceAnimation } from "../../foundation/motion.css";
 
 export const [dialogTheme, dialogThemeVars] = createTheme({
-	contentBackground: tokens.dialogBackground,
-	contentBoxShadow: tokens.dialogBoxShadow,
-	contentTextColor: tokens.dialogTextColor,
-	contentPadding: themeTokens.spacing["6"],
-	titleHeight: "56px",
-	panelRadius: themeTokens.radii.lg,
-	dividerColor: tokens.separator,
-	titleFontSize: themeTokens.fontSize.lg,
-	overlayBackground: tokens.dialogOverlayBackground,
+	contentBackground: tokens.surface.dialog,
+	contentBoxShadow: tokens.shadow.dialog,
+	contentTextColor: tokens.text.dialog,
+	contentPadding: tokens.space["6"],
+	titleHeight: tokens.control.height.xl,
+	panelRadius: tokens.radius.lg,
+	dividerColor: tokens.border.dialogTitle,
+	titleFontSize: tokens.font.size.lg,
+	overlayBackground: tokens.surface.scrim,
 });
 
 const contentShow = keyframes({
@@ -44,7 +44,7 @@ export const overlay = style([
 	dialogTheme,
 	{
 		position: "fixed",
-		zIndex: themeTokens.zIndex["40"],
+		zIndex: 40,
 		top: 0,
 		inset: 0,
 		left: 0,
@@ -78,13 +78,13 @@ export const panelFooter = style({
 export const positioner = style({
 	position: "fixed",
 	inset: 0,
-	zIndex: themeTokens.zIndex["40"],
+	zIndex: 40,
 	backgroundColor: dialogThemeVars.overlayBackground,
 	display: "flex",
 	alignItems: "center",
 	justifyContent: "center",
-	paddingTop: themeTokens.spacing['2'],
-	paddingBottom: themeTokens.spacing['2'],
+	paddingTop: tokens.space["2"],
+	paddingBottom: tokens.space["2"],
 	selectors: { 
 		'&[data-panel-size=full]': {
 			padding: 0
@@ -94,14 +94,14 @@ export const positioner = style({
 
 export const title = style([
 	{
-		color: dialogThemeVars.contentTextColor,
+		color: tokens.text.dialogTitle,
 		height: dialogThemeVars.titleHeight,
-		borderBottom: `1px solid ${dialogThemeVars.dividerColor}`,
+		borderBottom: `${tokens.border.width} solid ${dialogThemeVars.dividerColor}`,
 		padding: `0 ${dialogThemeVars.contentPadding}`,
 		display: "flex",
 		alignItems: "center",
 		fontSize: dialogThemeVars.titleFontSize,
-		fontWeight: themeTokens.fontWeight.medium,
+		fontWeight: tokens.font.weight.medium,
 		justifyContent: "space-between",
 		flexShrink: 0
 	},
@@ -123,16 +123,15 @@ export const panel = recipe({
 			borderRadius: dialogThemeVars.panelRadius,
 			backgroundColor: dialogThemeVars.contentBackground,
 			transform: "translate(0, 0)",
-			animation: `${contentHide} 250ms ease-in-out`,
 
 			":focus-visible": {
 				outline: "none",
 			},
 		},
-		componentStateStyles({
-			expanded: {
-				animation: `${contentShow} 250ms ease-in-out`,
-			},
+		presenceAnimation({
+			enter: contentShow,
+			exit: contentHide,
+			enterDuration: tokens.motion.duration.panel,
 		}),
 	],
 

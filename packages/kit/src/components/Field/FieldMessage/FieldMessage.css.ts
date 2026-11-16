@@ -1,4 +1,4 @@
-import { style } from "@vanilla-extract/css";
+import { style } from "../../../foundation/layer.css";
 import { styleFieldMessage } from "../fieldStyle";
 import { baseFieldVars } from "../Field.css";
 
