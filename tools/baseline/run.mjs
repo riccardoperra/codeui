@@ -14,10 +14,19 @@ async function run(name,cmd,args,cwd=root){
  const jsonFd=name==='attw-json'?openSync(`${out}/attw.json`,'w'):null;
  const child=spawn(cmd,args,{cwd,env:{...process.env,CI:'true',STORYBOOK_DISABLE_TELEMETRY:'1'},stdio:['ignore',jsonFd??'pipe','pipe']});
  let log=''; child.stdout?.on('data',x=>log+=x);child.stderr.on('data',x=>log+=x);
- const code=await new Promise(resolve=>{child.on('error',e=>{log+=e.message;resolve(127)});child.on('close',resolve)});
+ let code=await new Promise(resolve=>{child.on('error',e=>{log+=e.message;resolve(127)});child.on('close',resolve)});
  if(jsonFd!==null){closeSync(jsonFd);log=await readFile(`${out}/attw.json`,'utf8')+log}
  await writeFile(`${out}/${name}.log`,log);
  if(name==='attw-json')await writeFile(`${out}/attw.json`,log);
+ if(name==='screenshots'){
+  try{
+   const report=JSON.parse(await readFile(`${out}/screenshots.json`,'utf8'));
+   const {backgrounds}=await import('./browser.mjs');
+   const invalid=report.results.filter(x=>x.hashes?.length!==2||x.hashes[0]!==x.hashes[1]||x.backgrounds?.length!==2||x.backgrounds.some(color=>color!==backgrounds[x.theme]));
+   if(!report.results.length||invalid.length){code=1;log+=`\nScreenshot self-check failed: ${invalid.map(x=>`${x.id} ${x.theme}`).join(', ')||'no captures'}\n`;}
+  }catch(error){code=1;log+=`\nScreenshot self-check failed: ${error.message}\n`;}
+  await writeFile(`${out}/${name}.log`,log);
+ }
  const command=[cmd,...args].join(' ');
  const result={name,command,code,seconds:Math.round((performance.now()-start)/10)/100,firstError:code?(log.replace(/\x1b\[[0-9;]*m/g,'').split('\n').filter(Boolean).filter(x=>!/^\s*throw /.test(x)).filter(x=>/error|ERR_|FAIL|Cannot|Error|specified in filter|  x Directory/.test(x)).slice(0,2).join(' ')||log.split('\n').filter(Boolean)[0]):''};
  if(name==='screenshots'&&code){const report=JSON.parse(await readFile(`${out}/screenshots.json`,'utf8'));const first=report.results.find(x=>!x.identical||!x.rendered||x.error||x.errors?.length);result.firstError=first?`${first.id} ${first.theme}: ${first.error||first.errors?.join('; ')||(!first.rendered?'No rendered content':'Hashes differ')}`:'Unknown screenshot failure'}
@@ -56,7 +65,11 @@ if(!build.code){
  const {createServer}=await import('node:http');
  const base=path.join(root,'tools/baseline/storybook-static');
  const server=createServer(async(req,res)=>{try{let p=decodeURIComponent(new URL(req.url,'http://localhost').pathname);if(p.endsWith('/'))p+='index.html';const f=path.resolve(base,'.'+p);if(!f.startsWith(base+path.sep))throw Error('path');const b=await readFile(f);res.setHeader('Content-Type',({'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml'})[path.extname(f)]||'application/octet-stream');res.end(b)}catch{res.statusCode=404;res.end()}});
- await new Promise(resolve=>server.listen(6106,'127.0.0.1',resolve));
+ const port=Number(process.env.BASELINE_PORT??0);
+ if(!Number.isInteger(port)||port<0||port>65535)throw Error('BASELINE_PORT must be an integer from 0 to 65535');
+ await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(port,'127.0.0.1',resolve)});
+ process.env.BASELINE_URL=`http://127.0.0.1:${server.address().port}`;
+ console.log(`Baseline server ${process.env.BASELINE_URL}`);
  try{await run('screenshots','node',['tools/baseline/screenshots.mjs']);await run('a11y','node',['tools/baseline/a11y.mjs']);await run('layer','node',['tools/baseline/layer.mjs']);}finally{await new Promise(resolve=>server.close(resolve))}
 }
 await writeFile(`${out}/commands.json`,JSON.stringify(results,null,2));
