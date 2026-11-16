@@ -1,0 +1,16 @@
+{
+	"name": "kit-consumer-vite",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"build": "vite build"
+	},
+	"dependencies": {
+		"solid-js": "1.9.19"
+	},
+	"devDependencies": {
+		"vite": "5.4.4",
+		"vite-plugin-solid": "2.10.2",
+		"playwright": "1.65.1"
+	}
+}
