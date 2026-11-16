@@ -12,6 +12,12 @@ type TooltipProps = KTooltipRootProps &
 	content: JSX.Element;
 };
 
+// Kobalte 0.13.13+ sets type="button" on the trigger. On a div it means nothing, and CSS resets that target [type="button"] would restyle it.
+function TriggerElement(props: JSX.HTMLAttributes<HTMLDivElement> & { type?: string }) {
+	const [, others] = splitProps(props, ["type"]);
+	return <div {...others} />;
+}
+
 export function Tooltip(props: TooltipProps) {
 	props = mergeProps(
 		{
@@ -40,7 +46,7 @@ export function Tooltip(props: TooltipProps) {
 
 	return (
 		<KTooltip open={open()} onOpenChange={setOpen} {...others}>
-			<KTooltip.Trigger as={"div"} class={mergeClasses(local.slotClasses?.trigger, styles.trigger)}>
+			<KTooltip.Trigger as={TriggerElement} class={mergeClasses(local.slotClasses?.trigger, styles.trigger)}>
 				{internal.children}
 			</KTooltip.Trigger>
 			<KTooltip.Portal>
