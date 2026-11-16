@@ -1,7 +1,51 @@
 ---
 title: "Show notifications"
 description: "Report the result of an action with toasts."
-status: draft
 ---
 
-{/* TODO(docs): Scope from the docs plan. How-to. One toaster per request on the server, actions, promises, and independent controllers. Follow apps/docs/CONTRIBUTING-DOCS.md. Delete each TODO(docs) as you finish its section, and delete status: draft when the page is done. */}
+This guide shows how to set up toasts in an app, pick between a toast and the other messages, and report an async export with a promise toast. The [Toast](/docs/components/toast) page lists every option.
+
+## Choose a toast, an alert, or an inline message
+
+Ask where the user needs the message and how long it stays true.
+
+| Message | Use | Example |
+| --- | --- | --- |
+| The result of an action the user just took. It stays true after it disappears. | A toast | "Snippet exported as PNG." |
+| A problem with one input that the user must fix before they continue. | The field's `errorMessage` | "The file name cannot contain /." |
+| A condition of one part of the page that stays until its cause is gone. | An [Alert](/docs/components/alert) in that part | "This project is read-only. Ask the owner for access." |
+| A decision the user must make before they continue. | A [Dialog](/docs/components/dialog) | "Delete 3 snippets?" |
+
+A toast closes on its own, so never put the only copy of an error the user must act on in a toast. If an export fails, the toast can say so and offer a retry. If a form fails, mark the fields.
+
+## Create one controller per app render
+
+<SolidDemo name="show-notifications/app-setup" />
+
+1. Create the controller inside a component near the root of the app. On the server, each request renders its own root, so each request gets its own controller.
+2. Render `Toaster` inside your locale and theme providers. Toast content renders inside `Toaster` and reads their context.
+3. Pass the controller down with a context. Components call `useNotifications().show(...)`.
+
+`show` on the server does nothing, so code that runs during the server render cannot leak a toast into another request. If your app renders only on the client, you can export one controller from a module and import it where you need it.
+
+## Wrap an async export in a promise toast
+
+<SolidDemo name="show-notifications/export-flow" />
+
+`notifications.promise` shows the loading toast at once and swaps it for the result in the same place. The example draws the snippet on a canvas, encodes a PNG, and downloads it. **Export at 64×** asks for a canvas wider than browsers allow, so the drawing or the encoding fails and the error state shows.
+
+- Pass a function, `() => renderPng(snippet, scale)`, to start the work inside `promise`. An error it throws shows the error state too.
+- Use the `success` callback for the follow-up work that needs the result, here the download. Return the options of the success toast.
+- Give the error toast `duration: Infinity` so it stays until the user reads it. Add a retry `action`. The action does not close the toast, so call `toast.dismiss()` first.
+
+## Show toasts in two places
+
+Create a second controller and a second `Toaster` with its own `position` and `aria-label`. Each controller keeps its own toasts, ids, and default duration, and `clear()` on one leaves the other open. The [Toast](/docs/components/toast#two-toasters-on-one-page) page has the demo. Keep one controller unless the second region serves a separate part of the app, such as an editor panel.
+
+## Write the message
+
+- Say what happened, in the past tense, with the object name: "main-rs@2x.png saved", not "Success".
+- For a failure, say what failed and what to do next, in the title and the description.
+- Use the danger tone only for failures. Danger toasts interrupt screen reader users.
+- Keep one action, labelled with a verb, such as "Retry" or "Undo".
+- Do not use a toast to announce new features. Use a dot on the control, as [Patterns](/docs/design/patterns) describes.
