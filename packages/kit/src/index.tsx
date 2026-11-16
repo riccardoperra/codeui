@@ -69,7 +69,7 @@ export type {
 
 export { Link } from "./components/Link/Link";
 
-export { Pagination } from "./components/Pagination/Pagination";
+export { Pagination, type PaginationProps } from "./components/Pagination/Pagination";
 
 export { Tooltip } from "./components/Tooltip/Tooltip";
 
