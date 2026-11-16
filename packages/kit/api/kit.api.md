@@ -1621,6 +1621,12 @@ export type CloseButtonProps = Omit<PolymorphicProps<"button", IconButtonProps>,
 export declare function CloseButton(props: CloseButtonProps): import("solid-js").JSX.Element;
 ```
 
+## tokens.d.ts
+
+```ts
+export { tokens, themeVars, themeTokens, layoutVars, breakpoints, responsiveStyle, } from "./foundation/index.js";
+```
+
 ## utils/component.d.ts
 
 ```ts

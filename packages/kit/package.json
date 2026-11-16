@@ -75,7 +75,21 @@
 				"default": "./dist/cjs/parts/popover.cjs"
 			}
 		},
-		"./package.json": "./package.json"
+		"./package.json": "./package.json",
+		"./tokens": {
+			"solid": {
+				"types": "./dist/types/tokens.d.ts",
+				"default": "./dist/source/tokens.js"
+			},
+			"import": {
+				"types": "./dist/types/tokens.d.ts",
+				"default": "./dist/esm/tokens.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/tokens.d.cts",
+				"default": "./dist/cjs/tokens.cjs"
+			}
+		}
 	},
 	"typesVersions": {
 		"*": {
@@ -84,6 +98,9 @@
 			],
 			"popover": [
 				"dist/types/parts/popover.d.ts"
+			],
+			"tokens": [
+				"dist/types/tokens.d.ts"
 			]
 		}
 	},
@@ -95,7 +112,7 @@
 		"test:ssr": "jest --config jest.config.ssr.ts",
 		"typecheck": "tsc --noEmit",
 		"prepublish": "pnpm build",
-		"test:tokens-consumer": "pnpm run build && node fixtures/tokens-consumer/check.mjs"
+		"test:tokens-consumer": "pnpm run build && node fixtures/tokens-consumer/check.mjs && node fixtures/tokens-consumer/check.mjs --solid"
 	},
 	"devDependencies": {
 		"@codeui/vanilla-extract": "workspace:*",
