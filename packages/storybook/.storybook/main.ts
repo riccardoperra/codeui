@@ -15,11 +15,15 @@ const config: StorybookConfig = {
 	stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
 	addons: [
 		getAbsolutePath("@storybook/addon-links"),
-		getAbsolutePath("@storybook/addon-essentials"),
-		getAbsolutePath("@storybook/addon-interactions"),
+		getAbsolutePath("@storybook/addon-docs"),
+		getAbsolutePath("@storybook/addon-controls"),
+		getAbsolutePath("@storybook/addon-backgrounds"),
+		getAbsolutePath("@storybook/addon-viewport"),
+		getAbsolutePath("@storybook/addon-toolbars"),
+		getAbsolutePath("@storybook/addon-measure"),
+		getAbsolutePath("@storybook/addon-outline"),
 		getAbsolutePath("storybook-dark-mode"),
 		getAbsolutePath("@storybook/addon-a11y"),
-		getAbsolutePath("@storybook/addon-mdx-gfm"),
 	],
 	framework: {
 		name: getAbsolutePath("storybook-solidjs-vite"),
@@ -31,6 +35,7 @@ const config: StorybookConfig = {
 	async viteFinal(config) {
 		// Merge custom configuration into the default config
 		return mergeConfig(config, {
+			resolve: { alias: { "@storybook/preview-api": "storybook/preview-api" } },
 			// Add dependencies to pre-optimization
 			optimizeDeps: {
 				include: [

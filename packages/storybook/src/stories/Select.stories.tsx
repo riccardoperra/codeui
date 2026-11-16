@@ -1,5 +1,5 @@
 import { Button, createSelectOptions, Select, TextFieldProps } from "@codeui/kit";
-import type { Meta, StoryObj } from "storybook-solidjs";
+import type { Meta, StoryObj } from "storybook-solidjs-vite";
 import {
 	DocsContainerFlex,
 	DocsItemsContainer,

@@ -1,5 +1,5 @@
 import { Button, NumberField, NumberFieldProps } from "@codeui/kit";
-import type { Meta, StoryObj } from "storybook-solidjs";
+import type { Meta, StoryObj } from "storybook-solidjs-vite";
 import { DocsItemsContainer, DocsMultipleItemsContainer } from "./components/Section.jsx";
 import { createSignal, For } from "solid-js";
 

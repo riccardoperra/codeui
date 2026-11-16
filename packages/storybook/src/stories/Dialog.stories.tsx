@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "storybook-solidjs";
+import type { Meta, StoryObj } from "storybook-solidjs-vite";
 
 import { Button, Dialog, DialogPanelContent, DialogPanelFooter } from "@codeui/kit";
 import { createSignal, For } from "solid-js";

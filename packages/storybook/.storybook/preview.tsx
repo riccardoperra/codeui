@@ -1,12 +1,12 @@
-import { Preview } from "storybook-solidjs";
-import { themes, ThemeVars } from "@storybook/theming";
+import { Preview } from "storybook-solidjs-vite";
+import { themes, ThemeVars } from "storybook/theming";
 import { DARK_MODE_EVENT_NAME } from "storybook-dark-mode";
 import "./reset.css";
 import "./global.css";
 import "./global-ve.css";
-import { DocsContainer, DocsContainerProps } from "@storybook/blocks";
+import { DocsContainer, DocsContainerProps } from "@storybook/addon-docs/blocks";
 import { createEffect, createRoot, createSignal, FlowProps } from "solid-js";
-import { addons } from "@storybook/preview-api";
+import { addons } from "storybook/preview-api";
 import { useEffect, useState } from "react";
 
 const channel = addons.getChannel();

@@ -1,5 +1,5 @@
 import { Listbox, VirtualizedListbox } from "@codeui/kit";
-import type { Meta, StoryObj } from "storybook-solidjs";
+import type { Meta, StoryObj } from "storybook-solidjs-vite";
 
 type Story = StoryObj<typeof meta>;
 

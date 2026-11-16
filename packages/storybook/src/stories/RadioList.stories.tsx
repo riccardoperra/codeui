@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "storybook-solidjs";
+import type { Meta, StoryObj } from "storybook-solidjs-vite";
 
 import { RadioList, RadioListItem, RadioListProps } from "@codeui/kit";
 import { For } from "solid-js";

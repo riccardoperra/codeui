@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "storybook-solidjs";
+import type { Meta, StoryObj } from "storybook-solidjs-vite";
 
 import { Button, Tabs, TabsContent, TabsHeader, TabsList } from "@codeui/kit";
 import { createSignal, For } from "solid-js";
