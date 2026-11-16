@@ -101,3 +101,6 @@ export type { FieldClasses } from "./components/Field/inputProps";
 export type { ListboxProps, ListboxClasses } from "./components/Listbox/Listbox";
 export type { VirtualizedListboxProps } from "./components/Listbox/VirtualizedListbox";
 export type { SegmentedControlClasses } from "./components/SegmentedControl/SegmentedControl";
+
+export { Accordion, createAccordionItems, type AccordionProps, type AccordionEntry } from "./components/Accordion/Accordion";
+export { accordionParts, accordionStyles, type AccordionPart, type AccordionClasses, type AccordionVariants, type AccordionStyles } from "./parts/accordion";

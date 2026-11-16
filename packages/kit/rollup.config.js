@@ -3,7 +3,7 @@ import ts from "typescript";
 import path from "node:path";
 import { mkdirSync, writeFileSync } from "node:fs";
 
-const entries = ["src/index.tsx", "src/parts/dialog.tsx", "src/parts/popover.tsx"];
+const entries = ["src/index.tsx", "src/parts/dialog.tsx", "src/parts/popover.tsx", "src/parts/accordion.tsx"];
 
 function tsTypes() {
 	return {

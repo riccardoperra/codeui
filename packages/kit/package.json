@@ -75,7 +75,21 @@
 				"default": "./dist/cjs/parts/popover.cjs"
 			}
 		},
-		"./package.json": "./package.json"
+		"./package.json": "./package.json",
+		"./accordion": {
+			"solid": {
+				"types": "./dist/types/parts/accordion.d.ts",
+				"default": "./dist/source/parts/accordion.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/accordion.d.ts",
+				"default": "./dist/esm/parts/accordion.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/accordion.d.cts",
+				"default": "./dist/cjs/parts/accordion.cjs"
+			}
+		}
 	},
 	"typesVersions": {
 		"*": {
@@ -84,6 +98,9 @@
 			],
 			"popover": [
 				"dist/types/parts/popover.d.ts"
+			],
+			"accordion": [
+				"dist/types/parts/accordion.d.ts"
 			]
 		}
 	},
