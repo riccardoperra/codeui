@@ -16,7 +16,7 @@ All commands run from the repo root of your worktree. `K=.claude/skills/verify-c
 ```sh
 node $K/scripts/launch.mjs            # static build + server on a free port (use for proofs)
 node $K/scripts/launch.mjs --rebuild  # force a fresh Storybook build
-node $K/scripts/launch.mjs --dev      # storybook dev on a free port (iteration only; see Gotchas)
+node $K/scripts/launch.mjs --dev      # storybook dev on a free port (iteration with HMR)
 ```
 
 - Static mode builds Storybook into `.verify-codeui/storybook-static/` only when the build is missing or older than any file in `packages/kit/src`, `packages/storybook/src` or `packages/storybook/.storybook` (about 70 s), then serves it with `scripts/serve.mjs`, which binds port 0 like `tools/baseline/run.mjs`.
@@ -92,7 +92,7 @@ Several agents work in parallel worktrees. Each worktree has its own `.verify-co
 
 ## Gotchas
 
-- `--dev` is broken on `fix/baseline-determinism`: `storybook dev` answers `index.json`, then every module request hangs and the process dies with `JavaScript heap out of memory` at about 4 GB (Node 26.5; also hangs on Node 22.18). Launch then fails after 180 s. Use static mode for proofs until that is fixed.
+- Storybook disables the Solid framework's inferred prop docgen. Its transform analyzes virtual modules and dependencies with this Vite version, which blocks preview requests. Explicit story controls still work.
 - `tools/baseline/browser.mjs` aborts every cross-origin request and serves empty CSS for remote stylesheets, so captures use local fallback fonts. That is deliberate (determinism), not a broken story.
 - The preview starts dark. Always pass `--theme`; do not toggle the theme mid-journey.
 - `transition` and `animation` are disabled and `reducedMotion` is `reduce`. A journey cannot prove motion; say so instead of claiming it.
