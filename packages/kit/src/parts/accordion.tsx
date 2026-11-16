@@ -5,6 +5,8 @@ import {
 	createContext,
 	createSignal,
 	createUniqueId,
+	onMount,
+	onCleanup,
 	useContext,
 	splitProps,
 	type JSX,
@@ -159,6 +161,19 @@ export function Content<T extends ValidComponent = "div">(
 		"children",
 	]);
 	const item = useItem();
+	let body: HTMLDivElement | undefined;
+	onMount(() => {
+		const measure = () =>
+			body?.parentElement?.style.setProperty(
+				"--kb-accordion-content-height",
+				`${body.scrollHeight}px`,
+			);
+		measure();
+		if (typeof ResizeObserver === "undefined" || !body) return;
+		const observer = new ResizeObserver(measure);
+		observer.observe(body);
+		onCleanup(() => observer.disconnect());
+	});
 	return (
 		<K.Content
 			id={item.contentId}
@@ -169,7 +184,9 @@ export function Content<T extends ValidComponent = "div">(
 			inert={!item.expanded()}
 			aria-hidden={!item.expanded()}
 		>
-			<div class={styles.contentBody}>{local.children}</div>
+			<div ref={body} class={styles.contentBody}>
+				{local.children}
+			</div>
 		</K.Content>
 	);
 }
