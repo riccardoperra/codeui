@@ -89,6 +89,104 @@
 				"types": "./dist/types-cjs/tokens.d.cts",
 				"default": "./dist/cjs/tokens.cjs"
 			}
+		},
+		"./stack": {
+			"solid": {
+				"types": "./dist/types/parts/stack.d.ts",
+				"default": "./dist/source/parts/stack.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/stack.d.ts",
+				"default": "./dist/esm/parts/stack.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/stack.d.cts",
+				"default": "./dist/cjs/parts/stack.cjs"
+			}
+		},
+		"./text": {
+			"solid": {
+				"types": "./dist/types/parts/text.d.ts",
+				"default": "./dist/source/parts/text.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/text.d.ts",
+				"default": "./dist/esm/parts/text.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/text.d.cts",
+				"default": "./dist/cjs/parts/text.cjs"
+			}
+		},
+		"./switch": {
+			"solid": {
+				"types": "./dist/types/parts/switch.d.ts",
+				"default": "./dist/source/parts/switch.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/switch.d.ts",
+				"default": "./dist/esm/parts/switch.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/switch.d.cts",
+				"default": "./dist/cjs/parts/switch.cjs"
+			}
+		},
+		"./slider": {
+			"solid": {
+				"types": "./dist/types/parts/slider.d.ts",
+				"default": "./dist/source/parts/slider.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/slider.d.ts",
+				"default": "./dist/esm/parts/slider.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/slider.d.cts",
+				"default": "./dist/cjs/parts/slider.cjs"
+			}
+		},
+		"./progress": {
+			"solid": {
+				"types": "./dist/types/parts/progress.d.ts",
+				"default": "./dist/source/parts/progress.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/progress.d.ts",
+				"default": "./dist/esm/parts/progress.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/progress.d.cts",
+				"default": "./dist/cjs/parts/progress.cjs"
+			}
+		},
+		"./combobox": {
+			"solid": {
+				"types": "./dist/types/parts/combobox.d.ts",
+				"default": "./dist/source/parts/combobox.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/combobox.d.ts",
+				"default": "./dist/esm/parts/combobox.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/combobox.d.cts",
+				"default": "./dist/cjs/parts/combobox.cjs"
+			}
+		},
+		"./command-menu": {
+			"solid": {
+				"types": "./dist/types/parts/command-menu.d.ts",
+				"default": "./dist/source/parts/command-menu.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/command-menu.d.ts",
+				"default": "./dist/esm/parts/command-menu.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/command-menu.d.cts",
+				"default": "./dist/cjs/parts/command-menu.cjs"
+			}
 		}
 	},
 	"typesVersions": {
@@ -101,6 +199,27 @@
 			],
 			"tokens": [
 				"dist/types/tokens.d.ts"
+			],
+			"stack": [
+				"dist/types/parts/stack.d.ts"
+			],
+			"text": [
+				"dist/types/parts/text.d.ts"
+			],
+			"switch": [
+				"dist/types/parts/switch.d.ts"
+			],
+			"slider": [
+				"dist/types/parts/slider.d.ts"
+			],
+			"progress": [
+				"dist/types/parts/progress.d.ts"
+			],
+			"combobox": [
+				"dist/types/parts/combobox.d.ts"
+			],
+			"command-menu": [
+				"dist/types/parts/command-menu.d.ts"
 			]
 		}
 	},

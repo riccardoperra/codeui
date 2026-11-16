@@ -101,3 +101,71 @@ export type { FieldClasses } from "./components/Field/inputProps";
 export type { ListboxProps, ListboxClasses } from "./components/Listbox/Listbox";
 export type { VirtualizedListboxProps } from "./components/Listbox/VirtualizedListbox";
 export type { SegmentedControlClasses } from "./components/SegmentedControl/SegmentedControl";
+
+export * from "./components/Stack/Stack";
+
+export * from "./components/Text/Text";
+
+import { Switch } from "./components/Switch/Switch";
+export { Switch };
+export { createSwitchProps, switchStyles, SwitchParts } from "./components/Switch/Switch";
+export type {
+	SwitchProps,
+	SwitchClasses,
+	SwitchPart,
+	SwitchVariants,
+	SwitchStyles,
+} from "./components/Switch/Switch";
+
+import { Slider } from "./components/Slider/Slider";
+export { Slider };
+export { createSliderProps, SliderParts, sliderStyles } from "./components/Slider/Slider";
+export type {
+	SliderProps,
+	SliderClasses,
+	SliderPart,
+	SliderVariants,
+	SliderStyles,
+} from "./components/Slider/Slider";
+import { Progress } from "./components/Progress/Progress";
+export { Progress };
+export { ProgressParts, progressStyles } from "./components/Progress/Progress";
+export type {
+	ProgressProps,
+	ProgressClasses,
+	ProgressPart,
+	ProgressVariants,
+	ProgressStyles,
+} from "./components/Progress/Progress";
+
+import { Combobox } from "./components/Combobox/Combobox";
+export { Combobox };
+export {
+	ComboboxParts,
+	comboboxStyles,
+	createComboboxOptions,
+} from "./components/Combobox/Combobox";
+export type {
+	ComboboxProps,
+	ComboboxClasses,
+	ComboboxOption,
+	ComboboxOptionsConfig,
+	ComboboxPart,
+	ComboboxStyles,
+	ComboboxVariants,
+	CreateComboboxOptionsReturn,
+} from "./components/Combobox/Combobox";
+
+export {
+	CommandMenu,
+	CommandMenuParts,
+	commandMenuStyles,
+	filterCommandItems,
+} from "./components/CommandMenu/CommandMenu";
+export type {
+	CommandItem,
+	CommandMenuProps,
+	CommandMenuClasses,
+	CommandMenuPart,
+	CommandMenuStyles,
+} from "./components/CommandMenu/CommandMenu";
