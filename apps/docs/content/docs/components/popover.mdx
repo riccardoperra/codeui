@@ -1,0 +1,99 @@
+---
+title: Popover
+description: A floating panel anchored to a trigger, for short content and quick settings.
+---
+
+<SolidDemo name="popover" />
+
+## Usage
+
+```tsx
+import { Button, Popover, PopoverContent, PopoverTrigger } from '@codeui/kit';
+
+export function FontSettings() {
+  return (
+    <Popover placement="bottom-start">
+      <PopoverTrigger as={Button} theme="secondary">
+        Font settings
+      </PopoverTrigger>
+      <PopoverContent title="Font settings" description="Applies to every new snippet.">
+        Ligatures are on for Fira Code and JetBrains Mono.
+      </PopoverContent>
+    </Popover>
+  );
+}
+```
+
+## API
+
+Popover is a compound component. `Popover` wraps Kobalte's `Popover` root, so Kobalte's root props such as `open`, `onOpenChange`, `placement`, and `modal` pass through.
+
+| Export | Role |
+| --- | --- |
+| `Popover` | Root. Holds the open state. Default `gutter` of 6. |
+| `PopoverTrigger` | Opens the popover. Use `as={Button}` for a kit button. |
+| `PopoverContent` | Portals the panel and renders the optional title and description above the children. |
+
+<TypeTable
+  type={{
+    open: { type: 'boolean', description: 'Controlled open state, on Popover.' },
+    defaultOpen: { type: 'boolean', description: 'Open state on first render, when uncontrolled.' },
+    onOpenChange: { type: '(open: boolean) => void', description: 'Called when the popover opens or closes.' },
+    placement: { type: 'Placement', default: "'bottom'", description: "Side and alignment, such as 'bottom-start'." },
+    gutter: { type: 'number', default: '6', description: 'Distance between the trigger and the panel.' },
+  }}
+/>
+
+`PopoverContent` takes Kobalte's content props, such as `onEscapeKeyDown`, plus these.
+
+<TypeTable
+  type={{
+    title: { type: 'JSX.Element', description: 'Heading of the panel, linked as the accessible name.' },
+    description: { type: 'JSX.Element', description: 'Text under the title, linked with aria-describedby.' },
+    variant: { type: "'bordered'", description: 'Adds a border to the panel.' },
+    mount: { type: 'Node', default: 'document.body', description: 'Node the popover is portaled into.' },
+    classes: { type: "Pick<PopoverClasses, 'content' | 'title' | 'description'>", description: 'Classes for the content, the title, and the description.' },
+  }}
+/>
+
+## Styled parts
+
+When the ready component does not fit the layout, compose the styled parts from `@codeui/kit/popover`.
+Each part carries the kit styles and a `data-cui` attribute, and wraps the matching Kobalte primitive.
+
+<SolidDemo name="popover-parts" />
+
+```tsx
+import { Button } from '@codeui/kit';
+import * as P from '@codeui/kit/popover';
+
+export function WhatsNew() {
+  return (
+    <P.Root placement="bottom-start">
+      <P.Trigger as={Button} theme="secondary">
+        What's new
+      </P.Trigger>
+      <P.Portal>
+        <P.Content variant="bordered">
+          <P.Arrow />
+          <P.Title>New export panel</P.Title>
+          <P.Description>Export styles now live next to the preview.</P.Description>
+          <P.CloseButton />
+        </P.Content>
+      </P.Portal>
+    </P.Root>
+  );
+}
+```
+
+| Part | Renders | `data-cui` |
+| --- | --- | --- |
+| `Root` | Kobalte popover root, holds the open state. Default `gutter` of 6 | none |
+| `Trigger` | Button that opens the popover | `popover-trigger` |
+| `Anchor` | Element the panel is positioned against, when it is not the trigger | `popover-anchor` |
+| `Portal` | Portal to `document.body` or `mount` | none |
+| `Content` | The panel, takes `variant` | `popover-content` |
+| `Arrow` | Arrow pointing at the trigger | `popover-arrow` |
+| `Title` | Accessible heading | `popover-title` |
+| `Description` | Accessible description | `popover-description` |
+| `CloseButton` | Icon button that closes the popover | `popover-close-button` |

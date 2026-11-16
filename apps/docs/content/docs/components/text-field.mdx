@@ -1,0 +1,60 @@
+---
+title: TextField
+description: A single-line text input with a label, a description, and an error message.
+---
+
+<SolidDemo name="text-field" />
+
+## Usage
+
+```tsx
+import { createSignal } from 'solid-js';
+import { TextField } from '@codeui/kit';
+
+export function SnippetSettings() {
+  const [name, setName] = createSignal('untitled');
+  return (
+    <>
+      <TextField
+        label="Snippet name"
+        placeholder="my-snippet"
+        description="Used as the file name of the export."
+        value={name()}
+        onChange={setName}
+      />
+      <TextField
+        label="Share link"
+        value="codeimage"
+        validationState="invalid"
+        errorMessage="Enter a full URL."
+      />
+    </>
+  );
+}
+```
+
+## API
+
+`TextField` wraps Kobalte's `TextField` root and renders its label, input, description, and error message.
+Kobalte's root props such as `name`, `disabled`, `readOnly`, and `required` pass through.
+Native input attributes such as `type`, `autocomplete`, and the `aria-*` set go to the `input` element.
+
+<TypeTable
+  type={{
+    label: { type: 'JSX.Element', description: 'Label above the input, linked to it.' },
+    description: { type: 'JSX.Element', description: 'Hint text under the input.' },
+    errorMessage: { type: 'JSX.Element', description: "Shown under the input when validationState is 'invalid'." },
+    validationState: { type: "'valid' | 'invalid'", description: 'Marks the field invalid and reveals errorMessage.' },
+    value: { type: 'string', description: 'Controlled value.' },
+    defaultValue: { type: 'string', description: 'Value on first render, when uncontrolled.' },
+    onChange: { type: '(value: string) => void', description: 'Called on every edit.' },
+    placeholder: { type: 'string', description: 'Placeholder of the input.' },
+    size: { type: "'xs' | 'sm' | 'md' | 'lg' | 'xl'", default: "'md'", description: 'Height and font size of the input.' },
+    theme: { type: "'filled' | 'inline'", default: "'filled'", description: "'inline' drops the box and keeps a bottom border." },
+    ref: { type: 'Ref<HTMLInputElement>', description: 'Ref to the input element.' },
+    classes: {
+      type: 'Partial<Record<FieldPart, string>>',
+      description: 'Classes for the parts it renders: root, input, label, description, errorMessage.',
+    },
+  }}
+/>

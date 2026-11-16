@@ -1,0 +1,53 @@
+---
+title: TextArea
+description: A multi-line text input with a label, a description, and an error message.
+---
+
+<SolidDemo name="text-area" />
+
+## Usage
+
+```tsx
+import { createSignal } from 'solid-js';
+import { TextArea } from '@codeui/kit';
+
+export function SnippetEditor() {
+  const [code, setCode] = createSignal("const greeting = 'Hello CodeImage';");
+  return (
+    <TextArea
+      label="Snippet"
+      description="Paste the code to render."
+      placeholder="Paste your code"
+      value={code()}
+      onChange={setCode}
+    />
+  );
+}
+```
+
+## API
+
+`TextArea` wraps Kobalte's `TextField` root with a `TextField.TextArea` control.
+Kobalte's root props such as `name`, `disabled`, `readOnly`, and `required` pass through.
+It takes the same field props as [TextField](/docs/components/text-field).
+
+<TypeTable
+  type={{
+    label: { type: 'JSX.Element', description: 'Label above the textarea, linked to it.' },
+    description: { type: 'JSX.Element', description: 'Hint text under the textarea.' },
+    errorMessage: { type: 'JSX.Element', description: "Shown under the textarea when validationState is 'invalid'." },
+    validationState: { type: "'valid' | 'invalid'", description: 'Marks the field invalid and reveals errorMessage.' },
+    value: { type: 'string', description: 'Controlled value.' },
+    defaultValue: { type: 'string', description: 'Value on first render, when uncontrolled.' },
+    onChange: { type: '(value: string) => void', description: 'Called on every edit.' },
+    placeholder: { type: 'string', description: 'Placeholder of the textarea.' },
+    size: { type: "'xs' | 'sm' | 'md' | 'lg' | 'xl'", default: "'md'", description: 'Font size and padding.' },
+    theme: { type: "'filled' | 'inline'", default: "'filled'", description: "'inline' drops the box and keeps a bottom border." },
+    options: { type: 'TextFieldTextAreaProps', description: "Props for Kobalte's TextField.TextArea, such as autoResize and submitOnEnter." },
+    ref: { type: 'Ref<HTMLTextAreaElement>', description: 'Ref to the textarea element.' },
+    classes: {
+      type: 'Partial<Record<FieldPart, string>>',
+      description: 'Classes for the parts it renders: root, input, label, description, errorMessage.',
+    },
+  }}
+/>

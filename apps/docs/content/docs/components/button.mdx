@@ -1,0 +1,45 @@
+---
+title: Button
+description: A clickable action, styled by theme, size, and variant.
+---
+
+<SolidDemo name="button" />
+
+## Usage
+
+```tsx
+import { Button } from '@codeui/kit';
+
+export function ExportActions() {
+  return (
+    <>
+      <Button theme="primary">Export</Button>
+      <Button theme="secondary">Copy link</Button>
+      <Button theme="secondary" variant="ghost">
+        Reset theme
+      </Button>
+      <Button theme="primary" loading>
+        Exporting
+      </Button>
+    </>
+  );
+}
+```
+
+## API
+
+`Button` wraps Kobalte's `Button` root, so Kobalte's props such as `disabled` and `as` pass through.
+It renders a native `button` by default and sets `data-cui="button"`, `data-theme`, and `data-size` on it.
+
+<TypeTable
+  type={{
+    theme: { type: "'primary' | 'secondary' | 'tertiary' | 'negative' | 'caution'", description: 'Color scheme of the button.' },
+    size: { type: "'xs' | 'sm' | 'md' | 'lg' | 'xl'", default: "'md'", description: 'Height, padding, and font size.' },
+    variant: { type: "'ghost'", description: 'Transparent background. The border and theme text color appear on hover.' },
+    pill: { type: 'boolean', description: 'Fully rounded corners.' },
+    block: { type: 'boolean', description: 'Takes the full width of its container.' },
+    loading: { type: 'boolean', description: 'Shows a spinner, hides the label, and blocks pointer events.' },
+    leftIcon: { type: 'JSX.Element', description: 'Icon rendered before the label.' },
+    class: { type: 'string', description: 'Class merged after the kit styles.' },
+  }}
+/>

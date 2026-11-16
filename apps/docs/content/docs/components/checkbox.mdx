@@ -1,0 +1,47 @@
+---
+title: Checkbox
+description: A box that toggles a single option on or off.
+---
+
+<SolidDemo name="checkbox" />
+
+## Usage
+
+```tsx
+import { createSignal } from 'solid-js';
+import { Checkbox } from '@codeui/kit';
+
+export function FrameOptions() {
+  const [lineNumbers, setLineNumbers] = createSignal(true);
+  return (
+    <>
+      <Checkbox label="Show line numbers" checked={lineNumbers()} onChange={setLineNumbers} />
+      <Checkbox label="Show window header" description="Adds the title bar above the code." />
+      <Checkbox label="Transparent background" disabled />
+    </>
+  );
+}
+```
+
+## API
+
+`Checkbox` wraps Kobalte's `Checkbox` root and renders a hidden input, the control, the label, and the messages.
+Kobalte's root props such as `indeterminate`, `name`, `value`, `disabled`, and `required` pass through.
+
+<TypeTable
+  type={{
+    checked: { type: 'boolean', description: 'Controlled checked state.' },
+    defaultChecked: { type: 'boolean', description: 'Checked state on first render, when uncontrolled.' },
+    onChange: { type: '(checked: boolean) => void', description: 'Called when the box is toggled.' },
+    label: { type: 'JSX.Element', description: 'Text next to the box. Clicking it toggles the box.' },
+    description: { type: 'string', description: 'Hint text under the label.' },
+    errorMessage: { type: 'JSX.Element', description: "Shown under the label when validationState is 'invalid'." },
+    validationState: { type: "'valid' | 'invalid'", description: 'Marks the checkbox invalid and reveals errorMessage.' },
+    size: { type: "'xs' | 'sm' | 'md' | 'lg' | 'xl'", description: 'Size of the box.' },
+    ref: { type: 'Ref<HTMLInputElement>', description: 'Ref to the hidden input element.' },
+    slotClasses: {
+      type: 'Partial<Record<CheckBoxSlot, string>>',
+      description: 'Classes for the parts it renders: root, input, control, label, errorLabel.',
+    },
+  }}
+/>

@@ -1,0 +1,41 @@
+---
+title: Pagination
+description: A row of page buttons with previous and next controls.
+---
+
+<SolidDemo name="pagination" />
+
+## Usage
+
+```tsx
+import { createSignal } from 'solid-js';
+import { Pagination } from '@codeui/kit';
+
+export function SnippetPages() {
+  const [page, setPage] = createSignal(1);
+  return <Pagination pages={12} page={page()} onChange={setPage} />;
+}
+```
+
+## API
+
+`Pagination` renders a `nav` with one `IconButton` per page. The current page uses the primary theme.
+It is built on `createPagination` from `@solid-primitives/pagination`, not on Kobalte, so its options pass through.
+
+<TypeTable
+  type={{
+    pages: { type: 'number', description: 'Total number of pages.', required: true },
+    page: { type: 'number', description: 'Controlled current page, starting at 1.' },
+    initialPage: { type: 'number', default: '1', description: 'Page on first render, when uncontrolled.' },
+    onChange: { type: '(page: number) => void', description: 'Called when the page changes.' },
+    maxPages: { type: 'number', default: '5', description: 'Most page buttons shown at once.' },
+    size: { type: "'xs' | 'sm' | 'md' | 'lg' | 'xl'", default: "'md'", description: 'Size of the buttons.' },
+    rounded: { type: 'boolean', default: 'false', description: 'Pill shaped buttons.' },
+    showPrev: { type: 'boolean | ((page: number, pages: number) => boolean)', default: 'true', description: 'Shows the previous button.' },
+    showNext: { type: 'boolean | ((page: number, pages: number) => boolean)', default: 'true', description: 'Shows the next button.' },
+    showFirst: { type: 'boolean | ((page: number, pages: number) => boolean)', default: 'false', description: 'Shows a button for the first page.' },
+    showLast: { type: 'boolean | ((page: number, pages: number) => boolean)', default: 'false', description: 'Shows a button for the last page.' },
+    prevContent: { type: 'JSX.Element', description: 'Content of the previous button. Defaults to an arrow icon.' },
+    nextContent: { type: 'JSX.Element', description: 'Content of the next button. Defaults to an arrow icon.' },
+  }}
+/>

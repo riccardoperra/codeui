@@ -1,0 +1,47 @@
+---
+title: SegmentedControl
+description: A row of connected buttons for switching between a few exclusive options.
+---
+
+<SolidDemo name="segmented-control" />
+
+## Usage
+
+```tsx
+import { createSignal } from 'solid-js';
+import { SegmentedControl, SegmentedControlItem } from '@codeui/kit';
+
+export function ThemeMode() {
+  const [theme, setTheme] = createSignal('dark');
+  return (
+    <SegmentedControl value={theme()} onChange={setTheme}>
+      <SegmentedControlItem value="light">Light</SegmentedControlItem>
+      <SegmentedControlItem value="dark">Dark</SegmentedControlItem>
+      <SegmentedControlItem value="system">System</SegmentedControlItem>
+    </SegmentedControl>
+  );
+}
+```
+
+## API
+
+`SegmentedControl` renders the list and a sliding indicator under the selected item. Each option is a `SegmentedControlItem`.
+It wraps Kobalte's `Tabs` with manual activation and a fixed horizontal orientation, so Kobalte's root props such as `disabled` pass through.
+`SegmentedControlItem` wraps `Tabs.Trigger` and takes its props, such as `value` and `disabled`.
+
+<TypeTable
+  type={{
+    value: { type: 'string', description: 'Controlled selected value.' },
+    defaultValue: { type: 'string', description: 'Selected value on first render, when uncontrolled.' },
+    onChange: { type: '(value: string) => void', description: 'Called when the selection changes.' },
+    size: { type: "'xs' | 'sm' | 'md' | 'lg' | 'xl'", default: "'md'", description: 'Height and padding of the control.' },
+    variant: { type: "'solid' | 'bordered'", default: "'solid'", description: 'Filled background or outline.' },
+    theme: { type: "'neutral' | 'primary'", default: "'neutral'", description: 'Color of the selected item.' },
+    pill: { type: 'boolean', description: 'Fully rounded corners.' },
+    fluid: { type: 'boolean', description: 'Stretches to the width of the container.' },
+    autoWidth: { type: 'boolean', description: 'Sizes each item to its content instead of equal widths.' },
+    classes: { type: 'SegmentedControlClasses', description: 'Classes for root, list, indicator, item.' },
+    slotClasses: { type: "Partial<Record<'root' | 'list' | 'indicator', string>>", description: 'Deprecated alias of classes. Removed in 1.0.' },
+    onEscapeKeyDown: { type: '(event: KeyboardEvent) => void', description: 'Called on Escape inside the control.' },
+  }}
+/>

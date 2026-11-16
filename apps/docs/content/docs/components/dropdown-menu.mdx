@@ -1,0 +1,82 @@
+---
+title: DropdownMenu
+description: A menu of actions that opens from a trigger button.
+---
+
+<SolidDemo name="dropdown-menu" />
+
+## Usage
+
+```tsx
+import {
+  Button,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuPortal,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+  DropdownSubMenu,
+  DropdownSubMenuContent,
+  DropdownSubMenuTrigger,
+} from '@codeui/kit';
+
+export function ExportMenu() {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger as={Button} theme="secondary">
+        Export
+      </DropdownMenuTrigger>
+      <DropdownMenuPortal>
+        <DropdownMenuContent>
+          <DropdownMenuItem rightSlot="⌘S">Save as PNG</DropdownMenuItem>
+          <DropdownMenuItem rightSlot="⇧⌘S">Save as SVG</DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownSubMenu>
+            <DropdownSubMenuTrigger rightSlot="›">Copy</DropdownSubMenuTrigger>
+            <DropdownMenuPortal>
+              <DropdownSubMenuContent>
+                <DropdownMenuItem>Copy image</DropdownMenuItem>
+                <DropdownMenuItem>Copy link</DropdownMenuItem>
+                <DropdownMenuItem>Copy embed code</DropdownMenuItem>
+              </DropdownSubMenuContent>
+            </DropdownMenuPortal>
+          </DropdownSubMenu>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem disabled>Export as video</DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenuPortal>
+    </DropdownMenu>
+  );
+}
+```
+
+## API
+
+DropdownMenu is a compound component. Each piece wraps the matching Kobalte `DropdownMenu` part and takes its props.
+Handle a click with `onSelect` on the item.
+
+| Export | Wraps | Role |
+| --- | --- | --- |
+| `DropdownMenu` | `DropdownMenu` | Root. Holds the open state. Default `gutter` of 6. |
+| `DropdownMenuTrigger` | `DropdownMenu.Trigger` | Opens the menu. Use `as={Button}` for a kit button. |
+| `DropdownMenuPortal` | `DropdownMenu.Portal` | Portals the menu or a submenu to `document.body`. |
+| `DropdownMenuContent` | `DropdownMenu.Content` | The menu panel. |
+| `DropdownMenuItem` | `DropdownMenu.Item` | One action. Takes `rightSlot`. |
+| `DropdownMenuSeparator` | `DropdownMenu.Separator` | Line between groups. |
+| `DropdownSubMenu` | `DropdownMenu.Sub` | Root of a nested menu. |
+| `DropdownSubMenuTrigger` | `DropdownMenu.SubTrigger` | Item that opens the nested menu. Takes `rightSlot`. |
+| `DropdownSubMenuContent` | `DropdownMenu.SubContent` | The nested menu panel. |
+
+The root accepts Kobalte's root props such as `open`, `onOpenChange`, `placement`, and `modal`.
+
+<TypeTable
+  type={{
+    open: { type: 'boolean', description: 'Controlled open state of the root.' },
+    onOpenChange: { type: '(open: boolean) => void', description: 'Called when the menu opens or closes.' },
+    gutter: { type: 'number', default: '6', description: 'Distance between the trigger and the menu, on the root.' },
+    rightSlot: { type: 'JSX.Element', description: 'Content aligned to the right of an item or a submenu trigger, such as a shortcut or an arrow.' },
+    onSelect: { type: '() => void', description: 'Called when an item is chosen.' },
+    disabled: { type: 'boolean', description: 'Disables an item or a submenu trigger.' },
+  }}
+/>

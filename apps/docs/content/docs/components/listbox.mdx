@@ -1,0 +1,51 @@
+---
+title: Listbox
+description: An inline list of options with single or multiple selection.
+---
+
+<SolidDemo name="listbox" />
+
+## Usage
+
+```tsx
+import { Listbox } from '@codeui/kit';
+
+const languages = ['TypeScript', 'Rust', 'Python', 'Go'];
+
+export function LanguageList() {
+  return (
+    <Listbox
+      aria-label="Language"
+      options={languages}
+      defaultValue={['TypeScript']}
+      selectionMode="single"
+      size="sm"
+      bordered
+    />
+  );
+}
+```
+
+## API
+
+`Listbox` wraps Kobalte's `Listbox` and renders each option as a `ListboxItem` with a check indicator.
+Kobalte's props such as `selectionMode`, `disallowEmptySelection`, `optionValue`, and `optionTextValue` pass through.
+Items take focus on hover. For long lists, use `VirtualizedListbox`.
+
+<TypeTable
+  type={{
+    options: { type: 'Option[]', description: 'Items of the list. Strings work as is. Objects need optionValue and optionTextValue.' },
+    value: { type: 'Iterable<string>', description: 'Controlled set of selected keys.' },
+    defaultValue: { type: 'Iterable<string>', description: 'Selected keys on first render, when uncontrolled.' },
+    onChange: { type: '(value: Set<string>) => void', description: 'Called when the selection changes.' },
+    selectionMode: { type: "'none' | 'single' | 'multiple'", description: 'How many items can be selected.' },
+    size: { type: "'xs' | 'sm' | 'md'", description: 'Height of each item.' },
+    theme: { type: "'primary' | 'neutral'", default: "'neutral'", description: 'Color of the selected item.' },
+    bordered: { type: 'boolean', description: 'Draws a border around the list.' },
+    itemLabel: { type: '(item: Option) => JSX.Element', description: 'Renders the label of each item.' },
+    classes: {
+      type: 'Partial<Record<ListboxPart, string>>',
+      description: 'Classes for the parts it renders: root, item, itemLabel, itemIndicator.',
+    },
+  }}
+/>

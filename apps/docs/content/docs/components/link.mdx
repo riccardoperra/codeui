@@ -1,0 +1,41 @@
+---
+title: Link
+description: An anchor styled for the kit, with an underline variant and a disabled state.
+---
+
+<SolidDemo name="link" />
+
+## Usage
+
+```tsx
+import { Link } from '@codeui/kit';
+
+export function FooterLinks() {
+  return (
+    <>
+      <Link href="https://codeimage.dev" target="_blank">
+        Open CodeImage
+      </Link>
+      <Link href="https://github.com/riccardoperra/codeui" target="_blank" variant="underline">
+        View source
+      </Link>
+      <Link href="#" disabled>
+        Export history
+      </Link>
+    </>
+  );
+}
+```
+
+## API
+
+`Link` renders an `a` element. It wraps Kobalte's `Link`, so Kobalte's props and the anchor attributes such as `href` and `target` pass through.
+Use `as` to render a router link instead.
+
+<TypeTable
+  type={{
+    variant: { type: "'underline'", description: 'Underlines the link on hover.' },
+    disabled: { type: 'boolean', description: 'Makes the link inert and sets aria-disabled.' },
+    as: { type: 'ValidComponent', default: "'a'", description: 'Element or component to render.' },
+  }}
+/>
