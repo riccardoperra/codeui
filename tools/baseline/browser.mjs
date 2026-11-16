@@ -20,11 +20,16 @@ export async function open(browser,story,theme){
   const observer=new MutationObserver(()=>{if(document.documentElement?.getAttribute('data-cui-theme')!==theme)apply()});
   observer.observe(document,{childList:true,subtree:true,attributes:true,attributeFilter:['data-cui-theme']});apply();
  },theme);
+ await context.addInitScript(()=>{
+  const events=window.__BASELINE_STORYBOOK_EVENTS__=[];let channel;
+  Object.defineProperty(window,'__STORYBOOK_ADDONS_CHANNEL__',{configurable:true,get:()=>channel,set(value){channel=value;for(const name of ['storyFinished','docsRendered','storyErrored','storyThrewException','storyMissing'])value.on(name,payload=>events.push({name,payload:payload instanceof Error?payload.message:payload}));}});
+ });
  await context.route('**/*',route=>new URL(route.request().url()).origin===new URL(base).origin?route.continue():route.request().resourceType()==='stylesheet'?route.fulfill({status:200,contentType:'text/css',body:''}):route.abort());
  try {
  const page=await context.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
  await page.goto(`${base}/iframe.html?id=${encodeURIComponent(story.id)}&viewMode=${story.type==='docs'?'docs':'story'}`,{waitUntil:'networkidle',timeout:15000});
- await page.waitForFunction(()=>document.querySelector('#storybook-root')?.children.length||document.querySelector('#storybook-docs')?.children.length||document.querySelector('.sb-errordisplay'),null,{timeout:10000});
+ const settled=await page.waitForFunction(({id,type})=>{const events=window.__BASELINE_STORYBOOK_EVENTS__;const failed=events.filter(e=>!['storyFinished','docsRendered'].includes(e.name));if(failed.length)return failed;return events.some(e=>type==='docs'?e.name==='docsRendered'&&e.payload===id:e.name==='storyFinished'&&e.payload?.storyId===id)&&[];},{id:story.id,type:story.type},{timeout:15000});
+ for(const event of await settled.jsonValue())errors.push(`${event.name}: ${JSON.stringify(event.payload)}`);
  if(story.type==='docs'){
   await page.waitForFunction(()=>[...document.querySelectorAll('[id^="story--"][id$="-inner"]')].every(el=>el.children.length>0)&&window.__STORYBOOK_PREVIEW__.storyRenders.every(render=>render.phase==='finished'));
   await page.waitForLoadState('networkidle');
