@@ -75,6 +75,62 @@
 				"default": "./dist/cjs/parts/popover.cjs"
 			}
 		},
+		"./kbd": {
+			"solid": {
+				"types": "./dist/types/parts/kbd.d.ts",
+				"default": "./dist/source/parts/kbd.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/kbd.d.ts",
+				"default": "./dist/esm/parts/kbd.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/kbd.d.cts",
+				"default": "./dist/cjs/parts/kbd.cjs"
+			}
+		},
+		"./badge": {
+			"solid": {
+				"types": "./dist/types/parts/badge.d.ts",
+				"default": "./dist/source/parts/badge.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/badge.d.ts",
+				"default": "./dist/esm/parts/badge.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/badge.d.cts",
+				"default": "./dist/cjs/parts/badge.cjs"
+			}
+		},
+		"./spinner": {
+			"solid": {
+				"types": "./dist/types/parts/spinner.d.ts",
+				"default": "./dist/source/parts/spinner.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/spinner.d.ts",
+				"default": "./dist/esm/parts/spinner.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/spinner.d.cts",
+				"default": "./dist/cjs/parts/spinner.cjs"
+			}
+		},
+		"./skeleton": {
+			"solid": {
+				"types": "./dist/types/parts/skeleton.d.ts",
+				"default": "./dist/source/parts/skeleton.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/skeleton.d.ts",
+				"default": "./dist/esm/parts/skeleton.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/skeleton.d.cts",
+				"default": "./dist/cjs/parts/skeleton.cjs"
+			}
+		},
 		"./package.json": "./package.json"
 	},
 	"typesVersions": {
@@ -84,6 +140,18 @@
 			],
 			"popover": [
 				"dist/types/parts/popover.d.ts"
+			],
+			"kbd": [
+				"dist/types/parts/kbd.d.ts"
+			],
+			"badge": [
+				"dist/types/parts/badge.d.ts"
+			],
+			"spinner": [
+				"dist/types/parts/spinner.d.ts"
+			],
+			"skeleton": [
+				"dist/types/parts/skeleton.d.ts"
 			]
 		}
 	},

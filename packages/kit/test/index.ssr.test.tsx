@@ -1,3 +1,7 @@
+import { Badge } from "../src/components/Badge/Badge";
+import { Kbd } from "../src/components/Kbd/Kbd";
+import { Skeleton } from "../src/components/Skeleton/Skeleton";
+import { Spinner } from "../src/components/Spinner/Spinner";
 import { TextArea } from "../src/components/TextArea/TextArea";
 import { NumberField } from "../src/components/NumberField/NumberField";
 import { renderToString } from "solid-js/web";
@@ -25,3 +29,26 @@ it.each([TextField, TextArea, NumberField])(
 		expect(labelFor).toBe(inputId);
 	},
 );
+
+it("server-renders a labelled spinner as a named status", () => {
+	const html = renderToString(() => <Spinner label="Loading" />);
+	expect(html).toMatch(/<svg[^>]*role="status"/);
+	expect(html).toMatch(/<svg[^>]*aria-label="Loading"/);
+});
+
+it("server-renders a skeleton hidden from assistive technology", () => {
+	const html = renderToString(() => <Skeleton width="8rem" height="1rem" />);
+	expect(html).toMatch(/aria-hidden="true"/);
+	expect(html).toContain("width:8rem");
+});
+
+it("server-renders the badge and key labels", () => {
+	const html = renderToString(() => (
+		<>
+			<Badge>Default</Badge>
+			<Kbd>⌘K</Kbd>
+		</>
+	));
+	expect(html).toContain("Default");
+	expect(html).toMatch(/<kbd[^>]*>⌘K<\/kbd>/);
+});
