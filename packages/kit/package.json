@@ -90,11 +90,12 @@
 	"scripts": {
 		"dev": "pnpm run build -w",
 		"build": "rollup -c rollup.config.js",
-		"test": "pnpm run test:client && pnpm run test:ssr",
+		"test": "pnpm run test:client && pnpm run test:ssr && pnpm run test:tokens-consumer",
 		"test:client": "jest --config jest.config.ts",
 		"test:ssr": "jest --config jest.config.ssr.ts",
 		"typecheck": "tsc --noEmit",
-		"prepublish": "pnpm build"
+		"prepublish": "pnpm build",
+		"test:tokens-consumer": "pnpm run build && node fixtures/tokens-consumer/check.mjs"
 	},
 	"devDependencies": {
 		"@codeui/vanilla-extract": "workspace:*",
