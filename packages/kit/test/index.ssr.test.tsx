@@ -40,5 +40,5 @@ it("server renders Stack tokens and semantic Text content", () => {
 	expect(html).toContain("--cui-stack-gap:var(--cui-space-4)");
 	expect(html).toContain('data-justify="between"');
 	expect(html).toContain("<h2");
-	expect(html).toContain("<em>Export</em>");
+	expect(html).toMatch(/<em[^>]*>Export<\/em>/);
 });
