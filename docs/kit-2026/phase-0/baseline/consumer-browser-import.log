@@ -1,0 +1,20 @@
+/Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/node_modules/.pnpm/@vanilla-extract+css@1.15.5/node_modules/@vanilla-extract/css/fileScope/dist/vanilla-extract-css-fileScope.browser.cjs.js:35
+    throw new Error(dedent__default["default"](_templateObject || (_templateObject = taggedTemplateLiteral._taggedTemplateLiteral(["\n        Styles were unable to be assigned to a file. This is generally caused by one of the following:\n\n        - You may have created styles outside of a '.css.ts' context\n        - You may have incorrect configuration. See https://vanilla-extract.style/documentation/getting-started\n      "]))));
+          ^
+
+Error: Styles were unable to be assigned to a file. This is generally caused by one of the following:
+
+- You may have created styles outside of a '.css.ts' context
+- You may have incorrect configuration. See https://vanilla-extract.style/documentation/getting-started
+    at Object.getFileScope (/Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/node_modules/.pnpm/@vanilla-extract+css@1.15.5/node_modules/@vanilla-extract/css/fileScope/dist/vanilla-extract-css-fileScope.browser.cjs.js:35:11)
+    at generateIdentifier (/Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/node_modules/.pnpm/@vanilla-extract+css@1.15.5/node_modules/@vanilla-extract/css/dist/vanilla-extract-css.browser.cjs.js:155:49)
+    at createVar (/Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/node_modules/.pnpm/@vanilla-extract+css@1.15.5/node_modules/@vanilla-extract/css/dist/vanilla-extract-css.browser.cjs.js:232:47)
+    at /Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/node_modules/.pnpm/@vanilla-extract+css@1.15.5/node_modules/@vanilla-extract/css/dist/vanilla-extract-css.browser.cjs.js:273:12
+    at Object.walkObject (/Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/node_modules/.pnpm/@vanilla-extract+private@1.0.6/node_modules/@vanilla-extract/private/dist/vanilla-extract-private.cjs.dev.js:31:20)
+    at createThemeContract (/Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/node_modules/.pnpm/@vanilla-extract+css@1.15.5/node_modules/@vanilla-extract/css/dist/vanilla-extract-css.browser.cjs.js:272:19)
+    at file:///Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/packages/kit/dist/esm/foundation/contract.css.js:3:14
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async importModuleDynamicallyWrapper (node:internal/vm/module:525:15)
+
+Node.js v26.5.0

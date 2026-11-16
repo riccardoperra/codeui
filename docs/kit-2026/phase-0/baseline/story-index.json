@@ -1,0 +1,1697 @@
+{
+  "v": 5,
+  "entries": {
+    "configure-your-project--docs": {
+      "id": "configure-your-project--docs",
+      "title": "Configure your project",
+      "name": "Docs",
+      "importPath": "./src/stories/Configure.mdx",
+      "storiesImports": [],
+      "type": "docs",
+      "tags": [
+        "dev",
+        "test",
+        "unattached-mdx"
+      ]
+    },
+    "designsystem-button--docs": {
+      "id": "designsystem-button--docs",
+      "title": "DesignSystem/Button",
+      "name": "Docs",
+      "importPath": "./src/stories/Button.stories.tsx",
+      "type": "docs",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ],
+      "storiesImports": []
+    },
+    "designsystem-button--primary": {
+      "type": "story",
+      "id": "designsystem-button--primary",
+      "name": "Primary",
+      "title": "DesignSystem/Button",
+      "importPath": "./src/stories/Button.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-button--secondary": {
+      "type": "story",
+      "id": "designsystem-button--secondary",
+      "name": "Secondary",
+      "title": "DesignSystem/Button",
+      "importPath": "./src/stories/Button.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-button--tertiary": {
+      "type": "story",
+      "id": "designsystem-button--tertiary",
+      "name": "Tertiary",
+      "title": "DesignSystem/Button",
+      "importPath": "./src/stories/Button.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-button--caution": {
+      "type": "story",
+      "id": "designsystem-button--caution",
+      "name": "Caution",
+      "title": "DesignSystem/Button",
+      "importPath": "./src/stories/Button.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-button--negative": {
+      "type": "story",
+      "id": "designsystem-button--negative",
+      "name": "Negative",
+      "title": "DesignSystem/Button",
+      "importPath": "./src/stories/Button.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-button--disabled": {
+      "type": "story",
+      "id": "designsystem-button--disabled",
+      "name": "Disabled",
+      "title": "DesignSystem/Button",
+      "importPath": "./src/stories/Button.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-button--sizes": {
+      "type": "story",
+      "id": "designsystem-button--sizes",
+      "name": "Sizes",
+      "title": "DesignSystem/Button",
+      "importPath": "./src/stories/Button.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-button--with-left-icon": {
+      "type": "story",
+      "id": "designsystem-button--with-left-icon",
+      "name": "With Left Icon",
+      "title": "DesignSystem/Button",
+      "importPath": "./src/stories/Button.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-button--pill": {
+      "type": "story",
+      "id": "designsystem-button--pill",
+      "name": "Pill",
+      "title": "DesignSystem/Button",
+      "importPath": "./src/stories/Button.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-button--ghost": {
+      "type": "story",
+      "id": "designsystem-button--ghost",
+      "name": "Ghost",
+      "title": "DesignSystem/Button",
+      "importPath": "./src/stories/Button.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-button--loading": {
+      "type": "story",
+      "id": "designsystem-button--loading",
+      "name": "Loading",
+      "title": "DesignSystem/Button",
+      "importPath": "./src/stories/Button.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-checkbox--docs": {
+      "id": "designsystem-checkbox--docs",
+      "title": "DesignSystem/Checkbox",
+      "name": "Docs",
+      "importPath": "./src/stories/Checkbox.stories.tsx",
+      "type": "docs",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ],
+      "storiesImports": []
+    },
+    "designsystem-checkbox--checkbox-story": {
+      "type": "story",
+      "id": "designsystem-checkbox--checkbox-story",
+      "name": "Checkbox",
+      "title": "DesignSystem/Checkbox",
+      "importPath": "./src/stories/Checkbox.stories.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-checkbox--sizes": {
+      "type": "story",
+      "id": "designsystem-checkbox--sizes",
+      "name": "Sizes",
+      "title": "DesignSystem/Checkbox",
+      "importPath": "./src/stories/Checkbox.stories.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-checkbox--validation": {
+      "type": "story",
+      "id": "designsystem-checkbox--validation",
+      "name": "Validation",
+      "title": "DesignSystem/Checkbox",
+      "importPath": "./src/stories/Checkbox.stories.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-dialog--docs": {
+      "id": "designsystem-dialog--docs",
+      "title": "DesignSystem/Dialog",
+      "name": "Docs",
+      "importPath": "./src/stories/Dialog.stories.tsx",
+      "type": "docs",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ],
+      "storiesImports": []
+    },
+    "designsystem-dialog--sizes": {
+      "type": "story",
+      "id": "designsystem-dialog--sizes",
+      "name": "Sizes",
+      "title": "DesignSystem/Dialog",
+      "importPath": "./src/stories/Dialog.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-dialog--overflow-content": {
+      "type": "story",
+      "id": "designsystem-dialog--overflow-content",
+      "name": "Overflow Content",
+      "title": "DesignSystem/Dialog",
+      "importPath": "./src/stories/Dialog.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-dropdownmenu--docs": {
+      "id": "designsystem-dropdownmenu--docs",
+      "title": "DesignSystem/DropdownMenu",
+      "name": "Docs",
+      "importPath": "./src/stories/DropdownMenu.stories.tsx",
+      "type": "docs",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ],
+      "storiesImports": []
+    },
+    "designsystem-dropdownmenu--dropdown-menu-story": {
+      "type": "story",
+      "id": "designsystem-dropdownmenu--dropdown-menu-story",
+      "name": "DropdownMenu",
+      "title": "DesignSystem/DropdownMenu",
+      "importPath": "./src/stories/DropdownMenu.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-dropdownmenu--dropdown-menu-nested-story": {
+      "type": "story",
+      "id": "designsystem-dropdownmenu--dropdown-menu-nested-story",
+      "name": "DropdownMenu Nested",
+      "title": "DesignSystem/DropdownMenu",
+      "importPath": "./src/stories/DropdownMenu.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-iconbutton--docs": {
+      "id": "designsystem-iconbutton--docs",
+      "title": "DesignSystem/IconButton",
+      "name": "Docs",
+      "importPath": "./src/stories/IconButton.stories.tsx",
+      "type": "docs",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ],
+      "storiesImports": []
+    },
+    "designsystem-iconbutton--primary": {
+      "type": "story",
+      "id": "designsystem-iconbutton--primary",
+      "name": "Primary",
+      "title": "DesignSystem/IconButton",
+      "importPath": "./src/stories/IconButton.stories.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-iconbutton--secondary": {
+      "type": "story",
+      "id": "designsystem-iconbutton--secondary",
+      "name": "Secondary",
+      "title": "DesignSystem/IconButton",
+      "importPath": "./src/stories/IconButton.stories.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-iconbutton--tertiary": {
+      "type": "story",
+      "id": "designsystem-iconbutton--tertiary",
+      "name": "Tertiary",
+      "title": "DesignSystem/IconButton",
+      "importPath": "./src/stories/IconButton.stories.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-iconbutton--caution": {
+      "type": "story",
+      "id": "designsystem-iconbutton--caution",
+      "name": "Caution",
+      "title": "DesignSystem/IconButton",
+      "importPath": "./src/stories/IconButton.stories.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-iconbutton--negative": {
+      "type": "story",
+      "id": "designsystem-iconbutton--negative",
+      "name": "Negative",
+      "title": "DesignSystem/IconButton",
+      "importPath": "./src/stories/IconButton.stories.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-iconbutton--disabled": {
+      "type": "story",
+      "id": "designsystem-iconbutton--disabled",
+      "name": "Disabled",
+      "title": "DesignSystem/IconButton",
+      "importPath": "./src/stories/IconButton.stories.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-iconbutton--sizes": {
+      "type": "story",
+      "id": "designsystem-iconbutton--sizes",
+      "name": "Sizes",
+      "title": "DesignSystem/IconButton",
+      "importPath": "./src/stories/IconButton.stories.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-iconbutton--pill": {
+      "type": "story",
+      "id": "designsystem-iconbutton--pill",
+      "name": "Pill",
+      "title": "DesignSystem/IconButton",
+      "importPath": "./src/stories/IconButton.stories.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-iconbutton--loading": {
+      "type": "story",
+      "id": "designsystem-iconbutton--loading",
+      "name": "Loading",
+      "title": "DesignSystem/IconButton",
+      "importPath": "./src/stories/IconButton.stories.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-icons--docs": {
+      "id": "designsystem-icons--docs",
+      "title": "DesignSystem/Icons",
+      "name": "Docs",
+      "importPath": "./src/stories/Icons.stories.tsx",
+      "type": "docs",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ],
+      "storiesImports": []
+    },
+    "designsystem-icons--all-icons": {
+      "type": "story",
+      "id": "designsystem-icons--all-icons",
+      "name": "All Exported Icons",
+      "title": "DesignSystem/Icons",
+      "importPath": "./src/stories/Icons.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-icons--custom-size-icon": {
+      "type": "story",
+      "id": "designsystem-icons--custom-size-icon",
+      "name": "Custom size icon",
+      "title": "DesignSystem/Icons",
+      "importPath": "./src/stories/Icons.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-link--docs": {
+      "id": "designsystem-link--docs",
+      "title": "DesignSystem/Link",
+      "name": "Docs",
+      "importPath": "./src/stories/Link.stories.tsx",
+      "type": "docs",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ],
+      "storiesImports": []
+    },
+    "designsystem-link--link-story": {
+      "type": "story",
+      "id": "designsystem-link--link-story",
+      "name": "Link",
+      "title": "DesignSystem/Link",
+      "importPath": "./src/stories/Link.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-link--link-variant-underline": {
+      "type": "story",
+      "id": "designsystem-link--link-variant-underline",
+      "name": "Underline",
+      "title": "DesignSystem/Link",
+      "importPath": "./src/stories/Link.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-link--link-disabled": {
+      "type": "story",
+      "id": "designsystem-link--link-disabled",
+      "name": "Disabled",
+      "title": "DesignSystem/Link",
+      "importPath": "./src/stories/Link.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-listbox--docs": {
+      "id": "designsystem-listbox--docs",
+      "title": "DesignSystem/Listbox",
+      "name": "Docs",
+      "importPath": "./src/stories/Listbox.stories.tsx",
+      "type": "docs",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ],
+      "storiesImports": []
+    },
+    "designsystem-listbox--listbox-story": {
+      "type": "story",
+      "id": "designsystem-listbox--listbox-story",
+      "name": "Listbox",
+      "title": "DesignSystem/Listbox",
+      "importPath": "./src/stories/Listbox.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-listbox--listbox-multiple": {
+      "type": "story",
+      "id": "designsystem-listbox--listbox-multiple",
+      "name": "Listbox (Multiple)",
+      "title": "DesignSystem/Listbox",
+      "importPath": "./src/stories/Listbox.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-listbox--listbox-xs": {
+      "type": "story",
+      "id": "designsystem-listbox--listbox-xs",
+      "name": "Listbox - Extra Small Size",
+      "title": "DesignSystem/Listbox",
+      "importPath": "./src/stories/Listbox.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-listbox--listbox-sm": {
+      "type": "story",
+      "id": "designsystem-listbox--listbox-sm",
+      "name": "Listbox - Small Size",
+      "title": "DesignSystem/Listbox",
+      "importPath": "./src/stories/Listbox.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-listbox--listbox-medium": {
+      "type": "story",
+      "id": "designsystem-listbox--listbox-medium",
+      "name": "Listbox - Medium Size",
+      "title": "DesignSystem/Listbox",
+      "importPath": "./src/stories/Listbox.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-listbox--listbox-bordered": {
+      "type": "story",
+      "id": "designsystem-listbox--listbox-bordered",
+      "name": "Listbox - Bordered",
+      "title": "DesignSystem/Listbox",
+      "importPath": "./src/stories/Listbox.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-listbox--listbox-option-with-custom-item-label": {
+      "type": "story",
+      "id": "designsystem-listbox--listbox-option-with-custom-item-label",
+      "name": "Listbox - Custom Item Label",
+      "title": "DesignSystem/Listbox",
+      "importPath": "./src/stories/Listbox.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-listbox--listbox-virtualized": {
+      "type": "story",
+      "id": "designsystem-listbox--listbox-virtualized",
+      "name": "Listbox Virtualized",
+      "title": "DesignSystem/Listbox",
+      "importPath": "./src/stories/Listbox.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-numberfield--docs": {
+      "id": "designsystem-numberfield--docs",
+      "title": "DesignSystem/NumberField",
+      "name": "Docs",
+      "importPath": "./src/stories/NumberField.stories.tsx",
+      "type": "docs",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ],
+      "storiesImports": []
+    },
+    "designsystem-numberfield--text-field-story": {
+      "type": "story",
+      "id": "designsystem-numberfield--text-field-story",
+      "name": "NumberField",
+      "title": "DesignSystem/NumberField",
+      "importPath": "./src/stories/NumberField.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-numberfield--min-max": {
+      "type": "story",
+      "id": "designsystem-numberfield--min-max",
+      "name": "NumberField with min/max value",
+      "title": "DesignSystem/NumberField",
+      "importPath": "./src/stories/NumberField.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-numberfield--precision": {
+      "type": "story",
+      "id": "designsystem-numberfield--precision",
+      "name": "NumberField with custom precision",
+      "title": "DesignSystem/NumberField",
+      "importPath": "./src/stories/NumberField.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-numberfield--step": {
+      "type": "story",
+      "id": "designsystem-numberfield--step",
+      "name": "NumberField with steps",
+      "title": "DesignSystem/NumberField",
+      "importPath": "./src/stories/NumberField.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-numberfield--prefix": {
+      "type": "story",
+      "id": "designsystem-numberfield--prefix",
+      "name": "NumberField with prefix",
+      "title": "DesignSystem/NumberField",
+      "importPath": "./src/stories/NumberField.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-numberfield--postfix": {
+      "type": "story",
+      "id": "designsystem-numberfield--postfix",
+      "name": "NumberField with postfix",
+      "title": "DesignSystem/NumberField",
+      "importPath": "./src/stories/NumberField.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-numberfield--number-field-filled-variant": {
+      "type": "story",
+      "id": "designsystem-numberfield--number-field-filled-variant",
+      "name": "Filled variant",
+      "title": "DesignSystem/NumberField",
+      "importPath": "./src/stories/NumberField.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-numberfield--number-field-outline-variant": {
+      "type": "story",
+      "id": "designsystem-numberfield--number-field-outline-variant",
+      "name": "Outline variant",
+      "title": "DesignSystem/NumberField",
+      "importPath": "./src/stories/NumberField.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-numberfield--number-field-inline-variant": {
+      "type": "story",
+      "id": "designsystem-numberfield--number-field-inline-variant",
+      "name": "Inline variant",
+      "title": "DesignSystem/NumberField",
+      "importPath": "./src/stories/NumberField.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-numberfield--number-field-disabled": {
+      "type": "story",
+      "id": "designsystem-numberfield--number-field-disabled",
+      "name": "Disabled",
+      "title": "DesignSystem/NumberField",
+      "importPath": "./src/stories/NumberField.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-numberfield--number-field-readonly": {
+      "type": "story",
+      "id": "designsystem-numberfield--number-field-readonly",
+      "name": "Readonly",
+      "title": "DesignSystem/NumberField",
+      "importPath": "./src/stories/NumberField.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-numberfield--number-field-required": {
+      "type": "story",
+      "id": "designsystem-numberfield--number-field-required",
+      "name": "Required",
+      "title": "DesignSystem/NumberField",
+      "importPath": "./src/stories/NumberField.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-numberfield--sizes": {
+      "type": "story",
+      "id": "designsystem-numberfield--sizes",
+      "name": "Sizes",
+      "title": "DesignSystem/NumberField",
+      "importPath": "./src/stories/NumberField.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-numberfield--validation": {
+      "type": "story",
+      "id": "designsystem-numberfield--validation",
+      "name": "Validation",
+      "title": "DesignSystem/NumberField",
+      "importPath": "./src/stories/NumberField.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-pagination--docs": {
+      "id": "designsystem-pagination--docs",
+      "title": "DesignSystem/Pagination",
+      "name": "Docs",
+      "importPath": "./src/stories/Pagination.stories.tsx",
+      "type": "docs",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ],
+      "storiesImports": []
+    },
+    "designsystem-pagination--pagination-story": {
+      "type": "story",
+      "id": "designsystem-pagination--pagination-story",
+      "name": "Pagination",
+      "title": "DesignSystem/Pagination",
+      "importPath": "./src/stories/Pagination.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-pagination--pagination-rounded-story": {
+      "type": "story",
+      "id": "designsystem-pagination--pagination-rounded-story",
+      "name": "Pagination (Rounded)",
+      "title": "DesignSystem/Pagination",
+      "importPath": "./src/stories/Pagination.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-pagination--pagination-sizes": {
+      "type": "story",
+      "id": "designsystem-pagination--pagination-sizes",
+      "name": "Sizes",
+      "title": "DesignSystem/Pagination",
+      "importPath": "./src/stories/Pagination.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-popover--docs": {
+      "id": "designsystem-popover--docs",
+      "title": "DesignSystem/Popover",
+      "name": "Docs",
+      "importPath": "./src/stories/Popover.stories.tsx",
+      "type": "docs",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ],
+      "storiesImports": []
+    },
+    "designsystem-popover--popover-story": {
+      "type": "story",
+      "id": "designsystem-popover--popover-story",
+      "name": "Popover",
+      "title": "DesignSystem/Popover",
+      "importPath": "./src/stories/Popover.stories.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-popover--popover-bordered": {
+      "type": "story",
+      "id": "designsystem-popover--popover-bordered",
+      "name": "Popover Bordered",
+      "title": "DesignSystem/Popover",
+      "importPath": "./src/stories/Popover.stories.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-popover--custom-position": {
+      "type": "story",
+      "id": "designsystem-popover--custom-position",
+      "name": "Custom Position",
+      "title": "DesignSystem/Popover",
+      "importPath": "./src/stories/Popover.stories.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-radiolist--docs": {
+      "id": "designsystem-radiolist--docs",
+      "title": "DesignSystem/RadioList",
+      "name": "Docs",
+      "importPath": "./src/stories/RadioList.stories.tsx",
+      "type": "docs",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ],
+      "storiesImports": []
+    },
+    "designsystem-radiolist--default": {
+      "type": "story",
+      "id": "designsystem-radiolist--default",
+      "name": "Default",
+      "title": "DesignSystem/RadioList",
+      "importPath": "./src/stories/RadioList.stories.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-radiolist--radio-list-horizontal": {
+      "type": "story",
+      "id": "designsystem-radiolist--radio-list-horizontal",
+      "name": "Radio List Horizontal",
+      "title": "DesignSystem/RadioList",
+      "importPath": "./src/stories/RadioList.stories.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-radiolist--radio-list-vertical": {
+      "type": "story",
+      "id": "designsystem-radiolist--radio-list-vertical",
+      "name": "Radio List Vertical",
+      "title": "DesignSystem/RadioList",
+      "importPath": "./src/stories/RadioList.stories.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-radiolist--sizes": {
+      "type": "story",
+      "id": "designsystem-radiolist--sizes",
+      "name": "Sizes",
+      "title": "DesignSystem/RadioList",
+      "importPath": "./src/stories/RadioList.stories.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-radiolist--validation": {
+      "type": "story",
+      "id": "designsystem-radiolist--validation",
+      "name": "Validation",
+      "title": "DesignSystem/RadioList",
+      "importPath": "./src/stories/RadioList.stories.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-segmentedcontrol--docs": {
+      "id": "designsystem-segmentedcontrol--docs",
+      "title": "DesignSystem/SegmentedControl",
+      "name": "Docs",
+      "importPath": "./src/stories/SegmentedControl.stories.tsx",
+      "type": "docs",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ],
+      "storiesImports": []
+    },
+    "designsystem-segmentedcontrol--segmented-control-story": {
+      "type": "story",
+      "id": "designsystem-segmentedcontrol--segmented-control-story",
+      "name": "SegmentedControl",
+      "title": "DesignSystem/SegmentedControl",
+      "importPath": "./src/stories/SegmentedControl.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-segmentedcontrol--solid-style": {
+      "type": "story",
+      "id": "designsystem-segmentedcontrol--solid-style",
+      "name": "Solid Style",
+      "title": "DesignSystem/SegmentedControl",
+      "importPath": "./src/stories/SegmentedControl.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-segmentedcontrol--bordered-style": {
+      "type": "story",
+      "id": "designsystem-segmentedcontrol--bordered-style",
+      "name": "Bordered Style",
+      "title": "DesignSystem/SegmentedControl",
+      "importPath": "./src/stories/SegmentedControl.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-segmentedcontrol--pill-style-solid-variant": {
+      "type": "story",
+      "id": "designsystem-segmentedcontrol--pill-style-solid-variant",
+      "name": "Pill - Solid Variant",
+      "title": "DesignSystem/SegmentedControl",
+      "importPath": "./src/stories/SegmentedControl.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-segmentedcontrol--pill-style-bordered-variant": {
+      "type": "story",
+      "id": "designsystem-segmentedcontrol--pill-style-bordered-variant",
+      "name": "Pill - Bordered Variant",
+      "title": "DesignSystem/SegmentedControl",
+      "importPath": "./src/stories/SegmentedControl.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-segmentedcontrol--theme-primary": {
+      "type": "story",
+      "id": "designsystem-segmentedcontrol--theme-primary",
+      "name": "Theme Primary",
+      "title": "DesignSystem/SegmentedControl",
+      "importPath": "./src/stories/SegmentedControl.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-segmentedcontrol--disabled-segmented-control": {
+      "type": "story",
+      "id": "designsystem-segmentedcontrol--disabled-segmented-control",
+      "name": "Disabled Segmented Control",
+      "title": "DesignSystem/SegmentedControl",
+      "importPath": "./src/stories/SegmentedControl.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-segmentedcontrol--disabled-segmented-item": {
+      "type": "story",
+      "id": "designsystem-segmentedcontrol--disabled-segmented-item",
+      "name": "Disabled Segmented Item",
+      "title": "DesignSystem/SegmentedControl",
+      "importPath": "./src/stories/SegmentedControl.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-segmentedcontrol--fluid-width": {
+      "type": "story",
+      "id": "designsystem-segmentedcontrol--fluid-width",
+      "name": "Adapt to container size",
+      "title": "DesignSystem/SegmentedControl",
+      "importPath": "./src/stories/SegmentedControl.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-select--docs": {
+      "id": "designsystem-select--docs",
+      "title": "DesignSystem/Select",
+      "name": "Docs",
+      "importPath": "./src/stories/Select.stories.tsx",
+      "type": "docs",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ],
+      "storiesImports": []
+    },
+    "designsystem-select--select-story": {
+      "type": "story",
+      "id": "designsystem-select--select-story",
+      "name": "Select",
+      "title": "DesignSystem/Select",
+      "importPath": "./src/stories/Select.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-select--select-story-filled-variant": {
+      "type": "story",
+      "id": "designsystem-select--select-story-filled-variant",
+      "name": "Filled variant",
+      "title": "DesignSystem/Select",
+      "importPath": "./src/stories/Select.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-select--select-outline-variant": {
+      "type": "story",
+      "id": "designsystem-select--select-outline-variant",
+      "name": "Outline variant",
+      "title": "DesignSystem/Select",
+      "importPath": "./src/stories/Select.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-select--select-inline-variant": {
+      "type": "story",
+      "id": "designsystem-select--select-inline-variant",
+      "name": "Inline variant",
+      "title": "DesignSystem/Select",
+      "importPath": "./src/stories/Select.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-select--select-disabled": {
+      "type": "story",
+      "id": "designsystem-select--select-disabled",
+      "name": "Disabled",
+      "title": "DesignSystem/Select",
+      "importPath": "./src/stories/Select.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-select--select-readonly": {
+      "type": "story",
+      "id": "designsystem-select--select-readonly",
+      "name": "Readonly",
+      "title": "DesignSystem/Select",
+      "importPath": "./src/stories/Select.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-select--select-required": {
+      "type": "story",
+      "id": "designsystem-select--select-required",
+      "name": "Required",
+      "title": "DesignSystem/Select",
+      "importPath": "./src/stories/Select.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-select--sizes": {
+      "type": "story",
+      "id": "designsystem-select--sizes",
+      "name": "Sizes",
+      "title": "DesignSystem/Select",
+      "importPath": "./src/stories/Select.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-select--validation": {
+      "type": "story",
+      "id": "designsystem-select--validation",
+      "name": "Validation",
+      "title": "DesignSystem/Select",
+      "importPath": "./src/stories/Select.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-select--select-custom-object": {
+      "type": "story",
+      "id": "designsystem-select--select-custom-object",
+      "name": "Custom Object",
+      "title": "DesignSystem/Select",
+      "importPath": "./src/stories/Select.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-select--select-custom-object-with-controlled-function": {
+      "type": "story",
+      "id": "designsystem-select--select-custom-object-with-controlled-function",
+      "name": "Custom Object (Controlled Helper)",
+      "title": "DesignSystem/Select",
+      "importPath": "./src/stories/Select.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-tabs--docs": {
+      "id": "designsystem-tabs--docs",
+      "title": "DesignSystem/Tabs",
+      "name": "Docs",
+      "importPath": "./src/stories/Tabs.stories.tsx",
+      "type": "docs",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ],
+      "storiesImports": []
+    },
+    "designsystem-tabs--tabs-story": {
+      "type": "story",
+      "id": "designsystem-tabs--tabs-story",
+      "name": "Tabs",
+      "title": "DesignSystem/Tabs",
+      "importPath": "./src/stories/Tabs.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-tabs--tabs-inline-horizontal-theme-story": {
+      "type": "story",
+      "id": "designsystem-tabs--tabs-inline-horizontal-theme-story",
+      "name": "Tabs Inline (horizontal)",
+      "title": "DesignSystem/Tabs",
+      "importPath": "./src/stories/Tabs.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-tabs--tabs-inline-theme-story": {
+      "type": "story",
+      "id": "designsystem-tabs--tabs-inline-theme-story",
+      "name": "Tabs Inline (vertical)",
+      "title": "DesignSystem/Tabs",
+      "importPath": "./src/stories/Tabs.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-tabs--dynamic-tabs-story": {
+      "type": "story",
+      "id": "designsystem-tabs--dynamic-tabs-story",
+      "name": "Tabs Dynamic",
+      "title": "DesignSystem/Tabs",
+      "importPath": "./src/stories/Tabs.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-textarea--docs": {
+      "id": "designsystem-textarea--docs",
+      "title": "DesignSystem/TextArea",
+      "name": "Docs",
+      "importPath": "./src/stories/TextArea.stories.tsx",
+      "type": "docs",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ],
+      "storiesImports": []
+    },
+    "designsystem-textarea--text-area-story": {
+      "type": "story",
+      "id": "designsystem-textarea--text-area-story",
+      "name": "TextArea",
+      "title": "DesignSystem/TextArea",
+      "importPath": "./src/stories/TextArea.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-textarea--text-area-filled-variant": {
+      "type": "story",
+      "id": "designsystem-textarea--text-area-filled-variant",
+      "name": "Filled variant",
+      "title": "DesignSystem/TextArea",
+      "importPath": "./src/stories/TextArea.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-textarea--text-area-outline-variant": {
+      "type": "story",
+      "id": "designsystem-textarea--text-area-outline-variant",
+      "name": "Outline variant",
+      "title": "DesignSystem/TextArea",
+      "importPath": "./src/stories/TextArea.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-textarea--text-area-inline-variant": {
+      "type": "story",
+      "id": "designsystem-textarea--text-area-inline-variant",
+      "name": "Inline variant",
+      "title": "DesignSystem/TextArea",
+      "importPath": "./src/stories/TextArea.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-textarea--text-area-disabled": {
+      "type": "story",
+      "id": "designsystem-textarea--text-area-disabled",
+      "name": "Disabled",
+      "title": "DesignSystem/TextArea",
+      "importPath": "./src/stories/TextArea.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-textarea--text-area-readonly": {
+      "type": "story",
+      "id": "designsystem-textarea--text-area-readonly",
+      "name": "Readonly",
+      "title": "DesignSystem/TextArea",
+      "importPath": "./src/stories/TextArea.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-textarea--text-area-required": {
+      "type": "story",
+      "id": "designsystem-textarea--text-area-required",
+      "name": "Required",
+      "title": "DesignSystem/TextArea",
+      "importPath": "./src/stories/TextArea.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-textarea--sizes": {
+      "type": "story",
+      "id": "designsystem-textarea--sizes",
+      "name": "Sizes",
+      "title": "DesignSystem/TextArea",
+      "importPath": "./src/stories/TextArea.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-textarea--validation": {
+      "type": "story",
+      "id": "designsystem-textarea--validation",
+      "name": "Validation",
+      "title": "DesignSystem/TextArea",
+      "importPath": "./src/stories/TextArea.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-textarea--text-area-custom-classes": {
+      "type": "story",
+      "id": "designsystem-textarea--text-area-custom-classes",
+      "name": "Custom classes",
+      "title": "DesignSystem/TextArea",
+      "importPath": "./src/stories/TextArea.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-textfield--docs": {
+      "id": "designsystem-textfield--docs",
+      "title": "DesignSystem/TextField",
+      "name": "Docs",
+      "importPath": "./src/stories/TextField.stories.tsx",
+      "type": "docs",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ],
+      "storiesImports": []
+    },
+    "designsystem-textfield--text-field-story": {
+      "type": "story",
+      "id": "designsystem-textfield--text-field-story",
+      "name": "TextField",
+      "title": "DesignSystem/TextField",
+      "importPath": "./src/stories/TextField.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-textfield--text-field-filled-variant": {
+      "type": "story",
+      "id": "designsystem-textfield--text-field-filled-variant",
+      "name": "Filled variant",
+      "title": "DesignSystem/TextField",
+      "importPath": "./src/stories/TextField.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-textfield--text-field-outline-variant": {
+      "type": "story",
+      "id": "designsystem-textfield--text-field-outline-variant",
+      "name": "Outline variant",
+      "title": "DesignSystem/TextField",
+      "importPath": "./src/stories/TextField.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-textfield--text-field-inline-variant": {
+      "type": "story",
+      "id": "designsystem-textfield--text-field-inline-variant",
+      "name": "Inline variant",
+      "title": "DesignSystem/TextField",
+      "importPath": "./src/stories/TextField.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-textfield--text-field-disabled": {
+      "type": "story",
+      "id": "designsystem-textfield--text-field-disabled",
+      "name": "Disabled",
+      "title": "DesignSystem/TextField",
+      "importPath": "./src/stories/TextField.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-textfield--text-field-readonly": {
+      "type": "story",
+      "id": "designsystem-textfield--text-field-readonly",
+      "name": "Readonly",
+      "title": "DesignSystem/TextField",
+      "importPath": "./src/stories/TextField.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-textfield--text-field-required": {
+      "type": "story",
+      "id": "designsystem-textfield--text-field-required",
+      "name": "Required",
+      "title": "DesignSystem/TextField",
+      "importPath": "./src/stories/TextField.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-textfield--sizes": {
+      "type": "story",
+      "id": "designsystem-textfield--sizes",
+      "name": "Sizes",
+      "title": "DesignSystem/TextField",
+      "importPath": "./src/stories/TextField.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-textfield--validation": {
+      "type": "story",
+      "id": "designsystem-textfield--validation",
+      "name": "Validation",
+      "title": "DesignSystem/TextField",
+      "importPath": "./src/stories/TextField.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-textfield--text-field-custom-classes": {
+      "type": "story",
+      "id": "designsystem-textfield--text-field-custom-classes",
+      "name": "Custom classes",
+      "title": "DesignSystem/TextField",
+      "importPath": "./src/stories/TextField.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-tooltip--docs": {
+      "id": "designsystem-tooltip--docs",
+      "title": "DesignSystem/Tooltip",
+      "name": "Docs",
+      "importPath": "./src/stories/Tooltip.stories.tsx",
+      "type": "docs",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ],
+      "storiesImports": []
+    },
+    "designsystem-tooltip--tooltip-story": {
+      "type": "story",
+      "id": "designsystem-tooltip--tooltip-story",
+      "name": "Primary (default)",
+      "title": "DesignSystem/Tooltip",
+      "importPath": "./src/stories/Tooltip.stories.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-tooltip--tooltip-secondary": {
+      "type": "story",
+      "id": "designsystem-tooltip--tooltip-secondary",
+      "name": "Secondary",
+      "title": "DesignSystem/Tooltip",
+      "importPath": "./src/stories/Tooltip.stories.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-tooltip--tooltip-disabled": {
+      "type": "story",
+      "id": "designsystem-tooltip--tooltip-disabled",
+      "name": "Disabled",
+      "title": "DesignSystem/Tooltip",
+      "importPath": "./src/stories/Tooltip.stories.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    },
+    "designsystem-tooltip--custom-jsx-component": {
+      "type": "story",
+      "id": "designsystem-tooltip--custom-jsx-component",
+      "name": "Custom component",
+      "title": "DesignSystem/Tooltip",
+      "importPath": "./src/stories/Tooltip.stories.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "autodocs"
+      ]
+    }
+  }
+}

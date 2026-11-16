@@ -1,0 +1,10 @@
+file:///Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/packages/kit/dist/esm/components/Button/ButtonIcon.js:1
+import { className, spread, template } from 'solid-js/web';
+         ^^^^^^^^^
+SyntaxError: The requested module 'solid-js/web' does not provide an export named 'className'
+    at #asyncInstantiate (node:internal/modules/esm/module_job:463:21)
+    at async ModuleJob.run (node:internal/modules/esm/module_job:561:5)
+    at async node:internal/modules/esm/loader:650:26
+    at async importModuleDynamicallyWrapper (node:internal/vm/module:525:15)
+
+Node.js v26.5.0

@@ -4,7 +4,7 @@ on: [ push ]
 
 jobs:
   release:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [ 20.12.2 ]
@@ -27,3 +27,14 @@ jobs:
 
         env:
           CI: true
+
+      - name: Test
+        run: pnpm test
+
+      - name: Typecheck
+        if: ${{ !cancelled() }}
+        run: pnpm typecheck
+
+      - name: Check public API
+        if: ${{ !cancelled() }}
+        run: pnpm api:check
