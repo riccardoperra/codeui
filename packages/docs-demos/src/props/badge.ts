@@ -1,17 +1,42 @@
 import type { BadgeProps } from "@codeui/kit";
+import type { RootProps, IconProps, LabelProps } from "@codeui/kit/badge";
 import type { PropNotes } from "./notes";
 
-/** Props that Badge adds. Kobalte's badge props are listed in Badge's inherited table. */
-export type Badge = Pick<BadgeProps, "tone" | "size" | "variant" | "icon" | "classes" | "class">;
-
-/** Props inherited from Kobalte's badge root that change behavior. */
+export type Badge = Pick<
+	BadgeProps,
+	"tone" | "size" | "variant" | "icon" | "classes" | "class"
+>;
 export type BadgeInherited = Pick<BadgeProps, "textValue">;
+export type BadgeRoot = Pick<RootProps, "tone" | "size" | "variant" | "class">;
+export type BadgeIcon = Pick<IconProps, "class">;
+export type BadgeLabel = Pick<LabelProps, "class">;
+export type BadgeRootInherited = Pick<RootProps, "textValue">;
 
 export const notes = {
 	Badge: {
-		tone: { default: '"neutral"', description: "Status the badge reports. Sets the color." },
-		size: { default: '"sm"', description: "Height and font size." },
-		variant: { default: '"soft"', description: "A tinted fill, or a transparent fill with a border." },
-		class: { description: "Class merged after the kit styles on the root." },
+		tone: { default: '"neutral"', description: "Semantic status color." },
+		size: { default: '"sm"', description: "Visual size." },
+		variant: { default: '"soft"', description: "Tinted fill or outlined shape." },
+		icon: { description: "Decorative JSX icon." },
+		classes: { description: "Classes keyed by the rendered part names." },
+		class: { description: "Class merged with the root or part styles." },
+	},
+	BadgeInherited: {
+		textValue: { description: "Plain text alternative for rich badge content." },
+	},
+	BadgeRoot: {
+		tone: { default: '"neutral"', description: "Semantic status color." },
+		size: { default: '"sm"', description: "Visual size." },
+		variant: { default: '"soft"', description: "Tinted fill or outlined shape." },
+		class: { description: "Class merged with the root or part styles." },
+	},
+	BadgeIcon: {
+		class: { description: "Class merged with the root or part styles." },
+	},
+	BadgeLabel: {
+		class: { description: "Class merged with the root or part styles." },
+	},
+	BadgeRootInherited: {
+		textValue: { description: "Plain text alternative for rich badge content." },
 	},
 } satisfies PropNotes;

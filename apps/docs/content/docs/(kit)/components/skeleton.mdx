@@ -1,77 +1,116 @@
 ---
 title: "Skeleton"
 description: "A placeholder shape shown while content loads."
-status: draft
 ---
-
-{/* TODO(docs): Scope from the docs plan. Visible loading and revealed content, circle, width, height, and radius, animate true and false, reduced motion. Follow apps/docs/CONTRIBUTING-DOCS.md. Delete each TODO(docs) as you finish its section, and delete status: draft when the page is done. */}
 
 ## When to use
 
-{/* TODO(docs): One short paragraph: the job this component does in an app. */}
+Use Skeleton where a snippet preview or metadata will appear. Matching the loaded content dimensions keeps the layout steady.
 
 ## When to choose another component
 
-{/* TODO(docs): Name the nearest alternatives and the deciding difference, such as Select versus Combobox. */}
+Use [Spinner](/docs/components/spinner) for a compact busy indicator inside a control. Use [Progress](/docs/components/progress) for a task with a measurable value.
 
 ## Live demo
 
-{/* TODO(docs): Add packages/docs-demos/src/demos/PAGE/basic.tsx and render it with a SolidDemo named PAGE/basic. The build prints the demo source under it. */}
+<SolidDemo name="skeleton/basic" />
 
 ## Anatomy
 
-{/* TODO(docs): Table with columns Export, Renders, `classes` key, `data-cui`, Role. Root and Portal without DOM get none. Copy data-cui names from the source, never derive them from export names. */}
+| Export | Renders | `classes` key | `data-cui`      | Role    |
+| ------ | ------- | ------------- | --------------- | ------- |
+| `Root` | `div`   | `root`        | `skeleton-root` | `group` |
 
 ## Variants
 
-{/* TODO(docs): One named demo per variant axis or distinct mode, each a SolidDemo named PAGE/AXIS. Use a size gallery, not every combination. */}
+### Shapes and dimensions
+
+<SolidDemo name="skeleton/shapes" />
+
+`width`, `height`, and `radius` accept CSS values. Width defaults to `100%` and height to `auto`. A circle uses height for width, falling back to width.
+
+### Animation
+
+<SolidDemo name="skeleton/animation" />
+
+`animate` defaults to true. Set it to false for a static placeholder. Reduced motion also disables the pulse.
 
 ## States
 
-{/* TODO(docs): Only the states this component supports: disabled, readOnly, required, invalid, empty, loading, selected, open, controlled. Never invent states for presentational components. */}
+<SolidDemo name="skeleton/revealed" />
+
+`visible` defaults to true. Set it to false when content is ready. The children remain mounted while the placeholder is visible.
 
 ## Ready API
 
-{/* TODO(docs): One H3 per ready export below. Under each, one sentence on what it renders, then a PropsTable of a projection exported from packages/docs-demos/src/props/PAGE.ts. Add a short inherited-props table and link the Kobalte contract for the rest. */}
-
 ### `Skeleton`
 
-{/* TODO(docs): Props of `Skeleton`, and the types listed in export-manifest.json for this anchor. */}
+Skeleton renders Root with CSS dimensions. `style` merges after `width`, `height`, and `radius`, so matching inline style properties take precedence.
+
+<PropsTable name="Skeleton" />
+
+Inherited behavior from [Kobalte skeleton](https://kobalte.dev/docs/core/components/skeleton).
+
+<PropsTable name="SkeletonInherited" />
 
 ## Styled parts API
 
-Import the parts from `@codeui/kit/skeleton`.
-
-{/* TODO(docs): One H3 per part: what it renders, its props, and the matching Kobalte primitive. Document namespace aliases where they are exported. */}
+Import the parts from `@codeui/kit/skeleton`. The root wraps [Kobalte skeleton](https://kobalte.dev/docs/core/components/skeleton).
 
 ### `Root`
 
-{/* TODO(docs): Document @codeui/kit/skeleton Root, @codeui/kit/skeleton RootProps. */}
+Styled Kobalte Skeleton root. It hides the visible placeholder from assistive technology. Its inherited dimensions use numeric pixel values; the ready Skeleton accepts CSS values.
+
+<PropsTable name="SkeletonRoot" />
+
+<PropsTable name="SkeletonRootInherited" />
 
 ## Styles export
 
-{/* TODO(docs): What each part function returns, which variants it takes, and when to call it instead of rendering a part. */}
-
 ### `skeletonStyles`
 
-{/* TODO(docs): Document @codeui/kit/skeleton skeletonStyles, @codeui/kit/skeleton SkeletonStyles. */}
+`skeletonStyles` is typed as `SkeletonStyles`. Each part function returns a class string. Use it when you own the markup and semantics. `root({ circle, animate })` selects the shape and pulse. Styles alone do not provide visibility attributes or hide content from screen readers.
 
 ## Accessibility
 
-{/* TODO(docs): H3 Keyboard, ARIA, and Focus where relevant. For layout and text, state the semantic element instead of an empty keyboard map. */}
+### Keyboard
+
+Skeleton is non-interactive and has no keyboard commands. It does not add a tab stop.
+
+### ARIA
+
+Kobalte Root renders `role="group"`. While `visible` is true, Root has `aria-hidden="true"`. When `visible={false}`, the kit removes that attribute and reveals the children. The loading region owns `aria-busy`; Skeleton does not add it. Hidden placeholder content is not an announcement.
+
+### Focus
+
+Mounting or removing the component does not move focus. There is no open or close focus cycle. The reveal example keeps its toggle outside the loading region so focus stays available.
+
+### Reduced motion
+
+Visible placeholders pulse when `animate` is true. Under `prefers-reduced-motion: reduce`, the pulse stops and the shape stays visible. Visibility and ARIA behavior stay the same.
 
 ## SSR notes
 
-{/* TODO(docs): Portal availability, deterministic IDs, request-local state, hydration, and client-only effects, as they apply. */}
+The component renders inline on the server. It has no portal or client-only effect. Use the same initial props on the server and client. The server renders the placeholder or revealed content from `visible`. CSS handles the pulse and reduced motion.
 
 ## Theming hooks
 
-{/* TODO(docs): The --cui-* properties this component reads, directly or through shared field and button styles. Link the defaults in Foundations. */}
+The component reads these theme variables.
+
+- `--cui-action-neutral-base`
+- `--cui-motion-duration-slow`
+- `--cui-motion-ease-out`
+- `--cui-radius-full`
+- `--cui-radius-xs`
+
+Defaults come from the kit theme. See [Color](/docs/design/color), [Typography](/docs/design/typography), [Space and shape](/docs/design/space-and-shape), and [Motion](/docs/design/motion).
 
 ## Composition examples
 
-{/* TODO(docs): Link complete examples. Keep long procedures in Patterns. */}
+<SolidDemo name="skeleton/revealed" />
+
+The button toggles `visible` and the loading region's `aria-busy` together. The title becomes accessible when the placeholder disappears. Keep interactive controls outside hidden loading content.
 
 ## Related
 
-{/* TODO(docs): Links to related pages, each with the one difference that matters. */}
+Use [Spinner](/docs/components/spinner) for a compact busy indicator inside a control. Use [Progress](/docs/components/progress) for a task with a measurable value.

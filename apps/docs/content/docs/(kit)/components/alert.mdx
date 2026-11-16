@@ -1,93 +1,155 @@
 ---
 title: "Alert"
 description: "A message inside the page that reports a status."
-status: draft
 ---
-
-{/* TODO(docs): Scope from the docs plan. All five tones, icon visibility, title and action, fluid true and false. Follow apps/docs/CONTRIBUTING-DOCS.md. Delete each TODO(docs) as you finish its section, and delete status: draft when the page is done. */}
 
 ## When to use
 
-{/* TODO(docs): One short paragraph: the job this component does in an app. */}
+Use Alert for a message beside the affected snippet or export control. It stays in the page until your application removes it.
 
 ## When to choose another component
 
-{/* TODO(docs): Name the nearest alternatives and the deciding difference, such as Select versus Combobox. */}
+Use [Toast](/docs/components/toast) for a temporary notification outside the document flow. Use Text for a static hint that does not need an alert announcement.
 
 ## Live demo
 
-{/* TODO(docs): Add packages/docs-demos/src/demos/PAGE/basic.tsx and render it with a SolidDemo named PAGE/basic. The build prints the demo source under it. */}
+<SolidDemo name="alert/basic" />
 
 ## Anatomy
 
-{/* TODO(docs): Table with columns Export, Renders, `classes` key, `data-cui`, Role. Root and Portal without DOM get none. Copy data-cui names from the source, never derive them from export names. */}
+| Export        | Renders | `classes` key | `data-cui`          | Role    |
+| ------------- | ------- | ------------- | ------------------- | ------- |
+| `Action`      | `div`   | `action`      | `alert-action`      | None    |
+| `Description` | `div`   | `description` | `alert-description` | None    |
+| `Icon`        | `span`  | `icon`        | `alert-icon`        | None    |
+| `Root`        | `div`   | `root`        | `alert-root`        | `alert` |
+| `Title`       | `div`   | `title`       | `alert-title`       | None    |
 
 ## Variants
 
-{/* TODO(docs): One named demo per variant axis or distinct mode, each a SolidDemo named PAGE/AXIS. Use a size gallery, not every combination. */}
+### Tones
 
-## States
+<SolidDemo name="alert/tones" />
 
-{/* TODO(docs): Only the states this component supports: disabled, readOnly, required, invalid, empty, loading, selected, open, controlled. Never invent states for presentational components. */}
+The tones are `neutral`, `info`, `success`, `warning`, and `danger`. The default is `neutral`.
+
+### Icons
+
+<SolidDemo name="alert/icons" />
+
+`showIcon` defaults to false. With `showIcon`, a status tone gets its tone icon. Neutral needs a custom `icon`.
+
+### Width
+
+<SolidDemo name="alert/fluid" />
+
+`fluid` defaults to false for inline width. `fluid={true}` fills the available width.
 
 ## Ready API
 
-{/* TODO(docs): One H3 per ready export below. Under each, one sentence on what it renders, then a PropsTable of a projection exported from packages/docs-demos/src/props/PAGE.ts. Add a short inherited-props table and link the Kobalte contract for the rest. */}
-
 ### `Alert`
 
-{/* TODO(docs): Props of `Alert`, and the types listed in export-manifest.json for this anchor. */}
+Alert renders Root, an optional Icon and Title, Description, and an optional Action. `description` takes precedence over `children`. `title`, `description`, and `action` accept JSX.
+
+<PropsTable name="Alert" />
+
+Native attributes pass through to the root.
 
 ## Styled parts API
 
-Import the parts from `@codeui/kit/alert`.
-
-{/* TODO(docs): One H3 per part: what it renders, its props, and the matching Kobalte primitive. Document namespace aliases where they are exported. */}
+Import the parts from `@codeui/kit/alert`. The root wraps [Kobalte alert](https://kobalte.dev/docs/core/components/alert).
 
 ### `Action`
 
-{/* TODO(docs): Document @codeui/kit/alert Action, @codeui/kit/alert ActionProps. */}
+Wrapper for your buttons or links. It does not add interaction.
+
+<PropsTable name="AlertAction" />
 
 ### `Description`
 
-{/* TODO(docs): Document @codeui/kit/alert Description, @codeui/kit/alert DescriptionProps. */}
+Message wrapper. It is not a Kobalte Description primitive.
+
+<PropsTable name="AlertDescription" />
 
 ### `Icon`
 
-{/* TODO(docs): Document @codeui/kit/alert Icon, @codeui/kit/alert IconProps. */}
+Decorative icon wrapper with `aria-hidden="true"`.
+
+<PropsTable name="AlertIcon" />
 
 ### `Root`
 
-{/* TODO(docs): Document @codeui/kit/alert Root, @codeui/kit/alert RootProps. */}
+Styled Kobalte Alert root with `tone` and `fluid`.
+
+<PropsTable name="AlertRoot" />
 
 ### `Title`
 
-{/* TODO(docs): Document @codeui/kit/alert Title, @codeui/kit/alert TitleProps. */}
+Title wrapper. It does not render a heading element.
+
+<PropsTable name="AlertTitle" />
 
 ## Styles export
 
-{/* TODO(docs): What each part function returns, which variants it takes, and when to call it instead of rendering a part. */}
-
 ### `alertStyles`
 
-{/* TODO(docs): Document @codeui/kit/alert alertStyles, @codeui/kit/alert AlertStyles. */}
+`alertStyles` is typed as `AlertStyles`. Each part function returns a class string. Use it when you own the markup and semantics. `root({ tone, fluid })` selects the recipe. The other part functions return fixed classes.
 
 ## Accessibility
 
-{/* TODO(docs): H3 Keyboard, ARIA, and Focus where relevant. For layout and text, state the semantic element instead of an empty keyboard map. */}
+### Keyboard
+
+| Key            | Action                                  |
+| -------------- | --------------------------------------- |
+| Tab            | Move to a focusable action you provide. |
+| Shift+Tab      | Move to the previous focusable control. |
+| Enter or Space | Activate a supplied button.             |
+
+The alert itself has no keyboard commands.
+
+### ARIA
+
+Kobalte Root renders `role="alert"`, an assertive live region. The role applies to every tone, including neutral. Color does not change announcement urgency. Icon is decorative. Title and Description are plain wrappers, without automatic heading or ARIA label relationships.
+
+### Focus
+
+Mounting or removing the component does not move focus. There is no open or close focus cycle. If an action removes the alert while focused, your application must move focus to the next useful control.
 
 ## SSR notes
 
-{/* TODO(docs): Portal availability, deterministic IDs, request-local state, hydration, and client-only effects, as they apply. */}
+The component renders inline on the server. It has no portal or client-only effect. Use the same initial props on the server and client. No request-shared state is created by the kit wrapper.
 
 ## Theming hooks
 
-{/* TODO(docs): The --cui-* properties this component reads, directly or through shared field and button styles. Link the defaults in Foundations. */}
+The component reads these theme variables.
+
+- `--cui-action-brand-soft-base`
+- `--cui-action-brand-soft-text`
+- `--cui-action-caution-base`
+- `--cui-action-caution-text`
+- `--cui-action-danger-base`
+- `--cui-action-danger-text`
+- `--cui-action-neutral-base`
+- `--cui-action-neutral-text`
+- `--cui-action-success-base`
+- `--cui-action-success-text`
+- `--cui-font-family-sans`
+- `--cui-font-line-height-normal`
+- `--cui-font-size-caption`
+- `--cui-font-size-md`
+- `--cui-font-weight-semibold`
+- `--cui-radius-sm`
+- `--cui-space-2`
+- `--cui-space-3`
+
+Defaults come from the kit theme. See [Color](/docs/design/color), [Typography](/docs/design/typography), [Space and shape](/docs/design/space-and-shape), and [Motion](/docs/design/motion).
 
 ## Composition examples
 
-{/* TODO(docs): Link complete examples. Keep long procedures in Patterns. */}
+<SolidDemo name="alert/actions" />
+
+Title and description contain JSX. The action button saves the example settings and updates the description. Alert has no built-in close button, timeout, or open state.
 
 ## Related
 
-{/* TODO(docs): Links to related pages, each with the one difference that matters. */}
+Use [Toast](/docs/components/toast) for a temporary notification outside the document flow. Use Text for a static hint that does not need an alert announcement.
