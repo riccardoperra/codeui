@@ -1,6 +1,5 @@
 import {
 	Select as KSelect,
-	SelectContentProps as KSelectContentProps,
 	SelectItemProps as KSelectItemProps,
 	SelectRootProps as KSelectRootProps,
 } from "@kobalte/core/select";
@@ -16,10 +15,46 @@ import {
 import { createFieldLabelProps } from "../Field/FieldLabel/createFieldLabelProps";
 import { createFieldMessageProps } from "../Field/FieldMessage/createFieldMessageProps";
 import * as styles from "./Select.css";
-import { SlotProp } from "../../utils/component";
 
-// TODO: add to base field slot that respect the BaseFieldProps signature?
 type SelectSlot = "root" | "input" | "label" | "errorLabel" | "itemValue";
+
+export const selectParts = {
+	root: "select",
+	label: "select-label",
+	trigger: "select-trigger",
+	value: "select-value",
+	icon: "select-icon",
+	description: "select-description",
+	errorMessage: "select-error-message",
+	content: "select-content",
+	listbox: "select-listbox",
+	item: "select-item",
+	itemLabel: "select-item-label",
+	itemIndicator: "select-item-indicator",
+} as const;
+
+export type SelectPart = keyof typeof selectParts;
+export type SelectClasses = Partial<Record<SelectPart, string>>;
+
+const partToSlot: Partial<Record<SelectPart, SelectSlot>> = {
+	root: "root",
+	trigger: "input",
+	label: "label",
+	errorMessage: "errorLabel",
+	value: "itemValue",
+};
+
+function partClass(props: SelectClassesProps, part: SelectPart): string | undefined {
+	const slot = partToSlot[part];
+	return mergeClasses(slot && props.slotClasses?.[slot], props.classes?.[part]) || undefined;
+}
+
+type SelectClassesProps = {
+	/** Classes for each part, keyed by part name. `content` targets the portaled list. */
+	classes?: SelectClasses;
+	/** @deprecated Use `classes`. `input` maps to `trigger`, `errorLabel` to `errorMessage` and `itemValue` to `value`. */
+	slotClasses?: Partial<Record<SelectSlot, string>>;
+};
 
 export type SelectProps<Option, OptGroup = never> = KSelectRootProps<
 	Option,
@@ -34,23 +69,24 @@ export type SelectProps<Option, OptGroup = never> = KSelectRootProps<
 	itemLabel?: (item: Option) => JSXElement;
 	valueComponent?: (state: Accessor<Option>) => JSXElement;
 	valueComponentMultiple?: (state: Accessor<Option[]>) => JSXElement;
-} & SlotProp<SelectSlot>;
-
-function SelectContent(props: ParentProps<KSelectContentProps>) {
-	return <KSelect.Content class={styles.content} {...props} />;
-}
+} & SelectClassesProps;
 
 export function SelectItem<T>(
 	props: KSelectItemProps & {
 		itemLabel?: (item: T) => JSXElement;
+		classes?: Pick<SelectClasses, "item" | "itemLabel" | "itemIndicator">;
 	},
 ) {
 	return (
-		<KSelect.Item class={styles.item} item={props.item}>
-			<KSelect.ItemLabel>
+		<KSelect.Item
+			data-cui={selectParts.item}
+			class={mergeClasses(styles.item, props.classes?.item)}
+			item={props.item}
+		>
+			<KSelect.ItemLabel data-cui={selectParts.itemLabel} class={props.classes?.itemLabel}>
 				{props.itemLabel ? props.itemLabel(props.item.rawValue) : props.item.rawValue}
 			</KSelect.ItemLabel>
-			<KSelect.ItemIndicator>
+			<KSelect.ItemIndicator data-cui={selectParts.itemIndicator} class={props.classes?.itemIndicator}>
 				<CheckIcon class={styles.itemIndicator} />
 			</KSelect.ItemIndicator>
 		</KSelect.Item>
@@ -70,6 +106,8 @@ export function Select<Option, OptGroup = never>(props: ParentProps<SelectProps<
 			"label",
 			"itemLabel",
 			"valueComponent",
+			"classes",
+			"slotClasses",
 		],
 		["options", "value"],
 	);
@@ -77,11 +115,15 @@ export function Select<Option, OptGroup = never>(props: ParentProps<SelectProps<
 
 	const labelProps = createFieldLabelProps<"span">({
 		get class() {
-			return props.slotClasses?.label;
+			return partClass(local, "label");
 		},
 	});
 
-	const descriptionProps = createFieldMessageProps({});
+	const descriptionProps = createFieldMessageProps({
+		get class() {
+			return partClass(local, "description");
+		},
+	});
 	const errorProps = createFieldErrorMessageProps(props);
 
 	return (
@@ -89,20 +131,24 @@ export function Select<Option, OptGroup = never>(props: ParentProps<SelectProps<
 			{...(others as Record<string, unknown>)}
 			options={internal.options}
 			value={internal.value}
-			class={mergeClasses(styles.field, props.slotClasses?.root)}
+			data-cui={selectParts.root}
+			class={mergeClasses(styles.field, partClass(local, "root"))}
 			data-field-size={local.size}
 			itemComponent={itemProps => (
-				<SelectItem item={itemProps.item} itemLabel={local.itemLabel} />
+				<SelectItem item={itemProps.item} itemLabel={local.itemLabel} classes={local.classes} />
 			)}
 		>
 			<Show when={local.label} keyed={false}>
-				<KSelect.Label {...labelProps}>{local.label}</KSelect.Label>
+				<KSelect.Label data-cui={selectParts.label} {...labelProps}>
+					{local.label}
+				</KSelect.Label>
 			</Show>
 			<KSelect.Trigger
+				data-cui={selectParts.trigger}
 				aria-label={local["aria-label"]}
-				class={mergeClasses(baseFieldProps.baseStyle(), styles.selectField)}
+				class={mergeClasses(baseFieldProps.baseStyle(), styles.selectField, partClass(local, "trigger"))}
 			>
-				<KSelect.Value<Option> class={others.slotClasses?.itemValue}>
+				<KSelect.Value<Option> data-cui={selectParts.value} class={partClass(local, "value")}>
 					{state => {
 
 						return (
@@ -128,22 +174,31 @@ export function Select<Option, OptGroup = never>(props: ParentProps<SelectProps<
 						);
 					}}
 				</KSelect.Value>
-				<KSelect.Icon>
+				<KSelect.Icon data-cui={selectParts.icon} class={partClass(local, "icon")}>
 					<SelectorIcon />
 				</KSelect.Icon>
 			</KSelect.Trigger>
 			<Show when={local.description} keyed={false}>
-				<KSelect.Description {...descriptionProps}>
+				<KSelect.Description data-cui={selectParts.description} {...descriptionProps}>
 					{local.description}
 				</KSelect.Description>
 			</Show>
 			<Show when={local.errorMessage} keyed={false}>
-				<KSelect.ErrorMessage {...errorProps}>{local.errorMessage}</KSelect.ErrorMessage>
+				<KSelect.ErrorMessage
+					data-cui={selectParts.errorMessage}
+					{...errorProps}
+					class={mergeClasses(errorProps.class, partClass(local, "errorMessage"))}
+				>
+					{local.errorMessage}
+				</KSelect.ErrorMessage>
 			</Show>
 			<KSelect.Portal>
-				<SelectContent>
-					<KSelect.Listbox />
-				</SelectContent>
+				<KSelect.Content
+					data-cui={selectParts.content}
+					class={mergeClasses(styles.content, partClass(local, "content"))}
+				>
+					<KSelect.Listbox data-cui={selectParts.listbox} class={partClass(local, "listbox")} />
+				</KSelect.Content>
 			</KSelect.Portal>
 		</KSelect>
 	);

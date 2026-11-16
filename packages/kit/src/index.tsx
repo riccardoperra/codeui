@@ -53,6 +53,7 @@ export type { PopoverProps, PopoverContentProps } from "./components/Popover/Pop
 export * as popoverStyles from "./components/Popover/Popover.css";
 
 export { Select } from "./components/Select/Select";
+export type { SelectClasses } from "./components/Select/Select";
 export { createSelectOptions } from "./components/Select/createSelectValue";
 
 export { RadioList, RadioListItem } from "./components/RadioList/RadioList";

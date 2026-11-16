@@ -759,8 +759,29 @@ import { SelectItemProps as KSelectItemProps, SelectRootProps as KSelectRootProp
 import { Accessor, JSX, JSXElement, ParentProps } from "solid-js";
 import { BaseFieldProps } from "../Field/createBaseFieldProps.js";
 import { FieldWithErrorMessageSupport } from "../Field/FieldError/createFieldErrorMessageProps.js";
-import { SlotProp } from "../../utils/component.js";
 type SelectSlot = "root" | "input" | "label" | "errorLabel" | "itemValue";
+export declare const selectParts: {
+    readonly root: "select";
+    readonly label: "select-label";
+    readonly trigger: "select-trigger";
+    readonly value: "select-value";
+    readonly icon: "select-icon";
+    readonly description: "select-description";
+    readonly errorMessage: "select-error-message";
+    readonly content: "select-content";
+    readonly listbox: "select-listbox";
+    readonly item: "select-item";
+    readonly itemLabel: "select-item-label";
+    readonly itemIndicator: "select-item-indicator";
+};
+export type SelectPart = keyof typeof selectParts;
+export type SelectClasses = Partial<Record<SelectPart, string>>;
+type SelectClassesProps = {
+    /** Classes for each part, keyed by part name. `content` targets the portaled list. */
+    classes?: SelectClasses;
+    /** @deprecated Use `classes`. `input` maps to `trigger`, `errorLabel` to `errorMessage` and `itemValue` to `value`. */
+    slotClasses?: Partial<Record<SelectSlot, string>>;
+};
 export type SelectProps<Option, OptGroup = never> = KSelectRootProps<Option, OptGroup> & BaseFieldProps & {
     "aria-label": string;
     placeholder?: string;
@@ -770,9 +791,10 @@ export type SelectProps<Option, OptGroup = never> = KSelectRootProps<Option, Opt
     itemLabel?: (item: Option) => JSXElement;
     valueComponent?: (state: Accessor<Option>) => JSXElement;
     valueComponentMultiple?: (state: Accessor<Option[]>) => JSXElement;
-} & SlotProp<SelectSlot>;
+} & SelectClassesProps;
 export declare function SelectItem<T>(props: KSelectItemProps & {
     itemLabel?: (item: T) => JSXElement;
+    classes?: Pick<SelectClasses, "item" | "itemLabel" | "itemIndicator">;
 }): JSX.Element;
 export declare function Select<Option, OptGroup = never>(props: ParentProps<SelectProps<Option, OptGroup>>): JSX.Element;
 export {};
@@ -1240,6 +1262,7 @@ export { Popover, PopoverTrigger, PopoverContent } from "./components/Popover/Po
 export type { PopoverProps, PopoverContentProps } from "./components/Popover/Popover.js";
 export * as popoverStyles from "./components/Popover/Popover.css.js";
 export { Select } from "./components/Select/Select.js";
+export type { SelectClasses } from "./components/Select/Select.js";
 export { createSelectOptions } from "./components/Select/createSelectValue.js";
 export { RadioList, RadioListItem } from "./components/RadioList/RadioList.js";
 export type { RadioListProps } from "./components/RadioList/RadioList.js";
