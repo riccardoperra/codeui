@@ -1,4 +1,4 @@
-import { Link } from "@codeui/kit";
+import type { Link } from "@codeui/kit";
 import type { ComponentProps } from "solid-js";
 import type { PropNotes } from "./notes";
 

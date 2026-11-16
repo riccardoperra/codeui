@@ -1,5 +1,5 @@
 import type { ComponentProps } from "solid-js";
-import { Button as KitButton, type ButtonProps } from "@codeui/kit";
+import type { Button as KitButton, ButtonProps } from "@codeui/kit";
 import type { PropNotes } from "./notes";
 
 export type Button = Pick<ButtonProps, "theme" | "size" | "variant" | "pill" | "block" | "loading" | "leftIcon" | "class">;

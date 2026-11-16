@@ -20,8 +20,8 @@ export type ItemInherited = Pick<P.ItemProps, "value" | "disabled">;
 export type ItemIndicatorInherited = Pick<P.ItemIndicatorProps, "forceMount">;
 export type ErrorMessageInherited = Pick<P.ErrorMessageProps, "forceMount">;
 export type Preview = Pick<P.PreviewProps, "class" | "children">;
-export type Badge = Pick<P.BadgeProps, "tone" | "size" | "variant" | "icon" | "classes" | "class">;
-export type BadgeInherited = Pick<P.BadgeProps, "textValue">;
+export type OptionCardBadge = Pick<P.BadgeProps, "tone" | "size" | "variant" | "icon" | "classes" | "class">;
+export type OptionCardBadgeInherited = Pick<P.BadgeProps, "textValue">;
 export const notes = {
 	OptionCardGroup: {
 		items: { description: "Entries with a value, label, and optional preview, badge, description, or disabled state." },
@@ -53,5 +53,5 @@ export const notes = {
 	ItemLabel: { variant: { default: '"card"', description: "Card spacing or compact tile spacing. Parts set their own variant." }, class: { description: "Class merged after the kit styles." } },
 	ItemDescription: { variant: { default: '"card"', description: "Card spacing or compact tile spacing. Parts set their own variant." }, class: { description: "Class merged after the kit styles." } },
 	OptionCardGroupInherited: { orientation: { default: '"horizontal"', description: "Horizontal responsive grid or vertical single column." }, disabled: { default: "false", description: "Disables every option." }, readOnly: { default: "false", description: "Prevents changes to the value." }, required: { default: "false", description: "Requires a selection for form submission." } },
-	Badge: { tone: { default: '"neutral"', description: "Badge colour." }, size: { default: '"sm"', description: "Badge size." }, variant: { default: '"soft"', description: "Badge appearance, separate from the card variant." } },
+	OptionCardBadge: { tone: { default: '"neutral"', description: "Badge colour." }, size: { default: '"sm"', description: "Badge size." }, variant: { default: '"soft"', description: "Badge appearance, separate from the card variant." } },
 } satisfies PropNotes;

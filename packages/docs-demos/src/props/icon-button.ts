@@ -1,4 +1,4 @@
-import { IconButton } from "@codeui/kit";
+import type { IconButton } from "@codeui/kit";
 import type { ComponentProps } from "solid-js";
 import type { PropNotes } from "./notes";
 
