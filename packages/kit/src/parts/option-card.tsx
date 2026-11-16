@@ -52,10 +52,12 @@ export function Root<T extends ValidComponent = "div">(
 	const [local, others] = splitProps(props as PolymorphicProps<"div", RootProps>, [
 		"class",
 		"variant",
+		"orientation",
 	]);
 	return (
 		<K.Root
 			{...others}
+			orientation={local.orientation ?? "horizontal"}
 			data-cui={optionCardParts.root}
 			data-variant={local.variant ?? "card"}
 			class={mergeClasses(optionCardStyles.root({ variant: local.variant }), local.class)}
@@ -281,6 +283,4 @@ export function Badge(props: BadgeProps) {
 		/>
 	);
 }
-export {
-	useRadioGroupContext,
-} from "@kobalte/core/radio-group";
+export { useRadioGroupContext } from "@kobalte/core/radio-group";
