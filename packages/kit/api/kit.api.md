@@ -213,6 +213,71 @@ export declare function createComboboxOptions<T extends object, C extends Combob
 export {};
 ```
 
+## components/CommandMenu/CommandMenu.d.ts
+
+```ts
+import type { DialogContentProps } from "@kobalte/core/dialog";
+import { type JSX } from "solid-js";
+import * as P from "../../parts/command-menu.js";
+export type CommandItem = {
+    /** Unique across the items. */
+    id: string;
+    /** The plain text the default filter searches. */
+    textValue: string;
+    label: JSX.Element;
+    description?: JSX.Element;
+    /** A visual before the label, such as an icon or a theme swatch. */
+    leading?: JSX.Element;
+    shortcut?: JSX.Element;
+    /** Consecutive items with the same group and section share a heading. */
+    group?: string;
+    section?: string;
+    disabled?: boolean;
+    /** Marks the item that matches the current value with a check. */
+    current?: boolean;
+};
+export type CommandMenuProps<T extends CommandItem> = {
+    class?: string;
+    classes?: P.CommandMenuClasses;
+    open: boolean;
+    onOpenChange: (open: boolean) => void;
+    items: readonly T[];
+    /** The accessible name of the dialog, the search field and the list. Not shown. */
+    title: JSX.Element;
+    placeholder?: string;
+    /** Key hints shown at the end of the search field, such as "↑↓ preview · ↵ apply · esc cancel". */
+    hint?: JSX.Element;
+    query?: string;
+    onQueryChange?: (query: string) => void;
+    /** Replaces the default filter, which matches every word of the query. */
+    filter?: (items: readonly T[], query: string) => readonly T[];
+    /** The highlighted item, from the arrows or the pointer. Use it to preview. */
+    onHighlightChange?: (item: T | undefined) => void;
+    /** Enter or a click. Runs after the menu closes. */
+    onSelect: (item: T) => void;
+    /** Runs first on every close, before `onOpenChange`. Use it to end a preview. */
+    onBeforeClose?: () => void;
+    /** Escape, a click outside or a programmatic close without a selection. */
+    onCancel?: () => void;
+    onCloseAutoFocus?: DialogContentProps["onCloseAutoFocus"];
+    emptyContent?: JSX.Element;
+    /** Portal target. Defaults to the document body. */
+    mount?: HTMLElement;
+};
+/** Keeps the items whose text, group, section or plain-text description contain every word of the query. */
+export declare function filterCommandItems<T extends CommandItem>(items: readonly T[], query: string): readonly T[];
+/**
+ * A searchable list of commands in a dialog, for a shortcut such as Cmd+K
+ * that the app binds. Moving the highlight previews through
+ * `onHighlightChange`; only Enter or a click calls `onSelect`. It opens and
+ * closes without animation, focuses the search on open, gives focus back on
+ * close and starts every open with an empty query.
+ */
+export declare function CommandMenu<T extends CommandItem>(props: CommandMenuProps<T>): JSX.Element;
+export { CommandMenuParts, commandMenuStyles } from "../../parts/command-menu.js";
+export type { CommandMenuClasses, CommandMenuPart, CommandMenuStyles, } from "../../parts/command-menu.js";
+```
+
 ## components/Dialog/Dialog.d.ts
 
 ```ts
@@ -1781,8 +1846,8 @@ import { Combobox } from "./components/Combobox/Combobox.js";
 export { Combobox };
 export { ComboboxParts, comboboxStyles, createComboboxOptions, } from "./components/Combobox/Combobox.js";
 export type { ComboboxProps, ComboboxClasses, ComboboxOption, ComboboxOptionsConfig, ComboboxPart, ComboboxStyles, ComboboxVariants, CreateComboboxOptionsReturn, } from "./components/Combobox/Combobox.js";
-export { CommandMenuParts, commandMenuStyles } from "./parts/command-menu.js";
-export type { CommandMenuClasses, CommandMenuPart, CommandMenuStyles, } from "./parts/command-menu.js";
+export { CommandMenu, CommandMenuParts, commandMenuStyles, filterCommandItems, } from "./components/CommandMenu/CommandMenu.js";
+export type { CommandItem, CommandMenuProps, CommandMenuClasses, CommandMenuPart, CommandMenuStyles, } from "./components/CommandMenu/CommandMenu.js";
 ```
 
 ## parts/combobox.d.ts

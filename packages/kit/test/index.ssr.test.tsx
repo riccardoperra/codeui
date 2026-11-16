@@ -124,3 +124,18 @@ it("server renders a closed command menu as its trigger only", () => {
 	expect(html).not.toContain('role="dialog"');
 	expect(html).not.toContain('role="combobox"');
 });
+
+import { CommandMenu } from "../src/components/CommandMenu/CommandMenu";
+it("server renders nothing for a closed ready command menu", () => {
+	const html = renderToString(() => (
+		<CommandMenu
+			open={false}
+			onOpenChange={() => {}}
+			items={[{ id: "randomize", textValue: "Randomize", label: "Randomize" }]}
+			title="Commands"
+			onSelect={() => {}}
+		/>
+	));
+	expect(html).not.toContain("Randomize");
+	expect(html).not.toContain('role="dialog"');
+});

@@ -156,9 +156,16 @@ export type {
 	CreateComboboxOptionsReturn,
 } from "./components/Combobox/Combobox";
 
-export { CommandMenuParts, commandMenuStyles } from "./parts/command-menu";
+export {
+	CommandMenu,
+	CommandMenuParts,
+	commandMenuStyles,
+	filterCommandItems,
+} from "./components/CommandMenu/CommandMenu";
 export type {
+	CommandItem,
+	CommandMenuProps,
 	CommandMenuClasses,
 	CommandMenuPart,
 	CommandMenuStyles,
-} from "./parts/command-menu";
+} from "./components/CommandMenu/CommandMenu";

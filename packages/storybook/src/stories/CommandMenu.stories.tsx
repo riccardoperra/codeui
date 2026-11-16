@@ -1,12 +1,18 @@
 import type { Meta, StoryObj } from "storybook-solidjs-vite";
-import { Button, CommandMenuParts, icons } from "@codeui/kit";
+import {
+	Button,
+	type CommandItem,
+	CommandMenu,
+	CommandMenuParts,
+	icons,
+} from "@codeui/kit";
 import * as M from "@codeui/kit/command-menu";
 import { createSignal, type JSX, Show } from "solid-js";
 
 const meta = {
 	title: "DesignSystem/CommandMenu",
-	component: CommandMenuParts.Root,
-} satisfies Meta<typeof CommandMenuParts.Root>;
+	component: CommandMenu,
+} satisfies Meta<typeof CommandMenu>;
 export default meta;
 type Story = StoryObj<typeof meta>;
 
@@ -138,4 +144,67 @@ export const PartsOpen: Story = {
 export const PartsEmpty: Story = {
 	tags: ["!autodocs"],
 	render: () => <PartsMenu options={[]} />,
+};
+
+const commands: CommandItem[] = [
+	...groups.flatMap(group =>
+		group.commands.map(command => ({
+			id: command.id,
+			textValue: command.label,
+			label: command.label,
+			group: group.name,
+			leading: command.orb ? <Orb colors={command.orb} /> : undefined,
+			shortcut: command.shortcut,
+			current: command.current,
+			disabled: command.disabled,
+		})),
+	),
+	{
+		id: "font",
+		textValue: "JetBrains Mono",
+		label: "JetBrains Mono",
+		description: "Monospace with ligatures",
+		group: "Font",
+		section: "Editor",
+	},
+];
+
+function Ready(props: { defaultOpen?: boolean; query?: string }) {
+	const [open, setOpen] = createSignal(props.defaultOpen ?? false);
+	const [previewed, setPreviewed] = createSignal<string>();
+	return (
+		<>
+			<Button theme="secondary" onClick={() => setOpen(true)}>
+				Commands ⌘K
+			</Button>
+			<p>Previewing: {previewed() ?? "nothing"}</p>
+			<CommandMenu
+				open={open()}
+				onOpenChange={setOpen}
+				items={commands}
+				title="Search themes and options"
+				placeholder="Search themes and options"
+				hint="↑↓ preview · ↵ apply · esc cancel"
+				emptyContent="No command matches"
+				query={props.query}
+				onHighlightChange={item => setPreviewed(item?.textValue)}
+				onBeforeClose={() => setPreviewed(undefined)}
+				onSelect={() => {}}
+			/>
+		</>
+	);
+}
+
+export const Default: Story = {
+	render: () => <Ready />,
+};
+
+export const Open: Story = {
+	tags: ["!autodocs"],
+	render: () => <Ready defaultOpen />,
+};
+
+export const Empty: Story = {
+	tags: ["!autodocs"],
+	render: () => <Ready defaultOpen query="kiwi" />,
 };
