@@ -1,49 +1,150 @@
 ---
 title: IconButton
-description: A square button that holds a single icon.
-status: draft
+description: A named icon action for compact toolbars.
 ---
 
-{/* TODO(docs): Rewrite into the page template. Run node tools/docs/scaffold.mjs --print components/icon-button to see it, and keep the useful content below. */}
+## When to use
 
-<SolidDemo name="icon-button" source="hidden" />
+Use `IconButton` for a familiar action in a toolbar when a visible label would take too much space. Give every icon button an accessible name and a kit Tooltip.
 
-## Usage
+## When to choose another component
 
-```tsx
-import { IconButton, icons } from '@codeui/kit';
+Use [Link](/docs/components/link) for inline navigation. Use [Button](/docs/components/button) when the action needs a visible label.
 
-export function SnippetNavigation() {
-  return (
-    <>
-      <IconButton theme="secondary" aria-label="Previous snippet">
-        <icons.PreviousIcon />
-      </IconButton>
-      <IconButton theme="secondary" aria-label="Next snippet">
-        <icons.NextIcon />
-      </IconButton>
-      <IconButton theme="tertiary" size="sm" aria-label="Close panel">
-        <icons.CloseIcon />
-      </IconButton>
-    </>
-  );
-}
-```
+## Live demo
 
-## API
+<SolidDemo name="icon-button/basic" />
 
-`IconButton` is a `Button` with equal width and height and no padding.
-It wraps Kobalte's `Button` root, so Kobalte's props such as `disabled` and `as` pass through.
-The icon has no visible text, so `aria-label` is required.
+## Anatomy
 
-<TypeTable
-  type={{
-    'aria-label': { type: 'string', required: true, description: 'Accessible name of the button.' },
-    theme: { type: "'primary' | 'secondary' | 'tertiary' | 'negative' | 'caution'", description: 'Color scheme of the button.' },
-    size: { type: "'xs' | 'sm' | 'md' | 'lg' | 'xl'", default: "'md'", description: 'Side length of the square.' },
-    variant: { type: "'ghost'", description: 'Transparent background. The border and theme text color appear on hover.' },
-    pill: { type: 'boolean', description: 'Renders a circle.' },
-    loading: { type: 'boolean', description: 'Shows a spinner in place of the icon.' },
-    class: { type: 'string', description: 'Class merged after the kit styles.' },
-  }}
-/>
+| Export | Renders | `classes` key | `data-cui` | Role |
+| --- | --- | --- | --- | --- |
+| `IconButton` | `button` by default | None | `icon-button` | Button |
+
+`IconButton` delegates to `Button` and replaces its `data-cui` value. The icon is your child element.
+
+## Variants
+
+### Themes
+
+<SolidDemo name="icon-button/themes" />
+
+`primary` uses brand fill. `secondary` is neutral. `tertiary` uses soft brand fill. `caution` and `negative` use warning and danger colors. There is no default theme, so specify one.
+
+### Sizes
+
+<SolidDemo name="icon-button/sizes" />
+
+`xs`, `sm`, `md`, `lg`, and `xl` currently measure 30, 36, 40, 48, and 56px high. The default is `md`. Inkstone calls for 36px desktop controls and at least 40px phone targets.
+
+### Ghost
+
+<SolidDemo name="icon-button/ghost" />
+
+`variant="ghost"` removes the idle fill. Theme colors appear on hover.
+
+### Pill
+
+<SolidDemo name="icon-button/pill" />
+
+`pill` uses fully rounded corners.
+
+### Block
+
+<SolidDemo name="icon-button/block" />
+
+`block` sets width to 100% and flex to 1. Reserve full-width actions for layouts such as stacked phone controls. The square width rule can compete with `block`, so avoid full-width icon actions.
+
+### Render as a link
+
+<SolidDemo name="icon-button/as-link" />
+
+`as="a"` accepts `href` and renders an anchor with button styling. An anchor with `href` retains native link semantics and uses Enter to follow the destination. Space does not activate an anchor. Use `Link` for ordinary navigation. A router component passed through `as` must forward the relevant props and ref.
+
+## States
+
+### Disabled
+
+<SolidDemo name="icon-button/disabled" />
+
+`disabled` disables a native button and removes it from the tab order. Non-native controls only receive `aria-disabled` and `data-disabled`. Kobalte does not add an activation guard or remove `href` from a button rendered as an anchor. Guard navigation and handlers yourself for that case.
+
+### Loading
+
+<SolidDemo name="icon-button/loading" />
+
+`loading` places animated dots over the existing content without changing its dimensions. It sets `data-loading` and blocks pointer events through CSS.
+It does not set `disabled` or `aria-busy`, and it does not prevent keyboard activation. Pair all three props while an action runs, as the example does.
+
+## Ready API
+
+### `IconButton`
+
+`IconButton` renders a square Kobalte button through `Button`.
+
+<PropsTable name="IconButton" />
+
+The package root exports `IconButton` but does not export its props type. The table derives its props from the public component.
+
+Inherited from Kobalte's [button contract](https://kobalte.dev/docs/core/components/button):
+
+<PropsTable name="IconButtonInherited" />
+
+## Accessibility
+
+### Keyboard
+
+| Key | Action |
+| --- | --- |
+| Tab or Shift+Tab | Moves focus between enabled controls. |
+| Enter | Activates the focused button. |
+| Space | Activates the focused button. |
+
+### ARIA
+
+The default native element has button semantics. Kobalte supplies `role="button"` for non-native elements except anchors with `href`. It does not add keyboard activation handlers to arbitrary elements. Disabled controls expose `data-disabled`.
+`aria-label` is required by the IconButton type. Name the action, such as "Copy snippet", rather than the icon shape. A tooltip does not replace this name. Hide decorative SVGs from assistive technology.
+Loading adds an internal `aria-label="Loading"` span. It does not provide a live region. Supply status feedback outside the button when completion needs an announcement.
+
+### Focus
+
+The button styles draw a focus-visible ring with the shared focus tokens.
+These controls do not open an overlay or move focus on their own. If your handler opens or closes an overlay, that overlay owns focus placement and restoration.
+
+## SSR notes
+
+The root and its children render on the server. There is no portal or client-only mount step in `IconButton`.
+Event handlers become active after hydration. Keep the initial props equal on the server and client.
+The tooltip in the examples has its own client-side portal behavior.
+
+## Theming hooks
+
+The shared button styles read these global variables. `IconButton` uses the same variables.
+
+- `--cui-action-brand-{base,hover,active,text}` for primary.
+- `--cui-action-neutral-{base,hover,active,text}` for secondary and disabled controls.
+- `--cui-action-brand-soft-{base,hover,active,text}` for tertiary.
+- `--cui-action-danger-{base,hover,active,text}` for negative.
+- `--cui-action-caution-{base,hover,active,text}` for caution.
+- `--cui-control-height-{xs,sm,md,lg,xl}` and `--cui-font-size-{xs,sm,md,lg,xl}`.
+- `--cui-radius-{xs,sm,md,lg,xl,full}`, `--cui-space-{1,2,4,5,6}`, and `--cui-font-weight-medium`.
+- `--cui-border-width`, `--cui-text-default`, and `--cui-focus-{width,color,offset}`.
+- `--cui-motion-duration-{fast,normal}` and `--cui-motion-ease-out` for transitions and the loading overlay.
+
+Each brace expands to a separate variable. See [Inkstone color](/docs/design/color) and [motion](/docs/design/motion).
+The local `buttonStyles.buttonVars` contract controls height, font size, fills, text color, border, padding, and radius.
+
+Current kit sizes, borders, hover rules, and loading motion differ from parts of the Inkstone specification. These galleries document the shipped API.
+
+## Composition examples
+
+<SolidDemo name="icon-button/composition" />
+
+Pair named icon actions with tooltips covering the whole hit area.
+
+## Related
+
+- [Button](/docs/components/button) provides a visible action label.
+- [IconButton](/docs/components/icon-button) provides a compact named action.
+- [Link](/docs/components/link) provides inline navigation.
+- [Tooltip](/docs/components/tooltip) explains an icon action on hover and focus.
