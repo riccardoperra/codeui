@@ -61,10 +61,6 @@ The workflow needs two repository secrets:
 - `CLOUDFLARE_API_TOKEN`: an API token with the **Account > Cloudflare Pages > Edit** permission.
 - `CLOUDFLARE_ACCOUNT_ID`: the Cloudflare account ID.
 
-The Pages project must exist before the first deploy. Create it once:
-
-```bash
-pnpm --filter @codeui/docs exec wrangler pages project create codeui-docs --production-branch=main
-```
+The workflow creates the `codeui-docs` Pages project, with `main` as the production branch, if it does not exist yet.
 
 The repository's `netlify.toml` still deploys Storybook, and this site does not change it.
