@@ -136,7 +136,7 @@ export function NumberField(props: NumberFieldProps) {
 		},
 	});
 
-	onMount(() => mask(local.ref as any));
+	onMount(() => mask(internalRef));
 
 	const displayValue = () => {
 		const isFocused = focused();

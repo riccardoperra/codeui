@@ -1,5 +1,4 @@
 import { Accessor, JSXElement } from "solid-js";
-import { SelectProps } from "./Select";
 
 type Value = any;
 
@@ -18,26 +17,32 @@ type MapOptionToValue<
 	Key extends (keyof T & string) | string | undefined,
 > = Key extends keyof T ? T[Key] : T;
 
+type SelectOptionsProps<V> = {
+	optionValue: "value";
+	optionTextValue: (option: Option<V>) => string;
+	itemLabel: (option: Option<V>) => JSXElement;
+	valueComponent: (value: Accessor<Option<V>>) => JSXElement;
+};
+
 interface CreateSelectOptionsReturn<T, C extends ConfigFor<T>> {
 	options: Accessor<Array<Option<MapOptionToValue<T, C["valueKey"]>>>>;
 
-	optionToValue(option: Option): MapOptionToValue<T, C["valueKey"]>;
+	optionToValue(option: Option | null | undefined): MapOptionToValue<T, C["valueKey"]>;
 
 	optionFromValue(
 		option: MapOptionToValue<T, C["valueKey"]>,
 	): Option<MapOptionToValue<T, C["valueKey"]>> | undefined;
 
-	props(): Record<string, unknown>;
+	props(): SelectOptionsProps<MapOptionToValue<T, C["valueKey"]>>;
 
 	controlled<Value extends MapOptionToValue<T, C["valueKey"]>>(
 		value: Accessor<Value | undefined>,
 		onChange: (value: Value | undefined, option: Option<Value> | undefined) => void,
 	): {
 		value: Option<MapOptionToValue<T, C["valueKey"]>> | undefined;
-		onChange: (item: Option<Value>) => void;
+		onChange: (item: Option<Value> | null) => void;
 	};
 }
-
 
 // TODO should support disabled and nested groups?
 export function createSelectOptions<T, C extends ConfigFor<T>>(
@@ -63,7 +68,7 @@ export function createSelectOptions<T, C extends ConfigFor<T>>(
 		});
 	};
 
-	const optionToValue = (option?: Option) => {
+	const optionToValue = (option?: Option | null) => {
 		if (!option) return undefined;
 		return option.value;
 	};
@@ -87,21 +92,18 @@ export function createSelectOptions<T, C extends ConfigFor<T>>(
 				},
 				onChange(option) {
 					const value = optionToValue(option);
-					return onChange(value, option);
+					return onChange(value, option ?? undefined);
 				},
 			};
 		},
 		props() {
 			return {
-				get optionValue() {
-					return (config?.valueKey as keyof Option<T>) ?? undefined;
-				},
-				get optionTextValue() {
-					return (config?.key as keyof Option<T>) ?? undefined;
-				},
+				optionValue: "value",
+				optionTextValue: option =>
+					typeof option.label === "string" ? option.label : String(option.value),
 				itemLabel: (option: Option) => option.label,
 				valueComponent: (value: Accessor<Option>) => value().label,
-			} as Partial<SelectProps<Option<T>>>;
+			};
 		},
 	};
 }

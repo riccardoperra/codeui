@@ -53,7 +53,7 @@ export interface DropdownSubMenuProps<T> extends KDropdownMenuSubProps {
 export function DropdownSubMenu<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, DropdownSubMenuProps<T>>,
 ) {
-	return <KDropdownMenu.Sub {...props} gutter={-4} />;
+	return <KDropdownMenu.Sub {...props} gutter={props.gutter ?? -4} />;
 }
 
 export interface DropdownSubMenuTriggerProps<T> extends KDropdownMenuSubTriggerProps {

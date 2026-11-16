@@ -49,15 +49,15 @@ export const themeValues =
 			text: "#fff",
 		},
 		brand: {
-			active: "#005bc4",
-			base: "#0070f0",
-			hover: "#0066dc",
+			active: "#07f",
+			base: "#09f",
+			hover: "#08f",
 			text: "#fff",
 		},
 		brandSoft: {
 			base: "#0099ff26",
 			hover: "#007acc26",
-			text: { dark: "#33adff", light: "#0062d1" },
+			text: "#09f",
 			active: "#007acc26",
 		},
 		caution: {
@@ -89,7 +89,7 @@ export const themeValues =
 		widthStrong: "2px",
 	},
 	accent: {
-		selection: "#0070f0",
+		selection: { dark: "#07f", light: "#09f" },
 		focus: { dark: "#63b3ed", light: "#09f" },
 	},
 	focus: {

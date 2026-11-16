@@ -4,6 +4,9 @@
 
 # CodeUI - [CodeImage](https://github.com/riccardoperra/codeimage) UI Kit
 
+In vanilla-extract `*.css.ts` files, import `tokens`, `themeVars`, `themeTokens`, `layoutVars`, `breakpoints`, and `responsiveStyle` from `@codeui/kit/tokens`.
+This entry has no Solid or Kobalte imports and is safe to evaluate during style builds in Node; the root entry keeps the same exports for compatibility.
+
 ## Theming with plain CSS
 
 Every color, radius, spacing, shadow and motion value is a `--cui-*` custom property. The CodeImage look is the default. Kit styles live in the `cui` cascade layer, so any unlayered rule in your app wins over them, whatever the stylesheet order. You do not need vanilla-extract to retheme the kit.

@@ -1,0 +1,294 @@
+{
+  "runs": 3,
+  "browser": "159.0.8154.6",
+  "storyThemePairs": 244,
+  "docsThemePairs": 38,
+  "withinRunFlakyPairs": 0,
+  "unstableDocsAcrossRuns": [
+    {
+      "id": "designsystem-dropdownmenu--docs",
+      "theme": "dark"
+    },
+    {
+      "id": "designsystem-pagination--docs",
+      "theme": "dark"
+    },
+    {
+      "id": "designsystem-select--docs",
+      "theme": "dark"
+    },
+    {
+      "id": "designsystem-dropdownmenu--docs",
+      "theme": "light"
+    },
+    {
+      "id": "designsystem-pagination--docs",
+      "theme": "light"
+    },
+    {
+      "id": "designsystem-select--docs",
+      "theme": "light"
+    }
+  ],
+  "stableDocsAcrossRuns": 32,
+  "wrongBackgrounds": 0,
+  "captures": 1692,
+  "manifestHashes": [
+    "f2560783caeed5a2c58242cf4cf6441ecd90761ba5a8d8cf02471bcdf1d4112c",
+    "62d2eebb946d4f48a9e025e506b94d82598221ab9ae40a8f43f7a865bbf8a68e",
+    "62d2eebb946d4f48a9e025e506b94d82598221ab9ae40a8f43f7a865bbf8a68e"
+  ],
+  "storyManifestHashes": [
+    "abd1cf889c86d6a81ae48f8c706ddd358fdc10f105cc476566771e84a22f7720",
+    "abd1cf889c86d6a81ae48f8c706ddd358fdc10f105cc476566771e84a22f7720",
+    "abd1cf889c86d6a81ae48f8c706ddd358fdc10f105cc476566771e84a22f7720"
+  ],
+  "runsMetadata": [
+    {
+      "run": 1,
+      "port": 51992,
+      "checks": [
+        {
+          "name": "node",
+          "code": 0
+        },
+        {
+          "name": "pnpm",
+          "code": 0
+        },
+        {
+          "name": "install",
+          "code": 0
+        },
+        {
+          "name": "build-kit",
+          "code": 0
+        },
+        {
+          "name": "test",
+          "code": 0
+        },
+        {
+          "name": "typecheck",
+          "code": 0
+        },
+        {
+          "name": "pack",
+          "code": 1
+        },
+        {
+          "name": "pack-compatible",
+          "code": 0
+        },
+        {
+          "name": "extract",
+          "code": 0
+        },
+        {
+          "name": "publint",
+          "code": 0
+        },
+        {
+          "name": "attw",
+          "code": 0
+        },
+        {
+          "name": "attw-json",
+          "code": 0
+        },
+        {
+          "name": "consumer-import",
+          "code": 1
+        },
+        {
+          "name": "consumer-browser-import",
+          "code": 1
+        },
+        {
+          "name": "sizes",
+          "code": 0
+        },
+        {
+          "name": "storybook-build",
+          "code": 0
+        },
+        {
+          "name": "screenshots",
+          "code": 0
+        },
+        {
+          "name": "a11y",
+          "code": 1
+        },
+        {
+          "name": "layer",
+          "code": 0
+        }
+      ]
+    },
+    {
+      "run": 2,
+      "port": 59473,
+      "checks": [
+        {
+          "name": "node",
+          "code": 0
+        },
+        {
+          "name": "pnpm",
+          "code": 0
+        },
+        {
+          "name": "install",
+          "code": 0
+        },
+        {
+          "name": "build-kit",
+          "code": 0
+        },
+        {
+          "name": "test",
+          "code": 0
+        },
+        {
+          "name": "typecheck",
+          "code": 0
+        },
+        {
+          "name": "pack",
+          "code": 1
+        },
+        {
+          "name": "pack-compatible",
+          "code": 0
+        },
+        {
+          "name": "extract",
+          "code": 0
+        },
+        {
+          "name": "publint",
+          "code": 0
+        },
+        {
+          "name": "attw",
+          "code": 0
+        },
+        {
+          "name": "attw-json",
+          "code": 0
+        },
+        {
+          "name": "consumer-import",
+          "code": 1
+        },
+        {
+          "name": "consumer-browser-import",
+          "code": 1
+        },
+        {
+          "name": "sizes",
+          "code": 0
+        },
+        {
+          "name": "storybook-build",
+          "code": 0
+        },
+        {
+          "name": "screenshots",
+          "code": 0
+        },
+        {
+          "name": "a11y",
+          "code": 1
+        },
+        {
+          "name": "layer",
+          "code": 0
+        }
+      ]
+    },
+    {
+      "run": 3,
+      "port": 53348,
+      "checks": [
+        {
+          "name": "node",
+          "code": 0
+        },
+        {
+          "name": "pnpm",
+          "code": 0
+        },
+        {
+          "name": "install",
+          "code": 0
+        },
+        {
+          "name": "build-kit",
+          "code": 0
+        },
+        {
+          "name": "test",
+          "code": 0
+        },
+        {
+          "name": "typecheck",
+          "code": 0
+        },
+        {
+          "name": "pack",
+          "code": 1
+        },
+        {
+          "name": "pack-compatible",
+          "code": 0
+        },
+        {
+          "name": "extract",
+          "code": 0
+        },
+        {
+          "name": "publint",
+          "code": 0
+        },
+        {
+          "name": "attw",
+          "code": 0
+        },
+        {
+          "name": "attw-json",
+          "code": 0
+        },
+        {
+          "name": "consumer-import",
+          "code": 1
+        },
+        {
+          "name": "consumer-browser-import",
+          "code": 1
+        },
+        {
+          "name": "sizes",
+          "code": 0
+        },
+        {
+          "name": "storybook-build",
+          "code": 0
+        },
+        {
+          "name": "screenshots",
+          "code": 0
+        },
+        {
+          "name": "a11y",
+          "code": 1
+        },
+        {
+          "name": "layer",
+          "code": 0
+        }
+      ]
+    }
+  ]
+}

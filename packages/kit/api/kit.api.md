@@ -575,7 +575,7 @@ export declare const defaultNumberFormat: NumberFormatSettings;
 ```ts
 import { PaginationOptions } from "@solid-primitives/pagination";
 type PaginationItemSize = "xs" | "sm" | "md" | "lg" | "xl";
-interface PaginationProps extends PaginationOptions {
+export interface PaginationProps extends PaginationOptions {
     rounded?: boolean;
     page?: number;
     size?: PaginationItemSize;
@@ -835,14 +835,20 @@ interface ConfigFor<T> {
     valueKey?: (keyof T & string) | string;
 }
 type MapOptionToValue<T, Key extends (keyof T & string) | string | undefined> = Key extends keyof T ? T[Key] : T;
+type SelectOptionsProps<V> = {
+    optionValue: "value";
+    optionTextValue: (option: Option<V>) => string;
+    itemLabel: (option: Option<V>) => JSXElement;
+    valueComponent: (value: Accessor<Option<V>>) => JSXElement;
+};
 interface CreateSelectOptionsReturn<T, C extends ConfigFor<T>> {
     options: Accessor<Array<Option<MapOptionToValue<T, C["valueKey"]>>>>;
-    optionToValue(option: Option): MapOptionToValue<T, C["valueKey"]>;
+    optionToValue(option: Option | null | undefined): MapOptionToValue<T, C["valueKey"]>;
     optionFromValue(option: MapOptionToValue<T, C["valueKey"]>): Option<MapOptionToValue<T, C["valueKey"]>> | undefined;
-    props(): Record<string, unknown>;
+    props(): SelectOptionsProps<MapOptionToValue<T, C["valueKey"]>>;
     controlled<Value extends MapOptionToValue<T, C["valueKey"]>>(value: Accessor<Value | undefined>, onChange: (value: Value | undefined, option: Option<Value> | undefined) => void): {
         value: Option<MapOptionToValue<T, C["valueKey"]>> | undefined;
-        onChange: (item: Option<Value>) => void;
+        onChange: (item: Option<Value> | null) => void;
     };
 }
 export declare function createSelectOptions<T, C extends ConfigFor<T>>(values: readonly T[] | Accessor<readonly T[]>, config?: C): CreateSelectOptionsReturn<T, C>;
@@ -1498,7 +1504,7 @@ export { createSelectOptions } from "./components/Select/createSelectValue.js";
 export { RadioList, RadioListItem } from "./components/RadioList/RadioList.js";
 export type { RadioListProps, RadioListItemProps, RadioListClasses, } from "./components/RadioList/RadioList.js";
 export { Link } from "./components/Link/Link.js";
-export { Pagination } from "./components/Pagination/Pagination.js";
+export { Pagination, type PaginationProps } from "./components/Pagination/Pagination.js";
 export { Tooltip } from "./components/Tooltip/Tooltip.js";
 export { Tabs, TabsHeader, TabsList, TabsContent } from "./components/Tabs/Tabs.js";
 export { SegmentedControl } from "./components/SegmentedControl/SegmentedControl.js";
@@ -1619,6 +1625,12 @@ export type CloseButtonProps = Omit<PolymorphicProps<"button", IconButtonProps>,
     "aria-label"?: string;
 };
 export declare function CloseButton(props: CloseButtonProps): import("solid-js").JSX.Element;
+```
+
+## tokens.d.ts
+
+```ts
+export { tokens, themeVars, themeTokens, layoutVars, breakpoints, responsiveStyle, } from "./foundation/index.js";
 ```
 
 ## utils/component.d.ts
