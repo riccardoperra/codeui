@@ -1,0 +1,49 @@
+@layer theme, base, cui, components, utilities;
+@import 'tailwindcss';
+@import 'fumadocs-ui/css/neutral.css';
+@import 'fumadocs-ui/css/preset.css';
+@import '@codeui/docs-demos/style.css';
+
+/*
+ * The kit's --cui-* tokens drive the docs chrome too, so the page and the
+ * demos switch theme together. They resolve on <html>, where the root route
+ * mirrors Fumadocs' `dark` class to data-cui-theme.
+ */
+:root,
+.dark {
+  --color-fd-background: var(--cui-surface-canvas);
+  --color-fd-foreground: var(--cui-text-dialog);
+  --color-fd-muted: var(--cui-surface-input);
+  --color-fd-muted-foreground: var(--cui-text-muted);
+  --color-fd-popover: var(--cui-surface-menu);
+  --color-fd-popover-foreground: var(--cui-text-menu);
+  --color-fd-card: var(--cui-surface-panel);
+  --color-fd-card-foreground: var(--cui-text-dialog);
+  --color-fd-border: var(--cui-border-divider);
+  --color-fd-primary: var(--cui-action-brand-soft-text);
+  --color-fd-primary-foreground: var(--cui-surface-canvas);
+  --color-fd-secondary: var(--cui-action-neutral-base);
+  --color-fd-secondary-foreground: var(--cui-action-neutral-text);
+  --color-fd-accent: var(--cui-action-neutral-base);
+  --color-fd-accent-foreground: var(--cui-action-neutral-text);
+  --color-fd-ring: var(--cui-accent-focus);
+  --color-fd-overlay: var(--cui-surface-scrim);
+}
+
+body {
+  font-family: var(--cui-font-family-sans);
+}
+
+html {
+  scrollbar-gutter: stable;
+}
+
+html > body[data-scroll-locked] {
+  margin-right: 0px !important;
+  --removed-body-scroll-bar-size: 0px !important;
+}
+
+/* Islands, not borders: the sidebar sits on the canvas like CodeImage's panels. */
+#nd-sidebar {
+  border-color: transparent;
+}

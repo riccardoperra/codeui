@@ -26,6 +26,14 @@
 		},
 		"dev": {
 			"cache": false
+		},
+		"@codeui/docs#build": {
+			"dependsOn": [
+				"^build"
+			],
+			"outputs": [
+				".output/**"
+			]
 		}
 	}
 }

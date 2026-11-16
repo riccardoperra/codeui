@@ -1,0 +1,30 @@
+{
+	"name": "@codeui/docs-demos",
+	"private": true,
+	"type": "module",
+	"exports": {
+		"./client": {
+			"types": "./client.d.ts",
+			"default": "./dist/client/client.js"
+		},
+		"./server": {
+			"types": "./server.d.ts",
+			"default": "./dist/server/server.js"
+		},
+		"./style.css": "./dist/client/demos.css"
+	},
+	"scripts": {
+		"build": "vite build && vite build --ssr src/server.tsx",
+		"typecheck": "tsc --noEmit"
+	},
+	"dependencies": {
+		"@codeui/kit": "workspace:*",
+		"solid-js": "^1.9.8"
+	},
+	"devDependencies": {
+		"@vanilla-extract/vite-plugin": "^5.2.6",
+		"typescript": "^5.6.2",
+		"vite": "^8.0.0",
+		"vite-plugin-solid": "^2.11.12"
+	}
+}
