@@ -1,7 +1,56 @@
 ---
 title: "Build settings"
-description: "Lay out a settings panel with option cards, switches, and segmented controls."
-status: draft
+description: "Build a settings dialog with navigation, option cards, segmented controls, and switches."
 ---
 
-{/* TODO(docs): Scope from the docs plan. How-to. Group and item distinction, previews, long labels, keyboard. Follow apps/docs/CONTRIBUTING-DOCS.md. Delete each TODO(docs) as you finish its section, and delete status: draft when the page is done. */}
+## Build the dialog
+
+<SolidDemo name="build-settings/basic" />
+
+Use the named parts from `@codeui/kit/dialog` to place the trigger, header, navigation, and sections inside one dialog. Give the dialog a `Title`, a `Description`, and a named `CloseButton`. Put the overlay and positioner inside `Portal`.
+
+The demo applies choices immediately to local controls. Add your persistence callback when you connect the example to your app. It does not save preferences or change the docs theme.
+
+## Add the navigation pane
+
+Keep navigation beside the settings on desktop. The example uses a 232px pane and a flexible content column. Use a `nav` with an accessible label and buttons for sections. Mark the current section with `aria-current="page"`. Give the current button a neutral field fill.
+
+Keep sections in the same dialog. Below 768px, this example puts the navigation above the content. Inkstone's phone sheet is a separate layout adaptation; this demo retains the dialog.
+
+## Choose the controls
+
+Use `OptionCardGroup` for choices that benefit from a preview. Supply a label and entries with distinct values. The group creates an `OptionCard` for each entry, including its input, title, description, preview, and optional badge.
+
+The appearance section recreates the Colour mode choices Dark, Light, and System, Navigation choices Accordion and Rail, and Theme cards Window, Orb, and Aa list. The `Default` badge identifies the default choice even when another card is selected.
+
+Use `SegmentedControl` for the short export-scale choices. Give it an accessible name and a `SegmentedControlItem` for each value. Use `Switch` for Transparent background.
+
+## Build rows from shipped parts
+
+Build each settings row from `Stack` and `Text`. Put the title and secondary description in one stack, then put the control beside that stack. Keep rows at least 56px tall with 8px vertical and 16px horizontal padding. Put related rows inside a shared island.
+
+`SettingsRow` and `SettingsGroup` are planned but are not shipped exports. The example uses local layout classes with kit tokens. Below 900px, its controls move below the row text. Allow long labels to wrap and keep each card preview at the same height.
+
+## Keep keyboard access intact
+
+| Key | Action |
+| --- | --- |
+| Enter or Space on the trigger | Opens settings. |
+| Tab or Shift+Tab | Moves within the modal. Each option-card group has one tab stop. |
+| Left or Right arrow in cards | Moves focus and selects an enabled option in a horizontal group. |
+| Left or Right arrow in segments | Moves focus between scale options. |
+| Enter or Space in segments | Activates the focused scale option. |
+| Space on a switch | Changes its checked state. |
+| Escape | Closes the dialog and returns focus to the trigger. |
+
+The dialog renders `role="dialog"`, connects its title and description, and traps focus while modal. On open, focus moves to the first focusable control. The nav buttons remain ordinary buttons. Option-card inputs retain native radio semantics. Segments use tab semantics, and the switch exposes its checked state.
+
+## Render on the server
+
+The trigger renders on the server. Portalled dialog content renders on the client. Create preference signals inside the demo or your settings component, and use the same initial values during hydration.
+
+## Related
+
+- [OptionCard](/docs/components/option-card) documents card parts, variants, and validation.
+- [Dialog](/docs/components/dialog) documents modal behavior and focus callbacks.
+- [Inkstone patterns](/docs/design/patterns) specifies settings rows and dialogs.
