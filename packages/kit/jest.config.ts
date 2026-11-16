@@ -7,6 +7,6 @@ export default {
 		"^.+\\.m?jsx?$": ["babel-jest", { presets: ["@babel/preset-env"] }],
 	},
 	transformIgnorePatterns: [
-		"node_modules/(?!\\.pnpm|@kobalte|@solid-primitives|solid-presence|solid-prevent-scroll)",
+		"node_modules/(?!\\.pnpm|@kobalte|@corvu|@solid-primitives|solid-presence|solid-prevent-scroll)",
 	],
 };

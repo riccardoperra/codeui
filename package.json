@@ -35,7 +35,7 @@
 		"prettier": "3.3.3",
 		"rollup": "^4.21.3",
 		"rollup-preset-solid": "^2.0.1",
-		"solid-js": "^1.8.22",
+		"solid-js": "^1.9.8",
 		"taze": "^0.16.8",
 		"ts-jest": "^29.2.5",
 		"turbo": "^2.1.1",
