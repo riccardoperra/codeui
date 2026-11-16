@@ -23,6 +23,8 @@ Inside a modal dialog, avoid Select. Its list opens in a portal outside the dial
 
 ## Settings
 
+<FigSettingsRow n={1} caption={<><b>Every settings row has the same five parts.</b> Point at a number to find it.</>} />
+
 A settings row is a title, one line of explanation, and the control on the right. The rows of a group sit together on one island with no lines between them. Below 900px the control moves under the text.
 
 The settings dialog has two panes: search and sections on the left, rows on the right. The current section is marked with a fill, not with blue. The title is a breadcrumb ("Settings / Appearance") and there is no footer, because every change is saved immediately.
@@ -34,6 +36,15 @@ Options that are not the default yet live in an **Experiments** section. The cur
 Option cards are for choices where a picture helps, such as layout, colour mode or window style. A card has no border, a field fill, and a 68px preview. When selected, its fill goes up one step and it gets a 2px blue ring.
 
 The preview is a schematic drawn in the option's own colours, not a miniature of real content. CodeImage tried tiny code previews for its themes, and at card size every theme looked the same. A strip of palette colours was tried as well, but it showed the colours without showing how the theme looks.
+
+<DoDont>
+  <Do note="A schematic in each option's own colours. Three themes, three different cards.">
+    <ArtCards good />
+  </Do>
+  <Dont note="A miniature of real code. At this size every theme looks like the same grey text.">
+    <ArtCards />
+  </Dont>
+</DoDont>
 
 ## Overlays
 
@@ -47,6 +58,15 @@ The preview is a schematic drawn in the option's own colours, not a miniature of
 | Dialog | Settings, or a decision that blocks | Scrim |
 
 A picker opens over the panel that holds it, anchored to its row. It does not push the rows below it down, and it does not dim the page. The user is choosing a value for the content, so the content must stay visible.
+
+<DoDont>
+  <Do note="The list opens over the panel, anchored to its row. Nothing below it moves.">
+    <ArtOverlayDo />
+  </Do>
+  <Dont note="The list opens inline and pushes every row below it down. The row the user aimed for is no longer there.">
+    <ArtOverlayDont />
+  </Dont>
+</DoDont>
 
 A dialog is for settings and for decisions the user must make before continuing, such as reviewing detected secrets before an export. It is not for asking "are you sure?" about something that can be undone.
 
@@ -62,9 +82,27 @@ It lists every option of every visible control, every action and every setting. 
 
 Close and Confirm go on the right of the footer. A third, minor action is a small ghost button with an icon on the left. A toast's action is an inline text link. CodeImage first tried full-width buttons in a toast and a dialog, and they were rejected: "i pulsanti messi così sono orrendi".
 
+<DoDont>
+  <Do note="Close and Export on the right, the primary last. The minor action is a ghost button on the left.">
+    <ArtActionsDo />
+  </Do>
+  <Dont note="Three full-width buttons stacked on desktop. They outweigh the content and blur which action matters.">
+    <ArtActionsDont />
+  </Dont>
+</DoDont>
+
 ## Announcing new things
 
 A new feature gets a small blue dot on its control, at most three at a time across the app, and the dot never animates. A release is announced by a small card in the bottom-left corner, once per release. A blocking "What's new" dialog was replaced, and so was a toast that said "Settings has 7 new things".
+
+<DoDont>
+  <Do note="A quiet dot on each new control, where the user will find it anyway.">
+    <ArtNew good />
+  </Do>
+  <Dont note="Loud tags and a card that sends the user away from their work to read about it.">
+    <ArtNew />
+  </Dont>
+</DoDont>
 
 ## Accessibility
 

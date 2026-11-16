@@ -11,17 +11,22 @@ Spacing uses a 4px grid with 2px half steps: `2 · 4 · 6 · 8 · 12 · 16 · 24
 
 There are no lines between groups, so space alone shows what belongs together. The rule is simple: the space inside a group is always smaller than the space between groups. A title and its description sit 2–4px apart. Rows in a group touch. Groups sit 16–24px apart. A heading has more space above it than below, so it attaches to the content that follows.
 
+<DoDont>
+  <Do note="Rows touch inside their group, and groups sit 16px apart. The two groups read as two groups.">
+    <ArtProximity good />
+  </Do>
+  <Dont note="Each label sits farther from its own rows than from the group above, so “Window” seems to belong to “Frame”. Without lines, space is the only thing that groups.">
+    <ArtProximity />
+  </Dont>
+</DoDont>
+
 ### The shell
 
 Everything sits 8px from the window edge and 8px from its neighbours. The header has no bar of its own. It is as tall as its controls (36px) and reads as the first row of islands, with its edges aligned to the islands below.
 
 ## Radius follows nesting
 
-<div style={{ background: 'var(--cui-surface-canvas)', padding: 8, borderRadius: 22, margin: '24px 0', maxWidth: 360 }}>
-  <div style={{ background: 'var(--cui-surface-panel)', padding: 4, borderRadius: 14 }}>
-    <div style={{ background: 'var(--cui-surface-input)', borderRadius: 10, height: 36, display: 'flex', alignItems: 'center', padding: '0 12px', color: 'var(--cui-text-muted)', fontSize: 12 }}>22 − 8 = 14 · 14 − 4 = 10</div>
-  </div>
-</div>
+<FigRadius n={1} caption={<><b>Drag the padding.</b> The inner corners follow the outer one. Switch to "same radius" to see why equal radii look crooked: the gap is thick at the corners and thin along the sides.</>} />
 
 A corner inside another corner should be concentric with it: **inner radius = outer radius − the padding between them**. If both use the same radius, the gap between them is thick at the corners and thin along the sides, and the inner box looks crooked even though it is not.
 
@@ -44,6 +49,15 @@ Content near a large radius also needs room. CodeImage's logo moved to 16px from
 ## Elevation
 
 An island in the layout has **no shadow**, because it is carved into the page and not placed on top of it. Only surfaces that float over something else get a shadow: menus, popovers, the command menu and dialogs. In dark mode they also get a 1px inner ring, since a shadow on a near-black page is barely visible.
+
+<DoDont>
+  <Do note="Flat islands, and one shadow on the menu that floats over them. Depth means something: this is on top.">
+    <ArtElevation good />
+  </Do>
+  <Dont note="Every island lifted with a shadow and a highlight. The menu no longer stands out, and the page looks like a stack of cards.">
+    <ArtElevation />
+  </Dont>
+</DoDont>
 
 A floating surface has no backdrop unless it is modal. A picker that dimmed the page would hide the content it is supposed to change.
 

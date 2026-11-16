@@ -49,6 +49,12 @@ The command menu opens with no animation because it is opened from the keyboard.
 
 ## The ingredients
 
+<FigEasing n={1} caption={<><b>Ease-out moves first and settles last.</b> The user sees the response at once. Ease-in waits at the start, which is exactly when the user is watching.</>} />
+
+<FigPress n={2} caption={<><b>Press and hold.</b> At 120ms ease-out the button answers under the finger. At 200ms ease, the kit's current value, it lags behind.</>} />
+
+<FigPop n={3} caption={<><b>A popover grows out of what opened it.</b> From the centre it seems to come from nowhere. Modals are the exception: they belong to the whole page, so they open from the centre.</>} />
+
 - **Ease-out for anything entering or responding.** The curve is `cubic-bezier(0.23, 1, 0.32, 1)`: it starts fast and settles gently. Never use `ease-in` on interface elements, because it delays the start of the motion, which is exactly the moment the user is watching. Use `ease-in-out` only for something travelling across the screen.
 - **Exits are faster than entrances**, and they go back the way the element came in.
 - **Only `transform`, `opacity` and `clip-path`.** These animate on the GPU. The accordion's height is the one exception.

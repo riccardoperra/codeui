@@ -36,6 +36,15 @@ The panel can also be shown as a rail of icons, one panel per section. That is a
 
 A toolbar over the content takes no layout space, and its menus open above it. An early CodeImage layout gave its dock its own row, and the canvas shrank every time a menu opened.
 
+<DoDont>
+  <Do note="The bar floats over the work. Opening it changes nothing underneath.">
+    <ArtStillDo />
+  </Do>
+  <Dont note="The bar takes a row. The work shrinks and moves up; the dashed outline is where it was.">
+    <ArtStillDont />
+  </Dont>
+</DoDont>
+
 A label inside a bar keeps a minimum width. Otherwise, previewing a theme with a long name would make the whole bar grow and shrink. Actions that are rarely used go to the command menu, not the bar.
 
 ## Modes: an open question

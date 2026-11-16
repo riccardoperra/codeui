@@ -1,4 +1,7 @@
 {
-  "title": "Design",
+  "title": "Inkstone",
+  "description": "The design language behind the kit",
+  "icon": "PenTool",
+  "root": true,
   "pages": ["index", "color", "typography", "space-and-shape", "motion", "layout", "patterns", "decisions"]
 }

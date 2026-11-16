@@ -40,6 +40,24 @@ A selected option may become bolder only if its box already reserves the bold wi
 
 - **Tabular numbers.** Durations, sizes, zoom levels and timers use `font-variant-numeric: tabular-nums`, so the row does not shift while a value counts up.
 - **Truncate values, not labels.** A long value ends in an ellipsis inside a capped width, and the full text stays reachable through a tooltip or the accessible name. A label is never cut.
+
+<DoDont>
+  <Do note="Tabular figures. Every digit has the same width, so the decimal points line up and a counting value does not jitter.">
+    <ArtNumbers tabular />
+  </Do>
+  <Dont note="Proportional figures. A 1 is narrower than a 0, so values of the same length end at different points.">
+    <ArtNumbers />
+  </Dont>
+</DoDont>
+
+<DoDont>
+  <Do note="The label keeps its full width and the value truncates. The full value is in the tooltip.">
+    <ArtTruncate good />
+  </Do>
+  <Dont note="The label is cut to make room for the value. The user can no longer tell what the field is.">
+    <ArtTruncate />
+  </Dont>
+</DoDont>
 - **Sentence case.** Labels, buttons and titles use sentence case. Store text in natural case and let CSS transform it if needed.
 - **Short words.** A label is a noun or a short verb phrase. A hint is one line, and if it needs two, the setting needs a better name. A badge is one word: "Default", "Experimental".
 - **Real characters.** Use `…`, `→`, `×` and `⌘`, and curly quotes in rendered text.
