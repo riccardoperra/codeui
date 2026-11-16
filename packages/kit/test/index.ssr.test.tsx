@@ -65,7 +65,8 @@ it("server renders slider field content and determinate and indeterminate progre
 		</>
 	));
 	expect(html).toContain('role="slider"');
-	expect(html).toContain('aria-valuenow="0.5"');
+	expect(html).toContain('aria-valuetext="0.5"');
+	expect(html).toContain("right:50%");
 	expect(html).toContain('aria-valuenow="5"');
 	expect(html).toContain("data-indeterminate");
 	expect(html).toContain("Opacity");
