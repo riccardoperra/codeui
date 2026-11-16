@@ -207,3 +207,14 @@ export const TextFieldCustomClasses: Story = {
 		},
 	},
 };
+
+export const FieldApi: Story = {
+	render: () => (
+		<TextField
+			aria-label="Account"
+			autocomplete="off"
+			description={<strong>Use your account name</strong>}
+			classes={{ input: "account-input", description: "account-description" }}
+		/>
+	),
+};

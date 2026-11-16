@@ -279,3 +279,14 @@ export const Validation: Story = {
 		</DocsMultipleItemsContainer>
 	),
 };
+
+export const FieldApi: Story = {
+	render: () => (
+		<NumberField
+			aria-label="Quantity"
+			inputmode="decimal"
+			description={<strong>Number of items</strong>}
+			classes={{ input: "quantity-input" }}
+		/>
+	),
+};

@@ -96,3 +96,20 @@ export const Validation: Story = {
 		</DocsMultipleItemsContainer>
 	),
 };
+
+export const FieldApi: Story = {
+	render: () => (
+		<RadioList
+			aria-label="Layout"
+			class="layout-options"
+			classes={{ items: "layout-items" }}
+		>
+			<RadioListItem
+				value="compact"
+				label={<strong>Compact</strong>}
+				class="compact-option"
+			/>
+			<RadioListItem value="wide" label="Wide" disabled />
+		</RadioList>
+	),
+};

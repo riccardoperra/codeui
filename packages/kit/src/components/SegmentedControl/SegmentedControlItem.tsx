@@ -6,14 +6,20 @@ import { mergeRefs } from "@kobalte/utils";
 import { useSegmentedControlContext } from "./SegmentedControlContext";
 import { PolymorphicProps } from "@kobalte/core/polymorphic";
 
-export type SegmentedControlItemProps<T extends ValidComponent = "button"> = TabsTriggerProps<T>;
+export type SegmentedControlItemProps<T extends ValidComponent = "button"> =
+	TabsTriggerProps<T>;
 
-export function SegmentedControlItem<T extends ValidComponent = "button">(props: PolymorphicProps<T, SegmentedControlItemProps<T>>) {
-	const [local, others] = splitProps(props as PolymorphicProps<"button", SegmentedControlItemProps>, ["class"]);
+export function SegmentedControlItem<T extends ValidComponent = "button">(
+	props: PolymorphicProps<T, SegmentedControlItemProps<T>>,
+) {
+	const [local, others] = splitProps(
+		props as PolymorphicProps<"button", SegmentedControlItemProps>,
+		["class", "ref"],
+	);
 	const context = useSegmentedControlContext();
 	let ref: HTMLElement;
 
-	const classes = () => mergeClasses(styles.segment, local.class);
+	const classes = () => mergeClasses(styles.segment, local.class, context.itemClass?.());
 
 	onMount(() => {
 		context.mountItem(ref);
@@ -24,7 +30,7 @@ export function SegmentedControlItem<T extends ValidComponent = "button">(props:
 		<Tabs.Trigger
 			data-cui={"segmentedControlItem"}
 			class={classes()}
-			ref={mergeRefs(props.ref, el => (ref = el))}
+			ref={mergeRefs(local.ref, el => (ref = el))}
 			{...others}
 		/>
 	);

@@ -390,6 +390,15 @@ export declare function styleFieldMessage(sizesMap: Record<BaseComponentSize, Ba
 };
 ```
 
+## components/Field/inputProps.d.ts
+
+```ts
+import { JSX } from "solid-js";
+export declare const INPUT_KEYS: readonly ["aria-label", "aria-labelledby", "aria-describedby", "aria-details", "aria-autocomplete", "aria-controls", "aria-activedescendant", "aria-expanded", "aria-haspopup", "aria-keyshortcuts", "aria-invalid", "aria-required", "aria-busy", "aria-disabled", "aria-hidden", "aria-errormessage", "aria-live", "aria-atomic", "aria-relevant", "aria-roledescription", "aria-description", "aria-owns", "aria-flowto", "aria-current", "aria-pressed", "aria-checked", "aria-selected", "aria-multiline", "aria-multiselectable", "aria-orientation", "aria-readonly", "aria-placeholder", "aria-valuemin", "aria-valuemax", "aria-valuenow", "aria-valuetext", "aria-posinset", "aria-setsize", "aria-level", "aria-modal", "aria-sort", "aria-rowcount", "aria-rowindex", "aria-rowspan", "aria-colcount", "aria-colindex", "aria-colspan", "autocomplete", "inputmode", "enterkeyhint", "spellcheck", "type", "maxLength", "minLength", "pattern", "autofocus"];
+export type FieldInputProps = Pick<JSX.InputHTMLAttributes<HTMLInputElement>, (typeof INPUT_KEYS)[number]>;
+export type FieldClasses = Partial<Record<"root" | "input" | "label" | "description" | "errorMessage", string>>;
+```
+
 ## components/IconButton/IconButton.d.ts
 
 ```ts
@@ -439,7 +448,10 @@ export {};
 import { JSXElement, ValidComponent } from "solid-js";
 import { ListboxItemProps as KListboxItemProps, ListboxRootProps as KListboxRootProps } from "@kobalte/core/listbox";
 import { PolymorphicProps } from "@kobalte/core/polymorphic";
+export type ListboxClasses = Partial<Record<"root" | "item" | "itemLabel" | "itemIndicator", string>>;
 export interface ListboxProps<Option, OptGroup, T extends ValidComponent = "ul"> extends Omit<KListboxRootProps<Option, OptGroup, T>, "renderItem"> {
+    class?: string;
+    classes?: ListboxClasses;
     size?: "xs" | "sm" | "md";
     theme?: "primary" | "neutral";
     itemLabel?: (item: Option) => JSXElement;
@@ -447,6 +459,8 @@ export interface ListboxProps<Option, OptGroup, T extends ValidComponent = "ul">
 }
 export declare function Listbox<Option, OptGroup = never, T extends ValidComponent = "ul">(props: PolymorphicProps<T, ListboxProps<Option, OptGroup, T>>): import("solid-js").JSX.Element;
 export interface ListboxItemProps<Item, T extends ValidComponent = "li"> extends KListboxItemProps<T> {
+    class?: string;
+    classes?: ListboxClasses;
     size?: "xs" | "sm" | "md";
     itemLabel?: (item: Item) => JSXElement;
 }
@@ -457,7 +471,7 @@ export declare function ListboxItem<Item, T extends ValidComponent = "li">(props
 
 ```ts
 import { ListboxProps } from "./Listbox.js";
-type VirtualizedListboxProps<OptGroup> = Omit<ListboxProps<Item, OptGroup>, "virtualized" | "children" | "options" | "optionValue" | "optionDisabled" | "optionLabel" | "optionTextValue" | "scrollToItem"> & {
+export type VirtualizedListboxProps<OptGroup> = Omit<ListboxProps<Item, OptGroup>, "virtualized" | "children" | "options" | "optionValue" | "optionDisabled" | "optionLabel" | "optionTextValue" | "scrollToItem"> & {
     options: Item[];
     virtualizerOptions?: {
         estimateSize?: (index: number) => number;
@@ -477,6 +491,7 @@ export {};
 ## components/NumberField/NumberField.d.ts
 
 ```ts
+import { FieldInputProps, FieldClasses } from "../Field/inputProps.js";
 import { TextFieldRootOptions as KTextFieldRootOptions } from "@kobalte/core/text-field";
 import { JSX, Ref } from "solid-js";
 import { SlotProp } from "../../utils/component.js";
@@ -490,11 +505,14 @@ type NumberFieldRootOptions = Omit<KTextFieldRootOptions, "value" | "defaultValu
     onChange?: (value: number | undefined | null) => void;
 };
 export type NumberFieldProps = NumberFieldRootOptions & BaseFieldProps & FieldWithErrorMessageSupport & {
-    description?: string;
+    description?: JSX.Element;
+    classes?: FieldClasses;
+    /** @deprecated Use classes. This alias remains until 1.0. */
+    slotClasses?: SlotProp<TextFieldSlot>["slotClasses"];
     label?: JSX.Element;
     placeholder?: string;
     ref?: Ref<HTMLInputElement>;
-} & SlotProp<TextFieldSlot> & Partial<InputNumberOptions>;
+} & FieldInputProps & SlotProp<TextFieldSlot> & Partial<InputNumberOptions>;
 export declare function NumberField(props: NumberFieldProps): JSX.Element;
 export { NumberFieldLabel } from "./NumberFieldLabel.js";
 ```
@@ -626,14 +644,16 @@ import { JSXElement, ValidComponent } from "solid-js";
 import { PolymorphicProps } from "@kobalte/core/polymorphic";
 export type RadioListProps<T extends ValidComponent = "div"> = KRadioGroupRootProps<T> & BaseFieldProps & FieldWithErrorMessageSupport & {
     label?: JSXElement;
-    description?: string;
+    description?: JSXElement;
+    classes?: RadioListClasses;
 };
-interface RadioGroupItemProps extends KRadioGroupItemProps {
-    label: string;
-}
-export declare function RadioListItem(props: RadioGroupItemProps): import("solid-js").JSX.Element;
+export type RadioListClasses = Partial<Record<"root" | "label" | "items" | "description" | "errorMessage" | "item" | "itemControl" | "itemIndicator" | "itemLabel", string>>;
+export type RadioListItemProps<T extends ValidComponent = "div"> = KRadioGroupItemProps<T> & {
+    label?: JSXElement;
+    classes?: RadioListClasses;
+};
+export declare function RadioListItem<T extends ValidComponent = "div">(props: PolymorphicProps<T, RadioListItemProps<T>>): import("solid-js").JSX.Element;
 export declare function RadioList<T extends ValidComponent = "div">(props: PolymorphicProps<T, RadioListProps<T>>): import("solid-js").JSX.Element;
-export {};
 ```
 
 ## components/SegmentedControl/SegmentedControl.css.d.ts
@@ -703,9 +723,6 @@ export declare const segmentedControlWrapper: import("@vanilla-extract/recipes")
     fluid: {
         true: {
             width: "100%";
-            vars: {
-                [x: string]: string;
-            };
         };
     };
     pill: {
@@ -736,7 +753,12 @@ type TypedTabsRootProps<T> = {
 };
 export type SegmentedControlProps = Omit<TabsRootProps, "orientation" | keyof TypedTabsRootProps<string>> & TypedTabsRootProps<string> & SegmentedControlVariants & {
     autoWidth?: boolean;
+    /** @deprecated Use classes. This alias remains until 1.0. */
+    slotClasses?: SlotProp<SegmentedControlSlot>["slotClasses"];
+    classes?: SegmentedControlClasses;
+    onEscapeKeyDown?: (event: KeyboardEvent) => void;
 } & SlotProp<SegmentedControlSlot>;
+export type SegmentedControlClasses = Partial<Record<"root" | "list" | "indicator" | "item", string>>;
 type SegmentedControlSlot = "root" | "list" | "indicator";
 export declare function SegmentedControl(props: PolymorphicProps<"div", SegmentedControlProps>): import("solid-js").JSX.Element;
 export {};
@@ -850,6 +872,7 @@ export declare function TabsIndicator<T extends ValidComponent = "div">(props: P
 ## components/TextArea/TextArea.d.ts
 
 ```ts
+import { FieldInputProps, FieldClasses } from "../Field/inputProps.js";
 import { TextFieldRootOptions as KTextFieldRootOptions, TextFieldTextAreaProps as KTextFieldTextAreaProps } from "@kobalte/core/text-field";
 import { JSX, Ref } from "solid-js";
 import { FieldWithErrorMessageSupport } from "../Field/FieldError/createFieldErrorMessageProps.js";
@@ -857,12 +880,15 @@ import { BaseFieldProps } from "../Field/createBaseFieldProps.js";
 import { SlotProp } from "../../utils/component.js";
 type TextAreaSlot = "root" | "input" | "label" | "errorLabel";
 export type TextAreaProps = KTextFieldRootOptions & BaseFieldProps & FieldWithErrorMessageSupport & {
-    description?: string;
+    description?: JSX.Element;
+    classes?: FieldClasses;
+    /** @deprecated Use classes. This alias remains until 1.0. */
+    slotClasses?: SlotProp<TextAreaSlot>["slotClasses"];
     label?: JSX.Element;
     placeholder?: string;
     ref?: Ref<HTMLTextAreaElement>;
     options?: KTextFieldTextAreaProps;
-} & SlotProp<TextAreaSlot>;
+} & FieldInputProps & SlotProp<TextAreaSlot>;
 export declare function TextArea(props: TextAreaProps): JSX.Element;
 export { TextAreaLabel } from "./TextAreaLabel.js";
 ```
@@ -886,6 +912,7 @@ export declare const textField: string;
 ## components/TextField/TextField.d.ts
 
 ```ts
+import { FieldInputProps, FieldClasses } from "../Field/inputProps.js";
 import { TextFieldRootOptions as KTextFieldRootOptions } from "@kobalte/core/text-field";
 import { JSX, Ref } from "solid-js";
 import { FieldWithErrorMessageSupport } from "../Field/FieldError/createFieldErrorMessageProps.js";
@@ -893,11 +920,14 @@ import { BaseFieldProps } from "../Field/createBaseFieldProps.js";
 import { SlotProp } from "../../utils/component.js";
 type TextFieldSlot = "root" | "input" | "label" | "errorLabel";
 export type TextFieldProps = KTextFieldRootOptions & BaseFieldProps & FieldWithErrorMessageSupport & {
-    description?: string;
+    description?: JSX.Element;
+    classes?: FieldClasses;
+    /** @deprecated Use classes. This alias remains until 1.0. */
+    slotClasses?: SlotProp<TextFieldSlot>["slotClasses"];
     label?: JSX.Element;
     placeholder?: string;
     ref?: Ref<HTMLInputElement>;
-} & SlotProp<TextFieldSlot>;
+} & FieldInputProps & SlotProp<TextFieldSlot>;
 export declare function TextField(props: TextFieldProps): JSX.Element;
 export { TextFieldLabel } from "./TextFieldLabel.js";
 ```
@@ -1239,7 +1269,7 @@ export * as buttonStyles from "./components/Button/Button.css.js";
 export type { ButtonProps } from "./components/Button/Button.js";
 export * as fieldStyles from "./components/Field/Field.css.js";
 export { styleFieldMessage } from "./components/Field/fieldStyle.js";
-export { createBaseFieldProps, type BaseFieldProps } from "./components/Field/createBaseFieldProps.js";
+export { createBaseFieldProps, type BaseFieldProps, } from "./components/Field/createBaseFieldProps.js";
 export { createFieldErrorMessageProps, type FieldWithErrorMessageSupport, } from "./components/Field/FieldError/createFieldErrorMessageProps.js";
 export * as fieldErrorStyles from "./components/Field/FieldError/FieldError.css.js";
 export * as fieldLabelStyles from "./components/Field/FieldLabel/FieldLabel.css.js";
@@ -1265,7 +1295,7 @@ export { Select } from "./components/Select/Select.js";
 export type { SelectClasses } from "./components/Select/Select.js";
 export { createSelectOptions } from "./components/Select/createSelectValue.js";
 export { RadioList, RadioListItem } from "./components/RadioList/RadioList.js";
-export type { RadioListProps } from "./components/RadioList/RadioList.js";
+export type { RadioListProps, RadioListItemProps, RadioListClasses, } from "./components/RadioList/RadioList.js";
 export { Link } from "./components/Link/Link.js";
 export { Pagination } from "./components/Pagination/Pagination.js";
 export { Tooltip } from "./components/Tooltip/Tooltip.js";
@@ -1280,6 +1310,10 @@ export { SvgIcon } from "./icons/SvgIcon.js";
 export * as icons from "./icons/index.js";
 export { themeTokens, themeVars, breakpoints, layoutVars, responsiveStyle, } from "./foundation/index.js";
 export { mergeClasses } from "./utils/css.js";
+export type { FieldClasses } from "./components/Field/inputProps.js";
+export type { ListboxProps, ListboxClasses } from "./components/Listbox/Listbox.js";
+export type { VirtualizedListboxProps } from "./components/Listbox/VirtualizedListbox.js";
+export type { SegmentedControlClasses } from "./components/SegmentedControl/SegmentedControl.js";
 ```
 
 ## parts/dialog.d.ts

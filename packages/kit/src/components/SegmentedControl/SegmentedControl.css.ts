@@ -47,6 +47,7 @@ export const segmentedControlWrapper = recipe({
 			},
 		}),
 	],
+	defaultVariants: { size: "md" },
 	variants: {
 		theme: {
 			neutral: {
@@ -123,9 +124,6 @@ export const segmentedControlWrapper = recipe({
 		fluid: {
 			true: {
 				width: "100%",
-				vars: {
-					[segmentedFieldVars.segmentHeight]: "100%",
-				},
 			},
 		},
 		pill: {

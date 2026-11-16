@@ -142,3 +142,25 @@ export const ListboxVirtualized: Story = {
 		},
 	},
 };
+
+export const FieldApi: Story = {
+	render: () => (
+		<>
+			<Listbox
+				aria-label="Fruit"
+				options={["Apple", "Pear"]}
+				class="fruit-list"
+				classes={{ item: "fruit-option" }}
+			/>
+			<VirtualizedListbox
+				aria-label="Fonts"
+				class="font-list"
+				classes={{ itemLabel: "font-label" }}
+				options={Array.from({ length: 100 }, (_, i) => ({
+					value: String(i),
+					label: `Font ${i}`,
+				}))}
+			/>
+		</>
+	),
+};

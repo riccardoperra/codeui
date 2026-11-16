@@ -206,3 +206,19 @@ export const FluidWidth: Story = {
 		);
 	},
 };
+
+export const FieldApi: Story = {
+	render: () => (
+		<div style={{ height: "160px" }}>
+			<SegmentedControl
+				fluid
+				defaultValue="one"
+				classes={{ list: "segment-list", item: "segment-item" }}
+				onEscapeKeyDown={event => event.preventDefault()}
+			>
+				<SegmentedControlItem value="one">One</SegmentedControlItem>
+				<SegmentedControlItem value="two">Two</SegmentedControlItem>
+			</SegmentedControl>
+		</div>
+	),
+};

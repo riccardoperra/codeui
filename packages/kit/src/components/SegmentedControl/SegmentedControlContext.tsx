@@ -2,6 +2,7 @@ import { Accessor, createContext, createSignal, useContext } from "solid-js";
 
 export interface SegmentedControlContextState {
 	items: Accessor<HTMLElement[]>;
+	itemClass?: Accessor<string | undefined>;
 
 	mountItem(el: HTMLElement): void;
 

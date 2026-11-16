@@ -3,7 +3,7 @@ import { Listbox, ListboxItem, ListboxProps } from "./Listbox";
 import { For, splitProps } from "solid-js";
 import { LISTBOX_ITEM_SIZE } from "./sizes";
 
-type VirtualizedListboxProps<OptGroup> = Omit<
+export type VirtualizedListboxProps<OptGroup> = Omit<
 	ListboxProps<Item, OptGroup>,
 	| "virtualized"
 	| "children"
@@ -81,6 +81,7 @@ export function VirtualizedListbox<OptGroup = never>(
 							if (item) {
 								return (
 									<ListboxItem<Item>
+										classes={props.classes}
 										size={props.size}
 										item={item}
 										itemLabel={item => {

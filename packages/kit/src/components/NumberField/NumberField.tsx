@@ -1,4 +1,9 @@
-import { TextField as KTextField, TextFieldRootOptions as KTextFieldRootOptions } from "@kobalte/core/text-field";
+import { createUniqueId } from "solid-js";
+import { INPUT_KEYS, FieldInputProps, FieldClasses } from "../Field/inputProps";
+import {
+	TextField as KTextField,
+	TextFieldRootOptions as KTextFieldRootOptions,
+} from "@kobalte/core/text-field";
 import { clamp, mergeRefs } from "@kobalte/utils";
 import {
 	maskitoCaretGuard,
@@ -48,11 +53,15 @@ type NumberFieldRootOptions = Omit<
 export type NumberFieldProps = NumberFieldRootOptions &
 	BaseFieldProps &
 	FieldWithErrorMessageSupport & {
-	description?: string;
-	label?: JSX.Element;
-	placeholder?: string;
-	ref?: Ref<HTMLInputElement>;
-} & SlotProp<TextFieldSlot> &
+		description?: JSX.Element;
+		classes?: FieldClasses;
+		/** @deprecated Use classes. This alias remains until 1.0. */
+		slotClasses?: SlotProp<TextFieldSlot>["slotClasses"];
+		label?: JSX.Element;
+		placeholder?: string;
+		ref?: Ref<HTMLInputElement>;
+	} & FieldInputProps &
+	SlotProp<TextFieldSlot> &
 	Partial<InputNumberOptions>;
 
 export function NumberField(props: NumberFieldProps) {
@@ -67,10 +76,15 @@ export function NumberField(props: NumberFieldProps) {
 			"placeholder",
 			"ref",
 			"slotClasses",
+			"classes",
 		],
 		["min", "max", "step", "precision", "prefix", "postfix"],
 		["value", "onChange", "defaultValue"],
 	);
+
+	const [inputProps, rootProps] = splitProps(others, INPUT_KEYS);
+	const generatedId = createUniqueId();
+	const inputId = () => `${rootProps.id ?? generatedId}-input`;
 
 	const [focused, setFocused] = createSignal(false);
 	const [value, setValue] = createControllableSignal<number | undefined | null>({
@@ -93,7 +107,12 @@ export function NumberField(props: NumberFieldProps) {
 	const errorMessageProps = createFieldErrorMessageProps(props);
 
 	const inputClasses = () =>
-		mergeClasses(baseFieldProps.baseStyle(), styles.textField, local.slotClasses?.input);
+		mergeClasses(
+			baseFieldProps.baseStyle(),
+			styles.textField,
+			local.slotClasses?.input,
+			local.classes?.input,
+		);
 
 	const mask = createMaskito({
 		options: () => {
@@ -238,19 +257,30 @@ export function NumberField(props: NumberFieldProps) {
 		<KTextField
 			data-cui={"number-field"}
 			data-field-size={local.size ?? "md"}
-			class={mergeClasses(styles.baseFieldContainer, local?.slotClasses?.root)}
+			class={mergeClasses(
+				styles.baseFieldContainer,
+				local?.slotClasses?.root,
+				local.classes?.root,
+			)}
 			value={displayValue()}
 			onChange={onValueChange}
-			{...others}
+			{...rootProps}
 		>
 			<Show when={local.label} keyed={false}>
-				<NumberFieldLabel class={local.slotClasses?.label}>
+				<NumberFieldLabel
+					for={inputId()}
+					data-cui="text-field-label"
+					class={mergeClasses(local.slotClasses?.label, local.classes?.label)}
+				>
 					{local.label}
 				</NumberFieldLabel>
 			</Show>
 
 			<div class={styles.numberFieldContainer}>
 				<KTextField.Input
+					{...inputProps}
+					id={inputId()}
+					data-cui="text-field-input"
 					class={inputClasses()}
 					placeholder={local.placeholder}
 					ref={mergeRefs(local.ref, el => (internalRef = el))}
@@ -270,12 +300,22 @@ export function NumberField(props: NumberFieldProps) {
 			</div>
 
 			<Show when={local.description} keyed={false}>
-				<NumberFieldMessage>{local.description}</NumberFieldMessage>
+				<NumberFieldMessage
+					data-cui="text-field-description"
+					class={local.classes?.description}
+				>
+					{local.description}
+				</NumberFieldMessage>
 			</Show>
 
 			<Show when={errorMessageProps.errorMessage} keyed={false}>
 				<KTextField.ErrorMessage
-					class={mergeClasses(errorMessageProps.class, local.slotClasses?.errorLabel)}
+					data-cui="text-field-error-message"
+					class={mergeClasses(
+						errorMessageProps.class,
+						local.slotClasses?.errorLabel,
+						local.classes?.errorMessage,
+					)}
 				>
 					{local.errorMessage}
 				</KTextField.ErrorMessage>
