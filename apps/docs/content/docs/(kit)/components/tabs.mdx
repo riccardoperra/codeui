@@ -1,74 +1,139 @@
 ---
 title: Tabs
-description: Panels of content that share one space, switched by a row of headers.
-status: draft
+description: Named panels that share one content area.
 ---
 
-{/* TODO(docs): Rewrite into the page template. Run node tools/docs/scaffold.mjs --print components/tabs to see it, and keep the useful content below. */}
+## When to use
 
-<SolidDemo name="tabs" source="hidden" />
+Use Tabs to switch between related panels, such as a snippet's code and settings.
 
-## Usage
+## When to choose another component
 
-```tsx
-import { createSignal } from 'solid-js';
-import { Tabs, TabsContent, TabsHeader, TabsList } from '@codeui/kit';
+Use [SegmentedControl](/docs/components/segmented-control) to choose a compact setting such as an export format or preview mode.
+Tabs associates each trigger with a content panel. SegmentedControl represents a setting value and does not require a panel for each choice.
 
-export function EditorSettings() {
-  const [tab, setTab] = createSignal('editor');
-  return (
-    <Tabs value={tab()} onChange={setTab}>
-      <TabsList>
-        <TabsHeader value="editor">Editor</TabsHeader>
-        <TabsHeader value="theme">Theme</TabsHeader>
-        <TabsHeader value="font">Font</TabsHeader>
-      </TabsList>
-      <TabsContent value="editor">Language, tab size and line numbers.</TabsContent>
-      <TabsContent value="theme">Background, padding and window style.</TabsContent>
-      <TabsContent value="font">Family, weight and ligatures.</TabsContent>
-    </Tabs>
-  );
-}
-```
+## Live demo
 
-### Inline theme
+<SolidDemo name="tabs/basic" />
 
-`theme="inline"` drops the header background and adds a sliding indicator under the selected header.
+Each header's `value` matches a content panel's `value`. Give TabsList an accessible label.
 
-<SolidDemo name="tabs-inline" source="hidden" />
+## Anatomy
 
-```tsx
-<Tabs theme="inline" defaultValue="snippets">
-  <TabsList>
-    <TabsHeader value="snippets">Snippets</TabsHeader>
-    <TabsHeader value="presets">Presets</TabsHeader>
-    <TabsHeader value="shared">Shared</TabsHeader>
-  </TabsList>
-  <TabsContent value="snippets">Your saved snippets.</TabsContent>
-  <TabsContent value="presets">Saved theme and font combinations.</TabsContent>
-  <TabsContent value="shared">Snippets shared with a public link.</TabsContent>
-</Tabs>
-```
+| Export | Renders | `classes` key | `data-cui` | Role |
+| --- | --- | --- | --- | --- |
+| `Tabs` | `div` | none | `tabs` | Root container |
+| `TabsList` | `div` | none | none | tablist |
+| `TabsHeader` | `button` | none | none | tab |
+| `TabsContent` | `div` | none | none | tabpanel |
+| Internal indicator | `div` | none | none | Visual indicator |
 
-## API
+Each public part merges its `class` with kit styles. Tabs has no `classes` map.
+Only the root has a kit `data-cui` attribute. Kobalte supplies state and orientation attributes on its parts.
 
-Tabs is a compound component. Each piece wraps the matching Kobalte `Tabs` part and takes its props.
+## Variants
 
-| Export | Wraps | Role |
-| --- | --- | --- |
-| `Tabs` | `Tabs` | Root. Holds the selected value and the theme. |
-| `TabsList` | `Tabs.List` | Row of headers. Adds the indicator in the inline theme. |
-| `TabsHeader` | `Tabs.Trigger` | One header. Its `value` matches a `TabsContent`. |
-| `TabsContent` | `Tabs.Content` | Panel shown when its `value` is selected. |
+### Inline indicator
 
-The root accepts Kobalte's root props such as `orientation`, `activationMode`, and `disabled`. It adds `theme`.
+<SolidDemo name="tabs/inline" />
 
-<TypeTable
-  type={{
-    value: { type: 'string', description: 'Controlled selected value.' },
-    defaultValue: { type: 'string', description: 'Selected value on first render, when uncontrolled.' },
-    onChange: { type: '(value: string) => void', description: 'Called when the selection changes.' },
-    theme: { type: "'default' | 'inline'", default: "'default'", description: 'Header style. The inline theme adds a sliding indicator.' },
-    orientation: { type: "'horizontal' | 'vertical'", default: "'horizontal'", description: 'Direction of the header row and the arrow keys.' },
-  }}
-/>
+`theme="inline"` makes TabsList insert an indicator aligned with the selected header.
+The default theme has no indicator. The theme does not change panel behavior.
+`TabsIndicator` exists in the implementation but is not exported from the package root.
+
+### Vertical orientation
+
+<SolidDemo name="tabs/vertical" />
+
+`orientation="vertical"` puts headers in a column and panels beside them. It also changes the navigation keys to Up Arrow and Down Arrow.
+
+## States
+
+### Disabled and manual activation
+
+<SolidDemo name="tabs/manual" />
+
+A disabled header cannot receive keyboard focus or activate its panel.
+The default activation mode selects a tab when it receives focus. `activationMode="manual"` keeps selection unchanged until Enter or Space.
+Use manual activation when selecting a panel starts expensive work.
+
+## Ready API
+
+### `Tabs`
+
+Renders the root and shares selection with its children.
+
+<PropsTable name="Tabs" />
+<PropsTable name="TabsInherited" />
+
+### `TabsList`
+
+Renders the tablist and the inline theme's indicator.
+
+<PropsTable name="TabsList" />
+
+### `TabsHeader`
+
+Renders a trigger button with a panel value.
+
+<PropsTable name="TabsHeader" />
+<PropsTable name="TabsHeaderInherited" />
+
+### `TabsContent`
+
+Renders the selected panel. `forceMount` keeps inactive content mounted when you need to manage its visibility.
+
+<PropsTable name="TabsContent" />
+<PropsTable name="TabsContentInherited" />
+
+Other behavior follows the [Kobalte Tabs contract](https://kobalte.dev/docs/core/components/tabs).
+The package root exports the four components, but does not re-export their props types.
+
+## Accessibility
+
+### Keyboard
+
+| Key | Action |
+| --- | --- |
+| Tab | Enters the selected tab, then moves into the panel or next focusable element. |
+| Left Arrow, Right Arrow | Moves between enabled horizontal tabs. |
+| Up Arrow, Down Arrow | Moves between enabled vertical tabs. |
+| Home, End | Moves to the first or last enabled tab. |
+| Enter, Space | Activates a focused tab in manual mode. |
+
+### ARIA
+
+TabsList has `role="tablist"` and `aria-orientation`. Headers have `role="tab"`, `aria-selected`, and `aria-controls`.
+Panels have `role="tabpanel"` and `aria-labelledby` linked to their header. Disabled headers expose `aria-disabled`.
+
+### Focus
+
+Arrow navigation keeps focus on the headers. Activating a tab does not move focus into its panel.
+There is no open or close cycle. When removing a selected dynamic tab, choose a remaining value before removing its header.
+
+## SSR notes
+
+The root, list, headers, and initially selected panel render on the server. Inactive panels mount when selected unless `forceMount` is set.
+Indicator geometry is measured on the client. Keep initial values and tab IDs stable for hydration. There is no portal.
+
+## Theming hooks
+
+Tabs reads `--cui-border-divider`, `--cui-border-width`, `--cui-action-neutral-hover`, `--cui-text-muted`, `--cui-text-default`, and `--cui-accent-selection`.
+Text and spacing use `--cui-font-size-sm`, `--cui-font-weight-semibold`, `--cui-space-2`, and `--cui-space-4`.
+Transitions use `--cui-motion-duration-normal` and `--cui-motion-duration-fast` with `--cui-motion-ease-out`.
+The current kit draws a line below or beside the tablist and animates indicator geometry. These styles predate Inkstone's line and keyboard-motion rules.
+
+## Composition examples
+
+### Dynamic snippet tabs
+
+<SolidDemo name="tabs/dynamic" />
+
+Stable IDs pair each header with its panel. Adding a snippet selects it.
+Closing the selected snippet chooses the first remaining snippet. The final tab cannot close.
+The controlled value keeps selection valid when the collection changes.
+
+## Related
+
+- [SegmentedControl](/docs/components/segmented-control) selects a compact setting value.
+- [Pagination](/docs/components/pagination) selects a numbered result page.

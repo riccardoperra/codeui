@@ -1,54 +1,129 @@
 ---
 title: Listbox
-description: An inline list of options with single or multiple selection.
-status: draft
+description: An inline collection with single or multiple selection.
 ---
 
-{/* TODO(docs): Rewrite into the page template. Run node tools/docs/scaffold.mjs --print components/listbox to see it, and keep the useful content below. */}
+## When to use
 
-<SolidDemo name="listbox" source="hidden" />
+Use Listbox when you need visible options that select one or more values, such as export formats or snippet languages.
 
-## Usage
+## When to choose another component
 
-```tsx
-import { Listbox } from '@codeui/kit';
+Use [Select](/docs/components/select) for a collapsed picker. Use [Combobox](/docs/components/combobox) when you need a search field.
+Use [VirtualizedListbox](/docs/components/virtualized-listbox) for a long collection.
 
-const languages = ['TypeScript', 'Rust', 'Python', 'Go'];
+## Live demo
 
-export function LanguageList() {
-  return (
-    <Listbox
-      aria-label="Language"
-      options={languages}
-      defaultValue={['TypeScript']}
-      selectionMode="single"
-      size="sm"
-      bordered
-    />
-  );
-}
-```
+<SolidDemo name="listbox/basic" />
 
-## API
+`disallowEmptySelection` keeps a language selected. Values are collections of option keys even in single selection mode.
 
-`Listbox` wraps Kobalte's `Listbox` and renders each option as a `ListboxItem` with a check indicator.
-Kobalte's props such as `selectionMode`, `disallowEmptySelection`, `optionValue`, and `optionTextValue` pass through.
-Items take focus on hover. For long lists, use `VirtualizedListbox`.
+## Anatomy
 
-<TypeTable
-  type={{
-    options: { type: 'Option[]', description: 'Items of the list. Strings work as is. Objects need optionValue and optionTextValue.' },
-    value: { type: 'Iterable<string>', description: 'Controlled set of selected keys.' },
-    defaultValue: { type: 'Iterable<string>', description: 'Selected keys on first render, when uncontrolled.' },
-    onChange: { type: '(value: Set<string>) => void', description: 'Called when the selection changes.' },
-    selectionMode: { type: "'none' | 'single' | 'multiple'", description: 'How many items can be selected.' },
-    size: { type: "'xs' | 'sm' | 'md'", description: 'Height of each item.' },
-    theme: { type: "'primary' | 'neutral'", default: "'neutral'", description: 'Color of the selected item.' },
-    bordered: { type: 'boolean', description: 'Draws a border around the list.' },
-    itemLabel: { type: '(item: Option) => JSX.Element', description: 'Renders the label of each item.' },
-    classes: {
-      type: 'Partial<Record<ListboxPart, string>>',
-      description: 'Classes for the parts it renders: root, item, itemLabel, itemIndicator.',
-    },
-  }}
-/>
+| Export | Renders | `classes` key | `data-cui` | Role |
+| --- | --- | --- | --- | --- |
+| `Listbox` | `ul` | `root` | `listbox` | listbox |
+| `ListboxItem` | `li` | `item` | `listbox-item` | option |
+| Internal label | `div` | `itemLabel` | `listbox-item-label` | Label text |
+| Internal indicator | `div` | `itemIndicator` | `listbox-item-indicator` | Selection check |
+
+The ready Listbox renders ListboxItem for each option. The indicator stays mounted to reserve space.
+
+## Variants
+
+### Selection modes
+
+<SolidDemo name="listbox/selection" />
+
+`single` selects one key. `multiple` selects several keys. `none` allows navigation without selection.
+The controlled `value` and `onChange` use a `Set<string>`. Set `selectionBehavior="replace"` for desktop range selection behavior.
+
+### Sizes
+
+<SolidDemo name="listbox/sizes" />
+
+Explicit sizes are `xs` at 30px, `sm` at 36px, and `md` at 40px. Without `size`, the shared minimum height applies.
+Use `sm` for the Inkstone desktop control height.
+
+## States
+
+<SolidDemo name="listbox/customization" />
+
+Object options need `optionValue` and `optionTextValue`. `optionDisabled` marks unavailable options.
+`itemLabel` renders the object as readable content. `class` targets the root. `classes` targets the four parts in the anatomy table.
+
+<SolidDemo name="listbox/empty" />
+
+An empty collection renders an empty list. Render an empty message beside it.
+
+## Ready API
+
+### `Listbox`
+
+Renders the list and its options.
+
+<PropsTable name="Listbox" />
+<PropsTable name="ListboxInherited" />
+
+### `ListboxItem`
+
+Renders a Kobalte collection node with a label and check indicator. The ready list normally creates it for you.
+
+<PropsTable name="ListboxItem" />
+<PropsTable name="ListboxItemInherited" />
+
+`ListboxClasses` contains the four optional class names in the anatomy table.
+The remaining collection and keyboard props follow the [Kobalte Listbox contract](https://kobalte.dev/docs/core/components/listbox).
+
+## Accessibility
+
+### Keyboard
+
+| Key | Action |
+| --- | --- |
+| Tab | Enters the list at the selected or first enabled option, then leaves the list. |
+| Up Arrow, Down Arrow | Moves focus between enabled options. |
+| Home, End | Moves to the first or last enabled option. |
+| Enter, Space | Selects the focused option according to the selection mode. |
+| Characters | Moves focus to the next matching text value. |
+| Shift + Arrow | Extends a multiple selection when the selection behavior supports ranges. |
+
+### ARIA
+
+The root has `role="listbox"`. Items have `role="option"`, `aria-selected`, and `aria-disabled` when applicable.
+Multiple selection adds `aria-multiselectable`. Supply `aria-label` or `aria-labelledby` for the list.
+`optionTextValue` provides the plain text used for typeahead when labels contain custom markup.
+
+### Focus
+
+Options take DOM focus. Hover focuses options by default. Disabled options are skipped.
+The list stays inline, so there is no open or close cycle and no focus restoration target.
+
+## SSR notes
+
+The list and its options render inline on the server. Keep option keys and initial selection stable between server render and hydration.
+There is no portal.
+
+## Theming hooks
+
+The list reads `--cui-surface-menu`, `--cui-surface-menu-hover`, `--cui-text-menu`, `--cui-text-selected`, and `--cui-accent-selection`.
+Geometry uses `--cui-radius-xs`, `--cui-radius-sm`, `--cui-radius-lg`, `--cui-control-height-md`, and `--cui-space-1`, `--cui-space-2`, `--cui-space-3`.
+Text uses `--cui-font-size-sm`, `--cui-font-size-md`, and `--cui-font-weight-normal`.
+The legacy bordered mode reads `--cui-border-width`, `--cui-border-divider`, and `--cui-focus-color`.
+The theme also references `--cui-shadow-menu` and `--cui-border-menu`.
+Keep the neutral theme and borderless default for Inkstone. The primary highlight and bordered mode are legacy styles.
+
+## Composition examples
+
+### Sections
+
+<SolidDemo name="listbox/sections" />
+
+`optionGroupChildren` identifies each group's options. `renderSection` renders a nonselectable heading before those options.
+The section heading is not an option and arrow navigation skips it. The ready kit does not export a styled section component.
+
+## Related
+
+- [VirtualizedListbox](/docs/components/virtualized-listbox) renders a window of a flat collection.
+- [Select](/docs/components/select) hides options behind a trigger.
+- [Combobox](/docs/components/combobox) filters options through a text field.
