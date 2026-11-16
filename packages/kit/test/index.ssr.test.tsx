@@ -1,4 +1,5 @@
 import { Alert } from "../src/components/Alert/Alert";
+import { createToaster, Toaster } from "../src/components/Toast/Toaster";
 import * as T from "../src/parts/toast";
 import { Badge } from "../src/components/Badge/Badge";
 import { Kbd } from "../src/components/Kbd/Kbd";
@@ -71,4 +72,20 @@ it("server-renders an empty toast region", () => {
 	));
 	expect(html).toMatch(/<div[^>]*role="region"/);
 	expect(html).toMatch(/<div[^>]*data-cui="toast-list"[^>]*><\/div>/);
+});
+
+it("server-renders an empty toaster and keeps shown toasts off the shared engine", () => {
+	const firstRequest = createToaster();
+	expect(firstRequest.show({ description: "First request" })).toBe(1);
+	const html = renderToString(() => (
+		<Toaster toaster={firstRequest} closeLabel="Close" aria-label="Notifications" />
+	));
+	expect(html).toMatch(/role="region"/);
+	expect(html).not.toContain("First request");
+
+	const secondRequest = createToaster();
+	const secondHtml = renderToString(() => (
+		<Toaster toaster={secondRequest} closeLabel="Close" aria-label="Notifications" />
+	));
+	expect(secondHtml).not.toContain("First request");
 });

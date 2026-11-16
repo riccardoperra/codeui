@@ -1033,6 +1033,88 @@ export declare function TextFieldLabel(props: TextFieldLabelProps): import("soli
 export {};
 ```
 
+## components/Toast/Toaster.d.ts
+
+```ts
+import { type JSX } from "solid-js";
+import * as T from "../../parts/toast.js";
+/** Scoped to the controller that returned it. Two controllers can return the same id. */
+export type ToastId = number;
+export type ToastContext = {
+    id: ToastId;
+    dismiss: () => void;
+};
+export type ToastContent = JSX.Element | ((context: ToastContext) => JSX.Element);
+export type ToastAction = {
+    label: JSX.Element;
+    /** The toast stays open. Call `context.dismiss()` to close it. */
+    onClick: (context: ToastContext) => void;
+};
+export type ToastOptions = {
+    title?: ToastContent;
+    description: ToastContent;
+    tone?: T.ToastTone;
+    /** Replaces the tone icon. `null` hides it. Neutral has no tone icon. */
+    icon?: ToastContent;
+    action?: ToastAction;
+    /** Shows the close button. Defaults to true. */
+    closeable?: boolean;
+    /** Milliseconds before the toast closes. `Infinity` keeps it open. */
+    duration?: number;
+    /** Renders the toast in this theme, whatever the page theme. */
+    theme?: "light" | "dark";
+    class?: string;
+    classes?: T.ToastClasses;
+    style?: JSX.CSSProperties;
+};
+export type ToastPromiseOptions<D> = {
+    loading: ToastOptions;
+    success: ToastOptions | ((data: D) => ToastOptions);
+    error: ToastOptions | ((error: unknown) => ToastOptions);
+};
+export interface ToastController {
+    /** Ties the controller to its `<Toaster />`. */
+    readonly regionId: string;
+    show(options: ToastOptions): ToastId;
+    /** Merges into the open toast. A new duration restarts its timer. */
+    update(id: ToastId, options: Partial<ToastOptions>): void;
+    /** Closes with the exit animation. */
+    dismiss(id: ToastId): void;
+    /** Dismisses every toast of this controller. */
+    clear(): void;
+    /**
+     * Shows `loading` until the promise settles, then `success` or `error` in
+     * the same toast. Loading stays open and shows a spinner unless its options
+     * say otherwise.
+     */
+    promise<D>(promise: Promise<D> | (() => Promise<D>), options: ToastPromiseOptions<D>): ToastId;
+}
+export type CreateToasterOptions = {
+    /** Default milliseconds before a toast closes. Defaults to 5000. */
+    duration?: number;
+};
+/**
+ * Creates a toast controller for one `<Toaster />`. Each controller has its own
+ * toasts, so create one per app or per region. On the server it shows nothing.
+ * Created inside a component, it clears its toasts when that owner is disposed.
+ */
+export declare function createToaster(options?: CreateToasterOptions): ToastController;
+export type ToasterProps = Omit<T.RegionProps, "regionId" | "duration" | "children" | "position"> & {
+    toaster: ToastController;
+    /** Defaults to bottom center. */
+    position?: T.ToastPosition;
+    /** The close button's accessible name, in the app's language. */
+    closeLabel: string;
+    /** Classes for the region and list. Per-toast classes go in the toast options. */
+    classes?: Pick<T.ToastClasses, "region" | "list">;
+};
+/**
+ * The region that shows one controller's toasts. Place it inside the app's
+ * providers: toast content renders here and can read their context.
+ */
+export declare function Toaster(props: ToasterProps): JSX.Element;
+```
+
 ## components/Tooltip/Tooltip.css.d.ts
 
 ```ts
@@ -1609,6 +1691,8 @@ export { Skeleton } from "./components/Skeleton/Skeleton.js";
 export type { SkeletonProps } from "./components/Skeleton/Skeleton.js";
 export { Alert } from "./components/Alert/Alert.js";
 export type { AlertProps } from "./components/Alert/Alert.js";
+export { Toaster, createToaster } from "./components/Toast/Toaster.js";
+export type { CreateToasterOptions, ToastAction, ToastContent, ToastContext, ToastController, ToasterProps, ToastId, ToastOptions, ToastPromiseOptions, } from "./components/Toast/Toaster.js";
 export { SvgIcon } from "./icons/SvgIcon.js";
 export * as icons from "./icons/index.js";
 export { tokens, themeTokens, themeVars, breakpoints, layoutVars, responsiveStyle, } from "./foundation/index.js";

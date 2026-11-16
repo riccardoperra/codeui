@@ -86,6 +86,8 @@ export const root = recipe({
 			"&[data-opened]": { animation: `${rise} ${enter}` },
 			"[data-position^=top] &[data-opened]": { animationName: drop },
 			"&[data-closed]": { animation: `${fadeOut} ${exit}` },
+			// A toast remounted to restart its timer is already on screen.
+			"&[data-cui-replaced][data-opened]": { animation: "none" },
 			"&[data-swipe=move]": { transform: "translateX(var(--kb-toast-swipe-move-x))" },
 			"&[data-swipe=cancel]": {
 				transform: "translateX(0)",
