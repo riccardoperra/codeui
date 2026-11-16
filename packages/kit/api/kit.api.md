@@ -1612,7 +1612,9 @@ export type { VirtualizedListboxProps } from "./components/Listbox/VirtualizedLi
 export type { SegmentedControlClasses } from "./components/SegmentedControl/SegmentedControl.js";
 export * from "./components/Stack/Stack.js";
 export * from "./components/Text/Text.js";
-export { Switch, createSwitchProps, switchStyles, SwitchParts, } from "./components/Switch/Switch.js";
+import { Switch } from "./components/Switch/Switch.js";
+export { Switch };
+export { createSwitchProps, switchStyles, SwitchParts } from "./components/Switch/Switch.js";
 export type { SwitchProps, SwitchClasses, SwitchPart, SwitchVariants, SwitchStyles, } from "./components/Switch/Switch.js";
 ```
 

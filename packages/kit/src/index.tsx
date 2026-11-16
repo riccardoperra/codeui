@@ -106,12 +106,9 @@ export * from "./components/Stack/Stack";
 
 export * from "./components/Text/Text";
 
-export {
-	Switch,
-	createSwitchProps,
-	switchStyles,
-	SwitchParts,
-} from "./components/Switch/Switch";
+import { Switch } from "./components/Switch/Switch";
+export { Switch };
+export { createSwitchProps, switchStyles, SwitchParts } from "./components/Switch/Switch";
 export type {
 	SwitchProps,
 	SwitchClasses,
