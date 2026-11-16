@@ -32,6 +32,7 @@
 		"nitro": "3.0.261103-rc",
 		"tailwindcss": "^4.3.5",
 		"typescript": "^7.0.2",
-		"vite": "^8.3.8"
+		"vite": "^8.3.8",
+		"wrangler": "4.156.2"
 	}
 }

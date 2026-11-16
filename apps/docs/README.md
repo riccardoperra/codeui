@@ -35,12 +35,36 @@ The build needs Node 22.12 or later, which TanStack Start and Nitro require.
 
 ## Hosting
 
-The repository's `netlify.toml` deploys Storybook, and this site does not change it.
-The build prerenders every docs page into `.output/public`, and `.output/server` holds a Node server for search and the Markdown routes.
-To host the docs on Netlify as a separate site, use:
+The site deploys to Cloudflare Pages from `.github/workflows/docs.yml`:
 
-- Base directory: `/`
-- Build command: `pnpm turbo run build --filter=@codeui/docs...`
-- Publish directory: `apps/docs/.output/public`
+- A push to `main` deploys to production.
+- A pull request from this repository deploys a preview and comments its URL on the pull request.
+- The workflow runs only when the docs, the kit, the demos, the lockfile or `turbo.json` change. Run it by hand with `workflow_dispatch`.
 
-The static publish serves the prerendered pages. Search and the `.md` routes need the Node server or a Netlify Nitro preset.
+The Cloudflare build uses Nitro's `cloudflare-pages` preset. It prerenders every docs page into `dist/` and puts the server in `dist/_worker.js`, which Pages runs as an advanced-mode Function. Search, the `.md` routes, `llms.txt` and the TanStack server functions that client-side navigation calls run in that Worker.
+
+Build and preview the Cloudflare output locally:
+
+```bash
+NITRO_PRESET=cloudflare-pages pnpm turbo run build --filter=@codeui/docs...
+pnpm --filter @codeui/docs exec wrangler pages dev
+```
+
+Without `NITRO_PRESET`, the build uses the `node-server` preset and writes `.output/`, as above.
+
+Prerendering serves the build through Nitro's preview command. For Cloudflare presets Nitro runs that command with `--host`, which `wrangler pages dev` rejects, so `scripts/wrangler-pages-dev.mjs` maps it to `--ip`.
+
+### Setup
+
+The workflow needs two repository secrets:
+
+- `CLOUDFLARE_API_TOKEN`: an API token with the **Account > Cloudflare Pages > Edit** permission.
+- `CLOUDFLARE_ACCOUNT_ID`: the Cloudflare account ID.
+
+The Pages project must exist before the first deploy. Create it once:
+
+```bash
+pnpm --filter @codeui/docs exec wrangler pages project create codeui-docs --production-branch=main
+```
+
+The repository's `netlify.toml` still deploys Storybook, and this site does not change it.
