@@ -1,0 +1,50 @@
+---
+title: Typography
+description: Small, steady interface text. 13px base, three weights, sentence case, tabular numbers.
+---
+
+Interface text in Inkstone is small and steady. Most of a screen is 12 to 14px, with a 13px base. The interface is a tool next to the user's work, so its text needs to be easy to read and should not attract attention.
+
+## Families
+
+The interface uses **Inter** with four character variants turned on (`"cv02", "cv03", "cv04", "cv11"`). They give Inter open digits and a single-storey a, which read better at small sizes. The kit does not bundle the font. The app loads it with `font-display: swap`, and the system font is the fallback.
+
+Code uses whatever monospace the user picks. In CodeImage the default is JetBrains Mono. The interface uses a monospace only for code, file paths and hex values.
+
+Hierarchy never comes from a third font family. It comes from tone and weight.
+
+## Scale
+
+| Step | Size | Weight | Use |
+| --- | --- | --- | --- |
+| Micro | 11px | 500 | Badges, tags, keycaps. One word |
+| Meta | 12px | 400, 600 for group labels | Descriptions, summaries |
+| Base | 13px | 400 | Running text, row labels inside a section |
+| Label | 14px | 500 or 600 | Row titles, menu items, buttons, section headers |
+| Title | 16px | 600 | Group titles, breadcrumbs, phone inputs |
+| Display | 18px+ | 600 | Announcements only |
+
+### No text below 11px
+
+The Animate timeline once had a 9.5px label, and it was rejected as unreadable. At 11px and above, Inter stays legible on a standard display.
+
+### Three weights
+
+- **400** for text the user reads.
+- **500** for things the user acts on, such as buttons and row titles.
+- **600** for headings.
+
+A selected option may become bolder only if its box already reserves the bold width. Otherwise selecting it pushes its neighbours sideways.
+
+## Rules that keep text steady
+
+- **Tabular numbers.** Durations, sizes, zoom levels and timers use `font-variant-numeric: tabular-nums`, so the row does not shift while a value counts up.
+- **Truncate values, not labels.** A long value ends in an ellipsis inside a capped width, and the full text stays reachable through a tooltip or the accessible name. A label is never cut.
+- **Sentence case.** Labels, buttons and titles use sentence case. Store text in natural case and let CSS transform it if needed.
+- **Short words.** A label is a noun or a short verb phrase. A hint is one line, and if it needs two, the setting needs a better name. A badge is one word: "Default", "Experimental".
+- **Real characters.** Use `…`, `→`, `×` and `⌘`, and curly quotes in rendered text.
+- **16px on phone inputs.** iOS zooms the page when a field with smaller text gets focus.
+
+## Proposed
+
+`text-wrap: balance` on titles and short descriptions, and `text-wrap: pretty` on paragraphs. CodeImage does not use them yet. They prevent a single word sitting alone on the last line of a two-line hint.

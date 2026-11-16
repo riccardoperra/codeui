@@ -1,0 +1,63 @@
+---
+title: Layout
+description: A still content island, a 360px side panel, floating bars, and one breakpoint.
+---
+
+## The shell
+
+```
+┌──────────────────────────────────────────────────────────────┐
+│ ◧ Name                       ⌘K  ⚙   [ Export ][▾]  [ … ]     │
+│ ┌──────────────────────────────────────────┐ ┌─────────────┐ │
+│ │                                          │ │ ▾ Section … │ │
+│ │          content island (still)          │ │ ┌─────────┐ │ │
+│ │                                          │ │ │  inset  │ │ │
+│ │           ( floating toolbar )           │ │ └─────────┘ │ │
+│ └──────────────────────────────────────────┘ └─────────────┘ │
+└──────────────────────────────────────────────────────────────┘
+```
+
+The interface has fixed sizes and the content takes all the remaining space. The side panel is 360px. The header row is 36px. Everything sits 8px from the window edge and 8px from its neighbours.
+
+When the content is read-only, the layout leaves out the containers of the controls it does not show. The content gets that space, instead of empty frames where the controls would be.
+
+## Side panel
+
+CodeImage's side panel is an accordion. Its rules came from several review rounds.
+
+- **One section open at a time.** With several sections open, the panel scrolled further every time a section was opened.
+- **Everything visible inside the open section.** An early build had "More / Less" toggles inside sections, which hid options without making the panel easier to scan. They were removed.
+- **The header carries the current value.** Each section header shows an icon, a title, the current value as a short grey summary (for example "64" or "macOS"), and a chevron. The user can read the whole configuration with every section closed.
+- **The open section sits on an inset**, a quieter island inside the panel, so it is clear which header the controls belong to.
+
+The panel can also be shown as a rail of icons, one panel per section. That is a preference in Settings, not a separate layout. Both forms render the same sections from the same code, so they cannot drift apart. A hybrid of rail and accordion was tried and rejected.
+
+## Floating bars
+
+A toolbar over the content takes no layout space, and its menus open above it. An early CodeImage layout gave its dock its own row, and the canvas shrank every time a menu opened.
+
+A label inside a bar keeps a minimum width. Otherwise, previewing a theme with a long name would make the whole bar grow and shrink. Actions that are rarely used go to the command menu, not the bar.
+
+## Modes: an open question
+
+Some features change what the user is doing, not just a setting. CodeImage's Animate is the main example: it adds a timeline. Today that timeline takes space inside the canvas island, and the frame moves up by about 85px when it opens. This contradicts the first principle.
+
+There are two ways to resolve it:
+
+1. **The timeline floats** over the canvas, like every other panel.
+2. **A mode is allowed to take space.** Entering a mode is a deliberate change of task, and the user expects the layout to change.
+
+Until the maintainer decides, the rule is the minimum both options share: entering or leaving a mode may move the content, but must not change its zoom.
+
+## Responsive
+
+One breakpoint does most of the work: **768px and narrower** is a phone. Write it the same way everywhere: `max-width: 768px`, or `min-width: 769px` for the opposite. CodeImage also has a `767px` that should go.
+
+On a phone:
+
+- The side panel becomes a bottom sheet with a grip, and its sections become tabs.
+- Timelines and dense grids become lists with a summary bar, because a drag target on a phone is too small to use reliably.
+- Header actions must fit the width. Today "Sign in with GitHub" runs off the right edge at 390px, and it should shorten to "Sign in".
+- Every target is at least 40px.
+
+Check every screen at 1440×900, 1024×768 and 390×844, with both visible and overlay scrollbars. A grid of cards keeps at least two per row when a visible scrollbar takes up width.
