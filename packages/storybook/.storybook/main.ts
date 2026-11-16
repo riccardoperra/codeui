@@ -16,12 +16,6 @@ const config: StorybookConfig = {
 	addons: [
 		getAbsolutePath("@storybook/addon-links"),
 		getAbsolutePath("@storybook/addon-docs"),
-		getAbsolutePath("@storybook/addon-controls"),
-		getAbsolutePath("@storybook/addon-backgrounds"),
-		getAbsolutePath("@storybook/addon-viewport"),
-		getAbsolutePath("@storybook/addon-toolbars"),
-		getAbsolutePath("@storybook/addon-measure"),
-		getAbsolutePath("@storybook/addon-outline"),
 		getAbsolutePath("storybook-dark-mode"),
 		getAbsolutePath("@storybook/addon-a11y"),
 	],
