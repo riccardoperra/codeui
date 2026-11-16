@@ -42,3 +42,14 @@ it("server renders Stack tokens and semantic Text content", () => {
 	expect(html).toContain("<h2");
 	expect(html).toMatch(/<em[^>]*>Export<\/em>/);
 });
+
+import { Switch } from "../src/components/Switch/Switch";
+it("server renders a switch label linked to its input", () => {
+	const html = renderToString(() => (
+		<Switch label="Notifications" description="Updates" />
+	));
+	const labelFor = html.match(/<label[^>]*\sfor="([^"]+)"/)?.[1];
+	const inputId = html.match(/<input[^>]*\sid="([^"]+)"/)?.[1];
+	expect(inputId).toBeTruthy();
+	expect(labelFor).toBe(inputId);
+});

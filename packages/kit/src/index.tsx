@@ -105,3 +105,5 @@ export type { SegmentedControlClasses } from "./components/SegmentedControl/Segm
 export * from "./components/Stack/Stack";
 
 export * from "./components/Text/Text";
+
+export * from "./components/Switch/Switch";

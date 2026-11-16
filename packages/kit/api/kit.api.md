@@ -373,10 +373,33 @@ export declare function createFieldLabelProps<TValidComponent extends ValidCompo
 ## components/Field/createBaseFieldProps.d.ts
 
 ```ts
+import { type Accessor, type JSX } from "solid-js";
 import * as styles from "./Field.css.js";
 export type BaseFieldProps = styles.BaseFieldVariants;
+export declare function createBaseFieldProps(props: BaseFieldProps, field: Accessor<FieldContent & {
+    inputId?: string;
+    id?: string;
+}>): {
+    ids: ReturnType<typeof createFieldIds>;
+    baseStyle: () => string;
+};
 export declare function createBaseFieldProps(props: BaseFieldProps): {
+    ids: undefined;
     baseStyle(): string;
+};
+export type FieldContent = {
+    label?: JSX.Element;
+    description?: JSX.Element;
+    errorMessage?: JSX.Element;
+};
+export declare function createFieldIds(props: Accessor<FieldContent & {
+    inputId?: string;
+    id?: string;
+}>): {
+    input: () => string;
+    label: () => string;
+    description: () => string;
+    errorMessage: () => string;
 };
 ```
 
@@ -855,6 +878,62 @@ export {};
 export { Root as Stack } from "../../parts/stack.js";
 export type { StackProps, StackVariants, StackPart, StackClasses, StackStyles, Gap, } from "../../parts/stack.js";
 export { stackParts, stackStyles } from "../../parts/stack.js";
+```
+
+## components/Switch/Switch.d.ts
+
+```ts
+import { type Accessor } from "solid-js";
+import * as P from "../../parts/switch.js";
+import { type FieldContent } from "../Field/createBaseFieldProps.js";
+export type SwitchProps = Omit<P.RootProps, "children"> & FieldContent & {
+    class?: string;
+    inputId?: string;
+    "aria-label"?: string;
+    "aria-labelledby"?: string;
+    size?: "sm" | "md";
+    classes?: P.SwitchClasses;
+};
+export declare function createSwitchProps(props: Accessor<SwitchProps>): {
+    root: () => {
+        name?: string | undefined;
+        required?: boolean | undefined;
+        id?: string | undefined;
+        value?: string | undefined;
+        disabled?: boolean | undefined;
+        size?: ("sm" | "md") | undefined;
+        ref?: HTMLDivElement | ((el: HTMLDivElement) => void) | undefined;
+        onChange?: ((isChecked: boolean) => void) | undefined;
+        onPointerDown?: import("solid-js").JSX.EventHandlerUnion<HTMLDivElement, PointerEvent, import("solid-js").JSX.EventHandler<HTMLDivElement, PointerEvent>> | undefined;
+        checked?: boolean | undefined;
+        readOnly?: boolean | undefined;
+        validationState?: import("@kobalte/utils").ValidationState | undefined;
+        defaultChecked?: boolean | undefined;
+        class?: string | undefined;
+    };
+    input: () => {
+        id: string;
+        "aria-label": string | undefined;
+        "aria-labelledby": string | undefined;
+        class: string | undefined;
+    };
+    label: () => {
+        id: string;
+        for: string;
+        class: string | undefined;
+    };
+    description: () => {
+        id: string;
+        class: string | undefined;
+    };
+    errorMessage: () => {
+        id: string;
+        class: string | undefined;
+    };
+};
+export declare function Switch(props: SwitchProps): import("solid-js").JSX.Element;
+export { switchStyles, SwitchParts } from "../../parts/switch.js";
+export type { SwitchClasses, SwitchPart, SwitchVariants, SwitchStyles, } from "../../parts/switch.js";
 ```
 
 ## components/Tabs/Tabs.d.ts
@@ -1533,6 +1612,7 @@ export type { VirtualizedListboxProps } from "./components/Listbox/VirtualizedLi
 export type { SegmentedControlClasses } from "./components/SegmentedControl/SegmentedControl.js";
 export * from "./components/Stack/Stack.js";
 export * from "./components/Text/Text.js";
+export * from "./components/Switch/Switch.js";
 ```
 
 ## parts/dialog.d.ts
@@ -1669,6 +1749,54 @@ export type StackProps<T extends ValidComponent = "div"> = StackVariants & {
 } & Omit<ComponentProps<T>, keyof StackVariants | "as" | "children" | "class" | "classes" | "style">;
 export type RootProps<T extends ValidComponent = "div"> = StackProps<T>;
 export declare function Root<T extends ValidComponent = "div">(props: StackProps<T>): JSX.Element;
+```
+
+## parts/switch.d.ts
+
+```ts
+import * as K from "@kobalte/core/switch";
+import type { PolymorphicProps } from "@kobalte/core/polymorphic";
+import { type ValidComponent } from "solid-js";
+export { useSwitchContext } from "@kobalte/core/switch";
+export declare const switchParts: {
+    readonly root: "switch-root";
+    readonly input: "switch-input";
+    readonly control: "switch-control";
+    readonly thumb: "switch-thumb";
+    readonly label: "switch-label";
+    readonly description: "switch-description";
+    readonly errorMessage: "switch-error-message";
+};
+export type SwitchVariants = {
+    size?: "sm" | "md";
+};
+export type SwitchPart = "root" | "input" | "control" | "thumb" | "label" | "description" | "errorMessage";
+export type SwitchClasses = Partial<Record<SwitchPart, string>>;
+export type SwitchStyles = Record<SwitchPart, (variants?: SwitchVariants) => string>;
+export declare const switchStyles: SwitchStyles;
+export type RootProps<T extends ValidComponent = "div"> = K.SwitchRootProps<T> & SwitchVariants;
+export declare function Root<T extends ValidComponent = "div">(props: PolymorphicProps<T, RootProps<T>>): import("solid-js").JSX.Element;
+export type InputProps<T extends ValidComponent = "input"> = K.SwitchInputProps<T> & SwitchVariants;
+export declare function Input<T extends ValidComponent = "input">(props: PolymorphicProps<T, InputProps<T>>): import("solid-js").JSX.Element;
+export type ControlProps<T extends ValidComponent = "div"> = K.SwitchControlProps<T> & SwitchVariants;
+export declare function Control<T extends ValidComponent = "div">(props: PolymorphicProps<T, ControlProps<T>>): import("solid-js").JSX.Element;
+export type ThumbProps<T extends ValidComponent = "div"> = K.SwitchThumbProps<T> & SwitchVariants;
+export declare function Thumb<T extends ValidComponent = "div">(props: PolymorphicProps<T, ThumbProps<T>>): import("solid-js").JSX.Element;
+export type LabelProps<T extends ValidComponent = "label"> = K.SwitchLabelProps<T> & SwitchVariants;
+export declare function Label<T extends ValidComponent = "label">(props: PolymorphicProps<T, LabelProps<T>>): import("solid-js").JSX.Element;
+export type DescriptionProps<T extends ValidComponent = "div"> = K.SwitchDescriptionProps<T> & SwitchVariants;
+export declare function Description<T extends ValidComponent = "div">(props: PolymorphicProps<T, DescriptionProps<T>>): import("solid-js").JSX.Element;
+export type ErrorMessageProps<T extends ValidComponent = "div"> = K.SwitchErrorMessageProps<T> & SwitchVariants;
+export declare function ErrorMessage<T extends ValidComponent = "div">(props: PolymorphicProps<T, ErrorMessageProps<T>>): import("solid-js").JSX.Element;
+export declare const SwitchParts: {
+    Root: typeof Root;
+    Input: typeof Input;
+    Control: typeof Control;
+    Thumb: typeof Thumb;
+    Label: typeof Label;
+    Description: typeof Description;
+    ErrorMessage: typeof ErrorMessage;
+};
 ```
 
 ## parts/text.d.ts

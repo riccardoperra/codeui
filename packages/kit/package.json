@@ -103,6 +103,20 @@
 				"types": "./dist/types-cjs/parts/text.d.cts",
 				"default": "./dist/cjs/parts/text.cjs"
 			}
+		},
+		"./switch": {
+			"solid": {
+				"types": "./dist/types/parts/switch.d.ts",
+				"default": "./dist/source/parts/switch.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/switch.d.ts",
+				"default": "./dist/esm/parts/switch.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/switch.d.cts",
+				"default": "./dist/cjs/parts/switch.cjs"
+			}
 		}
 	},
 	"typesVersions": {
@@ -118,6 +132,9 @@
 			],
 			"text": [
 				"dist/types/parts/text.d.ts"
+			],
+			"switch": [
+				"dist/types/parts/switch.d.ts"
 			]
 		}
 	},
