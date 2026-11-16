@@ -54,6 +54,7 @@
 	"devDependencies": {
 		"@codeui/vanilla-extract": "workspace:*",
 		"@testing-library/jest-dom": "^6.5.0",
+		"@vanilla-extract/jest-transform": "1.1.11",
 		"jest": "^29.7.0",
 		"jest-environment-jsdom": "^29.7.0",
 		"rollup": "^4.21.3",

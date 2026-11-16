@@ -33,23 +33,18 @@ export function VirtualizedListbox<OptGroup = never>(
 ) {
 	let listboxRef: HTMLUListElement | undefined;
 
-	const virtualizer = createVirtualizer<HTMLUListElement | undefined, Item>({
+	const virtualizer = createVirtualizer<HTMLUListElement, HTMLLIElement>({
 		get count() {
 			return props.options.length;
-		},
-		get enableSmoothScroll() {
-			return props.virtualizerOptions?.enableSmoothScroll ?? false;
 		},
 		get overscan() {
 			return props.virtualizerOptions?.overscan ?? 5;
 		},
-		getScrollElement: () => listboxRef,
+		getScrollElement: () => listboxRef ?? null,
 		estimateSize: (index: number) =>
 			// TODO: fix that size
 			props.virtualizerOptions?.estimateSize?.(index) ??
 			LISTBOX_ITEM_SIZE[props.size ?? "md"],
-		// TODO: why error?
-		// @ts-ignore
 		getItemKey: (index: number) => {
 			return props.options[index].value;
 		},

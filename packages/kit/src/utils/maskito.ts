@@ -24,8 +24,20 @@ export const createMaskito = ({
 		if (!refValue) {
 			return;
 		}
-		const maskedElement = new Maskito(elementPredicateValue(refValue), maskitoOptions);
-		onCleanup(() => maskedElement.destroy());
+		let disposed = false;
+		let maskedElement: Maskito | undefined;
+		onCleanup(() => {
+			disposed = true;
+			maskedElement?.destroy();
+		});
+		const element = elementPredicateValue(refValue);
+		if (element instanceof Promise) {
+			void element.then(value => {
+				if (!disposed) maskedElement = new Maskito(value, maskitoOptions);
+			});
+		} else {
+			maskedElement = new Maskito(element, maskitoOptions);
+		}
 	});
 
 	return setRef;

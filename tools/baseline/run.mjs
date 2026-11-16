@@ -18,7 +18,7 @@ async function run(name,cmd,args,cwd=root){
  if(jsonFd!==null){closeSync(jsonFd);log=await readFile(`${out}/attw.json`,'utf8')+log}
  await writeFile(`${out}/${name}.log`,log);
  if(name==='attw-json')await writeFile(`${out}/attw.json`,log);
- const command=(name==='storybook-build-compatible'?'NODE_OPTIONS='+process.env.NODE_OPTIONS+' ':'')+[cmd,...args].join(' ');
+ const command=[cmd,...args].join(' ');
  const result={name,command,code,seconds:Math.round((performance.now()-start)/10)/100,firstError:code?(log.replace(/\x1b\[[0-9;]*m/g,'').split('\n').filter(Boolean).filter(x=>!/^\s*throw /.test(x)).filter(x=>/error|ERR_|FAIL|Cannot|Error|specified in filter|  x Directory/.test(x)).slice(0,2).join(' ')||log.split('\n').filter(Boolean)[0]):''};
  if(name==='screenshots'&&code){const report=JSON.parse(await readFile(`${out}/screenshots.json`,'utf8'));const first=report.results.find(x=>!x.identical||!x.rendered||x.error||x.errors?.length);result.firstError=first?`${first.id} ${first.theme}: ${first.error||first.errors?.join('; ')||(!first.rendered?'No rendered content':'Hashes differ')}`:'Unknown screenshot failure'}
  if(name==='a11y'&&code){const report=JSON.parse(await readFile(`${out}/a11y.json`,'utf8'));const first=report.find(x=>x.error||!x.rendered||x.errors?.length||x.violations?.length);result.firstError=first?`${first.id} ${first.theme}: ${first.error||first.errors?.join('; ')||first.violations?.map(v=>v.id).join(', ')}`:'Unknown axe failure'}
@@ -51,7 +51,6 @@ if(tar){
  await run('sizes','node',['tools/baseline/sizes.mjs',pkg]);
 }
 let build=await run('storybook-build','pnpm',['--filter','@codeui/storybook-playground','exec','storybook','build','--output-dir',path.join(root,'tools/baseline/storybook-static'),'--disable-telemetry']);
-if(build.code){process.env.NODE_OPTIONS='--require='+path.join(root,'tools/baseline/compat.cjs');build=await run('storybook-build-compatible','pnpm',['--filter','@codeui/storybook-playground','exec','storybook','build','--output-dir',path.join(root,'tools/baseline/storybook-static'),'--disable-telemetry']);delete process.env.NODE_OPTIONS;}
 if(!build.code){
  const {createServer}=await import('node:http');
  const base=path.join(root,'tools/baseline/storybook-static');
