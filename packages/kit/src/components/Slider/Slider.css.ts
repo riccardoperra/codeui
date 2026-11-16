@@ -19,6 +19,7 @@ export const track = style({
 	height: t.control.height.compact,
 	display: "flex",
 	alignItems: "center",
+	justifyContent: "center",
 	selectors: {
 		"&[data-disabled]": { opacity: 0.4 },
 		"&::before": {
