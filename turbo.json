@@ -31,8 +31,12 @@
 			"dependsOn": [
 				"^build"
 			],
+			"env": [
+				"NITRO_PRESET"
+			],
 			"outputs": [
-				".output/**"
+				".output/**",
+				"dist/**"
 			]
 		}
 	}
