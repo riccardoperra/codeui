@@ -4,12 +4,13 @@ import { defineConfig } from 'vite';
 import tailwindcss from '@tailwindcss/vite';
 import { fumadocsMdx } from 'fumadocs-mdx/vite';
 import { nitro } from 'nitro/vite';
+import { remarkKit } from './src/lib/remark-kit';
 
 export default defineConfig({
   preview: { port: 6150 },
   server: { port: 6150 },
   plugins: [
-    fumadocsMdx(),
+    fumadocsMdx({ globalOptions: { mdxOptions: { remarkPlugins: (plugins) => [remarkKit, ...plugins] } } }),
     tailwindcss(),
     tanstackStart({ prerender: { enabled: true } }),
     react(),

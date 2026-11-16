@@ -60,3 +60,12 @@ jobs:
         run: pnpm turbo run build --filter=@codeui/docs...
         env:
           CI: true
+
+      - name: Check docs export coverage
+        run: node tools/docs/coverage.mjs
+
+      - name: Check docs Markdown routes
+        run: |
+          PORT=6150 node apps/docs/.output/server/index.mjs &
+          npx --yes wait-on@8.0.3 --timeout 30000 http://localhost:6150/llms.txt
+          node tools/docs/check-llms.mjs http://localhost:6150

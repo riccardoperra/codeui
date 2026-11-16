@@ -1,9 +1,12 @@
 ---
 title: Select
 description: A button that opens a list of options and shows the selected one.
+status: draft
 ---
 
-<SolidDemo name="select" />
+{/* TODO(docs): Rewrite into the page template. Run node tools/docs/scaffold.mjs --print components/select to see it, and keep the useful content below. */}
+
+<SolidDemo name="select" source="hidden" />
 
 ## Usage
 
@@ -62,7 +65,7 @@ Kobalte's root props such as `multiple`, `disabled`, `optionValue`, `optionTextV
 `createSelectOptions` maps a list of objects to options, using `key` for the label and `valueKey` for the value.
 Spread its `props()` into the select, and convert between your value and the option with `optionFromValue`.
 
-<SolidDemo name="select-options" />
+<SolidDemo name="select-options" source="hidden" />
 
 ```tsx
 import { createSignal } from 'solid-js';

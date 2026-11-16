@@ -4,10 +4,11 @@
 	"type": "module",
 	"sideEffects": false,
 	"scripts": {
-		"dev": "vite dev",
-		"build": "vite build",
+		"dev": "node scripts/generate-props.mjs && vite dev",
+		"build": "node scripts/generate-props.mjs && vite build",
 		"start": "vite preview",
-		"typecheck": "tsc --noEmit"
+		"typecheck": "tsc --noEmit",
+		"props": "node scripts/generate-props.mjs"
 	},
 	"dependencies": {
 		"@codeui/docs-demos": "workspace:*",
@@ -29,6 +30,7 @@
 		"@types/react": "^19.3.0",
 		"@types/react-dom": "^19.3.0",
 		"@vitejs/plugin-react": "^6.3.0",
+		"fumadocs-typescript": "5.6.2",
 		"nitro": "3.0.261103-rc",
 		"tailwindcss": "^4.3.5",
 		"typescript": "^7.0.2",

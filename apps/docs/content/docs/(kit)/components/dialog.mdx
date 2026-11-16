@@ -1,9 +1,12 @@
 ---
 title: Dialog
 description: A modal window over the page, for a decision that blocks the user.
+status: draft
 ---
 
-<SolidDemo name="dialog" />
+{/* TODO(docs): Rewrite into the page template. Run node tools/docs/scaffold.mjs --print components/dialog to see it, and keep the useful content below. */}
+
+<SolidDemo name="dialog" source="hidden" />
 
 ## Usage
 
@@ -41,31 +44,18 @@ export function DeleteSnippet() {
 `Dialog` renders the overlay, the panel, and a header with the title and a close button. Put the body in `DialogPanelContent` and the actions in `DialogPanelFooter`.
 It also accepts Kobalte's dialog root options, such as `modal` and `preventScroll`.
 
-<TypeTable
-  type={{
-    open: { type: 'boolean', description: 'Controlled open state.' },
-    defaultOpen: { type: 'boolean', description: 'Open state on first render, when uncontrolled.' },
-    onOpenChange: { type: '(open: boolean) => void', description: 'Called when the dialog opens or closes.' },
-    title: { type: 'JSX.Element', description: 'Heading of the panel. The header and its close button render only when it is set.' },
-    description: { type: 'JSX.Element', description: 'Text under the header, linked as the accessible description.' },
-    size: { type: "'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'full'", description: 'Width of the panel.' },
-    closeLabel: { type: 'string', default: "'close'", description: 'Accessible name of the close button.' },
-    mount: { type: 'Node', default: 'document.body', description: 'Node the dialog is portaled into.' },
-    classes: {
-      type: 'Partial<Record<DialogPart, string>>',
-      description: 'Classes for the parts it renders: overlay, positioner, panel, header, title, description, closeButton.',
-    },
-    onEscapeKeyDown: { type: '(event: KeyboardEvent) => void', description: 'Called on Escape. Call preventDefault to keep the dialog open.' },
-    onPointerDownOutside: { type: '(event: PointerDownOutsideEvent) => void', description: 'Called on a pointer down outside the panel.' },
-  }}
-/>
+<PropsTable name="Dialog" />
+
+Inherited from Kobalte's [dialog](https://kobalte.dev/docs/core/components/dialog):
+
+<PropsTable name="DialogInherited" />
 
 ## Styled parts
 
 When the ready component does not fit the layout, compose the styled parts from `@codeui/kit/dialog`.
 Each part carries the kit styles and a `data-cui` attribute, and wraps the matching Kobalte primitive.
 
-<SolidDemo name="dialog-parts" />
+<SolidDemo name="dialog-parts" source="hidden" />
 
 ```tsx
 import { createSignal } from 'solid-js';

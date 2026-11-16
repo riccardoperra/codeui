@@ -1,7 +1,7 @@
 import type { Component } from "solid-js";
 import { generateHydrationScript, renderToString } from "solid-js/web";
 
-const demos = import.meta.glob<{ default: Component }>("./demos/*.tsx", { eager: true });
+const demos = import.meta.glob<{ default: Component }>(["./demos/*.tsx", "./demos/*/*.tsx"], { eager: true });
 
 export const hydrationScript = () => generateHydrationScript();
 

@@ -2,7 +2,8 @@ import { useEffect, useRef } from 'react';
 
 const ssr = import.meta.env.SSR ? await import('@codeui/docs-demos/server') : null;
 
-export function SolidDemo({ name }: { name: string }) {
+/** `source="hidden"` stops remark-kit from printing the demo source under it. */
+export function SolidDemo({ name }: { name: string; source?: 'hidden' }) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     let dispose: (() => void) | undefined;

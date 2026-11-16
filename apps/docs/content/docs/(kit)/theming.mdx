@@ -1,12 +1,15 @@
 ---
 title: Theming
 description: Every kit value is a --cui-* CSS custom property. Change them with plain CSS, per app, per mode or per subtree.
+status: draft
 ---
+
+{/* TODO(docs): Rewrite into the page template. Run node tools/docs/scaffold.mjs --print theming to see it, and keep the useful content below. */}
 
 The CodeImage look is the default. Every color, radius, spacing, shadow and motion value is a `--cui-*` custom property, and every component reads only those properties.
 You do not need vanilla-extract to change the theme.
 
-<SolidDemo name="theme-scope" />
+<SolidDemo name="theme-scope" source="hidden" />
 
 The three groups above render the same components. The first sets `data-cui-theme="dark"`, the second `data-cui-theme="light"`, and the third overrides the brand color and two radii inline.
 
