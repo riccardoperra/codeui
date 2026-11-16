@@ -3,6 +3,7 @@ import { NumberField } from "../src/components/NumberField/NumberField";
 import { renderToString } from "solid-js/web";
 import { Button } from "../src/components/Button/Button";
 import { TextField } from "../src/components/TextField/TextField";
+import * as S from "../src/parts/sheet";
 
 it("server-renders the button text", () => {
 	const html = renderToString(() => <Button>Save</Button>);
@@ -25,3 +26,16 @@ it.each([TextField, TextArea, NumberField])(
 		expect(labelFor).toBe(inputId);
 	},
 );
+
+it("server-renders a sheet trigger and leaves the closed sheet to the client", () => {
+	const html = renderToString(() => (
+		<S.Root>
+			<S.Trigger>Layers</S.Trigger>
+			<S.Portal>
+				<S.Content>Body</S.Content>
+			</S.Portal>
+		</S.Root>
+	));
+	expect(html).toContain('data-cui="sheet-trigger"');
+	expect(html).not.toContain('data-cui="sheet-content"');
+});

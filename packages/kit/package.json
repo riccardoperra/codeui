@@ -75,6 +75,20 @@
 				"default": "./dist/cjs/parts/popover.cjs"
 			}
 		},
+		"./sheet": {
+			"solid": {
+				"types": "./dist/types/parts/sheet.d.ts",
+				"default": "./dist/source/parts/sheet.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/sheet.d.ts",
+				"default": "./dist/esm/parts/sheet.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/sheet.d.cts",
+				"default": "./dist/cjs/parts/sheet.cjs"
+			}
+		},
 		"./package.json": "./package.json"
 	},
 	"typesVersions": {
@@ -84,6 +98,9 @@
 			],
 			"popover": [
 				"dist/types/parts/popover.d.ts"
+			],
+			"sheet": [
+				"dist/types/parts/sheet.d.ts"
 			]
 		}
 	},

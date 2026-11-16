@@ -849,6 +849,39 @@ export declare function createSelectOptions<T, C extends ConfigFor<T>>(values: r
 export {};
 ```
 
+## components/Sheet/Sheet.d.ts
+
+```ts
+import type { DialogContentProps as KDialogContentProps } from "@kobalte/core/dialog";
+import { type JSX } from "solid-js";
+import * as S from "../../parts/sheet.js";
+export type SheetProps = Omit<S.RootProps, "children"> & {
+    children?: JSX.Element;
+    title?: JSX.Element;
+    description?: JSX.Element;
+    footer?: JSX.Element;
+    /** Edge the sheet is attached to. Defaults to `bottom`. */
+    side?: S.SheetSide;
+    /** Node the sheet is portaled into. Defaults to `document.body`. */
+    mount?: HTMLElement;
+    /** Shows the close button in the header. Defaults to true. */
+    showCloseButton?: boolean;
+    /** Accessible name of the close button. Defaults to "close". */
+    closeLabel?: string;
+    /** Class of the sheet content. */
+    class?: string;
+    /** Classes for the parts this component renders, keyed by part name. */
+    classes?: S.SheetClasses;
+    "aria-label"?: string;
+    contentProps?: Pick<KDialogContentProps, "onOpenAutoFocus" | "onCloseAutoFocus" | "onPointerDownOutside" | "onFocusOutside" | "onInteractOutside" | "onEscapeKeyDown">;
+};
+/**
+ * A dialog attached to an edge of the viewport. Modal by default, with a
+ * scrim. A nonmodal sheet has no scrim and leaves the page usable.
+ */
+export declare function Sheet(props: SheetProps): JSX.Element;
+```
+
 ## components/Tabs/Tabs.d.ts
 
 ```ts
@@ -1492,6 +1525,8 @@ export * as dropdownMenuStyles from "./components/Dropdown/Dropdown.css.js";
 export { Popover, PopoverTrigger, PopoverContent } from "./components/Popover/Popover.js";
 export type { PopoverProps, PopoverContentProps } from "./components/Popover/Popover.js";
 export * as popoverStyles from "./components/Popover/Popover.css.js";
+export { Sheet } from "./components/Sheet/Sheet.js";
+export type { SheetProps } from "./components/Sheet/Sheet.js";
 export { Select } from "./components/Select/Select.js";
 export type { SelectClasses } from "./components/Select/Select.js";
 export { createSelectOptions } from "./components/Select/createSelectValue.js";
@@ -1619,6 +1654,70 @@ export type CloseButtonProps = Omit<PolymorphicProps<"button", IconButtonProps>,
     "aria-label"?: string;
 };
 export declare function CloseButton(props: CloseButtonProps): import("solid-js").JSX.Element;
+```
+
+## parts/sheet.d.ts
+
+```ts
+import { type DialogCloseButtonProps as KDialogCloseButtonProps, type DialogContentProps as KDialogContentProps, type DialogDescriptionProps as KDialogDescriptionProps, type DialogOverlayProps as KDialogOverlayProps, type DialogPortalProps as KDialogPortalProps, type DialogRootProps as KDialogRootProps, type DialogTitleProps as KDialogTitleProps, type DialogTriggerProps as KDialogTriggerProps } from "@kobalte/core/dialog";
+import type { PolymorphicProps } from "@kobalte/core/polymorphic";
+import { type ComponentProps, type JSX, type ValidComponent } from "solid-js";
+import { type IconButtonProps } from "../components/IconButton/IconButton.js";
+export declare const sheetParts: {
+    readonly trigger: "sheet-trigger";
+    readonly overlay: "sheet-overlay";
+    readonly content: "sheet-content";
+    readonly header: "sheet-header";
+    readonly title: "sheet-title";
+    readonly description: "sheet-description";
+    readonly closeButton: "sheet-close-button";
+    readonly handle: "sheet-handle";
+    readonly body: "sheet-body";
+    readonly footer: "sheet-footer";
+};
+export type SheetPart = keyof typeof sheetParts;
+export type SheetClasses = Partial<Record<SheetPart, string>>;
+export type SheetSide = "bottom" | "left" | "right";
+/** `auto` slides on pointer opens and closes. `none` never moves. */
+export type SheetMotion = "auto" | "none";
+export type SheetStyles = {
+    [P in SheetPart]: (variants?: {
+        side?: SheetSide;
+    }) => string;
+};
+export declare const sheetStyles: SheetStyles;
+export type RootProps = KDialogRootProps & {
+    motion?: SheetMotion;
+};
+export declare function Root(props: RootProps): JSX.Element;
+export declare function Portal(props: KDialogPortalProps): JSX.Element;
+export declare function Trigger<T extends ValidComponent = "button">(props: PolymorphicProps<T, KDialogTriggerProps<T>>): JSX.Element;
+export declare function Overlay<T extends ValidComponent = "div">(props: PolymorphicProps<T, KDialogOverlayProps<T>>): JSX.Element;
+export type ContentProps<T extends ValidComponent = "div"> = KDialogContentProps<T> & {
+    side?: SheetSide;
+    class?: string;
+};
+/**
+ * Without a Trigger, Content returns focus to the element that had it when
+ * the sheet opened.
+ */
+export declare function Content<T extends ValidComponent = "div">(props: PolymorphicProps<T, ContentProps<T>>): JSX.Element;
+export declare function Header(props: ComponentProps<"div">): JSX.Element;
+export declare function Title<T extends ValidComponent = "h2">(props: PolymorphicProps<T, KDialogTitleProps<T>>): JSX.Element;
+export declare function Description<T extends ValidComponent = "p">(props: PolymorphicProps<T, KDialogDescriptionProps<T>>): JSX.Element;
+export type CloseButtonProps = Omit<PolymorphicProps<"button", IconButtonProps>, "aria-label"> & KDialogCloseButtonProps & {
+    /** Accessible name of the button. Defaults to "close". */
+    "aria-label"?: string;
+};
+export declare function CloseButton(props: CloseButtonProps): JSX.Element;
+export type HandleProps = Omit<ComponentProps<"button">, "aria-label"> & {
+    /** Accessible name of the handle, which closes the sheet. Defaults to "close". */
+    "aria-label"?: string;
+};
+/** The grabber at the top of a bottom sheet. A tap, Enter or Space closes the sheet. */
+export declare function Handle(props: HandleProps): JSX.Element;
+export declare function Body(props: ComponentProps<"div">): JSX.Element;
+export declare function Footer(props: ComponentProps<"div">): JSX.Element;
 ```
 
 ## utils/component.d.ts
