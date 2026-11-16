@@ -75,7 +75,35 @@
 				"default": "./dist/cjs/parts/popover.cjs"
 			}
 		},
-		"./package.json": "./package.json"
+		"./package.json": "./package.json",
+		"./stack": {
+			"solid": {
+				"types": "./dist/types/parts/stack.d.ts",
+				"default": "./dist/source/parts/stack.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/stack.d.ts",
+				"default": "./dist/esm/parts/stack.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/stack.d.cts",
+				"default": "./dist/cjs/parts/stack.cjs"
+			}
+		},
+		"./text": {
+			"solid": {
+				"types": "./dist/types/parts/text.d.ts",
+				"default": "./dist/source/parts/text.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/text.d.ts",
+				"default": "./dist/esm/parts/text.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/text.d.cts",
+				"default": "./dist/cjs/parts/text.cjs"
+			}
+		}
 	},
 	"typesVersions": {
 		"*": {
@@ -84,6 +112,12 @@
 			],
 			"popover": [
 				"dist/types/parts/popover.d.ts"
+			],
+			"stack": [
+				"dist/types/parts/stack.d.ts"
+			],
+			"text": [
+				"dist/types/parts/text.d.ts"
 			]
 		}
 	},

@@ -25,3 +25,20 @@ it.each([TextField, TextArea, NumberField])(
 		expect(labelFor).toBe(inputId);
 	},
 );
+
+import { Stack } from "../src/components/Stack/Stack";
+import { Text } from "../src/components/Text/Text";
+it("server renders Stack tokens and semantic Text content", () => {
+	const html = renderToString(() => (
+		<Stack as="section" gap="4" justify="between" wrap>
+			<Text as="h2" size="lg" weight="medium" tone="muted">
+				<em>Export</em>
+			</Text>
+		</Stack>
+	));
+	expect(html).toContain("<section");
+	expect(html).toContain("--cui-stack-gap:var(--cui-space-4)");
+	expect(html).toContain('data-justify="between"');
+	expect(html).toContain("<h2");
+	expect(html).toContain("<em>Export</em>");
+});

@@ -849,6 +849,14 @@ export declare function createSelectOptions<T, C extends ConfigFor<T>>(values: r
 export {};
 ```
 
+## components/Stack/Stack.d.ts
+
+```ts
+export { Root as Stack } from "../../parts/stack.js";
+export type { StackProps, StackVariants, StackPart, StackClasses, StackStyles, Gap, } from "../../parts/stack.js";
+export { stackParts, stackStyles } from "../../parts/stack.js";
+```
+
 ## components/Tabs/Tabs.d.ts
 
 ```ts
@@ -867,6 +875,14 @@ export type TabsContentProps<T extends ValidComponent = "div"> = KTabsContentPro
 export declare function TabsContent<T extends ValidComponent = "div">(props: PolymorphicProps<T, TabsContentProps<T>>): import("solid-js").JSX.Element;
 export type TabsIndicatorProps<T extends ValidComponent = "div"> = KTabsIndicatorProps<T>;
 export declare function TabsIndicator<T extends ValidComponent = "div">(props: PolymorphicProps<T, TabsIndicatorProps<T>>): import("solid-js").JSX.Element;
+```
+
+## components/Text/Text.d.ts
+
+```ts
+export { Root as Text } from "../../parts/text.js";
+export type { TextProps, TextVariants, TextPart, TextClasses, TextStyles, } from "../../parts/text.js";
+export { textParts, textStyles } from "../../parts/text.js";
 ```
 
 ## components/TextArea/TextArea.d.ts
@@ -1515,6 +1531,8 @@ export type { FieldClasses } from "./components/Field/inputProps.js";
 export type { ListboxProps, ListboxClasses } from "./components/Listbox/Listbox.js";
 export type { VirtualizedListboxProps } from "./components/Listbox/VirtualizedListbox.js";
 export type { SegmentedControlClasses } from "./components/SegmentedControl/SegmentedControl.js";
+export * from "./components/Stack/Stack.js";
+export * from "./components/Text/Text.js";
 ```
 
 ## parts/dialog.d.ts
@@ -1619,6 +1637,67 @@ export type CloseButtonProps = Omit<PolymorphicProps<"button", IconButtonProps>,
     "aria-label"?: string;
 };
 export declare function CloseButton(props: CloseButtonProps): import("solid-js").JSX.Element;
+```
+
+## parts/stack.d.ts
+
+```ts
+import { type ComponentProps, type JSX, type ValidComponent } from "solid-js";
+export type Gap = "0" | "0.5" | "1" | "1.5" | "2" | "3" | "4" | "6" | "8" | "10" | "12" | "16" | "20" | "24" | "32" | "40" | "48" | "56" | "64" | "px";
+export type StackVariants = {
+    gap?: Gap;
+    align?: "start" | "center" | "end" | "stretch" | "baseline";
+    justify?: "start" | "center" | "end" | "between" | "around" | "evenly";
+    direction?: "row" | "column";
+    wrap?: boolean;
+};
+export declare const stackParts: {
+    readonly root: "stack-root";
+};
+export type StackPart = keyof typeof stackParts;
+export type StackClasses = Partial<Record<StackPart, string>>;
+export type StackStyles = {
+    root: (variants?: StackVariants) => string;
+};
+export declare const stackStyles: StackStyles;
+export type StackProps<T extends ValidComponent = "div"> = StackVariants & {
+    as?: T;
+    children?: JSX.Element;
+    style?: string | JSX.CSSProperties;
+    class?: string;
+    classes?: StackClasses;
+} & Omit<ComponentProps<T>, keyof StackVariants | "as" | "children" | "class" | "classes" | "style">;
+export type RootProps<T extends ValidComponent = "div"> = StackProps<T>;
+export declare function Root<T extends ValidComponent = "div">(props: StackProps<T>): JSX.Element;
+```
+
+## parts/text.d.ts
+
+```ts
+import { type ComponentProps, type JSX, type ValidComponent } from "solid-js";
+import { tokens } from "../foundation/cui.css.js";
+export type TextVariants = {
+    size?: keyof typeof tokens.font.size;
+    weight?: keyof typeof tokens.font.weight;
+    tone?: "default" | "muted" | "hint" | "label" | "danger" | "success";
+};
+export declare const textParts: {
+    readonly root: "text-root";
+};
+export type TextPart = keyof typeof textParts;
+export type TextClasses = Partial<Record<TextPart, string>>;
+export type TextStyles = {
+    root: (variants?: TextVariants) => string;
+};
+export declare const textStyles: TextStyles;
+export type TextProps<T extends ValidComponent = "span"> = TextVariants & {
+    as?: T;
+    children?: JSX.Element;
+    class?: string;
+    classes?: TextClasses;
+} & Omit<ComponentProps<T>, keyof TextVariants | "as" | "children" | "class" | "classes">;
+export type RootProps<T extends ValidComponent = "span"> = TextProps<T>;
+export declare function Root<T extends ValidComponent = "span">(props: TextProps<T>): JSX.Element;
 ```
 
 ## utils/component.d.ts

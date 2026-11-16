@@ -101,3 +101,7 @@ export type { FieldClasses } from "./components/Field/inputProps";
 export type { ListboxProps, ListboxClasses } from "./components/Listbox/Listbox";
 export type { VirtualizedListboxProps } from "./components/Listbox/VirtualizedListbox";
 export type { SegmentedControlClasses } from "./components/SegmentedControl/SegmentedControl";
+
+export * from "./components/Stack/Stack";
+
+export * from "./components/Text/Text";
