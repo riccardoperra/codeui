@@ -1698,8 +1698,14 @@ import { Switch } from "./components/Switch/Switch.js";
 export { Switch };
 export { createSwitchProps, switchStyles, SwitchParts } from "./components/Switch/Switch.js";
 export type { SwitchProps, SwitchClasses, SwitchPart, SwitchVariants, SwitchStyles, } from "./components/Switch/Switch.js";
-export * from "./components/Slider/Slider.js";
-export * from "./components/Progress/Progress.js";
+import { Slider } from "./components/Slider/Slider.js";
+export { Slider };
+export { createSliderProps, SliderParts, sliderStyles } from "./components/Slider/Slider.js";
+export type { SliderProps, SliderClasses, SliderPart, SliderVariants, SliderStyles } from "./components/Slider/Slider.js";
+import { Progress } from "./components/Progress/Progress.js";
+export { Progress };
+export { ProgressParts, progressStyles } from "./components/Progress/Progress.js";
+export type { ProgressProps, ProgressClasses, ProgressPart, ProgressVariants, ProgressStyles } from "./components/Progress/Progress.js";
 ```
 
 ## parts/dialog.d.ts

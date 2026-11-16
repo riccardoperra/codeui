@@ -117,5 +117,23 @@ export type {
 	SwitchStyles,
 } from "./components/Switch/Switch";
 
-export * from "./components/Slider/Slider";
-export * from "./components/Progress/Progress";
+import { Slider } from "./components/Slider/Slider";
+export { Slider };
+export { createSliderProps, SliderParts, sliderStyles } from "./components/Slider/Slider";
+export type {
+	SliderProps,
+	SliderClasses,
+	SliderPart,
+	SliderVariants,
+	SliderStyles,
+} from "./components/Slider/Slider";
+import { Progress } from "./components/Progress/Progress";
+export { Progress };
+export { ProgressParts, progressStyles } from "./components/Progress/Progress";
+export type {
+	ProgressProps,
+	ProgressClasses,
+	ProgressPart,
+	ProgressVariants,
+	ProgressStyles,
+} from "./components/Progress/Progress";
