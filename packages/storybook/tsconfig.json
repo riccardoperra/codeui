@@ -35,6 +35,12 @@
 			],
 			"@codeui/kit/popover": [
 				"../kit/src/parts/popover.tsx"
+			],
+			"@codeui/kit/alert": [
+				"../kit/src/parts/alert.tsx"
+			],
+			"@codeui/kit/toast": [
+				"../kit/src/parts/toast.tsx"
 			]
 		}
 	},
