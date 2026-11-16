@@ -52,3 +52,19 @@ it("server-renders the badge and key labels", () => {
 	expect(html).toContain("Default");
 	expect(html).toMatch(/<kbd[^>]*>⌘K<\/kbd>/);
 });
+
+import { OptionCardGroup } from "../src/components/OptionCard/OptionCard";
+it("server-renders named option cards and the selected form value", () => {
+	const html = renderToString(() => (
+		<OptionCardGroup
+			label="Mode"
+			name="mode"
+			defaultValue="dark"
+			items={[{ value: "dark", label: "Dark", description: "Dim workspace" }]}
+		/>
+	));
+	expect(html).toContain('role="radiogroup"');
+	expect(html).toContain('type="radio"');
+	expect(html).toContain('value="dark"');
+	expect(html).toContain("Dim workspace");
+});

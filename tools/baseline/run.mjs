@@ -56,8 +56,8 @@ if(!build.code){
  const {createServer}=await import('node:http');
  const base=path.join(root,'tools/baseline/storybook-static');
  const server=createServer(async(req,res)=>{try{let p=decodeURIComponent(new URL(req.url,'http://localhost').pathname);if(p.endsWith('/'))p+='index.html';const f=path.resolve(base,'.'+p);if(!f.startsWith(base+path.sep))throw Error('path');const b=await readFile(f);res.setHeader('Content-Type',({'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml'})[path.extname(f)]||'application/octet-stream');res.end(b)}catch{res.statusCode=404;res.end()}});
- await new Promise(resolve=>server.listen(6106,'127.0.0.1',resolve));
- try{await run('screenshots','node',['tools/baseline/screenshots.mjs']);await run('a11y','node',['tools/baseline/a11y.mjs']);await run('layer','node',['tools/baseline/layer.mjs']);}finally{await new Promise(resolve=>server.close(resolve))}
+ await new Promise(resolve=>server.listen(Number(process.env.BASELINE_PORT || 6106),'127.0.0.1',resolve));
+ try{await run('screenshots','node',['tools/baseline/screenshots.mjs']);await run('a11y','node',['tools/baseline/a11y.mjs']);await run('layer','node',['tools/baseline/layer.mjs']);await run('option-card','node',['tools/baseline/option-card.mjs']);}finally{await new Promise(resolve=>server.close(resolve))}
 }
 await writeFile(`${out}/commands.json`,JSON.stringify(results,null,2));
 await import('./report.mjs');

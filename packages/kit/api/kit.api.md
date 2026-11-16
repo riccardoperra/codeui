@@ -599,6 +599,42 @@ export declare const INPUT_NUMBER_OPTIONS: InputNumberOptions;
 export declare const defaultNumberFormat: NumberFormatSettings;
 ```
 
+## components/OptionCard/OptionCard.d.ts
+
+```ts
+import { type Accessor, type JSX } from "solid-js";
+import * as P from "../../parts/option-card.js";
+export type OptionCardEntry<T extends string = string> = {
+    value: T;
+    label: JSX.Element;
+    description?: JSX.Element;
+    preview?: JSX.Element;
+    badge?: JSX.Element;
+    disabled?: boolean;
+};
+export type OptionCardProps<T extends string = string> = OptionCardEntry<T> & P.OptionCardVariants & {
+    class?: string;
+    classes?: P.OptionCardClasses;
+};
+export declare function OptionCard<T extends string>(props: OptionCardProps<T>): JSX.Element;
+export type OptionCardGroupProps<T extends string = string> = Omit<P.RootProps, "value" | "defaultValue" | "onChange" | "children"> & {
+    items: readonly OptionCardEntry<T>[];
+    value?: T;
+    defaultValue?: T;
+    onChange?: (value: T) => void;
+    label?: JSX.Element;
+    description?: JSX.Element;
+    errorMessage?: JSX.Element;
+    classes?: P.OptionCardClasses;
+    "aria-label"?: string;
+    "aria-labelledby"?: string;
+};
+export declare function createOptionCardItems<T extends string>(items: Accessor<readonly OptionCardEntry<T>[]>): {
+    items: Accessor<readonly OptionCardEntry<T>[]>;
+};
+export declare function OptionCardGroup<T extends string>(props: OptionCardGroupProps<T>): JSX.Element;
+```
+
 ## components/Pagination/Pagination.d.ts
 
 ```ts
@@ -1592,6 +1628,10 @@ export type { FieldClasses } from "./components/Field/inputProps.js";
 export type { ListboxProps, ListboxClasses } from "./components/Listbox/Listbox.js";
 export type { VirtualizedListboxProps } from "./components/Listbox/VirtualizedListbox.js";
 export type { SegmentedControlClasses } from "./components/SegmentedControl/SegmentedControl.js";
+export { OptionCardGroup, OptionCard, createOptionCardItems, } from "./components/OptionCard/OptionCard.js";
+export type { OptionCardGroupProps, OptionCardProps, OptionCardEntry, } from "./components/OptionCard/OptionCard.js";
+export { optionCardParts, optionCardStyles } from "./parts/option-card.js";
+export type { OptionCardPart, OptionCardClasses, OptionCardStyles, OptionCardVariant, OptionCardVariants, } from "./parts/option-card.js";
 ```
 
 ## parts/badge.d.ts
@@ -1709,6 +1749,84 @@ export type KbdStyles = {
 export declare const kbdStyles: KbdStyles;
 export type RootProps = JSX.IntrinsicElements["kbd"] & KbdVariants;
 export declare function Root(props: RootProps): JSX.Element;
+```
+
+## parts/option-card.d.ts
+
+```ts
+import * as K from "@kobalte/core/radio-group";
+import type { PolymorphicProps } from "@kobalte/core/polymorphic";
+import { type JSX, type ValidComponent } from "solid-js";
+import { type BadgeProps as KitBadgeProps } from "../components/Badge/Badge.js";
+export declare const optionCardParts: {
+    readonly root: "option-card-root";
+    readonly label: "option-card-label";
+    readonly description: "option-card-description";
+    readonly errorMessage: "option-card-error-message";
+    readonly item: "option-card-item";
+    readonly itemInput: "option-card-item-input";
+    readonly itemControl: "option-card-item-control";
+    readonly itemIndicator: "option-card-item-indicator";
+    readonly itemLabel: "option-card-item-label";
+    readonly itemDescription: "option-card-item-description";
+    readonly preview: "option-card-preview";
+    readonly badge: "option-card-badge";
+};
+export type OptionCardPart = keyof typeof optionCardParts;
+export type OptionCardClasses = Partial<Record<OptionCardPart, string>>;
+export type OptionCardVariant = "card" | "tile";
+export type OptionCardVariants = {
+    variant?: OptionCardVariant;
+};
+export type OptionCardStyles = {
+    [P in OptionCardPart]: (variants?: OptionCardVariants) => string;
+};
+export declare const optionCardStyles: OptionCardStyles;
+export type RootProps<T extends ValidComponent = "div"> = K.RadioGroupRootProps<T> & OptionCardVariants & {
+    class?: string;
+};
+export declare function Root<T extends ValidComponent = "div">(props: PolymorphicProps<T, RootProps<T>>): JSX.Element;
+export type LabelProps<T extends ValidComponent = "span"> = K.RadioGroupLabelProps<T> & OptionCardVariants & {
+    class?: string;
+};
+export declare function Label<T extends ValidComponent = "span">(props: PolymorphicProps<T, LabelProps<T>>): JSX.Element;
+export type DescriptionProps<T extends ValidComponent = "div"> = K.RadioGroupDescriptionProps<T> & OptionCardVariants & {
+    class?: string;
+};
+export declare function Description<T extends ValidComponent = "div">(props: PolymorphicProps<T, DescriptionProps<T>>): JSX.Element;
+export type ErrorMessageProps<T extends ValidComponent = "div"> = K.RadioGroupErrorMessageProps<T> & OptionCardVariants & {
+    class?: string;
+};
+export declare function ErrorMessage<T extends ValidComponent = "div">(props: PolymorphicProps<T, ErrorMessageProps<T>>): JSX.Element;
+export type ItemProps<T extends ValidComponent = "div"> = K.RadioGroupItemProps<T> & OptionCardVariants & {
+    class?: string;
+};
+export declare function Item<T extends ValidComponent = "div">(props: PolymorphicProps<T, ItemProps<T>>): JSX.Element;
+export type ItemInputProps<T extends ValidComponent = "input"> = K.RadioGroupItemInputProps<T> & OptionCardVariants & {
+    class?: string;
+};
+export declare function ItemInput<T extends ValidComponent = "input">(props: PolymorphicProps<T, ItemInputProps<T>>): JSX.Element;
+export type ItemControlProps<T extends ValidComponent = "div"> = K.RadioGroupItemControlProps<T> & OptionCardVariants & {
+    class?: string;
+};
+export declare function ItemControl<T extends ValidComponent = "div">(props: PolymorphicProps<T, ItemControlProps<T>>): JSX.Element;
+export type ItemIndicatorProps<T extends ValidComponent = "div"> = K.RadioGroupItemIndicatorProps<T> & OptionCardVariants & {
+    class?: string;
+};
+export declare function ItemIndicator<T extends ValidComponent = "div">(props: PolymorphicProps<T, ItemIndicatorProps<T>>): JSX.Element;
+export type ItemLabelProps<T extends ValidComponent = "label"> = K.RadioGroupItemLabelProps<T> & OptionCardVariants & {
+    class?: string;
+};
+export declare function ItemLabel<T extends ValidComponent = "label">(props: PolymorphicProps<T, ItemLabelProps<T>>): JSX.Element;
+export type ItemDescriptionProps<T extends ValidComponent = "div"> = K.RadioGroupItemDescriptionProps<T> & OptionCardVariants & {
+    class?: string;
+};
+export declare function ItemDescription<T extends ValidComponent = "div">(props: PolymorphicProps<T, ItemDescriptionProps<T>>): JSX.Element;
+export type PreviewProps = JSX.HTMLAttributes<HTMLDivElement>;
+export declare function Preview(props: PreviewProps): JSX.Element;
+export type BadgeProps = KitBadgeProps;
+export declare function Badge(props: BadgeProps): JSX.Element;
+export { useRadioGroupContext, } from "@kobalte/core/radio-group";
 ```
 
 ## parts/popover.d.ts

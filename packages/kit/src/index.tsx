@@ -113,3 +113,22 @@ export type { FieldClasses } from "./components/Field/inputProps";
 export type { ListboxProps, ListboxClasses } from "./components/Listbox/Listbox";
 export type { VirtualizedListboxProps } from "./components/Listbox/VirtualizedListbox";
 export type { SegmentedControlClasses } from "./components/SegmentedControl/SegmentedControl";
+
+export {
+	OptionCardGroup,
+	OptionCard,
+	createOptionCardItems,
+} from "./components/OptionCard/OptionCard";
+export type {
+	OptionCardGroupProps,
+	OptionCardProps,
+	OptionCardEntry,
+} from "./components/OptionCard/OptionCard";
+export { optionCardParts, optionCardStyles } from "./parts/option-card";
+export type {
+	OptionCardPart,
+	OptionCardClasses,
+	OptionCardStyles,
+	OptionCardVariant,
+	OptionCardVariants,
+} from "./parts/option-card";

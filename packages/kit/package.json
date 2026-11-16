@@ -131,7 +131,21 @@
 				"default": "./dist/cjs/parts/skeleton.cjs"
 			}
 		},
-		"./package.json": "./package.json"
+		"./package.json": "./package.json",
+		"./option-card": {
+			"solid": {
+				"types": "./dist/types/parts/option-card.d.ts",
+				"default": "./dist/source/parts/option-card.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/option-card.d.ts",
+				"default": "./dist/esm/parts/option-card.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/option-card.d.cts",
+				"default": "./dist/cjs/parts/option-card.cjs"
+			}
+		}
 	},
 	"typesVersions": {
 		"*": {
@@ -152,6 +166,9 @@
 			],
 			"skeleton": [
 				"dist/types/parts/skeleton.d.ts"
+			],
+			"option-card": [
+				"dist/types/parts/option-card.d.ts"
 			]
 		}
 	},

@@ -9,6 +9,7 @@ const entries = [
 	"src/parts/popover.tsx",
 	"src/parts/kbd.tsx",
 	"src/parts/badge.tsx",
+	"src/parts/option-card.tsx",
 	"src/parts/spinner.tsx",
 	"src/parts/skeleton.tsx",
 ];
