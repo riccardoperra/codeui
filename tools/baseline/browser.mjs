@@ -42,7 +42,7 @@ export async function open(browser,story,theme){
  await page.evaluate(async()=>{await document.fonts.ready;await Promise.all([...document.images].map(img=>img.decode().catch(()=>{})));});
  await page.waitForFunction(({theme,background})=>document.documentElement.getAttribute('data-cui-theme')===theme&&getComputedStyle(document.body).backgroundColor===background,{theme,background:backgrounds[theme]});
  if(story.type==='docs')await page.waitForFunction(theme=>document.querySelector('.sbdocs-wrapper')&&getComputedStyle(document.querySelector('.sbdocs-wrapper')).backgroundColor===(theme==='dark'?'rgb(5, 5, 5)':'rgb(255, 255, 255)'),theme);
- const rendered=await page.locator('#storybook-root, #storybook-docs').evaluateAll(els=>els.some(e=>e.children.length&&e.getBoundingClientRect().height>0));
+ const rendered=await page.evaluate(()=>[...document.querySelectorAll('#storybook-root, #storybook-docs')].some(e=>e.children.length&&e.getBoundingClientRect().height>0)||[...document.querySelectorAll('body > :not(#storybook-root):not(#storybook-docs) [data-cui]')].some(e=>e.getBoundingClientRect().height>0));
  const errorText=await page.locator('.sb-errordisplay').allTextContents();
  return {context,page,errors,rendered,errorText};
  }catch(e){await context.close();throw e}
