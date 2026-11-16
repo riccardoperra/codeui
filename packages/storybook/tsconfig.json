@@ -33,6 +33,9 @@
 			"@codeui/kit/dialog": [
 				"../kit/src/parts/dialog.tsx"
 			],
+			"@codeui/kit/accordion": [
+				"../kit/src/parts/accordion.tsx"
+			],
 			"@codeui/kit/popover": [
 				"../kit/src/parts/popover.tsx"
 			],

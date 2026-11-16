@@ -285,6 +285,20 @@
 				"types": "./dist/types-cjs/parts/option-card.d.cts",
 				"default": "./dist/cjs/parts/option-card.cjs"
 			}
+		},
+		"./accordion": {
+			"solid": {
+				"types": "./dist/types/parts/accordion.d.ts",
+				"default": "./dist/source/parts/accordion.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/accordion.d.ts",
+				"default": "./dist/esm/parts/accordion.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/accordion.d.cts",
+				"default": "./dist/cjs/parts/accordion.cjs"
+			}
 		}
 	},
 	"typesVersions": {
@@ -339,6 +353,9 @@
 			],
 			"option-card": [
 				"dist/types/parts/option-card.d.ts"
+			],
+			"accordion": [
+				"dist/types/parts/accordion.d.ts"
 			]
 		}
 	},
