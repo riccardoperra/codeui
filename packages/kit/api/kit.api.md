@@ -142,6 +142,35 @@ export declare function Checkbox(props: CheckBoxProps): JSX.Element;
 export {};
 ```
 
+## components/Combobox/Combobox.d.ts
+
+```ts
+import type { ComboboxRootOptions } from "@kobalte/core/combobox";
+import { type JSX } from "solid-js";
+import * as P from "../../parts/combobox.js";
+import type { FieldContent } from "../Field/createBaseFieldProps.js";
+type DistributiveOmit<T, K extends PropertyKey> = T extends unknown ? Omit<T, K> : never;
+export type ComboboxProps<Option, OptGroup = never> = DistributiveOmit<ComboboxRootOptions<Option, OptGroup>, "itemComponent" | "sectionComponent"> & FieldContent & {
+    class?: string;
+    classes?: P.ComboboxClasses;
+    "aria-label"?: string;
+    "aria-labelledby"?: string;
+    inputRef?: (element: HTMLInputElement) => void;
+    inputId?: string;
+    /** Controlled input text, independent of the selected value. */
+    inputValue?: string;
+    renderOption?: (option: Option) => JSX.Element;
+    /** Shown in the list when no option matches the text. */
+    emptyContent?: JSX.Element;
+    /** Portal target, such as a parent dialog, so the list stays inside it. */
+    mount?: HTMLElement;
+    size?: "sm" | "md";
+};
+export declare function Combobox<Option, OptGroup = never>(props: ComboboxProps<Option, OptGroup>): JSX.Element;
+export { ComboboxParts, comboboxStyles, createComboboxOptions, } from "../../parts/combobox.js";
+export type { ComboboxClasses, ComboboxOption, ComboboxOptionsConfig, ComboboxPart, ComboboxStyles, ComboboxVariants, CreateComboboxOptionsReturn, } from "../../parts/combobox.js";
+```
+
 ## components/Combobox/createComboboxOptions.d.ts
 
 ```ts
@@ -1748,8 +1777,10 @@ import { Progress } from "./components/Progress/Progress.js";
 export { Progress };
 export { ProgressParts, progressStyles } from "./components/Progress/Progress.js";
 export type { ProgressProps, ProgressClasses, ProgressPart, ProgressVariants, ProgressStyles, } from "./components/Progress/Progress.js";
-export { ComboboxParts, comboboxStyles, createComboboxOptions } from "./parts/combobox.js";
-export type { ComboboxClasses, ComboboxOption, ComboboxOptionsConfig, ComboboxPart, ComboboxStyles, ComboboxVariants, CreateComboboxOptionsReturn, } from "./parts/combobox.js";
+import { Combobox } from "./components/Combobox/Combobox.js";
+export { Combobox };
+export { ComboboxParts, comboboxStyles, createComboboxOptions, } from "./components/Combobox/Combobox.js";
+export type { ComboboxProps, ComboboxClasses, ComboboxOption, ComboboxOptionsConfig, ComboboxPart, ComboboxStyles, ComboboxVariants, CreateComboboxOptionsReturn, } from "./components/Combobox/Combobox.js";
 ```
 
 ## parts/combobox.d.ts

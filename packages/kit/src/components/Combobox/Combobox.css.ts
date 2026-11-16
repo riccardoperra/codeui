@@ -120,6 +120,12 @@ export const listbox = style({
 	outline: "none",
 });
 
+export const empty = style({
+	padding: `${t.space["1.5"]} ${t.space["2"]}`,
+	color: t.text.hint,
+	fontSize: t.font.size.caption,
+});
+
 export const item = style({
 	display: "flex",
 	alignItems: "center",

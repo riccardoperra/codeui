@@ -1,9 +1,11 @@
 import type { Meta, StoryObj } from "storybook-solidjs-vite";
-import { icons, Stack } from "@codeui/kit";
+import { Button, Combobox, createComboboxOptions, icons, Stack } from "@codeui/kit";
 import * as C from "@codeui/kit/combobox";
 import type { JSX } from "solid-js";
 
-const meta = { title: "DesignSystem/Combobox" } satisfies Meta;
+const meta = { title: "DesignSystem/Combobox", component: Combobox } satisfies Meta<
+	typeof Combobox
+>;
 export default meta;
 type Story = StoryObj<typeof meta>;
 
@@ -95,6 +97,140 @@ export const PartsFocus: Story = {
 	render: () => (
 		<div style={{ "max-width": "320px" }}>
 			<LanguageParts label="Keyboard focus" />
+		</div>
+	),
+	play: async ({ canvasElement }) => {
+		canvasElement.querySelector("input")?.focus();
+	},
+};
+
+const fruits = ["Apple", "Banana", "Blueberry", "Grapes", "Pineapple"];
+
+export const States: Story = {
+	render: () => (
+		<Stack gap="4" style={{ "max-width": "320px" }}>
+			<Combobox label="Fruit" placeholder="Insert a value..." options={fruits} />
+			<Combobox
+				label="With description"
+				description="Used in the snippet title"
+				options={fruits}
+				defaultValue="Banana"
+			/>
+			<Combobox label="Compact" size="sm" options={fruits} defaultValue="Apple" />
+			<Combobox label="Disabled" disabled options={fruits} defaultValue="Grapes" />
+			<Combobox label="Read only" readOnly options={fruits} defaultValue="Grapes" />
+			<Combobox
+				label="Invalid"
+				validationState="invalid"
+				errorMessage="Value is required."
+				options={fruits}
+			/>
+			<Combobox
+				aria-label="Fruit without visible label"
+				options={fruits}
+				placeholder="Fruit"
+			/>
+		</Stack>
+	),
+};
+
+export const Required: Story = {
+	render: () => (
+		<form
+			style={{
+				display: "flex",
+				gap: "8px",
+				"align-items": "flex-end",
+				"max-width": "420px",
+			}}
+		>
+			<Combobox label="Fruit" name="fruit" required options={fruits} />
+			<Button theme="secondary" type="submit">
+				Submit
+			</Button>
+		</form>
+	),
+};
+
+export const Open: Story = {
+	tags: ["!autodocs"],
+	render: () => (
+		<div style={{ "max-width": "320px", "min-height": "300px" }}>
+			<Combobox label="Fruit" options={fruits} defaultValue="Banana" defaultOpen />
+		</div>
+	),
+};
+
+export const Empty: Story = {
+	tags: ["!autodocs"],
+	render: () => (
+		<div style={{ "max-width": "320px", "min-height": "160px" }}>
+			<Combobox
+				label="Fruit"
+				options={fruits}
+				inputValue="Kiwi"
+				emptyContent="No fruit matches"
+				defaultOpen
+			/>
+		</div>
+	),
+};
+
+interface Fruit {
+	value: string;
+	name: string;
+	disabled: boolean;
+}
+
+const fruitObjects: Fruit[] = [
+	{ value: "apple", name: "Apple", disabled: false },
+	{ value: "banana", name: "Banana", disabled: false },
+	{ value: "blueberry", name: "Blueberry", disabled: false },
+	{ value: "grapes", name: "Grapes", disabled: true },
+	{ value: "pineapple", name: "Pineapple", disabled: false },
+];
+
+export const CustomObject: Story = {
+	render: () => (
+		<div style={{ "max-width": "320px" }}>
+			<Combobox
+				label="Fruit"
+				placeholder="Choose a fruit."
+				options={fruitObjects}
+				optionValue="value"
+				optionTextValue="name"
+				optionLabel="name"
+				optionDisabled="disabled"
+				renderOption={fruit => <strong>{fruit.name}</strong>}
+			/>
+		</div>
+	),
+};
+
+export const OptionsHelper: Story = {
+	render: () => {
+		const options = createComboboxOptions(fruitObjects, {
+			valueKey: "value",
+			labelKey: "name",
+			disabledKey: "disabled",
+		});
+		return (
+			<div style={{ "max-width": "320px" }}>
+				<Combobox
+					{...options.props()}
+					label="Fruit"
+					placeholder="Choose a fruit."
+					defaultValue={options.optionFromValue("pineapple")}
+				/>
+			</div>
+		);
+	},
+};
+
+export const Focus: Story = {
+	render: () => (
+		<div style={{ "max-width": "320px" }}>
+			<Combobox label="Keyboard focus" options={fruits} defaultValue="Apple" />
 		</div>
 	),
 	play: async ({ canvasElement }) => {

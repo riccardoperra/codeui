@@ -93,3 +93,13 @@ it("server renders closed combobox parts with a label and an input", () => {
 	expect(html).not.toContain('role="listbox"');
 	expect(html).toContain("Language");
 });
+
+import { Combobox } from "../src/components/Combobox/Combobox";
+it("server renders the ready combobox label and controlled input text", () => {
+	const html = renderToString(() => (
+		<Combobox label="Tab name" options={["ts", "js"]} inputValue="index.ts" />
+	));
+	expect(html).toContain("Tab name");
+	expect(html).toContain('role="combobox"');
+	expect(html).toContain('value="index.ts"');
+});
