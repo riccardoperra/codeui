@@ -32,7 +32,7 @@ export const control = style({
 		},
 		"&[data-checked]": { background: t.action.brand.base },
 		"&[data-invalid]": { outline: `${t.focus.width} solid ${t.text.danger}` },
-		"&[data-focus-visible]": {
+		'[data-cui="switch-input"]:focus-visible ~ &': {
 			outline: `${t.focus.width} solid ${t.focus.color}`,
 			outlineOffset: t.focus.offset,
 		},
@@ -58,7 +58,9 @@ export const thumb = style({
 	borderRadius: t.radius.full,
 	background: t.action.brand.text,
 	selectors: {
-		"[data-focus-visible] &": { transition: "none" },
+		'[data-cui="switch-root"]:has([data-cui="switch-input"]:focus-visible) &': {
+			transition: "none",
+		},
 		"&[data-checked]": {
 			transform: `translateX(calc(${t.space["3"]} + ${t.space["0.5"]}))`,
 		},
