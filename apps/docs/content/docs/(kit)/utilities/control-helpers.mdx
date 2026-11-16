@@ -1,23 +1,54 @@
 ---
 title: "Control helpers"
-description: "Helpers that map your data to Switch, Slider, OptionCard, and Accordion props."
-status: draft
+description: "Reactive mappings for custom control compositions and entry metadata."
 ---
-
-{/* TODO(docs): Scope from the docs plan. Checked and value mapping, form inputs, reactive entries, metadata versus content, usage boundaries. Follow apps/docs/CONTRIBUTING-DOCS.md. Delete each TODO(docs) as you finish its section, and delete status: draft when the page is done. */}
 
 ## `createSwitchProps`
 
-{/* TODO(docs): Import path, signature, parameters, return value, one example, and edge cases. Covers @codeui/kit createSwitchProps. */}
+<SolidDemo name="control-helpers/switch" />
+
+Import `createSwitchProps` from `@codeui/kit`. Its signature is `createSwitchProps(props: Accessor<SwitchProps>)`. Call it once in your component and pass an accessor so later signal changes remain visible.
+
+The result contains `root`, `input`, `label`, `description`, and `errorMessage` accessors. Spread each accessor result onto its matching styled part from `@codeui/kit/switch`. Root retains checked state, callbacks, and form props. Input receives the derived ID, accessible name, and input class. Label receives its ID and `for` association. Message accessors supply IDs and classes.
+
+<PropsTable name="SwitchHelperInput" />
+
+The helper renders no DOM and does not insert the control, thumb, or messages. `inputId` wins over the generated ID. A named checked input submits its `value`. An unchecked or disabled input submits no entry. The helper does not add a false-value input.
 
 ## `createSliderProps`
 
-{/* TODO(docs): Import path, signature, parameters, return value, one example, and edge cases. Covers @codeui/kit createSliderProps. */}
+<SolidDemo name="control-helpers/slider" />
+
+Import `createSliderProps` from `@codeui/kit`. Its signature is `createSliderProps(props: Accessor<SliderProps>)`. The return value contains `root`, `input`, `label`, `description`, and `errorMessage` accessors.
+
+Root converts scalar `value` and `defaultValue` to one-element arrays. An undefined scalar stays undefined so Kobalte can manage uncontrolled state. The root callbacks forward the first array value to scalar `onChange` and `onChangeEnd` callbacks. Input receives a derived ID and `type="hidden"`. Place Input inside Thumb so Kobalte can read its index and submit the value under the root name.
+
+<PropsTable name="SliderHelperInput" />
+
+The helper supplies props, not the ready Slider behavior. A custom composition owns the thumb accessible name, formatted `aria-valuetext`, invalid state, read-only interaction guards, and optional visible ValueLabel. Use the ready Slider when you need those behaviors without custom markup. Use styled Root directly for a range with multiple thumbs.
 
 ## `createOptionCardItems`
 
-{/* TODO(docs): Import path, signature, parameters, return value, one example, and edge cases. Covers @codeui/kit createOptionCardItems, @codeui/kit OptionCardEntry. */}
+<SolidDemo name="control-helpers/option-card-items" />
+
+Import `createOptionCardItems` and `OptionCardEntry` from `@codeui/kit`. The signature is `createOptionCardItems<T extends string>(items: Accessor<readonly OptionCardEntry<T>[]>)`.
+
+The helper returns `{ items }` with the original accessor. It does not copy, filter, or memoize entries. Read `result.items()` in JSX to preserve reactive updates. The string generic keeps selection values tied to your entry type. An empty array is valid and renders no choices.
+
+<PropsTable name="OptionCardEntryMetadata" />
+
+`label`, `description`, `preview`, and `badge` are JSX content. `value` and `disabled` control selection. The helper does not strip content or serialize entries. OptionCardGroup owns selection state and form inputs.
 
 ## `createAccordionItems`
 
-{/* TODO(docs): Import path, signature, parameters, return value, one example, and edge cases. Covers @codeui/kit AccordionEntry, @codeui/kit createAccordionItems. */}
+<SolidDemo name="control-helpers/accordion-items" />
+
+Import `createAccordionItems` and `AccordionEntry` from `@codeui/kit`. Its signature is `createAccordionItems(accessor: Accessor<readonly AccordionEntry[]>)`.
+
+The result is a memoized accessor that removes `content` from each entry. It retains `value`, `title`, `icon`, `summary`, and `disabled`. Use the result for navigation or summaries. Pass the original entries to Accordion to render panels. Empty input produces an empty metadata array.
+
+<PropsTable name="AccordionEntryMetadata" />
+
+Titles, icons, and summaries remain JSX values. This metadata is not a JSON serialization format. Replace the source signal array to trigger the memo. Mutating an entry in place does not notify Solid.
+
+All four helpers run during server rendering and add no portals or client effects. Create them inside the component so generated field IDs and reactive state belong to that render tree. The styled controls own ARIA and keyboard behavior. The ready components remain the default for complete fields.

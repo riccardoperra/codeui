@@ -1,105 +1,151 @@
 ---
 title: "Switch"
 description: "A toggle that turns a setting on or off immediately."
-status: draft
 ---
-
-{/* TODO(docs): Scope from the docs plan. sm and md, checked and unchecked, disabled, readOnly, required, invalid, focus. Follow apps/docs/CONTRIBUTING-DOCS.md. Delete each TODO(docs) as you finish its section, and delete status: draft when the page is done. */}
 
 ## When to use
 
-{/* TODO(docs): One short paragraph: the job this component does in an app. */}
+Turn a setting on or off immediately, such as line numbers in the editor preview.
 
 ## When to choose another component
 
-{/* TODO(docs): Name the nearest alternatives and the deciding difference, such as Select versus Combobox. */}
+Use [Checkbox](/docs/components/checkbox) for agreement or independent options submitted together. Switch has no indeterminate state.
 
 ## Live demo
 
-{/* TODO(docs): Add packages/docs-demos/src/demos/PAGE/basic.tsx and render it with a SolidDemo named PAGE/basic. The build prints the demo source under it. */}
+<SolidDemo name="switch/basic" />
 
 ## Anatomy
 
-{/* TODO(docs): Table with columns Export, Renders, `classes` key, `data-cui`, Role. Root and Portal without DOM get none. Copy data-cui names from the source, never derive them from export names. */}
+| Export         | Renders | `classes` key  | `data-cui`             | Role   |
+| -------------- | ------- | -------------- | ---------------------- | ------ |
+| `Root`         | `div`   | `root`         | `switch-root`          | none   |
+| `Input`        | `input` | `input`        | `switch-input`         | switch |
+| `Control`      | `div`   | `control`      | `switch-control`       | none   |
+| `Thumb`        | `div`   | `thumb`        | `switch-thumb`         | none   |
+| `Label`        | `label` | `label`        | `switch-label`         | none   |
+| `Description`  | `div`   | `description`  | `switch-description`   | none   |
+| `ErrorMessage` | `div`   | `errorMessage` | `switch-error-message` | none   |
 
 ## Variants
 
-{/* TODO(docs): One named demo per variant axis or distinct mode, each a SolidDemo named PAGE/AXIS. Use a size gallery, not every combination. */}
+<SolidDemo name="switch/sizes" />
 
 ## States
 
-{/* TODO(docs): Only the states this component supports: disabled, readOnly, required, invalid, empty, loading, selected, open, controlled. Never invent states for presentational components. */}
+<SolidDemo name="switch/controlled" />
+
+<SolidDemo name="switch/disabled" />
+
+<SolidDemo name="switch/read-only" />
+
+<SolidDemo name="switch/required" />
+
+<SolidDemo name="switch/invalid" />
 
 ## Ready API
 
-{/* TODO(docs): One H3 per ready export below. Under each, one sentence on what it renders, then a PropsTable of a projection exported from packages/docs-demos/src/props/PAGE.ts. Add a short inherited-props table and link the Kobalte contract for the rest. */}
-
 ### `Switch`
 
-{/* TODO(docs): Props of `Switch`, and the types listed in export-manifest.json for this anchor. */}
+Renders the complete field. `SwitchProps` is the public props type.
+
+<PropsTable name="Switch" />
+
+<PropsTable name="SwitchInherited" />
+
+Inherited behavior follows the [Kobalte switch contract](https://kobalte.dev/docs/core/components/switch).
 
 ## Styled parts API
 
 Import the parts from `@codeui/kit/switch`.
 
-{/* TODO(docs): One H3 per part: what it renders, its props, and the matching Kobalte primitive. Document namespace aliases where they are exported. */}
-
 ### `Control`
 
-{/* TODO(docs): Document @codeui/kit/switch Control, @codeui/kit/switch ControlProps. */}
+Wraps Kobalte `Switch.Control` with kit styles.
+
+<PropsTable name="SwitchControl" />
 
 ### `Description`
 
-{/* TODO(docs): Document @codeui/kit/switch Description, @codeui/kit/switch DescriptionProps. */}
+Wraps Kobalte `Switch.Description` with kit styles.
+
+<PropsTable name="SwitchDescription" />
 
 ### `ErrorMessage`
 
-{/* TODO(docs): Document @codeui/kit/switch ErrorMessage, @codeui/kit/switch ErrorMessageProps. */}
+Wraps Kobalte `Switch.ErrorMessage` with kit styles.
+
+<PropsTable name="SwitchErrorMessage" />
 
 ### `Input`
 
-{/* TODO(docs): Document @codeui/kit/switch Input, @codeui/kit/switch InputProps. */}
+Wraps Kobalte `Switch.Input` with kit styles.
+
+<PropsTable name="SwitchInput" />
 
 ### `Label`
 
-{/* TODO(docs): Document @codeui/kit/switch Label, @codeui/kit/switch LabelProps. */}
+Wraps Kobalte `Switch.Label` with kit styles.
+
+<PropsTable name="SwitchLabel" />
 
 ### `Root`
 
-{/* TODO(docs): Document @codeui/kit/switch Root, @codeui/kit/switch RootProps. */}
+Wraps Kobalte `Switch.Root` with kit styles.
+
+<PropsTable name="SwitchRoot" />
+
+<PropsTable name="SwitchRootInherited" />
 
 ### `Thumb`
 
-{/* TODO(docs): Document @codeui/kit/switch Thumb, @codeui/kit/switch ThumbProps. */}
+Wraps Kobalte `Switch.Thumb` with kit styles.
+
+<PropsTable name="SwitchThumb" />
 
 ### `useSwitchContext`
 
-{/* TODO(docs): Document @codeui/kit/switch useSwitchContext. */}
+Reads the Kobalte context inside its Root. Call it from a descendant component. It exposes reactive field state and throws outside the provider.
 
 ## Styles export
 
-{/* TODO(docs): What each part function returns, which variants it takes, and when to call it instead of rendering a part. */}
-
 ### `switchStyles`
 
-{/* TODO(docs): Document @codeui/kit switchStyles, @codeui/kit SwitchStyles, @codeui/kit/switch switchStyles, @codeui/kit/switch SwitchStyles. */}
+`switchStyles` maps each part name to a function that returns its kit class string. Functions accept `SwitchVariants`. Use the functions on custom markup when you already own its behavior. They do not add ARIA or keyboard handling. `SwitchStyles` types the map. `SwitchParts` exposes the styled components as a namespace.
 
 ## Accessibility
 
-{/* TODO(docs): H3 Keyboard, ARIA, and Focus where relevant. For layout and text, state the semantic element instead of an empty keyboard map. */}
+### Keyboard
+
+| Key   | Action                    |
+| ----- | ------------------------- |
+| Tab   | Focus the control.        |
+| Space | Toggle the checked state. |
+
+### ARIA
+
+The input exposes `role="switch"` and `aria-checked`. Description and error components associate hint text with the field. `validationState="invalid"` exposes invalid state. Supply a visible label or an accessible name.
+
+### Focus
+
+These controls do not open an overlay or move focus on mount. Disabled controls cannot receive keyboard focus. Read-only controls remain focusable and do not change value.
 
 ## SSR notes
 
-{/* TODO(docs): Portal availability, deterministic IDs, request-local state, hydration, and client-only effects, as they apply. */}
+The root, labels, controls, and form inputs render on the server. No part uses a portal. Keep initial values and component order stable between server and client so generated IDs hydrate consistently. Create signals per component instance.
 
 ## Theming hooks
 
-{/* TODO(docs): The --cui-* properties this component reads, directly or through shared field and button styles. Link the defaults in Foundations. */}
+The component reads these foundation variables. Shared field labels and messages also use the field typography and validation tokens.
+
+`--cui-action-brand-base`, `--cui-action-brand-text`, `--cui-action-neutral-active`, `--cui-control-height-compact`, `--cui-control-height-md`, `--cui-control-height-sm`, `--cui-control-height-xs`, `--cui-focus-color`, `--cui-focus-offset`, `--cui-focus-width`, `--cui-font-size-caption`, `--cui-font-size-xs`, `--cui-motion-duration-normal`, `--cui-motion-ease-out`, `--cui-radius-full`, `--cui-space-0-5`, `--cui-space-2`, `--cui-space-3`, `--cui-space-4`, `--cui-space-5`, `--cui-text-danger`, `--cui-text-default`, `--cui-text-hint`, `--cui-text-label`.
 
 ## Composition examples
 
-{/* TODO(docs): Link complete examples. Keep long procedures in Patterns. */}
+<SolidDemo name="switch/form" />
+
+The form demo reads the submitted value with `FormData`. Only checked, enabled inputs submit their value. Unchecked and disabled inputs are omitted. An omitted checkbox or switch value defaults to `"on"`.
 
 ## Related
 
-{/* TODO(docs): Links to related pages, each with the one difference that matters. */}
+Use [Checkbox](/docs/components/checkbox) for agreement or independent options submitted together. Switch has no indeterminate state. See [Control helpers](/docs/utilities/control-helpers) for custom compositions.

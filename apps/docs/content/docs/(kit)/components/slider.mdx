@@ -1,113 +1,171 @@
 ---
 title: "Slider"
 description: "A thumb on a track for choosing a number in a range."
-status: draft
 ---
-
-{/* TODO(docs): Scope from the docs plan. Horizontal and vertical, value display, scalar controlled and uncontrolled, min, max, and step, disabled, readOnly, required, invalid, focus. Follow apps/docs/CONTRIBUTING-DOCS.md. Delete each TODO(docs) as you finish its section, and delete status: draft when the page is done. */}
 
 ## When to use
 
-{/* TODO(docs): One short paragraph: the job this component does in an app. */}
+Choose a numeric value in a useful range, such as background opacity.
 
 ## When to choose another component
 
-{/* TODO(docs): Name the nearest alternatives and the deciding difference, such as Select versus Combobox. */}
+Use NumberField when you need an exact typed value. Pair a slider with a number field when both input methods are useful.
 
 ## Live demo
 
-{/* TODO(docs): Add packages/docs-demos/src/demos/PAGE/basic.tsx and render it with a SolidDemo named PAGE/basic. The build prints the demo source under it. */}
+<SolidDemo name="slider/basic" />
 
 ## Anatomy
 
-{/* TODO(docs): Table with columns Export, Renders, `classes` key, `data-cui`, Role. Root and Portal without DOM get none. Copy data-cui names from the source, never derive them from export names. */}
+| Export         | Renders | `classes` key  | `data-cui`             | Role   |
+| -------------- | ------- | -------------- | ---------------------- | ------ |
+| `Root`         | `div`   | `root`         | `slider-root`          | none   |
+| `Label`        | `label` | `label`        | `slider-label`         | none   |
+| `Description`  | `div`   | `description`  | `slider-description`   | none   |
+| `ErrorMessage` | `div`   | `errorMessage` | `slider-error-message` | none   |
+| `Track`        | `div`   | `track`        | `slider-track`         | none   |
+| `Fill`         | `div`   | `fill`         | `slider-fill`          | none   |
+| `Thumb`        | `span`  | `thumb`        | `slider-thumb`         | slider |
+| `Input`        | `input` | `input`        | `slider-input`         | none   |
+| `ValueLabel`   | `div`   | `valueLabel`   | `slider-value-label`   | none   |
 
 ## Variants
 
-{/* TODO(docs): One named demo per variant axis or distinct mode, each a SolidDemo named PAGE/AXIS. Use a size gallery, not every combination. */}
+<SolidDemo name="slider/vertical" />
+
+<SolidDemo name="slider/value-label" />
 
 ## States
 
-{/* TODO(docs): Only the states this component supports: disabled, readOnly, required, invalid, empty, loading, selected, open, controlled. Never invent states for presentational components. */}
+<SolidDemo name="slider/controlled" />
+
+<SolidDemo name="slider/disabled" />
+
+<SolidDemo name="slider/read-only" />
+
+<SolidDemo name="slider/required" />
+
+<SolidDemo name="slider/invalid" />
 
 ## Ready API
 
-{/* TODO(docs): One H3 per ready export below. Under each, one sentence on what it renders, then a PropsTable of a projection exported from packages/docs-demos/src/props/PAGE.ts. Add a short inherited-props table and link the Kobalte contract for the rest. */}
-
 ### `Slider`
 
-{/* TODO(docs): Props of `Slider`, and the types listed in export-manifest.json for this anchor. */}
+Renders the complete field. `SliderProps` is the public props type.
+
+<PropsTable name="Slider" />
+
+<PropsTable name="SliderInherited" />
+
+Inherited behavior follows the [Kobalte slider contract](https://kobalte.dev/docs/core/components/slider).
 
 ## Styled parts API
 
 Import the parts from `@codeui/kit/slider`.
 
-{/* TODO(docs): One H3 per part: what it renders, its props, and the matching Kobalte primitive. Document namespace aliases where they are exported. */}
-
 ### `Description`
 
-{/* TODO(docs): Document @codeui/kit/slider Description, @codeui/kit/slider DescriptionProps. */}
+Wraps Kobalte `Slider.Description` with kit styles.
+
+<PropsTable name="SliderDescription" />
 
 ### `ErrorMessage`
 
-{/* TODO(docs): Document @codeui/kit/slider ErrorMessage, @codeui/kit/slider ErrorMessageProps. */}
+Wraps Kobalte `Slider.ErrorMessage` with kit styles.
+
+<PropsTable name="SliderErrorMessage" />
 
 ### `Fill`
 
-{/* TODO(docs): Document @codeui/kit/slider Fill, @codeui/kit/slider FillProps. */}
+Wraps Kobalte `Slider.Fill` with kit styles.
+
+<PropsTable name="SliderFill" />
 
 ### `Input`
 
-{/* TODO(docs): Document @codeui/kit/slider Input, @codeui/kit/slider InputProps. */}
+Wraps Kobalte `Slider.Input` with kit styles.
+
+<PropsTable name="SliderInput" />
 
 ### `Label`
 
-{/* TODO(docs): Document @codeui/kit/slider Label, @codeui/kit/slider LabelProps. */}
+Wraps Kobalte `Slider.Label` with kit styles.
+
+<PropsTable name="SliderLabel" />
 
 ### `Root`
 
-{/* TODO(docs): Document @codeui/kit/slider Root, @codeui/kit/slider RootProps. */}
+Wraps Kobalte `Slider.Root` with kit styles.
+
+<PropsTable name="SliderRoot" />
+
+<PropsTable name="SliderRootInherited" />
 
 ### `Thumb`
 
-{/* TODO(docs): Document @codeui/kit/slider Thumb, @codeui/kit/slider ThumbProps. */}
+Wraps Kobalte `Slider.Thumb` with kit styles.
+
+<PropsTable name="SliderThumb" />
 
 ### `Track`
 
-{/* TODO(docs): Document @codeui/kit/slider Track, @codeui/kit/slider TrackProps. */}
+Wraps Kobalte `Slider.Track` with kit styles.
+
+<PropsTable name="SliderTrack" />
 
 ### `useSliderContext`
 
-{/* TODO(docs): Document @codeui/kit/slider useSliderContext. */}
+Reads the Kobalte context inside its Root. Call it from a descendant component. It exposes reactive field state and throws outside the provider.
 
 ### `ValueLabel`
 
-{/* TODO(docs): Document @codeui/kit/slider ValueLabel, @codeui/kit/slider ValueLabelProps. */}
+Wraps Kobalte `Slider.ValueLabel` with kit styles.
+
+<PropsTable name="SliderValueLabel" />
 
 ## Styles export
 
-{/* TODO(docs): What each part function returns, which variants it takes, and when to call it instead of rendering a part. */}
-
 ### `sliderStyles`
 
-{/* TODO(docs): Document @codeui/kit sliderStyles, @codeui/kit SliderStyles, @codeui/kit/slider sliderStyles, @codeui/kit/slider SliderStyles. */}
+`sliderStyles` maps each part name to a function that returns its kit class string. Functions accept `SliderVariants`. Use the functions on custom markup when you already own its behavior. They do not add ARIA or keyboard handling. `SliderStyles` types the map. `SliderParts` exposes the styled components as a namespace.
 
 ## Accessibility
 
-{/* TODO(docs): H3 Keyboard, ARIA, and Focus where relevant. For layout and text, state the semantic element instead of an empty keyboard map. */}
+### Keyboard
+
+| Key                    | Action                                                                                 |
+| ---------------------- | -------------------------------------------------------------------------------------- |
+| Tab                    | Focus the thumb.                                                                       |
+| Right Arrow, Up Arrow  | Increase by one step in the default direction.                                         |
+| Left Arrow, Down Arrow | Decrease by one step in the default direction.                                         |
+| Page Up, Page Down     | Increase or decrease by one tenth of the range, snapped to step and at least one step. |
+| Shift + Arrow key      | Change by the page step.                                                               |
+| Home, End              | Set the minimum or maximum value.                                                      |
+
+### ARIA
+
+The thumb has `role="slider"`, `aria-valuemin`, `aria-valuemax`, `aria-valuenow`, and `aria-valuetext`. `getValueLabel` formats both the visible value and the spoken value. Orientation and direction affect arrow behavior. The ready API takes scalar numbers. Styled Root takes arrays for multiple thumbs. Description and error components associate hint text with the field. `validationState="invalid"` exposes invalid state. Supply a visible label or an accessible name.
+
+### Focus
+
+These controls do not open an overlay or move focus on mount. Disabled controls cannot receive keyboard focus. Read-only controls remain focusable and do not change value.
 
 ## SSR notes
 
-{/* TODO(docs): Portal availability, deterministic IDs, request-local state, hydration, and client-only effects, as they apply. */}
+The root, labels, controls, and form inputs render on the server. No part uses a portal. Keep initial values and component order stable between server and client so generated IDs hydrate consistently. Create signals per component instance.
 
 ## Theming hooks
 
-{/* TODO(docs): The --cui-* properties this component reads, directly or through shared field and button styles. Link the defaults in Foundations. */}
+The component reads these foundation variables. Shared field labels and messages also use the field typography and validation tokens.
+
+`--cui-action-brand-base`, `--cui-action-brand-text`, `--cui-control-height-compact`, `--cui-control-height-md`, `--cui-focus-color`, `--cui-focus-offset`, `--cui-focus-width`, `--cui-font-size-caption`, `--cui-font-size-xs`, `--cui-radius-full`, `--cui-space-0-5`, `--cui-space-2`, `--cui-space-2-5`, `--cui-space-32`, `--cui-surface-input-accent`, `--cui-text-danger`, `--cui-text-default`, `--cui-text-hint`, `--cui-text-label`.
 
 ## Composition examples
 
-{/* TODO(docs): Link complete examples. Keep long procedures in Patterns. */}
+<SolidDemo name="slider/form" />
+
+The form demo reads the submitted value with `FormData`. The named input submits the numeric value as a string.
 
 ## Related
 
-{/* TODO(docs): Links to related pages, each with the one difference that matters. */}
+Use NumberField when you need an exact typed value. Pair a slider with a number field when both input methods are useful. See [Control helpers](/docs/utilities/control-helpers) for custom compositions.

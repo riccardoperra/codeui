@@ -1,50 +1,115 @@
 ---
-title: SegmentedControl
-description: A row of connected buttons for switching between a few exclusive options.
-status: draft
+title: "SegmentedControl"
+description: "A row of mutually exclusive segments for switching between a few options."
 ---
 
-{/* TODO(docs): Rewrite into the page template. Run node tools/docs/scaffold.mjs --print components/segmented-control to see it, and keep the useful content below. */}
+## When to use
 
-<SolidDemo name="segmented-control" source="hidden" />
+Choose between two to four short options while you work, such as editor themes.
 
-## Usage
+## When to choose another component
 
-```tsx
-import { createSignal } from 'solid-js';
-import { SegmentedControl, SegmentedControlItem } from '@codeui/kit';
+Use [RadioList](/docs/components/radio-list) for form choices with native radio inputs. Use [OptionCard](/docs/components/option-card) when a visual preview helps you choose.
 
-export function ThemeMode() {
-  const [theme, setTheme] = createSignal('dark');
-  return (
-    <SegmentedControl value={theme()} onChange={setTheme}>
-      <SegmentedControlItem value="light">Light</SegmentedControlItem>
-      <SegmentedControlItem value="dark">Dark</SegmentedControlItem>
-      <SegmentedControlItem value="system">System</SegmentedControlItem>
-    </SegmentedControl>
-  );
-}
-```
+## Live demo
 
-## API
+<SolidDemo name="segmented-control/basic" />
 
-`SegmentedControl` renders the list and a sliding indicator under the selected item. Each option is a `SegmentedControlItem`.
-It wraps Kobalte's `Tabs` with manual activation and a fixed horizontal orientation, so Kobalte's root props such as `disabled` pass through.
-`SegmentedControlItem` wraps `Tabs.Trigger` and takes its props, such as `value` and `disabled`.
+## Anatomy
 
-<TypeTable
-  type={{
-    value: { type: 'string', description: 'Controlled selected value.' },
-    defaultValue: { type: 'string', description: 'Selected value on first render, when uncontrolled.' },
-    onChange: { type: '(value: string) => void', description: 'Called when the selection changes.' },
-    size: { type: "'xs' | 'sm' | 'md' | 'lg' | 'xl'", default: "'md'", description: 'Height and padding of the control.' },
-    variant: { type: "'solid' | 'bordered'", default: "'solid'", description: 'Filled background or outline.' },
-    theme: { type: "'neutral' | 'primary'", default: "'neutral'", description: 'Color of the selected item.' },
-    pill: { type: 'boolean', description: 'Fully rounded corners.' },
-    fluid: { type: 'boolean', description: 'Stretches to the width of the container.' },
-    autoWidth: { type: 'boolean', description: 'Sizes each item to its content instead of equal widths.' },
-    classes: { type: 'SegmentedControlClasses', description: 'Classes for root, list, indicator, item.' },
-    slotClasses: { type: "Partial<Record<'root' | 'list' | 'indicator', string>>", description: 'Deprecated alias of classes. Removed in 1.0.' },
-    onEscapeKeyDown: { type: '(event: KeyboardEvent) => void', description: 'Called on Escape inside the control.' },
-  }}
-/>
+| Export                 | Renders       | `classes` key      | `data-cui`                  | Role    |
+| ---------------------- | ------------- | ------------------ | --------------------------- | ------- |
+| `SegmentedControl`     | Root div      | `root`             | `segmentedControl`          | none    |
+| `SegmentedControl`     | List div      | `list`             | `segmentedControlList`      | tablist |
+| `SegmentedControl`     | Indicator div | `indicator`        | `segmentedControlIndicator` | none    |
+| `SegmentedControlItem` | Button        | `item` from parent | `segmentedControlItem`      | tab     |
+
+## Variants
+
+<SolidDemo name="segmented-control/sizes" />
+
+<SolidDemo name="segmented-control/solid" />
+
+<SolidDemo name="segmented-control/bordered" />
+
+<SolidDemo name="segmented-control/pill" />
+
+<SolidDemo name="segmented-control/pill-bordered" />
+
+<SolidDemo name="segmented-control/primary" />
+
+<SolidDemo name="segmented-control/fluid" />
+
+`pill` combines with either variant. `fluid` fills width only. The control keeps its size height even inside the taller demo container. `autoWidth` sets each segment to a 1px base width with equal flex growth and removes horizontal padding. It does not measure text widths.
+
+## States
+
+<SolidDemo name="segmented-control/controlled" />
+
+<SolidDemo name="segmented-control/disabled" />
+
+## Ready API
+
+### `SegmentedControl`
+
+Renders the complete field. `SegmentedControlProps` is the public props type.
+
+<PropsTable name="SegmentedControl" />
+
+<PropsTable name="SegmentedControlInherited" />
+
+Inherited behavior follows the [Kobalte tabs contract](https://kobalte.dev/docs/core/components/tabs).
+
+### `SegmentedControlItem`
+
+Renders one selectable option.
+
+<PropsTable name="SegmentedControlItem" />
+
+<PropsTable name="SegmentedControlItemInherited" />
+
+## Accessibility
+
+### Keyboard
+
+| Key                     | Action                                                  |
+| ----------------------- | ------------------------------------------------------- |
+| Tab                     | Enter or leave the tab list.                            |
+| Left Arrow, Right Arrow | Focus the previous or next enabled segment.             |
+| Home, End               | Focus the first or last enabled segment.                |
+| Enter, Space            | Select the focused segment in manual activation mode.   |
+| Escape                  | Call the handler, then forward Escape unless prevented. |
+
+### ARIA
+
+The list has `role="tablist"`. Buttons have `role="tab"` and `aria-selected`. The default activation mode is manual. Arrow keys move focus without selecting. The wrapper renders no tab panels. Supply an accessible name for the group.
+
+### Focus
+
+These controls do not open an overlay or move focus on mount. Disabled controls cannot receive keyboard focus. The enclosing overlay owns focus restoration on close.
+
+## SSR notes
+
+The root, labels, controls, and form inputs render on the server. No part uses a portal. Keep initial values and component order stable between server and client so generated IDs hydrate consistently. Create signals per component instance. Indicator measurement, ResizeObserver, and Escape forwarding start after mount.
+
+## Theming hooks
+
+The component reads these foundation variables. Shared field labels and messages also use the field typography and validation tokens.
+
+`--cui-action-brand-base`, `--cui-action-brand-text`, `--cui-action-neutral-text`, `--cui-border-menu`, `--cui-border-width-strong`, `--cui-focus-color`, `--cui-focus-offset`, `--cui-focus-width`, `--cui-font-size-lg`, `--cui-font-size-md`, `--cui-font-size-sm`, `--cui-font-size-xs`, `--cui-font-weight-medium`, `--cui-motion-duration-normal`, `--cui-radius-full`, `--cui-radius-lg`, `--cui-radius-md`, `--cui-radius-sm`, `--cui-radius-xl`, `--cui-radius-xs`, `--cui-shadow-sm`, `--cui-space-1`, `--cui-space-2`, `--cui-space-3`, `--cui-space-4`, `--cui-space-5`, `--cui-space-6`, `--cui-surface-input`, `--cui-surface-input-accent`, `--cui-text-default`.
+
+## Composition examples
+
+<SolidDemo name="segmented-control/form" />
+
+<SolidDemo name="segmented-control/dialog" />
+
+<SolidDemo name="segmented-control/escape-cancelled" />
+
+SegmentedControl renders tabs and has no native form input. Mirror the controlled selection in a named hidden input. It has no built-in description, required, readOnly, or invalid field API. Associate external hint text with `aria-describedby` when needed.
+
+Escape calls `onEscapeKeyDown`. Unless you call `event.preventDefault()`, the helper forwards a bubbling Escape from the parent so an enclosing Dialog can close. The Dialog example leaves Escape uncancelled. The example restores focus to its opening button in `onCloseAutoFocus`. The second example cancels Escape with `preventDefault()`.
+
+## Related
+
+Use [RadioList](/docs/components/radio-list) for form choices with native radio inputs. Use [OptionCard](/docs/components/option-card) when a visual preview helps you choose. See [Control helpers](/docs/utilities/control-helpers) for custom compositions.
