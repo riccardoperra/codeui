@@ -1,121 +1,208 @@
 ---
 title: "Sheet"
-description: "A panel that slides in from an edge of the screen."
-status: draft
+description: "A panel attached to a viewport edge."
 ---
-
-{/* TODO(docs): Scope from the docs plan. bottom, left, and right, motion auto and none, drag handle and cancellation, docked parts, modal and focus behavior. Follow apps/docs/CONTRIBUTING-DOCS.md. Delete each TODO(docs) as you finish its section, and delete status: draft when the page is done. */}
 
 ## When to use
 
-{/* TODO(docs): One short paragraph: the job this component does in an app. */}
+Sheet presents a panel over your content, including a phone panel or export options. Opening a sheet does not reflow the frame.
 
 ## When to choose another component
 
-{/* TODO(docs): Name the nearest alternatives and the deciding difference, such as Select versus Combobox. */}
+Use [Dialog](/docs/components/dialog) for a blocking decision. Use [Popover](/docs/components/popover) for a picker anchored to a control.
 
 ## Live demo
 
-{/* TODO(docs): Add packages/docs-demos/src/demos/PAGE/basic.tsx and render it with a SolidDemo named PAGE/basic. The build prints the demo source under it. */}
+<SolidDemo name="sheet/basic" />
 
 ## Anatomy
 
-{/* TODO(docs): Table with columns Export, Renders, `classes` key, `data-cui`, Role. Root and Portal without DOM get none. Copy data-cui names from the source, never derive them from export names. */}
+| Export | Renders | `classes` key | `data-cui` | Role |
+| --- | --- | --- | --- | --- |
+| `Root` | none | none | none | none |
+| `Portal` | none | none | none | none |
+| `Trigger` | button | `trigger` | `sheet-trigger` | button |
+| `Overlay` | div | `overlay` | `sheet-overlay` | none |
+| `Content` | div | `content` | `sheet-content` | dialog |
+| `Handle` | button | `handle` | `sheet-handle` | button |
+| `Header` | div | `header` | `sheet-header` | none |
+| `Title` | h2 | `title` | `sheet-title` | heading |
+| `Description` | p | `description` | `sheet-description` | none |
+| `CloseButton` | button | `closeButton` | `sheet-close-button` | button |
+| `Body` | div | `body` | `sheet-body` | none |
+| `Footer` | div | `footer` | `sheet-footer` | none |
 
 ## Variants
 
-{/* TODO(docs): One named demo per variant axis or distinct mode, each a SolidDemo named PAGE/AXIS. Use a size gallery, not every combination. */}
+<SolidDemo name="sheet/sides" />
+
+`side` accepts `left`, `right`, and `bottom`. Bottom is the default.
+
+<SolidDemo name="sheet/nonmodal" />
+
+Modal sheets render a scrim and trap focus. `modal={false}` removes the scrim and leaves the page interactive.
+
+<SolidDemo name="sheet/draggable" />
+
+`draggable` adds a handle only to a bottom sheet. The placement union rejects draggable left and right sheets.
+
+<SolidDemo name="sheet/motion" />
+
+`motion="auto"` slides on pointer open and close. Keyboard actions do not animate. Reduced motion replaces the slide with a fade. `motion="none"` disables presence animation.
+
+A downward drag tracks the handle 1:1. Dragging above the open position applies rubber band resistance. A downward flick above 0.5 px/ms or a drag beyond 35% of the sheet height dismisses it. Short drags and `pointercancel` settle back open. A new grab can interrupt the settle. Reduced motion skips the settle animation.
+
+Drag events belong to `Handle`, not `Body`. Scrollable body content scrolls without starting a dismiss gesture. The draggable demo includes a scroll region for this distinction.
 
 ## States
 
-{/* TODO(docs): Only the states this component supports: disabled, readOnly, required, invalid, empty, loading, selected, open, controlled. Never invent states for presentational components. */}
+The live demo controls `open` with `onOpenChange`. Parts also support `defaultOpen` for uncontrolled state. Closed content unmounts after its exit animation unless Kobalte force mounting is enabled.
 
 ## Ready API
 
-{/* TODO(docs): One H3 per ready export below. Under each, one sentence on what it renders, then a PropsTable of a projection exported from packages/docs-demos/src/props/PAGE.ts. Add a short inherited-props table and link the Kobalte contract for the rest. */}
-
 ### `Sheet`
 
-{/* TODO(docs): Props of `Sheet`, and the types listed in export-manifest.json for this anchor. */}
+Renders a portal, optional overlay, content, and the supplied title, description, body, and footer.
+
+<PropsTable name="Sheet" />
+
+<PropsTable name="SheetInherited" />
 
 ## Styled parts API
 
-Import the parts from `@codeui/kit/sheet`.
-
-{/* TODO(docs): One H3 per part: what it renders, its props, and the matching Kobalte primitive. Document namespace aliases where they are exported. */}
-
-### `Body`
-
-{/* TODO(docs): Document @codeui/kit/sheet Body. */}
-
-### `CloseButton`
-
-{/* TODO(docs): Document @codeui/kit/sheet CloseButton, @codeui/kit/sheet CloseButtonProps. */}
-
-### `Content`
-
-{/* TODO(docs): Document @codeui/kit/sheet Content, @codeui/kit/sheet ContentProps. */}
-
-### `Description`
-
-{/* TODO(docs): Document @codeui/kit/sheet Description. */}
-
-### `Footer`
-
-{/* TODO(docs): Document @codeui/kit/sheet Footer. */}
-
-### `Handle`
-
-{/* TODO(docs): Document @codeui/kit/sheet Handle, @codeui/kit/sheet HandleProps. */}
-
-### `Header`
-
-{/* TODO(docs): Document @codeui/kit/sheet Header. */}
-
-### `Overlay`
-
-{/* TODO(docs): Document @codeui/kit/sheet Overlay. */}
-
-### `Portal`
-
-{/* TODO(docs): Document @codeui/kit/sheet Portal. */}
+Import parts from `@codeui/kit/sheet`. Each export is a named function.
 
 ### `Root`
 
-{/* TODO(docs): Document @codeui/kit/sheet Root, @codeui/kit/sheet RootProps. */}
+Kobalte Dialog.Root with input-aware motion. It renders no DOM.
+
+<PropsTable name="SheetRoot" />
+
+<PropsTable name="SheetRootInherited" />
+
+### `Content`
+
+Kobalte Dialog.Content with edge placement and focus return.
+
+<PropsTable name="SheetContent" />
+
+<PropsTable name="SheetContentInherited" />
+
+### `CloseButton`
+
+Kobalte Dialog.CloseButton rendered with the kit IconButton. Its default accessible name is "close".
+
+<PropsTable name="SheetCloseButton" />
+
+<PropsTable name="SheetCloseButtonInherited" />
+
+### `Handle`
+
+A button that closes on click, Enter, or Space and supports drag dismissal. It requires Root and Content.
+
+<PropsTable name="SheetHandle" />
+
+<PropsTable name="SheetHandleInherited" />
+
+### `Body`
+
+A scrollable body div.
+
+<PropsTable name="SheetBody" />
+
+### `Header`
+
+A layout div for the title and close action.
+
+<PropsTable name="SheetHeader" />
+
+### `Footer`
+
+A div for actions at the end of the panel.
+
+<PropsTable name="SheetFooter" />
+
+### `Overlay`
+
+Kobalte Dialog.Overlay with scrim styles. Include it only for a modal sheet.
+
+<PropsTable name="SheetOverlay" />
+
+### `Portal`
+
+Kobalte Dialog.Portal. `mount` selects the browser destination. It renders no wrapper.
+
+<PropsTable name="SheetPortal" />
+
+<PropsTable name="SheetPortalInherited" />
 
 ### `Title`
 
-{/* TODO(docs): Document @codeui/kit/sheet Title. */}
+Kobalte Dialog.Title rendered as an h2.
+
+<PropsTable name="SheetTitle" />
+
+### `Description`
+
+Kobalte Dialog.Description rendered as a paragraph.
+
+<PropsTable name="SheetDescription" />
 
 ### `Trigger`
 
-{/* TODO(docs): Document @codeui/kit/sheet Trigger. */}
+Kobalte Dialog.Trigger rendered as a button.
+
+<PropsTable name="SheetTrigger" />
+
+<PropsTable name="SheetTriggerInherited" />
+
+The remaining inherited props follow the [Kobalte Sheet contract](https://kobalte.dev/docs/core/components/dialog).
 
 ## Styles export
 
-{/* TODO(docs): What each part function returns, which variants it takes, and when to call it instead of rendering a part. */}
-
 ### `sheetStyles`
 
-{/* TODO(docs): Document @codeui/kit/sheet sheetStyles, @codeui/kit/sheet SheetStyles. */}
+`SheetStyles` maps each anatomy part key to a function that returns a class string. Only `content({ side })` uses the optional side variant. `trigger()` returns an empty string. Styles are exported from `@codeui/kit/sheet`. Use these functions with custom markup when you provide the required semantics and behavior. Styles alone do not manage focus or state.
 
 ## Accessibility
 
-{/* TODO(docs): H3 Keyboard, ARIA, and Focus where relevant. For layout and text, state the semantic element instead of an empty keyboard map. */}
+### Keyboard
+
+| Key | Action |
+| --- | --- |
+| Enter or Space on trigger | Opens the sheet. |
+| Escape | Closes the innermost sheet. |
+| Tab or Shift+Tab | Moves through focusable controls. Modal sheets keep focus inside. |
+| Enter or Space on handle or close button | Closes the sheet. |
+
+### ARIA
+
+Content has `role="dialog"`, a title link through `aria-labelledby`, and a description link through `aria-describedby`. Modal content has `aria-modal`. Without a visible title, provide `aria-label`. Trigger exposes open state and the controlled content ID.
+
+### Focus
+
+Opening moves focus into the sheet. Modal sheets trap focus. Closing returns focus to Trigger, or to the element focused before opening when no Trigger exists. A nonmodal outside interaction keeps focus on the outside target. `contentProps` can override autofocus through cancellable events.
 
 ## SSR notes
 
-{/* TODO(docs): Portal availability, deterministic IDs, request-local state, hydration, and client-only effects, as they apply. */}
+Root state can render on the server. Portalled overlay and content render only on the client. Input tracking starts on mount. Supply `mount` only after its element exists in the browser.
 
 ## Theming hooks
 
-{/* TODO(docs): The --cui-* properties this component reads, directly or through shared field and button styles. Link the defaults in Foundations. */}
+Sheet reads `--cui-surface-scrim`, `--cui-surface-dialog`, `--cui-text-dialog`, `--cui-text-dialog-title`, `--cui-shadow-dialog`, `--cui-border-width`, `--cui-border-dialog-title`, `--cui-radius-xl`, `--cui-radius-full`, `--cui-action-neutral-active`, and `--cui-text-muted`. Layout uses `--cui-space-1`, `-2`, `-3`, `-4`, `-6`, and `-10`, with the same `--cui-space` prefix.
+
+Typography uses `--cui-font-size-lg`, `--cui-font-size-sm`, `--cui-font-weight-medium`, and `--cui-font-line-height-compact`. Controls use `--cui-control-height-xs`, `--cui-control-height-md`, and `--cui-control-height-xl`. Focus uses `--cui-focus-width`, `--cui-focus-color`, and `--cui-focus-offset`. Motion uses `--cui-motion-duration-panel` and `--cui-motion-ease-out`.
+
+See [Inkstone foundations](/docs/design) for the design rules.
 
 ## Composition examples
 
-{/* TODO(docs): Link complete examples. Keep long procedures in Patterns. */}
+<SolidDemo name="sheet/parts" />
+
+Parts compose a nonmodal layers panel without an Overlay. <SolidDemo name="sheet/docked" />
+
+For a docked panel, Portal accepts a layout mount and Content accepts positioning styles. The mount must exist before Portal renders.
 
 ## Related
 
-{/* TODO(docs): Links to related pages, each with the one difference that matters. */}
+[Dialog](/docs/components/dialog) presents blocking settings or decisions. [Accordion](/docs/components/accordion) groups settings within a sheet.
