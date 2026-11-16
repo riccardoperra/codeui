@@ -1826,7 +1826,7 @@ export type PreviewProps = JSX.HTMLAttributes<HTMLDivElement>;
 export declare function Preview(props: PreviewProps): JSX.Element;
 export type BadgeProps = KitBadgeProps;
 export declare function Badge(props: BadgeProps): JSX.Element;
-export { useRadioGroupContext, } from "@kobalte/core/radio-group";
+export { useRadioGroupContext } from "@kobalte/core/radio-group";
 ```
 
 ## parts/popover.d.ts
