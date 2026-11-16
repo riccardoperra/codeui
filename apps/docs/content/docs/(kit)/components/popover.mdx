@@ -1,102 +1,225 @@
 ---
 title: Popover
 description: A floating panel anchored to a trigger, for short content and quick settings.
-status: draft
 ---
 
-{/* TODO(docs): Rewrite into the page template. Run node tools/docs/scaffold.mjs --print components/popover to see it, and keep the useful content below. */}
+## When to use
 
-<SolidDemo name="popover" source="hidden" />
+Use a popover to pick a value for one row or to show short, interactive content next to the control that opened it.
+It has no scrim and does not block the page. Focus moves into the panel and returns to the trigger on close.
 
-## Usage
+## When to choose another component
 
-```tsx
-import { Button, Popover, PopoverContent, PopoverTrigger } from '@codeui/kit';
+- [Tooltip](/docs/components/tooltip) names a control. It holds text only and cannot take focus.
+- [DropdownMenu](/docs/components/dropdown-menu) lists actions. Use it when each row runs a command.
+- [Dialog](/docs/components/dialog) holds settings or a decision that blocks the page.
+- [Select](/docs/components/select) picks one value from a list known by name.
 
-export function FontSettings() {
-  return (
-    <Popover placement="bottom-start">
-      <PopoverTrigger as={Button} theme="secondary">
-        Font settings
-      </PopoverTrigger>
-      <PopoverContent title="Font settings" description="Applies to every new snippet.">
-        Ligatures are on for Fira Code and JetBrains Mono.
-      </PopoverContent>
-    </Popover>
-  );
-}
-```
+## Live demo
 
-## API
+<SolidDemo name="popover/basic" />
 
-Popover is a compound component. `Popover` wraps Kobalte's `Popover` root, so Kobalte's root props such as `open`, `onOpenChange`, `placement`, and `modal` pass through.
+`Popover` holds the open state. `PopoverTrigger` opens it. `PopoverContent` portals the panel and renders the optional title and description above its children.
 
-| Export | Role |
+## Anatomy
+
+| Export | Renders | `classes` key | `data-cui` | Role |
+| --- | --- | --- | --- | --- |
+| `Popover`, `Root` | Nothing. Holds the open state | none | none | none |
+| `PopoverTrigger`, `Trigger` | `button` | none | `popover-trigger` | Opens and closes the panel |
+| `Anchor` (parts only) | `div` | none | `popover-anchor` | Element the panel lines up with |
+| `Portal` | Nothing. Moves the panel to `mount` | none | none | none |
+| `Content` | `div` | `content` | `popover-content` | `role="dialog"` |
+| `Arrow` (parts only) | `div` with an `svg` | none | `popover-arrow` | Points at the trigger |
+| `Title` | `h2` | `title` | `popover-title` | Accessible name of the panel |
+| `Description` | `p` | `description` | `popover-description` | Accessible description |
+| `CloseButton` (parts only) | `button` | none | `popover-close-button` | Closes the panel |
+
+## Variants
+
+### Bordered
+
+<SolidDemo name="popover/bordered" />
+
+`variant="bordered"` adds a 1px border in `--cui-border-menu`. Use it when the panel sits on a surface of the same color.
+
+### Placement
+
+<SolidDemo name="popover/placements" />
+
+`placement` on `Popover` sets the side and the alignment: `top`, `right`, `bottom`, or `left`, each with an optional `-start` or `-end`. The default is `bottom`.
+When the panel does not fit, Kobalte flips it to the opposite side.
+
+### Gutter and shift
+
+<SolidDemo name="popover/gutter" />
+
+`gutter` is the distance between the trigger and the panel. The kit sets it to 6px. `shift` moves the panel along the trigger edge.
+
+### Rich title and block content
+
+<SolidDemo name="popover/rich-content" />
+
+`title` takes JSX, so it can carry a badge. The title names the panel through `aria-labelledby`.
+Children render directly in the content, without a `p` wrapper. So a grid of buttons or a form is valid HTML inside the panel.
+`description` renders in a `p` element. Keep it to inline content and put blocks in the children.
+
+### Anchor
+
+<SolidDemo name="popover/anchor" />
+
+The `Anchor` part lines the panel up with an element other than the trigger, such as the whole settings row. The trigger still opens the panel and gets focus back on close.
+
+## States
+
+### Open, controlled, and uncontrolled
+
+Without `open`, the popover manages its own state. Set `defaultOpen` to open it on first render.
+To control it, pass `open` and `onOpenChange` to `Popover`.
+
+### Modal
+
+`modal` is `false` by default, so the rest of the page stays interactive and focus can leave the panel. Moving focus or clicking outside closes it.
+Set `modal` to trap focus inside the panel and hide the rest of the page from assistive technology.
+
+## Ready API
+
+### `Popover`
+
+Kobalte's `Popover` root with a `gutter` of 6. It renders no element.
+
+<PropsTable name="Popover" />
+
+The rest of the root options are in Kobalte's [popover](https://kobalte.dev/docs/core/components/popover) docs.
+
+### `PopoverTrigger`
+
+The `Trigger` part. A `button` that toggles the panel. Use `as={Button}` for a kit button.
+
+### `PopoverContent`
+
+Portals the panel and renders the title and the description when they are set.
+
+<PropsTable name="PopoverContent" />
+
+Inherited from Kobalte's popover content:
+
+<PropsTable name="PopoverContentInherited" />
+
+## Styled parts API
+
+Import the parts from `@codeui/kit/popover`. Each part carries the kit styles and a `data-cui` attribute, and wraps the matching Kobalte primitive.
+
+<SolidDemo name="popover/parts" />
+
+This example puts the close button next to the title and adds an arrow. The ready `PopoverContent` renders neither.
+
+### `Root`
+
+Kobalte's `Popover` root with a default `gutter` of 6. `Popover` is this part.
+
+<PropsTable name="PopoverRootPart" />
+
+### `Trigger`
+
+Kobalte's `Popover.Trigger`. A `button` that toggles the panel. `PopoverTrigger` is this part.
+
+### `Anchor`
+
+Kobalte's `Popover.Anchor`. A `div` the panel is positioned against instead of the trigger.
+
+### `Portal`
+
+Kobalte's `Popover.Portal`. Takes `mount`. It renders no element.
+
+### `Content`
+
+Kobalte's `Popover.Content`. The panel.
+
+<PropsTable name="PopoverContentPart" />
+
+### `Arrow`
+
+Kobalte's `Popover.Arrow`. An arrow that points at the trigger. The kit adds no styles, so it takes the panel fill.
+
+### `Title`
+
+Kobalte's `Popover.Title`. An `h2` that names the panel.
+
+### `Description`
+
+Kobalte's `Popover.Description`. A `p` that describes the panel.
+
+### `CloseButton`
+
+Kobalte's `Popover.CloseButton`, rendered as an extra-small secondary [IconButton](/docs/components/icon-button) with a close icon.
+
+<PropsTable name="PopoverCloseButtonPart" />
+
+## Styles export
+
+### `popoverStyles`
+
+`popoverStyles` from `@codeui/kit/popover` maps each part name to a function that returns its class string.
+`popoverStyles.content({ variant })` takes the variant. The other functions take no arguments. `trigger`, `anchor`, `arrow`, and `closeButton` return an empty string.
+
+Call a style function when you render the Kobalte primitive yourself and want the kit look. Add the matching `data-cui` value from `popoverParts` too.
+[Compose styled parts](/docs/patterns/compose-styled-parts#kobalte-with-kit-classes) shows a full example.
+
+The root package `@codeui/kit` also exports a `popoverStyles`, with a different shape. It is the raw style module: `content` is a recipe and `title` and `description` are class strings. Prefer the subpath export.
+
+## Accessibility
+
+### Keyboard
+
+| Key | Action |
 | --- | --- |
-| `Popover` | Root. Holds the open state. Default `gutter` of 6. |
-| `PopoverTrigger` | Opens the popover. Use `as={Button}` for a kit button. |
-| `PopoverContent` | Portals the panel and renders the optional title and description above the children. |
+| <kbd>Enter</kbd>, <kbd>Space</kbd> | On the trigger, opens or closes the panel. |
+| <kbd>Tab</kbd> | Moves focus through the panel. Moving focus out of a non-modal panel closes it. |
+| <kbd>Escape</kbd> | Closes the panel and returns focus to the trigger. |
 
-<TypeTable
-  type={{
-    open: { type: 'boolean', description: 'Controlled open state, on Popover.' },
-    defaultOpen: { type: 'boolean', description: 'Open state on first render, when uncontrolled.' },
-    onOpenChange: { type: '(open: boolean) => void', description: 'Called when the popover opens or closes.' },
-    placement: { type: 'Placement', default: "'bottom'", description: "Side and alignment, such as 'bottom-start'." },
-    gutter: { type: 'number', default: '6', description: 'Distance between the trigger and the panel.' },
-  }}
-/>
+### ARIA
 
-`PopoverContent` takes Kobalte's content props, such as `onEscapeKeyDown`, plus these.
+- The panel has `role="dialog"`. Kobalte links it to `Title` with `aria-labelledby` and to `Description` with `aria-describedby`.
+- The trigger has `aria-haspopup="dialog"`, `aria-expanded`, and `aria-controls`.
+- Without a title, give the panel an accessible name with `aria-label` on `PopoverContent`.
+- The close button's accessible name is `close`. Change it with `aria-label`.
 
-<TypeTable
-  type={{
-    title: { type: 'JSX.Element', description: 'Heading of the panel, linked as the accessible name.' },
-    description: { type: 'JSX.Element', description: 'Text under the title, linked with aria-describedby.' },
-    variant: { type: "'bordered'", description: 'Adds a border to the panel.' },
-    mount: { type: 'Node', default: 'document.body', description: 'Node the popover is portaled into.' },
-    classes: { type: "Pick<PopoverClasses, 'content' | 'title' | 'description'>", description: 'Classes for the content, the title, and the description.' },
-  }}
-/>
+### Focus
 
-## Styled parts
+On open, focus moves to the first focusable element in the panel, or to the panel itself. On close, focus returns to the trigger.
 
-When the ready component does not fit the layout, compose the styled parts from `@codeui/kit/popover`.
-Each part carries the kit styles and a `data-cui` attribute, and wraps the matching Kobalte primitive.
+## SSR notes
 
-<SolidDemo name="popover-parts" source="hidden" />
+The portal renders nothing on the server. The panel renders on the client, and only while it is open.
+The trigger and the anchor render on the server. Their IDs come from Solid's `createUniqueId`, so they match after hydration.
 
-```tsx
-import { Button } from '@codeui/kit';
-import * as P from '@codeui/kit/popover';
+## Theming hooks
 
-export function WhatsNew() {
-  return (
-    <P.Root placement="bottom-start">
-      <P.Trigger as={Button} theme="secondary">
-        What's new
-      </P.Trigger>
-      <P.Portal>
-        <P.Content variant="bordered">
-          <P.Arrow />
-          <P.Title>New export panel</P.Title>
-          <P.Description>Export styles now live next to the preview.</P.Description>
-          <P.CloseButton />
-        </P.Content>
-      </P.Portal>
-    </P.Root>
-  );
-}
-```
+`Popover` reads these `--cui-*` variables. See [Tokens](/docs/foundations/tokens) for the defaults.
 
-| Part | Renders | `data-cui` |
-| --- | --- | --- |
-| `Root` | Kobalte popover root, holds the open state. Default `gutter` of 6 | none |
-| `Trigger` | Button that opens the popover | `popover-trigger` |
-| `Anchor` | Element the panel is positioned against, when it is not the trigger | `popover-anchor` |
-| `Portal` | Portal to `document.body` or `mount` | none |
-| `Content` | The panel, takes `variant` | `popover-content` |
-| `Arrow` | Arrow pointing at the trigger | `popover-arrow` |
-| `Title` | Accessible heading | `popover-title` |
-| `Description` | Accessible description | `popover-description` |
-| `CloseButton` | Icon button that closes the popover | `popover-close-button` |
+| Variable | Used for |
+| --- | --- |
+| `--cui-surface-menu` | Panel fill |
+| `--cui-shadow-menu` | Panel shadow |
+| `--cui-border-menu`, `--cui-border-width` | Border of the `bordered` variant |
+| `--cui-text-menu` | Title and description text |
+| `--cui-radius-lg` | Panel radius |
+| `--cui-space-4` | Panel padding |
+| `--cui-space-2` | Gap between title, description, and children |
+| `--cui-font-size-md` | Body and description size |
+| `--cui-font-size-lg`, `--cui-font-weight-medium` | Title type |
+| `--cui-motion-duration-normal`, `--cui-motion-duration-fast`, `--cui-motion-ease-out` | Open and close animation |
+
+The panel is at most 276px wide. That value is a literal in the kit, not a token. Inkstone asks for a 360px picker, so widen the panel with a class when it holds a picker.
+
+## Composition examples
+
+- [Compose styled parts](/docs/patterns/compose-styled-parts) builds the same popover three ways.
+- [Nest overlays](/docs/patterns/nest-overlays) opens a menu inside a dialog and shows where Escape goes.
+
+## Related
+
+- [Tooltip](/docs/components/tooltip) is read-only and opens on hover or focus.
+- [DropdownMenu](/docs/components/dropdown-menu) lists actions with arrow-key navigation.
+- [Dialog](/docs/components/dialog) blocks the page behind a scrim.

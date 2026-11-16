@@ -1,7 +1,65 @@
 ---
 title: "Compose styled parts"
 description: "Build a custom layout from a component's styled parts."
-status: draft
 ---
 
-{/* TODO(docs): Scope from the docs plan. How-to. Start from a ready component, step down to its parts, keep data-cui and classes stable. Follow apps/docs/CONTRIBUTING-DOCS.md. Delete each TODO(docs) as you finish its section, and delete status: draft when the page is done. */}
+Each overlay in the kit comes in three layers. You can use the ready component, compose its styled parts, or render Kobalte yourself and take only the kit classes.
+This page builds the same Line height popover each way. Start from the top and step down only when the layer above cannot express your layout.
+[Choose ready components or parts](/docs/ready-or-parts) explains the layers in general.
+
+## Use the ready component
+
+<SolidDemo name="compose-styled-parts/ready" />
+
+`Popover`, `PopoverTrigger`, and `PopoverContent` come from `@codeui/kit`. `PopoverContent` portals the panel and renders the title and the description for you.
+Pick this layer first. You own the content and the state. The kit owns the arrangement, the IDs, and the ARIA links.
+
+## Compose the styled parts
+
+<SolidDemo name="compose-styled-parts/parts" />
+
+The parts come from `@codeui/kit/popover`, or `@codeui/kit/dialog` for a dialog. Each part wraps one Kobalte primitive, adds the kit class, and sets a `data-cui` attribute.
+Pick this layer when the ready component fixes something you need to change. Here the close button sits next to the title, which `PopoverContent` does not render.
+
+You own the arrangement. Keep every part inside its `Root`, and keep `Title` inside `Content` so the panel still has an accessible name.
+[Dialog](/docs/components/dialog#build-a-custom-layout) shows a larger example, a settings dialog with a breadcrumb title and two panes.
+
+## Kobalte with kit classes
+
+<SolidDemo name="compose-styled-parts/styles" />
+
+Here Kobalte's `Popover` renders every element, and `popoverStyles` from `@codeui/kit/popover` supplies the classes. The trigger takes its class from `buttonStyles.button`.
+Pick this layer when you need a Kobalte option or element that no kit part exposes, but still want the kit look.
+
+You own the composition and the `data-cui` attributes. Copy them from `popoverParts` or `dialogParts`, so CSS and tests that target a part still match.
+Install `@kobalte/core` as a direct dependency of your app before you import it.
+
+## Pick a layer
+
+| You need | Use |
+| --- | --- |
+| A standard dialog, popover, or menu | The ready component |
+| A different arrangement of the same parts, such as an extra close button or a two-pane body | The styled parts |
+| A Kobalte part or option the kit does not wrap, with the kit look | Kobalte with `*Styles` classes |
+| A different look altogether | Kobalte alone, with your own CSS |
+
+## Override kit styles with plain CSS
+
+<SolidDemo name="compose-styled-parts/override" />
+
+Every kit rule sits in the `cui` cascade layer. Unlayered CSS in your app wins over a layered rule, whatever the stylesheet order.
+So one class on `PopoverContent` widens the panel and adds padding, with no `!important` and no extra specificity. The same holds for a class on a part or next to a `*Styles` class.
+
+A CSS reset is the exception, because an unlayered reset also wins. [Theming](/docs/theming#the-cui-cascade-layer) shows how to put the reset in a layer below `cui`.
+
+## Keep data-cui and classes stable
+
+- Target a part by its `data-cui` value, such as `[data-cui="popover-content"]`. The values are part of the public API. The generated class names are not.
+- Pass classes through `class` on a part, or through `classes` on a ready component. Both merge after the kit class.
+- When you swap a ready component for parts, the `data-cui` values stay the same, so your selectors keep working.
+
+## Related
+
+- [Dialog](/docs/components/dialog) lists the dialog parts and `dialogStyles`.
+- [Popover](/docs/components/popover) lists the popover parts and `popoverStyles`.
+- [Cascade layers](/docs/foundations/cascade-layers) explains the `cui` layer.

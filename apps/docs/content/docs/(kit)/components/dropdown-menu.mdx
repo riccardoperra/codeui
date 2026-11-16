@@ -1,85 +1,200 @@
 ---
 title: DropdownMenu
 description: A menu of actions that opens from a trigger button.
-status: draft
 ---
 
-{/* TODO(docs): Rewrite into the page template. Run node tools/docs/scaffold.mjs --print components/dropdown-menu to see it, and keep the useful content below. */}
+## When to use
 
-<SolidDemo name="dropdown-menu" source="hidden" />
+Use a dropdown menu to offer a short list of actions behind one button, such as the export formats for a snippet.
+Each item runs a command. The menu closes after the user picks one.
 
-## Usage
+## When to choose another component
 
-```tsx
-import {
-  Button,
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuPortal,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-  DropdownSubMenu,
-  DropdownSubMenuContent,
-  DropdownSubMenuTrigger,
-} from '@codeui/kit';
+- [Select](/docs/components/select) picks a value that stays visible in the trigger. A menu runs an action and keeps no value.
+- [Popover](/docs/components/popover) holds content that is not a list of actions, such as a form.
+- [Command menu](/docs/components/command-menu) finds any action by name across the app.
+- Inkstone does not use a menu to manage things the user is building, such as steps. Use inline controls for those.
 
-export function ExportMenu() {
-  return (
-    <DropdownMenu>
-      <DropdownMenuTrigger as={Button} theme="secondary">
-        Export
-      </DropdownMenuTrigger>
-      <DropdownMenuPortal>
-        <DropdownMenuContent>
-          <DropdownMenuItem rightSlot="⌘S">Save as PNG</DropdownMenuItem>
-          <DropdownMenuItem rightSlot="⇧⌘S">Save as SVG</DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownSubMenu>
-            <DropdownSubMenuTrigger rightSlot="›">Copy</DropdownSubMenuTrigger>
-            <DropdownMenuPortal>
-              <DropdownSubMenuContent>
-                <DropdownMenuItem>Copy image</DropdownMenuItem>
-                <DropdownMenuItem>Copy link</DropdownMenuItem>
-                <DropdownMenuItem>Copy embed code</DropdownMenuItem>
-              </DropdownSubMenuContent>
-            </DropdownMenuPortal>
-          </DropdownSubMenu>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem disabled>Export as video</DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenuPortal>
-    </DropdownMenu>
-  );
-}
-```
+## Live demo
 
-## API
+<SolidDemo name="dropdown-menu/basic" />
 
-DropdownMenu is a compound component. Each piece wraps the matching Kobalte `DropdownMenu` part and takes its props.
-Handle a click with `onSelect` on the item.
+`DropdownMenu` holds the open state. `DropdownMenuTrigger` opens it. Put `DropdownMenuContent` inside `DropdownMenuPortal`, and one `DropdownMenuItem` per action.
+Handle a choice with `onSelect` on the item.
 
-| Export | Wraps | Role |
-| --- | --- | --- |
-| `DropdownMenu` | `DropdownMenu` | Root. Holds the open state. Default `gutter` of 6. |
-| `DropdownMenuTrigger` | `DropdownMenu.Trigger` | Opens the menu. Use `as={Button}` for a kit button. |
-| `DropdownMenuPortal` | `DropdownMenu.Portal` | Portals the menu or a submenu to `document.body`. |
-| `DropdownMenuContent` | `DropdownMenu.Content` | The menu panel. |
-| `DropdownMenuItem` | `DropdownMenu.Item` | One action. Takes `rightSlot`. |
-| `DropdownMenuSeparator` | `DropdownMenu.Separator` | Line between groups. |
-| `DropdownSubMenu` | `DropdownMenu.Sub` | Root of a nested menu. |
-| `DropdownSubMenuTrigger` | `DropdownMenu.SubTrigger` | Item that opens the nested menu. Takes `rightSlot`. |
-| `DropdownSubMenuContent` | `DropdownMenu.SubContent` | The nested menu panel. |
+## Anatomy
 
-The root accepts Kobalte's root props such as `open`, `onOpenChange`, `placement`, and `modal`.
+| Export | Renders | `classes` key | `data-cui` | Role |
+| --- | --- | --- | --- | --- |
+| `DropdownMenu` | Nothing. Holds the open state | none | none | none |
+| `DropdownMenuTrigger` | `button` | none | none | Opens the menu |
+| `DropdownMenuPortal` | Nothing. Moves the menu to `document.body` | none | none | none |
+| `DropdownMenuContent` | `div` | none, use `class` | `dropdown-menu-content` | `role="menu"` |
+| `DropdownMenuItem` | `div` | none, use `class` | `dropdown-menu-item` | `role="menuitem"` |
+| `DropdownMenuSeparator` | `hr` | none | none | `role="separator"` |
+| `DropdownSubMenu` | Nothing. Holds the submenu state | none | none | none |
+| `DropdownSubMenuTrigger` | `div` | none | none | `role="menuitem"` that opens the submenu |
+| `DropdownSubMenuContent` | `div` | none | none | `role="menu"` |
 
-<TypeTable
-  type={{
-    open: { type: 'boolean', description: 'Controlled open state of the root.' },
-    onOpenChange: { type: '(open: boolean) => void', description: 'Called when the menu opens or closes.' },
-    gutter: { type: 'number', default: '6', description: 'Distance between the trigger and the menu, on the root.' },
-    rightSlot: { type: 'JSX.Element', description: 'Content aligned to the right of an item or a submenu trigger, such as a shortcut or an arrow.' },
-    onSelect: { type: '() => void', description: 'Called when an item is chosen.' },
-    disabled: { type: 'boolean', description: 'Disables an item or a submenu trigger.' },
-  }}
-/>
+The `rightSlot` of an item and of a submenu trigger renders in a `div` without a `data-cui` attribute.
+
+## Variants
+
+### Groups
+
+<SolidDemo name="dropdown-menu/groups" />
+
+Split related actions with `DropdownMenuSeparator`. Keep a destructive action, such as Delete, in its own group at the end.
+The kit does not export a group with a label. Kobalte's `DropdownMenu.Group` and `DropdownMenu.GroupLabel` work inside `DropdownMenuContent`, but they have no kit styles.
+
+### Submenu
+
+<SolidDemo name="dropdown-menu/submenu" />
+
+Wrap a `DropdownSubMenuTrigger` and a portaled `DropdownSubMenuContent` in `DropdownSubMenu`.
+The submenu opens on the right of its trigger. Its `gutter` defaults to -4, so the submenu overlaps the parent menu's padding and its first item lines up with the trigger.
+Pass a larger `gutter`, as in Post to, to leave a gap.
+
+### Custom trigger
+
+<SolidDemo name="dropdown-menu/icon-trigger" />
+
+`DropdownMenuTrigger` is polymorphic. Pass `as={Button}` or `as={IconButton}` to use a kit button. An icon button needs an `aria-label`.
+Set `placement` on `DropdownMenu` to align the menu with the trigger's end edge.
+
+### Checkbox and radio items
+
+The kit does not export checkbox or radio items. To show the current choice, put it in the trigger label, as in the controlled example below, or use a [Select](/docs/components/select) or a [SegmentedControl](/docs/components/segmented-control).
+
+## States
+
+### Disabled
+
+<SolidDemo name="dropdown-menu/disabled" />
+
+A disabled item or submenu trigger is dimmed, skipped by the arrow keys, and ignores clicks.
+
+### Controlled
+
+<SolidDemo name="dropdown-menu/controlled" />
+
+Pass `open` and `onOpenChange` to `DropdownMenu` to control the open state.
+
+## Ready API
+
+DropdownMenu is a compound component. Each export wraps the matching Kobalte [dropdown menu](https://kobalte.dev/docs/core/components/dropdown-menu) part and takes its props.
+The root also exports `dropdownMenuStyles`, the raw style module with the `content`, `subMenuContent`, `item`, `separator`, and `rightSlot` classes.
+
+### `DropdownMenu`
+
+Kobalte's `DropdownMenu` root with a `gutter` of 6. It renders no element.
+
+<PropsTable name="DropdownMenu" />
+
+### `DropdownMenuContent`
+
+Kobalte's `DropdownMenu.Content`. The menu panel. It takes Kobalte's content props, such as `onEscapeKeyDown`, and merges `class` after the kit styles.
+
+### `DropdownMenuPortal`
+
+Kobalte's `DropdownMenu.Portal`. Portals the menu, or a submenu, to `document.body`. Takes `mount`.
+
+### `DropdownMenuItem`
+
+Kobalte's `DropdownMenu.Item` with a `rightSlot` for a shortcut or a hint.
+
+<PropsTable name="DropdownMenuItem" />
+
+### `DropdownMenuTrigger`
+
+Kobalte's `DropdownMenu.Trigger`. A `button` with no kit styles. Use `as` to render a kit button.
+
+### `DropdownSubMenu`
+
+Kobalte's `DropdownMenu.Sub` with a `gutter` of -4.
+
+<PropsTable name="DropdownSubMenu" />
+
+### `DropdownSubMenuTrigger`
+
+Kobalte's `DropdownMenu.SubTrigger`, styled like an item, with a `rightSlot` for an arrow.
+
+<PropsTable name="DropdownSubMenuTrigger" />
+
+`DropdownSubMenuTrigger` replaces any `class` you pass with the kit item class. Style it through a `data-*` selector or its role instead.
+
+### `DropdownSubMenuContent`
+
+Kobalte's `DropdownMenu.SubContent`, styled like the menu panel. It also replaces any `class` you pass.
+
+### `DropdownMenuSeparator`
+
+Kobalte's `DropdownMenu.Separator`. A line between groups. It also replaces any `class` you pass.
+
+## Accessibility
+
+### Keyboard
+
+| Key | Action |
+| --- | --- |
+| <kbd>Enter</kbd>, <kbd>Space</kbd>, <kbd>ArrowDown</kbd> | On the trigger, opens the menu and highlights the first item. |
+| <kbd>ArrowUp</kbd> | On the trigger, opens the menu and highlights the last item. |
+| <kbd>ArrowDown</kbd>, <kbd>ArrowUp</kbd> | Moves the highlight to the next or the previous item. Skips disabled items. |
+| <kbd>Home</kbd>, <kbd>End</kbd> | Moves the highlight to the first or the last item. |
+| A letter key | Moves the highlight to the next item that starts with that letter. |
+| <kbd>Enter</kbd>, <kbd>Space</kbd> | Runs the highlighted item and closes the menu. On a submenu trigger, opens the submenu. |
+| <kbd>ArrowRight</kbd> | On a submenu trigger, opens the submenu and highlights its first item. |
+| <kbd>ArrowLeft</kbd> | In a submenu, closes it and highlights its trigger. |
+| <kbd>Escape</kbd> | Closes the innermost open menu. Focus returns to its trigger. |
+| <kbd>Tab</kbd> | Closes the menu and moves focus on. |
+
+### ARIA
+
+- The trigger has `aria-haspopup="true"`, `aria-expanded`, and `aria-controls`.
+- The content has `role="menu"` and is labelled by the trigger.
+- Each item has `role="menuitem"`. A disabled item has `aria-disabled="true"`.
+- A submenu trigger has `role="menuitem"`, `aria-haspopup="true"`, and `aria-expanded`.
+- The separator has `role="separator"`.
+
+### Focus
+
+On open, focus moves into the menu and the first item is highlighted. On close, focus returns to the trigger.
+The menu is modal by default. While it is open, the rest of the page is hidden from assistive technology and does not take pointer events.
+
+## SSR notes
+
+The trigger renders on the server. The portal renders nothing on the server, so the menu and its submenus render on the client, and only while they are open.
+IDs come from Solid's `createUniqueId`, so `aria-controls` on the trigger matches after hydration.
+
+## Theming hooks
+
+DropdownMenu reads these `--cui-*` variables. See [Tokens](/docs/foundations/tokens) for the defaults.
+
+| Variable | Used for |
+| --- | --- |
+| `--cui-surface-menu` | Menu fill |
+| `--cui-shadow-menu` | Menu shadow |
+| `--cui-border-menu`, `--cui-border-width` | Menu border and separator line |
+| `--cui-radius-lg` | Menu radius |
+| `--cui-radius-sm` | Item radius |
+| `--cui-space-2` | Menu padding |
+| `--cui-space-1` | Gap between items |
+| `--cui-space-2`, `--cui-space-3` | Item padding |
+| `--cui-space-1-5`, `--cui-space-px` | Separator margin and height |
+| `--cui-space-8` | Gap before the right slot |
+| `--cui-control-height-md` | Item minimum height |
+| `--cui-text-menu` | Item text |
+| `--cui-surface-menu-hover` | Highlighted item fill |
+| `--cui-text-muted` | Right slot text |
+| `--cui-font-weight-normal` | Item weight |
+| `--cui-motion-duration-normal`, `--cui-motion-duration-fast`, `--cui-motion-ease-out` | Open and close animation |
+
+## Composition examples
+
+- [Nest overlays](/docs/patterns/nest-overlays) opens a menu inside a dialog and shows where Escape goes.
+
+## Related
+
+- [Select](/docs/components/select) keeps the chosen value in the trigger.
+- [Popover](/docs/components/popover) holds free content instead of a list of actions.
+- [Command menu](/docs/components/command-menu) searches every action by name.

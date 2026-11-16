@@ -1,108 +1,268 @@
 ---
 title: Dialog
 description: A modal window over the page, for a decision that blocks the user.
-status: draft
 ---
 
-{/* TODO(docs): Rewrite into the page template. Run node tools/docs/scaffold.mjs --print components/dialog to see it, and keep the useful content below. */}
+## When to use
 
-<SolidDemo name="dialog" source="hidden" />
+Use a dialog for settings, or for a decision the user must make before they continue, such as deleting a snippet.
+The dialog traps focus, puts a scrim behind the panel, and returns focus to the opener when it closes.
 
-## Usage
+## When to choose another component
 
-```tsx
-import { createSignal } from 'solid-js';
-import { Button, Dialog, DialogPanelContent, DialogPanelFooter } from '@codeui/kit';
+- [Popover](/docs/components/popover) picks a value for one row. It has no scrim and does not block the page.
+- [Sheet](/docs/components/sheet) holds a panel on a phone.
+- [Command menu](/docs/components/command-menu) finds an action by name.
+- For an action the user can undo, skip the dialog. Run the action and offer undo in a [toast](/docs/components/toast).
 
-export function DeleteSnippet() {
-  const [open, setOpen] = createSignal(false);
-  return (
-    <>
-      <Button theme="primary" onClick={() => setOpen(true)}>
-        Open dialog
-      </Button>
-      <Dialog open={open()} onOpenChange={setOpen} title="Delete snippet" size="sm">
-        <DialogPanelContent>
-          The snippet and its export history are removed. This cannot be undone.
-        </DialogPanelContent>
-        <DialogPanelFooter>
-          <Button theme="secondary" onClick={() => setOpen(false)}>
-            Cancel
-          </Button>
-          <Button theme="negative" onClick={() => setOpen(false)}>
-            Delete
-          </Button>
-        </DialogPanelFooter>
-      </Dialog>
-    </>
-  );
-}
-```
+## Live demo
 
-## API
+<SolidDemo name="dialog/basic" />
 
-`Dialog` renders the overlay, the panel, and a header with the title and a close button. Put the body in `DialogPanelContent` and the actions in `DialogPanelFooter`.
-It also accepts Kobalte's dialog root options, such as `modal` and `preventScroll`.
+`Dialog` renders the overlay, the panel, and a header with the title and a close button.
+Put the body in `DialogPanelContent` and the actions in `DialogPanelFooter`. Close and Confirm sit on the right.
+
+## Anatomy
+
+| Export | Renders | `classes` key | `data-cui` | Role |
+| --- | --- | --- | --- | --- |
+| `Root` (parts only) | Nothing. Holds the open state | none | none | none |
+| `Trigger` (parts only) | `button` | none | `dialog-trigger` | Opens the dialog |
+| `Portal` | Nothing. Moves the content to `mount` | none | none | none |
+| `Overlay` | `div` | `overlay` | `dialog-overlay` | Layer behind the panel |
+| `Positioner` | `div` | `positioner` | `dialog-positioner` | Centers the panel and paints the scrim |
+| `DialogPanel`, `Content` | `div` | `panel` | `dialog-panel` | `role="dialog"` |
+| `Header` | `div` | `header` | `dialog-panel-title` | Row with the title and the close button |
+| `Title` | `h2` | `title` | `dialog-title` | Accessible name of the dialog |
+| `CloseButton` | `button` | `closeButton` | `dialog-close-button` | Closes the dialog |
+| `Description` | `p` | `description` | `dialog-description` | Accessible description |
+| `DialogPanelContent`, `Body` | `div` | none, use `class` | `dialog-panel-content` | Scrolling content area |
+| `DialogPanelFooter`, `Footer` | `div` | none, use `class` | `dialog-panel-footer` | Row of actions |
+
+The header part carries `dialog-panel-title`, not `dialog-header`. Target it by that name.
+
+## Variants
+
+### Size
+
+<SolidDemo name="dialog/sizes" />
+
+`size` sets the panel width: `xs` 24rem, `sm` 28rem, `md` 32rem, `lg` 48rem from the `md` breakpoint, `xl` 64rem from the `lg` breakpoint.
+Below those breakpoints, `lg` and `xl` take the full viewport width. `full` covers the viewport with no radius.
+
+### Title and description
+
+<SolidDemo name="dialog/title-and-description" />
+
+`title` and `description` take JSX, so a title can carry a badge and a description can carry a keycap.
+The title names the dialog through `aria-labelledby`. The description renders in a `p` element, so keep it to inline content.
+Without `title`, the header and its close button do not render. Then give the dialog an `aria-label`.
+
+### Footer and long content
+
+<SolidDemo name="dialog/overflow" />
+
+`DialogPanelContent` scrolls when the content is taller than the viewport. The header and the footer stay in place.
+`DialogPanelFooter` adds padding only. Lay out the buttons inside it with your own flex row.
+
+### Classes
+
+<SolidDemo name="dialog/classes" />
+
+`classes` sets a class on each part that `Dialog` renders. App CSS is unlayered, so it wins over the kit styles in the `cui` layer with one class.
+To style `DialogPanelContent` or `DialogPanelFooter`, pass `class` to them directly.
+
+### Mount
+
+<SolidDemo name="dialog/mount" />
+
+`mount` sets the node the dialog is portaled into. The default is `document.body`.
+Use it to keep the dialog inside a themed subtree, such as an element with `data-cui-theme`, or inside a shadow root.
+The positioner is `position: fixed`, so the dialog still covers the viewport.
+
+## States
+
+### Controlled and uncontrolled
+
+The ready `Dialog` has no trigger, so you control it with `open` and `onOpenChange`.
+For an uncontrolled dialog, compose the styled parts with a `Trigger` and leave `open` unset. The [settings layout](#build-a-custom-layout) below does this.
+
+### Focus return without a trigger
+
+<SolidDemo name="dialog/focus-return" />
+
+Kobalte returns focus only to its own trigger part. The kit `Content` part adds the rest.
+When the dialog opens, `Content` records the focused element. When it closes, focus goes back to that element.
+So two buttons can open the same dialog, and focus returns to the one the user pressed.
+
+Focus does not return when one of these is true:
+
+- your `onCloseAutoFocus` calls `preventDefault()`;
+- the dialog has a `Trigger` part, so Kobalte handles the return;
+- a non-modal dialog closed because the user clicked or focused outside it;
+- the recorded element is no longer in the document.
+
+## Ready API
+
+### `Dialog`
+
+Renders the portal, overlay, positioner, panel, and, when `title` is set, the header.
 
 <PropsTable name="Dialog" />
 
-Inherited from Kobalte's [dialog](https://kobalte.dev/docs/core/components/dialog):
+Inherited from Kobalte's [dialog](https://kobalte.dev/docs/core/components/dialog). `Dialog` also passes `onFocusOutside` and `onInteractOutside` to the panel.
 
 <PropsTable name="DialogInherited" />
 
-## Styled parts
+### `DialogPanel`
 
-When the ready component does not fit the layout, compose the styled parts from `@codeui/kit/dialog`.
-Each part carries the kit styles and a `data-cui` attribute, and wraps the matching Kobalte primitive.
+The `Content` part under another name. Use it when you compose your own dialog from parts.
 
-<SolidDemo name="dialog-parts" source="hidden" />
+<PropsTable name="DialogPanel" />
 
-```tsx
-import { createSignal } from 'solid-js';
-import { Button } from '@codeui/kit';
-import * as D from '@codeui/kit/dialog';
+### `DialogPanelContent`
 
-export function ExportDialog() {
-  const [open, setOpen] = createSignal(false);
-  return (
-    <D.Root open={open()} onOpenChange={setOpen}>
-      <D.Trigger as={Button} theme="secondary">
-        Export as video
-      </D.Trigger>
-      <D.Portal>
-        <D.Overlay />
-        <D.Positioner size="sm">
-          <D.Content size="sm">
-            <D.Header>
-              <D.Title>Export as video</D.Title>
-              <D.CloseButton />
-            </D.Header>
-            <D.Description>Pick a format and a frame rate.</D.Description>
-            <D.Body>The export runs in the background. You can keep editing.</D.Body>
-            <D.Footer>
-              <Button theme="primary" onClick={() => setOpen(false)}>
-                Start export
-              </Button>
-            </D.Footer>
-          </D.Content>
-        </D.Positioner>
-      </D.Portal>
-    </D.Root>
-  );
-}
-```
+The `Body` part. A `div` with the content padding that scrolls on overflow. It takes every `div` attribute.
 
-| Part | Renders | `data-cui` |
-| --- | --- | --- |
-| `Root` | Kobalte dialog root, holds the open state | none |
-| `Trigger` | Button that opens the dialog | `dialog-trigger` |
-| `Portal` | Portal to `document.body` or `mount` | none |
-| `Overlay` | Scrim behind the panel | `dialog-overlay` |
-| `Positioner` | Centers the panel, takes `size` | `dialog-positioner` |
-| `Content` | The panel, takes `size` | `dialog-panel` |
-| `Header` | Row with the title and the close button | `dialog-panel-title` |
-| `Title` | Accessible heading | `dialog-title` |
-| `Description` | Accessible description | `dialog-description` |
-| `CloseButton` | Icon button that closes the dialog | `dialog-close-button` |
-| `Body` | Scrolling content area | `dialog-panel-content` |
-| `Footer` | Row of actions | `dialog-panel-footer` |
+### `DialogPanelFooter`
+
+The `Footer` part. A `div` with the content padding. With `size="full"` it sticks to the bottom of the panel. It takes every `div` attribute.
+
+## Styled parts API
+
+Import the parts from `@codeui/kit/dialog`. Each part carries the kit styles and a `data-cui` attribute, and wraps the matching Kobalte primitive.
+
+<SolidDemo name="dialog/parts" />
+
+### Build a custom layout
+
+<SolidDemo name="dialog/settings-layout" />
+
+The parts let you change what the ready component fixes. This settings dialog follows [Inkstone's settings dialog](/docs/design/patterns): a breadcrumb title, a 232px navigation pane next to the rows, a close button, and no footer.
+The title is still the `Title` part, so the breadcrumb names the dialog. The body is still the `Body` part, so the rows scroll.
+
+### `Root`
+
+Kobalte's `Dialog` root. Holds the open state and takes every Kobalte root option, such as `open`, `defaultOpen`, `onOpenChange`, and `modal`. It renders no element.
+
+### `Trigger`
+
+Kobalte's `Dialog.Trigger`. A `button` that opens the dialog. Use `as={Button}` for a kit button. Kobalte returns focus to it on close.
+
+### `Portal`
+
+Kobalte's `Dialog.Portal`. Takes `mount`. It renders no element.
+
+### `Overlay`
+
+Kobalte's `Dialog.Overlay`. A fixed `div` behind the panel.
+
+### `Positioner`
+
+A fixed `div` that centers the panel and paints the scrim from `--cui-surface-scrim`. It is not a Kobalte part.
+
+<PropsTable name="DialogPositionerPart" />
+
+### `Content`
+
+Kobalte's `Dialog.Content`. The panel. It adds focus return without a trigger, described under [States](#focus-return-without-a-trigger).
+
+<PropsTable name="DialogContentPart" />
+
+### `Header`
+
+A `div` that lays out the title and the close button in one row, with a divider under it. It is not a Kobalte part.
+
+### `Title`
+
+Kobalte's `Dialog.Title`. An `h2` that names the dialog.
+
+### `Description`
+
+Kobalte's `Dialog.Description`. A `p` that describes the dialog.
+
+### `CloseButton`
+
+Kobalte's `Dialog.CloseButton`, rendered as an extra-small secondary [IconButton](/docs/components/icon-button) with a close icon.
+
+<PropsTable name="DialogCloseButtonPart" />
+
+### `Body`
+
+A `div` with the content padding that scrolls on overflow. The same component as `DialogPanelContent`.
+
+### `Footer`
+
+A `div` with the content padding. The same component as `DialogPanelFooter`.
+
+## Styles export
+
+### `dialogStyles`
+
+`dialogStyles` from `@codeui/kit/dialog` maps each part name to a function that returns its class string.
+`dialogStyles.panel({ size })` takes the size. The other functions take no arguments.
+`trigger`, `title`, and `closeButton` return an empty string, because those parts take their look from other components.
+
+Call a style function when you render the Kobalte primitive yourself and want the kit look. Add the matching `data-cui` value from `dialogParts` too, so selectors that target the part still match.
+`positioner` and `panel` include the class that sets the dialog's local variables. Apply one of them to an ancestor of the other parts.
+
+## Accessibility
+
+### Keyboard
+
+| Key | Action |
+| --- | --- |
+| <kbd>Tab</kbd> | Moves focus to the next focusable element in the panel. Wraps from the last to the first. |
+| <kbd>Shift</kbd>+<kbd>Tab</kbd> | Moves focus to the previous focusable element in the panel. Wraps from the first to the last. |
+| <kbd>Escape</kbd> | Closes the dialog. If a menu, popover, or select is open inside it, Escape closes that layer first. |
+| <kbd>Enter</kbd>, <kbd>Space</kbd> | On the `Trigger` part, opens the dialog. |
+
+### ARIA
+
+- The panel has `role="dialog"`. Kobalte links it to `Title` with `aria-labelledby` and to `Description` with `aria-describedby`.
+- The `Trigger` part has `aria-haspopup="dialog"`, `aria-expanded`, and `aria-controls`.
+- The close button's accessible name is `close`. Change it with `closeLabel` on `Dialog` or `aria-label` on `CloseButton`.
+- A modal dialog hides the rest of the page from assistive technology while it is open.
+
+### Focus
+
+On open, focus moves to the first focusable element in the panel. In the ready `Dialog` that is the close button.
+On close, focus returns to the `Trigger` part, or to the element that had focus when the dialog opened.
+To focus a specific field on open, call `preventDefault()` in `onOpenAutoFocus` and focus it yourself. On a phone, do not focus a text field on open.
+
+## SSR notes
+
+The portal renders nothing on the server. The overlay and the panel render on the client after hydration, and only while the dialog is open.
+`Positioner` and the `size` classes are plain class strings, so they are the same on the server and the client.
+IDs for the title and the description come from Solid's `createUniqueId`, so they match between server and client.
+
+## Theming hooks
+
+`Dialog` reads these `--cui-*` variables. See [Tokens](/docs/foundations/tokens) for the defaults.
+
+| Variable | Used for |
+| --- | --- |
+| `--cui-surface-dialog` | Panel fill |
+| `--cui-shadow-dialog` | Panel shadow |
+| `--cui-text-dialog` | Body and description text |
+| `--cui-text-dialog-title` | Title text |
+| `--cui-border-dialog-title`, `--cui-border-width` | Divider under the header |
+| `--cui-surface-scrim` | Scrim behind the panel |
+| `--cui-radius-lg` | Panel radius |
+| `--cui-space-6` | Panel padding |
+| `--cui-space-2` | Gap above and below the panel |
+| `--cui-control-height-xl` | Header height |
+| `--cui-font-size-lg`, `--cui-font-weight-medium` | Title type |
+| `--cui-motion-duration-panel`, `--cui-motion-duration-fast`, `--cui-motion-ease-out` | Open and close animation |
+
+## Composition examples
+
+- [Nest overlays](/docs/patterns/nest-overlays) puts a segmented control and a menu inside a dialog and shows where Escape goes.
+- [Compose styled parts](/docs/patterns/compose-styled-parts) compares the ready component, the parts, and Kobalte with kit classes.
+- [Build settings](/docs/patterns/build-settings) builds the full settings dialog.
+
+## Related
+
+- [Popover](/docs/components/popover) anchors to a trigger and has no scrim.
+- [Sheet](/docs/components/sheet) slides up from the bottom on a phone.
+- [Choose ready components or parts](/docs/ready-or-parts) explains the three layers.
