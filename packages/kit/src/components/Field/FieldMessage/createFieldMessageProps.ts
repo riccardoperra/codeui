@@ -1,5 +1,5 @@
 import { description } from "./FieldMessage.css";
-import { mergeProps, splitProps, JSX, ValidComponent } from "solid-js";
+import { mergeProps, JSX, ValidComponent } from "solid-js";
 import { mergeClasses } from "../../../utils/css";
 import { PolymorphicProps } from "@kobalte/core/polymorphic";
 

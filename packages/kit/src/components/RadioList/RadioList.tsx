@@ -10,7 +10,15 @@ import {
 	createFieldErrorMessageProps,
 	FieldWithErrorMessageSupport,
 } from "../Field/FieldError/createFieldErrorMessageProps";
-import { JSXElement, Show, splitProps, ValidComponent } from "solid-js";
+import {
+	createContext,
+	useContext,
+	Accessor,
+	JSXElement,
+	Show,
+	splitProps,
+	ValidComponent,
+} from "solid-js";
 import { createFieldLabelProps } from "../Field/FieldLabel/createFieldLabelProps";
 import { mergeClasses } from "../../utils/css";
 import { baseFieldContainer } from "../TextField/TextField.css";
@@ -54,6 +62,8 @@ export type RadioListClasses = Partial<
 		string
 	>
 >;
+const RadioClassesContext = createContext<Accessor<RadioListClasses | undefined>>();
+
 export type RadioListItemProps<T extends ValidComponent = "div"> =
 	KRadioGroupItemProps<T> & {
 		label?: JSXElement;
@@ -67,26 +77,40 @@ export function RadioListItem<T extends ValidComponent = "div">(
 		props as PolymorphicProps<"div", RadioListItemProps>,
 		["label", "class", "classes"],
 	);
+	const parentClasses = useContext(RadioClassesContext);
 	return (
 		<RadioGroup.Item
 			{...others}
 			data-cui="radio-list-item"
-			class={mergeClasses(styles.radioItem, local.class, local.classes?.item)}
+			class={mergeClasses(
+				styles.radioItem,
+				local.class,
+				parentClasses?.()?.item,
+				local.classes?.item,
+			)}
 		>
 			<RadioGroup.ItemInput />
 			<RadioGroup.ItemControl
 				data-cui="radio-list-item-control"
-				class={mergeClasses(styles.radio, local.classes?.itemControl)}
+				class={mergeClasses(
+					styles.radio,
+					parentClasses?.()?.itemControl,
+					local.classes?.itemControl,
+				)}
 			>
 				<RadioGroup.ItemIndicator
 					data-cui="radio-list-item-indicator"
-					class={mergeClasses(styles.indicator, local.classes?.itemIndicator)}
+					class={mergeClasses(
+						styles.indicator,
+						parentClasses?.()?.itemIndicator,
+						local.classes?.itemIndicator,
+					)}
 				/>
 			</RadioGroup.ItemControl>
 			<Show when={local.label}>
 				<RadioGroup.ItemLabel
 					data-cui="radio-list-item-label"
-					class={local.classes?.itemLabel}
+					class={mergeClasses(parentClasses?.()?.itemLabel, local.classes?.itemLabel)}
 				>
 					{local.label}
 				</RadioGroup.ItemLabel>
@@ -129,7 +153,9 @@ export function RadioList<T extends ValidComponent = "div">(
 					}),
 				)}
 			>
-				{props.children}
+				<RadioClassesContext.Provider value={() => local.classes}>
+					{props.children}
+				</RadioClassesContext.Provider>
 			</div>
 			<Show when={local.description} keyed={false}>
 				<RadioGroupDescription

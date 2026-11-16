@@ -54,7 +54,7 @@ it.each([TextField, TextArea, NumberField])(
 it("forwards radio item attributes, handlers, disabled state and rich labels", () => {
 	const click = jest.fn();
 	render(() => (
-		<RadioList class="group" aria-label="Choices">
+		<RadioList class="group" classes={{ item: "group-item" }} aria-label="Choices">
 			<RadioListItem
 				value="one"
 				id="one"
@@ -69,7 +69,7 @@ it("forwards radio item attributes, handlers, disabled state and rich labels", (
 	const one = screen.getByText("One");
 	fireEvent.click(one);
 	expect(click).toHaveBeenCalled();
-	expect(document.getElementById("one")).toHaveClass("choice");
+	expect(document.getElementById("one")).toHaveClass("choice", "group-item");
 	expect(screen.getByRole("radio", { name: "Two" })).toBeDisabled();
 });
 
