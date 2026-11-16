@@ -14,8 +14,8 @@ type TooltipProps = KTooltipRootProps &
 
 // Kobalte 0.13.13+ sets type="button" on the trigger. On a div it means nothing, and CSS resets that target [type="button"] would restyle it.
 function TriggerElement(props: JSX.HTMLAttributes<HTMLDivElement> & { type?: string }) {
-	const [, others] = splitProps(props, ["type"]);
-	return <div {...others} />;
+	const [local, others] = splitProps(props, ["type", "onFocus", "onBlur"]);
+	return <div onFocusIn={local.onFocus} onFocusOut={local.onBlur} {...others} />;
 }
 
 export function Tooltip(props: TooltipProps) {

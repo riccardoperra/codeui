@@ -20,7 +20,7 @@ Preconditions:
 - Doctor exits 0.
 
 - **Hover.** `page.getByRole('button', { name: 'Hover me' }).hover()`, wait ~1 s for the open delay, then `getByRole('tooltip')` count is 1. Observed in a probe on this base.
-- **Focus.** Tab to `Hover me`, wait ~1 s, expect `getByRole('tooltip')` count 1. In a probe on this base the count stayed **0**; report this as a finding (or a known limit) rather than switching the journey to hover.
+- **Focus and Escape.** Run `node .claude/skills/verify-codeui/scripts/drive.mjs designsystem-tooltip--tooltip-story --journey .claude/skills/verify-codeui/journeys/tooltip-keyboard.mjs`. Tab opens the tooltip. Escape closes it and focus stays on `Hover me`.
 - **Dismiss.** After hover, press Escape; expect count 0.
 - **Theme.** Screenshot the open tooltip in both themes (`step('hovered')`).
 
