@@ -5,6 +5,7 @@ import {
 	createContext,
 	createSignal,
 	createUniqueId,
+	createEffect,
 	onMount,
 	onCleanup,
 	useContext,
@@ -173,6 +174,10 @@ export function Content<T extends ValidComponent = "div">(
 		const observer = new ResizeObserver(measure);
 		observer.observe(body);
 		onCleanup(() => observer.disconnect());
+	});
+	createEffect(() => {
+		if (item.expanded() && body?.parentElement)
+			body.parentElement.style.animationName = "";
 	});
 	return (
 		<K.Content
