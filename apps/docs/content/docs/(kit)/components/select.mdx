@@ -1,95 +1,205 @@
 ---
-title: Select
-description: A button that opens a list of options and shows the selected one.
-status: draft
+title: "Select"
+description: "A button that opens a list of options and shows the chosen one."
 ---
 
-{/* TODO(docs): Rewrite into the page template. Run node tools/docs/scaffold.mjs --print components/select to see it, and keep the useful content below. */}
+## When to use
 
-<SolidDemo name="select" source="hidden" />
+Use `Select` when the user picks from a list of options they know by name, such as the editor font, the export format, or the pixel ratio. The list fits on screen without search.
 
-## Usage
+## When to choose another component
 
-```tsx
-import { createSignal } from 'solid-js';
-import { Select } from '@codeui/kit';
+| Component | Use it when | The deciding difference |
+| --- | --- | --- |
+| `Select` | The user picks one or more values from a short list. | A button opens a list. No typing. |
+| [Combobox](/docs/components/combobox) | The list is long enough that the user wants to search it. | A text input filters the list as the user types. |
+| [Listbox](/docs/components/listbox) | The options stay visible on the page, such as a sidebar list. | No trigger and no popover. |
+| [CommandMenu](/docs/components/command-menu) | The user runs an action, such as Export as PNG. | A dialog that runs a command and keeps no value. |
+| [SegmentedControl](/docs/components/segmented-control) | There are two to four short options. | All options are visible at once. |
 
-const fonts = ['Jetbrains Mono', 'Fira Code', 'Source Code Pro', 'Cascadia Code'];
+Inkstone puts Select after segmented controls, switches, and option cards. Inside a modal dialog, prefer those controls over Select. See [Choosing a control](/docs/design/patterns).
 
-export function FontPicker() {
-  const [font, setFont] = createSignal('Jetbrains Mono');
-  return (
-    <Select
-      aria-label="Font"
-      label="Font"
-      placeholder="Choose a font"
-      options={fonts}
-      value={font()}
-      onChange={value => value && setFont(value)}
-    />
-  );
-}
-```
+## Live demo
 
-## API
+<SolidDemo name="select/basic" />
 
-`Select` wraps Kobalte's `Select` and renders the label, the trigger, the messages, and a portaled list.
-Kobalte's root props such as `multiple`, `disabled`, `optionValue`, `optionTextValue`, and `optionDisabled` pass through.
-`aria-label` is required and names the trigger.
+## Anatomy
 
-<TypeTable
-  type={{
-    'aria-label': { type: 'string', required: true, description: 'Accessible name of the trigger.' },
-    options: { type: 'Option[]', description: 'Items of the list. Strings work as is. Objects need optionValue and optionTextValue.' },
-    value: { type: 'Option', description: 'Controlled selected option.' },
-    defaultValue: { type: 'Option', description: 'Selected option on first render, when uncontrolled.' },
-    onChange: { type: '(value: Option | null) => void', description: 'Called when the selection changes.' },
-    placeholder: { type: 'string', description: 'Shown in the trigger when nothing is selected.' },
-    label: { type: 'JSX.Element', description: 'Label above the trigger.' },
-    description: { type: 'string', description: 'Hint text under the trigger.' },
-    errorMessage: { type: 'JSX.Element', description: "Shown under the trigger when validationState is 'invalid'." },
-    itemLabel: { type: '(item: Option) => JSX.Element', description: 'Renders the label of each item in the list.' },
-    valueComponent: { type: '(option: Accessor<Option>) => JSX.Element', description: 'Renders the selected option in the trigger.' },
-    valueComponentMultiple: { type: '(options: Accessor<Option[]>) => JSX.Element', description: 'Renders the selected options when multiple is set.' },
-    size: { type: "'xs' | 'sm' | 'md' | 'lg' | 'xl'", default: "'md'", description: 'Height and font size of the trigger.' },
-    theme: { type: "'filled' | 'inline'", default: "'filled'", description: "'inline' drops the box and keeps a bottom border." },
-    classes: {
-      type: 'Partial<Record<SelectPart, string>>',
-      description: 'Classes for the parts it renders: root, label, trigger, value, icon, description, errorMessage, content, listbox, item, itemLabel, itemIndicator.',
-    },
-  }}
-/>
+| Export | Renders | `classes` key | `data-cui` | Role |
+| --- | --- | --- | --- | --- |
+| `Select` | `div` | `root` | `select` | None |
+| Internal | `span` | `label` | `select-label` | None |
+| Internal | `button` | `trigger` | `select-trigger` | Button with `aria-haspopup="listbox"` |
+| Internal | `span` | `value` | `select-value` | None |
+| Internal | `span` | `icon` | `select-icon` | None, hidden from assistive technology |
+| Internal | `div` | `description` | `select-description` | None |
+| Internal | `div` | `errorMessage` | `select-error-message` | None |
+| Internal | `div`, portalled | `content` | `select-content` | None |
+| Internal | `ul` | `listbox` | `select-listbox` | Listbox |
+| Internal | `li` | `item` | `select-item` | Option |
+| Internal | `div` | `itemLabel` | `select-item-label` | None |
+| Internal | `div` | `itemIndicator` | `select-item-indicator` | None |
 
-## Object options
+`Select` is the only export. There is no styled parts entry point such as `@codeui/kit/select`. The label, description, and error message render only when you pass them. The list renders in a portal on `document.body` while it is open.
 
-`createSelectOptions` maps a list of objects to options, using `key` for the label and `valueKey` for the value.
-Spread its `props()` into the select, and convert between your value and the option with `optionFromValue`.
+## Variants
 
-<SolidDemo name="select-options" source="hidden" />
+### String options
 
-```tsx
-import { createSignal } from 'solid-js';
-import { createSelectOptions, Select } from '@codeui/kit';
+The [live demo](#live-demo) passes a `string[]`. A `string[]` works as it is. Each string is the value, the label, and the type-ahead text.
 
-const themes = [
-  { name: 'Dracula', id: 'dracula' },
-  { name: 'One Dark', id: 'one-dark' },
-  { name: 'Night Owl', id: 'night-owl' },
-];
+### Object options with `createSelectOptions`
 
-export function ThemePicker() {
-  const [theme, setTheme] = createSignal('dracula');
-  const themeOptions = createSelectOptions(themes, { key: 'name', valueKey: 'id' });
-  return (
-    <Select
-      aria-label="Theme"
-      label="Theme"
-      placeholder="Choose a theme"
-      options={themeOptions.options()}
-      {...themeOptions.props()}
-      value={themeOptions.optionFromValue(theme())}
-      onChange={option => option && setTheme(option.value)}
-    />
-  );
-}
-```
+<SolidDemo name="select/object-options" />
+
+`createSelectOptions` maps your objects to `{ label, value }` options. Spread `props()` for the keys and renderers. Spread `controlled(value, setValue)` to keep your own value, here the theme id, instead of the option object. See [Options and collections](/docs/utilities/options-and-collections) for the full return value.
+
+### Object options without the helper
+
+<SolidDemo name="select/raw-objects" />
+
+Without the helper, set `optionValue` and `optionTextValue`, and pass `itemLabel` and `valueComponent`. `Select` renders the raw option when you leave out the two renderers. An object then renders as nothing useful.
+
+### Disabled options
+
+<SolidDemo name="select/disabled-options" />
+
+`optionDisabled` takes a key or a function. Disabled options stay in the list, take no selection, and are skipped by the arrow keys. `createSelectOptions` has no disabled mapping. With the helper, pass `optionDisabled` as a function over the `{ label, value }` option.
+
+### Themes
+
+<SolidDemo name="select/themes" />
+
+`filled`, the default, draws the field box. `inline` drops the box and keeps a bottom border, for a select that sits inside a sentence or a toolbar.
+
+### Sizes
+
+<SolidDemo name="select/sizes" />
+
+`xs`, `sm`, `md`, `lg`, and `xl` read `--cui-control-height-{xs,sm,md,lg,xl}`, which are 30, 36, 40, 48, and 56px. The default is `md`, 40px. Inkstone asks for 36px desktop controls, so `sm` is the size that matches the specification today.
+
+### Multiple selection
+
+<SolidDemo name="select/multiple" />
+
+`multiple` makes `value`, `defaultValue`, and `onChange` work with arrays. The list stays open after each pick. The trigger joins the selected strings with ", ". Pass `valueComponentMultiple` for object options or for a summary such as a count. Pass the option type explicitly, as in `<Select<string> multiple …>`. Without it, TypeScript infers the option type from the array value.
+
+### Description
+
+<SolidDemo name="select/description" />
+
+`description` renders a hint under the trigger and links it as the accessible description.
+
+## States
+
+### Controlled and uncontrolled
+
+<SolidDemo name="select/uncontrolled" />
+
+Pass `value` and `onChange` to own the value, as the [live demo](#live-demo) does. Pass `defaultValue` to let `Select` keep it. `onChange` receives `null` when the selection is cleared. Guard for it before you write the value back, as in `value => value && setFont(value)`.
+
+### Disabled
+
+<SolidDemo name="select/disabled" />
+
+`disabled` disables the trigger and removes it from the tab order.
+
+### Read only
+
+<SolidDemo name="select/read-only" />
+
+`readOnly` keeps the trigger focusable and blocks changes. Use it for a value the user can see but someone else sets.
+
+### Invalid and required
+
+<SolidDemo name="select/invalid" />
+
+`validationState="invalid"` marks the trigger with `aria-invalid` and shows `errorMessage`. `required` marks the field as required for assistive technology. `Select` does not validate on its own. Set `validationState` from your form logic.
+
+### Empty
+
+<SolidDemo name="select/empty" />
+
+`Select` has no empty-state prop. With no options, the list opens with nothing in it. Disable the trigger and explain why in the placeholder or the description, as the demo does.
+
+## Ready API
+
+### `Select`
+
+`Select` renders a label, a trigger with the selected value, the messages, and a portalled list built on Kobalte's select.
+
+<PropsTable name="Select" />
+
+`SelectClasses` is exported from `@codeui/kit`. The `SelectProps` type is not exported. Use `ComponentProps<typeof Select>` from `solid-js` to read it.
+
+Inherited from Kobalte's [select root](https://kobalte.dev/docs/core/components/select):
+
+<PropsTable name="SelectInherited" />
+
+### Style the list popover with `classes`
+
+<SolidDemo name="select/classes" />
+
+`classes` puts a class on any part in the anatomy table. `classes.content` reaches the portalled list, so you can size or position it without a global selector. The kit classes come first and your class comes after, so your rules win at equal specificity. `slotClasses` is deprecated. Its `input`, `errorLabel`, and `itemValue` keys map to `trigger`, `errorMessage`, and `value`.
+
+### Submit with a form
+
+<SolidDemo name="select/form" />
+
+`Select` renders no native form control. A `name` prop is accepted but submits nothing. To include the value in a form, keep the value controlled and render a hidden input next to the select, as the demo does. [Combobox](/docs/components/combobox#submit-with-a-form) submits on its own through `name`.
+
+## Accessibility
+
+### Keyboard
+
+| Key | Action |
+| --- | --- |
+| Tab or Shift+Tab | Moves focus to or away from the trigger. |
+| Enter, Space, or ArrowDown | Opens the list and highlights the selected option, or the first one. |
+| ArrowUp | Opens the list and highlights the selected option, or the last one. |
+| A printable character | Moves to the next option whose text starts with the typed characters. |
+| ArrowDown or ArrowUp in the list | Moves the highlight. Disabled options are skipped. |
+| Home or End in the list | Moves the highlight to the first or last option. |
+| Enter or Space in the list | Selects the highlighted option. In single mode, the list closes. |
+| Escape | Closes the list and keeps the value. |
+
+### ARIA
+
+The trigger is a `button` with `aria-haspopup="listbox"` and `aria-expanded`. Its name comes from `aria-label`, which `Select` requires, together with the visible `label`. The list is a `listbox`, and each item is an `option` with `aria-selected`. Disabled options have `aria-disabled="true"`. `description` and `errorMessage` are linked to the trigger with `aria-describedby`.
+
+### Focus
+
+When the list opens, focus moves into it, onto the selected option or the first one. When it closes, by selection or by Escape, focus returns to the trigger. The trigger draws its focus ring from `--cui-focus-color`.
+
+## SSR notes
+
+The label, the trigger with the selected value, and the messages render on the server. The list renders in a portal only on the client, after the user opens it. Kobalte generates the ids that link the label and the messages, and they match between the server and the client. Keep `options` and `value` equal on both sides to avoid a hydration mismatch in the trigger text.
+
+## Theming hooks
+
+The trigger uses the shared field styles. The list uses the menu surfaces.
+
+- `--cui-surface-input`, `--cui-text-input`, `--cui-border-input`, and `--cui-text-hint` for the trigger and its placeholder.
+- `--cui-text-danger` for the invalid border and the error message.
+- `--cui-surface-dialog` for the disabled fill.
+- `--cui-focus-color` for the focus ring.
+- `--cui-border-width` and `--cui-border-width-strong`, the second for the `inline` theme.
+- `--cui-control-height-{xs,sm,md,lg,xl}`, `--cui-font-size-{xs,sm,md,lg}`, and `--cui-radius-{xs,sm,md,lg,xl}` for sizes.
+- `--cui-surface-menu`, `--cui-border-menu`, `--cui-shadow-menu`, and `--cui-text-menu` for the list.
+- `--cui-surface-menu-hover` for the highlighted option.
+- `--cui-space-{1,2,3}`, `--cui-font-weight-normal`, and `--cui-control-height-md` for list items.
+- `--cui-motion-duration-{fast,normal}` and `--cui-motion-ease-out` for the list's enter and exit animation.
+
+Each brace expands to a separate variable. See [Inkstone color](/docs/design/color) and [motion](/docs/design/motion).
+
+## Composition examples
+
+- [Submit with a form](#submit-with-a-form) on this page shows the hidden input that carries the value.
+- [Object options with `createSelectOptions`](#object-options-with-createselectoptions) stores an id while the list shows names.
+
+## Related
+
+- [Combobox](/docs/components/combobox) adds a text input that filters the options.
+- [Listbox](/docs/components/listbox) shows the options inline, with no popover.
+- [CommandMenu](/docs/components/command-menu) runs actions instead of holding a value.
+- [Options and collections](/docs/utilities/options-and-collections) documents `createSelectOptions`.

@@ -1,19 +1,146 @@
 ---
 title: "Options and collections"
 description: "Helpers that turn your data into options for Select, Combobox, and CommandMenu."
-status: draft
 ---
 
-{/* TODO(docs): Scope from the docs plan. Input data, accessors, mapping, generics, return shape, empty and missing values, reactive update examples. Follow apps/docs/CONTRIBUTING-DOCS.md. Delete each TODO(docs) as you finish its section, and delete status: draft when the page is done. */}
+Each list component reads its options in its own way. Pick the helper that matches the component.
+
+| Component | What it holds | Helper |
+| --- | --- | --- |
+| [Select](/docs/components/select) | One or more values picked from a popover list. | `createSelectOptions` |
+| [Combobox](/docs/components/combobox) | One value picked by typing into a filtered list. | `createComboboxOptions` |
+| [Listbox](/docs/components/listbox) | One or more values in a list that stays on the page. | None. It takes `options` with Kobalte's option keys. |
+| [CommandMenu](/docs/components/command-menu) | No value. It runs the action the user picks. | `filterCommandItems` |
+
+The two option helpers solve the same problem. You keep a plain value in your state, such as a theme id, while the component works with option objects. Both return `options`, `optionToValue`, `optionFromValue`, `props`, and `controlled`. Their configuration and their `props()` differ, as the sections below show.
 
 ## `createSelectOptions`
 
-{/* TODO(docs): Import path, signature, parameters, return value, one example, and edge cases. Covers @codeui/kit createSelectOptions. */}
+```ts
+import { createSelectOptions } from "@codeui/kit";
+
+function createSelectOptions<T, C extends { key?: string; valueKey?: string }>(
+	values: readonly T[] | Accessor<readonly T[]>,
+	config?: C,
+): CreateSelectOptionsReturn<T, C>;
+```
+
+<SolidDemo name="options-and-collections/select-options" />
+
+### Parameters
+
+| Parameter | Description |
+| --- | --- |
+| `values` | The source items, as an array or an accessor that returns one. |
+| `config.key` | The field to show as the label. Without it, the label is the whole item. |
+| `config.valueKey` | The field to use as the value. Without it, the value is the whole item. |
+
+### Return value
+
+| Member | Description |
+| --- | --- |
+| `options()` | The items mapped to `{ label, value }`. Pass it to `options`. |
+| `props()` | `optionValue`, `optionTextValue`, `itemLabel`, and `valueComponent` for `Select`. It does not include `options`. |
+| `optionFromValue(value)` | The option whose `value` equals `value` with `===`, or `undefined`. |
+| `optionToValue(option)` | The `value` of the option, or `undefined` for `null` or `undefined`. |
+| `controlled(value, onChange)` | `{ value, onChange }` to spread on `Select`. `value` is an accessor of your plain value. `onChange` receives the plain value and the option. |
+
+The value type follows `valueKey`. With `{ valueKey: "id" }` on `Theme[]`, the value is `Theme["id"]`.
+
+### Edge cases
+
+- `controlled` treats every falsy value as no selection. A value of `0` or `""` never selects an option. Use `optionFromValue` directly for those values.
+- There is no `disabled` mapping. Pass `optionDisabled` to `Select` as a function over the `{ label, value }` option.
+- `optionTextValue` uses the label when it is a string, and `String(value)` otherwise. Type-ahead reads it.
+- `options()` builds new option objects on each call. Compare options by `value`, not by identity.
+- With an accessor source, the options follow the accessor. Write a new array to the signal to update the list.
 
 ## `createComboboxOptions`
 
-{/* TODO(docs): Import path, signature, parameters, return value, one example, and edge cases. Covers @codeui/kit ComboboxOption, @codeui/kit ComboboxOptionsConfig, @codeui/kit createComboboxOptions, @codeui/kit CreateComboboxOptionsReturn, @codeui/kit/combobox ComboboxOption, @codeui/kit/combobox ComboboxOptionsConfig, @codeui/kit/combobox createComboboxOptions, @codeui/kit/combobox CreateComboboxOptionsReturn. */}
+```ts
+import { createComboboxOptions } from "@codeui/kit";
+// also exported from "@codeui/kit/combobox"
+
+function createComboboxOptions<T extends string | number>(
+	values: readonly T[] | Accessor<readonly T[]>,
+): CreateComboboxOptionsReturn<T, T>;
+
+function createComboboxOptions<T extends object, C extends ComboboxOptionsConfig<T>>(
+	values: readonly T[] | Accessor<readonly T[]>,
+	config: C,
+): CreateComboboxOptionsReturn<T[C["valueKey"]], T>;
+```
+
+<SolidDemo name="options-and-collections/combobox-options" />
+
+### Parameters
+
+| Parameter | Description |
+| --- | --- |
+| `values` | The source items, as an array or an accessor that returns one. Strings and numbers need no `config`. |
+| `config.valueKey` | Required for objects. A field whose type is `string` or `number`. |
+| `config.labelKey` | Required for objects. A `string` field. The input shows it and the filter searches it. |
+| `config.disabledKey` | Optional. A `boolean` field. `true` disables the option. |
+
+TypeScript checks each key against the field types, so a `labelKey` that points to a number field does not compile.
+
+### Return value
+
+`ComboboxOption<Value, Item>` is `{ value, label, disabled, item }`. `item` is your original object.
+
+| Member | Description |
+| --- | --- |
+| `options()` | The normalized options. |
+| `props()` | `options`, plus `optionValue: "value"`, `optionTextValue: "label"`, `optionLabel: "label"`, and `optionDisabled: "disabled"`. Spread it on `Combobox` or on `Root` from `@codeui/kit/combobox`. |
+| `optionFromValue(value)` | The option whose `value` equals `value` with `===`. It returns `undefined` for `null`, `undefined`, or no match. |
+| `optionToValue(option)` | The `value` of the option, or `undefined`. |
+| `controlled(value, onChange)` | `{ value, onChange }` to spread on `Combobox`. `value` is the matching option or `null`. `onChange` receives the plain value and the option. |
+
+`ComboboxOption`, `ComboboxOptionsConfig`, and `CreateComboboxOptionsReturn` are exported from `@codeui/kit` and `@codeui/kit/combobox`.
+
+### Edge cases
+
+- `controlled` always passes a value, `null` when nothing matches. The combobox is then controlled, and clearing the text does not clear the selection. See [the known gap](/docs/components/combobox#known-gap-clearing-a-controlled-value) for the fix.
+- `options()` caches the normalized list until the source array changes identity. Mutating the array in place does not update the options. Write a new array.
+- A form submits the value as a string. A numeric `id` of `3` arrives as `"3"`.
+- `label` must be a string, because the input shows it and the filter searches it. Use `renderOption` on `Combobox` for rich content in the list.
+
+### Reactive options
+
+<SolidDemo name="options-and-collections/reactive" />
+
+Pass a signal accessor as `values`. Each new array rebuilds the options, and the open list updates. The controlled value stays selected as long as an option with that value still exists.
 
 ## `filterCommandItems`
 
-{/* TODO(docs): Import path, signature, parameters, return value, one example, and edge cases. Covers @codeui/kit CommandItem, @codeui/kit filterCommandItems. */}
+```ts
+import { filterCommandItems, type CommandItem } from "@codeui/kit";
+
+function filterCommandItems<T extends CommandItem>(items: readonly T[], query: string): readonly T[];
+```
+
+<SolidDemo name="options-and-collections/filter-command-items" />
+
+### Parameters
+
+| Parameter | Description |
+| --- | --- |
+| `items` | The command items. Each needs a unique `id` and a plain-text `textValue`. |
+| `query` | The search text. |
+
+### Return value
+
+The items that match every word of the query, in their original order. An item matches a word when its `textValue`, `group`, `section`, or plain-string `description` contains the word. Matching ignores case.
+
+### Edge cases
+
+- An empty query, or one with only spaces, returns the `items` array itself.
+- Matching is by substring, not fuzzy. "exp png" matches "Export as PNG". "epng" does not.
+- A `description` that is JSX is not searched. Put the searchable words in `textValue` or pass a string description.
+- `CommandMenu` uses this function when you leave out its `filter` prop. To change the matching, pass a `filter` with the same signature. Call `filterCommandItems` inside it to extend the default.
+
+## Related
+
+- [Select](/docs/components/select) consumes `createSelectOptions`.
+- [Combobox](/docs/components/combobox) consumes `createComboboxOptions`.
+- [CommandMenu](/docs/components/command-menu) uses `filterCommandItems` as its default filter.
