@@ -41,6 +41,12 @@
 			],
 			"@codeui/kit/command-menu": [
 				"../kit/src/parts/command-menu.tsx"
+			],
+			"@codeui/kit/alert": [
+				"../kit/src/parts/alert.tsx"
+			],
+			"@codeui/kit/toast": [
+				"../kit/src/parts/toast.tsx"
 			]
 		}
 	},
