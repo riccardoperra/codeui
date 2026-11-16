@@ -38,6 +38,46 @@ export declare function createAccordionItems(accessor: Accessor<readonly Accordi
 export declare function Accordion(props: AccordionProps): JSX.Element;
 ```
 
+## components/Alert/Alert.d.ts
+
+```ts
+import type { PolymorphicProps } from "@kobalte/core/polymorphic";
+import { type JSX, type ValidComponent } from "solid-js";
+import * as A from "../../parts/alert.js";
+export type AlertProps<T extends ValidComponent = "div"> = A.RootProps<T> & {
+    children?: JSX.Element;
+    title?: JSX.Element;
+    /** The message. Falls back to `children`. */
+    description?: JSX.Element;
+    /** Replaces the tone icon. Shown only with `showIcon`. */
+    icon?: JSX.Element;
+    /** Shows `icon`, or the tone icon for a status tone. Neutral has no tone icon. */
+    showIcon?: boolean;
+    action?: JSX.Element;
+    /** Classes for the parts this component renders, keyed by part name. */
+    classes?: A.AlertClasses;
+};
+/** A message that the screen reader announces when it appears. Use Text for static hints. */
+export declare function Alert<T extends ValidComponent = "div">(props: PolymorphicProps<T, AlertProps<T>>): JSX.Element;
+```
+
+## components/Badge/Badge.d.ts
+
+```ts
+import type { PolymorphicProps } from "@kobalte/core/polymorphic";
+import { type JSX, type ValidComponent } from "solid-js";
+import * as B from "../../parts/badge.js";
+export type BadgeProps<T extends ValidComponent = "span"> = B.RootProps<T> & {
+    children?: JSX.Element;
+    /** Decorative icon before the label. */
+    icon?: JSX.Element;
+    /** Classes for the parts this component renders, keyed by part name. */
+    classes?: B.BadgeClasses;
+};
+/** A short, non-interactive status label. Set `textValue` when the content is not text. */
+export declare function Badge<T extends ValidComponent = "span">(props: PolymorphicProps<T, BadgeProps<T>>): JSX.Element;
+```
+
 ## components/Button/Button.css.d.ts
 
 ```ts
@@ -175,6 +215,142 @@ export type CheckBoxProps = CheckboxRootOptions & BaseFieldProps & FieldWithErro
 };
 export declare function Checkbox(props: CheckBoxProps): JSX.Element;
 export {};
+```
+
+## components/Combobox/Combobox.d.ts
+
+```ts
+import type { ComboboxRootOptions } from "@kobalte/core/combobox";
+import { type JSX } from "solid-js";
+import * as P from "../../parts/combobox.js";
+import type { FieldContent } from "../Field/createBaseFieldProps.js";
+type DistributiveOmit<T, K extends PropertyKey> = T extends unknown ? Omit<T, K> : never;
+export type ComboboxProps<Option, OptGroup = never> = DistributiveOmit<ComboboxRootOptions<Option, OptGroup>, "itemComponent" | "sectionComponent"> & FieldContent & {
+    class?: string;
+    classes?: P.ComboboxClasses;
+    "aria-label"?: string;
+    "aria-labelledby"?: string;
+    inputRef?: (element: HTMLInputElement) => void;
+    inputId?: string;
+    /** Controlled input text, independent of the selected value. */
+    inputValue?: string;
+    renderOption?: (option: Option) => JSX.Element;
+    /** Shown in the list when no option matches the text. */
+    emptyContent?: JSX.Element;
+    /** Portal target, such as a parent dialog, so the list stays inside it. */
+    mount?: HTMLElement;
+    size?: "sm" | "md";
+};
+export declare function Combobox<Option, OptGroup = never>(props: ComboboxProps<Option, OptGroup>): JSX.Element;
+export { ComboboxParts, comboboxStyles, createComboboxOptions, } from "../../parts/combobox.js";
+export type { ComboboxClasses, ComboboxOption, ComboboxOptionsConfig, ComboboxPart, ComboboxStyles, ComboboxVariants, CreateComboboxOptionsReturn, } from "../../parts/combobox.js";
+```
+
+## components/Combobox/createComboboxOptions.d.ts
+
+```ts
+import type { Accessor } from "solid-js";
+type KeysOfType<T, V> = {
+    [K in keyof T]-?: T[K] extends V ? K : never;
+}[keyof T];
+/** One normalized option. `label` is the string the input shows and filters by. */
+export interface ComboboxOption<Value, Item = Value> {
+    value: Value;
+    label: string;
+    disabled: boolean;
+    item: Item;
+}
+export interface ComboboxOptionsConfig<T> {
+    valueKey: KeysOfType<T, string | number>;
+    labelKey: KeysOfType<T, string>;
+    disabledKey?: KeysOfType<T, boolean | undefined>;
+}
+export interface CreateComboboxOptionsReturn<Value, Item> {
+    options: Accessor<ComboboxOption<Value, Item>[]>;
+    optionToValue(option: ComboboxOption<Value, Item> | null | undefined): Value | undefined;
+    optionFromValue(value: Value | null | undefined): ComboboxOption<Value, Item> | undefined;
+    /** Spread on a Combobox root: options and the keys Kobalte reads from each option. */
+    props(): {
+        options: ComboboxOption<Value, Item>[];
+        optionValue: "value";
+        optionTextValue: "label";
+        optionLabel: "label";
+        optionDisabled: "disabled";
+    };
+    controlled(value: Accessor<Value | null | undefined>, onChange: (value: Value | undefined, option: ComboboxOption<Value, Item> | undefined) => void): {
+        value: ComboboxOption<Value, Item> | null;
+        onChange: (option: ComboboxOption<Value, Item> | null) => void;
+    };
+}
+type Source<T> = readonly T[] | Accessor<readonly T[]>;
+export declare function createComboboxOptions<T extends string | number>(values: Source<T>): CreateComboboxOptionsReturn<T, T>;
+export declare function createComboboxOptions<T extends object, C extends ComboboxOptionsConfig<T>>(values: Source<T>, config: C): CreateComboboxOptionsReturn<T[C["valueKey"]], T>;
+export {};
+```
+
+## components/CommandMenu/CommandMenu.d.ts
+
+```ts
+import type { DialogContentProps } from "@kobalte/core/dialog";
+import { type JSX } from "solid-js";
+import * as P from "../../parts/command-menu.js";
+export type CommandItem = {
+    /** Unique across the items. */
+    id: string;
+    /** The plain text the default filter searches. */
+    textValue: string;
+    label: JSX.Element;
+    description?: JSX.Element;
+    /** A visual before the label, such as an icon or a theme swatch. */
+    leading?: JSX.Element;
+    shortcut?: JSX.Element;
+    /** Consecutive items with the same group and section share a heading. */
+    group?: string;
+    section?: string;
+    disabled?: boolean;
+    /** Marks the item that matches the current value with a check. */
+    current?: boolean;
+};
+export type CommandMenuProps<T extends CommandItem> = {
+    class?: string;
+    classes?: P.CommandMenuClasses;
+    open: boolean;
+    onOpenChange: (open: boolean) => void;
+    items: readonly T[];
+    /** The accessible name of the dialog, the search field and the list. Not shown. */
+    title: JSX.Element;
+    placeholder?: string;
+    /** Key hints shown at the end of the search field, such as "↑↓ preview · ↵ apply · esc cancel". */
+    hint?: JSX.Element;
+    query?: string;
+    onQueryChange?: (query: string) => void;
+    /** Replaces the default filter, which matches every word of the query. */
+    filter?: (items: readonly T[], query: string) => readonly T[];
+    /** The highlighted item, from the arrows or the pointer. Use it to preview. */
+    onHighlightChange?: (item: T | undefined) => void;
+    /** Enter or a click. Runs after the menu closes. */
+    onSelect: (item: T) => void;
+    /** Runs first on every close, before `onOpenChange`. Use it to end a preview. */
+    onBeforeClose?: () => void;
+    /** Escape, a click outside or a programmatic close without a selection. */
+    onCancel?: () => void;
+    onCloseAutoFocus?: DialogContentProps["onCloseAutoFocus"];
+    emptyContent?: JSX.Element;
+    /** Portal target. Defaults to the document body. */
+    mount?: HTMLElement;
+};
+/** Keeps the items whose text, group, section or plain-text description contain every word of the query. */
+export declare function filterCommandItems<T extends CommandItem>(items: readonly T[], query: string): readonly T[];
+/**
+ * A searchable list of commands in a dialog, for a shortcut such as Cmd+K
+ * that the app binds. Moving the highlight previews through
+ * `onHighlightChange`; only Enter or a click calls `onSelect`. It opens and
+ * closes without animation, focuses the search on open, gives focus back on
+ * close and starts every open with an empty query.
+ */
+export declare function CommandMenu<T extends CommandItem>(props: CommandMenuProps<T>): JSX.Element;
+export { CommandMenuParts, commandMenuStyles } from "../../parts/command-menu.js";
+export type { CommandMenuClasses, CommandMenuPart, CommandMenuStyles, } from "../../parts/command-menu.js";
 ```
 
 ## components/Dialog/Dialog.d.ts
@@ -408,10 +584,33 @@ export declare function createFieldLabelProps<TValidComponent extends ValidCompo
 ## components/Field/createBaseFieldProps.d.ts
 
 ```ts
+import { type Accessor, type JSX } from "solid-js";
 import * as styles from "./Field.css.js";
 export type BaseFieldProps = styles.BaseFieldVariants;
+export declare function createBaseFieldProps(props: BaseFieldProps, field: Accessor<FieldContent & {
+    inputId?: string;
+    id?: string;
+}>): {
+    ids: ReturnType<typeof createFieldIds>;
+    baseStyle: () => string;
+};
 export declare function createBaseFieldProps(props: BaseFieldProps): {
+    ids: undefined;
     baseStyle(): string;
+};
+export type FieldContent = {
+    label?: JSX.Element;
+    description?: JSX.Element;
+    errorMessage?: JSX.Element;
+};
+export declare function createFieldIds(props: Accessor<FieldContent & {
+    inputId?: string;
+    id?: string;
+}>): {
+    input: () => string;
+    label: () => string;
+    description: () => string;
+    errorMessage: () => string;
 };
 ```
 
@@ -447,6 +646,18 @@ export type IconButtonProps<T extends ValidComponent = "button"> = KButtonRootPr
     "aria-label": string;
 };
 export declare function IconButton<T extends ValidComponent = "button">(props: PolymorphicProps<T, IconButtonProps<T>>): import("solid-js").JSX.Element;
+```
+
+## components/Kbd/Kbd.d.ts
+
+```ts
+import * as K from "../../parts/kbd.js";
+export type KbdProps = K.RootProps & {
+    /** Classes for the parts this component renders, keyed by part name. */
+    classes?: K.KbdClasses;
+};
+/** One key or key label. Render a sequence as several Kbd elements. */
+export declare function Kbd(props: KbdProps): import("solid-js").JSX.Element;
 ```
 
 ## components/Link/Link.css.d.ts
@@ -605,6 +816,42 @@ export declare const INPUT_NUMBER_OPTIONS: InputNumberOptions;
 export declare const defaultNumberFormat: NumberFormatSettings;
 ```
 
+## components/OptionCard/OptionCard.d.ts
+
+```ts
+import { type Accessor, type JSX } from "solid-js";
+import * as P from "../../parts/option-card.js";
+export type OptionCardEntry<T extends string = string> = {
+    value: T;
+    label: JSX.Element;
+    description?: JSX.Element;
+    preview?: JSX.Element;
+    badge?: JSX.Element;
+    disabled?: boolean;
+};
+export type OptionCardProps<T extends string = string> = OptionCardEntry<T> & P.OptionCardVariants & {
+    class?: string;
+    classes?: P.OptionCardClasses;
+};
+export declare function OptionCard<T extends string>(props: OptionCardProps<T>): JSX.Element;
+export type OptionCardGroupProps<T extends string = string> = Omit<P.RootProps, "value" | "defaultValue" | "onChange" | "children"> & {
+    items: readonly OptionCardEntry<T>[];
+    value?: T;
+    defaultValue?: T;
+    onChange?: (value: T) => void;
+    label?: JSX.Element;
+    description?: JSX.Element;
+    errorMessage?: JSX.Element;
+    classes?: P.OptionCardClasses;
+    "aria-label"?: string;
+    "aria-labelledby"?: string;
+};
+export declare function createOptionCardItems<T extends string>(items: Accessor<readonly OptionCardEntry<T>[]>): {
+    items: Accessor<readonly OptionCardEntry<T>[]>;
+};
+export declare function OptionCardGroup<T extends string>(props: OptionCardGroupProps<T>): JSX.Element;
+```
+
 ## components/Pagination/Pagination.d.ts
 
 ```ts
@@ -667,6 +914,25 @@ export type PopoverContentProps<T extends ValidComponent = "div"> = P.ContentPro
     classes?: Pick<P.PopoverClasses, "content" | "title" | "description">;
 };
 export declare function PopoverContent<T extends ValidComponent = "div">(props: PolymorphicProps<T, PopoverContentProps<T>>): JSX.Element;
+```
+
+## components/Progress/Progress.d.ts
+
+```ts
+import { type JSX } from "solid-js";
+import * as P from "../../parts/progress.js";
+export type ProgressProps = Omit<P.RootProps, "children"> & {
+    class?: string;
+    classes?: P.ProgressClasses;
+    label?: JSX.Element;
+    showValue?: boolean;
+    size?: "sm" | "md";
+    "aria-label"?: string;
+    "aria-labelledby"?: string;
+};
+export declare function Progress(props: ProgressProps): JSX.Element;
+export { progressStyles, ProgressParts } from "../../parts/progress.js";
+export type { ProgressClasses, ProgressPart, ProgressVariants, ProgressStyles, } from "../../parts/progress.js";
 ```
 
 ## components/RadioList/RadioList.d.ts
@@ -890,6 +1156,216 @@ export declare function createSelectOptions<T, C extends ConfigFor<T>>(values: r
 export {};
 ```
 
+## components/Sheet/Sheet.d.ts
+
+```ts
+import type { DialogContentProps as KDialogContentProps } from "@kobalte/core/dialog";
+import { type JSX } from "solid-js";
+import * as S from "../../parts/sheet.js";
+/** Only a bottom sheet can be dragged to dismiss. */
+export type SheetPlacement = {
+    /** Edge the sheet is attached to. Defaults to `bottom`. */
+    side?: "bottom";
+    /** Shows a handle that closes the sheet on a tap or a downward drag. Defaults to false. */
+    draggable?: boolean;
+} | {
+    side: "left" | "right";
+    draggable?: false;
+};
+export type SheetProps = SheetPlacement & SheetOptions;
+type SheetOptions = Omit<S.RootProps, "children"> & {
+    children?: JSX.Element;
+    title?: JSX.Element;
+    description?: JSX.Element;
+    footer?: JSX.Element;
+    /** Node the sheet is portaled into. Defaults to `document.body`. */
+    mount?: HTMLElement;
+    /** Shows the close button in the header. Defaults to true. */
+    showCloseButton?: boolean;
+    /** Accessible name of the close button. Defaults to "close". */
+    closeLabel?: string;
+    /** Class of the sheet content. */
+    class?: string;
+    /** Classes for the parts this component renders, keyed by part name. */
+    classes?: S.SheetClasses;
+    "aria-label"?: string;
+    contentProps?: Pick<KDialogContentProps, "onOpenAutoFocus" | "onCloseAutoFocus" | "onPointerDownOutside" | "onFocusOutside" | "onInteractOutside" | "onEscapeKeyDown">;
+};
+/**
+ * A dialog attached to an edge of the viewport. Modal by default, with a
+ * scrim. A nonmodal sheet has no scrim and leaves the page usable.
+ */
+export declare function Sheet(props: SheetProps): JSX.Element;
+export {};
+```
+
+## components/Skeleton/Skeleton.d.ts
+
+```ts
+import { type JSX } from "solid-js";
+import * as S from "../../parts/skeleton.js";
+export type SkeletonProps = Omit<S.RootProps, "width" | "height" | "radius" | "style"> & {
+    /** Any CSS width. Defaults to the full width. */
+    width?: JSX.CSSProperties["width"];
+    /** Any CSS height. Defaults to the content height. */
+    height?: JSX.CSSProperties["height"];
+    /** Any CSS border radius. */
+    radius?: JSX.CSSProperties["border-radius"];
+    style?: JSX.CSSProperties;
+    children?: JSX.Element;
+    /** Classes for the parts this component renders, keyed by part name. */
+    classes?: S.SkeletonClasses;
+};
+/**
+ * A loading placeholder. Mark the region that is loading with `aria-busy`;
+ * the placeholder itself is hidden from assistive technology while visible.
+ */
+export declare function Skeleton(props: SkeletonProps): JSX.Element;
+```
+
+## components/Slider/Slider.d.ts
+
+```ts
+import { type Accessor } from "solid-js";
+import * as P from "../../parts/slider.js";
+import { type FieldContent } from "../Field/createBaseFieldProps.js";
+export type SliderProps = Omit<P.RootProps, "value" | "defaultValue" | "onChange" | "onChangeEnd" | "children"> & FieldContent & {
+    class?: string;
+    classes?: P.SliderClasses;
+    value?: number;
+    defaultValue?: number;
+    onChange?: (value: number) => void;
+    onChangeEnd?: (value: number) => void;
+    inputId?: string;
+    "aria-label"?: string;
+    "aria-labelledby"?: string;
+    showValue?: boolean;
+};
+export declare function createSliderProps(props: Accessor<SliderProps>): {
+    root: () => {
+        value: number[] | undefined;
+        defaultValue: number[] | undefined;
+        onChange: (values: number[]) => void | undefined;
+        onChangeEnd: (values: number[]) => void | undefined;
+        name?: string | undefined;
+        required?: boolean | undefined;
+        id?: string | undefined;
+        disabled?: boolean | undefined;
+        orientation?: ("horizontal" | "vertical") | undefined;
+        ref?: HTMLDivElement | ((el: HTMLDivElement) => void) | undefined;
+        step?: number | undefined;
+        readOnly?: boolean | undefined;
+        validationState?: import("@kobalte/utils").ValidationState | undefined;
+        inverted?: boolean | undefined;
+        minValue?: number | undefined;
+        maxValue?: number | undefined;
+        minStepsBetweenThumbs?: number | undefined;
+        getValueLabel?: ((params: import("@kobalte/core/slider").SliderGetValueLabelParams) => string) | undefined;
+        class?: string | undefined;
+    };
+    input: () => {
+        id: string;
+        type: "hidden";
+        class: string | undefined;
+    };
+    label: () => {
+        id: string;
+        class: string | undefined;
+    };
+    description: () => {
+        id: string;
+        class: string | undefined;
+    };
+    errorMessage: () => {
+        id: string;
+        class: string | undefined;
+    };
+};
+export declare function Slider(props: SliderProps): import("solid-js").JSX.Element;
+export { sliderStyles, SliderParts } from "../../parts/slider.js";
+export type { SliderClasses, SliderPart, SliderVariants, SliderStyles, } from "../../parts/slider.js";
+```
+
+## components/Spinner/Spinner.d.ts
+
+```ts
+import * as S from "../../parts/spinner.js";
+export type SpinnerProps = Omit<S.RootProps, "children"> & {
+    /**
+     * Accessible name. With a label the spinner is a status region. Without one
+     * it is hidden, for use inside a control that already announces its busy state.
+     */
+    label?: string;
+    /** Classes for the parts this component renders, keyed by part name. */
+    classes?: S.SpinnerClasses;
+};
+export declare function Spinner(props: SpinnerProps): import("solid-js").JSX.Element;
+```
+
+## components/Stack/Stack.d.ts
+
+```ts
+export { Root as Stack } from "../../parts/stack.js";
+export type { StackProps, StackVariants, StackPart, StackClasses, StackStyles, Gap, } from "../../parts/stack.js";
+export { stackParts, stackStyles } from "../../parts/stack.js";
+```
+
+## components/Switch/Switch.d.ts
+
+```ts
+import { type Accessor } from "solid-js";
+import * as P from "../../parts/switch.js";
+import { type FieldContent } from "../Field/createBaseFieldProps.js";
+export type SwitchProps = Omit<P.RootProps, "children"> & FieldContent & {
+    class?: string;
+    inputId?: string;
+    "aria-label"?: string;
+    "aria-labelledby"?: string;
+    size?: "sm" | "md";
+    classes?: P.SwitchClasses;
+};
+export declare function createSwitchProps(props: Accessor<SwitchProps>): {
+    root: () => {
+        name?: string | undefined;
+        required?: boolean | undefined;
+        id?: string | undefined;
+        value?: string | undefined;
+        disabled?: boolean | undefined;
+        size?: ("sm" | "md") | undefined;
+        ref?: HTMLDivElement | ((el: HTMLDivElement) => void) | undefined;
+        onChange?: ((isChecked: boolean) => void) | undefined;
+        onPointerDown?: import("solid-js").JSX.EventHandlerUnion<HTMLDivElement, PointerEvent, import("solid-js").JSX.EventHandler<HTMLDivElement, PointerEvent>> | undefined;
+        checked?: boolean | undefined;
+        readOnly?: boolean | undefined;
+        validationState?: import("@kobalte/utils").ValidationState | undefined;
+        defaultChecked?: boolean | undefined;
+        class?: string | undefined;
+    };
+    input: () => {
+        id: string;
+        "aria-label": string | undefined;
+        "aria-labelledby": string | undefined;
+        class: string | undefined;
+    };
+    label: () => {
+        id: string;
+        for: string;
+        class: string | undefined;
+    };
+    description: () => {
+        id: string;
+        class: string | undefined;
+    };
+    errorMessage: () => {
+        id: string;
+        class: string | undefined;
+    };
+};
+export declare function Switch(props: SwitchProps): import("solid-js").JSX.Element;
+export { switchStyles, SwitchParts } from "../../parts/switch.js";
+export type { SwitchClasses, SwitchPart, SwitchVariants, SwitchStyles, } from "../../parts/switch.js";
+```
+
 ## components/Tabs/Tabs.d.ts
 
 ```ts
@@ -908,6 +1384,14 @@ export type TabsContentProps<T extends ValidComponent = "div"> = KTabsContentPro
 export declare function TabsContent<T extends ValidComponent = "div">(props: PolymorphicProps<T, TabsContentProps<T>>): import("solid-js").JSX.Element;
 export type TabsIndicatorProps<T extends ValidComponent = "div"> = KTabsIndicatorProps<T>;
 export declare function TabsIndicator<T extends ValidComponent = "div">(props: PolymorphicProps<T, TabsIndicatorProps<T>>): import("solid-js").JSX.Element;
+```
+
+## components/Text/Text.d.ts
+
+```ts
+export { Root as Text } from "../../parts/text.js";
+export type { TextProps, TextVariants, TextPart, TextClasses, TextStyles, } from "../../parts/text.js";
+export { textParts, textStyles } from "../../parts/text.js";
 ```
 
 ## components/TextArea/TextArea.d.ts
@@ -980,6 +1464,88 @@ import { TextField as KTextField } from "@kobalte/core/text-field";
 type TextFieldLabelProps = Parameters<(typeof KTextField)["Label"]>[0] & {};
 export declare function TextFieldLabel(props: TextFieldLabelProps): import("solid-js").JSX.Element;
 export {};
+```
+
+## components/Toast/Toaster.d.ts
+
+```ts
+import { type JSX } from "solid-js";
+import * as T from "../../parts/toast.js";
+/** Scoped to the controller that returned it. Two controllers can return the same id. */
+export type ToastId = number;
+export type ToastContext = {
+    id: ToastId;
+    dismiss: () => void;
+};
+export type ToastContent = JSX.Element | ((context: ToastContext) => JSX.Element);
+export type ToastAction = {
+    label: JSX.Element;
+    /** The toast stays open. Call `context.dismiss()` to close it. */
+    onClick: (context: ToastContext) => void;
+};
+export type ToastOptions = {
+    title?: ToastContent;
+    description: ToastContent;
+    tone?: T.ToastTone;
+    /** Replaces the tone icon. `null` hides it. Neutral has no tone icon. */
+    icon?: ToastContent;
+    action?: ToastAction;
+    /** Shows the close button. Defaults to true. */
+    closeable?: boolean;
+    /** Milliseconds before the toast closes. `Infinity` keeps it open. */
+    duration?: number;
+    /** Renders the toast in this theme, whatever the page theme. */
+    theme?: "light" | "dark";
+    class?: string;
+    classes?: T.ToastClasses;
+    style?: JSX.CSSProperties;
+};
+export type ToastPromiseOptions<D> = {
+    loading: ToastOptions;
+    success: ToastOptions | ((data: D) => ToastOptions);
+    error: ToastOptions | ((error: unknown) => ToastOptions);
+};
+export interface ToastController {
+    /** Ties the controller to its `<Toaster />`. */
+    readonly regionId: string;
+    show(options: ToastOptions): ToastId;
+    /** Merges into the open toast. A new duration restarts its timer. */
+    update(id: ToastId, options: Partial<ToastOptions>): void;
+    /** Closes with the exit animation. */
+    dismiss(id: ToastId): void;
+    /** Dismisses every toast of this controller. */
+    clear(): void;
+    /**
+     * Shows `loading` until the promise settles, then `success` or `error` in
+     * the same toast. Loading stays open and shows a spinner unless its options
+     * say otherwise.
+     */
+    promise<D>(promise: Promise<D> | (() => Promise<D>), options: ToastPromiseOptions<D>): ToastId;
+}
+export type CreateToasterOptions = {
+    /** Default milliseconds before a toast closes. Defaults to 5000. */
+    duration?: number;
+};
+/**
+ * Creates a toast controller for one `<Toaster />`. Each controller has its own
+ * toasts, so create one per app or per region. On the server it shows nothing.
+ * Created inside a component, it clears its toasts when that owner is disposed.
+ */
+export declare function createToaster(options?: CreateToasterOptions): ToastController;
+export type ToasterProps = Omit<T.RegionProps, "regionId" | "duration" | "children" | "position"> & {
+    toaster: ToastController;
+    /** Defaults to bottom center. */
+    position?: T.ToastPosition;
+    /** The close button's accessible name, in the app's language. */
+    closeLabel: string;
+    /** Classes for the region and list. Per-toast classes go in the toast options. */
+    classes?: Pick<T.ToastClasses, "region" | "list">;
+};
+/**
+ * The region that shows one controller's toasts. Place it inside the app's
+ * providers: toast content renders here and can read their context.
+ */
+export declare function Toaster(props: ToasterProps): JSX.Element;
 ```
 
 ## components/Tooltip/Tooltip.css.d.ts
@@ -1533,6 +2099,8 @@ export * as dropdownMenuStyles from "./components/Dropdown/Dropdown.css.js";
 export { Popover, PopoverTrigger, PopoverContent } from "./components/Popover/Popover.js";
 export type { PopoverProps, PopoverContentProps } from "./components/Popover/Popover.js";
 export * as popoverStyles from "./components/Popover/Popover.css.js";
+export { Sheet } from "./components/Sheet/Sheet.js";
+export type { SheetProps } from "./components/Sheet/Sheet.js";
 export { Select } from "./components/Select/Select.js";
 export type { SelectClasses } from "./components/Select/Select.js";
 export { createSelectOptions } from "./components/Select/createSelectValue.js";
@@ -1548,6 +2116,18 @@ export { SegmentedControlItem } from "./components/SegmentedControl/SegmentedCon
 export type { SegmentedControlItemProps } from "./components/SegmentedControl/SegmentedControlItem.js";
 export { Listbox, ListboxItem } from "./components/Listbox/Listbox.js";
 export { VirtualizedListbox } from "./components/Listbox/VirtualizedListbox.js";
+export { Kbd } from "./components/Kbd/Kbd.js";
+export type { KbdProps } from "./components/Kbd/Kbd.js";
+export { Badge } from "./components/Badge/Badge.js";
+export type { BadgeProps } from "./components/Badge/Badge.js";
+export { Spinner } from "./components/Spinner/Spinner.js";
+export type { SpinnerProps } from "./components/Spinner/Spinner.js";
+export { Skeleton } from "./components/Skeleton/Skeleton.js";
+export type { SkeletonProps } from "./components/Skeleton/Skeleton.js";
+export { Alert } from "./components/Alert/Alert.js";
+export type { AlertProps } from "./components/Alert/Alert.js";
+export { Toaster, createToaster } from "./components/Toast/Toaster.js";
+export type { CreateToasterOptions, ToastAction, ToastContent, ToastContext, ToastController, ToasterProps, ToastId, ToastOptions, ToastPromiseOptions, } from "./components/Toast/Toaster.js";
 export { SvgIcon } from "./icons/SvgIcon.js";
 export * as icons from "./icons/index.js";
 export { tokens, themeTokens, themeVars, breakpoints, layoutVars, responsiveStyle, } from "./foundation/index.js";
@@ -1556,6 +2136,30 @@ export type { FieldClasses } from "./components/Field/inputProps.js";
 export type { ListboxProps, ListboxClasses } from "./components/Listbox/Listbox.js";
 export type { VirtualizedListboxProps } from "./components/Listbox/VirtualizedListbox.js";
 export type { SegmentedControlClasses } from "./components/SegmentedControl/SegmentedControl.js";
+export * from "./components/Stack/Stack.js";
+export * from "./components/Text/Text.js";
+import { Switch } from "./components/Switch/Switch.js";
+export { Switch };
+export { createSwitchProps, switchStyles, SwitchParts } from "./components/Switch/Switch.js";
+export type { SwitchProps, SwitchClasses, SwitchPart, SwitchVariants, SwitchStyles, } from "./components/Switch/Switch.js";
+import { Slider } from "./components/Slider/Slider.js";
+export { Slider };
+export { createSliderProps, SliderParts, sliderStyles } from "./components/Slider/Slider.js";
+export type { SliderProps, SliderClasses, SliderPart, SliderVariants, SliderStyles, } from "./components/Slider/Slider.js";
+import { Progress } from "./components/Progress/Progress.js";
+export { Progress };
+export { ProgressParts, progressStyles } from "./components/Progress/Progress.js";
+export type { ProgressProps, ProgressClasses, ProgressPart, ProgressVariants, ProgressStyles, } from "./components/Progress/Progress.js";
+import { Combobox } from "./components/Combobox/Combobox.js";
+export { Combobox };
+export { ComboboxParts, comboboxStyles, createComboboxOptions, } from "./components/Combobox/Combobox.js";
+export type { ComboboxProps, ComboboxClasses, ComboboxOption, ComboboxOptionsConfig, ComboboxPart, ComboboxStyles, ComboboxVariants, CreateComboboxOptionsReturn, } from "./components/Combobox/Combobox.js";
+export { CommandMenu, CommandMenuParts, commandMenuStyles, filterCommandItems, } from "./components/CommandMenu/CommandMenu.js";
+export type { CommandItem, CommandMenuProps, CommandMenuClasses, CommandMenuPart, CommandMenuStyles, } from "./components/CommandMenu/CommandMenu.js";
+export { OptionCardGroup, OptionCard, createOptionCardItems, } from "./components/OptionCard/OptionCard.js";
+export type { OptionCardGroupProps, OptionCardProps, OptionCardEntry, } from "./components/OptionCard/OptionCard.js";
+export { optionCardParts, optionCardStyles } from "./parts/option-card.js";
+export type { OptionCardPart, OptionCardClasses, OptionCardStyles, OptionCardVariant, OptionCardVariants, } from "./parts/option-card.js";
 export { Accordion, createAccordionItems, type AccordionProps, type AccordionEntry } from "./components/Accordion/Accordion.js";
 export { accordionParts, accordionStyles, type AccordionPart, type AccordionClasses, type AccordionVariants, type AccordionStyles } from "./parts/accordion.js";
 ```
@@ -1605,6 +2209,295 @@ export type SummaryProps = JSX.HTMLAttributes<HTMLSpanElement>;
 export declare function Summary(props: SummaryProps): JSX.Element;
 export type ChevronProps = JSX.HTMLAttributes<HTMLSpanElement>;
 export declare function Chevron(props: ChevronProps): JSX.Element;
+```
+
+## parts/alert.d.ts
+
+```ts
+import { type AlertRootProps as KAlertRootProps } from "@kobalte/core/alert";
+import type { PolymorphicProps } from "@kobalte/core/polymorphic";
+import { type JSX, type ValidComponent } from "solid-js";
+export declare const alertParts: {
+    readonly root: "alert-root";
+    readonly icon: "alert-icon";
+    readonly title: "alert-title";
+    readonly description: "alert-description";
+    readonly action: "alert-action";
+};
+export type AlertPart = keyof typeof alertParts;
+export type AlertClasses = Partial<Record<AlertPart, string>>;
+export type AlertTone = "neutral" | "info" | "success" | "warning" | "danger";
+export type AlertVariants = {
+    tone?: AlertTone;
+    fluid?: boolean;
+};
+export type AlertStyles = {
+    [P in AlertPart]: (variants?: AlertVariants) => string;
+};
+export declare const alertStyles: AlertStyles;
+export type RootProps<T extends ValidComponent = "div"> = KAlertRootProps<T> & AlertVariants & {
+    class?: string;
+};
+/** Renders `role="alert"`, so a newly mounted alert is announced. */
+export declare function Root<T extends ValidComponent = "div">(props: PolymorphicProps<T, RootProps<T>>): JSX.Element;
+export type IconProps = JSX.HTMLAttributes<HTMLSpanElement>;
+/** Decorative icon slot, hidden from assistive technology. */
+export declare function Icon(props: IconProps): JSX.Element;
+export type TitleProps = JSX.HTMLAttributes<HTMLDivElement>;
+export declare function Title(props: TitleProps): JSX.Element;
+export type DescriptionProps = JSX.HTMLAttributes<HTMLDivElement>;
+export declare function Description(props: DescriptionProps): JSX.Element;
+export type ActionProps = JSX.HTMLAttributes<HTMLDivElement>;
+/** Holds the alert's controls, such as a button or a link. */
+export declare function Action(props: ActionProps): JSX.Element;
+```
+
+## parts/badge.d.ts
+
+```ts
+import { type BadgeRootProps as KBadgeRootProps } from "@kobalte/core/badge";
+import type { PolymorphicProps } from "@kobalte/core/polymorphic";
+import { type JSX, type ValidComponent } from "solid-js";
+export declare const badgeParts: {
+    readonly root: "badge-root";
+    readonly icon: "badge-icon";
+    readonly label: "badge-label";
+};
+export type BadgePart = keyof typeof badgeParts;
+export type BadgeClasses = Partial<Record<BadgePart, string>>;
+export type BadgeSize = "sm" | "md";
+export type BadgeTone = "neutral" | "info" | "success" | "warning" | "danger";
+export type BadgeVariant = "soft" | "outline";
+export type BadgeVariants = {
+    size?: BadgeSize;
+    tone?: BadgeTone;
+    variant?: BadgeVariant;
+};
+export type BadgeStyles = {
+    [P in BadgePart]: (variants?: BadgeVariants) => string;
+};
+export declare const badgeStyles: BadgeStyles;
+export type RootProps<T extends ValidComponent = "span"> = KBadgeRootProps<T> & BadgeVariants & {
+    class?: string;
+};
+export declare function Root<T extends ValidComponent = "span">(props: PolymorphicProps<T, RootProps<T>>): JSX.Element;
+export type IconProps = JSX.HTMLAttributes<HTMLSpanElement>;
+/** Decorative icon slot, hidden from assistive technology. */
+export declare function Icon(props: IconProps): JSX.Element;
+export type LabelProps = JSX.HTMLAttributes<HTMLSpanElement>;
+export declare function Label(props: LabelProps): JSX.Element;
+```
+
+## parts/combobox.d.ts
+
+```ts
+import * as K from "@kobalte/core/combobox";
+import type { PolymorphicProps } from "@kobalte/core/polymorphic";
+import { type ValidComponent } from "solid-js";
+export { useComboboxContext } from "@kobalte/core/combobox";
+export { createComboboxOptions, type ComboboxOption, type ComboboxOptionsConfig, type CreateComboboxOptionsReturn, } from "../components/Combobox/createComboboxOptions.js";
+export type ComboboxVariants = {
+    size?: "sm" | "md";
+};
+export declare const comboboxParts: {
+    readonly root: "combobox-root";
+    readonly control: "combobox-control";
+    readonly input: "combobox-input";
+    readonly trigger: "combobox-trigger";
+    readonly icon: "combobox-icon";
+    readonly content: "combobox-content";
+    readonly arrow: "combobox-arrow";
+    readonly listbox: "combobox-listbox";
+    readonly item: "combobox-item";
+    readonly itemLabel: "combobox-item-label";
+    readonly itemDescription: "combobox-item-description";
+    readonly itemIndicator: "combobox-item-indicator";
+    readonly section: "combobox-section";
+    readonly hiddenSelect: "combobox-hidden-select";
+    readonly label: "combobox-label";
+    readonly description: "combobox-description";
+    readonly errorMessage: "combobox-error-message";
+};
+export type ComboboxPart = keyof typeof comboboxParts;
+export type ComboboxClasses = Partial<Record<ComboboxPart, string>>;
+export type ComboboxStyles = Record<ComboboxPart, (variants?: ComboboxVariants) => string>;
+export declare const comboboxStyles: ComboboxStyles;
+export type RootProps<Option, OptGroup = never, T extends ValidComponent = "div"> = K.ComboboxRootProps<Option, OptGroup, T> & ComboboxVariants;
+export declare function Root<Option, OptGroup = never, T extends ValidComponent = "div">(props: PolymorphicProps<T, RootProps<Option, OptGroup, T>>): import("solid-js").JSX.Element;
+export type ControlProps<Option, T extends ValidComponent = "div"> = K.ComboboxControlProps<Option, T> & ComboboxVariants;
+export declare function Control<Option, T extends ValidComponent = "div">(props: PolymorphicProps<T, ControlProps<Option, T>>): import("solid-js").JSX.Element;
+export type InputProps<T extends ValidComponent = "input"> = K.ComboboxInputProps<T> & ComboboxVariants;
+export declare function Input<T extends ValidComponent = "input">(props: PolymorphicProps<T, InputProps<T>>): import("solid-js").JSX.Element;
+export type TriggerProps<T extends ValidComponent = "button"> = K.ComboboxTriggerProps<T> & ComboboxVariants;
+export declare function Trigger<T extends ValidComponent = "button">(props: PolymorphicProps<T, TriggerProps<T>>): import("solid-js").JSX.Element;
+export type IconProps<T extends ValidComponent = "span"> = K.ComboboxIconProps<T> & ComboboxVariants;
+export declare function Icon<T extends ValidComponent = "span">(props: PolymorphicProps<T, IconProps<T>>): import("solid-js").JSX.Element;
+export type PortalProps = K.ComboboxPortalProps;
+export declare function Portal(props: PortalProps): import("solid-js").JSX.Element;
+export type ContentProps<T extends ValidComponent = "div"> = K.ComboboxContentProps<T> & ComboboxVariants;
+export declare function Content<T extends ValidComponent = "div">(props: PolymorphicProps<T, ContentProps<T>>): import("solid-js").JSX.Element;
+export type ArrowProps<T extends ValidComponent = "div"> = K.ComboboxArrowProps<T> & ComboboxVariants;
+export declare function Arrow<T extends ValidComponent = "div">(props: PolymorphicProps<T, ArrowProps<T>>): import("solid-js").JSX.Element;
+export type ListboxProps<Option = unknown, OptGroup = never, T extends ValidComponent = "ul"> = K.ComboboxListboxProps<Option, OptGroup, T> & ComboboxVariants;
+export declare function Listbox<Option = unknown, OptGroup = never, T extends ValidComponent = "ul">(props: PolymorphicProps<T, ListboxProps<Option, OptGroup, T>>): import("solid-js").JSX.Element;
+export type ItemProps<T extends ValidComponent = "li"> = K.ComboboxItemProps<T> & ComboboxVariants;
+export declare function Item<T extends ValidComponent = "li">(props: PolymorphicProps<T, ItemProps<T>>): import("solid-js").JSX.Element;
+export type ItemLabelProps<T extends ValidComponent = "div"> = K.ComboboxItemLabelProps<T> & ComboboxVariants;
+export declare function ItemLabel<T extends ValidComponent = "div">(props: PolymorphicProps<T, ItemLabelProps<T>>): import("solid-js").JSX.Element;
+export type ItemDescriptionProps<T extends ValidComponent = "div"> = K.ComboboxItemDescriptionProps<T> & ComboboxVariants;
+export declare function ItemDescription<T extends ValidComponent = "div">(props: PolymorphicProps<T, ItemDescriptionProps<T>>): import("solid-js").JSX.Element;
+export type ItemIndicatorProps<T extends ValidComponent = "div"> = K.ComboboxItemIndicatorProps<T> & ComboboxVariants;
+export declare function ItemIndicator<T extends ValidComponent = "div">(props: PolymorphicProps<T, ItemIndicatorProps<T>>): import("solid-js").JSX.Element;
+export type SectionProps<T extends ValidComponent = "li"> = K.ComboboxSectionProps<T> & ComboboxVariants;
+export declare function Section<T extends ValidComponent = "li">(props: PolymorphicProps<T, SectionProps<T>>): import("solid-js").JSX.Element;
+export type HiddenSelectProps = K.ComboboxHiddenSelectProps & ComboboxVariants;
+export declare function HiddenSelect(props: HiddenSelectProps): import("solid-js").JSX.Element;
+export type LabelProps<T extends ValidComponent = "span"> = K.ComboboxLabelProps<T> & ComboboxVariants;
+export declare function Label<T extends ValidComponent = "span">(props: PolymorphicProps<T, LabelProps<T>>): import("solid-js").JSX.Element;
+export type DescriptionProps<T extends ValidComponent = "div"> = K.ComboboxDescriptionProps<T> & ComboboxVariants;
+export declare function Description<T extends ValidComponent = "div">(props: PolymorphicProps<T, DescriptionProps<T>>): import("solid-js").JSX.Element;
+export type ErrorMessageProps<T extends ValidComponent = "div"> = K.ComboboxErrorMessageProps<T> & ComboboxVariants;
+export declare function ErrorMessage<T extends ValidComponent = "div">(props: PolymorphicProps<T, ErrorMessageProps<T>>): import("solid-js").JSX.Element;
+export declare const ComboboxParts: {
+    Root: typeof Root;
+    Control: typeof Control;
+    Input: typeof Input;
+    Trigger: typeof Trigger;
+    Icon: typeof Icon;
+    Portal: typeof Portal;
+    Content: typeof Content;
+    Arrow: typeof Arrow;
+    Listbox: typeof Listbox;
+    Item: typeof Item;
+    ItemLabel: typeof ItemLabel;
+    ItemDescription: typeof ItemDescription;
+    ItemIndicator: typeof ItemIndicator;
+    Section: typeof Section;
+    HiddenSelect: typeof HiddenSelect;
+    Label: typeof Label;
+    Description: typeof Description;
+    ErrorMessage: typeof ErrorMessage;
+};
+```
+
+## parts/command-menu.d.ts
+
+```ts
+import * as K from "@kobalte/core/combobox";
+import { type DialogContentProps as KDialogContentProps, type DialogOverlayProps as KDialogOverlayProps, type DialogPortalProps as KDialogPortalProps, type DialogRootProps as KDialogRootProps, type DialogTitleProps as KDialogTitleProps, type DialogTriggerProps as KDialogTriggerProps } from "@kobalte/core/dialog";
+import type { PolymorphicProps } from "@kobalte/core/polymorphic";
+import { type ComponentProps, type JSX, type ValidComponent } from "solid-js";
+export declare const commandMenuParts: {
+    readonly trigger: "command-menu-trigger";
+    readonly overlay: "command-menu-overlay";
+    readonly content: "command-menu-content";
+    readonly title: "command-menu-title";
+    readonly search: "command-menu-search";
+    readonly searchInput: "command-menu-search-input";
+    readonly hint: "command-menu-hint";
+    readonly listbox: "command-menu-listbox";
+    readonly group: "command-menu-group";
+    readonly groupLabel: "command-menu-group-label";
+    readonly item: "command-menu-item";
+    readonly leading: "command-menu-leading";
+    readonly itemLabel: "command-menu-item-label";
+    readonly itemDescription: "command-menu-item-description";
+    readonly itemIndicator: "command-menu-item-indicator";
+    readonly shortcut: "command-menu-shortcut";
+    readonly empty: "command-menu-empty";
+};
+export type CommandMenuPart = keyof typeof commandMenuParts;
+export type CommandMenuClasses = Partial<Record<CommandMenuPart, string>>;
+export type CommandMenuStyles = Record<CommandMenuPart, () => string>;
+export declare const commandMenuStyles: CommandMenuStyles;
+export type RootProps = KDialogRootProps;
+export declare function Root(props: RootProps): JSX.Element;
+export type PortalProps = KDialogPortalProps;
+export declare function Portal(props: PortalProps): JSX.Element;
+export type TriggerProps<T extends ValidComponent = "button"> = KDialogTriggerProps<T>;
+export declare function Trigger<T extends ValidComponent = "button">(props: PolymorphicProps<T, TriggerProps<T>>): JSX.Element;
+export type OverlayProps<T extends ValidComponent = "div"> = KDialogOverlayProps<T>;
+export declare function Overlay<T extends ValidComponent = "div">(props: PolymorphicProps<T, OverlayProps<T>>): JSX.Element;
+type EngineKeys = "options" | "optionValue" | "optionTextValue" | "optionLabel" | "optionDisabled" | "optionGroupChildren" | "itemComponent" | "sectionComponent" | "defaultFilter" | "onInputChange" | "translations" | "virtualized" | "keyboardDelegate";
+/**
+ * The combobox engine that drives the search field and the inline list. The
+ * list is always shown, so the engine has no open state or popup of its own.
+ */
+export type EngineProps<Option, OptGroup = never> = Pick<K.ComboboxRootOptions<Option, OptGroup>, EngineKeys> & {
+    /**
+     * Called with the option under the highlight each time it changes, from the
+     * keyboard or the pointer, and with `undefined` when nothing is highlighted.
+     */
+    onHighlightChange?: (option: Option | undefined) => void;
+    /** Called when Enter or a click picks an option. */
+    onSelect?: (option: Option) => void;
+};
+export type ContentProps<Option, OptGroup = never> = Omit<KDialogContentProps, "children"> & EngineProps<Option, OptGroup> & {
+    class?: string;
+    children?: JSX.Element;
+};
+/**
+ * The dialog panel. It hosts the combobox engine, so the search field and
+ * the list inside share one highlight. The highlight starts on the first
+ * enabled option and moves back to it whenever the query changes.
+ */
+export declare function Content<Option, OptGroup = never>(props: ContentProps<Option, OptGroup>): JSX.Element;
+export type TitleProps<T extends ValidComponent = "h2"> = KDialogTitleProps<T>;
+export declare function Title<T extends ValidComponent = "h2">(props: PolymorphicProps<T, TitleProps<T>>): JSX.Element;
+export type SearchProps = ComponentProps<"div">;
+/** The field around the search input, its icon and the key hint. */
+export declare function Search(props: SearchProps): JSX.Element;
+export type SearchInputProps<T extends ValidComponent = "input"> = K.ComboboxInputProps<T>;
+export declare function SearchInput<T extends ValidComponent = "input">(props: PolymorphicProps<T, SearchInputProps<T>>): JSX.Element;
+export type HintProps = ComponentProps<"span">;
+/** Key hints such as "↑↓ preview · ↵ apply · esc cancel". Hidden on phones. */
+export declare function Hint(props: HintProps): JSX.Element;
+export type ListboxProps<Option = unknown, OptGroup = never, T extends ValidComponent = "ul"> = K.ComboboxListboxProps<Option, OptGroup, T>;
+export declare function Listbox<Option = unknown, OptGroup = never, T extends ValidComponent = "ul">(props: PolymorphicProps<T, ListboxProps<Option, OptGroup, T>>): JSX.Element;
+export type GroupProps<T extends ValidComponent = "li"> = K.ComboboxSectionProps<T>;
+/** The heading row that starts a group of options. */
+export declare function Group<T extends ValidComponent = "li">(props: PolymorphicProps<T, GroupProps<T>>): JSX.Element;
+export type GroupLabelProps = ComponentProps<"span">;
+export declare function GroupLabel(props: GroupLabelProps): JSX.Element;
+export type ItemProps<T extends ValidComponent = "li"> = K.ComboboxItemProps<T>;
+export declare function Item<T extends ValidComponent = "li">(props: PolymorphicProps<T, ItemProps<T>>): JSX.Element;
+export type LeadingProps = ComponentProps<"span">;
+/** A fixed box before the label, so labels line up with or without a visual. */
+export declare function Leading(props: LeadingProps): JSX.Element;
+export type ItemLabelProps<T extends ValidComponent = "div"> = K.ComboboxItemLabelProps<T>;
+export declare function ItemLabel<T extends ValidComponent = "div">(props: PolymorphicProps<T, ItemLabelProps<T>>): JSX.Element;
+export type ItemDescriptionProps<T extends ValidComponent = "div"> = K.ComboboxItemDescriptionProps<T>;
+export declare function ItemDescription<T extends ValidComponent = "div">(props: PolymorphicProps<T, ItemDescriptionProps<T>>): JSX.Element;
+export type ItemIndicatorProps<T extends ValidComponent = "div"> = K.ComboboxItemIndicatorProps<T>;
+/** Pass `forceMount` to mark an option as current; the menu never keeps a selection. */
+export declare function ItemIndicator<T extends ValidComponent = "div">(props: PolymorphicProps<T, ItemIndicatorProps<T>>): JSX.Element;
+export type ShortcutProps = ComponentProps<"span">;
+export declare function Shortcut(props: ShortcutProps): JSX.Element;
+export type EmptyProps = ComponentProps<"div">;
+/** Rendered only while no option matches the query. */
+export declare function Empty(props: EmptyProps): JSX.Element;
+export { useComboboxContext as useCommandMenuContext } from "@kobalte/core/combobox";
+export declare const CommandMenuParts: {
+    Root: typeof Root;
+    Trigger: typeof Trigger;
+    Portal: typeof Portal;
+    Overlay: typeof Overlay;
+    Content: typeof Content;
+    Title: typeof Title;
+    Search: typeof Search;
+    SearchInput: typeof SearchInput;
+    Hint: typeof Hint;
+    Listbox: typeof Listbox;
+    Group: typeof Group;
+    GroupLabel: typeof GroupLabel;
+    Item: typeof Item;
+    Leading: typeof Leading;
+    ItemLabel: typeof ItemLabel;
+    ItemDescription: typeof ItemDescription;
+    ItemIndicator: typeof ItemIndicator;
+    Shortcut: typeof Shortcut;
+    Empty: typeof Empty;
+};
 ```
 
 ## parts/dialog.d.ts
@@ -1665,6 +2558,107 @@ export declare function Body(props: ComponentProps<"div">): import("solid-js").J
 export declare function Footer(props: ComponentProps<"div">): import("solid-js").JSX.Element;
 ```
 
+## parts/kbd.d.ts
+
+```ts
+import { type JSX } from "solid-js";
+export declare const kbdParts: {
+    readonly root: "kbd-root";
+};
+export type KbdPart = keyof typeof kbdParts;
+export type KbdClasses = Partial<Record<KbdPart, string>>;
+export type KbdSize = "sm" | "md";
+export type KbdVariant = "keycap" | "hint";
+export type KbdVariants = {
+    size?: KbdSize;
+    variant?: KbdVariant;
+};
+export type KbdStyles = {
+    [P in KbdPart]: (variants?: KbdVariants) => string;
+};
+export declare const kbdStyles: KbdStyles;
+export type RootProps = JSX.IntrinsicElements["kbd"] & KbdVariants;
+export declare function Root(props: RootProps): JSX.Element;
+```
+
+## parts/option-card.d.ts
+
+```ts
+import * as K from "@kobalte/core/radio-group";
+import type { PolymorphicProps } from "@kobalte/core/polymorphic";
+import { type JSX, type ValidComponent } from "solid-js";
+import { type BadgeProps as KitBadgeProps } from "../components/Badge/Badge.js";
+export declare const optionCardParts: {
+    readonly root: "option-card-root";
+    readonly label: "option-card-label";
+    readonly description: "option-card-description";
+    readonly errorMessage: "option-card-error-message";
+    readonly item: "option-card-item";
+    readonly itemInput: "option-card-item-input";
+    readonly itemControl: "option-card-item-control";
+    readonly itemIndicator: "option-card-item-indicator";
+    readonly itemLabel: "option-card-item-label";
+    readonly itemDescription: "option-card-item-description";
+    readonly preview: "option-card-preview";
+    readonly badge: "option-card-badge";
+};
+export type OptionCardPart = keyof typeof optionCardParts;
+export type OptionCardClasses = Partial<Record<OptionCardPart, string>>;
+export type OptionCardVariant = "card" | "tile";
+export type OptionCardVariants = {
+    variant?: OptionCardVariant;
+};
+export type OptionCardStyles = {
+    [P in OptionCardPart]: (variants?: OptionCardVariants) => string;
+};
+export declare const optionCardStyles: OptionCardStyles;
+export type RootProps<T extends ValidComponent = "div"> = K.RadioGroupRootProps<T> & OptionCardVariants & {
+    class?: string;
+};
+export declare function Root<T extends ValidComponent = "div">(props: PolymorphicProps<T, RootProps<T>>): JSX.Element;
+export type LabelProps<T extends ValidComponent = "span"> = K.RadioGroupLabelProps<T> & OptionCardVariants & {
+    class?: string;
+};
+export declare function Label<T extends ValidComponent = "span">(props: PolymorphicProps<T, LabelProps<T>>): JSX.Element;
+export type DescriptionProps<T extends ValidComponent = "div"> = K.RadioGroupDescriptionProps<T> & OptionCardVariants & {
+    class?: string;
+};
+export declare function Description<T extends ValidComponent = "div">(props: PolymorphicProps<T, DescriptionProps<T>>): JSX.Element;
+export type ErrorMessageProps<T extends ValidComponent = "div"> = K.RadioGroupErrorMessageProps<T> & OptionCardVariants & {
+    class?: string;
+};
+export declare function ErrorMessage<T extends ValidComponent = "div">(props: PolymorphicProps<T, ErrorMessageProps<T>>): JSX.Element;
+export type ItemProps<T extends ValidComponent = "div"> = K.RadioGroupItemProps<T> & OptionCardVariants & {
+    class?: string;
+};
+export declare function Item<T extends ValidComponent = "div">(props: PolymorphicProps<T, ItemProps<T>>): JSX.Element;
+export type ItemInputProps<T extends ValidComponent = "input"> = K.RadioGroupItemInputProps<T> & OptionCardVariants & {
+    class?: string;
+};
+export declare function ItemInput<T extends ValidComponent = "input">(props: PolymorphicProps<T, ItemInputProps<T>>): JSX.Element;
+export type ItemControlProps<T extends ValidComponent = "div"> = K.RadioGroupItemControlProps<T> & OptionCardVariants & {
+    class?: string;
+};
+export declare function ItemControl<T extends ValidComponent = "div">(props: PolymorphicProps<T, ItemControlProps<T>>): JSX.Element;
+export type ItemIndicatorProps<T extends ValidComponent = "div"> = K.RadioGroupItemIndicatorProps<T> & OptionCardVariants & {
+    class?: string;
+};
+export declare function ItemIndicator<T extends ValidComponent = "div">(props: PolymorphicProps<T, ItemIndicatorProps<T>>): JSX.Element;
+export type ItemLabelProps<T extends ValidComponent = "label"> = K.RadioGroupItemLabelProps<T> & OptionCardVariants & {
+    class?: string;
+};
+export declare function ItemLabel<T extends ValidComponent = "label">(props: PolymorphicProps<T, ItemLabelProps<T>>): JSX.Element;
+export type ItemDescriptionProps<T extends ValidComponent = "div"> = K.RadioGroupItemDescriptionProps<T> & OptionCardVariants & {
+    class?: string;
+};
+export declare function ItemDescription<T extends ValidComponent = "div">(props: PolymorphicProps<T, ItemDescriptionProps<T>>): JSX.Element;
+export type PreviewProps = JSX.HTMLAttributes<HTMLDivElement>;
+export declare function Preview(props: PreviewProps): JSX.Element;
+export type BadgeProps = KitBadgeProps;
+export declare function Badge(props: BadgeProps): JSX.Element;
+export { useRadioGroupContext } from "@kobalte/core/radio-group";
+```
+
 ## parts/popover.d.ts
 
 ```ts
@@ -1709,6 +2703,413 @@ export type CloseButtonProps = Omit<PolymorphicProps<"button", IconButtonProps>,
     "aria-label"?: string;
 };
 export declare function CloseButton(props: CloseButtonProps): import("solid-js").JSX.Element;
+```
+
+## parts/progress.d.ts
+
+```ts
+import * as K from "@kobalte/core/progress";
+import type { PolymorphicProps } from "@kobalte/core/polymorphic";
+import { type ValidComponent } from "solid-js";
+export { useProgressContext } from "@kobalte/core/progress";
+export type ProgressVariants = {
+    size?: "sm" | "md";
+};
+export declare const progressParts: {
+    readonly root: "progress-root";
+    readonly label: "progress-label";
+    readonly track: "progress-track";
+    readonly fill: "progress-fill";
+    readonly valueLabel: "progress-value-label";
+};
+export type ProgressPart = keyof typeof progressParts;
+export type ProgressClasses = Partial<Record<ProgressPart, string>>;
+export type ProgressStyles = Record<ProgressPart, (variants?: ProgressVariants) => string>;
+export declare const progressStyles: ProgressStyles;
+export type RootProps<T extends ValidComponent = "div"> = K.ProgressRootProps<T> & ProgressVariants;
+export declare function Root<T extends ValidComponent = "div">(props: PolymorphicProps<T, RootProps<T>>): import("solid-js").JSX.Element;
+export type LabelProps<T extends ValidComponent = "span"> = K.ProgressLabelProps<T> & ProgressVariants;
+export declare function Label<T extends ValidComponent = "span">(props: PolymorphicProps<T, LabelProps<T>>): import("solid-js").JSX.Element;
+export type TrackProps<T extends ValidComponent = "div"> = K.ProgressTrackProps<T> & ProgressVariants;
+export declare function Track<T extends ValidComponent = "div">(props: PolymorphicProps<T, TrackProps<T>>): import("solid-js").JSX.Element;
+export type FillProps<T extends ValidComponent = "div"> = K.ProgressFillProps<T> & ProgressVariants;
+export declare function Fill<T extends ValidComponent = "div">(props: PolymorphicProps<T, FillProps<T>>): import("solid-js").JSX.Element;
+export type ValueLabelProps<T extends ValidComponent = "div"> = K.ProgressValueLabelProps<T> & ProgressVariants;
+export declare function ValueLabel<T extends ValidComponent = "div">(props: PolymorphicProps<T, ValueLabelProps<T>>): import("solid-js").JSX.Element;
+export declare const ProgressParts: {
+    Root: typeof Root;
+    Label: typeof Label;
+    Track: typeof Track;
+    Fill: typeof Fill;
+    ValueLabel: typeof ValueLabel;
+};
+```
+
+## parts/sheet.d.ts
+
+```ts
+import { type DialogCloseButtonProps as KDialogCloseButtonProps, type DialogContentProps as KDialogContentProps, type DialogDescriptionProps as KDialogDescriptionProps, type DialogOverlayProps as KDialogOverlayProps, type DialogPortalProps as KDialogPortalProps, type DialogRootProps as KDialogRootProps, type DialogTitleProps as KDialogTitleProps, type DialogTriggerProps as KDialogTriggerProps } from "@kobalte/core/dialog";
+import type { PolymorphicProps } from "@kobalte/core/polymorphic";
+import { type ComponentProps, type JSX, type ValidComponent } from "solid-js";
+import { type IconButtonProps } from "../components/IconButton/IconButton.js";
+export declare const sheetParts: {
+    readonly trigger: "sheet-trigger";
+    readonly overlay: "sheet-overlay";
+    readonly content: "sheet-content";
+    readonly header: "sheet-header";
+    readonly title: "sheet-title";
+    readonly description: "sheet-description";
+    readonly closeButton: "sheet-close-button";
+    readonly handle: "sheet-handle";
+    readonly body: "sheet-body";
+    readonly footer: "sheet-footer";
+};
+export type SheetPart = keyof typeof sheetParts;
+export type SheetClasses = Partial<Record<SheetPart, string>>;
+export type SheetSide = "bottom" | "left" | "right";
+/** `auto` slides on pointer opens and closes. `none` never moves. */
+export type SheetMotion = "auto" | "none";
+export type SheetStyles = {
+    [P in SheetPart]: (variants?: {
+        side?: SheetSide;
+    }) => string;
+};
+export declare const sheetStyles: SheetStyles;
+export type RootProps = KDialogRootProps & {
+    motion?: SheetMotion;
+};
+export declare function Root(props: RootProps): JSX.Element;
+export declare function Portal(props: KDialogPortalProps): JSX.Element;
+export declare function Trigger<T extends ValidComponent = "button">(props: PolymorphicProps<T, KDialogTriggerProps<T>>): JSX.Element;
+export declare function Overlay<T extends ValidComponent = "div">(props: PolymorphicProps<T, KDialogOverlayProps<T>>): JSX.Element;
+export type ContentProps<T extends ValidComponent = "div"> = KDialogContentProps<T> & {
+    side?: SheetSide;
+    class?: string;
+};
+/**
+ * Without a Trigger, Content returns focus to the element that had it when
+ * the sheet opened.
+ */
+export declare function Content<T extends ValidComponent = "div">(props: PolymorphicProps<T, ContentProps<T>>): JSX.Element;
+export declare function Header(props: ComponentProps<"div">): JSX.Element;
+export declare function Title<T extends ValidComponent = "h2">(props: PolymorphicProps<T, KDialogTitleProps<T>>): JSX.Element;
+export declare function Description<T extends ValidComponent = "p">(props: PolymorphicProps<T, KDialogDescriptionProps<T>>): JSX.Element;
+export type CloseButtonProps = Omit<PolymorphicProps<"button", IconButtonProps>, "aria-label"> & KDialogCloseButtonProps & {
+    /** Accessible name of the button. Defaults to "close". */
+    "aria-label"?: string;
+};
+export declare function CloseButton(props: CloseButtonProps): JSX.Element;
+export type HandleProps = Omit<ComponentProps<"button">, "aria-label"> & {
+    /** Accessible name of the handle, which closes the sheet. Defaults to "close". */
+    "aria-label"?: string;
+};
+/**
+ * The grabber at the top of a bottom sheet. A tap, Enter or Space closes the
+ * sheet. Dragging it down past a distance, or flicking it, dismisses the sheet.
+ * A drag that is cancelled or does not go far enough settles back open.
+ */
+export declare function Handle(props: HandleProps): JSX.Element;
+export declare function Body(props: ComponentProps<"div">): JSX.Element;
+export declare function Footer(props: ComponentProps<"div">): JSX.Element;
+```
+
+## parts/skeleton.d.ts
+
+```ts
+import type { PolymorphicProps } from "@kobalte/core/polymorphic";
+import { type SkeletonRootProps as KSkeletonRootProps } from "@kobalte/core/skeleton";
+import { type ValidComponent } from "solid-js";
+export declare const skeletonParts: {
+    readonly root: "skeleton-root";
+};
+export type SkeletonPart = keyof typeof skeletonParts;
+export type SkeletonClasses = Partial<Record<SkeletonPart, string>>;
+export type SkeletonVariants = {
+    circle?: boolean;
+    animate?: boolean;
+};
+export type SkeletonStyles = {
+    [P in SkeletonPart]: (variants?: SkeletonVariants) => string;
+};
+export declare const skeletonStyles: SkeletonStyles;
+export type RootProps<T extends ValidComponent = "div"> = KSkeletonRootProps<T> & {
+    class?: string;
+};
+/**
+ * Kobalte's Skeleton. While `visible` it is a placeholder hidden from
+ * assistive technology; the loading region around it owns `aria-busy`.
+ */
+export declare function Root<T extends ValidComponent = "div">(props: PolymorphicProps<T, RootProps<T>>): import("solid-js").JSX.Element;
+```
+
+## parts/slider.d.ts
+
+```ts
+import * as K from "@kobalte/core/slider";
+import type { PolymorphicProps } from "@kobalte/core/polymorphic";
+import { type ValidComponent } from "solid-js";
+export { useSliderContext } from "@kobalte/core/slider";
+export type SliderVariants = {
+    orientation?: "horizontal" | "vertical";
+};
+export declare const sliderParts: {
+    readonly root: "slider-root";
+    readonly label: "slider-label";
+    readonly description: "slider-description";
+    readonly errorMessage: "slider-error-message";
+    readonly track: "slider-track";
+    readonly fill: "slider-fill";
+    readonly thumb: "slider-thumb";
+    readonly input: "slider-input";
+    readonly valueLabel: "slider-value-label";
+};
+export type SliderPart = keyof typeof sliderParts;
+export type SliderClasses = Partial<Record<SliderPart, string>>;
+export type SliderStyles = Record<SliderPart, (variants?: SliderVariants) => string>;
+export declare const sliderStyles: SliderStyles;
+export type RootProps<T extends ValidComponent = "div"> = K.SliderRootProps<T> & SliderVariants;
+export declare function Root<T extends ValidComponent = "div">(props: PolymorphicProps<T, RootProps<T>>): import("solid-js").JSX.Element;
+export type LabelProps<T extends ValidComponent = "label"> = K.SliderLabelProps<T> & SliderVariants;
+export declare function Label<T extends ValidComponent = "label">(props: PolymorphicProps<T, LabelProps<T>>): import("solid-js").JSX.Element;
+export type DescriptionProps<T extends ValidComponent = "div"> = K.SliderDescriptionProps<T> & SliderVariants;
+export declare function Description<T extends ValidComponent = "div">(props: PolymorphicProps<T, DescriptionProps<T>>): import("solid-js").JSX.Element;
+export type ErrorMessageProps<T extends ValidComponent = "div"> = K.SliderErrorMessageProps<T> & SliderVariants;
+export declare function ErrorMessage<T extends ValidComponent = "div">(props: PolymorphicProps<T, ErrorMessageProps<T>>): import("solid-js").JSX.Element;
+export type TrackProps<T extends ValidComponent = "div"> = K.SliderTrackProps<T> & SliderVariants;
+export declare function Track<T extends ValidComponent = "div">(props: PolymorphicProps<T, TrackProps<T>>): import("solid-js").JSX.Element;
+export type FillProps<T extends ValidComponent = "div"> = K.SliderFillProps<T> & SliderVariants;
+export declare function Fill<T extends ValidComponent = "div">(props: PolymorphicProps<T, FillProps<T>>): import("solid-js").JSX.Element;
+export type ThumbProps<T extends ValidComponent = "span"> = K.SliderThumbProps<T> & SliderVariants;
+export declare function Thumb<T extends ValidComponent = "span">(props: PolymorphicProps<T, ThumbProps<T>>): import("solid-js").JSX.Element;
+export type InputProps = K.SliderInputProps;
+export declare function Input(props: InputProps): import("solid-js").JSX.Element;
+export type ValueLabelProps<T extends ValidComponent = "div"> = K.SliderValueLabelProps<T> & SliderVariants;
+export declare function ValueLabel<T extends ValidComponent = "div">(props: PolymorphicProps<T, ValueLabelProps<T>>): import("solid-js").JSX.Element;
+export declare const SliderParts: {
+    Root: typeof Root;
+    Label: typeof Label;
+    Description: typeof Description;
+    ErrorMessage: typeof ErrorMessage;
+    Track: typeof Track;
+    Fill: typeof Fill;
+    Thumb: typeof Thumb;
+    Input: typeof Input;
+    ValueLabel: typeof ValueLabel;
+};
+```
+
+## parts/spinner.d.ts
+
+```ts
+import { type JSX } from "solid-js";
+export declare const spinnerParts: {
+    readonly root: "spinner-root";
+    readonly track: "spinner-track";
+    readonly indicator: "spinner-indicator";
+};
+export type SpinnerPart = keyof typeof spinnerParts;
+export type SpinnerClasses = Partial<Record<SpinnerPart, string>>;
+export type SpinnerSize = "sm" | "md" | "lg";
+export type SpinnerVariants = {
+    size?: SpinnerSize;
+};
+export type SpinnerStyles = {
+    [P in SpinnerPart]: (variants?: SpinnerVariants) => string;
+};
+export declare const spinnerStyles: SpinnerStyles;
+export type RootProps = JSX.SvgSVGAttributes<SVGSVGElement> & SpinnerVariants;
+/** The 24×24 viewBox that Track and Indicator draw in. */
+export declare function Root(props: RootProps): JSX.Element;
+export type TrackProps = JSX.CircleSVGAttributes<SVGCircleElement>;
+export declare function Track(props: TrackProps): JSX.Element;
+export type IndicatorProps = JSX.PathSVGAttributes<SVGPathElement>;
+export declare function Indicator(props: IndicatorProps): JSX.Element;
+```
+
+## parts/stack.d.ts
+
+```ts
+import { type ComponentProps, type JSX, type ValidComponent } from "solid-js";
+export type Gap = "0" | "0.5" | "1" | "1.5" | "2" | "3" | "4" | "6" | "8" | "10" | "12" | "16" | "20" | "24" | "32" | "40" | "48" | "56" | "64" | "px";
+export type StackVariants = {
+    gap?: Gap;
+    align?: "start" | "center" | "end" | "stretch" | "baseline";
+    justify?: "start" | "center" | "end" | "between" | "around" | "evenly";
+    direction?: "row" | "column";
+    wrap?: boolean;
+};
+export declare const stackParts: {
+    readonly root: "stack-root";
+};
+export type StackPart = keyof typeof stackParts;
+export type StackClasses = Partial<Record<StackPart, string>>;
+export type StackStyles = {
+    root: (variants?: StackVariants) => string;
+};
+export declare const stackStyles: StackStyles;
+export type StackProps<T extends ValidComponent = "div"> = StackVariants & {
+    as?: T;
+    children?: JSX.Element;
+    style?: string | JSX.CSSProperties;
+    class?: string;
+    classes?: StackClasses;
+} & Omit<ComponentProps<T>, keyof StackVariants | "as" | "children" | "class" | "classes" | "style">;
+export type RootProps<T extends ValidComponent = "div"> = StackProps<T>;
+export declare function Root<T extends ValidComponent = "div">(props: StackProps<T>): JSX.Element;
+```
+
+## parts/switch.d.ts
+
+```ts
+import * as K from "@kobalte/core/switch";
+import type { PolymorphicProps } from "@kobalte/core/polymorphic";
+import { type ValidComponent } from "solid-js";
+export { useSwitchContext } from "@kobalte/core/switch";
+export declare const switchParts: {
+    readonly root: "switch-root";
+    readonly input: "switch-input";
+    readonly control: "switch-control";
+    readonly thumb: "switch-thumb";
+    readonly label: "switch-label";
+    readonly description: "switch-description";
+    readonly errorMessage: "switch-error-message";
+};
+export type SwitchVariants = {
+    size?: "sm" | "md";
+};
+export type SwitchPart = "root" | "input" | "control" | "thumb" | "label" | "description" | "errorMessage";
+export type SwitchClasses = Partial<Record<SwitchPart, string>>;
+export type SwitchStyles = Record<SwitchPart, (variants?: SwitchVariants) => string>;
+export declare const switchStyles: SwitchStyles;
+export type RootProps<T extends ValidComponent = "div"> = K.SwitchRootProps<T> & SwitchVariants;
+export declare function Root<T extends ValidComponent = "div">(props: PolymorphicProps<T, RootProps<T>>): import("solid-js").JSX.Element;
+export type InputProps<T extends ValidComponent = "input"> = K.SwitchInputProps<T> & SwitchVariants;
+export declare function Input<T extends ValidComponent = "input">(props: PolymorphicProps<T, InputProps<T>>): import("solid-js").JSX.Element;
+export type ControlProps<T extends ValidComponent = "div"> = K.SwitchControlProps<T> & SwitchVariants;
+export declare function Control<T extends ValidComponent = "div">(props: PolymorphicProps<T, ControlProps<T>>): import("solid-js").JSX.Element;
+export type ThumbProps<T extends ValidComponent = "div"> = K.SwitchThumbProps<T> & SwitchVariants;
+export declare function Thumb<T extends ValidComponent = "div">(props: PolymorphicProps<T, ThumbProps<T>>): import("solid-js").JSX.Element;
+export type LabelProps<T extends ValidComponent = "label"> = K.SwitchLabelProps<T> & SwitchVariants;
+export declare function Label<T extends ValidComponent = "label">(props: PolymorphicProps<T, LabelProps<T>>): import("solid-js").JSX.Element;
+export type DescriptionProps<T extends ValidComponent = "div"> = K.SwitchDescriptionProps<T> & SwitchVariants;
+export declare function Description<T extends ValidComponent = "div">(props: PolymorphicProps<T, DescriptionProps<T>>): import("solid-js").JSX.Element;
+export type ErrorMessageProps<T extends ValidComponent = "div"> = K.SwitchErrorMessageProps<T> & SwitchVariants;
+export declare function ErrorMessage<T extends ValidComponent = "div">(props: PolymorphicProps<T, ErrorMessageProps<T>>): import("solid-js").JSX.Element;
+export declare const SwitchParts: {
+    Root: typeof Root;
+    Input: typeof Input;
+    Control: typeof Control;
+    Thumb: typeof Thumb;
+    Label: typeof Label;
+    Description: typeof Description;
+    ErrorMessage: typeof ErrorMessage;
+};
+```
+
+## parts/text.d.ts
+
+```ts
+import { type ComponentProps, type JSX, type ValidComponent } from "solid-js";
+import { tokens } from "../foundation/cui.css.js";
+export type TextVariants = {
+    size?: keyof typeof tokens.font.size;
+    weight?: keyof typeof tokens.font.weight;
+    tone?: "default" | "muted" | "hint" | "label" | "danger" | "success";
+};
+export declare const textParts: {
+    readonly root: "text-root";
+};
+export type TextPart = keyof typeof textParts;
+export type TextClasses = Partial<Record<TextPart, string>>;
+export type TextStyles = {
+    root: (variants?: TextVariants) => string;
+};
+export declare const textStyles: TextStyles;
+export type TextProps<T extends ValidComponent = "span"> = TextVariants & {
+    as?: T;
+    children?: JSX.Element;
+    class?: string;
+    classes?: TextClasses;
+} & Omit<ComponentProps<T>, keyof TextVariants | "as" | "children" | "class" | "classes">;
+export type RootProps<T extends ValidComponent = "span"> = TextProps<T>;
+export declare function Root<T extends ValidComponent = "span">(props: TextProps<T>): JSX.Element;
+```
+
+## parts/toast.d.ts
+
+```ts
+import type { PolymorphicProps } from "@kobalte/core/polymorphic";
+import { type ToastCloseButtonProps as KToastCloseButtonProps, type ToastDescriptionProps as KToastDescriptionProps, type ToastListProps as KToastListProps, type ToastProgressFillProps as KToastProgressFillProps, type ToastProgressTrackProps as KToastProgressTrackProps, type ToastRegionProps as KToastRegionProps, type ToastRootProps as KToastRootProps, type ToastTitleProps as KToastTitleProps } from "@kobalte/core/toast";
+import { type JSX, type ValidComponent } from "solid-js";
+export declare const toastParts: {
+    readonly region: "toast-region";
+    readonly list: "toast-list";
+    readonly root: "toast-root";
+    readonly title: "toast-title";
+    readonly description: "toast-description";
+    readonly closeButton: "toast-close-button";
+    readonly progressTrack: "toast-progress-track";
+    readonly progressFill: "toast-progress-fill";
+    readonly icon: "toast-icon";
+    readonly action: "toast-action";
+};
+export type ToastPart = keyof typeof toastParts;
+export type ToastClasses = Partial<Record<ToastPart, string>>;
+export type ToastTone = "neutral" | "info" | "success" | "warning" | "danger";
+export type ToastPosition = "top-left" | "top-center" | "top-right" | "bottom-left" | "bottom-center" | "bottom-right";
+export type ToastVariants = {
+    tone?: ToastTone;
+    position?: ToastPosition;
+};
+export type ToastStyles = {
+    [P in ToastPart]: (variants?: ToastVariants) => string;
+};
+export declare const toastStyles: ToastStyles;
+export type RegionProps<T extends ValidComponent = "div"> = KToastRegionProps<T> & {
+    position?: ToastPosition;
+    class?: string;
+};
+/** Fixed to a viewport edge. Toasts rise from the bottom and drop from the top. */
+export declare function Region<T extends ValidComponent = "div">(props: PolymorphicProps<T, RegionProps<T>>): JSX.Element;
+/**
+ * Renders a `div`, not Kobalte's `ol`: toasts carry `role="status"`, which a
+ * list item may not take.
+ */
+export declare function List<T extends ValidComponent = "div">(props: PolymorphicProps<T, KToastListProps<T> & {
+    class?: string;
+}>): JSX.Element;
+export type RootProps<T extends ValidComponent = "div"> = KToastRootProps<T> & {
+    tone?: ToastTone;
+    class?: string;
+};
+/**
+ * Announced politely, or assertively for the danger tone. Set `priority`
+ * to override.
+ */
+export declare function Root<T extends ValidComponent = "li">(props: PolymorphicProps<T, RootProps<T>>): JSX.Element;
+export declare function Title<T extends ValidComponent = "div">(props: PolymorphicProps<T, KToastTitleProps<T> & {
+    class?: string;
+}>): JSX.Element;
+export declare function Description<T extends ValidComponent = "div">(props: PolymorphicProps<T, KToastDescriptionProps<T> & {
+    class?: string;
+}>): JSX.Element;
+/** Shows a close icon when it has no children. Pass a localized `aria-label`. */
+export declare function CloseButton<T extends ValidComponent = "button">(props: PolymorphicProps<T, KToastCloseButtonProps<T> & {
+    class?: string;
+    children?: JSX.Element;
+}>): JSX.Element;
+export declare function ProgressTrack<T extends ValidComponent = "div">(props: PolymorphicProps<T, KToastProgressTrackProps<T> & {
+    class?: string;
+}>): JSX.Element;
+export declare function ProgressFill<T extends ValidComponent = "div">(props: PolymorphicProps<T, KToastProgressFillProps<T> & {
+    class?: string;
+}>): JSX.Element;
+export type IconProps = JSX.HTMLAttributes<HTMLSpanElement>;
+/** Decorative icon slot, hidden from assistive technology. Takes the tone color. */
+export declare function Icon(props: IconProps): JSX.Element;
+export type ActionProps = JSX.ButtonHTMLAttributes<HTMLButtonElement>;
+/** A small inline text button beside the message. */
+export declare function Action(props: ActionProps): JSX.Element;
 ```
 
 ## tokens.d.ts
