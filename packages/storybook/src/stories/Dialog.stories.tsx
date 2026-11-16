@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from "storybook-solidjs-vite";
 import { Button, Dialog, DialogPanelContent, DialogPanelFooter } from "@codeui/kit";
 import { createSignal, For } from "solid-js";
 import { DocsItemsContainer } from "./components/Section.jsx";
+import * as D from "@codeui/kit/dialog";
 
 // More on how to set up stories at: https://storybook.js.org/docs/7.0/solid/writing-stories/introduction
 const meta = {
@@ -99,4 +100,34 @@ export const OverflowContent: Story = {
 			</DocsItemsContainer>
 		);
 	},
+};
+
+/** Opened on load to show the styled parts in a custom layout. Hidden from the docs page, where an open modal would cover it. */
+export const Parts: Story = {
+	tags: ["!autodocs"],
+	render: () => (
+		<D.Root defaultOpen>
+			<D.Trigger as={Button} theme={"secondary"}>
+				Export video
+			</D.Trigger>
+			<D.Portal>
+				<D.Overlay />
+				<D.Positioner size={"sm"}>
+					<D.Content size={"sm"}>
+						<D.Header>
+							<D.Title>
+								Export <strong>video</strong>
+							</D.Title>
+							<D.CloseButton />
+						</D.Header>
+						<D.Description>Pick a format and a frame rate.</D.Description>
+						<D.Body>The export runs in the background. You can keep editing.</D.Body>
+						<D.Footer>
+							<Button theme={"primary"}>Export</Button>
+						</D.Footer>
+					</D.Content>
+				</D.Positioner>
+			</D.Portal>
+		</D.Root>
+	),
 };

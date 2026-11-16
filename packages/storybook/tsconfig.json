@@ -29,6 +29,12 @@
 		"paths": {
 			"@codeui/kit": [
 				"../kit/src/index.tsx"
+			],
+			"@codeui/kit/dialog": [
+				"../kit/src/parts/dialog.tsx"
+			],
+			"@codeui/kit/popover": [
+				"../kit/src/parts/popover.tsx"
 			]
 		}
 	},

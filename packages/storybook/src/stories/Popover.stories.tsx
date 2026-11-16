@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from "storybook-solidjs-vite";
 import { Button, Popover, PopoverContent, PopoverTrigger } from "@codeui/kit";
 import { DocsItemsContainer } from "./components/Section.jsx";
 import { For } from "solid-js";
+import * as P from "@codeui/kit/popover";
 
 const placements = [
 	"top-start",
@@ -76,5 +77,41 @@ export const CustomPosition: Story = {
 				)}
 			</For>
 		</DocsItemsContainer>
+	),
+};
+
+/** Opened on load to show the styled parts. Hidden from the docs page, where open popovers would overlap. */
+export const Parts: Story = {
+	tags: ["!autodocs"],
+	render: () => (
+		<P.Root defaultOpen placement={"bottom-start"} gutter={10}>
+			<P.Trigger as={Button} theme={"secondary"}>
+				What's new
+			</P.Trigger>
+			<P.Portal>
+				<P.Content variant={"bordered"}>
+					<P.Title>New export panel</P.Title>
+					<P.Description>Export styles now live next to the preview.</P.Description>
+				</P.Content>
+			</P.Portal>
+		</P.Root>
+	),
+};
+
+/** The ready component opened on load. Children render directly in the content, without a paragraph. */
+export const OpenWithBlockContent: Story = {
+	tags: ["!autodocs"],
+	render: () => (
+		<Popover defaultOpen placement={"bottom-start"}>
+			<PopoverTrigger as={Button} theme={"secondary"}>
+				Export styles
+			</PopoverTrigger>
+			<PopoverContent title={"Export styles"} description={"Applies to every new export."}>
+				<div style={{ display: "grid", "grid-template-columns": "1fr 1fr", gap: "8px" }}>
+					<Button theme={"secondary"}>PNG</Button>
+					<Button theme={"secondary"}>SVG</Button>
+				</div>
+			</PopoverContent>
+		</Popover>
 	),
 };
