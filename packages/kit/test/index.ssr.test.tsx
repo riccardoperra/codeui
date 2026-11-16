@@ -103,3 +103,24 @@ it("server renders the ready combobox label and controlled input text", () => {
 	expect(html).toContain('role="combobox"');
 	expect(html).toContain('value="index.ts"');
 });
+
+import { CommandMenuParts } from "../src/parts/command-menu";
+it("server renders a closed command menu as its trigger only", () => {
+	const html = renderToString(() => (
+		<CommandMenuParts.Root open={false}>
+			<CommandMenuParts.Trigger>Commands</CommandMenuParts.Trigger>
+			<CommandMenuParts.Portal>
+				<CommandMenuParts.Content options={["Randomize"]}>
+					<CommandMenuParts.Search>
+						<CommandMenuParts.SearchInput aria-label="Search" />
+					</CommandMenuParts.Search>
+					<CommandMenuParts.Listbox />
+				</CommandMenuParts.Content>
+			</CommandMenuParts.Portal>
+		</CommandMenuParts.Root>
+	));
+	expect(html).toContain('data-cui="command-menu-trigger"');
+	expect(html).toContain("Commands");
+	expect(html).not.toContain('role="dialog"');
+	expect(html).not.toContain('role="combobox"');
+});

@@ -38,6 +38,9 @@
 			],
 			"@codeui/kit/combobox": [
 				"../kit/src/parts/combobox.tsx"
+			],
+			"@codeui/kit/command-menu": [
+				"../kit/src/parts/command-menu.tsx"
 			]
 		}
 	},

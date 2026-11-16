@@ -159,6 +159,20 @@
 				"types": "./dist/types-cjs/parts/combobox.d.cts",
 				"default": "./dist/cjs/parts/combobox.cjs"
 			}
+		},
+		"./command-menu": {
+			"solid": {
+				"types": "./dist/types/parts/command-menu.d.ts",
+				"default": "./dist/source/parts/command-menu.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/command-menu.d.ts",
+				"default": "./dist/esm/parts/command-menu.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/command-menu.d.cts",
+				"default": "./dist/cjs/parts/command-menu.cjs"
+			}
 		}
 	},
 	"typesVersions": {
@@ -186,6 +200,9 @@
 			],
 			"combobox": [
 				"dist/types/parts/combobox.d.ts"
+			],
+			"command-menu": [
+				"dist/types/parts/command-menu.d.ts"
 			]
 		}
 	},

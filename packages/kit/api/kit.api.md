@@ -1781,6 +1781,8 @@ import { Combobox } from "./components/Combobox/Combobox.js";
 export { Combobox };
 export { ComboboxParts, comboboxStyles, createComboboxOptions, } from "./components/Combobox/Combobox.js";
 export type { ComboboxProps, ComboboxClasses, ComboboxOption, ComboboxOptionsConfig, ComboboxPart, ComboboxStyles, ComboboxVariants, CreateComboboxOptionsReturn, } from "./components/Combobox/Combobox.js";
+export { CommandMenuParts, commandMenuStyles } from "./parts/command-menu.js";
+export type { CommandMenuClasses, CommandMenuPart, CommandMenuStyles, } from "./parts/command-menu.js";
 ```
 
 ## parts/combobox.d.ts
@@ -1872,6 +1874,126 @@ export declare const ComboboxParts: {
     Label: typeof Label;
     Description: typeof Description;
     ErrorMessage: typeof ErrorMessage;
+};
+```
+
+## parts/command-menu.d.ts
+
+```ts
+import * as K from "@kobalte/core/combobox";
+import { type DialogContentProps as KDialogContentProps, type DialogOverlayProps as KDialogOverlayProps, type DialogPortalProps as KDialogPortalProps, type DialogRootProps as KDialogRootProps, type DialogTitleProps as KDialogTitleProps, type DialogTriggerProps as KDialogTriggerProps } from "@kobalte/core/dialog";
+import type { PolymorphicProps } from "@kobalte/core/polymorphic";
+import { type ComponentProps, type JSX, type ValidComponent } from "solid-js";
+export declare const commandMenuParts: {
+    readonly trigger: "command-menu-trigger";
+    readonly overlay: "command-menu-overlay";
+    readonly content: "command-menu-content";
+    readonly title: "command-menu-title";
+    readonly search: "command-menu-search";
+    readonly searchInput: "command-menu-search-input";
+    readonly hint: "command-menu-hint";
+    readonly listbox: "command-menu-listbox";
+    readonly group: "command-menu-group";
+    readonly groupLabel: "command-menu-group-label";
+    readonly item: "command-menu-item";
+    readonly leading: "command-menu-leading";
+    readonly itemLabel: "command-menu-item-label";
+    readonly itemDescription: "command-menu-item-description";
+    readonly itemIndicator: "command-menu-item-indicator";
+    readonly shortcut: "command-menu-shortcut";
+    readonly empty: "command-menu-empty";
+};
+export type CommandMenuPart = keyof typeof commandMenuParts;
+export type CommandMenuClasses = Partial<Record<CommandMenuPart, string>>;
+export type CommandMenuStyles = Record<CommandMenuPart, () => string>;
+export declare const commandMenuStyles: CommandMenuStyles;
+export type RootProps = KDialogRootProps;
+export declare function Root(props: RootProps): JSX.Element;
+export type PortalProps = KDialogPortalProps;
+export declare function Portal(props: PortalProps): JSX.Element;
+export type TriggerProps<T extends ValidComponent = "button"> = KDialogTriggerProps<T>;
+export declare function Trigger<T extends ValidComponent = "button">(props: PolymorphicProps<T, TriggerProps<T>>): JSX.Element;
+export type OverlayProps<T extends ValidComponent = "div"> = KDialogOverlayProps<T>;
+export declare function Overlay<T extends ValidComponent = "div">(props: PolymorphicProps<T, OverlayProps<T>>): JSX.Element;
+type EngineKeys = "options" | "optionValue" | "optionTextValue" | "optionLabel" | "optionDisabled" | "optionGroupChildren" | "itemComponent" | "sectionComponent" | "defaultFilter" | "onInputChange" | "translations" | "virtualized" | "keyboardDelegate";
+/**
+ * The combobox engine that drives the search field and the inline list. The
+ * list is always shown, so the engine has no open state or popup of its own.
+ */
+export type EngineProps<Option, OptGroup = never> = Pick<K.ComboboxRootOptions<Option, OptGroup>, EngineKeys> & {
+    /**
+     * Called with the option under the highlight each time it changes, from the
+     * keyboard or the pointer, and with `undefined` when nothing is highlighted.
+     */
+    onHighlightChange?: (option: Option | undefined) => void;
+    /** Called when Enter or a click picks an option. */
+    onSelect?: (option: Option) => void;
+};
+export type ContentProps<Option, OptGroup = never> = Omit<KDialogContentProps, "children"> & EngineProps<Option, OptGroup> & {
+    class?: string;
+    children?: JSX.Element;
+};
+/**
+ * The dialog panel. It hosts the combobox engine, so the search field and
+ * the list inside share one highlight. The highlight starts on the first
+ * enabled option and moves back to it whenever the query changes.
+ */
+export declare function Content<Option, OptGroup = never>(props: ContentProps<Option, OptGroup>): JSX.Element;
+export type TitleProps<T extends ValidComponent = "h2"> = KDialogTitleProps<T>;
+export declare function Title<T extends ValidComponent = "h2">(props: PolymorphicProps<T, TitleProps<T>>): JSX.Element;
+export type SearchProps = ComponentProps<"div">;
+/** The field around the search input, its icon and the key hint. */
+export declare function Search(props: SearchProps): JSX.Element;
+export type SearchInputProps<T extends ValidComponent = "input"> = K.ComboboxInputProps<T>;
+export declare function SearchInput<T extends ValidComponent = "input">(props: PolymorphicProps<T, SearchInputProps<T>>): JSX.Element;
+export type HintProps = ComponentProps<"span">;
+/** Key hints such as "↑↓ preview · ↵ apply · esc cancel". Hidden on phones. */
+export declare function Hint(props: HintProps): JSX.Element;
+export type ListboxProps<Option = unknown, OptGroup = never, T extends ValidComponent = "ul"> = K.ComboboxListboxProps<Option, OptGroup, T>;
+export declare function Listbox<Option = unknown, OptGroup = never, T extends ValidComponent = "ul">(props: PolymorphicProps<T, ListboxProps<Option, OptGroup, T>>): JSX.Element;
+export type GroupProps<T extends ValidComponent = "li"> = K.ComboboxSectionProps<T>;
+/** The heading row that starts a group of options. */
+export declare function Group<T extends ValidComponent = "li">(props: PolymorphicProps<T, GroupProps<T>>): JSX.Element;
+export type GroupLabelProps = ComponentProps<"span">;
+export declare function GroupLabel(props: GroupLabelProps): JSX.Element;
+export type ItemProps<T extends ValidComponent = "li"> = K.ComboboxItemProps<T>;
+export declare function Item<T extends ValidComponent = "li">(props: PolymorphicProps<T, ItemProps<T>>): JSX.Element;
+export type LeadingProps = ComponentProps<"span">;
+/** A fixed box before the label, so labels line up with or without a visual. */
+export declare function Leading(props: LeadingProps): JSX.Element;
+export type ItemLabelProps<T extends ValidComponent = "div"> = K.ComboboxItemLabelProps<T>;
+export declare function ItemLabel<T extends ValidComponent = "div">(props: PolymorphicProps<T, ItemLabelProps<T>>): JSX.Element;
+export type ItemDescriptionProps<T extends ValidComponent = "div"> = K.ComboboxItemDescriptionProps<T>;
+export declare function ItemDescription<T extends ValidComponent = "div">(props: PolymorphicProps<T, ItemDescriptionProps<T>>): JSX.Element;
+export type ItemIndicatorProps<T extends ValidComponent = "div"> = K.ComboboxItemIndicatorProps<T>;
+/** Pass `forceMount` to mark an option as current; the menu never keeps a selection. */
+export declare function ItemIndicator<T extends ValidComponent = "div">(props: PolymorphicProps<T, ItemIndicatorProps<T>>): JSX.Element;
+export type ShortcutProps = ComponentProps<"span">;
+export declare function Shortcut(props: ShortcutProps): JSX.Element;
+export type EmptyProps = ComponentProps<"div">;
+/** Rendered only while no option matches the query. */
+export declare function Empty(props: EmptyProps): JSX.Element;
+export { useComboboxContext as useCommandMenuContext } from "@kobalte/core/combobox";
+export declare const CommandMenuParts: {
+    Root: typeof Root;
+    Trigger: typeof Trigger;
+    Portal: typeof Portal;
+    Overlay: typeof Overlay;
+    Content: typeof Content;
+    Title: typeof Title;
+    Search: typeof Search;
+    SearchInput: typeof SearchInput;
+    Hint: typeof Hint;
+    Listbox: typeof Listbox;
+    Group: typeof Group;
+    GroupLabel: typeof GroupLabel;
+    Item: typeof Item;
+    Leading: typeof Leading;
+    ItemLabel: typeof ItemLabel;
+    ItemDescription: typeof ItemDescription;
+    ItemIndicator: typeof ItemIndicator;
+    Shortcut: typeof Shortcut;
+    Empty: typeof Empty;
 };
 ```
 
