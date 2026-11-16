@@ -1,23 +1,143 @@
 ---
 title: "Field helpers"
 description: "Helpers that wire labels, descriptions, and errors into custom fields."
-status: draft
 ---
 
-{/* TODO(docs): Scope from the docs plan. Reactive inputs, return contracts, labels and validation. styleFieldMessage requires vanilla-extract at build time. Follow apps/docs/CONTRIBUTING-DOCS.md. Delete each TODO(docs) as you finish its section, and delete status: draft when the page is done. */}
+The field helpers give your own control the look of [TextField](/docs/components/text-field): the same box, the same label, and the same error text. You need them only when you build a field the kit does not ship, such as a native `select`, a color input, or a third-party editor. For text, numbers, and choices, use the ready components. They already wire the label, the hint, the error, and the ARIA attributes.
+
+<SolidDemo name="field-helpers/custom-field" />
+
+The demo builds an export format field from a native `select`. It uses all three helpers and the field style exports. The helpers return classes and ids only. Your component renders the elements, links them with `for` and `aria-describedby`, and decides when the field is invalid.
 
 ## `createBaseFieldProps`
 
-{/* TODO(docs): Import path, signature, parameters, return value, one example, and edge cases. Covers @codeui/kit BaseFieldProps, @codeui/kit createBaseFieldProps. */}
+```ts
+import { createBaseFieldProps, type BaseFieldProps } from "@codeui/kit";
+
+function createBaseFieldProps(
+	props: BaseFieldProps,
+	field: Accessor<FieldContent & { inputId?: string; id?: string }>,
+): {
+	ids: { input: () => string; label: () => string; description: () => string; errorMessage: () => string };
+	baseStyle: () => string;
+};
+function createBaseFieldProps(props: BaseFieldProps): { ids: undefined; baseStyle(): string };
+```
+
+`BaseFieldProps` holds the two field variants. `FieldContent` holds `label`, `description`, and `errorMessage`. `baseStyle()` reads `size` and `theme` each time you call it, so pass your component props as they are, without destructuring.
+
+<PropsTable name="BaseField" />
+
+`baseStyle()` returns the class of the field box for the current `size` and `theme`. Call it in JSX so the class follows prop changes.
+
+Pass the `field` accessor to also get `ids`. The helper reads only `id` and `inputId` from it. `ids` holds four accessors that return linked ids:
+
+| Accessor               | Returns                                                      |
+| ---------------------- | ------------------------------------------------------------ |
+| `ids.input()`          | `inputId`, or else `${id}-input`. Without `id`, a generated id. |
+| `ids.label()`          | `${ids.input()}-label`                                       |
+| `ids.description()`    | `${ids.input()}-description`                                 |
+| `ids.errorMessage()`   | `${ids.input()}-error`                                       |
+
+Without the accessor, `ids` is `undefined`. The generated id comes from `createUniqueId`, so it matches between the server and the client.
+
+<SolidDemo name="field-helpers/base-style" />
+
+The box reads its colors from variables that `fieldStyles.baseFieldTheme` defines. Put that class, or `textFieldStyles.baseFieldContainer`, on an ancestor. Without it the box has no fill and no text color. The box sets no padding. Add `textFieldStyles.textField` for the horizontal padding of a single-line input.
+
+The invalid and disabled styles key on the `data-invalid` and `data-disabled` attributes of the control, not on `:invalid` or `:disabled`. Set those attributes yourself, as the custom field demo does with `data-invalid`.
 
 ## `createFieldLabelProps`
 
-{/* TODO(docs): Import path, signature, parameters, return value, one example, and edge cases. Covers @codeui/kit createFieldLabelProps. */}
+```ts
+import { createFieldLabelProps } from "@codeui/kit";
+
+function createFieldLabelProps<T extends ValidComponent = "label">(
+	props: PolymorphicProps<T>,
+): PolymorphicProps<T>;
+```
+
+The helper returns your props with the kit label class added after `props.class`. Spread the result on a `label`. It sets no `for` and no `id`. Pass them as getters, as the demo does, so they stay reactive:
+
+```tsx
+const labelProps = createFieldLabelProps<"label">({
+	get for() {
+		return field.ids.input();
+	},
+	get id() {
+		return field.ids.label();
+	},
+});
+```
+
+The label font size follows the nearest `data-field-size` attribute, from 12px at `xs` to 16px at `lg`. Set `data-field-size` on the field root. Without it, the label inherits the font size of its parent.
 
 ## `createFieldErrorMessageProps`
 
-{/* TODO(docs): Import path, signature, parameters, return value, one example, and edge cases. Covers @codeui/kit createFieldErrorMessageProps, @codeui/kit FieldWithErrorMessageSupport. */}
+```ts
+import { createFieldErrorMessageProps, type FieldWithErrorMessageSupport } from "@codeui/kit";
+
+function createFieldErrorMessageProps<T extends FieldWithErrorMessageSupport>(
+	props: T,
+): { errorMessage: JSX.Element; class: string };
+```
+
+The helper picks `errorMessage` from your props and adds `class`, the kit error style. It ignores every other prop.
+
+<PropsTable name="FieldErrorMessageSupport" />
+
+The helper renders nothing and sets no id or role. Render the message only while the field is invalid, give it `ids.errorMessage()`, and add that id to the control's `aria-describedby`. Also set `aria-invalid` on the control. Extend `FieldWithErrorMessageSupport` in your props type so your field takes `errorMessage` like the ready fields.
 
 ## `styleFieldMessage`
 
-{/* TODO(docs): Import path, signature, parameters, return value, one example, and edge cases. Covers @codeui/kit styleFieldMessage. */}
+```ts
+import { styleFieldMessage } from "@codeui/kit";
+
+function styleFieldMessage(
+	sizesMap: Record<"xs" | "sm" | "md" | "lg" | "xl", "xs" | "sm" | "md" | "lg" | "xl">,
+): { selectors: StyleRule["selectors"] };
+```
+
+The helper builds a vanilla-extract style rule. For each field size, it maps `[data-field-size=<size>] &` to the font size you pick for that size. Call it in a `.css.ts` file. It needs vanilla-extract at build time and does nothing at runtime.
+
+The kit styles its error message with it, in `packages/kit/src/components/Field/FieldError/FieldError.css.ts`:
+
+```ts
+export const errorMessage = style([
+	styleFieldMessage({
+		xs: "xs",
+		sm: "xs",
+		md: "xs",
+		lg: "sm",
+		xl: "sm",
+	}),
+	{
+		userSelect: "none",
+		color: tokens.text.danger,
+	},
+]);
+```
+
+Use it when you add a text part to a custom field, such as a character counter, and want it to scale with the field size like the label and the hint.
+
+## Field style exports
+
+These namespaces hold the classes and variables that the helpers and the ready fields use. Import them from `@codeui/kit`.
+
+| Export                                | Holds                                                                               |
+| ------------------------------------- | ----------------------------------------------------------------------------------- |
+| `fieldStyles.baseFieldTheme`          | Class that defines the field variables. Put it on the field root.                   |
+| `fieldStyles.baseFieldVars`           | The field variables: `background`, `borderColor`, `color`, `descriptionColor`, `inputHeight`, `fontSize`, `disabledBackground`. |
+| `fieldStyles.baseFieldVariants`       | The recipe behind `baseStyle()`. Takes `size` and `theme`.                          |
+| `fieldStyles.FieldSizes`              | The five size names, `xs` to `xl`.                                                  |
+| `fieldStyles.inputHeight`, `fieldStyles.fontSize` | Raw variables for the control height and font size.                    |
+| `fieldLabelStyles.label`              | The label class that `createFieldLabelProps` adds.                                  |
+| `fieldErrorStyles.errorMessage`       | The error class that `createFieldErrorMessageProps` adds.                           |
+| `textFieldStyles.baseFieldContainer`  | `baseFieldTheme` plus a column layout with a 12px gap. The TextField root class.    |
+| `textFieldStyles.textField`           | Horizontal padding and no outline. The TextField input class.                       |
+
+The kit exports no class for the hint. The demo colors its hint with `fieldStyles.baseFieldVars.descriptionColor` and `--cui-font-size-xs`.
+
+`FieldClasses` is the type of the `classes` prop on the ready fields, with the keys `root`, `input`, `label`, `description`, and `errorMessage`. Reuse it so your field takes the same `classes` shape.
+
+All the helpers run during server rendering. They render no DOM, use no portal, and add no client effects.

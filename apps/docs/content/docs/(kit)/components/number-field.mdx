@@ -1,60 +1,145 @@
 ---
-title: NumberField
-description: A numeric input with step buttons, bounds, and a fixed precision.
-status: draft
+title: "NumberField"
+description: "A numeric input with step buttons, bounds, and a fixed precision."
 ---
 
-{/* TODO(docs): Rewrite into the page template. Run node tools/docs/scaffold.mjs --print components/number-field to see it, and keep the useful content below. */}
+## When to use
 
-<SolidDemo name="number-field" source="hidden" />
+Use NumberField when the user types an exact number, such as a font size, a padding, or an export width. It masks the input to digits, keeps the value inside `min` and `max`, and steps it with the arrow keys or the buttons.
 
-## Usage
+## When to choose another component
 
-```tsx
-import { createSignal } from 'solid-js';
-import { NumberField } from '@codeui/kit';
+- Use [Slider](/docs/components/slider) when the position in a range matters more than the exact number. Inkstone pairs a slider with a number field for a number in a useful range.
+- Use [SegmentedControl](/docs/components/segmented-control) for two to five fixed values, such as an export scale of 1×, 2×, or 4×.
+- Use [TextField](/docs/components/text-field) for digits that are not a quantity, such as a version or a postal code.
 
-export function FontSize() {
-  const [fontSize, setFontSize] = createSignal<number | null | undefined>(14);
-  return (
-    <NumberField
-      label="Font size"
-      description="Between 8 and 32 pixels."
-      min={8}
-      max={32}
-      value={fontSize()}
-      onChange={setFontSize}
-    />
-  );
-}
-```
+## Live demo
 
-## API
+<SolidDemo name="number-field/basic" />
 
-`NumberField` wraps Kobalte's `TextField` root and adds increment and decrement buttons.
-Arrow Up and Arrow Down step the value, and the value is clamped to `min` and `max` on blur.
-Kobalte's root props such as `name`, `disabled`, and `required` pass through.
-The value is a number, or `null` when the input is empty.
+## Anatomy
 
-<TypeTable
-  type={{
-    value: { type: 'number | null', description: 'Controlled value.' },
-    defaultValue: { type: 'number', description: 'Value on first render, when uncontrolled.' },
-    onChange: { type: '(value: number | null | undefined) => void', description: 'Called with the parsed number. Receives null when the input is cleared.' },
-    min: { type: 'number', default: 'Number.MIN_SAFE_INTEGER', description: 'Lowest allowed value.' },
-    max: { type: 'number', default: 'Number.MAX_SAFE_INTEGER', description: 'Highest allowed value.' },
-    step: { type: 'number', default: '1', description: 'Amount added or removed by the buttons and arrow keys.' },
-    precision: { type: 'number', default: '0', description: 'Number of decimal digits the input accepts.' },
-    prefix: { type: 'string', default: "''", description: 'Text shown before the number.' },
-    postfix: { type: 'string', default: "''", description: 'Text shown after the number.' },
-    label: { type: 'JSX.Element', description: 'Label above the input, linked to it.' },
-    description: { type: 'JSX.Element', description: 'Hint text under the input.' },
-    errorMessage: { type: 'JSX.Element', description: "Shown under the input when validationState is 'invalid'." },
-    size: { type: "'xs' | 'sm' | 'md' | 'lg' | 'xl'", default: "'md'", description: 'Height and font size of the input.' },
-    theme: { type: "'filled' | 'inline'", default: "'filled'", description: "'inline' drops the box and keeps a bottom border." },
-    classes: {
-      type: 'Partial<Record<FieldPart, string>>',
-      description: 'Classes for the parts it renders: root, input, label, description, errorMessage.',
-    },
-  }}
-/>
+| Export        | Renders                                   | `classes` key  | `data-cui`                 | Role      |
+| ------------- | ----------------------------------------- | -------------- | -------------------------- | --------- |
+| `NumberField` | Root `div`                                | `root`         | `number-field`             | `group`   |
+|               | `label`, when `label` is set              | `label`        | `text-field-label`         | none      |
+|               | `input`                                   | `input`        | `text-field-input`         | `textbox` |
+|               | Increment and decrement buttons           | none           | `button`                   | `button`  |
+|               | Hint `div`, when `description` is set     | `description`  | `text-field-description`   | none      |
+|               | Error `div`, when invalid and `errorMessage` is set | `errorMessage` | `text-field-error-message` | none |
+
+The input and the step buttons sit in an unnamed wrapper `div`. The buttons are kit [Buttons](/docs/components/button) with `variant="ghost"` and `theme="secondary"`. They show while the pointer is over the field or the input has focus. The root always carries `data-field-size`, `md` by default.
+
+## Variants
+
+### Bounds and step
+
+<SolidDemo name="number-field/bounds" />
+
+`min` and `max` bound the value. The mask stops you typing past `max`. A value under `min` is allowed while you type and is clamped when the input loses focus. `step` is the amount the buttons and the arrow keys add or remove. Stepping clamps to the bounds.
+
+### Precision and formatting
+
+<SolidDemo name="number-field/precision" />
+
+`precision` is the number of decimal digits the mask accepts. The default, `0`, accepts whole numbers only. The format is fixed and does not follow the locale:
+
+- A comma separates the decimals, so one and a half is `1,5`.
+- A non-breaking space separates thousands, so 1280 is `1 280`.
+- A minus sign is accepted only when `min` is below 0.
+
+### Prefix and postfix
+
+<SolidDemo name="number-field/prefix-postfix" />
+
+`prefix` and `postfix` are text that the mask keeps around the number, such as a unit. The caret stays on the number. Include the space you want, as in `postfix=" px"`. The value stays a plain number.
+
+### Size
+
+<SolidDemo name="number-field/sizes" />
+
+`size` uses the same scale as [TextField](/docs/components/text-field#size), from 30px at `xs` to 56px at `xl`. The step buttons grow with it, from 12px to 20px.
+
+### Theme
+
+<SolidDemo name="number-field/themes" />
+
+`filled` draws the field fill. `inline` keeps a 2px bottom border only.
+
+## States
+
+### Required, read-only, and disabled
+
+<SolidDemo name="number-field/states" />
+
+`required` sets `required` and `aria-required` on the input. `readOnly` blocks typing. `disabled` removes the input from the tab order and dims it. The step buttons and the arrow keys do not check `readOnly` or `disabled` yet, so a read-only field still steps. Hide or guard the field yourself until the kit fixes it.
+
+### Invalid
+
+<SolidDemo name="number-field/invalid" />
+
+Set `validationState="invalid"` to show `errorMessage` and set `aria-invalid`. The demo is invalid while the input is empty.
+
+### Controlled and empty
+
+`value` and `onChange` work as in the [live demo](#live-demo). `onChange` receives a number, or `null` when you clear the input. Type your signal as `number | null | undefined`. Pass `defaultValue` to leave the value to the field.
+
+## Ready API
+
+### `NumberField`
+
+Renders the root, the label, the masked input, the step buttons, the hint, and the error message.
+
+<PropsTable name="NumberField" />
+
+Inherited from Kobalte's [text field root](https://kobalte.dev/docs/core/components/text-field):
+
+<PropsTable name="NumberFieldInherited" />
+
+NumberField sends the same native attributes as TextField to the input, except `type`, which is always `text`. Pass `inputmode="decimal"` or `inputmode="numeric"` to get a number keypad on phones. Use `classes` to style one part. The root accepts no `class` prop.
+
+In a native form, the input submits its formatted text, such as `1 280 px`. Read the number from `onChange` instead of `FormData`.
+
+### `NumberFieldLabel`
+
+Renders Kobalte's `TextField.Label` with the kit label style. Use it only inside a Kobalte `TextField` root that you compose yourself.
+
+<PropsTable name="NumberFieldLabelProps" />
+
+## Accessibility
+
+### Keyboard
+
+| Key        | Action                                                  |
+| ---------- | ------------------------------------------------------- |
+| Tab        | Move focus to the input.                                |
+| Arrow Up   | Add `step` to the value, up to `max`.                   |
+| Arrow Down | Remove `step` from the value, down to `min`.            |
+
+### ARIA
+
+- The root is a `div` with `role="group"`. The input is a text input, not a `spinbutton`, so it has no `aria-valuenow`, `aria-valuemin`, or `aria-valuemax`. Say the bounds in the label or the hint.
+- The label `for` points at the input `id`.
+- The step buttons are named "Increment by" and "Decrement by", followed by the step, such as "Increment by 8".
+- The input gets `aria-describedby`, `aria-invalid`, `aria-required`, `aria-disabled`, and `aria-readonly` as TextField does.
+
+### Focus
+
+The arrow keys keep focus in the input. The step buttons show only while the pointer is over the field or the input has focus, so treat them as pointer targets and the arrow keys as the keyboard path.
+
+## SSR notes
+
+The root, the label, the input, and the hint render on the server. The label `for` and the input `id` are set during render, as in TextField. The mask attaches in `onMount`, so it runs only in the browser. Until hydration the input accepts any text.
+
+## Theming hooks
+
+NumberField reads the same field variables as [TextField](/docs/components/text-field#theming-hooks). The step buttons add `--cui-surface-input-accent` for their background, `--cui-text-input`, `--cui-radius-md`, and `--cui-space-2`, plus the ghost secondary [Button](/docs/components/button) variables.
+
+## Composition examples
+
+- [Build forms](/docs/patterns/build-forms) reads an export width from NumberField and validates it before submission.
+
+## Related
+
+- [Slider](/docs/components/slider) picks a value in a range by dragging.
+- [TextField](/docs/components/text-field) takes free text.

@@ -1,63 +1,162 @@
 ---
-title: TextField
-description: A single-line text input with a label, a description, and an error message.
-status: draft
+title: "TextField"
+description: "A single-line text input with a label, a description, and an error message."
 ---
 
-{/* TODO(docs): Rewrite into the page template. Run node tools/docs/scaffold.mjs --print components/text-field to see it, and keep the useful content below. */}
+## When to use
 
-<SolidDemo name="text-field" source="hidden" />
+Use TextField for one line of free text, such as a snippet name, a share link, or an email address. It renders the label, the input, the hint, and the error message as one field, and links them for assistive technology.
 
-## Usage
+## When to choose another component
 
-```tsx
-import { createSignal } from 'solid-js';
-import { TextField } from '@codeui/kit';
+- Use [TextArea](/docs/components/text-area) when the value can span several lines, such as a caption or a code snippet.
+- Use [NumberField](/docs/components/number-field) for a number. It parses, clamps, and steps the value for you.
+- Use [Select](/docs/components/select) when the value comes from a fixed list, and [Combobox](/docs/components/combobox) when the user types to filter a list.
 
-export function SnippetSettings() {
-  const [name, setName] = createSignal('untitled');
-  return (
-    <>
-      <TextField
-        label="Snippet name"
-        placeholder="my-snippet"
-        description="Used as the file name of the export."
-        value={name()}
-        onChange={setName}
-      />
-      <TextField
-        label="Share link"
-        value="codeimage"
-        validationState="invalid"
-        errorMessage="Enter a full URL."
-      />
-    </>
-  );
-}
-```
+## Live demo
 
-## API
+<SolidDemo name="text-field/basic" />
 
-`TextField` wraps Kobalte's `TextField` root and renders its label, input, description, and error message.
-Kobalte's root props such as `name`, `disabled`, `readOnly`, and `required` pass through.
-Native input attributes such as `type`, `autocomplete`, and the `aria-*` set go to the `input` element.
+## Anatomy
 
-<TypeTable
-  type={{
-    label: { type: 'JSX.Element', description: 'Label above the input, linked to it.' },
-    description: { type: 'JSX.Element', description: 'Hint text under the input.' },
-    errorMessage: { type: 'JSX.Element', description: "Shown under the input when validationState is 'invalid'." },
-    validationState: { type: "'valid' | 'invalid'", description: 'Marks the field invalid and reveals errorMessage.' },
-    value: { type: 'string', description: 'Controlled value.' },
-    defaultValue: { type: 'string', description: 'Value on first render, when uncontrolled.' },
-    onChange: { type: '(value: string) => void', description: 'Called on every edit.' },
-    placeholder: { type: 'string', description: 'Placeholder of the input.' },
-    size: { type: "'xs' | 'sm' | 'md' | 'lg' | 'xl'", default: "'md'", description: 'Height and font size of the input.' },
-    theme: { type: "'filled' | 'inline'", default: "'filled'", description: "'inline' drops the box and keeps a bottom border." },
-    ref: { type: 'Ref<HTMLInputElement>', description: 'Ref to the input element.' },
-    classes: {
-      type: 'Partial<Record<FieldPart, string>>',
-      description: 'Classes for the parts it renders: root, input, label, description, errorMessage.',
-    },
-  }}
-/>
+| Export      | Renders                     | `classes` key  | `data-cui`                 | Role               |
+| ----------- | --------------------------- | -------------- | -------------------------- | ------------------ |
+| `TextField` | Root `div`                  | `root`         | `text-field`               | `group`            |
+|             | `label`, when `label` is set | `label`       | `text-field-label`         | none               |
+|             | `input`                     | `input`        | `text-field-input`         | `textbox`          |
+|             | Hint `div`, when `description` is set | `description` | `text-field-description` | none   |
+|             | Error `div`, when invalid and `errorMessage` is set | `errorMessage` | `text-field-error-message` | none |
+
+The root, the label, the input, the hint, and the error carry Kobalte's state attributes: `data-invalid`, `data-valid`, `data-required`, `data-disabled`, and `data-readonly`. The root also carries `data-field-size` when you set `size`.
+
+## Variants
+
+### Size
+
+<SolidDemo name="text-field/sizes" />
+
+`size` sets the input height, the corner radius, and the font size of every part.
+
+| `size` | Input height | Input font size |
+| ------ | ------------ | --------------- |
+| `xs`   | 30px         | 12px            |
+| `sm`   | 36px         | 14px            |
+| `md`   | 40px         | 16px            |
+| `lg`   | 48px         | 16px            |
+| `xl`   | 56px         | 18px            |
+
+Inkstone sets desktop controls at 36px, which is `sm`. The default is `md`, 40px.
+
+### Theme
+
+<SolidDemo name="text-field/themes" />
+
+`filled` draws the field fill with a transparent border. `inline` drops the fill and the radius and keeps a 2px bottom border, for a field that sits inside a row of text. These are the only two themes the source defines.
+
+### Description
+
+<SolidDemo name="text-field/description" />
+
+`label`, `description`, and `errorMessage` accept JSX, so a hint can hold code, a link, or a formatted value.
+
+## States
+
+### Required, read-only, and disabled
+
+<SolidDemo name="text-field/states" />
+
+`required` sets `required` and `aria-required` on the input. The kit adds no asterisk, so say "required" or "optional" in the label or the hint when it matters. `readOnly` keeps the value selectable and focusable and blocks edits. `disabled` removes the input from the tab order and dims it to 40% opacity.
+
+### Invalid
+
+<SolidDemo name="text-field/invalid" />
+
+Set `validationState="invalid"` to show `errorMessage`, color the border and the text with `--cui-text-danger`, and set `aria-invalid` on the input. The error message renders only while the field is invalid. The kit runs no validation of its own. You decide when the field is invalid.
+
+### Controlled
+
+<SolidDemo name="text-field/controlled" />
+
+Pass `value` and `onChange` to own the value. `onChange` receives the string, not the event. Pass `defaultValue` instead to leave the value to the field. A form reset restores `defaultValue`.
+
+## Ready API
+
+### `TextField`
+
+Renders the root, the label, the input, the hint, and the error message.
+
+<PropsTable name="TextField" />
+
+Inherited from Kobalte's [text field root](https://kobalte.dev/docs/core/components/text-field):
+
+<PropsTable name="TextFieldInherited" />
+
+TextField splits its props in two. These native attributes go to the `input` element, and every other prop goes to the root:
+
+<PropsTable name="TextFieldInputAttributes" />
+
+<SolidDemo name="text-field/input-attributes" />
+
+Use `classes` to style one part. Each class is merged after the kit styles, so it wins on equal specificity. `slotClasses` is a deprecated alias that stays until 1.0. The root accepts no `class` prop. See [Classes](/docs/utilities/classes) for the shared contract.
+
+<SolidDemo name="text-field/classes" />
+
+### `TextFieldLabel`
+
+Renders Kobalte's `TextField.Label` with the kit label style. Use it only inside a Kobalte `TextField` root that you compose yourself. TextField already renders its label.
+
+<PropsTable name="TextFieldLabelProps" />
+
+## Accessibility
+
+### Keyboard
+
+| Key       | Action                                   |
+| --------- | ---------------------------------------- |
+| Tab       | Move focus to the input.                 |
+| Shift+Tab | Move focus to the previous control.      |
+| Enter     | Submit the parent form, as a native input does. |
+
+### ARIA
+
+- The root is a `div` with `role="group"`.
+- The label is a `label` element whose `for` points at the input `id`.
+- The input gets `aria-labelledby` for the label and `aria-describedby` for the hint and, while invalid, the error message.
+- The input gets `aria-invalid`, `aria-required`, `aria-disabled`, and `aria-readonly` from the matching props.
+- Without a visible label, pass `aria-label` or `aria-labelledby`. They go to the input.
+
+### Focus
+
+TextField moves no focus on its own. On focus, the border takes `--cui-focus-color`. This differs from the Inkstone rule of one 2px ring on `:focus-visible`, and the code is the one that ships today.
+
+## SSR notes
+
+Every part renders on the server, and none uses a portal. TextField sets the input `id` to `${id}-input` and points the label `for` at it during render, so the server HTML already links the label to the input. Without an `id`, the kit generates one with `createUniqueId`, which matches between the server and the client while the component tree is the same. Kobalte adds `aria-labelledby` and `aria-describedby` after hydration.
+
+<SolidDemo name="text-field/ssr-ids" />
+
+Pass `id` when another element or a test needs a fixed input id. Pass `name` for form data. Without it, the input submits under the root id.
+
+## Theming hooks
+
+TextField reads these variables, through the shared field style:
+
+- Fill, text, and border: `--cui-surface-input`, `--cui-text-input`, `--cui-border-input`, `--cui-border-width`, and `--cui-border-width-strong` for `inline`.
+- Hint and placeholder: `--cui-text-hint`.
+- Label: `--cui-text-label` and `--cui-font-weight-medium`.
+- Focus and errors: `--cui-focus-color` and `--cui-text-danger`.
+- Size: `--cui-control-height-xs` to `--cui-control-height-xl`, `--cui-font-size-xs` to `--cui-font-size-lg`, and `--cui-radius-xs` to `--cui-radius-xl`.
+- Spacing and motion: `--cui-space-3`, `--cui-motion-duration-fast`, and `--cui-motion-ease-out`.
+
+See [Tokens](/docs/foundations/tokens) for the defaults.
+
+## Composition examples
+
+- [Build forms](/docs/patterns/build-forms) puts TextField, TextArea, and NumberField in one form with validation and submission.
+- [Field helpers](/docs/utilities/field-helpers) builds a custom field that matches TextField.
+
+## Related
+
+- [TextArea](/docs/components/text-area) takes the same props for multi-line text.
+- [NumberField](/docs/components/number-field) parses and steps a number.
+- [Field helpers](/docs/utilities/field-helpers) give your own control the field style.

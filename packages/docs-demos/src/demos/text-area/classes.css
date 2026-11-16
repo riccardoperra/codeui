@@ -1,0 +1,9 @@
+.snippet-code-field {
+	width: 360px;
+}
+
+.snippet-code-input {
+	min-height: 120px;
+	font-family: var(--cui-font-family-mono);
+	resize: vertical;
+}
