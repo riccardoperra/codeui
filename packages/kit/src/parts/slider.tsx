@@ -42,6 +42,7 @@ export function Root<T extends ValidComponent = "div">(
 	return (
 		<K.Root
 			{...others}
+			orientation={local.orientation}
 			data-cui={sliderParts.root}
 			data-orientation={local.orientation}
 			class={mergeClasses(sliderStyles.root(local), local.class)}

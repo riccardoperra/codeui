@@ -31,5 +31,9 @@ export const fill = style({
 			animation: `${pulse} calc(${t.motion.duration.slow} * 4) ${t.motion.ease.out} infinite alternate`,
 		},
 	},
-	"@media": { "(prefers-reduced-motion: reduce)": { animation: "none" } },
+	"@media": {
+		"(prefers-reduced-motion: reduce)": {
+			selectors: { "&[data-indeterminate]": { animation: "none" } },
+		},
+	},
 });

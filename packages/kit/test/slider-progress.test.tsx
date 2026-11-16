@@ -100,3 +100,13 @@ it("omits current value for indeterminate progress", () => {
 		screen.getByRole("progressbar", { name: "Preparing export" }),
 	).not.toHaveAttribute("aria-valuenow");
 });
+
+it("preserves vertical orientation and upward keyboard changes", () => {
+	render(() => (
+		<Slider label="Vertical opacity" orientation="vertical" defaultValue={50} />
+	));
+	const thumb = screen.getByRole("slider");
+	expect(thumb).toHaveAttribute("aria-orientation", "vertical");
+	fireEvent.keyDown(thumb, { key: "ArrowUp" });
+	expect(thumb).toHaveAttribute("aria-valuenow", "51");
+});

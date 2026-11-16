@@ -46,7 +46,7 @@ export function createSliderProps(props: Accessor<SliderProps>) {
 		},
 		input: () => ({
 			id: ids.input(),
-			"aria-hidden": true as const,
+			type: "hidden" as const,
 			class: props().classes?.input,
 		}),
 		label: () => ({ id: ids.label(), class: props().classes?.label }),

@@ -933,7 +933,7 @@ export declare function createSliderProps(props: Accessor<SliderProps>): {
     };
     input: () => {
         id: string;
-        "aria-hidden": true;
+        type: "hidden";
         class: string | undefined;
     };
     label: () => {

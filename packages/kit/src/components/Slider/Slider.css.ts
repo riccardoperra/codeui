@@ -5,7 +5,6 @@ export const root = style({
 	gap: t.space["2"],
 	color: t.text.default,
 	fontSize: t.font.size.caption,
-	selectors: { "&[data-disabled]": { opacity: 0.4 } },
 });
 export const label = style({ color: t.text.label });
 export const description = style({ color: t.text.hint, fontSize: t.font.size.xs });
@@ -21,6 +20,7 @@ export const track = style({
 	display: "flex",
 	alignItems: "center",
 	selectors: {
+		"&[data-disabled]": { opacity: 0.4 },
 		"&::before": {
 			content: '""',
 			position: "absolute",
