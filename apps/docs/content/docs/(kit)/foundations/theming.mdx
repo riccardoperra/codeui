@@ -126,6 +126,21 @@ Set a token on a class, as `.delete-snippet` does above. The component resolves 
 
 Your overrides are plain CSS. The kit's own styles ship as vanilla-extract `.css.js` modules, so your bundler still needs the vanilla-extract plugin to compile them. See [Installation](/docs/installation).
 
+## Start from a preset
+
+<SolidDemo name="theming/presets" source="hidden" />
+
+Each preset is plain token overrides on the Inkstone default. Pick one, then copy its CSS into your app. The CSS follows the `app.css` shape above, so it reaches `:root`, every `data-cui-theme` scope and the system mode.
+
+| Preset | Changes | Tokens |
+| --- | --- | --- |
+| Inkstone | Nothing. This is the default. | 0 |
+| Square | Every corner radius below `full`, scaled down. | 10 |
+| Soft | Every corner radius below `full`, scaled up. | 10 |
+| Forest | The brand color, its soft tint, the focus ring and the selection. Three of them differ by mode. | 9 |
+
+A change in shape or brand color touches many tokens at once. Keep the ratios when you write your own. An inner corner stays smaller than the corner around it, and hover and active stay a step darker than the base.
+
 ## Find the token to change
 
 Names follow `--cui-<role>-<name>`. The roles are `surface`, `text`, `action`, `accent`, `border`, `focus`, `shadow`, `radius`, `space`, `control`, `font` and `motion`.
