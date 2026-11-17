@@ -1,4 +1,3 @@
-@layer cui.components;
 @layer cui.components {
   .cui-icon-icon {
     width: var(--cui-icon-iconSize, 1.1em);

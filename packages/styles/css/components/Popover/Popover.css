@@ -1,6 +1,5 @@
 @import "./popover-tokens.generated.css";
 
-@layer cui.components;
 @layer cui.components {
   .cui-popover-popoverTheme {
     --cui-popoverTheme-contentBackground: var(--cui-component-popover-popover-theme-content-background);

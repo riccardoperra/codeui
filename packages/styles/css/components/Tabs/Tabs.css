@@ -1,6 +1,5 @@
 @import "./tabs-tokens.generated.css";
 
-@layer cui.components;
 @layer cui.components {
   .cui-tabs-tabsTheme {
     --cui-tabsTheme-tabListIndicatorColor: var(--cui-component-tabs-tabs-theme-tab-list-indicator-color);
@@ -19,13 +18,16 @@
     display: flex;
     position: relative;
   }
-  .cui-tabs-tabsList[data-orientation=horizontal] {
-    border-bottom: var(--cui-border-width) solid var(--cui-tabsTheme-tabListIndicatorColor);
-  }
-  .cui-tabs-tabsList[data-orientation=vertical] {
-    align-items: stretch;
-    flex-direction: column;
-    border-right: var(--cui-border-width) solid var(--cui-tabsTheme-tabListIndicatorColor);
+  .cui-tabs-tabsList {
+    &[data-orientation=horizontal] {
+      border-bottom: var(--cui-border-width) solid var(--cui-tabsTheme-tabListIndicatorColor);
+    }
+
+    &[data-orientation=vertical] {
+      align-items: stretch;
+      flex-direction: column;
+      border-right: var(--cui-border-width) solid var(--cui-tabsTheme-tabListIndicatorColor);
+    }
   }
   .cui-tabs-tabsHeader {
     display: inline-block;
@@ -60,13 +62,16 @@
   :root[data-cui-input="keyboard"] .cui-tabs-indicator {
     transition: none;
   }
-  .cui-tabs-indicator[data-orientation=horizontal] {
-    bottom: -2px;
-    height: 3px;
-  }
-  .cui-tabs-indicator[data-orientation=vertical] {
-    right: -1px;
-    width: 2px;
+  .cui-tabs-indicator {
+    &[data-orientation=horizontal] {
+      bottom: -2px;
+      height: 3px;
+    }
+
+    &[data-orientation=vertical] {
+      right: -1px;
+      width: 2px;
+    }
   }
   @media (--cui-reduced-motion) {
     .cui-tabs-indicator {

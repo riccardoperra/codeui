@@ -8,7 +8,6 @@
     opacity: 1;
   }
 }
-@layer cui.components;
 @layer cui.components {
   .cui-progress-root {
     display: grid;

@@ -1,6 +1,5 @@
 @import "./tooltip-tokens.generated.css";
 
-@layer cui.components;
 @layer cui.components {
   .cui-tooltip-tooltipTheme {
     --cui-tooltipTheme-fontSize: var(--cui-component-tooltip-tooltip-theme-font-size);
@@ -31,13 +30,16 @@
   .cui-tooltip-tooltipContent[data-motion=none], .cui-tooltip-tooltipContent[data-motion=none][data-expanded] {
     animation: none;
   }
-  :where(.cui-tooltip-tooltipContent)[data-theme="primary"] {
-    --cui-tooltipTheme-color: var(--cui-component-tooltip-tooltip-content-theme-primary-color);
-    --cui-tooltipTheme-backgroundColor: var(--cui-component-tooltip-tooltip-content-theme-primary-background-color);
-  }
-  :where(.cui-tooltip-tooltipContent)[data-theme="secondary"] {
-    --cui-tooltipTheme-color: var(--cui-component-tooltip-tooltip-content-theme-secondary-color);
-    --cui-tooltipTheme-backgroundColor: var(--cui-component-tooltip-tooltip-content-theme-secondary-background-color);
+  :where(.cui-tooltip-tooltipContent) {
+    &[data-theme="primary"] {
+      --cui-tooltipTheme-color: var(--cui-component-tooltip-tooltip-content-theme-primary-color);
+      --cui-tooltipTheme-backgroundColor: var(--cui-component-tooltip-tooltip-content-theme-primary-background-color);
+    }
+
+    &[data-theme="secondary"] {
+      --cui-tooltipTheme-color: var(--cui-component-tooltip-tooltip-content-theme-secondary-color);
+      --cui-tooltipTheme-backgroundColor: var(--cui-component-tooltip-tooltip-content-theme-secondary-background-color);
+    }
   }
   .cui-tooltip-trigger {
     display: inline-block;

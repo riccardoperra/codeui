@@ -52,6 +52,20 @@ Button's stylesheet still owns the selector and the property. Its medium-size ru
 
 Author single variants as `:where(.cui-button-button)[data-size="md"]`. Write compound variants as a base class followed by a group of attributes, such as `.cui-button-button:where([data-variant="ghost"][data-loading])`. Style helpers return the class for the part. Set the variant attributes on the same element.
 
+Nest adjacent variants that share a selector. Keep `:where()` on the parent when the attribute alone determines the specificity.
+
+```css
+:where(.cui-accordion-trigger) {
+  &[data-density="compact"] {
+    padding-block: var(--cui-space-1);
+  }
+
+  &[data-density="comfortable"] {
+    padding-block: var(--cui-space-3);
+  }
+}
+```
+
 Use CSS pseudo-classes for browser states such as `:focus-visible` and the component's documented attributes for state supplied by its adapter. For boolean variants with two styled values, such as Stack's `data-wrap`, use `"true"` or `"false"`. Use a presence attribute for flags such as `data-loading`.
 
 Other components use the same pipeline for size, tone, theme, and component-specific custom property assignments. A layout or calculation can still use CSS directly. For example, Switch uses `calc()` to combine shared spacing values for its track height.

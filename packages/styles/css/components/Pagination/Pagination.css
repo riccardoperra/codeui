@@ -1,6 +1,5 @@
 @import "./pagination-tokens.generated.css";
 
-@layer cui.components;
 @layer cui.components {
   .cui-pagination-paginationTheme {
     --cui-paginationTheme-paginationItemMargin: var(--cui-component-pagination-pagination-theme-pagination-item-margin);

@@ -31,7 +31,6 @@
     opacity: 0;
   }
 }
-@layer cui.components;
 @layer cui.components {
   .cui-toast-region {
     position: fixed;
@@ -42,31 +41,38 @@
     outline: none;
     pointer-events: none;
   }
-  :where(.cui-toast-region)[data-position="top-left"] {
-    top: 0;
-    left: 0;
-  }
-  :where(.cui-toast-region)[data-position="top-center"] {
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  :where(.cui-toast-region)[data-position="top-right"] {
-    top: 0;
-    right: 0;
-  }
-  :where(.cui-toast-region)[data-position="bottom-left"] {
-    bottom: var(--cui-space-16);
-    left: 0;
-  }
-  :where(.cui-toast-region)[data-position="bottom-center"] {
-    bottom: var(--cui-space-16);
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  :where(.cui-toast-region)[data-position="bottom-right"] {
-    bottom: var(--cui-space-16);
-    right: 0;
+  :where(.cui-toast-region) {
+    &[data-position="top-left"] {
+      top: 0;
+      left: 0;
+    }
+
+    &[data-position="top-center"] {
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    &[data-position="top-right"] {
+      top: 0;
+      right: 0;
+    }
+
+    &[data-position="bottom-left"] {
+      bottom: var(--cui-space-16);
+      left: 0;
+    }
+
+    &[data-position="bottom-center"] {
+      bottom: var(--cui-space-16);
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    &[data-position="bottom-right"] {
+      bottom: var(--cui-space-16);
+      right: 0;
+    }
   }
   .cui-toast-list {
     display: flex;
@@ -110,36 +116,48 @@
   [data-position^=top] .cui-toast-root[data-opened] {
     animation-name: cui-toast-drop;
   }
-  .cui-toast-root[data-closed] {
-    animation: cui-toast-fadeOut var(--cui-motion-duration-panel) var(--cui-motion-ease-out) forwards;
+  .cui-toast-root {
+    &[data-closed] {
+      animation: cui-toast-fadeOut var(--cui-motion-duration-panel) var(--cui-motion-ease-out) forwards;
+    }
+
+    &[data-cui-replaced][data-opened] {
+      animation: none;
+    }
+
+    &[data-swipe=move] {
+      transform: translateX(var(--cui-toast-swipe-move-x));
+    }
+
+    &[data-swipe=cancel] {
+      transform: translateX(0);
+      transition: transform var(--cui-motion-duration-panel) var(--cui-motion-ease-out);
+    }
+
+    &[data-swipe=end] {
+      animation: cui-toast-swipeOut var(--cui-motion-duration-panel) var(--cui-motion-ease-out) forwards;
+    }
   }
-  .cui-toast-root[data-cui-replaced][data-opened] {
-    animation: none;
-  }
-  .cui-toast-root[data-swipe=move] {
-    transform: translateX(var(--cui-toast-swipe-move-x));
-  }
-  .cui-toast-root[data-swipe=cancel] {
-    transform: translateX(0);
-    transition: transform var(--cui-motion-duration-panel) var(--cui-motion-ease-out);
-  }
-  .cui-toast-root[data-swipe=end] {
-    animation: cui-toast-swipeOut var(--cui-motion-duration-panel) var(--cui-motion-ease-out) forwards;
-  }
-  :where(.cui-toast-root)[data-tone="neutral"] {
-    --cui-toast-accent: var(--cui-component-toast-root-tone-neutral-accent);
-  }
-  :where(.cui-toast-root)[data-tone="info"] {
-    --cui-toast-accent: var(--cui-component-toast-root-tone-info-accent);
-  }
-  :where(.cui-toast-root)[data-tone="success"] {
-    --cui-toast-accent: var(--cui-component-toast-root-tone-success-accent);
-  }
-  :where(.cui-toast-root)[data-tone="warning"] {
-    --cui-toast-accent: var(--cui-component-toast-root-tone-warning-accent);
-  }
-  :where(.cui-toast-root)[data-tone="danger"] {
-    --cui-toast-accent: var(--cui-component-toast-root-tone-danger-accent);
+  :where(.cui-toast-root) {
+    &[data-tone="neutral"] {
+      --cui-toast-accent: var(--cui-component-toast-root-tone-neutral-accent);
+    }
+
+    &[data-tone="info"] {
+      --cui-toast-accent: var(--cui-component-toast-root-tone-info-accent);
+    }
+
+    &[data-tone="success"] {
+      --cui-toast-accent: var(--cui-component-toast-root-tone-success-accent);
+    }
+
+    &[data-tone="warning"] {
+      --cui-toast-accent: var(--cui-component-toast-root-tone-warning-accent);
+    }
+
+    &[data-tone="danger"] {
+      --cui-toast-accent: var(--cui-component-toast-root-tone-danger-accent);
+    }
   }
   .cui-toast-icon {
     grid-column: 1;

@@ -79,7 +79,7 @@ Custom overlay and progress implementations supply these neutral geometry inputs
 
 `@codeui/kit` maps its engine geometry to these inputs. A theme scope must contain portal content or its host to pass inherited brand, radius, and component overrides.
 
-All CSS lives under `cui`, with the fixed inner order `cui.base`, `cui.components`, and `cui.overrides`. The field label uses `base`. IconButton uses `overrides`, so its padding wins over Button in either import order. Unlayered application CSS can override normal library rules.
+All component rules live under `cui`. The build puts the shared order `cui.base`, `cui.components`, and `cui.overrides` at the start of every CSS entry, so any entry can load first. In source, wrap rules in the appropriate layer block. The field label uses `base`. IconButton uses `overrides`, so its padding wins over Button in either import order. Unlayered application CSS can override normal library rules.
 
 ## Build and verify
 

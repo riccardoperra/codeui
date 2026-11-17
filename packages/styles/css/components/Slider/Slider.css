@@ -1,4 +1,3 @@
-@layer cui.components;
 @layer cui.components {
   .cui-slider-root {
     display: grid;
@@ -43,21 +42,27 @@
     background: var(--cui-border-divider);
     border-radius: var(--cui-radius-full);
   }
-  .cui-slider-track[data-orientation=vertical] {
-    height: var(--cui-space-32);
-    width: var(--cui-control-height-compact);
+  .cui-slider-track {
+    &[data-orientation=vertical] {
+      height: var(--cui-space-32);
+      width: var(--cui-control-height-compact);
+    }
+
+    &[data-orientation=vertical]::before {
+      height: 100%;
+      width: var(--cui-space-0-5);
+    }
   }
-  .cui-slider-track[data-orientation=vertical]::before {
-    height: 100%;
-    width: var(--cui-space-0-5);
-  }
-  :where(.cui-slider-track)[data-orientation="vertical"] {
-    height: var(--cui-space-32);
-    width: var(--cui-control-height-compact);
-  }
-  :where(.cui-slider-track)[data-orientation="vertical"]::before {
-    height: 100%;
-    width: var(--cui-space-0-5);
+  :where(.cui-slider-track) {
+    &[data-orientation="vertical"] {
+      height: var(--cui-space-32);
+      width: var(--cui-control-height-compact);
+    }
+
+    &[data-orientation="vertical"]::before {
+      height: 100%;
+      width: var(--cui-space-0-5);
+    }
   }
   .cui-slider-fill {
     position: absolute;

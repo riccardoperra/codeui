@@ -1,6 +1,5 @@
 @import "./field-tokens.generated.css";
 
-@layer cui.components;
 @layer cui.components {
   .cui-field-baseFieldTheme {
     --cui-baseFieldTheme-borderColor: var(--cui-border-input);
@@ -35,52 +34,64 @@
     outline: var(--cui-focus-width) solid var(--cui-focus-color);
     outline-offset: var(--cui-focus-offset);
   }
-  .cui-field-baseFieldVariants[data-invalid] {
-    border-color: var(--cui-text-danger);
-    color: var(--cui-text-danger);
+  .cui-field-baseFieldVariants {
+    &[data-invalid] {
+      border-color: var(--cui-text-danger);
+      color: var(--cui-text-danger);
+    }
+
+    &[data-disabled] {
+      cursor: not-allowed;
+      opacity: 0.4;
+    }
   }
-  .cui-field-baseFieldVariants[data-disabled] {
-    cursor: not-allowed;
-    opacity: 0.4;
-  }
-  :where(.cui-field-baseFieldVariants)[data-size="xs"] {
-    --cui-baseFieldTheme-inputHeight: var(--cui-component-field-base-field-variants-size-xs-input-height);
-    --cui-baseFieldTheme-fontSize: var(--cui-component-field-base-field-variants-size-xs-font-size);
-    border-radius: var(--cui-component-field-base-field-variants-size-xs-border-radius);
-  }
-  :where(.cui-field-baseFieldVariants)[data-size="sm"] {
-    --cui-baseFieldTheme-inputHeight: var(--cui-component-field-base-field-variants-size-sm-input-height);
-    --cui-baseFieldTheme-fontSize: var(--cui-component-field-base-field-variants-size-sm-font-size);
-    border-radius: var(--cui-component-field-base-field-variants-size-sm-border-radius);
-  }
-  :where(.cui-field-baseFieldVariants)[data-size="md"] {
-    --cui-baseFieldTheme-inputHeight: var(--cui-component-field-base-field-variants-size-md-input-height);
-    --cui-baseFieldTheme-fontSize: var(--cui-component-field-base-field-variants-size-md-font-size);
-    border-radius: var(--cui-component-field-base-field-variants-size-md-border-radius);
-  }
-  :where(.cui-field-baseFieldVariants)[data-size="lg"] {
-    --cui-baseFieldTheme-inputHeight: var(--cui-component-field-base-field-variants-size-lg-input-height);
-    --cui-baseFieldTheme-fontSize: var(--cui-component-field-base-field-variants-size-lg-font-size);
-    border-radius: var(--cui-component-field-base-field-variants-size-lg-border-radius);
-  }
-  :where(.cui-field-baseFieldVariants)[data-size="xl"] {
-    --cui-baseFieldTheme-inputHeight: var(--cui-component-field-base-field-variants-size-xl-input-height);
-    --cui-baseFieldTheme-fontSize: var(--cui-component-field-base-field-variants-size-xl-font-size);
-    border-radius: var(--cui-component-field-base-field-variants-size-xl-border-radius);
-  }
-  :where(.cui-field-baseFieldVariants)[data-theme="filled"] {
-    --cui-baseFieldTheme-borderColor: transparent;
-  }
-  :where(.cui-field-baseFieldVariants)[data-theme="inline"] {
-    background-color: transparent;
-    border: none;
-    border-bottom: var(--cui-border-width-strong) solid var(--cui-baseFieldTheme-background);
-    border-radius: 0;
-    padding-left: 0;
-    padding-right: 0;
-  }
-  :where(.cui-field-baseFieldVariants)[data-theme="inline"][data-disabled] {
-    background-color: transparent;
+  :where(.cui-field-baseFieldVariants) {
+    &[data-size="xs"] {
+      --cui-baseFieldTheme-inputHeight: var(--cui-component-field-base-field-variants-size-xs-input-height);
+      --cui-baseFieldTheme-fontSize: var(--cui-component-field-base-field-variants-size-xs-font-size);
+      border-radius: var(--cui-component-field-base-field-variants-size-xs-border-radius);
+    }
+
+    &[data-size="sm"] {
+      --cui-baseFieldTheme-inputHeight: var(--cui-component-field-base-field-variants-size-sm-input-height);
+      --cui-baseFieldTheme-fontSize: var(--cui-component-field-base-field-variants-size-sm-font-size);
+      border-radius: var(--cui-component-field-base-field-variants-size-sm-border-radius);
+    }
+
+    &[data-size="md"] {
+      --cui-baseFieldTheme-inputHeight: var(--cui-component-field-base-field-variants-size-md-input-height);
+      --cui-baseFieldTheme-fontSize: var(--cui-component-field-base-field-variants-size-md-font-size);
+      border-radius: var(--cui-component-field-base-field-variants-size-md-border-radius);
+    }
+
+    &[data-size="lg"] {
+      --cui-baseFieldTheme-inputHeight: var(--cui-component-field-base-field-variants-size-lg-input-height);
+      --cui-baseFieldTheme-fontSize: var(--cui-component-field-base-field-variants-size-lg-font-size);
+      border-radius: var(--cui-component-field-base-field-variants-size-lg-border-radius);
+    }
+
+    &[data-size="xl"] {
+      --cui-baseFieldTheme-inputHeight: var(--cui-component-field-base-field-variants-size-xl-input-height);
+      --cui-baseFieldTheme-fontSize: var(--cui-component-field-base-field-variants-size-xl-font-size);
+      border-radius: var(--cui-component-field-base-field-variants-size-xl-border-radius);
+    }
+
+    &[data-theme="filled"] {
+      --cui-baseFieldTheme-borderColor: transparent;
+    }
+
+    &[data-theme="inline"] {
+      background-color: transparent;
+      border: none;
+      border-bottom: var(--cui-border-width-strong) solid var(--cui-baseFieldTheme-background);
+      border-radius: 0;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    &[data-theme="inline"][data-disabled] {
+      background-color: transparent;
+    }
   }
   @media (max-width: 768px) {
     :where(.cui-field-baseFieldVariants)[data-size="md"] {

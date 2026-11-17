@@ -17,7 +17,6 @@
     opacity: 0.2;
   }
 }
-@layer cui.components;
 @layer cui.components {
   .cui-loading-wrapper {
     position: absolute;

@@ -3,29 +3,34 @@
     opacity: 0.55;
   }
 }
-@layer cui.components;
 @layer cui.components {
   .cui-skeleton-base {
     display: block;
     border-radius: var(--cui-radius-xs);
   }
-  .cui-skeleton-base[data-visible] {
-    background-color: var(--cui-action-neutral-base);
-    color: transparent;
-    pointer-events: none;
-    user-select: none;
-  }
-  .cui-skeleton-base[data-visible] * {
-    visibility: hidden;
-  }
-  :where(.cui-skeleton-base)[data-circle] {
-    border-radius: var(--cui-radius-full);
-  }
-  :where(.cui-skeleton-base)[data-animate][data-visible] {
-    animation: cui-skeleton-pulse calc(var(--cui-motion-duration-slow) * 4) var(--cui-motion-ease-out) infinite alternate;
+  .cui-skeleton-base {
+    &[data-visible] {
+      background-color: var(--cui-action-neutral-base);
+      color: transparent;
+      pointer-events: none;
+      user-select: none;
+    }
 
-    @media (--cui-reduced-motion) {
-      animation: none;
+    &[data-visible] * {
+      visibility: hidden;
+    }
+  }
+  :where(.cui-skeleton-base) {
+    &[data-circle] {
+      border-radius: var(--cui-radius-full);
+    }
+
+    &[data-animate][data-visible] {
+      animation: cui-skeleton-pulse calc(var(--cui-motion-duration-slow) * 4) var(--cui-motion-ease-out) infinite alternate;
+
+      @media (--cui-reduced-motion) {
+        animation: none;
+    }
     }
   }
 }

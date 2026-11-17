@@ -1,4 +1,3 @@
-@layer cui.components;
 @layer cui.components {
   .cui-accordion-root {
     display: flex;
@@ -44,11 +43,14 @@
     color: var(--cui-text-muted);
     cursor: default;
   }
-  :where(.cui-accordion-trigger)[data-density="compact"] {
-    padding-block: var(--cui-space-1);
-  }
-  :where(.cui-accordion-trigger)[data-density="comfortable"] {
-    padding-block: var(--cui-space-3);
+  :where(.cui-accordion-trigger) {
+    &[data-density="compact"] {
+      padding-block: var(--cui-space-1);
+    }
+
+    &[data-density="comfortable"] {
+      padding-block: var(--cui-space-3);
+    }
   }
   .cui-accordion-content {
     overflow: hidden;

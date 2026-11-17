@@ -38,7 +38,6 @@
     transform: translateX(100%);
   }
 }
-@layer cui.components;
 @layer cui.components {
   .cui-sheet-overlay {
     position: fixed;
@@ -65,54 +64,64 @@
     box-shadow: var(--cui-shadow-dialog);
     outline: none;
   }
-  :where(.cui-sheet-content)[data-side="bottom"] {
-    left: 0;
-    right: 0;
-    bottom: 0;
-    max-height: calc(100dvh - var(--cui-space-10));
-    border-radius: var(--cui-radius-xl) var(--cui-radius-xl) 0 0;
-    padding-bottom: env(safe-area-inset-bottom);
-    animation: cui-sheet-slide_bottom_exit var(--cui-motion-duration-panel) var(--cui-motion-ease-out) forwards;
-  }
-  :where(.cui-sheet-content)[data-side="bottom"][data-expanded] {
-    animation: cui-sheet-slide_bottom_enter var(--cui-motion-duration-panel) var(--cui-motion-ease-out);
-  }
-  :where(.cui-sheet-content)[data-side="bottom"][data-motion=none], :where(.cui-sheet-content)[data-side="bottom"][data-motion=none][data-expanded] {
-    animation: none;
-  }
-  :where(.cui-sheet-content)[data-side="left"] {
-    top: 0;
-    bottom: 0;
-    width: min(24rem, calc(100vw - var(--cui-space-10)));
-    padding-top: env(safe-area-inset-top);
-    padding-bottom: env(safe-area-inset-bottom);
-    left: 0;
-    border-radius: 0 var(--cui-radius-xl) var(--cui-radius-xl) 0;
-    padding-left: env(safe-area-inset-left);
-    animation: cui-sheet-slide_left_exit var(--cui-motion-duration-panel) var(--cui-motion-ease-out) forwards;
-  }
-  :where(.cui-sheet-content)[data-side="left"][data-expanded] {
-    animation: cui-sheet-slide_left_enter var(--cui-motion-duration-panel) var(--cui-motion-ease-out);
-  }
-  :where(.cui-sheet-content)[data-side="left"][data-motion=none], :where(.cui-sheet-content)[data-side="left"][data-motion=none][data-expanded] {
-    animation: none;
-  }
-  :where(.cui-sheet-content)[data-side="right"] {
-    top: 0;
-    bottom: 0;
-    width: min(24rem, calc(100vw - var(--cui-space-10)));
-    padding-top: env(safe-area-inset-top);
-    padding-bottom: env(safe-area-inset-bottom);
-    right: 0;
-    border-radius: var(--cui-radius-xl) 0 0 var(--cui-radius-xl);
-    padding-right: env(safe-area-inset-right);
-    animation: cui-sheet-slide_right_exit var(--cui-motion-duration-panel) var(--cui-motion-ease-out) forwards;
-  }
-  :where(.cui-sheet-content)[data-side="right"][data-expanded] {
-    animation: cui-sheet-slide_right_enter var(--cui-motion-duration-panel) var(--cui-motion-ease-out);
-  }
-  :where(.cui-sheet-content)[data-side="right"][data-motion=none], :where(.cui-sheet-content)[data-side="right"][data-motion=none][data-expanded] {
-    animation: none;
+  :where(.cui-sheet-content) {
+    &[data-side="bottom"] {
+      left: 0;
+      right: 0;
+      bottom: 0;
+      max-height: calc(100dvh - var(--cui-space-10));
+      border-radius: var(--cui-radius-xl) var(--cui-radius-xl) 0 0;
+      padding-bottom: env(safe-area-inset-bottom);
+      animation: cui-sheet-slide_bottom_exit var(--cui-motion-duration-panel) var(--cui-motion-ease-out) forwards;
+
+      &[data-expanded] {
+        animation: cui-sheet-slide_bottom_enter var(--cui-motion-duration-panel) var(--cui-motion-ease-out);
+      }
+
+      &[data-motion=none], &[data-motion=none][data-expanded] {
+        animation: none;
+      }
+    }
+
+    &[data-side="left"] {
+      top: 0;
+      bottom: 0;
+      width: min(24rem, calc(100vw - var(--cui-space-10)));
+      padding-top: env(safe-area-inset-top);
+      padding-bottom: env(safe-area-inset-bottom);
+      left: 0;
+      border-radius: 0 var(--cui-radius-xl) var(--cui-radius-xl) 0;
+      padding-left: env(safe-area-inset-left);
+      animation: cui-sheet-slide_left_exit var(--cui-motion-duration-panel) var(--cui-motion-ease-out) forwards;
+
+      &[data-expanded] {
+        animation: cui-sheet-slide_left_enter var(--cui-motion-duration-panel) var(--cui-motion-ease-out);
+      }
+
+      &[data-motion=none], &[data-motion=none][data-expanded] {
+        animation: none;
+      }
+    }
+
+    &[data-side="right"] {
+      top: 0;
+      bottom: 0;
+      width: min(24rem, calc(100vw - var(--cui-space-10)));
+      padding-top: env(safe-area-inset-top);
+      padding-bottom: env(safe-area-inset-bottom);
+      right: 0;
+      border-radius: var(--cui-radius-xl) 0 0 var(--cui-radius-xl);
+      padding-right: env(safe-area-inset-right);
+      animation: cui-sheet-slide_right_exit var(--cui-motion-duration-panel) var(--cui-motion-ease-out) forwards;
+
+      &[data-expanded] {
+        animation: cui-sheet-slide_right_enter var(--cui-motion-duration-panel) var(--cui-motion-ease-out);
+      }
+
+      &[data-motion=none], &[data-motion=none][data-expanded] {
+        animation: none;
+      }
+    }
   }
   .cui-sheet-header {
     display: flex;
@@ -193,23 +202,30 @@
     .cui-sheet-overlay[data-expanded] {
       animation-name: cui-sheet-fadeIn;
     }
-    :where(.cui-sheet-content)[data-side="bottom"] {
-      animation-name: cui-sheet-fadeOut;
-    }
-    :where(.cui-sheet-content)[data-side="bottom"][data-expanded] {
-      animation-name: cui-sheet-fadeIn;
-    }
-    :where(.cui-sheet-content)[data-side="left"] {
-      animation-name: cui-sheet-fadeOut;
-    }
-    :where(.cui-sheet-content)[data-side="left"][data-expanded] {
-      animation-name: cui-sheet-fadeIn;
-    }
-    :where(.cui-sheet-content)[data-side="right"] {
-      animation-name: cui-sheet-fadeOut;
-    }
-    :where(.cui-sheet-content)[data-side="right"][data-expanded] {
-      animation-name: cui-sheet-fadeIn;
+    :where(.cui-sheet-content) {
+      &[data-side="bottom"] {
+        animation-name: cui-sheet-fadeOut;
+      }
+
+      &[data-side="bottom"][data-expanded] {
+        animation-name: cui-sheet-fadeIn;
+      }
+
+      &[data-side="left"] {
+        animation-name: cui-sheet-fadeOut;
+      }
+
+      &[data-side="left"][data-expanded] {
+        animation-name: cui-sheet-fadeIn;
+      }
+
+      &[data-side="right"] {
+        animation-name: cui-sheet-fadeOut;
+      }
+
+      &[data-side="right"][data-expanded] {
+        animation-name: cui-sheet-fadeIn;
+      }
     }
   }
   @media (--cui-coarse-pointer) {

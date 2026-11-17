@@ -1,6 +1,5 @@
 @import "./alert-tokens.generated.css";
 
-@layer cui.components;
 @layer cui.components {
   .cui-alert-root {
     display: inline-grid;
@@ -14,29 +13,36 @@
     font-size: var(--cui-font-size-caption);
     line-height: var(--cui-font-line-height-normal);
   }
-  :where(.cui-alert-root)[data-tone="neutral"] {
-    background: var(--cui-component-alert-root-tone-neutral-background);
-    color: var(--cui-component-alert-root-tone-neutral-color);
-  }
-  :where(.cui-alert-root)[data-tone="info"] {
-    background: var(--cui-component-alert-root-tone-info-background);
-    color: var(--cui-component-alert-root-tone-info-color);
-  }
-  :where(.cui-alert-root)[data-tone="success"] {
-    background: var(--cui-component-alert-root-tone-success-background);
-    color: var(--cui-component-alert-root-tone-success-color);
-  }
-  :where(.cui-alert-root)[data-tone="warning"] {
-    background: var(--cui-component-alert-root-tone-warning-background);
-    color: var(--cui-component-alert-root-tone-warning-color);
-  }
-  :where(.cui-alert-root)[data-tone="danger"] {
-    background: var(--cui-component-alert-root-tone-danger-background);
-    color: var(--cui-component-alert-root-tone-danger-color);
-  }
-  :where(.cui-alert-root)[data-fluid] {
-    display: grid;
-    width: 100%;
+  :where(.cui-alert-root) {
+    &[data-tone="neutral"] {
+      background: var(--cui-component-alert-root-tone-neutral-background);
+      color: var(--cui-component-alert-root-tone-neutral-color);
+    }
+
+    &[data-tone="info"] {
+      background: var(--cui-component-alert-root-tone-info-background);
+      color: var(--cui-component-alert-root-tone-info-color);
+    }
+
+    &[data-tone="success"] {
+      background: var(--cui-component-alert-root-tone-success-background);
+      color: var(--cui-component-alert-root-tone-success-color);
+    }
+
+    &[data-tone="warning"] {
+      background: var(--cui-component-alert-root-tone-warning-background);
+      color: var(--cui-component-alert-root-tone-warning-color);
+    }
+
+    &[data-tone="danger"] {
+      background: var(--cui-component-alert-root-tone-danger-background);
+      color: var(--cui-component-alert-root-tone-danger-color);
+    }
+
+    &[data-fluid] {
+      display: grid;
+      width: 100%;
+    }
   }
   .cui-alert-icon {
     grid-column: 1;
