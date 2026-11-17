@@ -58,6 +58,8 @@ export function Root<T extends ValidComponent = "div">(
 		<K.Root
 			{...others}
 			orientation={local.orientation ?? "horizontal"}
+			// Kobalte sets only aria-orientation; the vertical layout reads this.
+			data-orientation={local.orientation ?? "horizontal"}
 			data-cui={optionCardParts.root}
 			data-variant={local.variant ?? "card"}
 			class={mergeClasses(optionCardStyles.root({ variant: local.variant }), local.class)}

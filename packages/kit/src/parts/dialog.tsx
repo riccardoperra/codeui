@@ -357,12 +357,14 @@ export function Sidebar(props: SidebarProps) {
 	return (
 		<div data-cui={dialogParts.sidebar} class={mergeClasses(dialogStyles.sidebar(), local.class)} {...others}>
 			<Show when={local.search}>
-				<div
-					data-cui={dialogParts.sidebarSearch}
-					class={mergeClasses(dialogStyles.sidebarSearch(), local.classes?.sidebarSearch)}
-				>
-					{local.search}
-				</div>
+				{search => (
+					<div
+						data-cui={dialogParts.sidebarSearch}
+						class={mergeClasses(dialogStyles.sidebarSearch(), local.classes?.sidebarSearch)}
+					>
+						{search()}
+					</div>
+				)}
 			</Show>
 			{local.children}
 		</div>
@@ -439,13 +441,15 @@ export function NavItem(props: NavItemProps) {
 				{...others}
 			>
 				<Show when={local.icon}>
-					<span
-						data-cui={dialogParts.navIcon}
-						aria-hidden="true"
-						class={mergeClasses(dialogStyles.navIcon(), local.classes?.navIcon)}
-					>
-						{local.icon}
-					</span>
+					{icon => (
+						<span
+							data-cui={dialogParts.navIcon}
+							aria-hidden="true"
+							class={mergeClasses(dialogStyles.navIcon(), local.classes?.navIcon)}
+						>
+							{icon()}
+						</span>
+					)}
 				</Show>
 				{local.children}
 			</button>
@@ -485,12 +489,14 @@ export function Section(props: SectionProps) {
 			{...others}
 		>
 			<Show when={local.title}>
-				<h3
-					data-cui={dialogParts.sectionTitle}
-					class={mergeClasses(dialogStyles.sectionTitle(), local.classes?.sectionTitle)}
-				>
-					{local.title}
-				</h3>
+				{title => (
+					<h3
+						data-cui={dialogParts.sectionTitle}
+						class={mergeClasses(dialogStyles.sectionTitle(), local.classes?.sectionTitle)}
+					>
+						{title()}
+					</h3>
+				)}
 			</Show>
 			<div
 				data-cui={dialogParts.sectionContent}

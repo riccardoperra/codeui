@@ -5,6 +5,7 @@ import { Badge } from "../../src/components/Badge/Badge";
 import { Button } from "../../src/components/Button/Button";
 import { Checkbox } from "../../src/components/CheckBox/CheckBox";
 import { Combobox } from "../../src/components/Combobox/Combobox";
+import * as DialogParts from "../../src/parts/dialog";
 import { NumberField } from "../../src/components/NumberField/NumberField";
 import { OptionCardGroup } from "../../src/components/OptionCard/OptionCard";
 import { Progress } from "../../src/components/Progress/Progress";
@@ -20,7 +21,8 @@ import { TextField } from "../../src/components/TextField/TextField";
 // without rendering it (a prop read twice, or read for a part that stays hidden)
 // makes the client ask for a hydration key the server never wrote. Dialog, Sheet,
 // Popover, DropdownMenu and CommandMenu render their content in a portal, which
-// the server leaves out, so they are not here.
+// the server leaves out, so they are not here. Dialog's layout parts need no
+// dialog around them, and a docs figure renders them open and inline.
 const el = (name: string) => <em data-prop={name}>{name}</em>;
 
 type State = "valid" | "invalid";
@@ -172,6 +174,16 @@ export const hydrationFixtures: Record<string, () => JSX.Element> = {
 				{el("control")}
 			</SettingsRow>
 		</SettingsGroup>
+	),
+	"Dialog layout parts": () => (
+		<>
+			<DialogParts.Sidebar search={el("search")}>
+				<DialogParts.Nav aria-label="Sections">
+					<DialogParts.NavItem icon={el("icon")}>{el("children")}</DialogParts.NavItem>
+				</DialogParts.Nav>
+			</DialogParts.Sidebar>
+			<DialogParts.Section title={el("title")}>{el("children")}</DialogParts.Section>
+		</>
 	),
 	...Object.fromEntries(
 		Object.entries(fields).flatMap(([name, field]) => [

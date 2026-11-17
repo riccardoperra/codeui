@@ -52,3 +52,9 @@ it("reflects controlled changes and reports card clicks", async () => {
 	await tick();
 	expect(value()).toBe("dark");
 });
+it("marks a vertical group, so its cards stack in one column", () => {
+	render(() => <OptionCardGroup label="Format" orientation="vertical" items={items} />);
+	const group = screen.getByRole("radiogroup", { name: "Format" });
+	expect(group).toHaveAttribute("aria-orientation", "vertical");
+	expect(group).toHaveAttribute("data-orientation", "vertical");
+});
