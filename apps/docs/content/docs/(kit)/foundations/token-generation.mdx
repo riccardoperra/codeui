@@ -7,15 +7,15 @@ Inkstone stores shared design values in DTCG JSON. Toghen resolves the token fil
 
 ## The resolver combines token sources
 
-`packages/styles/tokens/inkstone.resolver.json` lists the foundation files and a `theme` modifier. The light context uses the foundation values. The dark context applies `dark.tokens.json` afterwards, so a dark value can replace its foundation value.
+`packages/inkstone/tokens/inkstone.resolver.json` lists the foundation files and a `theme` modifier. The light context uses the foundation values. The dark context applies `dark.tokens.json` afterwards, so a dark value can replace its foundation value.
 
 A resolver's `version` identifies its DTCG format. CodeUI stores `2025.10` and adapts the loaded document in memory for Toghen 0.1.1. The JSON files on disk keep the [DTCG resolver format](https://www.designtokens.org/tr/2025.10/resolver/).
 
 ## The theme stylesheet defines shared values
 
-The build creates `@codeui/styles/theme.css` from the resolved tokens. Shared values live at `:root`. Mode-specific values are set again inside each light or dark theme scope. The stylesheet also uses `prefers-color-scheme` for the default theme and retains the CSS formulas for brand colors and radius scaling.
+`@codeui/inkstone/theme.css` is the standalone theme. The styles build includes it in the existing `@codeui/styles/theme.css` entry alongside its shared styles. Shared values live at `:root`. Mode-specific values are set again inside each light or dark theme scope. The stylesheet also uses `prefers-color-scheme` for the default theme and retains the CSS formulas for brand colors and radius scaling.
 
-The same build generates the TypeScript token references and breakpoint values. A TypeScript reference such as `tokens.control.height.md` is a string containing `var(--cui-control-height-md)`. Breakpoints also feed the build-time aliases used in custom media queries.
+Inkstone also publishes `light.json` and `dark.json` with the resolved DTCG values for design tools. The package entry exports the TypeScript token references, web theme values, and breakpoint values. A TypeScript reference such as `tokens.control.height.md` is a string containing `var(--cui-control-height-md)`. Breakpoints also feed the build-time aliases used in custom media queries.
 
 ## Components define local aliases
 
@@ -40,7 +40,7 @@ An application override of `--cui-control-height-md` therefore reaches a medium 
 
 ## The stylesheet chooses when to apply an alias
 
-Each component that owns design aliases has a token file and a stylesheet import. For Button, `@import "./button-tokens.generated.css"` identifies the component token set and loads the shared media aliases during the build. The build inserts each custom property into the rule that reads it. Lightning CSS compiles the resulting sheet, including nested selectors and custom media queries.
+The resolver at `packages/styles/tokens/components.resolver.json` composes the component token files with the Inkstone foundation. Each component that owns design aliases has a token file and a stylesheet import. For Button, `@import "./button-tokens.generated.css"` identifies the component token set and loads the shared media aliases during the build. The build inserts each custom property into the rule that reads it. Lightning CSS compiles the resulting sheet, including nested selectors and custom media queries.
 
 Button's stylesheet still owns the selector and the property. Its medium-size rule assigns the alias to `--cui-buttonTheme-buttonHeight`, which the base rule uses for `height`. In plain HTML, set the size and theme with attributes.
 

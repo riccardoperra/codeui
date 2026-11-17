@@ -24,7 +24,11 @@ const walk = async dir =>
 	).flat();
 assert.deepEqual(pkg.sideEffects, ["**/*.css"]);
 assert.equal(pkg.peerDependencies, undefined);
-assert.deepEqual(Object.keys(pkg.dependencies), ["csstype"]);
+assert.deepEqual(Object.keys(pkg.dependencies).sort(), ["@codeui/inkstone", "csstype"]);
+const runtimeImportAllowed = specifier =>
+	specifier.startsWith(".") ||
+	specifier === "@codeui/inkstone" ||
+	specifier === "@codeui/inkstone/derived";
 const bannedCalls = new Set([
 	"style",
 	"globalStyle",
@@ -58,7 +62,7 @@ for (const file of await walk(out)) {
 			node.moduleSpecifier
 		)
 			assert(
-				node.moduleSpecifier.text.startsWith("."),
+				runtimeImportAllowed(node.moduleSpecifier.text),
 				`${file} has an external runtime import ${node.moduleSpecifier.text}`,
 			);
 		if (ts.isCallExpression(node) && ts.isIdentifier(node.expression)) {
@@ -68,7 +72,7 @@ for (const file of await walk(out)) {
 			);
 			if (node.expression.text === "require" && ts.isStringLiteral(node.arguments[0]))
 				assert(
-					node.arguments[0].text.startsWith("."),
+					runtimeImportAllowed(node.arguments[0].text),
 					`${file} has external require ${node.arguments[0].text}`,
 				);
 		}
@@ -202,6 +206,9 @@ try {
 			fixture,
 			`
 import { button } from '@codeui/styles/button';
+import { breakpoints, type Breakpoint } from '@codeui/inkstone';
+const breakpoint: Breakpoint = 'md';
+const width: number = breakpoints[breakpoint];
 import { dialogStyles, dialogThemeVars } from '@codeui/styles/dialog';
 import { styleFieldMessage } from '@codeui/styles/internal/components/Field/fieldStyle';
 button();

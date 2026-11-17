@@ -84,7 +84,7 @@ All component rules live under `cui`. The build puts the shared order `cui.base`
 ## Build and verify
 
 ```sh
-pnpm --filter @codeui/styles build
+pnpm --filter @codeui/styles... build
 pnpm --filter @codeui/styles check
 pnpm --filter @codeui/styles typecheck
 ```
@@ -93,10 +93,10 @@ Component rules live in `css/`. Write variant selectors as `:where(.part)[data-s
 
 The build bundles each entry and its dependencies. Lightning CSS lowers nesting and media query ranges, and expands `@custom-media` aliases from the breakpoint tokens and `css/media.css`. Use `@media (--cui-md)` for a shared width and `@media (--cui-reduced-motion)` for the reduced-motion preference.
 
-The token source is `tokens/inkstone.resolver.json` and its referenced DTCG JSON files. Component token files contain local aliases. The virtual `<component>-tokens.generated.css` import identifies the token set and loads shared media aliases at build time. The build inserts each custom property into the rule that reads it before passing the stylesheet to Lightning CSS. Edit those inputs and run `pnpm --filter @codeui/styles build` to regenerate theme values, references and breakpoints. `tokens/web-values.json` holds CSS-specific values. The web emitter preserves scoped light and dark values, live aliases and the existing radius and color formulas.
+The shared foundation comes from `@codeui/inkstone`. The build bundles its theme into the existing `theme.css` entry. `tokens/components.resolver.json` lists the local aliases, which Toghen resolves against the Inkstone foundation. The virtual `<component>-tokens.generated.css` import identifies the token set and loads the shared media aliases. The build inserts each custom property into the rule that reads it before passing the stylesheet to Lightning CSS.
 
-Toghen is a build dependency. Its current release requires a different version string, so the build adapts the loaded document in memory while the authored resolver keeps DTCG `2025.10`. Build with Node 24 or later and the workspace pnpm version.
+Build with Node 24 or later and the workspace pnpm version. Run `pnpm --filter @codeui/styles... build` to build Inkstone first.
 
 `entries.json` declares component entries and dependencies. `style-sources.json` maps helper modules to their stylesheet sources. `compatibility.json` lists the private paths used by the Solid adapter.
 
-A build fails if the public CSS contract changes. To accept an intentional contract change, review the names and run `pnpm --filter @codeui/styles build --update-contract`. Commit the updated `contract.json` with the source change.
+A build fails if the public CSS contract changes. To accept an intentional contract change, review the names and run `pnpm --filter @codeui/styles... build --update-contract`. Commit the updated `contract.json` with the source change.

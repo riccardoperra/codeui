@@ -31,7 +31,7 @@ The design rules for each role live in Inkstone: [Colour](/docs/design/color), [
 
 ## Read the tables
 
-Each group has a live table and a static table. The live table reads every value from your browser with `getComputedStyle`, inside a `data-cui-theme="dark"` scope and a `data-cui-theme="light"` scope. It shows what the kit really ships. The static table lists the values in `packages/kit/src/foundation/theme-values.ts`, the one registry that both modes come from. Agents and the Markdown route read the static table.
+Each group has a live table and a static table. The live table reads every value from your browser with `getComputedStyle`, inside a `data-cui-theme="dark"` scope and a `data-cui-theme="light"` scope. It shows what the kit really ships. The static table lists the values in `packages/inkstone/src/theme-values.ts`, the one registry that both modes come from. Agents and the Markdown route read the static table.
 
 `pnpm --filter @codeui/kit test` checks every name and value against `docs/kit-2026/design/k5-token-map.json`.
 

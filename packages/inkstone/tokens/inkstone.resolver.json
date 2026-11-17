@@ -1,0 +1,37 @@
+{
+  "name": "inkstone",
+  "version": "2025.10",
+  "sets": {
+    "foundation": {
+      "sources": [
+        {
+          "$ref": "./palette.tokens.json"
+        },
+        {
+          "$ref": "./foundation.tokens.json"
+        }
+      ]
+    }
+  },
+  "modifiers": {
+    "theme": {
+      "default": "light",
+      "contexts": {
+        "light": [],
+        "dark": [
+          {
+            "$ref": "./dark.tokens.json"
+          }
+        ]
+      }
+    }
+  },
+  "resolutionOrder": [
+    {
+      "$ref": "#/sets/foundation"
+    },
+    {
+      "$ref": "#/modifiers/theme"
+    }
+  ]
+}

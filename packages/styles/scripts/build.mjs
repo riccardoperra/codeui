@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 import ts from "typescript";
 import { build } from "esbuild";
 import { compileStylesheet } from "./component-tokens.mjs";
-import { generateTheme } from "./tokens.mjs";
+import { readInkstoneTheme } from "./tokens.mjs";
 import { collectContracts } from "./contracts.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -26,7 +26,7 @@ const files = async dir =>
 	)
 		.flat()
 		.sort();
-const { css: theme, media, componentAliases } = await generateTheme(root);
+const { css: theme, layerOrder, media, componentAliases } = await readInkstoneTheme(root);
 const sourceFiles = (await files(src)).filter(file => file.endsWith(".ts"));
 const sources = JSON.parse(await readFile(path.join(root, "style-sources.json"), "utf8"));
 const scopesByModule = new Map(Object.entries(sources));
@@ -76,6 +76,7 @@ for (const format of ["esm", "cjs"])
 		mainFields: ["module", "main"],
 		absWorkingDir: root,
 		bundle: true,
+		external: ["@codeui/inkstone", "@codeui/inkstone/derived"],
 		splitting: format === "esm",
 		outExtension: { ".js": format === "cjs" ? ".cjs" : ".js" },
 		target: "es2020",
@@ -87,7 +88,6 @@ for (const format of ["esm", "cjs"])
 	});
 const publicContract = await collectContracts(out);
 const cssByScope = new Map();
-const layerOrder = "@layer cui;\n@layer cui.base, cui.components, cui.overrides;\n";
 const emittedAliases = new Set();
 const sharedMedia = await readFile(path.join(root, "css/media.css"), "utf8");
 for (const scope of new Set(Object.values(sources).flat())) {

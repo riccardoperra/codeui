@@ -53,6 +53,10 @@ Install only `@codeui/styles` to use the compiled CSS in HTML or another renderi
 
 The CSS provides appearance and state styling. The caller supplies markup, accessible names and behavior. Focus management, positioning, keyboard navigation, gestures and virtualized lists belong to the Solid components.
 
+## Inkstone tokens
+
+Install `@codeui/inkstone` to use the theme in your own UI. Load `@codeui/inkstone/theme.css` for the CSS custom properties. Import `tokens`, `themeValues`, and `breakpoints` from the package entry, or use the resolved light and dark JSON in other tools. [Token generation](/docs/foundations/token-generation) describes the outputs.
+
 ## Server rendering
 
 Use the package's `solid` condition with Solid's server compiler, as the fixture does through `solid({ ssr: true })`. Dialog, Popover, Sheet and CommandMenu include their open content in server HTML. Hydration adopts those nodes and moves them to the portal target. Closed content stays absent unless force-mounted.

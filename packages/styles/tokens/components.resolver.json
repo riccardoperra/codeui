@@ -1,15 +1,9 @@
 {
-  "name": "inkstone",
+  "name": "inkstone-components",
   "version": "2025.10",
   "sets": {
-    "foundation": {
+    "components": {
       "sources": [
-        {
-          "$ref": "./palette.tokens.json"
-        },
-        {
-          "$ref": "./foundation.tokens.json"
-        },
         {
           "$ref": "./button.tokens.json"
         },
@@ -85,25 +79,9 @@
       ]
     }
   },
-  "modifiers": {
-    "theme": {
-      "default": "light",
-      "contexts": {
-        "light": [],
-        "dark": [
-          {
-            "$ref": "./dark.tokens.json"
-          }
-        ]
-      }
-    }
-  },
   "resolutionOrder": [
     {
-      "$ref": "#/sets/foundation"
-    },
-    {
-      "$ref": "#/modifiers/theme"
+      "$ref": "#/sets/components"
     }
   ]
 }

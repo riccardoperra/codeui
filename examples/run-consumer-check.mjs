@@ -3,6 +3,7 @@ import { spawnSync } from "node:child_process";
 import {
 	cpSync,
 	existsSync,
+	mkdirSync,
 	mkdtempSync,
 	readdirSync,
 	readFileSync,
@@ -38,27 +39,60 @@ let browser;
 let cssServer;
 try {
 	run("pnpm", ["run", "build:kit"]);
-	run("pnpm", ["--dir", "packages/styles", "pack", "--pack-destination", scratch]);
-	run("pnpm", ["--dir", "packages/kit", "pack", "--pack-destination", scratch]);
-	const tarball = join(
-		scratch,
-		readdirSync(scratch).find(
-			name => name.startsWith("codeui-kit-") && name.endsWith(".tgz"),
-		),
+	const tarballs = {};
+	for (const name of ["inkstone", "styles", "kit"]) {
+		run("pnpm", ["--dir", `packages/${name}`, "pack", "--pack-destination", scratch]);
+		tarballs[name] = join(
+			scratch,
+			readdirSync(scratch).find(
+				file => file.startsWith(`codeui-${name}-`) && file.endsWith(".tgz"),
+			),
+		);
+	}
+	const inkstone = join(scratch, "inkstone");
+	mkdirSync(inkstone);
+	writeFileSync(
+		join(inkstone, "package.json"),
+		JSON.stringify({
+			private: true,
+			dependencies: { "@codeui/inkstone": `file:${tarballs.inkstone}` },
+		}),
 	);
-	const stylesTarball = join(
-		scratch,
-		readdirSync(scratch).find(
-			name => name.startsWith("codeui-styles-") && name.endsWith(".tgz"),
-		),
+	run("npm", ["install", "--no-audit", "--no-fund"], inkstone);
+	run(
+		"node",
+		[
+			"--input-type=module",
+			"-e",
+			`
+import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { createRequire } from "node:module";
+import { tokens, themeValues, breakpoints } from "@codeui/inkstone";
+const require = createRequire(import.meta.url);
+assert.deepEqual(require("@codeui/inkstone"), { tokens, themeValues, breakpoints });
+assert.equal(tokens.action.brand.base, "var(--cui-action-brand-base)");
+assert.equal(require("@codeui/inkstone/light.json").breakpoint.md.$value.value, breakpoints.md);
+assert.match(readFileSync(require.resolve("@codeui/inkstone/theme.css"), "utf8"), /--cui-action-brand-base:/);
+assert.equal(require("@codeui/inkstone/package.json").dependencies, undefined);
+`,
+		],
+		inkstone,
 	);
+	report(
+		"Inkstone standalone",
+		true,
+		"packed theme, resolved data, and ESM/CJS with no runtime dependencies",
+	);
+
 	const fixtures = {};
 	for (const name of ["vite", "ssr", "css"]) {
 		const cwd = join(scratch, name);
 		cpSync(join(root, "examples", `consumer-${name}`), cwd, { recursive: true });
 		const manifest = JSON.parse(readFileSync(join(cwd, "package.json"), "utf8"));
-		if (name !== "css") manifest.dependencies["@codeui/kit"] = `file:${tarball}`;
-		manifest.dependencies["@codeui/styles"] = `file:${stylesTarball}`;
+		if (name !== "css") manifest.dependencies["@codeui/kit"] = `file:${tarballs.kit}`;
+		manifest.dependencies["@codeui/styles"] = `file:${tarballs.styles}`;
+		manifest.dependencies["@codeui/inkstone"] = `file:${tarballs.inkstone}`;
 		writeFileSync(join(cwd, "package.json"), JSON.stringify(manifest, null, 2));
 		run("npm", ["install", "--no-audit", "--no-fund"], cwd);
 
@@ -255,6 +289,31 @@ console.log(JSON.stringify({ button: button() + ' ' + iconButton, label: label +
 						JSON.stringify({ order, ...composition }),
 					);
 				}
+				const inkstoneCss = readFileSync(
+					join(inkstone, "node_modules/@codeui/inkstone/dist/theme.css"),
+					"utf8",
+				);
+				await cssPage.setContent(`
+					<style>${inkstoneCss}
+						article { background: var(--cui-surface-panel); color: var(--cui-action-brand-base) }
+					</style>
+					<article data-cui-theme="light">Light</article>
+					<article data-cui-theme="dark" style="--cui-action-brand-base: #112233">Dark</article>
+				`);
+				const scopes = await cssPage.locator("article").evaluateAll(elements =>
+					elements.map(element => {
+						const style = getComputedStyle(element);
+						return { background: style.backgroundColor, color: style.color };
+					}),
+				);
+				report(
+					"Inkstone standalone CSS",
+					scopes.length === 2 &&
+						scopes[0].background !== scopes[1].background &&
+						scopes[0].color === "rgb(0, 131, 229)" &&
+						scopes[1].color === "rgb(17, 34, 51)",
+					JSON.stringify(scopes),
+				);
 				await context.close();
 			}
 			const page = await browser.newPage();

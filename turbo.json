@@ -1,6 +1,9 @@
 {
 	"$schema": "https://turborepo.org/schema.json",
 	"tasks": {
+		"@codeui/inkstone#test": {
+			"dependsOn": ["build"]
+		},
 		"@codeui/styles#test": {
 			"dependsOn": ["build"],
 			"cache": false
