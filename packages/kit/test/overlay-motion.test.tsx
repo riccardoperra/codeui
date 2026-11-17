@@ -32,8 +32,7 @@ describe("Popover", () => {
 		trigger.focus();
 		press("Enter");
 		fireEvent.click(trigger);
-		await tick();
-		expect(screen.getByRole("dialog")).toHaveAttribute("data-motion", "none");
+		expect(await screen.findByRole("dialog")).toHaveAttribute("data-motion", "none");
 	});
 
 	it("pops when a pointer opens it, even if the pointer moved before the click", async () => {
@@ -43,16 +42,14 @@ describe("Popover", () => {
 		fireEvent.pointerDown(trigger);
 		fireEvent.pointerMove(trigger);
 		fireEvent.click(trigger);
-		await tick();
-		expect(screen.getByRole("dialog")).not.toHaveAttribute("data-motion");
+		expect(await screen.findByRole("dialog")).not.toHaveAttribute("data-motion");
 	});
 
 	it("keeps its motion while open, whatever input follows", async () => {
 		const trigger = renderPopover();
 		fireEvent.pointerDown(trigger);
 		fireEvent.click(trigger);
-		await tick();
-		const dialog = screen.getByRole("dialog");
+		const dialog = await screen.findByRole("dialog");
 		press("Shift");
 		await tick();
 		expect(dialog).not.toHaveAttribute("data-motion");
@@ -96,8 +93,8 @@ describe("Select", () => {
 		const trigger = screen.getByRole("button", { name: /Font/ });
 		trigger.focus();
 		fireEvent.keyDown(trigger, { key: "ArrowDown" });
-		await tick();
-		expect(screen.getByRole("listbox").parentElement).toHaveAttribute("data-motion", "none");
+		const listbox = await screen.findByRole("listbox");
+		expect(listbox.parentElement).toHaveAttribute("data-motion", "none");
 	});
 });
 
@@ -115,8 +112,7 @@ describe("Tooltip", () => {
 		const button = renderTooltip();
 		press("Tab");
 		button.focus();
-		await tick();
-		const tooltip = screen.getByRole("tooltip");
+		const tooltip = await screen.findByRole("tooltip");
 		expect(tooltip).toHaveAttribute("data-motion", "none");
 		expect(button).toHaveAccessibleDescription("Copy to clipboard");
 	});

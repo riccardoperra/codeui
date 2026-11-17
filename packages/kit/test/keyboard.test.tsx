@@ -35,8 +35,7 @@ describe("Select", () => {
 	it.each(["Enter", "ArrowDown"])("opens the list with %s", async key => {
 		const trigger = renderSelect();
 		press(key);
-		await tick();
-		expect(screen.getByRole("listbox")).toBeInTheDocument();
+		expect(await screen.findByRole("listbox")).toBeInTheDocument();
 		expect(trigger).toHaveAttribute("aria-expanded", "true");
 	});
 
@@ -44,11 +43,11 @@ describe("Select", () => {
 		const onChange = vi.fn();
 		const trigger = renderSelect(onChange);
 		press("ArrowDown");
-		await tick();
-		expect(document.activeElement).toHaveTextContent("Apple");
+		const listbox = await screen.findByRole("listbox");
+		const firstOption = within(listbox).getByRole("option", { name: "Apple" });
+		await waitFor(() => expect(firstOption).toHaveFocus());
 		press("ArrowDown");
 		expect(document.activeElement).toHaveTextContent("Banana");
-		const listbox = screen.getByRole("listbox");
 		press("Enter");
 		await tick();
 		expect(onChange).toHaveBeenCalledWith("Banana");
@@ -60,8 +59,9 @@ describe("Select", () => {
 		const onChange = vi.fn();
 		const trigger = renderSelect(onChange);
 		press("ArrowDown");
-		await tick();
-		const listbox = screen.getByRole("listbox");
+		const listbox = await screen.findByRole("listbox");
+		const firstOption = within(listbox).getByRole("option", { name: "Apple" });
+		await waitFor(() => expect(firstOption).toHaveFocus());
 		press("Escape");
 		await tick();
 		await expectDismissed(listbox);
@@ -86,9 +86,8 @@ describe("Dialog", () => {
 		const opener = screen.getByRole("button", { name: "Open settings" });
 		opener.focus();
 		fireEvent.click(opener);
-		await tick();
-		const dialog = screen.getByRole("dialog");
-		expect(dialog).toContainElement(document.activeElement as HTMLElement);
+		const dialog = await screen.findByRole("dialog");
+		await waitFor(() => expect(dialog).toContainElement(document.activeElement as HTMLElement));
 		return { opener, dialog };
 	}
 
@@ -122,10 +121,8 @@ describe("Popover", () => {
 		const trigger = screen.getByRole("button", { name: "Share" });
 		trigger.focus();
 		fireEvent.click(trigger);
-		await tick();
-		expect(screen.getByRole("dialog")).toHaveTextContent("Copy the link");
-
-		const dialog = screen.getByRole("dialog");
+		const dialog = await screen.findByRole("dialog");
+		expect(dialog).toHaveTextContent("Copy the link");
 		press("Escape");
 		await tick();
 		await expectDismissed(dialog);
