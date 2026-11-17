@@ -103,3 +103,9 @@ export const TextIcon = (props: { size?: number } = {}) => (
 		<path d="M8 10h8M8 14h5" />
 	</Icon>
 );
+export const ResetIcon = () => (
+	<Icon>
+		<path d="M4 4v5h5" />
+		<path d="M4.5 9A8 8 0 1 1 6 16.5" />
+	</Icon>
+);

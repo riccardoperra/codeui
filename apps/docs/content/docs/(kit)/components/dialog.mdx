@@ -24,6 +24,8 @@ Put the body in `DialogPanelContent` and the actions in `DialogPanelFooter`. Clo
 
 ## Anatomy
 
+<Anatomy demo="dialog/anatomy" />
+
 | Export | Renders | `classes` key | `data-cui` | Role |
 | --- | --- | --- | --- | --- |
 | `Root` (parts only) | Nothing. Holds the open state | none | none | none |
@@ -83,163 +85,7 @@ With `inset`, `Footer` becomes a right-aligned row of actions that stacks at 768
 Put the preview in a `Section` with `variant="well"`. The well is an island: the canvas fill, 16px corners, and 12px padding.
 A well with a `title` shows the title inside the island in small secondary text. `columns={2}` lays its content out in two columns, one at 768px and below. The export dialog uses one for the More actions.
 
-The format cards, the scale, the action rows and the preview are app content. The dialog parts place them.
-
-```css title="dialog/export.css"
-/* App content inside the Dialog parts: the preview, the format cards and the action rows. */
-.export-demo-preview {
-	justify-content: center;
-	min-height: 240px;
-	padding: var(--cui-space-4);
-}
-
-.export-demo-frame {
-	display: grid;
-	place-items: center;
-	width: 100%;
-	aspect-ratio: 4 / 3;
-	max-height: 280px;
-	border-radius: 6px;
-	background: linear-gradient(135deg, #e0915c, #c35ad6 55%, #7c3aed);
-}
-
-.export-demo-window {
-	display: flex;
-	flex-direction: column;
-	gap: 8px;
-	width: 72%;
-	padding: 14px 16px 20px;
-	border-radius: 8px;
-	background: #16161a;
-	box-shadow: 0 10px 30px #0006;
-}
-
-.export-demo-dots {
-	width: 36px;
-	height: 8px;
-	margin-bottom: 6px;
-	background: radial-gradient(circle at 4px 4px, #ff5f57 4px, transparent 4.5px),
-		radial-gradient(circle at 18px 4px, #febc2e 4px, transparent 4.5px),
-		radial-gradient(circle at 32px 4px, #28c840 4px, transparent 4.5px);
-}
-
-.export-demo-line {
-	height: 6px;
-	border-radius: 3px;
-	background: #c792ea99;
-}
-
-.export-demo-options {
-	display: flex;
-	flex-direction: column;
-	gap: var(--cui-space-4);
-	min-width: 0;
-}
-
-.export-demo-formats {
-	grid-template-columns: minmax(0, 1fr);
-	gap: 6px;
-}
-
-.export-demo-formats [data-cui="option-card-item-label"] {
-	justify-content: center;
-	min-height: 56px;
-	padding: var(--cui-space-2) var(--cui-space-3);
-}
-
-.export-demo-format {
-	display: flex;
-	align-items: center;
-	gap: var(--cui-space-3);
-}
-
-.export-demo-format svg,
-.export-demo-tile {
-	flex: none;
-	color: var(--cui-text-muted);
-}
-
-.export-demo-format-text {
-	display: flex;
-	flex-direction: column;
-	gap: 2px;
-	min-width: 0;
-	font-size: var(--cui-font-size-sm);
-	font-weight: var(--cui-font-weight-medium);
-	text-align: left;
-}
-
-.export-demo-hint {
-	overflow: hidden;
-	color: var(--cui-text-muted);
-	font-size: var(--cui-font-size-xs);
-	font-weight: var(--cui-font-weight-normal);
-	text-overflow: ellipsis;
-	white-space: nowrap;
-}
-
-.export-demo-field {
-	display: flex;
-	flex-direction: column;
-	gap: var(--cui-space-2);
-}
-
-.export-demo-label {
-	display: flex;
-	justify-content: space-between;
-	color: var(--cui-text-muted);
-	font-size: var(--cui-font-size-xs);
-	font-weight: var(--cui-font-weight-medium);
-}
-
-.export-demo-value {
-	font-variant-numeric: tabular-nums;
-	font-weight: var(--cui-font-weight-normal);
-}
-
-.export-demo-download {
-	min-width: 200px;
-}
-
-.export-demo-action {
-	display: flex;
-	align-items: center;
-	gap: var(--cui-space-3);
-	min-height: 52px;
-	padding: var(--cui-space-2);
-	border: 0;
-	border-radius: var(--cui-radius-md);
-	background: transparent;
-	color: var(--cui-text-dialog);
-	font: inherit;
-	cursor: pointer;
-}
-
-.export-demo-action:disabled {
-	opacity: 0.45;
-	cursor: default;
-}
-
-.export-demo-action:focus-visible {
-	outline: var(--cui-focus-width) solid var(--cui-focus-color);
-	outline-offset: var(--cui-focus-offset);
-}
-
-@media (hover: hover) and (pointer: fine) {
-	.export-demo-action:hover:not(:disabled) {
-		background: var(--cui-surface-input);
-	}
-}
-
-.export-demo-tile {
-	display: grid;
-	place-items: center;
-	width: 36px;
-	height: 36px;
-	border-radius: var(--cui-radius-nav);
-	background: var(--cui-surface-input);
-}
-```
+The options are kit components too. A `SettingsGroup` holds a `SettingsRow` with `layout="wide"` for the format cards and one for the scale, and the More well holds a `SettingsRow` per action with its icon in `picture`. The preview is an inline SVG: a schematic of the snippet in its own colours. The demo has no CSS of its own.
 
 ### Title and description
 
@@ -339,9 +185,7 @@ Import the parts from `@codeui/kit/dialog`. Each part carries the kit styles and
 This settings dialog follows [Inkstone's settings dialog](/docs/design/patterns): a 232px sidebar with the sections, a breadcrumb title, a close button, and no footer.
 `Content` with a `Sidebar` child lays out in two panes and drops its padding. Each pane holds its own. At 768px and below, the header moves to the top, the sections wrap into rows of three, and the body fills the rest.
 The title is still the `Title` part, so the breadcrumb names the dialog. The body is still the `Body` part, so the rows scroll.
-Each `Section` is a title over one island. Put your settings rows in it. The [Build settings](/docs/patterns/build-settings) pattern adds a search field and six sections.
-
-The rows use the local CSS from [Build settings](/docs/patterns/build-settings#build-the-dialog) until `SettingsRow` ships.
+Put each group of rows in a [`SettingsGroup`](/docs/components/settings-row): a title over one island, with the rows touching inside it. The [Build settings](/docs/patterns/build-settings) pattern adds a search field and CodeImage's six sections.
 
 ### `Root`
 

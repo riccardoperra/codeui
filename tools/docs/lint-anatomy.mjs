@@ -17,8 +17,6 @@ const pages = path.join(root, 'apps/docs/content/docs/(kit)/components');
 const demos = path.join(root, 'packages/docs-demos/src/demos');
 const client = path.join(root, 'packages/docs-demos/dist/client/client.js');
 
-// Dialog's demos are being rebuilt; its figure comes with them.
-const exempt = new Set(['dialog']);
 
 const problems = [];
 const cells = (line) => line.trim().replace(/^\||\|$/g, '').split(/(?<!\\)\|/).map((c) => c.trim());
@@ -42,7 +40,7 @@ function readSection(file) {
 const sections = globSync('*.mdx', { cwd: pages })
   .sort()
   .map((file) => ({ page: file.replace(/\.mdx$/, ''), ...readSection(file) }))
-  .filter((s) => s.parts && !exempt.has(s.page));
+  .filter((s) => s.parts);
 
 for (const s of sections) {
   if (!s.demo) problems.push(`${s.page}: "## Anatomy" does not open with <Anatomy demo="${s.page}/anatomy" />`);
