@@ -939,6 +939,14 @@
     },
     {
       "group": "type scale",
+      "token": "font.lineHeight.snug",
+      "css": "--cui-font-line-height-snug",
+      "dark": "1.3",
+      "light": "1.3",
+      "source": "DESIGN.md §3 Label and Title steps; measured preview toast 16px/20.8px"
+    },
+    {
+      "group": "type scale",
       "token": "font.lineHeight.normal",
       "css": "--cui-font-line-height-normal",
       "dark": "1.5",
@@ -1024,6 +1032,14 @@
       "dark": "260ms",
       "light": "260ms",
       "source": "measured preview fast/normal/panel; DESIGN.md 260ms ceiling for usual transitions"
+    },
+    {
+      "group": "motion",
+      "token": "motion.duration.rise",
+      "css": "--cui-motion-duration-rise",
+      "dark": "400ms",
+      "light": "400ms",
+      "source": "DESIGN.md §7.3 Rise (toast, corner card); measured preview toast 350ms and Nudge 400ms"
     },
     {
       "group": "motion",

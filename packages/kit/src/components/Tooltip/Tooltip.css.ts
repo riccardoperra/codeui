@@ -1,11 +1,11 @@
 import { createTheme, recipe, style } from "../../foundation/layer.css";
-import { keyframes } from "@vanilla-extract/css";
 import { RecipeVariants } from "@vanilla-extract/recipes";
 import { tokens } from "../../foundation/cui.css";
-import { presenceAnimation } from "../../foundation/motion.css";
+import { popAnimation } from "../../foundation/motion.css";
 
 export const [tooltipTheme, tooltipVars] = createTheme({
 	fontSize: tokens.font.size.sm,
+	lineHeight: tokens.font.lineHeight.compact,
 	backgroundColor: tokens.action.neutral.base,
 	color: tokens.action.neutral.text,
 	padding: `${tokens.space["2"]} ${tokens.space["4"]}`,
@@ -18,28 +18,6 @@ const TooltipThemes = {
 	secondary: "secondary",
 } as const;
 
-const contentShow = keyframes({
-	from: {
-		opacity: 0,
-		transform: "scale(0.95)",
-	},
-	to: {
-		opacity: 1,
-		transform: "scale(1)",
-	},
-});
-
-const contentHide = keyframes({
-	from: {
-		opacity: 1,
-		transform: "scale(1)",
-	},
-	to: {
-		opacity: 0,
-		transform: "scale(0.95)",
-	},
-});
-
 export const tooltipContent = recipe({
 	base: [
 		tooltipTheme,
@@ -48,14 +26,14 @@ export const tooltipContent = recipe({
 			width: "auto",
 			zIndex: tooltipVars.zIndex,
 			fontSize: tooltipVars.fontSize,
+			lineHeight: tooltipVars.lineHeight,
 			padding: tooltipVars.padding,
 			borderRadius: tooltipVars.borderRadius,
 			color: tooltipVars.color,
 			backgroundColor: tooltipVars.backgroundColor,
 			boxShadow: tokens.shadow.md,
-			transformOrigin: "var(--kb-tooltip-content-transform-origin)",
 		},
-		presenceAnimation({ enter: contentShow, exit: contentHide, fillMode: "forwards" }),
+		popAnimation(),
 	],
 	variants: {
 		theme: {

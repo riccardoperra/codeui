@@ -1,7 +1,9 @@
 import * as K from "@kobalte/core/combobox";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import { splitProps, type ValidComponent } from "solid-js";
+import { mergeRefs } from "@kobalte/utils";
 import { mergeClasses } from "../utils/css";
+import { motionRef } from "../utils/open-source";
 import * as styles from "../components/Combobox/Combobox.css";
 export { useComboboxContext } from "@kobalte/core/combobox";
 export {
@@ -150,7 +152,14 @@ export function Content<T extends ValidComponent = "div">(
 		props as PolymorphicProps<"div", ContentProps> & Local,
 		variantKeys,
 	);
-	return <K.Content {...others} {...partAttributes("content", local)} />;
+	const [refs, rest] = splitProps(others, ["ref"]);
+	return (
+		<K.Content
+			ref={mergeRefs(motionRef(), refs.ref)}
+			{...rest}
+			{...partAttributes("content", local)}
+		/>
+	);
 }
 
 export type ArrowProps<T extends ValidComponent = "div"> = K.ComboboxArrowProps<T> &

@@ -7,6 +7,7 @@ import {
 	getOwner,
 	type JSX,
 	onCleanup,
+	onMount,
 	type Setter,
 	Show,
 	splitProps,
@@ -39,8 +40,12 @@ export type ToastOptions = {
 	closeable?: boolean;
 	/** Milliseconds before the toast closes. `Infinity` keeps it open. */
 	duration?: number;
-	/** Renders the toast in this theme, whatever the page theme. */
-	theme?: "light" | "dark";
+	/**
+	 * The toast's theme. `inverted` (the default) uses the opposite of the
+	 * theme around the toaster, as CodeImage does: a light card on a dark
+	 * page. `page` follows the page. `light` and `dark` force one.
+	 */
+	theme?: "light" | "dark" | "inverted" | "page";
 	class?: string;
 	classes?: T.ToastClasses;
 	style?: JSX.CSSProperties;
@@ -209,6 +214,47 @@ function ReadyToast(props: {
 		typeof content === "function" ? content(props.context) : content;
 
 	let element: HTMLElement | undefined;
+	const [pageScheme, setPageScheme] = createSignal<"light" | "dark">();
+	onMount(() => {
+		const read = () => {
+			const parent = element?.parentElement;
+			if (!parent) return;
+			const scheme = [
+				getComputedStyle(parent).colorScheme,
+				parent.closest("[data-cui-theme]")?.getAttribute("data-cui-theme"),
+			].find(value => value === "light" || value === "dark");
+			setPageScheme(scheme as "light" | "dark" | undefined);
+		};
+		read();
+		// Follow a theme switch while the toast is open: the app flips
+		// `data-cui-theme`, a class or the system preference.
+		const observer = new MutationObserver(read);
+		const scopes = new Set([
+			document.documentElement,
+			document.body,
+			element?.parentElement?.closest("[data-cui-theme]"),
+		]);
+		for (const scope of scopes) {
+			if (scope)
+				observer.observe(scope, {
+					attributes: true,
+					attributeFilter: ["data-cui-theme", "class", "style"],
+				});
+		}
+		const media = window.matchMedia?.("(prefers-color-scheme: dark)");
+		media?.addEventListener?.("change", read);
+		onCleanup(() => {
+			observer.disconnect();
+			media?.removeEventListener?.("change", read);
+		});
+	});
+	const theme = () => {
+		const theme = options().theme ?? "inverted";
+		if (theme === "page") return undefined;
+		if (theme !== "inverted") return theme;
+		const page = pageScheme();
+		return page && (page === "dark" ? "light" : "dark");
+	};
 	onCleanup(() => {
 		if (element?.hasAttribute("data-closed")) props.onClosed();
 	});
@@ -220,7 +266,7 @@ function ReadyToast(props: {
 			tone={options().tone}
 			persistent={!Number.isFinite(props.duration)}
 			duration={Number.isFinite(props.duration) ? props.duration : undefined}
-			data-cui-theme={options().theme}
+			data-cui-theme={theme()}
 			data-cui-replaced={props.replaced ? "" : undefined}
 			class={mergeClasses(classes()?.root, options().class)}
 			style={options().style}

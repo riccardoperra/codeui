@@ -182,6 +182,7 @@ Token paths refer to the proposed exported `tokens` object. The CSS name is stab
 | `font.weight.medium` | `--cui-font-weight-medium` | `500` | `500` | measured preview |
 | `font.weight.semibold` | `--cui-font-weight-semibold` | `600` | `600` | measured preview |
 | `font.lineHeight.compact` | `--cui-font-line-height-compact` | `1.15` | `1.15` | measured preview body and packages/ui lineHeight.normal |
+| `font.lineHeight.snug` | `--cui-font-line-height-snug` | `1.3` | `1.3` | DESIGN.md §3 Label and Title steps; measured preview toast 16px/20.8px |
 | `font.lineHeight.normal` | `--cui-font-line-height-normal` | `1.5` | `1.5` | measured preview body and packages/ui lineHeight.normal |
 | `font.tracking.normal` | `--cui-font-tracking-normal` | `normal` | `normal` | measured preview |
 
@@ -194,6 +195,7 @@ Token paths refer to the proposed exported `tokens` object. The CSS name is stab
 | `motion.duration.normal` | `--cui-motion-duration-normal` | `160ms` | `160ms` | measured preview fast/normal/panel; DESIGN.md 260ms ceiling for usual transitions |
 | `motion.duration.panel` | `--cui-motion-duration-panel` | `200ms` | `200ms` | measured preview fast/normal/panel; DESIGN.md 260ms ceiling for usual transitions |
 | `motion.duration.slow` | `--cui-motion-duration-slow` | `260ms` | `260ms` | measured preview fast/normal/panel; DESIGN.md 260ms ceiling for usual transitions |
+| `motion.duration.rise` | `--cui-motion-duration-rise` | `400ms` | `400ms` | DESIGN.md §7.3 Rise (toast, corner card); measured preview toast 350ms and Nudge 400ms |
 | `motion.ease.out` | `--cui-motion-ease-out` | `cubic-bezier(0.23, 1, 0.32, 1)` | `cubic-bezier(0.23, 1, 0.32, 1)` | measured preview and DESIGN.md; threads rule |
 
 ## Public CSS and vanilla-extract coexistence

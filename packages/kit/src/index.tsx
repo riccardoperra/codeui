@@ -74,7 +74,7 @@ export { Link } from "./components/Link/Link";
 
 export { Pagination, type PaginationProps } from "./components/Pagination/Pagination";
 
-export { Tooltip } from "./components/Tooltip/Tooltip";
+export { Tooltip, type TooltipProps } from "./components/Tooltip/Tooltip";
 
 export { Tabs, TabsHeader, TabsList, TabsContent } from "./components/Tabs/Tabs";
 

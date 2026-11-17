@@ -1,47 +1,27 @@
 import { createTheme, style } from "../../foundation/layer.css";
-import { keyframes } from "@vanilla-extract/css";
 import { componentStateStyles } from "@kobalte/vanilla-extract";
 import { tokens } from "../../foundation/cui.css";
-import { presenceAnimation } from "../../foundation/motion.css";
+import { popAnimation } from "../../foundation/motion.css";
 
 export const [dropdownMenuTheme, dropdownMenuThemeVars] = createTheme({
-	contentBackground: tokens.surface.menu,
-	contentRadius: tokens.radius.lg,
-	contentBoxShadow: tokens.shadow.menu,
-	contentPadding: tokens.space["2"],
+	contentBackground: tokens.surface.dialog,
+	contentRadius: tokens.radius.card,
+	contentBoxShadow: tokens.shadow.dialog,
+	contentPadding: tokens.space["1.5"],
+	contentMinWidth: tokens.space["48"],
 	contentBorderColor: tokens.border.menu,
 	separator: tokens.border.menu,
 	itemTextColor: tokens.text.menu,
 	itemHoverBackground: tokens.surface.menuHover,
 	itemHoverTextColor: tokens.text.menu,
 	itemDisabledOpacity: ".4",
-	itemMinHeight: tokens.control.height.md,
-	itemPadding: `${tokens.space["2"]} ${tokens.space["3"]}`,
+	itemMinHeight: tokens.control.height.sm,
+	itemPadding: `${tokens.space["1.5"]} ${tokens.space["2.5"]}`,
+	itemRadius: tokens.radius.nav,
+	itemFontSize: tokens.font.size.sm,
+	itemLineHeight: tokens.font.lineHeight.snug,
 });
 
-const contentShow = keyframes({
-	from: {
-		opacity: 0,
-		transform: "translateY(-10px)",
-	},
-	to: {
-		opacity: 1,
-		transform: "translateY(0px)",
-	},
-});
-
-const contentHide = keyframes({
-	from: {
-		opacity: 1,
-		transform: "translateY(0px)",
-	},
-	to: {
-		opacity: 0,
-		transform: "translateY(-10px)",
-	},
-});
-
-// TODO: common popover/dropdown style
 export const content = style([
 	dropdownMenuTheme,
 	{
@@ -49,22 +29,24 @@ export const content = style([
 		backgroundColor: dropdownMenuThemeVars.contentBackground,
 		borderRadius: dropdownMenuThemeVars.contentRadius,
 		padding: dropdownMenuThemeVars.contentPadding,
+		minWidth: `max(${dropdownMenuThemeVars.contentMinWidth}, var(--kb-popper-anchor-width, 0px))`,
+		color: dropdownMenuThemeVars.itemTextColor,
+		fontSize: dropdownMenuThemeVars.itemFontSize,
+		lineHeight: dropdownMenuThemeVars.itemLineHeight,
 		overflow: "hidden",
 		zIndex: 50,
 		listStyleType: "none",
 		display: "flex",
 		flexDirection: "column",
-		rowGap: tokens.space["1"],
+		rowGap: tokens.space["0.5"],
 		outline: "none",
-		border: `${tokens.border.width} solid ${dropdownMenuThemeVars.contentBorderColor}`,
 	},
-	presenceAnimation({ enter: contentShow, exit: contentHide }),
+	popAnimation(),
 ]);
 
 export const subMenuContent = style([
 	content,
 	{
-		boxShadow: tokens.shadow.menu,
 		zIndex: 50,
 	},
 ]);
@@ -84,13 +66,16 @@ export const item = style([
 		border: 0,
 		margin: 0,
 		padding: dropdownMenuThemeVars.itemPadding,
-		borderRadius: tokens.radius.sm,
+		borderRadius: dropdownMenuThemeVars.itemRadius,
 		background: "transparent",
 		color: dropdownMenuThemeVars.itemTextColor,
 		userSelect: "none",
 		display: "flex",
 		alignItems: "center",
 		outline: "none",
+		fontFamily: "inherit",
+		fontSize: dropdownMenuThemeVars.itemFontSize,
+		lineHeight: dropdownMenuThemeVars.itemLineHeight,
 		fontWeight: tokens.font.weight.normal,
 		gap: tokens.space["2"],
 		minHeight: dropdownMenuThemeVars.itemMinHeight,

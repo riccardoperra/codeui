@@ -17,7 +17,7 @@ Severity follows this order.
 - [ ] **JSX props read twice break hydration.** `<Show when={local.action}>{local.action}</Show>` runs the prop getter once for the condition and once for the children. On the client the first run claims a hydration key that the server never wrote to the page. A plain element falls back to a fresh node, which leaves a detached duplicate. A polymorphic part (Kobalte `Dynamic`) calls `getNextElement()` with no template and throws `TypeError: t is not a function`. The docs `alert/actions` demo (a Button as `action`) dies on every load. Reproduced in the docs build. Resolving the prop once with `children(() => local.action)` and using that accessor in both places removes the error, and the demo's button then updates the description. Same pattern: `Alert.tsx:44,50`, `Badge.tsx:24`, `Dialog.tsx:57,63`, `Popover.tsx:40,43`, `Sheet.tsx:81,83,94`, `OptionCard.tsx:107`, `Combobox.tsx:143`, and the `description` Show in TextField, TextArea, CheckBox, RadioList, Select and NumberField.
 - [ ] **Select** submits nothing in a form. It renders no hidden input, so `name` has no effect (`components/Select/Select.tsx:162`). The docs show a hidden-input workaround.
 - [ ] **Token overrides** written only on `:root` do not reach nested `[data-cui-theme]` scopes, because `foundation/cui.css.ts:78-79` sets every token again on each scope. `packages/kit/README.md:18` shows the `:root`-only form.
-- [ ] **Tooltip** puts `aria-describedby` on the wrapper `div` instead of the focusable child, so screen readers do not read it (`components/Tooltip/Tooltip.tsx:15-37`).
+- [x] **Tooltip** puts `aria-describedby` on the wrapper `div` instead of the focusable child, so screen readers do not read it (`components/Tooltip/Tooltip.tsx:15-37`).
 - [ ] **Button** `loading` sets neither `disabled` nor `aria-busy`, so a loading button stays clickable (`components/Button/Button.tsx:41`).
 - [ ] **Focus rings are missing or not visible.**
   - Link removes the outline with no replacement (`components/Link/Link.css.ts:10`).
@@ -68,7 +68,7 @@ Severity follows this order.
   - The inline `--cui-stack-gap` beats any value set in a class (`parts/stack.tsx:72`).
 - [ ] **Exported names and types.**
   - Two different exports are named `popoverStyles`: the raw namespace at the root (`index.tsx:57`) and the part functions at `@codeui/kit/popover`.
-  - `SelectProps` (`index.tsx:62`), `TooltipProps` and the `IconButton` props type are not exported.
+  - `SelectProps` (`index.tsx:62`) and the `IconButton` props type are not exported. `TooltipProps` is exported.
   - `<Select multiple>` needs an explicit generic.
 - [ ] **No public hint style.** `createFieldMessageProps` and the field message styles are not exported, so a custom field cannot match the hint.
 - [ ] **DropdownMenu.**
@@ -83,7 +83,7 @@ Severity follows this order.
 ## Spec drift from Inkstone
 
 - [ ] **Motion.**
-  - Popover, Select, Dropdown, Tooltip and Dialog animate when opened from the keyboard (`foundation/motion.css.ts:10`).
+  - Dialog animates when opened from the keyboard (`foundation/motion.css.ts:10`). Popover, Select, Combobox, Dropdown and Tooltip are fixed (`utils/open-source.ts`).
   - The Tabs and SegmentedControl indicators slide on arrow keys (`Tabs.css.ts:71`, `SegmentedControl.css.ts:200`).
   - Button press `scale(0.97)` ignores reduced motion (`Button.css.ts:73`).
   - Accordion uses keyframes instead of interruptible transitions (`Accordion.css.ts:5`).

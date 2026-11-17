@@ -250,6 +250,10 @@ describe("Tooltip", () => {
 		fireEvent.pointerEnter(trigger, { pointerType: "mouse" });
 		await new Promise(resolve => setTimeout(resolve, 50));
 		expect(screen.getByRole("tooltip")).toHaveTextContent("Copy to clipboard");
-		expect(trigger).toHaveAttribute("aria-describedby", screen.getByRole("tooltip").id);
+		// The description sits on the focusable child, where a screen reader reads it.
+		const button = screen.getByRole("button", { name: "Copy" });
+		expect(button).toHaveAttribute("aria-describedby", screen.getByRole("tooltip").id);
+		expect(button).toHaveAccessibleDescription("Copy to clipboard");
+		expect(trigger).not.toHaveAttribute("aria-describedby");
 	});
 });

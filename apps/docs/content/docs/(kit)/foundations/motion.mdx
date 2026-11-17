@@ -3,7 +3,7 @@ title: "Motion"
 description: "The durations and easings the kit uses, and how it respects reduced motion."
 ---
 
-The kit has five durations and one easing curve. Controls respond in 120ms. Overlays enter in 160 to 200ms. No kit transition or overlay animation runs longer than 260ms. Loops such as Spinner are the only longer animations.
+The kit has six durations and one easing curve. Controls respond in 120ms. Popovers, menus and tooltips enter in 160ms and leave in 120ms. Dialogs and sheets enter in 200ms. No control or anchored overlay animates longer than 260ms. A toast's 400ms Rise and loops such as Spinner are the only longer animations.
 
 <SolidDemo name="motion/durations" />
 
@@ -15,9 +15,10 @@ Each dot moves with one duration token and `--cui-motion-ease-out`. With reduced
 | --- | --- | --- |
 | `--cui-motion-duration-none` | `0ms` | Keyboard-triggered changes. Very frequent actions. |
 | `--cui-motion-duration-fast` | `120ms` | Press, hover, color change, checkbox mark, overlay exit. |
-| `--cui-motion-duration-normal` | `160ms` | Popover, menu and tooltip entrance. Switch thumb. Tab and segment indicator. |
-| `--cui-motion-duration-panel` | `200ms` | Dialog, sheet, accordion and toast entrance. |
+| `--cui-motion-duration-normal` | `160ms` | Pop: popover, menu, list popover and tooltip entrance. Switch thumb. Tab and segment indicator. |
+| `--cui-motion-duration-panel` | `200ms` | Dialog, sheet and accordion entrance. Toast exit. |
 | `--cui-motion-duration-slow` | `260ms` | The ceiling for a control. The kit uses it only as the base of loop timings. |
+| `--cui-motion-duration-rise` | `400ms` | Rise: toast entrance from its edge. |
 | `--cui-motion-ease-out` | `cubic-bezier(0.23, 1, 0.32, 1)` | Every kit transition and animation. |
 
 `ease-out` starts fast and settles. Movement feels like an answer to the click. The kit never uses `ease-in` on interface motion. Inkstone proposes two more curves, `--cui-motion-ease-in-out` and `--cui-motion-ease-drawer`. They are not in the kit yet.
@@ -47,6 +48,7 @@ These components follow the rule today:
 
 - **Accordion** expands only after a pointer press. A key press sets `data-motion="none"` on the root.
 - **Sheet** slides only when a pointer opened it. Opened from the keyboard, it appears in place.
+- **Popover, DropdownMenu, Select and Combobox lists, Tooltip** pop only when a pointer opened them (a hover counts for tooltips and submenus). Opened from the keyboard, the content gets `data-motion="none"` and appears in place, and it closes in place too. The choice is made once when the content opens. A tooltip opened right after another one closed also skips the Pop.
 - **Command menu** never animates. It is opened from a shortcut.
 
 Set `motion="none"` on `Accordion` or `Sheet` to turn motion off for pointer users too.
@@ -57,14 +59,15 @@ When the user turns on reduced motion, the kit removes movement and scale and ke
 
 | Component | Normal | With `prefers-reduced-motion: reduce` |
 | --- | --- | --- |
-| Popover, Select, Dropdown menu, Tooltip, Dialog, Accordion | Slide or scale with a fade | Fade only |
+| Popover, Select, Combobox, Dropdown menu, Tooltip | Pop: scale from the trigger with a fade | Fade only |
+| Dialog, Accordion | Slide or scale with a fade | Fade only |
 | Sheet | Slide from the edge | Fade only |
-| Toast | Rise from the edge, fade out | Fade in, fade out |
+| Toast | Rise from the edge (400ms), fade out (200ms) | Fade in, fade out |
 | Switch | Thumb slides | Thumb jumps |
 | Radio | Dot scales in | Dot appears |
 | Spinner, Progress (indeterminate), Skeleton | Loop | Static |
 
-Overlays share one helper, `presenceAnimation` in `packages/kit/src/foundation/motion.css.ts`. It runs the enter animation while Kobalte sets `data-expanded`, runs the exit animation when it clears, and swaps both for fades under reduced motion.
+Overlays share one helper, `presenceAnimation` in `packages/kit/src/foundation/motion.css.ts`. It runs the enter animation while Kobalte sets `data-expanded`, runs the exit animation when it clears, turns both off under `data-motion="none"`, and swaps both for fades under reduced motion. `popAnimation` builds the Pop on top of it, with `transform-origin: var(--kb-popper-content-transform-origin)`.
 
 ## Use the tokens in your own CSS
 

@@ -1,6 +1,6 @@
 import { recipe, style } from "../../foundation/layer.css";
 import { tokens as t } from "../../foundation/cui.css";
-import { transition } from "../../foundation/motion.css";
+import { popAnimation, transition } from "../../foundation/motion.css";
 
 const coarse = "(pointer: coarse)";
 
@@ -105,7 +105,7 @@ export const content = style({
 	borderRadius: t.radius.md,
 	boxShadow: t.shadow.menu,
 	outline: "none",
-	transformOrigin: "var(--kb-combobox-content-transform-origin)",
+	...popAnimation(),
 });
 
 export const arrow = style({ fill: t.surface.menu });

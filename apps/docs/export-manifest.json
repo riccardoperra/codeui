@@ -208,7 +208,8 @@
 			"tokens": "utilities/token-exports#tokens",
 			"Tooltip": "components/tooltip#tooltip",
 			"VirtualizedListbox": "components/virtualized-listbox#virtualizedlistbox",
-			"VirtualizedListboxProps": "components/virtualized-listbox#virtualizedlistbox"
+			"VirtualizedListboxProps": "components/virtualized-listbox#virtualizedlistbox",
+			"TooltipProps": "components/tooltip#tooltip"
 		},
 		"@codeui/kit/accordion": {
 			"AccordionClasses": "components/accordion#anatomy",
