@@ -31,6 +31,10 @@
 			"dependsOn": [
 				"^build"
 			],
+			"inputs": [
+				"$TURBO_DEFAULT$",
+				"../../tools/palette/**"
+			],
 			"env": [
 				"NITRO_PRESET"
 			],

@@ -27,6 +27,171 @@
     --ink-do: #2f855a;
   }
 
+  .palette-comparison {
+    display: grid;
+    gap: 10px;
+    margin-block: 18px;
+  }
+
+  .palette-comparison__controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+  }
+
+  .palette-comparison__controls label {
+    display: grid;
+    gap: 3px;
+    font-size: var(--cui-font-size-xs);
+    color: var(--color-fd-muted-foreground);
+  }
+
+  .palette-comparison__controls select {
+    min-height: 40px;
+    padding-inline: 10px;
+    border-radius: var(--cui-radius-sm);
+    background: var(--color-fd-muted);
+    color: var(--color-fd-foreground);
+    font-size: var(--cui-font-size-sm);
+  }
+
+  .palette-comparison__controls select:focus-visible {
+    outline: var(--cui-focus-width) solid var(--color-fd-ring);
+    outline-offset: var(--cui-focus-offset);
+  }
+
+  .palette-comparison__stage .m-page {
+    max-width: 380px;
+    padding: 12px;
+  }
+
+  .palette-comparison__stage :is(.m-field, .m-row, .m-btn) {
+    min-height: 36px;
+    font-size: var(--cui-font-size-sm);
+  }
+
+  .colour-palette {
+    container-type: inline-size;
+    display: grid;
+    gap: 22px;
+    margin-block: 18px 24px;
+    color: var(--color-fd-foreground);
+    line-height: 1.4;
+  }
+
+  .colour-palette__label,
+  .colour-palette__roles caption {
+    margin: 0 0 8px;
+    text-align: start;
+    font-size: var(--cui-font-size-sm);
+    font-weight: 600;
+  }
+
+  .colour-palette__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  @container (min-width: 490px) {
+    .colour-palette__grid {
+      grid-template-columns: repeat(8, minmax(0, 1fr));
+    }
+
+    .colour-palette__grid[data-family="blue"] {
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+  }
+
+  .colour-palette__grid li {
+    display: grid;
+    gap: 2px;
+    min-width: 0;
+    font-size: var(--cui-font-size-badge);
+    color: var(--color-fd-muted-foreground);
+  }
+
+  .colour-palette code {
+    font-family: var(--cui-font-family-mono);
+    font-size: var(--cui-font-size-badge);
+    font-variant-numeric: tabular-nums;
+    overflow-wrap: anywhere;
+  }
+
+  .colour-palette__grid code {
+    color: var(--color-fd-foreground);
+  }
+
+  .colour-palette__swatch {
+    display: block;
+    background-color: var(--swatch-srgb);
+    border-radius: var(--cui-radius-badge);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-fd-muted-foreground) 28%, transparent);
+  }
+
+  @supports (color: oklch(0.5 0 0)) {
+    .colour-palette__swatch {
+      background-color: var(--swatch-oklch);
+    }
+  }
+
+  .colour-palette__grid .colour-palette__swatch {
+    height: 40px;
+    margin-bottom: 3px;
+  }
+
+  .colour-palette__roles {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    text-align: start;
+    font-size: var(--cui-font-size-xs);
+  }
+
+  .colour-palette__roles :is(th, td) {
+    padding: 6px 4px;
+    text-align: start;
+    vertical-align: top;
+    overflow-wrap: anywhere;
+  }
+
+  .colour-palette__roles thead {
+    color: var(--color-fd-muted-foreground);
+  }
+
+  .colour-palette__roles th:first-child {
+    width: 46%;
+  }
+
+  .colour-palette__roles tbody th {
+    font-weight: 500;
+  }
+
+  .colour-palette__roles tbody tr:nth-child(odd) {
+    background: var(--color-fd-card);
+  }
+
+  .colour-palette__roles code {
+    display: block;
+    color: var(--color-fd-muted-foreground);
+  }
+
+  .colour-palette__value {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: var(--cui-font-size-badge);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .colour-palette__value > .colour-palette__swatch {
+    flex: 0 0 12px;
+    height: 12px;
+  }
+
   /* Figure frame */
   .ink-fig {
     margin: 28px 0;
