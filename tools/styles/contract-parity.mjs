@@ -47,6 +47,11 @@ for (const [component, story, selector] of [
 		await (component === "dialog" ? page : target).screenshot({
 			path: `${dir}screenshots/storybook-${component}-${theme}.png`,
 		});
+		if (component === "switch")
+			await page
+				.locator('[data-cui="switch-control"]')
+				.first()
+				.screenshot({ path: dir + "screenshots/storybook-track-" + theme + ".png" });
 		const beforeDetails = await page
 			.locator('[data-cui="dialog-panel"], [data-cui="switch-control"]')
 			.evaluateAll(es =>
@@ -126,6 +131,11 @@ for (const [component, story, selector] of [
 				borderRadius: s.borderRadius,
 			};
 		});
+		if (component === "switch")
+			await page
+				.locator('[data-cui="switch-control"]')
+				.first()
+				.screenshot({ path: dir + "screenshots/contract-track-" + theme + ".png" });
 		const details = await page
 			.locator('[data-cui="dialog-panel"], [data-cui="switch-control"]')
 			.evaluateAll(es =>
