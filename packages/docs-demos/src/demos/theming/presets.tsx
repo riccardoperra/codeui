@@ -26,6 +26,9 @@ const presets = {
 
 type PresetId = keyof typeof presets;
 
+const sameTheme = (a: Theme, b: Theme) =>
+	a.radiusScale === b.radiusScale && a.brand.toLowerCase() === b.brand.toLowerCase();
+
 /** Only the values that differ from Inkstone. */
 function overrides(theme: Theme): Record<`--cui-${string}`, string> {
 	return {
@@ -75,15 +78,17 @@ const row = {
 } as const;
 
 export default function ThemingPresets() {
-	const [preset, setPreset] = createSignal<PresetId>("inkstone");
 	const [theme, setTheme] = createSignal<Theme>(inkstone);
+	const preset = createMemo(
+		() =>
+			(Object.keys(presets) as PresetId[]).find(id =>
+				sameTheme(presets[id].theme, theme()),
+			) ?? "custom",
+	);
 	const [copied, setCopied] = createSignal(false);
 	const css = createMemo(() => themeCss(theme()));
 
-	const pick = (id: PresetId) => {
-		setPreset(id);
-		setTheme(presets[id].theme);
-	};
+	const pick = (id: PresetId) => setTheme(presets[id].theme);
 
 	const copy = async () => {
 		await navigator.clipboard.writeText(css());
@@ -96,15 +101,18 @@ export default function ThemingPresets() {
 			style={{ display: "flex", "flex-direction": "column", gap: "var(--cui-space-4)" }}
 		>
 			<SegmentedControl
-				aria-label="Start from a preset"
+				aria-label="Theme preset"
 				value={preset()}
-				onChange={value => pick(value as PresetId)}
+				onChange={value => value in presets && pick(value as PresetId)}
 			>
 				<For each={Object.entries(presets)}>
 					{([value, { label }]) => (
 						<SegmentedControlItem value={value}>{label}</SegmentedControlItem>
 					)}
 				</For>
+				<SegmentedControlItem value="custom" disabled>
+					Custom
+				</SegmentedControlItem>
 			</SegmentedControl>
 			<div style={{ ...row, "flex-wrap": "wrap", gap: "var(--cui-space-4)" }}>
 				<div style={{ flex: "1 1 240px" }}>
