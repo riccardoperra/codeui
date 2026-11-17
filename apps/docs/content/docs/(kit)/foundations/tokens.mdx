@@ -3,7 +3,7 @@ title: "Tokens"
 description: "The --cui-* custom properties every kit style reads."
 ---
 
-Every color, radius, space, size, shadow and motion value in the kit is a `--cui-*` CSS custom property. Kit components read only these properties, so changing one changes every component that uses it. The kit defines 129 of them.
+Every color, radius, space, size, shadow and motion value in the kit is a `--cui-*` CSS custom property. Kit components read only these properties, so changing one changes every component that uses it. The kit defines 143 of them.
 
 <SolidDemo name="tokens/overview" source="hidden" />
 
@@ -41,21 +41,23 @@ The backgrounds of pages, islands, fields and floating layers. The names are inv
 
 | Token | CSS variable | Dark | Light |
 | --- | --- | --- | --- |
-| `surface.canvas` | `--cui-surface-canvas` | `#0f0f10` | `#f7fafc` |
-| `surface.toolbar` | `--cui-surface-toolbar` | `#2b2b2b` | `#fff` |
+| `surface.canvas` | `--cui-surface-canvas` | `#0f0f10` | `#f7f9fb` |
+| `surface.toolbar` | `--cui-surface-toolbar` | `#2b2b2b` | `#ffffff` |
 | `surface.scrim` | `--cui-surface-scrim` | `#000000b3` | `#0006` |
-| `surface.dialog` | `--cui-surface-dialog` | `#1d1d1d` | `#fff` |
-| `surface.inputAccent` | `--cui-surface-input-accent` | `#505050` | `#fff` |
-| `surface.input` | `--cui-surface-input` | `#232323` | `#f3f3f3` |
-| `surface.menuHover` | `--cui-surface-menu-hover` | `#333` | `#f7fafc` |
-| `surface.menu` | `--cui-surface-menu` | `#282828` | `#fff` |
-| `surface.panel` | `--cui-surface-panel` | `#151516` | `#fff` |
-| `surface.scrollThumb` | `--cui-surface-scroll-thumb` | `#505050` | `#cbd5e0` |
-| `surface.scrollThumbHover` | `--cui-surface-scroll-thumb-hover` | `#333` | `#a0aec0` |
-| `surface.secondary` | `--cui-surface-secondary` | `#edf2f7` | `#edf2f7` |
-| `surface.toast` | `--cui-surface-toast` | `#2b2b2b` | `#fff` |
+| `surface.dialog` | `--cui-surface-dialog` | `#1d1d1d` | `#ffffff` |
+| `surface.inputAccent` | `--cui-surface-input-accent` | `#505050` | `#ffffff` |
+| `surface.input` | `--cui-surface-input` | `#232323` | `#eceff1` |
+| `surface.fieldHover` | `--cui-surface-field-hover` | `#2f2f2f` | `#e4e6e9` |
+| `surface.menuHover` | `--cui-surface-menu-hover` | `#333` | `#eceff1` |
+| `surface.menu` | `--cui-surface-menu` | `#282828` | `#ffffff` |
+| `surface.panel` | `--cui-surface-panel` | `#151516` | `#ffffff` |
+| `surface.scrollThumb` | `--cui-surface-scroll-thumb` | `#505050` | `#d0d3d6` |
+| `surface.scrollThumbHover` | `--cui-surface-scroll-thumb-hover` | `#333` | `#b4b8bc` |
+| `surface.secondary` | `--cui-surface-secondary` | `#333` | `#e4e6e9` |
+| `surface.toast` | `--cui-surface-toast` | `#2b2b2b` | `#ffffff` |
+| `surface.track` | `--cui-surface-track` | `#505050` | `#9b9fa4` |
 
-`surface.secondary` is `#edf2f7` in both modes. No component reads it. Only the deprecated `themeVars.neutralSoft` alias points at it.
+Every light surface is a step of one grey ramp ([Colour](/docs/design/color#light-mode-is-one-grey-family)). `surface.fieldHover` is one fill step above a field, for a hovered or selected card. `surface.track` is the switch off track. `surface.secondary` is ramp step 3 in light and `#333` in dark. No component reads it. Only the deprecated `themeVars.neutralSoft` alias points at it.
 
 ## Text
 
@@ -63,22 +65,24 @@ The backgrounds of pages, islands, fields and floating layers. The names are inv
 
 | Token | CSS variable | Dark | Light |
 | --- | --- | --- | --- |
-| `text.default` | `--cui-text-default` | `#ededed` | `#4a5568` |
-| `text.toolbar` | `--cui-text-toolbar` | `#a0a0a0` | `#4a5568` |
-| `text.muted` | `--cui-text-muted` | `#999` | `#4a5568` |
-| `text.dialog` | `--cui-text-dialog` | `#ededed` | `#2d3748` |
-| `text.dialogTitle` | `--cui-text-dialog-title` | `#ededed` | `#2d3748` |
-| `text.label` | `--cui-text-label` | `#ededed` | `#2d3748` |
-| `text.hint` | `--cui-text-hint` | `#a0a0a0` | `#4a5568` |
-| `text.input` | `--cui-text-input` | `#ededed` | `#333` |
+| `text.default` | `--cui-text-default` | `#ededed` | `#1d2229` |
+| `text.toolbar` | `--cui-text-toolbar` | `#a0a0a0` | `#51565c` |
+| `text.muted` | `--cui-text-muted` | `#999` | `#51565c` |
+| `text.dialog` | `--cui-text-dialog` | `#ededed` | `#1d2229` |
+| `text.dialogTitle` | `--cui-text-dialog-title` | `#ededed` | `#1d2229` |
+| `text.label` | `--cui-text-label` | `#ededed` | `#1d2229` |
+| `text.hint` | `--cui-text-hint` | `#a0a0a0` | `#51565c` |
+| `text.tertiary` | `--cui-text-tertiary` | `#8a8a8a` | `#656970` |
+| `text.disabled` | `--cui-text-disabled` | `#666` | `#b4b8bc` |
+| `text.input` | `--cui-text-input` | `#ededed` | `#1d2229` |
 | `text.selected` | `--cui-text-selected` | `#fff` | `#fff` |
-| `text.menu` | `--cui-text-menu` | `#ededed` | `#2d3748` |
-| `text.panelMuted` | `--cui-text-panel-muted` | `#ccc` | `#666` |
-| `text.panel` | `--cui-text-panel` | `#fff` | `#000` |
-| `text.toast` | `--cui-text-toast` | `#fff` | `#333` |
+| `text.menu` | `--cui-text-menu` | `#ededed` | `#1d2229` |
+| `text.panelMuted` | `--cui-text-panel-muted` | `#ccc` | `#51565c` |
+| `text.panel` | `--cui-text-panel` | `#fff` | `#1d2229` |
+| `text.toast` | `--cui-text-toast` | `#fff` | `#1d2229` |
 | `text.danger` | `--cui-text-danger` | `#fc8181` | `#c53030` |
 
-In light mode, `text.default` and `text.muted` share `#4a5568`. Inkstone records this as a bug.
+`text.default` is primary and `text.muted` and `text.hint` are secondary in both modes. Use `text.tertiary` only on the page, an island or a field, and `text.disabled` for unavailable controls.
 
 ## Action and accent
 
@@ -88,20 +92,20 @@ In light mode, `text.default` and `text.muted` share `#4a5568`. Inkstone records
 
 | Token | CSS variable | Dark | Light |
 | --- | --- | --- | --- |
-| `action.neutral.active` | `--cui-action-neutral-active` | `#505050` | `#a0aec0` |
-| `action.neutral.base` | `--cui-action-neutral-base` | `#333` | `#e2e8f0` |
-| `action.neutral.hover` | `--cui-action-neutral-hover` | `#3e3e3e` | `#cbd5e0` |
-| `action.neutral.text` | `--cui-action-neutral-text` | `#ededed` | `#2d3748` |
+| `action.neutral.active` | `--cui-action-neutral-active` | `#505050` | `#d0d3d6` |
+| `action.neutral.base` | `--cui-action-neutral-base` | `#333` | `#e4e6e9` |
+| `action.neutral.hover` | `--cui-action-neutral-hover` | `#3e3e3e` | `#dcdee1` |
+| `action.neutral.text` | `--cui-action-neutral-text` | `#ededed` | `#1d2229` |
 | `action.brand.active` | `--cui-action-brand-active` | `#07f` | `#07f` |
 | `action.brand.base` | `--cui-action-brand-base` | `#09f` | `#09f` |
 | `action.brand.hover` | `--cui-action-brand-hover` | `#08f` | `#08f` |
 | `action.brand.text` | `--cui-action-brand-text` | `#fff` | `#fff` |
 | `action.brandSoft.base` | `--cui-action-brand-soft-base` | `#0099ff26` | `#0099ff26` |
 | `action.brandSoft.hover` | `--cui-action-brand-soft-hover` | `#007acc26` | `#007acc26` |
-| `action.brandSoft.text` | `--cui-action-brand-soft-text` | `#09f` | `#09f` |
+| `action.brandSoft.text` | `--cui-action-brand-soft-text` | `#09f` | `#006aca` |
 | `action.brandSoft.active` | `--cui-action-brand-soft-active` | `#007acc26` | `#007acc26` |
-| `accent.selection` | `--cui-accent-selection` | `#07f` | `#09f` |
-| `accent.focus` | `--cui-accent-focus` | `#63b3ed` | `#09f` |
+| `accent.selection` | `--cui-accent-selection` | `#07f` | `#0083e5` |
+| `accent.focus` | `--cui-accent-focus` | `#63b3ed` | `#0083e5` |
 
 White text on `action.brand.base` (`#09f`) is 3.0:1. [Accessibility](/docs/foundations/accessibility#contrast) explains where that falls short.
 
@@ -132,10 +136,10 @@ Danger, caution and success. They mark a state the user must notice and never de
 
 | Token | CSS variable | Dark | Light |
 | --- | --- | --- | --- |
-| `border.dialogTitle` | `--cui-border-dialog-title` | `#2b2b2b` | `#e2e8f0` |
-| `border.divider` | `--cui-border-divider` | `#252525` | `#e2e8f0` |
+| `border.dialogTitle` | `--cui-border-dialog-title` | `#2b2b2b` | `#dcdee1` |
+| `border.divider` | `--cui-border-divider` | `#252525` | `#dcdee1` |
 | `border.input` | `--cui-border-input` | `transparent` | `transparent` |
-| `border.menu` | `--cui-border-menu` | `#333` | `#e8e8e8` |
+| `border.menu` | `--cui-border-menu` | `#333` | `#dcdee1` |
 | `border.width` | `--cui-border-width` | `1px` | `1px` |
 | `border.widthStrong` | `--cui-border-width-strong` | `2px` | `2px` |
 

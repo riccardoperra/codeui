@@ -21,7 +21,10 @@ const segments = (token: string) =>
 	token.startsWith("space.") ? ["space", token.slice("space.".length)] : token.split(".");
 
 const at = (tree: unknown, keys: string[]) =>
-	keys.reduce<unknown>((node, key) => (node as Record<string, unknown> | undefined)?.[key], tree);
+	keys.reduce<unknown>(
+		(node, key) => (node as Record<string, unknown> | undefined)?.[key],
+		tree,
+	);
 
 function leaves(tree: object, prefix: string[] = []): string[][] {
 	return Object.entries(tree).flatMap(([key, value]) =>
@@ -56,4 +59,43 @@ it("has no token outside the design", () => {
 		.filter(key => !designed.has(key));
 	expect(extra).toEqual([]);
 	expect(new Set(design.tokens.map(t => t.css)).size).toBe(design.tokens.length);
+});
+
+it("lists every token with its values in the docs static tables", () => {
+	const page = readFileSync(
+		path.resolve(
+			__dirname,
+			"../../../apps/docs/content/docs/(kit)/foundations/tokens.mdx",
+		),
+		"utf8",
+	);
+	const rows = new Map(
+		[...page.matchAll(/^\| `([^`]+)` \| `(--cui-[^`]+)` \| (.*) \|$/gm)].map(match => [
+			match[1],
+			[match[2], ...match[3]!.split(" | ").map(cell => cell.replace(/^`|`$/g, ""))].join(
+				" | ",
+			),
+		]),
+	);
+	const missing = design.tokens
+		.map(token => {
+			const value = at(themeValues, segments(token.token)) as
+				| string
+				| { dark: string; light: string };
+			// A value shared by both modes is one column in the size tables and two in the colour tables.
+			const accepted =
+				typeof value === "string"
+					? [`${token.css} | ${value}`, `${token.css} | ${value} | ${value}`]
+					: [`${token.css} | ${value.dark} | ${value.light}`];
+			return {
+				token: token.token,
+				expected: accepted[0],
+				actual: rows.get(token.token),
+				accepted,
+			};
+		})
+		.filter(({ actual, accepted }) => !accepted.includes(actual ?? ""))
+		.map(({ accepted: _, ...miss }) => miss);
+	expect(missing).toEqual([]);
+	expect(page).toContain(`The kit defines ${design.tokens.length} of them.`);
 });
