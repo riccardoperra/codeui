@@ -29,8 +29,8 @@ it("links rich slider content, validation and form input", () => {
 	expect(new FormData(container.querySelector("form")!).get("opacity")).toBe("0.5");
 });
 it("preserves fractional values, keyboard steps and controlled updates", () => {
-	const changed = jest.fn();
-	const ended = jest.fn();
+	const changed = vi.fn();
+	const ended = vi.fn();
 	const [value, setValue] = createSignal(0.5);
 	render(() => (
 		<Slider
@@ -74,7 +74,7 @@ it("preserves fractional values, keyboard steps and controlled updates", () => {
 it.each([{ disabled: true }, { readOnly: true }])(
 	"prevents slider edits for %o",
 	state => {
-		const changed = jest.fn();
+		const changed = vi.fn();
 		render(() => (
 			<Slider label="Locked" defaultValue={50} {...state} onChange={changed} />
 		));

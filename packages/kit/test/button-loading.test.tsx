@@ -13,8 +13,8 @@ describe("Button loading", () => {
 	});
 
 	it("ignores clicks and does not submit its form while loading", () => {
-		const onClick = jest.fn();
-		const onSubmit = jest.fn((event: Event) => event.preventDefault());
+		const onClick = vi.fn();
+		const onSubmit = vi.fn((event: Event) => event.preventDefault());
 		render(() => (
 			<form onSubmit={onSubmit}>
 				<Button type="submit" loading onClick={onClick}>
@@ -28,7 +28,7 @@ describe("Button loading", () => {
 	});
 
 	it("keeps focus when loading starts, and activates again when it ends", () => {
-		const onClick = jest.fn();
+		const onClick = vi.fn();
 		const [loading, setLoading] = createSignal(false);
 		render(() => (
 			<Button loading={loading()} onClick={onClick}>

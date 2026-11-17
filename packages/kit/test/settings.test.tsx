@@ -8,13 +8,6 @@ import * as S from "../src/parts/settings";
 import { createSettingsRowProps } from "../src/components/Settings/createSettingsRowProps";
 
 afterEach(cleanup);
-beforeAll(() => {
-	global.ResizeObserver = class {
-		observe() {}
-		unobserve() {}
-		disconnect() {}
-	};
-});
 
 it("names and describes the control from the row text", () => {
 	render(() => (

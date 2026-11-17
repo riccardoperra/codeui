@@ -4,9 +4,6 @@ import { press, tick } from "./helpers";
 
 afterEach(cleanup);
 
-beforeAll(() => {
-	window.scrollTo = () => {};
-});
 
 function submittedValues(form: HTMLFormElement, name: string) {
 	return new FormData(form).getAll(name);

@@ -19,7 +19,7 @@ import { expectDismissed, tick } from "./helpers";
 afterEach(() => {
 	engine.clear();
 	cleanup();
-	jest.useRealTimers();
+	vi.useRealTimers();
 });
 
 function mount(controller: ToastController, label = "Notifications") {
@@ -145,7 +145,7 @@ describe("createToaster", () => {
 	it("runs the action with the toast context and stays open", async () => {
 		const notifications = createToaster();
 		mount(notifications);
-		const onClick = jest.fn();
+		const onClick = vi.fn();
 		const id = notifications.show({
 			description: "Deleted",
 			action: { label: "Undo", onClick },
@@ -239,10 +239,10 @@ describe("createToaster", () => {
 });
 
 describe("toast timing", () => {
-	beforeEach(() => jest.useFakeTimers());
+	beforeEach(() => vi.useFakeTimers());
 
 	async function advance(ms: number) {
-		jest.advanceTimersByTime(ms);
+		vi.advanceTimersByTime(ms);
 		await Promise.resolve();
 	}
 

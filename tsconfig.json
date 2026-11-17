@@ -27,8 +27,8 @@
 			"solid-js",
 			"vite/client",
 			"node",
-			"jest",
-			"@testing-library/jest-dom"
+			"vitest/globals",
+			"@testing-library/jest-dom/vitest"
 		],
 		"paths": {
 			"@codeui/kit": [

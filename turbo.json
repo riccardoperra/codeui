@@ -22,9 +22,21 @@
 			"cache": false
 		},
 		"@codeui/docs#build": {
-			"dependsOn": ["^build"],
-			"env": ["NITRO_PRESET"],
-			"outputs": [".output/**", "dist/**"]
+			"dependsOn": [
+				"^build"
+			],
+			"env": [
+				"NITRO_PRESET"
+			],
+			"outputs": [
+				".output/**",
+				"dist/**"
+			]
+		},
+		"@codeui/kit#test": {
+			"dependsOn": [
+				"build"
+			]
 		}
 	}
 }

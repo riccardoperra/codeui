@@ -51,9 +51,7 @@ for (const s of sections) {
 if (!existsSync(client)) {
   problems.push('packages/docs-demos is not built; run `pnpm --filter @codeui/docs-demos build` to check the rendered parts');
 } else {
-  // jsdom comes with the kit's Jest environment.
-  const kitRequire = createRequire(path.join(root, 'packages/kit/package.json'));
-  const { JSDOM } = createRequire(kitRequire.resolve('jest-environment-jsdom'))('jsdom');
+  const { JSDOM } = createRequire(import.meta.url)('jsdom');
   const dom = new JSDOM('<!doctype html><html><body></body></html>', { pretendToBeVisual: true, url: 'http://localhost/' });
   const { window } = dom;
   for (const key of Object.getOwnPropertyNames(window)) {

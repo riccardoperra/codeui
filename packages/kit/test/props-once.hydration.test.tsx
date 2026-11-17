@@ -1,13 +1,10 @@
-import { existsSync, readFileSync } from "node:fs";
 import { sharedConfig } from "solid-js";
 import { hydrate } from "solid-js/web";
 import { hydrationFixtures } from "./hydration/fixtures";
-import { serverHtmlFile } from "./hydration/paths";
+import serverHtmlJson from "../.hydration/server.json?raw";
 
 // The server half runs first: `pnpm test:hydration` renders test/hydration.ssr.test.tsx.
-const serverHtml: Record<string, string> = existsSync(serverHtmlFile)
-	? JSON.parse(readFileSync(serverHtmlFile, "utf8"))
-	: {};
+const serverHtml: Record<string, string> = JSON.parse(serverHtmlJson);
 
 declare global {
 	// eslint-disable-next-line no-var
@@ -39,7 +36,7 @@ it.each(Object.keys(hydrationFixtures))(
 		document.body.append(container);
 		const before = [...container.querySelectorAll("[data-prop]")];
 		const errors: unknown[] = [];
-		const spy = jest
+		const spy = vi
 			.spyOn(console, "error")
 			.mockImplementation((...args) => errors.push(args));
 		try {

@@ -3,7 +3,7 @@ import "@codeui/styles/combobox.css";
 import * as K from "@kobalte/core/combobox";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import { splitProps, type ValidComponent } from "solid-js";
-import { mergeRefs } from "@kobalte/utils";
+import { callHandler, mergeRefs } from "@kobalte/utils";
 import { mergeClasses } from "../utils/css";
 import { motionRef } from "../utils/open-source";
 import * as styles from "../components/Combobox/Combobox.css";
@@ -84,7 +84,19 @@ export function Input<T extends ValidComponent = "input">(
 		props as PolymorphicProps<"input", InputProps> & Local,
 		variantKeys,
 	);
-	return <K.Input {...others} {...partAttributes("input", local)} />;
+	const context = K.useComboboxContext();
+	const [events, rest] = splitProps(others, ["onKeyDown"]);
+	return (
+		<K.Input
+			{...rest}
+			{...partAttributes("input", local)}
+			onKeyDown={event => {
+				callHandler(event, events.onKeyDown);
+				// Kobalte closes the list next; keep this Escape from dismissing its parent dialog.
+				if (event.key === "Escape" && context.isOpen()) event.preventDefault();
+			}}
+		/>
+	);
 }
 
 export type TriggerProps<T extends ValidComponent = "button"> =

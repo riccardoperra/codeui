@@ -7,9 +7,9 @@ import { portalFixtures } from "./hydration/portal-fixtures";
 import { portalHtmlFile } from "./hydration/paths";
 
 beforeAll(() => {
-	jest.spyOn(window, "scrollTo").mockImplementation(() => {});
+	vi.spyOn(window, "scrollTo").mockImplementation(() => {});
 });
-afterAll(() => jest.restoreAllMocks());
+afterAll(() => vi.restoreAllMocks());
 
 const serverHtml: Record<string, string> = JSON.parse(
 	readFileSync(portalHtmlFile, "utf8"),
