@@ -110,6 +110,7 @@ export const themeValues =
 		card: "16px",
 		xl: "18px",
 		command: "22px",
+		dialog: "24px",
 		full: "9999px",
 	},
 	space: {

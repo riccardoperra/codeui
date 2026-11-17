@@ -27,7 +27,7 @@ Inside a modal dialog, avoid Select. Its list opens in a portal outside the dial
 
 A settings row is a title, one line of explanation, and the control on the right. The rows of a group sit together on one island with no lines between them. Below 900px the control moves under the text.
 
-The settings dialog has two panes: search and sections on the left, rows on the right. The current section is marked with a fill, not with blue. The title is a breadcrumb ("Settings / Appearance") and there is no footer, because every change is saved immediately.
+The settings dialog has two panes: search and sections on the left, rows on the right. The current section is marked with a fill, not with blue. The title is a breadcrumb ("Settings / Appearance") and there is no footer, because every change is saved immediately. It is 1000×680 on a desktop. On a phone it fills the screen less an 8px gutter, and the sections wrap three to a row. The kit builds it with the [Dialog layout parts](/docs/components/dialog#build-a-custom-layout).
 
 Options that are not the default yet live in an **Experiments** section. The current default carries a `Default` tag, and one "Restore defaults" action resets everything. When an experiment wins, it becomes the default and the option it replaced is deleted, not kept as a setting.
 

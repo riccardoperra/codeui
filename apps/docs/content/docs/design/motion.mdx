@@ -78,7 +78,7 @@ The kit's own components are slower and softer than the app that uses them.
 | --- | --- |
 | Button press: 200ms `ease` | Press, 120ms ease-out |
 | Focus ring: 150ms `ease-in` | A 120ms colour change, ease-out |
-| Dialog entrance: 250ms `ease-in-out` keyframe | Pop, as a reversible transition |
+| Dialog: Pop as keyframes, in 200ms from `scale(0.96)`, out 120ms toward `scale(0.98)`, scrim fades, no motion from the keyboard | Pop, as a reversible transition |
 | Segmented indicator: 160ms ease-out on click, instant from the keyboard | 200ms ease-out, or no animation in working panels |
 
 Two curves are also missing from the tokens: `--cui-motion-ease-in-out` and `--cui-motion-ease-drawer`.

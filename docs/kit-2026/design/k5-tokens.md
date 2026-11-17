@@ -123,6 +123,7 @@ Token paths refer to the proposed exported `tokens` object. The CSS name is stab
 | `radius.card` | `--cui-radius-card` | `16px` | `16px` | measured preview controlTokens; full from kit |
 | `radius.xl` | `--cui-radius-xl` | `18px` | `18px` | measured preview controlTokens; full from kit |
 | `radius.command` | `--cui-radius-command` | `22px` | `22px` | measured preview controlTokens; full from kit |
+| `radius.dialog` | `--cui-radius-dialog` | `24px` | `24px` | CodeImage export dialog, export-styles/sheet.css.ts borderRadius |
 | `radius.full` | `--cui-radius-full` | `9999px` | `9999px` | measured preview controlTokens; full from kit |
 
 ### Spacing

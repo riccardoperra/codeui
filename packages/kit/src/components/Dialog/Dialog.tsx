@@ -16,6 +16,10 @@ export type DialogProps = KDialogRootOptions &
 		| "onInteractOutside"
 	> & {
 		size?: D.DialogSize;
+		/** How the header sits in the panel. Defaults to `bar`. */
+		chrome?: D.DialogChrome;
+		/** `auto` animates pointer opens and closes; `none` never animates. Defaults to `auto`. */
+		motion?: D.DialogMotion;
 		title?: JSX.Element;
 		description?: JSX.Element;
 		/** Accessible name of the close button. Defaults to "close". */
@@ -37,7 +41,7 @@ export const DialogPanelFooter = D.Footer;
 export function Dialog(props: ParentProps<DialogProps>) {
 	const [local, content, others] = splitProps(
 		props,
-		["size", "children", "title", "description", "closeLabel", "mount", "classes"],
+		["size", "chrome", "children", "title", "description", "closeLabel", "mount", "classes"],
 		[
 			"aria-label",
 			"onOpenAutoFocus",
@@ -53,7 +57,7 @@ export function Dialog(props: ParentProps<DialogProps>) {
 			<D.Portal mount={local.mount}>
 				<D.Overlay class={local.classes?.overlay} />
 				<D.Positioner size={local.size} class={local.classes?.positioner}>
-					<D.Content {...content} size={local.size} class={local.classes?.panel}>
+					<D.Content {...content} size={local.size} chrome={local.chrome} class={local.classes?.panel}>
 						<Show when={local.title}>
 							<D.Header class={local.classes?.header}>
 								<D.Title class={local.classes?.title}>{local.title}</D.Title>

@@ -156,6 +156,7 @@ The header has no bar. It is the first row of islands, and its edges align with 
 
 | Level                                                         | Radius | Token                  |
 | ------------------------------------------------------------- | ------ | ---------------------- |
+| Large dialog with inset chrome (export)                       | 24px   | `--cui-radius-dialog`  |
 | Island, floating bar, command menu                            | 22px   | `--cui-radius-command` |
 | Group inside an island, popover, dialog, nudge                | 16px   | `--cui-radius-card`    |
 | Field inside a 22px surface                                   | 14px   | `--cui-radius-lg`      |
@@ -251,6 +252,8 @@ Rules for every movement:
 
 The kit's popover, menu, list popovers and tooltip follow Pop, and its toast follows Rise. They still use keyframes, because Kobalte unmounts the content when its exit animation ends. The rest of the kit's motion is slower than these rules today: buttons press in 200ms `ease`, and the focus ring transitions with `ease-in`. **Proposed:** move them to Press and a 120ms colour change.
 
+The kit dialog follows Pop with keyframes: in from `scale(0.96)` over 200ms, out toward `scale(0.98)` over 120ms, and its scrim fades with it. Opened or closed from the keyboard, it does not move. Moving it to transitions is still proposed.
+
 ## 8. Layout
 
 ```
@@ -297,7 +300,7 @@ Title (Label 500, primary) and one-line description (Meta, secondary) on the lef
 
 ### 9.3 Settings dialog
 
-Two panes: a 232px left pane with search and 36px nav items (radius 10, Label 500; current item gets field fill, not accent), and the rows. Breadcrumb title, close button, no footer. Every section reachable from the command menu. Choices not yet default live in Experiments with a `Default` tag and one "Restore defaults".
+Two panes: a 232px left pane with search and 36px nav items (radius 10, Label 500; current item gets field fill, not accent), and the rows. Breadcrumb title, close button, no footer. 1000×680, capped by the viewport; on a phone it fills the screen less an 8px gutter and the sections wrap three to a row. The kit builds it with `Dialog` `size="settings"`, `chrome="inset"` and the `Sidebar`, `Nav`, `NavItem`, `Main` and `Section` parts. Every section reachable from the command menu. Choices not yet default live in Experiments with a `Default` tag and one "Restore defaults".
 
 ### 9.4 Option card
 

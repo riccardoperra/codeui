@@ -361,6 +361,10 @@ import { type JSX, type ParentProps } from "solid-js";
 import * as D from "../../parts/dialog.js";
 export type DialogProps = KDialogRootOptions & Pick<KDialogContentOptions, "onOpenAutoFocus" | "onCloseAutoFocus" | "onEscapeKeyDown" | "onPointerDownOutside" | "onFocusOutside" | "onInteractOutside"> & {
     size?: D.DialogSize;
+    /** How the header sits in the panel. Defaults to `bar`. */
+    chrome?: D.DialogChrome;
+    /** `auto` animates pointer opens and closes; `none` never animates. Defaults to `auto`. */
+    motion?: D.DialogMotion;
     title?: JSX.Element;
     description?: JSX.Element;
     /** Accessible name of the close button. Defaults to "close". */
@@ -1880,6 +1884,7 @@ export declare const tokens: {
         card: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
         xl: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
         command: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        dialog: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
         full: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
     };
     space: {
@@ -2625,7 +2630,7 @@ export declare const CommandMenuParts: {
 ```ts
 import { type DialogCloseButtonProps as KDialogCloseButtonProps, type DialogContentProps as KDialogContentProps, type DialogDescriptionProps as KDialogDescriptionProps, type DialogOverlayProps as KDialogOverlayProps, type DialogPortalProps as KDialogPortalProps, type DialogRootProps as KDialogRootProps, type DialogTitleProps as KDialogTitleProps, type DialogTriggerProps as KDialogTriggerProps } from "@kobalte/core/dialog";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
-import { type ComponentProps, type ValidComponent } from "solid-js";
+import { type ComponentProps, type JSX, type ValidComponent } from "solid-js";
 import { type IconButtonProps } from "../components/IconButton/IconButton.js";
 export declare const dialogParts: {
     readonly trigger: "dialog-trigger";
@@ -2638,44 +2643,139 @@ export declare const dialogParts: {
     readonly closeButton: "dialog-close-button";
     readonly body: "dialog-panel-content";
     readonly footer: "dialog-panel-footer";
+    readonly sidebar: "dialog-sidebar";
+    readonly sidebarSearch: "dialog-sidebar-search";
+    readonly nav: "dialog-nav";
+    readonly navItem: "dialog-nav-item";
+    readonly navIcon: "dialog-nav-icon";
+    readonly main: "dialog-main";
+    readonly section: "dialog-section";
+    readonly sectionTitle: "dialog-section-title";
+    readonly sectionContent: "dialog-section-content";
 };
 export type DialogPart = keyof typeof dialogParts;
+export type DialogThemeVar = "contentBackground" | "contentBoxShadow" | "contentTextColor" | "contentPadding" | "titleHeight" | "panelRadius" | "dividerColor" | "titleFontSize" | "overlayBackground" | "gutter" | "width" | "height" | "sidebarBackground" | "navCurrentBackground" | "mainBackground" | "islandBackground" | "splitColumns";
+/**
+ * The dialog's local variables, such as `width`, `height` and `gutter`, as
+ * `var(--…)` strings. Set them on the panel with vanilla-extract `vars` or
+ * `assignInlineVars`.
+ */
+export declare const dialogThemeVars: Readonly<Record<DialogThemeVar, string>>;
 export type DialogClasses = Partial<Record<DialogPart, string>>;
-export type DialogSize = "xs" | "sm" | "md" | "lg" | "xl" | "full";
+/**
+ * Width of the panel. `settings` is 1000×680 for a sidebar and a pane;
+ * `export` is 800 wide for a preview beside its options. Both shrink to fit
+ * the viewport.
+ */
+export type DialogSize = "xs" | "sm" | "md" | "lg" | "xl" | "full" | "settings" | "export";
+/**
+ * `bar` puts the title in a bar with a divider. `inset` puts it in the panel
+ * padding with no divider, a ghost close button and 24px corners.
+ */
+export type DialogChrome = "bar" | "inset";
+/** `auto` animates pointer opens and closes. `none` never animates. */
+export type DialogMotion = "auto" | "none";
+/** `split` puts the first child, a preview, beside the second, its options. */
+export type DialogBodyLayout = "split";
+export type DialogSectionVariant = "group" | "well";
+type DialogPanelStyleVariants = {
+    size?: DialogSize;
+    chrome?: DialogChrome;
+};
+type DialogBodyStyleVariants = {
+    layout?: DialogBodyLayout;
+};
+type DialogSectionStyleVariants = {
+    variant?: DialogSectionVariant;
+};
 export type DialogStyles = {
-    [P in DialogPart]: P extends "panel" ? (variants?: {
-        size?: DialogSize;
-    }) => string : () => string;
+    [P in DialogPart]: P extends "panel" ? (variants?: DialogPanelStyleVariants) => string : P extends "body" ? (variants?: DialogBodyStyleVariants) => string : P extends "section" ? (variants?: DialogSectionStyleVariants) => string : () => string;
 };
 export declare const dialogStyles: DialogStyles;
-export type RootProps = KDialogRootProps;
-export declare function Root(props: RootProps): import("solid-js").JSX.Element;
-export declare function Portal(props: KDialogPortalProps): import("solid-js").JSX.Element;
-export declare function Trigger<T extends ValidComponent = "button">(props: PolymorphicProps<T, KDialogTriggerProps<T>>): import("solid-js").JSX.Element;
-export declare function Overlay<T extends ValidComponent = "div">(props: PolymorphicProps<T, KDialogOverlayProps<T>>): import("solid-js").JSX.Element;
+export type RootProps = KDialogRootProps & {
+    /**
+     * `auto` animates opens and closes that start with a pointer press. Keyboard
+     * and programmatic ones do not move. `none` never animates. Defaults to `auto`.
+     */
+    motion?: DialogMotion;
+};
+export declare function Root(props: RootProps): JSX.Element;
+export declare function Portal(props: KDialogPortalProps): JSX.Element;
+export declare function Trigger<T extends ValidComponent = "button">(props: PolymorphicProps<T, KDialogTriggerProps<T>>): JSX.Element;
+export declare function Overlay<T extends ValidComponent = "div">(props: PolymorphicProps<T, KDialogOverlayProps<T>>): JSX.Element;
 export type PositionerProps = ComponentProps<"div"> & {
     size?: DialogSize;
 };
-export declare function Positioner(props: PositionerProps): import("solid-js").JSX.Element;
+export declare function Positioner(props: PositionerProps): JSX.Element;
 export type ContentProps<T extends ValidComponent = "div"> = KDialogContentProps<T> & {
     size?: DialogSize;
+    /** How the header sits in the panel. Defaults to `bar`. */
+    chrome?: DialogChrome;
     class?: string;
 };
 /**
  * Kobalte returns focus to the Trigger part only. Without a Trigger, Content
  * returns focus to the element that had it when the dialog opened.
  */
-export declare function Content<T extends ValidComponent = "div">(props: PolymorphicProps<T, ContentProps<T>>): import("solid-js").JSX.Element;
-export declare function Header(props: ComponentProps<"div">): import("solid-js").JSX.Element;
-export declare function Title<T extends ValidComponent = "h2">(props: PolymorphicProps<T, KDialogTitleProps<T>>): import("solid-js").JSX.Element;
-export declare function Description<T extends ValidComponent = "p">(props: PolymorphicProps<T, KDialogDescriptionProps<T>>): import("solid-js").JSX.Element;
+export declare function Content<T extends ValidComponent = "div">(props: PolymorphicProps<T, ContentProps<T>>): JSX.Element;
+export declare function Header(props: ComponentProps<"div">): JSX.Element;
+export declare function Title<T extends ValidComponent = "h2">(props: PolymorphicProps<T, KDialogTitleProps<T>>): JSX.Element;
+export declare function Description<T extends ValidComponent = "p">(props: PolymorphicProps<T, KDialogDescriptionProps<T>>): JSX.Element;
 export type CloseButtonProps = Omit<PolymorphicProps<"button", IconButtonProps>, "aria-label"> & KDialogCloseButtonProps & {
     /** Accessible name of the button. Defaults to "close". */
     "aria-label"?: string;
 };
-export declare function CloseButton(props: CloseButtonProps): import("solid-js").JSX.Element;
-export declare function Body(props: ComponentProps<"div">): import("solid-js").JSX.Element;
-export declare function Footer(props: ComponentProps<"div">): import("solid-js").JSX.Element;
+export declare function CloseButton(props: CloseButtonProps): JSX.Element;
+export type BodyProps = ComponentProps<"div"> & {
+    /** `split` puts a preview beside its options, in one column on a phone. */
+    layout?: DialogBodyLayout;
+};
+export declare function Body(props: BodyProps): JSX.Element;
+export declare function Footer(props: ComponentProps<"div">): JSX.Element;
+export type SidebarProps = ComponentProps<"div"> & {
+    /** Content above the navigation, such as a search field. */
+    search?: JSX.Element;
+    classes?: Pick<DialogClasses, "sidebarSearch">;
+};
+/**
+ * The left pane of a settings dialog: a 232px column on its own surface. On a
+ * phone it becomes rows above the body.
+ */
+export declare function Sidebar(props: SidebarProps): JSX.Element;
+export type NavProps = Omit<ComponentProps<"nav">, "aria-label"> & {
+    /** Accessible name of the navigation, such as "Settings sections". */
+    "aria-label": string;
+};
+/**
+ * A list of sections. Arrow keys move focus between the items, Home and End
+ * jump to the ends, and Enter or Space selects the focused item.
+ */
+export declare function Nav(props: NavProps): JSX.Element;
+export type NavItemProps = ComponentProps<"button"> & {
+    /** Marks the section on screen with `aria-current="page"` and a field fill. */
+    current?: boolean;
+    /** A 16px icon before the label. Hidden on a phone. */
+    icon?: JSX.Element;
+    classes?: Pick<DialogClasses, "navIcon">;
+};
+export declare function NavItem(props: NavItemProps): JSX.Element;
+/** The pane next to the sidebar. Put the `Header` and the `Body` in it. */
+export declare function Main(props: ComponentProps<"div">): JSX.Element;
+export type SectionProps = Omit<ComponentProps<"section">, "title"> & {
+    /** Heading of the section. `group` puts it over the island, `well` inside it. */
+    title?: JSX.Element;
+    /**
+     * `group` is a title over one island of rows that touch. `well` makes the
+     * section itself the island, for a preview or a block of actions.
+     * Defaults to `group`.
+     */
+    variant?: DialogSectionVariant;
+    /** Lays the content out in two columns, one on a phone. Defaults to 1. */
+    columns?: 1 | 2;
+    classes?: Pick<DialogClasses, "sectionTitle" | "sectionContent">;
+};
+export declare function Section(props: SectionProps): JSX.Element;
+export {};
 ```
 
 ## parts/kbd.d.ts
