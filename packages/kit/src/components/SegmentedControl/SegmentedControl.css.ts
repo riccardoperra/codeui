@@ -4,6 +4,7 @@ import { transition } from "../../foundation/motion.css";
 import { RecipeVariants } from "@vanilla-extract/recipes";
 import { mapSizeValue } from "../../foundation/sizes";
 import { componentStateStyles } from "@kobalte/vanilla-extract";
+import { whileKeyboard } from "../../utils/modality";
 
 export const [segmentedFieldTheme, segmentedFieldVars] = createTheme({
 	activeSegmentedBackgroundColor: tokens.surface.inputAccent,
@@ -38,6 +39,7 @@ export const segmentedControlWrapper = recipe({
 			overflow: "visible",
 			cursor: "default",
 			textAlign: "center",
+			lineHeight: tokens.font.lineHeight.sm,
 			userSelect: "none",
 			borderRadius: segmentedFieldVars.segmentWrapperRadius,
 		},
@@ -90,11 +92,12 @@ export const segmentedControlWrapper = recipe({
 					[segmentedFieldVars.segmentWrapperRadius]: tokens.radius.md,
 				},
 			},
+			// Inkstone §6: a 36px track around 28px segments, Label text.
 			[SegmentedControlSizes.md]: {
 				vars: {
 					[segmentedFieldVars.segmentWrapperPadding]: tokens.space["1"],
-					[segmentedFieldVars.segmentHeight]: mapSizeValue("md"),
-					[segmentedFieldVars.segmentFontSize]: tokens.font.size.md,
+					[segmentedFieldVars.segmentHeight]: mapSizeValue("sm"),
+					[segmentedFieldVars.segmentFontSize]: tokens.font.size.sm,
 					[segmentedFieldVars.segmentPadding]: tokens.space["4"],
 					[segmentedFieldVars.segmentRadius]: tokens.radius.sm,
 					[segmentedFieldVars.segmentWrapperRadius]: tokens.radius.md,
@@ -198,6 +201,13 @@ export const indicator = style({
 	position: "absolute",
 	height: "100%",
 	transition: transition(["width", "transform"], tokens.motion.duration.normal),
+	selectors: {
+		// Arrow keys and Enter move the selection instantly (Inkstone §7.1).
+		[`${whileKeyboard} &`]: { transition: "none" },
+	},
+	"@media": {
+		"(prefers-reduced-motion: reduce)": { transition: "none" },
+	},
 	backgroundColor: segmentedFieldVars.activeSegmentedBackgroundColor,
 	content: "",
 	boxShadow: tokens.shadow.sm,

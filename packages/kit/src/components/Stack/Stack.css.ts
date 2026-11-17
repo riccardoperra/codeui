@@ -1,23 +1,44 @@
-import { style } from "../../foundation/layer.css";
+import { recipe } from "../../foundation/layer.css";
 import { tokens } from "../../foundation/cui.css";
-export const root = style({
-	display: "flex",
-	gap: `var(--cui-stack-gap, ${tokens.space["2"]})`,
-	selectors: {
-		'&[data-direction="column"]': { flexDirection: "column" },
-		'&[data-direction="row"]': { flexDirection: "row" },
-		'&[data-wrap="true"]': { flexWrap: "wrap" },
-		'&[data-wrap="false"]': { flexWrap: "nowrap" },
-		'&[data-align="start"]': { alignItems: "flex-start" },
-		'&[data-align="center"]': { alignItems: "center" },
-		'&[data-align="end"]': { alignItems: "flex-end" },
-		'&[data-align="stretch"]': { alignItems: "stretch" },
-		'&[data-align="baseline"]': { alignItems: "baseline" },
-		'&[data-justify="start"]': { justifyContent: "flex-start" },
-		'&[data-justify="center"]': { justifyContent: "center" },
-		'&[data-justify="end"]': { justifyContent: "flex-end" },
-		'&[data-justify="between"]': { justifyContent: "space-between" },
-		'&[data-justify="around"]': { justifyContent: "space-around" },
-		'&[data-justify="evenly"]': { justifyContent: "space-evenly" },
+
+const gaps = Object.fromEntries(
+	Object.entries(tokens.space).map(([key, value]) => [key, { gap: value }]),
+) as Record<keyof typeof tokens.space, { gap: string }>;
+
+/** `stackStyles.root(variants)` and `<Stack>` share these classes. */
+export const root = recipe({
+	base: { display: "flex" },
+	variants: {
+		gap: gaps,
+		direction: {
+			column: { flexDirection: "column" },
+			row: { flexDirection: "row" },
+		},
+		wrap: {
+			true: { flexWrap: "wrap" },
+			false: { flexWrap: "nowrap" },
+		},
+		align: {
+			start: { alignItems: "flex-start" },
+			center: { alignItems: "center" },
+			end: { alignItems: "flex-end" },
+			stretch: { alignItems: "stretch" },
+			baseline: { alignItems: "baseline" },
+		},
+		justify: {
+			start: { justifyContent: "flex-start" },
+			center: { justifyContent: "center" },
+			end: { justifyContent: "flex-end" },
+			between: { justifyContent: "space-between" },
+			around: { justifyContent: "space-around" },
+			evenly: { justifyContent: "space-evenly" },
+		},
+	},
+	defaultVariants: {
+		gap: "2",
+		direction: "column",
+		wrap: false,
+		align: "stretch",
+		justify: "start",
 	},
 });

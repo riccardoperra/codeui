@@ -231,7 +231,14 @@ A component's `size` prop maps `xs`, `sm`, `md`, `lg` and `xl` to these heights.
 | `font.weight.semibold` | `--cui-font-weight-semibold` | `600` |
 | `font.lineHeight.compact` | `--cui-font-line-height-compact` | `1.15` |
 | `font.lineHeight.normal` | `--cui-font-line-height-normal` | `1.5` |
+| `font.lineHeight.badge` | `--cui-font-line-height-badge` | `1.2` |
+| `font.lineHeight.xs` | `--cui-font-line-height-xs` | `1.4` |
+| `font.lineHeight.caption` | `--cui-font-line-height-caption` | `1.5` |
+| `font.lineHeight.sm` | `--cui-font-line-height-sm` | `1.3` |
+| `font.lineHeight.md` | `--cui-font-line-height-md` | `1.3` |
 | `font.tracking.normal` | `--cui-font-tracking-normal` | `normal` |
+
+Each `font.lineHeight` step named after a size (`badge`, `xs`, `caption`, `sm`, `md`) is the leading for that size from the [type scale](/docs/design/typography). Controls set it on their text parts, so they never inherit the page's line height.
 
 The kit does not load a font file. Without Inter, the stack falls back to the system font. [Typography and spacing](/docs/foundations/typography-and-spacing) shows the scale in use.
 
@@ -246,6 +253,8 @@ The kit does not load a font file. Without Inter, the stack falls back to the sy
 | `shadow.none` | `--cui-shadow-none` | `none` | `none` |
 | `shadow.sm` | `--cui-shadow-sm` | `0 1px 3px 0 #0000001a, 0 1px 2px 0 #0000000f` | `0 1px 3px 0 #0000001a, 0 1px 2px 0 #0000000f` |
 | `shadow.md` | `--cui-shadow-md` | `0 4px 6px -1px #0000001a, 0 2px 4px -1px #0000000f` | `0 4px 6px -1px #0000001a, 0 2px 4px -1px #0000000f` |
+| `shadow.thumb` | `--cui-shadow-thumb` | `0 1px 2px #0000004d` | `0 1px 2px #0000004d` |
+| `shadow.lg` | `--cui-shadow-lg` | `0 10px 15px -3px #0000001a, 0 4px 6px -2px #0000000d` | `0 10px 15px -3px #0000001a, 0 4px 6px -2px #0000000d` |
 
 ## Motion
 

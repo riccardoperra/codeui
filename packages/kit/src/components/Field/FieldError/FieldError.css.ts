@@ -12,6 +12,7 @@ export const errorMessage = style([
 	}),
 	{
 		userSelect: "none",
+		lineHeight: tokens.font.lineHeight.xs,
 		color: tokens.text.danger,
 	},
 ]);

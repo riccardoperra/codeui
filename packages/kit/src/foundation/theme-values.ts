@@ -79,6 +79,8 @@ export const themeValues =
 		none: "none",
 		sm: "0 1px 3px 0 #0000001a, 0 1px 2px 0 #0000000f",
 		md: "0 4px 6px -1px #0000001a, 0 2px 4px -1px #0000000f",
+		thumb: "0 1px 2px #0000004d",
+		lg: "0 10px 15px -3px #0000001a, 0 4px 6px -2px #0000000d",
 	},
 	border: {
 		dialogTitle: { dark: "#2b2b2b", light: "#e2e8f0" },
@@ -168,6 +170,11 @@ export const themeValues =
 		lineHeight: {
 			compact: "1.15",
 			normal: "1.5",
+			badge: "1.2",
+			xs: "1.4",
+			caption: "1.5",
+			sm: "1.3",
+			md: "1.3",
 		},
 		tracking: {
 			normal: "normal",

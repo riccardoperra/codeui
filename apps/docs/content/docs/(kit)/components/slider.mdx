@@ -35,6 +35,8 @@ Use NumberField when you need an exact typed value. Pair a slider with a number 
 
 <SolidDemo name="slider/value-label" />
 
+The track is a 2px line in `--cui-border-divider` with the filled part in `--cui-action-brand-base`. The thumb is a 12px white dot with a 1px divider border and `--cui-shadow-lg`, as CodeImage draws its range thumb, so it keeps an edge on a light surface. Its hit area stays 28px, 40px on a touch screen. `sliderStyles.track({ orientation: "vertical" })` and `fill({ orientation: "vertical" })` return the vertical classes for custom markup.
+
 ## States
 
 <SolidDemo name="slider/controlled" />
@@ -158,7 +160,7 @@ The root, labels, controls, and form inputs render on the server. No part uses a
 
 The component reads these foundation variables. Shared field labels and messages also use the field typography and validation tokens.
 
-`--cui-action-brand-base`, `--cui-action-brand-text`, `--cui-control-height-compact`, `--cui-control-height-md`, `--cui-focus-color`, `--cui-focus-offset`, `--cui-focus-width`, `--cui-font-size-caption`, `--cui-font-size-xs`, `--cui-radius-full`, `--cui-space-0-5`, `--cui-space-2`, `--cui-space-2-5`, `--cui-space-32`, `--cui-surface-input-accent`, `--cui-text-danger`, `--cui-text-default`, `--cui-text-hint`, `--cui-text-label`.
+`--cui-action-brand-base`, `--cui-action-brand-text`, `--cui-border-divider`, `--cui-border-width`, `--cui-shadow-lg`, `--cui-control-height-compact`, `--cui-control-height-md`, `--cui-focus-color`, `--cui-focus-offset`, `--cui-focus-width`, `--cui-font-size-caption`, `--cui-font-size-xs`, `--cui-font-line-height-caption`, `--cui-font-line-height-xs`, `--cui-radius-full`, `--cui-space-0-5`, `--cui-space-2`, `--cui-space-3`, `--cui-space-32`, `--cui-text-danger`, `--cui-text-default`, `--cui-text-hint`, `--cui-text-label`.
 
 ## Composition examples
 

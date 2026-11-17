@@ -947,6 +947,46 @@
     },
     {
       "group": "type scale",
+      "token": "font.lineHeight.badge",
+      "css": "--cui-font-line-height-badge",
+      "dark": "1.2",
+      "light": "1.2",
+      "source": "Inkstone §3 type scale, paired with font.size.badge"
+    },
+    {
+      "group": "type scale",
+      "token": "font.lineHeight.xs",
+      "css": "--cui-font-line-height-xs",
+      "dark": "1.4",
+      "light": "1.4",
+      "source": "Inkstone §3 type scale, paired with font.size.xs"
+    },
+    {
+      "group": "type scale",
+      "token": "font.lineHeight.caption",
+      "css": "--cui-font-line-height-caption",
+      "dark": "1.5",
+      "light": "1.5",
+      "source": "Inkstone §3 type scale, paired with font.size.caption"
+    },
+    {
+      "group": "type scale",
+      "token": "font.lineHeight.sm",
+      "css": "--cui-font-line-height-sm",
+      "dark": "1.3",
+      "light": "1.3",
+      "source": "Inkstone §3 type scale, paired with font.size.sm"
+    },
+    {
+      "group": "type scale",
+      "token": "font.lineHeight.md",
+      "css": "--cui-font-line-height-md",
+      "dark": "1.3",
+      "light": "1.3",
+      "source": "Inkstone §3 type scale, paired with font.size.md"
+    },
+    {
+      "group": "type scale",
       "token": "font.tracking.normal",
       "css": "--cui-font-tracking-normal",
       "dark": "normal",
@@ -984,6 +1024,22 @@
       "dark": "0 4px 6px -1px #0000001a, 0 2px 4px -1px #0000000f",
       "light": "0 4px 6px -1px #0000001a, 0 2px 4px -1px #0000000f",
       "source": "kit and packages/ui boxShadow"
+    },
+    {
+      "group": "shadows",
+      "token": "shadow.thumb",
+      "css": "--cui-shadow-thumb",
+      "dark": "0 1px 2px #0000004d",
+      "light": "0 1px 2px #0000004d",
+      "source": "CodeImage switch thumb (controls.css.ts switchThumb)"
+    },
+    {
+      "group": "shadows",
+      "token": "shadow.lg",
+      "css": "--cui-shadow-lg",
+      "dark": "0 10px 15px -3px #0000001a, 0 4px 6px -2px #0000000d",
+      "light": "0 10px 15px -3px #0000001a, 0 4px 6px -2px #0000000d",
+      "source": "CodeImage range thumb (shadow-lg)"
     },
     {
       "group": "motion",

@@ -19,7 +19,7 @@ it("renders semantic elements, rich content, native attributes and merged classe
 	expect(heading?.querySelector("em")).toHaveTextContent("Export");
 	expect(heading).toHaveAttribute("data-size", "xl");
 });
-it("updates layout and typography reactively without changing the style class", () => {
+it("updates layout and typography classes reactively and keeps inline styles", () => {
 	const [wide, setWide] = createSignal(false);
 	render(() => (
 		<>
@@ -38,15 +38,34 @@ it("updates layout and typography reactively without changing the style class", 
 		</>
 	));
 	const stack = screen.getByTestId("stack");
-	const className = stack.className;
-	expect(stack.style.getPropertyValue("--cui-stack-gap")).toBe("var(--cui-space-2)");
+	const narrow = { gap: "2", direction: "column", align: "center", justify: "between", wrap: true } as const;
+	expect(stack).toHaveClass(S.stackStyles.root(narrow));
 	fireEvent.click(screen.getByRole("button"));
-	expect(stack.className).toBe(className);
-	expect(stack.style.getPropertyValue("--cui-stack-gap")).toBe("var(--cui-space-32)");
+	expect(stack).toHaveClass(S.stackStyles.root({ ...narrow, gap: "32", direction: "row" }));
+	expect(stack).not.toHaveClass(S.stackStyles.root({ gap: "2" }).split(" ").at(-1)!);
+	expect(stack.style.getPropertyValue("--cui-stack-gap")).toBe("");
 	expect(stack.style.opacity).toBe("0.8");
 	expect(stack).toHaveAttribute("data-direction", "row");
 	expect(stack).toHaveAttribute("data-wrap", "true");
-	expect(screen.getByText("Status")).toHaveAttribute("data-tone", "danger");
+	const status = screen.getByText("Status");
+	expect(status).toHaveAttribute("data-tone", "danger");
+	expect(status).toHaveClass(T.textStyles.root({ tone: "danger" }));
+});
+it("style functions give custom markup the classes of each variant", () => {
+	for (const variants of [
+		{ gap: "4", direction: "row", align: "center" },
+		{ gap: "2.5", justify: "evenly", wrap: true },
+		{ gap: "5" },
+	] as const) {
+		const custom = S.stackStyles.root(variants);
+		expect(custom).not.toBe(S.stackStyles.root());
+		const { unmount } = render(() => <S.Root data-testid="stack" {...variants} />);
+		expect(screen.getByTestId("stack")).toHaveClass(custom);
+		unmount();
+	}
+	for (const variants of [{ size: "xs" }, { weight: "semibold" }, { tone: "muted" }] as const) {
+		expect(T.textStyles.root(variants)).not.toBe(T.textStyles.root());
+	}
 });
 it("exposes root styles and defaults and preserves string styles", () => {
 	render(() => (
@@ -56,7 +75,8 @@ it("exposes root styles and defaults and preserves string styles", () => {
 	));
 	const stack = screen.getByTestId("stack");
 	expect(stack).toHaveAttribute("data-cui", S.stackParts.root);
-	expect(stack).toHaveClass(S.stackStyles.root({ gap: "64" }));
+	expect(stack).toHaveClass(S.stackStyles.root());
+	expect(stack).not.toHaveClass(S.stackStyles.root({ gap: "64" }));
 	expect(stack.style.flex).toBe("1");
 	expect(stack).toHaveAttribute("data-align", "stretch");
 	expect(screen.getByText("Default").tagName).toBe("SPAN");

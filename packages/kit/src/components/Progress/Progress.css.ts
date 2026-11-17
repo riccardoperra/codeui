@@ -1,5 +1,5 @@
 import { keyframes } from "@vanilla-extract/css";
-import { style } from "../../foundation/layer.css";
+import { recipe, style } from "../../foundation/layer.css";
 import { tokens as t } from "../../foundation/cui.css";
 const pulse = keyframes({ from: { opacity: 0.45 }, to: { opacity: 1 } });
 export const root = style({
@@ -13,12 +13,16 @@ export const valueLabel = style({
 	color: t.text.hint,
 	fontVariantNumeric: "tabular-nums",
 });
-export const track = style({
-	height: t.space["1"],
-	borderRadius: t.radius.full,
-	background: t.surface.inputAccent,
-	overflow: "hidden",
-	selectors: { '[data-size="md"] &': { height: t.space["2"] } },
+const mdTrack = { height: t.space["2"] };
+export const track = recipe({
+	base: {
+		height: t.space["1"],
+		borderRadius: t.radius.full,
+		background: t.surface.inputAccent,
+		overflow: "hidden",
+		selectors: { '[data-size="md"] &': mdTrack },
+	},
+	variants: { size: { sm: {}, md: mdTrack } },
 });
 export const fill = style({
 	height: "100%",

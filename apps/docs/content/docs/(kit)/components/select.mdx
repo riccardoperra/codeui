@@ -76,7 +76,7 @@ Without the helper, set `optionValue` and `optionTextValue`, and pass `itemLabel
 
 <SolidDemo name="select/sizes" />
 
-`xs`, `sm`, `md`, `lg`, and `xl` read `--cui-control-height-{xs,sm,md,lg,xl}`, which are 30, 36, 40, 48, and 56px. The default is `md`, 40px. Inkstone asks for 36px desktop controls, so `sm` is the size that matches the specification today.
+`xs`, `sm`, `md`, `lg`, and `xl` read `--cui-control-height-{xs,sm,md,lg,xl}`, which are 30, 36, 40, 48, and 56px, except `md`: the default `md` trigger is 36px with 14px text on desktop, as Inkstone asks, and 40px with 16px text at 768px and narrower.
 
 ### Multiple selection
 

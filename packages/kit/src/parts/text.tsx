@@ -13,7 +13,10 @@ export const textParts = { root: "text-root" } as const;
 export type TextPart = keyof typeof textParts;
 export type TextClasses = Partial<Record<TextPart, string>>;
 export type TextStyles = { root: (variants?: TextVariants) => string };
-export const textStyles: TextStyles = { root: () => root };
+export const textStyles: TextStyles = {
+	root: variants =>
+		root({ size: variants?.size, weight: variants?.weight, tone: variants?.tone }),
+};
 export type TextProps<T extends ValidComponent = "span"> = TextVariants & {
 	as?: T;
 	children?: JSX.Element;
@@ -36,7 +39,7 @@ export function Root<T extends ValidComponent = "span">(props: TextProps<T>) {
 			{...others}
 			component={local.as ?? "span"}
 			data-cui={textParts.root}
-			class={mergeClasses(root, local.classes?.root, local.class)}
+			class={mergeClasses(textStyles.root(local), local.classes?.root, local.class)}
 			data-size={local.size ?? "sm"}
 			data-weight={local.weight ?? "normal"}
 			data-tone={local.tone ?? "default"}

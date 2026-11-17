@@ -1,4 +1,8 @@
-import { BaseComponentSize, mapFontSizeValue } from "../../foundation/sizes";
+import {
+	BaseComponentSize,
+	mapFontSizeValue,
+	mapLineHeightValue,
+} from "../../foundation/sizes";
 import { StyleRule } from "@vanilla-extract/css";
 
 function makeFieldMessageSize(
@@ -8,6 +12,7 @@ function makeFieldMessageSize(
 	return {
 		[`[data-field-size=${size}] &`]: {
 			fontSize: mapFontSizeValue(sizesMap[size]),
+			lineHeight: mapLineHeightValue(sizesMap[size]),
 		},
 	};
 }

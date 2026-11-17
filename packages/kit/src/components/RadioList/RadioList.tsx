@@ -135,6 +135,7 @@ export function RadioList<T extends ValidComponent = "div">(
 		<RadioGroup
 			data-cui={"radio-group-field"}
 			data-field-size={size()}
+			data-field-theme={local.theme ?? "inline"}
 			{...others}
 			class={mergeClasses(baseFieldContainer, local.class, local.classes?.root)}
 		>
@@ -150,6 +151,7 @@ export function RadioList<T extends ValidComponent = "div">(
 					styles.radioList({
 						size: size(),
 						orientation: props.orientation,
+						theme: local.theme ?? "inline",
 					}),
 				)}
 			>

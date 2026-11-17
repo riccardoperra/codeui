@@ -5,6 +5,7 @@ import { debounce } from "@solid-primitives/scheduled";
 import { onCleanup, onMount, splitProps } from "solid-js";
 import { SlotProp } from "../../utils/component";
 import { mergeClasses } from "../../utils/css";
+import { trackInputModality } from "../../utils/modality";
 import * as styles from "./SegmentedControl.css";
 import { SegmentedControlVariants } from "./SegmentedControl.css";
 import {
@@ -91,6 +92,7 @@ export function SegmentedControl(props: PolymorphicProps<"div", SegmentedControl
 	}, 0);
 
 	onMount(() => {
+		trackInputModality();
 		onCleanup(releaseEscape(rootRef, event => local.onEscapeKeyDown?.(event)));
 		if (!listRef) {
 			return;

@@ -109,7 +109,7 @@ Import the parts from `@codeui/kit/text`.
 
 ### `textStyles`
 
-`textStyles.root()` returns the class that holds every `Text` rule. It takes a `TextVariants` argument, but it ignores it and returns the same class. Size, weight and tone live in the `data-size`, `data-weight` and `data-tone` attributes, so an element that uses the class must set them itself. Without them, the element gets the base rule: `sm`, `normal` and the `default` color.
+`textStyles.root(variants)` returns the classes `Text` renders for the same props: a base class plus one class each for size, weight and tone. Omitted variants fall back to `sm`, `normal` and the `default` color. An element that uses the returned string needs no data attribute.
 
 `@codeui/kit` and `@codeui/kit/text` both export `textStyles`, `TextStyles` and `textParts`. Prefer `<Text as="…">`. Call `textStyles` only on markup you cannot render through the component.
 

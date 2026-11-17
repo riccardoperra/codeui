@@ -21,7 +21,7 @@ export type ProgressStyles = Record<
 export const progressStyles: ProgressStyles = {
 	root: () => styles.root,
 	label: () => styles.label,
-	track: () => styles.track,
+	track: variants => styles.track({ size: variants?.size }),
 	fill: () => styles.fill,
 	valueLabel: () => styles.valueLabel,
 };

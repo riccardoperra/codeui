@@ -40,7 +40,7 @@ Use [RadioList](/docs/components/radio-list) for form choices with native radio 
 
 <SolidDemo name="segmented-control/fluid" />
 
-`pill` combines with either variant. `fluid` fills width only. The control keeps its size height even inside the taller demo container. `autoWidth` sets each segment to a 1px base width with equal flex growth and removes horizontal padding. It does not measure text widths.
+`md`, the default, is a 36px track with 4px padding around 28px segments and 14px text, the Inkstone control height. `sm` keeps the same height with a tighter radius, as CodeImage uses it. `lg` and `xl` grow from there. The indicator slides between segments in 160ms when you click; arrow keys and Enter move it instantly, and reduced motion never slides it. `pill` combines with either variant. `fluid` fills width only. The control keeps its size height even inside the taller demo container. `autoWidth` sets each segment to a 1px base width with equal flex growth and removes horizontal padding. It does not measure text widths.
 
 ## States
 
@@ -96,7 +96,7 @@ The root, labels, controls, and form inputs render on the server. No part uses a
 
 The component reads these foundation variables. Shared field labels and messages also use the field typography and validation tokens.
 
-`--cui-action-brand-base`, `--cui-action-brand-text`, `--cui-action-neutral-text`, `--cui-border-menu`, `--cui-border-width-strong`, `--cui-focus-color`, `--cui-focus-offset`, `--cui-focus-width`, `--cui-font-size-lg`, `--cui-font-size-md`, `--cui-font-size-sm`, `--cui-font-size-xs`, `--cui-font-weight-medium`, `--cui-motion-duration-normal`, `--cui-radius-full`, `--cui-radius-lg`, `--cui-radius-md`, `--cui-radius-sm`, `--cui-radius-xl`, `--cui-radius-xs`, `--cui-shadow-sm`, `--cui-space-1`, `--cui-space-2`, `--cui-space-3`, `--cui-space-4`, `--cui-space-5`, `--cui-space-6`, `--cui-surface-input`, `--cui-surface-input-accent`, `--cui-text-default`.
+`--cui-font-line-height-sm`, `--cui-motion-ease-out`, `--cui-action-brand-base`, `--cui-action-brand-text`, `--cui-action-neutral-text`, `--cui-border-menu`, `--cui-border-width-strong`, `--cui-focus-color`, `--cui-focus-offset`, `--cui-focus-width`, `--cui-font-size-lg`, `--cui-font-size-md`, `--cui-font-size-sm`, `--cui-font-size-xs`, `--cui-font-weight-medium`, `--cui-motion-duration-normal`, `--cui-radius-full`, `--cui-radius-lg`, `--cui-radius-md`, `--cui-radius-sm`, `--cui-radius-xl`, `--cui-radius-xs`, `--cui-shadow-sm`, `--cui-space-1`, `--cui-space-2`, `--cui-space-3`, `--cui-space-4`, `--cui-space-5`, `--cui-space-6`, `--cui-surface-input`, `--cui-surface-input-accent`, `--cui-text-default`.
 
 ## Composition examples
 

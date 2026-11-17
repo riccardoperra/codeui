@@ -16,7 +16,7 @@ export const notes = {
 		justify: { default: '"start"', description: "Main-axis distribution. Sets justify-content." },
 		wrap: { default: "false", description: "Lets children wrap onto new lines." },
 		as: { default: '"div"', description: "Element or component to render." },
-		style: { description: "Inline style. The kit appends --cui-stack-gap to it." },
+		style: { description: "Inline style, passed to the element as is." },
 		classes: { description: "Classes keyed by part. The only key is root." },
 		class: { description: "Class merged after the kit styles on the root." },
 	},

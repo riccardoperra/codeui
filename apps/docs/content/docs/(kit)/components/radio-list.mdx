@@ -39,7 +39,7 @@ Each item also renders a native radio input without a `data-cui` name. Item clas
 
 <SolidDemo name="radio-list/vertical" />
 
-`theme` accepts `filled` and `inline` through BaseFieldProps, but the ready component currently ignores this prop.
+`theme` accepts `filled` and `inline` through BaseFieldProps. `inline`, the default, draws each circle as an outline on the surface. `filled` gives the circle the field fill (`--cui-surface-input`) and no outline. The root carries `data-field-theme`.
 
 ## States
 
@@ -89,7 +89,7 @@ The root has `role="radiogroup"`. Item inputs are native radios with checked sta
 
 ### Focus
 
-These controls do not open an overlay or move focus on mount. Disabled controls cannot receive keyboard focus. Read-only controls remain focusable and do not change value.
+These controls do not open an overlay or move focus on mount. The native radio input is visually hidden, so keyboard focus draws the 2px focus ring around the circle on `:focus-visible`. Disabled controls cannot receive keyboard focus. Read-only controls remain focusable and do not change value.
 
 ## SSR notes
 

@@ -18,7 +18,7 @@ Severity follows this order.
 - [ ] **Token overrides** written only on `:root` do not reach nested `[data-cui-theme]` scopes, because `foundation/cui.css.ts:78-79` sets every token again on each scope. `packages/kit/README.md:18` shows the `:root`-only form.
 - [ ] **Tooltip** puts `aria-describedby` on the wrapper `div` instead of the focusable child, so screen readers do not read it (`components/Tooltip/Tooltip.tsx:15-37`).
 - [ ] **Button** `loading` sets neither `disabled` nor `aria-busy`, so a loading button stays clickable (`components/Button/Button.tsx:41`).
-- [ ] **Focus rings are missing or not visible.**
+- [ ] **Focus rings are missing or not visible.** Tabs, RadioList, Checkbox and fields fixed in `fix/kit-controls-parity`; Link remains.
   - Link removes the outline with no replacement (`components/Link/Link.css.ts:10`).
   - Tabs does the same (`components/Tabs/Tabs.css.ts:48`).
   - RadioList has no focus style.
@@ -55,14 +55,14 @@ Severity follows this order.
 - [ ] **Toast.**
   - `ToastOptions` has no `priority`, so only the `Root` part can choose an assertive announcement (`components/Toast/Toaster.tsx:31`).
   - The toast parts need a Kobalte `toastId` (`parts/toast.tsx:110`), and the kit does not re-export the toaster engine. Apps that use the parts must depend on `@kobalte/core`.
-- [ ] **Checkbox and RadioList** discard the `theme` prop (`components/CheckBox/CheckBox.tsx:30`, `components/RadioList/RadioList.tsx:127`).
+- [x] **Checkbox and RadioList** discard the `theme` prop (`components/CheckBox/CheckBox.tsx:30`, `components/RadioList/RadioList.tsx:127`).
 - [ ] **Progress** leaves the inherited `ValueLabel` empty while indeterminate.
 - [ ] **Sheet** dismisses a drag at 35% of its height (`parts/sheet-drag.ts:21`), where the design said one third. The docs document 35%.
 
 ### API gaps
 
-- [ ] **Part style functions ignore their variant arguments.** `stackStyles.root(variants)`, `textStyles.root(variants)` and the OptionCard part styles return only the base class (`parts/stack.tsx:39`, `parts/text.tsx:15`, `parts/option-card.tsx:32-44`). Fix this once for every part.
-- [ ] **Stack.**
+- [x] **Part style functions ignore their variant arguments.** `stackStyles.root(variants)`, `textStyles.root(variants)` and the OptionCard part styles return only the base class (`parts/stack.tsx:39`, `parts/text.tsx:15`, `parts/option-card.tsx:32-44`). Fix this once for every part.
+- [x] **Stack.**
   - The `Gap` type leaves out the space keys `2.5` and `5` (`parts/stack.tsx:7`).
   - The inline `--cui-stack-gap` beats any value set in a class (`parts/stack.tsx:72`).
 - [ ] **Exported names and types.**
@@ -83,21 +83,21 @@ Severity follows this order.
 
 - [ ] **Motion.**
   - Popover, Select, Dropdown, Tooltip and Dialog animate when opened from the keyboard (`foundation/motion.css.ts:10`).
-  - The Tabs and SegmentedControl indicators slide on arrow keys (`Tabs.css.ts:71`, `SegmentedControl.css.ts:200`).
+  - The Tabs and SegmentedControl indicators slide on arrow keys (`Tabs.css.ts:71`, `SegmentedControl.css.ts:200`). Fixed in `fix/kit-controls-parity`.
   - Button press `scale(0.97)` ignores reduced motion (`Button.css.ts:73`).
-  - Accordion uses keyframes instead of interruptible transitions (`Accordion.css.ts:5`).
+  - Accordion uses keyframes instead of interruptible transitions (`Accordion.css.ts:5`). Fixed in `fix/kit-controls-parity`.
   - The loading indicators loop keyframes, against §7.3.
 - [ ] **Sizes.**
-  - Field and Select `md` controls are 40px, where the spec says 36px.
+  - Field and Select `md` controls are 40px, where the spec says 36px. Fixed in `fix/kit-controls-parity`.
   - The CommandMenu search row is 36px, where §6 says 44px on desktop (`CommandMenu.css.ts:59`).
-  - The OptionCard preview minimum is 64px, where the spec says 68px (`OptionCard.css.ts:67`).
+  - The OptionCard preview minimum is 64px, where the spec says 68px (`OptionCard.css.ts:67`). Fixed in `fix/kit-controls-parity`.
   - The Kbd `sm` minimum width is 16px, where the spec says 20px.
   - The Popover maximum width is 276px, where §9.5 says 360px (`Popover.css.ts:10`).
   - The Dialog `md` size (32rem) is wider than a 390px phone (`Dialog.css.ts:162`).
 - [ ] **Surfaces and color.**
   - Sheet adds divider borders, against "islands, not borders" (`Sheet.css.ts:108,193`).
   - Kbd uses the neutral action fill and a divider border, where §9.8 asks for a field fill and no new border (`Kbd.css.ts:17,36`).
-  - The selected OptionCard changes its border but not the fill (`OptionCard.css.ts:37-44`).
+  - The selected OptionCard changes its border but not the fill (`OptionCard.css.ts:37-44`). Fixed in `fix/kit-controls-parity`.
   - The highlighted Combobox row uses the accent fill, where §2 says selected rows are neutral (`Combobox.css.ts:142`).
   - The default Tooltip theme uses the brand accent, against §2.3.
   - Alert uses `radius.sm` (`Alert.css.ts:24`). Check it against the radius scale.

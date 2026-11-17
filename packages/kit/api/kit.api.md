@@ -469,6 +469,13 @@ export declare const baseFieldVariants: import("@vanilla-extract/recipes").Runti
                 [x: string]: string;
             };
             borderRadius: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            "@media": {
+                "(max-width: 768px)": {
+                    vars: {
+                        [x: string]: string;
+                    };
+                };
+            };
         };
         lg: {
             vars: {
@@ -1744,6 +1751,8 @@ export declare const tokens: {
         none: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
         sm: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
         md: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        thumb: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        lg: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
     };
     border: {
         dialogTitle: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
@@ -1833,6 +1842,11 @@ export declare const tokens: {
         lineHeight: {
             compact: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
             normal: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            badge: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            xs: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            caption: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            sm: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            md: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
         };
         tracking: {
             normal: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
@@ -1900,6 +1914,8 @@ export declare const ComponentSizes: {
     readonly xl: "xl";
 };
 export declare const mapSizeValue: (size: keyof typeof ComponentSizes, sizes?: Record<string, string>) => string;
+/** The line height that pairs with `mapFontSizeValue(size)`. */
+export declare const mapLineHeightValue: (size: BaseComponentSize) => `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
 export declare const mapFontSizeValue: (size: BaseComponentSize) => `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
 ```
 
@@ -2930,7 +2946,7 @@ export declare function Indicator(props: IndicatorProps): JSX.Element;
 
 ```ts
 import { type ComponentProps, type JSX, type ValidComponent } from "solid-js";
-export type Gap = "0" | "0.5" | "1" | "1.5" | "2" | "3" | "4" | "6" | "8" | "10" | "12" | "16" | "20" | "24" | "32" | "40" | "48" | "56" | "64" | "px";
+export type Gap = "0" | "0.5" | "1" | "1.5" | "2" | "2.5" | "3" | "4" | "5" | "6" | "8" | "10" | "12" | "16" | "20" | "24" | "32" | "40" | "48" | "56" | "64" | "px";
 export type StackVariants = {
     gap?: Gap;
     align?: "start" | "center" | "end" | "stretch" | "baseline";

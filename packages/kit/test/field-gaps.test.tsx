@@ -4,6 +4,7 @@ import { TextField } from "../src/components/TextField/TextField";
 import { TextArea } from "../src/components/TextArea/TextArea";
 import { NumberField } from "../src/components/NumberField/NumberField";
 import { RadioList, RadioListItem } from "../src/components/RadioList/RadioList";
+import { Checkbox } from "../src/components/CheckBox/CheckBox";
 import { VirtualizedListbox } from "../src/components/Listbox/VirtualizedListbox";
 import { Listbox } from "../src/components/Listbox/Listbox";
 import { SegmentedControl } from "../src/components/SegmentedControl/SegmentedControl";
@@ -181,4 +182,29 @@ it("accepts a class on a virtualized listbox", () => {
 it("links a textarea label to an explicit options input ID", () => {
 	render(() => <TextArea label="Notes" options={{ id: "notes-input" }} />);
 	expect(screen.getByLabelText("Notes")).toHaveAttribute("id", "notes-input");
+});
+it.each(["filled", "inline"] as const)("Checkbox and RadioList apply theme %s", theme => {
+	const { container } = render(() => (
+		<>
+			<Checkbox label="Wrap lines" theme={theme} />
+			<RadioList label="Mode" theme={theme}>
+				<RadioListItem value="dark" label="Dark" />
+			</RadioList>
+		</>
+	));
+	expect(container.querySelector('[data-cui="checkbox"]')).toHaveAttribute("data-field-theme", theme);
+	expect(container.querySelector('[data-cui="radio-group-field"]')).toHaveAttribute(
+		"data-field-theme",
+		theme,
+	);
+});
+it("gives filled and inline checkboxes different control styles", () => {
+	const { container } = render(() => (
+		<>
+			<Checkbox label="Filled" theme="filled" />
+			<Checkbox label="Inline" theme="inline" />
+		</>
+	));
+	const [filled, inline] = container.querySelectorAll('[data-cui="checkbox"] > div');
+	expect(filled.className).not.toBe(inline.className);
 });
