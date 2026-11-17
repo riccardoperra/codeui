@@ -6,8 +6,8 @@ import { replaceSource } from 'fumadocs-core/mdx-plugins/stringifier';
 // (`/docs/<page>.md`) carry the same readable content.
 //
 // - <PropsTable name="Badge" /> becomes a Markdown table from apps/docs/.generated/props.json.
-// - <SolidDemo name="badge/basic" /> fails the build when the demo file is missing or the name
-//   repeats on the page, and gets the demo source printed under it as a code block.
+// - <SolidDemo name="badge/basic" /> fails the build when the demo file is missing, the name
+//   repeats on the page, or the tag sits inside a paragraph, and gets the demo source printed under it as a code block.
 //   In the Markdown route the demo tag is replaced by that code block.
 //
 // The Markdown route is built from the authored source, so each expansion also registers its
@@ -87,6 +87,12 @@ export function remarkKit() {
 			if (!children) return;
 			for (let i = 0; i < children.length; i++) {
 				const node = children[i];
+				// MDX wraps a tag that shares a line with text in a <p>. Both render <div>s, and a <div>
+				// inside a <p> makes the server HTML and React's tree differ (hydration error #418).
+				if (node.type === 'mdxJsxTextElement' && (node.name === 'SolidDemo' || node.name === 'PropsTable')) {
+					const line = (node.position as { start?: { line: number } } | undefined)?.start?.line;
+					throw new Error(`${where}:${line}: <${node.name}> sits inside a paragraph. Put it on its own line with a blank line around it.`);
+				}
 				if (node.type === 'mdxJsxFlowElement' && node.name === 'PropsTable') {
 					const name = attribute(node, 'name');
 					if (!existsSync(propsFile)) throw new Error(`${where}: run node scripts/generate-props.mjs before building the docs.`);
