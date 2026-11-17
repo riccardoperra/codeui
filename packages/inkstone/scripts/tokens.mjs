@@ -2,7 +2,6 @@ import assert from "node:assert/strict";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { load, Resolver } from "@toghen/lib";
-import { build } from "esbuild";
 
 const readJson = async file => JSON.parse(await readFile(file, "utf8"));
 const cssName = keys =>
@@ -78,7 +77,7 @@ async function generateSource(file, code) {
 		await writeFile(file, source);
 }
 
-export async function generateTheme(root) {
+export async function generateTokens(root) {
 	const dir = path.join(root, "tokens");
 	const resolverPath = path.join(dir, "inkstone.resolver.json");
 	const { document } = await load(resolverPath, { read: file => readFile(file, "utf8") });
@@ -161,16 +160,13 @@ export async function generateTheme(root) {
 			`export const breakpoints = ${object(breakpoints)} as const;\nexport type Breakpoint = keyof typeof breakpoints;`,
 		),
 	]);
-	const { outputFiles } = await build({
-		entryPoints: [path.join(src, "derived.ts")],
-		bundle: true,
-		write: false,
-		format: "esm",
-	});
-	const { derivedRadius, derivedColors, relativeColorSupport } = await import(
-		"data:text/javascript;base64," +
-			Buffer.from(outputFiles[0].contents).toString("base64")
-	);
+	return { entries, breakpoints, resolved };
+}
+
+export function renderTheme(
+	{ entries, breakpoints },
+	{ derivedRadius, derivedColors, relativeColorSupport },
+) {
 	const assignments = (mode, scopedOnly) => ({
 		...Object.fromEntries(
 			entries.flatMap(([keys, value]) => {
@@ -206,5 +202,5 @@ export async function generateTheme(root) {
 		.filter(([name]) => name !== "xs")
 		.map(([name, width]) => `@custom-media --cui-${name} (min-width: ${width}px);`)
 		.join("\n");
-	return { css: `@layer cui.components {\n${css}\n}\n`, media, resolved };
+	return { css: `@layer cui.components {\n${css}\n}\n`, media };
 }

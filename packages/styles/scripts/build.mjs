@@ -3,7 +3,7 @@ import { readFile, writeFile, mkdir, rm, readdir } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import ts from "typescript";
-import { build } from "esbuild";
+import { build } from "tsdown";
 import { compileStylesheet } from "./component-tokens.mjs";
 import { readInkstoneTheme } from "./tokens.mjs";
 import { collectContracts } from "./contracts.mjs";
@@ -69,22 +69,25 @@ const entryPoints = Object.fromEntries([
 ]);
 for (const format of ["esm", "cjs"])
 	await build({
-		entryPoints,
-		outdir: path.join(out, format),
+		cwd: root,
+		config: false,
+		entry: entryPoints,
+		outDir: path.join(out, format),
 		format,
 		platform: "neutral",
-		mainFields: ["module", "main"],
-		absWorkingDir: root,
-		bundle: true,
-		external: ["@codeui/inkstone", "@codeui/inkstone/derived"],
-		splitting: format === "esm",
-		outExtension: { ".js": format === "cjs" ? ".cjs" : ".js" },
+		deps: {
+			neverBundle: [/^@codeui\/inkstone(?:\/|$)/],
+			onlyBundle: ["@radix-ui/colors"],
+		},
 		target: "es2020",
 		define: { "process.env.NODE_ENV": '"production"' },
+		dts: false,
+		clean: false,
 		minify: true,
-		minifySyntax: true,
-		minifyWhitespace: true,
-		logLevel: "warning",
+		report: false,
+		outExtensions: () => ({ js: format === "esm" ? ".js" : ".cjs" }),
+		outputOptions:
+			format === "cjs" ? { esModule: true, generatedCode: { symbols: false } } : undefined,
 	});
 const publicContract = await collectContracts(out);
 const cssByScope = new Map();
