@@ -4,8 +4,8 @@ import { press, tick } from "./helpers";
 
 afterEach(cleanup);
 
-const increment = () => screen.getByRole("button", { name: /Increment/ });
-const decrement = () => screen.getByRole("button", { name: /Decrement/ });
+const increment = () => screen.getByRole("button", { name: /Increment/, hidden: true });
+const decrement = () => screen.getByRole("button", { name: /Decrement/, hidden: true });
 
 describe("NumberField", () => {
 	it("is a spinbutton that reports its value and bounds", () => {
@@ -28,7 +28,7 @@ describe("NumberField", () => {
 	});
 
 	it("keeps a read-only value from the step buttons and the arrow keys", async () => {
-		const onChange = jest.fn();
+		const onChange = vi.fn();
 		render(() => <NumberField label="Padding" value={4} readOnly onChange={onChange} />);
 		expect(increment()).toBeDisabled();
 		expect(decrement()).toBeDisabled();
@@ -41,7 +41,7 @@ describe("NumberField", () => {
 	});
 
 	it("steps up to max by step, then disables increment", async () => {
-		const onChange = jest.fn();
+		const onChange = vi.fn();
 		render(() => (
 			<NumberField label="Opacity" defaultValue={9.5} max={10} step={0.5} precision={1} onChange={onChange} />
 		));
@@ -53,7 +53,7 @@ describe("NumberField", () => {
 	});
 
 	it("steps down to min by step, then disables decrement", async () => {
-		const onChange = jest.fn();
+		const onChange = vi.fn();
 		render(() => (
 			<NumberField label="Opacity" defaultValue={0.5} min={0} step={0.5} precision={1} onChange={onChange} />
 		));

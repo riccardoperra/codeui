@@ -61,7 +61,7 @@ it("exposes root styles and defaults and preserves string styles", () => {
 	expect(stack).toHaveAttribute("data-cui", S.stackParts.root);
 	expect(stack).toHaveAttribute("data-gap", "2");
 	expect(stack).toHaveAttribute("data-wrap", "false");
-	expect(stack.style.flex).toBe("1");
+	expect(stack.style.flex).toBe("1 1 0%");
 	expect(stack).toHaveAttribute("data-align", "stretch");
 	expect(screen.getByText("Default").tagName).toBe("SPAN");
 	expect(screen.getByText("Default")).toHaveAttribute("data-size", "sm");

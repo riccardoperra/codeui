@@ -4,14 +4,15 @@
 	"type": "module",
 	"sideEffects": false,
 	"scripts": {
-		"dev": "node scripts/generate-props.mjs && vite dev",
-		"build": "node scripts/generate-props.mjs && vite build && node scripts/cloudflare-routes.mjs",
+		"dev": "node scripts/generate-props.mjs && node scripts/copy-examples.mjs && vite dev",
+		"build": "node scripts/generate-props.mjs && node scripts/copy-examples.mjs && vite build && node scripts/cloudflare-routes.mjs",
 		"start": "vite preview",
 		"typecheck": "tsc --noEmit",
 		"props": "node scripts/generate-props.mjs"
 	},
 	"dependencies": {
 		"@codeui/docs-demos": "workspace:*",
+		"@codeui/examples": "workspace:*",
 		"@tanstack/react-router": "1.170.46",
 		"@tanstack/react-router-devtools": "1.167.3",
 		"@tanstack/react-start": "1.169.5",

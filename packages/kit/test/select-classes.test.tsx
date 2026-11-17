@@ -4,9 +4,6 @@ import { press, tick } from "./helpers";
 
 afterEach(cleanup);
 
-beforeAll(() => {
-	window.scrollTo = () => {};
-});
 
 describe("Select classes", () => {
 	it("puts classes.content on the list popover and classes.trigger on the trigger", async () => {

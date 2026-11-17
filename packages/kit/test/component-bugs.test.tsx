@@ -1,4 +1,5 @@
 import { cleanup, render, screen, waitFor } from "solid-testing-library";
+import { press } from "./helpers";
 import { NumberField } from "../src/components/NumberField/NumberField";
 import {
 	DropdownMenu,
@@ -9,13 +10,6 @@ import {
 	DropdownSubMenuContent,
 } from "../src/components/Dropdown/Dropdown";
 afterEach(cleanup);
-beforeAll(() => {
-	global.ResizeObserver = class {
-		observe() {}
-		unobserve() {}
-		disconnect() {}
-	};
-});
 it.each([false, true])("masks invalid typing with a caller ref %s", async withRef => {
 	render(() => (
 		<NumberField aria-label="Amount" ref={withRef ? () => {} : undefined} precision={0} />
@@ -33,6 +27,7 @@ it.each([false, true])("masks invalid typing with a caller ref %s", async withRe
 	expect(event.defaultPrevented).toBe(true);
 });
 it.each([undefined, 0, 20])("positions submenu with gutter %s", async gutter => {
+	press("Tab");
 	render(() => (
 		<DropdownMenu open>
 			<DropdownMenuTrigger>Menu</DropdownMenuTrigger>
@@ -45,8 +40,6 @@ it.each([undefined, 0, 20])("positions submenu with gutter %s", async gutter => 
 		</DropdownMenu>
 	));
 	await waitFor(() =>
-		expect(screen.getByText("Child").parentElement?.style.transform).toContain(
-			`translate3d(${gutter ?? -4}px`,
-		),
+		expect(screen.getByText("Child").getBoundingClientRect().left - screen.getByText("More").getBoundingClientRect().right).toBe(gutter ?? -4),
 	);
 });

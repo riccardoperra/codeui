@@ -1,0 +1,266 @@
+/* The side panel is 360px. The content island takes the rest (DESIGN.md §8). */
+.fin-body {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) 360px;
+	gap: var(--cui-space-2);
+	min-height: 0;
+}
+
+.fin-main {
+	display: flex;
+	flex-direction: column;
+	gap: var(--cui-space-4);
+	padding: var(--cui-space-4);
+}
+
+.fin-side {
+	padding: var(--cui-space-2);
+}
+
+.fin-account {
+	width: 200px;
+}
+
+.fin-toolbar {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--cui-space-3);
+}
+
+.fin-stats {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: var(--cui-space-2);
+}
+
+/* A tile and a card are fields: one fill step above the island they sit on, with no border. */
+.fin-stat,
+.fin-card {
+	border-radius: var(--cui-radius-card);
+	background: var(--cui-surface-input);
+}
+
+.fin-stat {
+	position: relative;
+	display: grid;
+	gap: var(--cui-space-0-5);
+	padding: var(--cui-space-3) var(--cui-space-4);
+}
+
+.fin-stat-value {
+	letter-spacing: -0.01em;
+	line-height: var(--cui-font-line-height-snug);
+}
+
+.fin-charts {
+	display: grid;
+	grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+	gap: var(--cui-space-2);
+}
+
+.fin-card {
+	display: flex;
+	flex-direction: column;
+	gap: var(--cui-space-4);
+	min-width: 0;
+	padding: var(--cui-space-4);
+}
+
+.fin-card-header {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: var(--cui-space-3);
+}
+
+.fin-filters {
+	display: flex;
+	gap: var(--cui-space-2);
+}
+
+.fin-filters > * {
+	width: 200px;
+}
+
+/* Controls inside a card sit on its fill, so they take the next step up. */
+.fin-card [data-cui="text-field-input"],
+.fin-card [data-cui="select-trigger"] {
+	background: var(--cui-surface-field-hover);
+}
+
+.fin-table {
+	width: 100%;
+}
+
+.fin-table th {
+	padding: 0 var(--cui-space-2) var(--cui-space-2);
+	color: var(--cui-text-muted);
+	font-size: var(--cui-font-size-xs);
+	font-weight: var(--cui-font-weight-semibold);
+	white-space: nowrap;
+}
+
+.fin-table td {
+	height: 48px;
+	padding: 0 var(--cui-space-2);
+	white-space: nowrap;
+}
+
+/* The hovered row is a fill, not a line. Its cells round the row's two ends. */
+.fin-table td:first-child {
+	border-radius: var(--cui-radius-nav) 0 0 var(--cui-radius-nav);
+}
+
+.fin-table td:last-child {
+	border-radius: 0 var(--cui-radius-nav) var(--cui-radius-nav) 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.fin-table tbody tr:hover td {
+		background: var(--cui-surface-field-hover);
+	}
+}
+
+.fin-table .fin-amount {
+	text-align: end;
+}
+
+.fin-table .fin-actions {
+	width: 1%;
+}
+
+.fin-merchant {
+	display: flex;
+	align-items: center;
+	gap: var(--cui-space-3);
+	min-width: 0;
+}
+
+.fin-merchant-text {
+	min-width: 0;
+}
+
+.fin-avatar {
+	display: grid;
+	flex: none;
+	place-items: center;
+	width: 28px;
+	height: 28px;
+	border-radius: var(--cui-radius-full);
+	background: var(--cui-surface-field-hover);
+	color: var(--cui-text-muted);
+	font-size: var(--cui-font-size-xs);
+	font-weight: var(--cui-font-weight-semibold);
+}
+
+.fin-table tr:hover .fin-avatar {
+	background: var(--cui-surface-input);
+}
+
+.fin-pagination {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.fin-empty {
+	display: grid;
+	justify-items: center;
+	gap: var(--cui-space-1);
+	padding: var(--cui-space-8) var(--cui-space-4);
+	text-align: center;
+}
+
+.fin-empty > :last-child {
+	margin-top: var(--cui-space-3);
+}
+
+.fin-plan {
+	display: flex;
+	flex-direction: column;
+	gap: var(--cui-space-4);
+	min-height: 100%;
+}
+
+.fin-plan-list {
+	display: grid;
+	gap: var(--cui-space-4);
+	padding: var(--cui-space-1) var(--cui-space-2) var(--cui-space-3);
+}
+
+/* The bar list sits on a card, so its track is one fill step above the card. */
+.fin-card .bar-list-track {
+	background: var(--cui-surface-field-hover);
+}
+
+.fin-plan-item {
+	display: grid;
+	gap: var(--cui-space-1-5);
+}
+
+.fin-plan-line {
+	display: flex;
+	align-items: center;
+	gap: var(--cui-space-2);
+	min-width: 0;
+}
+
+.fin-plan-value {
+	flex: none;
+	margin-inline-start: auto;
+}
+
+.fin-plan-footer {
+	display: flex;
+	justify-content: space-between;
+	gap: var(--cui-space-2);
+	margin-top: auto;
+	padding: var(--cui-space-2);
+}
+
+.fin-form-row {
+	display: grid;
+	grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+	gap: var(--cui-space-3);
+}
+
+/* Below 1180px the account column leaves the table and the charts stack, so nothing is squeezed. */
+@media (max-width: 1180px) {
+	.fin-stats {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+	.fin-charts {
+		grid-template-columns: minmax(0, 1fr);
+	}
+	.fin-wide {
+		display: none;
+	}
+}
+
+@media (max-width: 768px) {
+	.fin-body {
+		grid-template-columns: minmax(0, 1fr);
+	}
+	.fin-main {
+		padding: var(--cui-space-3);
+	}
+	.fin-account,
+	.fin-filters,
+	.fin-filters > * {
+		width: 100%;
+	}
+	.fin-filters {
+		flex-direction: column;
+	}
+	.fin-toolbar > [data-cui="segmented-control"] {
+		width: 100%;
+	}
+	.fin-table td {
+		height: 56px;
+	}
+	.fin-form-row {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}

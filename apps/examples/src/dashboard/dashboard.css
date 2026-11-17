@@ -1,0 +1,587 @@
+/* A 232px navigation island beside the content island (DESIGN.md §8). */
+.dash-body {
+	display: grid;
+	grid-template-columns: 232px minmax(0, 1fr);
+	gap: var(--cui-space-2);
+	min-height: 0;
+}
+
+.dash-side {
+	min-height: 0;
+	padding: var(--cui-space-2);
+}
+
+.dash-main {
+	display: flex;
+	flex-direction: column;
+	gap: var(--cui-space-4);
+	padding: var(--cui-space-4);
+}
+
+/* The island scrolls: its children keep their height instead of shrinking to fit. */
+.dash-main > * {
+	flex: none;
+}
+
+.dash-nav {
+	display: flex;
+	flex-direction: column;
+	gap: var(--cui-space-3);
+	height: 100%;
+}
+
+.dash-workspace {
+	display: flex;
+	align-items: center;
+	gap: var(--cui-space-2);
+	min-width: 0;
+	padding: var(--cui-space-2);
+}
+
+.dash-workspace-text {
+	min-width: 0;
+}
+
+.dash-nav-list,
+.dash-nav-end {
+	display: grid;
+	gap: var(--cui-space-0-5);
+}
+
+.dash-nav-end {
+	margin-top: auto;
+}
+
+.dash-nav-credit {
+	padding: var(--cui-space-3) var(--cui-space-2) var(--cui-space-1);
+}
+
+/* The current item takes the field fill and primary text. It is never the accent (DESIGN.md §2.3). */
+.dash-nav-item {
+	display: flex;
+	align-items: center;
+	gap: var(--cui-space-2);
+	width: 100%;
+	height: var(--cui-control-height-sm);
+	padding: 0 var(--cui-space-2);
+	border: 0;
+	border-radius: var(--cui-radius-nav);
+	background: transparent;
+	color: var(--cui-text-muted);
+	font: inherit;
+	font-size: var(--cui-font-size-sm);
+	font-weight: var(--cui-font-weight-medium);
+	line-height: var(--cui-font-line-height-snug);
+	text-align: start;
+	cursor: pointer;
+	transition: background-color var(--cui-motion-duration-fast) var(--cui-motion-ease-out);
+}
+
+.dash-nav-item[aria-current="page"] {
+	background: var(--cui-surface-input);
+	color: var(--cui-text-default);
+}
+
+/* A row has a fixed 20px leading slot, so labels align with or without an icon. */
+.dash-nav-icon {
+	display: grid;
+	flex: none;
+	place-items: center;
+	width: 20px;
+}
+
+.dash-nav-item:focus-visible,
+.dash-company:focus-visible,
+.dash-activity-row:focus-visible {
+	outline: var(--cui-focus-width) solid var(--cui-focus-color);
+	outline-offset: var(--cui-focus-offset);
+}
+
+/* The sheet is a floating surface, one step above the island, so its rows step up with it. */
+.dash-nav-sheet .dash-nav-item[aria-current="page"] {
+	background: var(--cui-surface-field-hover);
+}
+
+.dash-toolbar {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--cui-space-3);
+	min-height: var(--cui-control-height-sm);
+}
+
+.dash-stats {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: var(--cui-space-2);
+}
+
+/* A tile and a card are fields: one fill step above the island they sit on, with no border. */
+.dash-stat,
+.dash-card {
+	min-width: 0;
+	border-radius: var(--cui-radius-card);
+	background: var(--cui-surface-input);
+}
+
+.dash-stat {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto;
+	align-items: center;
+	gap: var(--cui-space-0-5) var(--cui-space-2);
+	padding: var(--cui-space-3) var(--cui-space-4);
+}
+
+.dash-stat > dt,
+.dash-stat-change {
+	grid-column: 1 / -1;
+}
+
+.dash-stat-value {
+	letter-spacing: -0.01em;
+	line-height: var(--cui-font-line-height-snug);
+}
+
+.dash-stat-trend {
+	display: grid;
+}
+
+.dash-grid {
+	display: grid;
+	grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+	gap: var(--cui-space-2);
+}
+
+.dash-card {
+	display: flex;
+	flex-direction: column;
+	gap: var(--cui-space-4);
+	padding: var(--cui-space-4);
+}
+
+.dash-card-header {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: var(--cui-space-3);
+}
+
+/* The bar list sits on a card, so its track is one fill step above the card. */
+.dash-card .bar-list-track {
+	background: var(--cui-surface-field-hover);
+}
+
+.dash-avatar {
+	display: grid;
+	flex: none;
+	place-items: center;
+	width: 28px;
+	height: 28px;
+	border-radius: var(--cui-radius-full);
+	background: var(--cui-surface-field-hover);
+	color: var(--cui-text-muted);
+	font-size: var(--cui-font-size-xs);
+	font-weight: var(--cui-font-weight-semibold);
+}
+
+/* Rows reach the card's padding edge less 8px, so the hover fill nests inside the 16px corner. */
+.dash-activity {
+	display: grid;
+	margin: calc(-1 * var(--cui-space-2));
+}
+
+.dash-activity-row {
+	display: flex;
+	align-items: center;
+	gap: var(--cui-space-3);
+	width: 100%;
+	height: 44px;
+	padding: 0 var(--cui-space-2);
+	border: 0;
+	border-radius: var(--cui-radius-nav);
+	background: transparent;
+	color: var(--cui-text-muted);
+	font: inherit;
+	text-align: start;
+	cursor: pointer;
+	transition: background-color var(--cui-motion-duration-fast) var(--cui-motion-ease-out);
+}
+
+.dash-activity-text {
+	flex: 1;
+	min-width: 0;
+}
+
+.dash-activity-name {
+	color: var(--cui-text-default);
+	font-weight: var(--cui-font-weight-medium);
+}
+
+.dash-activity-time {
+	flex: none;
+	font-size: var(--cui-font-size-xs);
+}
+
+.dash-search {
+	width: 280px;
+}
+
+/* The kit draws a line under the tab list. Inkstone separates with space and fill, so it is dropped here. */
+.dash-tabs-list {
+	border-bottom: 0;
+}
+
+/* The kit's tab is a bare button: without a reset it keeps the browser's fill, border and font. */
+.dash-tabs-list [role="tab"] {
+	padding-inline: var(--cui-space-3);
+	border: 0;
+	background: transparent;
+	font-family: inherit;
+	white-space: nowrap;
+	cursor: pointer;
+}
+
+.dash-tab-count {
+	margin-inline-start: var(--cui-space-1);
+	color: var(--cui-text-tertiary);
+	font-size: var(--cui-font-size-xs);
+	font-weight: var(--cui-font-weight-medium);
+}
+
+.dash-tabs-panel {
+	display: flex;
+	flex-direction: column;
+	gap: var(--cui-space-3);
+	padding: var(--cui-space-3) 0 0;
+}
+
+.dash-table-wrap {
+	position: relative;
+}
+
+/* Fixed columns: the skeleton, every page and every filter draw the same grid. */
+.dash-table {
+	width: 100%;
+	table-layout: fixed;
+}
+
+.dash-table th:nth-child(n + 3):not(.dash-actions) {
+	width: 12%;
+}
+
+.dash-table th {
+	height: var(--cui-control-height-sm);
+	padding: 0 var(--cui-space-2);
+	color: var(--cui-text-muted);
+	font-size: var(--cui-font-size-xs);
+	font-weight: var(--cui-font-weight-semibold);
+	white-space: nowrap;
+}
+
+.dash-table td {
+	height: 48px;
+	padding: 0 var(--cui-space-2);
+	white-space: nowrap;
+}
+
+/* A hovered or selected row is a fill, not a line. Its cells round the row's two ends. */
+.dash-table td:first-child {
+	border-radius: var(--cui-radius-nav) 0 0 var(--cui-radius-nav);
+}
+
+.dash-table td:last-child {
+	border-radius: 0 var(--cui-radius-nav) var(--cui-radius-nav) 0;
+}
+
+.dash-table tr[data-selected] td {
+	background: var(--cui-surface-input);
+}
+
+/* The avatar is a step above the row it sits on, so it shows on the island and on a filled row. */
+.dash-table .dash-avatar,
+.dash-workspace .dash-avatar {
+	background: var(--cui-surface-input);
+}
+
+.dash-table tr[data-selected] .dash-avatar {
+	background: var(--cui-surface-field-hover);
+}
+
+.dash-table .dash-check {
+	width: 40px;
+	padding: 0;
+}
+
+.dash-check-target {
+	display: flex;
+	align-items: center;
+	height: 100%;
+	min-height: var(--cui-control-height-sm);
+	padding-inline-start: var(--cui-space-3);
+	cursor: pointer;
+}
+
+/*
+ * The label around the box takes the click. The box itself does not, or one press would toggle it
+ * twice: once through the label and once through the kit's own handler.
+ */
+.dash-check [data-cui="checkbox"] {
+	display: flex;
+	pointer-events: none;
+}
+
+.dash-check [data-cui="checkbox"] > * {
+	flex: none;
+}
+
+/* The kit draws nothing for a mixed checkbox, so the fill becomes a dash while some rows are selected. */
+.dash-check [data-cui="checkbox"][data-indeterminate] > input + div::after {
+	inset: calc(50% - 1px) var(--cui-space-1) auto;
+	width: auto;
+	height: 2px;
+	border-radius: var(--cui-radius-full);
+	opacity: 1;
+	transform: none;
+}
+
+.dash-table .dash-number {
+	text-align: end;
+}
+
+.dash-table th.dash-actions {
+	width: 48px;
+}
+
+.dash-table .dash-actions {
+	text-align: end;
+}
+
+.dash-company {
+	display: flex;
+	align-items: center;
+	gap: var(--cui-space-3);
+	min-width: 0;
+	max-width: 100%;
+	padding: var(--cui-space-1) var(--cui-space-2) var(--cui-space-1) 0;
+	border: 0;
+	border-radius: var(--cui-radius-nav);
+	background: transparent;
+	color: inherit;
+	font: inherit;
+	text-align: start;
+}
+
+button.dash-company {
+	cursor: pointer;
+}
+
+.dash-company-text {
+	display: grid;
+	min-width: 0;
+}
+
+/* Over the column titles, from the end of the checkbox column. */
+.dash-bulk {
+	position: absolute;
+	inset: 0 0 auto 40px;
+	display: flex;
+	align-items: center;
+	gap: var(--cui-space-2);
+	height: var(--cui-control-height-sm);
+	padding-inline-start: var(--cui-space-2);
+	background: var(--cui-surface-canvas);
+}
+
+.dash-bulk > :first-child {
+	margin-inline-end: var(--cui-space-2);
+}
+
+.dash-table-footer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--cui-space-3);
+	min-height: var(--cui-control-height-sm);
+	padding-inline-start: var(--cui-space-2);
+}
+
+.dash-empty {
+	display: grid;
+	justify-items: center;
+	gap: var(--cui-space-1);
+	padding: var(--cui-space-8) var(--cui-space-4);
+	text-align: center;
+}
+
+.dash-empty > button {
+	margin-top: var(--cui-space-3);
+}
+
+/* The customer sheet. */
+.dash-detail {
+	display: grid;
+	gap: var(--cui-space-4);
+}
+
+.dash-detail-line {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--cui-space-2);
+}
+
+.dash-detail-notice {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--cui-space-3);
+	padding: var(--cui-space-3);
+	border-radius: var(--cui-radius-md);
+	background: var(--cui-surface-input);
+}
+
+.dash-facts {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: var(--cui-space-2);
+}
+
+.dash-fact {
+	display: grid;
+	gap: var(--cui-space-0-5);
+	padding: var(--cui-space-3);
+	border-radius: var(--cui-radius-md);
+	background: var(--cui-surface-input);
+}
+
+.dash-detail-group {
+	display: grid;
+	gap: var(--cui-space-2);
+}
+
+.dash-history-row {
+	min-height: 32px;
+}
+
+/* The settings dialog: what the kit parts do not draw. */
+.dash-crumbs {
+	display: flex;
+	align-items: center;
+	gap: var(--cui-space-2);
+}
+
+.dash-crumbs > :not(:last-child) {
+	color: var(--cui-text-muted);
+	font-weight: var(--cui-font-weight-medium);
+}
+
+.dash-settings-field {
+	width: 240px;
+}
+
+.dash-settings-segments {
+	width: 168px;
+}
+
+.dash-invite {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto;
+	align-items: start;
+	gap: var(--cui-space-2);
+	padding: var(--cui-space-2) var(--cui-space-4);
+}
+
+/* The widest role reserves the width, so changing a role moves nothing. */
+.dash-role {
+	min-width: 116px;
+	justify-content: space-between;
+}
+
+span.dash-role {
+	display: inline-block;
+	padding-inline: var(--cui-space-3);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.dash-nav-item:hover {
+		background: var(--cui-surface-input);
+		color: var(--cui-text-default);
+	}
+	.dash-nav-sheet .dash-nav-item:hover,
+	.dash-activity-row:hover {
+		background: var(--cui-surface-field-hover);
+	}
+	.dash-activity-row:hover .dash-avatar {
+		background: var(--cui-surface-input);
+	}
+	.dash-table tbody tr:hover td {
+		background: var(--cui-surface-input);
+	}
+	.dash-table tbody tr:hover .dash-avatar {
+		background: var(--cui-surface-field-hover);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.dash-nav-item,
+	.dash-activity-row {
+		transition: none;
+	}
+}
+
+/* Below 1180px the tiles go two across, the cards stack and the table drops two columns. */
+@media (max-width: 1180px) {
+	.dash-stats {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+	.dash-grid {
+		grid-template-columns: minmax(0, 1fr);
+	}
+	.dash-wide {
+		display: none;
+	}
+}
+
+@media (max-width: 768px) {
+	.dash-body {
+		grid-template-columns: minmax(0, 1fr);
+	}
+	.dash-main {
+		padding: var(--cui-space-3);
+	}
+	.dash-nav-item {
+		height: var(--cui-control-height-md);
+	}
+	.dash-toolbar > [data-cui="segmented-control"],
+	.dash-search,
+	.dash-settings-field {
+		width: 100%;
+	}
+	.dash-table td {
+		height: 56px;
+	}
+	.dash-table .dash-check {
+		width: 28px;
+	}
+	.dash-check-target {
+		min-height: var(--cui-control-height-md);
+		padding-inline-start: var(--cui-space-1);
+	}
+	.dash-table th:nth-child(n + 3):not(.dash-actions) {
+		width: 76px;
+	}
+	.dash-table th.dash-actions {
+		width: 40px;
+	}
+	.dash-table-footer {
+		white-space: nowrap;
+	}
+	.dash-bulk {
+		inset-inline-start: 28px;
+	}
+	.dash-invite {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}

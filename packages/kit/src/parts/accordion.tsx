@@ -69,7 +69,7 @@ export function Item<T extends ValidComponent = "div">(
 	const context = K.useAccordionContext();
 	const expanded = () => context.listState().selectionManager().isSelected(props.value);
 	const id = createUniqueId();
-	const [closing, setClosing] = createSignal(false);
+	const [closing, setClosing] = createSignal(expanded());
 	const item = {
 		expanded,
 		triggerId: () => `cui-accordion-${id}-trigger`,
@@ -166,7 +166,7 @@ export function Content<T extends ValidComponent = "div">(
 		on(
 			item.expanded,
 			expanded => {
-				setClosing(!expanded);
+				setClosing(true);
 				// Kobalte writes an inline `transition-duration: 0s` while it
 				// measures a body it has just mounted; run after its effects.
 				queueMicrotask(() => {

@@ -6,9 +6,6 @@ import { expectDismissed, press, tick } from "./helpers";
 
 afterEach(cleanup);
 
-beforeAll(() => {
-	window.scrollTo = () => {};
-});
 
 async function expectSheetDismissed(sheet: HTMLElement) {
 	const overlay = document.querySelector<HTMLElement>(`[data-cui="${S.sheetParts.overlay}"]`);
@@ -71,7 +68,7 @@ describe("Sheet", () => {
 	});
 
 	it("labels the close button with closeLabel and closes from it", () => {
-		const onOpenChange = jest.fn();
+		const onOpenChange = vi.fn();
 		render(() => <Sheet open title="Livelli" closeLabel="Chiudi" onOpenChange={onOpenChange} />);
 		fireEvent.click(screen.getByRole("button", { name: "Chiudi" }));
 		expect(onOpenChange).toHaveBeenCalledWith(false);

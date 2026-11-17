@@ -6,9 +6,6 @@ import { expectDismissed, press, tick } from "./helpers";
 
 afterEach(cleanup);
 
-beforeAll(() => {
-	window.scrollTo = () => {};
-});
 
 const sections = ["General", "Appearance", "Export", "About"] as const;
 
@@ -200,10 +197,11 @@ describe("Dialog motion", () => {
 		await tick();
 		const dialog = screen.getByRole("dialog");
 		expect(dialog).not.toHaveAttribute("data-motion");
+		const closingPositioner = positioner();
 		press("Escape");
 		// The exit plays only when the close starts with a pointer.
 		expect(dialog).toHaveAttribute("data-motion", "none");
-		expect(positioner()).toHaveAttribute("data-motion", "none");
+		expect(closingPositioner).toHaveAttribute("data-motion", "none");
 		await expectDismissed(dialog);
 	});
 });

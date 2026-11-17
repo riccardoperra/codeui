@@ -3,7 +3,7 @@ import { HomeLayout } from 'fumadocs-ui/layouts/home';
 import Link from 'fumadocs-core/link';
 import { useEffect, useState, type CSSProperties } from 'react';
 import { useSolidDemo } from '@/components/solid-demo';
-import { baseOptions } from '@/lib/layout.shared';
+import { homeOptions } from '@/lib/layout.shared';
 import { showcase, type ShowcaseTile } from '@/lib/showcase';
 
 export const Route = createFileRoute('/')({
@@ -14,13 +14,7 @@ const installCommand = 'pnpm add @codeui/kit';
 
 function Home() {
   return (
-    <HomeLayout
-      {...baseOptions()}
-      links={[
-        { text: 'Docs', url: '/docs' },
-        { text: 'Inkstone', url: '/docs/design' },
-      ]}
-    >
+    <HomeLayout {...homeOptions()}>
       <div className="home">
         <section className="home-hero">
           <h1>CodeUI</h1>
@@ -34,6 +28,9 @@ function Home() {
             </Link>
             <Link href="/docs/design" className="home-button">
               Inkstone
+            </Link>
+            <Link href="/examples" className="home-button">
+              Examples
             </Link>
             <InstallCommand />
           </div>

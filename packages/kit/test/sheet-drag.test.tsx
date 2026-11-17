@@ -4,24 +4,16 @@ import { Sheet } from "../src/components/Sheet/Sheet";
 import * as S from "../src/parts/sheet";
 import { expectDismissed, press, tick } from "./helpers";
 
-// jsdom has no layout, so the sheet gets a height and time is driven by the test.
+// Give the real browser sheet a fixed height; drive velocity samples with a test clock.
 const SHEET_HEIGHT = 400;
 let now = 0;
 
 beforeAll(() => {
-	window.scrollTo = () => {};
-	Object.defineProperty(HTMLElement.prototype, "offsetHeight", {
-		configurable: true,
-		get() {
-			return this.getAttribute("data-cui") === S.sheetParts.content ? SHEET_HEIGHT : 0;
-		},
-	});
-	jest.spyOn(performance, "now").mockImplementation(() => now);
+	vi.spyOn(performance, "now").mockImplementation(() => now);
 });
 
 afterAll(() => {
-	delete (HTMLElement.prototype as { offsetHeight?: number }).offsetHeight;
-	jest.restoreAllMocks();
+	vi.restoreAllMocks();
 });
 
 afterEach(cleanup);
@@ -47,6 +39,7 @@ function renderSheet() {
 	const opener = screen.getByRole("button", { name: "Open" });
 	opener.focus();
 	fireEvent.click(opener);
+	screen.getByRole("dialog").style.height = `${SHEET_HEIGHT}px`;
 	return opener;
 }
 

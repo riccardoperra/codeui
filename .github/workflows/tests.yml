@@ -4,7 +4,7 @@ on: [ push ]
 
 jobs:
   release:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       matrix:
         node-version: [ 24.x ]
@@ -20,7 +20,7 @@ jobs:
           cache: 'pnpm'
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: Build
         run: pnpm turbo run build --filter=!@codeui/docs
@@ -28,8 +28,20 @@ jobs:
         env:
           CI: true
 
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-ubuntu-24.04-${{ runner.arch }}-${{ hashFiles('pnpm-lock.yaml') }}
+
+      - name: Install Chromium
+        run: pnpm exec playwright install --with-deps chromium
+
       - name: Test
         run: pnpm test
+
+      - name: Hydration guard
+        run: pnpm test:hydration
 
       - name: Typecheck
         if: ${{ !cancelled() }}
@@ -53,7 +65,7 @@ jobs:
           cache: 'pnpm'
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: Build docs
         run: pnpm turbo run build --filter=@codeui/docs...

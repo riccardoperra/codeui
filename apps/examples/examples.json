@@ -1,0 +1,62 @@
+[
+	{
+		"slug": "finance",
+		"title": "Ledger",
+		"kind": "Finance",
+		"description": "A personal finance workspace: balances, cash flow, budgets and a transactions table.",
+		"uses": [
+			"Select",
+			"Segmented control",
+			"Dialog",
+			"Accordion",
+			"Progress",
+			"Pagination",
+			"Toast"
+		]
+	},
+	{
+		"slug": "dashboard",
+		"title": "Pulse",
+		"kind": "Dashboard",
+		"description": "A product analytics dashboard with a navigation rail, filters, a customers table and a settings dialog.",
+		"uses": [
+			"Tabs",
+			"Badge",
+			"Dropdown menu",
+			"Settings dialog",
+			"Sheet",
+			"Command menu",
+			"Skeleton"
+		]
+	},
+	{
+		"slug": "theme-studio",
+		"title": "Theme Studio",
+		"kind": "Editor",
+		"description": "A theme builder for CodeImage: pick every syntax and window colour, check contrast, and export a ready createTheme module.",
+		"uses": [
+			"Accordion",
+			"Popover",
+			"Slider",
+			"Text field",
+			"Option card",
+			"Command menu",
+			"Export dialog"
+		]
+	},
+	{
+		"slug": "inspector",
+		"title": "Inspector playground",
+		"kind": "ProseMirror",
+		"description": "The prosemirror-inspector invoice workbench, rebuilt with Solid and the kit.",
+		"uses": [
+			"Accordion",
+			"Listbox",
+			"Slider",
+			"Number field",
+			"Segmented control",
+			"Tooltip",
+			"Kbd"
+		]
+	}
+]

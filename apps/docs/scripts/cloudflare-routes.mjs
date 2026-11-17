@@ -9,7 +9,7 @@ import { docsUrls, staticFiles } from './docs-urls.mjs';
 const dist = 'dist';
 if (!existsSync(`${dist}/_worker.js`)) process.exit(0);
 
-const expected = ['index.html', 'llms.txt', 'llms-full.txt', ...docsUrls().flatMap((url) => staticFiles(url).map((f) => f.slice(1)))];
+const expected = ['index.html', 'examples.html', 'llms.txt', 'llms-full.txt', ...docsUrls().flatMap((url) => staticFiles(url).map((f) => f.slice(1)))];
 const missing = expected.filter((file) => !existsSync(`${dist}/${file}`));
 if (missing.length) {
   console.error(`cloudflare-routes: ${missing.length} pages were not prerendered:\n${missing.join('\n')}`);

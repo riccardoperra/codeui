@@ -1,19 +1,11 @@
-import { readFileSync } from "node:fs";
 import { sharedConfig } from "solid-js";
 import { hydrate } from "solid-js/web";
 import { fireEvent, waitFor } from "solid-testing-library";
 import { expectDismissed } from "./helpers";
 import { portalFixtures } from "./hydration/portal-fixtures";
-import { portalHtmlFile } from "./hydration/paths";
+import portalHtmlJson from "../.hydration/portals.json?raw";
 
-beforeAll(() => {
-	jest.spyOn(window, "scrollTo").mockImplementation(() => {});
-});
-afterAll(() => jest.restoreAllMocks());
-
-const serverHtml: Record<string, string> = JSON.parse(
-	readFileSync(portalHtmlFile, "utf8"),
-);
+const serverHtml: Record<string, string> = JSON.parse(portalHtmlJson);
 
 it.each(Object.keys(portalFixtures))(
 	"%s hydrates, relocates and cleans up the server nodes",

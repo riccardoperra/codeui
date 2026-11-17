@@ -1,0 +1,183 @@
+/* Charts draw with tokens only: one accent series, and a grey one for the period it is compared to. */
+.chart {
+	position: relative;
+	width: 100%;
+	border-radius: var(--cui-radius-md);
+	outline: none;
+}
+
+.chart:focus-visible {
+	outline: var(--cui-focus-width) solid var(--cui-focus-color);
+	outline-offset: var(--cui-focus-offset);
+}
+
+.chart svg {
+	display: block;
+	width: 100%;
+	overflow: visible;
+}
+
+.chart-grid {
+	stroke: var(--cui-border-divider);
+	stroke-width: 1;
+}
+
+.chart-axis {
+	fill: var(--cui-text-tertiary);
+	font-size: var(--cui-font-size-badge);
+	font-variant-numeric: tabular-nums;
+}
+
+.chart-line {
+	fill: none;
+	stroke-width: 2;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
+.chart-line[data-tone="primary"] {
+	stroke: var(--cui-action-brand-base);
+}
+
+.chart-line[data-tone="comparison"] {
+	stroke: var(--cui-text-tertiary);
+	stroke-dasharray: 2 5;
+}
+
+.chart-area {
+	fill: var(--cui-action-brand-base);
+	opacity: 0.1;
+}
+
+.chart-crosshair {
+	stroke: var(--cui-text-tertiary);
+	stroke-width: 1;
+}
+
+.chart-dot {
+	stroke: var(--cui-surface-canvas);
+	stroke-width: 2;
+}
+
+.chart-dot[data-tone="primary"],
+.chart-bar[data-tone="primary"] {
+	fill: var(--cui-action-brand-base);
+}
+
+.chart-dot[data-tone="comparison"],
+.chart-bar[data-tone="comparison"] {
+	fill: var(--cui-text-tertiary);
+}
+
+.chart-bar[data-dim="true"] {
+	opacity: 0.45;
+}
+
+.chart-tooltip {
+	position: absolute;
+	top: 0;
+	z-index: 1;
+	display: grid;
+	gap: var(--cui-space-1);
+	min-width: 132px;
+	padding: var(--cui-space-2) var(--cui-space-3);
+	border-radius: var(--cui-radius-md);
+	background: var(--cui-surface-menu);
+	box-shadow: var(--cui-shadow-menu);
+	color: var(--cui-text-menu);
+	font-size: var(--cui-font-size-xs);
+	line-height: var(--cui-font-line-height-snug);
+	pointer-events: none;
+	white-space: nowrap;
+}
+
+.chart-tooltip-title {
+	color: var(--cui-text-muted);
+}
+
+.chart-tooltip-row {
+	display: flex;
+	align-items: center;
+	gap: var(--cui-space-2);
+}
+
+.chart-tooltip-value {
+	margin-inline-start: auto;
+	padding-inline-start: var(--cui-space-3);
+	color: var(--cui-text-default);
+	font-variant-numeric: tabular-nums;
+	font-weight: var(--cui-font-weight-semibold);
+}
+
+.chart-key {
+	flex: none;
+	width: 12px;
+	height: 2px;
+	border-radius: var(--cui-radius-full);
+}
+
+.chart-key[data-tone="primary"] {
+	background: var(--cui-action-brand-base);
+}
+
+.chart-key[data-tone="comparison"] {
+	background: var(--cui-text-tertiary);
+}
+
+.chart-legend {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--cui-space-4);
+	color: var(--cui-text-muted);
+	font-size: var(--cui-font-size-xs);
+	line-height: var(--cui-font-line-height-snug);
+}
+
+.chart-legend-item {
+	display: flex;
+	align-items: center;
+	gap: var(--cui-space-1-5);
+}
+
+/* A ranked list of values. Each row is labelled, so it needs no tooltip. */
+.bar-list {
+	display: grid;
+	gap: var(--cui-space-3);
+}
+
+.bar-list-row {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto;
+	gap: var(--cui-space-1) var(--cui-space-3);
+	align-items: baseline;
+}
+
+.bar-list-label {
+	color: var(--cui-text-default);
+	font-size: var(--cui-font-size-caption);
+}
+
+.bar-list-value {
+	color: var(--cui-text-muted);
+	font-size: var(--cui-font-size-xs);
+	font-variant-numeric: tabular-nums;
+}
+
+.bar-list-track {
+	grid-column: 1 / -1;
+	height: 6px;
+	border-radius: var(--cui-radius-full);
+	background: var(--cui-surface-input);
+}
+
+.bar-list-fill {
+	height: 100%;
+	min-width: 6px;
+	border-radius: var(--cui-radius-full);
+	background: var(--cui-action-brand-base);
+}
+
+.sparkline {
+	display: block;
+	overflow: visible;
+}

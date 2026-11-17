@@ -7,26 +7,37 @@
 		"dev": "storybook dev -p 6006",
 		"build": "storybook build",
 		"preview": "vite preview",
-		"storybook:run": "storybook"
+		"storybook:run": "storybook",
+		"test:stories": "vitest run"
 	},
 	"devDependencies": {
 		"@storybook/addon-a11y": "10.6.7",
 		"@storybook/addon-docs": "10.6.7",
 		"@storybook/addon-links": "10.6.7",
+		"@storybook/addon-vitest": "10.6.0",
 		"@storybook/builder-vite": "10.6.7",
+		"@testing-library/jest-dom": "6.5.0",
+		"@types/node": "22.5.4",
+
+		"@vitest/browser": "3.2.7",
+		"@vitest/runner": "3.2.7",
+		"playwright": "1.56.1",
 		"react": "^18.3.1",
+		"react-dom": "18.3.1",
 		"storybook": "10.6.7",
 		"storybook-dark-mode": "^5.0.0",
 		"storybook-solidjs-vite": "10.7.4",
 		"typescript": "^5.6.2",
 		"vite": "^5.4.4",
-		"vite-plugin-solid": "^2.10.2",
-		"vite-tsconfig-paths": "^5.0.1"
+		"vite-plugin-solid": "2.11.8",
+		"vite-tsconfig-paths": "^5.0.1",
+		"vitest": "3.2.7"
 	},
 	"dependencies": {
+		"@codeui/kit": "workspace:^",
 		"@kobalte/core": "^0.13.14",
 		"@kobalte/utils": "^0.9.2",
-		"@vanilla-extract/css": "^1.14.2",
+
 		"solid-js": "^1.9.8",
 		"@codeui/styles": "workspace:*"
 	}

@@ -1,4 +1,9 @@
-import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 
-export const serverHtmlFile = join(__dirname, "../../.hydration/server.json");
-export const portalHtmlFile = join(__dirname, "../../.hydration/portals.json");
+export const serverHtmlFile = fileURLToPath(
+	new URL("../../.hydration/server.json", import.meta.url),
+);
+
+export const portalHtmlFile = fileURLToPath(
+	new URL("../../.hydration/portals.json", import.meta.url),
+);

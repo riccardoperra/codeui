@@ -24,7 +24,7 @@ it("links rich field content, exposes invalid state and submits checked values",
 	expect(new FormData(container.querySelector("form")!).get("notifications")).toBe("on");
 });
 it("forwards controlled boolean changes and explicit names to the input", () => {
-	const changed = jest.fn();
+	const changed = vi.fn();
 	const [checked, setChecked] = createSignal(false);
 	render(() => (
 		<Switch
@@ -46,13 +46,13 @@ it("forwards controlled boolean changes and explicit names to the input", () => 
 	expect(input).not.toBeChecked();
 });
 it.each([{ disabled: true }, { readOnly: true }])("prevents changes for %o", state => {
-	const changed = jest.fn();
+	const changed = vi.fn();
 	render(() => <Switch label="Locked" {...state} onChange={changed} />);
 	fireEvent.click(screen.getByRole("switch"));
 	expect(changed).not.toHaveBeenCalled();
 });
 it("supports CodeImage row labels and changes through the track", () => {
-	const changed = jest.fn();
+	const changed = vi.fn();
 	const { container } = render(() => (
 		<>
 			<label for="row-switch">Show preview</label>
