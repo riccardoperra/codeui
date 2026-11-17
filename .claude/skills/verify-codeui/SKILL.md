@@ -47,7 +47,7 @@ node $K/scripts/drive.mjs designsystem-dialog--sizes --journey $K/journeys/dialo
   - `check(name, fn)` records an assertion; `fn` returns `true` or `{ pass, ...details }`. A failing check marks the run failed and continues.
   - `focus()` returns `{ tag, role, dataCui, name, inDialog }` of `document.activeElement`.
   - `axe(name)` saves `axe-<name>.json` for the current state.
-  - `backgrounds[theme]` is the expected body background (`rgb(15, 15, 16)` dark, `rgb(247, 250, 252)` light).
+  - `backgrounds[theme]` is the expected body background (`rgb(15, 15, 16)` dark, `rgb(247, 249, 251)` light).
 - Exit 0 only when every check passed in every theme. Stdout is a JSON summary with the evidence path.
 - Story ids: `curl -s <url>/index.json` or `.verify-codeui/storybook-static/index.json`. Pattern: `designsystem-<component>--<story-kebab>`.
 

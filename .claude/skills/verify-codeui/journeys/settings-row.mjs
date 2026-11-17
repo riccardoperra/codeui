@@ -1,9 +1,10 @@
 // SettingsRow and SettingsGroup journey for designsystem-settings--dialog.
 // node .claude/skills/verify-codeui/scripts/drive.mjs designsystem-settings--dialog --journey .claude/skills/verify-codeui/journeys/settings-row.mjs
 // Expected values were measured with getComputedStyle on CodeImage's Settings dialog (codeimage-preview.pages.dev, 2026-11-17).
+// Light follows the kit ramp (DESIGN.md §2.6), not CodeImage: primary title, secondary description.
 const CODEIMAGE = {
 	dark: { island: "rgb(15, 15, 16)", pane: "rgb(21, 21, 22)", title: "rgb(237, 237, 237)", description: "rgb(153, 153, 153)" },
-	light: { island: "rgb(247, 250, 252)", pane: "rgb(255, 255, 255)", title: "rgb(74, 85, 104)", description: "rgb(74, 85, 104)" },
+	light: { island: "rgb(247, 249, 251)", pane: "rgb(255, 255, 255)", title: "rgb(29, 34, 41)", description: "rgb(81, 86, 92)" },
 };
 
 export default async ({ page, step, check, focus, axe, theme }) => {

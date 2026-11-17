@@ -75,18 +75,12 @@ describe("the light ramp", () => {
 	});
 });
 
-/**
- * Today's light tokens break the guard: two grey families and blues below
- * their targets. `it.failing` proves that; the light ramp commit flips it to `it`.
- */
-const guard = it.failing;
-
 describe("light neutral tokens", () => {
 	it("cover every neutral group", () => {
 		expect(neutralTokens.length).toBeGreaterThan(30);
 	});
 
-	guard("are all steps of the ramp", () => {
+	it("are all steps of the ramp", () => {
 		const outside = neutralTokens
 			.map(path => ({ path, value: light(path) }))
 			.filter(({ value }) => !(RAMP as readonly string[]).includes(value));
@@ -163,7 +157,7 @@ const lightOrMissing = (path: string) => {
 };
 
 describe("light contrast", () => {
-	guard("meets every target", () => {
+	it("meets every target", () => {
 		const misses = Object.entries(pairs).flatMap(([name, pair]) => {
 			const fg = lightOrMissing(pair.fg);
 			return pair.on.flatMap(surface => {
@@ -178,12 +172,12 @@ describe("light contrast", () => {
 		expect(misses).toEqual([]);
 	});
 
-	guard("keeps accent text at 4.5:1 on the 15% brand wash", () => {
+	it("keeps accent text at 4.5:1 on the 15% brand wash", () => {
 		const wash = blend(light("action.brandSoft.base"), light("surface.panel"));
 		expect(contrast(light("action.brandSoft.text"), wash)).toBeGreaterThanOrEqual(4.5);
 	});
 
-	guard("keeps primary, secondary, tertiary and disabled text in order (§2.2)", () => {
+	it("keeps primary, secondary, tertiary and disabled text in order (§2.2)", () => {
 		const page = light("surface.panel");
 		const tone = (path: string) => contrast(light(path), page);
 		expect(tone("text.default")).toBeGreaterThan(tone("text.muted"));
@@ -192,7 +186,7 @@ describe("light contrast", () => {
 		expect(tone("text.tertiary")).toBeGreaterThan(tone("text.disabled"));
 	});
 
-	guard("separates a field from its island by at least ΔL 0.025", () => {
+	it("separates a field from its island by at least ΔL 0.025", () => {
 		const island = oklch(light("surface.canvas")).L;
 		const field = oklch(light("surface.input")).L;
 		expect(island - field).toBeGreaterThanOrEqual(0.025);
