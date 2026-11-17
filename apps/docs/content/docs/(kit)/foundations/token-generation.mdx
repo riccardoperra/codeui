@@ -7,7 +7,7 @@ Inkstone stores shared design values in DTCG JSON. Toghen resolves the token fil
 
 ## The resolver combines token sources
 
-Gosfuig reads `packages/inkstone/tokens/inkstone.palette.json` and writes the grey and blue ramps to `palette.tokens.json`. The ramp tokens carry OKLCH components and sRGB hex values. Foundation and dark tokens reference those steps by their DTCG names, such as `{palette.blue.500}` for the brand base.
+Gosfuig reads `packages/inkstone/tokens/inkstone.palette.json` and writes the five ramps to `palette.tokens.json`. The ramp tokens carry OKLCH components and sRGB hex values. Foundation and dark tokens reference those steps by their DTCG names, such as `{palette.blue.500}` for the brand base and `{palette.red.500}` for the danger base.
 
 `packages/inkstone/tokens/inkstone.resolver.json` lists the foundation files and a `theme` modifier. The light context uses the foundation values. The dark context applies `dark.tokens.json` afterwards, so a dark value can replace its foundation value.
 

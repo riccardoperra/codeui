@@ -257,7 +257,7 @@ export const themeValues = {
 			"active": "#004f8e26"
 		},
 		"caution": {
-			"base": "#F08C00",
+			"base": "#f08c00",
 			"hover": "#d77d00",
 			"active": "#bd6e00",
 			"text": "#000"

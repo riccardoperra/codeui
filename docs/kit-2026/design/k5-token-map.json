@@ -429,8 +429,8 @@
       "group": "accent and status colors",
       "token": "action.caution.base",
       "css": "--cui-action-caution-base",
-      "dark": "#F08C00",
-      "light": "#F08C00",
+      "dark": "#f08c00",
+      "light": "#f08c00",
       "source": "kit caution"
     },
     {

@@ -5,7 +5,7 @@ description: Palette swatches, theme tokens, and rules for using colour in Inkst
 
 ## Colour palette
 
-Light and Dark use one grey ramp. Blue has a separate ramp for actions and focus. Components use the CSS tokens in **Theme roles**. The numbered steps are for theme authors.
+Light and Dark use one grey ramp. Blue covers primary actions and focus. Red, orange, and green cover status. Components use the CSS tokens in **Theme roles**. The numbered steps are for theme authors.
 
 <ColourPalette />
 
@@ -161,7 +161,9 @@ The hover, active, soft, focus and selection colours follow `--cui-action-brand-
 
 Danger, caution and success mark states the user must notice: an error, a destructive confirmation, a failed export. They do not decorate anything and are not used to label categories. Danger fills only the confirm button of a destructive dialog, and an error always pairs its colour with an icon.
 
-Each status has one source colour, its `base`. Hover and active are computed from it with the same steps the Inkstone values use, so a theme that changes the base keeps the states in proportion.
+Toghen resolves the status tokens from the Gosfuig ramps. Danger uses red, caution uses orange, and success uses green. Each fill uses step `500` at rest, `600` on hover, and `700` when active. Error text uses `red.500` in Light and `red.300` in Dark.
+
+When you override a status `base` token, its hover and active colours follow through CSS relative colours.
 
 ## Lines
 

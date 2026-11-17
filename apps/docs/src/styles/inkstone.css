@@ -101,7 +101,7 @@
       grid-template-columns: repeat(8, minmax(0, 1fr));
     }
 
-    .colour-palette__grid[data-family="blue"] {
+    .colour-palette__grid:not([data-family="gray"]) {
       grid-template-columns: repeat(6, minmax(0, 1fr));
     }
   }

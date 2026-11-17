@@ -71,7 +71,7 @@ Token paths refer to the proposed exported `tokens` object. The CSS name is stab
 | `accent.selection` | `--cui-accent-selection` | `#07f` | `#09f` | measured preview. The maintainer chose the CodeImage primary over AA contrast for white text |
 | `accent.focus` | `--cui-accent-focus` | `#63b3ed` | `#09f` | measured preview, semanticTokens.primary |
 | `action.brandSoft.active` | `--cui-action-brand-soft-active` | `#007acc26` | `#007acc26` | packages/ui hover value reused, proposed active |
-| `action.caution.base` | `--cui-action-caution-base` | `#F08C00` | `#F08C00` | kit caution |
+| `action.caution.base` | `--cui-action-caution-base` | `#f08c00` | `#f08c00` | kit caution |
 | `action.caution.hover` | `--cui-action-caution-hover` | `#d77d00` | `#d77d00` | kit cautionAccentHover |
 | `action.caution.active` | `--cui-action-caution-active` | `#bd6e00` | `#bd6e00` | kit cautionAccentActive |
 | `action.success.base` | `--cui-action-success-base` | `#48bb78` | `#48bb78` | packages/ui colors.green.500 |

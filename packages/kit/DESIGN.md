@@ -104,7 +104,9 @@ The accent is never a surface or a large fill. It has five uses:
 
 Danger, caution and success mark states the user must notice. They never decorate or label a category. Danger fills only the confirm button of a destructive dialog. Errors pair colour with an icon.
 
-Each status `hover` and `active` is a relative color computed from its `base`, with the OKLCH steps that take the Inkstone base to the Inkstone value. `test/derived-palette.test.ts` checks that every computed color resolves to its value in `theme-values.ts`.
+Gosfuig generates the red, orange, and green ramps for danger, caution, and success. Each status fill uses step `500` for base, `600` for hover, and `700` for active. Error text uses `red.500` in Light and `red.300` in Dark.
+
+The hover and active colours follow a theme override of the base through CSS relative colours. `test/derived-palette.test.ts` checks the computed colours against `theme-values.ts`.
 
 ### 2.5 Lines
 

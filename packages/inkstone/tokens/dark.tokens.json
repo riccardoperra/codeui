@@ -128,15 +128,7 @@
     },
     "danger": {
       "$type": "color",
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          0.9882352941176471,
-          0.5058823529411764,
-          0.5058823529411764
-        ],
-        "hex": "#fc8181"
-      }
+      "$value": "{palette.red.300}"
     }
   },
   "action": {

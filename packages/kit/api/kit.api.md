@@ -506,7 +506,7 @@ export declare const themeValues: {
             readonly active: "#004f8e26";
         };
         readonly caution: {
-            readonly base: "#F08C00";
+            readonly base: "#f08c00";
             readonly hover: "#d77d00";
             readonly active: "#bd6e00";
             readonly text: "#000";

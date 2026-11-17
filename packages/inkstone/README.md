@@ -1,6 +1,6 @@
 # @codeui/inkstone
 
-The shared Inkstone design tokens for use in any application. The package ships a CSS theme, TypeScript references and breakpoints, and DTCG token data for light and dark. At build time Gosfuig generates the shared grey and blue ramps, and Toghen resolves the semantic aliases for both modes.
+The shared Inkstone design tokens for use in any application. The package ships a CSS theme, TypeScript references and breakpoints, and DTCG token data for light and dark. At build time Gosfuig generates the grey, blue, red, orange, and green ramps. Toghen resolves the semantic aliases for both modes.
 
 ## Use the CSS theme
 

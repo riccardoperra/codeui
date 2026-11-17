@@ -12,6 +12,16 @@ const rolePaths = {
 	"text.muted": "text.muted",
 	"accent.focus": "accent.focus",
 	"action.brand.base": "action.brand.base",
+	"action.danger.base": "action.danger.base",
+	"action.danger.hover": "action.danger.hover",
+	"action.danger.active": "action.danger.active",
+	"action.caution.base": "action.caution.base",
+	"action.caution.hover": "action.caution.hover",
+	"action.caution.active": "action.caution.active",
+	"action.success.base": "action.success.base",
+	"action.success.hover": "action.success.hover",
+	"action.success.active": "action.success.active",
+	"text.danger": "text.danger",
 };
 
 const readTokenFile = async file =>
@@ -37,7 +47,13 @@ export const themes = Object.fromEntries(
 );
 
 export const surfaceRoles = Object.keys(rolePaths).filter(role => role.startsWith("surface."));
-const rampLabels = { gray: "Shared greys", blue: "Accent blue" };
+const rampLabels = {
+	gray: "Shared greys",
+	blue: "Accent blue",
+	red: "Danger red",
+	orange: "Caution orange",
+	green: "Success green",
+};
 
 const palette = resolvePalette(parsePaletteSpec(config));
 export const tokens = toW3CTokens(palette, { prefix: "palette", precision: 6 });
