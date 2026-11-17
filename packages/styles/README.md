@@ -26,7 +26,7 @@ The CSS exports work without a bundler. Serve the package's `dist` files as stat
 
 <div data-cui-theme="light">
   <button
-    class="cui-button-button cui-button-buttonTheme cui-button-button_size_md cui-button-button_theme_primary"
+    class="cui-button" data-size="md" data-theme="primary"
   >
     Save changes
   </button>
@@ -37,7 +37,7 @@ Add the native `disabled` attribute to disable the button. Native controls also 
 
 ## Use class helpers
 
-Each component has a JavaScript entry with its existing raw style exports. The helpers return the same stable classes as the HTML example.
+Each component has a JavaScript entry with its existing raw style exports. Pilot helpers return a stable part class plus private variant classes. Explicit variant attributes take precedence over helper classes.
 
 ```js
 import { button, buttonVars } from "@codeui/styles/button";
@@ -49,7 +49,7 @@ switchStyles.control({ size: "sm" });
 
 Parts contracts retain existing `data-cui` values. For example, `switchParts.control` is `switch-control`. Non-native state uses the documented `data-*` attributes. Recipe helpers expose their supported groups through `variants()` and their classes through `classNames`.
 
-`@codeui/styles/contract.json` lists public classes, variants, part names, default part classes, and variable references. `@codeui/styles/manifest.json` lists each CSS entry's component and module dependency closure. The `internal/` exports support `@codeui/kit` and are not application API.
+`@codeui/styles/public-registry.json` defines the stable pilot contract for Button, IconButton, Switch and Dialog: part names, variants, defaults, state placement and local variables. The other 36 components retain legacy emission during migration. `contract.json` records helper output and variable references, including private compiler classes; those private names are not an application contract. `@codeui/styles/manifest.json` lists each CSS entry's component and module dependency closure. The `internal/` exports support `@codeui/kit` and are not application API.
 
 ## Customize tokens and geometry
 
@@ -76,7 +76,7 @@ Custom overlay and progress implementations supply these neutral geometry inputs
 
 `@codeui/kit` maps its engine geometry to these inputs. A theme scope must contain portal content or its host to pass inherited brand, radius, and component overrides.
 
-All CSS lives under `cui`, with the fixed inner order `cui.base`, `cui.components`, and `cui.overrides`. The field label uses `base`. IconButton uses `overrides`, so its padding wins over Button in either import order. Unlayered application CSS can override normal library rules.
+All CSS lives under `cui`, with the fixed inner order `cui.tokens`, `cui.base`, `cui.components`. The field label uses `base`. IconButton and Dialog close explicitly compose Button in the component layer. Pilot selectors use whole-selector `:where()` wrappers. Unlayered application CSS overrides normal library rules. With Tailwind, establish `@layer cui, utilities;` before loading styles so utility rules follow the kit.
 
 ## Build and verify
 
