@@ -6,7 +6,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
 process.chdir(root);
-const out='docs/kit-2026/phase-0/baseline';
+const out=process.env.BASELINE_OUT||'docs/kit-2026/phase-0/baseline';
 await mkdir(out,{recursive:true});
 const results=[];
 async function run(name,cmd,args,cwd=root){
@@ -46,8 +46,7 @@ try{
 }finally{await writeFile('pnpm-lock.yaml',lock)}
 for(const cmd of ['build:kit','test','typecheck'])await run(cmd.replace(':','-'),'pnpm',[cmd]);
 const temp=await mkdtemp(path.join(tmpdir(),'codeui-baseline-'));
-await run('pack','pnpm',['--filter','@codeui/kit','pack','--pack-destination',temp]);
-if(results.at(-1).code)await run('pack-compatible','pnpm',['--dir',path.join(root,'packages/kit'),'pack','--pack-destination',temp]);
+await run('pack','pnpm',['--dir',path.join(root,'packages/kit'),'pack','--pack-destination',temp]);
 const tar=(await readdir(temp)).find(x=>x.endsWith('.tgz'));
 if(tar){
  await run('extract','tar',['-xzf',path.join(temp,tar),'-C',temp]);
@@ -60,10 +59,10 @@ if(tar){
  await run('consumer-browser-import','node',['--conditions=browser','-e',"import('./packages/kit/dist/esm/index.js')"]);
  await run('sizes','node',['tools/baseline/sizes.mjs',pkg]);
 }
-let build=await run('storybook-build','pnpm',['--filter','@codeui/storybook-playground','exec','storybook','build','--output-dir',path.join(root,'tools/baseline/storybook-static'),'--disable-telemetry']);
+let build=await run('storybook-build','pnpm',['--filter','@codeui/storybook-playground','exec','storybook','build','--output-dir',path.resolve(process.env.BASELINE_BUILD||'tools/baseline/storybook-static'),'--disable-telemetry']);
 if(!build.code){
  const {createServer}=await import('node:http');
- const base=path.join(root,'tools/baseline/storybook-static');
+ const base=path.resolve(process.env.BASELINE_BUILD||'tools/baseline/storybook-static');
  const server=createServer(async(req,res)=>{try{let p=decodeURIComponent(new URL(req.url,'http://localhost').pathname);if(p.endsWith('/'))p+='index.html';const f=path.resolve(base,'.'+p);if(!f.startsWith(base+path.sep))throw Error('path');const b=await readFile(f);res.setHeader('Content-Type',({'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml'})[path.extname(f)]||'application/octet-stream');res.end(b)}catch{res.statusCode=404;res.end()}});
  const port=Number(process.env.BASELINE_PORT??0);
  if(!Number.isInteger(port)||port<0||port>65535)throw Error('BASELINE_PORT must be an integer from 0 to 65535');

@@ -2,7 +2,7 @@ import {chromium} from 'playwright';
 import {readdir,writeFile} from 'node:fs/promises';
 import {homedir} from 'node:os';
 import path from 'node:path';
-export const out='docs/kit-2026/phase-0/baseline';
+export const out=process.env.BASELINE_OUT||'docs/kit-2026/phase-0/baseline';
 export const base=process.env.BASELINE_URL||`http://127.0.0.1:${process.env.BASELINE_PORT||6106}`;
 export const backgrounds={light:'rgb(247, 249, 251)',dark:'rgb(15, 15, 16)'};
 export async function launch(){

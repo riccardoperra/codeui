@@ -11,8 +11,195 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "unattached-mdx"
       ]
+    },
+    "designsystem-accordion--docs": {
+      "id": "designsystem-accordion--docs",
+      "title": "DesignSystem/Accordion",
+      "name": "Docs",
+      "importPath": "./src/stories/Accordion.stories.tsx",
+      "type": "docs",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "storiesImports": []
+    },
+    "designsystem-accordion--settings": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-accordion--settings",
+      "name": "Settings",
+      "title": "DesignSystem/Accordion",
+      "importPath": "./src/stories/Accordion.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "Settings"
+    },
+    "designsystem-accordion--retained": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-accordion--retained",
+      "name": "Retained",
+      "title": "DesignSystem/Accordion",
+      "importPath": "./src/stories/Accordion.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "Retained"
+    },
+    "designsystem-accordion--densities": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-accordion--densities",
+      "name": "Densities",
+      "title": "DesignSystem/Accordion",
+      "importPath": "./src/stories/Accordion.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "Densities"
+    },
+    "designsystem-alert--docs": {
+      "id": "designsystem-alert--docs",
+      "title": "DesignSystem/Alert",
+      "name": "Docs",
+      "importPath": "./src/stories/Alert.stories.tsx",
+      "type": "docs",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "storiesImports": []
+    },
+    "designsystem-alert--alert-story": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-alert--alert-story",
+      "name": "Alert",
+      "title": "DesignSystem/Alert",
+      "importPath": "./src/stories/Alert.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "AlertStory"
+    },
+    "designsystem-alert--tones": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-alert--tones",
+      "name": "Tones",
+      "title": "DesignSystem/Alert",
+      "importPath": "./src/stories/Alert.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "Tones"
+    },
+    "designsystem-alert--with-title-and-action": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-alert--with-title-and-action",
+      "name": "With Title And Action",
+      "title": "DesignSystem/Alert",
+      "importPath": "./src/stories/Alert.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "WithTitleAndAction"
+    },
+    "designsystem-badge--docs": {
+      "id": "designsystem-badge--docs",
+      "title": "DesignSystem/Badge",
+      "name": "Docs",
+      "importPath": "./src/stories/Badge.stories.tsx",
+      "type": "docs",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "storiesImports": []
+    },
+    "designsystem-badge--badge-story": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-badge--badge-story",
+      "name": "Badge",
+      "title": "DesignSystem/Badge",
+      "importPath": "./src/stories/Badge.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "BadgeStory"
+    },
+    "designsystem-badge--tones": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-badge--tones",
+      "name": "Tones",
+      "title": "DesignSystem/Badge",
+      "importPath": "./src/stories/Badge.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "Tones"
+    },
+    "designsystem-badge--with-icon": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-badge--with-icon",
+      "name": "With Icon",
+      "title": "DesignSystem/Badge",
+      "importPath": "./src/stories/Badge.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "WithIcon"
     },
     "designsystem-button--docs": {
       "id": "designsystem-button--docs",
@@ -23,12 +210,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
       ],
       "storiesImports": []
     },
     "designsystem-button--primary": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-button--primary",
       "name": "Primary",
       "title": "DesignSystem/Button",
@@ -37,11 +226,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "Primary"
     },
     "designsystem-button--secondary": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-button--secondary",
       "name": "Secondary",
       "title": "DesignSystem/Button",
@@ -50,11 +242,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "Secondary"
     },
     "designsystem-button--tertiary": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-button--tertiary",
       "name": "Tertiary",
       "title": "DesignSystem/Button",
@@ -63,11 +258,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "Tertiary"
     },
     "designsystem-button--caution": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-button--caution",
       "name": "Caution",
       "title": "DesignSystem/Button",
@@ -76,11 +274,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "Caution"
     },
     "designsystem-button--negative": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-button--negative",
       "name": "Negative",
       "title": "DesignSystem/Button",
@@ -89,11 +290,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "Negative"
     },
     "designsystem-button--disabled": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-button--disabled",
       "name": "Disabled",
       "title": "DesignSystem/Button",
@@ -102,11 +306,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "Disabled"
     },
     "designsystem-button--sizes": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-button--sizes",
       "name": "Sizes",
       "title": "DesignSystem/Button",
@@ -115,11 +322,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "Sizes"
     },
     "designsystem-button--with-left-icon": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-button--with-left-icon",
       "name": "With Left Icon",
       "title": "DesignSystem/Button",
@@ -128,11 +338,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "WithLeftIcon"
     },
     "designsystem-button--pill": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-button--pill",
       "name": "Pill",
       "title": "DesignSystem/Button",
@@ -141,11 +354,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "Pill"
     },
     "designsystem-button--ghost": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-button--ghost",
       "name": "Ghost",
       "title": "DesignSystem/Button",
@@ -154,11 +370,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "Ghost"
     },
     "designsystem-button--loading": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-button--loading",
       "name": "Loading",
       "title": "DesignSystem/Button",
@@ -167,8 +386,10 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "Loading"
     },
     "designsystem-checkbox--docs": {
       "id": "designsystem-checkbox--docs",
@@ -179,12 +400,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
       ],
       "storiesImports": []
     },
     "designsystem-checkbox--checkbox-story": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-checkbox--checkbox-story",
       "name": "Checkbox",
       "title": "DesignSystem/Checkbox",
@@ -192,11 +415,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "CheckboxStory"
     },
     "designsystem-checkbox--sizes": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-checkbox--sizes",
       "name": "Sizes",
       "title": "DesignSystem/Checkbox",
@@ -204,11 +430,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "Sizes"
     },
     "designsystem-checkbox--validation": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-checkbox--validation",
       "name": "Validation",
       "title": "DesignSystem/Checkbox",
@@ -216,8 +445,252 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "Validation"
+    },
+    "designsystem-combobox--parts-states": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-combobox--parts-states",
+      "name": "Parts States",
+      "title": "DesignSystem/Combobox",
+      "importPath": "./src/stories/Combobox.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest"
+      ],
+      "exportName": "PartsStates"
+    },
+    "designsystem-combobox--parts-open": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-combobox--parts-open",
+      "name": "Parts Open",
+      "title": "DesignSystem/Combobox",
+      "importPath": "./src/stories/Combobox.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest"
+      ],
+      "exportName": "PartsOpen"
+    },
+    "designsystem-combobox--parts-focus": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-combobox--parts-focus",
+      "name": "Parts Focus",
+      "title": "DesignSystem/Combobox",
+      "importPath": "./src/stories/Combobox.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "play-fn"
+      ],
+      "exportName": "PartsFocus"
+    },
+    "designsystem-combobox--states": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-combobox--states",
+      "name": "States",
+      "title": "DesignSystem/Combobox",
+      "importPath": "./src/stories/Combobox.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest"
+      ],
+      "exportName": "States"
+    },
+    "designsystem-combobox--required": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-combobox--required",
+      "name": "Required",
+      "title": "DesignSystem/Combobox",
+      "importPath": "./src/stories/Combobox.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest"
+      ],
+      "exportName": "Required"
+    },
+    "designsystem-combobox--open": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-combobox--open",
+      "name": "Open",
+      "title": "DesignSystem/Combobox",
+      "importPath": "./src/stories/Combobox.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest"
+      ],
+      "exportName": "Open"
+    },
+    "designsystem-combobox--empty": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-combobox--empty",
+      "name": "Empty",
+      "title": "DesignSystem/Combobox",
+      "importPath": "./src/stories/Combobox.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest"
+      ],
+      "exportName": "Empty"
+    },
+    "designsystem-combobox--custom-object": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-combobox--custom-object",
+      "name": "Custom Object",
+      "title": "DesignSystem/Combobox",
+      "importPath": "./src/stories/Combobox.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest"
+      ],
+      "exportName": "CustomObject"
+    },
+    "designsystem-combobox--options-helper": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-combobox--options-helper",
+      "name": "Options Helper",
+      "title": "DesignSystem/Combobox",
+      "importPath": "./src/stories/Combobox.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest"
+      ],
+      "exportName": "OptionsHelper"
+    },
+    "designsystem-combobox--controlled": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-combobox--controlled",
+      "name": "Controlled",
+      "title": "DesignSystem/Combobox",
+      "importPath": "./src/stories/Combobox.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest"
+      ],
+      "exportName": "Controlled"
+    },
+    "designsystem-combobox--focus": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-combobox--focus",
+      "name": "Focus",
+      "title": "DesignSystem/Combobox",
+      "importPath": "./src/stories/Combobox.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "play-fn"
+      ],
+      "exportName": "Focus"
+    },
+    "designsystem-commandmenu--parts-open": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-commandmenu--parts-open",
+      "name": "Parts Open",
+      "title": "DesignSystem/CommandMenu",
+      "importPath": "./src/stories/CommandMenu.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest"
+      ],
+      "exportName": "PartsOpen"
+    },
+    "designsystem-commandmenu--parts-empty": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-commandmenu--parts-empty",
+      "name": "Parts Empty",
+      "title": "DesignSystem/CommandMenu",
+      "importPath": "./src/stories/CommandMenu.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest"
+      ],
+      "exportName": "PartsEmpty"
+    },
+    "designsystem-commandmenu--default": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-commandmenu--default",
+      "name": "Default",
+      "title": "DesignSystem/CommandMenu",
+      "importPath": "./src/stories/CommandMenu.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest"
+      ],
+      "exportName": "Default"
+    },
+    "designsystem-commandmenu--open": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-commandmenu--open",
+      "name": "Open",
+      "title": "DesignSystem/CommandMenu",
+      "importPath": "./src/stories/CommandMenu.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest"
+      ],
+      "exportName": "Open"
+    },
+    "designsystem-commandmenu--empty": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-commandmenu--empty",
+      "name": "Empty",
+      "title": "DesignSystem/CommandMenu",
+      "importPath": "./src/stories/CommandMenu.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest"
+      ],
+      "exportName": "Empty"
     },
     "designsystem-dialog--docs": {
       "id": "designsystem-dialog--docs",
@@ -228,12 +701,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
       ],
       "storiesImports": []
     },
     "designsystem-dialog--sizes": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-dialog--sizes",
       "name": "Sizes",
       "title": "DesignSystem/Dialog",
@@ -242,11 +717,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "Sizes"
     },
     "designsystem-dialog--overflow-content": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-dialog--overflow-content",
       "name": "Overflow Content",
       "title": "DesignSystem/Dialog",
@@ -255,8 +733,55 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "OverflowContent"
+    },
+    "designsystem-dialog--parts": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-dialog--parts",
+      "name": "Parts",
+      "title": "DesignSystem/Dialog",
+      "importPath": "./src/stories/Dialog.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest"
+      ],
+      "exportName": "Parts"
+    },
+    "designsystem-dialog--settings-layout": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-dialog--settings-layout",
+      "name": "Settings Layout",
+      "title": "DesignSystem/Dialog",
+      "importPath": "./src/stories/Dialog.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest"
+      ],
+      "exportName": "SettingsLayout"
+    },
+    "designsystem-dialog--export-layout": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-dialog--export-layout",
+      "name": "Export Layout",
+      "title": "DesignSystem/Dialog",
+      "importPath": "./src/stories/Dialog.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest"
+      ],
+      "exportName": "ExportLayout"
     },
     "designsystem-dropdownmenu--docs": {
       "id": "designsystem-dropdownmenu--docs",
@@ -267,12 +792,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
       ],
       "storiesImports": []
     },
     "designsystem-dropdownmenu--dropdown-menu-story": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-dropdownmenu--dropdown-menu-story",
       "name": "DropdownMenu",
       "title": "DesignSystem/DropdownMenu",
@@ -281,11 +808,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "DropdownMenuStory"
     },
     "designsystem-dropdownmenu--dropdown-menu-nested-story": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-dropdownmenu--dropdown-menu-nested-story",
       "name": "DropdownMenu Nested",
       "title": "DesignSystem/DropdownMenu",
@@ -294,8 +824,10 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "DropdownMenuNestedStory"
     },
     "designsystem-iconbutton--docs": {
       "id": "designsystem-iconbutton--docs",
@@ -306,12 +838,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
       ],
       "storiesImports": []
     },
     "designsystem-iconbutton--primary": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-iconbutton--primary",
       "name": "Primary",
       "title": "DesignSystem/IconButton",
@@ -319,11 +853,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "Primary"
     },
     "designsystem-iconbutton--secondary": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-iconbutton--secondary",
       "name": "Secondary",
       "title": "DesignSystem/IconButton",
@@ -331,11 +868,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "Secondary"
     },
     "designsystem-iconbutton--tertiary": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-iconbutton--tertiary",
       "name": "Tertiary",
       "title": "DesignSystem/IconButton",
@@ -343,11 +883,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "Tertiary"
     },
     "designsystem-iconbutton--caution": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-iconbutton--caution",
       "name": "Caution",
       "title": "DesignSystem/IconButton",
@@ -355,11 +898,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "Caution"
     },
     "designsystem-iconbutton--negative": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-iconbutton--negative",
       "name": "Negative",
       "title": "DesignSystem/IconButton",
@@ -367,11 +913,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "Negative"
     },
     "designsystem-iconbutton--disabled": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-iconbutton--disabled",
       "name": "Disabled",
       "title": "DesignSystem/IconButton",
@@ -379,11 +928,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "Disabled"
     },
     "designsystem-iconbutton--sizes": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-iconbutton--sizes",
       "name": "Sizes",
       "title": "DesignSystem/IconButton",
@@ -391,11 +943,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "Sizes"
     },
     "designsystem-iconbutton--pill": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-iconbutton--pill",
       "name": "Pill",
       "title": "DesignSystem/IconButton",
@@ -403,11 +958,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "Pill"
     },
     "designsystem-iconbutton--loading": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-iconbutton--loading",
       "name": "Loading",
       "title": "DesignSystem/IconButton",
@@ -415,8 +973,10 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "Loading"
     },
     "designsystem-icons--docs": {
       "id": "designsystem-icons--docs",
@@ -427,12 +987,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
       ],
       "storiesImports": []
     },
     "designsystem-icons--all-icons": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-icons--all-icons",
       "name": "All Exported Icons",
       "title": "DesignSystem/Icons",
@@ -441,11 +1003,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "AllIcons"
     },
     "designsystem-icons--custom-size-icon": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-icons--custom-size-icon",
       "name": "Custom size icon",
       "title": "DesignSystem/Icons",
@@ -454,8 +1019,56 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "CustomSizeIcon"
+    },
+    "designsystem-kbd--docs": {
+      "id": "designsystem-kbd--docs",
+      "title": "DesignSystem/Kbd",
+      "name": "Docs",
+      "importPath": "./src/stories/Kbd.stories.tsx",
+      "type": "docs",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "storiesImports": []
+    },
+    "designsystem-kbd--kbd-story": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-kbd--kbd-story",
+      "name": "Kbd",
+      "title": "DesignSystem/Kbd",
+      "importPath": "./src/stories/Kbd.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "KbdStory"
+    },
+    "designsystem-kbd--variants": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-kbd--variants",
+      "name": "Variants",
+      "title": "DesignSystem/Kbd",
+      "importPath": "./src/stories/Kbd.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "Variants"
     },
     "designsystem-link--docs": {
       "id": "designsystem-link--docs",
@@ -466,12 +1079,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
       ],
       "storiesImports": []
     },
     "designsystem-link--link-story": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-link--link-story",
       "name": "Link",
       "title": "DesignSystem/Link",
@@ -480,11 +1095,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "LinkStory"
     },
     "designsystem-link--link-variant-underline": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-link--link-variant-underline",
       "name": "Underline",
       "title": "DesignSystem/Link",
@@ -493,11 +1111,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "LinkVariantUnderline"
     },
     "designsystem-link--link-disabled": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-link--link-disabled",
       "name": "Disabled",
       "title": "DesignSystem/Link",
@@ -506,8 +1127,10 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "LinkDisabled"
     },
     "designsystem-listbox--docs": {
       "id": "designsystem-listbox--docs",
@@ -518,12 +1141,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
       ],
       "storiesImports": []
     },
     "designsystem-listbox--listbox-story": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-listbox--listbox-story",
       "name": "Listbox",
       "title": "DesignSystem/Listbox",
@@ -532,11 +1157,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "ListboxStory"
     },
     "designsystem-listbox--listbox-multiple": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-listbox--listbox-multiple",
       "name": "Listbox (Multiple)",
       "title": "DesignSystem/Listbox",
@@ -545,11 +1173,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "ListboxMultiple"
     },
     "designsystem-listbox--listbox-xs": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-listbox--listbox-xs",
       "name": "Listbox - Extra Small Size",
       "title": "DesignSystem/Listbox",
@@ -558,11 +1189,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "ListboxXs"
     },
     "designsystem-listbox--listbox-sm": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-listbox--listbox-sm",
       "name": "Listbox - Small Size",
       "title": "DesignSystem/Listbox",
@@ -571,11 +1205,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "ListboxSm"
     },
     "designsystem-listbox--listbox-medium": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-listbox--listbox-medium",
       "name": "Listbox - Medium Size",
       "title": "DesignSystem/Listbox",
@@ -584,11 +1221,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "ListboxMedium"
     },
     "designsystem-listbox--listbox-bordered": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-listbox--listbox-bordered",
       "name": "Listbox - Bordered",
       "title": "DesignSystem/Listbox",
@@ -597,11 +1237,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "ListboxBordered"
     },
     "designsystem-listbox--listbox-option-with-custom-item-label": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-listbox--listbox-option-with-custom-item-label",
       "name": "Listbox - Custom Item Label",
       "title": "DesignSystem/Listbox",
@@ -610,11 +1253,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "ListboxOptionWithCustomItemLabel"
     },
     "designsystem-listbox--listbox-virtualized": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-listbox--listbox-virtualized",
       "name": "Listbox Virtualized",
       "title": "DesignSystem/Listbox",
@@ -623,8 +1269,26 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "ListboxVirtualized"
+    },
+    "designsystem-listbox--field-api": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-listbox--field-api",
+      "name": "Field Api",
+      "title": "DesignSystem/Listbox",
+      "importPath": "./src/stories/Listbox.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "FieldApi"
     },
     "designsystem-numberfield--docs": {
       "id": "designsystem-numberfield--docs",
@@ -635,12 +1299,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
       ],
       "storiesImports": []
     },
     "designsystem-numberfield--text-field-story": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-numberfield--text-field-story",
       "name": "NumberField",
       "title": "DesignSystem/NumberField",
@@ -649,11 +1315,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "TextFieldStory"
     },
     "designsystem-numberfield--min-max": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-numberfield--min-max",
       "name": "NumberField with min/max value",
       "title": "DesignSystem/NumberField",
@@ -662,11 +1331,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "MinMax"
     },
     "designsystem-numberfield--precision": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-numberfield--precision",
       "name": "NumberField with custom precision",
       "title": "DesignSystem/NumberField",
@@ -675,11 +1347,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "Precision"
     },
     "designsystem-numberfield--step": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-numberfield--step",
       "name": "NumberField with steps",
       "title": "DesignSystem/NumberField",
@@ -688,11 +1363,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "Step"
     },
     "designsystem-numberfield--prefix": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-numberfield--prefix",
       "name": "NumberField with prefix",
       "title": "DesignSystem/NumberField",
@@ -701,11 +1379,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "Prefix"
     },
     "designsystem-numberfield--postfix": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-numberfield--postfix",
       "name": "NumberField with postfix",
       "title": "DesignSystem/NumberField",
@@ -714,11 +1395,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "Postfix"
     },
     "designsystem-numberfield--number-field-filled-variant": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-numberfield--number-field-filled-variant",
       "name": "Filled variant",
       "title": "DesignSystem/NumberField",
@@ -727,11 +1411,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "NumberFieldFilledVariant"
     },
     "designsystem-numberfield--number-field-outline-variant": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-numberfield--number-field-outline-variant",
       "name": "Outline variant",
       "title": "DesignSystem/NumberField",
@@ -740,11 +1427,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "NumberFieldOutlineVariant"
     },
     "designsystem-numberfield--number-field-inline-variant": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-numberfield--number-field-inline-variant",
       "name": "Inline variant",
       "title": "DesignSystem/NumberField",
@@ -753,11 +1443,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "NumberFieldInlineVariant"
     },
     "designsystem-numberfield--number-field-disabled": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-numberfield--number-field-disabled",
       "name": "Disabled",
       "title": "DesignSystem/NumberField",
@@ -766,11 +1459,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "NumberFieldDisabled"
     },
     "designsystem-numberfield--number-field-readonly": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-numberfield--number-field-readonly",
       "name": "Readonly",
       "title": "DesignSystem/NumberField",
@@ -779,11 +1475,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "NumberFieldReadonly"
     },
     "designsystem-numberfield--number-field-required": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-numberfield--number-field-required",
       "name": "Required",
       "title": "DesignSystem/NumberField",
@@ -792,11 +1491,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "NumberFieldRequired"
     },
     "designsystem-numberfield--sizes": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-numberfield--sizes",
       "name": "Sizes",
       "title": "DesignSystem/NumberField",
@@ -805,11 +1507,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "Sizes"
     },
     "designsystem-numberfield--validation": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-numberfield--validation",
       "name": "Validation",
       "title": "DesignSystem/NumberField",
@@ -818,8 +1523,120 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "Validation"
+    },
+    "designsystem-numberfield--field-api": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-numberfield--field-api",
+      "name": "Field Api",
+      "title": "DesignSystem/NumberField",
+      "importPath": "./src/stories/NumberField.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "FieldApi"
+    },
+    "designsystem-optioncard--docs": {
+      "id": "designsystem-optioncard--docs",
+      "title": "DesignSystem/OptionCard",
+      "name": "Docs",
+      "importPath": "./src/stories/OptionCard.stories.tsx",
+      "type": "docs",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "storiesImports": []
+    },
+    "designsystem-optioncard--cards": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-optioncard--cards",
+      "name": "Cards",
+      "title": "DesignSystem/OptionCard",
+      "importPath": "./src/stories/OptionCard.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "Cards"
+    },
+    "designsystem-optioncard--tiles": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-optioncard--tiles",
+      "name": "Tiles",
+      "title": "DesignSystem/OptionCard",
+      "importPath": "./src/stories/OptionCard.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "Tiles"
+    },
+    "designsystem-optioncard--disabled": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-optioncard--disabled",
+      "name": "Disabled",
+      "title": "DesignSystem/OptionCard",
+      "importPath": "./src/stories/OptionCard.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "Disabled"
+    },
+    "designsystem-optioncard--invalid": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-optioncard--invalid",
+      "name": "Invalid",
+      "title": "DesignSystem/OptionCard",
+      "importPath": "./src/stories/OptionCard.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "Invalid"
+    },
+    "designsystem-optioncard--long-labels": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-optioncard--long-labels",
+      "name": "Long Labels",
+      "title": "DesignSystem/OptionCard",
+      "importPath": "./src/stories/OptionCard.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "LongLabels"
     },
     "designsystem-pagination--docs": {
       "id": "designsystem-pagination--docs",
@@ -830,12 +1647,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
       ],
       "storiesImports": []
     },
     "designsystem-pagination--pagination-story": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-pagination--pagination-story",
       "name": "Pagination",
       "title": "DesignSystem/Pagination",
@@ -844,11 +1663,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "PaginationStory"
     },
     "designsystem-pagination--pagination-rounded-story": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-pagination--pagination-rounded-story",
       "name": "Pagination (Rounded)",
       "title": "DesignSystem/Pagination",
@@ -857,11 +1679,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "PaginationRoundedStory"
     },
     "designsystem-pagination--pagination-sizes": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-pagination--pagination-sizes",
       "name": "Sizes",
       "title": "DesignSystem/Pagination",
@@ -870,8 +1695,10 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "PaginationSizes"
     },
     "designsystem-popover--docs": {
       "id": "designsystem-popover--docs",
@@ -882,12 +1709,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
       ],
       "storiesImports": []
     },
     "designsystem-popover--popover-story": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-popover--popover-story",
       "name": "Popover",
       "title": "DesignSystem/Popover",
@@ -895,11 +1724,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "PopoverStory"
     },
     "designsystem-popover--popover-bordered": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-popover--popover-bordered",
       "name": "Popover Bordered",
       "title": "DesignSystem/Popover",
@@ -907,11 +1739,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "PopoverBordered"
     },
     "designsystem-popover--custom-position": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-popover--custom-position",
       "name": "Custom Position",
       "title": "DesignSystem/Popover",
@@ -919,8 +1754,53 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "CustomPosition"
+    },
+    "designsystem-popover--parts": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-popover--parts",
+      "name": "Parts",
+      "title": "DesignSystem/Popover",
+      "importPath": "./src/stories/Popover.stories.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest"
+      ],
+      "exportName": "Parts"
+    },
+    "designsystem-popover--open-with-block-content": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-popover--open-with-block-content",
+      "name": "Open With Block Content",
+      "title": "DesignSystem/Popover",
+      "importPath": "./src/stories/Popover.stories.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest"
+      ],
+      "exportName": "OpenWithBlockContent"
+    },
+    "designsystem-progress--states": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-progress--states",
+      "name": "States",
+      "title": "DesignSystem/Progress",
+      "importPath": "./src/stories/Progress.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest"
+      ],
+      "exportName": "States"
     },
     "designsystem-radiolist--docs": {
       "id": "designsystem-radiolist--docs",
@@ -931,12 +1811,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
       ],
       "storiesImports": []
     },
     "designsystem-radiolist--default": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-radiolist--default",
       "name": "Default",
       "title": "DesignSystem/RadioList",
@@ -944,11 +1826,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "Default"
     },
     "designsystem-radiolist--radio-list-horizontal": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-radiolist--radio-list-horizontal",
       "name": "Radio List Horizontal",
       "title": "DesignSystem/RadioList",
@@ -956,11 +1841,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "RadioListHorizontal"
     },
     "designsystem-radiolist--radio-list-vertical": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-radiolist--radio-list-vertical",
       "name": "Radio List Vertical",
       "title": "DesignSystem/RadioList",
@@ -968,11 +1856,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "RadioListVertical"
     },
     "designsystem-radiolist--sizes": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-radiolist--sizes",
       "name": "Sizes",
       "title": "DesignSystem/RadioList",
@@ -980,11 +1871,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "Sizes"
     },
     "designsystem-radiolist--validation": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-radiolist--validation",
       "name": "Validation",
       "title": "DesignSystem/RadioList",
@@ -992,8 +1886,25 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "Validation"
+    },
+    "designsystem-radiolist--field-api": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-radiolist--field-api",
+      "name": "Field Api",
+      "title": "DesignSystem/RadioList",
+      "importPath": "./src/stories/RadioList.stories.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "FieldApi"
     },
     "designsystem-segmentedcontrol--docs": {
       "id": "designsystem-segmentedcontrol--docs",
@@ -1004,12 +1915,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
       ],
       "storiesImports": []
     },
     "designsystem-segmentedcontrol--segmented-control-story": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-segmentedcontrol--segmented-control-story",
       "name": "SegmentedControl",
       "title": "DesignSystem/SegmentedControl",
@@ -1018,11 +1931,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "SegmentedControlStory"
     },
     "designsystem-segmentedcontrol--solid-style": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-segmentedcontrol--solid-style",
       "name": "Solid Style",
       "title": "DesignSystem/SegmentedControl",
@@ -1031,11 +1947,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "SolidStyle"
     },
     "designsystem-segmentedcontrol--bordered-style": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-segmentedcontrol--bordered-style",
       "name": "Bordered Style",
       "title": "DesignSystem/SegmentedControl",
@@ -1044,11 +1963,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "BorderedStyle"
     },
     "designsystem-segmentedcontrol--pill-style-solid-variant": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-segmentedcontrol--pill-style-solid-variant",
       "name": "Pill - Solid Variant",
       "title": "DesignSystem/SegmentedControl",
@@ -1057,11 +1979,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "PillStyleSolidVariant"
     },
     "designsystem-segmentedcontrol--pill-style-bordered-variant": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-segmentedcontrol--pill-style-bordered-variant",
       "name": "Pill - Bordered Variant",
       "title": "DesignSystem/SegmentedControl",
@@ -1070,11 +1995,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "PillStyleBorderedVariant"
     },
     "designsystem-segmentedcontrol--theme-primary": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-segmentedcontrol--theme-primary",
       "name": "Theme Primary",
       "title": "DesignSystem/SegmentedControl",
@@ -1083,11 +2011,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "ThemePrimary"
     },
     "designsystem-segmentedcontrol--disabled-segmented-control": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-segmentedcontrol--disabled-segmented-control",
       "name": "Disabled Segmented Control",
       "title": "DesignSystem/SegmentedControl",
@@ -1096,11 +2027,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "DisabledSegmentedControl"
     },
     "designsystem-segmentedcontrol--disabled-segmented-item": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-segmentedcontrol--disabled-segmented-item",
       "name": "Disabled Segmented Item",
       "title": "DesignSystem/SegmentedControl",
@@ -1109,11 +2043,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "DisabledSegmentedItem"
     },
     "designsystem-segmentedcontrol--fluid-width": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-segmentedcontrol--fluid-width",
       "name": "Adapt to container size",
       "title": "DesignSystem/SegmentedControl",
@@ -1122,8 +2059,26 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "FluidWidth"
+    },
+    "designsystem-segmentedcontrol--field-api": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-segmentedcontrol--field-api",
+      "name": "Field Api",
+      "title": "DesignSystem/SegmentedControl",
+      "importPath": "./src/stories/SegmentedControl.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "FieldApi"
     },
     "designsystem-select--docs": {
       "id": "designsystem-select--docs",
@@ -1134,12 +2089,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
       ],
       "storiesImports": []
     },
     "designsystem-select--select-story": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-select--select-story",
       "name": "Select",
       "title": "DesignSystem/Select",
@@ -1148,11 +2105,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "SelectStory"
     },
     "designsystem-select--select-story-filled-variant": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-select--select-story-filled-variant",
       "name": "Filled variant",
       "title": "DesignSystem/Select",
@@ -1161,11 +2121,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "SelectStoryFilledVariant"
     },
     "designsystem-select--select-outline-variant": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-select--select-outline-variant",
       "name": "Outline variant",
       "title": "DesignSystem/Select",
@@ -1174,11 +2137,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "SelectOutlineVariant"
     },
     "designsystem-select--select-inline-variant": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-select--select-inline-variant",
       "name": "Inline variant",
       "title": "DesignSystem/Select",
@@ -1187,11 +2153,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "SelectInlineVariant"
     },
     "designsystem-select--select-disabled": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-select--select-disabled",
       "name": "Disabled",
       "title": "DesignSystem/Select",
@@ -1200,11 +2169,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "SelectDisabled"
     },
     "designsystem-select--select-readonly": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-select--select-readonly",
       "name": "Readonly",
       "title": "DesignSystem/Select",
@@ -1213,11 +2185,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "SelectReadonly"
     },
     "designsystem-select--select-required": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-select--select-required",
       "name": "Required",
       "title": "DesignSystem/Select",
@@ -1226,11 +2201,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "SelectRequired"
     },
     "designsystem-select--sizes": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-select--sizes",
       "name": "Sizes",
       "title": "DesignSystem/Select",
@@ -1239,11 +2217,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "Sizes"
     },
     "designsystem-select--validation": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-select--validation",
       "name": "Validation",
       "title": "DesignSystem/Select",
@@ -1252,11 +2233,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "Validation"
     },
     "designsystem-select--select-custom-object": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-select--select-custom-object",
       "name": "Custom Object",
       "title": "DesignSystem/Select",
@@ -1265,11 +2249,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "SelectCustomObject"
     },
     "designsystem-select--select-custom-object-with-controlled-function": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-select--select-custom-object-with-controlled-function",
       "name": "Custom Object (Controlled Helper)",
       "title": "DesignSystem/Select",
@@ -1278,8 +2265,427 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "SelectCustomObjectWithControlledFunction"
+    },
+    "designsystem-select--select-form": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-select--select-form",
+      "name": "Select Form",
+      "title": "DesignSystem/Select",
+      "importPath": "./src/stories/Select.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "SelectForm"
+    },
+    "designsystem-settings--docs": {
+      "id": "designsystem-settings--docs",
+      "title": "DesignSystem/Settings",
+      "name": "Docs",
+      "importPath": "./src/stories/Settings.stories.tsx",
+      "type": "docs",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "storiesImports": []
+    },
+    "designsystem-settings--dialog": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-settings--dialog",
+      "name": "Dialog",
+      "title": "DesignSystem/Settings",
+      "importPath": "./src/stories/Settings.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "Dialog"
+    },
+    "designsystem-settings--wide": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-settings--wide",
+      "name": "Wide",
+      "title": "DesignSystem/Settings",
+      "importPath": "./src/stories/Settings.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "Wide"
+    },
+    "designsystem-settings--markers-picture-details": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-settings--markers-picture-details",
+      "name": "Markers Picture Details",
+      "title": "DesignSystem/Settings",
+      "importPath": "./src/stories/Settings.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "MarkersPictureDetails"
+    },
+    "designsystem-settings--long-labels": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-settings--long-labels",
+      "name": "Long Labels",
+      "title": "DesignSystem/Settings",
+      "importPath": "./src/stories/Settings.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "LongLabels"
+    },
+    "designsystem-settings--disabled": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-settings--disabled",
+      "name": "Disabled",
+      "title": "DesignSystem/Settings",
+      "importPath": "./src/stories/Settings.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "Disabled"
+    },
+    "designsystem-sheet--docs": {
+      "id": "designsystem-sheet--docs",
+      "title": "DesignSystem/Sheet",
+      "name": "Docs",
+      "importPath": "./src/stories/Sheet.stories.tsx",
+      "type": "docs",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "storiesImports": []
+    },
+    "designsystem-sheet--sides": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-sheet--sides",
+      "name": "Sides",
+      "title": "DesignSystem/Sheet",
+      "importPath": "./src/stories/Sheet.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "Sides"
+    },
+    "designsystem-sheet--bottom": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-sheet--bottom",
+      "name": "Bottom",
+      "title": "DesignSystem/Sheet",
+      "importPath": "./src/stories/Sheet.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest"
+      ],
+      "exportName": "Bottom"
+    },
+    "designsystem-sheet--right": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-sheet--right",
+      "name": "Right",
+      "title": "DesignSystem/Sheet",
+      "importPath": "./src/stories/Sheet.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest"
+      ],
+      "exportName": "Right"
+    },
+    "designsystem-sheet--draggable": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-sheet--draggable",
+      "name": "Draggable",
+      "title": "DesignSystem/Sheet",
+      "importPath": "./src/stories/Sheet.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest"
+      ],
+      "exportName": "Draggable"
+    },
+    "designsystem-sheet--docked-parts": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-sheet--docked-parts",
+      "name": "Docked Parts",
+      "title": "DesignSystem/Sheet",
+      "importPath": "./src/stories/Sheet.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest"
+      ],
+      "exportName": "DockedParts"
+    },
+    "designsystem-skeleton--docs": {
+      "id": "designsystem-skeleton--docs",
+      "title": "DesignSystem/Skeleton",
+      "name": "Docs",
+      "importPath": "./src/stories/Skeleton.stories.tsx",
+      "type": "docs",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "storiesImports": []
+    },
+    "designsystem-skeleton--skeleton-story": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-skeleton--skeleton-story",
+      "name": "Skeleton",
+      "title": "DesignSystem/Skeleton",
+      "importPath": "./src/stories/Skeleton.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "SkeletonStory"
+    },
+    "designsystem-skeleton--loading-card": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-skeleton--loading-card",
+      "name": "Loading Card",
+      "title": "DesignSystem/Skeleton",
+      "importPath": "./src/stories/Skeleton.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "LoadingCard"
+    },
+    "designsystem-skeleton--wrapping-content": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-skeleton--wrapping-content",
+      "name": "Wrapping Content",
+      "title": "DesignSystem/Skeleton",
+      "importPath": "./src/stories/Skeleton.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "WrappingContent"
+    },
+    "designsystem-skeleton--static": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-skeleton--static",
+      "name": "Static",
+      "title": "DesignSystem/Skeleton",
+      "importPath": "./src/stories/Skeleton.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "Static"
+    },
+    "designsystem-slider--states": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-slider--states",
+      "name": "States",
+      "title": "DesignSystem/Slider",
+      "importPath": "./src/stories/Slider.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest"
+      ],
+      "exportName": "States"
+    },
+    "designsystem-slider--focus": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-slider--focus",
+      "name": "Focus",
+      "title": "DesignSystem/Slider",
+      "importPath": "./src/stories/Slider.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "play-fn"
+      ],
+      "exportName": "Focus"
+    },
+    "designsystem-spinner--docs": {
+      "id": "designsystem-spinner--docs",
+      "title": "DesignSystem/Spinner",
+      "name": "Docs",
+      "importPath": "./src/stories/Spinner.stories.tsx",
+      "type": "docs",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "storiesImports": []
+    },
+    "designsystem-spinner--spinner-story": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-spinner--spinner-story",
+      "name": "Spinner",
+      "title": "DesignSystem/Spinner",
+      "importPath": "./src/stories/Spinner.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "SpinnerStory"
+    },
+    "designsystem-spinner--sizes": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-spinner--sizes",
+      "name": "Sizes",
+      "title": "DesignSystem/Spinner",
+      "importPath": "./src/stories/Spinner.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "Sizes"
+    },
+    "designsystem-spinner--inside-busy-button": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-spinner--inside-busy-button",
+      "name": "Inside Busy Button",
+      "title": "DesignSystem/Spinner",
+      "importPath": "./src/stories/Spinner.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "InsideBusyButton"
+    },
+    "designsystem-stack--variants": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-stack--variants",
+      "name": "Variants",
+      "title": "DesignSystem/Stack",
+      "importPath": "./src/stories/Stack.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest"
+      ],
+      "exportName": "Variants"
+    },
+    "designsystem-switch--states": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-switch--states",
+      "name": "States",
+      "title": "DesignSystem/Switch",
+      "importPath": "./src/stories/Switch.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest"
+      ],
+      "exportName": "States"
+    },
+    "designsystem-switch--focus": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-switch--focus",
+      "name": "Focus",
+      "title": "DesignSystem/Switch",
+      "importPath": "./src/stories/Switch.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "play-fn"
+      ],
+      "exportName": "Focus"
     },
     "designsystem-tabs--docs": {
       "id": "designsystem-tabs--docs",
@@ -1290,12 +2696,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
       ],
       "storiesImports": []
     },
     "designsystem-tabs--tabs-story": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-tabs--tabs-story",
       "name": "Tabs",
       "title": "DesignSystem/Tabs",
@@ -1304,11 +2712,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "TabsStory"
     },
     "designsystem-tabs--tabs-inline-horizontal-theme-story": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-tabs--tabs-inline-horizontal-theme-story",
       "name": "Tabs Inline (horizontal)",
       "title": "DesignSystem/Tabs",
@@ -1317,11 +2728,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "TabsInlineHorizontalThemeStory"
     },
     "designsystem-tabs--tabs-inline-theme-story": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-tabs--tabs-inline-theme-story",
       "name": "Tabs Inline (vertical)",
       "title": "DesignSystem/Tabs",
@@ -1330,11 +2744,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "TabsInlineThemeStory"
     },
     "designsystem-tabs--dynamic-tabs-story": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-tabs--dynamic-tabs-story",
       "name": "Tabs Dynamic",
       "title": "DesignSystem/Tabs",
@@ -1343,8 +2760,25 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "DynamicTabsStory"
+    },
+    "designsystem-text--variants": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-text--variants",
+      "name": "Variants",
+      "title": "DesignSystem/Text",
+      "importPath": "./src/stories/Text.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest"
+      ],
+      "exportName": "Variants"
     },
     "designsystem-textarea--docs": {
       "id": "designsystem-textarea--docs",
@@ -1355,12 +2789,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
       ],
       "storiesImports": []
     },
     "designsystem-textarea--text-area-story": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-textarea--text-area-story",
       "name": "TextArea",
       "title": "DesignSystem/TextArea",
@@ -1369,11 +2805,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "TextAreaStory"
     },
     "designsystem-textarea--text-area-filled-variant": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-textarea--text-area-filled-variant",
       "name": "Filled variant",
       "title": "DesignSystem/TextArea",
@@ -1382,11 +2821,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "TextAreaFilledVariant"
     },
     "designsystem-textarea--text-area-outline-variant": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-textarea--text-area-outline-variant",
       "name": "Outline variant",
       "title": "DesignSystem/TextArea",
@@ -1395,11 +2837,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "TextAreaOutlineVariant"
     },
     "designsystem-textarea--text-area-inline-variant": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-textarea--text-area-inline-variant",
       "name": "Inline variant",
       "title": "DesignSystem/TextArea",
@@ -1408,11 +2853,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "TextAreaInlineVariant"
     },
     "designsystem-textarea--text-area-disabled": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-textarea--text-area-disabled",
       "name": "Disabled",
       "title": "DesignSystem/TextArea",
@@ -1421,11 +2869,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "TextAreaDisabled"
     },
     "designsystem-textarea--text-area-readonly": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-textarea--text-area-readonly",
       "name": "Readonly",
       "title": "DesignSystem/TextArea",
@@ -1434,11 +2885,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "TextAreaReadonly"
     },
     "designsystem-textarea--text-area-required": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-textarea--text-area-required",
       "name": "Required",
       "title": "DesignSystem/TextArea",
@@ -1447,11 +2901,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "TextAreaRequired"
     },
     "designsystem-textarea--sizes": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-textarea--sizes",
       "name": "Sizes",
       "title": "DesignSystem/TextArea",
@@ -1460,11 +2917,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "Sizes"
     },
     "designsystem-textarea--validation": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-textarea--validation",
       "name": "Validation",
       "title": "DesignSystem/TextArea",
@@ -1473,11 +2933,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "Validation"
     },
     "designsystem-textarea--text-area-custom-classes": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-textarea--text-area-custom-classes",
       "name": "Custom classes",
       "title": "DesignSystem/TextArea",
@@ -1486,8 +2949,26 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "TextAreaCustomClasses"
+    },
+    "designsystem-textarea--field-api": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-textarea--field-api",
+      "name": "Field Api",
+      "title": "DesignSystem/TextArea",
+      "importPath": "./src/stories/TextArea.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "FieldApi"
     },
     "designsystem-textfield--docs": {
       "id": "designsystem-textfield--docs",
@@ -1498,12 +2979,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
       ],
       "storiesImports": []
     },
     "designsystem-textfield--text-field-story": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-textfield--text-field-story",
       "name": "TextField",
       "title": "DesignSystem/TextField",
@@ -1512,11 +2995,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "TextFieldStory"
     },
     "designsystem-textfield--text-field-filled-variant": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-textfield--text-field-filled-variant",
       "name": "Filled variant",
       "title": "DesignSystem/TextField",
@@ -1525,11 +3011,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "TextFieldFilledVariant"
     },
     "designsystem-textfield--text-field-outline-variant": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-textfield--text-field-outline-variant",
       "name": "Outline variant",
       "title": "DesignSystem/TextField",
@@ -1538,11 +3027,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "TextFieldOutlineVariant"
     },
     "designsystem-textfield--text-field-inline-variant": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-textfield--text-field-inline-variant",
       "name": "Inline variant",
       "title": "DesignSystem/TextField",
@@ -1551,11 +3043,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "TextFieldInlineVariant"
     },
     "designsystem-textfield--text-field-disabled": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-textfield--text-field-disabled",
       "name": "Disabled",
       "title": "DesignSystem/TextField",
@@ -1564,11 +3059,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "TextFieldDisabled"
     },
     "designsystem-textfield--text-field-readonly": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-textfield--text-field-readonly",
       "name": "Readonly",
       "title": "DesignSystem/TextField",
@@ -1577,11 +3075,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "TextFieldReadonly"
     },
     "designsystem-textfield--text-field-required": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-textfield--text-field-required",
       "name": "Required",
       "title": "DesignSystem/TextField",
@@ -1590,11 +3091,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "TextFieldRequired"
     },
     "designsystem-textfield--sizes": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-textfield--sizes",
       "name": "Sizes",
       "title": "DesignSystem/TextField",
@@ -1603,11 +3107,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "Sizes"
     },
     "designsystem-textfield--validation": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-textfield--validation",
       "name": "Validation",
       "title": "DesignSystem/TextField",
@@ -1616,11 +3123,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "Validation"
     },
     "designsystem-textfield--text-field-custom-classes": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-textfield--text-field-custom-classes",
       "name": "Custom classes",
       "title": "DesignSystem/TextField",
@@ -1629,8 +3139,204 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "TextFieldCustomClasses"
+    },
+    "designsystem-textfield--field-api": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-textfield--field-api",
+      "name": "Field Api",
+      "title": "DesignSystem/TextField",
+      "importPath": "./src/stories/TextField.stories.tsx",
+      "componentPath": "../kit/src/index.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "FieldApi"
+    },
+    "designsystem-toast--docs": {
+      "id": "designsystem-toast--docs",
+      "title": "DesignSystem/Toast",
+      "name": "Docs",
+      "importPath": "./src/stories/Toast.stories.tsx",
+      "type": "docs",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "storiesImports": []
+    },
+    "designsystem-toast--tones": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-toast--tones",
+      "name": "Tones",
+      "title": "DesignSystem/Toast",
+      "importPath": "./src/stories/Toast.stories.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "Tones"
+    },
+    "designsystem-toast--message-only": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-toast--message-only",
+      "name": "Message Only",
+      "title": "DesignSystem/Toast",
+      "importPath": "./src/stories/Toast.stories.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "MessageOnly"
+    },
+    "designsystem-toast--with-progress": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-toast--with-progress",
+      "name": "With Progress",
+      "title": "DesignSystem/Toast",
+      "importPath": "./src/stories/Toast.stories.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "WithProgress"
+    },
+    "designsystem-toast--focused-action": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-toast--focused-action",
+      "name": "Focused Action",
+      "title": "DesignSystem/Toast",
+      "importPath": "./src/stories/Toast.stories.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "FocusedAction"
+    },
+    "designsystem-toast--all-positions": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-toast--all-positions",
+      "name": "All Positions",
+      "title": "DesignSystem/Toast",
+      "importPath": "./src/stories/Toast.stories.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "AllPositions"
+    },
+    "designsystem-toaster--docs": {
+      "id": "designsystem-toaster--docs",
+      "title": "DesignSystem/Toaster",
+      "name": "Docs",
+      "importPath": "./src/stories/Toaster.stories.tsx",
+      "type": "docs",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "storiesImports": []
+    },
+    "designsystem-toaster--tones": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-toaster--tones",
+      "name": "Tones",
+      "title": "DesignSystem/Toaster",
+      "importPath": "./src/stories/Toaster.stories.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "Tones"
+    },
+    "designsystem-toaster--with-action": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-toaster--with-action",
+      "name": "With Action",
+      "title": "DesignSystem/Toaster",
+      "importPath": "./src/stories/Toaster.stories.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "WithAction"
+    },
+    "designsystem-toaster--rich-content": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-toaster--rich-content",
+      "name": "Rich Content",
+      "title": "DesignSystem/Toaster",
+      "importPath": "./src/stories/Toaster.stories.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "RichContent"
+    },
+    "designsystem-toaster--loading": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-toaster--loading",
+      "name": "Loading",
+      "title": "DesignSystem/Toaster",
+      "importPath": "./src/stories/Toaster.stories.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "Loading"
+    },
+    "designsystem-toaster--interactive": {
+      "type": "story",
+      "subtype": "story",
+      "id": "designsystem-toaster--interactive",
+      "name": "Interactive",
+      "title": "DesignSystem/Toaster",
+      "importPath": "./src/stories/Toaster.stories.tsx",
+      "tags": [
+        "dev",
+        "test",
+        "manifest",
+        "autodocs"
+      ],
+      "exportName": "Interactive"
     },
     "designsystem-tooltip--docs": {
       "id": "designsystem-tooltip--docs",
@@ -1641,12 +3347,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
       ],
       "storiesImports": []
     },
     "designsystem-tooltip--tooltip-story": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-tooltip--tooltip-story",
       "name": "Primary (default)",
       "title": "DesignSystem/Tooltip",
@@ -1654,11 +3362,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "TooltipStory"
     },
     "designsystem-tooltip--tooltip-secondary": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-tooltip--tooltip-secondary",
       "name": "Secondary",
       "title": "DesignSystem/Tooltip",
@@ -1666,11 +3377,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "TooltipSecondary"
     },
     "designsystem-tooltip--tooltip-disabled": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-tooltip--tooltip-disabled",
       "name": "Disabled",
       "title": "DesignSystem/Tooltip",
@@ -1678,11 +3392,14 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "TooltipDisabled"
     },
     "designsystem-tooltip--custom-jsx-component": {
       "type": "story",
+      "subtype": "story",
       "id": "designsystem-tooltip--custom-jsx-component",
       "name": "Custom component",
       "title": "DesignSystem/Tooltip",
@@ -1690,8 +3407,10 @@
       "tags": [
         "dev",
         "test",
+        "manifest",
         "autodocs"
-      ]
+      ],
+      "exportName": "CustomJsxComponent"
     }
   }
 }
