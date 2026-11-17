@@ -1,0 +1,7 @@
+/* App CSS reads only --cui-* tokens, and stays unlayered so it wins over the kit. */
+.export-panel {
+	background: var(--cui-surface-panel);
+	border-radius: var(--cui-radius-card);
+	padding: var(--cui-space-4);
+	max-width: 360px;
+}

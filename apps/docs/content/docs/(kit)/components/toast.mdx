@@ -150,7 +150,11 @@ The callbacks of `title`, `description`, `icon`, and `action.onClick` receive a 
 
 Import the parts from `@codeui/kit/toast`.
 
+<SolidDemo name="toast/parts" />
+
 The parts wrap [Kobalte's toast](https://kobalte.dev/docs/core/components/toast). They need Kobalte's `toaster` engine from `@kobalte/core/toast` to show a toast. The kit does not re-export it, so add `@kobalte/core` to your app before you compose the parts. Pass the `toastId` the engine gives you to `Root`, and the `region` you pass to `toaster.show` to `Region` as `regionId`. Use the parts when one toast needs a layout that `ToastOptions` cannot give, such as a time bar. Use `Toaster` for everything else.
+
+`Root` lays out its children in a grid. Put `Icon`, `Title`, `Description`, `Action`, `CloseButton`, and `ProgressTrack` directly inside `Root`, without a wrapper element. `ProgressFill` shrinks over the `duration` you set on `Root`.
 
 ### `Action`
 

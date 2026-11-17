@@ -1,7 +1,201 @@
 ---
 title: "Add a component"
 description: "Add a component to the kit, from the part to the ready export."
-status: draft
 ---
 
-{/* TODO(docs): Scope from the docs plan. Maintainer procedure. Parts, ready component, exports, API report, stories, docs. Follow apps/docs/CONTRIBUTING-DOCS.md. Delete each TODO(docs) as you finish its section, and delete status: draft when the page is done. */}
+This page walks through a new kit component, from its styles to its changeset. It uses `Badge` as the model, because it has all three layers and little behavior. Every snippet is copied from the kit source.
+
+Before you start, read `packages/kit/DESIGN.md`, the Inkstone specification. It sets the sizes, colors, motion, and accessibility rules the component must follow. Run its review checklist in section 12 before you open the pull request.
+
+## Know the three layers
+
+Each component has three layers. Each layer builds on the one before it.
+
+| Layer | File | Exported from | Who uses it |
+| --- | --- | --- | --- |
+| Styles | `packages/kit/src/components/<Name>/<Name>.css.ts` | Not exported directly | The parts |
+| Parts | `packages/kit/src/parts/<name>.tsx` | `@codeui/kit/<name>` | Apps that need a custom layout, and the ready component |
+| Ready component | `packages/kit/src/components/<Name>/<Name>.tsx` | `@codeui/kit` | Most apps |
+
+Wrap a Kobalte primitive when one exists. Check the [Kobalte components](https://kobalte.dev) for version 0.13.14 first. Build on plain elements only when Kobalte has nothing, as `Stack` and `Text` do.
+
+## Write the styles
+
+```ts title="packages/kit/src/components/Badge/Badge.css.ts"
+import { globalStyle, recipe, style } from "../../foundation/layer.css";
+import { tokens } from "../../foundation/cui.css";
+
+export const root = recipe({
+	base: {
+		display: "inline-flex",
+		alignItems: "center",
+		gap: tokens.space["1"],
+		boxSizing: "border-box",
+		borderRadius: tokens.radius.badge,
+		border: `${tokens.border.width} solid transparent`,
+		fontFamily: tokens.font.family.sans,
+		// …
+	},
+});
+```
+
+- Import `style`, `recipe`, `globalStyle`, and `styleVariants` from `foundation/layer.css`, never from `@vanilla-extract/css`. The wrappers put every rule in the `cui` cascade layer, so unlayered app CSS can override it.
+- Read every value from `tokens` in `foundation/cui.css`. A color, a radius, a space, a font size, a shadow, or a duration written as a literal is a bug. If no token fits, explain the literal in the pull request.
+- Style states through the data attributes that Kobalte sets, such as `[data-disabled]`, `[data-checked]`, and `[data-expanded]`. Do not add a parallel state class.
+- Keep motion to the movements named in DESIGN.md section 7.3. Nothing animates when the user acts from the keyboard. Handle `prefers-reduced-motion`.
+
+## Write the parts
+
+```tsx title="packages/kit/src/parts/badge.tsx"
+export const badgeParts = {
+	root: "badge-root",
+	icon: "badge-icon",
+	label: "badge-label",
+} as const;
+
+export type BadgePart = keyof typeof badgeParts;
+export type BadgeClasses = Partial<Record<BadgePart, string>>;
+export type BadgeVariants = { size?: BadgeSize; tone?: BadgeTone; variant?: BadgeVariant };
+
+export type BadgeStyles = { [P in BadgePart]: (variants?: BadgeVariants) => string };
+
+export const badgeStyles: BadgeStyles = {
+	root: variants =>
+		styles.root({ size: variants?.size, tone: variants?.tone, variant: variants?.variant }),
+	icon: () => styles.icon,
+	label: () => styles.label,
+};
+
+export function Root<T extends ValidComponent = "span">(props: PolymorphicProps<T, RootProps<T>>) {
+	const [local, others] = splitProps(props as PolymorphicProps<"span", RootProps>, [
+		"class",
+		"size",
+		"tone",
+		"variant",
+	]);
+	return (
+		<KBadge
+			data-cui={badgeParts.root}
+			data-size={local.size ?? "sm"}
+			data-tone={local.tone ?? "neutral"}
+			data-variant={local.variant ?? "soft"}
+			class={mergeClasses(
+				badgeStyles.root({ size: local.size, tone: local.tone, variant: local.variant }),
+				local.class,
+			)}
+			{...others}
+		/>
+	);
+}
+```
+
+Each parts file exports the same set of names:
+
+- `<name>Parts`, a map from each part key to its `data-cui` value. The value is `<name>-<part>` in kebab case, such as `badge-root` or `toast-close-button`. Apps and tests select parts by this attribute, so treat a rename as a breaking change.
+- `<Name>Part`, `<Name>Classes`, and `<Name>Variants` types. `<Name>Classes` is a partial record of part keys, and it is the type of the ready component's `classes` prop.
+- `<name>Styles`, typed `<Name>Styles`, with one function per part. Each function takes the variants and returns the class string. An app calls it to give its own element the kit look without the behavior.
+- One component per part, named after the Kobalte part it wraps, such as `Root`, `Label`, or `Content`. Each part sets `data-cui`, merges its style class with the caller's `class`, and spreads the rest of its props onto the Kobalte part.
+
+Set a `data-*` attribute for each variant, as `Root` does with `data-size`. Styles, tests, and app CSS can then target the variant without knowing the class name.
+
+## Write the ready component
+
+```tsx title="packages/kit/src/components/Badge/Badge.tsx"
+export type BadgeProps<T extends ValidComponent = "span"> = B.RootProps<T> & {
+	children?: JSX.Element;
+	/** Decorative icon before the label. */
+	icon?: JSX.Element;
+	/** Classes for the parts this component renders, keyed by part name. */
+	classes?: B.BadgeClasses;
+};
+
+/** A short, non-interactive status label. Set `textValue` when the content is not text. */
+export function Badge<T extends ValidComponent = "span">(props: PolymorphicProps<T, BadgeProps<T>>) {
+	const [local, others] = splitProps(props as PolymorphicProps<"span", BadgeProps>, [
+		"children",
+		"icon",
+		"classes",
+		"class",
+	]);
+	return (
+		<B.Root {...others} class={mergeClasses(local.classes?.root, local.class)}>
+			<Show when={local.icon}>
+				<B.Icon class={local.classes?.icon}>{local.icon}</B.Icon>
+			</Show>
+			<B.Label class={local.classes?.label}>{local.children}</B.Label>
+		</B.Root>
+	);
+}
+```
+
+- Build the ready component from its own parts only. It adds props for content, such as `icon`, `label`, or `title`, and never a second copy of the styles.
+- Take a `classes` prop keyed by part name. `class` goes on the root.
+- Write a JSDoc comment on the component and on every prop the kit adds. The docs props tables read them.
+- Accept JSX where a user sees text, such as titles and descriptions. A string-only prop has to widen later, and widening it changes the public API.
+- Field components take `label`, `description`, and `errorMessage`, and link them to the input. See [Field helpers](/docs/utilities/field-helpers).
+
+## Export it
+
+1. Export the ready component and its props type from `packages/kit/src/index.tsx`. Recent components, such as `Switch` and `Slider`, also export their part map and `<name>Styles` there. Do the same.
+2. Add the parts file to `entries` in `packages/kit/rollup.config.js`.
+3. Add the subpath to `exports` and to `typesVersions` in `packages/kit/package.json`. Copy the `./badge` entry and change the paths.
+
+## Test the behavior
+
+Tests live in `packages/kit/test`. Client tests run in jsdom with `solid-testing-library`. A file that ends in `.ssr.test.tsx` runs in the server test config instead.
+
+```tsx title="packages/kit/test/display.test.tsx"
+it("names the badge with its text, not its icon", () => {
+	render(() => <Badge icon={<svg role="img" aria-label="flask" />}>Experimental</Badge>);
+	expect(screen.getByRole("status")).toHaveTextContent("Experimental");
+	expect(screen.queryByRole("img", { name: "flask" })).not.toBeInTheDocument();
+});
+```
+
+- Assert what a user meets. Query by role and accessible name, press keys, and check where focus goes. Do not assert class names or internal signals.
+- Cover each keyboard interaction, the `classes` and `class` props, and each controlled prop.
+- Add a server render test. It checks that the component renders on the server without the DOM and that labels point at their inputs. See [Verify accessibility and SSR](/docs/contributing/verify-accessibility-and-ssr).
+
+```sh
+pnpm --filter @codeui/kit test:client
+pnpm --filter @codeui/kit test:ssr
+pnpm --filter @codeui/kit typecheck
+```
+
+## Add stories
+
+Add `packages/storybook/src/stories/<Name>.stories.tsx` with the title `DesignSystem/<Name>`. Write one story per variant axis and one per state, in the same order as the docs page. Storybook imports the kit source, so you do not need to build the kit to see a story. The browser checks in [Verify accessibility and SSR](/docs/contributing/verify-accessibility-and-ssr) drive these stories.
+
+## Update the API report
+
+`packages/kit/api/kit.api.md` records every public declaration. CI runs `pnpm api:check`, which compares the report with a fresh build.
+
+```sh
+pnpm api:update
+```
+
+The command builds the kit and rewrites the report. Read the diff. Every line in it is a public API change, and each one needs a reason in the pull request. `pnpm api:check` fails when the report is out of date.
+
+## Write the docs page
+
+Add the component page and its demos. [Add docs and demos](/docs/contributing/add-docs-and-demos) shows the steps. CI runs `node tools/docs/coverage.mjs`, which fails when a public export has no anchor on a docs page.
+
+## Add a changeset
+
+```sh
+pnpm changeset
+```
+
+Pick `@codeui/kit`. A new component is `minor`. A fix that changes no API is `patch`. While the kit is 0.x, a breaking change is also `minor`. Say what breaks in the summary, in one sentence a user can act on, such as "`Select` calls `onChange` only when the value changes."
+
+## Check before you open the pull request
+
+- [ ] DESIGN.md section 12 checklist passes.
+- [ ] Every value comes from a `--cui-*` token, and every rule is in the `cui` layer.
+- [ ] Every part sets `data-cui` from the `<name>Parts` map.
+- [ ] The ready component takes `classes`, and every part takes `class`.
+- [ ] Client and SSR tests pass.
+- [ ] Stories cover each variant and state.
+- [ ] `pnpm api:update` ran, and the diff is explained.
+- [ ] The docs page has no TODO comment left, and no `status: draft`.
+- [ ] A changeset exists.

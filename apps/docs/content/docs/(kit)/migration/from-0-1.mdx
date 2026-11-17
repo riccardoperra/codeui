@@ -1,7 +1,152 @@
 ---
 title: "From 0.1.x"
 description: "Upgrade an app from @codeui/kit 0.1.x."
-status: draft
 ---
 
-{/* TODO(docs): Scope from the docs plan. Exact import and behavior mappings. Every import compiles. Follow apps/docs/CONTRIBUTING-DOCS.md. Delete each TODO(docs) as you finish its section, and delete status: draft when the page is done. */}
+The release after 0.1.5 removes no export from `@codeui/kit`. Every 0.1.x import still compiles. The upgrade still needs work, for four reasons:
+
+- The `solid-js` peer dependency is higher.
+- Kobalte 0.13.14 changes a few behaviors.
+- Every component reads a new token contract and lives in a cascade layer, so CSS resets and overrides can behave differently.
+- The package manifest no longer installs build tools for you.
+
+Work through the sections in order.
+
+## Raise the Solid version
+
+```sh
+pnpm add @codeui/kit solid-js@^1.9.8
+```
+
+The kit depends on `@kobalte/core` 0.13.14 and `@kobalte/utils` 0.9.2. Kobalte 0.13.13 raised its own peer to `solid-js ^1.9.8`, so the kit's peer moved from `^1.7.0` to `^1.9.8`. An app on Solid 1.8 gets a peer dependency warning and can resolve two Solid copies.
+
+## Install the vanilla-extract plugin yourself
+
+The 0.1.x manifest listed build-only packages as runtime dependencies, including `@vanilla-extract/vite-plugin`, `motion`, `@motionone/solid`, `statebuilder`, and a local `link:` dependency. The new manifest lists only what the components import. If your Vite config imports the plugin and your app never declared it, the install now fails to find it. Add it:
+
+```sh
+pnpm add -D @vanilla-extract/vite-plugin
+```
+
+[Installation](/docs/installation) shows the Vite config. The kit's types now also resolve under `node16`, `nodenext`, and `bundler` module resolution, and a `require` condition exists for CommonJS tools.
+
+## Check the Kobalte behavior changes
+
+No Kobalte release between 0.13.6 and 0.13.14 is marked breaking. These changes are visible in kit components:
+
+| Change | Where you see it | What to do |
+| --- | --- | --- |
+| Escape in a list with `disallowEmptySelection` is no longer swallowed | `Listbox`, `Select` inside a `Dialog` or `Popover` | Escape now reaches the overlay and can close it. Test the Escape key in nested overlays. |
+| `Select` calls `onChange` only when the value changes | `Select` | Code that relied on `onChange` when the user picks the current option no longer runs. |
+| Labels get their `for` attribute during SSR | `TextField`, `TextArea`, `NumberField`, `Select`, `Checkbox`, `RadioList` | Server HTML changes. Update SSR snapshots. |
+| `aria-hidden` outside a modal is applied later, and kept during a modal handoff | `Dialog` that opens a `DropdownMenu` or `Popover` | Removes a focus warning. No change needed. |
+| Hidden inputs no longer scroll the page when focused | `Checkbox`, `RadioList`, `Select` | No change needed. |
+| The tabs indicator does not animate on first render | `Tabs`, `SegmentedControl` | Check the indicator position on first paint. |
+| Interact outside works across shadow roots | Every dismissable overlay | No change needed. |
+
+[Kobalte's changelog](https://github.com/kobaltedev/kobalte/blob/main/packages/core/CHANGELOG.md) lists every entry.
+
+Two kit fixes also change behavior:
+
+- `Tooltip` opens when keyboard focus reaches its trigger, and Escape closes it without moving focus.
+- `SegmentedControl` releases Escape to the layer around it, such as a dialog.
+
+## Move CSS resets below the `cui` layer
+
+Every kit rule now sits in the `cui` cascade layer. Unlayered app CSS always wins over a layered rule, whatever its specificity. That is useful for overrides. It also means an unlayered reset, such as `button { background: none }`, now strips kit buttons.
+
+Put the reset in a layer declared before `cui`:
+
+```css title="app.css"
+@layer reset, cui;
+
+@layer reset {
+	button {
+		background: none;
+		border: 0;
+	}
+}
+```
+
+Search your app for `!important` added to beat kit styles in 0.1.x. An unlayered class wins without it now. [Cascade layers](/docs/foundations/cascade-layers) explains the order.
+
+## Move to the token contract
+
+<SolidDemo name="from-0-1/tokens" />
+
+Every color, radius, space, font, shadow, and duration is now a `--cui-*` custom property. The `tokens` export holds a `var(--cui-…)` string for each one.
+
+- `themeVars` and `themeTokens` keep working. Each name points at the closest `--cui-*` role. Both are deprecated. Read `tokens` in new code.
+- Font sizes follow the new scale. `xs` is 12px, `lg` is 18px, and `xl` is 20px. Check layouts that used those sizes.
+- Every component changes appearance. Brand, danger, and status colors meet WCAG AA text contrast. The brand color is the CodeImage blue, `#09f`. Motion is shorter, with one ease-out curve.
+- Override a token with plain CSS on `:root`, on `[data-cui-theme]`, or on any element. [Theming](/docs/theming) shows each case.
+- Style files evaluated in Node, such as vanilla-extract `.css.ts` files, import `tokens` from `@codeui/kit/tokens`. That entry loads no component. See [Token exports](/docs/utilities/token-exports).
+
+### Set the theme attribute
+
+`data-cui-theme="dark"` or `data-cui-theme="light"` picks the mode. In 0.1.x, an element outside both attributes got no color values. Now the kit follows `prefers-color-scheme` there. Set the attribute on `<html>` to keep one mode whatever the system setting.
+
+## Use the widened signatures
+
+The ready components only gained options. Code that compiled on 0.1.x still compiles.
+
+<SolidDemo name="from-0-1/dialog-title" />
+
+| Component | 0.1.x | Now |
+| --- | --- | --- |
+| `Dialog` | `title?: string` | `title` and `description` take JSX. New `closeLabel`, `mount`, `classes`, and `aria-label`. New content focus callbacks, such as `onOpenAutoFocus` and `onCloseAutoFocus`. |
+| `PopoverContent` | `title?: string`. Children wrapped in a `<p>`. | `title` and `description` take JSX. New `mount` and `classes`. Children render without the `<p>` wrapper. |
+| `Popover` | `gutter` ignored | `gutter` is honored. The default stays 6. |
+| `Select` | `slotClasses` | New `classes`, keyed by part name. `slotClasses` still works and is deprecated. |
+| `TextField`, `TextArea`, `NumberField` | `slotClasses`. Some input attributes dropped. | Input attributes are forwarded. `description` takes JSX. New `classes`. `slotClasses` still works and is deprecated. |
+| `RadioList`, `RadioListItem` | Item props dropped | Item props are forwarded and `classes` is kept. |
+| `Listbox`, `VirtualizedListbox` | No class hooks | New `classes`. |
+
+Without a trigger, `Dialog` now returns focus to the element that opened it. If your app moved focus by hand on close, remove that code and test it.
+
+A `PopoverContent` whose children relied on the `<p>` wrapper for spacing or text style now renders them as written. Wrap them in a `Text` or a `p` yourself.
+
+### Move from `slotClasses` to `classes`
+
+<SolidDemo name="from-0-1/select-classes" />
+
+| `slotClasses` key | `classes` key |
+| --- | --- |
+| `root` | `root` |
+| `input` | `trigger` |
+| `label` | `label` |
+| `errorLabel` | `errorMessage` |
+| `itemValue` | `value` |
+
+`TextField`, `TextArea`, and `NumberField` take the same move. Their `classes` keys are `root`, `input`, `label`, `description`, and `errorMessage`. Rename `errorLabel` to `errorMessage` and keep the other keys.
+
+`SegmentedControl` also has `classes`. Its keys are the `slotClasses` keys, `root`, `list`, and `indicator`, plus `item`. `Checkbox` and `Tooltip` still take `slotClasses` only.
+
+`classes` also reaches parts `slotClasses` never could, such as `content` for the portalled list and `item` for each option. Each component page lists its `classes` keys under Anatomy.
+
+## Import parts from the new subpaths
+
+0.1.x had one entry, `@codeui/kit`. These entries are new:
+
+- `@codeui/kit/tokens` holds the token objects and no component.
+- One subpath per component holds its styled parts, its part names, and its style functions: `dialog`, `popover`, `stack`, `text`, `switch`, `slider`, `progress`, `combobox`, `command-menu`, `kbd`, `badge`, `spinner`, `skeleton`, `alert`, `toast`, `option-card`, `accordion`, and `sheet`.
+
+Import ready components from `@codeui/kit`, as before. Import parts as a namespace, such as `import * as D from "@codeui/kit/dialog"`, when you need a layout the ready component cannot give. [Ready or parts](/docs/ready-or-parts) explains the choice.
+
+## New components
+
+These ready components are new since 0.1.x. Each one replaces code an app had to write before.
+
+- Layout and text: [Stack](/docs/components/stack), [Text](/docs/components/text).
+- Controls: [Switch](/docs/components/switch), [Slider](/docs/components/slider), [Combobox](/docs/components/combobox), [OptionCard](/docs/components/option-card).
+- Display: [Kbd](/docs/components/kbd), [Badge](/docs/components/badge), [Spinner](/docs/components/spinner), [Skeleton](/docs/components/skeleton), [Progress](/docs/components/progress).
+- Feedback and overlays: [Alert](/docs/components/alert), [Toast](/docs/components/toast), [Sheet](/docs/components/sheet), [Accordion](/docs/components/accordion), [CommandMenu](/docs/components/command-menu).
+
+## Bug fixes you may have worked around
+
+Remove a workaround for one of these:
+
+- `NumberField` masked input only when the caller passed a `ref`. It masks without one now.
+- The `createSelectOptions` types were too loose, and generated option keys could collide.
+- `PaginationProps` was not exported. Import it from `@codeui/kit`.
+- A custom `gutter` on a dropdown submenu was ignored.

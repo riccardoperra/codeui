@@ -1,7 +1,142 @@
 ---
 title: "Add docs and demos"
 description: "Write a component page and its Solid demos."
-status: draft
 ---
 
-{/* TODO(docs): Scope from the docs plan. Maintainer procedure, published from apps/docs/CONTRIBUTING-DOCS.md. Follow apps/docs/CONTRIBUTING-DOCS.md. Delete each TODO(docs) as you finish its section, and delete status: draft when the page is done. */}
+The docs site lives in `apps/docs` and uses Fumadocs. Pages are MDX files under `apps/docs/content/docs/(kit)/`. Live examples are Solid components in `packages/docs-demos`. The build renders each demo on the page, prints its source under it, and puts the same source in the page's Markdown route for agents.
+
+## Start from the page template
+
+```sh
+pnpm docs:scaffold
+node tools/docs/scaffold.mjs --print components/badge
+```
+
+`pnpm docs:scaffold` writes the sidebar `meta.json` files and a draft stub for every planned page that has no file yet. It never overwrites a page. The planned pages live in `tools/docs/ia.mjs`. `--print <slug>` prints one stub without writing it.
+
+A component page has these sections, in this order:
+
+1. When to use
+2. When to choose another component
+3. Live demo
+4. Anatomy
+5. Variants
+6. States
+7. Ready API
+8. Styled parts API
+9. Styles export
+10. Accessibility
+11. SSR notes
+12. Theming hooks
+13. Composition examples
+14. Related
+
+Each section holds a TODO comment that says what goes in it. Fill the section, then delete the comment. When the page has no TODO left, delete `status: draft` from the front matter. `pnpm docs:coverage` fails on a page that has no `status: draft` but still holds a TODO comment. Remove a section only when the component has nothing for it, such as States on a presentational component.
+
+## Write a demo
+
+```tsx title="packages/docs-demos/src/demos/toast/basic.tsx"
+import { Button, createToaster, Toaster } from "@codeui/kit";
+
+export default function ToastBasic() {
+	const notifications = createToaster();
+	return (
+		<>
+			<Button
+				theme="primary"
+				onClick={() =>
+					notifications.show({ tone: "success", description: "Snippet exported as PNG." })
+				}
+			>
+				Export
+			</Button>
+			<Toaster toaster={notifications} closeLabel="Dismiss" />
+		</>
+	);
+}
+```
+
+1. Create `packages/docs-demos/src/demos/<page>/<name>.tsx` with a default export.
+2. Render it on the page with a `SolidDemo` element whose `name` is `<page>/<name>`. The Toast page uses `name="toast/basic"` for the demo above.
+
+There is no registry. The client and server bundles find demos with `import.meta.glob`. The build fails when the file is missing or when one page uses the same name twice. Hydration needs one name per page.
+
+- Write one demo per variant axis and one per distinct state. Add composition demos that show the component in a real screen.
+- Use CodeImage content, such as snippet names, export formats, and editor settings. Do not use "foo" and "bar".
+- Import ready components from `@codeui/kit` and parts as a namespace from `@codeui/kit/<name>`. Copy what an app would write.
+- Follow the same rules as kit code. Read values from `--cui-*` tokens. Give every control an accessible name.
+- A demo can import a plain `.css` file next to it. The page does not print imported CSS, so paste it under the demo in a `css` code block with a `title`.
+- Add `source="hidden"` to `SolidDemo` only for a demo whose code teaches nothing, such as a token swatch grid.
+- Never write a literal `SolidDemo` or `PropsTable` tag in a code block or in inline code. The build expands only real elements, and the Markdown route check fails on a tag left in the text.
+
+Every code example on a page must be a demo file that type-checks, or an exact copy of one. That rule keeps examples from going stale. Check your demos with:
+
+```sh
+pnpm --filter @codeui/docs-demos exec tsc --noEmit -p .
+```
+
+## Write a props table
+
+```ts title="packages/docs-demos/src/props/badge.ts"
+import type { BadgeProps } from "@codeui/kit";
+import type { RootProps, IconProps, LabelProps } from "@codeui/kit/badge";
+import type { PropNotes } from "./notes";
+
+export type Badge = Pick<
+	BadgeProps,
+	"tone" | "size" | "variant" | "icon" | "classes" | "class"
+>;
+export type BadgeInherited = Pick<BadgeProps, "textValue">;
+export type BadgeRoot = Pick<RootProps, "tone" | "size" | "variant" | "class">;
+
+export const notes = {
+	Badge: {
+		tone: { default: '"neutral"', description: "Semantic status color." },
+		size: { default: '"sm"', description: "Visual size." },
+		// …
+	},
+} satisfies PropNotes;
+```
+
+`apps/docs/scripts/generate-props.mjs` reads every exported type alias in `packages/docs-demos/src/props/*.ts` and writes `apps/docs/.generated/props.json`. A `PropsTable` element renders the alias named in its `name` attribute, such as `name="Badge"`.
+
+- Import kit symbols with `import type` only. The generator loads these files in Node, and a runtime import of `@codeui/kit` crashes it.
+- Export one `Pick<…>` projection per ready export and one per styled part. Keep only the props the kit adds or changes.
+- Add a `<Name>Inherited` projection for the Kobalte props that change behavior, such as `open` or `onChange`. Link the Kobalte page for the rest.
+- Put the default and a one-line description of each prop in `notes`, keyed by projection name. The description from the JSDoc comment is used when the note has none.
+
+The generator needs a kit build. Run `pnpm build:kit`, then `pnpm --filter @codeui/docs props`.
+
+## Fill the reference sections
+
+- **Anatomy.** A table with the columns Export, Renders, `classes` key, `data-cui`, and Role. Copy each `data-cui` value from the `<name>Parts` map in `packages/kit/src/parts/<name>.tsx`. Never derive one from the export name, because some do not match, such as `select` for the `Select` root.
+- **Accessibility.** A keyboard table with the columns Key and Action. Then the roles and ARIA attributes the component renders, and where focus goes on open and on close.
+- **Theming hooks.** The `--cui-*` properties the component reads. Find them in its `.css.ts` file, and check each name against [Tokens](/docs/foundations/tokens).
+- **SSR notes.** What renders on the server. Portalled content, for example, renders only on the client.
+
+## Follow the voice
+
+The pages follow the Inkstone docs in `apps/docs/content/docs/design/`.
+
+- Write short declarative sentences in plain English. Address the reader as "you".
+- Put the code first and the explanation after it.
+- Each section answers one question.
+- Use no marketing words and no long dashes. Do not join two clauses with a colon in the middle of a sentence. A colon before a list is fine.
+
+## Check the page
+
+The build fails on a missing demo, a repeated demo name, or a props table with no projection. Run these checks before you open the pull request:
+
+| Check | Command | Fails when |
+| --- | --- | --- |
+| Demo types | `pnpm --filter @codeui/docs-demos exec tsc --noEmit -p .` | A demo does not compile. |
+| Demo references | `node lint-demos.mjs` | A `SolidDemo` points at a missing file, or a name repeats on a page. |
+| Internal links | `node lint-links.mjs` | A `/docs/…` link has no page. |
+| Export coverage | `pnpm docs:coverage` | A public export has no anchor on a page. `--strict` also fails on drafts. |
+| Markdown routes | `pnpm docs:check-llms <url>` | A page's `.md` route is missing, or still holds a `SolidDemo` or `PropsTable` tag. |
+
+`lint-demos.mjs` and `lint-links.mjs` are standalone scripts that are not in the repository yet. They will move into `tools/docs`, next to `coverage.mjs`.
+
+`docs:coverage` reads the kit's emitted declarations, so run `pnpm build:kit` first. `docs:check-llms` needs a running site. Build it with `pnpm --filter @codeui/docs build`, start it with `PORT=6150 node apps/docs/.output/server/index.mjs`, and pass `http://localhost:6150`.
+
+When a page documents a new export, map the export to its anchor in `apps/docs/export-manifest.json`. `node tools/docs/coverage.mjs --add` proposes the entries.

@@ -1,7 +1,233 @@
 ---
 title: "From @codeimage/ui"
 description: "Move a CodeImage screen from @codeimage/ui to @codeui/kit."
-status: draft
 ---
 
-{/* TODO(docs): Scope from the docs plan. Exact import and behavior mappings. Every import compiles. Follow apps/docs/CONTRIBUTING-DOCS.md. Delete each TODO(docs) as you finish its section, and delete status: draft when the page is done. */}
+`@codeimage/ui` is the 2022 component package inside the CodeImage repository, at `packages/ui`. `@codeui/kit` replaces all of it. The kit has one token system, one theme attribute, and components with keyboard support that `@codeimage/ui` lacks. The end state is an app with no `packages/ui`.
+
+This page maps every export of `@codeimage/ui` that CodeImage still imports. Move one screen at a time. Both packages can stay installed in the same app while you migrate.
+
+## Before you start
+
+1. Install the kit as shown in [Installation](/docs/installation). The kit needs `solid-js ^1.9.8` and the vanilla-extract Vite plugin.
+2. Put your CSS reset below the kit's layer. See [Keep app resets below the kit layer](#keep-app-resets-below-the-kit-layer).
+3. Set `data-cui-theme` on `<html>`. See [Replace the theme attributes](#replace-the-theme-attributes).
+
+## Export map
+
+| `@codeimage/ui` | `@codeui/kit` | Notes |
+| --- | --- | --- |
+| `Box` | `Stack`, or a plain element with a class | `Box` exposes the sprinkles API. The kit does not port it. |
+| `HStack`, `VStack` | `Stack` with `direction="row"` or `direction="column"` | `spacing` becomes `gap`. `alignItems` becomes `align`. |
+| `FlexField`, `Group` | `Stack` | Use the field's own `label` and `description` for field layout. |
+| `Text` | `Text` | Same polymorphic `as`. Sizes and weights map to the `--cui-font-*` scale. |
+| `textStyles` | `Text`, or `textStyles.root()` | `textStyles.root()` returns one class. Set `data-size`, `data-weight`, and `data-tone` on the element yourself. |
+| `themeVars`, `backgroundColorVar`, `colorVar` | `--cui-*` custom properties, or `tokens` from `@codeui/kit/tokens` | See [Map the theme variables](#map-the-theme-variables). |
+| `withThemeMode`, `CodeImageThemeProvider` | `data-cui-theme` on `<html>` or on a subtree | The kit ships no provider. |
+| `darkGrayScale` | Stays in the app | It is a fixed palette, not a theme role. |
+| `toast`, `SnackbarHost` | `createToaster`, `Toaster` | See [Move toasts to createToaster](#move-toasts-to-createtoaster). |
+| `LoadingCircle`, `Loading` | `Spinner` | `Spinner` takes a `label` for screen readers. |
+| `RangeField` | `Slider` | `min` and `max` become `minValue` and `maxValue`. |
+| `Badge` | `Badge` | Map a theme class to `class`, not to `tone`, unless the class has a status meaning. |
+| `RadioBlock` | `OptionCardGroup` and `OptionCard` | `RadioBlock` has no keyboard support. Option cards render real radio inputs. |
+| `Link` | `Link` | Same `href` and children. |
+| `SvgIcon` | `SvgIcon`, or an icon from `icons` | See [Icons](/docs/utilities/icons). |
+| `FieldLabel` | The `label` prop of the field | Every kit field links its label to its input. |
+
+## Move layout and text
+
+<SolidDemo name="from-codeimage-ui/layout" />
+
+- `<HStack spacing="2">` becomes `<Stack direction="row" gap="2">`. `<VStack spacing="1">` becomes `<Stack gap="1">`, because `column` is the default.
+- `gap` takes a key of the spacing scale, such as `"2"` or `"0.5"`. It does not take a CSS length.
+- A `Box` that only lays out children in a row or column becomes a `Stack`.
+- Any other `Box` becomes a semantic element, such as `section` or `li`, with a class. Move its padding, margin, width, and position props into that class. Do not drop them.
+- `Text` keeps `as`, refs, and native attributes. Set the heading level with `as`, never with `size`. A legacy size or weight with no kit equivalent goes into app CSS, where a reviewer can see it.
+
+[Stack](/docs/components/stack) and [Text](/docs/components/text) list every prop.
+
+## Move controls
+
+<SolidDemo name="from-codeimage-ui/controls" />
+
+- `RangeField` called `onChange` on both the `input` and the `change` event. `Slider` calls `onChange` while the thumb moves and `onChangeEnd` once when the user releases it. Save expensive work for `onChangeEnd`.
+- `RangeField` parsed integers. `Slider` keeps the `step` you set, so fractional values survive.
+- `LoadingCircle` was an SVG with no name. Give `Spinner` a `label` that says what is loading.
+- `Badge` replaces both the `Badge` primitive and the app's `ExperimentalChip`. Keep the icon and the word in the app, and pass them as `icon` and children.
+
+### Replace `RadioBlock` with option cards
+
+<SolidDemo name="from-codeimage-ui/option-card" />
+
+`RadioBlock` was a `div` with a click handler. It could not be reached with Tab or changed with the arrow keys. `OptionCardGroup` is a radio group. Map each option this way:
+
+| `RadioBlock` option | `OptionCard` entry |
+| --- | --- |
+| `key` or `id` | `value` |
+| `name` | `label` |
+| `hint` | `description` |
+| Artwork or preview | `preview` |
+| Default tag | `badge` |
+
+A choice with no preview can stay compact. Use [RadioList](/docs/components/radio-list) or [SegmentedControl](/docs/components/segmented-control) for it.
+
+## Move toasts to `createToaster`
+
+<SolidDemo name="from-codeimage-ui/toast" />
+
+1. Create one controller with `createToaster()`. CodeImage renders only on the client, so a module that every caller imports can hold it. An app that renders on the server creates it inside its root component.
+2. Replace `<SnackbarHost />` with `<Toaster toaster={notifications} />`. Place it inside the locale and theme providers, so content callbacks can read them.
+3. Rewrite each call with the table below.
+
+| solid-toast call | Kit call |
+| --- | --- |
+| `toast.success(message, opts)` | `notifications.show({ description: message, tone: "success" })` |
+| `toast.error(message, opts)` | `notifications.show({ description: message, tone: "danger" })` |
+| `toast.success(() => t("key"))` | `notifications.show({ description: () => t("key"), tone: "success" })` |
+| `toast.success(active => render(active.id))` | `notifications.show({ description: toast => render(toast.id), tone: "success" })` |
+| `toast.dismiss(id)` | `notifications.dismiss(id)` |
+
+| solid-toast option | Kit option |
+| --- | --- |
+| `position` | Remove it. `Toaster` sets the position for all its toasts. |
+| `duration` | `duration`. `Infinity` keeps the toast open. |
+| `theme` | `theme`. It sets `data-cui-theme` on that toast. |
+| `style` with a `max-width` | Remove it. The kit toast already limits its width. |
+| `className` | `class` |
+
+- A toast id is now a `ToastId`, which is a number. Change `let id: string | null` to `let id: ToastId | null`.
+- Calls with no `position` showed at the top center. They now show at the position of `Toaster`. To keep two positions, create two controllers and two `Toaster` elements.
+- A `runWithOwner` wrapper that existed only so `t` resolves is optional now. Content callbacks render under `Toaster`.
+- `snackbarHostAppStyleCss` set `inset` with `!important`. Replace it with an unlayered class on `Toaster`, such as one that sets `bottom: 80px`. App CSS outside the kit layer wins without `!important`.
+- The kit has no equivalent of `toast.remove` or `toast.custom`. For a custom layout, compose the toast parts. See [Toast](/docs/components/toast#styled-parts-api).
+
+## Replace the theme attributes
+
+<SolidDemo name="from-codeimage-ui/theme" />
+
+```css title="theme.css"
+/*
+ * Before: themeVars.dynamicColors.panel.background and a
+ * [data-codeimage-theme=light] selector from withThemeMode.
+ * After: the --cui-* token. It already changes with data-cui-theme.
+ */
+.project-card {
+	background: var(--cui-surface-panel);
+	color: var(--cui-text-panel);
+	border-radius: var(--cui-radius-card);
+	padding: var(--cui-space-4);
+}
+
+/*
+ * The frame of the exported image keeps its own mode, independent of the UI
+ * theme. It reads an app attribute, never data-cui-theme.
+ */
+.frame {
+	margin-top: var(--cui-space-3);
+	padding: var(--cui-space-3);
+	border-radius: var(--cui-radius-md);
+	font-size: var(--cui-font-size-xs);
+}
+
+/* Artwork colors belong to the app, not to the kit tokens. */
+.frame[data-codeimage-frame-mode="light"] {
+	background: #ffffff;
+	color: #1e1e1e;
+}
+
+.frame[data-codeimage-frame-mode="dark"] {
+	background: #1e1e1e;
+	color: #ffffff;
+}
+```
+
+CodeImage writes three theme attributes today. After the migration, one attribute themes the UI, and one app attribute themes the artwork.
+
+| Before | After |
+| --- | --- |
+| `[data-codeimage-theme=dark]`, `[data-codeimage-theme=light]` | `[data-cui-theme=dark]`, `[data-cui-theme=light]` |
+| Selectors that `withThemeMode` generates | `[data-cui-theme=<mode>]` with the same suffix |
+| `[data-theme-mode]` on UI elements, such as the loader and the logo | `[data-cui-theme]` |
+| `[data-theme-mode]` on the frame: terminal, tabs, glass reflection, add-tab button | `[data-codeimage-frame-mode]` |
+| The `data-theme-mode` prop of `TerminalHost` and `Watermark` | `data-codeimage-frame-mode` |
+| The theme provider, `createGlobalCodeImageTheme`, and the toast patch, which each write an attribute | One writer that sets `data-cui-theme` on `<html>` |
+
+The frame mode comes from the image settings, not from the appearance settings. A user can export a light frame from a dark editor. Keep that value in `data-codeimage-frame-mode`, and never let it select kit tokens.
+
+`data-cui-theme` takes `dark` or `light`. Without it, the kit follows `prefers-color-scheme`. To offer a system option, remove the attribute. Set it before the first paint. [Theming](/docs/theming) shows how.
+
+## Map the theme variables
+
+Each semantic role of `themeVars` has a kit token. In a `.css.ts` file, import `tokens` from `@codeui/kit/tokens`. In plain CSS, write the `--cui-*` name. Common roles:
+
+| `themeVars` path | Kit token |
+| --- | --- |
+| `dynamicColors.background` | `--cui-surface-canvas` |
+| `dynamicColors.baseText` | `--cui-text-default` |
+| `dynamicColors.descriptionTextColor` | `--cui-text-muted` |
+| `dynamicColors.divider` | `--cui-border-divider` |
+| `dynamicColors.panel.background` | `--cui-surface-panel` |
+| `dynamicColors.panel.textColor` | `--cui-text-panel` |
+| `dynamicColors.panel.textColorAlt` | `--cui-text-panel-muted` |
+| `dynamicColors.input.backgroundColor` | `--cui-surface-input` |
+| `dynamicColors.input.borderColor` | `--cui-border-input` |
+| `dynamicColors.input.labelTextColor` | `--cui-text-label` |
+| `dynamicColors.listBox.panelBackground` | `--cui-surface-menu` |
+| `dynamicColors.listBox.activeBackgroundColor` | `--cui-accent-selection` |
+| `dynamicColors.dialog.panelBackgroundColor` | `--cui-surface-dialog` |
+| `dynamicColors.dialog.overlayBackgroundColor` | `--cui-surface-scrim` |
+| `dynamicColors.snackbar.backgroundColor` | `--cui-surface-toast` |
+| `dynamicColors.bottomBar.backgroundColor` | `--cui-surface-toolbar` |
+| `dynamicColors.button.primary.backgroundColor` | `--cui-action-brand-base` |
+| `dynamicColors.button.base.backgroundColor` | `--cui-action-neutral-base` |
+| `dynamicColors.button.danger.backgroundColor` | `--cui-action-danger-base` |
+| `dynamicColors.primary`, `brandLink` | `--cui-accent-focus` |
+| `brand` | `--cui-action-brand-base` |
+| `critical` | `--cui-action-danger-base` |
+| `caution` | `--cui-action-caution-base` |
+| `spacing.N`, `margin.N` | `--cui-space-N` |
+| `fontSize.xs`, `sm`, `lg`, `xl`, `2xl` | `--cui-font-size-xs` and the same suffix |
+| `fontSize.base` | `--cui-font-size-md` |
+| `fontWeight.normal`, `medium`, `semibold` | `--cui-font-weight-normal` and the same suffix |
+| `borderRadius.md` | `--cui-radius-badge` |
+| `borderRadius.xl` | `--cui-radius-card` |
+| `borderRadius.full` | `--cui-radius-full` |
+| `boxShadow.lg` | `--cui-shadow-dialog` |
+| `boxShadow.outline` | `--cui-focus-color`, `--cui-focus-width`, and `--cui-focus-offset` |
+| `borderWidth.default`, `borderWidth.2` | `--cui-border-width`, `--cui-border-width-strong` |
+
+The full map of 172 paths is in `docs/kit-2026/design/k5-token-map.json` in the kit repository.
+
+Some values have no kit token. They stay in the app:
+
+- Fixed palette entries, such as `backgroundColor.gray.800` or `darkGrayScale`. They color artwork, not UI roles.
+- `backgroundColorVar` and `colorVar`. They are local variables that each component assigns, including the editor frame.
+- `borderRadius.sm`, `borderRadius.lg`, and `borderRadius.default`, the old 2, 4, and 8px geometry. Keep them as app values, or move the component to a kit radius.
+- Utility namespaces, such as `zIndex`, `opacity`, `width`, and the whole `spacing` object. Expand each access before you replace it.
+
+Tokens that only CodeImage needs, such as the editor frame colors, belong in the app. Define them against the kit contract, for example `--codeimage-frame-border: var(--cui-border-divider)`.
+
+## Keep app resets below the kit layer
+
+Every kit rule is in the `cui` cascade layer. Unlayered CSS beats any layered rule, so an unlayered reset strips kit components. Global styles that the app or `@codeimage/ui` writes without a layer have the same effect.
+
+Put the reset in a layer declared before `cui`, at the top of the first stylesheet the page loads:
+
+```css title="app.css"
+@layer reset, cui;
+
+@layer reset {
+	button {
+		background: none;
+		border: 0;
+	}
+}
+```
+
+The rest of your app CSS can stay unlayered. It wins over the kit without `!important`. [Cascade layers](/docs/foundations/cascade-layers) explains the order.
+
+## Check the migrated screen
+
+- Run `node docs/kit-2026/phase-0/tools/census.mjs --repo <codeimage> --ref <branch>` from the kit repository, before and after. The census lists every file that still imports `@codeimage/ui`.
+- Compare the screen in both themes at 1440×900, 1024×768, and 390×844.
+- Reach every control with Tab and change it with the keyboard. `RadioBlock` and `RangeField` screens gain keyboard support in this step.
