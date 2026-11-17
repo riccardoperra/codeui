@@ -18,7 +18,7 @@ afterEach(cleanup);
 
 
 describe("Select", () => {
-	function renderSelect(onChange = vi.fn()) {
+	async function renderSelect(onChange = vi.fn()) {
 		render(() => (
 			<Select
 				aria-label="Fruit"
@@ -27,13 +27,13 @@ describe("Select", () => {
 				onChange={onChange}
 			/>
 		));
-		const trigger = screen.getByRole("button", { name: /Fruit/ });
+		const trigger = await screen.findByRole("button", { name: /Fruit/ });
 		trigger.focus();
 		return trigger;
 	}
 
 	it.each(["Enter", "ArrowDown"])("opens the list with %s", async key => {
-		const trigger = renderSelect();
+		const trigger = await renderSelect();
 		press(key);
 		expect(await screen.findByRole("listbox")).toBeInTheDocument();
 		expect(trigger).toHaveAttribute("aria-expanded", "true");
@@ -41,7 +41,7 @@ describe("Select", () => {
 
 	it("moves with the arrows and selects with Enter", async () => {
 		const onChange = vi.fn();
-		const trigger = renderSelect(onChange);
+		const trigger = await renderSelect(onChange);
 		press("ArrowDown");
 		const listbox = await screen.findByRole("listbox");
 		const firstOption = within(listbox).getByRole("option", { name: "Apple" });
@@ -57,7 +57,7 @@ describe("Select", () => {
 
 	it("closes with Escape and returns focus to the trigger", async () => {
 		const onChange = vi.fn();
-		const trigger = renderSelect(onChange);
+		const trigger = await renderSelect(onChange);
 		press("ArrowDown");
 		const listbox = await screen.findByRole("listbox");
 		const firstOption = within(listbox).getByRole("option", { name: "Apple" });
@@ -131,7 +131,7 @@ describe("Popover", () => {
 });
 
 describe("DropdownMenu", () => {
-	function renderMenu(onSelect = vi.fn()) {
+	async function renderMenu(onSelect = vi.fn()) {
 		render(() => (
 			<DropdownMenu>
 				<DropdownMenuTrigger>Actions</DropdownMenuTrigger>
@@ -144,14 +144,14 @@ describe("DropdownMenu", () => {
 				</DropdownMenuPortal>
 			</DropdownMenu>
 		));
-		const trigger = screen.getByRole("button", { name: "Actions" });
+		const trigger = await screen.findByRole("button", { name: "Actions" });
 		trigger.focus();
 		return trigger;
 	}
 
 	it("opens with ArrowDown, moves with the arrows and runs the item on Enter", async () => {
 		const onSelect = vi.fn();
-		renderMenu(onSelect);
+		await renderMenu(onSelect);
 		press("ArrowDown");
 		const menu = await screen.findByRole("menu");
 		const firstItem = within(menu).getByRole("menuitem", { name: "Copy" });
@@ -170,7 +170,7 @@ describe("DropdownMenu", () => {
 
 	it("closes with Escape and returns focus to the trigger", async () => {
 		const onSelect = vi.fn();
-		const trigger = renderMenu(onSelect);
+		const trigger = await renderMenu(onSelect);
 		press("ArrowDown");
 		const menu = await screen.findByRole("menu");
 		const firstItem = within(menu).getByRole("menuitem", { name: "Copy" });

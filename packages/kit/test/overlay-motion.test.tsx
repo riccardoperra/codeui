@@ -70,18 +70,18 @@ describe("DropdownMenu", () => {
 				</DropdownMenuPortal>
 			</DropdownMenu>
 		));
-		return screen.getByRole("button", { name: "Actions" });
+		return screen.findByRole("button", { name: "Actions" });
 	}
 
 	it("opens in place from the keyboard", async () => {
-		const trigger = renderMenu();
+		const trigger = await renderMenu();
 		trigger.focus();
 		fireEvent.keyDown(trigger, { key: "ArrowDown" });
 		expect(await screen.findByRole("menu")).toHaveAttribute("data-motion", "none");
 	});
 
 	it("pops when a pointer opens it", async () => {
-		const trigger = renderMenu();
+		const trigger = await renderMenu();
 		fireEvent(trigger, new PointerEvent("pointerdown", { bubbles: true, button: 0, pointerType: "mouse" }));
 		expect(await screen.findByRole("menu")).not.toHaveAttribute("data-motion");
 	});
@@ -90,7 +90,7 @@ describe("DropdownMenu", () => {
 describe("Select", () => {
 	it("opens its list in place from the keyboard", async () => {
 		render(() => <Select aria-label="Font" options={["Inter", "Mono"]} />);
-		const trigger = screen.getByRole("button", { name: /Font/ });
+		const trigger = await screen.findByRole("button", { name: /Font/ });
 		trigger.focus();
 		fireEvent.keyDown(trigger, { key: "ArrowDown" });
 		const listbox = await screen.findByRole("listbox");
