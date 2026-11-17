@@ -146,7 +146,7 @@ export function publicRecipe<
 			"," +
 			fallback +
 			(String(defaultValue) === String(value)
-				? ":not([data-" +
+				? ",:not([data-" +
 					axis +
 					"])" +
 					Object.values(variants[axis])

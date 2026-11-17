@@ -24,6 +24,8 @@ let count = 0;
 try {
 	for (const theme of ["dark", "light"]) {
 		const markup = `<button id="helper" class="${button({ size: "sm", theme: "primary" })}">Save</button>
+<button id="default-helper" class="${button({ theme: "primary" })}">Save</button>
+<button id="default-attribute" class="cui-button" data-size="md" data-theme="primary">Save</button>
 <button id="attribute" class="cui-button" data-size="sm" data-theme="primary">Save</button>
 <button id="conflict" class="${button({ size: "xl", theme: "negative" })}" data-size="sm" data-theme="primary">Save</button>
 <button id="compound-helper" class="${button({ variant: "ghost", loading: true, theme: "primary" })}">Save</button>
@@ -64,6 +66,8 @@ try {
 					}),
 				),
 			);
+			assert.deepEqual(values["default-helper"], values["default-attribute"]);
+			count++;
 			assert.deepEqual(values.helper, values.attribute);
 			count++;
 			assert.deepEqual(values.conflict, values.attribute);
