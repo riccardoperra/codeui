@@ -9,11 +9,14 @@ type Point = { x: number; y: number };
 type Callout = { box: Box; marker: Point; anchor: Point; line: string };
 
 /**
- * Markers sit in a left and a right gutter, wider at or above this stage width. The gutters match
- * the stage padding in anatomy.css.
+ * At or above this stage width, markers sit in a left and a right gutter with leader lines. The
+ * gutter matches the stage padding in anatomy.css. Below it (a phone) a gutter squeezes the demo and
+ * bundles a dozen leaders into one fan, and markers pinned on the parts cover their text. So a narrow
+ * figure shows the bare demo over a numbered legend, and the legend row that is hovered, focused or
+ * tapped outlines its part and pins its number on it.
  */
 const WIDE = 560;
-const GUTTER = { wide: 56, narrow: 36 };
+const GUTTER = 56;
 const STEP = 22;
 
 /** A part counts as drawn when it has an area and is not clipped away (visually hidden inputs). */
@@ -32,10 +35,19 @@ function spread(ys: number[], min: number, max: number) {
   return out;
 }
 
+/** A narrow figure's callouts: the marker on the part's top-left corner, kept inside the stage. */
+function pinned(boxes: (Box | null)[], width: number, height: number): (Callout | null)[] {
+  const clamp = (v: number, max: number) => Math.min(Math.max(v, 11), max - 11);
+  return boxes.map((box) =>
+    box ? { box, marker: { x: clamp(box.x, width), y: clamp(box.y, height) }, anchor: { x: box.x, y: box.y }, line: '' } : null,
+  );
+}
+
 function layout(boxes: (Box | null)[], width: number, height: number): (Callout | null)[] {
+  if (width < WIDE) return pinned(boxes, width, height);
   const out: (Callout | null)[] = boxes.map(() => null);
   const drawn = boxes.flatMap((box, i) => (box ? [{ box, i }] : []));
-  const gutter = width >= WIDE ? GUTTER.wide : GUTTER.narrow;
+  const gutter = GUTTER;
   // A part goes to the gutter on its side. A wide part (a root, a block label) goes left, where its
   // text starts. A side that runs out of room hands its most central parts to the other side.
   const centre = (box: Box) => box.x + box.w / 2;
@@ -70,6 +82,7 @@ function layout(boxes: (Box | null)[], width: number, height: number): (Callout 
 export function Anatomy({ demo, parts }: { demo: string; parts: AnatomyPart[] }) {
   const stageRef = useRef<HTMLDivElement>(null);
   const hostRef = useRef<HTMLElement | null>(null);
+  const observeRef = useRef<() => void>(() => {});
   const [callouts, setCallouts] = useState<(Callout | null)[]>([]);
   const [size, setSize] = useState({ w: 0, h: 0 });
   const [active, setActive] = useState<number | null>(null);
@@ -91,6 +104,7 @@ export function Anatomy({ demo, parts }: { demo: string; parts: AnatomyPart[] })
     hostRef.current = host;
     const missing = parts.filter((p) => !host.querySelector(`[data-cui="${p.cui}"]`)).map((p) => p.cui);
     if (missing.length) console.error(`Anatomy ${demo}: the demo renders no ${missing.join(', ')}.`);
+    observeRef.current();
     measure();
   });
 
@@ -102,10 +116,23 @@ export function Anatomy({ demo, parts }: { demo: string; parts: AnatomyPart[] })
       cancelAnimationFrame(frame);
       frame = requestAnimationFrame(measure);
     };
+    // The stage keeps its size when a part inside it changes (a list that sizes itself, a font that
+    // loads), so every part is observed too. Attribute changes in the demo (an overlay positioned
+    // by inline style) move parts without resizing them.
     const resize = new ResizeObserver(schedule);
-    resize.observe(stage);
-    const mutate = new MutationObserver(schedule);
-    mutate.observe(stage, { childList: true, subtree: true });
+    const observeParts = () => {
+      resize.disconnect();
+      resize.observe(stage);
+      hostRef.current?.querySelectorAll('[data-cui]').forEach((el) => resize.observe(el));
+    };
+    observeParts();
+    observeRef.current = observeParts;
+    const mutate = new MutationObserver((records) => {
+      if (records.some((r) => r.type === 'childList')) observeParts();
+      schedule();
+    });
+    const demo = stage.querySelector('.cui-anatomy__demo');
+    if (demo) mutate.observe(demo, { childList: true, subtree: true, attributes: true, attributeFilter: ['style', 'class', 'hidden', 'data-expanded', 'data-closed'] });
     document.fonts?.ready.then(schedule);
     return () => {
       cancelAnimationFrame(frame);
@@ -118,9 +145,19 @@ export function Anatomy({ demo, parts }: { demo: string; parts: AnatomyPart[] })
     onMouseEnter: () => setActive(i),
     onMouseLeave: () => setActive(null),
   });
+  // A phone has no hover: a tap or focus outlines the part, a second tap clears it.
+  const select = (i: number) => ({
+    ...pick(i),
+    tabIndex: 0,
+    onFocus: () => setActive(i),
+    onBlur: () => setActive(null),
+    onClick: () => setActive((current) => (current === i ? null : i)),
+  });
+  const wide = size.w >= WIDE;
+  const shown = (c: Callout | null, i: number): c is Callout => !!c && (wide || active === i);
   const number = (i: number) => String(i + 1).padStart(2, '0');
   // Reserve the gutter height for every marker before the demo is measured, so nothing moves.
-  const rows = { '--anatomy-rows-wide': Math.ceil(parts.length / 2), '--anatomy-rows-narrow': parts.length };
+  const rows = { '--anatomy-rows': Math.ceil(parts.length / 2) };
 
   return (
     <figure className="ink cui-anatomy not-prose" data-anatomy={demo}>
@@ -129,19 +166,19 @@ export function Anatomy({ demo, parts }: { demo: string; parts: AnatomyPart[] })
         <div {...live.host} className="cui-anatomy__demo" inert />
         <svg className="cui-anatomy__lines" width={size.w} height={size.h} aria-hidden="true">
           {callouts.map((c, i) =>
-            c ? (
-              <g key={parts[i].cui} data-active={active === i ? '' : undefined}>
+            shown(c, i) ? (
+              <g key={parts[i].cui} data-part={parts[i].cui} data-active={active === i ? '' : undefined}>
                 {active === i ? (
                   <rect x={c.box.x + 0.5} y={c.box.y + 0.5} width={c.box.w - 1} height={c.box.h - 1} rx={4} />
                 ) : null}
-                <path d={c.line} />
-                <circle cx={c.anchor.x} cy={c.anchor.y} r={2} />
+                {c.line ? <path d={c.line} /> : null}
+                {c.line ? <circle cx={c.anchor.x} cy={c.anchor.y} r={2} /> : null}
               </g>
             ) : null,
           )}
         </svg>
         {callouts.map((c, i) =>
-          c ? (
+          shown(c, i) ? (
             <span
               key={parts[i].cui}
               className="cui-anatomy__marker"
@@ -155,13 +192,15 @@ export function Anatomy({ demo, parts }: { demo: string; parts: AnatomyPart[] })
           ) : null,
         )}
       </div>
+      <p className="cui-anatomy__hint">Tap a part to outline it in the demo.</p>
       <ol className="cui-anatomy__legend">
         {parts.map((p, i) => (
           <li
             key={p.cui}
+            data-part={p.cui}
             data-active={active === i ? '' : undefined}
             data-hidden={callouts.length && !callouts[i] ? '' : undefined}
-            {...pick(i)}
+            {...select(i)}
           >
             <b>{number(i)}</b>
             <span className="cui-anatomy__name">{p.name}</span>
