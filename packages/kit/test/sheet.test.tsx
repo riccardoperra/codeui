@@ -6,9 +6,6 @@ import { expectDismissed, press, tick } from "./helpers";
 
 afterEach(cleanup);
 
-beforeAll(() => {
-	window.scrollTo = () => {};
-});
 
 async function expectSheetDismissed(sheet: HTMLElement) {
 	const overlay = document.querySelector<HTMLElement>(`[data-cui="${S.sheetParts.overlay}"]`);

@@ -8,9 +8,6 @@ import { expectDismissed, press, tick } from "./helpers";
 
 afterEach(cleanup);
 
-beforeAll(() => {
-	window.scrollTo = () => {};
-});
 
 async function closeDialog(dialog: HTMLElement) {
 	const overlay = document.querySelector<HTMLElement>('[data-cui="dialog-overlay"]');

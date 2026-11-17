@@ -4,9 +4,6 @@ import { type CommandItem, CommandMenu } from "../src/components/CommandMenu/Com
 import { expectDismissed, press, tick } from "./helpers";
 
 afterEach(cleanup);
-beforeAll(() => {
-	window.scrollTo = () => {};
-});
 
 type Theme = CommandItem & { theme?: string };
 const items: Theme[] = [

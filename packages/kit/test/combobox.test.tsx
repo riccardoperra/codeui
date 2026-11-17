@@ -5,9 +5,6 @@ import { Dialog } from "../src/components/Dialog/Dialog";
 import { expectDismissed, press, tick } from "./helpers";
 
 afterEach(cleanup);
-beforeAll(() => {
-	window.scrollTo = () => {};
-});
 
 const fruits = ["Apple", "Banana", "Blueberry", "Grapes"];
 

@@ -11,9 +11,6 @@ import { expectDismissed, press, tick } from "./helpers";
 
 afterEach(cleanup);
 
-beforeAll(() => {
-	window.scrollTo = () => {};
-});
 
 function renderPopover() {
 	render(() => (
@@ -89,8 +86,7 @@ describe("DropdownMenu", () => {
 
 	it("pops when a pointer opens it", async () => {
 		const trigger = renderMenu();
-		// jsdom has no PointerEvent; a MouseEvent carries the primary button Kobalte checks.
-		fireEvent(trigger, new MouseEvent("pointerdown", { bubbles: true, button: 0 }));
+		fireEvent(trigger, new PointerEvent("pointerdown", { bubbles: true, button: 0, pointerType: "mouse" }));
 		await tick();
 		expect(screen.getByRole("menu")).not.toHaveAttribute("data-motion");
 	});

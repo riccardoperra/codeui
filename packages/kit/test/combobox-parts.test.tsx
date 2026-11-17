@@ -5,9 +5,6 @@ import type { ComboboxOption } from "../src/parts/combobox";
 import { press, tick } from "./helpers";
 
 afterEach(cleanup);
-beforeAll(() => {
-	window.scrollTo = () => {};
-});
 
 type Language = { id: string; name: string; deprecated?: boolean };
 const languages: Language[] = [

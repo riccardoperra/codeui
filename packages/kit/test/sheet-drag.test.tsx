@@ -9,7 +9,6 @@ const SHEET_HEIGHT = 400;
 let now = 0;
 
 beforeAll(() => {
-	window.scrollTo = () => {};
 	vi.spyOn(performance, "now").mockImplementation(() => now);
 });
 

@@ -16,14 +16,6 @@ import {
 	PopoverTrigger,
 } from "../src/components/Popover/Popover";
 
-beforeAll(() => {
-	global.ResizeObserver = class {
-		observe() {}
-		unobserve() {}
-		disconnect() {}
-	};
-	window.scrollTo = () => {};
-});
 afterEach(cleanup);
 
 it.each([TextField, TextArea, NumberField])(

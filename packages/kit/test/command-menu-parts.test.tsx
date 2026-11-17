@@ -4,9 +4,6 @@ import { CommandMenuParts as M } from "../src/parts/command-menu";
 import { expectDismissed, press, tick } from "./helpers";
 
 afterEach(cleanup);
-beforeAll(() => {
-	window.scrollTo = () => {};
-});
 
 type Command = { id: string; label: string; disabled?: boolean };
 type Group = { name: string; commands: Command[] };
@@ -144,8 +141,7 @@ it("highlights the first option on open and reports each arrow move, wrapping at
 it("reports pointer hover through the same highlight", () => {
 	const { input, highlights } = renderMenu();
 	const nord = screen.getByRole("option", { name: "Nord" });
-	const move = new MouseEvent("pointermove", { bubbles: true });
-	Object.defineProperty(move, "pointerType", { value: "mouse" });
+	const move = new PointerEvent("pointermove", { bubbles: true, pointerType: "mouse" });
 	nord.dispatchEvent(move);
 	expect(highlighted(input)).toBe("Nord");
 	expect(highlights.at(-1)).toBe("nord");

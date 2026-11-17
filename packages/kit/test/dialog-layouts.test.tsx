@@ -6,9 +6,6 @@ import { expectDismissed, press, tick } from "./helpers";
 
 afterEach(cleanup);
 
-beforeAll(() => {
-	window.scrollTo = () => {};
-});
 
 const sections = ["General", "Appearance", "Export", "About"] as const;
 

@@ -10,13 +10,6 @@ import {
 	DropdownSubMenuContent,
 } from "../src/components/Dropdown/Dropdown";
 afterEach(cleanup);
-beforeAll(() => {
-	global.ResizeObserver = class {
-		observe() {}
-		unobserve() {}
-		disconnect() {}
-	};
-});
 it.each([false, true])("masks invalid typing with a caller ref %s", async withRef => {
 	render(() => (
 		<NumberField aria-label="Amount" ref={withRef ? () => {} : undefined} precision={0} />

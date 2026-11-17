@@ -16,9 +16,6 @@ import { expectDismissed, press, tick } from "./helpers";
 
 afterEach(cleanup);
 
-beforeAll(() => {
-	window.scrollTo = () => {};
-});
 
 describe("Select", () => {
 	function renderSelect(onChange = vi.fn()) {
