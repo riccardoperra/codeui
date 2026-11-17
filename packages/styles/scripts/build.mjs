@@ -4,6 +4,8 @@ import { fileURLToPath } from "node:url";
 import ts from "typescript";
 import { build } from "esbuild";
 import { compile, processVanillaFile } from "@vanilla-extract/integration";
+import { transform } from "lightningcss";
+import { lintPlain } from "./plain-lint.mjs";
 import { collectContracts } from "./contracts.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -11,9 +13,20 @@ const src = path.join(root, "src");
 const compatibility = JSON.parse(
 	await readFile(path.join(root, "compatibility.json"), "utf8"),
 );
-const registrySource = ts.transpileModule(await readFile(path.join(src, "registry.ts"), "utf8"), { compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2020 } }).outputText;
-const { publicStylesRegistry } = await import("data:text/javascript;base64," + Buffer.from(registrySource).toString("base64"));
-if (JSON.stringify(publicStylesRegistry) !== JSON.stringify(JSON.parse(await readFile(path.join(root, "public-registry.json"), "utf8")))) throw new Error("Review and update the public registry snapshot.");
+const registrySource = ts.transpileModule(
+	await readFile(path.join(src, "registry.ts"), "utf8"),
+	{ compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2020 } },
+).outputText;
+const { publicStylesRegistry } = await import(
+	"data:text/javascript;base64," + Buffer.from(registrySource).toString("base64")
+);
+if (
+	JSON.stringify(publicStylesRegistry) !==
+	JSON.stringify(
+		JSON.parse(await readFile(path.join(root, "public-registry.json"), "utf8")),
+	)
+)
+	throw new Error("Review and update the public registry snapshot.");
 const registry = JSON.parse(await readFile(path.join(root, "entries.json"), "utf8"));
 const out = path.join(root, "dist");
 const normalize = value => value.split(path.sep).join("/");
@@ -46,14 +59,50 @@ const identifiers = ({ debugId, filePath, hash }) => {
 		throw new Error(
 			`Unnamed style identifier in ${filePath}. Give every style, recipe, variable, and keyframe an explicit name.`,
 		);
-	return `cui-${authoredName(filePath)}-${debugId ?? hash}`.replace(/[^a-zA-Z0-9_-]/g, "-");
+	return `cui-${authoredName(filePath)}-${debugId ?? hash}`.replace(
+		/[^a-zA-Z0-9_-]/g,
+		"-",
+	);
 };
 const cssByScope = new Map();
 const scopesByModule = new Map();
 const compiled = new Map();
 await rm(out, { recursive: true, force: true });
 await mkdir(out, { recursive: true });
+const plainComponents = {
+	Button: "button",
+	IconButton: "icon-button",
+	Switch: "switch",
+	Dialog: "dialog",
+};
+await lintPlain(root);
 for (const file of cssFiles) {
+	const component = /components\/(Button|IconButton|Switch|Dialog)\/[^/]+\.css\.ts$/.exec(
+		file,
+	)?.[1];
+	if (component && path.basename(file) === component + ".css.ts") {
+		const scope = normalize(path.relative(src, file));
+		const css = await readFile(
+			path.join(src, "plain", plainComponents[component] + ".css"),
+		);
+		cssByScope.set(
+			scope,
+			transform({
+				filename: scope,
+				code: css,
+				minify: false,
+				targets: { chrome: 120 << 16 },
+			}).code.toString(),
+		);
+		scopesByModule.set(moduleId(file) + ".ts", new Set([scope]));
+		compiled.set(
+			file,
+			ts.transpileModule(await readFile(file, "utf8"), {
+				compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2020 },
+			}).outputText,
+		);
+		continue;
+	}
 	const scopes = new Set();
 	const { source } = await compile({
 		filePath: file,
@@ -269,6 +318,13 @@ await writeFile(
 		)
 		.join("\n") + '\nexport * from "./tokens.js";\n',
 );
+// Keep the published declaration graph byte-for-byte compatible with #126.
+// The authored metadata types are checked above; their source location is private.
+for (const component of Object.keys(plainComponents)) {
+	const stem = path.join(out, "types/internal/components", component, component + ".css");
+	await writeFile(stem + ".d.ts", await readFile(stem + ".contract.d.ts"));
+	await rm(stem + ".contract.d.ts");
+}
 for (const file of await files(path.join(out, "types"))) {
 	const target = file
 		.replace(`${path.sep}types${path.sep}`, `${path.sep}types-cjs${path.sep}`)
@@ -279,7 +335,10 @@ for (const file of await files(path.join(out, "types"))) {
 		(await readFile(file, "utf8")).replace(/(["'])(\.[^"']*)\.js\1/g, "$1$2.cjs$1"),
 	);
 }
-await writeFile(path.join(out, "public-registry.json"), await readFile(path.join(root, "public-registry.json")));
+await writeFile(
+	path.join(out, "public-registry.json"),
+	await readFile(path.join(root, "public-registry.json")),
+);
 const pkg = JSON.parse(await readFile(path.join(root, "package.json"), "utf8"));
 const jsExport = name => ({
 	import: { types: `./dist/types/${name}.d.ts`, default: `./dist/esm/${name}.js` },

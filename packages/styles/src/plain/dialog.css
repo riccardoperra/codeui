@@ -1,0 +1,619 @@
+/* Public selectors and frozen private helper aliases share zero specificity. */
+@keyframes cui-dialog-fadeIn {
+	from {
+		opacity: 0;
+	}
+}
+@keyframes cui-dialog-fadeOut {
+	to {
+		opacity: 0;
+	}
+}
+@keyframes cui-dialog-contentShow {
+	from {
+		opacity: 0;
+		transform: scale(0.96);
+	}
+}
+@keyframes cui-dialog-contentHide {
+	to {
+		opacity: 0;
+		transform: scale(0.98);
+	}
+}
+@layer cui.components;
+@layer cui.components {
+	:where(
+			:is(
+					.cui-dialog-panel,
+					.cui-dialog-positioner,
+					.cui-dialog-overlay,
+					.cui-dialog-dialogTheme
+				)
+		) {
+		--cui-dialogTheme-contentBackground: var(--cui-surface-dialog);
+		--cui-dialogTheme-contentBoxShadow: var(--cui-shadow-dialog);
+		--cui-dialogTheme-contentTextColor: var(--cui-text-dialog);
+		--cui-dialogTheme-contentPadding: var(--cui-space-6);
+		--cui-dialogTheme-titleHeight: var(--cui-control-height-xl);
+		--cui-dialogTheme-panelRadius: var(--cui-radius-lg);
+		--cui-dialogTheme-dividerColor: var(--cui-border-dialog-title);
+		--cui-dialogTheme-titleFontSize: var(--cui-font-size-lg);
+		--cui-dialogTheme-overlayBackground: var(--cui-surface-scrim);
+		--cui-dialogTheme-gutter: var(--cui-space-2);
+		--cui-dialogTheme-width: auto;
+		--cui-dialogTheme-height: auto;
+		--cui-dialogTheme-sidebarBackground: var(--cui-surface-dialog);
+		--cui-dialogTheme-navCurrentBackground: var(--cui-surface-input);
+		--cui-dialogTheme-mainBackground: var(--cui-surface-panel);
+		--cui-dialogTheme-islandBackground: var(--cui-surface-canvas);
+		--cui-dialogTheme-splitColumns: minmax(0, 1.1fr) minmax(0, 1fr);
+	}
+	:where(.cui-dialog-overlay) {
+		--cui-dialogTheme-contentBackground: var(--cui-surface-dialog);
+		--cui-dialogTheme-contentBoxShadow: var(--cui-shadow-dialog);
+		--cui-dialogTheme-contentTextColor: var(--cui-text-dialog);
+		--cui-dialogTheme-contentPadding: var(--cui-space-6);
+		--cui-dialogTheme-titleHeight: var(--cui-control-height-xl);
+		--cui-dialogTheme-panelRadius: var(--cui-radius-lg);
+		--cui-dialogTheme-dividerColor: var(--cui-border-dialog-title);
+		--cui-dialogTheme-titleFontSize: var(--cui-font-size-lg);
+		--cui-dialogTheme-overlayBackground: var(--cui-surface-scrim);
+		--cui-dialogTheme-gutter: var(--cui-space-2);
+		--cui-dialogTheme-width: auto;
+		--cui-dialogTheme-height: auto;
+		--cui-dialogTheme-sidebarBackground: var(--cui-surface-dialog);
+		--cui-dialogTheme-navCurrentBackground: var(--cui-surface-input);
+		--cui-dialogTheme-mainBackground: var(--cui-surface-panel);
+		--cui-dialogTheme-islandBackground: var(--cui-surface-canvas);
+		--cui-dialogTheme-splitColumns: minmax(0, 1.1fr) minmax(0, 1fr);
+		position: fixed;
+		z-index: 40;
+		top: 0;
+		inset: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
+	:where(.cui-dialog-main) {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		min-width: 0;
+		min-height: 0;
+		background-color: var(--cui-dialogTheme-mainBackground);
+	}
+	:where(.cui-dialog-panel-content) {
+		padding: var(--cui-dialogTheme-contentPadding);
+		overflow: auto;
+	}
+	:where(.cui-dialog-panel-footer) {
+		padding: var(--cui-dialogTheme-contentPadding);
+	}
+	:where(.cui-dialog-positioner) {
+		position: fixed;
+		inset: 0;
+		z-index: 40;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: var(--cui-dialogTheme-gutter);
+	}
+	:where(.cui-dialog-panel-title) {
+		color: var(--cui-text-dialog-title);
+		height: var(--cui-dialogTheme-titleHeight);
+		border-bottom: var(--cui-border-width) solid var(--cui-dialogTheme-dividerColor);
+		padding: 0 var(--cui-dialogTheme-contentPadding);
+		display: flex;
+		align-items: center;
+		font-size: var(--cui-dialogTheme-titleFontSize);
+		font-weight: var(--cui-font-weight-medium);
+		justify-content: space-between;
+		flex-shrink: 0;
+	}
+	:where(:is(.cui-dialog-panel, .cui-dialog-2yx8y1g)) {
+		display: inline-flex;
+		flex-direction: column;
+		width: 100%;
+		max-height: 100%;
+		padding: 0;
+		overflow: hidden;
+		text-align: left;
+		align-items: stretch;
+		color: var(--cui-dialogTheme-contentTextColor);
+		box-shadow: var(--cui-dialogTheme-contentBoxShadow);
+		border-radius: var(--cui-dialogTheme-panelRadius);
+		background-color: var(--cui-dialogTheme-contentBackground);
+		transform: translate(0, 0);
+		transform-origin: center;
+		animation: cui-dialog-contentHide var(--cui-motion-duration-fast)
+			var(--cui-motion-ease-out);
+	}
+	:where(
+			:is(.cui-dialog-panel, .cui-dialog-2yx8y1g):is(
+					[data-size="xs"],
+					.cui-dialog-panel_size_xs:not([data-size])
+				)
+		) {
+		width: 24rem;
+	}
+	:where(
+			:is(.cui-dialog-panel, .cui-dialog-2yx8y1g):is(
+					[data-size="sm"],
+					.cui-dialog-panel_size_sm:not([data-size])
+				)
+		) {
+		width: 28rem;
+	}
+	:where(
+			:is(.cui-dialog-panel, .cui-dialog-2yx8y1g):is(
+					[data-size="md"],
+					.cui-dialog-panel_size_md:not([data-size])
+				)
+		) {
+		width: 32rem;
+	}
+	:where(
+			:is(.cui-dialog-panel, .cui-dialog-2yx8y1g):is(
+					[data-size="full"],
+					.cui-dialog-panel_size_full:not([data-size])
+				)
+		) {
+		padding: 0;
+		margin: 0;
+		min-height: 100%;
+		width: 100%;
+		border-radius: 0;
+		height: 100%;
+	}
+	:where(
+			:is(.cui-dialog-panel, .cui-dialog-2yx8y1g):is(
+					[data-size="settings"],
+					.cui-dialog-panel_size_settings:not([data-size])
+				)
+		) {
+		--cui-dialogTheme-width: 62.5rem;
+		--cui-dialogTheme-height: 42.5rem;
+		width: min(var(--cui-dialogTheme-width), 100%);
+		height: min(var(--cui-dialogTheme-height), 100%);
+	}
+	:where(
+			:is(.cui-dialog-panel, .cui-dialog-2yx8y1g):is(
+					[data-size="export"],
+					.cui-dialog-panel_size_export:not([data-size])
+				)
+		) {
+		--cui-dialogTheme-width: 50rem;
+		width: min(var(--cui-dialogTheme-width), 100%);
+		overflow-y: auto;
+		overscroll-behavior: contain;
+	}
+	:where(
+			:is(.cui-dialog-panel, .cui-dialog-2yx8y1g):is(
+					[data-chrome="inset"],
+					.cui-dialog-panel_chrome_inset:not([data-chrome])
+				)
+		) {
+		--cui-dialogTheme-panelRadius: var(--cui-radius-dialog);
+		gap: var(--cui-space-5);
+		padding: var(--cui-space-5);
+	}
+	:where(
+			:is(.cui-dialog-panel, .cui-dialog-2yx8y1g):is(
+					[data-size="settings"],
+					.cui-dialog-panel_size_settings:not([data-size])
+				):is([data-chrome="inset"], .cui-dialog-panel_chrome_inset:not([data-chrome]))
+		) {
+		--cui-dialogTheme-panelRadius: var(--cui-radius-lg);
+	}
+	:where(.cui-dialog-description) {
+		color: var(--cui-dialogTheme-contentTextColor);
+		padding: var(--cui-dialogTheme-contentPadding) var(--cui-dialogTheme-contentPadding) 0;
+	}
+	:where(.cui-dialog-sidebar) {
+		display: flex;
+		flex: none;
+		flex-direction: column;
+		width: 232px;
+		min-height: 0;
+		background-color: var(--cui-dialogTheme-sidebarBackground);
+	}
+	:where(.cui-dialog-sidebar-search) {
+		padding: var(--cui-space-3) var(--cui-space-3) var(--cui-space-2);
+	}
+	:where(.cui-dialog-nav) {
+		min-height: 0;
+		overflow-y: auto;
+		padding: var(--cui-space-1) var(--cui-space-3) var(--cui-space-3);
+	}
+	:where(.cui-dialog-nav > ul) {
+		display: flex;
+		flex-direction: column;
+		gap: var(--cui-space-0-5);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	:where(.cui-dialog-nav-item) {
+		display: flex;
+		align-items: center;
+		gap: var(--cui-space-2-5);
+		width: 100%;
+		height: var(--cui-control-height-sm);
+		padding: 0 var(--cui-space-2-5);
+		border: 0;
+		border-radius: var(--cui-radius-nav);
+		background: transparent;
+		color: var(--cui-text-muted);
+		font: inherit;
+		font-size: var(--cui-font-size-sm);
+		font-weight: var(--cui-font-weight-medium);
+		text-align: left;
+		cursor: pointer;
+		transition:
+			background-color var(--cui-motion-duration-fast) var(--cui-motion-ease-out),
+			color var(--cui-motion-duration-fast) var(--cui-motion-ease-out),
+			transform var(--cui-motion-duration-fast) var(--cui-motion-ease-out);
+	}
+	:where(.cui-dialog-nav-icon) {
+		display: flex;
+		flex: none;
+	}
+	:where(:is(.cui-dialog-section, .cui-dialog-2yx8y1u)) {
+		display: flex;
+		flex: none;
+		flex-direction: column;
+		gap: var(--cui-space-2);
+		min-width: 0;
+		margin: 0;
+	}
+	:where(
+			:is(.cui-dialog-section, .cui-dialog-2yx8y1u):is(
+					[data-variant="well"],
+					.cui-dialog-section_variant_well:not([data-variant])
+				)
+		) {
+		padding: var(--cui-space-3);
+		border-radius: var(--cui-radius-card);
+		background-color: var(--cui-dialogTheme-islandBackground);
+	}
+	:where(.cui-dialog-section-title) {
+		margin: 0;
+		padding: 0 var(--cui-space-1);
+		color: var(--cui-text-dialog-title);
+		font-size: var(--cui-font-size-md);
+		font-weight: var(--cui-font-weight-semibold);
+		line-height: 1.3;
+	}
+	:where(.cui-dialog-section-content) {
+		display: flex;
+		flex-direction: column;
+		min-width: 0;
+	}
+	:where(.cui-dialog-positioner[data-panel-size="full"] .cui-dialog-panel-content) {
+		flex: 1;
+	}
+	:where(
+			:is(.cui-dialog-panel, .cui-dialog-2yx8y1g):is(
+					[data-chrome="inset"],
+					.cui-dialog-panel_chrome_inset:not([data-chrome])
+				)
+				.cui-dialog-panel-content
+		) {
+		padding: 0;
+		overflow: visible;
+	}
+	:where(.cui-dialog-main > .cui-dialog-panel-content) {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		gap: var(--cui-space-6);
+		min-height: 0;
+		padding: var(--cui-space-2) var(--cui-space-6) var(--cui-space-6);
+		overflow-y: auto;
+		overscroll-behavior: contain;
+		scrollbar-width: thin;
+	}
+	:where(
+			.cui-dialog-panel-content:is(
+					[data-layout="split"],
+					.cui-dialog-splitBody:not([data-layout])
+				)
+		) {
+		display: grid;
+		grid-template-columns: var(--cui-dialogTheme-splitColumns);
+		gap: var(--cui-space-5);
+		align-items: start;
+	}
+	:where(.cui-dialog-positioner[data-panel-size="full"] .cui-dialog-panel-footer) {
+		margin-top: auto;
+		margin-bottom: env(safe-area-inset-bottom, 20px);
+	}
+	:where(
+			:is(.cui-dialog-panel, .cui-dialog-2yx8y1g):is(
+					[data-chrome="inset"],
+					.cui-dialog-panel_chrome_inset:not([data-chrome])
+				)
+				.cui-dialog-panel-footer
+		) {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: flex-end;
+		gap: var(--cui-space-2);
+		padding: 0;
+	}
+	:where(.cui-dialog-positioner)::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		background-color: var(--cui-dialogTheme-overlayBackground);
+		animation: cui-dialog-fadeOut var(--cui-motion-duration-fast)
+			var(--cui-motion-ease-out) forwards;
+	}
+	:where(.cui-dialog-positioner[data-panel-size="full"]) {
+		padding: 0;
+	}
+	:where(.cui-dialog-positioner[data-panel-size="export"]) {
+		--cui-dialogTheme-gutter: var(--cui-space-4);
+	}
+	:where(.cui-dialog-positioner:has(> [data-expanded]))::before {
+		animation: cui-dialog-fadeIn var(--cui-motion-duration-panel)
+			var(--cui-motion-ease-out);
+	}
+	:where(.cui-dialog-positioner[data-motion="none"])::before,
+	:where(.cui-dialog-positioner[data-motion="none"]:has(> [data-expanded]))::before {
+		animation: none;
+	}
+	:where(
+			:is(.cui-dialog-panel, .cui-dialog-2yx8y1g):is(
+					[data-chrome="inset"],
+					.cui-dialog-panel_chrome_inset:not([data-chrome])
+				)
+				.cui-dialog-panel-title
+		) {
+		height: auto;
+		min-height: var(--cui-control-height-sm);
+		gap: var(--cui-space-3);
+		padding: 0;
+		border-bottom: none;
+		font-weight: var(--cui-font-weight-semibold);
+	}
+	:where(.cui-dialog-main > .cui-dialog-panel-title) {
+		padding: var(--cui-space-3) var(--cui-space-3) var(--cui-space-2) var(--cui-space-6);
+		font-size: var(--cui-font-size-md);
+	}
+	:where(:is(.cui-dialog-panel, .cui-dialog-2yx8y1g):focus-visible) {
+		outline: none;
+	}
+	:where([data-cui-theme="light"] :is(.cui-dialog-panel, .cui-dialog-2yx8y1g)) {
+		--cui-dialogTheme-sidebarBackground: var(--cui-surface-canvas);
+		--cui-dialogTheme-navCurrentBackground: var(--cui-surface-panel);
+	}
+	:where(:is(.cui-dialog-panel, .cui-dialog-2yx8y1g)[data-expanded]) {
+		animation: cui-dialog-contentShow var(--cui-motion-duration-panel)
+			var(--cui-motion-ease-out);
+	}
+	:where(:is(.cui-dialog-panel, .cui-dialog-2yx8y1g)[data-motion="none"]),
+	:where(:is(.cui-dialog-panel, .cui-dialog-2yx8y1g)[data-motion="none"][data-expanded]) {
+		animation: none;
+	}
+	:where(
+			:is(.cui-dialog-panel, .cui-dialog-2yx8y1g):is(
+					[data-size="full"],
+					.cui-dialog-panel_size_full:not([data-size])
+				):focus-visible
+		) {
+		box-shadow: none;
+		outline: none;
+	}
+	:where(
+			:is(.cui-dialog-panel, .cui-dialog-2yx8y1g):is(
+					[data-chrome="inset"],
+					.cui-dialog-panel_chrome_inset:not([data-chrome])
+				):has(> [data-cui="dialog-sidebar"])
+		) {
+		flex-direction: row;
+		gap: 0;
+		padding: 0;
+	}
+	:where(
+			:is(.cui-dialog-panel, .cui-dialog-2yx8y1g):is(
+					[data-chrome="inset"],
+					.cui-dialog-panel_chrome_inset:not([data-chrome])
+				)
+				.cui-dialog-description
+		) {
+		padding: 0;
+	}
+	:where(.cui-dialog-nav-item:active) {
+		transform: scale(0.98);
+	}
+	:where(.cui-dialog-nav-item:focus-visible) {
+		outline: var(--cui-focus-width) solid var(--cui-focus-color);
+		outline-offset: var(--cui-focus-offset);
+	}
+	:where(.cui-dialog-nav-item[aria-current]) {
+		background-color: var(--cui-dialogTheme-navCurrentBackground);
+		color: var(--cui-text-default);
+	}
+	:where(.cui-dialog-nav-item:disabled) {
+		opacity: 0.5;
+		cursor: default;
+	}
+	:where(
+			:is(.cui-dialog-section, .cui-dialog-2yx8y1u):is(
+					[data-variant="well"],
+					.cui-dialog-section_variant_well:not([data-variant])
+				)
+				> .cui-dialog-section-title
+		) {
+		padding: 0 var(--cui-space-2);
+		color: var(--cui-text-muted);
+		font-size: var(--cui-font-size-xs);
+		font-weight: var(--cui-font-weight-medium);
+	}
+	:where(
+			:is(.cui-dialog-section, .cui-dialog-2yx8y1u):is(
+					[data-variant="group"],
+					.cui-dialog-section_variant_group:not([data-variant]),
+					:not([data-variant]):not(.cui-dialog-section_variant_group):not(
+							.cui-dialog-section_variant_well
+						)
+				)
+				> .cui-dialog-section-content
+		) {
+		padding: var(--cui-space-1-5) 0;
+		border-radius: var(--cui-radius-card);
+		background-color: var(--cui-dialogTheme-islandBackground);
+	}
+	:where(
+			:is(.cui-dialog-section, .cui-dialog-2yx8y1u)[data-columns="2"]
+				> .cui-dialog-section-content
+		) {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: var(--cui-space-0-5);
+	}
+	@media screen and (max-width: 768px) {
+		:where(.cui-dialog-main) {
+			display: contents;
+		}
+		:where(
+				:is(.cui-dialog-panel, .cui-dialog-2yx8y1g):is(
+						[data-size="settings"],
+						.cui-dialog-panel_size_settings:not([data-size])
+					)
+			) {
+			height: 100%;
+		}
+		:where(
+				:is(.cui-dialog-panel, .cui-dialog-2yx8y1g):is(
+						[data-chrome="inset"],
+						.cui-dialog-panel_chrome_inset:not([data-chrome])
+					)
+			) {
+			gap: var(--cui-space-4);
+			padding: var(--cui-space-4);
+		}
+		:where(.cui-dialog-sidebar) {
+			width: auto;
+		}
+		:where(.cui-dialog-sidebar-search) {
+			padding: var(--cui-space-2) var(--cui-space-2) var(--cui-space-2);
+		}
+		:where(.cui-dialog-nav) {
+			padding: 0 var(--cui-space-2) var(--cui-space-2);
+		}
+		:where(.cui-dialog-nav > ul) {
+			display: grid;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: var(--cui-space-1);
+		}
+		:where(.cui-dialog-nav-item) {
+			justify-content: center;
+			height: var(--cui-control-height-md);
+			padding: 0 var(--cui-space-1);
+			white-space: nowrap;
+		}
+		:where(.cui-dialog-nav-icon) {
+			display: none;
+		}
+		:where(
+				.cui-dialog-panel-content:is(
+						[data-layout="split"],
+						.cui-dialog-splitBody:not([data-layout])
+					)
+			) {
+			grid-template-columns: minmax(0, 1fr);
+		}
+		:where(.cui-dialog-main > .cui-dialog-panel-content) {
+			gap: var(--cui-space-5);
+			padding: var(--cui-space-4) var(--cui-space-3)
+				calc(var(--cui-space-4) + env(safe-area-inset-bottom, 0px));
+			background-color: var(--cui-dialogTheme-mainBackground);
+		}
+		:where(
+				:is(.cui-dialog-panel, .cui-dialog-2yx8y1g):is(
+						[data-chrome="inset"],
+						.cui-dialog-panel_chrome_inset:not([data-chrome])
+					)
+					.cui-dialog-panel-footer
+			) {
+			flex-direction: column;
+			align-items: stretch;
+		}
+		:where(.cui-dialog-main > .cui-dialog-panel-title) {
+			order: -1;
+			padding: var(--cui-space-2) var(--cui-space-2) 0 var(--cui-space-4);
+		}
+		:where(
+				:is(.cui-dialog-panel, .cui-dialog-2yx8y1g):is(
+						[data-chrome="inset"],
+						.cui-dialog-panel_chrome_inset:not([data-chrome])
+					):has(> [data-cui="dialog-sidebar"])
+			) {
+			flex-direction: column;
+		}
+		:where(
+				:is(.cui-dialog-section, .cui-dialog-2yx8y1u)[data-columns="2"]
+					> .cui-dialog-section-content
+			) {
+			grid-template-columns: minmax(0, 1fr);
+		}
+	}
+	@media (prefers-reduced-motion: reduce) {
+		:where(:is(.cui-dialog-panel, .cui-dialog-2yx8y1g)) {
+			animation-name: cui-dialog-fadeOut;
+		}
+		:where(.cui-dialog-nav-item) {
+			transition: none;
+		}
+		:where(:is(.cui-dialog-panel, .cui-dialog-2yx8y1g)[data-expanded]) {
+			animation-name: cui-dialog-fadeIn;
+		}
+		:where(:is(.cui-dialog-panel, .cui-dialog-2yx8y1g)[data-motion="none"]),
+		:where(
+				:is(.cui-dialog-panel, .cui-dialog-2yx8y1g)[data-motion="none"][data-expanded]
+			) {
+			animation: none;
+		}
+		:where(.cui-dialog-nav-item:active) {
+			transform: none;
+		}
+	}
+	@media screen and (min-width: 768px) {
+		:where(
+				:is(.cui-dialog-panel, .cui-dialog-2yx8y1g):is(
+						[data-size="lg"],
+						.cui-dialog-panel_size_lg:not([data-size])
+					)
+			) {
+			width: 48rem;
+		}
+		:where(
+				:is(.cui-dialog-panel, .cui-dialog-2yx8y1g):is(
+						[data-size="xl"],
+						.cui-dialog-panel_size_xl:not([data-size])
+					)
+			) {
+			width: 48rem;
+		}
+	}
+	@media screen and (min-width: 1024px) {
+		:where(
+				:is(.cui-dialog-panel, .cui-dialog-2yx8y1g):is(
+						[data-size="xl"],
+						.cui-dialog-panel_size_xl:not([data-size])
+					)
+			) {
+			width: 64rem;
+		}
+	}
+	@media (hover: hover) and (pointer: fine) {
+		:where(.cui-dialog-nav-item:hover:not([aria-current]):not(:disabled)) {
+			color: var(--cui-text-default);
+		}
+	}
+}

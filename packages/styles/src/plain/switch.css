@@ -1,0 +1,180 @@
+/* Public selectors and frozen private helper aliases share zero specificity. */
+@layer cui.components;
+@layer cui.components {
+	:where(.cui-switch-root) {
+		--cui-switch-trackWidth: var(--cui-control-height-sm);
+		--cui-switch-trackHeight: calc(var(--cui-space-5) + var(--cui-space-0-5));
+		--cui-switch-thumbSize: var(--cui-space-4);
+		display: inline-grid;
+		grid-template-columns: auto 1fr;
+		align-items: center;
+		column-gap: var(--cui-space-2);
+		min-height: var(--cui-control-height-compact);
+		position: relative;
+		color: var(--cui-text-default);
+		font-size: var(--cui-font-size-caption);
+		line-height: var(--cui-font-line-height-caption);
+	}
+	:where(:is(.cui-switch-control, .cui-switch-ohc8hx5)) {
+		position: relative;
+		display: inline-flex;
+		align-items: center;
+		flex-shrink: 0;
+		box-sizing: border-box;
+		width: var(--cui-switch-trackWidth, var(--cui-control-height-sm));
+		height: var(
+			--cui-switch-trackHeight,
+			calc(var(--cui-space-5) + var(--cui-space-0-5))
+		);
+		padding: calc(
+			(
+					var(--cui-switch-trackHeight, calc(var(--cui-space-5) + var(--cui-space-0-5))) -
+						var(--cui-switch-thumbSize, var(--cui-space-4))
+				) / 2
+		);
+		border-radius: var(--cui-radius-full);
+		background: var(--cui-surface-track);
+		cursor: pointer;
+		transition: background-color var(--cui-motion-duration-fast) ease;
+	}
+	:where(:is(.cui-switch-thumb, .cui-switch-ohc8hxc)) {
+		flex-shrink: 0;
+		width: var(--cui-switch-thumbSize, var(--cui-space-4));
+		height: var(--cui-switch-thumbSize, var(--cui-space-4));
+		border-radius: var(--cui-radius-full);
+		background: var(--cui-action-brand-text);
+		box-shadow: var(--cui-shadow-thumb);
+		transition: transform var(--cui-motion-duration-fast) var(--cui-motion-ease-out);
+	}
+	:where(.cui-switch-label) {
+		color: var(--cui-text-label);
+		line-height: var(--cui-font-line-height-caption);
+		cursor: pointer;
+	}
+	:where(.cui-switch-description) {
+		grid-column: 2;
+		color: var(--cui-text-hint);
+		font-size: var(--cui-font-size-xs);
+		line-height: var(--cui-font-line-height-xs);
+	}
+	:where(.cui-switch-error-message) {
+		grid-column: 2;
+		color: var(--cui-text-danger);
+		font-size: var(--cui-font-size-xs);
+		line-height: var(--cui-font-line-height-xs);
+	}
+	:where(.cui-switch-root:is([data-disabled], :disabled)) {
+		opacity: 0.4;
+	}
+	:where(:is(.cui-switch-control, .cui-switch-ohc8hx5))::before {
+		content: "";
+		position: absolute;
+		inset: calc(
+				(
+						var(--cui-switch-trackHeight, calc(var(--cui-space-5) + var(--cui-space-0-5))) -
+							var(--cui-control-height-compact)
+					) / 2
+			)
+			0;
+	}
+	:where(:is(.cui-switch-control, .cui-switch-ohc8hx5)[data-checked]) {
+		background: var(--cui-action-brand-base);
+	}
+	:where(:is(.cui-switch-control, .cui-switch-ohc8hx5)[data-invalid]) {
+		outline: var(--cui-focus-width) solid var(--cui-text-danger);
+	}
+	:where(
+			:root:not([data-cui-input="pointer"])
+				.cui-switch-root
+				.cui-switch-input:focus-visible
+				~ :is(.cui-switch-control, .cui-switch-ohc8hx5)
+		) {
+		outline: var(--cui-focus-width) solid var(--cui-focus-color);
+		outline-offset: var(--cui-focus-offset);
+	}
+	:where(:is(.cui-switch-control, .cui-switch-ohc8hx5):is([data-disabled], :disabled)) {
+		cursor: not-allowed;
+	}
+	:where(:root[data-cui-input="keyboard"] :is(.cui-switch-control, .cui-switch-ohc8hx5)) {
+		transition: none;
+	}
+	:where(:is(.cui-switch-thumb, .cui-switch-ohc8hxc)[data-checked]) {
+		transform: translateX(
+			calc(
+				var(--cui-switch-trackWidth, var(--cui-control-height-sm)) -
+					var(--cui-switch-trackHeight, calc(var(--cui-space-5) + var(--cui-space-0-5)))
+			)
+		);
+	}
+	:where(:root[data-cui-input="keyboard"] :is(.cui-switch-thumb, .cui-switch-ohc8hxc)) {
+		transition: none;
+	}
+	@media (pointer: coarse) {
+		:where(.cui-switch-root) {
+			min-height: var(--cui-control-height-md);
+		}
+		:where(:is(.cui-switch-control, .cui-switch-ohc8hx5)) {
+			--cui-switch-trackWidth: calc(var(--cui-space-10) + var(--cui-space-1));
+			--cui-switch-trackHeight: calc(var(--cui-space-6) + var(--cui-space-0-5));
+			--cui-switch-thumbSize: var(--cui-space-5);
+		}
+		:where(:is(.cui-switch-control, .cui-switch-ohc8hx5))::before {
+			inset: calc(
+					(
+							var(
+									--cui-switch-trackHeight,
+									calc(var(--cui-space-5) + var(--cui-space-0-5))
+								) - var(--cui-control-height-md)
+						) / 2
+				)
+				0;
+		}
+	}
+	@media (pointer: fine), (pointer: none) {
+		:where(
+				:is(.cui-switch-control, .cui-switch-ohc8hx5):is(
+						[data-size="sm"],
+						.cui-switch-control_size_sm:not([data-size])
+					)
+			) {
+			--cui-switch-trackWidth: var(--cui-control-height-compact);
+			--cui-switch-trackHeight: var(--cui-space-4);
+			--cui-switch-thumbSize: var(--cui-space-3);
+		}
+		:where(
+				:is(.cui-switch-control, .cui-switch-ohc8hx5):is(
+						[data-size="md"],
+						.cui-switch-control_size_md:not([data-size])
+					)
+			) {
+			--cui-switch-trackWidth: var(--cui-control-height-sm);
+			--cui-switch-trackHeight: calc(var(--cui-space-5) + var(--cui-space-0-5));
+			--cui-switch-thumbSize: var(--cui-space-4);
+		}
+		:where(
+				:is(
+						.cui-switch-root[data-size="sm"],
+						.cui-switch-root.cui-switch-smallRoot:not([data-size])
+					)
+			) {
+			--cui-switch-trackWidth: var(--cui-control-height-compact);
+			--cui-switch-trackHeight: var(--cui-space-4);
+			--cui-switch-thumbSize: var(--cui-space-3);
+		}
+		:where(
+				:is(
+						.cui-switch-root[data-size="md"],
+						.cui-switch-root.cui-switch-mediumRoot:not([data-size])
+					)
+			) {
+			--cui-switch-trackWidth: var(--cui-control-height-sm);
+			--cui-switch-trackHeight: calc(var(--cui-space-5) + var(--cui-space-0-5));
+			--cui-switch-thumbSize: var(--cui-space-4);
+		}
+	}
+	:where(:is(.cui-switch-thumb, .cui-switch-ohc8hxc)) {
+		@media (prefers-reduced-motion: reduce) {
+			transition: none;
+		}
+	}
+}

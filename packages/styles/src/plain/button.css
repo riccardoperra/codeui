@@ -1,0 +1,314 @@
+/* Public selectors and frozen private helper aliases share zero specificity. */
+@layer cui.components;
+@layer cui.components {
+	:where(
+			:is(
+					:is(.cui-button, .cui-icon-button, .cui-dialog-close-button),
+					.cui-button-buttonTheme
+				)
+		) {
+		--cui-buttonTheme-buttonHeight: ;
+		--cui-buttonTheme-fontSize: ;
+		--cui-buttonTheme-background: ;
+		--cui-buttonTheme-hoverBackground: ;
+		--cui-buttonTheme-activeBackground: ;
+		--cui-buttonTheme-color: var(--cui-action-neutral-text);
+		--cui-buttonTheme-borderColor: ;
+		--cui-buttonTheme-padding: ;
+		--cui-buttonTheme-borderRadius: var(--cui-radius-md);
+	}
+	:where(
+			:is(
+					:is(.cui-button, .cui-icon-button, .cui-dialog-close-button),
+					.cui-button-a0zfdzf
+				)
+		) {
+		--cui-buttonTheme-buttonHeight: ;
+		--cui-buttonTheme-fontSize: ;
+		--cui-buttonTheme-background: ;
+		--cui-buttonTheme-hoverBackground: ;
+		--cui-buttonTheme-activeBackground: ;
+		--cui-buttonTheme-color: var(--cui-action-neutral-text);
+		--cui-buttonTheme-borderColor: var(--cui-buttonTheme-background);
+		--cui-buttonTheme-padding: ;
+		--cui-buttonTheme-borderRadius: var(--cui-radius-md);
+		appearance: none;
+		font-family: inherit;
+		position: relative;
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
+		flex-shrink: 0;
+		white-space: nowrap;
+		vertical-align: middle;
+		height: var(--cui-buttonTheme-buttonHeight);
+		color: var(--cui-buttonTheme-color);
+		background: var(--cui-buttonTheme-background);
+		border-radius: var(--cui-buttonTheme-borderRadius);
+		padding: 0 var(--cui-buttonTheme-padding);
+		font-weight: var(--cui-font-weight-medium);
+		font-size: var(--cui-buttonTheme-fontSize);
+		border: var(--cui-border-width) solid var(--cui-buttonTheme-borderColor);
+		transition:
+			opacity var(--cui-motion-duration-fast) var(--cui-motion-ease-out),
+			background-color var(--cui-motion-duration-fast) var(--cui-motion-ease-out),
+			transform var(--cui-motion-duration-fast) var(--cui-motion-ease-out);
+		gap: var(--cui-space-2);
+	}
+	:where(
+			:is(
+					:is(.cui-button, .cui-icon-button, .cui-dialog-close-button),
+					.cui-button-a0zfdzf
+				):is([data-size="xl"], .cui-button-button_size_xl:not([data-size]))
+		) {
+		--cui-buttonTheme-buttonHeight: var(--cui-control-height-xl);
+		--cui-buttonTheme-fontSize: var(--cui-font-size-xl);
+		--cui-buttonTheme-padding: var(--cui-space-6);
+		--cui-buttonTheme-borderRadius: var(--cui-radius-xl);
+	}
+	:where(
+			:is(
+					:is(.cui-button, .cui-icon-button, .cui-dialog-close-button),
+					.cui-button-a0zfdzf
+				):is([data-size="lg"], .cui-button-button_size_lg:not([data-size]))
+		) {
+		--cui-buttonTheme-buttonHeight: var(--cui-control-height-lg);
+		--cui-buttonTheme-fontSize: var(--cui-font-size-lg);
+		--cui-buttonTheme-padding: var(--cui-space-5);
+		--cui-buttonTheme-borderRadius: var(--cui-radius-lg);
+	}
+	:where(
+			:is(
+					:is(.cui-button, .cui-icon-button, .cui-dialog-close-button),
+					.cui-button-a0zfdzf
+				):is(
+					[data-size="md"],
+					.cui-button-button_size_md:not([data-size]),
+					:not([data-size]):not(.cui-button-button_size_xl):not(
+							.cui-button-button_size_lg
+						):not(.cui-button-button_size_md):not(.cui-button-button_size_sm):not(
+							.cui-button-button_size_xs
+						)
+				)
+		) {
+		--cui-buttonTheme-buttonHeight: var(--cui-control-height-md);
+		--cui-buttonTheme-fontSize: var(--cui-font-size-md);
+		--cui-buttonTheme-padding: var(--cui-space-5);
+		--cui-buttonTheme-borderRadius: var(--cui-radius-md);
+	}
+	:where(
+			:is(
+					:is(.cui-button, .cui-icon-button, .cui-dialog-close-button),
+					.cui-button-a0zfdzf
+				):is([data-size="sm"], .cui-button-button_size_sm:not([data-size]))
+		) {
+		--cui-buttonTheme-buttonHeight: var(--cui-control-height-sm);
+		--cui-buttonTheme-fontSize: var(--cui-font-size-sm);
+		--cui-buttonTheme-padding: var(--cui-space-4);
+		--cui-buttonTheme-borderRadius: var(--cui-radius-sm);
+	}
+	:where(
+			:is(
+					:is(.cui-button, .cui-icon-button, .cui-dialog-close-button),
+					.cui-button-a0zfdzf
+				):is([data-size="xs"], .cui-button-button_size_xs:not([data-size]))
+		) {
+		--cui-buttonTheme-buttonHeight: var(--cui-control-height-xs);
+		--cui-buttonTheme-fontSize: var(--cui-font-size-xs);
+		--cui-buttonTheme-padding: var(--cui-space-2);
+		--cui-buttonTheme-borderRadius: var(--cui-radius-xs);
+	}
+	:where(
+			:is(
+					:is(.cui-button, .cui-icon-button, .cui-dialog-close-button),
+					.cui-button-a0zfdzf
+				):is([data-theme="primary"], .cui-button-button_theme_primary:not([data-theme]))
+		) {
+		--cui-buttonTheme-background: var(--cui-action-brand-base);
+		--cui-buttonTheme-hoverBackground: var(--cui-action-brand-hover);
+		--cui-buttonTheme-activeBackground: var(--cui-action-brand-active);
+		--cui-buttonTheme-color: var(--cui-action-brand-text);
+	}
+	:where(
+			:is(
+					:is(.cui-button, .cui-icon-button, .cui-dialog-close-button),
+					.cui-button-a0zfdzf
+				):is([data-theme="tertiary"], .cui-button-button_theme_tertiary:not([data-theme]))
+		) {
+		--cui-buttonTheme-background: var(--cui-action-brand-soft-base);
+		--cui-buttonTheme-hoverBackground: var(--cui-action-brand-soft-hover);
+		--cui-buttonTheme-activeBackground: var(--cui-action-brand-soft-active);
+		--cui-buttonTheme-color: var(--cui-action-brand-soft-text);
+	}
+	:where(
+			:is(
+					:is(.cui-button, .cui-icon-button, .cui-dialog-close-button),
+					.cui-button-a0zfdzf
+				):is(
+					[data-theme="secondary"],
+					.cui-button-button_theme_secondary:not([data-theme])
+				)
+		) {
+		--cui-buttonTheme-background: var(--cui-action-neutral-base);
+		--cui-buttonTheme-hoverBackground: var(--cui-action-neutral-hover);
+		--cui-buttonTheme-activeBackground: var(--cui-action-neutral-active);
+		--cui-buttonTheme-color: var(--cui-action-neutral-text);
+		--cui-buttonTheme-borderColor: var(--cui-action-neutral-base);
+	}
+	:where(
+			:is(
+					:is(.cui-button, .cui-icon-button, .cui-dialog-close-button),
+					.cui-button-a0zfdzf
+				):is([data-theme="negative"], .cui-button-button_theme_negative:not([data-theme]))
+		) {
+		--cui-buttonTheme-background: var(--cui-action-danger-base);
+		--cui-buttonTheme-hoverBackground: var(--cui-action-danger-hover);
+		--cui-buttonTheme-activeBackground: var(--cui-action-danger-active);
+		--cui-buttonTheme-color: var(--cui-action-danger-text);
+	}
+	:where(
+			:is(
+					:is(.cui-button, .cui-icon-button, .cui-dialog-close-button),
+					.cui-button-a0zfdzf
+				):is([data-theme="caution"], .cui-button-button_theme_caution:not([data-theme]))
+		) {
+		--cui-buttonTheme-background: var(--cui-action-caution-base);
+		--cui-buttonTheme-hoverBackground: var(--cui-action-caution-hover);
+		--cui-buttonTheme-activeBackground: var(--cui-action-caution-active);
+		--cui-buttonTheme-color: var(--cui-action-caution-text);
+	}
+	:where(
+			:is(
+					:is(.cui-button, .cui-icon-button, .cui-dialog-close-button),
+					.cui-button-a0zfdzf
+				):is([data-variant="ghost"], .cui-button-button_variant_ghost:not([data-variant]))
+		) {
+		background: transparent;
+	}
+	:where(
+			:is(
+					:is(.cui-button, .cui-icon-button, .cui-dialog-close-button),
+					.cui-button-a0zfdzf
+				):is([data-block="true"], .cui-button-button_block_true:not([data-block]))
+		) {
+		width: 100%;
+		flex: 1;
+	}
+	:where(
+			:is(
+					:is(.cui-button, .cui-icon-button, .cui-dialog-close-button),
+					.cui-button-a0zfdzf
+				):is([data-pill="true"], .cui-button-button_pill_true:not([data-pill]))
+		) {
+		--cui-buttonTheme-borderRadius: var(--cui-radius-full);
+	}
+	:where(
+			:is(
+					:is(.cui-button, .cui-icon-button, .cui-dialog-close-button),
+					.cui-button-a0zfdzf
+				):is([data-loading], .cui-button-button_loading_true:not([data-loading]))
+		) {
+		pointer-events: none;
+		overflow: hidden;
+	}
+	:where(
+			:is(
+					:is(.cui-button, .cui-icon-button, .cui-dialog-close-button),
+					.cui-button-a0zfdzf
+				):is(
+					[data-variant="ghost"],
+					.cui-button-button_variant_ghost:not([data-variant])
+				):is([data-loading], .cui-button-button_loading_true:not([data-loading]))
+		) {
+		background: var(
+			--cui-layout-layoutBackgroundColor,
+			var(--cui-buttonTheme-background)
+		);
+	}
+	:where(.cui-button-buttonIcon) {
+		display: inline-flex;
+		align-self: center;
+		flex-shrink: 0;
+	}
+	:where(.cui-button-buttonText) {
+		transition: opacity var(--cui-motion-duration-fast) var(--cui-motion-ease-out);
+		display: contents;
+	}
+	:where(:is(.cui-icon-button, .cui-dialog-close-button)) {
+		padding: 0;
+		width: var(--cui-buttonTheme-buttonHeight);
+		height: var(--cui-buttonTheme-buttonHeight);
+	}
+	:where(:is(.cui-icon-button, .cui-dialog-close-button) svg) {
+		width: var(--cui-icon-iconSize, 1.1em);
+		height: var(--cui-icon-iconSize, 1.1em);
+	}
+	:where(
+			:is(
+					:is(.cui-button, .cui-icon-button, .cui-dialog-close-button),
+					.cui-button-a0zfdzf
+				):not(:is([data-disabled], :disabled)):hover
+		) {
+		background: var(--cui-buttonTheme-hoverBackground);
+	}
+	:where(
+			:is(
+					:is(.cui-button, .cui-icon-button, .cui-dialog-close-button),
+					.cui-button-a0zfdzf
+				):not(:is([data-disabled], :disabled)):active
+		) {
+		background: var(--cui-buttonTheme-activeBackground);
+		animation: none;
+		transform: scale(0.97);
+	}
+	:where(
+			:is(
+					:is(.cui-button, .cui-icon-button, .cui-dialog-close-button),
+					.cui-button-a0zfdzf
+				):focus-visible
+		) {
+		outline: var(--cui-focus-width) solid var(--cui-focus-color);
+		outline-offset: var(--cui-focus-offset);
+	}
+	:where(
+			:is(
+					:is(.cui-button, .cui-icon-button, .cui-dialog-close-button),
+					.cui-button-a0zfdzf
+				):is([data-disabled], :disabled)
+		) {
+		--cui-buttonTheme-background: var(--cui-action-neutral-base);
+		--cui-buttonTheme-color: var(--cui-action-neutral-text);
+		opacity: 0.5;
+	}
+	:where(
+			:is(
+					:is(.cui-button, .cui-icon-button, .cui-dialog-close-button),
+					.cui-button-a0zfdzf
+				):is(
+					[data-variant="ghost"],
+					.cui-button-button_variant_ghost:not([data-variant])
+				):not(:hover)
+		) {
+		border-color: transparent;
+		color: var(--cui-text-default);
+	}
+	:where(
+			:is(
+					:is(.cui-button, .cui-icon-button, .cui-dialog-close-button),
+					.cui-button-a0zfdzf
+				):is(
+					[data-variant="ghost"],
+					.cui-button-button_variant_ghost:not([data-variant])
+				):is([data-loading], .cui-button-button_loading_true:not([data-loading])):not(
+					:hover
+				)
+		) {
+		border-color: var(--cui-buttonTheme-borderColor);
+	}
+	:where(
+			:is(.cui-button, .cui-icon-button, .cui-dialog-close-button)[data-loading]
+				.cui-button-buttonText
+		) {
+		opacity: 0;
+	}
+}

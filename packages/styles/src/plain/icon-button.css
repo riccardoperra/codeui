@@ -1,0 +1,9 @@
+/* Public selectors and frozen private helper aliases share zero specificity. */
+@layer cui.components;
+@layer cui.components {
+	:where(:is(.cui-icon-button, .cui-dialog-close-button)) {
+		padding: 0;
+		width: var(--cui-buttonTheme-buttonHeight);
+		height: var(--cui-buttonTheme-buttonHeight);
+	}
+}

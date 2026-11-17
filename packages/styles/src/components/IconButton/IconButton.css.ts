@@ -1,16 +1,5 @@
-import { squareButtonRule } from "../Button/composition";
-import { finish } from "../../foundation/public.css";
-import { publicStylesRegistry as registry } from "../../registry";
-import { style } from "../../foundation/public.css";
-import { buttonVars } from "../Button/Button.css";
-
-// noinspection JSSuspiciousNameCombination
-export const iconButton = style(
-	squareButtonRule(buttonVars.buttonHeight),
-	"iconButton",
-	registry.iconButton.parts.iconButton,
-);
-
-finish();
-
-export const iconButtonPart = registry.iconButton.parts.iconButton;
+// Compatibility metadata frozen from #126; declarations are authored in src/plain.
+import type * as Contract from "./IconButton.css.contract";
+import { recipe } from "../../plain/recipe";
+export const iconButton: typeof Contract.iconButton = "cui-icon-button";
+export const iconButtonPart: typeof Contract.iconButtonPart = "icon-button";
