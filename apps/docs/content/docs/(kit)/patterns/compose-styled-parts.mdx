@@ -50,13 +50,45 @@ Install `@kobalte/core` as a direct dependency of your app before you import it.
 Every kit rule sits in the `cui` cascade layer. Unlayered CSS in your app wins over a layered rule, whatever the stylesheet order.
 So one class on `PopoverContent` widens the panel and adds padding, with no `!important` and no extra specificity. The same holds for a class on a part or next to a `*Styles` class.
 
-A CSS reset is the exception, because an unlayered reset also wins. [Theming](/docs/foundations/theming#the-cui-cascade-layer) shows how to put the reset in a layer below `cui`.
+A CSS reset is the exception, because an unlayered reset also wins. [Cascade layers](/docs/foundations/cascade-layers#keep-app-resets-below-cui) shows how to put the reset in a layer below `cui`.
 
-## Keep data-cui and classes stable
+## Style components inside a toolbar
 
-- Target a part by its `data-cui` value, such as `[data-cui="popover-content"]`. The values are part of the public API. The generated class names are not.
-- Pass classes through `class` on a part, or through `classes` on a ready component. Both merge after the kit class.
-- When you swap a ready component for parts, the `data-cui` values stay the same, so your selectors keep working.
+The toolbar sets the layout and chooses the variants of the controls it renders. Each control supplies its own base styles, focus styles, and interaction states.
+
+<SolidDemo name="compose-styled-parts/editor-toolbar" />
+
+```css title="editor-toolbar.css"
+.editor-toolbar {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--cui-space-3);
+}
+
+.editor-toolbar__save {
+	margin-inline-start: auto;
+}
+
+.editor-toolbar__line-numbers [data-cui="switch-control"] {
+	margin-inline-end: var(--cui-space-1);
+}
+
+.editor-toolbar__status {
+	flex-basis: 100%;
+	margin: 0;
+	color: var(--cui-text-hint);
+	font-size: var(--cui-font-size-caption);
+}
+```
+
+`theme="primary"` gives Save the kit's primary treatment. The `editor-toolbar__save` class pushes that instance to the end of the row. A selector such as `.editor-toolbar [data-cui="button"]` would also match Reset and any buttons nested inside future toolbar children.
+
+To style a part of a ready Switch, pass `classes={{ control: "line-numbers-track" }}` when you can set its props. With styled parts, pass `class="line-numbers-track"` directly to `Switch.Control`. Both give the track a class you can target directly.
+
+When the integration gives you access to the root alone, scope an Anatomy selector to that instance. The demo puts `editor-toolbar__line-numbers` on the Switch root and targets `[data-cui="switch-control"]` beneath it. The selector matches the track in both checked and unchecked states. [Switch anatomy](/docs/components/switch#anatomy) lists the part names.
+
+For color or geometry, set a documented CSS custom property on the component or part where you want it to take effect. Set it on a shared ancestor when the entire subtree should inherit it. [Change one instance](/docs/foundations/theming#change-one-instance) shows a token override on a Button.
 
 ## Related
 

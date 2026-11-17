@@ -1,0 +1,21 @@
+.editor-toolbar {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--cui-space-3);
+}
+
+.editor-toolbar__save {
+	margin-inline-start: auto;
+}
+
+.editor-toolbar__line-numbers [data-cui="switch-control"] {
+	margin-inline-end: var(--cui-space-1);
+}
+
+.editor-toolbar__status {
+	flex-basis: 100%;
+	margin: 0;
+	color: var(--cui-text-hint);
+	font-size: var(--cui-font-size-caption);
+}
