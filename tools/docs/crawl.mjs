@@ -61,8 +61,10 @@ async function visit(pagePath, config) {
       let shrunk = 0;
       if (child?.matches('div,section,form,nav,ul,ol,dl,table,fieldset,article,header,footer,aside,figure')) {
         const inCard = child.getBoundingClientRect().width;
+        const style = getComputedStyle(el);
+        const content = el.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
         el.style.display = 'block';
-        shrunk = child.getBoundingClientRect().width - inCard;
+        shrunk = Math.min(child.getBoundingClientRect().width, content) - inCard;
         el.style.display = '';
       }
       return {

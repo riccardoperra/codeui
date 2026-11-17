@@ -26,7 +26,8 @@ const gaps: Gap[] = [
 
 export default function StackGap() {
 	return (
-		<Stack gap="2">
+		// The widest steps are wider than a phone, so the ladder scrolls inside itself.
+		<Stack gap="2" style={{ "overflow-x": "auto" }}>
 			<For each={gaps}>
 				{gap => (
 					<Stack direction="row" gap="4" align="center">

@@ -48,3 +48,8 @@ html > body[data-scroll-locked] {
 #nd-sidebar {
   border-color: transparent;
 }
+
+/* A heading that is one long API name, such as `createFieldErrorMessageProps`, wraps at phone width. */
+.prose :is(h1, h2, h3, h4) {
+  overflow-wrap: anywhere;
+}
