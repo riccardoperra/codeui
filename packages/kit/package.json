@@ -397,9 +397,10 @@
 	"scripts": {
 		"dev": "pnpm run build -w",
 		"build": "rollup -c rollup.config.js",
-		"test": "pnpm run test:client && pnpm run test:ssr && pnpm run test:tokens-consumer",
+		"test": "pnpm run test:client && pnpm run test:ssr && pnpm run test:hydration && pnpm run test:tokens-consumer",
 		"test:client": "jest --config jest.config.ts",
 		"test:ssr": "jest --config jest.config.ssr.ts",
+		"test:hydration": "jest --config jest.config.ssr.ts test/hydration.ssr && jest --config jest.config.hydration.ts",
 		"typecheck": "tsc --noEmit",
 		"prepublish": "pnpm build",
 		"test:tokens-consumer": "pnpm run build && node fixtures/tokens-consumer/check.mjs && node fixtures/tokens-consumer/check.mjs --solid"
