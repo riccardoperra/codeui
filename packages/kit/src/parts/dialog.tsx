@@ -1,3 +1,4 @@
+import { HydratablePortal } from "../utils/hydratable-portal";
 import "@codeui/styles/theme.css";
 import "@codeui/styles/dialog.css";
 import {
@@ -76,7 +77,8 @@ export function Root(props: RootProps) {
 }
 
 export function Portal(props: KDialogPortalProps) {
-	return <KDialog.Portal {...props} />;
+	const context = useDialogContext();
+	return <Show when={context.contentPresent() || context.overlayPresent()}><HydratablePortal {...props} /></Show>;
 }
 
 export function Trigger<T extends ValidComponent = "button">(

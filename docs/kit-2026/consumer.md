@@ -23,11 +23,13 @@ The browser checks component markers, rendering errors, the Button fill against 
 
 Add `--keep` to retain the installed fixtures and production builds. The runner prints their directory. It closes its browser and servers before exiting.
 
-## Known SSR portal limitation
+## Server portals and hydration
 
-The default command still exits nonzero on the existing assertion that expects `Dialog body` and `Popover body` in server HTML. Kobalte portals omit those bodies. CSS extraction fixes style evaluation in Node but does not alter this portal behavior.
+The command checks that Dialog and Popover bodies exist in server HTML. It also writes a server-rendered page with Solid's hydration script and the browser build. The browser check delays module loading to capture the server nodes, then starts hydration. The same two nodes must survive, appear exactly once and move outside the app container into their portal targets. Browser errors fail this check.
 
-Browser rendering, CSS-only rendering, CSS overrides, and the browser and SSR builds are separate assertions. Their passes do not turn the portal assertion into a pass. Do not rely on those portalled bodies for content that must exist before hydration.
+Open or force-mounted Dialog, Popover, Sheet and CommandMenu portals render inline at their declaration on the server. Hydration adopts the server subtree before the native Solid Portal moves it. Closed content stays absent unless force-mounted. Place these portals in a valid flow-content context. The native client-only path still handles portals opened after hydration.
+
+Focused SSR and hydration tests cover open and closed states, defaultOpen, forceMount, nested portals, typed input preservation, delegated events, synchronous autofocus, target changes, close/reopen, Escape, focus return and disposal.
 
 ## Check production CSS selection
 

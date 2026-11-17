@@ -108,7 +108,7 @@ A file in `packages/kit/test` whose name ends in `.ssr.test.tsx` runs in the ser
 - Render the ready component with `renderToString`. The render must not throw.
 - Assert the content a crawler or a no-JavaScript user gets: text, roles, and ARIA state.
 - For a field, assert that the label's `for` matches the input's `id`.
-- For a portalled overlay, assert what renders in place, such as the trigger. Portal content renders only on the client. Write that limit in the page's SSR notes.
+- For Dialog, Popover, Sheet and CommandMenu, assert that open content exists in server HTML and that hydration adopts the same nodes before portalling them. Closed content stays absent unless force-mounted. Other overlay families retain client-only portal content; state that limit in their SSR notes.
 
 The docs site is also a server-rendering consumer. Each demo renders on the server and hydrates on the client. A hydration mismatch warning in the browser console of a docs page is a bug.
 

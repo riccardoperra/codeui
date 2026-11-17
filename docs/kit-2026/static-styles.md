@@ -28,6 +28,10 @@ The packed consumer renders with no vanilla-extract plugin. The CSS-only fixture
 
 Commands and reproduction details are in [consumer.md](consumer.md), [the styles package](../../packages/styles/README.md) and [the verification tools](../../tools/styles/README.md).
 
-## Existing SSR limitation
+## Server portals
 
-The packed consumer command still exits nonzero because it requires Dialog and Popover portal bodies in server HTML. Those bodies were also absent before this migration. Browser rendering, CSS-only rendering, overrides and SSR compilation pass independently. The existing portal-body assertion remains visible and has not been weakened. This change does not alter portal rendering or introduce another framework adapter.
+Dialog, Popover, Sheet and CommandMenu now render open or force-mounted content in server HTML. The private HydratablePortal adopts the same subtree during hydration. A transparent source placeholder keeps the native portal marker connected to its logical parent, so delegated events still bubble there. The native portal relocation effect is queued before eager child effects, preserving synchronous autofocus. Native Portal still owns movement, target changes, refs and cleanup. Client-only portals keep the existing path.
+
+A server-only branch that simply returns children was rejected because the client Portal would skip their hydration. Manual DOM relocation was also rejected because it would have to duplicate Solid's event ancestry and cleanup behavior. The implementation uses no private Solid DOM properties. The two design candidates and the subsequent hydration regressions determined the final source-placeholder and effect-order requirements.
+
+The packed consumer now verifies both server bodies and exact-node adoption in a real browser. Its previous portal assertion is preserved and passes. Other Kobalte overlay families retain their current portal behavior; this change covers the Dialog and Popover primitives and the kit's derived dialog portals.

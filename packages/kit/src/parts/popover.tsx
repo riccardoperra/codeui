@@ -1,8 +1,10 @@
+import { HydratablePortal } from "../utils/hydratable-portal";
 import "@codeui/styles/theme.css";
 import "@codeui/styles/popover.css";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import {
 	Popover as KPopover,
+	usePopoverContext,
 	type PopoverAnchorProps as KPopoverAnchorProps,
 	type PopoverArrowProps as KPopoverArrowProps,
 	type PopoverCloseButtonProps as KPopoverCloseButtonProps,
@@ -14,7 +16,7 @@ import {
 	type PopoverTriggerProps as KPopoverTriggerProps,
 } from "@kobalte/core/popover";
 import { mergeRefs } from "@kobalte/utils";
-import { mergeProps, splitProps, type ValidComponent } from "solid-js";
+import { mergeProps, Show, splitProps, type ValidComponent } from "solid-js";
 import * as styles from "../components/Popover/Popover.css";
 import { IconButton, type IconButtonProps } from "../components/IconButton/IconButton";
 import { CloseIcon } from "../icons";
@@ -31,7 +33,8 @@ export function Root(props: RootProps) {
 }
 
 export function Portal(props: KPopoverPortalProps) {
-	return <KPopover.Portal {...props} />;
+	const context = usePopoverContext();
+	return <Show when={context.contentPresent()}><HydratablePortal {...props} /></Show>;
 }
 
 export function Trigger<T extends ValidComponent = "button">(

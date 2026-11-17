@@ -193,7 +193,7 @@ On open, focus moves to the first focusable element in the panel, or to the pane
 
 ## SSR notes
 
-The portal renders nothing on the server. The panel renders on the client, and only while it is open.
+An open or force-mounted popover includes its panel in server HTML at the Portal declaration. Hydration adopts the existing nodes and moves them to `mount`, or `document.body` by default. Closed content stays absent unless force-mounted. Place Portal in a flow-content context that can contain the panel markup.
 The trigger and the anchor render on the server. Their IDs come from Solid's `createUniqueId`, so they match after hydration.
 
 ## Theming hooks

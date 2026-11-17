@@ -15,3 +15,15 @@ it("server renders every hydration fixture", () => {
 	mkdirSync(dirname(serverHtmlFile), { recursive: true });
 	writeFileSync(serverHtmlFile, JSON.stringify(html, null, 1));
 });
+
+import { portalFixtures } from "./hydration/portal-fixtures";
+import { portalHtmlFile } from "./hydration/paths";
+it("server renders portal hydration fixtures", () => {
+	const html: Record<string, string> = {};
+	for (const [name, fixture] of Object.entries(portalFixtures)) {
+		html[name] = renderToString(fixture);
+		expect(html[name]).toContain("data-portal-node");
+	}
+	mkdirSync(dirname(portalHtmlFile), { recursive: true });
+	writeFileSync(portalHtmlFile, JSON.stringify(html, null, 1));
+});

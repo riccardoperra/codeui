@@ -55,6 +55,6 @@ The CSS provides appearance and state styling. The caller supplies markup, acces
 
 ## Server rendering
 
-The Solid fixture selects the package's `solid` condition and uses `solid({ ssr: true })`. It does not run vanilla-extract. The current portal behavior omits Dialog and Popover bodies from the server HTML. CSS extraction does not change that behavior. Keep server content outside those portals when it must appear before hydration.
+Use the package's `solid` condition with Solid's server compiler, as the fixture does through `solid({ ssr: true })`. Dialog, Popover, Sheet and CommandMenu include their open content in server HTML. Hydration adopts those nodes and moves them to the portal target. Closed content stays absent unless force-mounted.
 
-The packed-consumer check and its remaining portal assertion are documented in `docs/kit-2026/consumer.md` and `examples/` in the repository.
+The packed-consumer SSR and hydration checks are documented in `docs/kit-2026/consumer.md` and `examples/` in the repository.

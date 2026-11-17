@@ -187,7 +187,7 @@ Opening moves focus into the sheet. Modal sheets trap focus. Closing returns foc
 
 ## SSR notes
 
-Root state can render on the server. Portalled overlay and content render only on the client. Input tracking starts on mount. Supply `mount` only after its element exists in the browser.
+Open or force-mounted sheets include their overlay and content in server HTML at the Portal declaration. Hydration adopts those nodes and moves them to the portal target. Closed content stays absent unless force-mounted. Input tracking starts on mount. Supply `mount` only after its element exists in the browser.
 
 ## Theming hooks
 

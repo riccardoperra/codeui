@@ -1,3 +1,4 @@
+import { checkHydration } from "./check-hydration.mjs";
 import { spawnSync } from "node:child_process";
 import {
 	cpSync,
@@ -69,6 +70,34 @@ try {
 			report(`${name} build`, false, error.message);
 			fixtures[name] = { cwd, error: error.message };
 		}
+	}
+	try {
+		if (fixtures.ssr.error) throw new Error("blocked by SSR build failure above");
+		const html = run("node", ["dist/entry.mjs"], fixtures.ssr.cwd);
+		const markers = [
+			'data-cui="button"',
+			'data-cui="text-field-input"',
+			'data-cui="select-trigger"',
+			'data-cui="segmentedControl"',
+			"Dialog body",
+			"Popover body",
+		];
+		const missing = markers.filter(marker => !html.includes(marker));
+		if (!fixtures.vite.error) {
+			const index = join(fixtures.vite.cwd, "dist/index.html");
+			const page = readFileSync(index, "utf8").replace(
+				'<div id="app"></div>',
+				`<div id="app">${html}</div>`,
+			);
+			writeFileSync(join(fixtures.vite.cwd, "dist/ssr.html"), page);
+		}
+		report(
+			"SSR markup",
+			!missing.length,
+			missing.length ? `missing ${missing.join(", ")}` : "all six components present",
+		);
+	} catch (error) {
+		report("SSR markup", false, error.message);
 	}
 	const client = fixtures.vite;
 	const assertions = [
@@ -268,29 +297,24 @@ console.log(JSON.stringify({ button: button({ theme: 'primary', size: 'md' }) + 
 					`${before} -> ${after}`,
 				);
 			}
+			try {
+				const hydratedPage = await browser.newPage();
+				const result = await checkHydration(
+					hydratedPage,
+					`http://127.0.0.1:${port}/ssr.html`,
+				);
+				report(
+					"SSR hydration",
+					result.adoption && !result.errors.length,
+					JSON.stringify(result),
+				);
+				await hydratedPage.close();
+			} catch (error) {
+				report("SSR hydration", false, error.message);
+			}
 		} catch (error) {
 			for (const assertion of assertions) report(assertion, false, error.message);
 		}
-	}
-	try {
-		if (fixtures.ssr.error) throw new Error("blocked by SSR build failure above");
-		const html = run("node", ["dist/entry.mjs"], fixtures.ssr.cwd);
-		const markers = [
-			'data-cui="button"',
-			'data-cui="text-field-input"',
-			'data-cui="select-trigger"',
-			'data-cui="segmentedControl"',
-			"Dialog body",
-			"Popover body",
-		];
-		const missing = markers.filter(marker => !html.includes(marker));
-		report(
-			"SSR markup",
-			!missing.length,
-			missing.length ? `missing ${missing.join(", ")}` : "all six components present",
-		);
-	} catch (error) {
-		report("SSR markup", false, error.message);
 	}
 } catch (error) {
 	report("consumer check infrastructure", false, error.stack);

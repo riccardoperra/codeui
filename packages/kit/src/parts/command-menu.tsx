@@ -1,8 +1,10 @@
+import { HydratablePortal } from "../utils/hydratable-portal";
 import "@codeui/styles/theme.css";
 import "@codeui/styles/command-menu.css";
 import * as K from "@kobalte/core/combobox";
 import {
 	Dialog as KDialog,
+	useDialogContext,
 	type DialogContentProps as KDialogContentProps,
 	type DialogOverlayProps as KDialogOverlayProps,
 	type DialogPortalProps as KDialogPortalProps,
@@ -46,7 +48,8 @@ export function Root(props: RootProps) {
 
 export type PortalProps = KDialogPortalProps;
 export function Portal(props: PortalProps) {
-	return <KDialog.Portal {...props} />;
+	const context = useDialogContext();
+	return <Show when={context.contentPresent() || context.overlayPresent()}><HydratablePortal {...props} /></Show>;
 }
 
 export type TriggerProps<T extends ValidComponent = "button"> = KDialogTriggerProps<T>;

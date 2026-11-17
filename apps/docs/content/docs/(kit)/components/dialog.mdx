@@ -322,7 +322,7 @@ The settings demos focus the current `NavItem` this way, not the search field.
 
 ## SSR notes
 
-The portal renders nothing on the server. The overlay and the panel render on the client after hydration, and only while the dialog is open.
+An open or force-mounted dialog includes its overlay and panel in server HTML at the Portal declaration. Hydration adopts those nodes and moves them to `mount`, or `document.body` by default. Closed dialogs omit their content unless force-mounted. Place Portal in a flow-content context that can contain the dialog markup.
 `Positioner` and the `size` classes are plain class strings, so they are the same on the server and the client.
 IDs for the title and the description come from Solid's `createUniqueId`, so they match between server and client.
 
