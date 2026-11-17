@@ -2,7 +2,7 @@
 [build]
 base = "/"
 publish = "packages/storybook/storybook-static"
-command = "pnpm --filter=@codeui/storybook-playground build"
+command = "pnpm turbo run build --filter=@codeui/storybook-playground"
 
 [build.environment]
 NODE_VERSION = "24"

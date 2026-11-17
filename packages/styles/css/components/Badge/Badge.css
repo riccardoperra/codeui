@@ -2,6 +2,18 @@
 
 @layer cui.components {
   .cui-badge-root {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--cui-space-1);
+    box-sizing: border-box;
+    border-radius: var(--cui-radius-badge);
+    border: var(--cui-border-width) solid transparent;
+    font-family: var(--cui-font-family-sans);
+    font-weight: var(--cui-font-weight-normal);
+    line-height: var(--cui-font-line-height-compact);
+    white-space: nowrap;
+    vertical-align: middle;
+
     &:where([data-tone="neutral"][data-variant="soft"]) {
       background-color: var(--cui-component-badge-root-compound-tone-neutral-variant-soft-background-color);
       color: var(--cui-component-badge-root-compound-tone-neutral-variant-soft-color);
@@ -51,19 +63,6 @@
       border-color: var(--cui-component-badge-root-compound-tone-danger-variant-outline-border-color);
       color: var(--cui-component-badge-root-compound-tone-danger-variant-outline-color);
     }
-  }
-  .cui-badge-root {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--cui-space-1);
-    box-sizing: border-box;
-    border-radius: var(--cui-radius-badge);
-    border: var(--cui-border-width) solid transparent;
-    font-family: var(--cui-font-family-sans);
-    font-weight: var(--cui-font-weight-normal);
-    line-height: var(--cui-font-line-height-compact);
-    white-space: nowrap;
-    vertical-align: middle;
   }
   :where(.cui-badge-root) {
     &[data-size="sm"] {

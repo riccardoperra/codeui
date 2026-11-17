@@ -80,15 +80,13 @@ describe("DropdownMenu", () => {
 		const trigger = renderMenu();
 		trigger.focus();
 		fireEvent.keyDown(trigger, { key: "ArrowDown" });
-		await tick();
-		expect(screen.getByRole("menu")).toHaveAttribute("data-motion", "none");
+		expect(await screen.findByRole("menu")).toHaveAttribute("data-motion", "none");
 	});
 
 	it("pops when a pointer opens it", async () => {
 		const trigger = renderMenu();
 		fireEvent(trigger, new PointerEvent("pointerdown", { bubbles: true, button: 0, pointerType: "mouse" }));
-		await tick();
-		expect(screen.getByRole("menu")).not.toHaveAttribute("data-motion");
+		expect(await screen.findByRole("menu")).not.toHaveAttribute("data-motion");
 	});
 });
 

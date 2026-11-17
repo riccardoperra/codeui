@@ -1,4 +1,4 @@
-import { cleanup, fireEvent, render, screen } from "solid-testing-library";
+import { cleanup, fireEvent, render, screen, waitFor, within } from "solid-testing-library";
 import { createSignal } from "solid-js";
 import { Select } from "../src/components/Select/Select";
 import { Dialog } from "../src/components/Dialog/Dialog";
@@ -156,16 +156,15 @@ describe("DropdownMenu", () => {
 		const onSelect = vi.fn();
 		renderMenu(onSelect);
 		press("ArrowDown");
-		await tick();
-		expect(screen.getByRole("menu")).toBeInTheDocument();
-		expect(document.activeElement).toHaveTextContent("Copy");
+		const menu = await screen.findByRole("menu");
+		const firstItem = within(menu).getByRole("menuitem", { name: "Copy" });
+		await waitFor(() => expect(firstItem).toHaveFocus());
 		press("ArrowDown");
 		expect(document.activeElement).toHaveTextContent("Rename");
 		press("ArrowDown");
 		expect(document.activeElement).toHaveTextContent("Delete");
 		press("ArrowUp");
 		expect(document.activeElement).toHaveTextContent("Rename");
-		const menu = screen.getByRole("menu");
 		press("Enter");
 		await tick();
 		expect(onSelect).toHaveBeenCalledWith("Rename");
@@ -176,8 +175,9 @@ describe("DropdownMenu", () => {
 		const onSelect = vi.fn();
 		const trigger = renderMenu(onSelect);
 		press("ArrowDown");
-		await tick();
-		const menu = screen.getByRole("menu");
+		const menu = await screen.findByRole("menu");
+		const firstItem = within(menu).getByRole("menuitem", { name: "Copy" });
+		await waitFor(() => expect(firstItem).toHaveFocus());
 		press("Escape");
 		await tick();
 		await expectDismissed(menu);

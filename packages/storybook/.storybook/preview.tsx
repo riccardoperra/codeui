@@ -2,6 +2,7 @@ import { Preview } from "storybook-solidjs-vite";
 import { themes, ThemeVars } from "storybook/theming";
 import { DARK_MODE_EVENT_NAME } from "storybook-dark-mode";
 import "./reset.css";
+import "@codeui/styles/theme.css";
 import "./global.css";
 import { DocsContainer, DocsContainerProps } from "@storybook/addon-docs/blocks";
 import { createEffect, createRoot, createSignal, FlowProps } from "solid-js";
