@@ -1,0 +1,14 @@
+{
+  "appSheet": 0,
+  "firstKitSheet": 9,
+  "kitRules": 4,
+  "unlayeredRules": [],
+  "kitBackground": "rgb(0, 131, 229)",
+  "overriddenBackground": "rgb(1, 2, 3)",
+  "checks": {
+    "app CSS loads before kit CSS": true,
+    "kit styles the button": true,
+    "every rule matching the button is layered": true,
+    "unlayered app background wins": true
+  }
+}

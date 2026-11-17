@@ -1,1 +1,1 @@
-{"code":0,"stdout":"[\n  {\n    \"name\": \"ESM entry with reachable bundled modules, minified and gzipped\",\n    \"size\": 106068\n  }\n]\n","stderr":"","cssBytes":0}
+{"code":0,"stdout":"[\n  {\n    \"name\": \"ESM entry with reachable bundled modules, minified and gzipped\",\n    \"size\": 150452\n  }\n]\n","stderr":"","cssBytes":0}

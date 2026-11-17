@@ -1,35 +1,338 @@
-@storybook/core v8.3.0
 
-info => Cleaning outputDir: ../../tools/baseline/storybook-static
-[33mThe CJS build of Vite's Node API is deprecated. See https://vitejs.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.[39m
-info => Loading presets
-WARN The "@storybook/addon-mdx-gfm" addon is meant as a migration assistant for Storybook 8.0; and will likely be removed in a future version.
-WARN It's recommended you read this document:
-WARN https://storybook.js.org/docs/writing-docs/mdx#markdown-tables-arent-rendering-correctly
-WARN 
-WARN Once you've made the necessary changes, you can remove the addon from your package.json and storybook config.
-SB_CORE-SERVER_0002 (CriticalPresetLoadError): Storybook failed to load the following preset: /Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/node_modules/.pnpm/storybook-solidjs-vite@1.0.0-beta.2_storybook@8.3.0_typescript@5.6.2_vite@5.4.4_@types+node@2_z7fts7wwrrihd4dshr5rqdsnbi/node_modules/storybook-solidjs-vite/preset.
+┌  Building storybook v10.6.7
+│
+◇  Cleaning outputDir: ../../.artifacts/main-repeat-static
+│
+◇  Loading presets
+│
+◇  Building manager..
+(node:45582) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+│
+●  Building open services..
+│
+●  Building preview..
+│  Vite vite v5.4.4 building for production...
+│  Vite transforming...
+│  Vite ✓ 588 modules transformed.
+│  Vite rendering chunks...
+│  Vite computing gzip size...
+│  Vite ../../.artifacts/main-repeat-static/assets/context-C0qIqeS4.png
+│  6.12 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/styling-Bk6zjRzU.png
+│  7.24 kB
+│  Vite ../../.artifacts/main-repeat-static/iframe.html
+│  19.06 kB │ gzip:   5.32 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/docs---vsFbMi.png
+│  27.88 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/share-DGA-UcQf.png
+│  40.77 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/accessibility-W_h2acOZ.png
+│  42.34 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/figma-plugin-CH2hELiO.png
+│  44.25 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/theming-D6WJLNoW.png
+│  44.37 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/testing-cbzR9l9r.png
+│  49.31 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/addon-library-BWUCAmyN.png
+│  467.37 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/iframe-C6aqXVcD.css
+│  2.92 kB │ gzip:   1.28 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/JNCCF6MP-4sxnBYeu.js
+│  0.06 kB │ gzip:   0.08 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/index-oTJwH7uu.js
+│  0.09 kB │ gzip:   0.10 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/css-B7PMOWED.js
+│  0.10 kB │ gzip:   0.10 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/formatter-L2YTDE3Q-Bu69XzSN.js
+│  0.18 kB │ gzip:   0.17 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/FLVHQV4A-DGcecA-s.js
+│  0.25 kB │ gzip:   0.22 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/fieldStyle-Dg8_unfB.js
+│  0.25 kB │ gzip:   0.19 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/index-De0rRXPo.js
+│  0.26 kB │ gzip:   0.20 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/OYES4GOP-BIp53plf.js
+│  0.29 kB │ gzip:   0.23 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/vanilla-extract-dynamic.esm-C2vDeUKq.js
+│  0.29 kB │ gzip:   0.24 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/SelectorIcon-DPL5EmS9.js
+│  0.35 kB │ gzip:   0.28 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/E53DB7BS-DN2YNW1T.js
+│  0.36 kB │ gzip:   0.28 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/TextField.css-eF6bwtf2.js
+│  0.39 kB │ gzip:   0.28 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/sizes-IvxxJDdI.js
+│  0.40 kB │ gzip:   0.23 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/VI7QYH27-TyThbS1Y.js
+│  0.42 kB │ gzip:   0.28 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/modality-DetQa4X8.js
+│  0.43 kB │ gzip:   0.29 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/CloseIcon-DpZouPos.js
+│  0.43 kB │ gzip:   0.29 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/createBaseFieldProps-BuV2WbjH.js
+│  0.44 kB │ gzip:   0.29 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/IconButton-B0oKABQC.js
+│  0.45 kB │ gzip:   0.32 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/index-FFYbbOhx.js
+│  0.45 kB │ gzip:   0.24 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/ShareIcon-GQM-YCRg.js
+│  0.48 kB │ gzip:   0.35 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/createFieldLabelProps--bDmzDu1.js
+│  0.49 kB │ gzip:   0.34 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/YFEENJN5-N-Vddl8I.js
+│  0.55 kB │ gzip:   0.32 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/CheckIcon-D_01TPXa.js
+│  0.56 kB │ gzip:   0.38 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/FN6EICGO-BRqmNUBd.js
+│  0.56 kB │ gzip:   0.33 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/responsive-CoL_Fp5n.js
+│  0.63 kB │ gzip:   0.40 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/Section-BG_efbrs.js
+│  0.63 kB │ gzip:   0.30 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/SvgIcon-U3Ls7pwG.js
+│  0.67 kB │ gzip:   0.46 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/PreviousIcon-D_W535i3.js
+│  0.73 kB │ gzip:   0.38 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/ChevronDownIcon-C9BN-PYp.js
+│  0.81 kB │ gzip:   0.40 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/createFieldMessageProps-Bnb06Qc-.js
+│  0.82 kB │ gzip:   0.41 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/motion.css-re4ZSyXW.js
+│  0.97 kB │ gzip:   0.51 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/ToneIcon-CaqKNWvU.js
+│  1.00 kB │ gzip:   0.46 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/3DLZMX4Z-DeyLTAof.js
+│  1.05 kB │ gzip:   0.54 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/index-CotUexfL.js
+│  1.08 kB │ gzip:   0.53 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/preload-helper-CpmhqaAX.js
+│  1.13 kB │ gzip:   0.67 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/UKTBL2JL-gFq19ygo.js
+│  1.13 kB │ gzip:   0.62 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/text-D-g4aIhN.js
+│  1.29 kB │ gzip:   0.65 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/stack-BfTeoYka.js
+│  1.67 kB │ gzip:   0.74 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/SOM3K36D-DV7dsaH-.js
+│  1.96 kB │ gzip:   1.01 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/TextField-BkIb-qSa.js
+│  1.97 kB │ gzip:   0.77 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/Field.css-SQTyErNd.js
+│  1.99 kB │ gzip:   0.87 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/Spinner-DONyMuCd.js
+│  2.11 kB │ gzip:   0.93 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/GSF7SFRW-DVYZrXRk.js
+│  2.19 kB │ gzip:   1.07 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/Text.stories-CTJy61id.js
+│  2.33 kB │ gzip:   0.85 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/ZZYKR3VO-CPqQ7tjy.js
+│  2.58 kB │ gzip:   1.23 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/Tabs--GzkMpsG.js
+│  2.79 kB │ gzip:   1.19 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/Spinner.stories-YWa8C9XV.js
+│  2.82 kB │ gzip:   1.04 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/BDJEWKR2-Dx8Ozpa-.js
+│  2.92 kB │ gzip:   1.05 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/Stack.stories-uHSyJ-8o.js
+│  2.93 kB │ gzip:   0.93 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/Icons.stories-CMvskce7.js
+│  3.33 kB │ gzip:   1.33 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/Link.stories-Cuf-eoE9.js
+│  3.42 kB │ gzip:   1.28 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/Badge-CgLqTnBm.js
+│  3.45 kB │ gzip:   1.36 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/Switch.stories-CaKyPnIU.js
+│  3.63 kB │ gzip:   1.21 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/TSB6MOZK-CBQP9WS3.js
+│  4.02 kB │ gzip:   1.72 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/Badge.stories-CWyc9r_z.js
+│  4.16 kB │ gzip:   1.20 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/Checkbox.stories-CXmcRdT0.js
+│  4.34 kB │ gzip:   1.44 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/LP6E37CW-C7gxWGwz.js
+│  4.67 kB │ gzip:   1.95 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/Kbd.stories-D3wYpNaA.js
+│  4.68 kB │ gzip:   1.57 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/open-source-D4-SCn5w.js
+│  4.87 kB │ gzip:   1.91 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/Toast.stories-CN62-MLO.js
+│  4.88 kB │ gzip:   1.84 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/OptionCard.stories-CI1YqSWG.js
+│  5.15 kB │ gzip:   1.50 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/dialog-focus-Bj551l_A.js
+│  5.68 kB │ gzip:   2.14 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/H7BK6JF7-B6mNb-ed.js
+│  5.91 kB │ gzip:   2.28 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/Button-CS4PgJuD.js
+│  6.24 kB │ gzip:   2.31 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/Pagination.stories-DMQp9-oQ.js
+│  6.68 kB │ gzip:   2.48 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/SegmentedControlItem-DCqwcfqh.js
+│  6.80 kB │ gzip:   2.60 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/Skeleton.stories-hFhTkUC4.js
+│  7.26 kB │ gzip:   2.41 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/2UV3VFID-CxPxizTR.js
+│  7.95 kB │ gzip:   2.86 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/Progress.stories-CRQlXZbp.js
+│  8.14 kB │ gzip:   2.58 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/5WXHJDCZ-2lL-vdgS.js
+│  8.19 kB │ gzip:   3.46 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/Alert.stories-BQxL36D_.js
+│  8.61 kB │ gzip:   2.79 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/OptionCard-B5Qd0NyC.js
+│  8.66 kB │ gzip:   2.56 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/index-DTc8N-0A.js
+│  9.14 kB │ gzip:   3.63 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/CheckBox-CuH2m5yI.js
+│  9.25 kB │ gzip:   3.53 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/PTWD4LYA-DKPZpZq3.js
+│  9.26 kB │ gzip:   3.40 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/IconButton.stories-CSPlduRy.js
+│  9.36 kB │ gzip:   2.06 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/Tabs.stories-C487NEqe.js
+│  9.62 kB │ gzip:   2.08 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/Switch-DKnWlH5x.js
+│  9.76 kB │ gzip:   3.31 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/Button.stories-BmXb9aGK.js
+│  9.91 kB │ gzip:   2.15 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/Toaster.stories-Cku2--oH.js
+│  10.89 kB │ gzip:   3.84 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/RadioList.stories-BEvqW7X7.js
+│  12.27 kB │ gzip:   3.59 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/TextField.stories-C-tif_FD.js
+│  13.61 kB │ gzip:   2.92 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/Tooltip.stories-BlO6RmfA.js
+│  13.90 kB │ gzip:   4.74 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/dialog-JE9uKI-Y.js
+│  15.18 kB │ gzip:   4.59 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/RFN6X5VH-D-AAQR4p.js
+│  15.57 kB │ gzip:   4.93 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/toast-CpOC_yAY.js
+│  16.78 kB │ gzip:   5.92 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/TextArea.stories-DmdA_S1q.js
+│  16.92 kB │ gzip:   3.81 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/T3JFWUDL-BXmYWEJI.js
+│  17.17 kB │ gzip:   5.96 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/NumberField.stories-Dzwh_IV3.js
+│  17.25 kB │ gzip:   3.56 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/SegmentedControl.stories-9l6YJrUj.js
+│  17.66 kB │ gzip:   3.46 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/Popover.stories-BW99ci96.js
+│  17.96 kB │ gzip:   5.18 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/CommandMenu.stories-Bwv4unZ-.js
+│  18.90 kB │ gzip:   6.13 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/Accordion.stories-DrYlnm-a.js
+│  19.70 kB │ gzip:   6.06 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/Slider.stories-BhMtIwnZ.js
+│  22.70 kB │ gzip:   6.99 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/OGE3DKII-JFNs0Ib6.js
+│  23.31 kB │ gzip:   9.16 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/Sheet.stories-CzTzYbtl.js
+│  23.36 kB │ gzip:   7.09 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/Configure-DLro6Xn6.js
+│  25.28 kB │ gzip:  10.92 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/Settings.stories-J7TvMv8C.js
+│  26.71 kB │ gzip:   6.17 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/Combobox.stories-ByK5Zoqn.js
+│  27.49 kB │ gzip:   6.97 kB
+│  Vite ../../.artifacts/main-repeat-static/vite-inject-mocker-entry.js
+│  28.53 kB │ gzip:   9.94 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/Listbox.stories-Dza6OOJ_.js
+│  28.58 kB │ gzip:   8.47 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/NumberField-p8b-AO9K.js
+│  29.19 kB │ gzip:   9.85 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/matchers-JIUQ3HVY-k91oilwm.js
+│  29.39 kB │ gzip:  10.08 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/Color-6AOWCN3U-DsCdn7bW.js
+│  30.29 kB │ gzip:  11.46 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/Dialog.stories-D-dnJu9T.js
+│  31.28 kB │ gzip:   6.34 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/WithTooltip-CDUNV5IS-ye6csezz.js
+│  33.17 kB │ gzip:  11.64 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/DropdownMenu.stories-BMp_mg7u.js
+│  34.22 kB │ gzip:   9.40 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/Select.stories-C3VXHpuo.js
+│  35.06 kB │ gzip:  10.20 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/syntaxhighlighter-4REYKNEV-B6EgN9PO.js
+│  77.75 kB │ gzip:  27.25 kB
+│  Vite
+│  ../../.artifacts/main-repeat-static/assets/DocsRenderer-JROSPFPF-CPOULQNK.js
+│  210.47 kB │ gzip:  65.99 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/axe-DxclvIao.js
+│  575.30 kB │ gzip: 159.17 kB
+│  Vite ../../.artifacts/main-repeat-static/assets/iframe-BP1DKAiW.js
+│  1,902.97 kB │ gzip: 577.68 kB
+│
+▲  Vite
+│  (!) Some chunks are larger than 500 kB after minification. Consider:
+│  - Using dynamic import() to code-split the application
+│  - Use build.rollupOptions.output.manualChunks to improve chunking:
+│  ]8;;https://rollupjs.org/configuration-options/#output-manualchunkshttps://rollupjs.org/configuration-options/#output-manualchunks]8;;
+│  - Adjust chunk size limit for this warning via
+│  build.chunkSizeWarningLimit.
+│  Vite ✓ built in 15.94s
+│
+◇  Output directory:
+│  /Users/riccardoperra/.t3/worktrees/codeui/t3-5e5d8b22-74de522101c3a0d0/.artifacts/main-repeat-static
+│
+└  Storybook build completed successfully
 
-Please check whether your setup is correct, the Storybook dependencies (and their peer dependencies) are installed correctly and there are no package version clashes.
-
-If you believe this is a bug, please open an issue on Github.
-
-ReferenceError: module is not defined in ES module scope
-This file is being treated as an ES module because it has a '.js' file extension and '/Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/node_modules/.pnpm/storybook-solidjs-vite@1.0.0-beta.2_storybook@8.3.0_typescript@5.6.2_vite@5.4.4_@types+node@2_z7fts7wwrrihd4dshr5rqdsnbi/node_modules/storybook-solidjs-vite/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension.
-    at file:///Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/node_modules/.pnpm/storybook-solidjs-vite@1.0.0-beta.2_storybook@8.3.0_typescript@5.6.2_vite@5.4.4_@types+node@2_z7fts7wwrrihd4dshr5rqdsnbi/node_modules/storybook-solidjs-vite/preset.js:1:1
-    at ModuleJobSync.runSync (node:internal/modules/esm/module_job:673:37)
-    at ModuleLoader.importSyncForRequire (node:internal/modules/esm/loader:350:47)
-    at loadESMFromCJS (node:internal/modules/cjs/loader:1752:24)
-    at Module._compile (node:internal/modules/cjs/loader:1916:5)
-    at node:internal/modules/cjs/loader:2074:10
-    at Object.newLoader (/Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/node_modules/.pnpm/esbuild-register@3.6.0_esbuild@0.23.1/node_modules/esbuild-register/dist/node.js:2262:9)
-    at extensions..js (/Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/node_modules/.pnpm/esbuild-register@3.6.0_esbuild@0.23.1/node_modules/esbuild-register/dist/node.js:4833:24)
-    at Module.load (node:internal/modules/cjs/loader:1656:32)
-    at Module._load (node:internal/modules/cjs/loader:1448:12)
-
-More info: 
-
-    at loadPreset (/Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/node_modules/.pnpm/@storybook+core@8.3.0/node_modules/@storybook/core/dist/common/index.cjs:139445:13)
-undefined
-/Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/packages/storybook:
- ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 1: storybook build --output-dir /Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/tools/baseline/storybook-static --disable-telemetry

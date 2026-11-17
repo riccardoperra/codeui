@@ -1,0 +1,18 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: dark page, light scope: :root radius override reaches the button
+
+'12px' !== '3px'
+
+    at file:///Users/riccardoperra/.t3/worktrees/codeui/t3-5e5d8b22-74de522101c3a0d0/tools/baseline/theme-overrides.mjs:31:11 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: '12px',
+  expected: '3px',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.5.0

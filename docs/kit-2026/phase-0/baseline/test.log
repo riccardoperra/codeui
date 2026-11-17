@@ -1,13 +1,13 @@
 
-> codeui-monorepo@0.0.1 test /Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d
-> turbo run test --filter=!@codeui/*playground
+> codeui-monorepo@0.0.1 test /Users/riccardoperra/.t3/worktrees/codeui/t3-5e5d8b22-74de522101c3a0d0
+> turbo run test --filter=!@codeui/*playground && pnpm run test:stories
 
-• Packages in scope: @codeui/kit, @codeui/vanilla-extract
-• Running test in 2 packages
+• Packages in scope: @codeui/docs, @codeui/docs-demos, @codeui/examples, @codeui/kit, @codeui/vanilla-extract
+• Running test in 5 packages
 • Remote caching disabled
-@codeui/vanilla-extract:build: cache hit, replaying logs d1f53406ee907457
+@codeui/vanilla-extract:build: cache hit, replaying logs 48b83c1b21db1509
 @codeui/vanilla-extract:build: 
-@codeui/vanilla-extract:build: > @codeui/vanilla-extract@0.2.0 build /Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/packages/vanilla-extract
+@codeui/vanilla-extract:build: > @codeui/vanilla-extract@0.2.0 build /Users/riccardoperra/.t3/worktrees/codeui/t3-5e5d8b22-74de522101c3a0d0/packages/vanilla-extract
 @codeui/vanilla-extract:build: > rollup -c
 @codeui/vanilla-extract:build: 
 @codeui/vanilla-extract:build: [36m
@@ -17,56 +17,921 @@
 @codeui/vanilla-extract:build: [1mpath[22m (imported by src/vite-plugin/index.ts)
 @codeui/vanilla-extract:build: [1mnode:fs[22m (imported by src/esbuild/vanillaCssTsFilesLoader.ts)
 @codeui/vanilla-extract:build: [1mnode:path[22m (imported by src/esbuild/vanillaCssTsFilesLoader.ts)
-@codeui/vanilla-extract:build: [1m[33m(!) Plugin typescript: @rollup/plugin-typescript TS2688: Cannot find type definition file for '@testing-library/jest-dom'.
-@codeui/vanilla-extract:build:   The file is in the program because:
-@codeui/vanilla-extract:build:     Entry point of type library '@testing-library/jest-dom' specified in compilerOptions[39m[22m
-@codeui/vanilla-extract:build: [32mcreated [1mdist, dist[22m in [1m488ms[22m[39m
-@codeui/kit:test: cache miss, executing 559b404249ac4652
+@codeui/vanilla-extract:build: [32mcreated [1mdist, dist[22m in [1m1.1s[22m[39m
+@codeui/kit:build: cache hit, replaying logs c355b473c5aae8e9
+@codeui/kit:build: 
+@codeui/kit:build: > @codeui/kit@0.1.5 build /Users/riccardoperra/.t3/worktrees/codeui/t3-5e5d8b22-74de522101c3a0d0/packages/kit
+@codeui/kit:build: > rollup -c rollup.config.js
+@codeui/kit:build: 
+@codeui/kit:build: {
+@codeui/kit:build:   input: [
+@codeui/kit:build:     'src/index.tsx',
+@codeui/kit:build:     'src/tokens.ts',
+@codeui/kit:build:     'src/parts/dialog.tsx',
+@codeui/kit:build:     'src/parts/popover.tsx',
+@codeui/kit:build:     'src/parts/stack.tsx',
+@codeui/kit:build:     'src/parts/text.tsx',
+@codeui/kit:build:     'src/parts/switch.tsx',
+@codeui/kit:build:     'src/parts/slider.tsx',
+@codeui/kit:build:     'src/parts/progress.tsx',
+@codeui/kit:build:     'src/parts/combobox.tsx',
+@codeui/kit:build:     'src/parts/command-menu.tsx',
+@codeui/kit:build:     'src/parts/kbd.tsx',
+@codeui/kit:build:     'src/parts/badge.tsx',
+@codeui/kit:build:     'src/parts/spinner.tsx',
+@codeui/kit:build:     'src/parts/skeleton.tsx',
+@codeui/kit:build:     'src/parts/alert.tsx',
+@codeui/kit:build:     'src/parts/toast.tsx',
+@codeui/kit:build:     'src/parts/option-card.tsx',
+@codeui/kit:build:     'src/parts/accordion.tsx',
+@codeui/kit:build:     'src/parts/sheet.tsx',
+@codeui/kit:build:     'src/parts/settings.tsx'
+@codeui/kit:build:   ],
+@codeui/kit:build:   external: [
+@codeui/kit:build:     'solid-js',
+@codeui/kit:build:     'solid-js/web',
+@codeui/kit:build:     'solid-js/store',
+@codeui/kit:build:     '@kobalte/core',
+@codeui/kit:build:     '@kobalte/utils',
+@codeui/kit:build:     '@kobalte/vanilla-extract',
+@codeui/kit:build:     '@maskito/core',
+@codeui/kit:build:     '@maskito/kit',
+@codeui/kit:build:     '@radix-ui/colors',
+@codeui/kit:build:     '@solid-primitives/pagination',
+@codeui/kit:build:     '@solid-primitives/scheduled',
+@codeui/kit:build:     '@tanstack/solid-virtual',
+@codeui/kit:build:     '@vanilla-extract/css',
+@codeui/kit:build:     '@vanilla-extract/dynamic',
+@codeui/kit:build:     '@vanilla-extract/recipes',
+@codeui/kit:build:     'polished',
+@codeui/kit:build:     'solid-js',
+@codeui/kit:build:     'solid-presence',
+@codeui/kit:build:     'solid-prevent-scroll',
+@codeui/kit:build:     /node_modules\/@kobalte/,
+@codeui/kit:build:     /node_modules\/@floating-ui/,
+@codeui/kit:build:     /node_modules\/@solid-primitives/,
+@codeui/kit:build:     /node_modules\/@corvu/
+@codeui/kit:build:   ],
+@codeui/kit:build:   output: [
+@codeui/kit:build:     {
+@codeui/kit:build:       format: 'esm',
+@codeui/kit:build:       preserveModules: true,
+@codeui/kit:build:       preserveModulesRoot: 'src',
+@codeui/kit:build:       dir: 'dist/esm'
+@codeui/kit:build:     },
+@codeui/kit:build:     {
+@codeui/kit:build:       format: 'cjs',
+@codeui/kit:build:       preserveModules: true,
+@codeui/kit:build:       preserveModulesRoot: 'src',
+@codeui/kit:build:       dir: 'dist/cjs',
+@codeui/kit:build:       entryFileNames: '[name].cjs'
+@codeui/kit:build:     },
+@codeui/kit:build:     {
+@codeui/kit:build:       format: 'esm',
+@codeui/kit:build:       preserveModules: true,
+@codeui/kit:build:       preserveModulesRoot: 'src',
+@codeui/kit:build:       dir: 'dist/esm'
+@codeui/kit:build:     },
+@codeui/kit:build:     {
+@codeui/kit:build:       format: 'cjs',
+@codeui/kit:build:       preserveModules: true,
+@codeui/kit:build:       preserveModulesRoot: 'src',
+@codeui/kit:build:       dir: 'dist/cjs',
+@codeui/kit:build:       entryFileNames: '[name].cjs'
+@codeui/kit:build:     }
+@codeui/kit:build:   ],
+@codeui/kit:build:   plugins: [
+@codeui/kit:build:     {
+@codeui/kit:build:       name: 'babel',
+@codeui/kit:build:       options: [Function: options],
+@codeui/kit:build:       resolveId: [Function: resolveId],
+@codeui/kit:build:       load: [Function: load],
+@codeui/kit:build:       transform: [Function: transform]
+@codeui/kit:build:     },
+@codeui/kit:build:     {
+@codeui/kit:build:       name: 'node-resolve',
+@codeui/kit:build:       version: '15.2.3',
+@codeui/kit:build:       buildStart: [Function: buildStart],
+@codeui/kit:build:       generateBundle: [Function: generateBundle],
+@codeui/kit:build:       resolveId: [Object],
+@codeui/kit:build:       load: [Function: load],
+@codeui/kit:build:       getPackageInfoForId: [Function: getPackageInfoForId]
+@codeui/kit:build:     },
+@codeui/kit:build:     { name: 'ts', buildEnd: [Function: buildEnd] },
+@codeui/kit:build:     { name: 'instructions', buildEnd: [Function: buildEnd] },
+@codeui/kit:build:     { name: 'generate', buildEnd: [Function: buildEnd] }
+@codeui/kit:build:   ]
+@codeui/kit:build: }
+@codeui/kit:build: [36m
+@codeui/kit:build: [1msrc/index.tsx, src/tokens.ts, src/parts/dialog.tsx, src/parts/popover.tsx, src/parts/stack.tsx, src/parts/text.tsx, src/parts/switch.tsx, src/parts/slider.tsx, src/parts/progress.tsx, src/parts/combobox.tsx, src/parts/command-menu.tsx, src/parts/kbd.tsx, src/parts/badge.tsx, src/parts/spinner.tsx, src/parts/skeleton.tsx, src/parts/alert.tsx, src/parts/toast.tsx, src/parts/option-card.tsx, src/parts/accordion.tsx, src/parts/sheet.tsx, src/parts/settings.tsx[22m → [1mdist/esm, dist/cjs, dist/esm, dist/cjs[22m...[39m
+@codeui/kit:build: Browserslist: caniuse-lite is outdated. Please run:
+@codeui/kit:build:   npx update-browserslist-db@latest
+@codeui/kit:build:   Why you should do it regularly: https://github.com/browserslist/update-db#readme
+@codeui/kit:build: [32mcreated [1mdist/esm, dist/cjs, dist/esm, dist/cjs[22m in [1m6.3s[22m[39m
+@codeui/kit:test: cache hit, replaying logs 66da86a1f49e95fb
 @codeui/kit:test: 
-@codeui/kit:test: > @codeui/kit@0.1.5 test /Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/packages/kit
-@codeui/kit:test: > pnpm run test:client && pnpm run test:ssr
+@codeui/kit:test: > @codeui/kit@0.1.5 test /Users/riccardoperra/.t3/worktrees/codeui/t3-5e5d8b22-74de522101c3a0d0/packages/kit
+@codeui/kit:test: > pnpm run test:client && pnpm run test:ssr && pnpm run test:hydration && pnpm run test:tokens-consumer
 @codeui/kit:test: 
 @codeui/kit:test: 
-@codeui/kit:test: > @codeui/kit@0.1.5 test:client /Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/packages/kit
-@codeui/kit:test: > jest --config jest.config.ts
+@codeui/kit:test: > @codeui/kit@0.1.5 test:client /Users/riccardoperra/.t3/worktrees/codeui/t3-5e5d8b22-74de522101c3a0d0/packages/kit
+@codeui/kit:test: > vitest run --project browser
 @codeui/kit:test: 
-@codeui/kit:test: watchman warning:  Recrawled this watch 1 time, most recently because:
-@codeui/kit:test: MustScanSubDirs UserDroppedTo resolve, please review the information on
-@codeui/kit:test: https://facebook.github.io/watchman/docs/troubleshooting.html#recrawl
-@codeui/kit:test: To clear this warning, run:
-@codeui/kit:test: `watchman watch-del '/Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d' ; watchman watch-project '/Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d'`
 @codeui/kit:test: 
-@codeui/kit:test: ts-jest[ts-jest-transformer] (WARN) Define `ts-jest` config under `globals` is deprecated. Please do
-@codeui/kit:test: transform: {
-@codeui/kit:test:     <transform_regex>: ['ts-jest', { /* ts-jest config goes here in Jest */ }],
-@codeui/kit:test: },
-@codeui/kit:test: See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/presets#advanced
-@codeui/kit:test: FAIL test/index.test.tsx
-@codeui/kit:test:   ● Test suite failed to run
+@codeui/kit:test: [1m[46m RUN [49m[22m [36mv3.2.7 [39m[90m/Users/riccardoperra/.t3/worktrees/codeui/t3-5e5d8b22-74de522101c3a0d0/packages/kit[39m
 @codeui/kit:test: 
-@codeui/kit:test:     [96mtest/index.test.tsx[0m:[93m3[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../src"' has no exported member 'createHello'.
+@codeui/kit:test:  [32m✓[39m [30m[42m browser (chromium) [49m[39m test/dialog-layouts.test.tsx [2m([22m[2m10 tests[22m[2m)[22m[32m 57[2mms[22m[39m
+@codeui/kit:test:  [32m✓[39m [30m[42m browser (chromium) [49m[39m test/overlay-parts.test.tsx [2m([22m[2m16 tests[22m[2m)[22m[32m 140[2mms[22m[39m
+@codeui/kit:test:  [32m✓[39m [30m[42m browser (chromium) [49m[39m test/combobox.test.tsx [2m([22m[2m10 tests[22m[2m)[22m[32m 152[2mms[22m[39m
+@codeui/kit:test:  [32m✓[39m [30m[42m browser (chromium) [49m[39m test/command-menu.test.tsx [2m([22m[2m9 tests[22m[2m)[22m[32m 198[2mms[22m[39m
+@codeui/kit:test:  [32m✓[39m [30m[42m browser (chromium) [49m[39m test/keyboard.test.tsx [2m([22m[2m13 tests[22m[2m)[22m[32m 222[2mms[22m[39m
+@codeui/kit:test:  [32m✓[39m [30m[42m browser (chromium) [49m[39m test/sheet.test.tsx [2m([22m[2m14 tests[22m[2m)[22m[33m 345[2mms[22m[39m
+@codeui/kit:test:  [32m✓[39m [30m[42m browser (chromium) [49m[39m test/command-menu-parts.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[32m 64[2mms[22m[39m
+@codeui/kit:test:  [32m✓[39m [30m[42m browser (chromium) [49m[39m test/light-palette.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+@codeui/kit:test:  [32m✓[39m [30m[42m browser (chromium) [49m[39m test/accordion.test.tsx [2m([22m[2m9 tests[22m[2m)[22m[32m 94[2mms[22m[39m
+@codeui/kit:test:  [32m✓[39m [30m[42m browser (chromium) [49m[39m test/field-gaps.test.tsx [2m([22m[2m15 tests[22m[2m)[22m[32m 43[2mms[22m[39m
+@codeui/kit:test:  [32m✓[39m [30m[42m browser (chromium) [49m[39m test/settings.test.tsx [2m([22m[2m8 tests[22m[2m)[22m[32m 26[2mms[22m[39m
+@codeui/kit:test:  [32m✓[39m [30m[42m browser (chromium) [49m[39m test/combobox-parts.test.tsx [2m([22m[2m6 tests[22m[2m)[22m[32m 42[2mms[22m[39m
+@codeui/kit:test:  [32m✓[39m [30m[42m browser (chromium) [49m[39m test/display.test.tsx [2m([22m[2m14 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+@codeui/kit:test:  [32m✓[39m [30m[42m browser (chromium) [49m[39m test/feedback.test.tsx [2m([22m[2m15 tests[22m[2m)[22m[33m 446[2mms[22m[39m
+@codeui/kit:test:  [32m✓[39m [30m[42m browser (chromium) [49m[39m test/stack-text.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+@codeui/kit:test:  [32m✓[39m [30m[42m browser (chromium) [49m[39m test/slider-progress.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+@codeui/kit:test:  [32m✓[39m [30m[42m browser (chromium) [49m[39m test/switch.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+@codeui/kit:test:  [32m✓[39m [30m[42m browser (chromium) [49m[39m test/derived-palette.test.ts [2m([22m[2m28 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+@codeui/kit:test:  [32m✓[39m [30m[42m browser (chromium) [49m[39m test/brand.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+@codeui/kit:test:  [32m✓[39m [30m[42m browser (chromium) [49m[39m test/toaster.test.tsx [2m([22m[2m23 tests[22m[2m)[22m[33m 1614[2mms[22m[39m
+@codeui/kit:test:  [32m✓[39m [30m[42m browser (chromium) [49m[39m test/sheet-drag.test.tsx [2m([22m[2m9 tests[22m[2m)[22m[33m 685[2mms[22m[39m
+@codeui/kit:test:  [32m✓[39m [30m[42m browser (chromium) [49m[39m test/option-card.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[32m 14[2mms[22m[39m
+@codeui/kit:test:  [32m✓[39m [30m[42m browser (chromium) [49m[39m test/tokens.test.ts [2m([22m[2m290 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+@codeui/kit:test:  [32m✓[39m [30m[42m browser (chromium) [49m[39m test/overlay-motion.test.tsx [2m([22m[2m8 tests[22m[2m)[22m[33m 588[2mms[22m[39m
+@codeui/kit:test:    [33m[2m✓[22m[39m Tooltip[2m > [22mpops on hover [33m 404[2mms[22m[39m
+@codeui/kit:test:  [32m✓[39m [30m[42m browser (chromium) [49m[39m test/component-bugs.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+@codeui/kit:test:  [32m✓[39m [30m[42m browser (chromium) [49m[39m test/number-field.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+@codeui/kit:test:  [32m✓[39m [30m[42m browser (chromium) [49m[39m test/select-form.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+@codeui/kit:test:  [32m✓[39m [30m[42m browser (chromium) [49m[39m test/part-styles.test.tsx [2m([22m[2m9 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+@codeui/kit:test:  [32m✓[39m [30m[42m browser (chromium) [49m[39m test/select-classes.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+@codeui/kit:test:  [32m✓[39m [30m[42m browser (chromium) [49m[39m test/index.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+@codeui/kit:test:  [32m✓[39m [30m[42m browser (chromium) [49m[39m test/tooltip-keyboard.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 3[2mms[22m[39m
+@codeui/kit:test:  [32m✓[39m [30m[42m browser (chromium) [49m[39m test/button-loading.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 4[2mms[22m[39m
 @codeui/kit:test: 
-@codeui/kit:test:     [7m3[0m import { createHello, Hello } from "../src"
-@codeui/kit:test:     [7m [0m [91m         ~~~~~~~~~~~[0m
-@codeui/kit:test:     [96mtest/index.test.tsx[0m:[93m3[0m:[93m23[0m - [91merror[0m[90m TS2305: [0mModule '"../src"' has no exported member 'Hello'.
+@codeui/kit:test: [2m Test Files [22m [1m[32m32 passed[39m[22m[90m (32)[39m
+@codeui/kit:test: [2m      Tests [22m [1m[32m585 passed[39m[22m[90m (585)[39m
+@codeui/kit:test: [2m   Start at [22m 22:38:37
+@codeui/kit:test: [2m   Duration [22m 5.68s[2m (transform 0ms, setup 1.48s, collect 15.27s, tests 4.86s, environment 0ms, prepare 136.03s)[22m
 @codeui/kit:test: 
-@codeui/kit:test:     [7m3[0m import { createHello, Hello } from "../src"
-@codeui/kit:test:     [7m [0m [91m                      ~~~~~[0m
 @codeui/kit:test: 
-@codeui/kit:test: Test Suites: 1 failed, 1 total
-@codeui/kit:test: Tests:       0 total
-@codeui/kit:test: Snapshots:   0 total
-@codeui/kit:test: Time:        1.252 s
-@codeui/kit:test: Ran all test suites.
-@codeui/kit:test:  ELIFECYCLE  Command failed with exit code 1.
-@codeui/kit:test:  ELIFECYCLE  Test failed. See above for more details.
-@codeui/kit:test: ERROR: command finished with error: command (/Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/packages/kit) /opt/homebrew/bin/pnpm run test exited (1)
-@codeui/kit#test: command (/Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/packages/kit) /opt/homebrew/bin/pnpm run test exited (1)
+@codeui/kit:test: > @codeui/kit@0.1.5 test:ssr /Users/riccardoperra/.t3/worktrees/codeui/t3-5e5d8b22-74de522101c3a0d0/packages/kit
+@codeui/kit:test: > vitest run --project ssr
+@codeui/kit:test: 
+@codeui/kit:test: 
+@codeui/kit:test: [1m[46m RUN [49m[22m [36mv3.2.7 [39m[90m/Users/riccardoperra/.t3/worktrees/codeui/t3-5e5d8b22-74de522101c3a0d0/packages/kit[39m
+@codeui/kit:test: 
+@codeui/kit:test:  [32m✓[39m [30m[45m ssr [49m[39m test/accordion.ssr.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 14[2mms[22m[39m
+@codeui/kit:test:  [32m✓[39m [30m[45m ssr [49m[39m test/index.ssr.test.tsx [2m([22m[2m21 tests[22m[2m)[22m[32m 20[2mms[22m[39m
+@codeui/kit:test:  [32m✓[39m [30m[45m ssr [49m[39m test/hydration.ssr.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 31[2mms[22m[39m
+@codeui/kit:test: 
+@codeui/kit:test: [2m Test Files [22m [1m[32m3 passed[39m[22m[90m (3)[39m
+@codeui/kit:test: [2m      Tests [22m [1m[32m23 passed[39m[22m[90m (23)[39m
+@codeui/kit:test: [2m   Start at [22m 22:38:43
+@codeui/kit:test: [2m   Duration [22m 1.68s[2m (transform 1.74s, setup 214ms, collect 3.26s, tests 64ms, environment 0ms, prepare 115ms)[22m
+@codeui/kit:test: 
+@codeui/kit:test: 
+@codeui/kit:test: > @codeui/kit@0.1.5 test:hydration /Users/riccardoperra/.t3/worktrees/codeui/t3-5e5d8b22-74de522101c3a0d0/packages/kit
+@codeui/kit:test: > vitest run --project ssr test/hydration.ssr && vitest run --project hydration
+@codeui/kit:test: 
+@codeui/kit:test: 
+@codeui/kit:test: [1m[46m RUN [49m[22m [36mv3.2.7 [39m[90m/Users/riccardoperra/.t3/worktrees/codeui/t3-5e5d8b22-74de522101c3a0d0/packages/kit[39m
+@codeui/kit:test: 
+@codeui/kit:test:  [32m✓[39m [30m[45m ssr [49m[39m test/hydration.ssr.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 29[2mms[22m[39m
+@codeui/kit:test: 
+@codeui/kit:test: [2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+@codeui/kit:test: [2m      Tests [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+@codeui/kit:test: [2m   Start at [22m 22:38:45
+@codeui/kit:test: [2m   Duration [22m 1.51s[2m (transform 939ms, setup 39ms, collect 1.25s, tests 29ms, environment 0ms, prepare 36ms)[22m
+@codeui/kit:test: 
+@codeui/kit:test: 
+@codeui/kit:test: [1m[46m RUN [49m[22m [36mv3.2.7 [39m[90m/Users/riccardoperra/.t3/worktrees/codeui/t3-5e5d8b22-74de522101c3a0d0/packages/kit[39m
+@codeui/kit:test: 
+@codeui/kit:test:  [32m✓[39m [30m[46m hydration (chromium) [49m[39m test/props-once.hydration.test.tsx [2m([22m[2m31 tests[22m[2m)[22m[32m 37[2mms[22m[39m
+@codeui/kit:test: 
+@codeui/kit:test: [2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+@codeui/kit:test: [2m      Tests [22m [1m[32m31 passed[39m[22m[90m (31)[39m
+@codeui/kit:test: [2m   Start at [22m 22:38:47
+@codeui/kit:test: [2m   Duration [22m 1.48s[2m (transform 0ms, setup 52ms, collect 780ms, tests 37ms, environment 0ms, prepare 685ms)[22m
+@codeui/kit:test: 
+@codeui/kit:test: 
+@codeui/kit:test: > @codeui/kit@0.1.5 test:tokens-consumer /Users/riccardoperra/.t3/worktrees/codeui/t3-5e5d8b22-74de522101c3a0d0/packages/kit
+@codeui/kit:test: > node fixtures/tokens-consumer/check.mjs && node fixtures/tokens-consumer/check.mjs --solid
+@codeui/kit:test: 
+@codeui/kit:test: @codeui/kit/tokens consumer build passed (import condition)
+@codeui/kit:test: @codeui/kit/tokens consumer build passed (solid condition)
+@codeui/examples:build: cache hit, replaying logs 21da20ac7275d2ec
+@codeui/examples:build: 
+@codeui/examples:build: > @codeui/examples@ build /Users/riccardoperra/.t3/worktrees/codeui/t3-5e5d8b22-74de522101c3a0d0/apps/examples
+@codeui/examples:build: > vite build
+@codeui/examples:build: 
+@codeui/examples:build: [36mvite v8.3.8 [32mbuilding client environment for production...[36m[39m
+@codeui/examples:build: transforming...
+@codeui/examples:build: ✓ 474 modules transformed.
+@codeui/examples:build: rendering chunks...
+@codeui/examples:build: computing gzip size...
+@codeui/examples:build: dist/index.html                                                     1.19 kB │ gzip:   0.62 kB
+@codeui/examples:build: dist/inspector/index.html                                           2.00 kB │ gzip:   0.79 kB
+@codeui/examples:build: dist/dashboard/index.html                                           2.09 kB │ gzip:   0.80 kB
+@codeui/examples:build: dist/finance/index.html                                             2.20 kB │ gzip:   0.82 kB
+@codeui/examples:build: dist/theme-studio/index.html                                        2.26 kB │ gzip:   0.83 kB
+@codeui/examples:build: dist/assets/jetbrains-mono-vietnamese-wght-normal-Bt-aOZkq.woff2    7.50 kB
+@codeui/examples:build: dist/assets/jetbrains-mono-greek-wght-normal-Bw9x6K1M.woff2         9.00 kB
+@codeui/examples:build: dist/assets/jetbrains-mono-cyrillic-wght-normal-D73BlboJ.woff2     12.10 kB
+@codeui/examples:build: dist/assets/jetbrains-mono-latin-ext-wght-normal-DBQx-q_a.woff2    15.19 kB
+@codeui/examples:build: dist/assets/jetbrains-mono-latin-wght-normal-B9CIFXIH.woff2        40.40 kB
+@codeui/examples:build: dist/assets/inter-latin-wght-normal-Dx4kXJAl.woff2                 48.25 kB
+@codeui/examples:build: dist/assets/index-DzBD_uPX.css                                      1.01 kB │ gzip:   0.45 kB
+@codeui/examples:build: dist/assets/plus-D-SJ6DIE.css                                       1.05 kB │ gzip:   0.42 kB
+@codeui/examples:build: dist/assets/stack-CSgE7IXK.css                                      1.34 kB │ gzip:   0.34 kB
+@codeui/examples:build: dist/assets/chevron-down-BrjX6ReU.css                               2.77 kB │ gzip:   0.83 kB
+@codeui/examples:build: dist/assets/charts-BOSd0C59.css                                     3.11 kB │ gzip:   0.93 kB
+@codeui/examples:build: dist/assets/sliders-horizontal-jyi3J6Ki.css                         3.19 kB │ gzip:   0.74 kB
+@codeui/examples:build: dist/assets/Accordion-DsL5EAVu.css                                  5.22 kB │ gzip:   1.26 kB
+@codeui/examples:build: dist/assets/finance-B0U19NHf.css                                    7.34 kB │ gzip:   1.87 kB
+@codeui/examples:build: dist/assets/theme-studio-CqSNROpK.css                              13.99 kB │ gzip:   3.31 kB
+@codeui/examples:build: dist/assets/inspector-C67836pX.css                                 14.82 kB │ gzip:   3.72 kB
+@codeui/examples:build: dist/assets/dashboard-DaOV_m3V.css                                 14.83 kB │ gzip:   2.91 kB
+@codeui/examples:build: dist/assets/OptionCard-ynoHjxNh.css                                15.44 kB │ gzip:   3.09 kB
+@codeui/examples:build: dist/assets/hotkey-DGOWq5z7.css                                    26.10 kB │ gzip:   4.70 kB
+@codeui/examples:build: dist/assets/examples-CCDx26R0.css                                  26.38 kB │ gzip:   6.21 kB
+@codeui/examples:build: dist/assets/InspectorDock-BhBmzUHC.css                             52.71 kB │ gzip:   8.93 kB
+@codeui/examples:build: dist/assets/format-BT1_Mr57.js                                      0.70 kB │ gzip:   0.29 kB
+@codeui/examples:build: dist/assets/index-DMLvRFkr.js                                       1.01 kB │ gzip:   0.53 kB
+@codeui/examples:build: dist/assets/x-DAldNFPk.js                                           1.27 kB │ gzip:   0.59 kB
+@codeui/examples:build: dist/assets/stack-D_U7Q0rf.js                                       2.77 kB │ gzip:   1.07 kB
+@codeui/examples:build: dist/assets/sliders-horizontal-DSdsoHrf.js                          6.64 kB │ gzip:   1.84 kB
+@codeui/examples:build: dist/assets/chevron-down-CXxQibcp.js                                6.90 kB │ gzip:   2.28 kB
+@codeui/examples:build: dist/assets/charts-BinfOttT.js                                     13.43 kB │ gzip:   4.21 kB
+@codeui/examples:build: dist/assets/examples-CujOUfje.js                                   15.83 kB │ gzip:   6.21 kB
+@codeui/examples:build: dist/assets/plus-Ch6lkYNS.js                                       27.39 kB │ gzip:   9.27 kB
+@codeui/examples:build: dist/assets/Accordion-Cf0uawBG.js                                  27.67 kB │ gzip:   8.17 kB
+@codeui/examples:build: dist/assets/web-XeQ8csI1.js                                        28.35 kB │ gzip:  10.95 kB
+@codeui/examples:build: dist/assets/OptionCard-Dgb93tNA.js                                 42.91 kB │ gzip:  12.34 kB
+@codeui/examples:build: dist/assets/finance-ChWK5p2y.js                                    44.09 kB │ gzip:  14.12 kB
+@codeui/examples:build: dist/assets/dashboard-zbtRIpNW.js                                  47.72 kB │ gzip:  15.35 kB
+@codeui/examples:build: dist/assets/theme-studio-D7gHVz0r.js                               78.69 kB │ gzip:  27.03 kB
+@codeui/examples:build: dist/assets/hotkey-8ZpWV7yj.js                                    162.44 kB │ gzip:  50.11 kB
+@codeui/examples:build: dist/assets/performance-view-ePj1EB0Q-CC22Hbp2.js                 185.61 kB │ gzip:  63.23 kB
+@codeui/examples:build: dist/assets/InspectorDock-NBidZyTU.js                             186.61 kB │ gzip:  52.85 kB
+@codeui/examples:build: dist/assets/inspector-CnzptgGC.js                                 323.36 kB │ gzip: 102.99 kB
+@codeui/examples:build: 
+@codeui/examples:build: [32m✓ built in 2.77s[39m
+@codeui/docs-demos:build: cache hit, replaying logs 7e9f67adcc26dede
+@codeui/docs-demos:build: 
+@codeui/docs-demos:build: > @codeui/docs-demos@ build /Users/riccardoperra/.t3/worktrees/codeui/t3-5e5d8b22-74de522101c3a0d0/packages/docs-demos
+@codeui/docs-demos:build: > vite build && vite build --ssr src/server.tsx
+@codeui/docs-demos:build: 
+@codeui/docs-demos:build: [36mvite v8.3.8 [32mbuilding client environment for production...[36m[39m
+@codeui/docs-demos:build: transforming...
+@codeui/docs-demos:build: ✓ 733 modules transformed.
+@codeui/docs-demos:build: rendering chunks...
+@codeui/docs-demos:build: computing gzip size...
+@codeui/docs-demos:build: dist/client/demos.css                                 100.65 kB │ gzip: 14.97 kB
+@codeui/docs-demos:build: dist/client/css-yQhLgh7N.js                             0.11 kB │ gzip:  0.11 kB
+@codeui/docs-demos:build: dist/client/anatomy-vo-zEgNd.js                         0.18 kB │ gzip:  0.17 kB
+@codeui/docs-demos:build: dist/client/JNCCF6MP-BzPfk_ir.js                        0.19 kB │ gzip:  0.17 kB
+@codeui/docs-demos:build: dist/client/basic-Bb-wTO9e.js                           0.20 kB │ gzip:  0.18 kB
+@codeui/docs-demos:build: dist/client/anatomy-BBZDN0f7.js                         0.21 kB │ gzip:  0.18 kB
+@codeui/docs-demos:build: dist/client/anatomy-tOYVnomg.js                         0.21 kB │ gzip:  0.19 kB
+@codeui/docs-demos:build: dist/client/dist-VXSAa2ZC.js                            0.22 kB │ gzip:  0.18 kB
+@codeui/docs-demos:build: dist/client/anatomy-QK7k5cDI.js                         0.22 kB │ gzip:  0.19 kB
+@codeui/docs-demos:build: dist/client/basic-CalFMwyC.js                           0.23 kB │ gzip:  0.20 kB
+@codeui/docs-demos:build: dist/client/basic-B3TEkAH5.js                           0.23 kB │ gzip:  0.19 kB
+@codeui/docs-demos:build: dist/client/ready-5YIIQRxI.js                           0.23 kB │ gzip:  0.20 kB
+@codeui/docs-demos:build: dist/client/anatomy-oBvp49G4.js                         0.23 kB │ gzip:  0.20 kB
+@codeui/docs-demos:build: dist/client/anatomy-BnIfgPg3.js                         0.23 kB │ gzip:  0.20 kB
+@codeui/docs-demos:build: dist/client/indeterminate-CaRLivPv.js                   0.24 kB │ gzip:  0.19 kB
+@codeui/docs-demos:build: dist/client/5WXHJDCZ-kn3YIgBo.js                        0.24 kB │ gzip:  0.21 kB
+@codeui/docs-demos:build: dist/client/anatomy-C6nenwlE.js                         0.25 kB │ gzip:  0.21 kB
+@codeui/docs-demos:build: dist/client/disabled-CLlWvdDA.js                        0.26 kB │ gzip:  0.21 kB
+@codeui/docs-demos:build: dist/client/required-Cllt81mY.js                        0.26 kB │ gzip:  0.21 kB
+@codeui/docs-demos:build: dist/client/read-only-DBs6wF1_.js                       0.26 kB │ gzip:  0.21 kB
+@codeui/docs-demos:build: dist/client/disabled-Dgjxy6R9.js                        0.26 kB │ gzip:  0.22 kB
+@codeui/docs-demos:build: dist/client/basic-CuMb8o_H.js                           0.27 kB │ gzip:  0.22 kB
+@codeui/docs-demos:build: dist/client/pagination-BGvbbnIh.js                      0.27 kB │ gzip:  0.22 kB
+@codeui/docs-demos:build: dist/client/vertical-BHBgnA-T.js                        0.27 kB │ gzip:  0.22 kB
+@codeui/docs-demos:build: dist/client/anatomy-D3jc0O5T.js                         0.28 kB │ gzip:  0.22 kB
+@codeui/docs-demos:build: dist/client/basic-BbudLE9d.js                           0.29 kB │ gzip:  0.22 kB
+@codeui/docs-demos:build: dist/client/basic-DnC6p0VD.js                           0.29 kB │ gzip:  0.23 kB
+@codeui/docs-demos:build: dist/client/basic-CM0A6lD5.js                           0.29 kB │ gzip:  0.23 kB
+@codeui/docs-demos:build: dist/client/anatomy-DDCBsewp.js                         0.29 kB │ gzip:  0.23 kB
+@codeui/docs-demos:build: dist/client/basic-D7pDkCXJ.js                           0.30 kB │ gzip:  0.23 kB
+@codeui/docs-demos:build: dist/client/required-BMjB0hQx.js                        0.30 kB │ gzip:  0.23 kB
+@codeui/docs-demos:build: dist/client/read-only-BvN91gOk.js                       0.30 kB │ gzip:  0.23 kB
+@codeui/docs-demos:build: dist/client/required-BOJKW-hG.js                        0.30 kB │ gzip:  0.23 kB
+@codeui/docs-demos:build: dist/client/read-only-DAPh0NrR.js                       0.30 kB │ gzip:  0.23 kB
+@codeui/docs-demos:build: dist/client/disabled-DelKJodK.js                        0.30 kB │ gzip:  0.23 kB
+@codeui/docs-demos:build: dist/client/TextField.css-C9S4XwU-.js                   0.31 kB │ gzip:  0.14 kB
+@codeui/docs-demos:build: dist/client/anatomy-B-wN9NBo.js                         0.31 kB │ gzip:  0.23 kB
+@codeui/docs-demos:build: dist/client/disabled-DtvxRkKi.js                        0.31 kB │ gzip:  0.23 kB
+@codeui/docs-demos:build: dist/client/motion-Dqxt8Klz.js                          0.31 kB │ gzip:  0.23 kB
+@codeui/docs-demos:build: dist/client/radii-jcPOSlDy.js                           0.31 kB │ gzip:  0.23 kB
+@codeui/docs-demos:build: dist/client/spacing-M9PpKjqV.js                         0.31 kB │ gzip:  0.23 kB
+@codeui/docs-demos:build: dist/client/app-override-C_wLzfNY.js                    0.32 kB │ gzip:  0.22 kB
+@codeui/docs-demos:build: dist/client/invalid-BrT2uvrL.js                         0.32 kB │ gzip:  0.24 kB
+@codeui/docs-demos:build: dist/client/text-CvsHyevI.js                            0.32 kB │ gzip:  0.24 kB
+@codeui/docs-demos:build: dist/client/anatomy-CJKqGkOO.js                         0.32 kB │ gzip:  0.24 kB
+@codeui/docs-demos:build: dist/client/shadows-cilnU1t9.js                         0.33 kB │ gzip:  0.24 kB
+@codeui/docs-demos:build: dist/client/surfaces-D0qWDDvA.js                        0.33 kB │ gzip:  0.24 kB
+@codeui/docs-demos:build: dist/client/anatomy-CHQB7Sie.js                         0.33 kB │ gzip:  0.25 kB
+@codeui/docs-demos:build: dist/client/control-heights-lWOwjlD1.js                 0.33 kB │ gzip:  0.24 kB
+@codeui/docs-demos:build: dist/client/basic-DNb7a8lx.js                           0.33 kB │ gzip:  0.23 kB
+@codeui/docs-demos:build: dist/client/parts-DJrJFnuZ.js                           0.34 kB │ gzip:  0.24 kB
+@codeui/docs-demos:build: dist/client/read-only-DO3Z3J26.js                       0.35 kB │ gzip:  0.26 kB
+@codeui/docs-demos:build: dist/client/classes-BqJvkrXQ.js                         0.35 kB │ gzip:  0.26 kB
+@codeui/docs-demos:build: dist/client/listbox-C1tuv9UM.js                         0.35 kB │ gzip:  0.26 kB
+@codeui/docs-demos:build: dist/client/description-DrL_SIKG.js                     0.35 kB │ gzip:  0.25 kB
+@codeui/docs-demos:build: dist/client/disabled-B0D7x3nK.js                        0.36 kB │ gzip:  0.25 kB
+@codeui/docs-demos:build: dist/client/empty-BWPplDr6.js                           0.36 kB │ gzip:  0.27 kB
+@codeui/docs-demos:build: dist/client/engine-COUEjkZc.js                          0.36 kB │ gzip:  0.25 kB
+@codeui/docs-demos:build: dist/client/disabled-DO5ioKX7.js                        0.36 kB │ gzip:  0.25 kB
+@codeui/docs-demos:build: dist/client/basic-BKOL-8l5.js                           0.37 kB │ gzip:  0.27 kB
+@codeui/docs-demos:build: dist/client/anatomy-D9e4YdRB.js                         0.37 kB │ gzip:  0.26 kB
+@codeui/docs-demos:build: dist/client/invalid-BXmlKWHk.js                         0.37 kB │ gzip:  0.26 kB
+@codeui/docs-demos:build: dist/client/classes-CDH1L5Xl.js                         0.37 kB │ gzip:  0.26 kB
+@codeui/docs-demos:build: dist/client/uncontrolled-BWPu5ozu.js                    0.37 kB │ gzip:  0.27 kB
+@codeui/docs-demos:build: dist/client/basic-D_sFU9mB.js                           0.37 kB │ gzip:  0.27 kB
+@codeui/docs-demos:build: dist/client/contrast-Dgi4_wHq.js                        0.37 kB │ gzip:  0.24 kB
+@codeui/docs-demos:build: dist/client/value-label-BkaEr3wn.js                     0.37 kB │ gzip:  0.27 kB
+@codeui/docs-demos:build: dist/client/busy-button-DNN9ap2A.js                     0.37 kB │ gzip:  0.27 kB
+@codeui/docs-demos:build: dist/client/description-BfRqsf52.js                     0.38 kB │ gzip:  0.27 kB
+@codeui/docs-demos:build: dist/client/basic-CNbCNQk4.js                           0.38 kB │ gzip:  0.25 kB
+@codeui/docs-demos:build: dist/client/sizes-DBlDSPOa.js                           0.39 kB │ gzip:  0.25 kB
+@codeui/docs-demos:build: dist/client/block-_MOQ_O9J.js                           0.39 kB │ gzip:  0.30 kB
+@codeui/docs-demos:build: dist/client/read-only-CQkdn8_u.js                       0.39 kB │ gzip:  0.27 kB
+@codeui/docs-demos:build: dist/client/FLVHQV4A-C3gC9XdJ.js                        0.39 kB │ gzip:  0.31 kB
+@codeui/docs-demos:build: dist/client/OYES4GOP-BVG4ISLC.js                        0.39 kB │ gzip:  0.29 kB
+@codeui/docs-demos:build: dist/client/empty-BfADC7br.js                           0.39 kB │ gzip:  0.28 kB
+@codeui/docs-demos:build: dist/client/ssr-ids-B3OvFrAq.js                         0.40 kB │ gzip:  0.30 kB
+@codeui/docs-demos:build: dist/client/invalid-BvdwWG6u.js                         0.40 kB │ gzip:  0.27 kB
+@codeui/docs-demos:build: dist/client/invalid-CQtvOXZU.js                         0.40 kB │ gzip:  0.29 kB
+@codeui/docs-demos:build: dist/client/variants-DdKfvWoE.js                        0.40 kB │ gzip:  0.26 kB
+@codeui/docs-demos:build: dist/client/sizes-CMCxehu3.js                           0.41 kB │ gzip:  0.25 kB
+@codeui/docs-demos:build: dist/client/status-vvlFcVbW.js                          0.41 kB │ gzip:  0.27 kB
+@codeui/docs-demos:build: dist/client/anatomy-XXrFI8Nh.js                         0.41 kB │ gzip:  0.29 kB
+@codeui/docs-demos:build: dist/client/controlled-l04yqIPv.js                      0.41 kB │ gzip:  0.29 kB
+@codeui/docs-demos:build: dist/client/createFieldErrorMessageProps-BNXBxWFE.js    0.42 kB │ gzip:  0.25 kB
+@codeui/docs-demos:build: dist/client/basic-DNALvDYL.js                           0.43 kB │ gzip:  0.30 kB
+@codeui/docs-demos:build: dist/client/invalid-DSJm04BT.js                         0.43 kB │ gzip:  0.29 kB
+@codeui/docs-demos:build: dist/client/createFieldLabelProps-C79E0hZH.js           0.43 kB │ gzip:  0.24 kB
+@codeui/docs-demos:build: dist/client/unlayered-reset-ZinYhLSp.js                 0.43 kB │ gzip:  0.29 kB
+@codeui/docs-demos:build: dist/client/action-DKpIcx0e.js                          0.44 kB │ gzip:  0.27 kB
+@codeui/docs-demos:build: dist/client/controlled-DEo7sWlS.js                      0.44 kB │ gzip:  0.32 kB
+@codeui/docs-demos:build: dist/client/basic-DkzXQHst.js                           0.44 kB │ gzip:  0.33 kB
+@codeui/docs-demos:build: dist/client/button-DS5NK8HE.js                          0.44 kB │ gzip:  0.25 kB
+@codeui/docs-demos:build: dist/client/controlled-FO92SufR.js                      0.45 kB │ gzip:  0.33 kB
+@codeui/docs-demos:build: dist/client/sizes-ZOesLPVJ.js                           0.45 kB │ gzip:  0.27 kB
+@codeui/docs-demos:build: dist/client/toast-BvYzRy06.js                           0.45 kB │ gzip:  0.31 kB
+@codeui/docs-demos:build: dist/client/parts-BoVqrGnP.js                           0.45 kB │ gzip:  0.28 kB
+@codeui/docs-demos:build: dist/client/dist-C3I4Ekza.js                            0.45 kB │ gzip:  0.30 kB
+@codeui/docs-demos:build: dist/client/vertical-BzNsP_6j.js                        0.46 kB │ gzip:  0.28 kB
+@codeui/docs-demos:build: dist/client/basic-BXD1Bc0J.js                           0.46 kB │ gzip:  0.31 kB
+@codeui/docs-demos:build: dist/client/select-classes-C4BCZLP4.js                  0.46 kB │ gzip:  0.29 kB
+@codeui/docs-demos:build: dist/client/sizes-BqWRUFfp.js                           0.46 kB │ gzip:  0.31 kB
+@codeui/docs-demos:build: dist/client/option-card-items-C5OM6bMt.js               0.46 kB │ gzip:  0.30 kB
+@codeui/docs-demos:build: dist/client/themes-ClIaSraP.js                          0.46 kB │ gzip:  0.27 kB
+@codeui/docs-demos:build: dist/client/themes-DbuM9fX6.js                          0.46 kB │ gzip:  0.29 kB
+@codeui/docs-demos:build: dist/client/field-DmJAumoK.js                           0.46 kB │ gzip:  0.30 kB
+@codeui/docs-demos:build: dist/client/bounds-VruOriVT.js                          0.46 kB │ gzip:  0.34 kB
+@codeui/docs-demos:build: dist/client/focus-Dr3NEc07.js                           0.47 kB │ gzip:  0.28 kB
+@codeui/docs-demos:build: dist/client/checkbox-3zHUu1IK.js                        0.47 kB │ gzip:  0.31 kB
+@codeui/docs-demos:build: dist/client/required-B-T2QbEg.js                        0.47 kB │ gzip:  0.28 kB
+@codeui/docs-demos:build: dist/client/SelectorIcon-q0Rk9kDk.js                    0.47 kB │ gzip:  0.35 kB
+@codeui/docs-demos:build: dist/client/classes-Dgarcb9h.js                         0.47 kB │ gzip:  0.29 kB
+@codeui/docs-demos:build: dist/client/empty-DLUIMo7p.js                           0.47 kB │ gzip:  0.34 kB
+@codeui/docs-demos:build: dist/client/custom-value-CTbVPGSn.js                    0.47 kB │ gzip:  0.30 kB
+@codeui/docs-demos:build: dist/client/link-8Nrd7aNK.js                            0.47 kB │ gzip:  0.29 kB
+@codeui/docs-demos:build: dist/client/keys-B3BvFQUD.js                            0.47 kB │ gzip:  0.32 kB
+@codeui/docs-demos:build: dist/client/focus-ring-DOov7BwF.js                      0.48 kB │ gzip:  0.31 kB
+@codeui/docs-demos:build: dist/client/classes-j1RAi9wt.js                         0.48 kB │ gzip:  0.30 kB
+@codeui/docs-demos:build: dist/client/vertical-DLfuKvGE.js                        0.48 kB │ gzip:  0.29 kB
+@codeui/docs-demos:build: dist/client/horizontal-QQwmEHGV.js                      0.48 kB │ gzip:  0.29 kB
+@codeui/docs-demos:build: dist/client/sizes-BkC3EF_l.js                           0.49 kB │ gzip:  0.33 kB
+@codeui/docs-demos:build: dist/client/empty-CrRqndsf.js                           0.49 kB │ gzip:  0.35 kB
+@codeui/docs-demos:build: dist/client/disabled-C3xkJwvZ.js                        0.49 kB │ gzip:  0.28 kB
+@codeui/docs-demos:build: dist/client/read-only-Dr2o3bCa.js                       0.49 kB │ gzip:  0.29 kB
+@codeui/docs-demos:build: dist/client/sizes-BdMPWIWA.js                           0.49 kB │ gzip:  0.33 kB
+@codeui/docs-demos:build: dist/client/sizes-DiU-Cdoa.js                           0.49 kB │ gzip:  0.33 kB
+@codeui/docs-demos:build: dist/client/sizes-rYlJplFi.js                           0.49 kB │ gzip:  0.28 kB
+@codeui/docs-demos:build: dist/client/themes-kUfsjJ36.js                          0.49 kB │ gzip:  0.30 kB
+@codeui/docs-demos:build: dist/client/anatomy-sqPWBm4P.js                         0.50 kB │ gzip:  0.31 kB
+@codeui/docs-demos:build: dist/client/anatomy-BT3HfWbH.js                         0.50 kB │ gzip:  0.29 kB
+@codeui/docs-demos:build: dist/client/read-only-CMmubAGy.js                       0.50 kB │ gzip:  0.31 kB
+@codeui/docs-demos:build: dist/client/modality-D-fcjhhu.js                        0.51 kB │ gzip:  0.33 kB
+@codeui/docs-demos:build: dist/client/fluid-B0TerPKb.js                           0.51 kB │ gzip:  0.32 kB
+@codeui/docs-demos:build: dist/client/ready-B8hMgY_J.js                           0.51 kB │ gzip:  0.33 kB
+@codeui/docs-demos:build: dist/client/basic-BL7AUWlJ.js                           0.51 kB │ gzip:  0.37 kB
+@codeui/docs-demos:build: dist/client/as-C6N1jISy.js                              0.51 kB │ gzip:  0.30 kB
+@codeui/docs-demos:build: dist/client/part-gzvEHkYY.js                            0.51 kB │ gzip:  0.35 kB
+@codeui/docs-demos:build: dist/client/segmented-control-BK3CnBdg.js               0.51 kB │ gzip:  0.30 kB
+@codeui/docs-demos:build: dist/client/type-scale-U6AMs4Ec.js                      0.51 kB │ gzip:  0.30 kB
+@codeui/docs-demos:build: dist/client/input-attributes-DwC-6equ.js                0.52 kB │ gzip:  0.37 kB
+@codeui/docs-demos:build: dist/client/precision-BiAsQvKm.js                       0.52 kB │ gzip:  0.37 kB
+@codeui/docs-demos:build: dist/client/basic-cL5VPJgx.js                           0.52 kB │ gzip:  0.35 kB
+@codeui/docs-demos:build: dist/client/placements-BHCeSnHe.js                      0.52 kB │ gzip:  0.33 kB
+@codeui/docs-demos:build: dist/client/basic-CfKDarrA.js                           0.52 kB │ gzip:  0.31 kB
+@codeui/docs-demos:build: dist/client/basic-h4qdLuqq.js                           0.53 kB │ gzip:  0.31 kB
+@codeui/docs-demos:build: dist/client/createFieldMessageProps-D2Ihmy51.js         0.53 kB │ gzip:  0.25 kB
+@codeui/docs-demos:build: dist/client/themes-6_9-IpOS.js                          0.53 kB │ gzip:  0.31 kB
+@codeui/docs-demos:build: dist/client/anatomy-6snAUgas.js                         0.53 kB │ gzip:  0.37 kB
+@codeui/docs-demos:build: dist/client/pill-BsE69UP_.js                            0.53 kB │ gzip:  0.35 kB
+@codeui/docs-demos:build: dist/client/NextIcon-CyJSlUYu.js                        0.53 kB │ gzip:  0.38 kB
+@codeui/docs-demos:build: dist/client/basic-ZHxV27yf.js                           0.53 kB │ gzip:  0.34 kB
+@codeui/docs-demos:build: dist/client/anatomy-Bssg0ePZ.js                         0.53 kB │ gzip:  0.38 kB
+@codeui/docs-demos:build: dist/client/controlled-B3XykOY8.js                      0.53 kB │ gzip:  0.32 kB
+@codeui/docs-demos:build: dist/client/radio-list-DAE4a8Hy.js                      0.53 kB │ gzip:  0.31 kB
+@codeui/docs-demos:build: dist/client/PreviousIcon-COreZ_hX.js                    0.53 kB │ gzip:  0.39 kB
+@codeui/docs-demos:build: dist/client/themes-QbOzuA5N.js                          0.53 kB │ gzip:  0.27 kB
+@codeui/docs-demos:build: dist/client/loading-SZ4lFn_C.js                         0.53 kB │ gzip:  0.35 kB
+@codeui/docs-demos:build: dist/client/E53DB7BS-BWRQSkbx.js                        0.54 kB │ gzip:  0.36 kB
+@codeui/docs-demos:build: dist/client/CloseIcon-CxdnKRnD.js                       0.54 kB │ gzip:  0.37 kB
+@codeui/docs-demos:build: dist/client/disabled-nRDCznvX.js                        0.54 kB │ gzip:  0.35 kB
+@codeui/docs-demos:build: dist/client/bordered-Dg_Q-EtN.js                        0.54 kB │ gzip:  0.34 kB
+@codeui/docs-demos:build: dist/client/sizes-BfMkn1iK.js                           0.54 kB │ gzip:  0.37 kB
+@codeui/docs-demos:build: dist/client/anatomy-D8Ca-Akj.js                         0.54 kB │ gzip:  0.39 kB
+@codeui/docs-demos:build: dist/client/basic-KcomGplu.js                           0.54 kB │ gzip:  0.39 kB
+@codeui/docs-demos:build: dist/client/anatomy-CHrevQx5.js                         0.55 kB │ gzip:  0.33 kB
+@codeui/docs-demos:build: dist/client/animation-Bmjq0fuQ.js                       0.55 kB │ gzip:  0.35 kB
+@codeui/docs-demos:build: dist/client/auto-resize-Dm5aA3II.js                     0.55 kB │ gzip:  0.39 kB
+@codeui/docs-demos:build: dist/client/radio-list-DcosWJ8X.js                      0.55 kB │ gzip:  0.33 kB
+@codeui/docs-demos:build: dist/client/description-DSx-AT44.js                     0.56 kB │ gzip:  0.38 kB
+@codeui/docs-demos:build: dist/client/anatomy-wicBseG0.js                         0.56 kB │ gzip:  0.39 kB
+@codeui/docs-demos:build: dist/client/as-link-6j0G1qI1.js                         0.57 kB │ gzip:  0.37 kB
+@codeui/docs-demos:build: dist/client/basic-ClmKQ-VM.js                           0.57 kB │ gzip:  0.33 kB
+@codeui/docs-demos:build: dist/client/disabled-C4sK9ep9.js                        0.57 kB │ gzip:  0.35 kB
+@codeui/docs-demos:build: dist/client/ChevronDownIcon-L_HWyg3-.js                 0.58 kB │ gzip:  0.42 kB
+@codeui/docs-demos:build: dist/client/ChevronUpIcon-BAztuT1J.js                   0.58 kB │ gzip:  0.41 kB
+@codeui/docs-demos:build: dist/client/controlled-BgeYPk3K.js                      0.58 kB │ gzip:  0.33 kB
+@codeui/docs-demos:build: dist/client/VI7QYH27-D-9rvzSZ.js                        0.58 kB │ gzip:  0.36 kB
+@codeui/docs-demos:build: dist/client/borders-BKbTG1jQ.js                         0.58 kB │ gzip:  0.32 kB
+@codeui/docs-demos:build: dist/client/action-5B_KRAZH.js                          0.58 kB │ gzip:  0.36 kB
+@codeui/docs-demos:build: dist/client/IconButton-DCvS3adC.js                      0.59 kB │ gzip:  0.31 kB
+@codeui/docs-demos:build: dist/client/sizes-8_-ogxqu.js                           0.59 kB │ gzip:  0.41 kB
+@codeui/docs-demos:build: dist/client/long-labels-CHLUPyuh.js                     0.59 kB │ gzip:  0.35 kB
+@codeui/docs-demos:build: dist/client/multiple-8tVqRr4Q.js                        0.59 kB │ gzip:  0.38 kB
+@codeui/docs-demos:build: dist/client/anatomy-1FNMeuhJ.js                         0.59 kB │ gzip:  0.39 kB
+@codeui/docs-demos:build: dist/client/option-card-C4oof80R.js                     0.59 kB │ gzip:  0.34 kB
+@codeui/docs-demos:build: dist/client/states-DV_DFgOO.js                          0.59 kB │ gzip:  0.35 kB
+@codeui/docs-demos:build: dist/client/basic-DKcy_yGC.js                           0.59 kB │ gzip:  0.38 kB
+@codeui/docs-demos:build: dist/client/sections-D4sptNyo.js                        0.60 kB │ gzip:  0.39 kB
+@codeui/docs-demos:build: dist/client/states-D_shxa8Y.js                          0.61 kB │ gzip:  0.35 kB
+@codeui/docs-demos:build: dist/client/tokens-MtiwP2pG.js                          0.61 kB │ gzip:  0.35 kB
+@codeui/docs-demos:build: dist/client/override-j5QCLQ0z.js                        0.61 kB │ gzip:  0.39 kB
+@codeui/docs-demos:build: dist/client/tones-B73Snoqo.js                           0.61 kB │ gzip:  0.30 kB
+@codeui/docs-demos:build: dist/client/rich-label-CSSi-vm-.js                      0.61 kB │ gzip:  0.36 kB
+@codeui/docs-demos:build: dist/client/raw-objects-B4tPI6UC.js                     0.62 kB │ gzip:  0.35 kB
+@codeui/docs-demos:build: dist/client/controlled-DTBw6OL5.js                      0.62 kB │ gzip:  0.42 kB
+@codeui/docs-demos:build: dist/client/slider-Csc-oj-G.js                          0.62 kB │ gzip:  0.37 kB
+@codeui/docs-demos:build: dist/client/invalid-Dz92NWRN.js                         0.63 kB │ gzip:  0.43 kB
+@codeui/docs-demos:build: dist/client/disabled-CZbUxrMj.js                        0.63 kB │ gzip:  0.34 kB
+@codeui/docs-demos:build: dist/client/in-button-BQN3GSSA.js                       0.63 kB │ gzip:  0.36 kB
+@codeui/docs-demos:build: dist/client/controlled-clear-EBB1rTe0.js                0.63 kB │ gzip:  0.43 kB
+@codeui/docs-demos:build: dist/client/switch-D5S1bOTi.js                          0.63 kB │ gzip:  0.38 kB
+@codeui/docs-demos:build: dist/client/invalid-C8n9-AEC.js                         0.64 kB │ gzip:  0.42 kB
+@codeui/docs-demos:build: dist/client/styles-XSdf77Cu.js                          0.64 kB │ gzip:  0.40 kB
+@codeui/docs-demos:build: dist/client/customization-D8nFLVRm.js                   0.65 kB │ gzip:  0.38 kB
+@codeui/docs-demos:build: dist/client/icons-mmfwpQc9.js                           0.65 kB │ gzip:  0.33 kB
+@codeui/docs-demos:build: dist/client/as-D2B0UXXW.js                              0.65 kB │ gzip:  0.34 kB
+@codeui/docs-demos:build: dist/client/composition-CTl3R3cL.js                     0.65 kB │ gzip:  0.42 kB
+@codeui/docs-demos:build: dist/client/accessible-names-2g5JVunk.js                0.65 kB │ gzip:  0.42 kB
+@codeui/docs-demos:build: dist/client/FN6EICGO-DA-hLzzd.js                        0.65 kB │ gzip:  0.40 kB
+@codeui/docs-demos:build: dist/client/filtering-BtjmfSZq.js                       0.66 kB │ gzip:  0.36 kB
+@codeui/docs-demos:build: dist/client/input-value-ChlAM44w.js                     0.66 kB │ gzip:  0.44 kB
+@codeui/docs-demos:build: dist/client/placements-mEYCCuun.js                      0.66 kB │ gzip:  0.38 kB
+@codeui/docs-demos:build: dist/client/sizes-D5qbztnh.js                           0.66 kB │ gzip:  0.40 kB
+@codeui/docs-demos:build: dist/client/shapes-GWK52vQD.js                          0.66 kB │ gzip:  0.40 kB
+@codeui/docs-demos:build: dist/client/styles-CUqP9WJN.js                          0.66 kB │ gzip:  0.41 kB
+@codeui/docs-demos:build: dist/client/anatomy-gaw0SQ2w.js                         0.66 kB │ gzip:  0.34 kB
+@codeui/docs-demos:build: dist/client/controlled-BVX8FRLc.js                      0.67 kB │ gzip:  0.39 kB
+@codeui/docs-demos:build: dist/client/truncate-esMN4rzm.js                        0.67 kB │ gzip:  0.40 kB
+@codeui/docs-demos:build: dist/client/weight-DWLQHHuR.js                          0.67 kB │ gzip:  0.37 kB
+@codeui/docs-demos:build: dist/client/states-BJ5iVoNj.js                          0.68 kB │ gzip:  0.40 kB
+@codeui/docs-demos:build: dist/client/disabled-options-Brf_BI7Y.js                0.68 kB │ gzip:  0.37 kB
+@codeui/docs-demos:build: dist/client/focus-return-IJPauDso.js                    0.69 kB │ gzip:  0.40 kB
+@codeui/docs-demos:build: dist/client/icon-button-BEEjaWbH.js                     0.69 kB │ gzip:  0.32 kB
+@codeui/docs-demos:build: dist/client/positions-DIkSkM3I.js                       0.69 kB │ gzip:  0.42 kB
+@codeui/docs-demos:build: dist/client/prefix-postfix-De6CjDiF.js                  0.69 kB │ gzip:  0.37 kB
+@codeui/docs-demos:build: dist/client/size-FV4El9hQ.js                            0.69 kB │ gzip:  0.37 kB
+@codeui/docs-demos:build: dist/client/object-options-DahEY8qJ.js                  0.70 kB │ gzip:  0.41 kB
+@codeui/docs-demos:build: dist/client/base-style-IOWpPXY9.js                      0.70 kB │ gzip:  0.46 kB
+@codeui/docs-demos:build: dist/client/CheckIcon-Df1tleyu.js                       0.70 kB │ gzip:  0.46 kB
+@codeui/docs-demos:build: dist/client/parts-BHx-tXx1.js                           0.71 kB │ gzip:  0.38 kB
+@codeui/docs-demos:build: dist/client/controlled-ByzAaxny.js                      0.71 kB │ gzip:  0.40 kB
+@codeui/docs-demos:build: dist/client/settings-row-6s6H1uyv.js                    0.71 kB │ gzip:  0.39 kB
+@codeui/docs-demos:build: dist/client/escape-cancelled-B7gHphju.js                0.72 kB │ gzip:  0.44 kB
+@codeui/docs-demos:build: dist/client/basic-B4Re7a38.js                           0.72 kB │ gzip:  0.42 kB
+@codeui/docs-demos:build: dist/client/accordion-items-DgP1wa60.js                 0.74 kB │ gzip:  0.44 kB
+@codeui/docs-demos:build: dist/client/size-WKXrYZqX.js                            0.74 kB │ gzip:  0.30 kB
+@codeui/docs-demos:build: dist/client/native-label-jWW_Msss.js                    0.75 kB │ gzip:  0.45 kB
+@codeui/docs-demos:build: dist/client/pill-DkHLXSk0.js                            0.75 kB │ gzip:  0.44 kB
+@codeui/docs-demos:build: dist/client/own-transition-DV5duhQq.js                  0.76 kB │ gzip:  0.43 kB
+@codeui/docs-demos:build: dist/client/disabled-CJvLz-zt.js                        0.76 kB │ gzip:  0.43 kB
+@codeui/docs-demos:build: dist/client/icon-trigger-BmpEfjZ1.js                    0.76 kB │ gzip:  0.40 kB
+@codeui/docs-demos:build: dist/client/solid-j7D6MioP.js                           0.76 kB │ gzip:  0.44 kB
+@codeui/docs-demos:build: dist/client/weights-and-tones-DZLe93hP.js               0.76 kB │ gzip:  0.40 kB
+@codeui/docs-demos:build: dist/client/primary-BUqwGLfT.js                         0.76 kB │ gzip:  0.44 kB
+@codeui/docs-demos:build: dist/client/anatomy-DrBJB6L5.js                         0.76 kB │ gzip:  0.46 kB
+@codeui/docs-demos:build: dist/client/reactive-B2VRGvAp.js                        0.77 kB │ gzip:  0.47 kB
+@codeui/docs-demos:build: dist/client/Badge-DU6gCzTs.js                           0.77 kB │ gzip:  0.37 kB
+@codeui/docs-demos:build: dist/client/bordered-CUlMRhsN.js                        0.77 kB │ gzip:  0.44 kB
+@codeui/docs-demos:build: dist/client/keyboard-CwlqE6tu.js                        0.77 kB │ gzip:  0.46 kB
+@codeui/docs-demos:build: dist/client/classes-CBQjdTY3.js                         0.77 kB │ gzip:  0.44 kB
+@codeui/docs-demos:build: dist/client/R5675YMU-qgL794zO.js                        0.77 kB │ gzip:  0.41 kB
+@codeui/docs-demos:build: dist/client/sizes-u9jeGrwf.js                           0.77 kB │ gzip:  0.46 kB
+@codeui/docs-demos:build: dist/client/fluid-B1EOrbXg.js                           0.77 kB │ gzip:  0.44 kB
+@codeui/docs-demos:build: dist/client/invalid-FeP851i5.js                         0.77 kB │ gzip:  0.49 kB
+@codeui/docs-demos:build: dist/client/YFEENJN5-Bx7lhyUL.js                        0.78 kB │ gzip:  0.44 kB
+@codeui/docs-demos:build: dist/client/sizes-BzdreV8Y.js                           0.78 kB │ gzip:  0.50 kB
+@codeui/docs-demos:build: dist/client/anatomy-DyT1b8CQ.js                         0.78 kB │ gzip:  0.48 kB
+@codeui/docs-demos:build: dist/client/pill-bordered-CFj83RtE.js                   0.78 kB │ gzip:  0.45 kB
+@codeui/docs-demos:build: dist/client/variants-D3lyhAE8.js                        0.78 kB │ gzip:  0.45 kB
+@codeui/docs-demos:build: dist/client/delays-D7951cLK.js                          0.79 kB │ gzip:  0.32 kB
+@codeui/docs-demos:build: dist/client/groups-BMpqqTwN.js                          0.79 kB │ gzip:  0.38 kB
+@codeui/docs-demos:build: dist/client/anatomy-dwiOAssa.js                         0.79 kB │ gzip:  0.51 kB
+@codeui/docs-demos:build: dist/client/block-DvGuHGuN.js                           0.79 kB │ gzip:  0.50 kB
+@codeui/docs-demos:build: dist/client/layout-B5Rmi30m.js                          0.81 kB │ gzip:  0.40 kB
+@codeui/docs-demos:build: dist/client/long-labels-BMbA_Os8.js                     0.81 kB │ gzip:  0.52 kB
+@codeui/docs-demos:build: dist/client/SvgIcon-J0gOULfn.js                         0.81 kB │ gzip:  0.49 kB
+@codeui/docs-demos:build: dist/client/form-BZu3Mdzq.js                            0.82 kB │ gzip:  0.50 kB
+@codeui/docs-demos:build: dist/client/anatomy-2x_fRrSp.js                         0.82 kB │ gzip:  0.47 kB
+@codeui/docs-demos:build: dist/client/boundaries-BjB2WfZS.js                      0.82 kB │ gzip:  0.41 kB
+@codeui/docs-demos:build: dist/client/window-DmCgjzkb.js                          0.83 kB │ gzip:  0.44 kB
+@codeui/docs-demos:build: dist/client/inset-BvArU-xH.js                           0.83 kB │ gzip:  0.44 kB
+@codeui/docs-demos:build: dist/client/tabs-inline-DwgffjhX.js                     0.83 kB │ gzip:  0.35 kB
+@codeui/docs-demos:build: dist/client/app-setup-DhVFcjy0.js                       0.83 kB │ gzip:  0.46 kB
+@codeui/docs-demos:build: dist/client/basic-BRpgvs63.js                           0.85 kB │ gzip:  0.40 kB
+@codeui/docs-demos:build: dist/client/duration-ChLnOFEL.js                        0.85 kB │ gzip:  0.43 kB
+@codeui/docs-demos:build: dist/client/revealed-DlZpG163.js                        0.85 kB │ gzip:  0.48 kB
+@codeui/docs-demos:build: dist/client/createSelectValue-BQrxOqQX.js               0.86 kB │ gzip:  0.43 kB
+@codeui/docs-demos:build: dist/client/form-C1kMpXn5.js                            0.86 kB │ gzip:  0.53 kB
+@codeui/docs-demos:build: dist/client/tabs-CS45jR8F.js                            0.87 kB │ gzip:  0.40 kB
+@codeui/docs-demos:build: dist/client/basic-BzWsJxV5.js                           0.87 kB │ gzip:  0.37 kB
+@codeui/docs-demos:build: dist/client/tones-DZ_NQBRM.js                           0.87 kB │ gzip:  0.49 kB
+@codeui/docs-demos:build: dist/client/isolated-C9F2etZ6.js                        0.87 kB │ gzip:  0.42 kB
+@codeui/docs-demos:build: dist/client/disabled-Ct0Ll1uj.js                        0.87 kB │ gzip:  0.39 kB
+@codeui/docs-demos:build: dist/client/basic-CbDekEeL.js                           0.88 kB │ gzip:  0.51 kB
+@codeui/docs-demos:build: dist/client/actions-BPIcBvDi.js                         0.88 kB │ gzip:  0.49 kB
+@codeui/docs-demos:build: dist/client/badges-CRAWnaHM.js                          0.89 kB │ gzip:  0.50 kB
+@codeui/docs-demos:build: dist/client/createComboboxOptions-B5aZrVlt.js           0.89 kB │ gzip:  0.46 kB
+@codeui/docs-demos:build: dist/client/inline-CLMUgA9G.js                          0.89 kB │ gzip:  0.38 kB
+@codeui/docs-demos:build: dist/client/nonmodal-DvPgi-iE.js                        0.90 kB │ gzip:  0.52 kB
+@codeui/docs-demos:build: dist/client/manual-3LmilJ4p.js                          0.90 kB │ gzip:  0.39 kB
+@codeui/docs-demos:build: dist/client/motion-Dl0iiLCV.js                          0.90 kB │ gzip:  0.52 kB
+@codeui/docs-demos:build: dist/client/tones-DFF7UMXF.js                           0.92 kB │ gzip:  0.39 kB
+@codeui/docs-demos:build: dist/client/raw-objects-CifaWb7m.js                     0.92 kB │ gzip:  0.50 kB
+@codeui/docs-demos:build: dist/client/vertical-CZU88R-Y.js                        0.92 kB │ gzip:  0.40 kB
+@codeui/docs-demos:build: dist/client/empty-CTJa7a0q.js                           0.92 kB │ gzip:  0.49 kB
+@codeui/docs-demos:build: dist/client/inline-style-BxiRWKRF.js                    0.92 kB │ gzip:  0.48 kB
+@codeui/docs-demos:build: dist/client/platform-C3ni3Fhd.js                        0.93 kB │ gzip:  0.46 kB
+@codeui/docs-demos:build: dist/client/pill-BWh-HL1s.js                            0.93 kB │ gzip:  0.54 kB
+@codeui/docs-demos:build: dist/client/composition-CdNPuPmn.js                     0.93 kB │ gzip:  0.51 kB
+@codeui/docs-demos:build: dist/client/controls-wn7o6ihU.js                        0.93 kB │ gzip:  0.49 kB
+@codeui/docs-demos:build: dist/client/select-options-B9aAoF1d.js                  0.93 kB │ gzip:  0.53 kB
+@codeui/docs-demos:build: dist/client/disabled-DT7Ep5uj.js                        0.94 kB │ gzip:  0.55 kB
+@codeui/docs-demos:build: dist/client/controller-DNvKUOoC.js                      0.94 kB │ gzip:  0.44 kB
+@codeui/docs-demos:build: dist/client/gap-Dy1HJAO3.js                             0.94 kB │ gzip:  0.46 kB
+@codeui/docs-demos:build: dist/client/pagination-DBlFkrlc.js                      0.94 kB │ gzip:  0.54 kB
+@codeui/docs-demos:build: dist/client/object-options-D0NO6kLt.js                  0.95 kB │ gzip:  0.52 kB
+@codeui/docs-demos:build: dist/client/alerts-BOPe8Z9Z.js                          0.96 kB │ gzip:  0.59 kB
+@codeui/docs-demos:build: dist/client/promise-CY1vXOlh.js                         0.96 kB │ gzip:  0.53 kB
+@codeui/docs-demos:build: dist/client/basic-abgDvAVb.js                           0.96 kB │ gzip:  0.56 kB
+@codeui/docs-demos:build: dist/client/basic-DyYYzqPR.js                           0.96 kB │ gzip:  0.52 kB
+@codeui/docs-demos:build: dist/client/variant-BRmo8RQR.js                         0.96 kB │ gzip:  0.33 kB
+@codeui/docs-demos:build: dist/client/as-link-DWl0rT1C.js                         0.97 kB │ gzip:  0.57 kB
+@codeui/docs-demos:build: dist/client/dialog-title-CmW42uuL.js                    0.97 kB │ gzip:  0.53 kB
+@codeui/docs-demos:build: dist/client/form-iIOOCJ5J.js                            0.97 kB │ gzip:  0.57 kB
+@codeui/docs-demos:build: dist/client/anchor-BhR2hJwg.js                          0.98 kB │ gzip:  0.53 kB
+@codeui/docs-demos:build: dist/client/loading-yxArUo0x.js                         0.98 kB │ gzip:  0.56 kB
+@codeui/docs-demos:build: dist/client/motion-CB2e9uzm.js                          0.98 kB │ gzip:  0.53 kB
+@codeui/docs-demos:build: dist/client/usage-BuBcqdu0.js                           0.98 kB │ gzip:  0.51 kB
+@codeui/docs-demos:build: dist/client/multiple-Jk1-73Z3.js                        0.99 kB │ gzip:  0.48 kB
+@codeui/docs-demos:build: dist/client/labeling-D60-ICds.js                        0.99 kB │ gzip:  0.51 kB
+@codeui/docs-demos:build: dist/client/breakpoints-BFlALKxn.js                     1.00 kB │ gzip:  0.57 kB
+@codeui/docs-demos:build: dist/client/selection-C7cR35mE.js                       1.00 kB │ gzip:  0.53 kB
+@codeui/docs-demos:build: dist/client/theme-D6f_OtgI.js                           1.00 kB │ gzip:  0.48 kB
+@codeui/docs-demos:build: dist/client/basic-DZLrAMy-.js                           1.00 kB │ gzip:  0.51 kB
+@codeui/docs-demos:build: dist/client/states-CXbiT87u.js                          1.00 kB │ gzip:  0.48 kB
+@codeui/docs-demos:build: dist/client/segmented-in-dialog-CmgMPHK7.js             1.01 kB │ gzip:  0.49 kB
+@codeui/docs-demos:build: dist/client/direction-1-69kb0G.js                       1.01 kB │ gzip:  0.38 kB
+@codeui/docs-demos:build: dist/client/required-BZJWu4sb.js                        1.02 kB │ gzip:  0.55 kB
+@codeui/docs-demos:build: dist/client/retained-CdOCZt3O.js                        1.02 kB │ gzip:  0.55 kB
+@codeui/docs-demos:build: dist/client/controlled-CKHuzu3C.js                      1.02 kB │ gzip:  0.55 kB
+@codeui/docs-demos:build: dist/client/form-YzEHwAuE.js                            1.02 kB │ gzip:  0.60 kB
+@codeui/docs-demos:build: dist/client/mount-BrGYW_JK.js                           1.04 kB │ gzip:  0.58 kB
+@codeui/docs-demos:build: dist/client/gutter-Cktlexxy.js                          1.04 kB │ gzip:  0.39 kB
+@codeui/docs-demos:build: dist/client/checkbox-CJOdWm0C.js                        1.04 kB │ gzip:  0.54 kB
+@codeui/docs-demos:build: dist/client/navigation-Dt2sOEZK.js                      1.06 kB │ gzip:  0.52 kB
+@codeui/docs-demos:build: dist/client/parts-BNCU8Are.js                           1.06 kB │ gzip:  0.49 kB
+@codeui/docs-demos:build: dist/client/icons-GW6ukWW6.js                           1.07 kB │ gzip:  0.61 kB
+@codeui/docs-demos:build: dist/client/form-zQZd8Tbv.js                            1.07 kB │ gzip:  0.58 kB
+@codeui/docs-demos:build: dist/client/keep-open-on-escape-AKLcSsFu.js             1.07 kB │ gzip:  0.52 kB
+@codeui/docs-demos:build: dist/client/tone-CmqLxXrp.js                            1.08 kB │ gzip:  0.50 kB
+@codeui/docs-demos:build: dist/client/themes-Bji2J7vB.js                          1.10 kB │ gzip:  0.51 kB
+@codeui/docs-demos:build: dist/client/sizes-DgS2GC5q.js                           1.10 kB │ gzip:  0.48 kB
+@codeui/docs-demos:build: dist/client/density-C-_mKMZ-.js                         1.11 kB │ gzip:  0.53 kB
+@codeui/docs-demos:build: dist/client/icon-button-CgCS53mU.js                     1.11 kB │ gzip:  0.50 kB
+@codeui/docs-demos:build: dist/client/wide-CzcPManH.js                            1.11 kB │ gzip:  0.53 kB
+@codeui/docs-demos:build: dist/client/settings-0qz5pbk0.js                        1.11 kB │ gzip:  0.54 kB
+@codeui/docs-demos:build: dist/client/controlled-DbCDPSbW.js                      1.11 kB │ gzip:  0.56 kB
+@codeui/docs-demos:build: dist/client/Progress-DdRYElRg.js                        1.12 kB │ gzip:  0.45 kB
+@codeui/docs-demos:build: dist/client/combobox-options-inYWyUPg.js                1.13 kB │ gzip:  0.59 kB
+@codeui/docs-demos:build: dist/client/rich-content-sjUDpnzj.js                    1.14 kB │ gzip:  0.58 kB
+@codeui/docs-demos:build: dist/client/styles-zUwznlyL.js                          1.14 kB │ gzip:  0.48 kB
+@codeui/docs-demos:build: dist/client/anatomy-D2d09m2M.js                         1.14 kB │ gzip:  0.60 kB
+@codeui/docs-demos:build: dist/client/justify-BHK0fRm4.js                         1.15 kB │ gzip:  0.50 kB
+@codeui/docs-demos:build: dist/client/basic-SbgyLZNL.js                           1.15 kB │ gzip:  0.61 kB
+@codeui/docs-demos:build: dist/client/parts-DG6Q2r9Y.js                           1.15 kB │ gzip:  0.57 kB
+@codeui/docs-demos:build: dist/client/parts-Tuf2P1ri.js                           1.15 kB │ gzip:  0.62 kB
+@codeui/docs-demos:build: dist/client/themes-D4Es-lhK.js                          1.17 kB │ gzip:  0.59 kB
+@codeui/docs-demos:build: dist/client/tabs-JMGcCF_c.js                            1.17 kB │ gzip:  0.46 kB
+@codeui/docs-demos:build: dist/client/form-CpGtzQjK.js                            1.18 kB │ gzip:  0.61 kB
+@codeui/docs-demos:build: dist/client/draggable-CtZhaUcq.js                       1.18 kB │ gzip:  0.63 kB
+@codeui/docs-demos:build: dist/client/title-and-description-CPpDQgq4.js           1.20 kB │ gzip:  0.66 kB
+@codeui/docs-demos:build: dist/client/Popover-DfzroxLr.js                         1.20 kB │ gzip:  0.46 kB
+@codeui/docs-demos:build: dist/client/sizes-DKWKaNON.js                           1.20 kB │ gzip:  0.50 kB
+@codeui/docs-demos:build: dist/client/modes-xWaulyYK.js                           1.20 kB │ gzip:  0.68 kB
+@codeui/docs-demos:build: dist/client/composition-D4yuifZf.js                     1.21 kB │ gzip:  0.55 kB
+@codeui/docs-demos:build: dist/client/chord-DeK02gyI.js                           1.22 kB │ gzip:  0.42 kB
+@codeui/docs-demos:build: dist/client/overflow-dBMLg24w.js                        1.22 kB │ gzip:  0.63 kB
+@codeui/docs-demos:build: dist/client/gap-scale-DQH8Y4QX.js                       1.24 kB │ gzip:  0.54 kB
+@codeui/docs-demos:build: dist/client/submenu-C9k2gvJ8.js                         1.24 kB │ gzip:  0.47 kB
+@codeui/docs-demos:build: dist/client/sides-CKH99EX6.js                           1.24 kB │ gzip:  0.66 kB
+@codeui/docs-demos:build: dist/client/ghost-OE4oN4AT.js                           1.26 kB │ gzip:  0.51 kB
+@codeui/docs-demos:build: dist/client/wrap-Cq3NPv3f.js                            1.28 kB │ gzip:  0.50 kB
+@codeui/docs-demos:build: dist/client/gallery-CkKQbXZ4.js                         1.29 kB │ gzip:  0.64 kB
+@codeui/docs-demos:build: dist/client/align-CEeBGh4D.js                           1.29 kB │ gzip:  0.54 kB
+@codeui/docs-demos:build: dist/client/compact-control-Wd706NhL.js                 1.30 kB │ gzip:  0.62 kB
+@codeui/docs-demos:build: dist/client/basic-XC0A6cLZ.js                           1.30 kB │ gzip:  0.76 kB
+@codeui/docs-demos:build: dist/client/export-panel-BSzMEG8Z.js                    1.32 kB │ gzip:  0.65 kB
+@codeui/docs-demos:build: dist/client/parts-CTmlpLpq.js                           1.32 kB │ gzip:  0.60 kB
+@codeui/docs-demos:build: dist/client/3DLZMX4Z-BxdV_nWA.js                        1.33 kB │ gzip:  0.65 kB
+@codeui/docs-demos:build: dist/client/dialog-24_KImlH.js                          1.34 kB │ gzip:  0.68 kB
+@codeui/docs-demos:build: dist/client/dist-Dq_hkwJi.js                            1.34 kB │ gzip:  0.63 kB
+@codeui/docs-demos:build: dist/client/ToneIcon-7TTyY47S.js                        1.37 kB │ gzip:  0.56 kB
+@codeui/docs-demos:build: dist/client/Kbd-Dx0jDz42.js                             1.37 kB │ gzip:  0.65 kB
+@codeui/docs-demos:build: dist/client/parts-BdlbujCD.js                           1.37 kB │ gzip:  0.63 kB
+@codeui/docs-demos:build: dist/client/invalid-CLW5o1XL.js                         1.38 kB │ gzip:  0.51 kB
+@codeui/docs-demos:build: dist/client/filter-command-items-HhGVgz-v.js            1.40 kB │ gzip:  0.67 kB
+@codeui/docs-demos:build: dist/client/anatomy-C8lr-yOV.js                         1.40 kB │ gzip:  0.69 kB
+@codeui/docs-demos:build: dist/client/disabled-Dza7yvAD.js                        1.41 kB │ gzip:  0.64 kB
+@codeui/docs-demos:build: dist/client/vanilla-extract-dynamic.esm-Q2zS6rmq.js     1.42 kB │ gzip:  0.71 kB
+@codeui/docs-demos:build: dist/client/createBaseFieldProps-BHkROsi1.js            1.43 kB │ gzip:  0.64 kB
+@codeui/docs-demos:build: dist/client/brand-override-BPIewxUE.js                  1.44 kB │ gzip:  0.73 kB
+@codeui/docs-demos:build: dist/client/Link-CZNXFylu.js                            1.45 kB │ gzip:  0.70 kB
+@codeui/docs-demos:build: dist/client/export-screen-Dr3W9mzg.js                   1.45 kB │ gzip:  0.70 kB
+@codeui/docs-demos:build: dist/client/type-scale-BjviLNiP.js                      1.46 kB │ gzip:  0.57 kB
+@codeui/docs-demos:build: dist/client/icon-buttons-YmGUwLt0.js                    1.46 kB │ gzip:  0.73 kB
+@codeui/docs-demos:build: dist/client/UKTBL2JL-Buh4FtjD.js                        1.47 kB │ gzip:  0.69 kB
+@codeui/docs-demos:build: dist/client/text--NWWzs0p.js                            1.51 kB │ gzip:  0.66 kB
+@codeui/docs-demos:build: dist/client/docked-DOyB0noZ.js                          1.53 kB │ gzip:  0.72 kB
+@codeui/docs-demos:build: dist/client/window-style-Av4yeVdm.js                    1.58 kB │ gzip:  0.74 kB
+@codeui/docs-demos:build: dist/client/invite-form-Bkx81d4y.js                     1.61 kB │ gzip:  0.81 kB
+@codeui/docs-demos:build: dist/client/markers-Dp8s7s4F.js                         1.61 kB │ gzip:  0.81 kB
+@codeui/docs-demos:build: dist/client/basic-CpsonAWL.js                           1.61 kB │ gzip:  0.77 kB
+@codeui/docs-demos:build: dist/client/in-menu-yUZHDDHl.js                         1.62 kB │ gzip:  0.55 kB
+@codeui/docs-demos:build: dist/client/text-v7J13HtT.js                            1.63 kB │ gzip:  0.82 kB
+@codeui/docs-demos:build: dist/client/Tabs-BntiDTRR.js                            1.66 kB │ gzip:  0.67 kB
+@codeui/docs-demos:build: dist/client/anatomy-DYbYnPXR.js                         1.68 kB │ gzip:  0.84 kB
+@codeui/docs-demos:build: dist/client/parts-BjKh20NH.js                           1.70 kB │ gzip:  0.67 kB
+@codeui/docs-demos:build: dist/client/form-BLTugx0M.js                            1.72 kB │ gzip:  0.77 kB
+@codeui/docs-demos:build: dist/client/export-flow-CUXXIYkV.js                     1.73 kB │ gzip:  0.96 kB
+@codeui/docs-demos:build: dist/client/content-DHY-QKWk.js                         1.75 kB │ gzip:  0.73 kB
+@codeui/docs-demos:build: dist/client/aliases-uzA9J7vi.js                         1.76 kB │ gzip:  0.91 kB
+@codeui/docs-demos:build: dist/client/anatomy-CzoanUP_.js                         1.77 kB │ gzip:  0.77 kB
+@codeui/docs-demos:build: dist/client/menu-in-dialog-BbH4k2iv.js                  1.78 kB │ gzip:  0.77 kB
+@codeui/docs-demos:build: dist/client/dynamic-O1sgRxKq.js                         1.80 kB │ gzip:  0.80 kB
+@codeui/docs-demos:build: dist/client/basic-BZXtsLMU.js                           1.84 kB │ gzip:  0.80 kB
+@codeui/docs-demos:build: dist/client/grouped-DdZ-depk.js                         1.85 kB │ gzip:  0.91 kB
+@codeui/docs-demos:build: dist/client/Listbox-C9p_UPz8.js                         1.86 kB │ gzip:  0.70 kB
+@codeui/docs-demos:build: dist/client/preferences-_-S0Zon5.js                     1.92 kB │ gzip:  0.92 kB
+@codeui/docs-demos:build: dist/client/progress-nZDlPTi9.js                        1.92 kB │ gzip:  0.92 kB
+@codeui/docs-demos:build: dist/client/anatomy-CafS0-ki.js                         1.94 kB │ gzip:  0.85 kB
+@codeui/docs-demos:build: dist/client/async-CiiW4B3J.js                           1.94 kB │ gzip:  1.01 kB
+@codeui/docs-demos:build: dist/client/accordion-B6A8rZab.js                       1.97 kB │ gzip:  0.77 kB
+@codeui/docs-demos:build: dist/client/themes-CpkGVg5e.js                          2.05 kB │ gzip:  0.74 kB
+@codeui/docs-demos:build: dist/client/invalid-DPheHhzp.js                         2.11 kB │ gzip:  0.57 kB
+@codeui/docs-demos:build: dist/client/sizes-BWFzWqoo.js                           2.18 kB │ gzip:  0.72 kB
+@codeui/docs-demos:build: dist/client/stack-0yrroP2t.js                           2.19 kB │ gzip:  0.86 kB
+@codeui/docs-demos:build: dist/client/parts-Dj8ev7fW.js                           2.20 kB │ gzip:  0.92 kB
+@codeui/docs-demos:build: dist/client/Dialog-pMqgbMfl.js                          2.21 kB │ gzip:  0.69 kB
+@codeui/docs-demos:build: dist/client/Skeleton-DMBK3bRP.js                        2.23 kB │ gzip:  0.96 kB
+@codeui/docs-demos:build: dist/client/anatomy-BwrpjZIi.js                         2.25 kB │ gzip:  0.95 kB
+@codeui/docs-demos:build: dist/client/ghost-D1eO247U.js                           2.26 kB │ gzip:  0.74 kB
+@codeui/docs-demos:build: dist/client/members-CrCtHpHd.js                         2.27 kB │ gzip:  0.98 kB
+@codeui/docs-demos:build: dist/client/createRuntimeFn-62c9670f.esm-BbC6xjj4.js    2.29 kB │ gzip:  0.97 kB
+@codeui/docs-demos:build: dist/client/shortcut-E_JrPsKY.js                        2.29 kB │ gzip:  1.11 kB
+@codeui/docs-demos:build: dist/client/Switch-AAb4EzgV.js                          2.32 kB │ gzip:  0.78 kB
+@codeui/docs-demos:build: dist/client/overview-Babp9K3H.js                        2.32 kB │ gzip:  0.91 kB
+@codeui/docs-demos:build: dist/client/Spinner-D38i6nyG.js                         2.33 kB │ gzip:  0.88 kB
+@codeui/docs-demos:build: dist/client/command-menu-BvAWsY4s.js                    2.35 kB │ gzip:  1.01 kB
+@codeui/docs-demos:build: dist/client/sizes-Yu22-O9r.js                           2.36 kB │ gzip:  0.58 kB
+@codeui/docs-demos:build: dist/client/SOM3K36D-Cg5wXJNK.js                        2.46 kB │ gzip:  1.14 kB
+@codeui/docs-demos:build: dist/client/parts-DBSryCax.js                           2.47 kB │ gzip:  0.92 kB
+@codeui/docs-demos:build: dist/client/sizes-CEQnUSVE.js                           2.51 kB │ gzip:  0.60 kB
+@codeui/docs-demos:build: dist/client/durations-DQOPBNQe.js                       2.51 kB │ gzip:  0.97 kB
+@codeui/docs-demos:build: dist/client/overlays-D06DkbzB.js                        2.53 kB │ gzip:  1.07 kB
+@codeui/docs-demos:build: dist/client/TextField-BltOA1m4.js                       2.59 kB │ gzip:  0.89 kB
+@codeui/docs-demos:build: dist/client/buttons-DoCmAGFH.js                         2.61 kB │ gzip:  0.86 kB
+@codeui/docs-demos:build: dist/client/icons-CxOOYt90.js                           2.65 kB │ gzip:  0.87 kB
+@codeui/docs-demos:build: dist/client/Accordion-Be49vU3F.js                       2.66 kB │ gzip:  0.74 kB
+@codeui/docs-demos:build: dist/client/switch-CLzgybaK.js                          2.78 kB │ gzip:  0.82 kB
+@codeui/docs-demos:build: dist/client/groups-CDy5XKAW.js                          2.80 kB │ gzip:  1.21 kB
+@codeui/docs-demos:build: dist/client/TextArea-Cnw6p9Ul.js                        2.87 kB │ gzip:  0.95 kB
+@codeui/docs-demos:build: dist/client/settings-layout-BjoTTuAh.js                 2.87 kB │ gzip:  1.04 kB
+@codeui/docs-demos:build: dist/client/badge-CP1PyX0Z.js                           2.99 kB │ gzip:  1.04 kB
+@codeui/docs-demos:build: dist/client/GSF7SFRW-mIoOc90y.js                        3.02 kB │ gzip:  1.33 kB
+@codeui/docs-demos:build: dist/client/BDJEWKR2-BP1eba1E.js                        3.16 kB │ gzip:  1.06 kB
+@codeui/docs-demos:build: dist/client/custom-field-LNWqQx_0.js                    3.20 kB │ gzip:  1.33 kB
+@codeui/docs-demos:build: dist/client/Button-CbxQ5bed.js                          3.28 kB │ gzip:  1.31 kB
+@codeui/docs-demos:build: dist/client/anatomy-DTUJXglI.js                         3.39 kB │ gzip:  1.26 kB
+@codeui/docs-demos:build: dist/client/basic-Yl-kjBjn.js                           3.43 kB │ gzip:  1.45 kB
+@codeui/docs-demos:build: dist/client/export-form-y7dsA0Qc.js                     3.45 kB │ gzip:  1.39 kB
+@codeui/docs-demos:build: dist/client/Sheet-CYJQsPHX.js                           3.49 kB │ gzip:  0.84 kB
+@codeui/docs-demos:build: dist/client/ZZYKR3VO-DUzVz1eY.js                        3.65 kB │ gzip:  1.45 kB
+@codeui/docs-demos:build: dist/client/anatomy-C8ZQfKBc.js                         3.66 kB │ gzip:  1.35 kB
+@codeui/docs-demos:build: dist/client/Settings-1WNnkRYl.js                        3.87 kB │ gzip:  1.01 kB
+@codeui/docs-demos:build: dist/client/Alert-Bk-1VrxU.js                           3.93 kB │ gzip:  1.22 kB
+@codeui/docs-demos:build: dist/client/RadioList-CoBPAZFF.js                       4.03 kB │ gzip:  1.25 kB
+@codeui/docs-demos:build: dist/client/combobox-b6MtvbA2.js                        4.42 kB │ gzip:  1.50 kB
+@codeui/docs-demos:build: dist/client/Pagination-DKCyV3RO.js                      4.43 kB │ gzip:  1.57 kB
+@codeui/docs-demos:build: dist/client/SegmentedControlItem-NZ27k5nK.js            4.63 kB │ gzip:  1.87 kB
+@codeui/docs-demos:build: dist/client/icons-DjfFTj5s.js                           4.73 kB │ gzip:  1.39 kB
+@codeui/docs-demos:build: dist/client/Combobox-BhbTeuTM.js                        4.84 kB │ gzip:  1.50 kB
+@codeui/docs-demos:build: dist/client/TSB6MOZK-BQMwk_C2.js                        4.86 kB │ gzip:  1.95 kB
+@codeui/docs-demos:build: dist/client/PYSNB6I6-BpZ7MvHE.js                        5.10 kB │ gzip:  1.84 kB
+@codeui/docs-demos:build: dist/client/settings-gzVa3KIP.js                        5.10 kB │ gzip:  1.26 kB
+@codeui/docs-demos:build: dist/client/Toaster-B5xLQiJK.js                         5.77 kB │ gzip:  2.09 kB
+@codeui/docs-demos:build: dist/client/open-source-DlnLbaI7.js                     5.83 kB │ gzip:  2.17 kB
+@codeui/docs-demos:build: dist/client/presets-Eq3rSvGn.js                         5.87 kB │ gzip:  2.27 kB
+@codeui/docs-demos:build: dist/client/export-DQw9aCxx.js                          5.98 kB │ gzip:  2.01 kB
+@codeui/docs-demos:build: dist/client/LP6E37CW-Dmb2eGKj.js                        5.98 kB │ gzip:  2.24 kB
+@codeui/docs-demos:build: dist/client/cui.css-Bjh9jVyU.js                         6.07 kB │ gzip:  1.30 kB
+@codeui/docs-demos:build: dist/client/token-table-CalBr2AZ.js                     6.51 kB │ gzip:  2.11 kB
+@codeui/docs-demos:build: dist/client/command-menu-5k8P8wuX.js                    6.53 kB │ gzip:  1.99 kB
+@codeui/docs-demos:build: dist/client/progress-6W0KDgOK.js                        6.77 kB │ gzip:  2.07 kB
+@codeui/docs-demos:build: dist/client/store-yseXxt1w.js                           6.87 kB │ gzip:  2.42 kB
+@codeui/docs-demos:build: dist/client/CommandMenu-B9XB-u-G.js                     6.88 kB │ gzip:  2.03 kB
+@codeui/docs-demos:build: dist/client/dialog-focus-CbymBT2u.js                    6.97 kB │ gzip:  2.37 kB
+@codeui/docs-demos:build: dist/client/H7BK6JF7-AFJ69-ex.js                        7.48 kB │ gzip:  2.57 kB
+@codeui/docs-demos:build: dist/client/OptionCard-CzaiWcal.js                      8.41 kB │ gzip:  1.97 kB
+@codeui/docs-demos:build: dist/client/CheckBox-CBFf5l_Y.js                        8.83 kB │ gzip:  2.97 kB
+@codeui/docs-demos:build: dist/client/sheet-CBRuKua5.js                           8.84 kB │ gzip:  3.03 kB
+@codeui/docs-demos:build: dist/client/dist-Dj3HEFDO.js                            9.23 kB │ gzip:  3.53 kB
+@codeui/docs-demos:build: dist/client/popover-C9tnhzgR.js                         9.27 kB │ gzip:  2.94 kB
+@codeui/docs-demos:build: dist/client/Tooltip-DC401mbT.js                         9.99 kB │ gzip:  3.54 kB
+@codeui/docs-demos:build: dist/client/2UV3VFID-DjeLdANw.js                       10.06 kB │ gzip:  3.26 kB
+@codeui/docs-demos:build: dist/client/dialog-7bS5zAMa.js                         10.61 kB │ gzip:  2.89 kB
+@codeui/docs-demos:build: dist/client/dist-Cwk5LfOU.js                           11.42 kB │ gzip:  4.00 kB
+@codeui/docs-demos:build: dist/client/PTWD4LYA-Cg2izYH0.js                       11.52 kB │ gzip:  3.78 kB
+@codeui/docs-demos:build: dist/client/accordion-Qrj31jZL.js                      13.77 kB │ gzip:  4.23 kB
+@codeui/docs-demos:build: dist/client/basic-CecbEaEi.js                          15.67 kB │ gzip:  4.64 kB
+@codeui/docs-demos:build: dist/client/toast-Bpwn5HYe.js                          16.56 kB │ gzip:  5.21 kB
+@codeui/docs-demos:build: dist/client/layout-VSwOlu8K.js                         18.20 kB │ gzip:  5.57 kB
+@codeui/docs-demos:build: dist/client/RFN6X5VH-DyYCQdfo.js                       18.48 kB │ gzip:  5.20 kB
+@codeui/docs-demos:build: dist/client/Select-nbvDRPGo.js                         20.49 kB │ gzip:  6.10 kB
+@codeui/docs-demos:build: dist/client/T3JFWUDL-DP_5M7nT.js                       20.55 kB │ gzip:  6.42 kB
+@codeui/docs-demos:build: dist/client/Slider-dgOpp5Ha.js                         22.43 kB │ gzip:  6.29 kB
+@codeui/docs-demos:build: dist/client/Dropdown-iFb5_IX_.js                       28.88 kB │ gzip:  7.66 kB
+@codeui/docs-demos:build: dist/client/OGE3DKII-DJqWoiaj.js                       29.92 kB │ gzip: 10.19 kB
+@codeui/docs-demos:build: dist/client/client.js                                  30.50 kB │ gzip:  6.31 kB
+@codeui/docs-demos:build: dist/client/web-CULWdlJX.js                            33.46 kB │ gzip: 11.01 kB
+@codeui/docs-demos:build: dist/client/NumberField-BvNfrZuC.js                    36.12 kB │ gzip: 10.56 kB
+@codeui/docs-demos:build: 
+@codeui/docs-demos:build: [32m✓ built in 3.05s[39m
+@codeui/docs-demos:build: [33m[33m[PLUGIN_TIMINGS] [0mJavaScript callbacks ran for 2.8s of this 3.0s build (93%).
+@codeui/docs-demos:build: The slowest callbacks, timed inside each callback (the wait before a callback starts is excluded, the time it awaits is included):
+@codeui/docs-demos:build:   - plugin solid transform (68%, 2.1s, 733 calls)
+@codeui/docs-demos:build: Additional callback time came from the callbacks below and from callbacks under 1s.
+@codeui/docs-demos:build: 1 callback is listed without a time. Its calls overlapped, so the time inside one call includes work from other calls. To find its cost, profile the build with `node --cpu-prof`:
+@codeui/docs-demos:build:   - plugin vite-plugin-vanilla-extract transform (733 calls)
+@codeui/docs-demos:build: See https://rolldown.rs/reference/InputOptions.checks#bundlertimings for more details.
+@codeui/docs-demos:build: [39m
+@codeui/docs-demos:build: [36mvite v8.3.8 [32mbuilding ssr environment for production...[36m[39m
+@codeui/docs-demos:build: transforming...
+@codeui/docs-demos:build: ✓ 737 modules transformed.
+@codeui/docs-demos:build: rendering chunks...
+@codeui/docs-demos:build: computing gzip size...
+@codeui/docs-demos:build: dist/server/server.js  1,085.70 kB │ gzip: 205.54 kB
+@codeui/docs-demos:build: 
+@codeui/docs-demos:build: [32m✓ built in 2.79s[39m
 
- Tasks:    1 successful, 2 total
-Cached:    1 cached, 2 total
-  Time:    3.098s 
-Failed:    @codeui/kit#test
+ Tasks:    5 successful, 5 total
+Cached:    5 cached, 5 total
+  Time:    1.104s >>> FULL TURBO
 
- ERROR  run failed: command  exited (1)
- ELIFECYCLE  Test failed. See above for more details.
+
+> codeui-monorepo@0.0.1 test:stories /Users/riccardoperra/.t3/worktrees/codeui/t3-5e5d8b22-74de522101c3a0d0
+> pnpm --filter @codeui/storybook-playground test:stories
+
+
+> @codeui/storybook-playground@0.0.2 test:stories /Users/riccardoperra/.t3/worktrees/codeui/t3-5e5d8b22-74de522101c3a0d0/packages/storybook
+> vitest run
+
+(node:41559) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+
+ RUN  v3.2.7 /Users/riccardoperra/.t3/worktrees/codeui/t3-5e5d8b22-74de522101c3a0d0/packages/storybook
+
+Port 63315 is in use, trying another one...
+ ✓ |stories (chromium)| src/stories/Select.stories.tsx (12 tests) 2008ms
+   ✓ Select  1629ms
+ ✓ |stories (chromium)| src/stories/SegmentedControl.stories.tsx (10 tests) 3316ms
+   ✓ SegmentedControl  2903ms
+ ✓ |stories (chromium)| src/stories/Settings.stories.tsx (5 tests) 5941ms
+   ✓ Dialog  5676ms
+ ✓ |stories (chromium)| src/stories/Dialog.stories.tsx (5 tests) 6020ms
+   ✓ Sizes  5752ms
+ ✓ |stories (chromium)| src/stories/NumberField.stories.tsx (15 tests) 6335ms
+   ✓ NumberField  5796ms
+ ✓ |stories (chromium)| src/stories/TextArea.stories.tsx (11 tests) 6101ms
+   ✓ TextArea  5670ms
+ ✓ |stories (chromium)| src/stories/Combobox.stories.tsx (11 tests) 6132ms
+   ✓ Parts States  5665ms
+stderr | unknown test
+computations created outside a `createRoot` or `render` will never be disposed
+stderr | unknown test
+computations created outside a `createRoot` or `render` will never be disposed
+stderr | unknown test
+computations created outside a `createRoot` or `render` will never be disposed
+stderr | unknown test
+computations created outside a `createRoot` or `render` will never be disposed
+ ✓ |stories (chromium)| src/stories/Tooltip.stories.tsx (4 tests) 2362ms
+   ✓ Primary (default)  2258ms
+stderr | unknown test
+computations created outside a `createRoot` or `render` will never be disposed
+stderr | unknown test
+computations created outside a `createRoot` or `render` will never be disposed
+stderr | unknown test
+computations created outside a `createRoot` or `render` will never be disposed
+stderr | unknown test
+computations created outside a `createRoot` or `render` will never be disposed
+stderr | unknown test
+computations created outside a `createRoot` or `render` will never be disposed
+stderr | unknown test
+computations created outside a `createRoot` or `render` will never be disposed
+ ✓ |stories (chromium)| src/stories/Button.stories.tsx (11 tests) 2284ms
+   ✓ Primary  1903ms
+ ✓ |stories (chromium)| src/stories/Listbox.stories.tsx (9 tests) 1872ms
+   ✓ Listbox  1255ms
+ ✓ |stories (chromium)| src/stories/CommandMenu.stories.tsx (5 tests) 2440ms
+   ✓ Parts Open  2260ms
+ ✓ |stories (chromium)| src/stories/TextField.stories.tsx (11 tests) 2815ms
+   ✓ TextField  2419ms
+ ✓ |stories (chromium)| src/stories/Toast.stories.tsx (5 tests) 2747ms
+   ✓ Tones  2569ms
+ ✓ |stories (chromium)| src/stories/IconButton.stories.tsx (9 tests) 1644ms
+   ✓ Primary  1355ms
+ ✓ |stories (chromium)| src/stories/Sheet.stories.tsx (5 tests) 839ms
+   ✓ Sides  680ms
+ ✓ |stories (chromium)| src/stories/Tabs.stories.tsx (4 tests) 790ms
+   ✓ Tabs  676ms
+ ✓ |stories (chromium)| src/stories/Alert.stories.tsx (3 tests) 1112ms
+   ✓ Alert  1019ms
+ ✓ |stories (chromium)| src/stories/Switch.stories.tsx (2 tests) 1502ms
+   ✓ States  1456ms
+ ✓ |stories (chromium)| src/stories/OptionCard.stories.tsx (5 tests) 1266ms
+   ✓ Cards  1106ms
+ ✓ |stories (chromium)| src/stories/RadioList.stories.tsx (6 tests) 1342ms
+   ✓ Default  1114ms
+ ✓ |stories (chromium)| src/stories/Toaster.stories.tsx (5 tests) 1224ms
+   ✓ Tones  1076ms
+ ✓ |stories (chromium)| src/stories/Accordion.stories.tsx (3 tests) 658ms
+   ✓ Settings  594ms
+ ✓ |stories (chromium)| src/stories/Popover.stories.tsx (5 tests) 677ms
+   ✓ Popover  559ms
+ ✓ |stories (chromium)| src/stories/Checkbox.stories.tsx (3 tests) 600ms
+   ✓ Checkbox  514ms
+ ✓ |stories (chromium)| src/stories/Kbd.stories.tsx (2 tests) 952ms
+   ✓ Kbd  921ms
+ ✓ |stories (chromium)| src/stories/Stack.stories.tsx (1 test) 999ms
+   ✓ Variants  999ms
+ ✓ |stories (chromium)| src/stories/Icons.stories.tsx (2 tests) 776ms
+   ✓ All Exported Icons  741ms
+ ✓ |stories (chromium)| src/stories/Progress.stories.tsx (1 test) 694ms
+   ✓ States  693ms
+ ✓ |stories (chromium)| src/stories/Pagination.stories.tsx (3 tests) 253ms
+ ✓ |stories (chromium)| src/stories/Slider.stories.tsx (2 tests) 675ms
+   ✓ States  636ms
+ ✓ |stories (chromium)| src/stories/Skeleton.stories.tsx (4 tests) 699ms
+   ✓ Skeleton  576ms
+ ✓ |stories (chromium)| src/stories/Link.stories.tsx (3 tests) 446ms
+   ✓ Link  395ms
+ ✓ |stories (chromium)| src/stories/Badge.stories.tsx (3 tests) 531ms
+   ✓ Badge  447ms
+ ✓ |stories (chromium)| src/stories/DropdownMenu.stories.tsx (2 tests) 372ms
+   ✓ DropdownMenu  344ms
+ ✓ |stories (chromium)| src/stories/Spinner.stories.tsx (3 tests) 374ms
+   ✓ Spinner  332ms
+ ✓ |stories (chromium)| src/stories/Text.stories.tsx (1 test) 265ms
+
+ Test Files  36 passed (36)
+      Tests  191 passed (191)
+   Start at  22:50:05
+   Duration  65.07s (transform 0ms, setup 217.83s, collect 74.43s, tests 69.06s, environment 0ms, prepare 1750.83s)
+

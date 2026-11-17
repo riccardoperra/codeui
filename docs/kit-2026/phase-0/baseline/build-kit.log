@@ -1,13 +1,13 @@
 
-> codeui-monorepo@0.0.1 build:kit /Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d
+> codeui-monorepo@0.0.1 build:kit /Users/riccardoperra/.t3/worktrees/codeui/t3-5e5d8b22-74de522101c3a0d0
 > turbo run build --filter=@codeui/kit
 
 • Packages in scope: @codeui/kit
 • Running build in 1 packages
 • Remote caching disabled
-@codeui/vanilla-extract:build: cache hit, replaying logs d1f53406ee907457
+@codeui/vanilla-extract:build: cache hit, replaying logs 48b83c1b21db1509
 @codeui/vanilla-extract:build: 
-@codeui/vanilla-extract:build: > @codeui/vanilla-extract@0.2.0 build /Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/packages/vanilla-extract
+@codeui/vanilla-extract:build: > @codeui/vanilla-extract@0.2.0 build /Users/riccardoperra/.t3/worktrees/codeui/t3-5e5d8b22-74de522101c3a0d0/packages/vanilla-extract
 @codeui/vanilla-extract:build: > rollup -c
 @codeui/vanilla-extract:build: 
 @codeui/vanilla-extract:build: [36m
@@ -17,17 +17,36 @@
 @codeui/vanilla-extract:build: [1mpath[22m (imported by src/vite-plugin/index.ts)
 @codeui/vanilla-extract:build: [1mnode:fs[22m (imported by src/esbuild/vanillaCssTsFilesLoader.ts)
 @codeui/vanilla-extract:build: [1mnode:path[22m (imported by src/esbuild/vanillaCssTsFilesLoader.ts)
-@codeui/vanilla-extract:build: [1m[33m(!) Plugin typescript: @rollup/plugin-typescript TS2688: Cannot find type definition file for '@testing-library/jest-dom'.
-@codeui/vanilla-extract:build:   The file is in the program because:
-@codeui/vanilla-extract:build:     Entry point of type library '@testing-library/jest-dom' specified in compilerOptions[39m[22m
-@codeui/vanilla-extract:build: [32mcreated [1mdist, dist[22m in [1m488ms[22m[39m
-@codeui/kit:build: cache hit, replaying logs 3c50fee87e0c86d0
+@codeui/vanilla-extract:build: [32mcreated [1mdist, dist[22m in [1m1.1s[22m[39m
+@codeui/kit:build: cache hit, replaying logs c355b473c5aae8e9
 @codeui/kit:build: 
-@codeui/kit:build: > @codeui/kit@0.1.5 build /Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/packages/kit
+@codeui/kit:build: > @codeui/kit@0.1.5 build /Users/riccardoperra/.t3/worktrees/codeui/t3-5e5d8b22-74de522101c3a0d0/packages/kit
 @codeui/kit:build: > rollup -c rollup.config.js
 @codeui/kit:build: 
 @codeui/kit:build: {
-@codeui/kit:build:   input: '/Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/packages/kit/src/index.tsx',
+@codeui/kit:build:   input: [
+@codeui/kit:build:     'src/index.tsx',
+@codeui/kit:build:     'src/tokens.ts',
+@codeui/kit:build:     'src/parts/dialog.tsx',
+@codeui/kit:build:     'src/parts/popover.tsx',
+@codeui/kit:build:     'src/parts/stack.tsx',
+@codeui/kit:build:     'src/parts/text.tsx',
+@codeui/kit:build:     'src/parts/switch.tsx',
+@codeui/kit:build:     'src/parts/slider.tsx',
+@codeui/kit:build:     'src/parts/progress.tsx',
+@codeui/kit:build:     'src/parts/combobox.tsx',
+@codeui/kit:build:     'src/parts/command-menu.tsx',
+@codeui/kit:build:     'src/parts/kbd.tsx',
+@codeui/kit:build:     'src/parts/badge.tsx',
+@codeui/kit:build:     'src/parts/spinner.tsx',
+@codeui/kit:build:     'src/parts/skeleton.tsx',
+@codeui/kit:build:     'src/parts/alert.tsx',
+@codeui/kit:build:     'src/parts/toast.tsx',
+@codeui/kit:build:     'src/parts/option-card.tsx',
+@codeui/kit:build:     'src/parts/accordion.tsx',
+@codeui/kit:build:     'src/parts/sheet.tsx',
+@codeui/kit:build:     'src/parts/settings.tsx'
+@codeui/kit:build:   ],
 @codeui/kit:build:   external: [
 @codeui/kit:build:     'solid-js',
 @codeui/kit:build:     'solid-js/web',
@@ -37,20 +56,14 @@
 @codeui/kit:build:     '@kobalte/vanilla-extract',
 @codeui/kit:build:     '@maskito/core',
 @codeui/kit:build:     '@maskito/kit',
-@codeui/kit:build:     '@motionone/solid',
 @codeui/kit:build:     '@radix-ui/colors',
 @codeui/kit:build:     '@solid-primitives/pagination',
 @codeui/kit:build:     '@solid-primitives/scheduled',
 @codeui/kit:build:     '@tanstack/solid-virtual',
-@codeui/kit:build:     '@tanstack/virtual-core',
 @codeui/kit:build:     '@vanilla-extract/css',
 @codeui/kit:build:     '@vanilla-extract/dynamic',
 @codeui/kit:build:     '@vanilla-extract/recipes',
-@codeui/kit:build:     '@vanilla-extract/vite-plugin',
-@codeui/kit:build:     'example-basic',
-@codeui/kit:build:     'motion',
 @codeui/kit:build:     'polished',
-@codeui/kit:build:     'statebuilder',
 @codeui/kit:build:     'solid-js',
 @codeui/kit:build:     'solid-presence',
 @codeui/kit:build:     'solid-prevent-scroll',
@@ -60,8 +73,32 @@
 @codeui/kit:build:     /node_modules\/@corvu/
 @codeui/kit:build:   ],
 @codeui/kit:build:   output: [
-@codeui/kit:build:     { preserveModules: true, dir: 'dist/esm' },
-@codeui/kit:build:     { preserveModules: true, dir: 'dist/esm' }
+@codeui/kit:build:     {
+@codeui/kit:build:       format: 'esm',
+@codeui/kit:build:       preserveModules: true,
+@codeui/kit:build:       preserveModulesRoot: 'src',
+@codeui/kit:build:       dir: 'dist/esm'
+@codeui/kit:build:     },
+@codeui/kit:build:     {
+@codeui/kit:build:       format: 'cjs',
+@codeui/kit:build:       preserveModules: true,
+@codeui/kit:build:       preserveModulesRoot: 'src',
+@codeui/kit:build:       dir: 'dist/cjs',
+@codeui/kit:build:       entryFileNames: '[name].cjs'
+@codeui/kit:build:     },
+@codeui/kit:build:     {
+@codeui/kit:build:       format: 'esm',
+@codeui/kit:build:       preserveModules: true,
+@codeui/kit:build:       preserveModulesRoot: 'src',
+@codeui/kit:build:       dir: 'dist/esm'
+@codeui/kit:build:     },
+@codeui/kit:build:     {
+@codeui/kit:build:       format: 'cjs',
+@codeui/kit:build:       preserveModules: true,
+@codeui/kit:build:       preserveModulesRoot: 'src',
+@codeui/kit:build:       dir: 'dist/cjs',
+@codeui/kit:build:       entryFileNames: '[name].cjs'
+@codeui/kit:build:     }
 @codeui/kit:build:   ],
 @codeui/kit:build:   plugins: [
 @codeui/kit:build:     {
@@ -86,13 +123,13 @@
 @codeui/kit:build:   ]
 @codeui/kit:build: }
 @codeui/kit:build: [36m
-@codeui/kit:build: [1m/Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/packages/kit/src/index.tsx[22m → [1mdist/esm, dist/esm[22m...[39m
+@codeui/kit:build: [1msrc/index.tsx, src/tokens.ts, src/parts/dialog.tsx, src/parts/popover.tsx, src/parts/stack.tsx, src/parts/text.tsx, src/parts/switch.tsx, src/parts/slider.tsx, src/parts/progress.tsx, src/parts/combobox.tsx, src/parts/command-menu.tsx, src/parts/kbd.tsx, src/parts/badge.tsx, src/parts/spinner.tsx, src/parts/skeleton.tsx, src/parts/alert.tsx, src/parts/toast.tsx, src/parts/option-card.tsx, src/parts/accordion.tsx, src/parts/sheet.tsx, src/parts/settings.tsx[22m → [1mdist/esm, dist/cjs, dist/esm, dist/cjs[22m...[39m
 @codeui/kit:build: Browserslist: caniuse-lite is outdated. Please run:
 @codeui/kit:build:   npx update-browserslist-db@latest
 @codeui/kit:build:   Why you should do it regularly: https://github.com/browserslist/update-db#readme
-@codeui/kit:build: [32mcreated [1mdist/esm, dist/esm[22m in [1m5s[22m[39m
+@codeui/kit:build: [32mcreated [1mdist/esm, dist/cjs, dist/esm, dist/cjs[22m in [1m6.3s[22m[39m
 
  Tasks:    2 successful, 2 total
 Cached:    2 cached, 2 total
-  Time:    115ms >>> FULL TURBO
+  Time:    1.1s >>> FULL TURBO
 

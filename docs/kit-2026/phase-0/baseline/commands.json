@@ -3,133 +3,140 @@
     "name": "node",
     "command": "node --version",
     "code": 0,
-    "seconds": 0.02,
+    "seconds": 0.05,
     "firstError": ""
   },
   {
     "name": "pnpm",
     "command": "pnpm --version",
     "code": 0,
-    "seconds": 0.11,
+    "seconds": 0.3,
     "firstError": ""
   },
   {
     "name": "install",
     "command": "pnpm install --frozen-lockfile",
     "code": 0,
-    "seconds": 1.04,
+    "seconds": 13.49,
     "firstError": ""
   },
   {
     "name": "build-kit",
     "command": "pnpm build:kit",
     "code": 0,
-    "seconds": 1.15,
+    "seconds": 3.49,
     "firstError": ""
   },
   {
     "name": "test",
     "command": "pnpm test",
-    "code": 1,
-    "seconds": 3.71,
-    "firstError": "@codeui/vanilla-extract:build: (!) Plugin typescript: @rollup/plugin-typescript TS2688: Cannot find type definition file for '@testing-library/jest-dom'. @codeui/kit:test: FAIL test/index.test.tsx"
+    "code": 0,
+    "seconds": 79.15,
+    "firstError": ""
   },
   {
     "name": "typecheck",
     "command": "pnpm typecheck",
-    "code": 2,
-    "seconds": 1.99,
-    "firstError": "@codeui/vanilla-extract:build: (!) Plugin typescript: @rollup/plugin-typescript TS2688: Cannot find type definition file for '@testing-library/jest-dom'. @codeui/kit:typecheck: src/components/Field/FieldMessage/createFieldMessageProps.ts(9,37): error TS2322: Type '\"children\"' is not assignable to type '\"as\" | Exclude<keyof ComponentProps<TComponent>, \"as\">'."
+    "code": 0,
+    "seconds": 3.22,
+    "firstError": ""
   },
   {
     "name": "pack",
-    "command": "pnpm --filter @codeui/kit pack --pack-destination /var/folders/fl/zcmyh0g16cn9zycd8sv440400000gn/T/codeui-baseline-Ftnr4D",
-    "code": 1,
-    "seconds": 0.11,
-    "firstError": " ERROR  Unknown option: 'recursive'"
-  },
-  {
-    "name": "pack-compatible",
-    "command": "pnpm --dir /Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/packages/kit pack --pack-destination /var/folders/fl/zcmyh0g16cn9zycd8sv440400000gn/T/codeui-baseline-Ftnr4D",
+    "command": "pnpm --dir /Users/riccardoperra/.t3/worktrees/codeui/t3-5e5d8b22-74de522101c3a0d0/packages/kit pack --pack-destination /var/folders/fl/zcmyh0g16cn9zycd8sv440400000gn/T/codeui-baseline-gW5gRO",
     "code": 0,
-    "seconds": 0.18,
+    "seconds": 1.28,
     "firstError": ""
   },
   {
     "name": "extract",
-    "command": "tar -xzf /var/folders/fl/zcmyh0g16cn9zycd8sv440400000gn/T/codeui-baseline-Ftnr4D/codeui-kit-0.1.5.tgz -C /var/folders/fl/zcmyh0g16cn9zycd8sv440400000gn/T/codeui-baseline-Ftnr4D",
+    "command": "tar -xzf /var/folders/fl/zcmyh0g16cn9zycd8sv440400000gn/T/codeui-baseline-gW5gRO/codeui-kit-0.1.5.tgz -C /var/folders/fl/zcmyh0g16cn9zycd8sv440400000gn/T/codeui-baseline-gW5gRO",
     "code": 0,
-    "seconds": 0.03,
+    "seconds": 0.24,
     "firstError": ""
   },
   {
     "name": "publint",
-    "command": "/Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/tools/baseline/node_modules/.bin/publint /var/folders/fl/zcmyh0g16cn9zycd8sv440400000gn/T/codeui-baseline-Ftnr4D/package",
-    "code": 1,
-    "seconds": 0.5,
-    "firstError": "1. The \"example-basic\" dependency references \"link:/Users/riccardoperra/WebstormProjects/pipelineui/packages/app\" that will likely not work when installed by end-users."
+    "command": "/Users/riccardoperra/.t3/worktrees/codeui/t3-5e5d8b22-74de522101c3a0d0/tools/baseline/node_modules/.bin/publint /var/folders/fl/zcmyh0g16cn9zycd8sv440400000gn/T/codeui-baseline-gW5gRO/package",
+    "code": 0,
+    "seconds": 3.28,
+    "firstError": ""
   },
   {
     "name": "attw",
-    "command": "/Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/tools/baseline/node_modules/.bin/attw /var/folders/fl/zcmyh0g16cn9zycd8sv440400000gn/T/codeui-baseline-Ftnr4D/codeui-kit-0.1.5.tgz",
-    "code": 1,
-    "seconds": 0.39,
-    "firstError": "🥴 Import found in a type declaration file failed to resolve. Either this indicates that runtime resolution errors will occur, or (more likely) the types misrepresent the contents of the JavaScript files. Use -f json to see the imports that failed to resolve. https://github.com/arethetypeswrong/arethetypeswrong.github.io/blob/main/docs/problems/InternalResolutionError.md ⚠️ A require call resolved to an ESM JavaScript file, which is an error in Node and some bundlers. CommonJS consumers will need to use a dynamic import. https://github.com/arethetypeswrong/arethetypeswrong.github.io/blob/main/docs/problems/CJSResolvesToESM.md"
+    "command": "/Users/riccardoperra/.t3/worktrees/codeui/t3-5e5d8b22-74de522101c3a0d0/tools/baseline/node_modules/.bin/attw /var/folders/fl/zcmyh0g16cn9zycd8sv440400000gn/T/codeui-baseline-gW5gRO/codeui-kit-0.1.5.tgz",
+    "code": 0,
+    "seconds": 3.05,
+    "firstError": ""
   },
   {
     "name": "attw-json",
-    "command": "/Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/tools/baseline/node_modules/.bin/attw /var/folders/fl/zcmyh0g16cn9zycd8sv440400000gn/T/codeui-baseline-Ftnr4D/codeui-kit-0.1.5.tgz --format json",
-    "code": 1,
-    "seconds": 0.31,
-    "firstError": "InternalResolutionError, CJSResolvesToESM"
+    "command": "/Users/riccardoperra/.t3/worktrees/codeui/t3-5e5d8b22-74de522101c3a0d0/tools/baseline/node_modules/.bin/attw /var/folders/fl/zcmyh0g16cn9zycd8sv440400000gn/T/codeui-baseline-gW5gRO/codeui-kit-0.1.5.tgz --format json",
+    "code": 0,
+    "seconds": 2.51,
+    "firstError": ""
   },
   {
     "name": "consumer-import",
     "command": "node -e \"import('./packages/kit/dist/esm/index.js')\"",
     "code": 1,
-    "seconds": 0.1,
-    "firstError": "SyntaxError: The requested module 'solid-js/web' does not provide an export named 'className'"
+    "seconds": 0.39,
+    "firstError": "Error: Styles were unable to be assigned to a file. This is generally caused by one of the following:"
   },
   {
     "name": "consumer-browser-import",
     "command": "node --conditions=browser -e \"import('./packages/kit/dist/esm/index.js')\"",
     "code": 1,
-    "seconds": 0.1,
+    "seconds": 0.35,
     "firstError": "Error: Styles were unable to be assigned to a file. This is generally caused by one of the following:"
   },
   {
     "name": "sizes",
-    "command": "node tools/baseline/sizes.mjs /var/folders/fl/zcmyh0g16cn9zycd8sv440400000gn/T/codeui-baseline-Ftnr4D/package",
+    "command": "node tools/baseline/sizes.mjs /var/folders/fl/zcmyh0g16cn9zycd8sv440400000gn/T/codeui-baseline-gW5gRO/package",
     "code": 0,
-    "seconds": 0.21,
+    "seconds": 0.47,
     "firstError": ""
   },
   {
     "name": "storybook-build",
-    "command": "pnpm --filter @codeui/storybook-playground exec storybook build --output-dir /Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/tools/baseline/storybook-static --disable-telemetry",
-    "code": 1,
-    "seconds": 0.88,
-    "firstError": "SB_CORE-SERVER_0002 (CriticalPresetLoadError): Storybook failed to load the following preset: /Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/node_modules/.pnpm/storybook-solidjs-vite@1.0.0-beta.2_storybook@8.3.0_typescript@5.6.2_vite@5.4.4_@types+node@2_z7fts7wwrrihd4dshr5rqdsnbi/node_modules/storybook-solidjs-vite/preset. ReferenceError: module is not defined in ES module scope"
-  },
-  {
-    "name": "storybook-build-compatible",
-    "command": "NODE_OPTIONS=--require=/Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/tools/baseline/compat.cjs pnpm --filter @codeui/storybook-playground exec storybook build --output-dir /Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/tools/baseline/storybook-static --disable-telemetry",
+    "command": "pnpm --filter @codeui/storybook-playground exec storybook build --output-dir /Users/riccardoperra/.t3/worktrees/codeui/t3-5e5d8b22-74de522101c3a0d0/.artifacts/main-repeat-static --disable-telemetry",
     "code": 0,
-    "seconds": 5.24,
+    "seconds": 20.3,
     "firstError": ""
   },
   {
     "name": "screenshots",
     "command": "node tools/baseline/screenshots.mjs",
-    "code": 1,
-    "seconds": 316.2,
-    "firstError": "designsystem-button--docs dark: Hashes differ"
+    "code": 0,
+    "seconds": 501.19,
+    "firstError": ""
   },
   {
     "name": "a11y",
     "command": "node tools/baseline/a11y.mjs",
     "code": 1,
-    "seconds": 373.39,
+    "seconds": 178.44,
     "firstError": "configure-your-project--docs dark: color-contrast, heading-order, landmark-one-main, region"
+  },
+  {
+    "name": "layer",
+    "command": "node tools/baseline/layer.mjs",
+    "code": 0,
+    "seconds": 1.9,
+    "firstError": ""
+  },
+  {
+    "name": "option-card",
+    "command": "node tools/baseline/option-card.mjs",
+    "code": 0,
+    "seconds": 2.52,
+    "firstError": ""
+  },
+  {
+    "name": "theme-overrides",
+    "command": "node tools/baseline/theme-overrides.mjs",
+    "code": 1,
+    "seconds": 1.35,
+    "firstError": "AssertionError [ERR_ASSERTION]: dark page, light scope: :root radius override reaches the button   code: 'ERR_ASSERTION',"
   }
 ]

@@ -1,9 +1,15 @@
-file:///Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/packages/kit/dist/esm/components/Button/ButtonIcon.js:1
-import { className, spread, template } from 'solid-js/web';
-         ^^^^^^^^^
-SyntaxError: The requested module 'solid-js/web' does not provide an export named 'className'
-    at #asyncInstantiate (node:internal/modules/esm/module_job:463:21)
-    at async ModuleJob.run (node:internal/modules/esm/module_job:561:5)
+/Users/riccardoperra/.t3/worktrees/codeui/t3-5e5d8b22-74de522101c3a0d0/node_modules/.pnpm/@vanilla-extract+css@1.15.5/node_modules/@vanilla-extract/css/fileScope/dist/vanilla-extract-css-fileScope.cjs.dev.js:35
+    throw new Error(dedent__default["default"](_templateObject || (_templateObject = taggedTemplateLiteral._taggedTemplateLiteral(["\n        Styles were unable to be assigned to a file. This is generally caused by one of the following:\n\n        - You may have created styles outside of a '.css.ts' context\n        - You may have incorrect configuration. See https://vanilla-extract.style/documentation/getting-started\n      "]))));
+          ^
+
+Error: Styles were unable to be assigned to a file. This is generally caused by one of the following:
+
+- You may have created styles outside of a '.css.ts' context
+- You may have incorrect configuration. See https://vanilla-extract.style/documentation/getting-started
+    at Object.getFileScope (/Users/riccardoperra/.t3/worktrees/codeui/t3-5e5d8b22-74de522101c3a0d0/node_modules/.pnpm/@vanilla-extract+css@1.15.5/node_modules/@vanilla-extract/css/fileScope/dist/vanilla-extract-css-fileScope.cjs.dev.js:35:11)
+    at globalLayer (/Users/riccardoperra/.t3/worktrees/codeui/t3-5e5d8b22-74de522101c3a0d0/node_modules/.pnpm/@vanilla-extract+css@1.15.5/node_modules/@vanilla-extract/css/dist/vanilla-extract-css.cjs.dev.js:483:48)
+    at file:///Users/riccardoperra/.t3/worktrees/codeui/t3-5e5d8b22-74de522101c3a0d0/packages/kit/dist/esm/foundation/layer.css.js:9:16
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
     at async node:internal/modules/esm/loader:650:26
     at async importModuleDynamicallyWrapper (node:internal/vm/module:525:15)
 

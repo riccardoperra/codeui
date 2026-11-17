@@ -1,14 +1,19 @@
 {
   "command": "size-limit --config tools/baseline/size.config.json --json",
   "code": 0,
-  "stdout": "[\n  {\n    \"name\": \"ESM entry with reachable bundled modules, minified and gzipped\",\n    \"size\": 106068\n  }\n]\n",
+  "stdout": "[\n  {\n    \"name\": \"ESM entry with reachable bundled modules, minified and gzipped\",\n    \"size\": 150452\n  }\n]\n",
   "stderr": "",
   "cssBytes": 0,
   "cssFiles": [],
   "cssModules": [
+    "dist/esm/components/Accordion/Accordion.css.js",
+    "dist/esm/components/Alert/Alert.css.js",
+    "dist/esm/components/Badge/Badge.css.js",
     "dist/esm/components/Button/Button.css.js",
     "dist/esm/components/Button/Loading.css.js",
     "dist/esm/components/CheckBox/CheckBox.css.js",
+    "dist/esm/components/Combobox/Combobox.css.js",
+    "dist/esm/components/CommandMenu/CommandMenu.css.js",
     "dist/esm/components/Dialog/Dialog.css.js",
     "dist/esm/components/Dropdown/Dropdown.css.js",
     "dist/esm/components/Field/Field.css.js",
@@ -16,25 +21,45 @@
     "dist/esm/components/Field/FieldLabel/FieldLabel.css.js",
     "dist/esm/components/Field/FieldMessage/FieldMessage.css.js",
     "dist/esm/components/IconButton/IconButton.css.js",
+    "dist/esm/components/Kbd/Kbd.css.js",
     "dist/esm/components/Link/Link.css.js",
     "dist/esm/components/Listbox/Listbox.css.js",
     "dist/esm/components/NumberField/NumberField.css.js",
+    "dist/esm/components/OptionCard/OptionCard.css.js",
     "dist/esm/components/Pagination/Pagination.css.js",
     "dist/esm/components/Popover/Popover.css.js",
+    "dist/esm/components/Progress/Progress.css.js",
     "dist/esm/components/RadioList/Radio.css.js",
     "dist/esm/components/SegmentedControl/SegmentedControl.css.js",
     "dist/esm/components/Select/Select.css.js",
+    "dist/esm/components/Settings/Settings.css.js",
+    "dist/esm/components/Sheet/Sheet.css.js",
+    "dist/esm/components/Skeleton/Skeleton.css.js",
+    "dist/esm/components/Slider/Slider.css.js",
+    "dist/esm/components/Spinner/Spinner.css.js",
+    "dist/esm/components/Stack/Stack.css.js",
+    "dist/esm/components/Switch/Switch.css.js",
     "dist/esm/components/Tabs/Tabs.css.js",
+    "dist/esm/components/Text/Text.css.js",
     "dist/esm/components/TextArea/TextArea.css.js",
     "dist/esm/components/TextField/TextField.css.js",
+    "dist/esm/components/Toast/Toast.css.js",
     "dist/esm/components/Tooltip/Tooltip.css.js",
     "dist/esm/foundation/contract.css.js",
+    "dist/esm/foundation/cui.css.js",
+    "dist/esm/foundation/layer.css.js",
     "dist/esm/foundation/layout.css.js",
+    "dist/esm/foundation/motion.css.js",
     "dist/esm/foundation/themes.css.js",
     "dist/esm/icons/icon.css.js",
+    "dist/source/components/Accordion/Accordion.css.js",
+    "dist/source/components/Alert/Alert.css.js",
+    "dist/source/components/Badge/Badge.css.js",
     "dist/source/components/Button/Button.css.js",
     "dist/source/components/Button/Loading.css.js",
     "dist/source/components/CheckBox/CheckBox.css.js",
+    "dist/source/components/Combobox/Combobox.css.js",
+    "dist/source/components/CommandMenu/CommandMenu.css.js",
     "dist/source/components/Dialog/Dialog.css.js",
     "dist/source/components/Dropdown/Dropdown.css.js",
     "dist/source/components/Field/Field.css.js",
@@ -42,20 +67,35 @@
     "dist/source/components/Field/FieldLabel/FieldLabel.css.js",
     "dist/source/components/Field/FieldMessage/FieldMessage.css.js",
     "dist/source/components/IconButton/IconButton.css.js",
+    "dist/source/components/Kbd/Kbd.css.js",
     "dist/source/components/Link/Link.css.js",
     "dist/source/components/Listbox/Listbox.css.js",
     "dist/source/components/NumberField/NumberField.css.js",
+    "dist/source/components/OptionCard/OptionCard.css.js",
     "dist/source/components/Pagination/Pagination.css.js",
     "dist/source/components/Popover/Popover.css.js",
+    "dist/source/components/Progress/Progress.css.js",
     "dist/source/components/RadioList/Radio.css.js",
     "dist/source/components/SegmentedControl/SegmentedControl.css.js",
     "dist/source/components/Select/Select.css.js",
+    "dist/source/components/Settings/Settings.css.js",
+    "dist/source/components/Sheet/Sheet.css.js",
+    "dist/source/components/Skeleton/Skeleton.css.js",
+    "dist/source/components/Slider/Slider.css.js",
+    "dist/source/components/Spinner/Spinner.css.js",
+    "dist/source/components/Stack/Stack.css.js",
+    "dist/source/components/Switch/Switch.css.js",
     "dist/source/components/Tabs/Tabs.css.js",
+    "dist/source/components/Text/Text.css.js",
     "dist/source/components/TextArea/TextArea.css.js",
     "dist/source/components/TextField/TextField.css.js",
+    "dist/source/components/Toast/Toast.css.js",
     "dist/source/components/Tooltip/Tooltip.css.js",
     "dist/source/foundation/contract.css.js",
+    "dist/source/foundation/cui.css.js",
+    "dist/source/foundation/layer.css.js",
     "dist/source/foundation/layout.css.js",
+    "dist/source/foundation/motion.css.js",
     "dist/source/foundation/themes.css.js",
     "dist/source/icons/icon.css.js"
   ],
@@ -88,68 +128,422 @@
       "access": "public"
     },
     "files": [
-      "dist"
+      "dist",
+      "DESIGN.md"
     ],
     "type": "module",
     "module": "dist/esm/index.js",
     "types": "dist/types/index.d.ts",
     "exports": {
       ".": {
-        "types": "./dist/types/index.d.ts",
-        "solid": "./dist/source/index.jsx",
-        "import": "./dist/esm/index.js",
-        "browser": {
-          "import": "./dist/esm/index.js"
+        "solid": {
+          "types": "./dist/types/index.d.ts",
+          "default": "./dist/source/index.jsx"
+        },
+        "import": {
+          "types": "./dist/types/index.d.ts",
+          "default": "./dist/esm/index.js"
+        },
+        "require": {
+          "types": "./dist/types-cjs/index.d.cts",
+          "default": "./dist/cjs/index.cjs"
         }
+      },
+      "./dialog": {
+        "solid": {
+          "types": "./dist/types/parts/dialog.d.ts",
+          "default": "./dist/source/parts/dialog.jsx"
+        },
+        "import": {
+          "types": "./dist/types/parts/dialog.d.ts",
+          "default": "./dist/esm/parts/dialog.js"
+        },
+        "require": {
+          "types": "./dist/types-cjs/parts/dialog.d.cts",
+          "default": "./dist/cjs/parts/dialog.cjs"
+        }
+      },
+      "./popover": {
+        "solid": {
+          "types": "./dist/types/parts/popover.d.ts",
+          "default": "./dist/source/parts/popover.jsx"
+        },
+        "import": {
+          "types": "./dist/types/parts/popover.d.ts",
+          "default": "./dist/esm/parts/popover.js"
+        },
+        "require": {
+          "types": "./dist/types-cjs/parts/popover.d.cts",
+          "default": "./dist/cjs/parts/popover.cjs"
+        }
+      },
+      "./package.json": "./package.json",
+      "./tokens": {
+        "solid": {
+          "types": "./dist/types/tokens.d.ts",
+          "default": "./dist/source/tokens.js"
+        },
+        "import": {
+          "types": "./dist/types/tokens.d.ts",
+          "default": "./dist/esm/tokens.js"
+        },
+        "require": {
+          "types": "./dist/types-cjs/tokens.d.cts",
+          "default": "./dist/cjs/tokens.cjs"
+        }
+      },
+      "./stack": {
+        "solid": {
+          "types": "./dist/types/parts/stack.d.ts",
+          "default": "./dist/source/parts/stack.jsx"
+        },
+        "import": {
+          "types": "./dist/types/parts/stack.d.ts",
+          "default": "./dist/esm/parts/stack.js"
+        },
+        "require": {
+          "types": "./dist/types-cjs/parts/stack.d.cts",
+          "default": "./dist/cjs/parts/stack.cjs"
+        }
+      },
+      "./text": {
+        "solid": {
+          "types": "./dist/types/parts/text.d.ts",
+          "default": "./dist/source/parts/text.jsx"
+        },
+        "import": {
+          "types": "./dist/types/parts/text.d.ts",
+          "default": "./dist/esm/parts/text.js"
+        },
+        "require": {
+          "types": "./dist/types-cjs/parts/text.d.cts",
+          "default": "./dist/cjs/parts/text.cjs"
+        }
+      },
+      "./switch": {
+        "solid": {
+          "types": "./dist/types/parts/switch.d.ts",
+          "default": "./dist/source/parts/switch.jsx"
+        },
+        "import": {
+          "types": "./dist/types/parts/switch.d.ts",
+          "default": "./dist/esm/parts/switch.js"
+        },
+        "require": {
+          "types": "./dist/types-cjs/parts/switch.d.cts",
+          "default": "./dist/cjs/parts/switch.cjs"
+        }
+      },
+      "./slider": {
+        "solid": {
+          "types": "./dist/types/parts/slider.d.ts",
+          "default": "./dist/source/parts/slider.jsx"
+        },
+        "import": {
+          "types": "./dist/types/parts/slider.d.ts",
+          "default": "./dist/esm/parts/slider.js"
+        },
+        "require": {
+          "types": "./dist/types-cjs/parts/slider.d.cts",
+          "default": "./dist/cjs/parts/slider.cjs"
+        }
+      },
+      "./progress": {
+        "solid": {
+          "types": "./dist/types/parts/progress.d.ts",
+          "default": "./dist/source/parts/progress.jsx"
+        },
+        "import": {
+          "types": "./dist/types/parts/progress.d.ts",
+          "default": "./dist/esm/parts/progress.js"
+        },
+        "require": {
+          "types": "./dist/types-cjs/parts/progress.d.cts",
+          "default": "./dist/cjs/parts/progress.cjs"
+        }
+      },
+      "./combobox": {
+        "solid": {
+          "types": "./dist/types/parts/combobox.d.ts",
+          "default": "./dist/source/parts/combobox.jsx"
+        },
+        "import": {
+          "types": "./dist/types/parts/combobox.d.ts",
+          "default": "./dist/esm/parts/combobox.js"
+        },
+        "require": {
+          "types": "./dist/types-cjs/parts/combobox.d.cts",
+          "default": "./dist/cjs/parts/combobox.cjs"
+        }
+      },
+      "./command-menu": {
+        "solid": {
+          "types": "./dist/types/parts/command-menu.d.ts",
+          "default": "./dist/source/parts/command-menu.jsx"
+        },
+        "import": {
+          "types": "./dist/types/parts/command-menu.d.ts",
+          "default": "./dist/esm/parts/command-menu.js"
+        },
+        "require": {
+          "types": "./dist/types-cjs/parts/command-menu.d.cts",
+          "default": "./dist/cjs/parts/command-menu.cjs"
+        }
+      },
+      "./kbd": {
+        "solid": {
+          "types": "./dist/types/parts/kbd.d.ts",
+          "default": "./dist/source/parts/kbd.jsx"
+        },
+        "import": {
+          "types": "./dist/types/parts/kbd.d.ts",
+          "default": "./dist/esm/parts/kbd.js"
+        },
+        "require": {
+          "types": "./dist/types-cjs/parts/kbd.d.cts",
+          "default": "./dist/cjs/parts/kbd.cjs"
+        }
+      },
+      "./badge": {
+        "solid": {
+          "types": "./dist/types/parts/badge.d.ts",
+          "default": "./dist/source/parts/badge.jsx"
+        },
+        "import": {
+          "types": "./dist/types/parts/badge.d.ts",
+          "default": "./dist/esm/parts/badge.js"
+        },
+        "require": {
+          "types": "./dist/types-cjs/parts/badge.d.cts",
+          "default": "./dist/cjs/parts/badge.cjs"
+        }
+      },
+      "./spinner": {
+        "solid": {
+          "types": "./dist/types/parts/spinner.d.ts",
+          "default": "./dist/source/parts/spinner.jsx"
+        },
+        "import": {
+          "types": "./dist/types/parts/spinner.d.ts",
+          "default": "./dist/esm/parts/spinner.js"
+        },
+        "require": {
+          "types": "./dist/types-cjs/parts/spinner.d.cts",
+          "default": "./dist/cjs/parts/spinner.cjs"
+        }
+      },
+      "./skeleton": {
+        "solid": {
+          "types": "./dist/types/parts/skeleton.d.ts",
+          "default": "./dist/source/parts/skeleton.jsx"
+        },
+        "import": {
+          "types": "./dist/types/parts/skeleton.d.ts",
+          "default": "./dist/esm/parts/skeleton.js"
+        },
+        "require": {
+          "types": "./dist/types-cjs/parts/skeleton.d.cts",
+          "default": "./dist/cjs/parts/skeleton.cjs"
+        }
+      },
+      "./alert": {
+        "solid": {
+          "types": "./dist/types/parts/alert.d.ts",
+          "default": "./dist/source/parts/alert.jsx"
+        },
+        "import": {
+          "types": "./dist/types/parts/alert.d.ts",
+          "default": "./dist/esm/parts/alert.js"
+        },
+        "require": {
+          "types": "./dist/types-cjs/parts/alert.d.cts",
+          "default": "./dist/cjs/parts/alert.cjs"
+        }
+      },
+      "./toast": {
+        "solid": {
+          "types": "./dist/types/parts/toast.d.ts",
+          "default": "./dist/source/parts/toast.jsx"
+        },
+        "import": {
+          "types": "./dist/types/parts/toast.d.ts",
+          "default": "./dist/esm/parts/toast.js"
+        },
+        "require": {
+          "types": "./dist/types-cjs/parts/toast.d.cts",
+          "default": "./dist/cjs/parts/toast.cjs"
+        }
+      },
+      "./option-card": {
+        "solid": {
+          "types": "./dist/types/parts/option-card.d.ts",
+          "default": "./dist/source/parts/option-card.jsx"
+        },
+        "import": {
+          "types": "./dist/types/parts/option-card.d.ts",
+          "default": "./dist/esm/parts/option-card.js"
+        },
+        "require": {
+          "types": "./dist/types-cjs/parts/option-card.d.cts",
+          "default": "./dist/cjs/parts/option-card.cjs"
+        }
+      },
+      "./accordion": {
+        "solid": {
+          "types": "./dist/types/parts/accordion.d.ts",
+          "default": "./dist/source/parts/accordion.jsx"
+        },
+        "import": {
+          "types": "./dist/types/parts/accordion.d.ts",
+          "default": "./dist/esm/parts/accordion.js"
+        },
+        "require": {
+          "types": "./dist/types-cjs/parts/accordion.d.cts",
+          "default": "./dist/cjs/parts/accordion.cjs"
+        }
+      },
+      "./sheet": {
+        "solid": {
+          "types": "./dist/types/parts/sheet.d.ts",
+          "default": "./dist/source/parts/sheet.jsx"
+        },
+        "import": {
+          "types": "./dist/types/parts/sheet.d.ts",
+          "default": "./dist/esm/parts/sheet.js"
+        },
+        "require": {
+          "types": "./dist/types-cjs/parts/sheet.d.cts",
+          "default": "./dist/cjs/parts/sheet.cjs"
+        }
+      },
+      "./settings": {
+        "solid": {
+          "types": "./dist/types/parts/settings.d.ts",
+          "default": "./dist/source/parts/settings.jsx"
+        },
+        "import": {
+          "types": "./dist/types/parts/settings.d.ts",
+          "default": "./dist/esm/parts/settings.js"
+        },
+        "require": {
+          "types": "./dist/types-cjs/parts/settings.d.cts",
+          "default": "./dist/cjs/parts/settings.cjs"
+        }
+      }
+    },
+    "typesVersions": {
+      "*": {
+        "dialog": [
+          "dist/types/parts/dialog.d.ts"
+        ],
+        "popover": [
+          "dist/types/parts/popover.d.ts"
+        ],
+        "tokens": [
+          "dist/types/tokens.d.ts"
+        ],
+        "stack": [
+          "dist/types/parts/stack.d.ts"
+        ],
+        "text": [
+          "dist/types/parts/text.d.ts"
+        ],
+        "switch": [
+          "dist/types/parts/switch.d.ts"
+        ],
+        "slider": [
+          "dist/types/parts/slider.d.ts"
+        ],
+        "progress": [
+          "dist/types/parts/progress.d.ts"
+        ],
+        "combobox": [
+          "dist/types/parts/combobox.d.ts"
+        ],
+        "command-menu": [
+          "dist/types/parts/command-menu.d.ts"
+        ],
+        "kbd": [
+          "dist/types/parts/kbd.d.ts"
+        ],
+        "badge": [
+          "dist/types/parts/badge.d.ts"
+        ],
+        "spinner": [
+          "dist/types/parts/spinner.d.ts"
+        ],
+        "skeleton": [
+          "dist/types/parts/skeleton.d.ts"
+        ],
+        "alert": [
+          "dist/types/parts/alert.d.ts"
+        ],
+        "toast": [
+          "dist/types/parts/toast.d.ts"
+        ],
+        "option-card": [
+          "dist/types/parts/option-card.d.ts"
+        ],
+        "accordion": [
+          "dist/types/parts/accordion.d.ts"
+        ],
+        "sheet": [
+          "dist/types/parts/sheet.d.ts"
+        ],
+        "settings": [
+          "dist/types/parts/settings.d.ts"
+        ]
       }
     },
     "devDependencies": {
       "@testing-library/jest-dom": "^6.5.0",
-      "jest": "^29.7.0",
-      "jest-environment-jsdom": "^29.7.0",
+      "@vanilla-extract/vite-plugin": "^4.0.15",
+      "@vitest/browser": "3.2.7",
+      "motion": "^10.18.0",
+      "playwright": "1.56.1",
       "rollup": "^4.21.3",
       "rollup-preset-solid": "^2.0.1",
-      "solid-js": "^1.8.22",
+      "solid-js": "^1.9.8",
       "solid-testing-library": "^0.5.1",
-      "ts-node": "^10.9.2",
       "typescript": "^5.6.2",
+      "vite": "5.4.4",
+      "vite-plugin-solid": "2.11.8",
       "vite-tsconfig-paths": "^5.0.1",
+      "vitest": "3.2.7",
+      "@types/node": "22.5.4",
       "@codeui/vanilla-extract": "0.2.0"
     },
     "peerDependencies": {
-      "solid-js": "^1.7.0"
+      "solid-js": "^1.9.8"
     },
     "dependencies": {
-      "@kobalte/core": "^0.13.6",
-      "@kobalte/utils": "^0.9.1",
+      "@kobalte/core": "^0.13.14",
+      "@kobalte/utils": "^0.9.2",
       "@kobalte/vanilla-extract": "^0.5.0",
       "@maskito/core": "^3.0.1",
       "@maskito/kit": "^3.0.1",
-      "@motionone/solid": "^10.16.4",
       "@radix-ui/colors": "^3.0.0",
       "@solid-primitives/pagination": "^0.3.0",
       "@solid-primitives/scheduled": "^1.4.3",
       "@tanstack/solid-virtual": "^3.10.7",
-      "@tanstack/virtual-core": "^3.10.7",
       "@vanilla-extract/css": "^1.15.5",
       "@vanilla-extract/dynamic": "^2.1.2",
       "@vanilla-extract/recipes": "^0.5.5",
-      "@vanilla-extract/vite-plugin": "^4.0.15",
-      "example-basic": "link:/Users/riccardoperra/WebstormProjects/pipelineui/packages/app",
-      "motion": "^10.18.0",
-      "polished": "^4.3.1",
-      "statebuilder": "^0.6.0"
+      "polished": "^4.3.1"
     },
+    "main": "dist/cjs/index.cjs",
     "scripts": {
       "dev": "pnpm run build -w",
       "build": "rollup -c rollup.config.js",
-      "test": "pnpm run test:client && pnpm run test:ssr",
-      "test:client": "jest --config jest.config.ts",
-      "test:ssr": "jest --config jest.config.ssr.ts",
+      "test": "pnpm run test:client && pnpm run test:ssr && pnpm run test:hydration && pnpm run test:tokens-consumer",
+      "test:client": "vitest run --project browser",
+      "test:ssr": "vitest run --project ssr",
+      "test:hydration": "vitest run --project ssr test/hydration.ssr && vitest run --project hydration",
       "typecheck": "tsc --noEmit",
-      "prepublish": "pnpm build"
+      "prepublish": "pnpm build",
+      "test:tokens-consumer": "node fixtures/tokens-consumer/check.mjs && node fixtures/tokens-consumer/check.mjs --solid"
     }
   },
-  "esmEntry": "export { Button } from './components/Button/Button.js';\nimport * as Button_css from './components/Button/Button.css.js';\nexport { Button_css as buttonStyles };\nimport * as Field_css from './components/Field/Field.css.js';\nexport { Field_css as fieldStyles };\nexport { styleFieldMessage } from './components/Field/fieldStyle.js';\nexport { createBaseFieldProps } from './components/Field/createBaseFieldProps.js';\nexport { createFieldErrorMessageProps } from './components/Field/FieldError/createFieldErrorMessageProps.js';\nimport * as FieldError_css from './components/Field/FieldError/FieldError.css.js';\nexport { FieldError_css as fieldErrorStyles };\nimport * as FieldLabel_css from './components/Field/FieldLabel/FieldLabel.css.js';\nexport { FieldLabel_css as fieldLabelStyles };\nexport { createFieldLabelProps } from './components/Field/FieldLabel/createFieldLabelProps.js';\nexport { TextField } from './components/TextField/TextField.js';\nimport * as TextField_css from './components/TextField/TextField.css.js';\nexport { TextField_css as textFieldStyles };\nexport { TextArea } from './components/TextArea/TextArea.js';\nexport { NumberField } from './components/NumberField/NumberField.js';\nexport { IconButton } from './components/IconButton/IconButton.js';\nexport { Checkbox } from './components/CheckBox/CheckBox.js';\nexport { Dialog, DialogPanel, DialogPanelContent, DialogPanelFooter } from './components/Dialog/Dialog.js';\nexport { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuPortal, DropdownMenuSeparator, DropdownMenuTrigger, DropdownSubMenu, DropdownSubMenuContent, DropdownSubMenuTrigger } from './components/Dropdown/Dropdown.js';\nimport * as Dropdown_css from './components/Dropdown/Dropdown.css.js';\nexport { Dropdown_css as dropdownMenuStyles };\nexport { Popover, PopoverContent, PopoverTrigger } from './components/Popover/Popover.js';\nimport * as Popover_css from './components/Popover/Popover.css.js';\nexport { Popover_css as popoverStyles };\nexport { Select } from './components/Select/Select.js';\nexport { createSelectOptions } from './components/Select/createSelectValue.js';\nexport { RadioList, RadioListItem } from './components/RadioList/RadioList.js';\nexport { Link } from './components/Link/Link.js';\nexport { Pagination } from './components/Pagination/Pagination.js';\nexport { Tooltip } from './components/Tooltip/Tooltip.js';\nexport { Tabs, TabsContent, TabsHeader, TabsList } from './components/Tabs/Tabs.js';\nexport { SegmentedControl } from './components/SegmentedControl/SegmentedControl.js';\nexport { SegmentedControlItem } from './components/SegmentedControl/SegmentedControlItem.js';\nexport { Listbox, ListboxItem } from './components/Listbox/Listbox.js';\nexport { VirtualizedListbox } from './components/Listbox/VirtualizedListbox.js';\nexport { SvgIcon } from './icons/SvgIcon.js';\nimport * as index from './icons/index.js';\nexport { index as icons };\nexport { mergeClasses } from './utils/css.js';\nexport { TextFieldLabel } from './components/TextField/TextFieldLabel.js';\nexport { TextAreaLabel } from './components/TextArea/TextAreaLabel.js';\nexport { NumberFieldLabel } from './components/NumberField/NumberFieldLabel.js';\nexport { themeTokens } from './foundation/themes.css.js';\nexport { tokens as themeVars } from './foundation/contract.css.js';\nexport { breakpoints } from './foundation/breakpoints.js';\nimport * as layout_css from './foundation/layout.css.js';\nexport { layout_css as layoutVars };\nexport { responsiveStyle } from './foundation/responsive.js';\n",
-  "sampleCssModule": "import { slicedToArray as _slicedToArray, defineProperty as _defineProperty } from '../../_virtual/_rollupPluginBabelHelpers.js';\nimport { componentStateStyles } from '@kobalte/vanilla-extract';\nimport { createTheme, fallbackVar, style } from '@vanilla-extract/css';\nimport { recipe } from '@vanilla-extract/recipes';\nimport { tokens } from '../../foundation/contract.css.js';\nimport { layoutBackgroundColor } from '../../foundation/layout.css.js';\nimport { mapSizeValue } from '../../foundation/sizes.js';\nimport { themeTokens } from '../../foundation/themes.css.js';\n\nvar _createTheme = createTheme({\n    buttonHeight: \"\",\n    fontSize: \"\",\n    background: \"\",\n    hoverBackground: \"\",\n    activeBackground: \"\",\n    color: themeTokens.colors.gray12,\n    borderColor: \"\",\n    padding: \"\",\n    borderRadius: themeTokens.radii.md\n  }),\n  _createTheme2 = _slicedToArray(_createTheme, 2),\n  buttonTheme = _createTheme2[0],\n  buttonVars = _createTheme2[1];\nvar ButtonSizes = {\n  xs: \"xs\",\n  sm: \"sm\",\n  md: \"md\",\n  lg: \"lg\",\n  xl: \"xl\"\n};\nvar ButtonThemes = {\n  primary: \"primary\",\n  secondary: \"secondary\",\n  tertiary: \"tertiary\",\n  negative: \"negative\",\n  caution: \"caution\"\n};\nvar button = recipe({\n  base: [buttonTheme, {\n    appearance: \"none\",\n    fontFamily: \"inherit\",\n    position: \"relative\",\n    display: \"inline-flex\",\n    justifyContent: \"center\",\n    alignItems: \"center\",\n    flexShrink: 0,\n    whiteSpace: \"nowrap\",\n    verticalAlign: \"middle\",\n    height: buttonVars.buttonHeight,\n    color: buttonVars.color,\n    background: buttonVars.background,\n    borderRadius: buttonVars.borderRadius,\n    padding: \"0 \".concat(buttonVars.padding),\n    fontWeight: themeTokens.fontWeight.medium,\n    fontSize: buttonVars.fontSize,\n    border: \"1px solid \".concat(buttonVars.borderColor),\n    transition: \"opacity .2s, background-color .2s, transform .2s, outline-color 150ms ease-in-out, outline-offset 150ms ease-in\",\n    gap: themeTokens.spacing[\"2\"],\n    outlineColor: \"transparent\",\n    outlineOffset: \"0px\",\n    vars: _defineProperty({}, buttonVars.borderColor, buttonVars.background)\n  }, {\n    selectors: {\n      \"&:not([data-disabled]):hover\": {\n        background: buttonVars.hoverBackground\n      },\n      \"&:not([data-disabled]):active\": {\n        background: buttonVars.activeBackground,\n        animation: \"none\",\n        transform: \"scale(0.97)\"\n      },\n      \"&:focus-visible\": {\n        outlineOffset: \"4px\",\n        outline: \"2px solid \".concat(buttonVars.background)\n      }\n    }\n  }, componentStateStyles({\n    disabled: {\n      vars: _defineProperty(_defineProperty({}, buttonVars.background, tokens.accent3), buttonVars.color, tokens.foreground),\n      opacity: 0.5\n    }\n  })],\n  variants: {\n    size: _defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty({}, ButtonSizes.xl, {\n      vars: _defineProperty(_defineProperty(_defineProperty(_defineProperty({}, buttonVars.buttonHeight, mapSizeValue(\"xl\")), buttonVars.fontSize, themeTokens.fontSize.xl), buttonVars.padding, themeTokens.spacing[\"6\"]), buttonVars.borderRadius, themeTokens.radii.xl)\n    }), ButtonSizes.lg, {\n      vars: _defineProperty(_defineProperty(_defineProperty(_defineProperty({}, buttonVars.buttonHeight, mapSizeValue(\"lg\")), buttonVars.fontSize, themeTokens.fontSize.lg), buttonVars.padding, themeTokens.spacing[\"5\"]), buttonVars.borderRadius, themeTokens.radii.lg)\n    }), ButtonSizes.md, {\n      vars: _defineProperty(_defineProperty(_defineProperty(_defineProperty({}, buttonVars.buttonHeight, mapSizeValue(\"md\")), buttonVars.fontSize, themeTokens.fontSize.md), buttonVars.padding, themeTokens.spacing[\"5\"]), buttonVars.borderRadius, themeTokens.radii.md)\n    }), ButtonSizes.sm, {\n      vars: _defineProperty(_defineProperty(_defineProperty(_defineProperty({}, buttonVars.buttonHeight, mapSizeValue(\"sm\")), buttonVars.fontSize, themeTokens.fontSize.sm), buttonVars.padding, themeTokens.spacing[\"4\"]), buttonVars.borderRadius, themeTokens.radii.sm)\n    }), ButtonSizes.xs, {\n      vars: _defineProperty(_defineProperty(_defineProperty(_defineProperty({}, buttonVars.buttonHeight, mapSizeValue(\"xs\")), buttonVars.fontSize, themeTokens.fontSize.xs), buttonVars.padding, themeTokens.spacing[\"2\"]), buttonVars.borderRadius, themeTokens.radii.xs)\n    }),\n    theme: _defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty({}, ButtonThemes.primary, {\n      vars: _defineProperty(_defineProperty(_defineProperty(_defineProperty({}, buttonVars.background, tokens.brand), buttonVars.hoverBackground, tokens.brandAccentHover), buttonVars.activeBackground, tokens.brandAccentActive), buttonVars.color, themeTokens.colors.gray12)\n    }), ButtonThemes.tertiary, {\n      vars: _defineProperty(_defineProperty(_defineProperty(_defineProperty({}, buttonVars.background, tokens.brandSoft), buttonVars.hoverBackground, tokens.brandSoftAccentHover), buttonVars.activeBackground, tokens.brandSoftAccentActive), buttonVars.color, tokens.brandLink)\n    }), ButtonThemes.secondary, {\n      vars: _defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty({}, buttonVars.background, tokens.brandSecondary), buttonVars.hoverBackground, tokens.brandSecondaryAccentHover), buttonVars.activeBackground, tokens.brandSecondaryAccentActive), buttonVars.color, tokens.foreground), buttonVars.borderColor, tokens.brandSecondary)\n    }), ButtonThemes.negative, {\n      vars: _defineProperty(_defineProperty(_defineProperty(_defineProperty({}, buttonVars.background, tokens.critical), buttonVars.hoverBackground, tokens.criticalAccentHover), buttonVars.activeBackground, tokens.criticalAccentActive), buttonVars.color, tokens.foreground)\n    }), ButtonThemes.caution, {\n      vars: _defineProperty(_defineProperty(_defineProperty(_defineProperty({}, buttonVars.background, tokens.caution), buttonVars.hoverBackground, tokens.cautionAccentHover), buttonVars.activeBackground, tokens.cautionAccentActive), buttonVars.color, tokens.foreground)\n    }),\n    variant: {\n      ghost: {\n        background: \"transparent\",\n        selectors: {\n          \"&:not(:hover)\": {\n            borderColor: \"transparent\"\n          }\n        }\n      }\n    },\n    block: {\n      \"true\": {\n        width: \"100%\",\n        flex: 1\n      }\n    },\n    pill: {\n      \"true\": {\n        vars: _defineProperty({}, buttonVars.borderRadius, themeTokens.radii.full)\n      }\n    },\n    loading: {\n      \"true\": {\n        opacity: 0.8,\n        pointerEvents: \"none\",\n        overflow: \"hidden\"\n      }\n    }\n  },\n  defaultVariants: {\n    size: \"md\"\n  },\n  compoundVariants: [{\n    style: {\n      background: fallbackVar(layoutBackgroundColor, buttonVars.background),\n      selectors: {\n        \"&:not(:hover)\": {\n          borderColor: buttonVars.borderColor\n        }\n      }\n    },\n    variants: {\n      variant: \"ghost\",\n      loading: true\n    }\n  }]\n});\nvar buttonIcon = style({\n  display: \"inline-flex\",\n  alignSelf: \"center\",\n  flexShrink: 0\n});\nvar buttonText = style({\n  transition: \"opacity 100ms ease-in-out\",\n  display: \"contents\",\n  selectors: {\n    \"[data-loading] &\": {\n      opacity: 0\n    }\n  }\n});\n\nexport { button, buttonIcon, buttonText, buttonTheme, buttonVars };\n"
+  "esmEntry": "export { Button } from './components/Button/Button.js';\nimport * as Button_css from './components/Button/Button.css.js';\nexport { Button_css as buttonStyles };\nimport * as Field_css from './components/Field/Field.css.js';\nexport { Field_css as fieldStyles };\nexport { styleFieldMessage } from './components/Field/fieldStyle.js';\nexport { createBaseFieldProps } from './components/Field/createBaseFieldProps.js';\nexport { createFieldErrorMessageProps } from './components/Field/FieldError/createFieldErrorMessageProps.js';\nimport * as FieldError_css from './components/Field/FieldError/FieldError.css.js';\nexport { FieldError_css as fieldErrorStyles };\nimport * as FieldLabel_css from './components/Field/FieldLabel/FieldLabel.css.js';\nexport { FieldLabel_css as fieldLabelStyles };\nexport { createFieldLabelProps } from './components/Field/FieldLabel/createFieldLabelProps.js';\nexport { TextField } from './components/TextField/TextField.js';\nimport * as TextField_css from './components/TextField/TextField.css.js';\nexport { TextField_css as textFieldStyles };\nexport { TextArea } from './components/TextArea/TextArea.js';\nexport { NumberField } from './components/NumberField/NumberField.js';\nexport { IconButton } from './components/IconButton/IconButton.js';\nexport { Checkbox } from './components/CheckBox/CheckBox.js';\nexport { Dialog, DialogPanel, DialogPanelContent, DialogPanelFooter } from './components/Dialog/Dialog.js';\nexport { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuPortal, DropdownMenuSeparator, DropdownMenuTrigger, DropdownSubMenu, DropdownSubMenuContent, DropdownSubMenuTrigger } from './components/Dropdown/Dropdown.js';\nimport * as Dropdown_css from './components/Dropdown/Dropdown.css.js';\nexport { Dropdown_css as dropdownMenuStyles };\nexport { Popover, PopoverContent, PopoverTrigger } from './components/Popover/Popover.js';\nimport * as Popover_css from './components/Popover/Popover.css.js';\nexport { Popover_css as popoverStyles };\nexport { Sheet } from './components/Sheet/Sheet.js';\nexport { Select } from './components/Select/Select.js';\nexport { createSelectOptions } from './components/Select/createSelectValue.js';\nexport { RadioList, RadioListItem } from './components/RadioList/RadioList.js';\nexport { Link } from './components/Link/Link.js';\nexport { Pagination } from './components/Pagination/Pagination.js';\nexport { Tooltip } from './components/Tooltip/Tooltip.js';\nexport { Tabs, TabsContent, TabsHeader, TabsList } from './components/Tabs/Tabs.js';\nexport { SegmentedControl } from './components/SegmentedControl/SegmentedControl.js';\nexport { SegmentedControlItem } from './components/SegmentedControl/SegmentedControlItem.js';\nexport { Listbox, ListboxItem } from './components/Listbox/Listbox.js';\nexport { VirtualizedListbox } from './components/Listbox/VirtualizedListbox.js';\nexport { Kbd } from './components/Kbd/Kbd.js';\nexport { Badge } from './components/Badge/Badge.js';\nexport { Spinner } from './components/Spinner/Spinner.js';\nexport { Skeleton } from './components/Skeleton/Skeleton.js';\nexport { Alert } from './components/Alert/Alert.js';\nexport { Toaster, createToaster } from './components/Toast/Toaster.js';\nexport { SvgIcon } from './icons/SvgIcon.js';\nimport * as index from './icons/index.js';\nexport { index as icons };\nexport { mergeClasses } from './utils/css.js';\nexport { Switch, createSwitchProps } from './components/Switch/Switch.js';\nexport { Slider, createSliderProps } from './components/Slider/Slider.js';\nexport { Progress } from './components/Progress/Progress.js';\nexport { Combobox } from './components/Combobox/Combobox.js';\nexport { CommandMenu, filterCommandItems } from './components/CommandMenu/CommandMenu.js';\nexport { OptionCard, OptionCardGroup, createOptionCardItems } from './components/OptionCard/OptionCard.js';\nexport { optionCardParts, optionCardStyles } from './parts/option-card.js';\nexport { Accordion, createAccordionItems } from './components/Accordion/Accordion.js';\nexport { accordionParts, accordionStyles } from './parts/accordion.js';\nexport { SettingsGroup, SettingsRow } from './components/Settings/Settings.js';\nexport { settingsGroupParts, settingsGroupStyles, settingsRowParts, settingsRowStyles } from './parts/settings.js';\nexport { TextFieldLabel } from './components/TextField/TextFieldLabel.js';\nexport { TextAreaLabel } from './components/TextArea/TextAreaLabel.js';\nexport { NumberFieldLabel } from './components/NumberField/NumberFieldLabel.js';\nexport { tokens } from './foundation/cui.css.js';\nexport { themeTokens } from './foundation/themes.css.js';\nexport { tokens as themeVars } from './foundation/contract.css.js';\nexport { breakpoints } from './foundation/breakpoints.js';\nimport * as layout_css from './foundation/layout.css.js';\nexport { layout_css as layoutVars };\nexport { responsiveStyle } from './foundation/responsive.js';\nexport { SwitchParts, switchStyles } from './parts/switch.js';\nexport { SliderParts, sliderStyles } from './parts/slider.js';\nexport { ProgressParts, progressStyles } from './parts/progress.js';\nexport { ComboboxParts, comboboxStyles } from './parts/combobox.js';\nexport { createComboboxOptions } from './components/Combobox/createComboboxOptions.js';\nexport { CommandMenuParts, commandMenuStyles } from './parts/command-menu.js';\nexport { createSettingsRowProps } from './components/Settings/createSettingsRowProps.js';\nexport { Root as Stack, stackParts, stackStyles } from './parts/stack.js';\nexport { Root as Text, textParts, textStyles } from './parts/text.js';\n",
+  "sampleCssModule": "import { defineProperty as _defineProperty } from '../../_virtual/_rollupPluginBabelHelpers.js';\nimport { style, recipe, globalStyle } from '../../foundation/layer.css.js';\nimport { tokens } from '../../foundation/cui.css.js';\nimport { transition } from '../../foundation/motion.css.js';\nimport { whileKeyboard } from '../../utils/modality.js';\n\nvar finePointer = \"(hover: hover) and (pointer: fine)\";\nvar reducedMotion = \"(prefers-reduced-motion: reduce)\";\nvar root = style({\n  display: \"flex\",\n  flexDirection: \"column\",\n  gap: tokens.space[\"1\"],\n  minWidth: 0,\n  lineHeight: tokens.font.lineHeight.sm\n});\nvar item = style({\n  minWidth: 0,\n  borderRadius: tokens.radius.card,\n  color: tokens.text[\"default\"],\n  selectors: {\n    \"&[data-expanded]\": {\n      background: tokens.surface.panel\n    }\n  }\n});\nvar header = style({\n  margin: 0,\n  fontSize: tokens.font.size.sm,\n  fontWeight: tokens.font.weight.semibold,\n  lineHeight: tokens.font.lineHeight.sm\n});\n/** A 36px row: 8px before the icon, 12px after the chevron, 10px between. */\nvar trigger = recipe({\n  base: {\n    display: \"flex\",\n    alignItems: \"center\",\n    gap: tokens.space[\"2.5\"],\n    width: \"100%\",\n    minHeight: tokens.control.height.sm,\n    padding: \"0 \".concat(tokens.space[\"3\"], \" 0 \").concat(tokens.space[\"2\"]),\n    border: 0,\n    borderRadius: tokens.radius.md,\n    background: \"transparent\",\n    color: \"inherit\",\n    font: \"inherit\",\n    textAlign: \"left\",\n    cursor: \"pointer\",\n    selectors: {\n      \"&:focus-visible\": {\n        outline: \"\".concat(tokens.focus.width, \" solid \").concat(tokens.focus.color),\n        outlineOffset: tokens.focus.offset\n      },\n      \"&:disabled\": {\n        color: tokens.text.muted,\n        cursor: \"default\"\n      }\n    },\n    \"@media\": _defineProperty({\n      \"(pointer: coarse)\": {\n        minHeight: tokens.control.height.md\n      }\n    }, finePointer, {\n      selectors: {\n        // One fill step up from the island, so muted text keeps 4.5:1.\n        \"&:hover:not(:disabled):not([data-expanded])\": {\n          background: tokens.surface.input\n        }\n      }\n    })\n  },\n  variants: {\n    density: {\n      compact: {\n        paddingBlock: tokens.space[\"1\"]\n      },\n      comfortable: {\n        paddingBlock: tokens.space[\"3\"]\n      }\n    }\n  }\n});\n/*\n * The body transitions its measured height and its opacity, so a second click\n * retargets from wherever the first one got to (Inkstone §7.3 Expand).\n */\nvar content = style({\n  overflow: \"hidden\",\n  minWidth: 0,\n  height: 0,\n  opacity: 0,\n  fontSize: tokens.font.size.caption,\n  lineHeight: tokens.font.lineHeight.caption,\n  paddingInline: tokens.space[\"2\"],\n  transition: transition([\"height\", \"opacity\"], tokens.motion.duration.panel),\n  selectors: _defineProperty({\n    \"&[data-open]\": {\n      height: \"var(--cui-accordion-content-height, auto)\",\n      opacity: 1\n    },\n    '[data-cui=\"accordion-root\"][data-motion=\"none\"] &': {\n      transition: \"none\"\n    }\n  }, \"\".concat(whileKeyboard, \" &\"), {\n    transition: \"none\"\n  }),\n  \"@media\": _defineProperty({}, reducedMotion, {\n    transition: transition([\"opacity\"], tokens.motion.duration.panel)\n  })\n});\nglobalStyle('[data-cui=\"accordion-content\"][inert]', {\n  pointerEvents: \"none\"\n});\nglobalStyle('[data-cui=\"accordion-content\"][hidden]', {\n  display: \"none\"\n});\nvar icon = style({\n  display: \"inline-flex\",\n  flexShrink: 0,\n  color: tokens.text.muted\n});\nvar title = style({\n  flex: 1,\n  minWidth: 0,\n  overflowWrap: \"anywhere\"\n});\nvar summary = style({\n  marginLeft: \"auto\",\n  maxWidth: \"55%\",\n  fontSize: tokens.font.size.xs,\n  fontWeight: tokens.font.weight.normal,\n  lineHeight: tokens.font.lineHeight.xs,\n  color: tokens.text.muted,\n  overflow: \"hidden\",\n  whiteSpace: \"nowrap\",\n  textOverflow: \"ellipsis\"\n});\n/** CodeImage's \"›\", 20px, a quarter turn when the section opens. */\nvar chevron = style({\n  display: \"inline-block\",\n  flexShrink: 0,\n  width: tokens.space[\"4\"],\n  fontSize: tokens.font.size.xl,\n  lineHeight: 1,\n  textAlign: \"center\",\n  color: tokens.text.muted,\n  transition: transition([\"transform\"], tokens.motion.duration.panel),\n  selectors: _defineProperty({\n    '[data-expanded] > [data-cui=\"accordion-header\"] > [data-cui=\"accordion-trigger\"] &': {\n      transform: \"rotate(90deg)\"\n    },\n    '[data-cui=\"accordion-root\"][data-motion=\"none\"] &': {\n      transition: \"none\"\n    }\n  }, \"\".concat(whileKeyboard, \" &\"), {\n    transition: \"none\"\n  }),\n  \"@media\": _defineProperty({}, reducedMotion, {\n    transition: \"none\"\n  })\n});\nglobalStyle('[data-cui=\"accordion-item\"][data-expanded] [data-cui=\"accordion-icon\"]', {\n  color: tokens.accent.focus\n});\nvar contentBody = style({\n  paddingBottom: tokens.space[\"2\"]\n});\n\nexport { chevron, content, contentBody, header, icon, item, root, summary, title, trigger };\n"
 }
