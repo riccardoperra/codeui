@@ -11,6 +11,8 @@ import type { PropRow } from '../components/props-table';
 // - <SolidDemo name="badge/basic" /> fails the build when the demo file is missing, the name
 //   repeats on the page, or the tag sits inside a paragraph, and gets the demo source printed under it as a code block.
 //   In the Markdown route the demo tag is replaced by that code block.
+// - <Anatomy demo="select/anatomy" /> gets its parts from the Anatomy table that follows it in the
+//   same section (rows with a `data-cui`). Its Markdown route drops the tag and keeps the table.
 //
 // The Markdown route is built from the authored source, so each expansion also registers its
 // Markdown with replaceSource().
@@ -69,6 +71,40 @@ const fence = (name: string, source: string) => {
 	return `${ticks}tsx title="${name}.tsx"\n${source}\n${ticks}`;
 };
 
+/** The text of an mdast node: `inlineCode` and `text` leaves joined. */
+const text = (node: Node): string =>
+	typeof node.value === 'string' ? node.value : (node.children ?? []).map(text).join('');
+
+/** The first `code` span of a table cell, or the cell text when it has none. */
+const code = (cell: Node) => (cell.children ?? []).find(c => c.type === 'inlineCode')?.value as string | undefined;
+
+const humanize = (key: string) => {
+	const words = key.replace(/([a-z])([A-Z])/g, '$1 $2').replace(/-/g, ' ').toLowerCase();
+	return words.charAt(0).toUpperCase() + words.slice(1);
+};
+
+/**
+ * Parts of an Anatomy table, in table order: rows whose `data-cui` cell holds a marker. The name is
+ * the export when the row has one, or the `classes` key, or the marker.
+ */
+export function anatomyParts(table: Node) {
+	const [head, ...rows] = table.children ?? [];
+	const columns = (head.children ?? []).map(c => text(c).toLowerCase());
+	const at = (match: (h: string) => boolean) => columns.findIndex(match);
+	const cuiAt = at(h => h.includes('data-cui'));
+	const keyAt = at(h => h.includes('classes'));
+	const exportAt = at(h => h === 'export' || h === 'part');
+	if (cuiAt < 0) return [];
+	return rows.flatMap(row => {
+		const cells = row.children ?? [];
+		const cui = code(cells[cuiAt]);
+		if (!cui || !/^[a-z][\w-]*$/i.test(cui)) return [];
+		const key = keyAt >= 0 ? code(cells[keyAt]) ?? null : null;
+		const named = exportAt >= 0 ? code(cells[exportAt]) : undefined;
+		return [{ name: named ?? humanize(key ?? cui), cui, key }];
+	});
+}
+
 const attribute = (node: Node, name: string) => {
 	const value = node.attributes?.find(a => a.name === name)?.value;
 	return typeof value === 'string' ? value : undefined;
@@ -86,7 +122,7 @@ export function remarkKit() {
 				const node = children[i];
 				// MDX wraps a tag that shares a line with text in a <p>. Both render <div>s, and a <div>
 				// inside a <p> makes the server HTML and React's tree differ (hydration error #418).
-				if (node.type === 'mdxJsxTextElement' && (node.name === 'SolidDemo' || node.name === 'PropsTable')) {
+				if (node.type === 'mdxJsxTextElement' && (node.name === 'SolidDemo' || node.name === 'PropsTable' || node.name === 'Anatomy')) {
 					const line = (node.position as { start?: { line: number } } | undefined)?.start?.line;
 					throw new Error(`${where}:${line}: <${node.name}> sits inside a paragraph. Put it on its own line with a blank line around it.`);
 				}
@@ -98,6 +134,21 @@ export function remarkKit() {
 					if (!table) throw new Error(`${where}: <PropsTable name="${name}" /> has no projection. Export type ${name} from packages/docs-demos/src/props/<page>.ts.`);
 					replaceSource(file, node as never, propsMarkdown(table.rows));
 					children[i] = { ...node, position: undefined, attributes: [...(node.attributes ?? []), expressionAttribute('rows', table.rows)] };
+					continue;
+				}
+				if (node.type === 'mdxJsxFlowElement' && node.name === 'Anatomy') {
+					const name = attribute(node, 'demo');
+					if (!name || !existsSync(path.join(demosDir, `${name}.tsx`))) throw new Error(`${where}: <Anatomy demo="${name}" /> has no file at packages/docs-demos/src/demos/${name}.tsx.`);
+					if (demos.has(name)) throw new Error(`${where}: demo "${name}" appears twice. Hydration needs one name per page.`);
+					demos.add(name);
+					let table: Node | undefined;
+					for (let j = i + 1; j < children.length && children[j].type !== 'heading'; j++) {
+						if (children[j].type === 'table') { table = children[j]; break; }
+					}
+					const parts = table ? anatomyParts(table) : [];
+					if (!parts.length) throw new Error(`${where}: <Anatomy demo="${name}" /> needs an Anatomy table with a data-cui column after it, in the same section.`);
+					replaceSource(file, node as never, '');
+					children[i] = { ...node, position: undefined, attributes: [...(node.attributes ?? []), expressionAttribute('parts', parts)] };
 					continue;
 				}
 				if (node.type === 'mdxJsxFlowElement' && node.name === 'SolidDemo') {

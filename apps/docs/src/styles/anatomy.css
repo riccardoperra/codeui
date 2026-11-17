@@ -1,0 +1,169 @@
+/*
+ * <Anatomy>: a live demo with numbered callouts on its data-cui parts.
+ * Hairline leader lines in the focus accent, 18px markers, a legend under the figure.
+ * Colours come from the --cui-* contract through the .ink variables.
+ */
+@layer components {
+  .cui-anatomy {
+    container-type: inline-size;
+    margin: 24px 0;
+    border-radius: 16px;
+    background: var(--ink-page);
+    overflow: hidden;
+  }
+
+  .cui-anatomy__stage {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: max(160px, calc(var(--anatomy-rows-narrow) * 22px + 24px));
+    padding: 24px 36px;
+  }
+
+  @container (min-width: 560px) {
+    .cui-anatomy__stage {
+      min-height: max(160px, calc(var(--anatomy-rows-wide) * 22px + 24px));
+      padding: 32px 56px;
+    }
+  }
+
+  .cui-anatomy__demo {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+  }
+
+  /* A block root (a form, a list, a grid) takes the width, as in SolidDemo. */
+  .cui-anatomy__demo > :is(div, section, form, nav, ul, ol, dl, table, fieldset, article, header, footer, aside, figure) {
+    width: 100%;
+  }
+
+  /* The diagram is a still picture of an open state: overlays sit in the flow, and nothing animates. */
+  .cui-anatomy__demo [data-popper-positioner] {
+    position: relative !important;
+    inset: auto !important;
+    transform: none !important;
+  }
+
+  .cui-anatomy__demo *,
+  .cui-anatomy__demo *::before,
+  .cui-anatomy__demo *::after {
+    animation-duration: 0s !important;
+    transition-duration: 0s !important;
+  }
+
+  .cui-anatomy__lines {
+    position: absolute;
+    inset: 0;
+    overflow: visible;
+    pointer-events: none;
+    fill: none;
+    stroke: var(--ink-accent);
+    stroke-width: 1;
+  }
+
+  .cui-anatomy__lines g {
+    stroke-opacity: 0.55;
+  }
+
+  .cui-anatomy__lines g[data-active] {
+    stroke-opacity: 1;
+  }
+
+  .cui-anatomy__lines circle {
+    fill: var(--ink-accent);
+    stroke: none;
+  }
+
+  .cui-anatomy__marker {
+    position: absolute;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: 20px;
+    height: 20px;
+    translate: -50% -50%;
+    border-radius: 6px;
+    background: var(--ink-field);
+    box-shadow: inset 0 0 0 1px var(--ink-accent);
+    color: var(--ink-t1);
+    font-family: var(--ink-mono);
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    cursor: default;
+  }
+
+  .cui-anatomy__marker[data-active] {
+    box-shadow: inset 0 0 0 2px var(--ink-accent);
+  }
+
+  .cui-anatomy__legend {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 2px 12px;
+    margin: 0;
+    padding: 0 12px 12px;
+    list-style: none;
+  }
+
+  /* Number, then the name over its two codes. */
+  .cui-anatomy__legend li {
+    display: grid;
+    grid-template-columns: 20px minmax(0, 1fr);
+    align-content: start;
+    column-gap: 8px;
+    row-gap: 2px;
+    min-width: 0;
+    padding: 6px 8px;
+    border-radius: 10px;
+    font-size: 12px;
+    line-height: 1.4;
+    color: var(--ink-t2);
+    cursor: default;
+  }
+
+  .cui-anatomy__legend li[data-active] {
+    background: var(--ink-field);
+  }
+
+  .cui-anatomy__legend b {
+    grid-row: span 2;
+    line-height: 18px;
+    font-family: var(--ink-mono);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--ink-accent);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* A part that renders without an area (a visually hidden input) has no marker. */
+  .cui-anatomy__legend li[data-hidden] b {
+    color: var(--ink-t2);
+  }
+
+  .cui-anatomy__codes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 8px;
+  }
+
+  .cui-anatomy__name {
+    line-height: 18px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-t1);
+  }
+
+  .cui-anatomy__legend code {
+    font-family: var(--ink-mono);
+    font-size: 11px;
+    color: var(--ink-t2);
+    overflow-wrap: anywhere;
+  }
+}
