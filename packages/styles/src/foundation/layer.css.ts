@@ -45,8 +45,14 @@ export function style(
 	return veStyle(layerComplex(rule, priority), debugId);
 }
 
-export function globalStyle(selector: string, rule: GlobalStyleRule, priority: Priority = "components"): void {
-	veGlobalStyle(selector, { "@layer": { ["cui." + priority]: rule } });
+export function globalStyle(
+	selector: string,
+	rule: GlobalStyleRule,
+	priority: Priority = "components",
+): void {
+	veGlobalStyle(priority === "tokens" ? ":where(" + selector + ")" : selector, {
+		"@layer": { ["cui." + priority]: rule },
+	});
 }
 
 export function styleVariants<Data extends Record<string | number, unknown>>(
