@@ -121,7 +121,7 @@ export function Combobox<Option, OptGroup = never>(
 				}}
 			/>
 			<Show when={local.label}>
-				<P.Label class={classes("label")}>{local.label}</P.Label>
+				{label => <P.Label class={classes("label")}>{label()}</P.Label>}
 			</Show>
 			<P.Control size={local.size} class={classes("control")}>
 				<P.Input
@@ -141,12 +141,16 @@ export function Combobox<Option, OptGroup = never>(
 				</P.Trigger>
 			</P.Control>
 			<Show when={local.description}>
-				<P.Description class={classes("description")}>{local.description}</P.Description>
+				{description => (
+					<P.Description class={classes("description")}>{description()}</P.Description>
+				)}
 			</Show>
-			<Show when={local.errorMessage}>
-				<P.ErrorMessage class={classes("errorMessage")}>
-					{local.errorMessage}
-				</P.ErrorMessage>
+			<Show when={props.validationState === "invalid" && local.errorMessage}>
+				{errorMessage => (
+					<P.ErrorMessage class={classes("errorMessage")}>
+						{errorMessage()}
+					</P.ErrorMessage>
+				)}
 			</Show>
 			<Show when={others.name}>
 				{name => <FormValue name={name()} disabled={others.disabled} />}
@@ -155,7 +159,7 @@ export function Combobox<Option, OptGroup = never>(
 				<P.Content class={classes("content")}>
 					<P.Listbox class={classes("listbox")} />
 					<Show when={local.emptyContent}>
-						<EmptyContent>{local.emptyContent}</EmptyContent>
+						{emptyContent => <EmptyContent>{emptyContent()}</EmptyContent>}
 					</Show>
 				</P.Content>
 			</P.Portal>

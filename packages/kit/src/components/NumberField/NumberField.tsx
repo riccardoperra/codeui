@@ -267,13 +267,15 @@ export function NumberField(props: NumberFieldProps) {
 			{...rootProps}
 		>
 			<Show when={local.label} keyed={false}>
-				<NumberFieldLabel
-					for={inputId()}
-					data-cui="text-field-label"
-					class={mergeClasses(local.slotClasses?.label, local.classes?.label)}
-				>
-					{local.label}
-				</NumberFieldLabel>
+				{label => (
+					<NumberFieldLabel
+						for={inputId()}
+						data-cui="text-field-label"
+						class={mergeClasses(local.slotClasses?.label, local.classes?.label)}
+					>
+						{label()}
+					</NumberFieldLabel>
+				)}
 			</Show>
 
 			<div class={styles.numberFieldContainer}>
@@ -300,25 +302,32 @@ export function NumberField(props: NumberFieldProps) {
 			</div>
 
 			<Show when={local.description} keyed={false}>
-				<NumberFieldMessage
-					data-cui="text-field-description"
-					class={local.classes?.description}
-				>
-					{local.description}
-				</NumberFieldMessage>
+				{description => (
+					<NumberFieldMessage
+						data-cui="text-field-description"
+						class={local.classes?.description}
+					>
+						{description()}
+					</NumberFieldMessage>
+				)}
 			</Show>
 
-			<Show when={errorMessageProps.errorMessage} keyed={false}>
-				<KTextField.ErrorMessage
-					data-cui="text-field-error-message"
-					class={mergeClasses(
-						errorMessageProps.class,
-						local.slotClasses?.errorLabel,
-						local.classes?.errorMessage,
-					)}
-				>
-					{local.errorMessage}
-				</KTextField.ErrorMessage>
+			<Show
+				when={props.validationState === "invalid" && local.errorMessage}
+				keyed={false}
+			>
+				{errorMessage => (
+					<KTextField.ErrorMessage
+						data-cui="text-field-error-message"
+						class={mergeClasses(
+							errorMessageProps.class,
+							local.slotClasses?.errorLabel,
+							local.classes?.errorMessage,
+						)}
+					>
+						{errorMessage()}
+					</KTextField.ErrorMessage>
+				)}
 			</Show>
 		</KTextField>
 	);

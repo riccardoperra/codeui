@@ -38,10 +38,14 @@ export function PopoverContent<T extends ValidComponent = "div">(
 		<P.Portal mount={local.mount}>
 			<P.Content {...others} class={mergeClasses(local.classes?.content, local.class)}>
 				<Show when={local.title}>
-					<P.Title class={local.classes?.title}>{local.title}</P.Title>
+					{title => (
+						<P.Title class={local.classes?.title}>{title()}</P.Title>
+					)}
 				</Show>
 				<Show when={local.description}>
-					<P.Description class={local.classes?.description}>{local.description}</P.Description>
+					{description => (
+						<P.Description class={local.classes?.description}>{description()}</P.Description>
+					)}
 				</Show>
 				{local.children}
 			</P.Content>

@@ -140,9 +140,11 @@ export function Select<Option, OptGroup = never>(props: ParentProps<SelectProps<
 			)}
 		>
 			<Show when={local.label} keyed={false}>
-				<KSelect.Label data-cui={selectParts.label} {...labelProps}>
-					{local.label}
-				</KSelect.Label>
+				{label => (
+					<KSelect.Label data-cui={selectParts.label} {...labelProps}>
+						{label()}
+					</KSelect.Label>
+				)}
 			</Show>
 			<KSelect.Trigger
 				data-cui={selectParts.trigger}
@@ -180,18 +182,21 @@ export function Select<Option, OptGroup = never>(props: ParentProps<SelectProps<
 				</KSelect.Icon>
 			</KSelect.Trigger>
 			<Show when={local.description} keyed={false}>
-				<KSelect.Description data-cui={selectParts.description} {...descriptionProps}>
-					{local.description}
-				</KSelect.Description>
+				{description => (
+					<KSelect.Description data-cui={selectParts.description} {...descriptionProps}>
+						{description()}
+					</KSelect.Description>
+				)}
 			</Show>
-			<Show when={local.errorMessage} keyed={false}>
-				<KSelect.ErrorMessage
-					data-cui={selectParts.errorMessage}
-					{...errorProps}
-					class={mergeClasses(errorProps.class, partClass(local, "errorMessage"))}
-				>
-					{local.errorMessage}
-				</KSelect.ErrorMessage>
+			<Show when={props.validationState === "invalid" && local.errorMessage} keyed={false}>
+				{errorMessage => (
+					<KSelect.ErrorMessage
+						data-cui={selectParts.errorMessage}
+						class={mergeClasses(errorProps.class, partClass(local, "errorMessage"))}
+					>
+						{errorMessage()}
+					</KSelect.ErrorMessage>
+				)}
 			</Show>
 			<KSelect.Portal>
 				<KSelect.Content

@@ -32,23 +32,25 @@ export function Alert<T extends ValidComponent = "div">(
 		"classes",
 		"class",
 	]);
-	const hasIcon = () =>
-		local.showIcon && (local.icon != null || (others.tone ?? "neutral") !== "neutral");
+	// The custom icon, else the tone icon. Neutral has no tone icon.
+	const icon = () =>
+		local.icon ??
+		((others.tone ?? "neutral") !== "neutral" ? (
+			<ToneIcon tone={others.tone} />
+		) : undefined);
 	return (
 		<A.Root {...others} class={mergeClasses(local.classes?.root, local.class)}>
-			<Show when={hasIcon()}>
-				<A.Icon class={local.classes?.icon}>
-					{local.icon ?? <ToneIcon tone={others.tone} />}
-				</A.Icon>
+			<Show when={local.showIcon && icon()}>
+				{icon => <A.Icon class={local.classes?.icon}>{icon()}</A.Icon>}
 			</Show>
 			<Show when={local.title}>
-				<A.Title class={local.classes?.title}>{local.title}</A.Title>
+				{title => <A.Title class={local.classes?.title}>{title()}</A.Title>}
 			</Show>
 			<A.Description class={local.classes?.description}>
 				{local.description ?? local.children}
 			</A.Description>
 			<Show when={local.action}>
-				<A.Action class={local.classes?.action}>{local.action}</A.Action>
+				{action => <A.Action class={local.classes?.action}>{action()}</A.Action>}
 			</Show>
 		</A.Root>
 	);

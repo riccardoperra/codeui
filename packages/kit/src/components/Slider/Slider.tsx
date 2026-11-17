@@ -113,7 +113,7 @@ export function Slider(props: SliderProps) {
 			}}
 		>
 			<Show when={props.label}>
-				<P.Label {...field.label()}>{props.label}</P.Label>
+				{label => <P.Label {...field.label()}>{label()}</P.Label>}
 			</Show>
 			<Show when={props.showValue}>
 				<P.ValueLabel class={props.classes?.valueLabel} />
@@ -123,10 +123,14 @@ export function Slider(props: SliderProps) {
 				<ReadyThumb {...props} input={field.input} />
 			</P.Track>
 			<Show when={props.description}>
-				<P.Description {...field.description()}>{props.description}</P.Description>
+				{description => (
+					<P.Description {...field.description()}>{description()}</P.Description>
+				)}
 			</Show>
-			<Show when={props.errorMessage}>
-				<P.ErrorMessage {...field.errorMessage()}>{props.errorMessage}</P.ErrorMessage>
+			<Show when={props.validationState === "invalid" && props.errorMessage}>
+				{errorMessage => (
+					<P.ErrorMessage {...field.errorMessage()}>{errorMessage()}</P.ErrorMessage>
+				)}
 			</Show>
 		</P.Root>
 	);

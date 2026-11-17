@@ -22,7 +22,9 @@ export function Badge<T extends ValidComponent = "span">(props: PolymorphicProps
 	return (
 		<B.Root {...others} class={mergeClasses(local.classes?.root, local.class)}>
 			<Show when={local.icon}>
-				<B.Icon class={local.classes?.icon}>{local.icon}</B.Icon>
+				{icon => (
+					<B.Icon class={local.classes?.icon}>{icon()}</B.Icon>
+				)}
 			</Show>
 			<B.Label class={local.classes?.label}>{local.children}</B.Label>
 		</B.Root>

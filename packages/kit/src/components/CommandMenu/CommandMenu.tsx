@@ -258,12 +258,12 @@ export function CommandMenu<T extends CommandItem>(props: CommandMenuProps<T>) {
 							class={classes("searchInput")}
 						/>
 						<Show when={props.hint}>
-							<P.Hint class={classes("hint")}>{props.hint}</P.Hint>
+							{hint => <P.Hint class={classes("hint")}>{hint()}</P.Hint>}
 						</Show>
 					</P.Search>
 					<P.Listbox aria-labelledby={titleId} class={classes("listbox")} />
 					<Show when={props.emptyContent}>
-						<P.Empty class={classes("empty")}>{props.emptyContent}</P.Empty>
+						{emptyContent => <P.Empty class={classes("empty")}>{emptyContent()}</P.Empty>}
 					</Show>
 				</P.Content>
 			</P.Portal>

@@ -1,4 +1,4 @@
-import { type Accessor, Show, splitProps } from "solid-js";
+import { type Accessor, children, mergeProps, Show, splitProps } from "solid-js";
 import * as P from "../../parts/switch";
 import { createBaseFieldProps, type FieldContent } from "../Field/createBaseFieldProps";
 import { mergeClasses } from "../../utils/css";
@@ -46,7 +46,15 @@ export function createSwitchProps(props: Accessor<SwitchProps>) {
 	};
 }
 export function Switch(props: SwitchProps) {
-	const field = createSwitchProps(() => props);
+	// createSwitchProps reads the label to set aria-labelledby. Resolve it once and
+	// pass the result, so the label element is built once.
+	const label = children(() => props.label);
+	const resolved = mergeProps(props, {
+		get label() {
+			return label();
+		},
+	});
+	const field = createSwitchProps(() => resolved);
 	return (
 		<P.Root
 			{...field.root()}
@@ -57,14 +65,18 @@ export function Switch(props: SwitchProps) {
 			<P.Control class={props.classes?.control} size={props.size ?? "md"}>
 				<P.Thumb class={props.classes?.thumb} size={props.size ?? "md"} />
 			</P.Control>
-			<Show when={props.label}>
-				<P.Label {...field.label()}>{props.label}</P.Label>
+			<Show when={label()}>
+				<P.Label {...field.label()}>{label()}</P.Label>
 			</Show>
 			<Show when={props.description}>
-				<P.Description {...field.description()}>{props.description}</P.Description>
+				{description => (
+					<P.Description {...field.description()}>{description()}</P.Description>
+				)}
 			</Show>
-			<Show when={props.errorMessage}>
-				<P.ErrorMessage {...field.errorMessage()}>{props.errorMessage}</P.ErrorMessage>
+			<Show when={props.validationState === "invalid" && props.errorMessage}>
+				{errorMessage => (
+					<P.ErrorMessage {...field.errorMessage()}>{errorMessage()}</P.ErrorMessage>
+				)}
 			</Show>
 		</P.Root>
 	);
