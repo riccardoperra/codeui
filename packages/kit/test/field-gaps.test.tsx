@@ -16,14 +16,6 @@ import {
 	PopoverTrigger,
 } from "../src/components/Popover/Popover";
 
-beforeAll(() => {
-	global.ResizeObserver = class {
-		observe() {}
-		unobserve() {}
-		disconnect() {}
-	};
-	window.scrollTo = () => {};
-});
 afterEach(cleanup);
 
 it.each([TextField, TextArea, NumberField])(
@@ -53,7 +45,7 @@ it.each([TextField, TextArea, NumberField])(
 );
 
 it("forwards radio item attributes, handlers, disabled state and rich labels", () => {
-	const click = jest.fn();
+	const click = vi.fn();
 	render(() => (
 		<RadioList class="group" classes={{ item: "group-item" }} aria-label="Choices">
 			<RadioListItem
@@ -111,7 +103,7 @@ function Segments(props: { cancel?: boolean }) {
 it.each([false, true])(
 	"releases Escape to a dialog unless cancelled (%s)",
 	async cancel => {
-		const changed = jest.fn();
+		const changed = vi.fn();
 		render(() => (
 			<Dialog open onOpenChange={changed} title="Settings">
 				<Segments cancel={cancel} />

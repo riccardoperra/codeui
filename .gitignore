@@ -40,3 +40,5 @@ storybook-static
 
 # docs: the example apps, copied from apps/examples/dist by scripts/copy-examples.mjs
 apps/docs/public/examples
+# Vitest browser failure screenshots
+__screenshots__

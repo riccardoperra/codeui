@@ -109,7 +109,10 @@ export function createSheetDrag(options: SheetDragOptions) {
 		if (!content || !drag || drag.pointer !== event.pointerId) return;
 		const { offset, moved, samples } = drag;
 		drag = undefined;
-		if (!moved && offset === 0) return;
+		if (!moved) {
+			apply(content, 0);
+			return;
+		}
 		suppressClick = true;
 		const speed = velocity(samples);
 		const far = offset > content.offsetHeight * DISMISS_DISTANCE;
