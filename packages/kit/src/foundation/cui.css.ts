@@ -41,11 +41,20 @@ export const tokens = createGlobalThemeContract(contractShape(themeValues), (_, 
 	cssVariableName(path),
 );
 
-function modeAssignments(mode: Mode): Record<string, string> {
+/**
+ * A token is scoped when its value differs by mode or refers to another token.
+ * Only scoped tokens are set again on each `[data-cui-theme]` scope. The rest
+ * are set once on `:root`, so an app override on `:root` reaches every scope.
+ */
+const isScoped = (value: string | ModeValues) =>
+	typeof value !== "string" || value.includes("var(");
+
+function modeAssignments(mode: Mode, scopedOnly: boolean): Record<string, string> {
 	const assignments: Record<string, string> = {};
 	const visit = (registry: Registry, path: string[]) => {
 		for (const [key, value] of Object.entries(registry)) {
 			if (typeof value === "string" || isModeValues(value)) {
+				if (scopedOnly && !isScoped(value)) continue;
 				assignments[`--${cssVariableName([...path, key])}`] =
 					typeof value === "string" ? value : value[mode];
 			} else {
@@ -57,10 +66,10 @@ function modeAssignments(mode: Mode): Record<string, string> {
 	return assignments;
 }
 
-const light = modeAssignments("light");
-const dark = modeAssignments("dark");
+const light = modeAssignments("light", true);
+const dark = modeAssignments("dark", true);
 
-globalStyle(":root", { vars: light, colorScheme: "light" });
+globalStyle(":root", { vars: modeAssignments("light", false), colorScheme: "light" });
 globalStyle(":root:not([data-cui-theme=light])", {
 	"@media": { "(prefers-color-scheme: dark)": { vars: dark, colorScheme: "dark" } },
 });

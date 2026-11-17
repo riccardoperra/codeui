@@ -89,4 +89,4 @@ Tailwind utility classes on a kit component then win over kit styles, and Tailwi
 
 ## Token values are layered too
 
-The `--cui-*` values for both modes are set inside `@layer cui`, on `:root` and on each `[data-cui-theme]` element. An unlayered declaration of the same property wins over them. [Theming](/docs/foundations/theming#why-root-alone-is-not-enough) explains which selector to use so that the override reaches nested scopes.
+The `--cui-*` values are set inside `@layer cui`, on `:root`, and the values that differ by mode again on each `[data-cui-theme]` element. An unlayered declaration of the same property wins over them. [Theming](/docs/foundations/theming#which-tokens-root-alone-reaches) explains which selector to use so that the override reaches nested scopes.
