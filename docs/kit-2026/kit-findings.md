@@ -76,6 +76,8 @@ Severity follows this order.
   - `rightSlot` is declared but never used (`:50`).
   - There are no checkbox or radio items.
 - [ ] **Pagination** does not forward a navigation label or styling hooks (`components/Pagination/Pagination.tsx:57`).
+- [ ] **Pagination accessible names.** Found on the docs homepage. The current page is announced through its label, "Page 3 active" (`Pagination.tsx:45-51`), instead of `aria-current="page"`. The next and previous items get the name of the page they lead to, so "Page 4" names two buttons. The homepage Playwright check reports it.
+- [ ] **Accordion** keeps a closed section's content mounted at height 0 after hydration, while the server render leaves it out. The docs `accordion/basic` demo does the same. The content is not tabbable, but the client and server DOM differ. **Check in browser** whether a screen reader reaches it.
 - [ ] **VirtualizedListbox** omits DOM styling props such as `style` (`components/Listbox/VirtualizedListbox.tsx:11`).
 - [ ] **SvgIcon** drops the given `style` when `size` is absent (`icons/SvgIcon.tsx:14`).
 - [ ] **Tokens consumer fixture.** The `...responsiveStyle()` spread replaces the `@media` key written before it (`packages/kit/fixtures/tokens-consumer/consumer.css.ts:17-20`).
@@ -93,6 +95,7 @@ Severity follows this order.
   - The CommandMenu search row is 36px, where §6 says 44px on desktop (`CommandMenu.css.ts:59`).
   - The OptionCard preview minimum is 64px, where the spec says 68px (`OptionCard.css.ts:67`). Fixed in `fix/kit-controls-parity`.
   - The Kbd `sm` minimum width is 16px, where the spec says 20px.
+  - Button defaults to `md` (`Button.css.ts:209`), 40px with 16px text. §6 and §3 ask for 36px controls with 14px labels, which is `sm`. The homepage passes `size="sm"` on every button.
   - The Popover maximum width is 276px, where §9.5 says 360px (`Popover.css.ts:10`).
   - The Dialog `md` size (32rem) is wider than a 390px phone (`Dialog.css.ts:162`).
 - [ ] **Surfaces and color.**
@@ -102,10 +105,16 @@ Severity follows this order.
   - The highlighted Combobox row uses the accent fill, where §2 says selected rows are neutral (`Combobox.css.ts:142`). Fixed in `feat/kit-light-palette`: Combobox and Listbox highlight with `surface.menuHover` and `text.menu`, like Select and Dropdown; `feat/kit-one-brand-blue` checks it.
   - The default Tooltip theme uses the brand accent, against §2.3.
   - Alert uses `radius.sm` (`Alert.css.ts:24`). Check it against the radius scale.
+  - Alert fills success, warning and danger with the solid status colour (`Alert.css.ts:7-9`). §2.4 says status never decorates, and danger fills only the confirm button of a destructive dialog. Three alerts side by side are the loudest thing on the docs homepage.
+  - Pagination marks the current page with the filled `primary` theme (`Pagination.tsx:62`). §2.3 asks for a neutral selected item and one filled accent per surface.
+  - Button `tertiary` is a soft accent wash on a button (`Button.css.ts:143`), which is not one of §2.3's five accent uses.
+  - Link sets `color: inherit` with no underline (`Link.css.ts:15`). §2.2 keeps accent text for links. The homepage Text tile works around it with a local class.
 - [ ] **Typography.** Text defaults to `sm` (14px), where the base is 13px, and its line height is a fixed 1.5 instead of one per step (`parts/text.tsx:41`).
 - [ ] **Storybook.** The stories list a field theme `outline` that the source does not have (only `filled` and `inline` exist).
 
 ## Docs follow-ups (not kit bugs)
 
 - [ ] The Toast styled-parts section can get a real example, now that `packages/docs-demos` depends on `@kobalte/core`.
+- [ ] The Fumadocs header ships a bottom border, a backdrop blur and a translucent fill, against §4 "the header has no bar" and §7.3 "no materials". `apps/docs/src/styles/home.css` removes them on the homepage only. Decide whether the docs pages drop them too.
+- [ ] `apps/docs/src/styles/inkstone.css` sets `text-transform: uppercase` on `.ink-fig__title`, against §3 "no uppercase labels".
 - [ ] Delete the old single-file demos that no page uses any more: `demos/{text-field,text-area,number-field,select,select-options,dialog,dialog-parts,popover,popover-parts,tooltip,dropdown-menu,theme-scope}.tsx`.
