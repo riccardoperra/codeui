@@ -121,6 +121,8 @@ Reads the Kobalte context inside its Root. Call it from a descendant component. 
 
 `switchStyles` maps each part name to a function that returns its class. Set `data-size="sm"` on a custom control to select the compact track. `SwitchStyles` types the map and `SwitchParts` exposes the Solid components.
 
+Import `switchStyleProps` from `@codeui/styles/switch` to bind the base class and attributes in one step. For example, spread `switchStyleProps.control({ size: "sm", class: "preview-track" })` on a custom control. A standalone part leaves `data-size` absent when the caller leaves size unspecified. The behavior adapter supplies checked and disabled states.
+
 ## Accessibility
 
 ### Keyboard

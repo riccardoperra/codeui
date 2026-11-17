@@ -96,6 +96,8 @@ It also sets `aria-busy="true"` and `aria-disabled="true"`, and it ignores click
 
 In CSS-only markup, combine the `cui-button-button` class with attributes such as `data-size="md"`, `data-theme="primary"`, and `data-variant="ghost"`. Use `data-loading`, `data-pill`, and `data-block` as presence attributes.
 
+For custom JSX, import `buttonStyleProps` from `@codeui/styles/button`. Call `buttonStyleProps({ theme: "primary", class: "checkout" })` to get the base and custom classes, the part marker, and the variant attributes. It supplies `data-size="md"` by default. The caller manages loading and activation behavior.
+
 Inherited from Kobalte's [button contract](https://kobalte.dev/docs/core/components/button):
 
 <PropsTable name="ButtonInherited" />

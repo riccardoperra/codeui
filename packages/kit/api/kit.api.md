@@ -770,14 +770,29 @@ export declare const buttonVars: {
     padding: `var(--${string})`;
     borderRadius: `var(--${string})`;
 };
-export type ButtonVariants = {
+type ButtonAppearance = {
     size?: "xl" | "lg" | "md" | "sm" | "xs";
     theme?: "primary" | "tertiary" | "secondary" | "negative" | "caution";
     variant?: "ghost";
     block?: boolean;
     pill?: boolean;
+};
+export type ButtonVariants = (ButtonAppearance & {
     loading?: boolean;
-} | undefined;
+}) | undefined;
+export type ButtonStyleOptions = ButtonAppearance & {
+    class?: string;
+};
+export declare function buttonStyleProps({ size, theme, variant, block, pill, class: className, }?: ButtonStyleOptions): {
+    class: string;
+    "data-cui": "button";
+    "data-size": "xl" | "lg" | "md" | "sm" | "xs";
+    "data-theme": "primary" | "tertiary" | "secondary" | "negative" | "caution" | undefined;
+    "data-variant": "ghost" | undefined;
+    "data-block": string | undefined;
+    "data-pill": string | undefined;
+};
+export {};
 ```
 
 ## @codeui/styles/internal/components/Button/Loading.css.d.ts
@@ -2140,6 +2155,46 @@ export type SwitchPart = "root" | "input" | "control" | "thumb" | "label" | "des
 export type SwitchClasses = Partial<Record<SwitchPart, string>>;
 export type SwitchStyles = Record<SwitchPart, () => string>;
 export declare const switchStyles: SwitchStyles;
+export type SwitchStyleOptions = SwitchVariants & {
+    class?: string;
+};
+export declare const switchStyleProps: {
+    root: ({ size, class: className }?: SwitchStyleOptions) => {
+        class: string;
+        "data-cui": "switch-root";
+        "data-size": "md" | "sm" | undefined;
+    };
+    input: ({ size, class: className }?: SwitchStyleOptions) => {
+        class: string;
+        "data-cui": "switch-input";
+        "data-size": "md" | "sm" | undefined;
+    };
+    control: ({ size, class: className }?: SwitchStyleOptions) => {
+        class: string;
+        "data-cui": "switch-control";
+        "data-size": "md" | "sm" | undefined;
+    };
+    thumb: ({ size, class: className }?: SwitchStyleOptions) => {
+        class: string;
+        "data-cui": "switch-thumb";
+        "data-size": "md" | "sm" | undefined;
+    };
+    label: ({ size, class: className }?: SwitchStyleOptions) => {
+        class: string;
+        "data-cui": "switch-label";
+        "data-size": "md" | "sm" | undefined;
+    };
+    description: ({ size, class: className }?: SwitchStyleOptions) => {
+        class: string;
+        "data-cui": "switch-description";
+        "data-size": "md" | "sm" | undefined;
+    };
+    errorMessage: ({ size, class: className }?: SwitchStyleOptions) => {
+        class: string;
+        "data-cui": "switch-error-message";
+        "data-size": "md" | "sm" | undefined;
+    };
+};
 ```
 
 ## @codeui/styles/internal/parts/text.d.ts
@@ -2349,7 +2404,7 @@ export { type Gap, type StackVariants, stackParts, type StackPart, type StackCla
 
 ```ts
 export * from "./internal/components/Switch/Switch.css.js";
-export { switchParts, type SwitchVariants, type SwitchPart, type SwitchClasses, type SwitchStyles, switchStyles } from "./internal/parts/switch.js";
+export { switchParts, type SwitchVariants, type SwitchPart, type SwitchClasses, type SwitchStyles, switchStyles, type SwitchStyleOptions, switchStyleProps } from "./internal/parts/switch.js";
 ```
 
 ## @codeui/styles/tabs.d.ts
@@ -4602,7 +4657,7 @@ import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import { type ValidComponent } from "solid-js";
 export { useSwitchContext } from "@kobalte/core/switch";
 import { type SwitchVariants } from "@codeui/styles/switch";
-export { switchParts, type SwitchVariants, type SwitchPart, type SwitchClasses, type SwitchStyles, switchStyles } from "@codeui/styles/switch";
+export { switchParts, type SwitchVariants, type SwitchPart, type SwitchClasses, type SwitchStyles, switchStyles, } from "@codeui/styles/switch";
 export type RootProps<T extends ValidComponent = "div"> = K.SwitchRootProps<T> & SwitchVariants;
 export declare function Root<T extends ValidComponent = "div">(props: PolymorphicProps<T, RootProps<T>>): import("solid-js").JSX.Element;
 export type InputProps<T extends ValidComponent = "input"> = K.SwitchInputProps<T> & SwitchVariants;

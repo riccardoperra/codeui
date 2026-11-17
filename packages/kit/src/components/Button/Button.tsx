@@ -3,7 +3,6 @@ import "@codeui/styles/button.css";
 import { Button as KButton, ButtonRootProps as KButtonRootProps } from "@kobalte/core/button";
 import { JSX, Show, splitProps, ValidComponent } from "solid-js";
 import * as styles from "./Button.css";
-import { mergeClasses } from "../../utils/css";
 import { ButtonIcon } from "./ButtonIcon";
 import { Loading } from "./Loading";
 import { PolymorphicProps } from "@kobalte/core/polymorphic";
@@ -36,14 +35,15 @@ export function Button<T extends ValidComponent = "button">(props: PolymorphicPr
 
 	return (
 		<KButton
-			data-cui="button"
-			data-theme={local.theme}
-			data-size={local.size ?? "md"}
-			data-variant={local.variant}
-			data-pill={local.pill || undefined}
-			data-block={local.block || undefined}
+			{...styles.buttonStyleProps({
+				size: local.size,
+				theme: local.theme,
+				variant: local.variant,
+				pill: local.pill,
+				block: local.block,
+				class: internal.class,
+			})}
 			data-loading={local.loading || undefined}
-			class={mergeClasses(styles.button(), internal.class)}
 			{...others}
 			aria-busy={local.loading || undefined}
 			aria-disabled={local.loading || internal["aria-disabled"] || undefined}

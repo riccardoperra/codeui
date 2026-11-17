@@ -52,6 +52,18 @@ element.dataset.theme = "primary";
 
 Parts contracts retain existing `data-cui` values. For example, `switchParts.control` is `switch-control`. Non-native state uses the documented `data-*` attributes. Use the class helpers with variant attributes such as `data-size="md"` and `data-theme="primary"`.
 
+Button and Switch also expose attribute helpers for custom markup. Pass `class` to include an application class. The helpers return the base class, `data-cui`, and the selected variant attributes.
+
+```ts
+import { buttonStyleProps } from "@codeui/styles/button";
+import { switchStyleProps } from "@codeui/styles/switch";
+
+const save = buttonStyleProps({ theme: "primary", block: true, class: "checkout" });
+const track = switchStyleProps.control({ size: "sm", class: "preview-track" });
+```
+
+Button defaults to `size="md"`. Standalone Switch parts emit `data-size` when supplied. The ready Solid Switch supplies `md` to its root, control, and thumb. On native Solid elements, call the helper inside the JSX spread or a memo. The kit binds the helper output through stable reactive properties for polymorphic Switch parts. For React, map `class` to `className` and spread the remaining attributes. The behavior adapter supplies events, ARIA, and states such as `data-loading` and `data-checked`.
+
 `@codeui/styles/contract.json` lists public classes, part names, base part classes, and variable references. `@codeui/styles/manifest.json` lists each CSS entry's component and module dependency closure. The `internal/` exports support `@codeui/kit` and are not application API.
 
 ## Customize tokens and geometry

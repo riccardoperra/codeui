@@ -459,6 +459,13 @@
       "default": "cui-button-button cui-button-buttonTheme"
     },
     "buttonIcon": "cui-button-buttonIcon",
+    "buttonStyleProps": {
+      "default": {
+        "class": "cui-button-button cui-button-buttonTheme",
+        "data-cui": "button",
+        "data-size": "md"
+      }
+    },
     "buttonText": "cui-button-buttonText",
     "buttonTheme": "cui-button-buttonTheme",
     "buttonVars": {
@@ -1388,6 +1395,50 @@
       "label": "switch-label",
       "description": "switch-description",
       "errorMessage": "switch-error-message"
+    },
+    "switchStyleProps": {
+      "root": {
+        "default": {
+          "class": "cui-switch-root",
+          "data-cui": "switch-root"
+        }
+      },
+      "input": {
+        "default": {
+          "class": "cui-switch-input",
+          "data-cui": "switch-input"
+        }
+      },
+      "control": {
+        "default": {
+          "class": "cui-switch-control",
+          "data-cui": "switch-control"
+        }
+      },
+      "thumb": {
+        "default": {
+          "class": "cui-switch-thumb",
+          "data-cui": "switch-thumb"
+        }
+      },
+      "label": {
+        "default": {
+          "class": "cui-switch-label cui-field-label-label",
+          "data-cui": "switch-label"
+        }
+      },
+      "description": {
+        "default": {
+          "class": "cui-switch-description",
+          "data-cui": "switch-description"
+        }
+      },
+      "errorMessage": {
+        "default": {
+          "class": "cui-switch-errorMessage",
+          "data-cui": "switch-error-message"
+        }
+      }
     },
     "switchStyles": {
       "root": {

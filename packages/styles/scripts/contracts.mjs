@@ -9,14 +9,16 @@ function contract(value, callFunctions = false) {
 	if (typeof value === "string") return value;
 	if (typeof value === "function")
 		return callFunctions || value.length === 0
-			? { default: value() }
+			? { default: contract(value()) }
 			: { function: true };
 	if (value && typeof value === "object")
 		return Object.fromEntries(
-			Object.entries(value).map(([name, child]) => [
-				name,
-				contract(child, callFunctions || name.endsWith("Styles")),
-			]),
+			Object.entries(value)
+				.filter(([, child]) => child !== undefined)
+				.map(([name, child]) => [
+					name,
+					contract(child, callFunctions || name.endsWith("Styles")),
+				]),
 		);
 	return value;
 }

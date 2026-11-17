@@ -91,7 +91,7 @@ for (const [name, entry] of Object.entries(registry)) {
 	for (const [symbol, value] of Object.entries(esm)) {
 		if (typeof value === "string") assert.equal(value, cjs[symbol]);
 		if (typeof value === "function" && value.length === 0)
-			assert.equal(value(), cjs[symbol]());
+			assert.deepEqual(value(), cjs[symbol]());
 	}
 	const expectedComponents = new Set();
 	const add = component => {
@@ -128,6 +128,7 @@ for (const [name, entry] of Object.entries(registry)) {
 					: typeof value === "string"
 						? value
 						: "";
+			if (typeof base !== "string") continue;
 			for (const className of base.split(" ").filter(value => value.startsWith("cui-"))) {
 				if (className.includes("Theme")) continue;
 				assert(
@@ -205,10 +206,17 @@ try {
 		await writeFile(
 			fixture,
 			`
-import { button } from '@codeui/styles/button';
+import { button, buttonStyleProps } from '@codeui/styles/button';
+import { switchStyleProps } from '@codeui/styles/switch';
 import { breakpoints, type Breakpoint } from '@codeui/inkstone';
 const breakpoint: Breakpoint = 'md';
 const width: number = breakpoints[breakpoint];
+const marker: 'button' = buttonStyleProps({ size: 'lg', block: true, class: 'custom' })['data-cui'];
+const control: 'switch-control' = switchStyleProps.control({ size: 'sm' })['data-cui'];
+// @ts-expect-error The helper accepts only supported sizes.
+switchStyleProps.control({ size: 'lg' });
+// @ts-expect-error Loading stays in the behavior adapter.
+buttonStyleProps({ loading: true });
 import { dialogStyles, dialogThemeVars } from '@codeui/styles/dialog';
 import { styleFieldMessage } from '@codeui/styles/internal/components/Field/fieldStyle';
 button();

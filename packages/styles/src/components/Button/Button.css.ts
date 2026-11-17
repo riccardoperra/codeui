@@ -1,3 +1,5 @@
+import { mergeClasses } from "../../utils/css";
+
 export const button = (): string => "cui-button-button cui-button-buttonTheme";
 export const buttonIcon: string = "cui-button-buttonIcon";
 export const buttonText: string = "cui-button-buttonText";
@@ -14,11 +16,32 @@ export const buttonVars = {
 	borderRadius: "var(--cui-buttonTheme-borderRadius)" as `var(--${string})`,
 };
 
-export type ButtonVariants = {
+type ButtonAppearance = {
 	size?: "xl" | "lg" | "md" | "sm" | "xs";
 	theme?: "primary" | "tertiary" | "secondary" | "negative" | "caution";
 	variant?: "ghost";
 	block?: boolean;
 	pill?: boolean;
-	loading?: boolean;
-} | undefined;
+};
+
+export type ButtonVariants = (ButtonAppearance & { loading?: boolean }) | undefined;
+export type ButtonStyleOptions = ButtonAppearance & { class?: string };
+
+export function buttonStyleProps({
+	size = "md",
+	theme,
+	variant,
+	block,
+	pill,
+	class: className,
+}: ButtonStyleOptions = {}) {
+	return {
+		class: mergeClasses(button(), className),
+		"data-cui": "button" as const,
+		"data-size": size,
+		"data-theme": theme,
+		"data-variant": variant,
+		"data-block": block ? "" : undefined,
+		"data-pill": pill ? "" : undefined,
+	};
+}
