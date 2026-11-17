@@ -20,7 +20,7 @@ Both groups render the same components. The first sets `data-cui-theme="dark"`, 
 | No attribute | System. Dark values under `prefers-color-scheme: dark`, light values otherwise. |
 
 - Set the attribute on `<html>` to theme the whole page.
-- Set it on any element to theme that subtree. Each scope sets every token again, so a light scope inside a dark page works.
+- Set it on any element to theme that subtree. Each scope sets again every token that has a dark and a light value, so a light scope inside a dark page works.
 - To follow the system setting, remove the attribute. There is no `system` value.
 
 The kit ships no theme provider. If your app stores a dark, light or system preference, write the attribute yourself. Set it before the first paint, for example from a small inline script in `<head>`, so a server-rendered page does not flash the wrong mode. This site sets the attribute from its theme toggle, so the page and the demos switch together.
@@ -112,9 +112,11 @@ In an app, the same stylesheet targets the page instead of a class. This is the 
 
 Load this file anywhere. Order and specificity do not matter against kit rules, because kit rules sit in the `cui` cascade layer. Among your own rules, the usual order applies, so keep the mode blocks after the shared block.
 
-### Why `:root` alone is not enough
+### Which tokens `:root` alone reaches
 
-The kit sets every token on `:root` and again on each `[data-cui-theme]` element. An element with the attribute takes the kit's value for that scope, not the value it would inherit from `:root`. An override written only on `:root` therefore stops at the first nested scope. Write `:root, [data-cui-theme]` to reach every scope. If you set the attribute only on `<html>`, `:root` is enough.
+The kit sets every token on `:root`. A token with one value for both modes, such as `--cui-radius-md`, `--cui-action-brand-base` or `--cui-font-family-sans`, is set only there. Every nested `[data-cui-theme]` scope inherits it, so an override on `:root` reaches the whole page.
+
+A token with a dark and a light value, such as `--cui-surface-canvas` or `--cui-accent-focus`, is set again on each `[data-cui-theme]` element. `--cui-focus-color` is too, because it reads `--cui-accent-focus`. An element with the attribute takes the kit's value for that scope, not the value it would inherit from `:root`. An override of such a token written only on `:root` stops at the first nested scope. Write `:root, [data-cui-theme]` to reach every scope, as `app.css` does. [Tokens](/docs/foundations/tokens) shows which tokens have a value per mode. If you set the attribute only on `<html>`, `:root` is enough for every token.
 
 ### Change one instance
 

@@ -13,9 +13,6 @@ export default function ComboboxControlledClearDemo() {
 				options={languages}
 				value={language()}
 				onChange={setLanguage}
-				onInputChange={text => {
-					if (text === "") setLanguage(null);
-				}}
 			/>
 			<p>Selected: {language() ?? "none"}</p>
 		</>

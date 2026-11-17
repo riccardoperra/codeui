@@ -1123,7 +1123,8 @@ type SelectClassesProps = {
     slotClasses?: Partial<Record<SelectSlot, string>>;
 };
 export type SelectProps<Option, OptGroup = never> = KSelectRootProps<Option, OptGroup> & BaseFieldProps & {
-    "aria-label": string;
+    /** Accessible name for the trigger. Optional when `label` is set. */
+    "aria-label"?: string;
     placeholder?: string;
     description?: string;
     label?: JSX.Element;
@@ -2227,7 +2228,7 @@ export * as popoverStyles from "./components/Popover/Popover.css.js";
 export { Sheet } from "./components/Sheet/Sheet.js";
 export type { SheetProps } from "./components/Sheet/Sheet.js";
 export { Select } from "./components/Select/Select.js";
-export type { SelectClasses } from "./components/Select/Select.js";
+export type { SelectClasses, SelectProps } from "./components/Select/Select.js";
 export { createSelectOptions } from "./components/Select/createSelectValue.js";
 export { RadioList, RadioListItem } from "./components/RadioList/RadioList.js";
 export type { RadioListProps, RadioListItemProps, RadioListClasses, } from "./components/RadioList/RadioList.js";

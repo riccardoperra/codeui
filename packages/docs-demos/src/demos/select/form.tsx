@@ -4,7 +4,6 @@ import { Button, Select } from "@codeui/kit";
 const formats = ["PNG", "SVG", "JPEG"];
 
 export default function SelectFormDemo() {
-	const [format, setFormat] = createSignal("PNG");
 	const [submitted, setSubmitted] = createSignal<string>();
 	return (
 		<form
@@ -14,14 +13,7 @@ export default function SelectFormDemo() {
 				setSubmitted(String(data.get("format")));
 			}}
 		>
-			<Select
-				aria-label="Export format"
-				label="Export format"
-				options={formats}
-				value={format()}
-				onChange={value => value && setFormat(value)}
-			/>
-			<input type="hidden" name="format" value={format()} />
+			<Select label="Export format" name="format" options={formats} defaultValue="PNG" />
 			<Button theme="primary" type="submit">
 				Export
 			</Button>

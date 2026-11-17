@@ -228,7 +228,8 @@
 			"SettingsRowProps": "components/settings-row#settingsrow",
 			"settingsRowStyles": "components/settings-row#settingsrowstyles",
 			"SettingsRowStyles": "components/settings-row#settingsrowstyles",
-			"SettingsRowVariants": "components/settings-row#inline-and-wide"
+			"SettingsRowVariants": "components/settings-row#inline-and-wide",
+			"SelectProps": "components/select#select"
 		},
 		"@codeui/kit/accordion": {
 			"AccordionClasses": "components/accordion#anatomy",

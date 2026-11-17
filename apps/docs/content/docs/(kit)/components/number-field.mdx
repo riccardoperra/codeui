@@ -25,12 +25,12 @@ Use NumberField when the user types an exact number, such as a font size, a padd
 | ------------- | ----------------------------------------- | -------------- | -------------------------- | --------- |
 | `NumberField` | Root `div`                                | `root`         | `number-field`             | `group`   |
 |               | `label`, when `label` is set              | `label`        | `text-field-label`         | none      |
-|               | `input`                                   | `input`        | `text-field-input`         | `textbox` |
+|               | `input`                                   | `input`        | `text-field-input`         | `spinbutton` |
 |               | Increment and decrement buttons           | none           | `button`                   | `button`  |
 |               | Hint `div`, when `description` is set     | `description`  | `text-field-description`   | none      |
 |               | Error `div`, when invalid and `errorMessage` is set | `errorMessage` | `text-field-error-message` | none |
 
-The input and the step buttons sit in an unnamed wrapper `div`. The buttons are kit [Buttons](/docs/components/button) with `variant="ghost"` and `theme="secondary"`. They show while the pointer is over the field or the input has focus. The root always carries `data-field-size`, `md` by default.
+The input and the step buttons sit in an unnamed wrapper `div`. The buttons are kit [Buttons](/docs/components/button) with `variant="ghost"` and `theme="secondary"`. They show while the pointer is over the field or focus is inside it. They are not tab stops. The root always carries `data-field-size`, `md` by default.
 
 ## Variants
 
@@ -74,7 +74,7 @@ The input and the step buttons sit in an unnamed wrapper `div`. The buttons are 
 
 <SolidDemo name="number-field/states" />
 
-`required` sets `required` and `aria-required` on the input. `readOnly` blocks typing. `disabled` removes the input from the tab order and dims it. The step buttons and the arrow keys do not check `readOnly` or `disabled` yet, so a read-only field still steps. Hide or guard the field yourself until the kit fixes it.
+`required` sets `required` and `aria-required` on the input. `readOnly` blocks typing, disables the step buttons, and makes the arrow keys do nothing. `disabled` removes the input from the tab order, dims it, and disables the step buttons.
 
 ### Invalid
 
@@ -115,19 +115,19 @@ Renders Kobalte's `TextField.Label` with the kit label style. Use it only inside
 | Key        | Action                                                  |
 | ---------- | ------------------------------------------------------- |
 | Tab        | Move focus to the input.                                |
-| Arrow Up   | Add `step` to the value, up to `max`.                   |
-| Arrow Down | Remove `step` from the value, down to `min`.            |
+| Arrow Up   | Add `step` to the value, up to `max`. Does nothing when read-only. |
+| Arrow Down | Remove `step` from the value, down to `min`. Does nothing when read-only. |
 
 ### ARIA
 
-- The root is a `div` with `role="group"`. The input is a text input, not a `spinbutton`, so it has no `aria-valuenow`, `aria-valuemin`, or `aria-valuemax`. Say the bounds in the label or the hint.
+- The root is a `div` with `role="group"`. The input has `role="spinbutton"`. It sets `aria-valuenow` to the value and `aria-valuetext` to the formatted value, with the prefix and the postfix. Both are absent while the field is empty. `aria-valuemin` and `aria-valuemax` are set when you pass `min` and `max`.
 - The label `for` points at the input `id`.
-- The step buttons are named "Increment by" and "Decrement by", followed by the step, such as "Increment by 8".
+- The step buttons are named "Increment by" and "Decrement by", followed by the step, such as "Increment by 8". A step button is disabled when the field is disabled or read-only, or when the value is already at `max` or `min`. A value one step from a bound stays enabled and steps to the bound.
 - The input gets `aria-describedby`, `aria-invalid`, `aria-required`, `aria-disabled`, and `aria-readonly` as TextField does.
 
 ### Focus
 
-The arrow keys keep focus in the input. The step buttons show only while the pointer is over the field or the input has focus, so treat them as pointer targets and the arrow keys as the keyboard path.
+The arrow keys keep focus in the input. The step buttons have `tabindex="-1"`, as in the ARIA spinbutton pattern, so Tab moves from the input to the next control on the page. They are pointer targets, and the arrow keys are the keyboard path.
 
 ## SSR notes
 

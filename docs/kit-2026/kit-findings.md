@@ -15,30 +15,30 @@ Severity follows this order.
 ## High
 
 - [ ] **JSX props read twice break hydration.** Fixed in `fix/kit-jsx-props-once` for every component except Dialog and Sheet, which still read `title`, `description` and `footer` twice (`Dialog.tsx:57,63`, `Sheet.tsx:81,83,94,98`). `pnpm test:hydration` hydrates every ready component with an element in each content prop and fails on a mismatch. `<Show when={local.action}>{local.action}</Show>` runs the prop getter once for the condition and once for the children. On the client the first run claims a hydration key that the server never wrote to the page. A plain element falls back to a fresh node, which leaves a detached duplicate. A polymorphic part (Kobalte `Dynamic`) calls `getNextElement()` with no template and throws `TypeError: t is not a function`. The docs `alert/actions` demo (a Button as `action`) dies on every load. Reproduced in the docs build. Resolving the prop once with `children(() => local.action)` and using that accessor in both places removes the error, and the demo's button then updates the description. Same pattern: `Alert.tsx:44,50`, `Badge.tsx:24`, `Dialog.tsx:57,63`, `Popover.tsx:40,43`, `Sheet.tsx:81,83,94`, `OptionCard.tsx:107`, `Combobox.tsx:143`, and the `description` Show in TextField, TextArea, CheckBox, RadioList, Select and NumberField.
-- [ ] **Select** submits nothing in a form. It renders no hidden input, so `name` has no effect (`components/Select/Select.tsx:162`). The docs show a hidden-input workaround.
-- [ ] **Token overrides** written only on `:root` do not reach nested `[data-cui-theme]` scopes, because `foundation/cui.css.ts:78-79` sets every token again on each scope. `packages/kit/README.md:18` shows the `:root`-only form.
+- [x] **Select** submits nothing in a form. It renders no hidden input, so `name` has no effect (`components/Select/Select.tsx:162`). The docs show a hidden-input workaround. Fixed in `fix/kit-high-findings`: one hidden input per selected value. Kobalte's `HiddenSelect` was rejected because axe reports `aria-hidden-focus` on its autofill input. `aria-label` is optional when `label` is set.
+- [x] **Token overrides** written only on `:root` do not reach nested `[data-cui-theme]` scopes, because `foundation/cui.css.ts:78-79` sets every token again on each scope. `packages/kit/README.md:18` shows the `:root`-only form. Fixed in `fix/kit-high-findings`: scopes set again only tokens that differ by mode (and `--cui-focus-color`). Overrides of those still go on `:root, [data-cui-theme]`, as the README and Theming page now show. `tools/baseline/theme-overrides.mjs` checks it in Chromium.
 - [x] **Tooltip** puts `aria-describedby` on the wrapper `div` instead of the focusable child, so screen readers do not read it (`components/Tooltip/Tooltip.tsx:15-37`).
-- [ ] **Button** `loading` sets neither `disabled` nor `aria-busy`, so a loading button stays clickable (`components/Button/Button.tsx:41`).
+- [x] **Button** `loading` sets neither `disabled` nor `aria-busy`, so a loading button stays clickable (`components/Button/Button.tsx:41`). Fixed in `fix/kit-high-findings`: `aria-busy` and `aria-disabled`, activation ignored, focus kept.
 - [ ] **Focus rings are missing or not visible.** Tabs, RadioList, Checkbox and fields fixed in `fix/kit-controls-parity`; Link remains.
   - Link removes the outline with no replacement (`components/Link/Link.css.ts:10`).
   - Tabs does the same (`components/Tabs/Tabs.css.ts:48`).
   - RadioList has no focus style.
   - Fields show focus as a border color on `:focus` (`components/Field/Field.css.ts:49`) instead of the 2px `:focus-visible` ring.
-- [ ] **NumberField** ignores `disabled` and `readOnly` in its controls.
+- [x] **NumberField** ignores `disabled` and `readOnly` in its controls. Fixed in `fix/kit-high-findings`.
   - The step buttons ignore `disabled` (`components/NumberField/NumberFieldControls.tsx:16`).
   - The buttons and the arrow keys ignore `readOnly` (`NumberField.tsx:178`).
   - `canIncrement` and `canDecrement` check ±1 instead of `step` (`NumberField.tsx:312`).
-- [ ] **Combobox with a controlled value.** A second Escape or clearing the text keeps the selection and does not call `onChange`, because Kobalte clears only when `value` is `undefined`. `createComboboxOptions().controlled()` always passes a value or `null` (`createComboboxOptions.ts:94`), so it always has this gap.
+- [x] **Combobox with a controlled value.** A second Escape or clearing the text keeps the selection and does not call `onChange`, because Kobalte clears only when `value` is `undefined`. `createComboboxOptions().controlled()` always passes a value or `null` (`createComboboxOptions.ts:94`), so it always has this gap. Fixed in `fix/kit-high-findings`: the parts `Root` calls `onChange(null)` on empty text for a controlled single value.
 
 ## Medium
 
 ### Behavior
 
 - [ ] **NumberField.**
-  - The step buttons show only on hover or input focus (`NumberField.css.ts:52`). Tabbing to them may hide them and drop focus. **Check in browser.**
-  - `sanitizedValue || null` may show an empty input for `0` (`NumberField.tsx:116`). **Check in browser.**
+  - [x] The step buttons show only on hover or input focus (`NumberField.css.ts:52`). Tabbing to them may hide them and drop focus. Reproduced in Chromium: Tab from the input dropped focus to `body`. Fixed: the buttons have `tabindex="-1"` (spinbutton pattern) and stay shown with `:focus-within`.
+  - [x] `sanitizedValue || null` may show an empty input for `0` (`NumberField.tsx:116`). Fixed.
   - The separators are fixed and ignore the locale (`options.ts:65`), and the form submits the formatted text.
-  - The input has no `spinbutton` role.
+  - [x] The input has no `spinbutton` role. Fixed, with `aria-valuenow`, `aria-valuetext`, `aria-valuemin` and `aria-valuemax`.
 - [ ] **TextArea** stays at the control height and ignores `rows` unless `autoResize` is set (`TextArea.css.ts`, `Field.css.ts:80`).
 - [ ] **TextField and TextArea** set `data-field-size` only when `size` is passed, so the label and message sizes do not apply at the default size (`TextField.tsx:77`, `TextArea.tsx:79`).
 - [ ] **`createSelectOptions`.**
@@ -68,7 +68,7 @@ Severity follows this order.
   - The inline `--cui-stack-gap` beats any value set in a class (`parts/stack.tsx:72`).
 - [ ] **Exported names and types.**
   - Two different exports are named `popoverStyles`: the raw namespace at the root (`index.tsx:57`) and the part functions at `@codeui/kit/popover`.
-  - `SelectProps` (`index.tsx:62`) and the `IconButton` props type are not exported. `TooltipProps` is exported.
+  - `SelectProps` (`index.tsx:62`) and the `IconButton` props type are not exported. `TooltipProps` is exported. `SelectProps` is exported since `fix/kit-high-findings`.
   - `<Select multiple>` needs an explicit generic.
 - [ ] **No public hint style.** `createFieldMessageProps` and the field message styles are not exported, so a custom field cannot match the hint.
 - [ ] **DropdownMenu.**

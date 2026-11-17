@@ -2,6 +2,7 @@ import {
 	Select as KSelect,
 	SelectItemProps as KSelectItemProps,
 	SelectRootProps as KSelectRootProps,
+	useSelectContext,
 } from "@kobalte/core/select";
 import { Accessor, For, JSX, JSXElement, ParentProps, Show, splitProps } from "solid-js";
 import { CheckIcon } from "../../icons/CheckIcon";
@@ -62,7 +63,8 @@ export type SelectProps<Option, OptGroup = never> = KSelectRootProps<
 	OptGroup
 > &
 	BaseFieldProps & {
-	"aria-label": string;
+	/** Accessible name for the trigger. Optional when `label` is set. */
+	"aria-label"?: string;
 	placeholder?: string;
 	description?: string;
 	label?: JSX.Element;
@@ -73,6 +75,19 @@ export type SelectProps<Option, OptGroup = never> = KSelectRootProps<
 	/** Portal target, such as a parent dialog, so the list stays inside it. */
 	mount?: Node;
 } & SelectClassesProps;
+
+/**
+ * One hidden input per selected key, so `name` submits the value with a form.
+ * Kobalte's `HiddenSelect` puts a focusable input inside `aria-hidden`, which axe reports.
+ */
+function SelectFormValue(props: { name: string; disabled?: boolean }) {
+	const context = useSelectContext();
+	return (
+		<For each={[...context.listState().selectionManager().selectedKeys()]}>
+			{key => <input type="hidden" name={props.name} value={key} disabled={props.disabled} />}
+		</For>
+	);
+}
 
 export function SelectItem<T>(
 	props: KSelectItemProps & {
@@ -148,6 +163,9 @@ export function Select<Option, OptGroup = never>(props: ParentProps<SelectProps<
 						{label()}
 					</KSelect.Label>
 				)}
+			</Show>
+			<Show when={props.name}>
+				{name => <SelectFormValue name={name()} disabled={props.disabled} />}
 			</Show>
 			<KSelect.Trigger
 				data-cui={selectParts.trigger}

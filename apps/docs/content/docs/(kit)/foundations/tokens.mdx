@@ -15,7 +15,7 @@ A name is `--cui-` followed by the token path in kebab case. The path `surface.m
 
 The CSS name is the stable public API. In TypeScript, the [`tokens`](/docs/utilities/token-exports#tokens) export holds the same paths, and each leaf is a `var(--cui-…)` string.
 
-Each mode sets every token. Most color tokens differ between dark and light, and `data-cui-theme` picks the mode. [Theming](/docs/foundations/theming) covers the attribute and overrides.
+`:root` sets every token. Most color tokens differ between dark and light, and `data-cui-theme` picks the mode. Each `[data-cui-theme]` scope sets again only the tokens whose dark and light values differ, plus `--cui-focus-color`. [Theming](/docs/foundations/theming) covers the attribute and overrides.
 
 ## Read a token in your styles
 

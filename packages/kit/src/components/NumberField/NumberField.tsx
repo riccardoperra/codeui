@@ -142,8 +142,8 @@ export function NumberField(props: NumberFieldProps) {
 		const isFocused = focused();
 		const dirtyValue = unfinishedValue();
 		const sanitizedValue = value();
-		const newValue = isFocused ? dirtyValue : sanitizedValue || null;
-		return newValue ? String(newValue) : undefined;
+		const newValue = isFocused ? dirtyValue : sanitizedValue;
+		return newValue == null || newValue === "" ? undefined : String(newValue);
 	};
 
 	const computeMin = () => {
@@ -159,11 +159,18 @@ export function NumberField(props: NumberFieldProps) {
 
 	const setNativeValue = (value: string) => (internalRef.value = value);
 
+	const isLocked = () => !!(props.disabled || props.readOnly);
+	const canIncrement = () => !isLocked() && (value() ?? 0) < computeMax();
+	const canDecrement = () => !isLocked() && (value() ?? 0) > computeMin();
+
 	const onKeyDown = (event: KeyboardEvent) => {
 		if (!(event.key === "ArrowDown" || event.key === "ArrowUp")) {
 			return;
 		}
 		event.preventDefault();
+		if (isLocked()) {
+			return;
+		}
 		if (event.key === "ArrowDown") {
 			decrement();
 		} else {
@@ -287,14 +294,19 @@ export function NumberField(props: NumberFieldProps) {
 					placeholder={local.placeholder}
 					ref={mergeRefs(local.ref, el => (internalRef = el))}
 					type={"text"}
+					role="spinbutton"
+					aria-valuenow={value() ?? undefined}
+					aria-valuetext={value() == null ? undefined : formattedValue()}
+					aria-valuemin={options.min}
+					aria-valuemax={options.max}
 					onKeyDown={onKeyDown}
 					onBlur={() => onFocused(false)}
 					onFocus={() => onFocused(true)}
 				/>
 
 				<NumberFieldControls
-					canIncrement={(value() ?? 0) + 1 <= computeMax()}
-					canDecrement={(value() ?? 0) - 1 >= computeMin()}
+					canIncrement={canIncrement()}
+					canDecrement={canDecrement()}
 					increment={increment}
 					decrement={decrement}
 					step={optionsWithDefault.step}

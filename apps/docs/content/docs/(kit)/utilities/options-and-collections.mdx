@@ -100,7 +100,7 @@ TypeScript checks each key against the field types, so a `labelKey` that points 
 
 ### Edge cases
 
-- `controlled` always passes a value, `null` when nothing matches. The combobox is then controlled, and clearing the text does not clear the selection. See [the known gap](/docs/components/combobox#known-gap-clearing-a-controlled-value) for the fix.
+- `controlled` always passes a value, `null` when nothing matches. The combobox is then controlled. Clearing the text calls your `onChange` with `undefined`, and the selection clears. See [Clear a controlled value](/docs/components/combobox#clear-a-controlled-value).
 - `options()` caches the normalized list until the source array changes identity. Mutating the array in place does not update the options. Write a new array.
 - A form submits the value as a string. A numeric `id` of `3` arrives as `"3"`.
 - `label` must be a string, because the input shows it and the filter searches it. Use `renderOption` on `Combobox` for rich content in the list.

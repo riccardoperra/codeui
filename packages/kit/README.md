@@ -14,14 +14,21 @@ Every color, radius, spacing, shadow and motion value is a `--cui-*` custom prop
 Set `data-cui-theme="dark"` or `data-cui-theme="light"` on `<html>` or on any subtree. Without the attribute, the kit follows `prefers-color-scheme`.
 
 ```css
-/* Retheme the whole app. */
+/* Retheme the whole app. These tokens have one value for both modes,
+   so :root reaches every nested data-cui-theme scope. */
 :root {
 	--cui-action-brand-base: #7c3aed;
 	--cui-action-brand-hover: #6d28d9;
 	--cui-action-brand-active: #5b21b6;
-	--cui-accent-focus: #a78bfa;
 	--cui-radius-md: 6px;
 	--cui-font-family-sans: "IBM Plex Sans", system-ui, sans-serif;
+}
+
+/* A token with a dark and a light value is set again on each
+   data-cui-theme scope. Override it on the scopes too. */
+:root,
+[data-cui-theme] {
+	--cui-accent-focus: #a78bfa;
 }
 
 /* Different values per mode. */

@@ -118,23 +118,15 @@ Pass `value` and `onChange` to own the value. Pass `defaultValue` to let `Combob
 The Escape key works in two steps.
 
 1. With the list open, Escape closes the list and puts back the label of the selected option. The text the user typed is discarded.
-2. With the list closed, Escape clears the text. In an uncontrolled combobox, empty text also clears the selection, and `onChange` receives `null`.
+2. With the list closed, Escape clears the text. Empty text also clears a single selection, and `onChange` receives `null`.
 
 Inside a [Dialog](/docs/components/dialog), pass the dialog panel to `mount` so the list renders inside the dialog. Then the first Escape closes only the list, and the next Escape closes the dialog.
 
-### Known gap: clearing a controlled value
+### Clear a controlled value
 
 <SolidDemo name="combobox/controlled-clear" />
 
-Kobalte clears the selection on empty text only when `value` is `undefined`. When you pass `value`, even `null`, the second Escape empties the input but keeps the value and does not call `onChange`. Deleting all the text with Backspace behaves the same way. When the input loses focus, the label of the kept value comes back. `createComboboxOptions().controlled()` always passes a value, so it has the same gap.
-
-To get the uncontrolled behavior, clear the value yourself when the text becomes empty. The demo does this in `onInputChange`:
-
-```tsx
-onInputChange={text => {
-	if (text === "") setLanguage(null);
-}}
-```
+When the text becomes empty, by a second Escape or by deleting it, a single-selection combobox calls `onChange(null)`. This holds for a controlled `value` too, including the one from `createComboboxOptions().controlled()`. Set your value to `null` in `onChange`, as the demo does, and the selection clears. Kobalte alone clears only when `value` is `undefined`. The kit's `Root` adds the call for a controlled value. With `multiple`, empty text keeps the selection.
 
 ### Disabled
 
@@ -328,7 +320,7 @@ The highlighted option uses the accent fill. Inkstone §2 says a highlighted or 
 
 ## Composition examples
 
-- [Known gap: clearing a controlled value](#known-gap-clearing-a-controlled-value) keeps a controlled value in step with the text.
+- [Clear a controlled value](#clear-a-controlled-value) keeps a controlled value in step with the text.
 - [Styled parts API](#styled-parts-api) adds option descriptions with `ItemDescription`.
 - [Run commands](/docs/patterns/run-commands) covers search that runs an action instead of picking a value.
 

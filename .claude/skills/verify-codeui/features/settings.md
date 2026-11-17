@@ -21,7 +21,7 @@ SettingsGroup puts a heading above one island of SettingsRow rows. Each row show
 node .claude/skills/verify-codeui/scripts/drive.mjs designsystem-settings--dialog --journey .claude/skills/verify-codeui/journeys/settings-row.mjs
 ```
 
-The journey asserts computed values against CodeImage, the accessible names of the tab list, switch and textbox, Tab order to the `Visible` switch, Space toggling it, and the 390px layout.
+The journey asserts computed values against CodeImage, the accessible names of the tab list, switch and spinbutton, Tab order to the `Visible` switch, Space toggling it, and the 390px layout.
 
 ## Gotchas
 

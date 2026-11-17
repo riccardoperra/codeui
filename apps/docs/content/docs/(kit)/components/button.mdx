@@ -82,7 +82,7 @@ The leading icon uses an internal `span` without a `data-cui` marker. The loadin
 <SolidDemo name="button/loading" />
 
 `loading` places animated dots over the existing content without changing its dimensions. It sets `data-loading` and blocks pointer events through CSS.
-It does not set `disabled` or `aria-busy`, and it does not prevent keyboard activation. Pair all three props while an action runs, as the example does.
+It also sets `aria-busy="true"` and `aria-disabled="true"`, and it ignores clicks, Enter, and Space, so `onClick` does not run and a submit button does not submit its form. It does not set `disabled`, so a focused button keeps focus while the action runs.
 
 ## Ready API
 
@@ -112,7 +112,7 @@ Inherited from Kobalte's [button contract](https://kobalte.dev/docs/core/compone
 
 The default native element has button semantics. Kobalte supplies `role="button"` for non-native elements except anchors with `href`. It does not add keyboard activation handlers to arbitrary elements. Disabled controls expose `data-disabled`.
 The visible text supplies the accessible name. Hide decorative icons from assistive technology.
-Loading adds an internal `aria-label="Loading"` span. It does not provide a live region. Supply status feedback outside the button when completion needs an announcement.
+Loading sets `aria-busy` and `aria-disabled`, and adds an internal `aria-label="Loading"` span, so the name reads "Loading" before the label. It does not provide a live region. Supply status feedback outside the button when completion needs an announcement.
 
 ### Focus
 
