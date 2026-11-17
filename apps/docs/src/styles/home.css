@@ -1,13 +1,13 @@
 /* The homepage: a hero on the page, then the live kit as islands carved into it (Inkstone §2.1). */
 body:has(#nd-home-layout) {
-  background: var(--cui-surface-panel);
+  background: var(--color-fd-background);
 }
 
 /* The header has no bar (Inkstone §4): it sits on the page fill, with no border or blur. */
 #nd-home-layout #nd-nav > * {
   border-color: transparent;
   backdrop-filter: none;
-  background-color: var(--cui-surface-panel);
+  background-color: var(--color-fd-background);
 }
 
 /* 16px inset, so the islands' edges line up with the Fumadocs header row above them. */
@@ -31,14 +31,14 @@ body:has(#nd-home-layout) {
   font-weight: var(--cui-font-weight-semibold);
   line-height: 1.2;
   letter-spacing: -0.02em;
-  color: var(--cui-text-default);
+  color: var(--color-fd-foreground);
 }
 
 .home-hero p {
   margin: var(--cui-space-3) 0 0;
   font-size: var(--cui-font-size-md);
   line-height: var(--cui-font-line-height-normal);
-  color: var(--cui-text-muted);
+  color: var(--color-fd-muted-foreground);
   text-wrap: pretty;
 }
 
@@ -59,8 +59,8 @@ body:has(#nd-home-layout) {
   padding-inline: var(--cui-space-4);
   border: 0;
   border-radius: var(--cui-radius-md);
-  background: var(--cui-action-neutral-base);
-  color: var(--cui-action-neutral-text);
+  background: var(--color-fd-secondary);
+  color: var(--color-fd-secondary-foreground);
   font: inherit;
   font-size: var(--cui-font-size-sm);
   font-weight: var(--cui-font-weight-medium);
@@ -73,32 +73,32 @@ body:has(#nd-home-layout) {
 }
 
 .home-button:active {
-  background: var(--cui-action-neutral-active);
+  background: var(--color-fd-accent);
   transform: scale(0.97);
 }
 
 .home-button[data-variant='primary'] {
-  background: var(--cui-action-brand-base);
+  background: var(--cui-docs-action-brand-base);
   color: var(--cui-action-brand-text);
 }
 
 .home-button[data-variant='primary']:active {
-  background: var(--cui-action-brand-active);
+  background: var(--cui-docs-action-brand-active);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .home-button:hover {
-    background: var(--cui-action-neutral-hover);
+    background: var(--color-fd-accent);
   }
 
   .home-button[data-variant='primary']:hover {
-    background: var(--cui-action-brand-hover);
+    background: var(--cui-docs-action-brand-hover);
   }
 }
 
 .home-button:focus-visible,
 .home-tile-link:focus-visible {
-  outline: var(--cui-focus-width) solid var(--cui-focus-color);
+  outline: var(--cui-focus-width) solid var(--color-fd-ring);
   outline-offset: var(--cui-focus-offset);
 }
 
@@ -110,13 +110,13 @@ body:has(#nd-home-layout) {
   min-width: 0;
   padding: var(--cui-space-1) var(--cui-space-1) var(--cui-space-1) var(--cui-space-4);
   border-radius: var(--cui-radius-card);
-  background: var(--cui-surface-canvas);
+  background: var(--color-fd-card);
 }
 
 .home-install code {
   font-family: var(--cui-font-family-mono);
   font-size: var(--cui-font-size-caption);
-  color: var(--cui-text-default);
+  color: var(--color-fd-foreground);
   white-space: nowrap;
 }
 
@@ -154,7 +154,7 @@ body:has(#nd-home-layout) {
   margin-bottom: var(--cui-space-2);
   padding: var(--cui-space-4);
   border-radius: var(--cui-radius-command);
-  background: var(--cui-surface-canvas);
+  background: var(--color-fd-card);
   /* The Inkstone base (§3), so kit parts without a size of their own read as they do in an app. */
   font-size: var(--cui-font-size-caption);
   line-height: var(--cui-font-line-height-normal);
@@ -175,7 +175,7 @@ body:has(#nd-home-layout) {
   min-height: var(--cui-control-height-compact);
   margin-top: var(--cui-space-4);
   border-radius: var(--cui-radius-badge);
-  color: var(--cui-text-default);
+  color: var(--color-fd-foreground);
   font-size: var(--cui-font-size-sm);
   font-weight: var(--cui-font-weight-medium);
   line-height: var(--cui-font-line-height-snug);
@@ -183,13 +183,13 @@ body:has(#nd-home-layout) {
 }
 
 .home-tile-link > span {
-  color: var(--cui-text-muted);
+  color: var(--color-fd-muted-foreground);
   transition: color var(--cui-motion-duration-fast) var(--cui-motion-ease-out);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .home-tile-link:hover > span {
-    color: var(--cui-text-default);
+    color: var(--color-fd-foreground);
   }
 }
 
@@ -254,7 +254,7 @@ body:has(#nd-home-layout) {
   gap: var(--cui-space-4);
   padding: var(--cui-space-4);
   border-radius: var(--cui-radius-command);
-  background: var(--cui-surface-canvas);
+  background: var(--color-fd-card);
 }
 
 /* 22px island − 16px padding leaves 6px for the well's corners. */
@@ -270,7 +270,7 @@ body:has(#nd-home-layout) {
 }
 
 .examples-shot:focus-visible {
-  outline: var(--cui-focus-width) solid var(--cui-focus-color);
+  outline: var(--cui-focus-width) solid var(--color-fd-ring);
   outline-offset: var(--cui-focus-offset);
 }
 
@@ -295,7 +295,7 @@ body:has(#nd-home-layout) {
   align-items: center;
   gap: var(--cui-space-2);
   margin: 0;
-  color: var(--cui-text-default);
+  color: var(--color-fd-foreground);
   font-size: var(--cui-font-size-md);
   font-weight: var(--cui-font-weight-semibold);
   line-height: var(--cui-font-line-height-snug);
@@ -305,8 +305,8 @@ body:has(#nd-home-layout) {
 .examples-kind {
   padding: 1px var(--cui-space-1-5);
   border-radius: var(--cui-radius-badge);
-  background: var(--cui-surface-input);
-  color: var(--cui-text-muted);
+  background: var(--color-fd-muted);
+  color: var(--color-fd-muted-foreground);
   font-size: var(--cui-font-size-badge);
   font-weight: var(--cui-font-weight-medium);
   line-height: var(--cui-font-line-height-snug);
@@ -314,14 +314,14 @@ body:has(#nd-home-layout) {
 
 .examples-text p {
   margin: 0;
-  color: var(--cui-text-muted);
+  color: var(--color-fd-muted-foreground);
   font-size: var(--cui-font-size-sm);
   line-height: var(--cui-font-line-height-normal);
   text-wrap: pretty;
 }
 
 .examples-text .examples-uses {
-  color: var(--cui-text-tertiary);
+  color: var(--color-fd-muted-foreground);
   font-size: var(--cui-font-size-xs);
 }
 

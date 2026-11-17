@@ -2,6 +2,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { replaceSource } from 'fumadocs-core/mdx-plugins/stringifier';
 import type { PropRow } from '../components/props-table';
+import type { ColourPaletteData } from '../components/inkstone/colour-palette';
 
 // Build-time expansion of the kit's MDX components, so the page and its Markdown route
 // (`/docs/<page>.md`) carry the same readable content.
@@ -24,6 +25,7 @@ type Row = PropRow;
 const docsDir = path.resolve(import.meta.dirname, '../..');
 const demosDir = path.resolve(docsDir, '../../packages/docs-demos/src/demos');
 const propsFile = path.join(docsDir, '.generated/props.json');
+const paletteFile = path.join(docsDir, '.generated/inkstone-palette.json');
 
 /** A JSON value as an ESTree expression, so MDX can pass it to a component as a prop. */
 const estree = (value: unknown): unknown => {
@@ -64,6 +66,32 @@ function propsMarkdown(rows: Row[]) {
 			escapeCell(`${r.deprecated ? '**Deprecated.** ' : ''}${r.description}`),
 		])),
 	].join('\n');
+}
+
+function colourPaletteMarkdown({ ramps, roles }: ColourPaletteData) {
+	const codeCell = (value: string) => `\`${value}\``;
+	const line = (cells: string[]) => `| ${cells.join(' | ')} |`;
+	const value = (swatch: ColourPaletteData['roles'][number]['light']) =>
+		`${codeCell(swatch.id)} ${codeCell(swatch.hex)}`;
+	const rampTables = ramps.map(({ label, swatches }) => [
+		`**${escapeCell(label)}**`,
+		'',
+		line(['Step', 'sRGB', 'OKLCH']),
+		line(['---', '---', '---']),
+		...swatches.map(({ id, hex, oklch }) => line([id, hex, oklch].map(codeCell))),
+	].join('\n'));
+	return [
+		...rampTables,
+		[
+			'**Theme roles**',
+			'',
+			line(['Role', 'CSS token', 'Light', 'Dark']),
+			line(['---', '---', '---', '---']),
+			...roles.map(({ name, cssToken, light, dark }) => line([
+				codeCell(name), codeCell(cssToken), value(light), value(dark),
+			])),
+		].join('\n'),
+	].join('\n\n');
 }
 
 const fence = (name: string, source: string) => {
@@ -134,6 +162,18 @@ export function remarkKit() {
 					if (!table) throw new Error(`${where}: <PropsTable name="${name}" /> has no projection. Export type ${name} from packages/docs-demos/src/props/<page>.ts.`);
 					replaceSource(file, node as never, propsMarkdown(table.rows));
 					children[i] = { ...node, position: undefined, attributes: [...(node.attributes ?? []), expressionAttribute('rows', table.rows)] };
+					continue;
+				}
+				if (node.type === 'mdxJsxFlowElement' && node.name === 'ColourPalette') {
+					if (!existsSync(paletteFile)) throw new Error(`${where}: run pnpm palette before building the docs.`);
+					const data: ColourPaletteData = JSON.parse(readFileSync(paletteFile, 'utf8'));
+					replaceSource(file, node as never, colourPaletteMarkdown(data));
+					children[i] = { ...node, position: undefined, attributes: [expressionAttribute('data', data)] };
+					continue;
+				}
+				if (node.type === 'mdxJsxFlowElement' && node.name === 'PaletteComparison') {
+					replaceSource(file, node as never, '');
+					children[i] = { ...node, position: undefined };
 					continue;
 				}
 				if (node.type === 'mdxJsxFlowElement' && node.name === 'Anatomy') {
