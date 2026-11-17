@@ -8,9 +8,9 @@ Severity follows this order.
 - **Medium.** An API gap or a mismatch that forces a workaround.
 - **Spec.** The component differs from the Inkstone design docs (`apps/docs/content/docs/design/*`, `DESIGN.md`).
 
-## Open decision
+## Decided
 
-- [ ] **Primary fill color.** `DESIGN.md` §2.3 says filled buttons use `#0070f0` (4.6:1 with white text). `foundation/theme-values.ts:57` ships `#09f` (3.0:1), which the maintainer chose as "the CodeImage primary". One of the two must change. The K5 design doc's "implementation amendments" also describe values the code no longer has. `action.brandSoft.text` (`#09f`) is 3.0:1 on white too.
+- [x] **Primary fill color.** Decided: filled buttons keep CodeImage's `#09f`, and `DESIGN.md` §2.3 and the Color page now say so. Previous note: `DESIGN.md` §2.3 says filled buttons use `#0070f0` (4.6:1 with white text). `foundation/theme-values.ts:57` ships `#09f` (3.0:1), which the maintainer chose as "the CodeImage primary". One of the two must change. The K5 design doc's "implementation amendments" also describe values the code no longer has. `action.brandSoft.text` (`#09f`) is 3.0:1 on white too.
 
 ## High
 

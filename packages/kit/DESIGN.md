@@ -89,7 +89,7 @@ The accent is never a surface or a large fill. It has five uses:
 - A selected row in a list, menu, command menu or nav is neutral: field fill and primary text. Never an accent fill.
 - "On" uses the soft wash. "Do" uses the filled button. Two same-shaped blue controls side by side read as one.
 - Accent on user content must not read as semantic red or green.
-- Filled buttons use `--cui-action-brand-base` (`#0070f0`, 4.6:1 with white text). `#0099ff` is for rings, dots and washes only, because white text on it is 3.0:1.
+- Filled buttons use `--cui-action-brand-base`, which is CodeImage's brand blue `#0099ff` (hover `#0088ff`, active `#0077ff`). This is a product decision. White text on it is 3.0:1, below WCAG AA for 14px text, and the kit accepts that so buttons match CodeImage. Keep button labels at 14px medium or larger, and never put body text on this fill.
 
 ### 2.4 Status
 
