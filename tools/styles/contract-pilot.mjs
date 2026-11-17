@@ -2,7 +2,10 @@ import assert from "node:assert/strict";
 import { readFile, mkdir, writeFile } from "node:fs/promises";
 import { chromium } from "playwright";
 import { button } from "../../packages/styles/dist/esm/button.js";
-import { switchStyles } from "../../packages/styles/dist/esm/switch.js";
+import {
+	control as controlRecipe,
+	switchStyles,
+} from "../../packages/styles/dist/esm/switch.js";
 import { panel, dialogStyles } from "../../packages/styles/dist/esm/dialog.js";
 
 const directory = new URL("../../.artifacts/styles-pilot/", import.meta.url);
@@ -26,6 +29,10 @@ try {
 		const markup = `<button id="helper" class="${button({ size: "sm", theme: "primary" })}">Save</button>
 <button id="default-helper" class="${button({ theme: "primary" })}">Save</button>
 <button id="default-attribute" class="cui-button" data-size="md" data-theme="primary">Save</button>
+<button id="metadata-button" class="${button.classNames.base}" data-size="sm" data-theme="primary">Save</button>
+<button id="native-disabled" class="cui-button" data-size="sm" data-theme="primary" disabled>Save</button>
+<button id="data-disabled" class="cui-button" data-size="sm" data-theme="primary" data-disabled>Save</button>
+<div id="metadata-control" class="${controlRecipe.classNames.base}" data-size="sm"></div>
 <button id="attribute" class="cui-button" data-size="sm" data-theme="primary">Save</button>
 <button id="conflict" class="${button({ size: "xl", theme: "negative" })}" data-size="sm" data-theme="primary">Save</button>
 <button id="compound-helper" class="${button({ variant: "ghost", loading: true, theme: "primary" })}">Save</button>
@@ -34,6 +41,8 @@ try {
 <div id="switch-helper" class="${switchStyles.control({ size: "sm" })}"></div>
 <div class="${switchStyles.root({ size: "sm" })}"><div id="root-helper-control" class="cui-switch-control"></div></div>
 <div id="body-helper" class="${dialogStyles.body({ layout: "split" })}"></div><div id="body-attribute" class="cui-dialog-panel-content" data-layout="split"></div>
+<div class="${switchStyles.root({ size: "sm" })}"><div id="explicit-md-control" class="${switchStyles.control({ size: "md" })}"></div><div id="inherited-helper-control" class="${switchStyles.control()}"></div><div class="${switchStyles.root()}"><div id="nested-md-control" class="cui-switch-control"></div></div></div>
+<div class="cui-switch-root"><div class="${switchStyles.root({ size: "sm" })}"><div id="nested-sm-control" class="cui-switch-control"></div></div></div><div id="default-control" class="${switchStyles.control()}"></div>
 <button id="icon" class="cui-icon-button" data-size="sm" data-theme="primary">X</button>
 <button id="close" class="cui-dialog-close-button" data-size="sm" data-theme="primary">X</button>
 <div id="dialog" class="${panel({ size: "settings", chrome: "inset" })}" data-motion="none"></div>
@@ -59,6 +68,7 @@ try {
 							e.id,
 							{
 								display: s.display,
+								opacity: s.opacity,
 								width: s.width,
 								height: s.height,
 								padding: s.padding,
@@ -71,6 +81,14 @@ try {
 				),
 			);
 			assert.deepEqual(values["default-helper"], values["default-attribute"]);
+			count++;
+			assert.deepEqual(values["metadata-button"], values.attribute);
+			count++;
+			assert.deepEqual(values["metadata-control"], values["switch-helper"]);
+			count++;
+			assert.deepEqual(values["native-disabled"], values["data-disabled"]);
+			count++;
+			assert.equal(values["native-disabled"].opacity, "0.5");
 			count++;
 			assert.deepEqual(values.helper, values.attribute);
 			count++;
@@ -90,6 +108,14 @@ try {
 			count++;
 			assert.deepEqual(values["body-helper"], values["body-attribute"]);
 			count++;
+			for (const id of ["explicit-md-control", "nested-md-control", "default-control"]) {
+				assert.equal(values[id].width, values["switch-explicit"].width);
+				count++;
+			}
+			for (const id of ["inherited-helper-control", "nested-sm-control"]) {
+				assert.equal(values[id].width, values["switch-helper"].width);
+				count++;
+			}
 			assert.equal(values["main-body"].display, "flex");
 			count++;
 			assert.equal(values.utility.width, "123px");

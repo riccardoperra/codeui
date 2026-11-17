@@ -14,11 +14,15 @@ export type SwitchPart =
 export type SwitchClasses = Partial<Record<SwitchPart, string>>;
 export type SwitchStyles = Record<SwitchPart, (variants?: SwitchVariants) => string>;
 export const switchStyles: SwitchStyles = {
-	root: variants =>
-		mergeClasses(styles.root, variants?.size === "sm" ? styles.smallRoot : undefined),
+	root: variants => {
+		const size = variants?.size;
+		return mergeClasses(
+			styles.root,
+			size === "sm" ? styles.smallRoot : size === "md" ? styles.mediumRoot : undefined,
+		);
+	},
 	input: () => styles.input,
-	control: variants =>
-		styles.control({ size: variants?.size ?? publicStylesRegistry.switch.defaults.size }),
+	control: variants => styles.control({ size: variants?.size }),
 	thumb: variants =>
 		styles.thumb({ size: variants?.size ?? publicStylesRegistry.switch.defaults.size }),
 	label: () => styles.label,

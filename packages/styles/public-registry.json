@@ -178,7 +178,8 @@
     },
     "defaults": {
       "chrome": "bar",
-      "variant": "group"
+      "variant": "group",
+      "motion": "auto"
     },
     "variables": {
       "contentBackground": "--cui-dialogTheme-contentBackground",
@@ -212,6 +213,9 @@
       "closeButton": [
         "data-disabled"
       ]
+    },
+    "compositions": {
+      "closeButton": "iconButton"
     }
   }
 }

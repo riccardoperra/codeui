@@ -13,12 +13,16 @@ export const partSelector = (part: string) => ".cui-" + part;
 const owners = (...parts: string[]) => ":is(" + parts.map(partSelector).join(",") + ")";
 export const iconButtonOwner = owners(
 	publicStylesRegistry.iconButton.parts.iconButton,
-	publicStylesRegistry.dialog.parts.closeButton,
+	...(publicStylesRegistry.dialog.compositions.closeButton === "iconButton"
+		? [publicStylesRegistry.dialog.parts.closeButton]
+		: []),
 );
 export const buttonOwner = owners(
 	publicStylesRegistry.button.parts.button,
 	publicStylesRegistry.iconButton.parts.iconButton,
-	publicStylesRegistry.dialog.parts.closeButton,
+	...(publicStylesRegistry.dialog.compositions.closeButton === "iconButton"
+		? [publicStylesRegistry.dialog.parts.closeButton]
+		: []),
 );
 const selectorFor = (part: string) =>
 	part === publicStylesRegistry.button.parts.button
@@ -46,6 +50,8 @@ function split(selector: string): string[] {
 	return result;
 }
 function zero(selector: string) {
+	if (selector.includes(buttonOwner) && !selector.includes(":disabled"))
+		selector = selector.replaceAll("[data-disabled]", ":is([data-disabled], :disabled)");
 	for (const [attribute, effective] of structural)
 		selector = selector.split(attribute).join(effective);
 	return split(selector)
@@ -145,6 +151,12 @@ export function publicRecipe<
 			),
 		]),
 	);
+	const base = partSelector(part).slice(1);
+	const runtime = privateRecipe(
+		{ ...options, base, variants: variants as Variants, compoundVariants: [] },
+		debugId,
+	);
+	const rootSelector = ":is(" + selector + ",." + runtime.classNames.base + ")";
 	const effective = (axis: string, value: unknown) => {
 		const attr =
 			axis === "loading" && String(value) === "true"
@@ -172,33 +184,29 @@ export function publicRecipe<
 		for (const value of publicStylesRegistry.dialog.variants.chrome)
 			structural.set(
 				"[data-chrome=" + value + "]",
-				selector + effective("chrome", value),
+				rootSelector + effective("chrome", value),
 			);
 	if (part === publicStylesRegistry.dialog.parts.section)
 		for (const value of publicStylesRegistry.dialog.variants.variant)
 			structural.set(
 				"[data-variant=" + value + "]",
-				selector + effective("variant", value),
+				rootSelector + effective("variant", value),
 			);
-	write(selector, options.base ?? {});
+	write(rootSelector, options.base ?? {});
 	for (const [axis, values] of Object.entries(options.variants ?? {}))
 		for (const [value, rule] of Object.entries(values))
-			write(selector + effective(axis, value), rule);
+			write(rootSelector + effective(axis, value), rule);
 	for (const compound of options.compoundVariants ?? [])
 		write(
-			selector +
+			rootSelector +
 				Object.entries(compound.variants)
 					.map(([axis, value]) => effective(axis, value))
 					.join(""),
 			compound.style,
 		);
-	const base = partSelector(part).slice(1);
-
-	return privateRecipe(
-		{ ...options, base, variants: variants as Variants, compoundVariants: [] },
-		debugId,
-	);
+	return runtime;
 }
+
 export function createTheme<Defaults extends Record<string, string>>(
 	defaults: Defaults,
 	debugId: string,

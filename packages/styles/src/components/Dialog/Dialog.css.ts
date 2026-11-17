@@ -43,7 +43,6 @@ export const [dialogTheme, dialogThemeVars] = createTheme(
 const sidebarChildSelector =
 	`&:has(> [data-cui=${registry.dialog.parts.sidebar}])` as const;
 const positionerSelector = partSelector(registry.dialog.parts.positioner);
-const sectionSelector = partSelector(registry.dialog.parts.section);
 const phone = "screen and (max-width: 768px)";
 const finePointer = "(hover: hover) and (pointer: fine)";
 const reducedMotion = "(prefers-reduced-motion: reduce)";
@@ -407,6 +406,7 @@ export const panel = recipe(
 				},
 			},
 		},
+		defaultVariants: { chrome: registry.dialog.defaults.chrome },
 		compoundVariants: [
 			// The settings panes reach the edges, so the panel keeps the 14px corners
 			// of CodeImage's settings dialog.
@@ -588,11 +588,13 @@ export const section = recipe(
 				},
 			},
 		},
-		defaultVariants: { variant: "group" },
+		defaultVariants: { variant: registry.dialog.defaults.variant },
 	},
 	"section",
 	registry.dialog.parts.section,
 );
+
+const sectionSelector = `:is(${partSelector(registry.dialog.parts.section)},.${section.classNames.base})`;
 
 export const sectionTitle = style(
 	{

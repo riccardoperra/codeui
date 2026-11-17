@@ -1437,6 +1437,7 @@ export declare const control: import("../../types.js").RuntimeFn<{
     };
 }>;
 export declare const smallRoot: string;
+export declare const mediumRoot: string;
 export declare const thumb: import("../../types.js").RuntimeFn<{
     size: {
         sm: {};
@@ -2701,6 +2702,7 @@ export declare const dialogStyles: DialogStyles;
 export declare const dialogDefaults: {
     readonly chrome: "bar";
     readonly variant: "group";
+    readonly motion: "auto";
 };
 export {};
 ```

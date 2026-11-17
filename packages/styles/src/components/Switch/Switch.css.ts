@@ -1,7 +1,7 @@
 import { partSelector } from "../../foundation/public.css";
 import { finish } from "../../foundation/public.css";
 import { publicStylesRegistry as registry } from "../../registry";
-import { createVar } from "@vanilla-extract/css";
+import { createVar, fallbackVar, type StyleRule } from "@vanilla-extract/css";
 import { globalStyle, publicRecipe as recipe, style } from "../../foundation/public.css";
 import { tokens as t } from "../../foundation/cui.css";
 import { transition } from "../../foundation/motion.css";
@@ -9,21 +9,44 @@ import { inputModalityAttribute, whileKeyboard } from "../../utils/modality";
 
 const rootSelector = partSelector(registry.switch.parts.root);
 const inputSelector = partSelector(registry.switch.parts.input);
-const controlSelector = partSelector(registry.switch.parts.control);
 const coarse = "(pointer: coarse)";
 const reducedMotion = "(prefers-reduced-motion: reduce)";
-const trackWidth = createVar("trackWidth");
-const trackHeight = createVar("trackHeight");
-const thumbSize = createVar("thumbSize");
+const trackWidthVar = createVar("trackWidth");
+const trackHeightVar = createVar("trackHeight");
+const thumbSizeVar = createVar("thumbSize");
 const notCoarse = "(pointer: fine), (pointer: none)";
-const small = {
-	[trackWidth]: t.control.height.compact,
-	[trackHeight]: t.space["4"],
-	[thumbSize]: t.space["3"],
+const dimensions = {
+	sm: { width: t.control.height.compact, height: t.space["4"], thumb: t.space["3"] },
+	md: {
+		width: t.control.height.sm,
+		height: `calc(${t.space["5"]} + ${t.space["0.5"]})`,
+		thumb: t.space["4"],
+	},
 };
+const small = {
+	[trackWidthVar]: dimensions.sm.width,
+	[trackHeightVar]: dimensions.sm.height,
+	[thumbSizeVar]: dimensions.sm.thumb,
+};
+const medium = {
+	[trackWidthVar]: dimensions.md.width,
+	[trackHeightVar]: dimensions.md.height,
+	[thumbSizeVar]: dimensions.md.thumb,
+};
+const sizeVariables = { sm: small, md: medium };
+const variables = (size: keyof typeof dimensions) => sizeVariables[size];
+const defaults = dimensions[registry.switch.defaults.size];
+const trackWidth = fallbackVar(trackWidthVar, defaults.width);
+const trackHeight = fallbackVar(trackHeightVar, defaults.height);
+const thumbSize = fallbackVar(thumbSizeVar, defaults.thumb);
+// Keep md's existing recipe metadata type while sharing the authored rule.
+const mediumVariant: {} = {
+	"@media": { [notCoarse]: { vars: medium } },
+} satisfies StyleRule;
 
 export const root = style(
 	{
+		vars: variables(registry.switch.defaults.size),
 		display: "inline-grid",
 		gridTemplateColumns: "auto 1fr",
 		alignItems: "center",
@@ -47,11 +70,6 @@ export const input = style({}, "input", registry.switch.parts.input);
 export const control = recipe(
 	{
 		base: {
-			vars: {
-				[trackWidth]: t.control.height.sm,
-				[trackHeight]: `calc(${t.space["5"]} + ${t.space["0.5"]})`,
-				[thumbSize]: t.space["4"],
-			},
 			position: "relative",
 			display: "inline-flex",
 			alignItems: "center",
@@ -85,9 +103,9 @@ export const control = recipe(
 			"@media": {
 				[coarse]: {
 					vars: {
-						[trackWidth]: `calc(${t.space["10"]} + ${t.space["1"]})`,
-						[trackHeight]: `calc(${t.space["6"]} + ${t.space["0.5"]})`,
-						[thumbSize]: t.space["5"],
+						[trackWidthVar]: `calc(${t.space["10"]} + ${t.space["1"]})`,
+						[trackHeightVar]: `calc(${t.space["6"]} + ${t.space["0.5"]})`,
+						[thumbSizeVar]: t.space["5"],
 					},
 					selectors: {
 						"&::before": {
@@ -100,7 +118,7 @@ export const control = recipe(
 		variants: {
 			size: {
 				sm: { "@media": { [notCoarse]: { vars: small } } },
-				md: {},
+				md: mediumVariant,
 			},
 		},
 	},
@@ -108,13 +126,13 @@ export const control = recipe(
 	registry.switch.parts.control,
 );
 export const smallRoot = style({}, "smallRoot");
-// A Root with `size="sm"` sizes the parts inside it as well.
-globalStyle(
-	`:is(${rootSelector}[data-size="sm"],${rootSelector}.${smallRoot}:not([data-size])) ${controlSelector}:not([data-size])`,
-	{
-		"@media": { [notCoarse]: { vars: small } },
-	},
-);
+export const mediumRoot = style({}, "mediumRoot");
+const rootSizeClasses = { sm: smallRoot, md: mediumRoot };
+for (const size of registry.switch.variants.size)
+	globalStyle(
+		`:is(${rootSelector}[data-size="${size}"],${rootSelector}.${rootSizeClasses[size]}:not([data-size]))`,
+		{ "@media": { [notCoarse]: { vars: variables(size) } } },
+	);
 export const thumb = recipe(
 	{
 		base: {

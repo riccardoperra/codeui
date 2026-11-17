@@ -125,6 +125,7 @@ export const publicStylesRegistry = {
 		defaults: {
 			chrome: "bar",
 			variant: "group",
+			motion: "auto",
 		},
 		variables: {
 			contentBackground: "--cui-dialogTheme-contentBackground",
@@ -150,6 +151,9 @@ export const publicStylesRegistry = {
 			panel: ["data-expanded"],
 			overlay: ["data-expanded"],
 			closeButton: ["data-disabled"],
+		},
+		compositions: {
+			closeButton: "iconButton",
 		},
 	},
 } as const;

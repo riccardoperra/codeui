@@ -41,13 +41,13 @@ type MotionContextValue = { moves: Accessor<boolean> };
 const MotionContext = createContext<MotionContextValue>();
 
 type ChromeContextValue = { chrome: Accessor<DialogChrome> };
-const ChromeContext = createContext<ChromeContextValue>({ chrome: (): DialogChrome => "bar" });
+const ChromeContext = createContext<ChromeContextValue>({ chrome: (): DialogChrome => dialogDefaults.chrome });
 
 function MotionScope(props: { motion?: DialogMotion; children?: JSX.Element }) {
 	const dialog = useDialogContext();
 	const moves = createMemo(() => {
 		dialog.isOpen();
-		return props.motion !== "none" && pointerInitiated();
+		return (props.motion ?? dialogDefaults.motion) !== "none" && pointerInitiated();
 	});
 	return <MotionContext.Provider value={{ moves }}>{props.children}</MotionContext.Provider>;
 }

@@ -809,7 +809,8 @@
     },
     "dialogDefaults": {
       "chrome": "bar",
-      "variant": "group"
+      "variant": "group",
+      "motion": "auto"
     },
     "dialogParts": {
       "trigger": "dialog-trigger",
@@ -961,7 +962,9 @@
           "inset"
         ]
       },
-      "defaults": {}
+      "defaults": {
+        "chrome": "bar"
+      }
     },
     "panelContent": {
       "parts": [
@@ -1816,6 +1819,9 @@
       "parts": [
         "cui-switch-label"
       ]
+    },
+    "mediumRoot": {
+      "privateIdentifier": true
     },
     "root": {
       "parts": [
