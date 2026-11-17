@@ -41,6 +41,8 @@ export const families = [
 		pages: [
 			component('kbd', 'Kbd', 'A keycap that shows a key or a keyboard shortcut.', '05', ['Kbd'], 'kbd',
 				'sm and md, keycap and hint, shortcut chords.'),
+			component('settings-row', 'SettingsRow', 'Settings rows with a label, a description, and a control, grouped on islands.', '14', ['SettingsRow', 'SettingsGroup', 'createSettingsRowProps'], 'settings',
+				'inline and wide, compactControl stacking below 900px, markers, pictures, details, controlId labels, disabled controls, long labels, styled parts and createSettingsRowProps.'),
 			component('stack', 'Stack', 'A flex container that spaces its children with token gaps.', '05', ['Stack'], 'stack',
 				'Row and column, wrap, align start, center, end, stretch, baseline, justify start, center, end, between, around, evenly. Every Gap value.'),
 			component('text', 'Text', 'Text set in the kit type scale, with tones and polymorphic headings.', '05', ['Text'], 'text',

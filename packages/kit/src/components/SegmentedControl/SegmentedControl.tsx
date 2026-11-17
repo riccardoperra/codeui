@@ -52,6 +52,11 @@ export function SegmentedControl(props: PolymorphicProps<"div", SegmentedControl
 		"ref",
 		"autoWidth",
 	]);
+	const [labelling, rest] = splitProps(others, [
+		"aria-label",
+		"aria-labelledby",
+		"aria-describedby",
+	]);
 
 	let rootRef!: HTMLDivElement;
 	let indicatorRef!: HTMLDivElement;
@@ -110,9 +115,10 @@ export function SegmentedControl(props: PolymorphicProps<"div", SegmentedControl
 				activationMode={"manual"}
 				orientation={"horizontal"}
 				class={rootClasses()}
-				{...others}
+				{...rest}
 			>
 				<Tabs.List
+					{...labelling}
 					data-cui={"segmentedControlList"}
 					class={mergeClasses(styles.list, local.slotClasses?.list, local.classes?.list)}
 					ref={listRef}

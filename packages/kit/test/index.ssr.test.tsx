@@ -233,3 +233,19 @@ it("server-renders a sheet trigger and leaves the closed sheet to the client", (
 	expect(html).toContain('data-cui="sheet-trigger"');
 	expect(html).not.toContain('data-cui="sheet-content"');
 });
+
+import { SettingsGroup, SettingsRow } from "../src/components/Settings/Settings";
+it("server-renders a settings group with rows wired to their controls", () => {
+	const html = renderToString(() => (
+		<SettingsGroup id="interface" title="Interface">
+			<SettingsRow id="language" label="Language" description="The language of the menus.">
+				{control => <select {...control} />}
+			</SettingsRow>
+		</SettingsGroup>
+	));
+	expect(html).toMatch(/<section[^>]*aria-labelledby="interface-title"/);
+	expect(html).toMatch(/<h3[^>]*id="interface-title"[^>]*>Interface<\/h3>/);
+	expect(html).toMatch(/role="group"[^>]*aria-labelledby="language-label"/);
+	expect(html).toMatch(/<select[^>]*aria-labelledby="language-label"[^>]*aria-describedby="language-description"/);
+	expect(html).toContain("The language of the menus.");
+});

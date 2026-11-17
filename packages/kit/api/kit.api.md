@@ -1162,6 +1162,91 @@ export declare function createSelectOptions<T, C extends ConfigFor<T>>(values: r
 export {};
 ```
 
+## components/Settings/Settings.d.ts
+
+```ts
+import { type JSX } from "solid-js";
+import * as P from "../../parts/settings.js";
+import { createSettingsRowProps, type SettingsRowControlProps } from "./createSettingsRowProps.js";
+export type SettingsRowProps = Omit<JSX.HTMLAttributes<HTMLDivElement>, "children"> & P.SettingsRowVariants & {
+    /** Root id, and the base of `<id>-label` and `<id>-description`. */
+    id?: string;
+    label: JSX.Element;
+    description?: JSX.Element;
+    /** Extra content under the description, such as requirements or links. */
+    details?: JSX.Element;
+    /** Content before the text, such as a thumbnail. */
+    picture?: JSX.Element;
+    /** Content after the label, such as a `New` badge. */
+    marker?: JSX.Element;
+    /**
+     * The control. Pass a function to receive the `aria-labelledby` and
+     * `aria-describedby` props that connect the row text to the control.
+     * The function runs once; the props it receives stay reactive.
+     */
+    children: JSX.Element | ((control: SettingsRowControlProps) => JSX.Element);
+    /** The id of one labelable input. The label then renders as `<label for>`. */
+    controlId?: string;
+    classes?: P.SettingsRowClasses;
+};
+/** One setting: label and description on the left, the control on the right. */
+export declare function SettingsRow(props: SettingsRowProps): JSX.Element;
+export type SettingsGroupProps = Omit<JSX.HTMLAttributes<HTMLElement>, "title"> & {
+    id?: string;
+    /** The heading above the island. It names the group. */
+    title?: JSX.Element;
+    description?: JSX.Element;
+    children: JSX.Element;
+    classes?: P.SettingsGroupClasses;
+};
+/** Rows that belong together: a heading and one island. */
+export declare function SettingsGroup(props: SettingsGroupProps): JSX.Element;
+export { createSettingsRowProps };
+export type { SettingsRowControlProps };
+export type { SettingsRowFieldProps } from "./createSettingsRowProps.js";
+```
+
+## components/Settings/createSettingsRowProps.d.ts
+
+```ts
+import { type Accessor, type JSX } from "solid-js";
+export type SettingsRowFieldProps = {
+    /** Base for the row ids: `<id>-label` and `<id>-description`. */
+    id?: string;
+    /** The id of one labelable input. The label becomes `<label for>`. */
+    controlId?: string;
+    description?: JSX.Element;
+    details?: JSX.Element;
+};
+/** Spread on the control so the row's label and description name and describe it. */
+export type SettingsRowControlProps = {
+    "aria-labelledby": string;
+    "aria-describedby"?: string;
+};
+/**
+ * Ids and ARIA props that connect a row's label and description to its
+ * control. The row is a `group` named by its label. The control gets
+ * `aria-labelledby` and `aria-describedby`; merge them with the control's own
+ * description ids rather than replacing those.
+ */
+export declare function createSettingsRowProps(props: Accessor<SettingsRowFieldProps>): {
+    root: () => {
+        id: string | undefined;
+        role: "group";
+        "aria-labelledby": string;
+        "aria-describedby": string | undefined;
+    };
+    label: () => {
+        id: string;
+        for: string | undefined;
+    };
+    description: () => {
+        id: string | undefined;
+    };
+    control: () => SettingsRowControlProps;
+};
+```
+
 ## components/Sheet/Sheet.d.ts
 
 ```ts
@@ -1327,6 +1412,7 @@ export type SwitchProps = Omit<P.RootProps, "children"> & FieldContent & {
     inputId?: string;
     "aria-label"?: string;
     "aria-labelledby"?: string;
+    "aria-describedby"?: string;
     size?: "sm" | "md";
     classes?: P.SwitchClasses;
 };
@@ -1351,6 +1437,7 @@ export declare function createSwitchProps(props: Accessor<SwitchProps>): {
         id: string;
         "aria-label": string | undefined;
         "aria-labelledby": string | undefined;
+        "aria-describedby": string | undefined;
         class: string | undefined;
     };
     label: () => {
@@ -2175,6 +2262,10 @@ export { optionCardParts, optionCardStyles } from "./parts/option-card.js";
 export type { OptionCardPart, OptionCardClasses, OptionCardStyles, OptionCardVariant, OptionCardVariants, } from "./parts/option-card.js";
 export { Accordion, createAccordionItems, type AccordionProps, type AccordionEntry } from "./components/Accordion/Accordion.js";
 export { accordionParts, accordionStyles, type AccordionPart, type AccordionClasses, type AccordionVariants, type AccordionStyles } from "./parts/accordion.js";
+export { SettingsRow, SettingsGroup, createSettingsRowProps, } from "./components/Settings/Settings.js";
+export type { SettingsRowProps, SettingsGroupProps, SettingsRowControlProps, SettingsRowFieldProps, } from "./components/Settings/Settings.js";
+export { settingsRowParts, settingsRowStyles, settingsGroupParts, settingsGroupStyles, } from "./parts/settings.js";
+export type { SettingsRowPart, SettingsRowClasses, SettingsRowLayout, SettingsRowVariants, SettingsRowStyles, SettingsGroupPart, SettingsGroupClasses, SettingsGroupStyles, } from "./parts/settings.js";
 ```
 
 ## parts/accordion.d.ts
@@ -2756,6 +2847,77 @@ export declare const ProgressParts: {
     Fill: typeof Fill;
     ValueLabel: typeof ValueLabel;
 };
+```
+
+## parts/settings.d.ts
+
+```ts
+import { type JSX, type ValidComponent } from "solid-js";
+export declare const settingsRowParts: {
+    readonly root: "settings-row-root";
+    readonly label: "settings-row-label";
+    readonly description: "settings-row-description";
+    readonly details: "settings-row-details";
+    readonly control: "settings-row-control";
+    readonly picture: "settings-row-picture";
+    readonly marker: "settings-row-marker";
+};
+export type SettingsRowPart = keyof typeof settingsRowParts;
+export type SettingsRowClasses = Partial<Record<SettingsRowPart, string>>;
+export type SettingsRowLayout = "inline" | "wide";
+export type SettingsRowVariants = {
+    layout?: SettingsRowLayout;
+    compactControl?: boolean;
+};
+export type SettingsRowStyles = {
+    [P in SettingsRowPart]: (variants?: SettingsRowVariants) => string;
+};
+export declare const settingsRowStyles: SettingsRowStyles;
+export declare const settingsGroupParts: {
+    readonly root: "settings-group-root";
+    readonly title: "settings-group-title";
+    readonly description: "settings-group-description";
+    readonly content: "settings-group-content";
+};
+export type SettingsGroupPart = keyof typeof settingsGroupParts;
+export type SettingsGroupClasses = Partial<Record<SettingsGroupPart, string>>;
+export type SettingsGroupStyles = {
+    [P in SettingsGroupPart]: (variants?: {}) => string;
+};
+export declare const settingsGroupStyles: SettingsGroupStyles;
+export type RowProps = JSX.HTMLAttributes<HTMLDivElement> & SettingsRowVariants;
+/** The row. `layout` and `compactControl` set `data-layout` and `data-compact-control`. */
+export declare function Row(props: RowProps): JSX.Element;
+export type LabelProps = JSX.HTMLAttributes<HTMLLabelElement> & {
+    /** The id of one labelable input. The label renders as `<label for>` when set. */
+    for?: string;
+};
+/** The row title. A `<span>`, or a `<label>` when `for` names one input. */
+export declare function Label(props: LabelProps): JSX.Element;
+export type DescriptionProps = JSX.HTMLAttributes<HTMLDivElement>;
+export declare function Description(props: DescriptionProps): JSX.Element;
+export type DetailsProps = JSX.HTMLAttributes<HTMLDivElement>;
+export declare function Details(props: DetailsProps): JSX.Element;
+export type ControlProps = JSX.HTMLAttributes<HTMLDivElement>;
+export declare function Control(props: ControlProps): JSX.Element;
+export type PictureProps = JSX.HTMLAttributes<HTMLDivElement>;
+export declare function Picture(props: PictureProps): JSX.Element;
+export type MarkerProps = JSX.HTMLAttributes<HTMLSpanElement>;
+export declare function Marker(props: MarkerProps): JSX.Element;
+export type GroupProps = JSX.HTMLAttributes<HTMLElement>;
+/** A `<section>` holding a title above one island of rows. */
+export declare function Group(props: GroupProps): JSX.Element;
+export type GroupTitleProps = JSX.HTMLAttributes<HTMLHeadingElement> & {
+    /** The heading element. Defaults to `h3`. */
+    as?: ValidComponent;
+};
+export declare function GroupTitle(props: GroupTitleProps): JSX.Element;
+export type GroupDescriptionProps = JSX.HTMLAttributes<HTMLParagraphElement>;
+export declare function GroupDescription(props: GroupDescriptionProps): JSX.Element;
+export type GroupContentProps = JSX.HTMLAttributes<HTMLDivElement>;
+/** The island. Rows touch inside it. */
+export declare function GroupContent(props: GroupContentProps): JSX.Element;
+export { createSettingsRowProps, type SettingsRowControlProps, type SettingsRowFieldProps, } from "../components/Settings/createSettingsRowProps.js";
 ```
 
 ## parts/sheet.d.ts

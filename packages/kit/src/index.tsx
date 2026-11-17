@@ -222,3 +222,31 @@ export type {
 
 export { Accordion, createAccordionItems, type AccordionProps, type AccordionEntry } from "./components/Accordion/Accordion";
 export { accordionParts, accordionStyles, type AccordionPart, type AccordionClasses, type AccordionVariants, type AccordionStyles } from "./parts/accordion";
+
+export {
+	SettingsRow,
+	SettingsGroup,
+	createSettingsRowProps,
+} from "./components/Settings/Settings";
+export type {
+	SettingsRowProps,
+	SettingsGroupProps,
+	SettingsRowControlProps,
+	SettingsRowFieldProps,
+} from "./components/Settings/Settings";
+export {
+	settingsRowParts,
+	settingsRowStyles,
+	settingsGroupParts,
+	settingsGroupStyles,
+} from "./parts/settings";
+export type {
+	SettingsRowPart,
+	SettingsRowClasses,
+	SettingsRowLayout,
+	SettingsRowVariants,
+	SettingsRowStyles,
+	SettingsGroupPart,
+	SettingsGroupClasses,
+	SettingsGroupStyles,
+} from "./parts/settings";

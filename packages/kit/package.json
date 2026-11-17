@@ -314,6 +314,20 @@
 				"types": "./dist/types-cjs/parts/sheet.d.cts",
 				"default": "./dist/cjs/parts/sheet.cjs"
 			}
+		},
+		"./settings": {
+			"solid": {
+				"types": "./dist/types/parts/settings.d.ts",
+				"default": "./dist/source/parts/settings.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/settings.d.ts",
+				"default": "./dist/esm/parts/settings.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/settings.d.cts",
+				"default": "./dist/cjs/parts/settings.cjs"
+			}
 		}
 	},
 	"typesVersions": {
@@ -374,6 +388,9 @@
 			],
 			"sheet": [
 				"dist/types/parts/sheet.d.ts"
+			],
+			"settings": [
+				"dist/types/parts/settings.d.ts"
 			]
 		}
 	},
