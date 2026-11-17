@@ -257,7 +257,7 @@ export const buttonText = style(
 		transition: transition(["opacity"]),
 		display: "contents",
 		selectors: {
-			"[data-loading] &": {
+			":is(.cui-button,.cui-icon-button,.cui-dialog-close-button)[data-loading] &": {
 				opacity: 0,
 			},
 		},

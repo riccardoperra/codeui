@@ -40,6 +40,10 @@ const bannedCalls = new Set([
 for (const file of await walk(out)) {
 	const text = await readFile(file, "utf8");
 	if (file.endsWith(".css")) {
+		assert(
+			!/^\s*:where\([^\n]*[^.\w-]cui-[\w-]+/m.test(text),
+			file + " contains an unqualified authored class selector",
+		);
 		assert(!text.includes("--kb-"), `${file} leaks engine geometry`);
 		assert(
 			text.startsWith("@layer cui;\n@layer cui.tokens, cui.base, cui.components;\n"),

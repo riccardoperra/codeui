@@ -70,7 +70,7 @@ export const control = recipe(
 				"&[data-invalid]": { outline: `${t.focus.width} solid ${t.text.danger}` },
 				// Kobalte focuses the input from script after a click, which the
 				// browser marks focus-visible. The ring is for the keyboard only.
-				[`:root:not([${inputModalityAttribute}="pointer"]) [data-cui="switch-input"]:focus-visible ~ &`]:
+				[`:root:not([${inputModalityAttribute}="pointer"]) .cui-switch-root .cui-switch-input:focus-visible ~ &`]:
 					{
 						outline: `${t.focus.width} solid ${t.focus.color}`,
 						outlineOffset: t.focus.offset,

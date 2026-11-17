@@ -35,6 +35,7 @@ try {
 <button id="icon" class="cui-icon-button" data-size="sm" data-theme="primary">X</button>
 <button id="close" class="cui-dialog-close-button" data-size="sm" data-theme="primary">X</button>
 <div id="dialog" class="${panel({ size: "settings", chrome: "inset" })}" data-motion="none"></div>
+<div class="cui-dialog-panel" data-size="settings" data-chrome="inset"><div class="cui-dialog-main"><div id="main-body" class="cui-dialog-panel-content">Settings</div></div></div>
 <button id="utility" class="cui-button utility" data-size="md">Utility</button>`;
 		const permutations = [
 			["button", "icon-button", "dialog"],
@@ -55,6 +56,7 @@ try {
 						return [
 							e.id,
 							{
+								display: s.display,
 								width: s.width,
 								height: s.height,
 								padding: s.padding,
@@ -81,6 +83,8 @@ try {
 			assert.deepEqual(values.icon, values.close);
 			count++;
 			assert.equal(values.icon.width, values.icon.height);
+			count++;
+			assert.equal(values["main-body"].display, "flex");
 			count++;
 			assert.equal(values.utility.width, "123px");
 			count++;

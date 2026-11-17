@@ -116,7 +116,7 @@ export const panelContent = style(
 					padding: 0,
 					overflow: "visible",
 				},
-				[`${main} > &`]: {
+				[`.${main} > &`]: {
 					display: "flex",
 					flex: 1,
 					flexDirection: "column",
@@ -138,7 +138,7 @@ export const panelContent = style(
 				[phone]: {
 					selectors: {
 						"&[data-layout=split]": { gridTemplateColumns: "minmax(0, 1fr)" },
-						[`${main} > &`]: {
+						[`.${main} > &`]: {
 							gap: tokens.space["5"],
 							padding: `${tokens.space["4"]} ${tokens.space["3"]} calc(${tokens.space["4"]} + env(safe-area-inset-bottom, 0px))`,
 							backgroundColor: dialogThemeVars.mainBackground,
@@ -245,7 +245,7 @@ export const title = style(
 					borderBottom: "none",
 					fontWeight: tokens.font.weight.semibold,
 				},
-				[`${main} > &`]: {
+				[`.${main} > &`]: {
 					padding: `${tokens.space["3"]} ${tokens.space["3"]} ${tokens.space["2"]} ${tokens.space["6"]}`,
 					fontSize: tokens.font.size.md,
 				},
@@ -253,7 +253,7 @@ export const title = style(
 			"@media": {
 				[phone]: {
 					selectors: {
-						[`${main} > &`]: {
+						[`.${main} > &`]: {
 							order: -1,
 							padding: `${tokens.space["2"]} ${tokens.space["2"]} 0 ${tokens.space["4"]}`,
 						},
