@@ -17,8 +17,20 @@ export function Button<T extends ValidComponent = "button">(props: PolymorphicPr
 	const [local, internal, others] = splitProps(
 		props as PolymorphicProps<"button", ButtonProps>,
 		["size", "theme", "pill", "block", "variant", "loading"],
-		["class", "children", "leftIcon"],
+		["class", "children", "leftIcon", "onClick", "aria-disabled"],
 	);
+
+	// Loading blocks activation without the disabled attribute, so a focused button keeps focus.
+	const onClick: JSX.EventHandler<HTMLButtonElement, MouseEvent> = event => {
+		if (local.loading) {
+			event.preventDefault();
+			event.stopImmediatePropagation();
+			return;
+		}
+		const handler = internal.onClick as JSX.EventHandlerUnion<HTMLButtonElement, MouseEvent> | undefined;
+		if (typeof handler === "function") handler(event);
+		else if (handler) handler[0](handler[1], event);
+	};
 
 	const classes = () =>
 		mergeClasses(
@@ -41,8 +53,11 @@ export function Button<T extends ValidComponent = "button">(props: PolymorphicPr
 			data-loading={local.loading || undefined}
 			class={classes()}
 			{...others}
+			aria-busy={local.loading || undefined}
+			aria-disabled={local.loading || internal["aria-disabled"] || undefined}
+			onClick={onClick}
 		>
-			<Show when={props.loading}>
+			<Show when={local.loading}>
 				<Loading />
 			</Show>
 			<Show when={internal.leftIcon} keyed={false}>

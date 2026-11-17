@@ -12,7 +12,7 @@ export const notes = {
 		"variant": { default: 'undefined', description: "Transparent idle fill with theme colors on hover." },
 		"pill": { default: 'false', description: "Uses fully rounded corners." },
 		"block": { default: 'false', description: "Sets width to 100% and flex to 1." },
-		"loading": { default: 'false', description: "Overlays animated dots and blocks pointer events. Does not disable keyboard activation." },
+		"loading": { default: 'false', description: "Overlays animated dots, sets aria-busy and aria-disabled, and ignores activation. The button keeps focus." },
 		"leftIcon": { default: 'undefined', description: "Element before the children. Hide decorative icons from assistive technology." },
 		"class": { default: 'undefined', description: "Class merged after the kit styles." },
 	},

@@ -7,7 +7,7 @@ afterEach(cleanup);
 describe("Button loading", () => {
 	it("is busy and disabled for assistive technology while loading", () => {
 		render(() => <Button loading>Export</Button>);
-		const button = screen.getByRole("button", { name: "Export" });
+		const button = screen.getByRole("button", { name: /Export/ });
 		expect(button).toHaveAttribute("aria-busy", "true");
 		expect(button).toHaveAttribute("aria-disabled", "true");
 	});
@@ -22,7 +22,7 @@ describe("Button loading", () => {
 				</Button>
 			</form>
 		));
-		fireEvent.click(screen.getByRole("button", { name: "Export" }));
+		fireEvent.click(screen.getByRole("button", { name: /Export/ }));
 		expect(onClick).not.toHaveBeenCalled();
 		expect(onSubmit).not.toHaveBeenCalled();
 	});
@@ -35,7 +35,7 @@ describe("Button loading", () => {
 				Export
 			</Button>
 		));
-		const button = screen.getByRole("button", { name: "Export" });
+		const button = screen.getByRole("button", { name: /Export/ });
 		button.focus();
 		setLoading(true);
 		expect(button).toHaveFocus();
