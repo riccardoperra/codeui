@@ -49,7 +49,7 @@ switchStyles.control({ size: "sm" });
 
 Parts contracts retain existing `data-cui` values. For example, `switchParts.control` is `switch-control`. Non-native state uses the documented `data-*` attributes. Recipe helpers expose their supported groups through `variants()` and their classes through `classNames`.
 
-`@codeui/styles/public-registry.json` defines the stable pilot contract for Button, IconButton, Switch and Dialog: part names, variants, defaults, state placement and local variables. The other 36 components retain legacy emission during migration. `contract.json` records helper output and variable references, including private compiler classes; those private names are not an application contract. `@codeui/styles/manifest.json` lists each CSS entry's component and module dependency closure. The `internal/` exports support `@codeui/kit` and are not application API.
+`@codeui/styles/public-registry.json` defines the stable pilot contract for Button, IconButton, Switch and Dialog: part names, variants, defaults, state placement and local variables. The other 36 components retain legacy emission during migration. `contract.json` records semantic parts, variant values and defaults for the pilot. Other entries retain legacy helper snapshots, including private compiler classes; those private names are not an application contract. `@codeui/styles/manifest.json` lists each CSS entry's component and module dependency closure. The `internal/` exports support `@codeui/kit` and are not application API.
 
 ## Customize tokens and geometry
 

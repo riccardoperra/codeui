@@ -19,14 +19,16 @@ The second button gets its shape from one class. The kit sets the button's radiu
 
 ## How the layer works
 
-`packages/styles/src/foundation/layer.css.ts` declares the parent layer with vanilla-extract `globalLayer("cui")` during the library build. The generated CSS declares the internal order `cui.base`, `cui.components`, `cui.overrides` before its rules. It wraps `style`, `globalStyle`, `styleVariants`, `recipe` and `createTheme`, and every kit `.css.ts` file imports those wrappers instead of the vanilla-extract originals. The rule each one emits stays inside the `cui` parent. Base field labels and component overrides have fixed internal priorities, so loading their CSS files in a different order does not change those known composition cases.
+`packages/styles/src/foundation/layer.css.ts` declares the parent `cui` layer during the library build. Every CSS entry declares the fixed order `cui.tokens`, `cui.base`, `cui.components`. Tokens use the first layer, field labels use the second, and component styles use the third. IconButton and Dialog close buttons compose Button explicitly in the component layer, so their dimensions do not depend on stylesheet import order.
+
+Button, IconButton, Switch and Dialog use the authored registry published as `@codeui/styles/public-registry.json`. Public part classes are `cui-` followed by the existing `data-cui` value. Variant attributes take precedence over private helper classes. The pilot wraps whole selectors in `:where()`; the other components retain legacy selector emission during migration.
 
 The browser resolves a conflict in this order, from weakest to strongest:
 
 1. Layered rules, in the order their layers were first declared. `cui` is one of them.
 2. Unlayered rules.
 
-Specificity only decides between rules in the same layer, or between two unlayered rules. The kit button hover rule, a hashed class followed by `:not([data-disabled]):hover`, still loses to a plain unlayered `.export-pill`.
+Specificity only decides between rules in the same layer, or between two unlayered rules. The kit button hover selector has zero specificity because its whole selector is inside `:where()`. A plain unlayered `.export-pill` wins over it.
 
 Two cases do not follow this order:
 
