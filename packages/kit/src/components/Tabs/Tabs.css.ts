@@ -10,7 +10,7 @@ export const [tabsTheme, tabsVars] = createTheme({
 	tabHeaderColor: tokens.text.muted,
 	tabHeaderHoverColor: tokens.text.default,
 	tabHeaderSelectedColor: tokens.text.default,
-	tabIndicatorColor: tokens.accent.selection,
+	tabIndicatorColor: tokens.action.brand.base,
 });
 
 export const tabsRoot = style([

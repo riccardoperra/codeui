@@ -59,7 +59,7 @@ export const control = recipe({
 				position: "absolute",
 				inset: `calc((${trackHeight} - ${t.control.height.compact}) / 2) 0`,
 			},
-			"&[data-checked]": { background: t.accent.focus },
+			"&[data-checked]": { background: t.action.brand.base },
 			"&[data-invalid]": { outline: `${t.focus.width} solid ${t.text.danger}` },
 			// Kobalte focuses the input from script after a click, which the
 			// browser marks focus-visible. The ring is for the keyboard only.

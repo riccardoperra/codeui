@@ -78,7 +78,7 @@ Every color, radius, space, font, shadow, and duration is now a `--cui-*` custom
 
 - `themeVars` and `themeTokens` keep working. Each name points at the closest `--cui-*` role. Both are deprecated. Read `tokens` in new code.
 - Font sizes follow the new scale. `xs` is 12px, `lg` is 18px, and `xl` is 20px. Check layouts that used those sizes.
-- Every component changes appearance. Brand, danger, and status colors meet WCAG AA text contrast. The brand color is the CodeImage blue, `#09f`. Motion is shorter, with one ease-out curve.
+- Every component changes appearance. Brand, danger, and status colors meet WCAG AA text contrast. The brand color is `#0083e5` in both themes, for every filled and selected control. Motion is shorter, with one ease-out curve.
 - Override a token with plain CSS on `:root`, on `[data-cui-theme]`, or on any element. [Theming](/docs/foundations/theming) shows each case.
 - Style files evaluated in Node, such as vanilla-extract `.css.ts` files, import `tokens` from `@codeui/kit/tokens`. That entry loads no component. See [Token exports](/docs/utilities/token-exports).
 

@@ -92,8 +92,11 @@ The accent is never a surface or a large fill. It has five uses:
 - A selected row in a list, menu, command menu or nav is neutral: field fill and primary text. Never an accent fill.
 - "On" uses the soft wash. "Do" uses the filled button. Two same-shaped blue controls side by side read as one.
 - Accent on user content must not read as semantic red or green.
-- Light focus, selection rings and the switch "on" track use `#0083e5` (`--cui-accent-focus`): 3.9:1 on the page, 3.4:1 on the field, 3.1:1 on a selected card. Light accent text (links, brand-soft labels) uses `#006aca` (`--cui-action-brand-soft-text`): 5.4:1 on the page, 4.6:1 on the field and on the 15% wash. Both keep the brand blue's hue and chroma (OKLCH H 249, C 0.18) and only move its lightness. Dark keeps `#63b3ed` and `#0099ff`.
-- Filled buttons use `--cui-action-brand-base`, which is CodeImage's brand blue `#0099ff` (hover `#0088ff`, active `#0077ff`). This is a product decision. White text on it is 3.0:1, below WCAG AA for 14px text, and the kit accepts that so buttons match CodeImage. Keep button labels at 14px medium or larger, and never put body text on this fill.
+- One brand blue fills everything, the same in both themes: `--cui-action-brand-base` `#0083e5` (OKLCH L 0.60, C 0.18, H 251), hover `#0076cf`, active `#0069b8`. The filled button, the switch "on" track, the check of a checkbox and radio, the slider and progress fill, the primary segment and the tab indicator all use it. White text on it is 3.9:1 (hover 4.7:1, active 5.7:1); keep button labels at 14px medium or larger, and never put body text on this fill. As a control fill it is 3.9:1 on the light page, 3.4:1 on the light field, 4.9:1 on the dark island and 4.0:1 on the dark field.
+- It replaces CodeImage's `#0099ff`. CodeImage picks it up when it moves to the kit tokens.
+- The focus ring stays a separate token, `--cui-accent-focus`: `#63b3ed` dark, `#0083e5` light (3.9:1 on the page, 3.4:1 on the field, 3.1:1 on a selected card). Selected-card rings use it too.
+- Accent text (links, brand-soft labels) is `--cui-action-brand-soft-text`, the brand hue at another lightness: `#3fa0fe` dark (6.7:1 on the page, 5.7:1 on the field, 4.6:1 or more on the 15% wash over any surface), `#0260aa` light (6.5:1 on the page, 5.6:1 on the field, 5.4:1 on the wash). The soft wash is the brand at 15% (`#0083e526`; hover and active `#0069b826`).
+- `--cui-accent-selection` is kept for compatibility and equals the brand base. No kit component reads it; use `--cui-action-brand-base`.
 
 ### 2.4 Status
 

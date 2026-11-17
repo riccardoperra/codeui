@@ -112,9 +112,15 @@ Blue appears rarely, so users notice it when it does.
   </Dont>
 </DoDont>
 
-### Why there are two blues
+### One brand blue for every fill
 
-CodeImage's brand blue is `#0099ff`, and filled buttons use it, so the kit's primary button looks the same as CodeImage's. White text on it has a contrast of 3.0:1, below WCAG AA for 14px text. That is a deliberate product decision. Keep button labels at 14px medium or larger, and never put body text on this fill. In dark mode, selection, focus and the on state use the lighter `#63b3ed`. In light mode they use `#0083e5`, and links use `#006aca`. Both are the brand blue's hue and chroma at a lower lightness, so the focus ring reaches 3:1 on every light surface and link text reaches 4.5:1.
+Filled buttons and every selected or checked fill use `--cui-action-brand-base`, `#0083e5`, in both themes: the switch "on" track, the check of a checkbox and radio, the slider and progress fill, the primary segment and the tab indicator. Hover is `#0076cf` and active is `#0069b8`. The kit used to draw these with three different blues (`#09f`, `#63b3ed` and `#07f`), so a switch and a checkbox side by side did not match.
+
+White text on the base is 3.9:1, on hover 4.7:1 and on active 5.7:1. Keep button labels at 14px medium or larger, and never put body text on this fill.
+
+`#0083e5` replaces CodeImage's old brand blue, `#0099ff`, on which white text was 3.0:1. CodeImage picks it up when it moves to the kit tokens.
+
+The focus ring stays separate: `--cui-accent-focus` is `#63b3ed` in dark mode and `#0083e5` in light mode, so it reads against both the page and a blue fill. Link text and the labels on the 15% wash use `--cui-action-brand-soft-text`, the same hue at another lightness: `#3fa0fe` in dark mode and `#0260aa` in light mode, both 4.5:1 or more on every surface and on the wash. `--cui-accent-selection` is kept for compatibility, equals the brand base, and no kit component reads it.
 
 ## Status colours
 

@@ -5,7 +5,7 @@ import assert from 'node:assert/strict';
 import { launch, open } from './browser.mjs';
 
 const app = `:root { --cui-radius-md: 3px; --cui-action-brand-base: rgb(1, 2, 3); }`;
-const focus = { dark: '#63b3ed', light: '#09f' };
+const focus = { dark: '#63b3ed', light: '#0083e5' };
 const browser = await launch();
 try {
  for (const theme of ['dark', 'light']) {
