@@ -1,56 +1,128 @@
 ---
 title: "Build settings"
-description: "Build a settings dialog with navigation, option cards, segmented controls, and switches."
+description: "Build CodeImage's settings dialog from the Dialog layout parts: a sidebar with search and sections, and one island of rows per group."
 ---
 
 ## Build the dialog
 
 <SolidDemo name="build-settings/basic" />
 
-Use the named parts from `@codeui/kit/dialog` to place the trigger, header, navigation, and sections inside one dialog. Give the dialog a `Title`, a `Description`, and a named `CloseButton`. Put the overlay and positioner inside `Portal`.
+The dialog is 1000×680 on a desktop and fills a phone less an 8px gutter. Set `size="settings"` on both `Positioner` and `Content`, and `chrome="inset"` on `Content` for the header with no divider and the ghost close button.
 
-The demo applies choices immediately to local controls. Add your persistence callback when you connect the example to your app. It does not save preferences or change the docs theme.
+`Content` with a `Sidebar` child lays out in two panes:
 
-## Add the navigation pane
+- `Sidebar` is the 232px left pane. Its `search` holds the search field, and its children hold the `Nav`.
+- `Main` is the pane on the right. It holds the `Header` with the breadcrumb title and the close button, and the `Body` that scrolls.
 
-Keep navigation beside the settings on desktop. The example uses a 232px pane and a flexible content column. Use a `nav` with an accessible label and buttons for sections. Mark the current section with `aria-current="page"`. Give the current button a neutral field fill.
+The breadcrumb is the `Title` part, so "Settings / General" names the dialog. There is no footer. A change applies at once.
 
-Keep sections in the same dialog. Below 768px, this example puts the navigation above the content. Inkstone's phone sheet is a separate layout adaptation; this demo retains the dialog.
+```css title="build-settings/settings.css"
+/* Settings rows until SettingsRow ships. Everything else comes from the Dialog parts. */
+.settings-demo-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--cui-space-6);
+	min-height: 56px;
+	padding: var(--cui-space-2) var(--cui-space-4);
+	box-sizing: border-box;
+}
 
-## Choose the controls
+.settings-demo-row-text {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	min-width: 0;
+}
 
-Use `OptionCardGroup` for choices that benefit from a preview. Supply a label and entries with distinct values. The group creates an `OptionCard` for each entry, including its input, title, description, preview, and optional badge.
+.settings-demo-row-title {
+	color: var(--cui-text-dialog-title);
+	font-size: var(--cui-font-size-sm);
+	font-weight: var(--cui-font-weight-medium);
+}
 
-The appearance section recreates the Colour mode choices Dark, Light, and System, Navigation choices Accordion and Rail, and Theme cards Window, Orb, and Aa list. The `Default` badge identifies the default choice even when another card is selected.
+.settings-demo-row-description,
+.settings-demo-value,
+.settings-demo-empty {
+	color: var(--cui-text-muted);
+	font-size: var(--cui-font-size-xs);
+}
 
-Use `SegmentedControl` for the short export-scale choices. Give it an accessible name and a `SegmentedControlItem` for each value. Use `Switch` for Transparent background.
+.settings-demo-empty {
+	margin: 0;
+	font-size: var(--cui-font-size-sm);
+}
 
-## Build rows from shipped parts
+.settings-demo-crumbs {
+	display: flex;
+	align-items: center;
+	gap: var(--cui-space-2);
+	margin: 0;
+	font-size: inherit;
+	font-weight: inherit;
+}
 
-Build each settings row from `Stack` and `Text`. Put the title and secondary description in one stack, then put the control beside that stack. Keep rows at least 56px tall with 8px vertical and 16px horizontal padding. Put related rows inside a shared island.
+.settings-demo-crumb-root {
+	color: var(--cui-text-muted);
+	font-weight: var(--cui-font-weight-medium);
+}
 
-`SettingsRow` and `SettingsGroup` are planned but are not shipped exports. The example uses local layout classes with kit tokens. Below 900px, its controls move below the row text. Allow long labels to wrap and keep each card preview at the same height.
+.settings-demo-crumb-slash {
+	color: var(--cui-text-muted);
+	opacity: 0.6;
+}
+
+@media (max-width: 900px) {
+	.settings-demo-row {
+		flex-direction: column;
+		align-items: stretch;
+		gap: var(--cui-space-3);
+		padding: var(--cui-space-3) var(--cui-space-4);
+	}
+}
+```
+
+## Add the sections
+
+Put one `NavItem` per section in a `Nav` with an accessible label. Pass the section icon to `icon` and set `current` on the section on screen. `current` sets `aria-current="page"` and the neutral field fill. Select the section in `onClick`.
+
+At 768px and below, the header moves to the top, the icons hide, and the six sections wrap into two rows of three.
+
+## Add the rows
+
+Put each group of rows in a `Section` with a `title`. The section draws the title over one island with the canvas fill and 16px corners. Rows touch inside it.
+
+`SettingsRow` and `SettingsGroup` are not shipped yet. Until they are, the demo draws each row with local CSS: the title and a one-line description on the left, the control on the right, at least 56px tall with 8px by 16px padding. Below 900px the control moves under the text.
+
+Inside a modal dialog, use a segmented control, a switch or option cards, not a select.
+
+## Add search
+
+The search field filters every section's rows by title and description. While the field holds text, the breadcrumb reads "Settings / Search", no section is current, and the body lists the matches under their section names. A click on a section clears the search.
+
+## Focus the current section on open
+
+The dialog would focus its first field, the search. On a phone that opens the keyboard over the settings. The demo calls `preventDefault()` in `onOpenAutoFocus` and focuses the current `NavItem` instead.
 
 ## Keep keyboard access intact
 
 | Key | Action |
 | --- | --- |
-| Enter or Space on the trigger | Opens settings. |
-| Tab or Shift+Tab | Moves within the modal. Each option-card group has one tab stop. |
-| Left or Right arrow in cards | Moves focus and selects an enabled option in a horizontal group. |
-| Left or Right arrow in segments | Moves focus between scale options. |
-| Enter or Space in segments | Activates the focused scale option. |
-| Space on a switch | Changes its checked state. |
+| Enter or Space on the trigger | Opens settings with no animation. |
+| Tab or Shift+Tab | Moves through the search, each section, the close button and the controls. Focus stays in the dialog. |
+| Up or Down arrow in the sections | Moves focus to the previous or next section, wrapping at the ends. Left and Right do the same. |
+| Home or End in the sections | Moves focus to the first or last section. |
+| Enter or Space on a section | Shows that section and marks it current. |
 | Escape | Closes the dialog and returns focus to the trigger. |
 
-The dialog renders `role="dialog"`, connects its title and description, and traps focus while modal. On open, focus moves to the first focusable control. The nav buttons remain ordinary buttons. Option-card inputs retain native radio semantics. Segments use tab semantics, and the switch exposes its checked state.
+The dialog renders `role="dialog"` named by the breadcrumb. The sections are a `nav` landmark with a list of buttons. Segmented controls use tab semantics, and switches expose their checked state.
 
 ## Render on the server
 
-The trigger renders on the server. Portalled dialog content renders on the client. Create preference signals inside the demo or your settings component, and use the same initial values during hydration.
+The trigger renders on the server. The portalled dialog renders on the client. Create the section and search signals inside the component, with the same initial values on the server and the client.
 
 ## Related
 
-- [OptionCard](/docs/components/option-card) documents card parts, variants, and validation.
-- [Dialog](/docs/components/dialog) documents modal behavior and focus callbacks.
-- [Inkstone patterns](/docs/design/patterns) specifies settings rows and dialogs.
+- [Dialog](/docs/components/dialog) documents the layout parts, sizes, chrome and motion.
+- [Segmented control](/docs/components/segmented-control) documents the row controls.
+- [Inkstone patterns](/docs/design/patterns) specifies settings rows and the settings dialog.

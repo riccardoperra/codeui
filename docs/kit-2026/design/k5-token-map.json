@@ -587,6 +587,14 @@
     },
     {
       "group": "radii",
+      "token": "radius.dialog",
+      "css": "--cui-radius-dialog",
+      "dark": "24px",
+      "light": "24px",
+      "source": "CodeImage export dialog, export-styles/sheet.css.ts borderRadius"
+    },
+    {
+      "group": "radii",
       "token": "radius.full",
       "css": "--cui-radius-full",
       "dark": "9999px",

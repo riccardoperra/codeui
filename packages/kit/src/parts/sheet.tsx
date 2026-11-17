@@ -31,6 +31,7 @@ import { CloseIcon } from "../icons";
 import { mergeClasses } from "../utils/css";
 import { createFocusReturn } from "./dialog-focus";
 import { createSheetDrag } from "./sheet-drag";
+import { pointerInitiated, trackInput } from "./input-modality";
 
 export const sheetParts = {
 	trigger: "sheet-trigger",
@@ -67,23 +68,6 @@ export const sheetStyles: SheetStyles = {
 	body: () => styles.body,
 	footer: () => styles.footer,
 };
-
-let lastInput: { pointer: boolean; time: number } | undefined;
-let listening = false;
-
-function trackInput() {
-	if (listening) return;
-	listening = true;
-	const record = (pointer: boolean) => () => {
-		lastInput = { pointer, time: performance.now() };
-	};
-	document.addEventListener("pointerdown", record(true), true);
-	document.addEventListener("keydown", record(false), true);
-}
-
-// An open or close counts as a pointer one when the last input was a pointer
-// press shortly before. Keyboard and programmatic changes do not move.
-const pointerInitiated = () => !!lastInput?.pointer && performance.now() - lastInput.time < 1000;
 
 type SheetContextValue = {
 	moves: Accessor<boolean>;

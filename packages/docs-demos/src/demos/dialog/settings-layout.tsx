@@ -1,13 +1,18 @@
 import { createSignal, For } from "solid-js";
 import { Button, SegmentedControl, SegmentedControlItem, Switch } from "@codeui/kit";
 import * as D from "@codeui/kit/dialog";
-import "./settings-layout.css";
+import { DownloadIcon, FlaskIcon, PaletteIcon, SlidersIcon } from "../build-settings/icons";
+import "../build-settings/settings.css";
 
-const sections = ["Appearance", "Editor", "Export", "Experiments"] as const;
+const sections = [
+	{ name: "General", icon: SlidersIcon },
+	{ name: "Appearance", icon: PaletteIcon },
+	{ name: "Export", icon: DownloadIcon },
+	{ name: "Experiments", icon: FlaskIcon },
+] as const;
 
 export default function DialogSettingsLayout() {
-	const [section, setSection] = createSignal<(typeof sections)[number]>("Editor");
-	const [theme, setTheme] = createSignal("dark");
+	const [section, setSection] = createSignal("General");
 	return (
 		<D.Root>
 			<D.Trigger as={Button} theme="secondary">
@@ -15,51 +20,51 @@ export default function DialogSettingsLayout() {
 			</D.Trigger>
 			<D.Portal>
 				<D.Overlay />
-				<D.Positioner size="lg">
-					<D.Content size="lg" class="settings-demo-panel">
-						<D.Header>
-							<D.Title class="settings-demo-breadcrumb">
-								<span data-crumb="parent">Settings</span>
-								<span aria-hidden="true">/</span>
-								<span>{section()}</span>
-							</D.Title>
-							<D.CloseButton aria-label="Close settings" />
-						</D.Header>
-						<div class="settings-demo-columns">
-							<nav class="settings-demo-nav" aria-label="Settings sections">
+				<D.Positioner size="settings">
+					<D.Content size="settings" chrome="inset">
+						<D.Sidebar>
+							<D.Nav aria-label="Settings sections">
 								<For each={sections}>
 									{item => (
-										<button
-											type="button"
-											aria-current={section() === item ? "page" : undefined}
-											onClick={() => setSection(item)}
+										<D.NavItem
+											icon={<item.icon />}
+											current={section() === item.name}
+											onClick={() => setSection(item.name)}
 										>
-											{item}
-										</button>
+											{item.name}
+										</D.NavItem>
 									)}
 								</For>
-							</nav>
+							</D.Nav>
+						</D.Sidebar>
+						<D.Main>
+							<D.Header>
+								<D.Title>Settings / {section()}</D.Title>
+								<D.CloseButton aria-label="Close settings" />
+							</D.Header>
 							<D.Body>
-								<div class="settings-demo-row">
-									<div>
-										<div>Theme</div>
-										<p>Colors of the editor chrome.</p>
+								<D.Section title="Editor">
+									<div class="settings-demo-row" role="group" aria-label="Theme">
+										<div class="settings-demo-row-text">
+											<span class="settings-demo-row-title">Theme</span>
+											<span class="settings-demo-row-description">Colours of the editor chrome.</span>
+										</div>
+										<SegmentedControl size="sm" defaultValue="dark" aria-label="Theme">
+											<SegmentedControlItem value="light">Light</SegmentedControlItem>
+											<SegmentedControlItem value="dark">Dark</SegmentedControlItem>
+											<SegmentedControlItem value="system">System</SegmentedControlItem>
+										</SegmentedControl>
 									</div>
-									<SegmentedControl size="sm" value={theme()} onChange={setTheme} aria-label="Theme">
-										<SegmentedControlItem value="light">Light</SegmentedControlItem>
-										<SegmentedControlItem value="dark">Dark</SegmentedControlItem>
-										<SegmentedControlItem value="system">System</SegmentedControlItem>
-									</SegmentedControl>
-								</div>
-								<div class="settings-demo-row">
-									<div>
-										<div>Line numbers</div>
-										<p>Show a number before each line of code.</p>
+									<div class="settings-demo-row" role="group" aria-label="Line numbers">
+										<div class="settings-demo-row-text">
+											<span class="settings-demo-row-title">Line numbers</span>
+											<span class="settings-demo-row-description">Show a number before each line of code.</span>
+										</div>
+										<Switch aria-label="Line numbers" defaultChecked />
 									</div>
-									<Switch aria-label="Line numbers" defaultChecked />
-								</div>
+								</D.Section>
 							</D.Body>
-						</div>
+						</D.Main>
 					</D.Content>
 				</D.Positioner>
 			</D.Portal>

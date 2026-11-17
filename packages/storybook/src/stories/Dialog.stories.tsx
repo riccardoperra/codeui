@@ -1,7 +1,18 @@
 import type { Meta, StoryObj } from "storybook-solidjs-vite";
 
-import { Button, Dialog, DialogPanelContent, DialogPanelFooter } from "@codeui/kit";
-import { createSignal, For } from "solid-js";
+import {
+	Button,
+	Checkbox,
+	Dialog,
+	DialogPanelContent,
+	DialogPanelFooter,
+	OptionCardGroup,
+	SegmentedControl,
+	SegmentedControlItem,
+	Switch,
+	TextField,
+} from "@codeui/kit";
+import { createSignal, For, type JSX } from "solid-js";
 import { DocsItemsContainer } from "./components/Section.jsx";
 import * as D from "@codeui/kit/dialog";
 
@@ -125,6 +136,148 @@ export const Parts: Story = {
 						<D.Footer>
 							<Button theme={"primary"}>Export</Button>
 						</D.Footer>
+					</D.Content>
+				</D.Positioner>
+			</D.Portal>
+		</D.Root>
+	),
+};
+
+const row: JSX.CSSProperties = {
+	display: "flex",
+	"align-items": "center",
+	"justify-content": "space-between",
+	gap: "var(--cui-space-6)",
+	"min-height": "56px",
+	padding: "var(--cui-space-2) var(--cui-space-4)",
+	"flex-wrap": "wrap",
+};
+const rowText: JSX.CSSProperties = { display: "flex", "flex-direction": "column", gap: "2px" };
+const muted: JSX.CSSProperties = { color: "var(--cui-text-muted)", "font-size": "var(--cui-font-size-xs)" };
+
+function SettingRow(props: { title: string; description: string; children: JSX.Element }) {
+	return (
+		<div style={row} role="group" aria-label={props.title}>
+			<div style={rowText}>
+				<span style={{ "font-size": "var(--cui-font-size-sm)", "font-weight": 500 }}>{props.title}</span>
+				<span style={muted}>{props.description}</span>
+			</div>
+			{props.children}
+		</div>
+	);
+}
+
+const settingsSections = ["General", "Appearance", "Export", "Experiments", "What's new", "About"];
+
+/** The settings layout: a sidebar with search and sections, and the section on screen. Opened on load. */
+export const SettingsLayout: Story = {
+	tags: ["!autodocs"],
+	render: () => {
+		const [section, setSection] = createSignal("General");
+		return (
+			<D.Root defaultOpen>
+				<D.Trigger as={Button} theme={"secondary"}>
+					Open settings
+				</D.Trigger>
+				<D.Portal>
+					<D.Overlay />
+					<D.Positioner size={"settings"}>
+						<D.Content size={"settings"} chrome={"inset"}>
+							<D.Sidebar search={<TextField size={"sm"} aria-label={"Search settings"} placeholder={"Search settings"} />}>
+								<D.Nav aria-label={"Settings sections"}>
+									<For each={settingsSections}>
+										{item => (
+											<D.NavItem current={section() === item} onClick={() => setSection(item)}>
+												{item}
+											</D.NavItem>
+										)}
+									</For>
+								</D.Nav>
+							</D.Sidebar>
+							<D.Main>
+								<D.Header>
+									<D.Title>Settings / {section()}</D.Title>
+									<D.CloseButton aria-label={"Close settings"} />
+								</D.Header>
+								<D.Body>
+									<D.Section title={"Interface"}>
+										<SettingRow title={"Language"} description={"The language of the menus, labels and messages."}>
+											<SegmentedControl size={"sm"} aria-label={"Language"} defaultValue={"en"}>
+												<SegmentedControlItem value={"it"}>Italian</SegmentedControlItem>
+												<SegmentedControlItem value={"en"}>English</SegmentedControlItem>
+												<SegmentedControlItem value={"de"}>German</SegmentedControlItem>
+											</SegmentedControl>
+										</SettingRow>
+										<SettingRow title={"Line numbers"} description={"Show a number before each line of code."}>
+											<Switch aria-label={"Line numbers"} defaultChecked />
+										</SettingRow>
+									</D.Section>
+								</D.Body>
+							</D.Main>
+						</D.Content>
+					</D.Positioner>
+				</D.Portal>
+			</D.Root>
+		);
+	},
+};
+
+/** The export layout: inset chrome, a preview beside its options, an actions row and a More section. Opened on load. */
+export const ExportLayout: Story = {
+	tags: ["!autodocs"],
+	render: () => (
+		<D.Root defaultOpen>
+			<D.Trigger as={Button} theme={"secondary"}>
+				Export…
+			</D.Trigger>
+			<D.Portal>
+				<D.Overlay />
+				<D.Positioner size={"export"}>
+					<D.Content size={"export"} chrome={"inset"}>
+						<D.Header>
+							<D.Title>Export</D.Title>
+							<D.CloseButton aria-label={"Close"} />
+						</D.Header>
+						<D.Body layout={"split"}>
+							<D.Section variant={"well"} aria-label={"Preview"}>
+								<div
+									role={"img"}
+									aria-label={"Preview of index.tsx"}
+									style={{ "min-height": "220px", "border-radius": "6px", background: "linear-gradient(135deg, #e0915c, #7c3aed)" }}
+								/>
+							</D.Section>
+							<div style={{ display: "flex", "flex-direction": "column", gap: "var(--cui-space-4)" }}>
+								<OptionCardGroup
+									label={"Format"}
+									orientation={"vertical"}
+									defaultValue={"png"}
+									items={[
+										{ value: "png", label: "PNG", description: "Sharp text, transparent corners" },
+										{ value: "jpeg", label: "JPEG", description: "Smaller file, no transparency" },
+										{ value: "svg", label: "SVG", description: "Vector, sharp at any size" },
+									]}
+								/>
+								<SegmentedControl aria-label={"Scale"} defaultValue={"3"} fluid autoWidth>
+									<SegmentedControlItem value={"1"}>1x</SegmentedControlItem>
+									<SegmentedControlItem value={"2"}>2x</SegmentedControlItem>
+									<SegmentedControlItem value={"3"}>3x</SegmentedControlItem>
+									<SegmentedControlItem value={"6"}>6x</SegmentedControlItem>
+								</SegmentedControl>
+								<Checkbox label={"Remember as default"} />
+							</div>
+						</D.Body>
+						<D.Footer>
+							<Button theme={"secondary"}>Copy image</Button>
+							<Button theme={"primary"}>Download PNG · 3x</Button>
+						</D.Footer>
+						<D.Section variant={"well"} title={"More"} columns={2}>
+							<Button theme={"secondary"} variant={"ghost"}>
+								Copy alt text
+							</Button>
+							<Button theme={"secondary"} variant={"ghost"}>
+								Export settings…
+							</Button>
+						</D.Section>
 					</D.Content>
 				</D.Positioner>
 			</D.Portal>
