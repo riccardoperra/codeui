@@ -196,3 +196,55 @@ it("applies part classes after kit classes", async () => {
 	await tick();
 	expect(screen.getAllByRole("option")[0]).toHaveClass("app-item");
 });
+
+describe("clearing a controlled value", () => {
+	function Controlled(props: { onChange: (value: string | null) => void }) {
+		const [value, setValue] = createSignal<string | null>("Banana");
+		return (
+			<>
+				<Combobox
+					aria-label="Fruit"
+					options={fruits}
+					value={value()}
+					onChange={next => {
+						props.onChange(next);
+						setValue(next);
+					}}
+				/>
+				<output data-testid="value">{value() ?? "none"}</output>
+			</>
+		);
+	}
+
+	it("clears the selection when the user deletes the text", async () => {
+		const onChange = jest.fn();
+		render(() => <Controlled onChange={onChange} />);
+		const input = screen.getByRole("combobox");
+		expect(input).toHaveValue("Banana");
+		input.focus();
+		await type(input, "");
+		expect(onChange).toHaveBeenLastCalledWith(null);
+		expect(screen.getByTestId("value")).toHaveTextContent("none");
+		input.blur();
+		await tick();
+		expect(input).toHaveValue("");
+	});
+
+	it("clears the selection on a second Escape", async () => {
+		const onChange = jest.fn();
+		render(() => <Controlled onChange={onChange} />);
+		const input = screen.getByRole("combobox");
+		input.focus();
+		press("ArrowDown");
+		await tick();
+		press("Escape");
+		await tick();
+		expect(input).toHaveValue("Banana");
+		expect(onChange).not.toHaveBeenCalled();
+		press("Escape");
+		await tick();
+		expect(onChange).toHaveBeenLastCalledWith(null);
+		expect(input).toHaveValue("");
+		expect(screen.getByTestId("value")).toHaveTextContent("none");
+	});
+});
