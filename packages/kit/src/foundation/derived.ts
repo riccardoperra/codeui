@@ -14,16 +14,33 @@ const derivations = {
 		(name): name is Exclude<keyof typeof themeValues.radius, "none" | "full" | "scale"> =>
 			!["none", "full", "scale"].includes(name),
 	),
-	/** Relative colors from `--cui-action-brand-base`. */
-	brand: [
-		"action.brand.hover",
-		"action.brand.active",
-		"action.brandSoft.base",
-		"action.brandSoft.hover",
-		"action.brandSoft.active",
-		"action.brandSoft.text",
-		"accent.selection",
-		"accent.focus",
+	/** Relative colors: each target is computed from its source. */
+	colors: [
+		{
+			source: "action.brand.base",
+			targets: [
+				"action.brand.hover",
+				"action.brand.active",
+				"action.brandSoft.base",
+				"action.brandSoft.hover",
+				"action.brandSoft.active",
+				"action.brandSoft.text",
+				"accent.selection",
+				"accent.focus",
+			],
+		},
+		{
+			source: "action.danger.base",
+			targets: ["action.danger.hover", "action.danger.active"],
+		},
+		{
+			source: "action.caution.base",
+			targets: ["action.caution.hover", "action.caution.active"],
+		},
+		{
+			source: "action.success.base",
+			targets: ["action.success.hover", "action.success.active"],
+		},
 	],
 } as const;
 
@@ -94,17 +111,18 @@ export function derivedRadius(
 }
 
 /** `--cui-*` name → formula, for one mode. */
-export function derivedBrand(
+export function derivedColors(
 	mode: Mode,
 	cssName: (path: string[]) => string,
 ): Record<string, string> {
-	const sourcePath = ["action", "brand", "base"];
-	const source = valueIn(at(sourcePath.join(".")), mode);
-	const sourceVar = `var(--${cssName(sourcePath)})`;
 	return Object.fromEntries(
-		derivations.brand.map(path => [
-			`--${cssName(path.split("."))}`,
-			relativeColor(sourceVar, source, valueIn(at(path), mode)),
-		]),
+		derivations.colors.flatMap(({ source, targets }) => {
+			const sourceValue = valueIn(at(source), mode);
+			const sourceVar = `var(--${cssName(source.split("."))})`;
+			return targets.map(path => [
+				`--${cssName(path.split("."))}`,
+				relativeColor(sourceVar, sourceValue, valueIn(at(path), mode)),
+			]);
+		}),
 	);
 }

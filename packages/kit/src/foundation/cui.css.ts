@@ -1,6 +1,6 @@
 import { createGlobalThemeContract, type GlobalStyleRule } from "@vanilla-extract/css";
 import { globalStyle } from "./layer.css";
-import { derivedBrand, derivedRadius, relativeColorSupport } from "./derived";
+import { derivedColors, derivedRadius, relativeColorSupport } from "./derived";
 import { themeValues } from "./theme-values";
 
 type Mode = "dark" | "light";
@@ -81,20 +81,20 @@ globalStyle(":root:not([data-cui-theme=light])", {
 globalStyle("[data-cui-theme=dark]", { vars: dark, colorScheme: "dark" });
 globalStyle("[data-cui-theme=light]", { vars: light, colorScheme: "light" });
 
-const brand = {
-	dark: derivedBrand("dark", cssVariableName),
-	light: derivedBrand("light", cssVariableName),
+const colors = {
+	dark: derivedColors("dark", cssVariableName),
+	light: derivedColors("light", cssVariableName),
 };
 const whenRelativeColor = (rule: GlobalStyleRule): GlobalStyleRule => ({
 	"@supports": { [relativeColorSupport]: rule },
 });
 
-globalStyle(":root", whenRelativeColor({ vars: brand.light }));
+globalStyle(":root", whenRelativeColor({ vars: colors.light }));
 globalStyle(
 	":root:not([data-cui-theme=light])",
 	whenRelativeColor({
-		"@media": { "(prefers-color-scheme: dark)": { vars: brand.dark } },
+		"@media": { "(prefers-color-scheme: dark)": { vars: colors.dark } },
 	}),
 );
-globalStyle("[data-cui-theme=dark]", whenRelativeColor({ vars: brand.dark }));
-globalStyle("[data-cui-theme=light]", whenRelativeColor({ vars: brand.light }));
+globalStyle("[data-cui-theme=dark]", whenRelativeColor({ vars: colors.dark }));
+globalStyle("[data-cui-theme=light]", whenRelativeColor({ vars: colors.light }));

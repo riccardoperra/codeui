@@ -122,6 +122,8 @@ These blues are computed from the brand blue with CSS relative colors. A theme t
 
 Danger, caution and success mark states the user must notice: an error, a destructive confirmation, a failed export. They do not decorate anything and are not used to label categories. Danger fills only the confirm button of a destructive dialog, and an error always pairs its colour with an icon.
 
+Each status has one source colour, its `base`. Hover and active are computed from it with the same steps the Inkstone values use, so a theme that changes the base keeps the states in proportion.
+
 ## Lines
 
 A line is allowed only where a fill would disappear:

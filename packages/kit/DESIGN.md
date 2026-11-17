@@ -100,6 +100,8 @@ The accent is never a surface or a large fill. It has five uses:
 
 Danger, caution and success mark states the user must notice. They never decorate or label a category. Danger fills only the confirm button of a destructive dialog. Errors pair colour with an icon.
 
+Each status `hover` and `active` is a relative color computed from its `base`, with the OKLCH steps that take the Inkstone base to the Inkstone value. `test/derived-palette.test.ts` checks that every computed color resolves to its value in `theme-values.ts`.
+
 ### 2.5 Lines
 
 A line is allowed only where a fill would vanish:

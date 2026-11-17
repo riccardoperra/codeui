@@ -123,6 +123,8 @@ Two tokens drive the rest:
 - `--cui-radius-scale` multiplies every radius except `none` and `full`. `0` gives square corners, `1` is Inkstone, and values above `1` round them more. The ratio between an inner corner and the corner around it stays the same.
 - `--cui-action-brand-base` is the brand color. Hover, active, the soft tint, its text, the focus ring and the selection are computed from it with CSS relative colors, so they follow it in both modes. With the Inkstone blue they resolve to the Inkstone values.
 
+Danger, caution and success work the same way: override `--cui-action-danger-base` and its hover and active follow.
+
 <SolidDemo name="theming/presets" source="hidden" />
 
 Pick a preset or move the controls, then copy the CSS into your app. Both tokens have one value for both modes, so `:root` is enough.
