@@ -10,12 +10,14 @@ interface NumberFieldControlsProps {
 	step: number;
 }
 
+/** Step buttons. They stay out of the tab order: the input steps with the arrow keys. */
 export function NumberFieldControls(props: NumberFieldControlsProps) {
 	return (
 		<div class={styles.controlsContainer}>
 			<Button
 				disabled={!props.canIncrement}
 				type={"button"}
+				tabIndex={-1}
 				variant={"ghost"}
 				theme={"secondary"}
 				aria-label={`Increment by ${props.step}`}
@@ -27,6 +29,7 @@ export function NumberFieldControls(props: NumberFieldControlsProps) {
 			<Button
 				disabled={!props.canDecrement}
 				type={"button"}
+				tabIndex={-1}
 				variant={"ghost"}
 				theme={"secondary"}
 				aria-label={`Decrement by ${props.step}`}

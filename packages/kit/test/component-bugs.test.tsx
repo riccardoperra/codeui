@@ -20,7 +20,7 @@ it.each([false, true])("masks invalid typing with a caller ref %s", async withRe
 	render(() => (
 		<NumberField aria-label="Amount" ref={withRef ? () => {} : undefined} precision={0} />
 	));
-	const input = screen.getByRole("textbox") as HTMLInputElement;
+	const input = screen.getByRole("spinbutton") as HTMLInputElement;
 	input.focus();
 	await Promise.resolve();
 	const event = new InputEvent("beforeinput", {

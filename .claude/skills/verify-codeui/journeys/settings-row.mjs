@@ -40,7 +40,7 @@ export default async ({ page, step, check, focus, axe, theme }) => {
 	await check("each control is named and described by its row", async () => {
 		const language = page.getByRole("tablist", { name: "Language" });
 		const visible = page.getByRole("switch", { name: "Visible" });
-		const padding = page.getByRole("textbox", { name: "Padding" });
+		const padding = page.getByRole("spinbutton", { name: "Padding" });
 		const describedBy = await language.getAttribute("aria-describedby");
 		const description = describedBy ? await page.locator(`#${describedBy}`).textContent() : null;
 		return {

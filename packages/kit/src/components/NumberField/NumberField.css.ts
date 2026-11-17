@@ -47,7 +47,7 @@ export const controlsContainer = style({
 		[`${numberFieldContainer}:hover &`]: {
 			display: "flex",
 		},
-		[`${numberFieldContainer}:has(${textField}:focus) &`]: {
+		[`${numberFieldContainer}:focus-within &`]: {
 			display: "flex",
 		},
 	},
