@@ -35,7 +35,7 @@ describe("the brand blue", () => {
 	it("is one value in both themes", () => {
 		for (const step of ["base", "hover", "active"])
 			expect(typeof at(`action.brand.${step}`)).toBe("string");
-		expect(themeValues.action.brand.base).toBe("#0083e5");
+		expect(themeValues.action.brand.base).toBe("#0076cf");
 	});
 
 	it("keeps accent.selection, kept for compatibility, equal to the brand base", () => {
@@ -43,11 +43,12 @@ describe("the brand blue", () => {
 			expect(value("accent.selection", mode)).toBe(themeValues.action.brand.base);
 	});
 
-	it("gets darker from base to hover to active, with white text at 3.9:1 or more", () => {
+	it("gets darker from base to hover to active, with white text at 4.5:1 or more", () => {
 		const { base, hover, active, text } = themeValues.action.brand;
 		expect(oklch(hover).L).toBeLessThan(oklch(base).L);
 		expect(oklch(active).L).toBeLessThan(oklch(hover).L);
-		expect(Math.round(contrast(text, base) * 10) / 10).toBeGreaterThanOrEqual(3.9);
+		for (const fill of [base, hover, active])
+			expect(contrast(text, fill)).toBeGreaterThanOrEqual(4.5);
 	});
 
 	it("tints the soft wash with the brand hue", () => {

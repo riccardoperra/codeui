@@ -1,34 +1,11 @@
-/**
- * Guard for the light palette (Inkstone, DESIGN.md §2.6 and §10).
- *
- * 1. Every light neutral — surface, text, neutral action and line — is a step
- *    of one ramp: hue 255, chroma 0.004 → 0.016. A second grey family cannot
- *    come back.
- * 2. Text, focus, control edges and accent text meet their contrast targets on
- *    the surfaces they sit on.
- */
+/** Verify the shared Gosfuig greys and contrast in the light theme. */
+import { palette } from "../../inkstone/tokens/palette.tokens.json";
 import { themeValues } from "../src/foundation/theme-values";
-import { blend, contrast, normalizeHex, offAxisChroma, oklch } from "./color";
+import { blend, contrast, normalizeHex, oklch } from "./color";
 
-/** DESIGN.md §2.6. Step 0 is the page, step 11 primary text. */
-const RAMP = [
-	"#ffffff",
-	"#f7f9fb",
-	"#eceff1",
-	"#e4e6e9",
-	"#dcdee1",
-	"#d0d3d6",
-	"#b4b8bc",
-	"#9b9fa4",
-	"#7c8186",
-	"#656970",
-	"#51565c",
-	"#1d2229",
-] as const;
-const RAMP_HUE = 255;
-const MAX_CHROMA = 0.016;
-/** 8-bit rounding noise; see `offAxisChroma`. */
-const CHROMA_NOISE = 0.002;
+const RAMP = Object.values(palette.gray).flatMap(token =>
+	typeof token === "string" ? [] : [token.$value.hex],
+);
 
 type Leaf = string | { dark: string; light: string };
 const at = (path: string): Leaf =>
@@ -63,15 +40,14 @@ const neutralTokens = NEUTRAL_GROUPS.flatMap(leafPaths).filter(
 	path => !NOT_NEUTRAL.has(path),
 );
 
-describe("the light ramp", () => {
+describe("the shared grey ramp", () => {
 	it("gets darker at every step", () => {
 		const lightness = RAMP.map(hex => oklch(hex).L);
 		lightness.slice(1).forEach((L, i) => expect(L).toBeLessThan(lightness[i]!));
 	});
 
-	it.each(RAMP)("keeps %s on hue 255 with chroma ≤ 0.016", hex => {
-		expect(oklch(hex).C).toBeLessThanOrEqual(MAX_CHROMA + CHROMA_NOISE / 2);
-		expect(offAxisChroma(hex, RAMP_HUE)).toBeLessThanOrEqual(CHROMA_NOISE);
+	it.each(RAMP)("keeps %s achromatic", hex => {
+		expect(oklch(hex).C).toBeLessThan(0.000001);
 	});
 });
 
@@ -83,7 +59,7 @@ describe("light neutral tokens", () => {
 	it("are all steps of the ramp", () => {
 		const outside = neutralTokens
 			.map(path => ({ path, value: light(path) }))
-			.filter(({ value }) => !(RAMP as readonly string[]).includes(value));
+			.filter(({ value }) => !RAMP.includes(value));
 		expect(outside).toEqual([]);
 	});
 });
@@ -120,7 +96,7 @@ interface Pair {
 const pairs: Record<string, Pair> = {};
 for (const fg of PRIMARY) pairs[fg] = { fg, on: ALL_SURFACES, min: 4.5 };
 for (const fg of SECONDARY) pairs[fg] = { fg, on: ALL_SURFACES, min: 4.5 };
-// Tertiary text never sits on a selected card: it reaches 4.41:1 there (§2.2).
+// Tertiary text is reserved for the page, island, field and row (§2.2).
 pairs["text.tertiary"] = {
 	fg: "text.tertiary",
 	on: ["page", "island", "field", "selected row"],
@@ -134,8 +110,7 @@ pairs["control edge (text.hint)"] = {
 	on: ["page", "island", "field"],
 	min: 3,
 };
-// Recorded exception (§10): the switch off track is ramp step 7, about 2.3–2.7:1.
-// Step 8 reaches 3:1 but reads as a dark "on" switch.
+// The off track uses gray.550. Thumb position also indicates the switch state (§10).
 pairs["surface.track (switch off, exception)"] = {
 	fg: "surface.track",
 	on: ["page", "island", "field"],

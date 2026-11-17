@@ -5,7 +5,7 @@ description: Palette swatches, theme tokens, and rules for using colour in Inkst
 
 ## Colour palette
 
-The shared-grey candidate uses the same ramp for Light and Dark. Blue has its own ramp for actions and focus. Components use the CSS tokens in **Theme roles**. The numbered steps are for theme authors.
+Light and Dark use one grey ramp. Blue has a separate ramp for actions and focus. Components use the CSS tokens in **Theme roles**. The numbered steps are for theme authors.
 
 <ColourPalette />
 
@@ -45,40 +45,25 @@ This example uses a neutral selection for an export format and a single filled e
 }
 ```
 
-### Compare the palettes
+### Preview the palette
 
-Choose **Compatible** to see the current kit colours. Choose **Shared grey ramp** to try the candidate. The **Theme** selector sets the preview's `data-cui-theme` to `light` or `dark`.
+Choose **Theme** to see the kit’s default light or dark tokens. The preview sets `data-cui-theme` on its surface.
 
 <PaletteComparison />
 
-### Generate an OKLCH palette
+### Generate the palette and theme tokens
 
-The candidate uses one grey ramp for both themes and a separate blue ramp for the accent. Gosfuig generates the ramps from `tools/palette/inkstone.json`. Each DTCG colour has OKLCH components and an sRGB hex value. [gosfuig](https://codeberg.org/Toghen/gosfuig)
+Gosfuig generates the ramps from `packages/inkstone/tokens/inkstone.palette.json`. The Inkstone build writes `palette.tokens.json`, then Toghen resolves the semantic aliases for each mode. The resulting `@codeui/inkstone/theme.css` is the default theme in the Solid kit. [Gosfuig](https://codeberg.org/Toghen/gosfuig)
 
-Run these commands from the repository root to export the candidate as DTCG JSON.
+Use `@codeui/inkstone/resolver.json` to work with the original DTCG data, or import `@codeui/inkstone/light.json` or `@codeui/inkstone/dark.json` for resolved roles. The DTCG colours contain OKLCH components and an sRGB hex value. The CSS theme uses the sRGB values and adds relative colour formulas for states that follow the brand base.
 
-```sh
-pnpm --silent palette:generate > inkstone.palette.tokens.json
-pnpm --silent palette:generate light > inkstone.light.tokens.json
-pnpm --silent palette:generate dark > inkstone.dark.tokens.json
-pnpm --silent palette:generate css > inkstone-shared-gray.css
-```
-
-In a Toghen resolver, load the palette as a base source and the alias files in their matching theme contexts. For example, `surface.island` points to `{palette.gray.150}` in Light and `{palette.gray.950}` in Dark.
-
-The CSS export targets scopes that have both `data-cui-theme` and `data-cui-palette="shared-gray"`. It uses the kit's current CSS token names. The preview loads this export alongside the kit stylesheet.
-
-The Fumadocs build also projects the same ramps into `--color-fd-*` tokens for its page, sidebar, controls, and links. The Compatible example uses the kit's colours so you can compare it with the shared ramp.
-
-The export writes sRGB hex values first. An `@supports (color: oklch(0.5 0 0))` block supplies the OKLCH values. Test the colour on a CSS property such as `color`, because an unregistered custom property accepts the text of either value. [CSS custom properties](https://www.w3.org/TR/css-variables-1/#invalid-variables) · [CSS feature queries](https://www.w3.org/TR/css-conditional-3/#at-supports)
-
-The export checks normal text, secondary text, and the focus colour on each preview surface. It also checks the white label on the primary action and the action fill against the floating surface.
+Fumadocs projects the same ramps into its `--color-fd-*` tokens. To inspect the ramp JSON in the repository, run `pnpm --silent palette:generate`.
 
 ## Surfaces are carved
 
 <FigSurfaces n={1} caption={<><b>Five surfaces, no borders.</b> Each level sits on the one below it. Only the floating menu has a shadow, because only it floats.</>} />
 
-Most dark interfaces stack lighter cards on a dark page and separate them with shadows. Inkstone does the opposite. The page is the lighter surface (`#151516`), and islands are carved into it (`#0f0f10`). An open section inside an island goes back to the page colour, and fields sit one step lighter again (`#232323`).
+The dark page uses `#1c1c1c`. Its islands use `#111111`. An open section uses the page colour, and a field uses `#292929`.
 
 This came from reviewing CodeImage's editor. A compact build with bordered panels was rejected because it felt fragmented. The maintainer asked for "un layout più unito e a isole", a more unified layout made of islands. Fill steps group controls without adding lines, and lines would compete with the user's content for attention.
 
@@ -101,7 +86,7 @@ One case needs more than fill. A selected card must differ from its island by it
 
 ### A known weakness
 
-The page and an island differ by only 1.05:1. On a dim or cheap screen an island can almost vanish. The layout still holds because islands are also defined by their rounded shape and their position. For the same reason, never rely on a change of fill alone to show that something can be clicked.
+The page and an island differ by about 1.1:1. On a dim or cheap screen an island can almost vanish. The layout still holds because islands are also defined by their rounded shape and their position. For the same reason, never rely on a change of fill alone to show that something can be clicked.
 
 ### The token names are inverted
 
@@ -109,7 +94,7 @@ The kit's tokens were named before the carved layout existed. `--cui-surface-can
 
 ## Text has two working tones
 
-In CodeImage the secondary grey (`#999`) is used more than twice as often as the primary (`#ededed`). Descriptions, summaries, hints and unselected navigation items are all secondary. Primary text marks what matters: a title, a value the user set, the selected item.
+Descriptions, summaries, hints and unselected navigation use `--cui-text-muted`. Use `--cui-text-default` for titles, values the user set and selected items.
 
 This is what keeps the screen calm. A panel full of bright labels looks busy even when it has few controls. Visual weight comes from tone first, then from weight, and only then from size.
 
@@ -122,32 +107,13 @@ This is what keeps the screen calm. A panel full of bright labels looks busy eve
   </Dont>
 </DoDont>
 
-The kit has more greys than these two tones. Over time it added `#ccc`, `#a0a0a0`, `#fff` and a `#404040` fill for the segmented control. These all collapse into the two tones plus a disabled tone. **Do not add a new grey.**
-
-Light mode keeps the same order with its own tones: primary `#1d2229`, secondary `#51565c`, and a tertiary `#656970` for captions on the page, an island or a field. Tertiary is 4.4:1 on a selected card, so it never sits on one. Before this, light default and muted text were both `#4a5568` and CodeImage's row labels rendered black under grey section titles.
+Use tertiary text for captions on the page, an island or a field. Keep the disabled tone for controls that are unavailable.
 
 ## Light mode is one grey family
 
-The light theme used to mix two families: Tailwind's cool slate and pure neutral greys. A menu had a neutral ring, a slate hover and slate text, and a field (`#f3f3f3`) was only 1.06:1 on its slate island. CodeImage hid the problem by lifting cards to white.
+Both modes use the 16-step achromatic ramp shown above. The light page uses `gray.100`, the island uses `gray.150`, and the field uses `gray.250`. In dark mode those roles use `gray.900`, `gray.950`, and `gray.750`.
 
-Every grey in the compatible Light theme is a step of one twelve-step ramp at OKLCH hue 255. Chroma rises from 0.004 to 0.016 toward the dark end, so the greys keep a trace of CodeImage's cool page but stay quieter than the user's content and the blue signal. The fill steps are 0.025–0.03 apart in lightness, which lets a field read on its island at half of dark mode's step.
-
-| Step | Hex | Role |
-| --- | --- | --- |
-| 0 | `#ffffff` | Page, inset, floating surfaces |
-| 1 | `#f7f9fb` | Island |
-| 2 | `#eceff1` | Field, hovered or selected row |
-| 3 | `#e4e6e9` | Field hover, selected card, neutral button |
-| 4 | `#dcdee1` | Hairlines, neutral button hover |
-| 5 | `#d0d3d6` | Neutral button pressed, scroll thumb |
-| 6 | `#b4b8bc` | Disabled text |
-| 7 | `#9b9fa4` | Switch off track, decorative icons |
-| 8 | `#7c8186` | Control edges that must reach 3:1 |
-| 9 | `#656970` | Tertiary text |
-| 10 | `#51565c` | Secondary text |
-| 11 | `#1d2229` | Primary text |
-
-Do not add a light grey outside the ramp. A test over the token map fails on one, and on any light text, ring or edge below its contrast target. The switch off track is the one recorded exception: step 8 reaches 3:1 but makes an off switch look on, so the track uses step 7 and the thumb's position carries the state.
+The switch off track uses `gray.550` in light mode and `gray.650` in dark mode. The thumb position also indicates the state where the track has less than 3:1 contrast against its surface.
 
 ## One accent, five jobs
 
@@ -185,15 +151,11 @@ Blue appears rarely, so users notice it when it does.
 
 ### One brand blue for every fill
 
-Filled buttons and every selected or checked fill use `--cui-action-brand-base`, `#0083e5`, in both themes: the switch "on" track, the check of a checkbox and radio, the slider and progress fill, the primary segment and the tab indicator. Hover is `#0076cf` and active is `#0069b8`. The kit used to draw these with three different blues (`#09f`, `#63b3ed` and `#07f`), so a switch and a checkbox side by side did not match.
+The shared brand fill is `#0076cf` in both themes. Hover uses `#0068b9` and active uses `#004f8e`. White labels reach 4.7:1, 5.7:1, and 8.4:1 in those states.
 
-In the compatible palette, white text on the base is 3.9:1. Hover reaches 4.7:1 and active 5.7:1. The base falls below the 4.5:1 threshold for normal text. Check the label against the fill in each state when you change the theme.
+The focus ring uses `--cui-accent-focus`, `#63b3ed` in dark mode and `#0068b9` in light mode. Links and labels on the 15% wash use `--cui-action-brand-soft-text`, `#63b3ed` in dark mode and `#004f8e` in light mode.
 
-`#0083e5` replaces CodeImage's old brand blue, `#0099ff`, on which white text was 3.0:1. CodeImage picks it up when it moves to the kit tokens.
-
-The focus ring stays separate: `--cui-accent-focus` is `#63b3ed` in dark mode and `#0083e5` in light mode, so it reads against both the page and a blue fill. Link text and the labels on the 15% wash use `--cui-action-brand-soft-text`, the same hue at another lightness: `#3fa0fe` in dark mode and `#0260aa` in light mode, both 4.5:1 or more on every surface and on the wash. `--cui-accent-selection` is kept for compatibility, equals the brand base, and no kit component reads it.
-
-These blues are computed from the brand blue with CSS relative colors. A theme that sets another `--cui-action-brand-base` gets its hover, active, soft, focus and selection colors from the same steps. The contrast figures above hold for `#0083e5` only, so a theme checks its own.
+The hover, active, soft, focus and selection colours follow `--cui-action-brand-base` through CSS relative colours. If you override the base, check contrast across the states.
 
 ## Status colours
 

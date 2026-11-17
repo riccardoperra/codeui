@@ -18,16 +18,16 @@ export const themeValues = {
 	"border": {
 		"input": "transparent",
 		"dialogTitle": {
-			"dark": "#2b2b2b",
-			"light": "#dcdee1"
+			"dark": "#292929",
+			"light": "#dcdcdc"
 		},
 		"divider": {
 			"dark": "#252525",
-			"light": "#dcdee1"
+			"light": "#dcdcdc"
 		},
 		"menu": {
-			"dark": "#333",
-			"light": "#dcdee1"
+			"dark": "#373737",
+			"light": "#dcdcdc"
 		},
 		"width": "1px",
 		"widthStrong": "2px"
@@ -93,11 +93,11 @@ export const themeValues = {
 	},
 	"surface": {
 		"canvas": {
-			"dark": "#0f0f10",
-			"light": "#f7f9fb"
+			"dark": "#111111",
+			"light": "#f1f1f1"
 		},
 		"toolbar": {
-			"dark": "#2b2b2b",
+			"dark": "#292929",
 			"light": "#ffffff"
 		},
 		"scrim": {
@@ -105,111 +105,111 @@ export const themeValues = {
 			"light": "#0006"
 		},
 		"dialog": {
-			"dark": "#1d1d1d",
+			"dark": "#252525",
 			"light": "#ffffff"
 		},
 		"inputAccent": {
-			"dark": "#505050",
+			"dark": "#535353",
 			"light": "#ffffff"
 		},
 		"input": {
-			"dark": "#232323",
-			"light": "#eceff1"
+			"dark": "#292929",
+			"light": "#e6e6e6"
 		},
 		"fieldHover": {
-			"dark": "#2f2f2f",
-			"light": "#e4e6e9"
+			"dark": "#373737",
+			"light": "#dcdcdc"
 		},
 		"menuHover": {
-			"dark": "#333",
-			"light": "#eceff1"
+			"dark": "#373737",
+			"light": "#e6e6e6"
 		},
 		"menu": {
-			"dark": "#282828",
+			"dark": "#252525",
 			"light": "#ffffff"
 		},
 		"panel": {
-			"dark": "#151516",
-			"light": "#ffffff"
+			"dark": "#1c1c1c",
+			"light": "#fafafa"
 		},
 		"scrollThumb": {
-			"dark": "#505050",
-			"light": "#d0d3d6"
+			"dark": "#535353",
+			"light": "#cccccc"
 		},
 		"scrollThumbHover": {
-			"dark": "#333",
-			"light": "#b4b8bc"
+			"dark": "#666666",
+			"light": "#bbbbbb"
 		},
 		"secondary": {
-			"dark": "#333",
-			"light": "#e4e6e9"
+			"dark": "#373737",
+			"light": "#dcdcdc"
 		},
 		"toast": {
-			"dark": "#2b2b2b",
+			"dark": "#252525",
 			"light": "#ffffff"
 		},
 		"track": {
-			"dark": "#505050",
-			"light": "#9b9fa4"
+			"dark": "#535353",
+			"light": "#8c8c8c"
 		}
 	},
 	"text": {
 		"default": {
-			"dark": "#ededed",
-			"light": "#1d2229"
+			"dark": "#f1f1f1",
+			"light": "#1c1c1c"
 		},
 		"toolbar": {
-			"dark": "#a0a0a0",
-			"light": "#51565c"
+			"dark": "#aaaaaa",
+			"light": "#535353"
 		},
 		"muted": {
-			"dark": "#999",
-			"light": "#51565c"
+			"dark": "#aaaaaa",
+			"light": "#535353"
 		},
 		"dialog": {
-			"dark": "#ededed",
-			"light": "#1d2229"
+			"dark": "#f1f1f1",
+			"light": "#1c1c1c"
 		},
 		"dialogTitle": {
-			"dark": "#ededed",
-			"light": "#1d2229"
+			"dark": "#f1f1f1",
+			"light": "#1c1c1c"
 		},
 		"label": {
-			"dark": "#ededed",
-			"light": "#1d2229"
+			"dark": "#f1f1f1",
+			"light": "#1c1c1c"
 		},
 		"hint": {
-			"dark": "#a0a0a0",
-			"light": "#51565c"
+			"dark": "#aaaaaa",
+			"light": "#535353"
 		},
 		"tertiary": {
-			"dark": "#8a8a8a",
-			"light": "#656970"
+			"dark": "#8c8c8c",
+			"light": "#666666"
 		},
 		"disabled": {
-			"dark": "#666",
-			"light": "#b4b8bc"
+			"dark": "#666666",
+			"light": "#bbbbbb"
 		},
 		"input": {
-			"dark": "#ededed",
-			"light": "#1d2229"
+			"dark": "#f1f1f1",
+			"light": "#1c1c1c"
 		},
 		"selected": "#fff",
 		"menu": {
-			"dark": "#ededed",
-			"light": "#1d2229"
+			"dark": "#f1f1f1",
+			"light": "#1c1c1c"
 		},
 		"panelMuted": {
-			"dark": "#ccc",
-			"light": "#51565c"
+			"dark": "#aaaaaa",
+			"light": "#535353"
 		},
 		"panel": {
-			"dark": "#fff",
-			"light": "#1d2229"
+			"dark": "#f1f1f1",
+			"light": "#1c1c1c"
 		},
 		"toast": {
-			"dark": "#fff",
-			"light": "#1d2229"
+			"dark": "#f1f1f1",
+			"light": "#1c1c1c"
 		},
 		"danger": {
 			"dark": "#fc8181",
@@ -219,20 +219,20 @@ export const themeValues = {
 	"action": {
 		"neutral": {
 			"active": {
-				"dark": "#505050",
-				"light": "#d0d3d6"
+				"dark": "#535353",
+				"light": "#cccccc"
 			},
 			"base": {
-				"dark": "#333",
-				"light": "#e4e6e9"
+				"dark": "#292929",
+				"light": "#dcdcdc"
 			},
 			"hover": {
-				"dark": "#3e3e3e",
-				"light": "#dcdee1"
+				"dark": "#373737",
+				"light": "#dcdcdc"
 			},
 			"text": {
-				"dark": "#ededed",
-				"light": "#1d2229"
+				"dark": "#f1f1f1",
+				"light": "#1c1c1c"
 			}
 		},
 		"danger": {
@@ -242,19 +242,19 @@ export const themeValues = {
 			"text": "#fff"
 		},
 		"brand": {
-			"active": "#0069b8",
-			"base": "#0083e5",
-			"hover": "#0076cf",
+			"active": "#004f8e",
+			"base": "#0076cf",
+			"hover": "#0068b9",
 			"text": "#fff"
 		},
 		"brandSoft": {
-			"base": "#0083e526",
-			"hover": "#0069b826",
+			"base": "#0076cf26",
+			"hover": "#004f8e26",
 			"text": {
-				"dark": "#3fa0fe",
-				"light": "#0260aa"
+				"dark": "#63b3ed",
+				"light": "#004f8e"
 			},
-			"active": "#0069b826"
+			"active": "#004f8e26"
 		},
 		"caution": {
 			"base": "#F08C00",
@@ -270,10 +270,10 @@ export const themeValues = {
 		}
 	},
 	"accent": {
-		"selection": "#0083e5",
+		"selection": "#0076cf",
 		"focus": {
 			"dark": "#63b3ed",
-			"light": "#0083e5"
+			"light": "#0068b9"
 		}
 	},
 	"focus": {

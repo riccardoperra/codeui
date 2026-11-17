@@ -43,23 +43,23 @@ The backgrounds of pages, islands, fields and floating layers. The names are inv
 
 | Token | CSS variable | Dark | Light |
 | --- | --- | --- | --- |
-| `surface.canvas` | `--cui-surface-canvas` | `#0f0f10` | `#f7f9fb` |
-| `surface.toolbar` | `--cui-surface-toolbar` | `#2b2b2b` | `#ffffff` |
+| `surface.canvas` | `--cui-surface-canvas` | `#111111` | `#f1f1f1` |
+| `surface.toolbar` | `--cui-surface-toolbar` | `#292929` | `#ffffff` |
 | `surface.scrim` | `--cui-surface-scrim` | `#000000b3` | `#0006` |
-| `surface.dialog` | `--cui-surface-dialog` | `#1d1d1d` | `#ffffff` |
-| `surface.inputAccent` | `--cui-surface-input-accent` | `#505050` | `#ffffff` |
-| `surface.input` | `--cui-surface-input` | `#232323` | `#eceff1` |
-| `surface.fieldHover` | `--cui-surface-field-hover` | `#2f2f2f` | `#e4e6e9` |
-| `surface.menuHover` | `--cui-surface-menu-hover` | `#333` | `#eceff1` |
-| `surface.menu` | `--cui-surface-menu` | `#282828` | `#ffffff` |
-| `surface.panel` | `--cui-surface-panel` | `#151516` | `#ffffff` |
-| `surface.scrollThumb` | `--cui-surface-scroll-thumb` | `#505050` | `#d0d3d6` |
-| `surface.scrollThumbHover` | `--cui-surface-scroll-thumb-hover` | `#333` | `#b4b8bc` |
-| `surface.secondary` | `--cui-surface-secondary` | `#333` | `#e4e6e9` |
-| `surface.toast` | `--cui-surface-toast` | `#2b2b2b` | `#ffffff` |
-| `surface.track` | `--cui-surface-track` | `#505050` | `#9b9fa4` |
+| `surface.dialog` | `--cui-surface-dialog` | `#252525` | `#ffffff` |
+| `surface.inputAccent` | `--cui-surface-input-accent` | `#535353` | `#ffffff` |
+| `surface.input` | `--cui-surface-input` | `#292929` | `#e6e6e6` |
+| `surface.fieldHover` | `--cui-surface-field-hover` | `#373737` | `#dcdcdc` |
+| `surface.menuHover` | `--cui-surface-menu-hover` | `#373737` | `#e6e6e6` |
+| `surface.menu` | `--cui-surface-menu` | `#252525` | `#ffffff` |
+| `surface.panel` | `--cui-surface-panel` | `#1c1c1c` | `#fafafa` |
+| `surface.scrollThumb` | `--cui-surface-scroll-thumb` | `#535353` | `#cccccc` |
+| `surface.scrollThumbHover` | `--cui-surface-scroll-thumb-hover` | `#666666` | `#bbbbbb` |
+| `surface.secondary` | `--cui-surface-secondary` | `#373737` | `#dcdcdc` |
+| `surface.toast` | `--cui-surface-toast` | `#252525` | `#ffffff` |
+| `surface.track` | `--cui-surface-track` | `#535353` | `#8c8c8c` |
 
-Every light surface is a step of one grey ramp ([Colour](/docs/design/color#light-mode-is-one-grey-family)). `surface.fieldHover` is one fill step above a field, for a hovered or selected card. `surface.track` is the switch off track. `surface.secondary` is ramp step 3 in light and `#333` in dark. No component reads it. Only the deprecated `themeVars.neutralSoft` alias points at it.
+The light and dark surfaces share a grey ramp ([Colour](/docs/design/color#light-mode-is-one-grey-family)). `surface.fieldHover` is one fill step above a field, for a hovered or selected card. `surface.track` is the switch off track. `surface.secondary` uses `gray.300` in light and `gray.700` in dark. No component reads it. Only the deprecated `themeVars.neutralSoft` alias points at it.
 
 ## Text
 
@@ -67,21 +67,21 @@ Every light surface is a step of one grey ramp ([Colour](/docs/design/color#ligh
 
 | Token | CSS variable | Dark | Light |
 | --- | --- | --- | --- |
-| `text.default` | `--cui-text-default` | `#ededed` | `#1d2229` |
-| `text.toolbar` | `--cui-text-toolbar` | `#a0a0a0` | `#51565c` |
-| `text.muted` | `--cui-text-muted` | `#999` | `#51565c` |
-| `text.dialog` | `--cui-text-dialog` | `#ededed` | `#1d2229` |
-| `text.dialogTitle` | `--cui-text-dialog-title` | `#ededed` | `#1d2229` |
-| `text.label` | `--cui-text-label` | `#ededed` | `#1d2229` |
-| `text.hint` | `--cui-text-hint` | `#a0a0a0` | `#51565c` |
-| `text.tertiary` | `--cui-text-tertiary` | `#8a8a8a` | `#656970` |
-| `text.disabled` | `--cui-text-disabled` | `#666` | `#b4b8bc` |
-| `text.input` | `--cui-text-input` | `#ededed` | `#1d2229` |
+| `text.default` | `--cui-text-default` | `#f1f1f1` | `#1c1c1c` |
+| `text.toolbar` | `--cui-text-toolbar` | `#aaaaaa` | `#535353` |
+| `text.muted` | `--cui-text-muted` | `#aaaaaa` | `#535353` |
+| `text.dialog` | `--cui-text-dialog` | `#f1f1f1` | `#1c1c1c` |
+| `text.dialogTitle` | `--cui-text-dialog-title` | `#f1f1f1` | `#1c1c1c` |
+| `text.label` | `--cui-text-label` | `#f1f1f1` | `#1c1c1c` |
+| `text.hint` | `--cui-text-hint` | `#aaaaaa` | `#535353` |
+| `text.tertiary` | `--cui-text-tertiary` | `#8c8c8c` | `#666666` |
+| `text.disabled` | `--cui-text-disabled` | `#666666` | `#bbbbbb` |
+| `text.input` | `--cui-text-input` | `#f1f1f1` | `#1c1c1c` |
 | `text.selected` | `--cui-text-selected` | `#fff` | `#fff` |
-| `text.menu` | `--cui-text-menu` | `#ededed` | `#1d2229` |
-| `text.panelMuted` | `--cui-text-panel-muted` | `#ccc` | `#51565c` |
-| `text.panel` | `--cui-text-panel` | `#fff` | `#1d2229` |
-| `text.toast` | `--cui-text-toast` | `#fff` | `#1d2229` |
+| `text.menu` | `--cui-text-menu` | `#f1f1f1` | `#1c1c1c` |
+| `text.panelMuted` | `--cui-text-panel-muted` | `#aaaaaa` | `#535353` |
+| `text.panel` | `--cui-text-panel` | `#f1f1f1` | `#1c1c1c` |
+| `text.toast` | `--cui-text-toast` | `#f1f1f1` | `#1c1c1c` |
 | `text.danger` | `--cui-text-danger` | `#fc8181` | `#c53030` |
 
 `text.default` is primary and `text.muted` and `text.hint` are secondary in both modes. Use `text.tertiary` only on the page, an island or a field, and `text.disabled` for unavailable controls.
@@ -94,24 +94,24 @@ Every light surface is a step of one grey ramp ([Colour](/docs/design/color#ligh
 
 | Token | CSS variable | Dark | Light |
 | --- | --- | --- | --- |
-| `action.neutral.active` | `--cui-action-neutral-active` | `#505050` | `#d0d3d6` |
-| `action.neutral.base` | `--cui-action-neutral-base` | `#333` | `#e4e6e9` |
-| `action.neutral.hover` | `--cui-action-neutral-hover` | `#3e3e3e` | `#dcdee1` |
-| `action.neutral.text` | `--cui-action-neutral-text` | `#ededed` | `#1d2229` |
-| `action.brand.active` | `--cui-action-brand-active` | `#0069b8` | `#0069b8` |
-| `action.brand.base` | `--cui-action-brand-base` | `#0083e5` | `#0083e5` |
-| `action.brand.hover` | `--cui-action-brand-hover` | `#0076cf` | `#0076cf` |
+| `action.neutral.active` | `--cui-action-neutral-active` | `#535353` | `#cccccc` |
+| `action.neutral.base` | `--cui-action-neutral-base` | `#292929` | `#dcdcdc` |
+| `action.neutral.hover` | `--cui-action-neutral-hover` | `#373737` | `#dcdcdc` |
+| `action.neutral.text` | `--cui-action-neutral-text` | `#f1f1f1` | `#1c1c1c` |
+| `action.brand.active` | `--cui-action-brand-active` | `#004f8e` | `#004f8e` |
+| `action.brand.base` | `--cui-action-brand-base` | `#0076cf` | `#0076cf` |
+| `action.brand.hover` | `--cui-action-brand-hover` | `#0068b9` | `#0068b9` |
 | `action.brand.text` | `--cui-action-brand-text` | `#fff` | `#fff` |
-| `action.brandSoft.base` | `--cui-action-brand-soft-base` | `#0083e526` | `#0083e526` |
-| `action.brandSoft.hover` | `--cui-action-brand-soft-hover` | `#0069b826` | `#0069b826` |
-| `action.brandSoft.text` | `--cui-action-brand-soft-text` | `#3fa0fe` | `#0260aa` |
-| `action.brandSoft.active` | `--cui-action-brand-soft-active` | `#0069b826` | `#0069b826` |
-| `accent.selection` | `--cui-accent-selection` | `#0083e5` | `#0083e5` |
-| `accent.focus` | `--cui-accent-focus` | `#63b3ed` | `#0083e5` |
+| `action.brandSoft.base` | `--cui-action-brand-soft-base` | `#0076cf26` | `#0076cf26` |
+| `action.brandSoft.hover` | `--cui-action-brand-soft-hover` | `#004f8e26` | `#004f8e26` |
+| `action.brandSoft.text` | `--cui-action-brand-soft-text` | `#63b3ed` | `#004f8e` |
+| `action.brandSoft.active` | `--cui-action-brand-soft-active` | `#004f8e26` | `#004f8e26` |
+| `accent.selection` | `--cui-accent-selection` | `#0076cf` | `#0076cf` |
+| `accent.focus` | `--cui-accent-focus` | `#63b3ed` | `#0068b9` |
 
 The table lists the Inkstone values. In a browser that supports relative colors, the other brand and accent tokens in this table are computed from `action.brand.base`, so they follow it when you override it. With the Inkstone base they resolve to the values above. A browser without relative colors uses the values above as they are.
 
-White text on `action.brand.base` (`#0083e5`) is 3.9:1. [Accessibility](/docs/foundations/accessibility#contrast) explains where that falls short. `accent.selection` is kept for compatibility and equals `action.brand.base`; no kit component reads it.
+White text on `action.brand.base` (`#0076cf`) is 4.7:1. `accent.selection` is kept for compatibility and equals `action.brand.base`.
 
 ## Status
 
@@ -142,10 +142,10 @@ In a browser that supports relative colors, each `hover` and `active` is compute
 
 | Token | CSS variable | Dark | Light |
 | --- | --- | --- | --- |
-| `border.dialogTitle` | `--cui-border-dialog-title` | `#2b2b2b` | `#dcdee1` |
-| `border.divider` | `--cui-border-divider` | `#252525` | `#dcdee1` |
+| `border.dialogTitle` | `--cui-border-dialog-title` | `#292929` | `#dcdcdc` |
+| `border.divider` | `--cui-border-divider` | `#252525` | `#dcdcdc` |
 | `border.input` | `--cui-border-input` | `transparent` | `transparent` |
-| `border.menu` | `--cui-border-menu` | `#333` | `#dcdee1` |
+| `border.menu` | `--cui-border-menu` | `#373737` | `#dcdcdc` |
 | `border.width` | `--cui-border-width` | `1px` | `1px` |
 | `border.widthStrong` | `--cui-border-width-strong` | `2px` | `2px` |
 

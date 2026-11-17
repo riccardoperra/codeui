@@ -5,7 +5,7 @@ import assert from 'node:assert/strict';
 import { launch, open } from './browser.mjs';
 
 const app = `:root { --cui-radius-md: 3px; --cui-action-brand-base: rgb(1, 2, 3); }`;
-const focus = { dark: '#63b3ed', light: '#0083e5' };
+const focus = { dark: '#63b3ed', light: '#0068b9' };
 const browser = await launch();
 try {
  for (const theme of ['dark', 'light']) {
@@ -23,13 +23,18 @@ try {
      background: style.backgroundColor,
      radius: style.borderTopLeftRadius,
      focusColor: style.getPropertyValue('--cui-focus-color').trim(),
+     relativeColors: CSS.supports('color', 'oklch(from red l c h)'),
      colorScheme: getComputedStyle(root).colorScheme,
     };
    }, nested);
    assert.equal(result.colorScheme, nested, `${theme} page, ${nested} scope: the scope switches mode`);
    assert.equal(result.background, 'rgb(1, 2, 3)', `${theme} page, ${nested} scope: :root brand override reaches the button`);
    assert.equal(result.radius, '3px', `${theme} page, ${nested} scope: :root radius override reaches the button`);
-   assert.equal(result.focusColor, focus[nested], `${theme} page, ${nested} scope: focus color follows the nested mode`);
+   if (result.relativeColors) {
+    assert.match(result.focusColor, /^oklch\(from rgb\(1, 2, 3\)/, `${theme} page, ${nested} scope: focus color follows the brand override`);
+   } else {
+    assert.equal(result.focusColor, focus[nested], `${theme} page, ${nested} scope: fallback focus color follows the nested mode`);
+   }
   } finally { await context.close(); }
  }
 } finally { await browser.close(); }

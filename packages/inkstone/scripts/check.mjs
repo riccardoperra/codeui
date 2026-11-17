@@ -7,6 +7,7 @@ const require = createRequire(import.meta.url);
 assert.deepEqual(require("@codeui/inkstone"), { breakpoints, themeValues, tokens });
 
 const read = specifier => readFile(new URL(import.meta.resolve(specifier)), "utf8");
+const palette = JSON.parse(await readFile(new URL("../tokens/palette.tokens.json", import.meta.url), "utf8")).palette;
 const theme = await read("@codeui/inkstone/theme.css");
 assert(theme.startsWith(await read("@codeui/inkstone/layers.css")));
 assert.match(theme, /:root\s*\{/);
@@ -18,6 +19,8 @@ for (const mode of ["light", "dark"]) {
 	const values = JSON.parse(await read(`@codeui/inkstone/${mode}.json`));
 	assert.equal(values.breakpoint.md.$value.value, breakpoints.md);
 	assert.equal(values.action.brand.base.$type, "color");
+	assert.deepEqual(values.action.brand.base.$value, palette.blue[500].$value);
+	assert.deepEqual(values.surface.canvas.$value, palette.gray[mode === "dark" ? 950 : 150].$value);
 	assert.equal(values.action.brand.base.$value.components.length, 3);
 	assert.equal(values.component, undefined);
 	assert.equal(values.palette, undefined);

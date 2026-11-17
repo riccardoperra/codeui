@@ -9,7 +9,7 @@
 		"start": "vite preview",
 		"typecheck": "tsc --noEmit",
 		"props": "node scripts/generate-props.mjs",
-		"palette": "node ../../tools/palette/generate.mjs css .generated/inkstone-palette.css && node ../../tools/palette/generate.mjs docs-css .generated/inkstone-docs.css && node ../../tools/palette/generate.mjs reference .generated/inkstone-palette.json"
+		"palette": "node ../../tools/palette/generate.mjs docs-css .generated/inkstone-docs.css && node ../../tools/palette/generate.mjs reference .generated/inkstone-palette.json"
 	},
 	"dependencies": {
 		"@codeui/docs-demos": "workspace:*",

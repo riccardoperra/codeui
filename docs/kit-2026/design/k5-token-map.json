@@ -1,69 +1,69 @@
 {
-  "sourceRef": "origin/main, existing local ref, no fetch",
+  "sourceRef": "Inkstone DTCG resolver and design specification",
   "tokens": [
     {
       "group": "surfaces",
       "token": "surface.canvas",
       "css": "--cui-surface-canvas",
-      "dark": "#0f0f10",
-      "light": "#f7f9fb",
-      "source": "light ramp (DESIGN.md §2.6), step 1; was #f7fafc"
+      "dark": "#111111",
+      "light": "#f1f1f1",
+      "source": "Gosfuig palette aliases in the Inkstone DTCG resolver"
     },
     {
       "group": "text",
       "token": "text.default",
       "css": "--cui-text-default",
-      "dark": "#ededed",
-      "light": "#1d2229",
-      "source": "light ramp (DESIGN.md §2.6), step 11; was #4a5568"
+      "dark": "#f1f1f1",
+      "light": "#1c1c1c",
+      "source": "Gosfuig palette aliases in the Inkstone DTCG resolver"
     },
     {
       "group": "surfaces",
       "token": "surface.toolbar",
       "css": "--cui-surface-toolbar",
-      "dark": "#2b2b2b",
+      "dark": "#292929",
       "light": "#ffffff",
-      "source": "light ramp (DESIGN.md §2.6), step 0; was #fff"
+      "source": "Gosfuig palette aliases in the Inkstone DTCG resolver"
     },
     {
       "group": "text",
       "token": "text.toolbar",
       "css": "--cui-text-toolbar",
-      "dark": "#a0a0a0",
-      "light": "#51565c",
-      "source": "light ramp (DESIGN.md §2.6), step 10; was #4a5568"
+      "dark": "#aaaaaa",
+      "light": "#535353",
+      "source": "Gosfuig palette aliases in the Inkstone DTCG resolver"
     },
     {
       "group": "accent and status colors",
       "token": "action.neutral.active",
       "css": "--cui-action-neutral-active",
-      "dark": "#505050",
-      "light": "#d0d3d6",
-      "source": "light ramp (DESIGN.md §2.6), step 5; was #a0aec0"
+      "dark": "#535353",
+      "light": "#cccccc",
+      "source": "Gosfuig palette aliases in the Inkstone DTCG resolver"
     },
     {
       "group": "accent and status colors",
       "token": "action.neutral.base",
       "css": "--cui-action-neutral-base",
-      "dark": "#333",
-      "light": "#e4e6e9",
-      "source": "light ramp (DESIGN.md §2.6), step 3; was #e2e8f0"
+      "dark": "#292929",
+      "light": "#dcdcdc",
+      "source": "Gosfuig palette aliases in the Inkstone DTCG resolver"
     },
     {
       "group": "accent and status colors",
       "token": "action.neutral.hover",
       "css": "--cui-action-neutral-hover",
-      "dark": "#3e3e3e",
-      "light": "#dcdee1",
-      "source": "light ramp (DESIGN.md §2.6), step 4; was #cbd5e0"
+      "dark": "#373737",
+      "light": "#dcdcdc",
+      "source": "Gosfuig palette aliases in the Inkstone DTCG resolver"
     },
     {
       "group": "text",
       "token": "action.neutral.text",
       "css": "--cui-action-neutral-text",
-      "dark": "#ededed",
-      "light": "#1d2229",
-      "source": "light ramp (DESIGN.md §2.6), step 11; was #2d3748"
+      "dark": "#f1f1f1",
+      "light": "#1c1c1c",
+      "source": "Gosfuig palette aliases in the Inkstone DTCG resolver"
     },
     {
       "group": "accent and status colors",
@@ -101,25 +101,25 @@
       "group": "accent and status colors",
       "token": "action.brand.active",
       "css": "--cui-action-brand-active",
-      "dark": "#0069b8",
-      "light": "#0069b8",
-      "source": "one brand blue for every fill (DESIGN.md §2.3); was #07f"
+      "dark": "#004f8e",
+      "light": "#004f8e",
+      "source": "Gosfuig palette aliases in the Inkstone DTCG resolver"
     },
     {
       "group": "accent and status colors",
       "token": "action.brand.base",
       "css": "--cui-action-brand-base",
-      "dark": "#0083e5",
-      "light": "#0083e5",
-      "source": "one brand blue for every fill (DESIGN.md §2.3); white text 3.9:1; was CodeImage #09f"
+      "dark": "#0076cf",
+      "light": "#0076cf",
+      "source": "Gosfuig palette aliases in the Inkstone DTCG resolver"
     },
     {
       "group": "accent and status colors",
       "token": "action.brand.hover",
       "css": "--cui-action-brand-hover",
-      "dark": "#0076cf",
-      "light": "#0076cf",
-      "source": "one brand blue for every fill (DESIGN.md §2.3); was #08f"
+      "dark": "#0068b9",
+      "light": "#0068b9",
+      "source": "Gosfuig palette aliases in the Inkstone DTCG resolver"
     },
     {
       "group": "text",
@@ -133,33 +133,33 @@
       "group": "accent and status colors",
       "token": "action.brandSoft.base",
       "css": "--cui-action-brand-soft-base",
-      "dark": "#0083e526",
-      "light": "#0083e526",
-      "source": "one brand blue for every fill (DESIGN.md §2.3): the brand base at 15%; was #0099ff26"
+      "dark": "#0076cf26",
+      "light": "#0076cf26",
+      "source": "Gosfuig palette aliases in the Inkstone DTCG resolver"
     },
     {
       "group": "accent and status colors",
       "token": "action.brandSoft.hover",
       "css": "--cui-action-brand-soft-hover",
-      "dark": "#0069b826",
-      "light": "#0069b826",
-      "source": "one brand blue for every fill (DESIGN.md §2.3): the brand active at 15%; was #007acc26"
+      "dark": "#004f8e26",
+      "light": "#004f8e26",
+      "source": "Gosfuig palette aliases in the Inkstone DTCG resolver"
     },
     {
       "group": "text",
       "token": "action.brandSoft.text",
       "css": "--cui-action-brand-soft-text",
-      "dark": "#3fa0fe",
-      "light": "#0260aa",
-      "source": "one brand blue for every fill (DESIGN.md §2.3): brand hue, lightness moved to 4.5:1 on every surface and on the wash; was #09f dark, #006aca light"
+      "dark": "#63b3ed",
+      "light": "#004f8e",
+      "source": "Gosfuig palette aliases in the Inkstone DTCG resolver"
     },
     {
       "group": "text",
       "token": "text.muted",
       "css": "--cui-text-muted",
-      "dark": "#999",
-      "light": "#51565c",
-      "source": "light ramp (DESIGN.md §2.6), step 10; was #4a5568"
+      "dark": "#aaaaaa",
+      "light": "#535353",
+      "source": "Gosfuig palette aliases in the Inkstone DTCG resolver"
     },
     {
       "group": "surfaces",
@@ -173,9 +173,9 @@
       "group": "surfaces",
       "token": "surface.dialog",
       "css": "--cui-surface-dialog",
-      "dark": "#1d1d1d",
+      "dark": "#252525",
       "light": "#ffffff",
-      "source": "light ramp (DESIGN.md §2.6), step 0; was #fff"
+      "source": "Gosfuig palette aliases in the Inkstone DTCG resolver"
     },
     {
       "group": "shadows",
@@ -189,57 +189,57 @@
       "group": "text",
       "token": "text.dialog",
       "css": "--cui-text-dialog",
-      "dark": "#ededed",
-      "light": "#1d2229",
-      "source": "light ramp (DESIGN.md §2.6), step 11; was #2d3748"
+      "dark": "#f1f1f1",
+      "light": "#1c1c1c",
+      "source": "Gosfuig palette aliases in the Inkstone DTCG resolver"
     },
     {
       "group": "borders/hairlines",
       "token": "border.dialogTitle",
       "css": "--cui-border-dialog-title",
-      "dark": "#2b2b2b",
-      "light": "#dcdee1",
-      "source": "light ramp (DESIGN.md §2.6), step 4; was #e2e8f0"
+      "dark": "#292929",
+      "light": "#dcdcdc",
+      "source": "Gosfuig palette aliases in the Inkstone DTCG resolver"
     },
     {
       "group": "text",
       "token": "text.dialogTitle",
       "css": "--cui-text-dialog-title",
-      "dark": "#ededed",
-      "light": "#1d2229",
-      "source": "light ramp (DESIGN.md §2.6), step 11; was #2d3748"
+      "dark": "#f1f1f1",
+      "light": "#1c1c1c",
+      "source": "Gosfuig palette aliases in the Inkstone DTCG resolver"
     },
     {
       "group": "borders/hairlines",
       "token": "border.divider",
       "css": "--cui-border-divider",
       "dark": "#252525",
-      "light": "#dcdee1",
-      "source": "light ramp (DESIGN.md §2.6), step 4; was #e2e8f0"
+      "light": "#dcdcdc",
+      "source": "Gosfuig palette aliases in the Inkstone DTCG resolver"
     },
     {
       "group": "surfaces",
       "token": "surface.inputAccent",
       "css": "--cui-surface-input-accent",
-      "dark": "#505050",
+      "dark": "#535353",
       "light": "#ffffff",
-      "source": "light ramp (DESIGN.md §2.6), step 0; was #fff"
+      "source": "Gosfuig palette aliases in the Inkstone DTCG resolver"
     },
     {
       "group": "surfaces",
       "token": "surface.input",
       "css": "--cui-surface-input",
-      "dark": "#232323",
-      "light": "#eceff1",
-      "source": "light ramp (DESIGN.md §2.6), step 2; was #f3f3f3"
+      "dark": "#292929",
+      "light": "#e6e6e6",
+      "source": "Gosfuig palette aliases in the Inkstone DTCG resolver"
     },
     {
       "group": "surfaces",
       "token": "surface.fieldHover",
       "css": "--cui-surface-field-hover",
-      "dark": "#2f2f2f",
-      "light": "#e4e6e9",
-      "source": "light ramp (DESIGN.md §2.6), step 3; one fill step above a field: hovered or selected card; dark is the former OptionCard color-mix"
+      "dark": "#373737",
+      "light": "#dcdcdc",
+      "source": "Gosfuig palette aliases in the Inkstone DTCG resolver"
     },
     {
       "group": "borders/hairlines",
@@ -253,49 +253,49 @@
       "group": "text",
       "token": "text.label",
       "css": "--cui-text-label",
-      "dark": "#ededed",
-      "light": "#1d2229",
-      "source": "light ramp (DESIGN.md §2.6), step 11; was #2d3748"
+      "dark": "#f1f1f1",
+      "light": "#1c1c1c",
+      "source": "Gosfuig palette aliases in the Inkstone DTCG resolver"
     },
     {
       "group": "text",
       "token": "text.hint",
       "css": "--cui-text-hint",
-      "dark": "#a0a0a0",
-      "light": "#51565c",
-      "source": "light ramp (DESIGN.md §2.6), step 10; was #4a5568"
+      "dark": "#aaaaaa",
+      "light": "#535353",
+      "source": "Gosfuig palette aliases in the Inkstone DTCG resolver"
     },
     {
       "group": "text",
       "token": "text.tertiary",
       "css": "--cui-text-tertiary",
-      "dark": "#8a8a8a",
-      "light": "#656970",
-      "source": "light ramp (DESIGN.md §2.6), step 9; tertiary text, only on page, island and field (DESIGN.md §2.2)"
+      "dark": "#8c8c8c",
+      "light": "#666666",
+      "source": "Gosfuig palette aliases in the Inkstone DTCG resolver"
     },
     {
       "group": "text",
       "token": "text.disabled",
       "css": "--cui-text-disabled",
-      "dark": "#666",
-      "light": "#b4b8bc",
-      "source": "light ramp (DESIGN.md §2.6), step 6; disabled text (DESIGN.md §2.2)"
+      "dark": "#666666",
+      "light": "#bbbbbb",
+      "source": "Gosfuig palette aliases in the Inkstone DTCG resolver"
     },
     {
       "group": "text",
       "token": "text.input",
       "css": "--cui-text-input",
-      "dark": "#ededed",
-      "light": "#1d2229",
-      "source": "light ramp (DESIGN.md §2.6), step 11; was #333"
+      "dark": "#f1f1f1",
+      "light": "#1c1c1c",
+      "source": "Gosfuig palette aliases in the Inkstone DTCG resolver"
     },
     {
       "group": "accent and status colors",
       "token": "accent.selection",
       "css": "--cui-accent-selection",
-      "dark": "#0083e5",
-      "light": "#0083e5",
-      "source": "one brand blue for every fill (DESIGN.md §2.3): kept for compatibility, no kit component reads it; was #07f dark"
+      "dark": "#0076cf",
+      "light": "#0076cf",
+      "source": "Gosfuig palette aliases in the Inkstone DTCG resolver"
     },
     {
       "group": "text",
@@ -309,105 +309,105 @@
       "group": "surfaces",
       "token": "surface.menuHover",
       "css": "--cui-surface-menu-hover",
-      "dark": "#333",
-      "light": "#eceff1",
-      "source": "light ramp (DESIGN.md §2.6), step 2; was #f7fafc"
+      "dark": "#373737",
+      "light": "#e6e6e6",
+      "source": "Gosfuig palette aliases in the Inkstone DTCG resolver"
     },
     {
       "group": "surfaces",
       "token": "surface.menu",
       "css": "--cui-surface-menu",
-      "dark": "#282828",
+      "dark": "#252525",
       "light": "#ffffff",
-      "source": "light ramp (DESIGN.md §2.6), step 0; was #fff"
+      "source": "Gosfuig palette aliases in the Inkstone DTCG resolver"
     },
     {
       "group": "text",
       "token": "text.menu",
       "css": "--cui-text-menu",
-      "dark": "#ededed",
-      "light": "#1d2229",
-      "source": "light ramp (DESIGN.md §2.6), step 11; was #2d3748"
+      "dark": "#f1f1f1",
+      "light": "#1c1c1c",
+      "source": "Gosfuig palette aliases in the Inkstone DTCG resolver"
     },
     {
       "group": "surfaces",
       "token": "surface.panel",
       "css": "--cui-surface-panel",
-      "dark": "#151516",
-      "light": "#ffffff",
-      "source": "light ramp (DESIGN.md §2.6), step 0; was #fff"
+      "dark": "#1c1c1c",
+      "light": "#fafafa",
+      "source": "Gosfuig palette aliases in the Inkstone DTCG resolver"
     },
     {
       "group": "text",
       "token": "text.panelMuted",
       "css": "--cui-text-panel-muted",
-      "dark": "#ccc",
-      "light": "#51565c",
-      "source": "light ramp (DESIGN.md §2.6), step 10; was #666"
+      "dark": "#aaaaaa",
+      "light": "#535353",
+      "source": "Gosfuig palette aliases in the Inkstone DTCG resolver"
     },
     {
       "group": "text",
       "token": "text.panel",
       "css": "--cui-text-panel",
-      "dark": "#fff",
-      "light": "#1d2229",
-      "source": "light ramp (DESIGN.md §2.6), step 11; was #000"
+      "dark": "#f1f1f1",
+      "light": "#1c1c1c",
+      "source": "Gosfuig palette aliases in the Inkstone DTCG resolver"
     },
     {
       "group": "accent and status colors",
       "token": "accent.focus",
       "css": "--cui-accent-focus",
       "dark": "#63b3ed",
-      "light": "#0083e5",
-      "source": "light palette: brand blue hue and chroma, raised to its contrast target (DESIGN.md §2.3); was #09f"
+      "light": "#0068b9",
+      "source": "Gosfuig palette aliases in the Inkstone DTCG resolver"
     },
     {
       "group": "surfaces",
       "token": "surface.scrollThumb",
       "css": "--cui-surface-scroll-thumb",
-      "dark": "#505050",
-      "light": "#d0d3d6",
-      "source": "light ramp (DESIGN.md §2.6), step 5; was #cbd5e0"
+      "dark": "#535353",
+      "light": "#cccccc",
+      "source": "Gosfuig palette aliases in the Inkstone DTCG resolver"
     },
     {
       "group": "surfaces",
       "token": "surface.scrollThumbHover",
       "css": "--cui-surface-scroll-thumb-hover",
-      "dark": "#333",
-      "light": "#b4b8bc",
-      "source": "light ramp (DESIGN.md §2.6), step 6; was #a0aec0"
+      "dark": "#666666",
+      "light": "#bbbbbb",
+      "source": "Gosfuig palette aliases in the Inkstone DTCG resolver"
     },
     {
       "group": "surfaces",
       "token": "surface.secondary",
       "css": "--cui-surface-secondary",
-      "dark": "#333",
-      "light": "#e4e6e9",
-      "source": "light ramp (DESIGN.md §2.6), step 3; was #edf2f7"
+      "dark": "#373737",
+      "light": "#dcdcdc",
+      "source": "Gosfuig palette aliases in the Inkstone DTCG resolver"
     },
     {
       "group": "surfaces",
       "token": "surface.toast",
       "css": "--cui-surface-toast",
-      "dark": "#2b2b2b",
+      "dark": "#252525",
       "light": "#ffffff",
-      "source": "light ramp (DESIGN.md §2.6), step 0; was #fff"
+      "source": "Gosfuig palette aliases in the Inkstone DTCG resolver"
     },
     {
       "group": "surfaces",
       "token": "surface.track",
       "css": "--cui-surface-track",
-      "dark": "#505050",
-      "light": "#9b9fa4",
-      "source": "light ramp (DESIGN.md §2.6), step 7; switch off track; light step 7 is a recorded 3:1 exception (DESIGN.md §10); dark is the former action.neutral.active"
+      "dark": "#535353",
+      "light": "#8c8c8c",
+      "source": "Gosfuig palette aliases in the Inkstone DTCG resolver"
     },
     {
       "group": "text",
       "token": "text.toast",
       "css": "--cui-text-toast",
-      "dark": "#fff",
-      "light": "#1d2229",
-      "source": "light ramp (DESIGN.md §2.6), step 11; was #333"
+      "dark": "#f1f1f1",
+      "light": "#1c1c1c",
+      "source": "Gosfuig palette aliases in the Inkstone DTCG resolver"
     },
     {
       "group": "text",
@@ -421,9 +421,9 @@
       "group": "accent and status colors",
       "token": "action.brandSoft.active",
       "css": "--cui-action-brand-soft-active",
-      "dark": "#0069b826",
-      "light": "#0069b826",
-      "source": "one brand blue for every fill (DESIGN.md §2.3): the brand active at 15%; was #007acc26"
+      "dark": "#004f8e26",
+      "light": "#004f8e26",
+      "source": "Gosfuig palette aliases in the Inkstone DTCG resolver"
     },
     {
       "group": "accent and status colors",
@@ -493,9 +493,9 @@
       "group": "borders/hairlines",
       "token": "border.menu",
       "css": "--cui-border-menu",
-      "dark": "#333",
-      "light": "#dcdee1",
-      "source": "light ramp (DESIGN.md §2.6), step 4; was #e8e8e8"
+      "dark": "#373737",
+      "light": "#dcdcdc",
+      "source": "Gosfuig palette aliases in the Inkstone DTCG resolver"
     },
     {
       "group": "borders/hairlines",

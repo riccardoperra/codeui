@@ -310,7 +310,7 @@ console.log(JSON.stringify({ button: button() + ' ' + iconButton, label: label +
 					"Inkstone standalone CSS",
 					scopes.length === 2 &&
 						scopes[0].background !== scopes[1].background &&
-						scopes[0].color === "rgb(0, 131, 229)" &&
+						scopes[0].color === "rgb(0, 118, 207)" &&
 						scopes[1].color === "rgb(17, 34, 51)",
 					JSON.stringify(scopes),
 				);

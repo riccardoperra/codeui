@@ -31,7 +31,7 @@ Kit controls draw one ring:
 
 | Token | Value |
 | --- | --- |
-| `--cui-focus-color` | `var(--cui-accent-focus)`. `#63b3ed` dark, `#0083e5` light. |
+| `--cui-focus-color` | `var(--cui-accent-focus)`. `#63b3ed` dark, `#0068b9` light. |
 | `--cui-focus-width` | `2px` |
 | `--cui-focus-offset` | `2px` |
 
@@ -62,26 +62,24 @@ Inkstone asks for 4.5:1 for text up to 18px, and 3:1 for large text, icons, ring
 
 | Pair | Dark | Light |
 | --- | --- | --- |
-| `text.default` on `surface.canvas` | 16.4:1 | 15.2:1 |
-| `text.muted` on `surface.canvas` | 6.7:1 | 7.0:1 |
-| `text.hint` on `surface.input` | 6.0:1 | 6.4:1 |
-| `action.neutral.text` on `action.neutral.base` | 10.8:1 | 12.8:1 |
+| `text.default` on `surface.canvas` | 16.7:1 | 15.1:1 |
+| `text.muted` on `surface.canvas` | 8.1:1 | 6.8:1 |
+| `text.hint` on `surface.input` | 6.3:1 | 6.2:1 |
+| `action.neutral.text` on `action.neutral.base` | 12.9:1 | 12.4:1 |
 | `action.danger.text` on `action.danger.base` | 5.5:1 | 5.5:1 |
 | `action.caution.text` on `action.caution.base` | 8.5:1 | 8.5:1 |
 | `action.success.text` on `action.success.base` | 8.7:1 | 8.7:1 |
-| `text.danger` on `surface.canvas` | 7.8:1 | 5.2:1 |
-| `accent.focus` ring on `surface.canvas` | 8.4:1 | 3.7:1 |
-| `surface.track` (switch off) on `surface.panel` | 2.3:1 | **2.7:1** |
-| `action.brand.text` on `action.brand.base` | **3.9:1** | **3.9:1** |
-| `action.brandSoft.text` on `surface.panel` | 6.7:1 | 6.5:1 |
+| `text.danger` on `surface.canvas` | 7.7:1 | 4.8:1 |
+| `accent.focus` ring on `surface.canvas` | 8.3:1 | 5.1:1 |
+| `surface.track` (switch off) on `surface.panel` | 2.2:1 | 3.2:1 |
+| `action.brand.text` on `action.brand.base` | 4.7:1 | 4.7:1 |
+| `action.brandSoft.text` on `surface.panel` | 7.5:1 | 8.0:1 |
 
-White text on the brand blue, `#0083e5`, is 3.9:1 (hover 4.7:1, active 5.7:1). It meets the 3:1 rule for large text, and it falls short of 4.5:1 for the 14px label of a primary button. The maintainer chose one brand blue for every fill, the same in both themes, over AA contrast for this label. Link-style text (`action.brandSoft.text`) is the same hue at another lightness, `#3fa0fe` dark and `#0260aa` light, so it meets 4.5:1 on every surface and on the 15% wash. The focus ring (`#63b3ed` dark, `#0083e5` light) meets 3:1.
+The shared brand fill is `#0076cf` in both themes. Hover uses `#0068b9` and active uses `#004f8e`. White labels reach 4.7:1, 5.7:1, and 8.4:1 in those states. The focus ring uses `--cui-accent-focus`, `#63b3ed` in dark mode and `#0068b9` in light mode. Links and labels on the 15% wash use `--cui-action-brand-soft-text`, `#63b3ed` in dark mode and `#004f8e` in light mode.
 
-The light switch "off" track is a recorded exception to the 3:1 rule for control edges. A track dark enough for 3:1 reads as a switch that is on. The thumb's position and the blue "on" track carry the state, so colour is not the only signal.
+The switch off track stays below 3:1 on some surfaces. The thumb position and the blue on track also indicate state.
 
 `pnpm --filter @codeui/kit test` checks the light pairs: `packages/kit/test/light-palette.test.ts` fails when a light text, ring or edge token drops below its target.
-
-If your app needs AA for every label, override the three brand tokens with darker blues. `--cui-action-brand-base: #0070f0` is 4.6:1 with white, `--cui-action-brand-hover: #0066dc` is 5.3:1, and `--cui-action-brand-active: #005bc4` is 6.4:1. [Theming](/docs/foundations/theming#override-tokens-with-plain-css) shows the selector that reaches every scope.
 
 Check contrast again whenever you override a color token. The kit cannot check your values.
 

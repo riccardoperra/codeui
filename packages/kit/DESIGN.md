@@ -47,13 +47,13 @@ The page is the lighter surface. Islands are carved into it.
 
 | Level    | Use                                                       | Dark                      | Light               | Token today                |
 | -------- | --------------------------------------------------------- | ------------------------- | ------------------- | -------------------------- |
-| Page     | Behind everything. The header sits directly on it          | `#151516`                 | `#fff`              | `--cui-surface-panel`      |
-| Island   | Content area, side panel, settings group                  | `#0f0f10`                 | `#f7f9fb`           | `--cui-surface-canvas`     |
-| Inset    | The open section inside an island                         | `#151516`                 | `#fff`              | `--cui-surface-panel`      |
-| Field    | Field, tile, card, hovered or selected row                | `#232323`                 | `#eceff1`           | `--cui-surface-input`      |
-| Floating | Menu, popover, command menu, dialog, floating bar         | `#1d1d1d` + ring + shadow | `#fff` + shadow     | `--cui-surface-dialog`     |
+| Page     | Behind everything. The header sits directly on it          | `#1c1c1c`                 | `#fafafa`              | `--cui-surface-panel`      |
+| Island   | Content area, side panel, settings group                  | `#111111`                 | `#f1f1f1`           | `--cui-surface-canvas`     |
+| Inset    | The open section inside an island                         | `#1c1c1c`                 | `#fafafa`              | `--cui-surface-panel`      |
+| Field    | Field, tile, card, hovered or selected row                | `#292929`                 | `#e6e6e6`           | `--cui-surface-input`      |
+| Floating | Menu, popover, command menu, dialog, floating bar         | `#252525` + ring + shadow | `#fff` + shadow     | `--cui-surface-dialog`     |
 
-- Light uses one grey family: every light surface, line and text grey is a step of the ramp in §2.6.
+- Light and Dark use the same Gosfuig grey ramp. See §2.6.
 - A surface sits on the level below it. A field goes on an island, not on the page.
 - State is a step of fill: hover raises one step, selected raises one step (`--cui-surface-field-hover` above a field). Pressed changes the fill and keeps the hover radius.
 - A selected card differs from its island by fill **and** an accent ring, not by the ring alone.
@@ -66,16 +66,16 @@ Why: a bordered, compact build was rejected for "un layout più unito e a isole"
 
 | Tone      | Use                                                             | Dark      | Light     | Token                                    |
 | --------- | --------------------------------------------------------------- | --------- | --------- | ---------------------------------------- |
-| Primary   | Titles, row titles, values the user set, the selected item      | `#ededed` | `#1d2229` | `--cui-text-default`                     |
-| Secondary | Descriptions, summaries, hints, unselected nav, metadata        | `#999`    | `#51565c` | `--cui-text-muted`, `--cui-text-hint`    |
-| Tertiary  | Captions and metadata on page, island or field only             | `#8a8a8a` | `#656970` | `--cui-text-tertiary`                    |
-| Disabled  | Unavailable controls                                            | `#666`    | `#b4b8bc` | `--cui-text-disabled`                    |
+| Primary   | Titles, row titles, values the user set, the selected item      | `#f1f1f1` | `#1c1c1c` | `--cui-text-default`                     |
+| Secondary | Descriptions, summaries, hints, unselected nav, metadata        | `#aaaaaa`    | `#535353` | `--cui-text-muted`, `--cui-text-hint`    |
+| Tertiary  | Captions and metadata on page, island or field only             | `#8c8c8c` | `#666666` | `--cui-text-tertiary`                    |
+| Disabled  | Unavailable controls                                            | `#666666`    | `#bbbbbb` | `--cui-text-disabled`                    |
 
 - Most text is secondary. Primary marks what matters or what is selected.
 - Hierarchy comes from tone, then weight, then size.
 - Accent text is only for links and inline text actions.
-- Do not add a new grey. The kit's `#ccc`, `#a0a0a0`, `#fff` text tokens and the `#404040` segment fill alias these roles.
-- Light mode keeps the order: primary 13.9:1, secondary 6.4:1 and tertiary 4.8:1 on the field. Tertiary falls to 4.4:1 on a selected card, so it never sits there.
+- Add neutral colours through the shared grey ramp.
+- On a light field, primary, secondary and tertiary text reach 13.7:1, 6.2:1 and 4.6:1. Reserve tertiary text for the page, an island or a field.
 - The other light text tokens alias these roles: `text-dialog`, `text-label`, `text-menu`, `text-input`, `text-toast` and `text-panel` are primary; `text-toolbar` and `text-panel-muted` are secondary.
 
 ### 2.3 Accent
@@ -94,12 +94,11 @@ The accent is never a surface or a large fill. It has five uses:
 - A selected row in a list, menu, command menu or nav is neutral: field fill and primary text. Never an accent fill.
 - "On" uses the soft wash. "Do" uses the filled button. Two same-shaped blue controls side by side read as one.
 - Accent on user content must not read as semantic red or green.
-- One brand blue is shared by both themes: `--cui-action-brand-base` `#0083e5` (OKLCH L 0.60, C 0.18, H 251), hover `#0076cf`, active `#0069b8`. The filled button, the switch "on" track, the check of a checkbox and radio, the slider and progress fill, the primary segment and the tab indicator all use it. White text on the compatible base is 3.9:1 (hover 4.7:1, active 5.7:1). The base falls below the 4.5:1 threshold for normal text. Check the label against the fill in each state when changing the theme. As a control fill it is 3.9:1 on the light page, 3.4:1 on the light field, 4.9:1 on the dark island and 4.0:1 on the dark field.
-- It replaces CodeImage's `#0099ff`. CodeImage picks it up when it moves to the kit tokens.
-- The focus ring stays a separate token, `--cui-accent-focus`: `#63b3ed` dark, `#0083e5` light (3.9:1 on the page, 3.4:1 on the field, 3.1:1 on a selected card). Selected-card rings use it too.
-- Accent text (links, brand-soft labels) is `--cui-action-brand-soft-text`, the brand hue at another lightness: `#3fa0fe` dark (6.7:1 on the page, 5.7:1 on the field, 4.6:1 or more on the 15% wash over any surface), `#0260aa` light (6.5:1 on the page, 5.6:1 on the field, 5.4:1 on the wash). The soft wash is the brand at 15% (`#0083e526`; hover and active `#0069b826`).
+- The shared brand fill is `#0076cf` in both themes. Hover uses `#0068b9` and active uses `#004f8e`. White labels reach 4.7:1, 5.7:1, and 8.4:1 in those states. The filled button, checked controls, progress indicator and active tab share the base.
+- The focus ring uses `--cui-accent-focus`, `#63b3ed` in dark mode and `#0068b9` in light mode.
+- Links and labels on the 15% wash use `--cui-action-brand-soft-text`, `#63b3ed` in dark mode and `#004f8e` in light mode.
 - `--cui-accent-selection` is kept for compatibility and equals the brand base. No kit component reads it; use `--cui-action-brand-base`.
-- The other brand and accent tokens are relative colors computed from `--cui-action-brand-base`: the same OKLCH steps that take `#0083e5` to each value above. A theme changes the brand with the base alone. Browsers without relative colors keep the fixed values. Contrast is checked for the Inkstone blue only; a theme with another base checks its own.
+- The other brand and accent tokens are relative colors computed from `--cui-action-brand-base`: the same OKLCH steps that take `#0076cf` to each value above. A theme changes the brand with the base alone. Browsers without relative colors keep the fixed values. Contrast is checked for the Inkstone blue only; a theme with another base checks its own.
 
 ### 2.4 Status
 
@@ -117,29 +116,11 @@ A line is allowed only where a fill would vanish:
 
 No line between islands, around a field, between rows or around an unselected card. A split button is two parts with a 2px gap and 4px inner corners.
 
-### 2.6 Light ramp
+### 2.6 Shared grey ramp
 
-Light greys come from one ramp: OKLCH hue 255, chroma rising from 0.004 to 0.016 toward the dark end. Fill steps are ΔL 0.025–0.03 apart, so a field reads on its island (ΔL 0.031, half of dark's step).
+Gosfuig generates one achromatic OKLCH ramp for both modes from `packages/inkstone/tokens/inkstone.palette.json`. The theme roles in §2.1 and §2.2 map the two modes to different steps of that ramp. Blue has its own ramp. Use the [Colour reference](/docs/design/color) for the swatches and semantic aliases.
 
-| Step | Hex       | L     | C      | Roles                                                                 |
-| ---- | --------- | ----- | ------ | --------------------------------------------------------------------- |
-| 0    | `#ffffff` | 1.000 | 0      | Page, inset, floating surfaces, segment "on"                           |
-| 1    | `#f7f9fb` | 0.980 | 0.0040 | Island                                                                |
-| 2    | `#eceff1` | 0.950 | 0.0045 | Field, card, hovered or selected row, menu hover                       |
-| 3    | `#e4e6e9` | 0.925 | 0.0049 | Field hover, selected card, neutral button, selected nav row, `surface-secondary` |
-| 4    | `#dcdee1` | 0.900 | 0.0053 | Hairline (divider, dialog title rule, menu ring), neutral button hover |
-| 5    | `#d0d3d6` | 0.865 | 0.0059 | Neutral button pressed, scroll thumb                                   |
-| 6    | `#b4b8bc` | 0.780 | 0.0073 | Disabled text, scroll thumb hover                                      |
-| 7    | `#9b9fa4` | 0.700 | 0.0086 | Switch off track (§10), decorative icon                                |
-| 8    | `#7c8186` | 0.600 | 0.0102 | A control edge that must reach 3:1                                     |
-| 9    | `#656970` | 0.520 | 0.0116 | Tertiary text                                                          |
-| 10   | `#51565c` | 0.450 | 0.0127 | Secondary text                                                         |
-| 11   | `#1d2229` | 0.250 | 0.0160 | Primary text                                                           |
-
-- Do not add a light grey outside the ramp. `packages/kit/test/light-palette.test.ts` fails on one, and on any text, ring or edge below its contrast target.
-- The blues are not part of the ramp; see §2.3.
-
-Why: the light theme used to mix Tailwind slate with pure neutral greys, so a menu had a neutral ring, a slate hover and slate text, and a field (`#f3f3f3`) was 1.06:1 on its island. CodeImage hid it with white cards.
+`packages/kit/test/light-palette.test.ts` checks ramp membership, ordering, and contrast on light surfaces. The kit uses the generated sRGB hex values in its CSS theme and publishes the OKLCH token values through the DTCG resolver.
 
 ## 3. Typography
 
@@ -384,7 +365,7 @@ A loading control swaps its icon for a spinner and keeps its width. A loading re
 ## 10. Accessibility
 
 - Contrast 4.5:1 for text up to 18px; 3:1 for large text, icons, rings and control edges. Both themes.
-- One exception: the light switch "off" track is ramp step 7 (`--cui-surface-track`, 2.7:1 on the page, 2.3:1 on a field). Step 8 reaches 3:1 but reads as a dark "on" switch. The track is not the only signal: the thumb's position and the "on" blue carry the state.
+- The switch off track stays below 3:1 on some surfaces. It reaches 3.2:1 on the light page, 2.7:1 on a light field and 1.9:1 on a dark field. The thumb position and blue on track also indicate state.
 - Every control works from the keyboard. Pickers and cards open with Enter and Space. Lists preview on focus as on hover.
 - One focus ring: 2px, 2px offset, `--cui-focus-color`, on `:focus-visible`.
 - Closing an overlay returns focus to its trigger. Closing a corner card moves focus to the next control, never into a text field.

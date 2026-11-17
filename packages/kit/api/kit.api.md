@@ -267,16 +267,16 @@ export declare const themeValues: {
     readonly border: {
         readonly input: "transparent";
         readonly dialogTitle: {
-            readonly dark: "#2b2b2b";
-            readonly light: "#dcdee1";
+            readonly dark: "#292929";
+            readonly light: "#dcdcdc";
         };
         readonly divider: {
             readonly dark: "#252525";
-            readonly light: "#dcdee1";
+            readonly light: "#dcdcdc";
         };
         readonly menu: {
-            readonly dark: "#333";
-            readonly light: "#dcdee1";
+            readonly dark: "#373737";
+            readonly light: "#dcdcdc";
         };
         readonly width: "1px";
         readonly widthStrong: "2px";
@@ -342,11 +342,11 @@ export declare const themeValues: {
     };
     readonly surface: {
         readonly canvas: {
-            readonly dark: "#0f0f10";
-            readonly light: "#f7f9fb";
+            readonly dark: "#111111";
+            readonly light: "#f1f1f1";
         };
         readonly toolbar: {
-            readonly dark: "#2b2b2b";
+            readonly dark: "#292929";
             readonly light: "#ffffff";
         };
         readonly scrim: {
@@ -354,111 +354,111 @@ export declare const themeValues: {
             readonly light: "#0006";
         };
         readonly dialog: {
-            readonly dark: "#1d1d1d";
+            readonly dark: "#252525";
             readonly light: "#ffffff";
         };
         readonly inputAccent: {
-            readonly dark: "#505050";
+            readonly dark: "#535353";
             readonly light: "#ffffff";
         };
         readonly input: {
-            readonly dark: "#232323";
-            readonly light: "#eceff1";
+            readonly dark: "#292929";
+            readonly light: "#e6e6e6";
         };
         readonly fieldHover: {
-            readonly dark: "#2f2f2f";
-            readonly light: "#e4e6e9";
+            readonly dark: "#373737";
+            readonly light: "#dcdcdc";
         };
         readonly menuHover: {
-            readonly dark: "#333";
-            readonly light: "#eceff1";
+            readonly dark: "#373737";
+            readonly light: "#e6e6e6";
         };
         readonly menu: {
-            readonly dark: "#282828";
+            readonly dark: "#252525";
             readonly light: "#ffffff";
         };
         readonly panel: {
-            readonly dark: "#151516";
-            readonly light: "#ffffff";
+            readonly dark: "#1c1c1c";
+            readonly light: "#fafafa";
         };
         readonly scrollThumb: {
-            readonly dark: "#505050";
-            readonly light: "#d0d3d6";
+            readonly dark: "#535353";
+            readonly light: "#cccccc";
         };
         readonly scrollThumbHover: {
-            readonly dark: "#333";
-            readonly light: "#b4b8bc";
+            readonly dark: "#666666";
+            readonly light: "#bbbbbb";
         };
         readonly secondary: {
-            readonly dark: "#333";
-            readonly light: "#e4e6e9";
+            readonly dark: "#373737";
+            readonly light: "#dcdcdc";
         };
         readonly toast: {
-            readonly dark: "#2b2b2b";
+            readonly dark: "#252525";
             readonly light: "#ffffff";
         };
         readonly track: {
-            readonly dark: "#505050";
-            readonly light: "#9b9fa4";
+            readonly dark: "#535353";
+            readonly light: "#8c8c8c";
         };
     };
     readonly text: {
         readonly default: {
-            readonly dark: "#ededed";
-            readonly light: "#1d2229";
+            readonly dark: "#f1f1f1";
+            readonly light: "#1c1c1c";
         };
         readonly toolbar: {
-            readonly dark: "#a0a0a0";
-            readonly light: "#51565c";
+            readonly dark: "#aaaaaa";
+            readonly light: "#535353";
         };
         readonly muted: {
-            readonly dark: "#999";
-            readonly light: "#51565c";
+            readonly dark: "#aaaaaa";
+            readonly light: "#535353";
         };
         readonly dialog: {
-            readonly dark: "#ededed";
-            readonly light: "#1d2229";
+            readonly dark: "#f1f1f1";
+            readonly light: "#1c1c1c";
         };
         readonly dialogTitle: {
-            readonly dark: "#ededed";
-            readonly light: "#1d2229";
+            readonly dark: "#f1f1f1";
+            readonly light: "#1c1c1c";
         };
         readonly label: {
-            readonly dark: "#ededed";
-            readonly light: "#1d2229";
+            readonly dark: "#f1f1f1";
+            readonly light: "#1c1c1c";
         };
         readonly hint: {
-            readonly dark: "#a0a0a0";
-            readonly light: "#51565c";
+            readonly dark: "#aaaaaa";
+            readonly light: "#535353";
         };
         readonly tertiary: {
-            readonly dark: "#8a8a8a";
-            readonly light: "#656970";
+            readonly dark: "#8c8c8c";
+            readonly light: "#666666";
         };
         readonly disabled: {
-            readonly dark: "#666";
-            readonly light: "#b4b8bc";
+            readonly dark: "#666666";
+            readonly light: "#bbbbbb";
         };
         readonly input: {
-            readonly dark: "#ededed";
-            readonly light: "#1d2229";
+            readonly dark: "#f1f1f1";
+            readonly light: "#1c1c1c";
         };
         readonly selected: "#fff";
         readonly menu: {
-            readonly dark: "#ededed";
-            readonly light: "#1d2229";
+            readonly dark: "#f1f1f1";
+            readonly light: "#1c1c1c";
         };
         readonly panelMuted: {
-            readonly dark: "#ccc";
-            readonly light: "#51565c";
+            readonly dark: "#aaaaaa";
+            readonly light: "#535353";
         };
         readonly panel: {
-            readonly dark: "#fff";
-            readonly light: "#1d2229";
+            readonly dark: "#f1f1f1";
+            readonly light: "#1c1c1c";
         };
         readonly toast: {
-            readonly dark: "#fff";
-            readonly light: "#1d2229";
+            readonly dark: "#f1f1f1";
+            readonly light: "#1c1c1c";
         };
         readonly danger: {
             readonly dark: "#fc8181";
@@ -468,20 +468,20 @@ export declare const themeValues: {
     readonly action: {
         readonly neutral: {
             readonly active: {
-                readonly dark: "#505050";
-                readonly light: "#d0d3d6";
+                readonly dark: "#535353";
+                readonly light: "#cccccc";
             };
             readonly base: {
-                readonly dark: "#333";
-                readonly light: "#e4e6e9";
+                readonly dark: "#292929";
+                readonly light: "#dcdcdc";
             };
             readonly hover: {
-                readonly dark: "#3e3e3e";
-                readonly light: "#dcdee1";
+                readonly dark: "#373737";
+                readonly light: "#dcdcdc";
             };
             readonly text: {
-                readonly dark: "#ededed";
-                readonly light: "#1d2229";
+                readonly dark: "#f1f1f1";
+                readonly light: "#1c1c1c";
             };
         };
         readonly danger: {
@@ -491,19 +491,19 @@ export declare const themeValues: {
             readonly text: "#fff";
         };
         readonly brand: {
-            readonly active: "#0069b8";
-            readonly base: "#0083e5";
-            readonly hover: "#0076cf";
+            readonly active: "#004f8e";
+            readonly base: "#0076cf";
+            readonly hover: "#0068b9";
             readonly text: "#fff";
         };
         readonly brandSoft: {
-            readonly base: "#0083e526";
-            readonly hover: "#0069b826";
+            readonly base: "#0076cf26";
+            readonly hover: "#004f8e26";
             readonly text: {
-                readonly dark: "#3fa0fe";
-                readonly light: "#0260aa";
+                readonly dark: "#63b3ed";
+                readonly light: "#004f8e";
             };
-            readonly active: "#0069b826";
+            readonly active: "#004f8e26";
         };
         readonly caution: {
             readonly base: "#F08C00";
@@ -519,10 +519,10 @@ export declare const themeValues: {
         };
     };
     readonly accent: {
-        readonly selection: "#0083e5";
+        readonly selection: "#0076cf";
         readonly focus: {
             readonly dark: "#63b3ed";
-            readonly light: "#0083e5";
+            readonly light: "#0068b9";
         };
     };
     readonly focus: {

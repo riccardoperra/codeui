@@ -56,11 +56,11 @@ export function FigSurfaces(props: { n?: number; caption?: ReactNode }) {
       title="Surface levels"
       caption={props.caption}
       legend={[
-        ['Page', '#151516 in dark. Behind everything.'],
-        ['Island', '#0f0f10. Recessed into the page.'],
+        ['Page', 'Behind everything.'],
+        ['Island', 'Recessed into the page.'],
         ['Inset', 'The open section, back to the page colour.'],
-        ['Field', '#232323. Fields, tiles, hover and selection.'],
-        ['Floating', '#1d1d1d with a ring and a shadow. Menus and dialogs.'],
+        ['Field', 'Fields, tiles, hover and selection.'],
+        ['Floating', 'Menus and dialogs, with a ring in dark mode and a shadow.'],
       ]}
     >
       <div style={{ position: 'relative', width: '100%', maxWidth: 380, paddingRight: 40 }}>

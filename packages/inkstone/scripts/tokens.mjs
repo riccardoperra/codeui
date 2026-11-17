@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { load, Resolver } from "@toghen/lib";
+import { tokens as paletteTokens } from "./palette.mjs";
 
 const readJson = async file => JSON.parse(await readFile(file, "utf8"));
 const cssName = keys =>
@@ -19,6 +20,10 @@ function encodeValue(value, type, tokenPath) {
 	switch (type) {
 		case "color": {
 			const { components, alpha = 1, hex } = value;
+			if (value.colorSpace === "oklch") {
+				assert.match(hex, /^#[\da-f]{6}$/i, tokenPath);
+				return alpha === 1 ? hex : `${hex}${Math.round(alpha * 255).toString(16).padStart(2, "0")}`;
+			}
 			assert.equal(value.colorSpace, "srgb", tokenPath);
 			const bytes = [...components, ...(alpha === 1 ? [] : [alpha])]
 				.map(channel =>
@@ -67,8 +72,10 @@ function assign(tree, keys, value) {
 }
 
 async function generateSource(file, code) {
-	const source =
-		"// Generated from the token resolver by scripts/tokens.mjs.\n" + code + "\n";
+	await writeIfChanged(file, "// Generated from the token resolver by scripts/tokens.mjs.\n" + code + "\n");
+}
+
+async function writeIfChanged(file, source) {
 	if (
 		(await readFile(file, "utf8").catch(error => {
 			if (error.code !== "ENOENT") throw error;
@@ -79,6 +86,7 @@ async function generateSource(file, code) {
 
 export async function generateTokens(root) {
 	const dir = path.join(root, "tokens");
+	await writeIfChanged(path.join(dir, "palette.tokens.json"), JSON.stringify(paletteTokens, null, 2) + "\n");
 	const resolverPath = path.join(dir, "inkstone.resolver.json");
 	const { document } = await load(resolverPath, { read: file => readFile(file, "utf8") });
 	assert.equal(document.version, "2025.10");
