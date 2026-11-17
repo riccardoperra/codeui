@@ -143,7 +143,7 @@ The remaining inherited props follow the [Kobalte Accordion contract](https://ko
 
 ### `accordionStyles`
 
-`AccordionStyles` maps each anatomy part key to a function that returns a class string. Only `trigger({ density })` uses the density variant. The other functions ignore variants. Styles are exported from both `@codeui/kit` and `@codeui/kit/accordion`. Use these functions with custom markup when you provide the required semantics and behavior. Styles alone do not manage focus or state.
+`AccordionStyles` maps each anatomy part key to a function that returns its class string. For a custom trigger, combine `accordionStyles.trigger()` with `data-density="compact"` or `data-density="comfortable"`. Styles are exported from both `@codeui/kit` and `@codeui/kit/accordion`.
 
 ## Accessibility
 

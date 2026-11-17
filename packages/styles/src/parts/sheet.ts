@@ -1,5 +1,4 @@
 import * as styles from "../components/Sheet/Sheet.css";
-import { mergeClasses } from "../utils/css";
 export const sheetParts = {
 	trigger: "sheet-trigger",
 	overlay: "sheet-overlay",
@@ -20,13 +19,13 @@ export type SheetSide = "bottom" | "left" | "right";
 export type SheetMotion = "auto" | "none";
 
 export type SheetStyles = {
-	[P in SheetPart]: (variants?: { side?: SheetSide }) => string;
+	[P in SheetPart]: () => string;
 };
 
 export const sheetStyles: SheetStyles = {
 	trigger: () => "",
 	overlay: () => styles.overlay,
-	content: variants => styles.content({ side: variants?.side }),
+	content: styles.content,
 	header: () => styles.header,
 	title: () => styles.title,
 	description: () => styles.description,

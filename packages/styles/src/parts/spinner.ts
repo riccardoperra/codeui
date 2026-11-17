@@ -1,5 +1,4 @@
 import * as styles from "../components/Spinner/Spinner.css";
-import { mergeClasses } from "../utils/css";
 export const spinnerParts = {
 	root: "spinner-root",
 	track: "spinner-track",
@@ -12,11 +11,11 @@ export type SpinnerSize = "sm" | "md" | "lg";
 export type SpinnerVariants = { size?: SpinnerSize };
 
 export type SpinnerStyles = {
-	[P in SpinnerPart]: (variants?: SpinnerVariants) => string;
+	[P in SpinnerPart]: () => string;
 };
 
 export const spinnerStyles: SpinnerStyles = {
-	root: variants => styles.root({ size: variants?.size }),
+	root: styles.root,
 	track: () => styles.track,
 	indicator: () => styles.indicator,
 };

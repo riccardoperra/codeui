@@ -1,6 +1,6 @@
 ---
 title: "Styles reference"
-description: "Public style functions, recipes, and class namespaces."
+description: "Public style functions, variant attributes, and class namespaces."
 ---
 
 <SolidDemo name="styles-reference/part" />
@@ -14,13 +14,13 @@ The reference below follows the exports in `packages/kit/src/index.tsx` and `pac
 
 Advanced raw namespace from `@codeui/kit`. These exports expose class names, variant helpers and CSS variable references.
 
-`button(options)` returns recipe classes. Options are `size` (`xs`, `sm`, `md`, `lg`, `xl`), `theme` (`primary`, `secondary`, `tertiary`, `negative`, `caution`), `variant` (`ghost`), and boolean `block`, `pill`, and `loading`. The recipe defaults to size `md`. `buttonIcon`, `buttonText`, and `buttonTheme` are class strings. `buttonVars` is a CSS variable contract. `ButtonVariants` is the recipe variant type.
+`button()` returns the base class string. Set `data-size`, `data-theme`, or `data-variant="ghost"` on custom markup. `buttonIcon`, `buttonText`, and `buttonTheme` are class strings. `buttonVars` exposes the local CSS variables.
 
 ## `fieldStyles`
 
 Advanced raw namespace from `@codeui/kit`. These exports expose class names, variant helpers and CSS variable references.
 
-`baseFieldVariants(options)` returns recipe classes. Options are `size` (`xs`, `sm`, `md`, `lg`, `xl`) and `theme` (`filled`, `inline`), defaulting to `md` and `filled`. `FieldSizes` contains size names. `baseFieldTheme` is a class string. `baseFieldVars` is a variable contract. `inputHeight` and `fontSize` are variable references. `BaseFieldVariants` is the recipe variant type.
+`baseFieldVariants()` returns the base class. Set `data-size` and `data-theme` on the input. `FieldSizes` contains size names, `baseFieldTheme` is a class string, and `baseFieldVars`, `inputHeight`, and `fontSize` provide CSS variable references.
 
 ## `fieldErrorStyles`
 
@@ -50,7 +50,7 @@ Advanced raw namespace from `@codeui/kit`. These exports expose class names, var
 
 Advanced raw namespace from `@codeui/kit`. These exports expose class names, variant helpers and CSS variable references.
 
-The root namespace exports `content(options)`, a recipe returning a class string with optional `variant: "bordered"`. `title`, `description`, and `popoverTheme` are class strings. `popoverThemeVars` is a variable contract. `PopoverVariants` is the recipe variant type. The subpath object below is a different export with the same name.
+The root namespace exports `content()` for the base classes. Use `data-variant="bordered"` for the bordered variant. The namespace also exposes the title, description, and theme classes and the theme variables.
 
 ## `styleFieldMessage`
 
@@ -62,7 +62,7 @@ The selectors match ancestor `data-field-size` values and set the mapped font si
 ## Part style functions
 
 Each section lists every function and the class source it returns. A source such as `styles.root` names the component's internal CSS export.
-A recipe call returns the generated class string for the selected variants.
+Each helper returns a stable class string. Set the variant attributes described in the component page on your custom elements.
 
 ### `accordionStyles`
 
@@ -73,7 +73,7 @@ Import from `@codeui/kit/accordion`. Also exported from `@codeui/kit`.
 | `root()` | `styles.root` |
 | `item()` | `styles.item` |
 | `header()` | `styles.header` |
-| `trigger(variants?)` | `styles.trigger({ density: variants?.density })` |
+| `trigger()` | `styles.trigger()` |
 | `content()` | `styles.content` |
 | `icon()` | `styles.icon` |
 | `title()` | `styles.title` |
@@ -82,7 +82,7 @@ Import from `@codeui/kit/accordion`. Also exported from `@codeui/kit`.
 
 Variant types: `AccordionVariants = { density?: "compact" | "comfortable" }`.
 
-The trigger accepts `{ density?: "compact" | "comfortable" }`.
+Set `data-density` on a custom trigger.
 
 See [Accordion](/docs/components/accordion) for composition and state attributes.
 
@@ -92,7 +92,7 @@ Import from `@codeui/kit/alert`.
 
 | Function | Returns |
 | --- | --- |
-| `root(variants?)` | `styles.root({ tone: variants?.tone, fluid: variants?.fluid })` |
+| `root()` | `styles.root()` |
 | `icon()` | `styles.icon` |
 | `title()` | `styles.title` |
 | `description()` | `styles.description` |
@@ -100,7 +100,7 @@ Import from `@codeui/kit/alert`.
 
 Variant types: `AlertTone = "neutral" | "info" | "success" | "warning" | "danger"`. `AlertVariants = { tone?: AlertTone; fluid?: boolean }`.
 
-`root` defaults to tone `neutral` and `fluid: false`.
+The Solid root defaults to tone `neutral` and `fluid: false`.
 
 See [Alert](/docs/components/alert) for composition and state attributes.
 
@@ -110,13 +110,13 @@ Import from `@codeui/kit/badge`.
 
 | Function | Returns |
 | --- | --- |
-| `root(variants?)` | `styles.root({ size: variants?.size, tone: variants?.tone, variant: variants?.variant })` |
+| `root()` | `styles.root()` |
 | `icon()` | `styles.icon` |
 | `label()` | `styles.label` |
 
 Variant types: `BadgeSize = "sm" | "md"`. `BadgeTone = "neutral" | "info" | "success" | "warning" | "danger"`. `BadgeVariant = "soft" | "outline"`. `BadgeVariants = { size?: BadgeSize; tone?: BadgeTone; variant?: BadgeVariant }`.
 
-`root` defaults to size `sm`, tone `neutral`, and variant `soft`.
+The Solid root defaults to size `sm`, tone `neutral`, and variant `soft`.
 
 See [Badge](/docs/components/badge) for composition and state attributes.
 
@@ -127,7 +127,7 @@ Import from `@codeui/kit/combobox`. Also exported from `@codeui/kit`.
 | Function | Returns |
 | --- | --- |
 | `root()` | `styles.root` |
-| `control(variants?)` | `styles.control({ size: variants?.size })` |
+| `control()` | `styles.control()` |
 | `input()` | `styles.input` |
 | `trigger()` | `styles.trigger` |
 | `icon()` | `styles.icon` |
@@ -185,7 +185,7 @@ Import from `@codeui/kit/dialog`.
 | `trigger()` | `""` |
 | `overlay()` | `styles.overlay` |
 | `positioner()` | `mergeClasses(styles.dialogTheme, styles.positioner)` |
-| `panel(variants?)` | `mergeClasses(styles.dialogTheme, styles.panel({ size: variants?.size }))` |
+| `panel()` | `mergeClasses(styles.dialogTheme, styles.panel())` |
 | `header()` | `styles.title` |
 | `title()` | `""` |
 | `description()` | `styles.description` |
@@ -195,7 +195,7 @@ Import from `@codeui/kit/dialog`.
 
 Variant types: `DialogSize = "xs" | "sm" | "md" | "lg" | "xl" | "full"`.
 
-Only `panel` accepts `{ size?: DialogSize }`.
+Set `data-size` and `data-chrome` on a custom panel.
 
 See [Dialog](/docs/components/dialog) for composition and state attributes.
 
@@ -205,11 +205,11 @@ Import from `@codeui/kit/kbd`.
 
 | Function | Returns |
 | --- | --- |
-| `root(variants?)` | `styles.root({ size: variants?.size, variant: variants?.variant })` |
+| `root()` | `styles.root()` |
 
 Variant types: `KbdSize = "sm" | "md"`. `KbdVariant = "keycap" | "hint"`. `KbdVariants = { size?: KbdSize; variant?: KbdVariant }`.
 
-`root` defaults to size `sm` and variant `keycap`.
+The Solid root defaults to size `sm` and variant `keycap`.
 
 See [Kbd](/docs/components/kbd) for composition and state attributes.
 
@@ -234,7 +234,7 @@ Import from `@codeui/kit/option-card`. Also exported from `@codeui/kit`.
 
 Variant types: `OptionCardVariant = "card" | "tile"`. `OptionCardVariants = { variant?: OptionCardVariant }`.
 
-These functions return invariant classes. Their variant arguments do not select recipe classes. The styled components set the required data attributes.
+The Solid components set the variant attributes.
 
 See [Option card](/docs/components/option-card) for composition and state attributes.
 
@@ -246,7 +246,7 @@ Import from `@codeui/kit/popover`.
 | --- | --- |
 | `trigger()` | `""` |
 | `anchor()` | `""` |
-| `content(variants?)` | `styles.content({ variant: variants?.variant })` |
+| `content()` | `styles.content()` |
 | `arrow()` | `""` |
 | `title()` | `styles.title` |
 | `description()` | `styles.description` |
@@ -254,7 +254,7 @@ Import from `@codeui/kit/popover`.
 
 Variant types: `PopoverVariant = "bordered"`.
 
-Only `content` accepts `{ variant?: "bordered" }`.
+Set `data-variant="bordered"` on custom content.
 
 See [Popover](/docs/components/popover) for composition and state attributes.
 
@@ -272,7 +272,7 @@ Import from `@codeui/kit/progress`. Also exported from `@codeui/kit`.
 
 Variant types: `ProgressVariants = { size?: "sm" | "md" }`.
 
-These functions return invariant classes. Their variant arguments do not select recipe classes. The styled components set the required data attributes.
+The Solid components set the variant attributes.
 
 See [Progress](/docs/components/progress) for composition and state attributes.
 
@@ -284,7 +284,7 @@ Import from `@codeui/kit/sheet`.
 | --- | --- |
 | `trigger()` | `""` |
 | `overlay()` | `styles.overlay` |
-| `content(variants?)` | `styles.content({ side: variants?.side })` |
+| `content()` | `styles.content()` |
 | `header()` | `styles.header` |
 | `title()` | `styles.title` |
 | `description()` | `styles.description` |
@@ -295,7 +295,7 @@ Import from `@codeui/kit/sheet`.
 
 Variant types: `SheetSide = "bottom" | "left" | "right"`.
 
-Only `content` accepts `{ side?: SheetSide }`, defaulting to `bottom`.
+Set `data-side` on custom content. The Solid `Content` part defaults to `bottom`.
 
 See [Sheet](/docs/components/sheet) for composition and state attributes.
 
@@ -305,11 +305,11 @@ Import from `@codeui/kit/skeleton`.
 
 | Function | Returns |
 | --- | --- |
-| `root(variants?)` | `styles.root({ circle: variants?.circle, animate: variants?.animate ?? true })` |
+| `root()` | `styles.root()` |
 
 Variant types: `SkeletonVariants = { circle?: boolean; animate?: boolean }`.
 
-`root` defaults to `animate: true`.
+The Solid root defaults to `animate: true`.
 
 See [Skeleton](/docs/components/skeleton) for composition and state attributes.
 
@@ -331,7 +331,7 @@ Import from `@codeui/kit/slider`. Also exported from `@codeui/kit`.
 
 Variant types: `SliderVariants = { orientation?: "horizontal" | "vertical" }`.
 
-These functions return invariant classes. Their variant arguments do not select recipe classes. The styled components set the required data attributes.
+The Solid components set the variant attributes.
 
 See [Slider](/docs/components/slider) for composition and state attributes.
 
@@ -341,13 +341,13 @@ Import from `@codeui/kit/spinner`.
 
 | Function | Returns |
 | --- | --- |
-| `root(variants?)` | `styles.root({ size: variants?.size })` |
+| `root()` | `styles.root()` |
 | `track()` | `styles.track` |
 | `indicator()` | `styles.indicator` |
 
 Variant types: `SpinnerSize = "sm" | "md" | "lg"`. `SpinnerVariants = { size?: SpinnerSize }`.
 
-`root` defaults to size `md`.
+The Solid root defaults to size `md`.
 
 See [Spinner](/docs/components/spinner) for composition and state attributes.
 
@@ -363,7 +363,7 @@ The `Gap` values are `0`, `0.5`, `1`, `1.5`, `2`, `3`, `4`, `6`, `8`, `10`, `12`
 
 Variant types: `StackVariants = { gap?: Gap; align?: "start" | "center" | "end" | "stretch" | "baseline"; justify?: "start" | "center" | "end" | "between" | "around" | "evenly"; direction?: "row" | "column"; wrap?: boolean; }`.
 
-These functions return invariant classes. Their variant arguments do not select recipe classes. The styled components set the required data attributes and inline gap variable.
+The Solid components set the variant attributes.
 
 See [Stack](/docs/components/stack) for composition and state attributes.
 
@@ -383,7 +383,7 @@ Import from `@codeui/kit/switch`. Also exported from `@codeui/kit`.
 
 Variant types: `SwitchVariants = { size?: "sm" | "md" }`.
 
-These functions return invariant classes. Their variant arguments do not select recipe classes. The styled components set the required data attributes.
+The Solid components set the variant attributes.
 
 See [Switch](/docs/components/switch) for composition and state attributes.
 
@@ -397,7 +397,7 @@ Import from `@codeui/kit/text`.
 
 Variant types: `TextVariants = { size?: keyof typeof tokens.font.size; weight?: keyof typeof tokens.font.weight; tone?: "default" | "muted" | "hint" | "label" | "danger" | "success"; }`.
 
-These functions return invariant classes. Their variant arguments do not select recipe classes. The styled components set the required data attributes.
+The Solid components set the variant attributes.
 
 See [Text](/docs/components/text) for composition and state attributes.
 
@@ -407,9 +407,9 @@ Import from `@codeui/kit/toast`.
 
 | Function | Returns |
 | --- | --- |
-| `region(variants?)` | `styles.region({ position: variants?.position })` |
+| `region()` | `styles.region()` |
 | `list()` | `styles.list` |
-| `root(variants?)` | `styles.root({ tone: variants?.tone })` |
+| `root()` | `styles.root()` |
 | `title()` | `styles.title` |
 | `description()` | `styles.description` |
 | `closeButton()` | `styles.closeButton` |

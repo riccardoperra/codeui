@@ -229,7 +229,7 @@ export function Body(props: BodyProps) {
 		<div
 			data-cui={dialogParts.body}
 			data-layout={local.layout}
-			class={mergeClasses(dialogStyles.body({ layout: local.layout }), local.class)}
+			class={mergeClasses(dialogStyles.body(), local.class)}
 			{...others}
 		/>
 	);
@@ -385,7 +385,7 @@ export function Section(props: SectionProps) {
 			data-cui={dialogParts.section}
 			data-variant={variant()}
 			data-columns={local.columns === 2 ? "2" : undefined}
-			class={mergeClasses(styles.section.classNames.base, local.class)}
+			class={mergeClasses(styles.section(), local.class)}
 			{...others}
 		>
 			<Show when={local.title}>

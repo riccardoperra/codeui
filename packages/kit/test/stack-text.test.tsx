@@ -51,19 +51,6 @@ it("updates layout and typography attributes reactively and keeps inline styles"
 	const status = screen.getByText("Status");
 	expect(status).toHaveAttribute("data-tone", "danger");
 });
-it("style functions give custom markup the classes of each variant", () => {
-	for (const variants of [
-		{ gap: "4", direction: "row", align: "center" },
-		{ gap: "2.5", justify: "evenly", wrap: true },
-		{ gap: "5" },
-	] as const) {
-		const custom = S.stackStyles.root(variants);
-		expect(custom).not.toBe(S.stackStyles.root());
-	}
-	for (const variants of [{ size: "xs" }, { weight: "semibold" }, { tone: "muted" }] as const) {
-		expect(T.textStyles.root(variants)).not.toBe(T.textStyles.root());
-	}
-});
 it("exposes root styles and defaults and preserves string styles", () => {
 	render(() => (
 		<S.Root style="flex:1" data-testid="stack">

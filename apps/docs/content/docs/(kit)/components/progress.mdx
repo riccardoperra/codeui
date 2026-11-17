@@ -99,7 +99,7 @@ Styled Kobalte ValueLabel with tabular numbers.
 
 ### `progressStyles`
 
-`progressStyles` is typed as `ProgressStyles`. Each part function returns a class string. Use it when you own the markup and semantics. `root()`, `label()`, `track()`, `fill()`, and `valueLabel()` return fixed classes. The functions accept `ProgressVariants`, but size is selected by `data-size="md"` on the root ancestor, not by the argument. The export is available from both `@codeui/kit` and `@codeui/kit/progress`.
+`progressStyles` is typed as `ProgressStyles`. Each function returns its part class. Set `data-size="md"` on a custom track for the medium size. Import the helpers from `@codeui/kit` or `@codeui/kit/progress`.
 
 ## Accessibility
 

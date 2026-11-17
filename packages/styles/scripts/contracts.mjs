@@ -8,11 +8,9 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 function contract(value, callFunctions = false) {
 	if (typeof value === "string") return value;
 	if (typeof value === "function")
-		return value.classNames
-			? { classNames: value.classNames }
-			: callFunctions
-				? { default: value() }
-				: { function: true };
+		return callFunctions || value.length === 0
+			? { default: value() }
+			: { function: true };
 	if (value && typeof value === "object")
 		return Object.fromEntries(
 			Object.entries(value).map(([name, child]) => [

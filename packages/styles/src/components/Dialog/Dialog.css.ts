@@ -1,5 +1,3 @@
-import type { RecipeVariants } from "../../types";
-import { recipe } from "../../recipe";
 export const description: string = "cui-dialog-description";
 export const dialogTheme: string = "cui-dialog-dialogTheme";
 export const dialogThemeVars = {
@@ -28,43 +26,18 @@ export const navIcon: string = "cui-dialog-navIcon";
 export const navItem: string = "cui-dialog-navItem";
 export const navList: string = "cui-dialog-navList";
 export const overlay: string = "cui-dialog-overlay cui-dialog-dialogTheme";
-export const panel = recipe({
-	defaultClassName: "cui-dialog-panel",
-	variantClassNames: {
-		size: {
-			xs: "cui-dialog-panel_size_xs",
-			sm: "cui-dialog-panel_size_sm",
-			md: "cui-dialog-panel_size_md",
-			lg: "cui-dialog-panel_size_lg",
-			xl: "cui-dialog-panel_size_xl",
-			full: "cui-dialog-panel_size_full",
-			settings: "cui-dialog-panel_size_settings",
-			export: "cui-dialog-panel_size_export",
-		},
-		chrome: {
-			bar: "cui-dialog-panel_chrome_bar",
-			inset: "cui-dialog-panel_chrome_inset",
-		},
-	},
-	defaultVariants: {},
-});
+export const panel = (): string => "cui-dialog-panel";
 export const panelContent: string = "cui-dialog-panelContent";
 export const panelFooter: string = "cui-dialog-panelFooter";
 export const positioner: string = "cui-dialog-positioner";
-export const section = recipe({
-	defaultClassName: "cui-dialog-section",
-	variantClassNames: {
-		variant: {
-			group: "cui-dialog-section_variant_group",
-			well: "cui-dialog-section_variant_well",
-		},
-	},
-	defaultVariants: { variant: "group" },
-});
+export const section = (): string => "cui-dialog-section";
 export const sectionContent: string = "cui-dialog-sectionContent";
 export const sectionTitle: string = "cui-dialog-sectionTitle";
 export const sidebar: string = "cui-dialog-sidebar";
 export const sidebarSearch: string = "cui-dialog-sidebarSearch";
 export const title: string = "cui-dialog-title";
 
-export type DialogPanelVariants = RecipeVariants<typeof panel>;
+export type DialogPanelVariants = {
+	size?: "xs" | "sm" | "md" | "lg" | "xl" | "full" | "settings" | "export";
+	chrome?: "bar" | "inset";
+} | undefined;

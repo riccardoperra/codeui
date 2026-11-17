@@ -5,7 +5,6 @@ import { fileURLToPath } from "node:url";
 import ts from "typescript";
 import { build } from "esbuild";
 import { compileStylesheet } from "./component-tokens.mjs";
-import { variantSelectorVisitor } from "./variant-selectors.mjs";
 import { generateTheme } from "./tokens.mjs";
 import { collectContracts } from "./contracts.mjs";
 
@@ -90,7 +89,6 @@ const publicContract = await collectContracts(out);
 const cssByScope = new Map();
 const layerOrder = "@layer cui;\n@layer cui.base, cui.components, cui.overrides;\n";
 const emittedAliases = new Set();
-const visitor = variantSelectorVisitor(publicContract);
 const sharedMedia = await readFile(path.join(root, "css/media.css"), "utf8");
 for (const scope of new Set(Object.values(sources).flat())) {
 	const filename = scope.replace(/\.ts$/, "");
@@ -101,7 +99,6 @@ for (const scope of new Set(Object.values(sources).flat())) {
 		source,
 		sourcePath,
 		media: `${sharedMedia}\n${media}`,
-		visitor,
 		componentAliases,
 		emittedAliases,
 	});

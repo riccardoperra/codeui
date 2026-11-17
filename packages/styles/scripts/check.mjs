@@ -86,16 +86,8 @@ for (const [name, entry] of Object.entries(registry)) {
 	);
 	for (const [symbol, value] of Object.entries(esm)) {
 		if (typeof value === "string") assert.equal(value, cjs[symbol]);
-		if (typeof value === "function" && value.classNames) {
-			assert.deepEqual(value.classNames, cjs[symbol].classNames);
-			for (const group of value.variants())
-				for (const variant of Object.keys(value.classNames.variants[group])) {
-					const option = {
-						[group]: variant === "true" ? true : variant === "false" ? false : variant,
-					};
-					assert.equal(value(option), cjs[symbol](option));
-				}
-		}
+		if (typeof value === "function" && value.length === 0)
+			assert.equal(value(), cjs[symbol]());
 	}
 	const expectedComponents = new Set();
 	const add = component => {
@@ -127,8 +119,8 @@ for (const [name, entry] of Object.entries(registry)) {
 		);
 		for (const value of Object.values(raw)) {
 			const base =
-				typeof value === "function" && value.classNames
-					? value.classNames.base
+				typeof value === "function" && value.length === 0
+					? value()
 					: typeof value === "string"
 						? value
 						: "";
@@ -152,6 +144,11 @@ assert.deepEqual(
 	JSON.parse(await readFile(path.join(root, "contract.json"), "utf8")),
 	"Public CSS contract drifted.",
 );
+assert.doesNotMatch(
+	await readFile(path.join(out, "all.css"), "utf8"),
+	/\.cui-[\w-]+_[\w-]+_[\w-]+/,
+	"Published CSS must select component variants through attributes.",
+);
 const fixture = path.join(out, ".check-types.ts");
 try {
 	await writeFile(
@@ -165,15 +162,15 @@ import { dialogStyles, dialogThemeVars } from './types/dialog';
 import { switchStyles } from './types/switch';
 import { responsiveStyle } from './types/tokens';
 import type { StyleRule } from './types/internal/types.js';
-button({ theme: 'primary', size: 'md' });
-dialogStyles.panel({ size: 'settings', chrome: 'inset' });
-switchStyles.control({ size: 'sm' });
+button();
+dialogStyles.panel();
+switchStyles.control();
 const responsive: StyleRule = responsiveStyle({
   xs: { ':hover': { color: 'red' }, display: ['-webkit-box', 'flex'], cursor: 'var(--cursor)' },
   md: { '@scope': { '(.card)': { color: 'red' } }, '@starting-style': { opacity: 0 } },
 });
-// @ts-expect-error Unknown size is not part of the public variant contract.
-button({ size: 'huge' });
+// @ts-expect-error Variant choices belong in markup attributes.
+button({ size: 'md' });
 `,
 	);
 	const program = ts.createProgram([fixture], {
@@ -207,8 +204,8 @@ try {
 import { button } from '@codeui/styles/button';
 import { dialogStyles, dialogThemeVars } from '@codeui/styles/dialog';
 import { styleFieldMessage } from '@codeui/styles/internal/components/Field/fieldStyle';
-button({ theme: 'primary', size: 'md' });
-dialogStyles.panel({ size: 'settings' });
+button();
+dialogStyles.panel();
 styleFieldMessage({ xs: 'xs', sm: 'sm', md: 'md', lg: 'lg', xl: 'xl' });
 `,
 		);

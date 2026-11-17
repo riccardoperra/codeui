@@ -1,5 +1,4 @@
 import { root } from "../components/Stack/Stack.css";
-import { mergeClasses } from "../utils/css";
 export type Gap =
 	| "0"
 	| "0.5"
@@ -33,14 +32,7 @@ export type StackVariants = {
 export const stackParts = { root: "stack-root" } as const;
 export type StackPart = keyof typeof stackParts;
 export type StackClasses = Partial<Record<StackPart, string>>;
-export type StackStyles = { root: (variants?: StackVariants) => string };
+export type StackStyles = { root: () => string };
 export const stackStyles: StackStyles = {
-	root: variants =>
-		root({
-			gap: variants?.gap,
-			align: variants?.align,
-			justify: variants?.justify,
-			direction: variants?.direction,
-			wrap: variants?.wrap,
-		}),
+	root: root,
 };

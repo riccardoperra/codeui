@@ -23,7 +23,7 @@ export function Root<T extends ValidComponent = "div">(
 			{...others}
 			data-cui={progressParts.root}
 			data-size={local.size}
-			class={mergeClasses(progressStyles.root(local), local.class)}
+			class={mergeClasses(progressStyles.root(), local.class)}
 		/>
 	);
 }
@@ -41,7 +41,7 @@ export function Label<T extends ValidComponent = "span">(
 			{...others}
 			data-cui={progressParts.label}
 			data-size={local.size}
-			class={mergeClasses(progressStyles.label(local), local.class)}
+			class={mergeClasses(progressStyles.label(), local.class)}
 		/>
 	);
 }
@@ -59,7 +59,7 @@ export function Track<T extends ValidComponent = "div">(
 			{...others}
 			data-cui={progressParts.track}
 			data-size={local.size}
-			class={mergeClasses(styles.track.classNames.base, local.class)}
+			class={mergeClasses(styles.track(), local.class)}
 		/>
 	);
 }
@@ -79,7 +79,7 @@ export function Fill<T extends ValidComponent = "div">(
 			{...others}
 			data-cui={progressParts.fill}
 			data-size={local.size}
-			class={mergeClasses(progressStyles.fill(local), local.class)}
+			class={mergeClasses(progressStyles.fill(), local.class)}
 		/>
 	);
 }
@@ -97,7 +97,7 @@ export function ValueLabel<T extends ValidComponent = "div">(
 			{...others}
 			data-cui={progressParts.valueLabel}
 			data-size={local.size}
-			class={mergeClasses(progressStyles.valueLabel(local), local.class)}
+			class={mergeClasses(progressStyles.valueLabel(), local.class)}
 		/>
 	);
 }

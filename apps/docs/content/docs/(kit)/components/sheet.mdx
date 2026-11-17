@@ -164,7 +164,7 @@ The remaining inherited props follow the [Kobalte Sheet contract](https://kobalt
 
 ### `sheetStyles`
 
-`SheetStyles` maps each anatomy part key to a function that returns a class string. Only `content({ side })` uses the optional side variant. `trigger()` returns an empty string. Styles are exported from `@codeui/kit/sheet`. Use these functions with custom markup when you provide the required semantics and behavior. Styles alone do not manage focus or state.
+`SheetStyles` maps each anatomy part key to a function that returns its class string. Set `data-side` on custom content, for example `data-side="bottom"`. `trigger()` returns an empty string. Import these functions from `@codeui/kit/sheet`.
 
 ## Accessibility
 

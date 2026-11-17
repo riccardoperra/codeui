@@ -174,7 +174,7 @@ export function Select<Option, OptGroup = never>(props: ParentProps<SelectProps<
 				data-size={local.size ?? "md"}
 				data-theme={local.theme ?? "filled"}
 				aria-label={local["aria-label"]}
-				class={mergeClasses(baseFieldVariants.classNames.base, styles.selectField, partClass(local, "trigger"))}
+				class={mergeClasses(baseFieldVariants(), styles.selectField, partClass(local, "trigger"))}
 			>
 				<KSelect.Value<Option> data-cui={selectParts.value} class={partClass(local, "value")}>
 					{state => {

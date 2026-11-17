@@ -50,7 +50,7 @@ Button's stylesheet still owns the selector and the property. Its medium-size ru
 </button>
 ```
 
-Author single variants as `:where(.cui-button-button)[data-size="md"]`. Write compound variants as a base class followed by a group of attributes, such as `.cui-button-button:where([data-variant="ghost"][data-loading])`. The Lightning CSS visitor adds selectors for the public class helpers. The emitted `:is()` matches either representation and the class branch applies when the corresponding attribute is absent.
+Author single variants as `:where(.cui-button-button)[data-size="md"]`. Write compound variants as a base class followed by a group of attributes, such as `.cui-button-button:where([data-variant="ghost"][data-loading])`. Style helpers return the class for the part. Set the variant attributes on the same element.
 
 Use CSS pseudo-classes for browser states such as `:focus-visible` and the component's documented attributes for state supplied by its adapter. For boolean variants with two styled values, such as Stack's `data-wrap`, use `"true"` or `"false"`. Use a presence attribute for flags such as `data-loading`.
 

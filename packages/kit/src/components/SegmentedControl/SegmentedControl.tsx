@@ -73,8 +73,7 @@ export function SegmentedControl(props: PolymorphicProps<"div", SegmentedControl
 			local.slotClasses?.root,
 			local.classes?.root,
 			local.class,
-			styles.segmentedControlWrapper.classNames.base,
-			styles.segmentedFieldTheme,
+			styles.segmentedControlWrapper(),
 		);
 
 	const contextState = {

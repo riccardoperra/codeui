@@ -97,7 +97,7 @@ export function Tooltip(props: TooltipProps) {
 					ref={contentRef}
 					data-cui="tooltip-content"
 					data-theme={local.theme ?? "primary"}
-					class={mergeClasses(local.slotClasses?.content, styles.tooltipContent.classNames.base, styles.tooltipTheme)}
+					class={mergeClasses(local.slotClasses?.content, styles.tooltipContent())}
 				>
 					{internal.content}
 				</KTooltip.Content>

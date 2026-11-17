@@ -1,4 +1,3 @@
-import { mergeClasses } from "../utils/css";
 import * as styles from "../components/Accordion/Accordion.css";
 export const accordionParts = {
 	root: "accordion-root",
@@ -16,13 +15,13 @@ export type AccordionClasses = Partial<Record<AccordionPart, string>>;
 export type AccordionVariants = { density?: "compact" | "comfortable" };
 export type AccordionStyles = Record<
 	AccordionPart,
-	(variants?: AccordionVariants) => string
+	() => string
 >;
 export const accordionStyles: AccordionStyles = {
 	root: () => styles.root,
 	item: () => styles.item,
 	header: () => styles.header,
-	trigger: variants => styles.trigger({ density: variants?.density }),
+	trigger: styles.trigger,
 	content: () => styles.content,
 	icon: () => styles.icon,
 	title: () => styles.title,

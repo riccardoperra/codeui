@@ -6,7 +6,6 @@ import { splitProps, type ValidComponent } from "solid-js";
 import { mergeRefs } from "@kobalte/utils";
 import { mergeClasses } from "../utils/css";
 import { motionRef } from "../utils/open-source";
-import * as styles from "../components/Combobox/Combobox.css";
 export { useComboboxContext } from "@kobalte/core/combobox";
 export {
 	createComboboxOptions,
@@ -26,7 +25,7 @@ function partAttributes(part: ComboboxPart, local: Local) {
 			return local.size;
 		},
 		get class() {
-			return mergeClasses(part === "control" ? styles.control.classNames.base : comboboxStyles[part](), local.class);
+			return mergeClasses(comboboxStyles[part](), local.class);
 		},
 	};
 }

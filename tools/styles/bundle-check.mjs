@@ -50,7 +50,7 @@ try {
 						unused:
 							'import {button} from "@codeui/styles/button"; document.body.textContent="No component";',
 						button:
-							'import "@codeui/styles/theme.css"; import "@codeui/styles/button.css"; import {button} from "@codeui/styles/button"; document.body.className=button({theme:"primary"});',
+							'import "@codeui/styles/theme.css"; import "@codeui/styles/button.css"; import {button} from "@codeui/styles/button"; document.body.className=button(); document.body.dataset.theme="primary"; document.body.dataset.size="md";',
 						lazy: 'import "@codeui/styles/theme.css"; import "@codeui/styles/button.css"; window.openDialog=()=>import("./dialog.js").then(module=>module.open());',
 					};
 		for (const [scenario, source] of Object.entries(scenarios)) {

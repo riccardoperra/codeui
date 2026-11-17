@@ -60,7 +60,7 @@ export function TextArea(props: TextAreaProps) {
 
 	const inputClasses = () =>
 		mergeClasses(
-			baseFieldVariants.classNames.base,
+			baseFieldVariants(),
 			styles.textArea,
 			local.slotClasses?.input,
 			local.classes?.input,

@@ -1,10 +1,4 @@
-import type { RecipeVariants } from "../../types";
-import { recipe } from "../../recipe";
-export const content = recipe({
-	defaultClassName: "cui-popover-content cui-popover-popoverTheme",
-	variantClassNames: { variant: { bordered: "cui-popover-content_variant_bordered" } },
-	defaultVariants: {},
-});
+export const content = (): string => "cui-popover-content cui-popover-popoverTheme";
 export const description: string = "cui-popover-description";
 export const popoverTheme: string = "cui-popover-popoverTheme";
 export const popoverThemeVars = {
@@ -22,4 +16,6 @@ export const popoverThemeVars = {
 };
 export const title: string = "cui-popover-title";
 
-export type PopoverVariants = RecipeVariants<typeof content>;
+export type PopoverVariants = {
+	variant?: "bordered";
+} | undefined;

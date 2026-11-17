@@ -10,7 +10,6 @@ export async function compileStylesheet({
 	media,
 	componentAliases,
 	emittedAliases,
-	visitor,
 }) {
 	const marker = /^@import "\.\/([a-z0-9-]+)-tokens\.generated\.css";/m.exec(source);
 	if (!marker)
@@ -53,7 +52,6 @@ export async function compileStylesheet({
 	const generatedPath = path.join(path.dirname(sourcePath), mediaFile);
 	const { code } = await bundleAsync({
 		filename: sourcePath,
-		visitor,
 		include: Features.Nesting | Features.MediaQueries,
 		drafts: { customMedia: true },
 		resolver: {

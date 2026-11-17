@@ -15,7 +15,7 @@ export function Root(props: RootProps) {
 			data-cui={kbdParts.root}
 			data-size={local.size ?? "sm"}
 			data-variant={local.variant ?? "keycap"}
-			class={mergeClasses(styles.root.classNames.base, local.class)}
+			class={mergeClasses(styles.root(), local.class)}
 			{...others}
 		/>
 	);

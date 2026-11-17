@@ -194,7 +194,7 @@ The inherited behavior follows the [Kobalte RadioGroup contract](https://kobalte
 
 `optionCardStyles` is exported from `@codeui/kit` and `@codeui/kit/option-card`. Each anatomy key is a function that returns a class string. `OptionCardStyles` describes those functions. `OptionCardPart` is the key union, and `OptionCardClasses` is a partial map of keys to class names.
 
-Functions accept `OptionCardVariants`. `optionCardStyles.itemLabel({ variant: "tile" })` returns the tile padding class, so custom markup gets the tile look from the function alone. The single-column layout still depends on `data-orientation="vertical"`, which Kobalte sets on the root. A class string alone does not supply radio semantics or state attributes.
+Call `optionCardStyles.itemLabel()` and set `data-variant="tile"` on a custom label to select its tile padding. Kobalte sets `data-orientation="vertical"` on the root for the single-column layout.
 
 ## Accessibility
 

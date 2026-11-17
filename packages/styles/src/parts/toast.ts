@@ -1,5 +1,4 @@
 import * as styles from "../components/Toast/Toast.css";
-import { mergeClasses } from "../utils/css";
 export const toastParts = {
 	region: "toast-region",
 	list: "toast-list",
@@ -25,12 +24,12 @@ export type ToastPosition =
 	| "bottom-right";
 export type ToastVariants = { tone?: ToastTone; position?: ToastPosition };
 
-export type ToastStyles = { [P in ToastPart]: (variants?: ToastVariants) => string };
+export type ToastStyles = { [P in ToastPart]: () => string };
 
 export const toastStyles: ToastStyles = {
-	region: variants => styles.region({ position: variants?.position }),
+	region: styles.region,
 	list: () => styles.list,
-	root: variants => styles.root({ tone: variants?.tone }),
+	root: styles.root,
 	title: () => styles.title,
 	description: () => styles.description,
 	closeButton: () => styles.closeButton,

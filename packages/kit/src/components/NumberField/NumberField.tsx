@@ -110,7 +110,7 @@ export function NumberField(props: NumberFieldProps) {
 
 	const inputClasses = () =>
 		mergeClasses(
-			baseFieldVariants.classNames.base,
+			baseFieldVariants(),
 			styles.textField,
 			local.slotClasses?.input,
 			local.classes?.input,

@@ -54,7 +54,7 @@ export function Checkbox(props: CheckBoxProps) {
 			<KCheckbox.Control
 				data-size={local.size ?? "md"}
 				data-theme={local.theme ?? "inline"}
-				class={mergeClasses(styles.control.classNames.base, local.slotClasses?.control)}
+				class={mergeClasses(styles.control(), local.slotClasses?.control)}
 			>
 				<KCheckbox.Indicator forceMount={true} class={styles.indicator}>
 					<CheckIcon class={styles.icon} />

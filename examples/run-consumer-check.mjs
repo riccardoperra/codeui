@@ -187,7 +187,9 @@ try {
 				report(
 					"CSS-only Button data attributes",
 					buttonStyles.length === 2 &&
-						JSON.stringify(buttonStyles[0]) === JSON.stringify(buttonStyles[1]),
+						buttonStyles[0][0] === "40px" &&
+						buttonStyles[1][0] === "36px" &&
+						buttonStyles[0][1] === buttonStyles[1][1],
 					JSON.stringify(buttonStyles),
 				);
 				report(
@@ -206,7 +208,7 @@ import { button } from '@codeui/styles/button';
 import { iconButton } from '@codeui/styles/icon-button';
 import { label } from '@codeui/styles/field-label';
 import { switchStyles } from '@codeui/styles/switch';
-console.log(JSON.stringify({ button: button({ theme: 'primary', size: 'md' }) + ' ' + iconButton, label: label + ' ' + switchStyles.label() }));
+console.log(JSON.stringify({ button: button() + ' ' + iconButton, label: label + ' ' + switchStyles.label() }));
 `,
 						],
 						cssRoot,
@@ -232,7 +234,7 @@ console.log(JSON.stringify({ button: button({ theme: 'primary', size: 'md' }) + 
 						)
 						.join("\n");
 					await cssPage.setContent(
-						`<html data-cui-theme="dark"><head><style>${themeCss}</style><style>${css}</style></head><body><label id="label" class="${classes.label}">Name</label><button id="icon" class="${classes.button}">+</button></body></html>`,
+						`<html data-cui-theme="dark"><head><style>${themeCss}</style><style>${css}</style></head><body><label id="label" class="${classes.label}">Name</label><button id="icon" class="${classes.button}" data-size="md" data-theme="primary">+</button></body></html>`,
 					);
 					const composition = await cssPage.evaluate(() => {
 						const label = getComputedStyle(document.querySelector("#label"));

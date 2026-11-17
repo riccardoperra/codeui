@@ -1,29 +1,4 @@
-import type { RecipeVariants } from "../../types";
-import { recipe } from "../../recipe";
-export const button = recipe({
-	defaultClassName: "cui-button-button cui-button-buttonTheme",
-	variantClassNames: {
-		size: {
-			xl: "cui-button-button_size_xl",
-			lg: "cui-button-button_size_lg",
-			md: "cui-button-button_size_md",
-			sm: "cui-button-button_size_sm",
-			xs: "cui-button-button_size_xs",
-		},
-		theme: {
-			primary: "cui-button-button_theme_primary",
-			tertiary: "cui-button-button_theme_tertiary",
-			secondary: "cui-button-button_theme_secondary",
-			negative: "cui-button-button_theme_negative",
-			caution: "cui-button-button_theme_caution",
-		},
-		variant: { ghost: "cui-button-button_variant_ghost" },
-		block: { true: "cui-button-button_block_true" },
-		pill: { true: "cui-button-button_pill_true" },
-		loading: { true: "cui-button-button_loading_true" },
-	},
-	defaultVariants: { size: "md" },
-});
+export const button = (): string => "cui-button-button cui-button-buttonTheme";
 export const buttonIcon: string = "cui-button-buttonIcon";
 export const buttonText: string = "cui-button-buttonText";
 export const buttonTheme: string = "cui-button-buttonTheme";
@@ -39,4 +14,11 @@ export const buttonVars = {
 	borderRadius: "var(--cui-buttonTheme-borderRadius)" as `var(--${string})`,
 };
 
-export type ButtonVariants = RecipeVariants<typeof button>;
+export type ButtonVariants = {
+	size?: "xl" | "lg" | "md" | "sm" | "xs";
+	theme?: "primary" | "tertiary" | "secondary" | "negative" | "caution";
+	variant?: "ghost";
+	block?: boolean;
+	pill?: boolean;
+	loading?: boolean;
+} | undefined;

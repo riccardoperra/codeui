@@ -150,7 +150,7 @@ export function Content<T extends ValidComponent = "div">(props: PolymorphicProp
 			data-cui={sheetParts.content}
 			data-side={local.side ?? "bottom"}
 			data-motion={motion()}
-			class={mergeClasses(styles.content.classNames.base, local.class)}
+			class={mergeClasses(styles.content(), local.class)}
 			{...focus}
 			{...others}
 		/>

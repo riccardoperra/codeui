@@ -163,12 +163,12 @@ Kobalte's `Popover.CloseButton`, rendered as an extra-small secondary [IconButto
 ### `popoverStyles`
 
 `popoverStyles` from `@codeui/kit/popover` maps each part name to a function that returns its class string.
-`popoverStyles.content({ variant })` takes the variant. The other functions take no arguments. `trigger`, `anchor`, `arrow`, and `closeButton` return an empty string.
+Call `popoverStyles.content()` for the class and set `data-variant="bordered"` on custom content. `trigger()`, `anchor()`, `arrow()`, and `closeButton()` return empty strings.
 
 Call a style function when you render the Kobalte primitive yourself and want the kit look. Add the matching `data-cui` value from `popoverParts` too.
 [Compose styled parts](/docs/patterns/compose-styled-parts#kobalte-with-kit-classes) shows a full example.
 
-The root package `@codeui/kit` also exports a `popoverStyles`, with a different shape. It is the raw style module: `content` is a recipe and `title` and `description` are class strings. Prefer the subpath export.
+The root package `@codeui/kit` also exports a `popoverStyles`, with a different shape. It is the raw style module: `content()` returns the base classes and `title` and `description` are class strings. Prefer the subpath export.
 
 ## Accessibility
 

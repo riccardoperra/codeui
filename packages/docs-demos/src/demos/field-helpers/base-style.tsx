@@ -8,6 +8,7 @@ export default function BaseStyle() {
 				type="search"
 				aria-label="Search snippets"
 				placeholder="Search snippets"
+				{...field.attributes}
 				class={`${field.baseStyle()} ${textFieldStyles.textField}`}
 			/>
 		</div>

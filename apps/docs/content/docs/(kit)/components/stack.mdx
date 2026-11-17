@@ -83,7 +83,7 @@ This design has three results that matter in an app:
 
 - `Stack` works next to any styling engine. Tailwind, CSS Modules, plain CSS and Vanilla Extract all see a normal element with a few classes and attributes.
 - The server renders the same markup the client renders. There is no style tag to hydrate and no class that depends on render order.
-- `stackStyles.root(variants)` gives custom markup the same classes, so a list that another library renders can look like a `Stack`.
+- `stackStyles.root()` gives custom markup the base class for layout controlled by attributes.
 
 `Stack` also writes `data-gap`, `data-align`, `data-justify`, `data-direction` and `data-wrap`, so you can target any state with an attribute selector, such as `[data-cui="stack-root"][data-direction="row"]`. The kit rules sit in the `cui` cascade layer, so your unlayered CSS wins. To change the gap from CSS, set `gap` in your own class.
 
@@ -111,7 +111,7 @@ Import the parts from `@codeui/kit/stack`.
 
 ### `stackStyles`
 
-`stackStyles.root(variants)` returns the classes `Stack` renders for the same props: one base class and one class per variant, with the defaults (`gap: "2"`, column, stretch, start, no wrap) filled in. An element that uses the returned string gets the same layout without any data attribute. This list asks for the row direction, center alignment and a gap:
+Call `stackStyles.root()` for the base class. Set `data-direction`, `data-align`, and `data-gap` to choose a row with centered items and spacing.
 
 <SolidDemo name="stack/styles" />
 

@@ -43,7 +43,7 @@ export function Button<T extends ValidComponent = "button">(props: PolymorphicPr
 			data-pill={local.pill || undefined}
 			data-block={local.block || undefined}
 			data-loading={local.loading || undefined}
-			class={mergeClasses(styles.button.classNames.base, styles.buttonTheme, internal.class)}
+			class={mergeClasses(styles.button(), internal.class)}
 			{...others}
 			aria-busy={local.loading || undefined}
 			aria-disabled={local.loading || internal["aria-disabled"] || undefined}

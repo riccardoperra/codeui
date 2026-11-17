@@ -30,7 +30,7 @@ export function Root<T extends ValidComponent = "span">(props: TextProps<T>) {
 			{...others}
 			component={local.as ?? "span"}
 			data-cui={textParts.root}
-			class={mergeClasses(root.classNames.base, local.classes?.root, local.class)}
+			class={mergeClasses(root(), local.classes?.root, local.class)}
 			data-size={local.size ?? "sm"}
 			data-weight={local.weight ?? "normal"}
 			data-tone={local.tone ?? "default"}

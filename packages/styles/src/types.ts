@@ -1,17 +1,5 @@
 import type * as CSS from "csstype";
 
-type BooleanKey<T> = T extends "true" | "false" ? boolean : T;
-export type VariantSelection<Variants> = {
-	[Group in keyof Variants]?: BooleanKey<keyof Variants[Group]>;
-};
-export type RuntimeFn<Variants> = ((options?: VariantSelection<Variants>) => string) & {
-	variants(): (keyof Variants)[];
-	classNames: {
-		base: string;
-		variants: { [Group in keyof Variants]: { [Value in keyof Variants[Group]]: string } };
-	};
-};
-export type RecipeVariants<Fn extends (...args: never[]) => string> = Parameters<Fn>[0];
 type CSSVariable = `var(--${string})`;
 type StandardProperties = CSS.Properties<number | (string & {})>;
 type Properties = {

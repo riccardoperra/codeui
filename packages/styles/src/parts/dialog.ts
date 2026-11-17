@@ -76,29 +76,13 @@ export type DialogMotion = "auto" | "none";
 export type DialogBodyLayout = "split";
 export type DialogSectionVariant = "group" | "well";
 
-type DialogPanelStyleVariants = { size?: DialogSize; chrome?: DialogChrome };
-type DialogBodyStyleVariants = { layout?: DialogBodyLayout };
-type DialogSectionStyleVariants = { variant?: DialogSectionVariant };
-
-export type DialogStyles = {
-	[P in DialogPart]: P extends "panel"
-		? (variants?: DialogPanelStyleVariants) => string
-		: P extends "body"
-			? (variants?: DialogBodyStyleVariants) => string
-			: P extends "section"
-				? (variants?: DialogSectionStyleVariants) => string
-				: () => string;
-};
+export type DialogStyles = Record<DialogPart, () => string>;
 
 export const dialogStyles: DialogStyles = {
 	trigger: () => "",
 	overlay: () => styles.overlay,
 	positioner: () => mergeClasses(styles.dialogTheme, styles.positioner),
-	panel: variants =>
-		mergeClasses(
-			styles.dialogTheme,
-			styles.panel({ size: variants?.size, chrome: variants?.chrome }),
-		),
+	panel: () => mergeClasses(styles.dialogTheme, styles.panel()),
 	header: () => styles.title,
 	title: () => "",
 	description: () => styles.description,
@@ -111,7 +95,7 @@ export const dialogStyles: DialogStyles = {
 	navItem: () => styles.navItem,
 	navIcon: () => styles.navIcon,
 	main: () => styles.main,
-	section: variants => styles.section({ variant: variants?.variant }),
+	section: styles.section,
 	sectionTitle: () => styles.sectionTitle,
 	sectionContent: () => styles.sectionContent,
 };

@@ -2,31 +2,36 @@ import "@codeui/styles/theme.css";
 import "@codeui/styles/field.css";
 import { createUniqueId, type Accessor, type JSX } from "solid-js";
 import * as styles from "./Field.css";
-import { mergeClasses } from "../../utils/css";
 
 export type BaseFieldProps = styles.BaseFieldVariants;
+
+type BaseFieldStyling = {
+	baseStyle(): string;
+	attributes: {
+		"data-size": NonNullable<NonNullable<BaseFieldProps>["size"]>;
+		"data-theme": NonNullable<NonNullable<BaseFieldProps>["theme"]>;
+	};
+};
 
 export function createBaseFieldProps(
 	props: BaseFieldProps,
 	field: Accessor<FieldContent & { inputId?: string; id?: string }>,
-): { ids: ReturnType<typeof createFieldIds>; baseStyle: () => string };
-export function createBaseFieldProps(props: BaseFieldProps): {
-	ids: undefined;
-	baseStyle(): string;
-};
+): BaseFieldStyling & { ids: ReturnType<typeof createFieldIds> };
+export function createBaseFieldProps(props: BaseFieldProps): BaseFieldStyling & { ids: undefined };
 export function createBaseFieldProps(
 	props: BaseFieldProps,
 	field?: Accessor<FieldContent & { inputId?: string; id?: string }>,
 ) {
 	return {
 		ids: field ? createFieldIds(field) : undefined,
-		baseStyle() {
-			return mergeClasses(
-				styles.baseFieldVariants({
-					size: props?.size,
-					theme: props?.theme,
-				}),
-			);
+		baseStyle: styles.baseFieldVariants,
+		attributes: {
+			get "data-size"() {
+				return props?.size ?? "md";
+			},
+			get "data-theme"() {
+				return props?.theme ?? "filled";
+			},
 		},
 	};
 }

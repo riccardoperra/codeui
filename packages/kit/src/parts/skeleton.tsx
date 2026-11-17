@@ -22,7 +22,7 @@ export function Root<T extends ValidComponent = "div">(props: PolymorphicProps<T
 			data-circle={others.circle || undefined}
 			aria-hidden={others.visible === false ? undefined : true}
 			class={mergeClasses(
-				styles.root.classNames.base,
+				styles.root(),
 				local.class,
 			)}
 			{...others}

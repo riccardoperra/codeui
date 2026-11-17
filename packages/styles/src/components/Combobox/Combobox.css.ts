@@ -1,13 +1,6 @@
-import { recipe } from "../../recipe";
 export const arrow: string = "cui-combobox-arrow";
 export const content: string = "cui-combobox-content";
-export const control = recipe({
-	defaultClassName: "cui-combobox-control",
-	variantClassNames: {
-		size: { sm: "cui-combobox-control_size_sm", md: "cui-combobox-control_size_md" },
-	},
-	defaultVariants: {},
-});
+export const control = (): string => "cui-combobox-control";
 export const description: string = "cui-combobox-description";
 export const empty: string = "cui-combobox-empty";
 export const errorMessage: string = "cui-combobox-errorMessage";

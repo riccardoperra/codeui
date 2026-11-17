@@ -1,5 +1,4 @@
 import * as styles from "../components/Badge/Badge.css";
-import { mergeClasses } from "../utils/css";
 export const badgeParts = {
 	root: "badge-root",
 	icon: "badge-icon",
@@ -17,15 +16,10 @@ export type BadgeVariants = {
 	variant?: BadgeVariant;
 };
 
-export type BadgeStyles = { [P in BadgePart]: (variants?: BadgeVariants) => string };
+export type BadgeStyles = { [P in BadgePart]: () => string };
 
 export const badgeStyles: BadgeStyles = {
-	root: variants =>
-		styles.root({
-			size: variants?.size,
-			tone: variants?.tone,
-			variant: variants?.variant,
-		}),
+	root: styles.root,
 	icon: () => styles.icon,
 	label: () => styles.label,
 };

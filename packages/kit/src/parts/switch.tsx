@@ -25,7 +25,7 @@ export function Root<T extends ValidComponent = "div">(
 			{...others}
 			data-cui="switch-root"
 			data-size={local.size}
-			class={mergeClasses(switchStyles.root(local), local.class)}
+			class={mergeClasses(switchStyles.root(), local.class)}
 		/>
 	);
 }
@@ -43,7 +43,7 @@ export function Input<T extends ValidComponent = "input">(
 			{...others}
 			data-cui="switch-input"
 			data-size={local.size}
-			class={mergeClasses(switchStyles.input(local), local.class)}
+			class={mergeClasses(switchStyles.input(), local.class)}
 		/>
 	);
 }
@@ -61,7 +61,7 @@ export function Control<T extends ValidComponent = "div">(
 			{...others}
 			data-cui="switch-control"
 			data-size={local.size}
-			class={mergeClasses(styles.control.classNames.base, local.class)}
+			class={mergeClasses(styles.control(), local.class)}
 		/>
 	);
 }
@@ -79,7 +79,7 @@ export function Thumb<T extends ValidComponent = "div">(
 			{...others}
 			data-cui="switch-thumb"
 			data-size={local.size}
-			class={mergeClasses(styles.thumb.classNames.base, local.class)}
+			class={mergeClasses(styles.thumb(), local.class)}
 		/>
 	);
 }
@@ -98,7 +98,7 @@ export function Label<T extends ValidComponent = "label">(
 			data-cui="switch-label"
 			data-size={local.size}
 			class={mergeClasses(
-				switchStyles.label(local),
+				switchStyles.label(),
 				createFieldLabelProps({ class: local.class }).class,
 			)}
 		/>
@@ -118,7 +118,7 @@ export function Description<T extends ValidComponent = "div">(
 			{...others}
 			data-cui="switch-description"
 			data-size={local.size}
-			class={mergeClasses(switchStyles.description(local), local.class)}
+			class={mergeClasses(switchStyles.description(), local.class)}
 		/>
 	);
 }
@@ -136,7 +136,7 @@ export function ErrorMessage<T extends ValidComponent = "div">(
 			{...others}
 			data-cui="switch-error-message"
 			data-size={local.size}
-			class={mergeClasses(switchStyles.errorMessage(local), local.class)}
+			class={mergeClasses(switchStyles.errorMessage(), local.class)}
 		/>
 	);
 }

@@ -211,8 +211,8 @@ describe("Sheet parts", () => {
 
 	it("give every style function a class for each part", () => {
 		for (const part of Object.keys(S.sheetParts) as S.SheetPart[]) {
-			expect(typeof S.sheetStyles[part]({ side: "left" })).toBe("string");
+			expect(typeof S.sheetStyles[part]()).toBe("string");
 		}
-		expect(S.sheetStyles.content({ side: "left" })).not.toBe(S.sheetStyles.content({ side: "right" }));
+		expect(S.sheetStyles.content()).toBe("cui-sheet-content");
 	});
 });

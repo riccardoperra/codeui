@@ -1,4 +1,3 @@
-import { mergeClasses } from "../utils/css";
 import * as styles from "../components/Combobox/Combobox.css";
 export type ComboboxVariants = { size?: "sm" | "md" };
 export const comboboxParts = {
@@ -24,11 +23,11 @@ export type ComboboxPart = keyof typeof comboboxParts;
 export type ComboboxClasses = Partial<Record<ComboboxPart, string>>;
 export type ComboboxStyles = Record<
 	ComboboxPart,
-	(variants?: ComboboxVariants) => string
+	() => string
 >;
 export const comboboxStyles: ComboboxStyles = {
 	root: () => styles.root,
-	control: variants => styles.control({ size: variants?.size }),
+	control: styles.control,
 	input: () => styles.input,
 	trigger: () => styles.trigger,
 	icon: () => styles.icon,

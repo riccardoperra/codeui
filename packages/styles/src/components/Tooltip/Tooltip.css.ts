@@ -1,15 +1,4 @@
-import type { RecipeVariants } from "../../types";
-import { recipe } from "../../recipe";
-export const tooltipContent = recipe({
-	defaultClassName: "cui-tooltip-tooltipContent cui-tooltip-tooltipTheme",
-	variantClassNames: {
-		theme: {
-			primary: "cui-tooltip-tooltipContent_theme_primary",
-			secondary: "cui-tooltip-tooltipContent_theme_secondary",
-		},
-	},
-	defaultVariants: { theme: "primary" },
-});
+export const tooltipContent = (): string => "cui-tooltip-tooltipContent cui-tooltip-tooltipTheme";
 export const tooltipTheme: string = "cui-tooltip-tooltipTheme";
 export const tooltipVars = {
 	fontSize: "var(--cui-tooltipTheme-fontSize)" as `var(--${string})`,
@@ -22,4 +11,6 @@ export const tooltipVars = {
 };
 export const trigger: string = "cui-tooltip-trigger";
 
-export type TooltipVariants = RecipeVariants<typeof tooltipContent>;
+export type TooltipVariants = {
+	theme?: "primary" | "secondary";
+} | undefined;

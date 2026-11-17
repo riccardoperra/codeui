@@ -39,19 +39,20 @@ Add the native `disabled` attribute to disable the button. Native controls also 
 
 ## Use class helpers
 
-Each component has a JavaScript entry with its existing raw style exports. Button supports size and theme attributes in HTML. Its class helper remains available for callers who compose variants in JavaScript.
+Each component has a JavaScript entry with its class helpers. Set the variant attributes on the element that receives the class.
 
 ```js
-import { button, buttonVars } from "@codeui/styles/button";
-import { switchParts, switchStyles } from "@codeui/styles/switch";
+import { button } from "@codeui/styles/button";
 
-button({ size: "md", theme: "primary" });
-switchStyles.control({ size: "sm" });
+const element = document.createElement("button");
+element.className = button();
+element.dataset.size = "md";
+element.dataset.theme = "primary";
 ```
 
-Parts contracts retain existing `data-cui` values. For example, `switchParts.control` is `switch-control`. Non-native state uses the documented `data-*` attributes. Recipe helpers expose their supported groups through `variants()` and their classes through `classNames`.
+Parts contracts retain existing `data-cui` values. For example, `switchParts.control` is `switch-control`. Non-native state uses the documented `data-*` attributes. Use the class helpers with variant attributes such as `data-size="md"` and `data-theme="primary"`.
 
-`@codeui/styles/contract.json` lists public classes, variants, part names, default part classes, and variable references. `@codeui/styles/manifest.json` lists each CSS entry's component and module dependency closure. The `internal/` exports support `@codeui/kit` and are not application API.
+`@codeui/styles/contract.json` lists public classes, part names, base part classes, and variable references. `@codeui/styles/manifest.json` lists each CSS entry's component and module dependency closure. The `internal/` exports support `@codeui/kit` and are not application API.
 
 ## Customize tokens and geometry
 
@@ -88,7 +89,7 @@ pnpm --filter @codeui/styles check
 pnpm --filter @codeui/styles typecheck
 ```
 
-Component rules live in `css/`. Write variant selectors as `:where(.part)[data-size="sm"]` and compound selectors as `.part:where([data-tone="info"][data-variant="outline"])`. The Lightning CSS selector visitor adds the class fallback from the built style helpers. Each attribute can override the corresponding variant class. TypeScript files in `src/` export the existing class helpers, variant maps and token references.
+Component rules live in `css/`. Write variant selectors as `:where(.part)[data-size="sm"]` and compound selectors as `.part:where([data-tone="info"][data-variant="outline"])`. TypeScript files in `src/` export the class helpers, variant types, and token references.
 
 The build bundles each entry and its dependencies. Lightning CSS lowers nesting and media query ranges, and expands `@custom-media` aliases from the breakpoint tokens and `css/media.css`. Use `@media (--cui-md)` for a shared width and `@media (--cui-reduced-motion)` for the reduced-motion preference.
 

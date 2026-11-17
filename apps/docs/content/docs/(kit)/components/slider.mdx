@@ -37,7 +37,7 @@ Use NumberField when you need an exact typed value. Pair a slider with a number 
 
 <SolidDemo name="slider/value-label" />
 
-The track is a 2px line in `--cui-border-divider` with the filled part in `--cui-action-brand-base`. The thumb is a 12px white dot with a 1px divider border and `--cui-shadow-lg`, as CodeImage draws its range thumb, so it keeps an edge on a light surface. Its hit area stays 28px, 40px on a touch screen. `sliderStyles.track({ orientation: "vertical" })` and `fill({ orientation: "vertical" })` return the vertical classes for custom markup.
+The track is a 2px line in `--cui-border-divider` with the filled part in `--cui-action-brand-base`. The thumb is a 12px white dot with a 1px divider border and `--cui-shadow-lg`, as CodeImage draws its range thumb, so it keeps an edge on a light surface. Its hit area stays 28px, 40px on a touch screen. Set `data-orientation="vertical"` on a custom track and fill.
 
 ## States
 
@@ -131,7 +131,7 @@ Wraps Kobalte `Slider.ValueLabel` with kit styles.
 
 ### `sliderStyles`
 
-`sliderStyles` maps each part name to a function that returns its kit class string. Functions accept `SliderVariants`. Use the functions on custom markup when you already own its behavior. They do not add ARIA or keyboard handling. `SliderStyles` types the map. `SliderParts` exposes the styled components as a namespace.
+`sliderStyles` maps each part name to a function that returns its class. Set `data-orientation="vertical"` on custom track and fill elements for a vertical slider. `SliderStyles` types the map and `SliderParts` exposes the Solid components.
 
 ## Accessibility
 

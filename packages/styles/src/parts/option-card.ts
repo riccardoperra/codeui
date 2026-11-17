@@ -1,5 +1,4 @@
 import * as styles from "../components/OptionCard/OptionCard.css";
-import { mergeClasses } from "../utils/css";
 export const optionCardParts = {
 	root: "option-card-root",
 	label: "option-card-label",
@@ -19,7 +18,7 @@ export type OptionCardClasses = Partial<Record<OptionCardPart, string>>;
 export type OptionCardVariant = "card" | "tile";
 export type OptionCardVariants = { variant?: OptionCardVariant };
 export type OptionCardStyles = {
-	[P in OptionCardPart]: (variants?: OptionCardVariants) => string;
+	[P in OptionCardPart]: () => string;
 };
 export const optionCardStyles: OptionCardStyles = {
 	root: () => styles.root,
@@ -30,7 +29,7 @@ export const optionCardStyles: OptionCardStyles = {
 	itemInput: () => styles.itemInput,
 	itemControl: () => styles.itemControl,
 	itemIndicator: () => styles.itemIndicator,
-	itemLabel: variants => styles.itemLabel({ variant: variants?.variant ?? "card" }),
+	itemLabel: styles.itemLabel,
 	itemDescription: () => styles.itemDescription,
 	preview: () => styles.preview,
 	badge: () => styles.badge,

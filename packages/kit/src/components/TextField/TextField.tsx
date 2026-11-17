@@ -57,7 +57,7 @@ export function TextField(props: TextFieldProps) {
 
 	const inputClasses = () =>
 		mergeClasses(
-			baseFieldVariants.classNames.base,
+			baseFieldVariants(),
 			styles.textField,
 			local.slotClasses?.input,
 			local.classes?.input,

@@ -163,12 +163,7 @@ export declare const item: string;
 export declare const root: string;
 export declare const summary: string;
 export declare const title: string;
-export declare const trigger: import("../../types.js").RuntimeFn<{
-    density: {
-        compact: string;
-        comfortable: string;
-    };
-}>;
+export declare const trigger: () => string;
 ```
 
 ## @codeui/styles/internal/components/Alert/Alert.css.d.ts
@@ -177,19 +172,7 @@ export declare const trigger: import("../../types.js").RuntimeFn<{
 export declare const action: string;
 export declare const description: string;
 export declare const icon: string;
-export declare const root: import("../../types.js").RuntimeFn<{
-    tone: {
-        neutral: string;
-        info: string;
-        success: string;
-        warning: string;
-        danger: string;
-    };
-    fluid: {
-        true: string;
-        false: string;
-    };
-}>;
+export declare const root: () => string;
 export declare const title: string;
 ```
 
@@ -198,57 +181,13 @@ export declare const title: string;
 ```ts
 export declare const icon: string;
 export declare const label: string;
-export declare const root: import("../../types.js").RuntimeFn<{
-    size: {
-        sm: string;
-        md: string;
-    };
-    tone: {
-        neutral: string;
-        info: string;
-        success: string;
-        warning: string;
-        danger: string;
-    };
-    variant: {
-        soft: string;
-        outline: string;
-    };
-}>;
+export declare const root: () => string;
 ```
 
 ## @codeui/styles/internal/components/Button/Button.css.d.ts
 
 ```ts
-import type { RecipeVariants } from "../../types.js";
-export declare const button: import("../../types.js").RuntimeFn<{
-    size: {
-        xl: string;
-        lg: string;
-        md: string;
-        sm: string;
-        xs: string;
-    };
-    theme: {
-        primary: string;
-        tertiary: string;
-        secondary: string;
-        negative: string;
-        caution: string;
-    };
-    variant: {
-        ghost: string;
-    };
-    block: {
-        true: string;
-    };
-    pill: {
-        true: string;
-    };
-    loading: {
-        true: string;
-    };
-}>;
+export declare const button: () => string;
 export declare const buttonIcon: string;
 export declare const buttonText: string;
 export declare const buttonTheme: string;
@@ -263,7 +202,14 @@ export declare const buttonVars: {
     padding: `var(--${string})`;
     borderRadius: `var(--${string})`;
 };
-export type ButtonVariants = RecipeVariants<typeof button>;
+export type ButtonVariants = {
+    size?: "xl" | "lg" | "md" | "sm" | "xs";
+    theme?: "primary" | "tertiary" | "secondary" | "negative" | "caution";
+    variant?: "ghost";
+    block?: boolean;
+    pill?: boolean;
+    loading?: boolean;
+} | undefined;
 ```
 
 ## @codeui/styles/internal/components/Button/Loading.css.d.ts
@@ -292,19 +238,7 @@ export declare const checkboxVars: {
 };
 export declare const container: string;
 export declare const content: string;
-export declare const control: import("../../types.js").RuntimeFn<{
-    theme: {
-        filled: string;
-        inline: string;
-    };
-    size: {
-        xs: string;
-        sm: string;
-        md: string;
-        lg: string;
-        xl: string;
-    };
-}>;
+export declare const control: () => string;
 export declare const icon: string;
 export declare const indicator: string;
 export declare const input: string;
@@ -316,12 +250,7 @@ export declare const label: string;
 ```ts
 export declare const arrow: string;
 export declare const content: string;
-export declare const control: import("../../types.js").RuntimeFn<{
-    size: {
-        sm: string;
-        md: string;
-    };
-}>;
+export declare const control: () => string;
 export declare const description: string;
 export declare const empty: string;
 export declare const errorMessage: string;
@@ -364,7 +293,6 @@ export declare const trigger: string;
 ## @codeui/styles/internal/components/Dialog/Dialog.css.d.ts
 
 ```ts
-import type { RecipeVariants } from "../../types.js";
 export declare const description: string;
 export declare const dialogTheme: string;
 export declare const dialogThemeVars: {
@@ -392,37 +320,20 @@ export declare const navIcon: string;
 export declare const navItem: string;
 export declare const navList: string;
 export declare const overlay: string;
-export declare const panel: import("../../types.js").RuntimeFn<{
-    size: {
-        xs: string;
-        sm: string;
-        md: string;
-        lg: string;
-        xl: string;
-        full: string;
-        settings: string;
-        export: string;
-    };
-    chrome: {
-        bar: string;
-        inset: string;
-    };
-}>;
+export declare const panel: () => string;
 export declare const panelContent: string;
 export declare const panelFooter: string;
 export declare const positioner: string;
-export declare const section: import("../../types.js").RuntimeFn<{
-    variant: {
-        group: string;
-        well: string;
-    };
-}>;
+export declare const section: () => string;
 export declare const sectionContent: string;
 export declare const sectionTitle: string;
 export declare const sidebar: string;
 export declare const sidebarSearch: string;
 export declare const title: string;
-export type DialogPanelVariants = RecipeVariants<typeof panel>;
+export type DialogPanelVariants = {
+    size?: "xs" | "sm" | "md" | "lg" | "xl" | "full" | "settings" | "export";
+    chrome?: "bar" | "inset";
+} | undefined;
 ```
 
 ## @codeui/styles/internal/components/Dropdown/Dropdown.css.d.ts
@@ -457,7 +368,6 @@ export declare const subMenuContent: string;
 ## @codeui/styles/internal/components/Field/Field.css.d.ts
 
 ```ts
-import type { RecipeVariants } from "../../types.js";
 export declare const FieldSizes: {
     readonly xs: "xs";
     readonly sm: "sm";
@@ -466,19 +376,7 @@ export declare const FieldSizes: {
     readonly xl: "xl";
 };
 export declare const baseFieldTheme: string;
-export declare const baseFieldVariants: import("../../types.js").RuntimeFn<{
-    size: {
-        xs: string;
-        sm: string;
-        md: string;
-        lg: string;
-        xl: string;
-    };
-    theme: {
-        filled: string;
-        inline: string;
-    };
-}>;
+export declare const baseFieldVariants: () => string;
 export declare const baseFieldVars: {
     borderColor: `var(--${string})`;
     background: `var(--${string})`;
@@ -490,7 +388,10 @@ export declare const baseFieldVars: {
 };
 export declare const fontSize: `var(--${string})`;
 export declare const inputHeight: `var(--${string})`;
-export type BaseFieldVariants = RecipeVariants<typeof baseFieldVariants>;
+export type BaseFieldVariants = {
+    size?: "xs" | "sm" | "md" | "lg" | "xl";
+    theme?: "filled" | "inline";
+} | undefined;
 ```
 
 ## @codeui/styles/internal/components/Field/FieldError/FieldError.css.d.ts
@@ -530,28 +431,16 @@ export declare const iconButton: string;
 ## @codeui/styles/internal/components/Kbd/Kbd.css.d.ts
 
 ```ts
-export declare const root: import("../../types.js").RuntimeFn<{
-    size: {
-        sm: string;
-        md: string;
-    };
-    variant: {
-        keycap: string;
-        hint: string;
-    };
-}>;
+export declare const root: () => string;
 ```
 
 ## @codeui/styles/internal/components/Link/Link.css.d.ts
 
 ```ts
-import type { RecipeVariants } from "../../types.js";
-export declare const link: import("../../types.js").RuntimeFn<{
-    variant: {
-        underline: string;
-    };
-}>;
-export type LinkVariants = RecipeVariants<typeof link>;
+export declare const link: () => string;
+export type LinkVariants = {
+    variant?: "underline";
+} | undefined;
 ```
 
 ## @codeui/styles/internal/components/Listbox/Listbox.css.d.ts
@@ -612,12 +501,7 @@ export declare const itemControl: string;
 export declare const itemDescription: string;
 export declare const itemIndicator: string;
 export declare const itemInput: string;
-export declare const itemLabel: import("../../types.js").RuntimeFn<{
-    variant: {
-        card: string;
-        tile: string;
-    };
-}>;
+export declare const itemLabel: () => string;
 export declare const itemName: string;
 export declare const itemText: string;
 export declare const label: string;
@@ -640,12 +524,7 @@ export declare const paginationVars: {
 ## @codeui/styles/internal/components/Popover/Popover.css.d.ts
 
 ```ts
-import type { RecipeVariants } from "../../types.js";
-export declare const content: import("../../types.js").RuntimeFn<{
-    variant: {
-        bordered: string;
-    };
-}>;
+export declare const content: () => string;
 export declare const description: string;
 export declare const popoverTheme: string;
 export declare const popoverThemeVars: {
@@ -662,7 +541,9 @@ export declare const popoverThemeVars: {
     contentBorderColor: `var(--${string})`;
 };
 export declare const title: string;
-export type PopoverVariants = RecipeVariants<typeof content>;
+export type PopoverVariants = {
+    variant?: "bordered";
+} | undefined;
 ```
 
 ## @codeui/styles/internal/components/Progress/Progress.css.d.ts
@@ -671,12 +552,7 @@ export type PopoverVariants = RecipeVariants<typeof content>;
 export declare const fill: string;
 export declare const label: string;
 export declare const root: string;
-export declare const track: import("../../types.js").RuntimeFn<{
-    size: {
-        sm: string;
-        md: string;
-    };
-}>;
+export declare const track: () => string;
 export declare const valueLabel: string;
 ```
 
@@ -686,23 +562,7 @@ export declare const valueLabel: string;
 export declare const indicator: string;
 export declare const radio: string;
 export declare const radioItem: string;
-export declare const radioList: import("../../types.js").RuntimeFn<{
-    theme: {
-        filled: string;
-        inline: string;
-    };
-    orientation: {
-        horizontal: string;
-        vertical: string;
-    };
-    size: {
-        xs: string;
-        sm: string;
-        md: string;
-        lg: string;
-        xl: string;
-    };
-}>;
+export declare const radioList: () => string;
 export declare const radioTheme: string;
 export declare const radioVars: {
     inputColor: `var(--${string})`;
@@ -718,33 +578,10 @@ export declare const radioVars: {
 ## @codeui/styles/internal/components/SegmentedControl/SegmentedControl.css.d.ts
 
 ```ts
-import type { RecipeVariants } from "../../types.js";
 export declare const indicator: string;
 export declare const list: string;
 export declare const segment: string;
-export declare const segmentedControlWrapper: import("../../types.js").RuntimeFn<{
-    theme: {
-        neutral: string;
-        primary: string;
-    };
-    variant: {
-        solid: string;
-        bordered: string;
-    };
-    size: {
-        xl: string;
-        lg: string;
-        md: string;
-        sm: string;
-        xs: string;
-    };
-    fluid: {
-        true: string;
-    };
-    pill: {
-        true: string;
-    };
-}>;
+export declare const segmentedControlWrapper: () => string;
 export declare const segmentedFieldTheme: string;
 export declare const segmentedFieldVars: {
     activeSegmentedBackgroundColor: `var(--${string})`;
@@ -759,7 +596,13 @@ export declare const segmentedFieldVars: {
     segmentRadius: `var(--${string})`;
     segmentFontSize: `var(--${string})`;
 };
-export type SegmentedControlVariants = RecipeVariants<typeof segmentedControlWrapper>;
+export type SegmentedControlVariants = {
+    theme?: "neutral" | "primary";
+    variant?: "solid" | "bordered";
+    size?: "xl" | "lg" | "md" | "sm" | "xs";
+    fluid?: boolean;
+    pill?: boolean;
+} | undefined;
 ```
 
 ## @codeui/styles/internal/components/Select/Select.css.d.ts
@@ -811,13 +654,7 @@ export declare const row: string;
 ```ts
 export declare const body: string;
 export declare const closeButton: string;
-export declare const content: import("../../types.js").RuntimeFn<{
-    side: {
-        bottom: string;
-        left: string;
-        right: string;
-    };
-}>;
+export declare const content: () => string;
 export declare const description: string;
 export declare const footer: string;
 export declare const handle: string;
@@ -829,14 +666,7 @@ export declare const title: string;
 ## @codeui/styles/internal/components/Skeleton/Skeleton.css.d.ts
 
 ```ts
-export declare const root: import("../../types.js").RuntimeFn<{
-    circle: {
-        true: string;
-    };
-    animate: {
-        true: string;
-    };
-}>;
+export declare const root: () => string;
 ```
 
 ## @codeui/styles/internal/components/Slider/Slider.css.d.ts
@@ -844,22 +674,12 @@ export declare const root: import("../../types.js").RuntimeFn<{
 ```ts
 export declare const description: string;
 export declare const errorMessage: string;
-export declare const fill: import("../../types.js").RuntimeFn<{
-    orientation: {
-        horizontal: string;
-        vertical: string;
-    };
-}>;
+export declare const fill: () => string;
 export declare const input: string;
 export declare const label: string;
 export declare const root: string;
 export declare const thumb: string;
-export declare const track: import("../../types.js").RuntimeFn<{
-    orientation: {
-        horizontal: string;
-        vertical: string;
-    };
-}>;
+export declare const track: () => string;
 export declare const valueLabel: string;
 ```
 
@@ -867,91 +687,26 @@ export declare const valueLabel: string;
 
 ```ts
 export declare const indicator: string;
-export declare const root: import("../../types.js").RuntimeFn<{
-    size: {
-        sm: string;
-        md: string;
-        lg: string;
-    };
-}>;
+export declare const root: () => string;
 export declare const track: string;
 ```
 
 ## @codeui/styles/internal/components/Stack/Stack.css.d.ts
 
 ```ts
-export declare const root: import("../../types.js").RuntimeFn<{
-    gap: {
-        "0": string;
-        "1": string;
-        "2": string;
-        "3": string;
-        "4": string;
-        "5": string;
-        "6": string;
-        "8": string;
-        "10": string;
-        "12": string;
-        "16": string;
-        "20": string;
-        "24": string;
-        "32": string;
-        "40": string;
-        "48": string;
-        "56": string;
-        "64": string;
-        auto: string;
-        px: string;
-        "0.5": string;
-        "1.5": string;
-        "2.5": string;
-    };
-    direction: {
-        column: string;
-        row: string;
-    };
-    wrap: {
-        true: string;
-        false: string;
-    };
-    align: {
-        start: string;
-        center: string;
-        end: string;
-        stretch: string;
-        baseline: string;
-    };
-    justify: {
-        start: string;
-        center: string;
-        end: string;
-        between: string;
-        around: string;
-        evenly: string;
-    };
-}>;
+export declare const root: () => string;
 ```
 
 ## @codeui/styles/internal/components/Switch/Switch.css.d.ts
 
 ```ts
-export declare const control: import("../../types.js").RuntimeFn<{
-    size: {
-        sm: string;
-        md: string;
-    };
-}>;
+export declare const control: () => string;
 export declare const description: string;
 export declare const errorMessage: string;
 export declare const input: string;
 export declare const label: string;
 export declare const root: string;
-export declare const thumb: import("../../types.js").RuntimeFn<{
-    size: {
-        sm: string;
-        md: string;
-    };
-}>;
+export declare const thumb: () => string;
 ```
 
 ## @codeui/styles/internal/components/Tabs/Tabs.css.d.ts
@@ -976,31 +731,7 @@ export declare const tabsVars: {
 ## @codeui/styles/internal/components/Text/Text.css.d.ts
 
 ```ts
-export declare const root: import("../../types.js").RuntimeFn<{
-    size: {
-        badge: string;
-        xs: string;
-        caption: string;
-        sm: string;
-        md: string;
-        lg: string;
-        xl: string;
-        "2xl": string;
-    };
-    weight: {
-        normal: string;
-        medium: string;
-        semibold: string;
-    };
-    tone: {
-        default: string;
-        muted: string;
-        hint: string;
-        label: string;
-        danger: string;
-        success: string;
-    };
-}>;
+export declare const root: () => string;
 ```
 
 ## @codeui/styles/internal/components/TextArea/TextArea.css.d.ts
@@ -1027,38 +758,15 @@ export declare const icon: string;
 export declare const list: string;
 export declare const progressFill: string;
 export declare const progressTrack: string;
-export declare const region: import("../../types.js").RuntimeFn<{
-    position: {
-        "top-left": string;
-        "top-center": string;
-        "top-right": string;
-        "bottom-left": string;
-        "bottom-center": string;
-        "bottom-right": string;
-    };
-}>;
-export declare const root: import("../../types.js").RuntimeFn<{
-    tone: {
-        neutral: string;
-        info: string;
-        success: string;
-        warning: string;
-        danger: string;
-    };
-}>;
+export declare const region: () => string;
+export declare const root: () => string;
 export declare const title: string;
 ```
 
 ## @codeui/styles/internal/components/Tooltip/Tooltip.css.d.ts
 
 ```ts
-import type { RecipeVariants } from "../../types.js";
-export declare const tooltipContent: import("../../types.js").RuntimeFn<{
-    theme: {
-        primary: string;
-        secondary: string;
-    };
-}>;
+export declare const tooltipContent: () => string;
 export declare const tooltipTheme: string;
 export declare const tooltipVars: {
     fontSize: `var(--${string})`;
@@ -1070,7 +778,9 @@ export declare const tooltipVars: {
     zIndex: `var(--${string})`;
 };
 export declare const trigger: string;
-export type TooltipVariants = RecipeVariants<typeof tooltipContent>;
+export type TooltipVariants = {
+    theme?: "primary" | "secondary";
+} | undefined;
 ```
 
 ## @codeui/styles/internal/foundation/breakpoints.d.ts
@@ -1393,7 +1103,7 @@ export {};
 ```ts
 import type { StyleRule } from "../types.js";
 type CSSProps = Omit<StyleRule, "@media" | "@supports">;
-export declare const breakpointQuery: Record<"sm" | "md" | "xl" | "lg" | "2xl", string>;
+export declare const breakpointQuery: Record<"xl" | "lg" | "md" | "sm" | "2xl", string>;
 interface ResponsiveStyle {
     xs?: CSSProps;
     sm?: CSSProps;
@@ -1981,7 +1691,7 @@ export type AccordionClasses = Partial<Record<AccordionPart, string>>;
 export type AccordionVariants = {
     density?: "compact" | "comfortable";
 };
-export type AccordionStyles = Record<AccordionPart, (variants?: AccordionVariants) => string>;
+export type AccordionStyles = Record<AccordionPart, () => string>;
 export declare const accordionStyles: AccordionStyles;
 ```
 
@@ -2003,7 +1713,7 @@ export type AlertVariants = {
     fluid?: boolean;
 };
 export type AlertStyles = {
-    [P in AlertPart]: (variants?: AlertVariants) => string;
+    [P in AlertPart]: () => string;
 };
 export declare const alertStyles: AlertStyles;
 ```
@@ -2027,7 +1737,7 @@ export type BadgeVariants = {
     variant?: BadgeVariant;
 };
 export type BadgeStyles = {
-    [P in BadgePart]: (variants?: BadgeVariants) => string;
+    [P in BadgePart]: () => string;
 };
 export declare const badgeStyles: BadgeStyles;
 ```
@@ -2059,7 +1769,7 @@ export declare const comboboxParts: {
 };
 export type ComboboxPart = keyof typeof comboboxParts;
 export type ComboboxClasses = Partial<Record<ComboboxPart, string>>;
-export type ComboboxStyles = Record<ComboboxPart, (variants?: ComboboxVariants) => string>;
+export type ComboboxStyles = Record<ComboboxPart, () => string>;
 export declare const comboboxStyles: ComboboxStyles;
 ```
 
@@ -2140,21 +1850,8 @@ export type DialogMotion = "auto" | "none";
 /** `split` puts the first child, a preview, beside the second, its options. */
 export type DialogBodyLayout = "split";
 export type DialogSectionVariant = "group" | "well";
-type DialogPanelStyleVariants = {
-    size?: DialogSize;
-    chrome?: DialogChrome;
-};
-type DialogBodyStyleVariants = {
-    layout?: DialogBodyLayout;
-};
-type DialogSectionStyleVariants = {
-    variant?: DialogSectionVariant;
-};
-export type DialogStyles = {
-    [P in DialogPart]: P extends "panel" ? (variants?: DialogPanelStyleVariants) => string : P extends "body" ? (variants?: DialogBodyStyleVariants) => string : P extends "section" ? (variants?: DialogSectionStyleVariants) => string : () => string;
-};
+export type DialogStyles = Record<DialogPart, () => string>;
 export declare const dialogStyles: DialogStyles;
-export {};
 ```
 
 ## @codeui/styles/internal/parts/kbd.d.ts
@@ -2172,7 +1869,7 @@ export type KbdVariants = {
     variant?: KbdVariant;
 };
 export type KbdStyles = {
-    [P in KbdPart]: (variants?: KbdVariants) => string;
+    [P in KbdPart]: () => string;
 };
 export declare const kbdStyles: KbdStyles;
 ```
@@ -2201,7 +1898,7 @@ export type OptionCardVariants = {
     variant?: OptionCardVariant;
 };
 export type OptionCardStyles = {
-    [P in OptionCardPart]: (variants?: OptionCardVariants) => string;
+    [P in OptionCardPart]: () => string;
 };
 export declare const optionCardStyles: OptionCardStyles;
 ```
@@ -2222,9 +1919,7 @@ export type PopoverPart = keyof typeof popoverParts;
 export type PopoverClasses = Partial<Record<PopoverPart, string>>;
 export type PopoverVariant = "bordered";
 export type PopoverStyles = {
-    [P in PopoverPart]: P extends "content" ? (variants?: {
-        variant?: PopoverVariant;
-    }) => string : () => string;
+    [P in PopoverPart]: () => string;
 };
 export declare const popoverStyles: PopoverStyles;
 ```
@@ -2244,7 +1939,7 @@ export declare const progressParts: {
 };
 export type ProgressPart = keyof typeof progressParts;
 export type ProgressClasses = Partial<Record<ProgressPart, string>>;
-export type ProgressStyles = Record<ProgressPart, (variants?: ProgressVariants) => string>;
+export type ProgressStyles = Record<ProgressPart, () => string>;
 export declare const progressStyles: ProgressStyles;
 ```
 
@@ -2306,9 +2001,7 @@ export type SheetSide = "bottom" | "left" | "right";
 /** `auto` slides on pointer opens and closes. `none` never moves. */
 export type SheetMotion = "auto" | "none";
 export type SheetStyles = {
-    [P in SheetPart]: (variants?: {
-        side?: SheetSide;
-    }) => string;
+    [P in SheetPart]: () => string;
 };
 export declare const sheetStyles: SheetStyles;
 ```
@@ -2326,7 +2019,7 @@ export type SkeletonVariants = {
     animate?: boolean;
 };
 export type SkeletonStyles = {
-    [P in SkeletonPart]: (variants?: SkeletonVariants) => string;
+    [P in SkeletonPart]: () => string;
 };
 export declare const skeletonStyles: SkeletonStyles;
 ```
@@ -2350,7 +2043,7 @@ export declare const sliderParts: {
 };
 export type SliderPart = keyof typeof sliderParts;
 export type SliderClasses = Partial<Record<SliderPart, string>>;
-export type SliderStyles = Record<SliderPart, (variants?: SliderVariants) => string>;
+export type SliderStyles = Record<SliderPart, () => string>;
 export declare const sliderStyles: SliderStyles;
 ```
 
@@ -2369,7 +2062,7 @@ export type SpinnerVariants = {
     size?: SpinnerSize;
 };
 export type SpinnerStyles = {
-    [P in SpinnerPart]: (variants?: SpinnerVariants) => string;
+    [P in SpinnerPart]: () => string;
 };
 export declare const spinnerStyles: SpinnerStyles;
 ```
@@ -2391,7 +2084,7 @@ export declare const stackParts: {
 export type StackPart = keyof typeof stackParts;
 export type StackClasses = Partial<Record<StackPart, string>>;
 export type StackStyles = {
-    root: (variants?: StackVariants) => string;
+    root: () => string;
 };
 export declare const stackStyles: StackStyles;
 ```
@@ -2413,7 +2106,7 @@ export type SwitchVariants = {
 };
 export type SwitchPart = "root" | "input" | "control" | "thumb" | "label" | "description" | "errorMessage";
 export type SwitchClasses = Partial<Record<SwitchPart, string>>;
-export type SwitchStyles = Record<SwitchPart, (variants?: SwitchVariants) => string>;
+export type SwitchStyles = Record<SwitchPart, () => string>;
 export declare const switchStyles: SwitchStyles;
 ```
 
@@ -2432,7 +2125,7 @@ export declare const textParts: {
 export type TextPart = keyof typeof textParts;
 export type TextClasses = Partial<Record<TextPart, string>>;
 export type TextStyles = {
-    root: (variants?: TextVariants) => string;
+    root: () => string;
 };
 export declare const textStyles: TextStyles;
 ```
@@ -2461,7 +2154,7 @@ export type ToastVariants = {
     position?: ToastPosition;
 };
 export type ToastStyles = {
-    [P in ToastPart]: (variants?: ToastVariants) => string;
+    [P in ToastPart]: () => string;
 };
 export declare const toastStyles: ToastStyles;
 ```
@@ -2470,22 +2163,6 @@ export declare const toastStyles: ToastStyles;
 
 ```ts
 import type * as CSS from "csstype";
-type BooleanKey<T> = T extends "true" | "false" ? boolean : T;
-export type VariantSelection<Variants> = {
-    [Group in keyof Variants]?: BooleanKey<keyof Variants[Group]>;
-};
-export type RuntimeFn<Variants> = ((options?: VariantSelection<Variants>) => string) & {
-    variants(): (keyof Variants)[];
-    classNames: {
-        base: string;
-        variants: {
-            [Group in keyof Variants]: {
-                [Value in keyof Variants[Group]]: string;
-            };
-        };
-    };
-};
-export type RecipeVariants<Fn extends (...args: never[]) => string> = Parameters<Fn>[0];
 type CSSVariable = `var(--${string})`;
 type StandardProperties = CSS.Properties<number | (string & {})>;
 type Properties = {
@@ -3102,16 +2779,21 @@ export declare function createFieldLabelProps<TValidComponent extends ValidCompo
 import { type Accessor, type JSX } from "solid-js";
 import * as styles from "./Field.css.js";
 export type BaseFieldProps = styles.BaseFieldVariants;
+type BaseFieldStyling = {
+    baseStyle(): string;
+    attributes: {
+        "data-size": NonNullable<NonNullable<BaseFieldProps>["size"]>;
+        "data-theme": NonNullable<NonNullable<BaseFieldProps>["theme"]>;
+    };
+};
 export declare function createBaseFieldProps(props: BaseFieldProps, field: Accessor<FieldContent & {
     inputId?: string;
     id?: string;
-}>): {
+}>): BaseFieldStyling & {
     ids: ReturnType<typeof createFieldIds>;
-    baseStyle: () => string;
 };
-export declare function createBaseFieldProps(props: BaseFieldProps): {
+export declare function createBaseFieldProps(props: BaseFieldProps): BaseFieldStyling & {
     ids: undefined;
-    baseStyle(): string;
 };
 export type FieldContent = {
     label?: JSX.Element;
@@ -3127,6 +2809,7 @@ export declare function createFieldIds(props: Accessor<FieldContent & {
     description: () => string;
     errorMessage: () => string;
 };
+export {};
 ```
 
 ## components/Field/fieldStyle.d.ts

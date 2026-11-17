@@ -1,32 +1,7 @@
-import type { RecipeVariants } from "../../types";
-import { recipe } from "../../recipe";
 export const indicator: string = "cui-segmented-control-indicator";
 export const list: string = "cui-segmented-control-list";
 export const segment: string = "cui-segmented-control-segment";
-export const segmentedControlWrapper = recipe({
-	defaultClassName:
-		"cui-segmented-control-segmentedControlWrapper cui-segmented-control-segmentedFieldTheme",
-	variantClassNames: {
-		theme: {
-			neutral: "cui-segmented-control-segmentedControlWrapper_theme_neutral",
-			primary: "cui-segmented-control-segmentedControlWrapper_theme_primary",
-		},
-		variant: {
-			solid: "cui-segmented-control-segmentedControlWrapper_variant_solid",
-			bordered: "cui-segmented-control-segmentedControlWrapper_variant_bordered",
-		},
-		size: {
-			xl: "cui-segmented-control-segmentedControlWrapper_size_xl",
-			lg: "cui-segmented-control-segmentedControlWrapper_size_lg",
-			md: "cui-segmented-control-segmentedControlWrapper_size_md",
-			sm: "cui-segmented-control-segmentedControlWrapper_size_sm",
-			xs: "cui-segmented-control-segmentedControlWrapper_size_xs",
-		},
-		fluid: { true: "cui-segmented-control-segmentedControlWrapper_fluid_true" },
-		pill: { true: "cui-segmented-control-segmentedControlWrapper_pill_true" },
-	},
-	defaultVariants: { size: "md" },
-});
+export const segmentedControlWrapper = (): string => "cui-segmented-control-segmentedControlWrapper cui-segmented-control-segmentedFieldTheme";
 export const segmentedFieldTheme: string = "cui-segmented-control-segmentedFieldTheme";
 export const segmentedFieldVars = {
 	activeSegmentedBackgroundColor:
@@ -49,4 +24,10 @@ export const segmentedFieldVars = {
 	segmentFontSize: "var(--cui-segmentedFieldTheme-segmentFontSize)" as `var(--${string})`,
 };
 
-export type SegmentedControlVariants = RecipeVariants<typeof segmentedControlWrapper>;
+export type SegmentedControlVariants = {
+	theme?: "neutral" | "primary";
+	variant?: "solid" | "bordered";
+	size?: "xl" | "lg" | "md" | "sm" | "xs";
+	fluid?: boolean;
+	pill?: boolean;
+} | undefined;

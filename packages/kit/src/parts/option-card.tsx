@@ -30,7 +30,7 @@ export function Root<T extends ValidComponent = "div">(
 			data-orientation={local.orientation ?? "horizontal"}
 			data-cui={optionCardParts.root}
 			data-variant={local.variant ?? "card"}
-			class={mergeClasses(optionCardStyles.root({ variant: local.variant }), local.class)}
+			class={mergeClasses(optionCardStyles.root(), local.class)}
 		/>
 	);
 }
@@ -50,7 +50,7 @@ export function Label<T extends ValidComponent = "span">(
 			data-cui={optionCardParts.label}
 			data-variant={local.variant ?? "card"}
 			class={mergeClasses(
-				optionCardStyles.label({ variant: local.variant }),
+				optionCardStyles.label(),
 				local.class,
 			)}
 		/>
@@ -72,7 +72,7 @@ export function Description<T extends ValidComponent = "div">(
 			data-cui={optionCardParts.description}
 			data-variant={local.variant ?? "card"}
 			class={mergeClasses(
-				optionCardStyles.description({ variant: local.variant }),
+				optionCardStyles.description(),
 				local.class,
 			)}
 		/>
@@ -94,7 +94,7 @@ export function ErrorMessage<T extends ValidComponent = "div">(
 			data-cui={optionCardParts.errorMessage}
 			data-variant={local.variant ?? "card"}
 			class={mergeClasses(
-				optionCardStyles.errorMessage({ variant: local.variant }),
+				optionCardStyles.errorMessage(),
 				local.class,
 			)}
 		/>
@@ -115,7 +115,7 @@ export function Item<T extends ValidComponent = "div">(
 			{...others}
 			data-cui={optionCardParts.item}
 			data-variant={local.variant ?? "card"}
-			class={mergeClasses(optionCardStyles.item({ variant: local.variant }), local.class)}
+			class={mergeClasses(optionCardStyles.item(), local.class)}
 		/>
 	);
 }
@@ -135,7 +135,7 @@ export function ItemInput<T extends ValidComponent = "input">(
 			data-cui={optionCardParts.itemInput}
 			data-variant={local.variant ?? "card"}
 			class={mergeClasses(
-				optionCardStyles.itemInput({ variant: local.variant }),
+				optionCardStyles.itemInput(),
 				local.class,
 			)}
 		/>
@@ -157,7 +157,7 @@ export function ItemControl<T extends ValidComponent = "div">(
 			data-cui={optionCardParts.itemControl}
 			data-variant={local.variant ?? "card"}
 			class={mergeClasses(
-				optionCardStyles.itemControl({ variant: local.variant }),
+				optionCardStyles.itemControl(),
 				local.class,
 			)}
 		/>
@@ -179,7 +179,7 @@ export function ItemIndicator<T extends ValidComponent = "div">(
 			data-cui={optionCardParts.itemIndicator}
 			data-variant={local.variant ?? "card"}
 			class={mergeClasses(
-				optionCardStyles.itemIndicator({ variant: local.variant }),
+				optionCardStyles.itemIndicator(),
 				local.class,
 			)}
 		/>
@@ -201,7 +201,7 @@ export function ItemLabel<T extends ValidComponent = "label">(
 			data-cui={optionCardParts.itemLabel}
 			data-variant={local.variant ?? "card"}
 			class={mergeClasses(
-				styles.itemLabel.classNames.base,
+				styles.itemLabel(),
 				local.class,
 			)}
 		/>
@@ -223,7 +223,7 @@ export function ItemDescription<T extends ValidComponent = "div">(
 			data-cui={optionCardParts.itemDescription}
 			data-variant={local.variant ?? "card"}
 			class={mergeClasses(
-				optionCardStyles.itemDescription({ variant: local.variant }),
+				optionCardStyles.itemDescription(),
 				local.class,
 			)}
 		/>

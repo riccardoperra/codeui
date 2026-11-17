@@ -158,8 +158,7 @@ export function RadioList<T extends ValidComponent = "div">(
 				data-theme={local.theme ?? "inline"}
 				class={mergeClasses(
 					local.classes?.items,
-					styles.radioList.classNames.base,
-					styles.radioTheme,
+					styles.radioList(),
 				)}
 			>
 				<RadioClassesContext.Provider value={() => local.classes}>

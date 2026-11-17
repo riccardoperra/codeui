@@ -1,4 +1,3 @@
-import { mergeClasses } from "../utils/css";
 import * as styles from "../components/Switch/Switch.css";
 export const switchParts = {
 	root: "switch-root",
@@ -19,12 +18,12 @@ export type SwitchPart =
 	| "description"
 	| "errorMessage";
 export type SwitchClasses = Partial<Record<SwitchPart, string>>;
-export type SwitchStyles = Record<SwitchPart, (variants?: SwitchVariants) => string>;
+export type SwitchStyles = Record<SwitchPart, () => string>;
 export const switchStyles: SwitchStyles = {
 	root: () => styles.root,
 	input: () => styles.input,
-	control: variants => styles.control({ size: variants?.size ?? "md" }),
-	thumb: variants => styles.thumb({ size: variants?.size ?? "md" }),
+	control: styles.control,
+	thumb: styles.thumb,
 	label: () => styles.label,
 	description: () => styles.description,
 	errorMessage: () => styles.errorMessage,

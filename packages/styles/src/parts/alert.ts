@@ -1,5 +1,4 @@
 import * as styles from "../components/Alert/Alert.css";
-import { mergeClasses } from "../utils/css";
 export const alertParts = {
 	root: "alert-root",
 	icon: "alert-icon",
@@ -13,10 +12,10 @@ export type AlertClasses = Partial<Record<AlertPart, string>>;
 export type AlertTone = "neutral" | "info" | "success" | "warning" | "danger";
 export type AlertVariants = { tone?: AlertTone; fluid?: boolean };
 
-export type AlertStyles = { [P in AlertPart]: (variants?: AlertVariants) => string };
+export type AlertStyles = { [P in AlertPart]: () => string };
 
 export const alertStyles: AlertStyles = {
-	root: variants => styles.root({ tone: variants?.tone, fluid: variants?.fluid }),
+	root: styles.root,
 	icon: () => styles.icon,
 	title: () => styles.title,
 	description: () => styles.description,

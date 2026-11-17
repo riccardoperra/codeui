@@ -36,7 +36,7 @@ export function Root<T extends ValidComponent = "div">(props: StackProps<T>) {
 			{...others}
 			component={local.as ?? "div"}
 			data-cui={stackParts.root}
-			class={mergeClasses(root.classNames.base, local.classes?.root, local.class)}
+			class={mergeClasses(root(), local.classes?.root, local.class)}
 			data-gap={local.gap ?? "2"}
 			data-align={local.align ?? "stretch"}
 			data-justify={local.justify ?? "start"}
