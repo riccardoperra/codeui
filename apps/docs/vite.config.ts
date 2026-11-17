@@ -26,6 +26,11 @@ export default defineConfig({
       // Cloudflare deploys build with NITRO_PRESET=cloudflare-pages; local builds stay on Node.
       preset: process.env.NITRO_PRESET ?? 'node-server',
       compatibilityDate: '2026-11-01',
+      // Pages that moved. Cloudflare reads these from the generated _redirects file.
+      routeRules: {
+        '/docs/theming': { redirect: { to: '/docs/foundations/theming', status: 301 } },
+        '/docs/theming.md': { redirect: { to: '/docs/foundations/theming.md', status: 301 } },
+      },
       // The prerender needs every path routed to the worker. `scripts/cloudflare-routes.mjs`
       // narrows `_routes.json` after it, once the pages are static files.
       cloudflare: { wrangler: { name: 'codeui-docs' } },

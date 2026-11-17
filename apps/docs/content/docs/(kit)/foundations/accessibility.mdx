@@ -76,7 +76,7 @@ Inkstone asks for 4.5:1 for text up to 18px, and 3:1 for large text, icons, ring
 
 White text on the CodeImage primary, `#09f`, is 3.0:1. It meets the 3:1 rule for large text, and it fails 4.5:1 for the 14px label of a primary button. The maintainer chose the CodeImage primary over AA contrast for this color. `action.brandSoft.text` uses the same `#09f`, so link-style text on a light surface is also 3.0:1.
 
-If your app needs AA for every label, override the three brand tokens with darker blues. `--cui-action-brand-base: #0070f0` is 4.6:1 with white, `--cui-action-brand-hover: #0066dc` is 5.3:1, and `--cui-action-brand-active: #005bc4` is 6.4:1. [Theming](/docs/theming#override-tokens-with-plain-css) shows the selector that reaches every scope.
+If your app needs AA for every label, override the three brand tokens with darker blues. `--cui-action-brand-base: #0070f0` is 4.6:1 with white, `--cui-action-brand-hover: #0066dc` is 5.3:1, and `--cui-action-brand-active: #005bc4` is 6.4:1. [Theming](/docs/foundations/theming#override-tokens-with-plain-css) shows the selector that reaches every scope.
 
 Check contrast again whenever you override a color token. The kit cannot check your values.
 

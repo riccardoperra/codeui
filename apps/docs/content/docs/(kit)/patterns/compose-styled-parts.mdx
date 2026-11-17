@@ -50,7 +50,7 @@ Install `@kobalte/core` as a direct dependency of your app before you import it.
 Every kit rule sits in the `cui` cascade layer. Unlayered CSS in your app wins over a layered rule, whatever the stylesheet order.
 So one class on `PopoverContent` widens the panel and adds padding, with no `!important` and no extra specificity. The same holds for a class on a part or next to a `*Styles` class.
 
-A CSS reset is the exception, because an unlayered reset also wins. [Theming](/docs/theming#the-cui-cascade-layer) shows how to put the reset in a layer below `cui`.
+A CSS reset is the exception, because an unlayered reset also wins. [Theming](/docs/foundations/theming#the-cui-cascade-layer) shows how to put the reset in a layer below `cui`.
 
 ## Keep data-cui and classes stable
 

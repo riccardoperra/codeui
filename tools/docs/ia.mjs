@@ -147,7 +147,7 @@ export const groups = [
 		pages: [
 			guide('foundations/tokens', 'Tokens', 'The --cui-* custom properties every kit style reads.', '03',
 				'Explain the token contract. Link the token tables in the Token exports utility page instead of copying them.'),
-			guide('theming', 'Theming', null, '03', 'Light and dark scopes, data-cui-theme, overriding tokens per app, per mode, and per subtree.'),
+			guide('foundations/theming', 'Theming', null, '03', 'Light and dark scopes, data-cui-theme, overriding tokens per app, per mode, and per subtree.'),
 			guide('foundations/cascade-layers', 'Cascade layers', 'How kit styles are layered, and how app styles override them.', '03',
 				'The layer order, how to override from app CSS, and the verified override example.'),
 			guide('foundations/typography-and-spacing', 'Typography and spacing', 'The type scale and the spacing scale the components use.', '03',

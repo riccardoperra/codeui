@@ -5,9 +5,9 @@ description: "The --cui-* custom properties every kit style reads."
 
 Every color, radius, space, size, shadow and motion value in the kit is a `--cui-*` CSS custom property. Kit components read only these properties, so changing one changes every component that uses it. The kit defines 129 of them.
 
-<SolidDemo name="tokens/usage" />
+<SolidDemo name="tokens/overview" source="hidden" />
 
-The card above reads four tokens with `var()`. The button reads the same tokens through its own styles.
+Each swatch above is one color token, read in the dark mode and in the light mode. The tables below list every token.
 
 ## How a name is built
 
@@ -15,7 +15,15 @@ A name is `--cui-` followed by the token path in kebab case. The path `surface.m
 
 The CSS name is the stable public API. In TypeScript, the [`tokens`](/docs/utilities/token-exports#tokens) export holds the same paths, and each leaf is a `var(--cui-…)` string.
 
-Each mode sets every token. Most color tokens differ between dark and light, and `data-cui-theme` picks the mode. [Theming](/docs/theming) covers the attribute and overrides.
+Each mode sets every token. Most color tokens differ between dark and light, and `data-cui-theme` picks the mode. [Theming](/docs/foundations/theming) covers the attribute and overrides.
+
+## Read a token in your styles
+
+<SolidDemo name="tokens/usage" />
+
+The card above reads four tokens with `var()`. The button reads the same tokens through its own styles.
+
+## Design rules
 
 The design rules for each role live in Inkstone: [Colour](/docs/design/color), [Typography](/docs/design/typography), [Space and shape](/docs/design/space-and-shape) and [Motion](/docs/design/motion). This page lists the values.
 

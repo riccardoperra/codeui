@@ -37,7 +37,7 @@ Two cases do not follow this order:
 
 To change a kit component, write ordinary unlayered CSS. Use the tokens when you can, so the change follows the mode.
 
-- Change a token for the whole app or for one subtree. See [Override tokens with plain CSS](/docs/theming#override-tokens-with-plain-css).
+- Change a token for the whole app or for one subtree. See [Override tokens with plain CSS](/docs/foundations/theming#override-tokens-with-plain-css).
 - Change one instance with a `class` on the component.
 - Change an inner part with `classes`, or target its `data-cui` attribute, such as `[data-cui="text-field-input"]`. Each component page lists its parts under Anatomy.
 
@@ -89,4 +89,4 @@ Tailwind utility classes on a kit component then win over kit styles, and Tailwi
 
 ## Token values are layered too
 
-The `--cui-*` values for both modes are set inside `@layer cui`, on `:root` and on each `[data-cui-theme]` element. An unlayered declaration of the same property wins over them. [Theming](/docs/theming#why-root-alone-is-not-enough) explains which selector to use so that the override reaches nested scopes.
+The `--cui-*` values for both modes are set inside `@layer cui`, on `:root` and on each `[data-cui-theme]` element. An unlayered declaration of the same property wins over them. [Theming](/docs/foundations/theming#why-root-alone-is-not-enough) explains which selector to use so that the override reaches nested scopes.
