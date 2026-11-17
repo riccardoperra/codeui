@@ -230,7 +230,7 @@ console.log(JSON.stringify({ button: button({ theme: 'primary', size: 'md' }) + 
 					report(
 						"CSS composition order",
 						JSON.stringify(composition) === expectedComposition &&
-							composition.padding === "0px",
+							composition.padding === "0px" && composition.width === composition.height && parseFloat(composition.width) > 0,
 						JSON.stringify({ order, ...composition }),
 					);
 				}
