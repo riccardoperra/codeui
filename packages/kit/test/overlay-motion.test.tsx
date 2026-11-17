@@ -124,8 +124,9 @@ describe("Tooltip", () => {
 	});
 
 	it("pops on hover", async () => {
-		const button = renderTooltip();
+		// Finish the prior tooltip's focus cleanup and skip-delay window before mounting.
 		await new Promise(resolve => setTimeout(resolve, 350));
+		const button = renderTooltip();
 		fireEvent.pointerMove(button.parentElement!, { pointerType: "mouse" });
 		fireEvent.pointerEnter(button.parentElement!, { pointerType: "mouse" });
 		await new Promise(resolve => setTimeout(resolve, 50));
