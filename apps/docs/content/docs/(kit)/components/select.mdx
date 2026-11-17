@@ -42,7 +42,7 @@ Inkstone puts Select after segmented controls, switches, and option cards. Insid
 | Internal | `div` | `itemLabel` | `select-item-label` | None |
 | Internal | `div` | `itemIndicator` | `select-item-indicator` | None |
 
-`Select` is the only export. There is no styled parts entry point such as `@codeui/kit/select`. The label, description, and error message render only when you pass them. The list renders in a portal on `document.body` while it is open.
+`Select` is the only export. There is no styled parts entry point such as `@codeui/kit/select`. The label, description, and error message render only when you pass them. The list renders in a portal on `document.body` while it is open. `Select` also renders a visually hidden `div` with no `data-cui` marker and no `classes` key. It holds the native `select` that [submits with a form](#submit-with-a-form) and is hidden from assistive technology.
 
 ## Variants
 
@@ -148,7 +148,7 @@ Inherited from Kobalte's [select root](https://kobalte.dev/docs/core/components/
 
 <SolidDemo name="select/form" />
 
-`Select` renders no native form control. A `name` prop is accepted but submits nothing. To include the value in a form, keep the value controlled and render a hidden input next to the select, as the demo does. [Combobox](/docs/components/combobox#submit-with-a-form) submits on its own through `name`.
+With `name`, `Select` renders a visually hidden native `select` that holds the selection, so the form submits the value under that name. The submitted value is the option key, which is `optionValue` converted to a string. For string options, that is the string. With `multiple`, each selected value submits under the same name. `required` and `disabled` apply to the hidden control too, so a disabled select submits nothing. Kobalte also renders a hidden text input for browser autofill. It moves focus to the trigger when it receives focus.
 
 ## Accessibility
 
@@ -167,7 +167,7 @@ Inherited from Kobalte's [select root](https://kobalte.dev/docs/core/components/
 
 ### ARIA
 
-The trigger is a `button` with `aria-haspopup="listbox"` and `aria-expanded`. Its name comes from `aria-label`, which `Select` requires, together with the visible `label`. The list is a `listbox`, and each item is an `option` with `aria-selected`. Disabled options have `aria-disabled="true"`. `description` and `errorMessage` are linked to the trigger with `aria-describedby`.
+The trigger is a `button` with `aria-haspopup="listbox"` and `aria-expanded`. Its name comes from the visible `label`. Pass `aria-label` only when there is no visible label. The list is a `listbox`, and each item is an `option` with `aria-selected`. Disabled options have `aria-disabled="true"`. `description` and `errorMessage` are linked to the trigger with `aria-describedby`.
 
 ### Focus
 
@@ -196,7 +196,7 @@ Each brace expands to a separate variable. See [Inkstone color](/docs/design/col
 
 ## Composition examples
 
-- [Submit with a form](#submit-with-a-form) on this page shows the hidden input that carries the value.
+- [Submit with a form](#submit-with-a-form) on this page reads the value from `FormData` through `name`.
 - [Object options with `createSelectOptions`](#object-options-with-createselectoptions) stores an id while the list shows names.
 
 ## Related

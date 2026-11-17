@@ -35,6 +35,7 @@ export type SelectInherited = Pick<
 	| "disabled"
 	| "readOnly"
 	| "required"
+	| "name"
 	| "validationState"
 	| "open"
 	| "defaultOpen"
@@ -43,7 +44,7 @@ export type SelectInherited = Pick<
 
 export const notes = {
 	Select: {
-		"aria-label": { description: "Accessible name of the trigger. Required, even with a visible label." },
+		"aria-label": { description: "Accessible name of the trigger. Needed only when there is no visible label." },
 		label: { description: "Label above the trigger." },
 		placeholder: { description: "Shown in the trigger when nothing is selected." },
 		description: { description: "Hint under the trigger, linked as the accessible description." },
@@ -67,7 +68,8 @@ export const notes = {
 		optionDisabled: { description: "Key or function that marks an option as disabled." },
 		disabled: { default: "false", description: "Disables the trigger." },
 		readOnly: { default: "false", description: "Keeps the value and blocks changes." },
-		required: { default: "false", description: "Marks the field as required for assistive technology." },
+		required: { default: "false", description: "Marks the field as required for assistive technology and native form validation." },
+		name: { description: "Name the selected value submits under in a form. With multiple, each value submits under it." },
 		validationState: { description: 'Set to "invalid" to show errorMessage and mark the trigger invalid.' },
 		open: { description: "Controlled open state of the list." },
 		defaultOpen: { description: "Open state on first render, when uncontrolled." },

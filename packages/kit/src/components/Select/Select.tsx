@@ -62,7 +62,8 @@ export type SelectProps<Option, OptGroup = never> = KSelectRootProps<
 	OptGroup
 > &
 	BaseFieldProps & {
-	"aria-label": string;
+	/** Accessible name for the trigger. Optional when `label` is set. */
+	"aria-label"?: string;
 	placeholder?: string;
 	description?: string;
 	label?: JSX.Element;
@@ -149,6 +150,7 @@ export function Select<Option, OptGroup = never>(props: ParentProps<SelectProps<
 					</KSelect.Label>
 				)}
 			</Show>
+			<KSelect.HiddenSelect />
 			<KSelect.Trigger
 				data-cui={selectParts.trigger}
 				aria-label={local["aria-label"]}

@@ -60,7 +60,7 @@ export { Sheet } from "./components/Sheet/Sheet";
 export type { SheetProps } from "./components/Sheet/Sheet";
 
 export { Select } from "./components/Select/Select";
-export type { SelectClasses } from "./components/Select/Select";
+export type { SelectClasses, SelectProps } from "./components/Select/Select";
 export { createSelectOptions } from "./components/Select/createSelectValue";
 
 export { RadioList, RadioListItem } from "./components/RadioList/RadioList";
