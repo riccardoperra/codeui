@@ -1,5 +1,5 @@
 import type { DialogContentProps as KDialogContentProps } from "@kobalte/core/dialog";
-import { type JSX, Show, splitProps } from "solid-js";
+import { children, type JSX, Show, splitProps } from "solid-js";
 import * as S from "../../parts/sheet";
 import { mergeClasses } from "../../utils/css";
 
@@ -63,6 +63,9 @@ export function Sheet(props: SheetProps) {
 		"contentProps",
 	]);
 	const showCloseButton = () => local.showCloseButton !== false;
+	const title = children(() => local.title);
+	const description = children(() => local.description);
+	const footer = children(() => local.footer);
 	return (
 		<S.Root {...root}>
 			<S.Portal mount={local.mount}>
@@ -78,10 +81,10 @@ export function Sheet(props: SheetProps) {
 					<Show when={local.draggable && (local.side ?? "bottom") === "bottom"}>
 						<S.Handle aria-label={local.closeLabel} class={local.classes?.handle} />
 					</Show>
-					<Show when={local.title || showCloseButton()}>
+					<Show when={title() || showCloseButton()}>
 						<S.Header class={local.classes?.header}>
-							<Show when={local.title}>
-								<S.Title class={local.classes?.title}>{local.title}</S.Title>
+							<Show when={title()}>
+								<S.Title class={local.classes?.title}>{title()}</S.Title>
 							</Show>
 							<Show when={showCloseButton()}>
 								<S.CloseButton
@@ -91,12 +94,12 @@ export function Sheet(props: SheetProps) {
 							</Show>
 						</S.Header>
 					</Show>
-					<Show when={local.description}>
-						<S.Description class={local.classes?.description}>{local.description}</S.Description>
+					<Show when={description()}>
+						<S.Description class={local.classes?.description}>{description()}</S.Description>
 					</Show>
 					<S.Body class={local.classes?.body}>{local.children}</S.Body>
-					<Show when={local.footer}>
-						<S.Footer class={local.classes?.footer}>{local.footer}</S.Footer>
+					<Show when={footer()}>
+						<S.Footer class={local.classes?.footer}>{footer()}</S.Footer>
 					</Show>
 				</S.Content>
 			</S.Portal>

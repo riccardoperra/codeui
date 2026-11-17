@@ -59,13 +59,15 @@ export function Dialog(props: ParentProps<DialogProps>) {
 				<D.Positioner size={local.size} class={local.classes?.positioner}>
 					<D.Content {...content} size={local.size} chrome={local.chrome} class={local.classes?.panel}>
 						<Show when={local.title}>
+							{title => (
 							<D.Header class={local.classes?.header}>
-								<D.Title class={local.classes?.title}>{local.title}</D.Title>
+								<D.Title class={local.classes?.title}>{title()}</D.Title>
 								<D.CloseButton aria-label={local.closeLabel} class={local.classes?.closeButton} />
 							</D.Header>
+							)}
 						</Show>
 						<Show when={local.description}>
-							<D.Description class={local.classes?.description}>{local.description}</D.Description>
+							{description => <D.Description class={local.classes?.description}>{description()}</D.Description>}
 						</Show>
 						{local.children}
 					</D.Content>
