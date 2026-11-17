@@ -1,12 +1,10 @@
-import { style } from "../foundation/layer.css";
+import { style } from "../foundation/public.css";
 import { createVar, fallbackVar } from "@vanilla-extract/css";
 
 export const iconSize = createVar("iconSize");
 
-export const icon = style(
-	{
-		width: fallbackVar(iconSize, "1.1em"),
-		height: fallbackVar(iconSize, "1.1em"),
-	},
-	"icon",
-);
+export const iconRule = {
+	width: fallbackVar(iconSize, "1.1em"),
+	height: fallbackVar(iconSize, "1.1em"),
+};
+export const icon = style(iconRule, "icon");

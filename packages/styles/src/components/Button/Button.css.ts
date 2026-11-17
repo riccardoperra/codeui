@@ -1,3 +1,4 @@
+import { iconRule } from "../../icons/icon.css";
 import { squareButtonRule } from "../Button/composition";
 import { finish } from "../../foundation/public.css";
 import { publicStylesRegistry as registry } from "../../registry";
@@ -270,10 +271,7 @@ globalStyle(
 	":is(.cui-icon-button,.cui-dialog-close-button)",
 	squareButtonRule(buttonVars.buttonHeight),
 );
-globalStyle(":is(.cui-icon-button,.cui-dialog-close-button) svg", {
-	width: "1.1em",
-	height: "1.1em",
-});
+globalStyle(":is(.cui-icon-button,.cui-dialog-close-button) svg", iconRule);
 finish();
 
 export const buttonDefaults = registry.button.defaults;

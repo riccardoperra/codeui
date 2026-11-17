@@ -2495,6 +2495,10 @@ export declare const tokens: {
 
 ```ts
 export declare const iconSize: `var(--${string})`;
+export declare const iconRule: {
+    width: `var(--${string})`;
+    height: `var(--${string})`;
+};
 export declare const icon: string;
 ```
 

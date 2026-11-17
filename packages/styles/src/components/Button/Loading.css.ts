@@ -1,6 +1,6 @@
 import { tokens } from "../../foundation/cui.css";
 import { transition } from "../../foundation/motion.css";
-import { style } from "../../foundation/layer.css";
+import { style } from "../../foundation/public.css";
 import { createVar, fallbackVar, keyframes } from "@vanilla-extract/css";
 
 const wrapperAnimation = keyframes(

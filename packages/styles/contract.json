@@ -1942,6 +1942,10 @@
   },
   "icon": {
     "icon": "cui-icon-icon",
+    "iconRule": {
+      "width": "var(--cui-icon-iconSize, 1.1em)",
+      "height": "var(--cui-icon-iconSize, 1.1em)"
+    },
     "iconSize": "var(--cui-icon-iconSize)"
   }
 }
