@@ -498,45 +498,54 @@
   },
   "button": {
     "button": {
-      "classNames": {
-        "base": "cui-button-a0zfdzf",
-        "variants": {
-          "size": {
-            "xl": "cui-button-button_size_xl",
-            "lg": "cui-button-button_size_lg",
-            "md": "cui-button-button_size_md",
-            "sm": "cui-button-button_size_sm",
-            "xs": "cui-button-button_size_xs"
-          },
-          "theme": {
-            "primary": "cui-button-button_theme_primary",
-            "tertiary": "cui-button-button_theme_tertiary",
-            "secondary": "cui-button-button_theme_secondary",
-            "negative": "cui-button-button_theme_negative",
-            "caution": "cui-button-button_theme_caution"
-          },
-          "variant": {
-            "ghost": "cui-button-button_variant_ghost"
-          },
-          "block": {
-            "true": "cui-button-button_block_true"
-          },
-          "pill": {
-            "true": "cui-button-button_pill_true"
-          },
-          "loading": {
-            "true": "cui-button-button_loading_true"
-          }
-        }
+      "parts": [
+        "cui-button"
+      ],
+      "variants": {
+        "size": [
+          "xl",
+          "lg",
+          "md",
+          "sm",
+          "xs"
+        ],
+        "theme": [
+          "primary",
+          "tertiary",
+          "secondary",
+          "negative",
+          "caution"
+        ],
+        "variant": [
+          "ghost"
+        ],
+        "block": [
+          "true"
+        ],
+        "pill": [
+          "true"
+        ],
+        "loading": [
+          "true"
+        ]
+      },
+      "defaults": {
+        "size": "md"
       }
     },
     "buttonDefaults": {
       "size": "md"
     },
-    "buttonIcon": "cui-button-buttonIcon",
+    "buttonIcon": {
+      "privateIdentifier": true
+    },
     "buttonPart": "button",
-    "buttonText": "cui-button-buttonText",
-    "buttonTheme": "cui-button-buttonTheme",
+    "buttonText": {
+      "privateIdentifier": true
+    },
+    "buttonTheme": {
+      "privateIdentifier": true
+    },
     "buttonVars": {
       "buttonHeight": "var(--cui-buttonTheme-buttonHeight)",
       "fontSize": "var(--cui-buttonTheme-fontSize)",
@@ -550,10 +559,16 @@
     }
   },
   "button-loading": {
-    "pointer": "cui-loading-pointer",
+    "pointer": {
+      "privateIdentifier": true
+    },
     "pointerAnimationDelay": "var(--cui-loading-pointerAnimationDelay)",
-    "pointerGroup": "cui-loading-pointerGroup",
-    "wrapper": "cui-loading-wrapper"
+    "pointerGroup": {
+      "privateIdentifier": true
+    },
+    "wrapper": {
+      "privateIdentifier": true
+    }
   },
   "checkbox": {
     "checkboxTheme": "cui-check-box-checkboxTheme",
@@ -787,7 +802,11 @@
     "trigger": "cui-command-menu-trigger"
   },
   "dialog": {
-    "description": "cui-dialog-description",
+    "description": {
+      "parts": [
+        "cui-dialog-description"
+      ]
+    },
     "dialogDefaults": {
       "chrome": "bar",
       "variant": "group"
@@ -872,7 +891,9 @@
         "function": true
       }
     },
-    "dialogTheme": "cui-dialog-dialogTheme",
+    "dialogTheme": {
+      "privateIdentifier": true
+    },
     "dialogThemeVars": {
       "contentBackground": "var(--cui-dialogTheme-contentBackground)",
       "contentBoxShadow": "var(--cui-dialogTheme-contentBoxShadow)",
@@ -892,53 +913,113 @@
       "islandBackground": "var(--cui-dialogTheme-islandBackground)",
       "splitColumns": "var(--cui-dialogTheme-splitColumns)"
     },
-    "main": "cui-dialog-main",
-    "nav": "cui-dialog-nav",
-    "navIcon": "cui-dialog-nav-icon",
-    "navItem": "cui-dialog-nav-item",
-    "navList": "cui-dialog-navList",
-    "overlay": "cui-dialog-overlay",
+    "main": {
+      "parts": [
+        "cui-dialog-main"
+      ]
+    },
+    "nav": {
+      "parts": [
+        "cui-dialog-nav"
+      ]
+    },
+    "navIcon": {
+      "parts": [
+        "cui-dialog-nav-icon"
+      ]
+    },
+    "navItem": {
+      "parts": [
+        "cui-dialog-nav-item"
+      ]
+    },
+    "navList": {
+      "privateIdentifier": true
+    },
+    "overlay": {
+      "parts": [
+        "cui-dialog-overlay"
+      ]
+    },
     "panel": {
-      "classNames": {
-        "base": "cui-dialog-2yx8y1g",
-        "variants": {
-          "size": {
-            "xs": "cui-dialog-panel_size_xs",
-            "sm": "cui-dialog-panel_size_sm",
-            "md": "cui-dialog-panel_size_md",
-            "lg": "cui-dialog-panel_size_lg",
-            "xl": "cui-dialog-panel_size_xl",
-            "full": "cui-dialog-panel_size_full",
-            "settings": "cui-dialog-panel_size_settings",
-            "export": "cui-dialog-panel_size_export"
-          },
-          "chrome": {
-            "bar": "cui-dialog-panel_chrome_bar",
-            "inset": "cui-dialog-panel_chrome_inset"
-          }
-        }
-      }
+      "parts": [
+        "cui-dialog-panel"
+      ],
+      "variants": {
+        "size": [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full",
+          "settings",
+          "export"
+        ],
+        "chrome": [
+          "bar",
+          "inset"
+        ]
+      },
+      "defaults": {}
     },
-    "panelContent": "cui-dialog-panel-content",
-    "panelFooter": "cui-dialog-panel-footer",
-    "positioner": "cui-dialog-positioner",
+    "panelContent": {
+      "parts": [
+        "cui-dialog-panel-content"
+      ]
+    },
+    "panelFooter": {
+      "parts": [
+        "cui-dialog-panel-footer"
+      ]
+    },
+    "positioner": {
+      "parts": [
+        "cui-dialog-positioner"
+      ]
+    },
     "section": {
-      "classNames": {
-        "base": "cui-dialog-2yx8y1u",
-        "variants": {
-          "variant": {
-            "group": "cui-dialog-section_variant_group",
-            "well": "cui-dialog-section_variant_well"
-          }
-        }
+      "parts": [
+        "cui-dialog-section"
+      ],
+      "variants": {
+        "variant": [
+          "group",
+          "well"
+        ]
+      },
+      "defaults": {
+        "variant": "group"
       }
     },
-    "sectionContent": "cui-dialog-section-content",
-    "sectionTitle": "cui-dialog-section-title",
-    "sidebar": "cui-dialog-sidebar",
-    "sidebarSearch": "cui-dialog-sidebar-search",
-    "splitBody": "cui-dialog-splitBody",
-    "title": "cui-dialog-panel-title"
+    "sectionContent": {
+      "parts": [
+        "cui-dialog-section-content"
+      ]
+    },
+    "sectionTitle": {
+      "parts": [
+        "cui-dialog-section-title"
+      ]
+    },
+    "sidebar": {
+      "parts": [
+        "cui-dialog-sidebar"
+      ]
+    },
+    "sidebarSearch": {
+      "parts": [
+        "cui-dialog-sidebar-search"
+      ]
+    },
+    "splitBody": {
+      "privateIdentifier": true
+    },
+    "title": {
+      "parts": [
+        "cui-dialog-panel-title"
+      ]
+    }
   },
   "dropdown": {
     "content": "cui-dropdown-content cui-dropdown-dropdownMenuTheme",
@@ -1006,7 +1087,11 @@
     "inputHeight": "var(--cui-field-inputHeight)"
   },
   "icon-button": {
-    "iconButton": "cui-icon-button",
+    "iconButton": {
+      "parts": [
+        "cui-icon-button"
+      ]
+    },
     "iconButtonPart": "icon-button"
   },
   "kbd": {
@@ -1701,22 +1786,45 @@
   },
   "switch": {
     "control": {
-      "classNames": {
-        "base": "cui-switch-ohc8hx5",
-        "variants": {
-          "size": {
-            "sm": "cui-switch-control_size_sm",
-            "md": "cui-switch-control_size_md"
-          }
-        }
-      }
+      "parts": [
+        "cui-switch-control"
+      ],
+      "variants": {
+        "size": [
+          "sm",
+          "md"
+        ]
+      },
+      "defaults": {}
     },
-    "description": "cui-switch-description",
-    "errorMessage": "cui-switch-error-message",
-    "input": "cui-switch-input",
-    "label": "cui-switch-label",
-    "root": "cui-switch-root",
-    "smallRoot": "cui-switch-smallRoot",
+    "description": {
+      "parts": [
+        "cui-switch-description"
+      ]
+    },
+    "errorMessage": {
+      "parts": [
+        "cui-switch-error-message"
+      ]
+    },
+    "input": {
+      "parts": [
+        "cui-switch-input"
+      ]
+    },
+    "label": {
+      "parts": [
+        "cui-switch-label"
+      ]
+    },
+    "root": {
+      "parts": [
+        "cui-switch-root"
+      ]
+    },
+    "smallRoot": {
+      "privateIdentifier": true
+    },
     "switchDefaults": {
       "size": "md"
     },
@@ -1753,15 +1861,16 @@
       }
     },
     "thumb": {
-      "classNames": {
-        "base": "cui-switch-ohc8hxb",
-        "variants": {
-          "size": {
-            "sm": "cui-switch-thumb_size_sm",
-            "md": "cui-switch-thumb_size_md"
-          }
-        }
-      }
+      "parts": [
+        "cui-switch-thumb"
+      ],
+      "variants": {
+        "size": [
+          "sm",
+          "md"
+        ]
+      },
+      "defaults": {}
     }
   },
   "tabs": {
