@@ -1,3 +1,5 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/alert.css";
 import {
 	Alert as KAlert,
 	type AlertRootProps as KAlertRootProps,

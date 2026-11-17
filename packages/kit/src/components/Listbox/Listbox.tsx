@@ -1,3 +1,5 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/listbox.css";
 import { JSXElement, splitProps, ValidComponent } from "solid-js";
 import {
 	Listbox as KListbox,

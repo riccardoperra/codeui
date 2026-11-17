@@ -1,3 +1,5 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/tooltip.css";
 import { Tooltip as KTooltip, TooltipRootProps as KTooltipRootProps } from "@kobalte/core/tooltip";
 import { createEffect, createSignal, JSX, mergeProps, onCleanup, splitProps } from "solid-js";
 import { SlotProp } from "../../utils/component";

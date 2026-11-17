@@ -13,13 +13,13 @@ node examples/run-consumer-check.mjs
 
 The runner builds both packages, packs them, and installs the tarballs into three independent temporary npm dependency trees. No workspace alias can hide a missing published file.
 
-- The Vite consumer renders Button, Switch, TextField, Select, Dialog, Popover and SegmentedControl.
+- The Vite consumer imports no kit CSS manually and renders Button, Switch, TextField, Select, Dialog, Popover and SegmentedControl.
 - The SSR consumer compiles the same components with Solid's server compiler.
 - The CSS-only consumer installs only styles and renders a native button with JavaScript disabled. No Solid package or browser script is required.
 
 The browser checks component markers, rendering errors, the Button fill against the current theme token, and a plain CSS brand override. The CSS-only check also loads composed FieldLabel and SwitchLabel classes, and Button and IconButton classes, in forward, reverse and duplicate stylesheet orders.
 
-`@codeui/styles/all.css` includes the theme and every component. Selective consumers load `theme.css` and the files for the components they use. Each file contains its shared dependency closure. All variants and runtime states remain in that file.
+`@codeui/styles/all.css` includes the theme and every component. Solid components import their CSS and theme automatically. CSS-only selective consumers load `theme.css` and the files for the components they use. Each file contains its shared dependency closure. All variants and runtime states remain in that file.
 
 Add `--keep` to retain the installed fixtures and production builds. The runner prints their directory. It closes its browser and servers before exiting.
 
@@ -38,7 +38,7 @@ npm ci --prefix tools/styles --ignore-scripts --no-audit --no-fund
 node tools/styles/bundle-check.mjs <consumer-artifacts>/css
 ```
 
-Both Vite and webpack compile three cases. An unused class-helper import emits no CSS. A Button consumer includes Button and its shared styles, without Dialog, Switch or Combobox. A lazy Dialog import produces a separate CSS chunk and keeps Dialog rules out of the initial CSS.
+Both Vite and webpack compile three cases for CSS-only imports and three for Solid component imports without manual CSS. An unused class-helper import emits no CSS. A Button consumer includes Button and its shared styles, without Dialog, Switch or Combobox. A lazy Dialog import produces a separate CSS chunk and keeps Dialog rules out of the initial CSS.
 
 The component source-import guard in `packages/styles/scripts/renderers.mjs` checks the registry against Solid renderer imports. It catches missing styles for rendered labels, errors, icons and nested components rather than trusting only the declared registry.
 

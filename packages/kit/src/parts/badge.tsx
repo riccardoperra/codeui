@@ -1,3 +1,5 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/badge.css";
 import { Badge as KBadge, type BadgeRootProps as KBadgeRootProps } from "@kobalte/core/badge";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import { type JSX, splitProps, type ValidComponent } from "solid-js";

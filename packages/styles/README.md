@@ -4,12 +4,12 @@ Inkstone CSS for HTML and Solid applications. The package ships standard CSS, pu
 
 ## Load CSS
 
-For every component, load the theme and its component stylesheet.
+Solid components from `@codeui/kit` load their CSS and theme automatically. For CSS-only consumers, load the theme and the stylesheets you use.
 
 ```js
 import "@codeui/styles/theme.css";
 import "@codeui/styles/button.css";
-import { Button } from "@codeui/kit";
+import { button } from "@codeui/styles/button";
 ```
 
 `all.css` includes the theme and every component. Use it as a single import when selection by component is unnecessary.

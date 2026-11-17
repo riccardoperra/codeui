@@ -1,3 +1,6 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/button.css";
+import "@codeui/styles/icon-button.css";
 import { mergeClasses } from "../../utils/css";
 import { Button } from "../Button/Button";
 import { splitProps, ValidComponent } from "solid-js";

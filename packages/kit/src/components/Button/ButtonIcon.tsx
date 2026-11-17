@@ -1,3 +1,5 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/button.css";
 import * as styles from "./Button.css";
 import { JSX } from "solid-js";
 

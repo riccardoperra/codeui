@@ -1,3 +1,5 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/spinner.css";
 import { type JSX, splitProps } from "solid-js";
 import * as styles from "../components/Spinner/Spinner.css";
 import { mergeClasses } from "../utils/css";

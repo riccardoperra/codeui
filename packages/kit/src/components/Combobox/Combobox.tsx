@@ -1,3 +1,5 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/combobox.css";
 import type { ComboboxRootOptions } from "@kobalte/core/combobox";
 import { createComputed, For, type JSX, Show, splitProps } from "solid-js";
 import { isServer } from "solid-js/web";

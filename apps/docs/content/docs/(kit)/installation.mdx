@@ -10,7 +10,7 @@ The component package supports Solid `^1.9.8`. Its styles are compiled with vani
 ## Install
 
 ```sh
-pnpm add @codeui/kit @codeui/styles solid-js@^1.9.8
+pnpm add @codeui/kit solid-js@^1.9.8
 pnpm add -D vite vite-plugin-solid
 ```
 
@@ -25,19 +25,15 @@ export default defineConfig({
 });
 ```
 
-## Load the styles
+## Automatic styles
 
-Import the theme once in your app entry, followed by the components you use.
+Import a Solid component normally. Its module imports the compiled component stylesheet, shared styles and theme.
 
-```ts title="entry.tsx"
-import "@codeui/styles/theme.css";
-import "@codeui/styles/button.css";
-import "@codeui/styles/text-field.css";
+```ts title="App.tsx"
+import { Button } from "@codeui/kit";
 ```
 
-Each component stylesheet includes the shared styles it needs. JavaScript component imports do not load CSS automatically. A component whose stylesheet is missing remains unstyled.
-
-To load the theme and every component with one import, use `@codeui/styles/all.css` instead. Selective files preserve all variants and runtime states of that component. They do not remove unused selectors within a file.
+No manual CSS import is required. With production tree shaking, unused component modules and their CSS can be removed. All variants and runtime states of an included component remain available. The library does not purge individual selectors.
 
 ## Use a component
 

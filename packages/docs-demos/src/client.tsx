@@ -1,4 +1,3 @@
-import "@codeui/styles/all.css";
 import type { Component } from "solid-js";
 import { hydrate, render } from "solid-js/web";
 

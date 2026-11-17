@@ -1,3 +1,5 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/switch.css";
 import * as K from "@kobalte/core/switch";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import { onMount, splitProps, type ValidComponent } from "solid-js";

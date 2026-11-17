@@ -1,3 +1,5 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/command-menu.css";
 import * as K from "@kobalte/core/combobox";
 import {
 	Dialog as KDialog,

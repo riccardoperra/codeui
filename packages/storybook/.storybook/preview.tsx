@@ -3,7 +3,6 @@ import { themes, ThemeVars } from "storybook/theming";
 import { DARK_MODE_EVENT_NAME } from "storybook-dark-mode";
 import "./reset.css";
 import "./global.css";
-import "@codeui/styles/all.css";
 import { DocsContainer, DocsContainerProps } from "@storybook/addon-docs/blocks";
 import { createEffect, createRoot, createSignal, FlowProps } from "solid-js";
 import { addons } from "storybook/preview-api";

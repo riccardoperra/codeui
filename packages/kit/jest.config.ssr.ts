@@ -2,6 +2,10 @@ import config from "../../configs/jest.config.ssr";
 export default {
 	...config,
 	setupFilesAfterEnv: [],
+	moduleNameMapper: {
+		...config.moduleNameMapper,
+		"^@codeui/styles/[^/]+\\.css$": "<rootDir>/test/style-mock.cjs",
+	},
 	testEnvironmentOptions: { customExportConditions: ["solid", "node"] },
 	transform: {
 		"^.+\\.tsx?$": "ts-jest",

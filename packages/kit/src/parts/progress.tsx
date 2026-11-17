@@ -1,3 +1,5 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/progress.css";
 import { kobalteStyle } from "../utils/kobalte-style";
 import * as K from "@kobalte/core/progress";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";

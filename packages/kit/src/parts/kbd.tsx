@@ -1,3 +1,5 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/kbd.css";
 import { type JSX, splitProps } from "solid-js";
 import * as styles from "../components/Kbd/Kbd.css";
 import { mergeClasses } from "../utils/css";

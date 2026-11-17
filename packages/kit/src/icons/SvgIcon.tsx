@@ -1,3 +1,5 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/icon.css";
 import { FlowProps, JSX, splitProps } from "solid-js";
 import { mergeClasses, assignInlineVars } from "../utils/css";
 import * as styles from "./icon.css";

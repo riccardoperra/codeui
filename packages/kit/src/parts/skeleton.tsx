@@ -1,3 +1,5 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/skeleton.css";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import { Skeleton as KSkeleton, type SkeletonRootProps as KSkeletonRootProps } from "@kobalte/core/skeleton";
 import { splitProps, type ValidComponent } from "solid-js";

@@ -1,3 +1,5 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/popover.css";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import {
 	Popover as KPopover,

@@ -15,6 +15,7 @@ export default {
 	testPathIgnorePatterns: ["/node_modules/"],
 	testEnvironmentOptions: { customExportConditions: ["solid", "browser", "development"] },
 	moduleNameMapper: {
+		"^@codeui/styles/[^/]+\\.css$": "<rootDir>/test/style-mock.cjs",
 		"solid-js/web": `${solid}/web/dist/dev.cjs`,
 		"solid-js/store": `${solid}/store/dist/dev.cjs`,
 		"solid-js": `${solid}/dist/dev.cjs`,

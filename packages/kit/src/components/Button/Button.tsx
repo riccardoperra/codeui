@@ -1,3 +1,5 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/button.css";
 import { Button as KButton, ButtonRootProps as KButtonRootProps } from "@kobalte/core/button";
 import { JSX, Show, splitProps, ValidComponent } from "solid-js";
 import * as styles from "./Button.css";

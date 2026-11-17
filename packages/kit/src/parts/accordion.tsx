@@ -1,3 +1,5 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/accordion.css";
 import { callHandler, mergeRefs } from "@kobalte/utils";
 import * as K from "@kobalte/core/accordion";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";

@@ -1,3 +1,5 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/stack.css";
 import { type ComponentProps, type JSX, type ValidComponent, splitProps } from "solid-js";
 import { Dynamic } from "solid-js/web";
 import { root } from "../components/Stack/Stack.css";

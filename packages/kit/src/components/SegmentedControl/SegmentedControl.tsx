@@ -1,3 +1,5 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/segmented-control.css";
 import { mergeRefs } from "@kobalte/utils";
 import { releaseEscape } from "../../utils/escape";
 import { Tabs, TabsRootProps } from "@kobalte/core/tabs";

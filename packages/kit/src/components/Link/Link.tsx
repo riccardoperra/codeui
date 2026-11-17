@@ -1,3 +1,5 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/link.css";
 import { Link as KLink, LinkRootProps as KLinkRootProps } from "@kobalte/core/link";
 import { splitProps, ValidComponent } from "solid-js";
 import { mergeClasses } from "../../utils/css";

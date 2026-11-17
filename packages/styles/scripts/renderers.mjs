@@ -16,7 +16,7 @@ export function checkRenderers(root, registry, manifest) {
 			path.join(file, "index.ts"),
 			path.join(file, "index.tsx"),
 		].find(candidate => existsSync(candidate) && /\.tsx?$/.test(candidate));
-	const collect = (file, seen, scopes) => {
+	const collect = (file, seen, scopes, stylesheets) => {
 		if (seen.has(file)) return;
 		seen.add(file);
 		if (file.endsWith(".css.ts")) {
@@ -49,12 +49,17 @@ export function checkRenderers(root, registry, manifest) {
 			)
 				continue;
 			const specifier = statement.moduleSpecifier.text;
+			const stylesheet = /^@codeui\/styles\/([^/]+)\.css$/.exec(specifier)?.[1];
+			if (stylesheet) {
+				assert(manifest.entries[stylesheet], `${file} imports an unknown stylesheet`);
+				stylesheets.add(stylesheet);
+			}
 			const next = specifier.startsWith(".")
 				? resolve(path.resolve(path.dirname(file), specifier))
 				: specifier.startsWith("@codeui/styles/internal/")
 					? resolve(path.join(styles, specifier.slice("@codeui/styles/internal/".length)))
 					: undefined;
-			if (next) collect(next, seen, scopes);
+			if (next) collect(next, seen, scopes, stylesheets);
 		}
 	};
 	for (const [name, entry] of Object.entries(registry)) {
@@ -69,7 +74,20 @@ export function checkRenderers(root, registry, manifest) {
 		if (name === "radio-list")
 			roots.push(path.join(kit, "components/RadioList/RadioList.tsx"));
 		const expected = new Set();
-		for (const file of roots) collect(file, new Set(), expected);
+		for (const file of roots) {
+			const rendered = new Set();
+			const stylesheets = new Set();
+			collect(file, new Set(), rendered, stylesheets);
+			const loaded = new Set(
+				[...stylesheets].flatMap(name => manifest.entries[name].scopes),
+			);
+			if (rendered.size) {
+				assert(stylesheets.has("theme"), `${file} must load theme.css automatically`);
+				for (const scope of rendered)
+					assert(loaded.has(scope), `${file} does not automatically load ${scope}`);
+			}
+			for (const scope of rendered) expected.add(scope);
+		}
 		for (const scope of expected)
 			if (!manifest.entries[name].scopes.includes(scope))
 				failures.push(`${name}.css omits rendered style module ${scope}`);

@@ -1,3 +1,5 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/dropdown.css";
 import { GetKobalteParams } from "../../utils/types";
 import {
 	DropdownMenu as KDropdownMenu,

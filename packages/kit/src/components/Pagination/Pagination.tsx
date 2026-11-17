@@ -1,3 +1,5 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/pagination.css";
 import { createPagination, PaginationOptions } from "@solid-primitives/pagination";
 import { createEffect, For, mergeProps, on } from "solid-js";
 import { NextIcon } from "../../icons/NextIcon";

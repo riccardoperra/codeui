@@ -1,3 +1,5 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/select.css";
 import {
 	Select as KSelect,
 	SelectItemProps as KSelectItemProps,

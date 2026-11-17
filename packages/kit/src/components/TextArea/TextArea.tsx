@@ -1,3 +1,5 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/text-area.css";
 import { createUniqueId } from "solid-js";
 import { INPUT_KEYS, FieldInputProps, FieldClasses } from "../Field/inputProps";
 import {

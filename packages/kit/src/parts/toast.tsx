@@ -1,3 +1,5 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/toast.css";
 import { kobalteStyle } from "../utils/kobalte-style";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import {

@@ -67,6 +67,13 @@ function tsTypes() {
 						afterDeclarations: [
 							context => source => {
 								const visit = node => {
+									if (
+										ts.isImportDeclaration(node) &&
+										!node.importClause &&
+										ts.isStringLiteral(node.moduleSpecifier) &&
+										node.moduleSpecifier.text.endsWith(".css")
+									)
+										return undefined;
 									if (ts.isStringLiteral(node) && node.text.startsWith(".")) {
 										const resolved = ts.resolveModuleName(
 											node.text,

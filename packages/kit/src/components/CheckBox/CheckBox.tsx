@@ -1,3 +1,5 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/checkbox.css";
 import { Checkbox as KCheckbox, CheckboxRootOptions } from "@kobalte/core/checkbox";
 import { JSX, Ref, Show, splitProps } from "solid-js";
 import * as styles from "./CheckBox.css";

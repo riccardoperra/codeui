@@ -1,3 +1,5 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/settings.css";
 import { type JSX, Show, splitProps, type ValidComponent } from "solid-js";
 import { Dynamic } from "solid-js/web";
 import * as styles from "../components/Settings/Settings.css";

@@ -1,3 +1,5 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/dialog.css";
 import {
 	Dialog as KDialog,
 	type DialogCloseButtonProps as KDialogCloseButtonProps,

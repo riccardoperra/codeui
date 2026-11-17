@@ -1,3 +1,5 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/button-loading.css";
 import { mergeClasses, assignInlineVars } from "../../utils/css";
 import * as styles from "./Loading.css";
 
