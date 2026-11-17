@@ -78,9 +78,41 @@ function Preview(props: { kind: SwatchKind; name: string }) {
 				/>
 			);
 		case "font-size":
-			return <span style={{ "font-size": token(), "line-height": 1.2 }}>Export snippet</span>;
+			return (
+				<span style={{ "font-size": token(), "line-height": 1.2 }}>Export snippet</span>
+			);
 		default:
 			return null;
+	}
+}
+
+const hex = (unit: number) =>
+	Math.round(unit * 255)
+		.toString(16)
+		.padStart(2, "0");
+
+/** `color(srgb r g b / a)` or `rgb(r, g, b, a)` → `#rrggbb` or `#rrggbbaa`. */
+function toHex(color: string): string {
+	const srgb = color.startsWith("color(srgb");
+	const [r = 0, g = 0, b = 0, a = 1] = (color.match(/[\d.]+/g) ?? []).map(Number);
+	const [red, green, blue] = srgb ? [r, g, b] : [r / 255, g / 255, b / 255];
+	return `#${hex(red)}${hex(green)}${hex(blue)}${a === 1 ? "" : hex(a)}`;
+}
+
+/** A token computed from another one (`calc(…)`, `oklch(from …)`) shows the value it resolves to. */
+function resolve(scope: HTMLElement, name: string, raw: string): string {
+	if (!raw.includes("(") || raw.startsWith("cubic-bezier")) return raw;
+	const probe = document.createElement("div");
+	scope.append(probe);
+	try {
+		if (raw.startsWith("calc(")) {
+			probe.style.borderRadius = `var(${name})`;
+			return getComputedStyle(probe).borderTopLeftRadius;
+		}
+		probe.style.backgroundColor = `color-mix(in srgb, var(${name}) 100%, transparent)`;
+		return toHex(getComputedStyle(probe).backgroundColor);
+	} finally {
+		probe.remove();
 	}
 }
 
@@ -88,7 +120,11 @@ function Preview(props: { kind: SwatchKind; name: string }) {
  * A table of `--cui-*` tokens with a preview per row. With `modes`, each row
  * shows the dark and the light value side by side, read from the browser.
  */
-export function TokenTable(props: { names: string[]; kind: SwatchKind; modes?: boolean }) {
+export function TokenTable(props: {
+	names: string[];
+	kind: SwatchKind;
+	modes?: boolean;
+}) {
 	const [values, setValues] = createSignal<Record<string, string>>({});
 	let dark!: HTMLDivElement;
 	let light!: HTMLDivElement;
@@ -97,7 +133,10 @@ export function TokenTable(props: { names: string[]; kind: SwatchKind; modes?: b
 		const read = (el: HTMLElement, mode: string) => {
 			const style = getComputedStyle(el);
 			return Object.fromEntries(
-				props.names.map(name => [`${mode}${name}`, style.getPropertyValue(name).trim()]),
+				props.names.map(name => [
+					`${mode}${name}`,
+					resolve(el, name, style.getPropertyValue(name).trim()),
+				]),
 			);
 		};
 		setValues({ ...read(dark, "dark"), ...read(light, "light"), ...read(plain, "") });
@@ -154,7 +193,9 @@ export function TokenTable(props: { names: string[]; kind: SwatchKind; modes?: b
 									when={props.modes}
 									fallback={
 										<td style={cell}>
-											<div style={{ display: "flex", "align-items": "center", gap: "10px" }}>
+											<div
+												style={{ display: "flex", "align-items": "center", gap: "10px" }}
+											>
 												<Preview kind={props.kind} name={name} />
 												<code style={mono}>{values()[name]}</code>
 											</div>

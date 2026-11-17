@@ -122,9 +122,13 @@ White text on the base is 3.9:1, on hover 4.7:1 and on active 5.7:1. Keep button
 
 The focus ring stays separate: `--cui-accent-focus` is `#63b3ed` in dark mode and `#0083e5` in light mode, so it reads against both the page and a blue fill. Link text and the labels on the 15% wash use `--cui-action-brand-soft-text`, the same hue at another lightness: `#3fa0fe` in dark mode and `#0260aa` in light mode, both 4.5:1 or more on every surface and on the wash. `--cui-accent-selection` is kept for compatibility, equals the brand base, and no kit component reads it.
 
+These blues are computed from the brand blue with CSS relative colors. A theme that sets another `--cui-action-brand-base` gets its hover, active, soft, focus and selection colors from the same steps. The contrast figures above hold for `#0083e5` only, so a theme checks its own.
+
 ## Status colours
 
 Danger, caution and success mark states the user must notice: an error, a destructive confirmation, a failed export. They do not decorate anything and are not used to label categories. Danger fills only the confirm button of a destructive dialog, and an error always pairs its colour with an icon.
+
+Each status has one source colour, its `base`. Hover and active are computed from it with the same steps the Inkstone values use, so a theme that changes the base keeps the states in proportion.
 
 ## Lines
 

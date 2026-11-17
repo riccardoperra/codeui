@@ -42,12 +42,7 @@ The demo scopes its overrides to `.docs-brand`, so it does not change this site.
 .docs-brand,
 .docs-brand [data-cui-theme] {
 	--cui-action-brand-base: #7c3aed;
-	--cui-action-brand-hover: #6d28d9;
-	--cui-action-brand-active: #5b21b6;
-	--cui-accent-focus: #a78bfa;
-	--cui-accent-selection: #7c3aed;
-	--cui-radius-md: 6px;
-	--cui-radius-sm: 6px;
+	--cui-radius-scale: 0.5;
 }
 
 /* One mode only. */
@@ -74,12 +69,7 @@ In an app, the same stylesheet targets the page instead of a class. This is the 
 :root,
 [data-cui-theme] {
 	--cui-action-brand-base: #7c3aed;
-	--cui-action-brand-hover: #6d28d9;
-	--cui-action-brand-active: #5b21b6;
-	--cui-accent-focus: #a78bfa;
-	--cui-accent-selection: #7c3aed;
-	--cui-radius-md: 6px;
-	--cui-radius-sm: 6px;
+	--cui-radius-scale: 0.5;
 	--cui-font-family-sans: "IBM Plex Sans", system-ui, sans-serif;
 }
 
@@ -114,9 +104,9 @@ Load this file anywhere. Order and specificity do not matter against kit rules, 
 
 ### Which tokens `:root` alone reaches
 
-The kit sets every token on `:root`. A token with one value for both modes, such as `--cui-radius-md`, `--cui-action-brand-base` or `--cui-font-family-sans`, is set only there. Every nested `[data-cui-theme]` scope inherits it, so an override on `:root` reaches the whole page.
+The kit sets every token on `:root`. A token with one value for both modes, such as `--cui-radius-scale`, `--cui-action-brand-base` or `--cui-font-family-sans`, is set only there. Every nested `[data-cui-theme]` scope inherits it, so an override on `:root` reaches the whole page.
 
-A token with a dark and a light value, such as `--cui-surface-canvas` or `--cui-accent-focus`, is set again on each `[data-cui-theme]` element. `--cui-focus-color` is too, because it reads `--cui-accent-focus`. An element with the attribute takes the kit's value for that scope, not the value it would inherit from `:root`. An override of such a token written only on `:root` stops at the first nested scope. Write `:root, [data-cui-theme]` to reach every scope, as `app.css` does. [Tokens](/docs/foundations/tokens) shows which tokens have a value per mode. If you set the attribute only on `<html>`, `:root` is enough for every token.
+A token with a dark and a light value, such as `--cui-surface-canvas` or `--cui-accent-focus`, is set again on each `[data-cui-theme]` element. So is every token computed from another token: `--cui-focus-color`, each radius scaled by `--cui-radius-scale`, and the brand colors computed from `--cui-action-brand-base`. Each scope computes them again from the values it inherits, so an override of the source on `:root` still reaches them. An element with the attribute takes the kit's value for that scope, not the value it would inherit from `:root`. An override of such a token written only on `:root` stops at the first nested scope. Write `:root, [data-cui-theme]` to reach every scope, as `app.css` does. [Tokens](/docs/foundations/tokens) shows which tokens have a value per mode. If you set the attribute only on `<html>`, `:root` is enough for every token.
 
 ### Change one instance
 
@@ -126,21 +116,46 @@ Set a token on a class, as `.delete-snippet` does above. The component resolves 
 
 Your overrides are plain CSS. The kit's own styles ship as vanilla-extract `.css.js` modules, so your bundler still needs the vanilla-extract plugin to compile them. See [Installation](/docs/installation).
 
+## Change the shape and the brand with two tokens
+
+Two tokens drive the rest:
+
+- `--cui-radius-scale` multiplies every radius except `none` and `full`. `0` gives square corners, `1` is Inkstone, and values above `1` round them more. The ratio between an inner corner and the corner around it stays the same.
+- `--cui-action-brand-base` is the brand color. Hover, active, the soft tint, its text, the focus ring and the selection are computed from it with CSS relative colors, so they follow it in both modes. With the Inkstone blue they resolve to the Inkstone values.
+
+Danger, caution and success work the same way: override `--cui-action-danger-base` and its hover and active follow.
+
+<SolidDemo name="theming/presets" source="hidden" />
+
+Pick a preset or move the controls, then copy the CSS into your app. Both tokens have one value for both modes, so `:root` is enough.
+
+| Preset | Override |
+| --- | --- |
+| Inkstone | None. This is the default. |
+| Square | `--cui-radius-scale: 0.35` |
+| Soft | `--cui-radius-scale: 1.5` |
+| Forest | `--cui-action-brand-base: #15803d` |
+
+The computed colors keep the lightness steps of the Inkstone blue. A brand much lighter or darker than `#0083e5` can give weak contrast on hover or on soft text. Check the result in both modes, and override the computed token when one falls short. Your override wins, because it sits outside the `cui` layer.
+
+Browsers without relative colors (Safari before 18, Firefox before 128) keep the Inkstone values for the computed tokens. In those browsers, override each brand token you need, as before.
+
 ## Find the token to change
 
 Names follow `--cui-<role>-<name>`. The roles are `surface`, `text`, `action`, `accent`, `border`, `focus`, `shadow`, `radius`, `space`, `control`, `font` and `motion`.
 
 | To change | Override |
 | --- | --- |
-| The primary button | `--cui-action-brand-base`, `--cui-action-brand-hover`, `--cui-action-brand-active` |
+| The brand color | `--cui-action-brand-base`. Hover, active, soft, focus and selection follow it. |
 | The focus ring | `--cui-accent-focus` |
 | Island and page backgrounds | `--cui-surface-canvas`, `--cui-surface-panel` |
 | Field backgrounds | `--cui-surface-input` |
 | Menus and dialogs | `--cui-surface-menu`, `--cui-surface-dialog`, `--cui-shadow-menu`, `--cui-shadow-dialog` |
-| Button and field corners | `--cui-radius-sm`, `--cui-radius-md` |
+| Every corner | `--cui-radius-scale` |
+| One level of corner | `--cui-radius-sm`, `--cui-radius-md` and the other radii |
 | The interface font | `--cui-font-family-sans` |
 
-[Tokens](/docs/foundations/tokens) lists all 129 names with their dark and light values. In TypeScript, [`tokens`](/docs/utilities/token-exports#tokens) holds the same names as `var(--cui-…)` strings.
+[Tokens](/docs/foundations/tokens) lists all 144 names with their dark and light values. In TypeScript, [`tokens`](/docs/utilities/token-exports#tokens) holds the same names as `var(--cui-…)` strings.
 
 ## Keep app resets below the kit
 

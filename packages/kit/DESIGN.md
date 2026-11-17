@@ -97,10 +97,13 @@ The accent is never a surface or a large fill. It has five uses:
 - The focus ring stays a separate token, `--cui-accent-focus`: `#63b3ed` dark, `#0083e5` light (3.9:1 on the page, 3.4:1 on the field, 3.1:1 on a selected card). Selected-card rings use it too.
 - Accent text (links, brand-soft labels) is `--cui-action-brand-soft-text`, the brand hue at another lightness: `#3fa0fe` dark (6.7:1 on the page, 5.7:1 on the field, 4.6:1 or more on the 15% wash over any surface), `#0260aa` light (6.5:1 on the page, 5.6:1 on the field, 5.4:1 on the wash). The soft wash is the brand at 15% (`#0083e526`; hover and active `#0069b826`).
 - `--cui-accent-selection` is kept for compatibility and equals the brand base. No kit component reads it; use `--cui-action-brand-base`.
+- The other brand and accent tokens are relative colors computed from `--cui-action-brand-base`: the same OKLCH steps that take `#0083e5` to each value above. A theme changes the brand with the base alone. Browsers without relative colors keep the fixed values. Contrast is checked for the Inkstone blue only; a theme with another base checks its own.
 
 ### 2.4 Status
 
 Danger, caution and success mark states the user must notice. They never decorate or label a category. Danger fills only the confirm button of a destructive dialog. Errors pair colour with an icon.
+
+Each status `hover` and `active` is a relative color computed from its `base`, with the OKLCH steps that take the Inkstone base to the Inkstone value. `test/derived-palette.test.ts` checks that every computed color resolves to its value in `theme-values.ts`.
 
 ### 2.5 Lines
 
@@ -198,6 +201,8 @@ The header has no bar. It is the first row of islands, and its edges align with 
 | Dot, switch, avatar, pill                                     | full   | `--cui-radius-full`    |
 
 Today buttons are 9px, dialogs 14px and the toolbar 18px. **Proposed:** move them to the table; drop `xs` (7), `sm` (9) and `xl` (18).
+
+Every radius except `none` and `full` is its value times `--cui-radius-scale` (default `1`). A theme changes the shape with the scale, not by editing radii one by one, so the ratios between levels hold. At scale `0` the corners are square; the 4px floor applies to Inkstone only.
 
 ### 5.2 Elevation
 

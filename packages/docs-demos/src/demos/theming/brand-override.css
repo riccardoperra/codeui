@@ -7,12 +7,7 @@
 .docs-brand,
 .docs-brand [data-cui-theme] {
 	--cui-action-brand-base: #7c3aed;
-	--cui-action-brand-hover: #6d28d9;
-	--cui-action-brand-active: #5b21b6;
-	--cui-accent-focus: #a78bfa;
-	--cui-accent-selection: #7c3aed;
-	--cui-radius-md: 6px;
-	--cui-radius-sm: 6px;
+	--cui-radius-scale: 0.5;
 }
 
 /* One mode only. */

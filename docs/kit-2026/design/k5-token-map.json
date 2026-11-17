@@ -539,6 +539,14 @@
     },
     {
       "group": "radii",
+      "token": "radius.scale",
+      "css": "--cui-radius-scale",
+      "dark": "1",
+      "light": "1",
+      "source": "multiplier for every radius except none and full (DESIGN.md §5.1)"
+    },
+    {
+      "group": "radii",
       "token": "radius.none",
       "css": "--cui-radius-none",
       "dark": "0px",
