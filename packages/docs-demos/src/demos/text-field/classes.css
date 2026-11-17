@@ -1,0 +1,7 @@
+.snippet-name-field {
+	width: 320px;
+}
+
+.snippet-name-input {
+	font-family: var(--cui-font-family-mono);
+}

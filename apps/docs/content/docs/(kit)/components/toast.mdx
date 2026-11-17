@@ -1,0 +1,287 @@
+---
+title: "Toast"
+description: "Short notifications that appear over the page and dismiss themselves."
+---
+
+## When to use
+
+Use a toast to confirm the result of an action the user just took, such as an export, a copy, or a save. The toast appears at a viewport edge, does not move focus, and closes on its own. The user can keep working while it is open.
+
+## When to choose another component
+
+- Use [Alert](/docs/components/alert) when the message belongs to a place on the page and must stay there, such as a failed import above the file list. An alert stays until its cause is gone. A toast closes after a few seconds.
+- Use an inline error on the field, such as the `errorMessage` of [TextField](/docs/components/text-field), when one input is wrong. The error sits where the user fixes it.
+- Use [Dialog](/docs/components/dialog) when the user must decide before they continue.
+- Use a [Spinner](/docs/components/spinner) or a loading [Button](/docs/components/button) for progress inside a control. A toast reports progress only for work that outlives the control, such as an upload.
+
+[Show notifications](/docs/patterns/show-notifications) compares these choices with examples.
+
+## Live demo
+
+<SolidDemo name="toast/basic" />
+
+`createToaster()` returns a controller. `Toaster` renders the region that shows the controller's toasts. Call `show` from any event handler.
+
+## Anatomy
+
+<Anatomy demo="toast/anatomy" />
+
+`Toaster` renders `Region` and `List`. Each toast renders `Root` and the parts inside it. The ready toast never renders `ProgressTrack` or `ProgressFill`.
+
+| Export | Renders | `classes` key | `data-cui` | Role |
+| --- | --- | --- | --- | --- |
+| `Region` | `div`, fixed to a viewport edge | `region` | `toast-region` | `region` |
+| `List` | `div` that holds the visible toasts | `list` | `toast-list` | none |
+| `Root` | `div`, one toast | `root` | `toast-root` | `status` |
+| `Icon` | `span`, the tone or custom icon | `icon` | `toast-icon` | none, `aria-hidden` |
+| `Title` | `div`, the bold first line | `title` | `toast-title` | none |
+| `Description` | `div`, the message | `description` | `toast-description` | none |
+| `Action` | `button`, an inline text action | `action` | `toast-action` | `button` |
+| `CloseButton` | `button` with a close icon | `closeButton` | `toast-close-button` | `button` |
+| `ProgressTrack` | `div`, the track of a time bar | `progressTrack` | `toast-progress-track` | `presentation`, `aria-hidden` |
+| `ProgressFill` | `div`, the fill of the time bar | `progressFill` | `toast-progress-fill` | none |
+
+`Region` also sets `data-position`. `Root` sets `data-tone`. A toast from `Toaster` also sets `data-cui-theme` to its resolved theme, unless `theme` is `page`.
+
+## Variants
+
+### Tones
+
+<SolidDemo name="toast/tones" />
+
+The tone sets the icon and the accent color of the icon. Neutral has no icon. Danger toasts are announced assertively. The other tones are announced politely.
+
+### Positions
+
+<SolidDemo name="toast/positions" />
+
+A `Toaster` has one `position`. The default is `bottom-center`. Toasts rise from the bottom edge and drop from the top edge. To show toasts at two positions, create two controllers and two `Toaster` elements.
+
+### Content
+
+<SolidDemo name="toast/content" />
+
+`title` and `description` take JSX or a callback. The callback receives the toast context, `{ id, dismiss }`, so the content can close its own toast. The content renders inside `Toaster`, so it reads the context of the providers around `Toaster`, such as the locale.
+
+`icon` replaces the tone icon. `icon: null` hides it. `theme` picks the toast's theme. The default, `inverted`, renders the opposite of the theme around the `Toaster`, as CodeImage does: a light card on a dark page, and a dark card on a light page. It follows the page when the theme changes while the toast is open. `page` uses the page theme. `light` and `dark` force one.
+
+### Action
+
+<SolidDemo name="toast/action" />
+
+`action` renders one inline text button beside the message. Its `onClick` receives the toast context. The toast stays open after the click, so call `toast.dismiss()` when the action is done. Keep one action per toast. For a second choice, use a dialog.
+
+### Duration
+
+<SolidDemo name="toast/duration" />
+
+A toast closes after 5000 ms. `createToaster({ duration })` changes the default for every toast of the controller. The `duration` of a toast overrides it. `Infinity` keeps the toast open until the user or your code closes it.
+
+Every timer of a `Toaster` pauses while the pointer is over its toasts or focus is inside them, and while the window is not focused. The timers resume when the pointer leaves, focus leaves, or the window gets focus back.
+
+## States
+
+### Loading and promise
+
+<SolidDemo name="toast/promise" />
+
+`promise(input, { loading, success, error })` shows `loading` until the promise settles. Then the same toast shows `success` or `error`. `input` is a promise or a function that returns one. The function runs at once, and an error it throws shows `error`.
+
+- The loading toast shows a [Spinner](/docs/components/spinner) as its icon and stays open. Set `icon` or `duration` in `loading` to change that.
+- `success` and `error` take options, or a function that receives the resolved value or the rejection reason.
+- The settled options replace the loading options. They are not merged. The tone defaults to `success` or `danger`, and the duration to the controller default.
+
+### Update, dismiss, and clear
+
+<SolidDemo name="toast/controller" />
+
+`show` returns a `ToastId`. Keep it to change or close that toast later.
+
+- `update(id, options)` merges the options into the open toast. A new `duration` restarts the close timer. The toast stays in place and does not play its entrance again.
+- `dismiss(id)` closes the toast with its exit animation.
+- `clear()` dismisses every toast of the controller.
+
+All three do nothing when the id is not open. A `ToastId` is a number scoped to its controller. Two controllers can return the same id.
+
+### Queue
+
+A `Toaster` shows three toasts at once. Set `limit` to change that. A later toast waits until a visible one closes, and its timer starts when it appears.
+
+### Two toasters on one page
+
+<SolidDemo name="toast/isolated" />
+
+Each controller has its own toasts, ids, and default duration. `clear()` on one controller leaves the other's toasts open. Give each `Toaster` an `aria-label` so screen reader users can tell the regions apart.
+
+## Ready API
+
+### `Toaster`
+
+`Toaster` renders the region and list that show one controller's toasts. Place it inside the app's providers.
+
+<PropsTable name="Toaster" />
+
+Inherited from Kobalte's [toast region](https://kobalte.dev/docs/core/components/toast):
+
+<PropsTable name="ToasterInherited" />
+
+### `createToaster`
+
+`createToaster(options)` returns a `ToastController`. Created inside a component, the controller dismisses its toasts when that component's owner is disposed.
+
+<PropsTable name="CreateToaster" />
+
+The controller has these members:
+
+| Member | Description |
+| --- | --- |
+| `show(options): ToastId` | Shows a toast and returns its id. On the server it shows nothing. |
+| `update(id, options): void` | Merges options into the open toast. A new `duration` restarts its timer. |
+| `dismiss(id): void` | Closes the toast with its exit animation. |
+| `clear(): void` | Dismisses every toast of this controller. |
+| `promise(input, options): ToastId` | Shows `loading`, then `success` or `error` in the same toast. |
+| `regionId: string` | Ties the controller to its `Toaster`. You do not pass it yourself. |
+
+`show`, `update`, and each state of `promise` take `ToastOptions`:
+
+<PropsTable name="ToastShowOptions" />
+
+The callbacks of `title`, `description`, `icon`, and `action.onClick` receive a `ToastContext`, `{ id: ToastId; dismiss: () => void }`. `ToastPromiseOptions<D>` holds the `loading`, `success`, and `error` options of `promise`.
+
+## Styled parts API
+
+Import the parts from `@codeui/kit/toast`.
+
+<SolidDemo name="toast/parts" />
+
+The parts wrap [Kobalte's toast](https://kobalte.dev/docs/core/components/toast). They need Kobalte's `toaster` engine from `@kobalte/core/toast` to show a toast. The kit does not re-export it, so add `@kobalte/core` to your app before you compose the parts. Pass the `toastId` the engine gives you to `Root`, and the `region` you pass to `toaster.show` to `Region` as `regionId`. Use the parts when one toast needs a layout that `ToastOptions` cannot give, such as a time bar. Use `Toaster` for everything else.
+
+`Root` lays out its children in a grid. Put `Icon`, `Title`, `Description`, `Action`, `CloseButton`, and `ProgressTrack` directly inside `Root`, without a wrapper element. `ProgressFill` shrinks over the `duration` you set on `Root`.
+
+### `Action`
+
+Renders a `button` with `type="button"` and the inline text style. It is not a Kobalte part and does not close the toast. `ActionProps` is the `button` element's attributes.
+
+### `CloseButton`
+
+Wraps Kobalte's `Toast.CloseButton`, which closes the toast. It shows a close icon when it has no children. Pass a localized `aria-label`. Kobalte's English default is "Close".
+
+### `Description`
+
+Wraps Kobalte's `Toast.Description`. The root names it with `aria-describedby`.
+
+### `Icon`
+
+Renders a `span` with `aria-hidden="true"` in the tone color. It is not a Kobalte part. `IconProps` is the `span` element's attributes.
+
+### `List`
+
+Wraps Kobalte's `Toast.List` and renders a `div` in place of Kobalte's `ol`. Toasts carry `role="status"`, which a list item may not take. Pointer and focus inside the list pause the timers.
+
+### `ProgressFill`
+
+Wraps Kobalte's `Toast.ProgressFill`. Its width follows the time left, through `--kb-toast-progress-fill-width`. The fill takes the tone color.
+
+### `ProgressTrack`
+
+Wraps Kobalte's `Toast.ProgressTrack`. It spans the full width under the content and holds `ProgressFill`.
+
+### `Region`
+
+Wraps Kobalte's `Toast.Region`, fixed to the viewport edge that `position` names.
+
+<PropsTable name="ToastRegionPart" />
+
+`RegionProps` also takes Kobalte's region options, such as `limit` and `swipeDirection`.
+
+### `Root`
+
+Wraps Kobalte's `Toast` root and renders a `div`. It sets the announcement priority from the tone.
+
+<PropsTable name="ToastRootPart" />
+
+`RootProps` also takes Kobalte's root options, such as `onEscapeKeyDown` and `onSwipeEnd`.
+
+### `Title`
+
+Wraps Kobalte's `Toast.Title`. The root names itself with `aria-labelledby` pointing at the title.
+
+## Styles export
+
+### `toastStyles`
+
+`toastStyles` maps each part name to a function that returns the part's class string. `ToastStyles` is its type.
+
+| Function | Variants |
+| --- | --- |
+| `region` | `position` |
+| `root` | `tone` |
+| `list`, `title`, `description`, `closeButton`, `progressTrack`, `progressFill`, `icon`, `action` | none |
+
+Call a function when you render your own element with the toast look and no toast behavior, such as a static preview of a toast in a settings page. The tone accent that `icon` and `progressFill` use is set by `root`, so call them inside an element that has the `root` class.
+
+## Accessibility
+
+### Keyboard
+
+| Key | Action |
+| --- | --- |
+| <kbd>Alt</kbd>+<kbd>T</kbd> | Moves focus to the toast list. Set `hotkey` to change the keys. |
+| <kbd>Tab</kbd> | Moves to the next toast, then to its action and close button. |
+| <kbd>Shift</kbd>+<kbd>Tab</kbd> | Moves to the previous focusable element. |
+| <kbd>Enter</kbd> or <kbd>Space</kbd> | Activates the focused action or close button. |
+| <kbd>Escape</kbd> | Closes the focused toast. |
+
+A swipe or a pointer drag to the right past a threshold closes the toast. A shorter drag returns it to its place. Set `swipeDirection` on `Toaster` to change the direction.
+
+### ARIA
+
+- The region has `role="region"` and the label "Notifications (alt+T)". Set `aria-label` to localize it. A `{hotkey}` placeholder in the label is replaced with the hotkey.
+- Each toast has `role="status"`, `aria-atomic="true"`, and `aria-live="polite"`. A danger toast has `aria-live="assertive"`. On the parts, set `priority="high"` or `priority="low"` on `Root` to choose. `ToastOptions` has no `priority`.
+- The toast is labelled by its title and described by its description.
+- The icon is hidden from assistive technology. The close button has the `closeLabel` of `Toaster` as its name.
+
+### Focus
+
+Showing a toast does not move focus. Each toast is in the tab order. While focus is inside the list, every timer of the `Toaster` pauses, so a keyboard user can reach the action before the toast closes. Do not put the only way to finish a task in a toast. A toast that closes takes its action with it.
+
+### Reduced motion
+
+A toast rises from the edge it sits on: it moves up its own height with a fade over `--cui-motion-duration-rise` (400ms), or drops by its height at the top edge. It leaves with a fade over `--cui-motion-duration-panel` (200ms). With `prefers-reduced-motion: reduce`, the entrance and the swipe exit are fades with no movement. A toast that follows the finger during a swipe still moves, because the user moves it.
+
+## SSR notes
+
+- `Toaster` renders the region and an empty list on the server. Toasts render only on the client.
+- `show` and `promise` on the server return an id and do nothing. Nothing is queued, so no toast reaches the client from a server render.
+- Create the controller inside a component, such as the app root, so that each request gets its own controller. A controller in a module is shared by every request in the server process. It holds no toasts on the server, but a per-component controller also cleans up with its owner. [Show notifications](/docs/patterns/show-notifications) shows the setup.
+- The region id is not rendered into the HTML, so it cannot cause a hydration mismatch.
+
+## Theming hooks
+
+The toast reads these properties. Their defaults are in [Tokens](/docs/foundations/tokens).
+
+| Property | Used for |
+| --- | --- |
+| `--cui-surface-toast`, `--cui-text-toast` | Toast fill and text |
+| `--cui-shadow-menu` | Toast shadow |
+| `--cui-radius-card`, `--cui-radius-xs`, `--cui-radius-full` | Toast, button, and time bar corners |
+| `--cui-space-0-5`, `--cui-space-2`, `--cui-space-3`, `--cui-space-4` | Time bar height, gaps, toast padding, region padding |
+| `--cui-space-16` | Extra offset of bottom regions: with the region padding, toasts sit 80px above the bottom edge, clear of a bottom toolbar |
+| `--cui-font-family-sans`, `--cui-font-size-sm`, `--cui-font-size-md`, `--cui-font-line-height-snug`, `--cui-font-weight-semibold` | Text (14px / 1.3), icon size, title and action weight |
+| `--cui-action-brand-base`, `--cui-action-success-base`, `--cui-action-caution-base`, `--cui-action-danger-base` | Accent of the info, success, warning, and danger tones |
+| `--cui-action-neutral-base` | Button hover fill and time bar track |
+| `--cui-action-brand-soft-text` | Action text |
+| `--cui-text-muted` | Close icon |
+| `--cui-control-height-compact`, `--cui-control-height-md` | Button height, and the height on coarse pointers |
+| `--cui-focus-width`, `--cui-focus-color`, `--cui-focus-offset` | Focus ring |
+| `--cui-motion-duration-rise`, `--cui-motion-duration-panel`, `--cui-motion-ease-out` | Entrance (Rise), exit and swipe return |
+
+## Composition examples
+
+- [Show notifications](/docs/patterns/show-notifications) sets up one controller per request, and wraps an export in a promise toast with a retry action.
+
+## Related
+
+- [Alert](/docs/components/alert) stays in place on the page until its cause is gone.
+- [Dialog](/docs/components/dialog) blocks the page until the user decides.
+- [Spinner](/docs/components/spinner) shows progress inside the control that started the work.

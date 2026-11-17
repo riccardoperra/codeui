@@ -10,7 +10,15 @@ import {
 	createFieldErrorMessageProps,
 	FieldWithErrorMessageSupport,
 } from "../Field/FieldError/createFieldErrorMessageProps";
-import { JSXElement, Show, splitProps, ValidComponent } from "solid-js";
+import {
+	createContext,
+	useContext,
+	Accessor,
+	JSXElement,
+	Show,
+	splitProps,
+	ValidComponent,
+} from "solid-js";
 import { createFieldLabelProps } from "../Field/FieldLabel/createFieldLabelProps";
 import { mergeClasses } from "../../utils/css";
 import { baseFieldContainer } from "../TextField/TextField.css";
@@ -18,52 +26,108 @@ import { createFieldMessageProps } from "../Field/FieldMessage/createFieldMessag
 import * as styles from "./Radio.css";
 import { PolymorphicProps } from "@kobalte/core/polymorphic";
 
-
 export type RadioListProps<T extends ValidComponent = "div"> = KRadioGroupRootProps<T> &
 	BaseFieldProps &
-	FieldWithErrorMessageSupport & { label?: JSXElement; description?: string };
+	FieldWithErrorMessageSupport & {
+		label?: JSXElement;
+		description?: JSXElement;
+		classes?: RadioListClasses;
+	};
 
-function RadioGroupLabel(props: KRadioGroupLabelProps) {
+function RadioGroupLabel(props: PolymorphicProps<"span", KRadioGroupLabelProps>) {
 	const fieldLabelProps = createFieldLabelProps<"span">(props);
 
 	return <RadioGroup.Label {...fieldLabelProps} />;
 }
 
-function RadioGroupDescription(props: KRadioGroupDescriptionProps) {
+function RadioGroupDescription(
+	props: PolymorphicProps<"div", KRadioGroupDescriptionProps>,
+) {
 	const fieldLabelProps = createFieldMessageProps(props);
 
 	return <RadioGroup.Description {...fieldLabelProps} />;
 }
 
-interface RadioGroupItemProps extends KRadioGroupItemProps {
-	label: string;
-}
+export type RadioListClasses = Partial<
+	Record<
+		| "root"
+		| "label"
+		| "items"
+		| "description"
+		| "errorMessage"
+		| "item"
+		| "itemControl"
+		| "itemIndicator"
+		| "itemLabel",
+		string
+	>
+>;
+const RadioClassesContext = createContext<Accessor<RadioListClasses | undefined>>();
 
-export function RadioListItem(props: RadioGroupItemProps) {
+export type RadioListItemProps<T extends ValidComponent = "div"> =
+	KRadioGroupItemProps<T> & {
+		label?: JSXElement;
+		classes?: RadioListClasses;
+	};
+
+export function RadioListItem<T extends ValidComponent = "div">(
+	props: PolymorphicProps<T, RadioListItemProps<T>>,
+) {
+	const [local, others] = splitProps(
+		props as PolymorphicProps<"div", RadioListItemProps>,
+		["label", "class", "classes"],
+	);
+	const parentClasses = useContext(RadioClassesContext);
 	return (
-		<RadioGroup.Item value={props.value} class={styles.radioItem}>
+		<RadioGroup.Item
+			{...others}
+			data-cui="radio-list-item"
+			class={mergeClasses(
+				styles.radioItem,
+				local.class,
+				parentClasses?.()?.item,
+				local.classes?.item,
+			)}
+		>
 			<RadioGroup.ItemInput />
-			<RadioGroup.ItemControl class={styles.radio}>
-				<RadioGroup.ItemIndicator class={styles.indicator} />
+			<RadioGroup.ItemControl
+				data-cui="radio-list-item-control"
+				class={mergeClasses(
+					styles.radio,
+					parentClasses?.()?.itemControl,
+					local.classes?.itemControl,
+				)}
+			>
+				<RadioGroup.ItemIndicator
+					data-cui="radio-list-item-indicator"
+					class={mergeClasses(
+						styles.indicator,
+						parentClasses?.()?.itemIndicator,
+						local.classes?.itemIndicator,
+					)}
+				/>
 			</RadioGroup.ItemControl>
-			<Show when={props.label}>
-				<RadioGroup.ItemLabel aria-label={props.label}>
-					{props.label}
-				</RadioGroup.ItemLabel>
+			<Show when={local.label}>
+				{label => (
+					<RadioGroup.ItemLabel
+						data-cui="radio-list-item-label"
+						class={mergeClasses(parentClasses?.()?.itemLabel, local.classes?.itemLabel)}
+					>
+						{label()}
+					</RadioGroup.ItemLabel>
+				)}
 			</Show>
 		</RadioGroup.Item>
 	);
 }
 
-export function RadioList<T extends ValidComponent = "div">(props: PolymorphicProps<T, RadioListProps<T>>) {
-	const [local, others] = splitProps(props as PolymorphicProps<"button", RadioListProps>, [
-		"description",
-		"size",
-		"label",
-		"theme",
-		"errorMessage",
-		"ref",
-	]);
+export function RadioList<T extends ValidComponent = "div">(
+	props: PolymorphicProps<T, RadioListProps<T>>,
+) {
+	const [local, others] = splitProps(
+		props as PolymorphicProps<"button", RadioListProps>,
+		["description", "size", "label", "theme", "errorMessage", "class", "classes"],
+	);
 
 	const size = () => local.size ?? "md";
 
@@ -73,28 +137,55 @@ export function RadioList<T extends ValidComponent = "div">(props: PolymorphicPr
 		<RadioGroup
 			data-cui={"radio-group-field"}
 			data-field-size={size()}
+			data-field-theme={local.theme ?? "inline"}
 			{...others}
-			class={mergeClasses(baseFieldContainer)}
+			class={mergeClasses(baseFieldContainer, local.class, local.classes?.root)}
 		>
 			<Show when={local.label} keyed={false}>
-				<RadioGroupLabel>{local.label}</RadioGroupLabel>
+				{label => (
+					<RadioGroupLabel data-cui="radio-list-label" class={local.classes?.label}>
+						{label()}
+					</RadioGroupLabel>
+				)}
 			</Show>
 			<div
-				class={styles.radioList({
-					size: size(),
-					orientation: props.orientation,
-				})}
+				data-cui="radio-list-items"
+				class={mergeClasses(
+					local.classes?.items,
+					styles.radioList({
+						size: size(),
+						orientation: props.orientation,
+						theme: local.theme ?? "inline",
+					}),
+				)}
 			>
-				{props.children}
+				<RadioClassesContext.Provider value={() => local.classes}>
+					{props.children}
+				</RadioClassesContext.Provider>
 			</div>
 			<Show when={local.description} keyed={false}>
-				<RadioGroupDescription>{local.description}</RadioGroupDescription>
+				{description => (
+					<RadioGroupDescription
+						data-cui="radio-list-description"
+						class={local.classes?.description}
+					>
+						{description()}
+					</RadioGroupDescription>
+				)}
 			</Show>
 
-			<Show when={errorMessageProps.errorMessage} keyed={false}>
-				<RadioGroup.ErrorMessage class={errorMessageProps.class}>
-					{local.errorMessage}
-				</RadioGroup.ErrorMessage>
+			<Show
+				when={props.validationState === "invalid" && local.errorMessage}
+				keyed={false}
+			>
+				{errorMessage => (
+					<RadioGroup.ErrorMessage
+						data-cui="radio-list-error-message"
+						class={mergeClasses(errorMessageProps.class, local.classes?.errorMessage)}
+					>
+						{errorMessage()}
+					</RadioGroup.ErrorMessage>
+				)}
 			</Show>
 		</RadioGroup>
 	);

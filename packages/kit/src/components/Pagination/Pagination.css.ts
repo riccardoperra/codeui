@@ -1,7 +1,8 @@
-import { createTheme, style } from "@vanilla-extract/css";
+import { tokens } from "../../foundation/cui.css";
+import { createTheme, style } from "../../foundation/layer.css";
 
 export const [paginationTheme, paginationVars] = createTheme({
-	paginationItemMargin: `0.125rem`,
+	paginationItemMargin: tokens.space["0.5"],
 });
 
 export const pagination = style([

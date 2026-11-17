@@ -1,0 +1,963 @@
+{
+  "runs": 3,
+  "pairs": 282,
+  "stableStories": 218,
+  "stableDocs": 13,
+  "unstable": [
+    {
+      "id": "configure-your-project--docs",
+      "theme": "dark",
+      "type": "docs"
+    },
+    {
+      "id": "designsystem-button--docs",
+      "theme": "dark",
+      "type": "docs"
+    },
+    {
+      "id": "designsystem-dialog--docs",
+      "theme": "dark",
+      "type": "docs"
+    },
+    {
+      "id": "designsystem-iconbutton--docs",
+      "theme": "dark",
+      "type": "docs"
+    },
+    {
+      "id": "designsystem-link--docs",
+      "theme": "dark",
+      "type": "docs"
+    },
+    {
+      "id": "designsystem-listbox--docs",
+      "theme": "dark",
+      "type": "docs"
+    },
+    {
+      "id": "designsystem-numberfield--docs",
+      "theme": "dark",
+      "type": "docs"
+    },
+    {
+      "id": "designsystem-pagination--docs",
+      "theme": "dark",
+      "type": "docs"
+    },
+    {
+      "id": "designsystem-radiolist--docs",
+      "theme": "dark",
+      "type": "docs"
+    },
+    {
+      "id": "designsystem-segmentedcontrol--docs",
+      "theme": "dark",
+      "type": "docs"
+    },
+    {
+      "id": "designsystem-select--docs",
+      "theme": "dark",
+      "type": "docs"
+    },
+    {
+      "id": "designsystem-textarea--docs",
+      "theme": "dark",
+      "type": "docs"
+    },
+    {
+      "id": "designsystem-textfield--docs",
+      "theme": "dark",
+      "type": "docs"
+    },
+    {
+      "id": "designsystem-tooltip--docs",
+      "theme": "dark",
+      "type": "docs"
+    },
+    {
+      "id": "designsystem-button--docs",
+      "theme": "light",
+      "type": "docs"
+    },
+    {
+      "id": "designsystem-button--with-left-icon",
+      "theme": "light",
+      "type": "story"
+    },
+    {
+      "id": "designsystem-checkbox--docs",
+      "theme": "light",
+      "type": "docs"
+    },
+    {
+      "id": "designsystem-iconbutton--docs",
+      "theme": "light",
+      "type": "docs"
+    },
+    {
+      "id": "designsystem-iconbutton--loading",
+      "theme": "light",
+      "type": "story"
+    },
+    {
+      "id": "designsystem-icons--custom-size-icon",
+      "theme": "light",
+      "type": "story"
+    },
+    {
+      "id": "designsystem-link--docs",
+      "theme": "light",
+      "type": "docs"
+    },
+    {
+      "id": "designsystem-listbox--docs",
+      "theme": "light",
+      "type": "docs"
+    },
+    {
+      "id": "designsystem-listbox--listbox-multiple",
+      "theme": "light",
+      "type": "story"
+    },
+    {
+      "id": "designsystem-pagination--docs",
+      "theme": "light",
+      "type": "docs"
+    },
+    {
+      "id": "designsystem-pagination--pagination-sizes",
+      "theme": "light",
+      "type": "story"
+    },
+    {
+      "id": "designsystem-popover--parts",
+      "theme": "light",
+      "type": "story"
+    },
+    {
+      "id": "designsystem-popover--popover-story",
+      "theme": "light",
+      "type": "story"
+    },
+    {
+      "id": "designsystem-radiolist--default",
+      "theme": "light",
+      "type": "story"
+    },
+    {
+      "id": "designsystem-radiolist--docs",
+      "theme": "light",
+      "type": "docs"
+    },
+    {
+      "id": "designsystem-segmentedcontrol--field-api",
+      "theme": "light",
+      "type": "story"
+    },
+    {
+      "id": "designsystem-segmentedcontrol--segmented-control-story",
+      "theme": "light",
+      "type": "story"
+    },
+    {
+      "id": "designsystem-segmentedcontrol--theme-primary",
+      "theme": "light",
+      "type": "story"
+    },
+    {
+      "id": "designsystem-select--docs",
+      "theme": "light",
+      "type": "docs"
+    },
+    {
+      "id": "designsystem-select--select-disabled",
+      "theme": "light",
+      "type": "story"
+    },
+    {
+      "id": "designsystem-select--select-inline-variant",
+      "theme": "light",
+      "type": "story"
+    },
+    {
+      "id": "designsystem-select--select-outline-variant",
+      "theme": "light",
+      "type": "story"
+    },
+    {
+      "id": "designsystem-select--select-required",
+      "theme": "light",
+      "type": "story"
+    },
+    {
+      "id": "designsystem-select--select-story",
+      "theme": "light",
+      "type": "story"
+    },
+    {
+      "id": "designsystem-select--select-story-filled-variant",
+      "theme": "light",
+      "type": "story"
+    },
+    {
+      "id": "designsystem-tabs--docs",
+      "theme": "light",
+      "type": "docs"
+    },
+    {
+      "id": "designsystem-tabs--dynamic-tabs-story",
+      "theme": "light",
+      "type": "story"
+    },
+    {
+      "id": "designsystem-tabs--tabs-inline-horizontal-theme-story",
+      "theme": "light",
+      "type": "story"
+    },
+    {
+      "id": "designsystem-textarea--docs",
+      "theme": "light",
+      "type": "docs"
+    },
+    {
+      "id": "designsystem-textarea--text-area-disabled",
+      "theme": "light",
+      "type": "story"
+    },
+    {
+      "id": "designsystem-textarea--validation",
+      "theme": "light",
+      "type": "story"
+    },
+    {
+      "id": "designsystem-textfield--docs",
+      "theme": "light",
+      "type": "docs"
+    },
+    {
+      "id": "designsystem-textfield--field-api",
+      "theme": "light",
+      "type": "story"
+    },
+    {
+      "id": "designsystem-textfield--text-field-filled-variant",
+      "theme": "light",
+      "type": "story"
+    },
+    {
+      "id": "designsystem-textfield--text-field-outline-variant",
+      "theme": "light",
+      "type": "story"
+    },
+    {
+      "id": "designsystem-textfield--validation",
+      "theme": "light",
+      "type": "story"
+    },
+    {
+      "id": "designsystem-tooltip--custom-jsx-component",
+      "theme": "light",
+      "type": "story"
+    }
+  ],
+  "wrongBackgrounds": [
+    {
+      "run": 1,
+      "id": "designsystem-button--with-left-icon",
+      "theme": "light"
+    },
+    {
+      "run": 1,
+      "id": "designsystem-radiolist--default",
+      "theme": "light"
+    },
+    {
+      "run": 1,
+      "id": "designsystem-segmentedcontrol--field-api",
+      "theme": "light"
+    },
+    {
+      "run": 1,
+      "id": "designsystem-segmentedcontrol--segmented-control-story",
+      "theme": "light"
+    },
+    {
+      "run": 1,
+      "id": "designsystem-segmentedcontrol--theme-primary",
+      "theme": "light"
+    },
+    {
+      "run": 1,
+      "id": "designsystem-select--docs",
+      "theme": "light"
+    },
+    {
+      "run": 1,
+      "id": "designsystem-select--select-disabled",
+      "theme": "light"
+    },
+    {
+      "run": 1,
+      "id": "designsystem-select--select-inline-variant",
+      "theme": "light"
+    },
+    {
+      "run": 1,
+      "id": "designsystem-select--select-outline-variant",
+      "theme": "light"
+    },
+    {
+      "run": 1,
+      "id": "designsystem-select--select-story",
+      "theme": "light"
+    },
+    {
+      "run": 1,
+      "id": "designsystem-select--select-story-filled-variant",
+      "theme": "light"
+    },
+    {
+      "run": 1,
+      "id": "designsystem-textarea--text-area-disabled",
+      "theme": "light"
+    },
+    {
+      "run": 1,
+      "id": "designsystem-textarea--validation",
+      "theme": "light"
+    },
+    {
+      "run": 1,
+      "id": "designsystem-textfield--text-field-outline-variant",
+      "theme": "light"
+    },
+    {
+      "run": 1,
+      "id": "designsystem-textfield--validation",
+      "theme": "light"
+    },
+    {
+      "run": 2,
+      "id": "designsystem-link--docs",
+      "theme": "light"
+    },
+    {
+      "run": 2,
+      "id": "designsystem-popover--parts",
+      "theme": "light"
+    },
+    {
+      "run": 2,
+      "id": "designsystem-popover--popover-story",
+      "theme": "light"
+    },
+    {
+      "run": 2,
+      "id": "designsystem-tabs--dynamic-tabs-story",
+      "theme": "light"
+    },
+    {
+      "run": 2,
+      "id": "designsystem-tabs--tabs-inline-horizontal-theme-story",
+      "theme": "light"
+    },
+    {
+      "run": 2,
+      "id": "designsystem-textfield--field-api",
+      "theme": "light"
+    },
+    {
+      "run": 3,
+      "id": "designsystem-button--docs",
+      "theme": "light"
+    },
+    {
+      "run": 3,
+      "id": "designsystem-icons--custom-size-icon",
+      "theme": "light"
+    },
+    {
+      "run": 3,
+      "id": "designsystem-listbox--listbox-multiple",
+      "theme": "light"
+    },
+    {
+      "run": 3,
+      "id": "designsystem-segmentedcontrol--field-api",
+      "theme": "light"
+    },
+    {
+      "run": 3,
+      "id": "designsystem-select--select-required",
+      "theme": "light"
+    },
+    {
+      "run": 3,
+      "id": "designsystem-tabs--tabs-inline-horizontal-theme-story",
+      "theme": "light"
+    },
+    {
+      "run": 3,
+      "id": "designsystem-textfield--text-field-filled-variant",
+      "theme": "light"
+    },
+    {
+      "run": 3,
+      "id": "designsystem-textfield--text-field-outline-variant",
+      "theme": "light"
+    },
+    {
+      "run": 3,
+      "id": "designsystem-tooltip--custom-jsx-component",
+      "theme": "light"
+    }
+  ],
+  "browser": "159.0.8154.6",
+  "withinRunFlaky": [
+    [
+      {
+        "id": "designsystem-dialog--docs",
+        "theme": "dark"
+      },
+      {
+        "id": "designsystem-iconbutton--docs",
+        "theme": "dark"
+      },
+      {
+        "id": "designsystem-link--docs",
+        "theme": "dark"
+      },
+      {
+        "id": "designsystem-listbox--docs",
+        "theme": "dark"
+      },
+      {
+        "id": "designsystem-pagination--docs",
+        "theme": "dark"
+      },
+      {
+        "id": "designsystem-segmentedcontrol--docs",
+        "theme": "dark"
+      },
+      {
+        "id": "designsystem-select--docs",
+        "theme": "dark"
+      },
+      {
+        "id": "designsystem-textarea--docs",
+        "theme": "dark"
+      },
+      {
+        "id": "designsystem-textfield--docs",
+        "theme": "dark"
+      },
+      {
+        "id": "designsystem-button--docs",
+        "theme": "light"
+      },
+      {
+        "id": "designsystem-button--with-left-icon",
+        "theme": "light"
+      },
+      {
+        "id": "designsystem-iconbutton--docs",
+        "theme": "light"
+      },
+      {
+        "id": "designsystem-iconbutton--loading",
+        "theme": "light"
+      },
+      {
+        "id": "designsystem-pagination--docs",
+        "theme": "light"
+      },
+      {
+        "id": "designsystem-pagination--pagination-sizes",
+        "theme": "light"
+      },
+      {
+        "id": "designsystem-radiolist--default",
+        "theme": "light"
+      },
+      {
+        "id": "designsystem-segmentedcontrol--field-api",
+        "theme": "light"
+      },
+      {
+        "id": "designsystem-segmentedcontrol--segmented-control-story",
+        "theme": "light"
+      },
+      {
+        "id": "designsystem-segmentedcontrol--theme-primary",
+        "theme": "light"
+      },
+      {
+        "id": "designsystem-select--docs",
+        "theme": "light"
+      },
+      {
+        "id": "designsystem-select--select-disabled",
+        "theme": "light"
+      },
+      {
+        "id": "designsystem-select--select-outline-variant",
+        "theme": "light"
+      },
+      {
+        "id": "designsystem-select--select-story",
+        "theme": "light"
+      },
+      {
+        "id": "designsystem-textarea--text-area-disabled",
+        "theme": "light"
+      },
+      {
+        "id": "designsystem-textarea--validation",
+        "theme": "light"
+      },
+      {
+        "id": "designsystem-textfield--text-field-outline-variant",
+        "theme": "light"
+      },
+      {
+        "id": "designsystem-textfield--validation",
+        "theme": "light"
+      }
+    ],
+    [
+      {
+        "id": "designsystem-button--docs",
+        "theme": "dark"
+      },
+      {
+        "id": "designsystem-pagination--docs",
+        "theme": "dark"
+      },
+      {
+        "id": "designsystem-radiolist--docs",
+        "theme": "dark"
+      },
+      {
+        "id": "designsystem-segmentedcontrol--docs",
+        "theme": "dark"
+      },
+      {
+        "id": "designsystem-textarea--docs",
+        "theme": "dark"
+      },
+      {
+        "id": "designsystem-textfield--docs",
+        "theme": "dark"
+      },
+      {
+        "id": "designsystem-tooltip--docs",
+        "theme": "dark"
+      },
+      {
+        "id": "designsystem-iconbutton--loading",
+        "theme": "light"
+      },
+      {
+        "id": "designsystem-link--docs",
+        "theme": "light"
+      },
+      {
+        "id": "designsystem-pagination--pagination-sizes",
+        "theme": "light"
+      },
+      {
+        "id": "designsystem-popover--parts",
+        "theme": "light"
+      },
+      {
+        "id": "designsystem-popover--popover-story",
+        "theme": "light"
+      },
+      {
+        "id": "designsystem-radiolist--docs",
+        "theme": "light"
+      },
+      {
+        "id": "designsystem-tabs--docs",
+        "theme": "light"
+      },
+      {
+        "id": "designsystem-tabs--dynamic-tabs-story",
+        "theme": "light"
+      },
+      {
+        "id": "designsystem-tabs--tabs-inline-horizontal-theme-story",
+        "theme": "light"
+      },
+      {
+        "id": "designsystem-textfield--field-api",
+        "theme": "light"
+      }
+    ],
+    [
+      {
+        "id": "designsystem-iconbutton--docs",
+        "theme": "dark"
+      },
+      {
+        "id": "designsystem-radiolist--docs",
+        "theme": "dark"
+      },
+      {
+        "id": "designsystem-segmentedcontrol--docs",
+        "theme": "dark"
+      },
+      {
+        "id": "designsystem-select--docs",
+        "theme": "dark"
+      },
+      {
+        "id": "designsystem-textfield--docs",
+        "theme": "dark"
+      },
+      {
+        "id": "designsystem-button--docs",
+        "theme": "light"
+      },
+      {
+        "id": "designsystem-checkbox--docs",
+        "theme": "light"
+      },
+      {
+        "id": "designsystem-icons--custom-size-icon",
+        "theme": "light"
+      },
+      {
+        "id": "designsystem-listbox--listbox-multiple",
+        "theme": "light"
+      },
+      {
+        "id": "designsystem-pagination--docs",
+        "theme": "light"
+      },
+      {
+        "id": "designsystem-radiolist--docs",
+        "theme": "light"
+      },
+      {
+        "id": "designsystem-segmentedcontrol--field-api",
+        "theme": "light"
+      },
+      {
+        "id": "designsystem-select--docs",
+        "theme": "light"
+      },
+      {
+        "id": "designsystem-select--select-required",
+        "theme": "light"
+      },
+      {
+        "id": "designsystem-tabs--tabs-inline-horizontal-theme-story",
+        "theme": "light"
+      },
+      {
+        "id": "designsystem-textarea--docs",
+        "theme": "light"
+      },
+      {
+        "id": "designsystem-textfield--text-field-filled-variant",
+        "theme": "light"
+      },
+      {
+        "id": "designsystem-textfield--text-field-outline-variant",
+        "theme": "light"
+      },
+      {
+        "id": "designsystem-tooltip--custom-jsx-component",
+        "theme": "light"
+      }
+    ]
+  ],
+  "darkLightPairs": [
+    "designsystem-button--with-left-icon",
+    "designsystem-radiolist--default",
+    "designsystem-segmentedcontrol--field-api",
+    "designsystem-segmentedcontrol--segmented-control-story",
+    "designsystem-segmentedcontrol--theme-primary",
+    "designsystem-select--docs",
+    "designsystem-select--select-disabled",
+    "designsystem-select--select-inline-variant",
+    "designsystem-select--select-outline-variant",
+    "designsystem-select--select-story",
+    "designsystem-select--select-story-filled-variant",
+    "designsystem-textarea--text-area-disabled",
+    "designsystem-textarea--validation",
+    "designsystem-textfield--text-field-outline-variant",
+    "designsystem-textfield--validation",
+    "designsystem-link--docs",
+    "designsystem-popover--parts",
+    "designsystem-popover--popover-story",
+    "designsystem-tabs--dynamic-tabs-story",
+    "designsystem-tabs--tabs-inline-horizontal-theme-story",
+    "designsystem-textfield--field-api",
+    "designsystem-button--docs",
+    "designsystem-icons--custom-size-icon",
+    "designsystem-listbox--listbox-multiple",
+    "designsystem-select--select-required",
+    "designsystem-textfield--text-field-filled-variant",
+    "designsystem-tooltip--custom-jsx-component"
+  ],
+  "wrongBackgroundCaptures": [
+    {
+      "run": 1,
+      "pass": 1,
+      "id": "designsystem-button--with-left-icon",
+      "body": "rgb(15, 15, 16)",
+      "requestedTheme": "light",
+      "actualTheme": "dark"
+    },
+    {
+      "run": 1,
+      "pass": 2,
+      "id": "designsystem-radiolist--default",
+      "body": "rgb(15, 15, 16)",
+      "requestedTheme": "light",
+      "actualTheme": "dark"
+    },
+    {
+      "run": 1,
+      "pass": 2,
+      "id": "designsystem-segmentedcontrol--field-api",
+      "body": "rgb(15, 15, 16)",
+      "requestedTheme": "light",
+      "actualTheme": "dark"
+    },
+    {
+      "run": 1,
+      "pass": 2,
+      "id": "designsystem-segmentedcontrol--segmented-control-story",
+      "body": "rgb(15, 15, 16)",
+      "requestedTheme": "light",
+      "actualTheme": "dark"
+    },
+    {
+      "run": 1,
+      "pass": 2,
+      "id": "designsystem-segmentedcontrol--theme-primary",
+      "body": "rgb(15, 15, 16)",
+      "requestedTheme": "light",
+      "actualTheme": "dark"
+    },
+    {
+      "run": 1,
+      "pass": 1,
+      "id": "designsystem-select--docs",
+      "body": "rgb(15, 15, 16)",
+      "requestedTheme": "light",
+      "actualTheme": "dark"
+    },
+    {
+      "run": 1,
+      "pass": 1,
+      "id": "designsystem-select--select-disabled",
+      "body": "rgb(15, 15, 16)",
+      "requestedTheme": "light",
+      "actualTheme": "dark"
+    },
+    {
+      "run": 1,
+      "pass": 1,
+      "id": "designsystem-select--select-inline-variant",
+      "body": "rgb(15, 15, 16)",
+      "requestedTheme": "light",
+      "actualTheme": "dark"
+    },
+    {
+      "run": 1,
+      "pass": 2,
+      "id": "designsystem-select--select-inline-variant",
+      "body": "rgb(15, 15, 16)",
+      "requestedTheme": "light",
+      "actualTheme": "dark"
+    },
+    {
+      "run": 1,
+      "pass": 2,
+      "id": "designsystem-select--select-outline-variant",
+      "body": "rgb(15, 15, 16)",
+      "requestedTheme": "light",
+      "actualTheme": "dark"
+    },
+    {
+      "run": 1,
+      "pass": 1,
+      "id": "designsystem-select--select-story",
+      "body": "rgb(15, 15, 16)",
+      "requestedTheme": "light",
+      "actualTheme": "dark"
+    },
+    {
+      "run": 1,
+      "pass": 1,
+      "id": "designsystem-select--select-story-filled-variant",
+      "body": "rgb(15, 15, 16)",
+      "requestedTheme": "light",
+      "actualTheme": "dark"
+    },
+    {
+      "run": 1,
+      "pass": 2,
+      "id": "designsystem-select--select-story-filled-variant",
+      "body": "rgb(15, 15, 16)",
+      "requestedTheme": "light",
+      "actualTheme": "dark"
+    },
+    {
+      "run": 1,
+      "pass": 1,
+      "id": "designsystem-textarea--text-area-disabled",
+      "body": "rgb(15, 15, 16)",
+      "requestedTheme": "light",
+      "actualTheme": "dark"
+    },
+    {
+      "run": 1,
+      "pass": 2,
+      "id": "designsystem-textarea--validation",
+      "body": "rgb(15, 15, 16)",
+      "requestedTheme": "light",
+      "actualTheme": "dark"
+    },
+    {
+      "run": 1,
+      "pass": 1,
+      "id": "designsystem-textfield--text-field-outline-variant",
+      "body": "rgb(15, 15, 16)",
+      "requestedTheme": "light",
+      "actualTheme": "dark"
+    },
+    {
+      "run": 1,
+      "pass": 2,
+      "id": "designsystem-textfield--validation",
+      "body": "rgb(15, 15, 16)",
+      "requestedTheme": "light",
+      "actualTheme": "dark"
+    },
+    {
+      "run": 2,
+      "pass": 1,
+      "id": "designsystem-link--docs",
+      "body": "rgb(15, 15, 16)",
+      "requestedTheme": "light",
+      "actualTheme": "dark"
+    },
+    {
+      "run": 2,
+      "pass": 2,
+      "id": "designsystem-popover--parts",
+      "body": "rgb(15, 15, 16)",
+      "requestedTheme": "light",
+      "actualTheme": "dark"
+    },
+    {
+      "run": 2,
+      "pass": 1,
+      "id": "designsystem-popover--popover-story",
+      "body": "rgb(15, 15, 16)",
+      "requestedTheme": "light",
+      "actualTheme": "dark"
+    },
+    {
+      "run": 2,
+      "pass": 2,
+      "id": "designsystem-tabs--dynamic-tabs-story",
+      "body": "rgb(15, 15, 16)",
+      "requestedTheme": "light",
+      "actualTheme": "dark"
+    },
+    {
+      "run": 2,
+      "pass": 2,
+      "id": "designsystem-tabs--tabs-inline-horizontal-theme-story",
+      "body": "rgb(15, 15, 16)",
+      "requestedTheme": "light",
+      "actualTheme": "dark"
+    },
+    {
+      "run": 2,
+      "pass": 1,
+      "id": "designsystem-textfield--field-api",
+      "body": "rgb(15, 15, 16)",
+      "requestedTheme": "light",
+      "actualTheme": "dark"
+    },
+    {
+      "run": 3,
+      "pass": 2,
+      "id": "designsystem-button--docs",
+      "body": "rgb(15, 15, 16)",
+      "requestedTheme": "light",
+      "actualTheme": "dark"
+    },
+    {
+      "run": 3,
+      "pass": 1,
+      "id": "designsystem-icons--custom-size-icon",
+      "body": "rgb(15, 15, 16)",
+      "requestedTheme": "light",
+      "actualTheme": "dark"
+    },
+    {
+      "run": 3,
+      "pass": 1,
+      "id": "designsystem-listbox--listbox-multiple",
+      "body": "rgb(15, 15, 16)",
+      "requestedTheme": "light",
+      "actualTheme": "dark"
+    },
+    {
+      "run": 3,
+      "pass": 2,
+      "id": "designsystem-segmentedcontrol--field-api",
+      "body": "rgb(15, 15, 16)",
+      "requestedTheme": "light",
+      "actualTheme": "dark"
+    },
+    {
+      "run": 3,
+      "pass": 2,
+      "id": "designsystem-select--select-required",
+      "body": "rgb(15, 15, 16)",
+      "requestedTheme": "light",
+      "actualTheme": "dark"
+    },
+    {
+      "run": 3,
+      "pass": 1,
+      "id": "designsystem-tabs--tabs-inline-horizontal-theme-story",
+      "body": "rgb(15, 15, 16)",
+      "requestedTheme": "light",
+      "actualTheme": "dark"
+    },
+    {
+      "run": 3,
+      "pass": 1,
+      "id": "designsystem-textfield--text-field-filled-variant",
+      "body": "rgb(15, 15, 16)",
+      "requestedTheme": "light",
+      "actualTheme": "dark"
+    },
+    {
+      "run": 3,
+      "pass": 2,
+      "id": "designsystem-textfield--text-field-outline-variant",
+      "body": "rgb(15, 15, 16)",
+      "requestedTheme": "light",
+      "actualTheme": "dark"
+    },
+    {
+      "run": 3,
+      "pass": 2,
+      "id": "designsystem-tooltip--custom-jsx-component",
+      "body": "rgb(15, 15, 16)",
+      "requestedTheme": "light",
+      "actualTheme": "dark"
+    }
+  ]
+}

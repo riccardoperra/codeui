@@ -1,0 +1,185 @@
+---
+title: "Accordion"
+description: "Sections that reveal settings within a sidebar."
+---
+
+## When to use
+
+Accordion groups settings in a sidebar. The CodeImage pattern shows an icon, title, value summary, and chevron in each header. One section can be open at a time in the ready component.
+
+A header is a 36px row with a 14px, weight-600 title, 8px before the icon, 10px between its parts and 12px after the chevron. Sections sit 4px apart. The open section sits on the inset fill with a 16px radius, and its icon turns to the accent. Hovering a closed header with a mouse fills it; the open header stays plain.
+
+## When to choose another component
+
+Use [Tabs](/docs/components/tabs) for views that share one content area. For one independent disclosure, use an Accordion with a single item and `collapsible`.
+
+## Live demo
+
+<SolidDemo name="accordion/basic" />
+
+## Anatomy
+
+<Anatomy demo="accordion/anatomy" />
+
+| Export | Renders | `classes` key | `data-cui` | Role |
+| --- | --- | --- | --- | --- |
+| `Root` | div | `root` | `accordion-root` | none |
+| `Item` | div | `item` | `accordion-item` | none |
+| `Header` | h3 | `header` | `accordion-header` | heading |
+| `Trigger` | button | `trigger` | `accordion-trigger` | button |
+| `Icon` | span | `icon` | `accordion-icon` | none |
+| `Title` | span | `title` | `accordion-title` | none |
+| `Summary` | span | `summary` | `accordion-summary` | none |
+| `Chevron` | span | `chevron` | `accordion-chevron` | none |
+| `Content` | div | `content` | `accordion-content` | region |
+
+## Variants
+
+<SolidDemo name="accordion/density" />
+
+Parts expose `compact` and `comfortable` trigger density through `accordionStyles.trigger`. The ready component has no density prop.
+
+<SolidDemo name="accordion/multiple" />
+
+`Root multiple` supports several open sections with array values. Inkstone sidebars use single selection. This parts example documents the supported API.
+
+<SolidDemo name="accordion/motion" />
+
+`motion="none"` disables content animation. With `auto`, the default, a click transitions the body's height and opacity over 200ms with the ease-out curve, and the `›` chevron turns 90° in step. These are transitions, not keyframes: a second click mid-way turns the body around from its current height, and the first click on a header always lands, because nothing restarts under the pointer. A closing body stays mounted until its transition ends. Keyboard toggles are instant: the kit reads the last input from `<html data-cui-input>`. Reduced motion keeps the fade and removes the height and chevron motion.
+
+## States
+
+<SolidDemo name="accordion/controlled" />
+
+`value` is a section value or `null`. `onChange` receives the next value. Omit `value` for uncontrolled state. No section opens unless `defaultValue` is set.
+
+<SolidDemo name="accordion/required" />
+
+`collapsible={false}` keeps the selected section open. Set `defaultValue` to start with a section open.
+
+<SolidDemo name="accordion/retained" />
+
+`keepMounted` retains content when collapsed. Collapsed content is inert and hidden from assistive technology. Disabled entries cannot open and are skipped by keyboard navigation.
+
+## Ready API
+
+### `Accordion`
+
+Renders single-selection sections from `AccordionEntry[]`. Each entry requires `value`, `title`, and `content`. Optional fields are `icon`, `summary`, and `disabled`.
+
+<PropsTable name="Accordion" />
+
+## Styled parts API
+
+Import parts from `@codeui/kit/accordion`. Each export is a named function.
+
+### `Root`
+
+Kobalte Accordion.Root. `motion` sets `data-motion` (`auto` or `none`). Parts use arrays for `value`, `defaultValue`, and `onChange`. Parts default `collapsible` to false. The ready component defaults it to true.
+
+<PropsTable name="AccordionRoot" />
+
+<PropsTable name="AccordionRootInherited" />
+
+### `Item`
+
+Kobalte Accordion.Item. Its unique `value` identifies the section.
+
+<PropsTable name="AccordionItem" />
+
+<PropsTable name="AccordionItemInherited" />
+
+### `Header`
+
+Kobalte Accordion.Header rendered as an h3. Its heading level can be changed with `as`.
+
+<PropsTable name="AccordionHeader" />
+
+### `Trigger`
+
+Kobalte Accordion.Trigger rendered as a button inside Header.
+
+<PropsTable name="AccordionTrigger" />
+
+<PropsTable name="AccordionTriggerInherited" />
+
+### `Content`
+
+Kobalte Accordion.Content with a measured inner wrapper. It writes `data-open` while the body is open and keeps a closing body mounted until its height transition ends. Collapsed content has `inert` and `aria-hidden`.
+
+<PropsTable name="AccordionContent" />
+
+### `Icon`
+
+An aria-hidden span for the leading icon. The icon uses the accent color when expanded.
+
+<PropsTable name="AccordionIcon" />
+
+### `Title`
+
+A span for the section label.
+
+<PropsTable name="AccordionTitle" />
+
+### `Summary`
+
+A span for the current value at the end of the header.
+
+<PropsTable name="AccordionSummary" />
+
+### `Chevron`
+
+An aria-hidden span with a default `›` chevron that turns 90° when expanded.
+
+<PropsTable name="AccordionChevron" />
+
+### `useAccordionContext`
+
+Advanced, provider-scoped access to Kobalte's accordion context. Call it inside a descendant component of `Root`. It exposes the list state and selection manager. Calling it outside the provider throws. It takes no props and renders no DOM.
+
+The remaining inherited props follow the [Kobalte Accordion contract](https://kobalte.dev/docs/core/components/accordion).
+
+## Styles export
+
+### `accordionStyles`
+
+`AccordionStyles` maps each anatomy part key to a function that returns a class string. Only `trigger({ density })` uses the density variant. The other functions ignore variants. Styles are exported from both `@codeui/kit` and `@codeui/kit/accordion`. Use these functions with custom markup when you provide the required semantics and behavior. Styles alone do not manage focus or state.
+
+## Accessibility
+
+### Keyboard
+
+| Key | Action |
+| --- | --- |
+| Enter or Space | Toggles the focused section when collapsible. |
+| ArrowDown or ArrowUp | Moves to the next or previous enabled header. |
+| Home or End | Moves to the first or last enabled header. |
+| Tab or Shift+Tab | Moves between headers and focusable controls in open content. |
+
+### ARIA
+
+Headers contain buttons with `aria-expanded` and `aria-controls`. Content has `role="region"` and `aria-labelledby` pointing to its trigger. Icon and Chevron have `aria-hidden="true"`. Disabled triggers expose disabled state.
+
+### Focus
+
+Toggling leaves focus on the header. Opening content does not move focus into it. Collapsed content cannot receive focus. Arrow navigation skips disabled headers.
+
+## SSR notes
+
+Root, headers, and initially expanded content render on the server. `keepMounted` also renders collapsed content. Solid generates linked IDs. Content height measurement and ResizeObserver run in client effects after hydration.
+
+## Theming hooks
+
+Accordion reads `--cui-surface-panel`, `--cui-surface-input` (hovered closed header), `--cui-text-default`, `--cui-text-muted`, `--cui-accent-focus` (the open icon), `--cui-radius-card`, `--cui-radius-md`, `--cui-space-1`, `--cui-space-2`, `--cui-space-2-5`, `--cui-space-3`, and `--cui-space-4`. Typography uses `--cui-font-size-sm`, `--cui-font-size-caption`, `--cui-font-size-xs`, `--cui-font-size-xl` (the chevron), `--cui-font-weight-normal`, `--cui-font-weight-semibold`, and the matching `--cui-font-line-height-sm`, `-caption` and `-xs`.
+
+Headers use `--cui-control-height-sm` (36px) and `--cui-control-height-md` on a coarse pointer. Focus uses `--cui-focus-width`, `--cui-focus-color`, and `--cui-focus-offset`. Motion uses `--cui-motion-duration-panel` and `--cui-motion-ease-out`. Content writes the measured `--cui-accordion-content-height`; before it measures, the open body is `auto` tall, so server markup shows it.
+
+See [Inkstone foundations](/docs/design) for the design rules.
+
+## Composition examples
+
+The [live demo](#live-demo) composes the CodeImage sidebar header through entry icons and summaries. The [multiple demo](#variants) shows the corresponding parts structure.
+
+## Related
+
+[Sheet](/docs/components/sheet) holds settings on phones. [Tabs](/docs/components/tabs) switches between peer views.

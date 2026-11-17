@@ -1,0 +1,114 @@
+---
+title: "RadioList"
+description: "A list of radio buttons for choosing one option."
+---
+
+## When to use
+
+Choose one named value from a visible list of export options.
+
+## When to choose another component
+
+Use [SegmentedControl](/docs/components/segmented-control) for a compact row of short choices. Use [OptionCard](/docs/components/option-card) when previews or descriptions help compare options. RadioList retains native form radio semantics.
+
+## Live demo
+
+<SolidDemo name="radio-list/basic" />
+
+## Anatomy
+
+<Anatomy demo="radio-list/anatomy" />
+
+| Export          | Renders | `classes` key   | `data-cui`                  | Role         |
+| --------------- | ------- | --------------- | --------------------------- | ------------ |
+| `RadioList`     | `div`   | `root`          | `radio-group-field`         | `radiogroup` |
+| `RadioList`     | `span`  | `label`         | `radio-list-label`          | `none`       |
+| `RadioList`     | `div`   | `items`         | `radio-list-items`          | `none`       |
+| `RadioList`     | `div`   | `description`   | `radio-list-description`    | `none`       |
+| `RadioList`     | `div`   | `errorMessage`  | `radio-list-error-message`  | `none`       |
+| `RadioListItem` | `div`   | `item`          | `radio-list-item`           | `none`       |
+| `RadioListItem` | `div`   | `itemControl`   | `radio-list-item-control`   | `none`       |
+| `RadioListItem` | `div`   | `itemIndicator` | `radio-list-item-indicator` | `none`       |
+| `RadioListItem` | `label` | `itemLabel`     | `radio-list-item-label`     | `none`       |
+
+Each item also renders a native radio input without a `data-cui` name. Item classes merge with group classes.
+
+## Variants
+
+<SolidDemo name="radio-list/sizes" />
+
+<SolidDemo name="radio-list/horizontal" />
+
+<SolidDemo name="radio-list/vertical" />
+
+`theme` accepts `filled` and `inline` through BaseFieldProps. `inline`, the default, draws each circle as an outline on the surface. `filled` gives the circle the field fill (`--cui-surface-input`) and no outline. The root carries `data-field-theme`.
+
+## States
+
+<SolidDemo name="radio-list/controlled" />
+
+<SolidDemo name="radio-list/disabled" />
+
+<SolidDemo name="radio-list/read-only" />
+
+<SolidDemo name="radio-list/required" />
+
+<SolidDemo name="radio-list/invalid" />
+
+## Ready API
+
+### `RadioList`
+
+Renders the complete field. `RadioListProps` is the public props type.
+
+<PropsTable name="RadioList" />
+
+<PropsTable name="RadioListInherited" />
+
+Inherited behavior follows the [Kobalte radio-group contract](https://kobalte.dev/docs/core/components/radio-group).
+
+### `RadioListItem`
+
+Renders one selectable option.
+
+<PropsTable name="RadioListItem" />
+
+<PropsTable name="RadioListItemInherited" />
+
+## Accessibility
+
+### Keyboard
+
+| Key        | Action                               |
+| ---------- | ------------------------------------ |
+| Tab        | Enter or leave the group.            |
+| Arrow keys | Move to and select an enabled radio. |
+| Space      | Select the focused radio.            |
+
+### ARIA
+
+The root has `role="radiogroup"`. Item inputs are native radios with checked state. Labels name each item. Description and error components associate hint text with the field. `validationState="invalid"` exposes invalid state. Supply a visible label or an accessible name.
+
+### Focus
+
+These controls do not open an overlay or move focus on mount. The native radio input is visually hidden, so keyboard focus draws the 2px focus ring around the circle on `:focus-visible`. Disabled controls cannot receive keyboard focus. Read-only controls remain focusable and do not change value.
+
+## SSR notes
+
+The root, labels, controls, and form inputs render on the server. No part uses a portal. Keep initial values and component order stable between server and client so generated IDs hydrate consistently. Create signals per component instance.
+
+## Theming hooks
+
+The component reads these foundation variables. Shared field labels and messages also use the field typography and validation tokens.
+
+`--cui-action-brand-base`, `--cui-action-brand-text`, `--cui-action-danger-base`, `--cui-border-width`, `--cui-font-line-height-normal`, `--cui-motion-duration-normal`, `--cui-motion-ease-out`, `--cui-radius-full`, `--cui-space-1`, `--cui-space-3`, `--cui-space-4`, `--cui-surface-input`, `--cui-text-hint`.
+
+## Composition examples
+
+<SolidDemo name="radio-list/form" />
+
+The form demo reads the submitted value with `FormData`. The selected enabled item submits its value under the group name. An empty selection or disabled group submits no entry.
+
+## Related
+
+Use [SegmentedControl](/docs/components/segmented-control) for a compact row of short choices. Use [OptionCard](/docs/components/option-card) when previews or descriptions help compare options. RadioList retains native form radio semantics. See [Control helpers](/docs/utilities/control-helpers) for custom compositions.

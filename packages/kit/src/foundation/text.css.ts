@@ -1,4 +1,4 @@
-import { styleVariants } from "@vanilla-extract/css";
+import { styleVariants } from "./layer.css";
 import { mapToProperty } from "./mapToProperty";
 import { themeTokens } from "./themes.css";
 

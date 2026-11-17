@@ -1,0 +1,94 @@
+---
+title: "Build forms"
+description: "Combine fields into a form with labels, descriptions, and validation."
+---
+
+This guide builds an export settings form with a required file name, an optional caption, and an export width. The form validates on submit, shows the errors under each field, moves focus to the first invalid field, and saves.
+
+<SolidDemo name="build-forms/export-form" />
+
+Submit the empty form to see the errors. Fix a field and its error clears as you type.
+
+## Keep the values in one store
+
+```tsx
+type ExportSettings = {
+	fileName: string;
+	caption: string;
+	width: number | null | undefined;
+};
+
+const [values, setValues] = createStore<ExportSettings>({ fileName: "", caption: "", width: 1280 });
+```
+
+Control every field with `value` and `onChange`, and write to the store. `onChange` on TextField and TextArea receives the string. `onChange` on NumberField receives a number, or `null` when the input is empty. Type the width as `number | null | undefined` to match it.
+
+Read the values from the store, not from `FormData`. NumberField submits its formatted text, such as `1 280 px`, and not the number.
+
+## Write one validate function
+
+```tsx
+function validate(values: ExportSettings): Errors {
+	const errors: Errors = {};
+	if (!values.fileName.trim()) errors.fileName = "Enter a file name.";
+	else if (!/^[\w-]+$/.test(values.fileName)) errors.fileName = "Use letters, numbers, dashes and underscores.";
+	if (values.caption.length > 120) errors.caption = "Keep the caption under 120 characters.";
+	if (values.width == null) errors.width = "Enter an export width.";
+	return errors;
+}
+```
+
+The kit fields do not validate. They show the state you give them. A plain function from values to messages keeps the rules in one place, and you can run the same function on the server. Write each message as what to do, not what went wrong.
+
+## Show errors after the first submit
+
+```tsx
+const errors = () => (submitted() ? validate(values) : {});
+const state = (key: keyof ExportSettings) => (errors()[key] ? "invalid" : "valid");
+```
+
+Pass `validationState={state("fileName")}` and `errorMessage={errors().fileName}` to each field. A field shows its `errorMessage` only while `validationState` is `"invalid"`, and sets `aria-invalid` on the input. The input lists the message in `aria-describedby`, so a screen reader reads it with the field.
+
+Before the first submit, `errors()` is empty and no field is invalid. After it, the errors follow every edit. Use `description` for the rule that never changes, such as "Without the extension.", and `errorMessage` for the problem with the current value.
+
+## Submit the form
+
+```tsx
+const onSubmit = async (event: SubmitEvent) => {
+	event.preventDefault();
+	setSubmitted(true);
+	setSaved(undefined);
+	if (Object.keys(validate(values)).length > 0) {
+		// Move focus to the first field that failed, so keyboard and screen reader users land on it.
+		const form = event.currentTarget as HTMLFormElement;
+		queueMicrotask(() => form.querySelector<HTMLElement>("[aria-invalid='true']")?.focus());
+		return;
+	}
+	setSaving(true);
+	const result = await saveExportSettings({ ...values });
+	setSaving(false);
+	setSaved(`Saved ${result.fileName}.png at ${result.width} px.`);
+};
+```
+
+Put `noValidate` on the `form`. Without it, the browser blocks the submit on a `required` field and shows its own bubble instead of your message. Keep `required` on the field anyway, because it sets `aria-required` on the input.
+
+A submit button inside the form handles Enter in a TextField and a click. Pass `loading` to the button while the request runs. Announce the result in an element with `role="status"` that is in the page before the message arrives. A status region that appears with its text is not always read.
+
+## Choose the field for each value
+
+| Value                     | Field         | Props in the demo                                                   |
+| ------------------------- | ------------- | ------------------------------------------------------------------- |
+| File name, one line       | `TextField`   | `required`, `autocomplete="off"`, a `description` for the format    |
+| Caption, several lines    | `TextArea`    | `options={{ autoResize: true }}`, so it grows with the text         |
+| Export width, a number    | `NumberField` | `min`, `max`, `step`, and `postfix=" px"`                           |
+
+NumberField clamps the width to `min` and `max` when the input loses focus. Validate the empty case yourself, because `null` is a valid value for the field.
+
+Give each field a `name` so browser autofill and password managers can identify it. For a control the kit does not ship, build it with the [field helpers](/docs/utilities/field-helpers) so it matches the other fields.
+
+## Related
+
+- [TextField](/docs/components/text-field), [TextArea](/docs/components/text-area), and [NumberField](/docs/components/number-field) list every prop and state.
+- [Field helpers](/docs/utilities/field-helpers) build a custom field that takes `errorMessage` like these.
+- [Build settings](/docs/patterns/build-settings) is for choices that apply at once, with no submit.

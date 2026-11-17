@@ -1,0 +1,306 @@
+---
+title: "CommandMenu"
+description: "A searchable palette of commands opened from the keyboard."
+---
+
+## When to use
+
+Use `CommandMenu` to let people find any action, setting, or option by name and run it from the keyboard. An app has one command menu. It lists every visible action and setting, read from the same data as the controls that own them. The highlight previews a choice on the content, Enter applies it, and Escape restores what was there before.
+
+## When to choose another component
+
+- Choose [`Combobox`](/docs/components/combobox) to pick a value for one field in a form. It stays in place and keeps a selected value. `CommandMenu` floats over the app and keeps no value.
+- Choose [`DropdownMenu`](/docs/components/dropdown-menu) for a short list of actions anchored to a button, where search adds nothing.
+- Choose [`Dialog`](/docs/components/dialog) for settings or a decision that blocks. `CommandMenu` has no scrim and no buttons.
+
+## Live demo
+
+<SolidDemo name="command-menu/basic" />
+
+The demo is a theme picker. Move the highlight with the arrow keys or the pointer and the snippet above previews that theme. Press Enter or click to apply it. Press Escape or click outside to close the menu and get the applied theme back.
+
+Three callbacks make the preview work:
+
+- `onHighlightChange` runs each time the highlight moves, with the item under it. The demo shows that theme.
+- `onBeforeClose` runs first on every close. The demo ends the preview there.
+- `onSelect` runs only on Enter or a click, after the menu has closed. The demo applies the theme there.
+
+`onCancel` runs after `onBeforeClose` when the menu closes without a selection. That covers Escape, a click outside, and the app setting `open` to `false`. Use it to revert work that `onBeforeClose` does not cover, or to report that nothing changed.
+
+## Anatomy
+
+<Anatomy demo="command-menu/anatomy" />
+
+| Export | Renders | `classes` key | `data-cui` | Role |
+| --- | --- | --- | --- | --- |
+| `Root` | No DOM | none | none | none |
+| `Trigger` | `button` | `trigger` | `command-menu-trigger` | `button` |
+| `Portal` | No DOM | none | none | none |
+| `Overlay` | `div` | `overlay` | `command-menu-overlay` | none |
+| `Content` | `div` | `content` | `command-menu-content` | `dialog` |
+| `Title` | `h2`, visually hidden | `title` | `command-menu-title` | none |
+| `Search` | `div` | `search` | `command-menu-search` | none |
+| `SearchInput` | `input` | `searchInput` | `command-menu-search-input` | `combobox` |
+| `Hint` | `span` | `hint` | `command-menu-hint` | `aria-hidden` |
+| `Listbox` | `ul` | `listbox` | `command-menu-listbox` | `listbox` |
+| `Group` | `li` | `group` | `command-menu-group` | `presentation` |
+| `GroupLabel` | `span` | `groupLabel` | `command-menu-group-label` | none |
+| `Item` | `li` | `item` | `command-menu-item` | `option` |
+| `Leading` | `span` | `leading` | `command-menu-leading` | `aria-hidden` |
+| `ItemLabel` | `div` | `itemLabel` | `command-menu-item-label` | none |
+| `ItemDescription` | `div` | `itemDescription` | `command-menu-item-description` | none |
+| `ItemIndicator` | `div` | `itemIndicator` | `command-menu-item-indicator` | `aria-hidden` |
+| `Shortcut` | `span` | `shortcut` | `command-menu-shortcut` | none |
+| `Empty` | `div` | `empty` | `command-menu-empty` | `status` |
+
+The ready `CommandMenu` renders every part except `Trigger` and `Overlay`. The app opens the menu from its own shortcut, and the menu has no scrim so the content behind it stays visible as the preview.
+
+## Variants
+
+### Groups, leading visuals, and row details
+
+<SolidDemo name="command-menu/groups" />
+
+Each item can carry a `group`, a `section`, a `leading` visual, a `description`, a `shortcut`, and the `current` and `disabled` flags.
+
+- Consecutive items with the same `group` and `section` share one heading. Keep the items of a group next to each other in `items`, or the heading repeats.
+- A `section` prefixes the heading, as in "Editor / Font".
+- `leading` sits in a 20px box before the label. When one item in a group has a leading visual, every row in that group gets the box, so the labels line up.
+- `description` shows after the label in the hint color. The default filter searches it when it is a string.
+- `shortcut` is a key label at the end of the row. It is display text only. The app binds the keys.
+- `current` shows a check to mark the value in use, such as the applied theme.
+- `disabled` rows are dimmed, skipped by the arrow keys, and cannot be selected.
+
+## States
+
+### Open and closed
+
+`open` is required and controlled. `onOpenChange` reports every request to open or close. Every open starts with an empty query and the highlight on the first enabled item. The menu opens and closes without animation, and moving the highlight from the keyboard has no animation either. A menu that opens many times a session from the keyboard should not make people wait.
+
+### Empty
+
+<SolidDemo name="command-menu/empty" />
+
+Type a name that matches nothing, such as "kiwi". `emptyContent` renders while no item matches. When `emptyContent` is unset, the list is blank. Say what is missing and how to get results back.
+
+### Highlighted
+
+The highlighted row gets the field fill and primary text. It is neutral, never an accent fill. `Item` carries `data-highlighted` while it has the highlight, and `onHighlightChange` reports it. The pointer moves the highlight the same way as the arrow keys, so a preview follows both.
+
+### Disabled item
+
+A disabled item carries `data-disabled` and `aria-disabled="true"`. It shows at 40% opacity.
+
+### Controlled query
+
+Pass `query` and `onQueryChange` to own the search text, for example to fetch results from a server. On close, the menu calls `onQueryChange("")` so the next open starts empty. The [run commands](/docs/patterns/run-commands) pattern shows a full example.
+
+## Ready API
+
+### `CommandMenu`
+
+Renders the whole menu in a portal: the dialog, the search field, the list, and the empty state. It is generic over the item type, so `onSelect` and `onHighlightChange` receive your own item type with any extra fields you add.
+
+<PropsTable name="CommandMenu" />
+
+Each entry in `items` is a `CommandItem`.
+
+<PropsTable name="CommandMenuItemFields" />
+
+`filterCommandItems(items, query)` is the default filter, exported from `@codeui/kit`. It keeps the items whose `textValue`, `group`, `section`, or string `description` contain every word of the query, ignoring case. Call it from your own `filter` to extend it.
+
+`CommandMenu` passes nothing through to Kobalte. Every prop is listed above.
+
+## Styled parts API
+
+Import the parts from `@codeui/kit/command-menu`. Use them when the ready component cannot express your layout, such as a footer row or a custom item.
+
+<SolidDemo name="command-menu/parts" />
+
+The parts wrap two Kobalte primitives. The dialog parts (`Root`, `Trigger`, `Portal`, `Overlay`, `Content`, `Title`) wrap [Kobalte Dialog](https://kobalte.dev/docs/core/components/dialog). The list parts wrap [Kobalte Combobox](https://kobalte.dev/docs/core/components/combobox). `Content` hosts the combobox engine, so the search input and the list inside it share one highlight. The engine keeps the list open and never keeps a selected value.
+
+When you compose the parts, the close lifecycle is yours. `Content` calls `onSelect` but does not close the menu, and it does not clear the query. The ready component adds `onBeforeClose`, `onCancel`, and the empty query per open.
+
+The parts are also available as one object, `CommandMenuParts`, exported from `@codeui/kit`.
+
+### `Content`
+
+Renders the dialog panel and the combobox engine. The highlight starts on the first enabled option and moves back to it each time the query changes.
+
+<PropsTable name="CommandMenuContent" />
+
+Kobalte dialog content props pass through. These change behavior:
+
+<PropsTable name="CommandMenuContentInherited" />
+
+Without a `Trigger`, focus returns on close to the element that had it when the menu opened.
+
+### `Empty`
+
+Renders a `div` with `role="status"` only while no option matches the query. It takes the props of a `div`.
+
+### `Group`
+
+Renders the heading row that starts a group, as a Kobalte combobox section. Render it from `sectionComponent`. It takes the props of an `li`.
+
+### `GroupLabel`
+
+Renders the text of a group heading, in a `span`. It takes the props of a `span`.
+
+### `Hint`
+
+Renders key hints such as "↑↓ preview · ↵ apply · esc cancel" in a `span` with `aria-hidden="true"`. Place it inside `Search`, after the input. It is hidden on phones. It takes the props of a `span`.
+
+### `Item`
+
+Renders one option as a Kobalte combobox item. Render it from `itemComponent` and pass it the node.
+
+<PropsTable name="CommandMenuItemInherited" />
+
+### `ItemDescription`
+
+Renders secondary text after the label, linked to the option as its description. It wraps Kobalte's combobox item description.
+
+### `ItemIndicator`
+
+Renders the check slot. The menu never keeps a selection, so the indicator shows only with `forceMount`. Render it only for the current item.
+
+<PropsTable name="CommandMenuItemIndicatorInherited" />
+
+### `ItemLabel`
+
+Renders the option label, linked to the option as its accessible name. It wraps Kobalte's combobox item label.
+
+### `Leading`
+
+Renders a fixed 20px box before the label, with `aria-hidden="true"`. Put an icon or a swatch in it. Render it on every row of a group, empty or not, so the labels line up. It takes the props of a `span`.
+
+### `Listbox`
+
+Renders the list of options as a Kobalte combobox listbox. It shows six rows, then scrolls. Give it an `aria-label` or `aria-labelledby`.
+
+<PropsTable name="CommandMenuListboxInherited" />
+
+### `Overlay`
+
+Renders a fixed, full-screen layer behind the panel, as a Kobalte dialog overlay. It has no fill. The design has no scrim for the command menu, so the ready component does not render it.
+
+### `Portal`
+
+Moves the content to the end of `document.body`, or to `mount`. It renders no element of its own.
+
+<PropsTable name="CommandMenuPortalInherited" />
+
+### `Root`
+
+Holds the open state of the dialog. It renders no element.
+
+<PropsTable name="CommandMenuRootInherited" />
+
+### `Search`
+
+Renders the field row around the search icon, the input, and the hint. It takes the props of a `div`.
+
+### `SearchInput`
+
+Renders the search input as a Kobalte combobox input, with `autocomplete="off"` and `spellcheck={false}`. Give it an `aria-label` or `aria-labelledby`. It takes the props of an `input`.
+
+### `Shortcut`
+
+Renders a key label at the end of a row in a `span`. It is display text only. It takes the props of a `span`.
+
+### `Title`
+
+Renders the accessible name of the dialog, visually hidden. Use its `id` as `aria-labelledby` on `Content`, `SearchInput`, and `Listbox`, as the ready component does.
+
+### `Trigger`
+
+Renders a button that opens the menu, as a Kobalte dialog trigger. Pass `as` to render a kit `Button`. With a trigger, focus returns to it on close. Most apps open the menu from a shortcut and need no trigger.
+
+### `useCommandMenuContext`
+
+Returns the Kobalte combobox context of the nearest `Content`. It is Kobalte's `useComboboxContext`. Use it inside `Content` to read or set the query, for example `context.inputValue()` and `context.setInputValue("")`.
+
+## Styles export
+
+### `commandMenuStyles`
+
+```ts
+import { commandMenuStyles } from "@codeui/kit/command-menu";
+
+const rowClass = commandMenuStyles.item();
+```
+
+`commandMenuStyles` has one function per part key from the anatomy table. Each function takes no arguments and returns the class string of that part. None of the parts has variants. Call a function when you render your own element and want it to look like a part, for example a footer row styled as `hint`. The function returns the class only. It does not add `data-cui`, roles, or behavior.
+
+## Accessibility
+
+### Keyboard
+
+| Key | Action |
+| --- | --- |
+| The app's shortcut, such as <kbd>Cmd</kbd>+<kbd>K</kbd> | Opens the menu. The app binds it. |
+| <kbd>↓</kbd> | Moves the highlight to the next enabled item. Wraps from the last to the first. |
+| <kbd>↑</kbd> | Moves the highlight to the previous enabled item. Wraps from the first to the last. |
+| <kbd>Home</kbd>, <kbd>End</kbd> | Move the highlight to the first or the last enabled item. |
+| <kbd>PageUp</kbd>, <kbd>PageDown</kbd> | Move the highlight by one page of the list. |
+| <kbd>←</kbd>, <kbd>→</kbd> | Move the text cursor and clear the highlight. `onHighlightChange` receives `undefined`. |
+| <kbd>Enter</kbd> | Closes the menu, then calls `onSelect` with the highlighted item. |
+| <kbd>Escape</kbd> | Closes the menu without a selection. Calls `onBeforeClose`, then `onCancel`. |
+| <kbd>Tab</kbd> | Stays inside the menu. Focus is trapped. |
+| Any other key | Edits the query. The highlight moves to the first match. |
+
+A click on an item works like Enter. A click outside works like Escape.
+
+### ARIA
+
+- `Content` has `role="dialog"`, named by the hidden `Title`. It is modal, so the rest of the page is hidden from assistive technology while it is open.
+- `SearchInput` has `role="combobox"`, `aria-expanded="true"`, `aria-controls` pointing at the list, and `aria-activedescendant` pointing at the highlighted option.
+- `Listbox` has `role="listbox"`. Each `Item` has `role="option"`, with `aria-disabled` when it is disabled.
+- `Group` rows have `role="presentation"`, so screen readers read the group label as text in the list, not as a group name.
+- `Hint`, `Leading`, and `ItemIndicator` are hidden from assistive technology. Put the meaning of a leading visual in the label.
+- `Empty` has `role="status"`, so the empty message is announced when it appears.
+
+### Focus
+
+- On open, focus moves to the search field.
+- Focus stays on the search field while the highlight moves. The highlight is `aria-activedescendant`, not DOM focus.
+- On close, focus returns to the `Trigger` when there is one. Without a trigger, it returns to the element that had focus when the menu opened. Pass `onCloseAutoFocus` and call `preventDefault()` to move focus yourself.
+
+## SSR notes
+
+The menu renders in a portal, so nothing renders on the server, open or closed. The panel, the list, and the hidden title appear on the client after hydration. `Trigger` renders on the server as a normal button. IDs come from Solid's `createUniqueId`, so they match between the server and the client. Bind the open shortcut in `onMount`, which runs only on the client.
+
+## Theming hooks
+
+The menu reads these custom properties. See [tokens](/docs/foundations/tokens) for the defaults.
+
+| Property | Used for |
+| --- | --- |
+| `--cui-surface-dialog` | Panel background, through the dialog panel |
+| `--cui-shadow-dialog` | Panel shadow, through the dialog panel |
+| `--cui-text-dialog` | Item text |
+| `--cui-radius-command` | Panel corners |
+| `--cui-radius-lg` | Search field corners |
+| `--cui-radius-nav` | Item corners |
+| `--cui-surface-input` | Search field fill and the highlighted row |
+| `--cui-text-input` | Query text |
+| `--cui-text-hint` | Placeholder, search icon, hint, group labels, leading visuals, descriptions, shortcuts, and the empty message |
+| `--cui-action-brand-base` | The check of the current item |
+| `--cui-surface-scroll-thumb` | List scrollbar |
+| `--cui-control-height-sm`, `--cui-control-height-md` | Row and search field height. `md` applies to coarse pointers. |
+| `--cui-space-1` to `--cui-space-5` | Padding, gaps, and the leading box |
+| `--cui-font-size-xs`, `--cui-font-size-sm`, `--cui-font-size-caption`, `--cui-font-size-md` | Text sizes. `md` applies to the query on phones, so the page does not zoom. |
+| `--cui-font-weight-semibold` | Group labels |
+
+## Composition examples
+
+- [Run commands](/docs/patterns/run-commands) binds <kbd>Cmd</kbd>+<kbd>K</kbd>, builds grouped items from the app's actions, and loads results from a server.
+- The styled parts demo above builds the menu from parts, with a trigger.
+
+## Related
+
+- [`Combobox`](/docs/components/combobox) picks and keeps one value for a form field.
+- [`DropdownMenu`](/docs/components/dropdown-menu) lists a few actions anchored to a button, without search.
+- [`Dialog`](/docs/components/dialog) blocks the app behind a scrim for settings and decisions.
+- [`Kbd`](/docs/components/kbd) shows a key in text, such as the shortcut that opens the menu.

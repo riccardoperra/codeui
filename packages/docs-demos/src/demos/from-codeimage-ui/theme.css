@@ -1,0 +1,33 @@
+/*
+ * Before: themeVars.dynamicColors.panel.background and a
+ * [data-codeimage-theme=light] selector from withThemeMode.
+ * After: the --cui-* token. It already changes with data-cui-theme.
+ */
+.project-card {
+	background: var(--cui-surface-panel);
+	color: var(--cui-text-panel);
+	border-radius: var(--cui-radius-card);
+	padding: var(--cui-space-4);
+}
+
+/*
+ * The frame of the exported image keeps its own mode, independent of the UI
+ * theme. It reads an app attribute, never data-cui-theme.
+ */
+.frame {
+	margin-top: var(--cui-space-3);
+	padding: var(--cui-space-3);
+	border-radius: var(--cui-radius-md);
+	font-size: var(--cui-font-size-xs);
+}
+
+/* Artwork colors belong to the app, not to the kit tokens. */
+.frame[data-codeimage-frame-mode="light"] {
+	background: #ffffff;
+	color: #1e1e1e;
+}
+
+.frame[data-codeimage-frame-mode="dark"] {
+	background: #1e1e1e;
+	color: #ffffff;
+}

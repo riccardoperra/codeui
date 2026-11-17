@@ -1,0 +1,153 @@
+---
+title: "Badge"
+description: "A short, non-interactive status label."
+---
+
+## When to use
+
+Use Badge for a snippet state, export format, or short count beside content.
+
+## When to choose another component
+
+Use [Button](/docs/components/button) for an action. Use [Alert](/docs/components/alert) for a message with an explanation or recovery action.
+
+## Live demo
+
+<SolidDemo name="badge/basic" />
+
+## Anatomy
+
+<Anatomy demo="badge/anatomy" />
+
+| Export  | Renders | `classes` key | `data-cui`    | Role     |
+| ------- | ------- | ------------- | ------------- | -------- |
+| `Icon`  | `span`  | `icon`        | `badge-icon`  | None     |
+| `Label` | `span`  | `label`       | `badge-label` | None     |
+| `Root`  | `span`  | `root`        | `badge-root`  | `status` |
+
+## Variants
+
+### Tones
+
+<SolidDemo name="badge/tones" />
+
+The tones are `neutral`, `info`, `success`, `warning`, and `danger`. Text carries the status as well as color.
+
+### Sizes
+
+<SolidDemo name="badge/sizes" />
+
+`sm` is the default. `md` gives the label more height and space.
+
+### Variants
+
+<SolidDemo name="badge/variants" />
+
+`soft` is the default tinted fill. `outline` uses a transparent fill and a status border.
+
+## Ready API
+
+### `Badge`
+
+Badge renders Root with an optional Icon and a Label. `BadgeProps` adds JSX `icon` and `classes` to the root props.
+
+<PropsTable name="Badge" />
+
+Inherited behavior from [Kobalte badge](https://kobalte.dev/docs/core/components/badge).
+
+<PropsTable name="BadgeInherited" />
+
+## Styled parts API
+
+Import the parts from `@codeui/kit/badge`. The root wraps [Kobalte badge](https://kobalte.dev/docs/core/components/badge).
+
+### `Icon`
+
+Decorative icon wrapper. It sets `aria-hidden="true"`.
+
+<PropsTable name="BadgeIcon" />
+
+### `Label`
+
+Text wrapper with overflow clipping and an ellipsis.
+
+<PropsTable name="BadgeLabel" />
+
+### `Root`
+
+Styled Kobalte Badge root. It accepts `tone`, `size`, and `variant`.
+
+<PropsTable name="BadgeRoot" />
+
+<PropsTable name="BadgeRootInherited" />
+
+## Styles export
+
+### `badgeStyles`
+
+`badgeStyles` is typed as `BadgeStyles`. Each part function returns a class string. Use it when you own the markup and semantics. `root({ size, tone, variant })` selects the recipe. `icon()` and `label()` return fixed classes.
+
+## Accessibility
+
+### Keyboard
+
+Badge is non-interactive and has no keyboard commands. It does not add a tab stop.
+
+### ARIA
+
+Kobalte renders a non-interactive `span` with `role="status"`, which has implicit polite live-region semantics. Changes can be announced. Icon is hidden from assistive technology. `textValue` supplies a plain text alternative when the label contains rich content.
+
+### Focus
+
+Mounting or removing the component does not move focus. There is no open or close focus cycle. The containing control or application owns focus.
+
+## SSR notes
+
+The component renders inline on the server. It has no portal or client-only effect. Use the same initial props on the server and client. No request-shared state is created by the kit wrapper.
+
+## Theming hooks
+
+The component reads these theme variables.
+
+- `--cui-action-brand-base`
+- `--cui-action-brand-soft-base`
+- `--cui-action-brand-soft-text`
+- `--cui-action-caution-base`
+- `--cui-action-caution-text`
+- `--cui-action-danger-base`
+- `--cui-action-danger-text`
+- `--cui-action-neutral-active`
+- `--cui-action-neutral-base`
+- `--cui-action-success-base`
+- `--cui-action-success-text`
+- `--cui-border-width`
+- `--cui-font-family-sans`
+- `--cui-font-line-height-compact`
+- `--cui-font-size-badge`
+- `--cui-font-size-xs`
+- `--cui-font-weight-normal`
+- `--cui-from-entries`
+- `--cui-keys`
+- `--cui-radius-badge`
+- `--cui-space-px`
+- `--cui-space-0-5`
+- `--cui-space-1`
+- `--cui-space-1-5`
+- `--cui-space-2`
+- `--cui-space-4`
+- `--cui-space-5`
+- `--cui-text-danger`
+- `--cui-text-default`
+- `--cui-text-panel-muted`
+
+Defaults come from the kit theme. See [Color](/docs/design/color), [Typography](/docs/design/typography), [Space and shape](/docs/design/space-and-shape), and [Motion](/docs/design/motion).
+
+## Composition examples
+
+<SolidDemo name="badge/rich-label" />
+
+The icon is decorative. The rich label supplies `textValue` so its accessible text does not depend on markup.
+
+## Related
+
+Use [Button](/docs/components/button) for an action. Use [Alert](/docs/components/alert) for a message with an explanation or recovery action.

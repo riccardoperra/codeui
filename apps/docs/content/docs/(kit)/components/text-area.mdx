@@ -1,0 +1,129 @@
+---
+title: "TextArea"
+description: "A multi-line text input with a label, a description, and an error message."
+---
+
+## When to use
+
+Use TextArea for text that can span several lines, such as a caption, alt text, or a pasted code snippet. It renders the label, the textarea, the hint, and the error message as one field.
+
+## When to choose another component
+
+- Use [TextField](/docs/components/text-field) for one line, such as a file name or a URL. Enter in a TextField submits the form.
+- Use [NumberField](/docs/components/number-field) for a number.
+
+## Live demo
+
+<SolidDemo name="text-area/basic" />
+
+## Anatomy
+
+<Anatomy demo="text-area/anatomy" />
+
+TextArea shares the `data-cui` names of TextField, so one selector styles both.
+
+| Export     | Renders                     | `classes` key  | `data-cui`                 | Role      |
+| ---------- | --------------------------- | -------------- | -------------------------- | --------- |
+| `TextArea` | Root `div`                  | `root`         | `text-field`               | `group`   |
+|            | `label`, when `label` is set | `label`       | `text-field-label`         | none      |
+|            | `textarea`                  | `input`        | `text-field-input`         | `textbox` |
+|            | Hint `div`, when `description` is set | `description` | `text-field-description` | none |
+|            | Error `div`, when invalid and `errorMessage` is set | `errorMessage` | `text-field-error-message` | none |
+
+The parts carry Kobalte's state attributes: `data-invalid`, `data-valid`, `data-required`, `data-disabled`, and `data-readonly`. The root also carries `data-field-size` when you set `size`.
+
+## Variants
+
+### Size
+
+<SolidDemo name="text-area/sizes" />
+
+`size` sets the height, the font size, and the corner radius with the same scale as [TextField](/docs/components/text-field#size). The height is fixed. A `md` textarea is 36px tall on desktop and 40px on a phone, whatever its `rows`. Set `options={{ autoResize: true }}` or a `min-height` through `classes.input` to show more lines.
+
+### Theme
+
+<SolidDemo name="text-area/themes" />
+
+`filled` draws the field fill. `inline` drops the fill and the radius and keeps a 2px bottom border. These are the only two themes the source defines.
+
+### Auto resize and submit on Enter
+
+<SolidDemo name="text-area/auto-resize" />
+
+`options` passes props to Kobalte's `TextField.TextArea`. `autoResize` grows the textarea to fit its text on every change. `submitOnEnter` makes Enter call `requestSubmit()` on the parent form and keeps Shift+Enter for a new line. With `submitOnEnter`, the textarea gets `aria-multiline="false"`.
+
+## States
+
+### Required, read-only, and disabled
+
+<SolidDemo name="text-area/states" />
+
+`required` sets `required` and `aria-required` on the textarea. `readOnly` keeps the text selectable and focusable and blocks edits. `disabled` removes the textarea from the tab order and dims it to 40% opacity.
+
+### Invalid
+
+<SolidDemo name="text-area/invalid" />
+
+Set `validationState="invalid"` to show `errorMessage` and set `aria-invalid`. The demo counts characters in the hint and turns invalid past 80. The kit runs no validation of its own.
+
+## Ready API
+
+### `TextArea`
+
+Renders the root, the label, the textarea, the hint, and the error message.
+
+<PropsTable name="TextArea" />
+
+Inherited from Kobalte's [text field root](https://kobalte.dev/docs/core/components/text-field):
+
+<PropsTable name="TextAreaInherited" />
+
+The native attributes that TextField sends to its input go to the textarea here, such as `maxLength`, `spellcheck`, `autocomplete`, and the `aria-*` set. Every other prop goes to the root. `options.id` replaces the generated textarea id.
+
+<SolidDemo name="text-area/classes" />
+
+Use `classes` to style one part. The demo sets a monospace font and a minimum height on the textarea. `slotClasses` is a deprecated alias that stays until 1.0. The root accepts no `class` prop.
+
+### `TextAreaLabel`
+
+Renders Kobalte's `TextField.Label` with the kit label style. Use it only inside a Kobalte `TextField` root that you compose yourself. TextArea already renders its label.
+
+<PropsTable name="TextAreaLabelProps" />
+
+## Accessibility
+
+### Keyboard
+
+| Key         | Action                                                         |
+| ----------- | -------------------------------------------------------------- |
+| Tab         | Move focus to the textarea.                                    |
+| Enter       | Add a new line. With `submitOnEnter`, submit the parent form.  |
+| Shift+Enter | Add a new line.                                                |
+
+### ARIA
+
+- The root is a `div` with `role="group"`.
+- The label `for` points at the textarea `id`.
+- The textarea gets `aria-labelledby`, and `aria-describedby` for the hint and, while invalid, the error message.
+- The textarea gets `aria-invalid`, `aria-required`, `aria-disabled`, and `aria-readonly` from the matching props.
+
+### Focus
+
+TextArea moves no focus on its own. On focus, the border takes `--cui-focus-color`, not the Inkstone 2px ring.
+
+## SSR notes
+
+Every part renders on the server, and none uses a portal. The kit sets the textarea `id` to `${id}-input`, or to `options.id`, and points the label `for` at it during render. The server HTML links the label before hydration. `autoResize` measures the textarea in a client effect, so the server HTML has the default height until hydration.
+
+## Theming hooks
+
+TextArea reads the same field variables as [TextField](/docs/components/text-field#theming-hooks), plus `--cui-space-2` for the vertical padding. The size scale uses `--cui-font-size-xs` to `--cui-font-size-lg` and `--cui-radius-xs` to `--cui-radius-xl`.
+
+## Composition examples
+
+- [Build forms](/docs/patterns/build-forms) uses an auto-resizing TextArea for an optional caption.
+
+## Related
+
+- [TextField](/docs/components/text-field) takes the same props for one line of text.
+- [Field helpers](/docs/utilities/field-helpers) give your own control the field style.

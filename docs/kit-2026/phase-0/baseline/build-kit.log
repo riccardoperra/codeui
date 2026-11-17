@@ -1,0 +1,98 @@
+
+> codeui-monorepo@0.0.1 build:kit /Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d
+> turbo run build --filter=@codeui/kit
+
+• Packages in scope: @codeui/kit
+• Running build in 1 packages
+• Remote caching disabled
+@codeui/vanilla-extract:build: cache hit, replaying logs d1f53406ee907457
+@codeui/vanilla-extract:build: 
+@codeui/vanilla-extract:build: > @codeui/vanilla-extract@0.2.0 build /Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/packages/vanilla-extract
+@codeui/vanilla-extract:build: > rollup -c
+@codeui/vanilla-extract:build: 
+@codeui/vanilla-extract:build: [36m
+@codeui/vanilla-extract:build: [1msrc/index.ts, src/vite-plugin/index.ts[22m → [1mdist, dist[22m...[39m
+@codeui/vanilla-extract:build: [1m[33m(!) Unresolved dependencies[39m[22m
+@codeui/vanilla-extract:build: [90mhttps://rollupjs.org/guide/en/#warning-treating-module-as-external-dependency[39m
+@codeui/vanilla-extract:build: [1mpath[22m (imported by src/vite-plugin/index.ts)
+@codeui/vanilla-extract:build: [1mnode:fs[22m (imported by src/esbuild/vanillaCssTsFilesLoader.ts)
+@codeui/vanilla-extract:build: [1mnode:path[22m (imported by src/esbuild/vanillaCssTsFilesLoader.ts)
+@codeui/vanilla-extract:build: [1m[33m(!) Plugin typescript: @rollup/plugin-typescript TS2688: Cannot find type definition file for '@testing-library/jest-dom'.
+@codeui/vanilla-extract:build:   The file is in the program because:
+@codeui/vanilla-extract:build:     Entry point of type library '@testing-library/jest-dom' specified in compilerOptions[39m[22m
+@codeui/vanilla-extract:build: [32mcreated [1mdist, dist[22m in [1m488ms[22m[39m
+@codeui/kit:build: cache hit, replaying logs 3c50fee87e0c86d0
+@codeui/kit:build: 
+@codeui/kit:build: > @codeui/kit@0.1.5 build /Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/packages/kit
+@codeui/kit:build: > rollup -c rollup.config.js
+@codeui/kit:build: 
+@codeui/kit:build: {
+@codeui/kit:build:   input: '/Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/packages/kit/src/index.tsx',
+@codeui/kit:build:   external: [
+@codeui/kit:build:     'solid-js',
+@codeui/kit:build:     'solid-js/web',
+@codeui/kit:build:     'solid-js/store',
+@codeui/kit:build:     '@kobalte/core',
+@codeui/kit:build:     '@kobalte/utils',
+@codeui/kit:build:     '@kobalte/vanilla-extract',
+@codeui/kit:build:     '@maskito/core',
+@codeui/kit:build:     '@maskito/kit',
+@codeui/kit:build:     '@motionone/solid',
+@codeui/kit:build:     '@radix-ui/colors',
+@codeui/kit:build:     '@solid-primitives/pagination',
+@codeui/kit:build:     '@solid-primitives/scheduled',
+@codeui/kit:build:     '@tanstack/solid-virtual',
+@codeui/kit:build:     '@tanstack/virtual-core',
+@codeui/kit:build:     '@vanilla-extract/css',
+@codeui/kit:build:     '@vanilla-extract/dynamic',
+@codeui/kit:build:     '@vanilla-extract/recipes',
+@codeui/kit:build:     '@vanilla-extract/vite-plugin',
+@codeui/kit:build:     'example-basic',
+@codeui/kit:build:     'motion',
+@codeui/kit:build:     'polished',
+@codeui/kit:build:     'statebuilder',
+@codeui/kit:build:     'solid-js',
+@codeui/kit:build:     'solid-presence',
+@codeui/kit:build:     'solid-prevent-scroll',
+@codeui/kit:build:     /node_modules\/@kobalte/,
+@codeui/kit:build:     /node_modules\/@floating-ui/,
+@codeui/kit:build:     /node_modules\/@solid-primitives/,
+@codeui/kit:build:     /node_modules\/@corvu/
+@codeui/kit:build:   ],
+@codeui/kit:build:   output: [
+@codeui/kit:build:     { preserveModules: true, dir: 'dist/esm' },
+@codeui/kit:build:     { preserveModules: true, dir: 'dist/esm' }
+@codeui/kit:build:   ],
+@codeui/kit:build:   plugins: [
+@codeui/kit:build:     {
+@codeui/kit:build:       name: 'babel',
+@codeui/kit:build:       options: [Function: options],
+@codeui/kit:build:       resolveId: [Function: resolveId],
+@codeui/kit:build:       load: [Function: load],
+@codeui/kit:build:       transform: [Function: transform]
+@codeui/kit:build:     },
+@codeui/kit:build:     {
+@codeui/kit:build:       name: 'node-resolve',
+@codeui/kit:build:       version: '15.2.3',
+@codeui/kit:build:       buildStart: [Function: buildStart],
+@codeui/kit:build:       generateBundle: [Function: generateBundle],
+@codeui/kit:build:       resolveId: [Object],
+@codeui/kit:build:       load: [Function: load],
+@codeui/kit:build:       getPackageInfoForId: [Function: getPackageInfoForId]
+@codeui/kit:build:     },
+@codeui/kit:build:     { name: 'ts', buildEnd: [Function: buildEnd] },
+@codeui/kit:build:     { name: 'instructions', buildEnd: [Function: buildEnd] },
+@codeui/kit:build:     { name: 'generate', buildEnd: [Function: buildEnd] }
+@codeui/kit:build:   ]
+@codeui/kit:build: }
+@codeui/kit:build: [36m
+@codeui/kit:build: [1m/Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/packages/kit/src/index.tsx[22m → [1mdist/esm, dist/esm[22m...[39m
+@codeui/kit:build: Browserslist: caniuse-lite is outdated. Please run:
+@codeui/kit:build:   npx update-browserslist-db@latest
+@codeui/kit:build:   Why you should do it regularly: https://github.com/browserslist/update-db#readme
+@codeui/kit:build: [32mcreated [1mdist/esm, dist/esm[22m in [1m5s[22m[39m
+
+ Tasks:    2 successful, 2 total
+Cached:    2 cached, 2 total
+  Time:    115ms >>> FULL TURBO
+

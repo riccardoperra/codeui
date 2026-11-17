@@ -1,0 +1,102 @@
+---
+title: "Run commands"
+description: "Wire a command menu to your app's actions and shortcuts."
+---
+
+This guide connects a [`CommandMenu`](/docs/components/command-menu) to your app. You bind the shortcut that opens it, build its items from your actions, preview a choice while it is highlighted, and load results from a server.
+
+## Bind Cmd+K
+
+<SolidDemo name="run-commands/shortcut" />
+
+The menu does not listen for a shortcut. Your app binds one, once, at its root.
+
+This page already uses <kbd>Cmd</kbd>+<kbd>K</kbd> for search. The demo answers the shortcut only while its menu is open or focus is in the demo, and it stops the event before the search sees it. Your app owns the shortcut, so it needs neither check.
+
+1. Add a `keydown` listener on `window` in `onMount`, so it runs only on the client.
+2. Match <kbd>Cmd</kbd>+<kbd>K</kbd> on macOS and <kbd>Ctrl</kbd>+<kbd>K</kbd> elsewhere with `event.metaKey || event.ctrlKey`.
+3. Call `event.preventDefault()`. Browsers use <kbd>Ctrl</kbd>+<kbd>K</kbd> to focus the address bar.
+4. Toggle `open`. Pressing the shortcut again while the menu is open closes it, the same as Escape.
+5. Remove the listener in `onCleanup`.
+
+Skip events where `event.isComposing` is true, so the shortcut does not fire while someone types with an input method editor. Skip `event.repeat`, so holding the keys does not open and close the menu in a loop.
+
+Mount one command menu for the whole app. Two listeners for the same shortcut open two menus.
+
+## Build items from your actions
+
+<SolidDemo name="run-commands/grouped" />
+
+Keep one list of actions and read it from the toolbar, the menus, and the command menu. The command menu then lists every action the app has, and a renamed action changes everywhere.
+
+- Map each action to a `CommandItem`. Set `textValue` to the plain text that search matches, and `label` to what the row shows.
+- Add your own fields to the item type, such as `run`. `onSelect` receives your type, so it can call `item.run()` with no lookup.
+- Set `group` to put a heading over related items. Items share a heading only when they are next to each other in `items`, so build the list group by group.
+- Set `shortcut` to show the key label of an action that has one. It is display text. Bind the keys yourself.
+- Set `disabled` on an action that cannot run now, instead of removing it. People still find it and see why it is dim.
+
+`onSelect` runs after the menu has closed. An action that opens a dialog works as it would from a button, because the command menu is no longer in the way.
+
+## Preview a choice before you apply it
+
+<SolidDemo name="command-menu/basic" />
+
+For settings such as a theme or a font, show the highlighted choice on the content and apply it only on Enter.
+
+```tsx
+<CommandMenu
+	open={open()}
+	onOpenChange={setOpen}
+	items={items()}
+	title="Search themes"
+	placeholder="Search themes"
+	hint="↑↓ preview · ↵ apply · esc cancel"
+	emptyContent="No theme matches"
+	onHighlightChange={item => setPreview(item?.theme)}
+	onBeforeClose={() => setPreview(undefined)}
+	onCancel={() => setStatus(`Kept ${applied().name}`)}
+	onSelect={item => {
+		setApplied(item.theme);
+		setStatus(`Applied ${item.theme.name}`);
+	}}
+/>
+```
+
+1. Keep the applied value and the previewed value in two signals. Render `preview() ?? applied()`.
+2. In `onHighlightChange`, set the preview. It runs for the arrow keys and the pointer, and with `undefined` when nothing is highlighted.
+3. In `onBeforeClose`, clear the preview. It runs first on every close, so the content never keeps a preview after the menu is gone.
+4. In `onSelect`, set the applied value. Enter and a click are the only ways to apply.
+5. In `onCancel`, handle a close without a selection, such as Escape, a click outside, or your shortcut. The preview is already cleared, so the applied value shows again.
+
+Set `current: true` on the item that matches the applied value, so its row shows a check. Pass the `hint` text "↑↓ preview · ↵ apply · esc cancel" so people know that the highlight is only a preview.
+
+Keep previews cheap. The highlight moves on every arrow key, and the menu does not animate it. A preview that waits on the network makes the list feel stuck.
+
+The [`CommandMenu` live demo](/docs/components/command-menu#live-demo) explains the order of the callbacks.
+
+## Load results from a server
+
+<SolidDemo name="run-commands/async" />
+
+When the items come from a request, own the query and filter on the server.
+
+1. Pass `query` and `onQueryChange` to control the search text.
+2. Run the request in an effect that reads `query()` and `open()`. Skip it while the menu is closed.
+3. Wait for a short pause in typing before the request, and ignore a response that arrives after a newer query.
+4. Pass `filter={items => items}`. The server already matched the query, and the default filter would drop results that match on a field it does not search.
+5. Set `emptyContent` to "Searching…" while the request runs, and to a no-match message after it. Keep the previous results in `items` while the next request runs, so the list does not flash empty.
+
+On close, the menu calls `onQueryChange("")`, so the next open starts with an empty query and your effect loads the default results again.
+
+## Filter on more fields
+
+The default filter, `filterCommandItems`, matches every word of the query against `textValue`, `group`, `section`, and a string `description`. To search other fields, such as aliases, pass your own `filter`.
+
+<SolidDemo name="run-commands/aliases" />
+
+Call `filterCommandItems` from your filter to keep the default matches, then add your own. Type "download" or "gutter" in the demo to match an alias. Return the items in the order to show them. The highlight moves to the first enabled result each time the query changes.
+
+## Related
+
+- [`CommandMenu`](/docs/components/command-menu) documents every prop, part, and key.
+- [`Kbd`](/docs/components/kbd) shows the shortcut in your app's text.

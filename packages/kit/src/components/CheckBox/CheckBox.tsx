@@ -44,6 +44,7 @@ export function Checkbox(props: CheckBoxProps) {
 		mergeClasses(
 			styles.control({
 				size: local.size,
+				theme: local.theme ?? "inline",
 			}),
 			local.slotClasses?.control,
 		);
@@ -52,6 +53,7 @@ export function Checkbox(props: CheckBoxProps) {
 		<KCheckbox
 			data-cui={"checkbox"}
 			data-field-size={local.size}
+			data-field-theme={local.theme ?? "inline"}
 			class={mergeClasses(styles.container, local?.slotClasses?.root)}
 			{...others}
 		>
@@ -64,21 +66,28 @@ export function Checkbox(props: CheckBoxProps) {
 
 			<div class={styles.content}>
 				<Show when={local.label} keyed={false}>
-					<KCheckbox.Label class={labelClasses()}>{local.label}</KCheckbox.Label>
+					{label => <KCheckbox.Label class={labelClasses()}>{label()}</KCheckbox.Label>}
 				</Show>
 
 				<Show when={local.description} keyed={false}>
-					<KCheckbox.Description {...fieldLabelProps}>
-						{local.description}
-					</KCheckbox.Description>
+					{description => (
+						<KCheckbox.Description {...fieldLabelProps}>
+							{description()}
+						</KCheckbox.Description>
+					)}
 				</Show>
 
-				<Show when={errorMessageProps.errorMessage} keyed={false}>
-					<KCheckbox.ErrorMessage
-						class={mergeClasses(errorMessageProps.class, local.slotClasses?.errorLabel)}
-					>
-						{local.errorMessage}
-					</KCheckbox.ErrorMessage>
+				<Show
+					when={props.validationState === "invalid" && local.errorMessage}
+					keyed={false}
+				>
+					{errorMessage => (
+						<KCheckbox.ErrorMessage
+							class={mergeClasses(errorMessageProps.class, local.slotClasses?.errorLabel)}
+						>
+							{errorMessage()}
+						</KCheckbox.ErrorMessage>
+					)}
 				</Show>
 			</div>
 		</KCheckbox>

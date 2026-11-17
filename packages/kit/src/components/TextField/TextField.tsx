@@ -1,4 +1,9 @@
-import { TextField as KTextField, TextFieldRootOptions as KTextFieldRootOptions } from "@kobalte/core/text-field";
+import { createUniqueId } from "solid-js";
+import { INPUT_KEYS, FieldInputProps, FieldClasses } from "../Field/inputProps";
+import {
+	TextField as KTextField,
+	TextFieldRootOptions as KTextFieldRootOptions,
+} from "@kobalte/core/text-field";
 import { JSX, Ref, Show, splitProps } from "solid-js";
 import * as styles from "./TextField.css";
 import { baseFieldContainer } from "./TextField.css";
@@ -18,11 +23,15 @@ type TextFieldSlot = "root" | "input" | "label" | "errorLabel";
 export type TextFieldProps = KTextFieldRootOptions &
 	BaseFieldProps &
 	FieldWithErrorMessageSupport & {
-		description?: string;
+		description?: JSX.Element;
+		classes?: FieldClasses;
+		/** @deprecated Use classes. This alias remains until 1.0. */
+		slotClasses?: SlotProp<TextFieldSlot>["slotClasses"];
 		label?: JSX.Element;
 		placeholder?: string;
 		ref?: Ref<HTMLInputElement>;
-	} & SlotProp<TextFieldSlot>;
+	} & FieldInputProps &
+	SlotProp<TextFieldSlot>;
 
 export function TextField(props: TextFieldProps) {
 	const [local, others] = splitProps(props, [
@@ -34,39 +43,81 @@ export function TextField(props: TextFieldProps) {
 		"placeholder",
 		"ref",
 		"slotClasses",
+		"classes",
 	]);
+
+	const [inputProps, rootProps] = splitProps(others, INPUT_KEYS);
+	const generatedId = createUniqueId();
+	const inputId = () => `${rootProps.id ?? generatedId}-input`;
 
 	const baseFieldProps = createBaseFieldProps(props);
 	const errorMessageProps = createFieldErrorMessageProps(props);
 
 	const inputClasses = () =>
-		mergeClasses(baseFieldProps.baseStyle(), styles.textField, local.slotClasses?.input);
+		mergeClasses(
+			baseFieldProps.baseStyle(),
+			styles.textField,
+			local.slotClasses?.input,
+			local.classes?.input,
+		);
 
 	return (
 		<KTextField
 			data-cui={"text-field"}
 			data-field-size={local.size}
-			class={mergeClasses(baseFieldContainer, local?.slotClasses?.root)}
-			{...others}
+			class={mergeClasses(
+				baseFieldContainer,
+				local?.slotClasses?.root,
+				local.classes?.root,
+			)}
+			{...rootProps}
 		>
 			<Show when={local.label} keyed={false}>
-				<TextFieldLabel class={local.slotClasses?.label}>{local.label}</TextFieldLabel>
+				{label => (
+					<TextFieldLabel
+						for={inputId()}
+						data-cui="text-field-label"
+						class={mergeClasses(local.slotClasses?.label, local.classes?.label)}
+					>
+						{label()}
+					</TextFieldLabel>
+				)}
 			</Show>
 			<KTextField.Input
+				{...inputProps}
+				id={inputId()}
+				data-cui="text-field-input"
 				class={inputClasses()}
 				placeholder={local.placeholder}
 				ref={local.ref}
 			/>
 			<Show when={local.description} keyed={false}>
-				<TextFieldMessage>{local.description}</TextFieldMessage>
+				{description => (
+					<TextFieldMessage
+						data-cui="text-field-description"
+						class={local.classes?.description}
+					>
+						{description()}
+					</TextFieldMessage>
+				)}
 			</Show>
 
-			<Show when={errorMessageProps.errorMessage} keyed={false}>
-				<KTextField.ErrorMessage
-					class={mergeClasses(errorMessageProps.class, local.slotClasses?.errorLabel)}
-				>
-					{local.errorMessage}
-				</KTextField.ErrorMessage>
+			<Show
+				when={props.validationState === "invalid" && local.errorMessage}
+				keyed={false}
+			>
+				{errorMessage => (
+					<KTextField.ErrorMessage
+						data-cui="text-field-error-message"
+						class={mergeClasses(
+							errorMessageProps.class,
+							local.slotClasses?.errorLabel,
+							local.classes?.errorMessage,
+						)}
+					>
+						{errorMessage()}
+					</KTextField.ErrorMessage>
+				)}
 			</Show>
 		</KTextField>
 	);

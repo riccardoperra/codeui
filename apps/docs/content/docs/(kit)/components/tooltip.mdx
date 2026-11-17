@@ -1,0 +1,136 @@
+---
+title: Tooltip
+description: A short label that appears when the user hovers or focuses an element.
+---
+
+## When to use
+
+Use a tooltip to name an icon button or to explain a value in a few words.
+It opens on hover and on keyboard focus, so keyboard users get the same label as mouse users.
+
+## When to choose another component
+
+- [Popover](/docs/components/popover) holds content the user can interact with, such as buttons or fields. A tooltip holds text only.
+- A visible label is better than a tooltip when there is room for it.
+- Do not use the native SVG `title` attribute as a tooltip. Inkstone replaces it with this component.
+
+## Live demo
+
+<SolidDemo name="tooltip/basic" />
+
+Wrap the element in `Tooltip` and pass the label as `content`. Hover the button, or move focus to it with Tab.
+
+## Anatomy
+
+<Anatomy demo="tooltip/anatomy" />
+
+| Export | Renders | `classes` key | `data-cui` | Role |
+| --- | --- | --- | --- | --- |
+| `Tooltip` | Nothing. Holds the open state | none | none | none |
+| Trigger | `div`, `display: inline-block`, around the children | `slotClasses.trigger` | `tooltip-trigger` | Wrapper that listens for hover and focus |
+| Content | `div` in a portal on `mount`, or `document.body` | `slotClasses.content` | `tooltip-content` | `role="tooltip"` |
+
+`Tooltip` takes `slotClasses`, not `classes`. The content renders in a portal on `document.body` unless you pass `mount`.
+
+## Variants
+
+### Theme
+
+<SolidDemo name="tooltip/themes" />
+
+`theme="primary"` fills the tooltip with the brand blue. It is the default. `theme="secondary"` uses the neutral fill.
+Inkstone keeps the accent for focus, selection, and the one primary action, so prefer `secondary` in toolbars and panels.
+
+### Placement
+
+<SolidDemo name="tooltip/placements" />
+
+`placement` sets the side and the alignment. The default is `bottom`. When the tooltip does not fit, Kobalte flips it to the opposite side.
+`gutter` sets the distance from the trigger. The kit sets it to 4px.
+
+### Delays
+
+<SolidDemo name="tooltip/delays" />
+
+The tooltip opens 200ms after the pointer enters and closes at once when it leaves. Change this with `openDelay` and `closeDelay`.
+Keyboard focus ignores `openDelay` and opens the tooltip at once.
+
+### Icon button trigger
+
+<SolidDemo name="tooltip/icon-button" />
+
+Any JSX works as the trigger. For an icon button, give the button an `aria-label` too. The tooltip shows the label, and the `aria-label` gives the button its accessible name.
+
+## States
+
+### Disabled
+
+<SolidDemo name="tooltip/disabled" />
+
+`disabled` keeps the tooltip closed on hover and on focus. The trigger still works.
+
+### Controlled
+
+Without `open`, the tooltip manages its own state. To control it, pass `open` and `onOpenChange`.
+
+## Ready API
+
+### `Tooltip`
+
+Wraps its children in a trigger `div` and portals `content` to `document.body`.
+
+<PropsTable name="Tooltip" />
+
+Inherited from Kobalte's [tooltip](https://kobalte.dev/docs/core/components/tooltip) root:
+
+<PropsTable name="TooltipInherited" />
+
+## Accessibility
+
+### Keyboard
+
+| Key | Action |
+| --- | --- |
+| <kbd>Tab</kbd> | Moving focus to the element inside the trigger opens the tooltip at once. Moving focus away closes it. |
+| <kbd>Escape</kbd> | Closes the tooltip. Focus stays on the element. |
+
+A click on the trigger also closes the tooltip.
+
+### ARIA
+
+- The content has `role="tooltip"`.
+- While the tooltip is open, Kobalte sets `aria-describedby` on the trigger `div`, not on the focusable element inside it. Screen readers may not read the tooltip when they announce the button. Give the element its own accessible name, such as `aria-label` on an icon button.
+- The trigger `div` has no `type` attribute and no role, so it adds nothing to the accessibility tree.
+
+### Focus
+
+The tooltip never takes focus. Focus stays on the element inside the trigger while the tooltip is open.
+
+## SSR notes
+
+The trigger `div` and its children render on the server. The content renders on the client, and only while the tooltip is open.
+
+## Theming hooks
+
+`Tooltip` reads these `--cui-*` variables. See [Tokens](/docs/foundations/tokens) for the defaults.
+
+| Variable | Used for |
+| --- | --- |
+| `--cui-action-brand-base`, `--cui-action-brand-text` | Fill and text of `primary` |
+| `--cui-action-neutral-base`, `--cui-action-neutral-text` | Fill and text of `secondary` |
+| `--cui-font-size-sm`, `--cui-font-line-height-compact` | Text size and line height (14px / 1.15) |
+| `--cui-space-2`, `--cui-space-4` | Padding |
+| `--cui-radius-xl` | Radius |
+| `--cui-shadow-md` | Shadow |
+| `--cui-motion-duration-normal`, `--cui-motion-duration-fast`, `--cui-motion-ease-out` | Pop: in from `scale(0.96)` over 160ms, out to `scale(0.98)` over 120ms |
+
+A tooltip opened by hover pops from its trigger. One opened by keyboard focus, and the next tooltip opened within 300ms of another closing, appear with no animation (`data-motion="none"`), as Inkstone asks. The description goes on the first focusable element inside the trigger, so a screen reader reads it with the focused control.
+
+## Composition examples
+
+- [Nest overlays](/docs/patterns/nest-overlays) puts a tooltip inside a dialog.
+
+## Related
+
+- [Popover](/docs/components/popover) holds interactive content and takes focus.
+- [IconButton](/docs/components/icon-button) is the usual trigger for a tooltip.

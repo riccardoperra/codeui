@@ -7,7 +7,7 @@ import * as styles from "./Pagination.css";
 
 type PaginationItemSize = "xs" | "sm" | "md" | "lg" | "xl";
 
-interface PaginationProps extends PaginationOptions {
+export interface PaginationProps extends PaginationOptions {
 	rounded?: boolean;
 	page?: number;
 	size?: PaginationItemSize;

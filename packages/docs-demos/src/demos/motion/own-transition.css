@@ -1,0 +1,15 @@
+.snippet-row {
+	transition: background-color var(--cui-motion-duration-fast) var(--cui-motion-ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.snippet-row:hover {
+		background: var(--cui-surface-menu-hover);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.snippet-row {
+		transition: none;
+	}
+}

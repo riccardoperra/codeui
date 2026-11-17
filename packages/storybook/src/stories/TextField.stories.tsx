@@ -1,5 +1,5 @@
 import { Button, TextField, TextFieldProps } from "@codeui/kit";
-import type { Meta, StoryObj } from "storybook-solidjs";
+import type { Meta, StoryObj } from "storybook-solidjs-vite";
 import { DocsItemsContainer, DocsMultipleItemsContainer } from "./components/Section.jsx";
 import { For } from "solid-js";
 
@@ -206,4 +206,15 @@ export const TextFieldCustomClasses: Story = {
 			label: "font-italic",
 		},
 	},
+};
+
+export const FieldApi: Story = {
+	render: () => (
+		<TextField
+			aria-label="Account"
+			autocomplete="off"
+			description={<strong>Use your account name</strong>}
+			classes={{ input: "account-input", description: "account-description" }}
+		/>
+	),
 };

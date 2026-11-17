@@ -1,0 +1,145 @@
+---
+title: "Kbd"
+description: "A keycap that shows a key or a keyboard shortcut."
+---
+
+## When to use
+
+Use `Kbd` to show one key the user can press: in running text ("Press Esc"), next to a menu item, or inside a button that has a shortcut. It renders a native `kbd` element in the mono font. One `Kbd` holds one key, so a shortcut such as ⇧⌘E is three `Kbd` elements side by side.
+
+## When to choose another component
+
+- Use [`Badge`](/docs/components/badge) for a status or a tag. `Kbd` always means "a key on the keyboard".
+- Use the `rightSlot` of [`DropdownMenuItem`](/docs/components/dropdown-menu) as the place for a menu shortcut, and put `Kbd` elements inside it.
+- Use a code element in your own markup for code, paths and values. `Kbd` adds a keycap shape that code does not need.
+
+## Live demo
+
+<SolidDemo name="kbd/basic" />
+
+## Anatomy
+
+<Anatomy demo="kbd/anatomy" />
+
+| Export | Renders | `classes` key | `data-cui` | Role |
+| ------ | ------- | ------------- | ---------- | ---- |
+| `Kbd`  | `kbd`   | `root`        | `kbd-root` | None |
+
+The root also renders `data-size` (`sm` or `md`) and `data-variant` (`keycap` or `hint`), with the defaults `sm` and `keycap`.
+
+## Variants
+
+### Size
+
+<SolidDemo name="kbd/size" />
+
+`size` sets the height, the minimum width and the font size.
+
+| `size` | Minimum height and width | Font size                     |
+| ------ | ------------------------ | ----------------------------- |
+| `sm`   | 16px (`--cui-space-4`)   | 11px (`--cui-font-size-badge`) |
+| `md`   | 20px (`--cui-space-5`)   | 12px (`--cui-font-size-xs`)    |
+
+The default is `sm`. Use `md` next to `md` text or inside a larger control.
+
+### Variant
+
+<SolidDemo name="kbd/variant" />
+
+`keycap` draws a filled key with a divider border. `hint` drops the border and uses the hint text color, so the key reads as secondary. Use `hint` where the shortcut sits next to a label that matters more, such as inside a button or a menu item. The default is `keycap`.
+
+### Single keys
+
+<SolidDemo name="kbd/keys" />
+
+Write the key as the user sees it on the keyboard. Use words for named keys (`Esc`, `Enter`, `Tab`) and symbols for arrows and modifiers. Inkstone uses `⌘` and `→` in rendered text.
+
+### Chords and sequences
+
+<SolidDemo name="kbd/chord" />
+
+For a chord, render one `Kbd` per key inside an outer `kbd`. The HTML specification uses a `kbd` nested in a `kbd` for a key combination. `<Stack as="kbd" direction="row" gap="1">` gives you that outer element with the gap. List modifiers in the platform order. On macOS that order is ⌃ ⌥ ⇧ ⌘.
+
+For a sequence, where the user presses one key and then another, put a word such as "then" between the keys.
+
+### Platform modifiers
+
+<SolidDemo name="kbd/platform" />
+
+macOS shows ⌘ where Windows and Linux show Ctrl. `Kbd` does not detect the platform, so you pick the label. The demo renders `Ctrl` on the server and in the first client render, then switches to ⌘ in `onMount` on Apple platforms. Reading `navigator` during render would give the server and the client different markup and break hydration.
+
+## Ready API
+
+### `Kbd`
+
+`Kbd` renders a `kbd` element with the kit keycap class.
+
+<PropsTable name="Kbd" />
+
+Every other prop goes to the `kbd` element. `Kbd` wraps no Kobalte primitive, so there is no inherited table. `@codeui/kit` exports `Kbd` and `KbdProps`.
+
+## Styled parts API
+
+Import the parts from `@codeui/kit/kbd`.
+
+### `Root`
+
+`Root` renders the same `kbd` element as `Kbd`. It takes `size`, `variant`, `class` and every `kbd` attribute, but not `classes`. `RootProps` is `JSX.IntrinsicElements["kbd"]` plus `KbdVariants`. The entry also exports `kbdParts` and the types `KbdPart`, `KbdClasses`, `KbdSize`, `KbdVariant` and `KbdVariants`.
+
+<PropsTable name="KbdRoot" />
+
+## Styles export
+
+### `kbdStyles`
+
+`kbdStyles.root({ size, variant })` returns the class for a keycap with those variants. Missing variants fall back to `sm` and `keycap`. Unlike the `Stack` and `Text` styles, the class carries the variants, so you need no data attributes. Call it to style a key that another library renders, such as a shortcut cell in a third-party table. `kbdStyles` and `KbdStyles` are exported only from `@codeui/kit/kbd`.
+
+## Accessibility
+
+`Kbd` renders the native `kbd` element, which has no ARIA role. Screen readers read its text. They read symbols such as ⌘ and ⇧ inconsistently, so do not rely on the keycap to announce a shortcut.
+
+Put the shortcut on the control it triggers instead. Set `aria-keyshortcuts` on the button or menu item, with key names from the ARIA specification, such as `Meta+K` or `Shift+Meta+S`. Then set `aria-hidden="true"` on the visual keycaps, so the accessible name stays "Search snippets" and not "Search snippets ⌘ K".
+
+`Kbd` is not focusable and has no keyboard behavior. It only describes a key.
+
+## SSR notes
+
+`Kbd` renders completely on the server. It has no effects, IDs or portals. Platform detection is your code, and it must run on the client after hydration, as the platform demo shows.
+
+## Theming hooks
+
+| Variable                                    | Use                                    |
+| ------------------------------------------- | -------------------------------------- |
+| `--cui-font-family-mono`                    | Font family                            |
+| `--cui-font-weight-medium`                  | Weight                                 |
+| `--cui-font-line-height-compact`            | Line height                            |
+| `--cui-font-size-badge`, `--cui-font-size-xs` | Font size for `sm` and `md`          |
+| `--cui-space-4`, `--cui-space-5`            | Minimum size for `sm` and `md`         |
+| `--cui-space-1`, `--cui-space-1-5`          | Inline padding for `sm` and `md`       |
+| `--cui-radius-badge`                        | Corner radius                          |
+| `--cui-action-neutral-base`                 | Fill                                   |
+| `--cui-action-neutral-text`                 | Text color of `keycap`                 |
+| `--cui-text-hint`                           | Text color of `hint`                   |
+| `--cui-border-width`, `--cui-border-divider` | Border of `keycap`                    |
+
+The defaults are in [Tokens](/docs/foundations/tokens).
+
+## Composition examples
+
+### In a button
+
+<SolidDemo name="kbd/in-button" />
+
+[`Button`](/docs/components/button) lays out its children with an 8px gap, so the keycaps sit after the label with no extra markup. The `hint` variant keeps them quieter than the label.
+
+### In a menu
+
+<SolidDemo name="kbd/in-menu" />
+
+Pass the keycaps to `rightSlot`, which aligns them to the end of the item. Set `aria-keyshortcuts` on each item. For a searchable list of commands, see [Run commands](/docs/patterns/run-commands).
+
+## Related
+
+- [`DropdownMenu`](/docs/components/dropdown-menu) shows shortcuts in `rightSlot`.
+- [`CommandMenu`](/docs/components/command-menu) is the place to list every shortcut in an app.
+- [`Text`](/docs/components/text) sets the running text around a key.

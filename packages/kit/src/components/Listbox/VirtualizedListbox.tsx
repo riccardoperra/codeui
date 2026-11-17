@@ -3,7 +3,7 @@ import { Listbox, ListboxItem, ListboxProps } from "./Listbox";
 import { For, splitProps } from "solid-js";
 import { LISTBOX_ITEM_SIZE } from "./sizes";
 
-type VirtualizedListboxProps<OptGroup> = Omit<
+export type VirtualizedListboxProps<OptGroup> = Omit<
 	ListboxProps<Item, OptGroup>,
 	| "virtualized"
 	| "children"
@@ -33,23 +33,18 @@ export function VirtualizedListbox<OptGroup = never>(
 ) {
 	let listboxRef: HTMLUListElement | undefined;
 
-	const virtualizer = createVirtualizer<HTMLUListElement | undefined, Item>({
+	const virtualizer = createVirtualizer<HTMLUListElement, HTMLLIElement>({
 		get count() {
 			return props.options.length;
-		},
-		get enableSmoothScroll() {
-			return props.virtualizerOptions?.enableSmoothScroll ?? false;
 		},
 		get overscan() {
 			return props.virtualizerOptions?.overscan ?? 5;
 		},
-		getScrollElement: () => listboxRef,
+		getScrollElement: () => listboxRef ?? null,
 		estimateSize: (index: number) =>
 			// TODO: fix that size
 			props.virtualizerOptions?.estimateSize?.(index) ??
 			LISTBOX_ITEM_SIZE[props.size ?? "md"],
-		// TODO: why error?
-		// @ts-ignore
 		getItemKey: (index: number) => {
 			return props.options[index].value;
 		},
@@ -86,6 +81,7 @@ export function VirtualizedListbox<OptGroup = never>(
 							if (item) {
 								return (
 									<ListboxItem<Item>
+										classes={props.classes}
 										size={props.size}
 										item={item}
 										itemLabel={item => {

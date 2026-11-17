@@ -1,0 +1,42 @@
+---
+title: "Choose ready components or parts"
+description: "Choose how much composition and styling you own."
+---
+
+## Ready components
+
+<SolidDemo name="ready-or-parts/ready" />
+
+Use the root exports for standard controls. The ready Switch composes the input, control, thumb, and label for you.
+You own the label and state. The kit owns the arrangement.
+
+## Styled parts
+
+<SolidDemo name="ready-or-parts/parts" />
+
+Use parts when the ready component cannot express your layout. Each part keeps its Kobalte behavior and kit styling.
+You own the composition, including the hidden input and accessible label. Keep all required parts inside the root.
+
+The package exports these 18 component subpaths:
+
+`@codeui/kit/dialog`, `@codeui/kit/popover`, `@codeui/kit/stack`, `@codeui/kit/text`, `@codeui/kit/switch`, `@codeui/kit/slider`, `@codeui/kit/progress`, `@codeui/kit/combobox`, `@codeui/kit/command-menu`, `@codeui/kit/kbd`, `@codeui/kit/badge`, `@codeui/kit/spinner`, `@codeui/kit/skeleton`, `@codeui/kit/alert`, `@codeui/kit/toast`, `@codeui/kit/option-card`, `@codeui/kit/accordion`, `@codeui/kit/sheet`.
+
+## Kobalte engine
+
+<SolidDemo name="ready-or-parts/engine" />
+
+Use Kobalte directly when your app needs a different visual system. This example intentionally has no kit styles on the switch.
+Install `@kobalte/core` as a direct dependency of your app before using this import.
+You own both composition and CSS. Kobalte still manages state, keyboard input, and ARIA.
+
+## Choose a layer
+
+| Need | Layer |
+| --- | --- |
+| Standard CodeImage control | Ready component |
+| Different order or content inside a control | Styled parts |
+| Different visual system | Kobalte engine |
+| Only change spacing or a part class | Keep the ready component and use `classes`. |
+
+All three switch examples toggle with Space and participate in Tab navigation. Their labels name the switch inputs.
+Switch markup renders on the server. Browser event handlers become active after hydration.

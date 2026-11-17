@@ -1,23 +1,22 @@
-import { createTheme, style } from "@vanilla-extract/css";
-import { tokens } from "../../foundation/contract.css";
-import { themeTokens, themeVars } from "../../foundation";
+import { createTheme, style } from "../../foundation/layer.css";
+import { tokens } from "../../foundation/cui.css";
 import { componentStateStyles } from "@kobalte/vanilla-extract";
 import { LISTBOX_ITEM_SIZE } from "./sizes";
 import { toPx } from "../../utils/css";
 
 export const [listTheme, listThemeVars] = createTheme({
-	contentBackground: tokens.dropdownBackground,
-	contentRadius: themeTokens.radii.lg,
-	contentBoxShadow: tokens.dropdownBoxShadow,
-	contentPadding: themeTokens.spacing["2"],
-	contentBorderColor: tokens.dropdownBorder,
+	contentBackground: tokens.surface.menu,
+	contentRadius: tokens.radius.lg,
+	contentBoxShadow: tokens.shadow.menu,
+	contentPadding: tokens.space["2"],
+	contentBorderColor: tokens.border.menu,
 	contentMaxHeight: "400px",
 	contentMaxHeightXs: "270px",
-	separator: tokens.dropdownBorder,
-	itemMinHeight: "2.60rem",
-	itemTextColor: tokens.dropdownItemTextColor,
-	itemHoverBackground: tokens.dropdownItemHoverBackground,
-	itemHoverTextColor: tokens.dropdownItemHoverTextColor,
+	separator: tokens.border.menu,
+	itemMinHeight: tokens.control.height.md,
+	itemTextColor: tokens.text.menu,
+	itemHoverBackground: tokens.surface.menuHover,
+	itemHoverTextColor: tokens.text.menu,
 	itemDisabledOpacity: ".4",
 	indicatorSize: "20px",
 });
@@ -33,7 +32,7 @@ const ButtonSizes = {
 export const list = style([
 	listTheme,
 	{
-		borderRadius: themeTokens.radii.sm,
+		borderRadius: tokens.radius.sm,
 
 		":focus-visible": {
 			outline: "none",
@@ -42,24 +41,24 @@ export const list = style([
 		selectors: {
 			"&[data-bordered]": {
 				outline: "none",
-				padding: themeTokens.spacing["2"],
-				border: `1px solid ${themeVars.separator}`,
+				padding: tokens.space["2"],
+				border: `${tokens.border.width} solid ${tokens.border.divider}`,
 			},
 			"&[data-bordered]:focus-visible": {
-				borderColor: themeVars.brand,
+				borderColor: tokens.focus.color,
 			},
 			"&[data-theme=primary]": {
 				vars: {
-					[listThemeVars.itemTextColor]: tokens.dropdownItemTextColor,
-					[listThemeVars.itemHoverBackground]: tokens.brandAccentHover,
-					[listThemeVars.itemHoverTextColor]: tokens.dropdownItemHoverTextColor,
+					[listThemeVars.itemTextColor]: tokens.text.menu,
+					[listThemeVars.itemHoverBackground]: tokens.accent.selection,
+					[listThemeVars.itemHoverTextColor]: tokens.text.selected,
 				},
 			},
 			"&[data-theme=neutral]": {
 				vars: {
-					[listThemeVars.itemTextColor]: tokens.dropdownItemTextColor,
-					[listThemeVars.itemHoverBackground]: tokens.dropdownItemHoverBackground,
-					[listThemeVars.itemHoverTextColor]: tokens.dropdownItemHoverTextColor,
+					[listThemeVars.itemTextColor]: tokens.text.menu,
+					[listThemeVars.itemHoverBackground]: tokens.surface.menuHover,
+					[listThemeVars.itemHoverTextColor]: tokens.text.menu,
 				},
 			},
 		},
@@ -74,18 +73,17 @@ export const item = style([
 		textAlign: "left",
 		justifyContent: "space-between",
 		border: 0,
-		padding: `${themeTokens.spacing["2"]} ${themeTokens.spacing["3"]}`,
-		borderRadius: themeTokens.radii.sm,
+		padding: `${tokens.space["2"]} ${tokens.space["3"]}`,
+		borderRadius: tokens.radius.sm,
 		background: "transparent",
 		color: listThemeVars.itemTextColor,
 		userSelect: "none",
 		display: "flex",
 		alignItems: "center",
 		outline: "none",
-		fontWeight: themeTokens.fontWeight.normal,
-		transition: "opacity .2s, background-color .2s, transform .2s",
-		gap: themeTokens.spacing["2"],
-		margin: `${themeTokens.spacing["1"]} 0`,
+		fontWeight: tokens.font.weight.normal,
+		gap: tokens.space["2"],
+		margin: `${tokens.space["1"]} 0`,
 		minHeight: listThemeVars.itemMinHeight,
 		selectors: {
 			"&:first-child,&:last-child": {
@@ -97,18 +95,18 @@ export const item = style([
 		selectors: {
 			[`&[data-size=${ButtonSizes.xs}]`]: {
 				height: toPx(LISTBOX_ITEM_SIZE.xs),
-				fontSize: themeTokens.fontSize.sm,
-				borderRadius: themeTokens.radii.xs,
+				fontSize: tokens.font.size.sm,
+				borderRadius: tokens.radius.xs,
 				minHeight: 0,
 			},
 			[`&[data-size=${ButtonSizes.sm}]`]: {
 				height: toPx(LISTBOX_ITEM_SIZE.sm),
-				fontSize: themeTokens.fontSize.md,
+				fontSize: tokens.font.size.md,
 				minHeight: 0,
 			},
 			[`&[data-size=${ButtonSizes.md}]`]: {
 				height: toPx(LISTBOX_ITEM_SIZE.md),
-				fontSize: themeTokens.fontSize.md,
+				fontSize: tokens.font.size.md,
 			},
 		},
 	},

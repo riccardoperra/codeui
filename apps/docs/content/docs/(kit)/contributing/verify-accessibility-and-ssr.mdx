@@ -1,0 +1,128 @@
+---
+title: "Verify accessibility and SSR"
+description: "Check a component for keyboard, screen readers, and server rendering."
+---
+
+Unit tests prove the logic. A user meets the component in a browser, with a keyboard, a screen reader, two themes, and sometimes a server render first. Run the four checks on this page before you say a component, part, token, or theme change works.
+
+| Check | What it proves | Tool |
+| --- | --- | --- |
+| Browser journey | Keyboard, focus, and the visible result, in dark and light | `verify-codeui` skill, on Storybook |
+| Automated audit | Contrast, names, and roles across every story | `node tools/baseline/run.mjs` |
+| SSR test | The server renders without the DOM, and labels point at inputs | `pnpm --filter @codeui/kit test:ssr` |
+| Manual pass | Narrow viewport, long labels, and a screen reader | Your browser |
+
+## Drive a story in the browser
+
+The `verify-codeui` project skill lives in `.claude/skills/verify-codeui`. It launches Storybook on a free port, drives one story with Playwright in both themes, and saves screenshots, a JSON transcript, and axe results. Agents load it as a skill. You can run its scripts by hand.
+
+```sh
+K=.claude/skills/verify-codeui
+node $K/scripts/launch.mjs
+node $K/scripts/drive.mjs designsystem-dialog--sizes --journey $K/journeys/dialog-keyboard.mjs
+node $K/scripts/cleanup.mjs
+```
+
+1. `launch.mjs` builds Storybook when the build is older than the kit source, serves it, and prints one JSON line with `"ready": true` and the URL.
+2. `drive.mjs` opens the story in dark and in light. Without `--journey`, it checks that the story renders without errors, takes a screenshot, and runs axe. With `--journey`, it runs your steps.
+3. `cleanup.mjs` stops the server. Run it after every failed attempt too.
+
+Each drive writes its evidence to `.verify-codeui/evidence/<time>-<story-id>/`. The folder holds `transcript.json`, a screenshot after every step in each theme, and the axe results.
+
+Story ids follow the pattern `designsystem-<component>--<story>`. Storybook imports the kit source, so you do not need to build the kit.
+
+### Write a journey
+
+```js title=".claude/skills/verify-codeui/journeys/tooltip-keyboard.mjs"
+export default async ({ page, step, check, focus }) => {
+	const tooltip = page.getByRole("tooltip");
+	await step("Tab to trigger", async () => {
+		await page.keyboard.press("Tab");
+		await page.waitForTimeout(500);
+	});
+	await check(
+		"trigger has keyboard focus",
+		async () => (await focus()).name === "Hover me",
+	);
+	await check("focus opens tooltip", async () => await tooltip.isVisible());
+	await step("Escape closes tooltip", () => page.keyboard.press("Escape"));
+	await check("tooltip is closed", async () => !(await tooltip.isVisible()));
+	await check("focus stays on trigger", async () => (await focus()).name === "Hover me");
+};
+```
+
+- `step` runs a user action, then records focus and a screenshot.
+- `check` records an assertion. A failed check marks the run failed and the journey continues.
+- `focus()` returns the tag, role, `data-cui` value, and accessible name of the focused element.
+- `axe(name)` saves the axe results for the current state.
+
+Reach controls the way a user does. Press Tab, Enter, Space, Escape, and the arrow keys. Find elements by role and accessible name first, and by `data-cui` part second. Never call a component setter or a Storybook arg to reach a state a user reaches by input.
+
+Overlays render in a portal outside the story root, so query them from `page`. The harness turns off animations and sets reduced motion, so a journey cannot prove motion. Say so in the pull request instead of claiming it.
+
+Axe always reports `landmark-one-main` and `page-has-heading-one`, because a story iframe has no `main` and no `h1`. Report every other violation.
+
+## Run the baseline audit
+
+```sh
+node tools/baseline/run.mjs
+```
+
+The baseline harness runs the root checks in one pass and writes logs and JSON reports to `docs/kit-2026/phase-0/baseline/`. It installs its own tools in `tools/baseline` on the first run. Its checks include:
+
+- the install, `pnpm build:kit`, `pnpm test`, and `pnpm typecheck`;
+- a pack of the kit, then `publint` and `attw` on the tarball;
+- a Node import of the built package;
+- a Storybook build, then a screenshot of every story in both themes, twice, to catch nondeterminism;
+- axe on every story in both themes;
+- a check that every kit rule sits in the `cui` layer.
+
+Compare `docs/kit-2026/phase-0/baseline.md` before and after your change. A new axe violation or a changed screenshot hash on a story you did not touch is a regression.
+
+The harness runs `pnpm install`, so do not run it in a checkout that another process is building.
+
+## Test the server render
+
+```tsx title="packages/kit/test/accordion.ssr.test.tsx"
+import { renderToString } from "solid-js/web";
+import { Accordion } from "../src/components/Accordion/Accordion";
+it("server renders labelled headers and expanded content without DOM measurement", () => {
+	const html = renderToString(() => (
+		<Accordion
+			defaultValue="size"
+			items={[{ value: "size", title: "Size", summary: "64", content: <p>Pixels</p> }]}
+		/>
+	));
+	expect(html).toContain('aria-expanded="true"');
+	expect(html).toContain("aria-labelledby=");
+	expect(html).toContain("Pixels");
+});
+```
+
+```sh
+pnpm --filter @codeui/kit test:ssr
+```
+
+A file in `packages/kit/test` whose name ends in `.ssr.test.tsx` runs in the server config. That config compiles Solid with `generate: "ssr"` and resolves the `solid` and `node` export conditions, so no DOM exists.
+
+- Render the ready component with `renderToString`. The render must not throw.
+- Assert the content a crawler or a no-JavaScript user gets: text, roles, and ARIA state.
+- For a field, assert that the label's `for` matches the input's `id`.
+- For a portalled overlay, assert what renders in place, such as the trigger. Portal content renders only on the client. Write that limit in the page's SSR notes.
+
+The docs site is also a server-rendering consumer. Each demo renders on the server and hydrates on the client. A hydration mismatch warning in the browser console of a docs page is a bug.
+
+## Check by hand
+
+Some failures no script finds. Check these in a browser for every new component or visual change:
+
+- [ ] Dark and light, at 1440×900, 1024×768, and 390×844.
+- [ ] Every control is reachable with Tab, and the focus ring is visible on each one.
+- [ ] Escape closes one layer at a time, and focus returns to the trigger.
+- [ ] A long translated label wraps or truncates, and the truncated text is reachable.
+- [ ] Targets are at least 28px on desktop and 40px on a phone.
+- [ ] Text contrast is at least 4.5:1, and icons, rings, and control edges at least 3:1, in both themes.
+- [ ] With `prefers-reduced-motion: reduce`, nothing moves.
+- [ ] A screen reader announces the name, role, and state. VoiceOver in Safari and NVDA in Firefox are the common pairs.
+
+Chrome is the reference browser. Check Firefox and Safari once per change.

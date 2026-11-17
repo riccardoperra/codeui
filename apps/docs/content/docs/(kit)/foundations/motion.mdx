@@ -1,0 +1,104 @@
+---
+title: "Motion"
+description: "The durations and easings the kit uses, and how it respects reduced motion."
+---
+
+The kit has six durations and one easing curve. Controls respond in 120ms. Popovers, menus and tooltips enter in 160ms and leave in 120ms. Dialogs and sheets enter in 200ms. No control or anchored overlay animates longer than 260ms. A toast's 400ms Rise and loops such as Spinner are the only longer animations.
+
+<SolidDemo name="motion/durations" />
+
+Each dot moves with one duration token and `--cui-motion-ease-out`. With reduced motion turned on in your system settings, the dots fade instead of moving.
+
+## Tokens
+
+| Token | Value | Use |
+| --- | --- | --- |
+| `--cui-motion-duration-none` | `0ms` | Keyboard-triggered changes. Very frequent actions. |
+| `--cui-motion-duration-fast` | `120ms` | Press, hover, color change, checkbox mark, overlay exit. |
+| `--cui-motion-duration-normal` | `160ms` | Pop: popover, menu, list popover and tooltip entrance. Switch thumb. Tab and segment indicator. |
+| `--cui-motion-duration-panel` | `200ms` | Dialog, sheet and accordion entrance. Toast exit. |
+| `--cui-motion-duration-slow` | `260ms` | The ceiling for a control. The kit uses it only as the base of loop timings. |
+| `--cui-motion-duration-rise` | `400ms` | Rise: toast entrance from its edge. |
+| `--cui-motion-ease-out` | `cubic-bezier(0.23, 1, 0.32, 1)` | Every kit transition and animation. |
+
+`ease-out` starts fast and settles. Movement feels like an answer to the click. The kit never uses `ease-in` on interface motion. Inkstone proposes two more curves, `--cui-motion-ease-in-out` and `--cui-motion-ease-drawer`. They are not in the kit yet.
+
+The reasoning and the ten named movements are in [Motion](/docs/design/motion) under Inkstone.
+
+## Decide whether to animate
+
+Use frequency to decide:
+
+| How often the user does it | Motion |
+| --- | --- |
+| From the keyboard, or 100 or more times a day | None. Command menu, shortcuts, Escape, arrow keys. |
+| Tens of times a day | `fast` (120ms) or none. Hover, press, switch, segment. |
+| Now and then | `normal` or `panel`. A popover opened by a click, a dialog, a sheet, an accordion. |
+| Rarely | May take longer, up to `slow`. A what's-new card, onboarding. |
+
+If you cannot name what the motion does for the user, such as feedback, showing where something came from, or avoiding a jump, leave it out.
+
+## Keyboard actions are instant
+
+<SolidDemo name="motion/keyboard" />
+
+Click a section header and the section expands in 200ms. Focus a header with Tab and press Enter or Space, and it opens at once. A keyboard user has already decided. Animation only delays them.
+
+These components follow the rule today:
+
+- **Accordion** expands only after a pointer press. A key press sets `data-motion="none"` on the root.
+- **Sheet** slides only when a pointer opened it. Opened from the keyboard, it appears in place.
+- **Popover, DropdownMenu, Select and Combobox lists, Tooltip** pop only when a pointer opened them (a hover counts for tooltips and submenus). Opened from the keyboard, the content gets `data-motion="none"` and appears in place, and it closes in place too. The choice is made once when the content opens. A tooltip opened right after another one closed also skips the Pop.
+- **Command menu** never animates. It is opened from a shortcut.
+
+Set `motion="none"` on `Accordion` or `Sheet` to turn motion off for pointer users too.
+
+## Reduced motion keeps fades
+
+When the user turns on reduced motion, the kit removes movement and scale and keeps short opacity changes. A fade still tells the user that something appeared or left, without moving anything across the screen.
+
+| Component | Normal | With `prefers-reduced-motion: reduce` |
+| --- | --- | --- |
+| Popover, Select, Combobox, Dropdown menu, Tooltip | Pop: scale from the trigger with a fade | Fade only |
+| Dialog, Accordion | Slide or scale with a fade | Fade only |
+| Sheet | Slide from the edge | Fade only |
+| Toast | Rise from the edge (400ms), fade out (200ms) | Fade in, fade out |
+| Switch | Thumb slides | Thumb jumps |
+| Radio | Dot scales in | Dot appears |
+| Spinner, Progress (indeterminate), Skeleton | Loop | Static |
+
+Overlays share one helper, `presenceAnimation` in `packages/kit/src/foundation/motion.css.ts`. It runs the enter animation while Kobalte sets `data-expanded`, runs the exit animation when it clears, turns both off under `data-motion="none"`, and swaps both for fades under reduced motion. `popAnimation` builds the Pop on top of it, with `transform-origin: var(--kb-popper-content-transform-origin)`.
+
+## Use the tokens in your own CSS
+
+Write durations and the curve as tokens, so an app-wide change reaches your styles too. Hover a row.
+
+<SolidDemo name="motion/own-transition" />
+
+```css title="own-transition.css"
+.snippet-row {
+	transition: background-color var(--cui-motion-duration-fast) var(--cui-motion-ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.snippet-row:hover {
+		background: var(--cui-surface-menu-hover);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.snippet-row {
+		transition: none;
+	}
+}
+```
+
+To slow down or turn off kit motion, override the tokens. For example, `--cui-motion-duration-normal: 0ms` removes the popover, menu and tooltip entrances, the switch thumb slide and the tab indicator slide.
+
+Some rules for your own motion, from Inkstone:
+
+- Animate `transform`, `opacity` and `clip-path`. Animate `height` only for an accordion.
+- Make exits faster than entrances.
+- Never start a scale from `0`. Start from `0.96` or so.
+- Prefer transitions to keyframes, so a change can reverse halfway.
+- Put hover styles inside `@media (hover: hover) and (pointer: fine)`.

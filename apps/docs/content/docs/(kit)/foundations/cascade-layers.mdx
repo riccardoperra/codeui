@@ -1,0 +1,92 @@
+---
+title: "Cascade layers"
+description: "How kit styles are layered, and how app styles override them."
+---
+
+Every kit rule lives in one cascade layer, `cui`. That includes component styles, global styles and the token values for both modes. Your app's unlayered CSS always wins over a layered rule, whatever the selector specificity and whatever the stylesheet order.
+
+<SolidDemo name="cascade-layers/app-override" />
+
+```css title="app-override.css"
+/* Unlayered app CSS. One class beats every kit rule in @layer cui. */
+.export-pill {
+	border-radius: 9999px;
+	padding-inline: 20px;
+}
+```
+
+The second button gets its shape from one class. The kit sets the button's radius and padding with its own classes. You do not need `!important`, a longer selector or a later stylesheet.
+
+## How the layer works
+
+`packages/kit/src/foundation/layer.css.ts` declares the layer with vanilla-extract `globalLayer("cui")`. It wraps `style`, `globalStyle`, `styleVariants`, `recipe` and `createTheme`, and every kit `.css.ts` file imports those wrappers instead of the vanilla-extract originals. The rule each one emits sits inside `@layer cui { … }`.
+
+The browser resolves a conflict in this order, from weakest to strongest:
+
+1. Layered rules, in the order their layers were first declared. `cui` is one of them.
+2. Unlayered rules.
+
+Specificity only decides between rules in the same layer, or between two unlayered rules. The kit button hover rule, a hashed class followed by `:not([data-disabled]):hover`, still loses to a plain unlayered `.export-pill`.
+
+Two cases do not follow this order:
+
+- Inline styles win over both.
+- `!important` reverses the layer order. A kit rule never uses it.
+
+## Override from app CSS
+
+To change a kit component, write ordinary unlayered CSS. Use the tokens when you can, so the change follows the mode.
+
+- Change a token for the whole app or for one subtree. See [Override tokens with plain CSS](/docs/foundations/theming#override-tokens-with-plain-css).
+- Change one instance with a `class` on the component.
+- Change an inner part with `classes`, or target its `data-cui` attribute, such as `[data-cui="text-field-input"]`. Each component page lists its parts under Anatomy.
+
+If your app puts its own CSS in layers, those layers rank against `cui` by declaration order. A layer declared after `cui` wins over it. A layer declared before `cui` loses to it.
+
+## Keep app resets below `cui`
+
+Unlayered CSS wins over the kit, and that includes a CSS reset. A reset written as plain CSS strips kit components.
+
+<SolidDemo name="cascade-layers/unlayered-reset" />
+
+```css title="unlayered-reset.css"
+/*
+ * An unlayered reset, scoped to the demo. Unlayered rules beat @layer cui,
+ * so this reset also strips the kit button.
+ */
+.unlayered-reset button {
+	background: none;
+	border: 0;
+}
+```
+
+The second button sits inside `.unlayered-reset` and loses its fill and border.
+
+To fix it, put the reset in a layer and declare that layer before `cui`. The first declaration of a layer name fixes its position, so the statement must come first in the first stylesheet the page loads, before the kit's CSS.
+
+```css title="app.css"
+@layer reset, cui;
+
+@layer reset {
+	button {
+		background: none;
+		border: 0;
+	}
+}
+```
+
+Your other app CSS can stay unlayered and still win over both layers.
+
+### With Tailwind CSS
+
+Tailwind v4 puts its own styles in the `theme`, `base`, `components` and `utilities` layers. Its base reset lives in `base`. Declare `cui` after `base`, so the reset sits below the kit and utilities sit above it. This docs site starts `apps/docs/src/styles/app.css` with this line:
+
+```css title="app.css"
+@layer theme, base, cui, components, utilities;
+```
+
+Tailwind utility classes on a kit component then win over kit styles, and Tailwind's reset does not reach them.
+
+## Token values are layered too
+
+The `--cui-*` values for both modes are set inside `@layer cui`, on `:root` and on each `[data-cui-theme]` element. An unlayered declaration of the same property wins over them. [Theming](/docs/foundations/theming#why-root-alone-is-not-enough) explains which selector to use so that the override reaches nested scopes.

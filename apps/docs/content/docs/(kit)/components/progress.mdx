@@ -1,0 +1,154 @@
+---
+title: "Progress"
+description: "A bar that shows how much of a task is done."
+---
+
+## When to use
+
+Use Progress for exports with a known frame count or another task whose completion you can measure.
+
+## When to choose another component
+
+Use [Spinner](/docs/components/spinner) for compact activity with no known total. Use [Skeleton](/docs/components/skeleton) for the shape of content that has not loaded.
+
+## Live demo
+
+<SolidDemo name="progress/basic" />
+
+## Anatomy
+
+<Anatomy demo="progress/anatomy" />
+
+| Export       | Renders | `classes` key | `data-cui`             | Role          |
+| ------------ | ------- | ------------- | ---------------------- | ------------- |
+| `Fill`       | `div`   | `fill`        | `progress-fill`        | None          |
+| `Label`      | `span`  | `label`       | `progress-label`       | None          |
+| `Root`       | `div`   | `root`        | `progress-root`        | `progressbar` |
+| `Track`      | `div`   | `track`       | `progress-track`       | None          |
+| `ValueLabel` | `div`   | `valueLabel`  | `progress-value-label` | None          |
+
+## Variants
+
+### Sizes
+
+<SolidDemo name="progress/sizes" />
+
+`sm` is the default track height. `md` makes the track taller. Progress has no tone or appearance variants.
+
+## States
+
+<SolidDemo name="progress/states" />
+
+`value` defaults to 0 in the range 0 to 100. `minValue` and `maxValue` define another range. `indeterminate` shows unknown completion. `getValueLabel` formats the value text. Kobalte leaves ValueLabel empty while indeterminate and does not call `getValueLabel`. The parts example renders a separate styled value label with “Preparing…” instead of a percentage.
+
+## Ready API
+
+### `Progress`
+
+Progress renders an optional Label, an optional ValueLabel, and Track with Fill. `showValue` defaults to false. Name the progressbar with `label`, `aria-label`, or `aria-labelledby`.
+
+<PropsTable name="Progress" />
+
+Inherited behavior from [Kobalte progress](https://kobalte.dev/docs/core/components/progress).
+
+<PropsTable name="ProgressInherited" />
+
+## Styled parts API
+
+Import the parts from `@codeui/kit/progress`. The root wraps [Kobalte progress](https://kobalte.dev/docs/core/components/progress).
+
+### `Fill`
+
+Styled Kobalte Fill. Its width follows the root value.
+
+<PropsTable name="ProgressFill" />
+
+### `Label`
+
+Styled Kobalte Label associated with the progressbar.
+
+<PropsTable name="ProgressLabel" />
+
+### `Root`
+
+Styled Kobalte Root. It owns value, range, and indeterminate state.
+
+<PropsTable name="ProgressRoot" />
+
+<PropsTable name="ProgressRootInherited" />
+
+### `Track`
+
+Styled Kobalte Track around Fill.
+
+<PropsTable name="ProgressTrack" />
+
+### `useProgressContext`
+
+Re-exported from Kobalte. Call it inside Root to read the current value, percentage, formatted label, fill width, and state dataset in a custom child. It does not render an element or accept component props.
+
+### `ValueLabel`
+
+Styled Kobalte ValueLabel with tabular numbers.
+
+<PropsTable name="ProgressValueLabel" />
+
+`ProgressParts` groups Root, Label, Track, Fill, and ValueLabel. The same namespace is available from `@codeui/kit`.
+
+## Styles export
+
+### `progressStyles`
+
+`progressStyles` is typed as `ProgressStyles`. Each part function returns a class string. Use it when you own the markup and semantics. `root()`, `label()`, `track()`, `fill()`, and `valueLabel()` return fixed classes. The functions accept `ProgressVariants`, but size is selected by `data-size="md"` on the root ancestor, not by the argument. The export is available from both `@codeui/kit` and `@codeui/kit/progress`.
+
+## Accessibility
+
+### Keyboard
+
+Progress is non-interactive and has no keyboard commands. It does not add a tab stop.
+
+### ARIA
+
+Root renders `role="progressbar"` with `aria-valuemin` and `aria-valuemax`. Determinate progress includes `aria-valuenow` and formatted `aria-valuetext`. Indeterminate progress omits both value attributes. Label connects through `aria-labelledby`. ValueLabel is visual output, not a live announcement of each update.
+
+### Focus
+
+Mounting or removing the component does not move focus. There is no open or close focus cycle. The containing control or application owns focus.
+
+### Reduced motion
+
+Determinate Fill follows the value without a transition. Indeterminate Fill spans the track and pulses its opacity. Under `prefers-reduced-motion: reduce`, the pulse stops and the full-width fill stays visible. The bar remains indeterminate.
+
+## SSR notes
+
+The component renders inline on the server. It has no portal or client-only effect. Use the same initial props on the server and client. Kobalte generates IDs for the label relationship. Keep the component tree stable through hydration.
+
+## Theming hooks
+
+The component reads these theme variables.
+
+- `--cui-action-brand-base`
+- `--cui-font-size-caption`
+- `--cui-motion-duration-slow`
+- `--cui-motion-ease-out`
+- `--cui-radius-full`
+- `--cui-space-1`
+- `--cui-space-2`
+- `--cui-surface-input-accent`
+- `--cui-text-default`
+- `--cui-text-hint`
+- `--cui-text-label`
+
+Kobalte also provides `--kb-progress-fill-width` for determinate width.
+
+Defaults come from the kit theme. See [Color](/docs/design/color), [Typography](/docs/design/typography), [Space and shape](/docs/design/space-and-shape), and [Motion](/docs/design/motion).
+
+## Composition examples
+
+<SolidDemo name="progress/custom-value" />
+
+The parts example uses a 24-frame range and formats the visible value and accessible value text through `getValueLabel`. Do not present an invented percentage for indeterminate work.
+
+## Related
+
+Use [Spinner](/docs/components/spinner) for compact activity with no known total. Use [Skeleton](/docs/components/skeleton) for the shape of content that has not loaded.

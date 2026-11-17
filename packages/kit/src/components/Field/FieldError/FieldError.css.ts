@@ -1,5 +1,5 @@
-import { style } from "@vanilla-extract/css";
-import { tokens } from "../../../foundation/contract.css";
+import { style } from "../../../foundation/layer.css";
+import { tokens } from "../../../foundation/cui.css";
 import { styleFieldMessage } from "../fieldStyle";
 
 export const errorMessage = style([
@@ -12,6 +12,7 @@ export const errorMessage = style([
 	}),
 	{
 		userSelect: "none",
-		color: tokens.critical,
+		lineHeight: tokens.font.lineHeight.xs,
+		color: tokens.text.danger,
 	},
 ]);

@@ -1,0 +1,153 @@
+---
+title: "API reference for agents"
+description: "Imports, signatures, and limits of @codeui/kit in one page, for coding agents."
+---
+
+This page is for coding agents that generate UI with `@codeui/kit`. It lists the import paths, the rules generated code must follow, and every component with its main props. Each component name links to its full page.
+
+## Read this site as Markdown
+
+| URL | Content |
+| --- | --- |
+| `/llms.txt` | An index of every kit page, grouped as in the sidebar, with a one-line description and a link to its Markdown. It starts with the install line and the import rules. |
+| `/llms-full.txt` | Every kit page in one file. The Inkstone design pages are left out. |
+| `/docs/<page>.md` | One page as Markdown, such as `/docs/components/select.md`. Demos are replaced by their source code, and props tables by Markdown tables. |
+| `/docs/<page>.txt` | The same text as the `.md` route, served as plain text. |
+
+Start with `/llms.txt`. Fetch the `.md` of each component you use before you write code with it.
+
+The kit package also ships its design specification as `node_modules/@codeui/kit/DESIGN.md`. Read it before you build a new screen.
+
+## Import map
+
+| Import from | What it holds | Use it for |
+| --- | --- | --- |
+| `@codeui/kit` | Every ready component, the option helpers, field helpers, `icons`, `SvgIcon`, `mergeClasses`, and the token objects | Almost everything |
+| `@codeui/kit/<name>` | The styled parts of one component, its part name map, and its style functions | A layout the ready component cannot give |
+| `@codeui/kit/tokens` | `tokens`, `themeVars`, `themeTokens`, `layoutVars`, `breakpoints`, `responsiveStyle`. No component. | vanilla-extract `.css.ts` files, which run in Node |
+
+These subpaths exist: `dialog`, `popover`, `stack`, `text`, `switch`, `slider`, `progress`, `combobox`, `command-menu`, `kbd`, `badge`, `spinner`, `skeleton`, `alert`, `toast`, `option-card`, `accordion`, `sheet`, and `tokens`. No other subpath exists. `@codeui/kit/button` and `@codeui/kit/select`, for example, fail to resolve.
+
+Import parts as a namespace:
+
+```tsx
+import * as D from "@codeui/kit/dialog";
+```
+
+The app needs `solid-js ^1.9.8` and the vanilla-extract Vite plugin. See [Installation](/docs/installation).
+
+## Rules for generated code
+
+<SolidDemo name="agents/export-panel" />
+
+```css title="export-panel.css"
+/* App CSS reads only --cui-* tokens, and stays unlayered so it wins over the kit. */
+.export-panel {
+	background: var(--cui-surface-panel);
+	border-radius: var(--cui-radius-card);
+	padding: var(--cui-space-4);
+	max-width: 360px;
+}
+```
+
+Follow every rule. A reviewer rejects code that breaks one.
+
+1. **Use a ready component first.** Compose parts only when the ready component cannot give the layout. [Ready or parts](/docs/ready-or-parts) explains the choice.
+2. **Read values from tokens.** Write colors, radii, spacing, font sizes, shadows, and durations as `var(--cui-…)` in CSS, or as `tokens.…` in TypeScript. Never write a hex color, a pixel radius, or a pixel gap for UI chrome. Artwork the user creates is the only exception. [Tokens](/docs/foundations/tokens) lists every name.
+3. **Lay out with `Stack`.** Set `gap` to a spacing key, such as `"2"` or `"4"`. Do not write margins between siblings.
+4. **Set text with `Text`.** Set the element with `as` and the size with `size`. A heading level never comes from the size.
+5. **Style an inner part with `classes` or `data-cui`.** Pass `classes={{ trigger: "…" }}` on the ready component, or select `[data-cui="select-trigger"]` in app CSS. Copy part names from the Anatomy table of the component page. Never guess them from export names.
+6. **Write app CSS without a layer.** Kit rules sit in `@layer cui`, so unlayered app CSS wins without `!important`. Put a CSS reset in a layer declared before `cui`. See [Cascade layers](/docs/foundations/cascade-layers).
+7. **Theme with `data-cui-theme`.** Set `"dark"` or `"light"` on `<html>`. Remove the attribute to follow the system. The kit has no theme provider and no `system` value.
+8. **Name every control.** Give each field a `label`, or an `aria-label` when no visible label fits. Give each `IconButton` an `aria-label`. Give each `Spinner` a `label`.
+9. **Keep the keyboard working.** Do not put a click handler on a `div`. Use `Button`, `Link`, or a radio or checkbox component. Do not stop Escape from reaching an overlay.
+10. **Use the controlled pattern.** See [Controlled state](#controlled-state).
+
+## Controlled state
+
+Every stateful component follows Kobalte's pattern. Pass the uncontrolled default, or the value and its change handler together.
+
+| State | Uncontrolled | Controlled |
+| --- | --- | --- |
+| Value | `defaultValue` | `value` and `onChange` |
+| Checked | `defaultChecked` | `checked` and `onChange` |
+| Open | `defaultOpen` | `open` and `onOpenChange` |
+
+- `Select` calls `onChange` with `null` when the selection clears. Guard it: `onChange={value => value && setFont(value)}`.
+- `NumberField` uses `null` for an empty field.
+- `Slider` calls `onChange` while the thumb moves and `onChangeEnd` once on release.
+- `Pagination` takes `page` and `onChange`, starting at 1.
+- `CommandMenu` has no uncontrolled mode. Pass `open` and `onOpenChange`.
+
+## Fields
+
+`TextField`, `TextArea`, `NumberField`, `Select`, `Combobox`, `Checkbox`, `RadioList`, `Switch`, `Slider`, and `OptionCardGroup` take `label`, `description`, and `errorMessage`. The kit links the label and the messages to the input.
+
+- On the text fields and `Select`, `errorMessage` shows only while `validationState="invalid"`. The kit runs no validation of its own.
+- `Select` requires `aria-label` in its type, even when it has a `label`.
+- To build a custom field, use the helpers in [Field helpers](/docs/utilities/field-helpers).
+- To build options from objects, use `createSelectOptions`, `createComboboxOptions`, `createOptionCardItems`, or `createAccordionItems`. See [Options and collections](/docs/utilities/options-and-collections).
+
+## Toasts and SSR
+
+Create the toast controller inside a component, as `ExportPanel` does above, or in the app root. A controller in a module is shared by every request on a server. Render one `Toaster` for each controller, inside the app's providers. [Show notifications](/docs/patterns/show-notifications) shows the setup.
+
+On the server, `show` and `promise` do nothing. Toasts render only on the client.
+
+Portalled content renders only on the client. That covers the bodies of `Dialog`, `Sheet`, `Popover`, `DropdownMenu`, `Tooltip`, `Select` lists, `Combobox` lists, and `CommandMenu`. Do not put content a crawler must read inside one.
+
+## Components
+
+Every component below imports from `@codeui/kit`. The parts column names the subpath, when one exists.
+
+| Component | Parts | Main props |
+| --- | --- | --- |
+| [Accordion](/docs/components/accordion) | `accordion` | `items`, `value`, `defaultValue`, `onChange`, `collapsible` |
+| [Alert](/docs/components/alert) | `alert` | `tone`, `title`, `description`, `icon`, `fluid` |
+| [Badge](/docs/components/badge) | `badge` | `tone`, `size`, `variant`, `icon`, `textValue` |
+| [Button](/docs/components/button) | none | `theme`, `size`, `variant`, `pill`, `block`, `loading`, `leftIcon` |
+| [Checkbox](/docs/components/checkbox) | none | `label`, `checked`, `defaultChecked`, `onChange`, `indeterminate`, `size` |
+| [Combobox](/docs/components/combobox) | `combobox` | `label`, `options`, `value`, `onChange`, `inputValue`, `renderOption`, `emptyContent` |
+| [CommandMenu](/docs/components/command-menu) | `command-menu` | `open`, `onOpenChange`, `items`, `onSelect`, `onHighlightChange`, `placeholder` |
+| [Dialog](/docs/components/dialog) | `dialog` | `open`, `onOpenChange`, `title`, `description`, `size`, `closeLabel`. Body in `DialogPanelContent`, actions in `DialogPanelFooter`. |
+| [DropdownMenu](/docs/components/dropdown-menu) | none | `DropdownMenuTrigger`, `DropdownMenuContent`, `DropdownMenuItem` with `onSelect`, and `DropdownSubMenu` |
+| [IconButton](/docs/components/icon-button) | none | `aria-label`, `theme`, `size`, `variant`, `pill` |
+| [Kbd](/docs/components/kbd) | `kbd` | `size`, `variant` |
+| [Link](/docs/components/link) | none | `href`, `variant` |
+| [Listbox](/docs/components/listbox) | none | `options`, `value`, `onChange`, `size`, `bordered` |
+| [NumberField](/docs/components/number-field) | none | `label`, `value`, `onChange`, `min`, `max`, `step`, `precision`, `prefix`, `postfix` |
+| [OptionCard](/docs/components/option-card) | `option-card` | `OptionCardGroup` with `label`, `items`, `value`, `onChange`, `variant` |
+| [Pagination](/docs/components/pagination) | none | `page`, `onChange`, `size`, `rounded` |
+| [Popover](/docs/components/popover) | `popover` | `Popover` with `open`, `placement`, `gutter`. `PopoverTrigger`. `PopoverContent` with `title`, `description`, `mount`. |
+| [Progress](/docs/components/progress) | `progress` | `label`, `value`, `indeterminate`, `showValue`, `size` |
+| [RadioList](/docs/components/radio-list) | none | `label`, `value`, `onChange`, and `RadioListItem` with `value`, `label` |
+| [SegmentedControl](/docs/components/segmented-control) | none | `value`, `onChange`, `size`, and `SegmentedControlItem` with `value` |
+| [Select](/docs/components/select) | none | `aria-label`, `label`, `options`, `value`, `onChange`, `placeholder`, `multiple`, `classes` |
+| [Sheet](/docs/components/sheet) | `sheet` | `open`, `onOpenChange`, `side`, `title`, `footer`, `draggable` |
+| [Skeleton](/docs/components/skeleton) | `skeleton` | `width`, `height`, `radius` |
+| [Slider](/docs/components/slider) | `slider` | `label`, `value`, `onChange`, `onChangeEnd`, `minValue`, `maxValue`, `step`, `showValue` |
+| [Spinner](/docs/components/spinner) | `spinner` | `label`, `size` |
+| [Stack](/docs/components/stack) | `stack` | `direction`, `gap`, `align`, `justify`, `wrap`, `as` |
+| [Switch](/docs/components/switch) | `switch` | `label`, `checked`, `onChange`, `description`, `size` |
+| [Tabs](/docs/components/tabs) | none | `Tabs` with `value`, `onChange`. `TabsList`, `TabsHeader` with `value`, `TabsContent` with `value`. |
+| [Text](/docs/components/text) | `text` | `as`, `size`, `weight`, `tone` |
+| [TextArea](/docs/components/text-area) | none | `label`, `value`, `onChange`, `placeholder`, `errorMessage` |
+| [TextField](/docs/components/text-field) | none | `label`, `value`, `onChange`, `placeholder`, `type`, `errorMessage` |
+| [Toast](/docs/components/toast) | `toast` | `createToaster({ duration })`, then `show({ tone, title, description, action })`. `Toaster` with `toaster`, `position`, `closeLabel`. |
+| [Tooltip](/docs/components/tooltip) | none | `content`, `placement`. The trigger is the child. |
+| [VirtualizedListbox](/docs/components/virtualized-listbox) | none | `options`, `virtualizerOptions`, `size` |
+
+Most ready components take `class` for the root and `classes` for inner parts, keyed by part name. `Checkbox` and `Tooltip` take `slotClasses` instead. `Button`, `IconButton`, `Link`, `Pagination`, `Tabs`, and the `DropdownMenu` exports have no `classes` prop.
+
+## What does not exist
+
+Do not generate code that uses these. Each one fails to compile or to resolve.
+
+- `@codeui/kit/theme.css`. Kit styles load with the components. DESIGN.md mentions this file, but the package does not export it.
+- A theme provider, or `data-cui-theme="system"`.
+- `Box`, `HStack`, `VStack`, or sprinkles props such as `padding` or `marginTop`. Use `Stack` and a class.
+- `asChild`. Kobalte and the kit use `as` for polymorphism.
+- A re-export of Kobalte's `toaster`. Import it from `@kobalte/core/toast` when you compose toast parts.
+- `toast.remove` or `toast.custom`. Use `dismiss`, or compose the toast parts.
+- A `Meter`, `ContextMenu`, `HoverCard`, `DatePicker`, or `ColorPicker` component.
+- Subpaths for components outside the list in [Import map](#import-map).

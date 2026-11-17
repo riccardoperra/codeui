@@ -1,0 +1,2099 @@
+{
+  "analysis": {
+    "packageName": "@codeui/kit",
+    "packageVersion": "0.1.5",
+    "types": {
+      "kind": "included"
+    },
+    "buildTools": {
+      "typescript": "^5.6.2",
+      "rollup": "^4.21.3"
+    },
+    "entrypoints": {
+      ".": {
+        "subpath": ".",
+        "resolutions": {
+          "node10": {
+            "name": ".",
+            "resolutionKind": "node10",
+            "resolution": {
+              "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+              "isJson": false,
+              "isTypeScript": true,
+              "trace": [
+                "======== Resolving module '@codeui/kit' from '/index.ts'. ========",
+                "Explicitly specified module resolution kind: 'Node10'.",
+                "Loading module '@codeui/kit' from 'node_modules' folder, target file types: TypeScript, Declaration.",
+                "Searching all ancestor node_modules directories for preferred extensions: TypeScript, Declaration.",
+                "Found 'package.json' at '/node_modules/@codeui/kit/package.json'.",
+                "File '/node_modules/@codeui/kit.ts' does not exist.",
+                "File '/node_modules/@codeui/kit.tsx' does not exist.",
+                "File '/node_modules/@codeui/kit.d.ts' does not exist.",
+                "'package.json' does not have a 'typesVersions' field.",
+                "'package.json' does not have a 'typings' field.",
+                "'package.json' has 'types' field 'dist/types/index.d.ts' that references '/node_modules/@codeui/kit/dist/types/index.d.ts'.",
+                "File '/node_modules/@codeui/kit/dist/types/index.d.ts' exists - use it as a name resolution result.",
+                "'package.json' has a 'peerDependencies' field.",
+                "Failed to find peerDependency 'solid-js'.",
+                "======== Module name '@codeui/kit' was successfully resolved to '/node_modules/@codeui/kit/dist/types/index.d.ts' with Package ID '@codeui/kit/dist/types/index.d.ts@0.1.5'. ========"
+              ]
+            },
+            "files": [
+              "/node_modules/typescript/lib/lib.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Button/Button.css.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Button/Button.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Field/Field.css.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Field/createBaseFieldProps.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Field/FieldError/createFieldErrorMessageProps.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Field/FieldError/FieldError.css.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Field/FieldLabel/FieldLabel.css.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Field/FieldLabel/createFieldLabelProps.d.ts",
+              "/node_modules/@codeui/kit/dist/types/utils/component.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/TextField/TextFieldLabel.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/TextField/TextField.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/TextField/TextField.css.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/TextArea/TextAreaLabel.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/TextArea/TextArea.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/NumberField/options.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/NumberField/NumberFieldLabel.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/NumberField/NumberField.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/IconButton/IconButton.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/CheckBox/CheckBox.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Dialog/Dialog.css.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Dialog/Dialog.d.ts",
+              "/node_modules/@codeui/kit/dist/types/utils/types.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Dropdown/Dropdown.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Dropdown/Dropdown.css.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Popover/Popover.css.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Popover/Popover.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Select/Select.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Select/createSelectValue.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/RadioList/RadioList.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Link/Link.css.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Link/Link.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Pagination/Pagination.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Tooltip/Tooltip.css.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Tooltip/Tooltip.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Tabs/Tabs.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/SegmentedControl/SegmentedControl.css.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/SegmentedControl/SegmentedControl.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/SegmentedControl/SegmentedControlItem.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Listbox/Listbox.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Listbox/VirtualizedListbox.d.ts",
+              "/node_modules/@codeui/kit/dist/types/icons/SvgIcon.d.ts",
+              "/node_modules/@codeui/kit/dist/types/icons/CheckIcon.d.ts",
+              "/node_modules/@codeui/kit/dist/types/icons/CloseIcon.d.ts",
+              "/node_modules/@codeui/kit/dist/types/icons/NextIcon.d.ts",
+              "/node_modules/@codeui/kit/dist/types/icons/PreviousIcon.d.ts",
+              "/node_modules/@codeui/kit/dist/types/icons/SelectorIcon.d.ts",
+              "/node_modules/@codeui/kit/dist/types/icons/ChevronUpIcon.d.ts",
+              "/node_modules/@codeui/kit/dist/types/icons/ChevronDownIcon.d.ts",
+              "/node_modules/@codeui/kit/dist/types/icons/index.d.ts",
+              "/node_modules/@codeui/kit/dist/types/foundation/contract.css.d.ts",
+              "/node_modules/@codeui/kit/dist/types/foundation/themes.css.d.ts",
+              "/node_modules/@codeui/kit/dist/types/foundation/layout.css.d.ts",
+              "/node_modules/@codeui/kit/dist/types/foundation/breakpoints.d.ts",
+              "/node_modules/@codeui/kit/dist/types/foundation/responsive.d.ts",
+              "/node_modules/@codeui/kit/dist/types/foundation/index.d.ts",
+              "/node_modules/@codeui/kit/dist/types/utils/css.d.ts",
+              "/node_modules/@codeui/kit/dist/types/index.d.ts"
+            ],
+            "visibleProblems": [
+              0
+            ]
+          },
+          "node16-cjs": {
+            "name": ".",
+            "resolutionKind": "node16-cjs",
+            "resolution": {
+              "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+              "isJson": false,
+              "isTypeScript": true,
+              "trace": [
+                "======== Resolving module '@codeui/kit' from '/index.ts'. ========",
+                "Explicitly specified module resolution kind: 'Node16'.",
+                "Resolving in CJS mode with conditions 'require', 'types', 'node'.",
+                "File '/package.json' does not exist.",
+                "Loading module '@codeui/kit' from 'node_modules' folder, target file types: TypeScript, JavaScript, Declaration, JSON.",
+                "Searching all ancestor node_modules directories for preferred extensions: TypeScript, Declaration.",
+                "Found 'package.json' at '/node_modules/@codeui/kit/package.json'.",
+                "Entering conditional exports.",
+                "Matched 'exports' condition 'types'.",
+                "Using 'exports' subpath '.' with target './dist/types/index.d.ts'.",
+                "File '/node_modules/@codeui/kit/dist/types/index.d.ts' exists - use it as a name resolution result.",
+                "'package.json' has a 'peerDependencies' field.",
+                "Failed to find peerDependency 'solid-js'.",
+                "Resolved under condition 'types'.",
+                "Exiting conditional exports.",
+                "======== Module name '@codeui/kit' was successfully resolved to '/node_modules/@codeui/kit/dist/types/index.d.ts' with Package ID '@codeui/kit/dist/types/index.d.ts@0.1.5'. ========"
+              ]
+            },
+            "files": [
+              "/node_modules/typescript/lib/lib.d.ts",
+              "/node_modules/@codeui/kit/dist/types/index.d.ts"
+            ],
+            "visibleProblems": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30,
+              31,
+              32,
+              33,
+              34,
+              35,
+              36,
+              37,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45
+            ]
+          },
+          "node16-esm": {
+            "name": ".",
+            "resolutionKind": "node16-esm",
+            "resolution": {
+              "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+              "isJson": false,
+              "isTypeScript": true,
+              "trace": [
+                "======== Resolving module '@codeui/kit' from '/index.mts'. ========",
+                "Explicitly specified module resolution kind: 'Node16'.",
+                "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+                "File '/package.json' does not exist according to earlier cached lookups.",
+                "Loading module '@codeui/kit' from 'node_modules' folder, target file types: TypeScript, JavaScript, Declaration, JSON.",
+                "Searching all ancestor node_modules directories for preferred extensions: TypeScript, Declaration.",
+                "File '/node_modules/@codeui/kit/package.json' exists according to earlier cached lookups.",
+                "Entering conditional exports.",
+                "Matched 'exports' condition 'types'.",
+                "Using 'exports' subpath '.' with target './dist/types/index.d.ts'.",
+                "File '/node_modules/@codeui/kit/dist/types/index.d.ts' exists - use it as a name resolution result.",
+                "Resolved under condition 'types'.",
+                "Exiting conditional exports.",
+                "======== Module name '@codeui/kit' was successfully resolved to '/node_modules/@codeui/kit/dist/types/index.d.ts' with Package ID '@codeui/kit/dist/types/index.d.ts@0.1.5'. ========"
+              ]
+            },
+            "implementationResolution": {
+              "fileName": "/node_modules/@codeui/kit/dist/esm/index.js",
+              "isJson": false,
+              "isTypeScript": false,
+              "trace": [
+                "======== Resolving module '@codeui/kit' from '/index.mts'. ========",
+                "Explicitly specified module resolution kind: 'Node16'.",
+                "Resolving in ESM mode with conditions 'import', 'node'.",
+                "File '/package.json' does not exist according to earlier cached lookups.",
+                "Loading module '@codeui/kit' from 'node_modules' folder, target file types: TypeScript, JavaScript, JSON.",
+                "Searching all ancestor node_modules directories for preferred extensions: TypeScript.",
+                "File '/node_modules/@codeui/kit/package.json' exists according to earlier cached lookups.",
+                "Entering conditional exports.",
+                "Saw non-matching condition 'types'.",
+                "Saw non-matching condition 'solid'.",
+                "Matched 'exports' condition 'import'.",
+                "Using 'exports' subpath '.' with target './dist/esm/index.js'.",
+                "File name '/node_modules/@codeui/kit/dist/esm/index.js' has a '.js' extension - stripping it.",
+                "File '/node_modules/@codeui/kit/dist/esm/index.ts' does not exist.",
+                "File '/node_modules/@codeui/kit/dist/esm/index.tsx' does not exist.",
+                "Failed to resolve under condition 'import'.",
+                "Saw non-matching condition 'browser'.",
+                "Exiting conditional exports.",
+                "Searching all ancestor node_modules directories for fallback extensions: JavaScript, JSON.",
+                "File '/node_modules/@codeui/kit/package.json' exists according to earlier cached lookups.",
+                "Entering conditional exports.",
+                "Saw non-matching condition 'types'.",
+                "Saw non-matching condition 'solid'.",
+                "Matched 'exports' condition 'import'.",
+                "Using 'exports' subpath '.' with target './dist/esm/index.js'.",
+                "File name '/node_modules/@codeui/kit/dist/esm/index.js' has a '.js' extension - stripping it.",
+                "File '/node_modules/@codeui/kit/dist/esm/index.js' exists - use it as a name resolution result.",
+                "'package.json' has a 'peerDependencies' field.",
+                "Failed to find peerDependency 'solid-js'.",
+                "Resolved under condition 'import'.",
+                "Exiting conditional exports.",
+                "Resolution of non-relative name failed; trying with modern Node resolution features disabled to see if npm library needs configuration update.",
+                "File '/package.json' does not exist according to earlier cached lookups.",
+                "Loading module '@codeui/kit' from 'node_modules' folder, target file types: TypeScript.",
+                "Searching all ancestor node_modules directories for preferred extensions: TypeScript.",
+                "File '/node_modules/@codeui/kit/package.json' exists according to earlier cached lookups.",
+                "'package.json' does not have a 'typesVersions' field.",
+                "'package.json' does not have a 'main' field.",
+                "======== Module name '@codeui/kit' was successfully resolved to '/node_modules/@codeui/kit/dist/esm/index.js' with Package ID '@codeui/kit/dist/esm/index.js@0.1.5'. ========"
+              ]
+            },
+            "files": [
+              "/node_modules/typescript/lib/lib.d.ts",
+              "/node_modules/@codeui/kit/dist/types/index.d.ts"
+            ],
+            "visibleProblems": [
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30,
+              31,
+              32,
+              33,
+              34,
+              35,
+              36,
+              37,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45
+            ]
+          },
+          "bundler": {
+            "name": ".",
+            "resolutionKind": "bundler",
+            "resolution": {
+              "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+              "isJson": false,
+              "isTypeScript": true,
+              "trace": [
+                "======== Resolving module '@codeui/kit' from '/index.ts'. ========",
+                "Explicitly specified module resolution kind: 'Bundler'.",
+                "Resolving in CJS mode with conditions 'import', 'types'.",
+                "File '/package.json' does not exist.",
+                "Loading module '@codeui/kit' from 'node_modules' folder, target file types: TypeScript, JavaScript, Declaration, JSON.",
+                "Searching all ancestor node_modules directories for preferred extensions: TypeScript, Declaration.",
+                "Found 'package.json' at '/node_modules/@codeui/kit/package.json'.",
+                "Entering conditional exports.",
+                "Matched 'exports' condition 'types'.",
+                "Using 'exports' subpath '.' with target './dist/types/index.d.ts'.",
+                "File '/node_modules/@codeui/kit/dist/types/index.d.ts' exists - use it as a name resolution result.",
+                "'package.json' has a 'peerDependencies' field.",
+                "Failed to find peerDependency 'solid-js'.",
+                "Resolved under condition 'types'.",
+                "Exiting conditional exports.",
+                "======== Module name '@codeui/kit' was successfully resolved to '/node_modules/@codeui/kit/dist/types/index.d.ts' with Package ID '@codeui/kit/dist/types/index.d.ts@0.1.5'. ========"
+              ]
+            },
+            "implementationResolution": {
+              "fileName": "/node_modules/@codeui/kit/dist/esm/index.js",
+              "isJson": false,
+              "isTypeScript": false,
+              "trace": [
+                "======== Resolving module '@codeui/kit' from '/index.ts'. ========",
+                "Explicitly specified module resolution kind: 'Bundler'.",
+                "Resolving in CJS mode with conditions 'import'.",
+                "File '/package.json' does not exist.",
+                "Loading module '@codeui/kit' from 'node_modules' folder, target file types: TypeScript, JavaScript, JSON.",
+                "Searching all ancestor node_modules directories for preferred extensions: TypeScript.",
+                "Found 'package.json' at '/node_modules/@codeui/kit/package.json'.",
+                "Entering conditional exports.",
+                "Saw non-matching condition 'types'.",
+                "Saw non-matching condition 'solid'.",
+                "Matched 'exports' condition 'import'.",
+                "Using 'exports' subpath '.' with target './dist/esm/index.js'.",
+                "File name '/node_modules/@codeui/kit/dist/esm/index.js' has a '.js' extension - stripping it.",
+                "File '/node_modules/@codeui/kit/dist/esm/index.ts' does not exist.",
+                "File '/node_modules/@codeui/kit/dist/esm/index.tsx' does not exist.",
+                "Failed to resolve under condition 'import'.",
+                "Saw non-matching condition 'browser'.",
+                "Exiting conditional exports.",
+                "Searching all ancestor node_modules directories for fallback extensions: JavaScript, JSON.",
+                "File '/node_modules/@codeui/kit/package.json' exists according to earlier cached lookups.",
+                "Entering conditional exports.",
+                "Saw non-matching condition 'types'.",
+                "Saw non-matching condition 'solid'.",
+                "Matched 'exports' condition 'import'.",
+                "Using 'exports' subpath '.' with target './dist/esm/index.js'.",
+                "File name '/node_modules/@codeui/kit/dist/esm/index.js' has a '.js' extension - stripping it.",
+                "File '/node_modules/@codeui/kit/dist/esm/index.js' exists - use it as a name resolution result.",
+                "'package.json' has a 'peerDependencies' field.",
+                "Failed to find peerDependency 'solid-js'.",
+                "Resolved under condition 'import'.",
+                "Exiting conditional exports.",
+                "Resolution of non-relative name failed; trying with modern Node resolution features disabled to see if npm library needs configuration update.",
+                "File '/package.json' does not exist according to earlier cached lookups.",
+                "Loading module '@codeui/kit' from 'node_modules' folder, target file types: TypeScript.",
+                "Searching all ancestor node_modules directories for preferred extensions: TypeScript.",
+                "File '/node_modules/@codeui/kit/package.json' exists according to earlier cached lookups.",
+                "File '/node_modules/@codeui/kit.ts' does not exist.",
+                "File '/node_modules/@codeui/kit.tsx' does not exist.",
+                "'package.json' does not have a 'typesVersions' field.",
+                "'package.json' does not have a 'main' field.",
+                "File '/node_modules/@codeui/kit/index.ts' does not exist.",
+                "File '/node_modules/@codeui/kit/index.tsx' does not exist.",
+                "======== Module name '@codeui/kit' was successfully resolved to '/node_modules/@codeui/kit/dist/esm/index.js' with Package ID '@codeui/kit/dist/esm/index.js@0.1.5'. ========"
+              ]
+            },
+            "files": [
+              "/node_modules/typescript/lib/lib.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Button/Button.css.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Button/Button.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Field/Field.css.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Field/createBaseFieldProps.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Field/FieldError/createFieldErrorMessageProps.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Field/FieldError/FieldError.css.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Field/FieldLabel/FieldLabel.css.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Field/FieldLabel/createFieldLabelProps.d.ts",
+              "/node_modules/@codeui/kit/dist/types/utils/component.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/TextField/TextFieldLabel.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/TextField/TextField.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/TextField/TextField.css.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/TextArea/TextAreaLabel.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/TextArea/TextArea.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/NumberField/options.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/NumberField/NumberFieldLabel.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/NumberField/NumberField.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/IconButton/IconButton.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/CheckBox/CheckBox.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Dialog/Dialog.css.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Dialog/Dialog.d.ts",
+              "/node_modules/@codeui/kit/dist/types/utils/types.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Dropdown/Dropdown.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Dropdown/Dropdown.css.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Popover/Popover.css.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Popover/Popover.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Select/Select.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Select/createSelectValue.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/RadioList/RadioList.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Link/Link.css.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Link/Link.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Pagination/Pagination.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Tooltip/Tooltip.css.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Tooltip/Tooltip.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Tabs/Tabs.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/SegmentedControl/SegmentedControl.css.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/SegmentedControl/SegmentedControl.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/SegmentedControl/SegmentedControlItem.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Listbox/Listbox.d.ts",
+              "/node_modules/@codeui/kit/dist/types/components/Listbox/VirtualizedListbox.d.ts",
+              "/node_modules/@codeui/kit/dist/types/icons/SvgIcon.d.ts",
+              "/node_modules/@codeui/kit/dist/types/icons/CheckIcon.d.ts",
+              "/node_modules/@codeui/kit/dist/types/icons/CloseIcon.d.ts",
+              "/node_modules/@codeui/kit/dist/types/icons/NextIcon.d.ts",
+              "/node_modules/@codeui/kit/dist/types/icons/PreviousIcon.d.ts",
+              "/node_modules/@codeui/kit/dist/types/icons/SelectorIcon.d.ts",
+              "/node_modules/@codeui/kit/dist/types/icons/ChevronUpIcon.d.ts",
+              "/node_modules/@codeui/kit/dist/types/icons/ChevronDownIcon.d.ts",
+              "/node_modules/@codeui/kit/dist/types/icons/index.d.ts",
+              "/node_modules/@codeui/kit/dist/types/foundation/contract.css.d.ts",
+              "/node_modules/@codeui/kit/dist/types/foundation/themes.css.d.ts",
+              "/node_modules/@codeui/kit/dist/types/foundation/layout.css.d.ts",
+              "/node_modules/@codeui/kit/dist/types/foundation/breakpoints.d.ts",
+              "/node_modules/@codeui/kit/dist/types/foundation/responsive.d.ts",
+              "/node_modules/@codeui/kit/dist/types/foundation/index.d.ts",
+              "/node_modules/@codeui/kit/dist/types/utils/css.d.ts",
+              "/node_modules/@codeui/kit/dist/types/index.d.ts"
+            ],
+            "visibleProblems": [
+              46
+            ]
+          }
+        },
+        "hasTypes": true,
+        "isWildcard": false
+      }
+    },
+    "programInfo": {
+      "node10": {},
+      "node16": {
+        "moduleKinds": {
+          "/node_modules/typescript/lib/lib.d.ts": {
+            "detectedKind": 1,
+            "detectedReason": "no:type",
+            "reasonFileName": "/node_modules/typescript/lib/lib.d.ts"
+          },
+          "/node_modules/@codeui/kit/dist/types/index.d.ts": {
+            "detectedKind": 99,
+            "detectedReason": "type",
+            "reasonFileName": "/node_modules/@codeui/kit/package.json"
+          },
+          "/node_modules/@codeui/kit/dist/esm/index.js": {
+            "detectedKind": 99,
+            "detectedReason": "type",
+            "reasonFileName": "/node_modules/@codeui/kit/package.json"
+          }
+        }
+      },
+      "bundler": {}
+    },
+    "problems": [
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node10",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Field/fieldStyle",
+        "pos": 274,
+        "end": 306,
+        "trace": [
+          "======== Resolving module './components/Field/fieldStyle' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node10'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Field/fieldStyle', target file types: TypeScript, Declaration.",
+          "File '/node_modules/@codeui/kit/dist/types/components/Field/fieldStyle.ts' does not exist.",
+          "File '/node_modules/@codeui/kit/dist/types/components/Field/fieldStyle.tsx' does not exist.",
+          "File '/node_modules/@codeui/kit/dist/types/components/Field/fieldStyle.d.ts' does not exist.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Field/fieldStyle' does not exist, skipping all lookups in it.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Field/fieldStyle', target file types: JavaScript, JSON.",
+          "File '/node_modules/@codeui/kit/dist/types/components/Field/fieldStyle.js' does not exist.",
+          "File '/node_modules/@codeui/kit/dist/types/components/Field/fieldStyle.jsx' does not exist.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Field/fieldStyle' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Field/fieldStyle' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "CJSResolvesToESM",
+        "entrypoint": ".",
+        "resolutionKind": "node16-cjs"
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Button/Button",
+        "pos": 22,
+        "end": 51,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Button/Button' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Button/Button', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Button/Button' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Button/Button' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Button/Button.css",
+        "pos": 82,
+        "end": 115,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Button/Button.css' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Button/Button.css', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "File name '/node_modules/@codeui/kit/dist/types/components/Button/Button.css' has a '.css' extension - stripping it.",
+          "File '/node_modules/@codeui/kit/dist/types/components/Button/Button.d.css.ts' does not exist.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Button/Button.css' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Button/Button.css' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Button/Button",
+        "pos": 149,
+        "end": 178,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Button/Button' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Button/Button', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Button/Button' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Button/Button' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Field/Field.css",
+        "pos": 208,
+        "end": 239,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Field/Field.css' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Field/Field.css', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "File name '/node_modules/@codeui/kit/dist/types/components/Field/Field.css' has a '.css' extension - stripping it.",
+          "File '/node_modules/@codeui/kit/dist/types/components/Field/Field.d.css.ts' does not exist.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Field/Field.css' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Field/Field.css' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Field/fieldStyle",
+        "pos": 274,
+        "end": 306,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Field/fieldStyle' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Field/fieldStyle', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Field/fieldStyle' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Field/fieldStyle' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Field/createBaseFieldProps",
+        "pos": 365,
+        "end": 407,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Field/createBaseFieldProps' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Field/createBaseFieldProps', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Field/createBaseFieldProps' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Field/createBaseFieldProps' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Field/FieldError/createFieldErrorMessageProps",
+        "pos": 489,
+        "end": 550,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Field/FieldError/createFieldErrorMessageProps' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Field/FieldError/createFieldErrorMessageProps', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Field/FieldError/createFieldErrorMessageProps' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Field/FieldError/createFieldErrorMessageProps' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Field/FieldError/FieldError.css",
+        "pos": 585,
+        "end": 632,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Field/FieldError/FieldError.css' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Field/FieldError/FieldError.css', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "File name '/node_modules/@codeui/kit/dist/types/components/Field/FieldError/FieldError.css' has a '.css' extension - stripping it.",
+          "File '/node_modules/@codeui/kit/dist/types/components/Field/FieldError/FieldError.d.css.ts' does not exist.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Field/FieldError/FieldError.css' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Field/FieldError/FieldError.css' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Field/FieldLabel/FieldLabel.css",
+        "pos": 667,
+        "end": 714,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Field/FieldLabel/FieldLabel.css' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Field/FieldLabel/FieldLabel.css', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "File name '/node_modules/@codeui/kit/dist/types/components/Field/FieldLabel/FieldLabel.css' has a '.css' extension - stripping it.",
+          "File '/node_modules/@codeui/kit/dist/types/components/Field/FieldLabel/FieldLabel.d.css.ts' does not exist.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Field/FieldLabel/FieldLabel.css' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Field/FieldLabel/FieldLabel.css' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Field/FieldLabel/createFieldLabelProps",
+        "pos": 753,
+        "end": 807,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Field/FieldLabel/createFieldLabelProps' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Field/FieldLabel/createFieldLabelProps', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Field/FieldLabel/createFieldLabelProps' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Field/FieldLabel/createFieldLabelProps' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/TextField/TextField",
+        "pos": 850,
+        "end": 885,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/TextField/TextField' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/TextField/TextField', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/TextField/TextField' does not exist, skipping all lookups in it.",
+          "======== Module name './components/TextField/TextField' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/TextField/TextField.css",
+        "pos": 919,
+        "end": 958,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/TextField/TextField.css' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/TextField/TextField.css', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "File name '/node_modules/@codeui/kit/dist/types/components/TextField/TextField.css' has a '.css' extension - stripping it.",
+          "File '/node_modules/@codeui/kit/dist/types/components/TextField/TextField.d.css.ts' does not exist.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/TextField/TextField.css' does not exist, skipping all lookups in it.",
+          "======== Module name './components/TextField/TextField.css' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/TextField/TextField",
+        "pos": 995,
+        "end": 1030,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/TextField/TextField' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/TextField/TextField', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/TextField/TextField' does not exist, skipping all lookups in it.",
+          "======== Module name './components/TextField/TextField' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/TextArea/TextArea",
+        "pos": 1071,
+        "end": 1104,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/TextArea/TextArea' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/TextArea/TextArea', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/TextArea/TextArea' does not exist, skipping all lookups in it.",
+          "======== Module name './components/TextArea/TextArea' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/TextArea/TextArea",
+        "pos": 1140,
+        "end": 1173,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/TextArea/TextArea' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/TextArea/TextArea', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/TextArea/TextArea' does not exist, skipping all lookups in it.",
+          "======== Module name './components/TextArea/TextArea' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/NumberField/NumberField",
+        "pos": 1220,
+        "end": 1259,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/NumberField/NumberField' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/NumberField/NumberField', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/NumberField/NumberField' does not exist, skipping all lookups in it.",
+          "======== Module name './components/NumberField/NumberField' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/NumberField/NumberField",
+        "pos": 1298,
+        "end": 1337,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/NumberField/NumberField' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/NumberField/NumberField', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/NumberField/NumberField' does not exist, skipping all lookups in it.",
+          "======== Module name './components/NumberField/NumberField' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/IconButton/IconButton",
+        "pos": 1365,
+        "end": 1402,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/IconButton/IconButton' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/IconButton/IconButton', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/IconButton/IconButton' does not exist, skipping all lookups in it.",
+          "======== Module name './components/IconButton/IconButton' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/CheckBox/CheckBox",
+        "pos": 1428,
+        "end": 1461,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/CheckBox/CheckBox' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/CheckBox/CheckBox', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/CheckBox/CheckBox' does not exist, skipping all lookups in it.",
+          "======== Module name './components/CheckBox/CheckBox' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/CheckBox/CheckBox",
+        "pos": 1497,
+        "end": 1530,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/CheckBox/CheckBox' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/CheckBox/CheckBox', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/CheckBox/CheckBox' does not exist, skipping all lookups in it.",
+          "======== Module name './components/CheckBox/CheckBox' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Dialog/Dialog",
+        "pos": 1607,
+        "end": 1636,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Dialog/Dialog' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Dialog/Dialog', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Dialog/Dialog' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Dialog/Dialog' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Dialog/Dialog",
+        "pos": 1670,
+        "end": 1699,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Dialog/Dialog' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Dialog/Dialog', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Dialog/Dialog' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Dialog/Dialog' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Dropdown/Dropdown",
+        "pos": 1898,
+        "end": 1931,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Dropdown/Dropdown' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Dropdown/Dropdown', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Dropdown/Dropdown' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Dropdown/Dropdown' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Dropdown/Dropdown.css",
+        "pos": 1968,
+        "end": 2005,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Dropdown/Dropdown.css' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Dropdown/Dropdown.css', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "File name '/node_modules/@codeui/kit/dist/types/components/Dropdown/Dropdown.css' has a '.css' extension - stripping it.",
+          "File '/node_modules/@codeui/kit/dist/types/components/Dropdown/Dropdown.d.css.ts' does not exist.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Dropdown/Dropdown.css' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Dropdown/Dropdown.css' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Popover/Popover",
+        "pos": 2062,
+        "end": 2093,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Popover/Popover' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Popover/Popover', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Popover/Popover' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Popover/Popover' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Popover/Popover.css",
+        "pos": 2125,
+        "end": 2160,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Popover/Popover.css' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Popover/Popover.css', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "File name '/node_modules/@codeui/kit/dist/types/components/Popover/Popover.css' has a '.css' extension - stripping it.",
+          "File '/node_modules/@codeui/kit/dist/types/components/Popover/Popover.d.css.ts' does not exist.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Popover/Popover.css' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Popover/Popover.css' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Select/Select",
+        "pos": 2184,
+        "end": 2213,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Select/Select' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Select/Select', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Select/Select' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Select/Select' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Select/createSelectValue",
+        "pos": 2250,
+        "end": 2290,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Select/createSelectValue' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Select/createSelectValue', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Select/createSelectValue' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Select/createSelectValue' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/RadioList/RadioList",
+        "pos": 2332,
+        "end": 2367,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/RadioList/RadioList' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/RadioList/RadioList', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/RadioList/RadioList' does not exist, skipping all lookups in it.",
+          "======== Module name './components/RadioList/RadioList' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/RadioList/RadioList",
+        "pos": 2404,
+        "end": 2439,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/RadioList/RadioList' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/RadioList/RadioList', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/RadioList/RadioList' does not exist, skipping all lookups in it.",
+          "======== Module name './components/RadioList/RadioList' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Link/Link",
+        "pos": 2461,
+        "end": 2486,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Link/Link' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Link/Link', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Link/Link' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Link/Link' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Pagination/Pagination",
+        "pos": 2514,
+        "end": 2551,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Pagination/Pagination' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Pagination/Pagination', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Pagination/Pagination' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Pagination/Pagination' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Tooltip/Tooltip",
+        "pos": 2576,
+        "end": 2607,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Tooltip/Tooltip' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Tooltip/Tooltip', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Tooltip/Tooltip' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Tooltip/Tooltip' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Tabs/Tabs",
+        "pos": 2664,
+        "end": 2689,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Tabs/Tabs' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Tabs/Tabs', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Tabs/Tabs' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Tabs/Tabs' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/SegmentedControl/SegmentedControl",
+        "pos": 2723,
+        "end": 2772,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/SegmentedControl/SegmentedControl' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/SegmentedControl/SegmentedControl', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/SegmentedControl/SegmentedControl' does not exist, skipping all lookups in it.",
+          "======== Module name './components/SegmentedControl/SegmentedControl' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/SegmentedControl/SegmentedControl",
+        "pos": 2816,
+        "end": 2865,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/SegmentedControl/SegmentedControl' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/SegmentedControl/SegmentedControl', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/SegmentedControl/SegmentedControl' does not exist, skipping all lookups in it.",
+          "======== Module name './components/SegmentedControl/SegmentedControl' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/SegmentedControl/SegmentedControlItem",
+        "pos": 2903,
+        "end": 2956,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/SegmentedControl/SegmentedControlItem' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/SegmentedControl/SegmentedControlItem', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/SegmentedControl/SegmentedControlItem' does not exist, skipping all lookups in it.",
+          "======== Module name './components/SegmentedControl/SegmentedControlItem' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/SegmentedControl/SegmentedControlItem",
+        "pos": 3004,
+        "end": 3057,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/SegmentedControl/SegmentedControlItem' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/SegmentedControl/SegmentedControlItem', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/SegmentedControl/SegmentedControlItem' does not exist, skipping all lookups in it.",
+          "======== Module name './components/SegmentedControl/SegmentedControlItem' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Listbox/Listbox",
+        "pos": 3095,
+        "end": 3126,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Listbox/Listbox' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Listbox/Listbox', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Listbox/Listbox' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Listbox/Listbox' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Listbox/VirtualizedListbox",
+        "pos": 3162,
+        "end": 3204,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Listbox/VirtualizedListbox' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Listbox/VirtualizedListbox', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Listbox/VirtualizedListbox' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Listbox/VirtualizedListbox' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./icons/SvgIcon",
+        "pos": 3229,
+        "end": 3247,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './icons/SvgIcon' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/icons/SvgIcon', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/icons/SvgIcon' does not exist, skipping all lookups in it.",
+          "======== Module name './icons/SvgIcon' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./icons",
+        "pos": 3271,
+        "end": 3281,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './icons' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/icons', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "======== Module name './icons' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./foundation",
+        "pos": 3364,
+        "end": 3379,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './foundation' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/foundation', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "======== Module name './foundation' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./utils/css",
+        "pos": 3409,
+        "end": 3423,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './utils/css' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/utils/css', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/utils/css' does not exist, skipping all lookups in it.",
+          "======== Module name './utils/css' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "bundler",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Field/fieldStyle",
+        "pos": 274,
+        "end": 306,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Field/fieldStyle' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Bundler'.",
+          "Resolving in CJS mode with conditions 'import', 'types'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Field/fieldStyle', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "File '/node_modules/@codeui/kit/dist/types/components/Field/fieldStyle.ts' does not exist.",
+          "File '/node_modules/@codeui/kit/dist/types/components/Field/fieldStyle.tsx' does not exist.",
+          "File '/node_modules/@codeui/kit/dist/types/components/Field/fieldStyle.d.ts' does not exist.",
+          "File '/node_modules/@codeui/kit/dist/types/components/Field/fieldStyle.js' does not exist.",
+          "File '/node_modules/@codeui/kit/dist/types/components/Field/fieldStyle.jsx' does not exist.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Field/fieldStyle' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Field/fieldStyle' was not resolved. ========"
+        ]
+      }
+    ]
+  },
+  "problems": {
+    "InternalResolutionError": [
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node10",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Field/fieldStyle",
+        "pos": 274,
+        "end": 306,
+        "trace": [
+          "======== Resolving module './components/Field/fieldStyle' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node10'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Field/fieldStyle', target file types: TypeScript, Declaration.",
+          "File '/node_modules/@codeui/kit/dist/types/components/Field/fieldStyle.ts' does not exist.",
+          "File '/node_modules/@codeui/kit/dist/types/components/Field/fieldStyle.tsx' does not exist.",
+          "File '/node_modules/@codeui/kit/dist/types/components/Field/fieldStyle.d.ts' does not exist.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Field/fieldStyle' does not exist, skipping all lookups in it.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Field/fieldStyle', target file types: JavaScript, JSON.",
+          "File '/node_modules/@codeui/kit/dist/types/components/Field/fieldStyle.js' does not exist.",
+          "File '/node_modules/@codeui/kit/dist/types/components/Field/fieldStyle.jsx' does not exist.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Field/fieldStyle' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Field/fieldStyle' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Button/Button",
+        "pos": 22,
+        "end": 51,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Button/Button' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Button/Button', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Button/Button' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Button/Button' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Button/Button.css",
+        "pos": 82,
+        "end": 115,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Button/Button.css' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Button/Button.css', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "File name '/node_modules/@codeui/kit/dist/types/components/Button/Button.css' has a '.css' extension - stripping it.",
+          "File '/node_modules/@codeui/kit/dist/types/components/Button/Button.d.css.ts' does not exist.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Button/Button.css' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Button/Button.css' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Button/Button",
+        "pos": 149,
+        "end": 178,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Button/Button' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Button/Button', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Button/Button' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Button/Button' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Field/Field.css",
+        "pos": 208,
+        "end": 239,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Field/Field.css' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Field/Field.css', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "File name '/node_modules/@codeui/kit/dist/types/components/Field/Field.css' has a '.css' extension - stripping it.",
+          "File '/node_modules/@codeui/kit/dist/types/components/Field/Field.d.css.ts' does not exist.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Field/Field.css' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Field/Field.css' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Field/fieldStyle",
+        "pos": 274,
+        "end": 306,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Field/fieldStyle' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Field/fieldStyle', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Field/fieldStyle' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Field/fieldStyle' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Field/createBaseFieldProps",
+        "pos": 365,
+        "end": 407,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Field/createBaseFieldProps' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Field/createBaseFieldProps', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Field/createBaseFieldProps' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Field/createBaseFieldProps' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Field/FieldError/createFieldErrorMessageProps",
+        "pos": 489,
+        "end": 550,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Field/FieldError/createFieldErrorMessageProps' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Field/FieldError/createFieldErrorMessageProps', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Field/FieldError/createFieldErrorMessageProps' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Field/FieldError/createFieldErrorMessageProps' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Field/FieldError/FieldError.css",
+        "pos": 585,
+        "end": 632,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Field/FieldError/FieldError.css' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Field/FieldError/FieldError.css', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "File name '/node_modules/@codeui/kit/dist/types/components/Field/FieldError/FieldError.css' has a '.css' extension - stripping it.",
+          "File '/node_modules/@codeui/kit/dist/types/components/Field/FieldError/FieldError.d.css.ts' does not exist.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Field/FieldError/FieldError.css' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Field/FieldError/FieldError.css' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Field/FieldLabel/FieldLabel.css",
+        "pos": 667,
+        "end": 714,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Field/FieldLabel/FieldLabel.css' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Field/FieldLabel/FieldLabel.css', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "File name '/node_modules/@codeui/kit/dist/types/components/Field/FieldLabel/FieldLabel.css' has a '.css' extension - stripping it.",
+          "File '/node_modules/@codeui/kit/dist/types/components/Field/FieldLabel/FieldLabel.d.css.ts' does not exist.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Field/FieldLabel/FieldLabel.css' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Field/FieldLabel/FieldLabel.css' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Field/FieldLabel/createFieldLabelProps",
+        "pos": 753,
+        "end": 807,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Field/FieldLabel/createFieldLabelProps' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Field/FieldLabel/createFieldLabelProps', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Field/FieldLabel/createFieldLabelProps' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Field/FieldLabel/createFieldLabelProps' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/TextField/TextField",
+        "pos": 850,
+        "end": 885,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/TextField/TextField' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/TextField/TextField', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/TextField/TextField' does not exist, skipping all lookups in it.",
+          "======== Module name './components/TextField/TextField' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/TextField/TextField.css",
+        "pos": 919,
+        "end": 958,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/TextField/TextField.css' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/TextField/TextField.css', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "File name '/node_modules/@codeui/kit/dist/types/components/TextField/TextField.css' has a '.css' extension - stripping it.",
+          "File '/node_modules/@codeui/kit/dist/types/components/TextField/TextField.d.css.ts' does not exist.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/TextField/TextField.css' does not exist, skipping all lookups in it.",
+          "======== Module name './components/TextField/TextField.css' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/TextField/TextField",
+        "pos": 995,
+        "end": 1030,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/TextField/TextField' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/TextField/TextField', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/TextField/TextField' does not exist, skipping all lookups in it.",
+          "======== Module name './components/TextField/TextField' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/TextArea/TextArea",
+        "pos": 1071,
+        "end": 1104,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/TextArea/TextArea' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/TextArea/TextArea', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/TextArea/TextArea' does not exist, skipping all lookups in it.",
+          "======== Module name './components/TextArea/TextArea' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/TextArea/TextArea",
+        "pos": 1140,
+        "end": 1173,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/TextArea/TextArea' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/TextArea/TextArea', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/TextArea/TextArea' does not exist, skipping all lookups in it.",
+          "======== Module name './components/TextArea/TextArea' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/NumberField/NumberField",
+        "pos": 1220,
+        "end": 1259,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/NumberField/NumberField' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/NumberField/NumberField', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/NumberField/NumberField' does not exist, skipping all lookups in it.",
+          "======== Module name './components/NumberField/NumberField' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/NumberField/NumberField",
+        "pos": 1298,
+        "end": 1337,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/NumberField/NumberField' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/NumberField/NumberField', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/NumberField/NumberField' does not exist, skipping all lookups in it.",
+          "======== Module name './components/NumberField/NumberField' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/IconButton/IconButton",
+        "pos": 1365,
+        "end": 1402,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/IconButton/IconButton' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/IconButton/IconButton', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/IconButton/IconButton' does not exist, skipping all lookups in it.",
+          "======== Module name './components/IconButton/IconButton' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/CheckBox/CheckBox",
+        "pos": 1428,
+        "end": 1461,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/CheckBox/CheckBox' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/CheckBox/CheckBox', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/CheckBox/CheckBox' does not exist, skipping all lookups in it.",
+          "======== Module name './components/CheckBox/CheckBox' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/CheckBox/CheckBox",
+        "pos": 1497,
+        "end": 1530,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/CheckBox/CheckBox' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/CheckBox/CheckBox', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/CheckBox/CheckBox' does not exist, skipping all lookups in it.",
+          "======== Module name './components/CheckBox/CheckBox' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Dialog/Dialog",
+        "pos": 1607,
+        "end": 1636,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Dialog/Dialog' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Dialog/Dialog', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Dialog/Dialog' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Dialog/Dialog' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Dialog/Dialog",
+        "pos": 1670,
+        "end": 1699,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Dialog/Dialog' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Dialog/Dialog', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Dialog/Dialog' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Dialog/Dialog' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Dropdown/Dropdown",
+        "pos": 1898,
+        "end": 1931,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Dropdown/Dropdown' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Dropdown/Dropdown', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Dropdown/Dropdown' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Dropdown/Dropdown' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Dropdown/Dropdown.css",
+        "pos": 1968,
+        "end": 2005,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Dropdown/Dropdown.css' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Dropdown/Dropdown.css', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "File name '/node_modules/@codeui/kit/dist/types/components/Dropdown/Dropdown.css' has a '.css' extension - stripping it.",
+          "File '/node_modules/@codeui/kit/dist/types/components/Dropdown/Dropdown.d.css.ts' does not exist.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Dropdown/Dropdown.css' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Dropdown/Dropdown.css' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Popover/Popover",
+        "pos": 2062,
+        "end": 2093,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Popover/Popover' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Popover/Popover', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Popover/Popover' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Popover/Popover' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Popover/Popover.css",
+        "pos": 2125,
+        "end": 2160,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Popover/Popover.css' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Popover/Popover.css', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "File name '/node_modules/@codeui/kit/dist/types/components/Popover/Popover.css' has a '.css' extension - stripping it.",
+          "File '/node_modules/@codeui/kit/dist/types/components/Popover/Popover.d.css.ts' does not exist.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Popover/Popover.css' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Popover/Popover.css' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Select/Select",
+        "pos": 2184,
+        "end": 2213,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Select/Select' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Select/Select', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Select/Select' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Select/Select' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Select/createSelectValue",
+        "pos": 2250,
+        "end": 2290,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Select/createSelectValue' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Select/createSelectValue', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Select/createSelectValue' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Select/createSelectValue' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/RadioList/RadioList",
+        "pos": 2332,
+        "end": 2367,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/RadioList/RadioList' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/RadioList/RadioList', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/RadioList/RadioList' does not exist, skipping all lookups in it.",
+          "======== Module name './components/RadioList/RadioList' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/RadioList/RadioList",
+        "pos": 2404,
+        "end": 2439,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/RadioList/RadioList' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/RadioList/RadioList', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/RadioList/RadioList' does not exist, skipping all lookups in it.",
+          "======== Module name './components/RadioList/RadioList' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Link/Link",
+        "pos": 2461,
+        "end": 2486,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Link/Link' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Link/Link', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Link/Link' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Link/Link' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Pagination/Pagination",
+        "pos": 2514,
+        "end": 2551,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Pagination/Pagination' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Pagination/Pagination', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Pagination/Pagination' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Pagination/Pagination' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Tooltip/Tooltip",
+        "pos": 2576,
+        "end": 2607,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Tooltip/Tooltip' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Tooltip/Tooltip', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Tooltip/Tooltip' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Tooltip/Tooltip' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Tabs/Tabs",
+        "pos": 2664,
+        "end": 2689,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Tabs/Tabs' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Tabs/Tabs', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Tabs/Tabs' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Tabs/Tabs' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/SegmentedControl/SegmentedControl",
+        "pos": 2723,
+        "end": 2772,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/SegmentedControl/SegmentedControl' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/SegmentedControl/SegmentedControl', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/SegmentedControl/SegmentedControl' does not exist, skipping all lookups in it.",
+          "======== Module name './components/SegmentedControl/SegmentedControl' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/SegmentedControl/SegmentedControl",
+        "pos": 2816,
+        "end": 2865,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/SegmentedControl/SegmentedControl' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/SegmentedControl/SegmentedControl', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/SegmentedControl/SegmentedControl' does not exist, skipping all lookups in it.",
+          "======== Module name './components/SegmentedControl/SegmentedControl' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/SegmentedControl/SegmentedControlItem",
+        "pos": 2903,
+        "end": 2956,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/SegmentedControl/SegmentedControlItem' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/SegmentedControl/SegmentedControlItem', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/SegmentedControl/SegmentedControlItem' does not exist, skipping all lookups in it.",
+          "======== Module name './components/SegmentedControl/SegmentedControlItem' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/SegmentedControl/SegmentedControlItem",
+        "pos": 3004,
+        "end": 3057,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/SegmentedControl/SegmentedControlItem' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/SegmentedControl/SegmentedControlItem', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/SegmentedControl/SegmentedControlItem' does not exist, skipping all lookups in it.",
+          "======== Module name './components/SegmentedControl/SegmentedControlItem' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Listbox/Listbox",
+        "pos": 3095,
+        "end": 3126,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Listbox/Listbox' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Listbox/Listbox', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Listbox/Listbox' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Listbox/Listbox' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Listbox/VirtualizedListbox",
+        "pos": 3162,
+        "end": 3204,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Listbox/VirtualizedListbox' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Listbox/VirtualizedListbox', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Listbox/VirtualizedListbox' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Listbox/VirtualizedListbox' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./icons/SvgIcon",
+        "pos": 3229,
+        "end": 3247,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './icons/SvgIcon' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/icons/SvgIcon', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/icons/SvgIcon' does not exist, skipping all lookups in it.",
+          "======== Module name './icons/SvgIcon' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./icons",
+        "pos": 3271,
+        "end": 3281,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './icons' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/icons', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "======== Module name './icons' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./foundation",
+        "pos": 3364,
+        "end": 3379,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './foundation' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/foundation', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "======== Module name './foundation' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "node16",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./utils/css",
+        "pos": 3409,
+        "end": 3423,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './utils/css' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Node16'.",
+          "Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/utils/css', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "Directory '/node_modules/@codeui/kit/dist/types/utils/css' does not exist, skipping all lookups in it.",
+          "======== Module name './utils/css' was not resolved. ========"
+        ]
+      },
+      {
+        "kind": "InternalResolutionError",
+        "resolutionOption": "bundler",
+        "fileName": "/node_modules/@codeui/kit/dist/types/index.d.ts",
+        "moduleSpecifier": "./components/Field/fieldStyle",
+        "pos": 274,
+        "end": 306,
+        "resolutionMode": 99,
+        "trace": [
+          "======== Resolving module './components/Field/fieldStyle' from '/node_modules/@codeui/kit/dist/types/index.d.ts'. ========",
+          "Explicitly specified module resolution kind: 'Bundler'.",
+          "Resolving in CJS mode with conditions 'import', 'types'.",
+          "Loading module as file / folder, candidate module location '/node_modules/@codeui/kit/dist/types/components/Field/fieldStyle', target file types: TypeScript, JavaScript, Declaration, JSON.",
+          "File '/node_modules/@codeui/kit/dist/types/components/Field/fieldStyle.ts' does not exist.",
+          "File '/node_modules/@codeui/kit/dist/types/components/Field/fieldStyle.tsx' does not exist.",
+          "File '/node_modules/@codeui/kit/dist/types/components/Field/fieldStyle.d.ts' does not exist.",
+          "File '/node_modules/@codeui/kit/dist/types/components/Field/fieldStyle.js' does not exist.",
+          "File '/node_modules/@codeui/kit/dist/types/components/Field/fieldStyle.jsx' does not exist.",
+          "Directory '/node_modules/@codeui/kit/dist/types/components/Field/fieldStyle' does not exist, skipping all lookups in it.",
+          "======== Module name './components/Field/fieldStyle' was not resolved. ========"
+        ]
+      }
+    ],
+    "CJSResolvesToESM": [
+      {
+        "kind": "CJSResolvesToESM",
+        "entrypoint": ".",
+        "resolutionKind": "node16-cjs"
+      }
+    ]
+  }
+}

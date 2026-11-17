@@ -1,0 +1,2 @@
+.settings-row-demo-pane { display: flex; flex-direction: column; gap: var(--cui-space-6); padding: var(--cui-space-2) var(--cui-space-6) var(--cui-space-6); background: var(--cui-surface-panel); border-radius: var(--cui-radius-card); }
+.settings-row-demo-segments { display: flex; width: min(100%, calc(84px * var(--segments))); }

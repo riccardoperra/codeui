@@ -1,0 +1,153 @@
+---
+title: "Text"
+description: "Text set in the kit type scale, with tones and polymorphic headings."
+---
+
+## When to use
+
+Use `Text` for any interface text that needs a size, weight or color from the kit tokens: a panel title, a row description, a hint under a field, an error line. It renders a `span` by default and any element through `as`, so one component covers headings, paragraphs and labels.
+
+## When to choose another component
+
+- Use the label and description built into a field, such as `label` and `description` on [`TextField`](/docs/components/text-field), instead of a `Text` next to the control. The field links them to the input for assistive technology.
+- Use [`Link`](/docs/components/link) for text that navigates. Inkstone keeps accent color for links and inline actions, and `Text` has no accent tone.
+- Use [`Badge`](/docs/components/badge) for a one-word status with a fill, and [`Alert`](/docs/components/alert) for a message that needs an icon and a surface.
+
+## Live demo
+
+<SolidDemo name="text/basic" />
+
+## Anatomy
+
+<Anatomy demo="text/anatomy" />
+
+| Export | Renders                        | `classes` key | `data-cui`  | Role |
+| ------ | ------------------------------ | ------------- | ----------- | ---- |
+| `Text` | `span`, or the element in `as` | `root`        | `text-root` | None |
+
+The root also renders these attributes, which the stylesheet reads:
+
+| Attribute     | Values                                                       | Default   |
+| ------------- | ------------------------------------------------------------ | --------- |
+| `data-size`   | `badge`, `xs`, `caption`, `sm`, `md`, `lg`, `xl`, `2xl`      | `sm`      |
+| `data-weight` | `normal`, `medium`, `semibold`                               | `normal`  |
+| `data-tone`   | `default`, `muted`, `hint`, `label`, `danger`, `success`     | `default` |
+
+## Variants
+
+### Size
+
+<SolidDemo name="text/size" />
+
+`size` takes a key of the `--cui-font-size-*` scale. The default is `sm`.
+
+| `size`    | Token                     | Value | Inkstone step |
+| --------- | ------------------------- | ----- | ------------- |
+| `badge`   | `--cui-font-size-badge`   | 11px  | Micro         |
+| `xs`      | `--cui-font-size-xs`      | 12px  | Meta          |
+| `caption` | `--cui-font-size-caption` | 13px  | Base          |
+| `sm`      | `--cui-font-size-sm`      | 14px  | Label         |
+| `md`      | `--cui-font-size-md`      | 16px  | Title         |
+| `lg`      | `--cui-font-size-lg`      | 18px  | Display       |
+| `xl`      | `--cui-font-size-xl`      | 20px  | Display       |
+| `2xl`     | `--cui-font-size-2xl`     | 24px  | Display       |
+
+Inkstone uses Display sizes only for sheet titles and announcements. See [Typography](/docs/design/typography) for the use of each step.
+
+### Weight
+
+<SolidDemo name="text/weight" />
+
+`weight` takes `normal` (400), `medium` (500) or `semibold` (600). The default is `normal`. Inkstone reads them as "400 reads, 500 acts, 600 heads".
+
+### Tone
+
+<SolidDemo name="text/tone" />
+
+`tone` picks a text color role. The default is `default`.
+
+| `tone`    | Token                                            | Use                                                 |
+| --------- | ------------------------------------------------ | --------------------------------------------------- |
+| `default` | `--cui-text-default`                             | Titles, values the user set, the selected item      |
+| `muted`   | `--cui-text-muted`                               | Descriptions, summaries and metadata                |
+| `hint`    | `--cui-text-hint`                                | Hints and timestamps                                |
+| `label`   | `--cui-text-label`                               | Group labels over a set of controls                 |
+| `danger`  | `--cui-text-danger`                              | Error messages                                      |
+| `success` | `--cui-action-success-active` mixed with `--cui-text-panel` | Confirmation messages                    |
+
+Most interface text in Inkstone is secondary, so `muted` is the common tone for anything under a title. Hierarchy comes from tone first, then weight, then size.
+
+### Polymorphic element
+
+<SolidDemo name="text/as" />
+
+`as` renders a different element. The default `span` has no meaning, so set `as` to `h1` through `h6` for a heading, `p` for a paragraph or `label` for a form label. The size does not follow the element. An `h2` renders at `sm` until you set `size`. Every other prop, such as `for` on a `label`, goes to that element.
+
+### Truncation
+
+<SolidDemo name="text/truncate" />
+
+`Text` has no truncation prop. To truncate a value to one line, set `overflow: hidden`, `text-overflow: ellipsis` and `white-space: nowrap` in your own class, and `min-width: 0` when the text sits in a flex row. Inkstone truncates values, never labels, and keeps the full text reachable. The full string stays in the DOM, so screen readers read all of it. Add a [`Tooltip`](/docs/components/tooltip) on a focusable parent when sighted users need it too.
+
+## Ready API
+
+### `Text`
+
+`Text` renders a `span`, or the element in `as`, with the kit type class and the data attributes listed in [Anatomy](#anatomy).
+
+<PropsTable name="Text" />
+
+`Text` takes every prop of the element in `as`, so there is no inherited Kobalte table. The exported types are `TextProps`, `TextVariants`, `TextClasses` and `TextPart`.
+
+## Styled parts API
+
+Import the parts from `@codeui/kit/text`.
+
+### `Root`
+
+`Root` is the same component as `Text`. `@codeui/kit` exports it as `Text`, and `@codeui/kit/text` exports it as `Root`, with `RootProps` equal to `TextProps`. It wraps no Kobalte primitive.
+
+## Styles export
+
+### `textStyles`
+
+`textStyles.root(variants)` returns the classes `Text` renders for the same props: a base class plus one class each for size, weight and tone. Omitted variants fall back to `sm`, `normal` and the `default` color. An element that uses the returned string needs no data attribute.
+
+`@codeui/kit` and `@codeui/kit/text` both export `textStyles`, `TextStyles` and `textParts`. Prefer `<Text as="…">`. Call `textStyles` only on markup you cannot render through the component.
+
+## Accessibility
+
+`Text` renders a `span` with no role. Its semantics come from the element in `as`. Pick the heading level from the document outline, not from the size you want, and set the size separately.
+
+Color alone does not carry meaning. A `danger` line should say what failed in words, and an error tied to a field belongs in the field's `errorMessage`, which links it to the input.
+
+## SSR notes
+
+`Text` renders completely on the server: the element, the class and the data attributes. It has no effects, IDs or portals.
+
+## Theming hooks
+
+| Variable                       | Use                                                |
+| ------------------------------ | -------------------------------------------------- |
+| `--cui-font-family-sans`       | Font family                                        |
+| `--cui-font-size-*`            | Size, one per `size` key                           |
+| `--cui-font-weight-*`          | Weight, one per `weight` key                       |
+| `--cui-font-line-height-normal`| Line height, 1.5 for every size                    |
+| `--cui-text-default`, `--cui-text-muted`, `--cui-text-hint`, `--cui-text-label`, `--cui-text-danger` | Tone colors |
+| `--cui-action-success-active`, `--cui-text-panel` | The `success` tone, mixed 85% to 15%   |
+
+The defaults are in [Tokens](/docs/foundations/tokens) and [Typography and spacing](/docs/foundations/typography-and-spacing).
+
+## Composition examples
+
+A settings row pairs a `medium` title with a `muted` description inside a [`Stack`](/docs/components/stack):
+
+<SolidDemo name="stack/settings-row" />
+
+For a full panel, see [Build settings](/docs/patterns/build-settings).
+
+## Related
+
+- [`Stack`](/docs/components/stack) places blocks of text. `Text` styles them.
+- [`Kbd`](/docs/components/kbd) shows a key inside running text.
+- [Typography](/docs/design/typography) gives the Inkstone rules for each step of the scale.

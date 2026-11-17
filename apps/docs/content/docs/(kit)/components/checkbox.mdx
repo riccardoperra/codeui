@@ -1,0 +1,95 @@
+---
+title: "Checkbox"
+description: "A box that toggles one option on or off."
+---
+
+## When to use
+
+Select independent export options or collect agreement before form submission.
+
+## When to choose another component
+
+Use [Switch](/docs/components/switch) for a setting that takes effect immediately. Checkbox also supports a mixed selection through `indeterminate`.
+
+## Live demo
+
+<SolidDemo name="checkbox/basic" />
+
+## Anatomy
+
+<Anatomy demo="checkbox/anatomy" />
+
+| Export     | Renders               | `slotClasses` key | `data-cui` | Role              |
+| ---------- | --------------------- | ----------------- | ---------- | ----------------- |
+| `Checkbox` | Root and hidden input | `root`            | `checkbox` | checkbox on input |
+
+Slots `input`, `control`, `label`, and `errorLabel` customize descendants. Those descendants have no `data-cui` name.
+
+## Variants
+
+<SolidDemo name="checkbox/sizes" />
+
+`theme` accepts `filled` and `inline` through BaseFieldProps. `inline`, the default, draws the box as an outline on the surface. `filled` gives the box the field fill (`--cui-surface-input`) and no outline. The root carries `data-field-theme`.
+
+## States
+
+<SolidDemo name="checkbox/controlled" />
+
+<SolidDemo name="checkbox/disabled" />
+
+<SolidDemo name="checkbox/read-only" />
+
+<SolidDemo name="checkbox/required" />
+
+<SolidDemo name="checkbox/invalid" />
+
+<SolidDemo name="checkbox/indeterminate" />
+
+## Ready API
+
+### `Checkbox`
+
+Renders the complete field. `CheckBoxProps` is the public props type.
+
+<PropsTable name="Checkbox" />
+
+<PropsTable name="CheckboxInherited" />
+
+Inherited behavior follows the [Kobalte checkbox contract](https://kobalte.dev/docs/core/components/checkbox).
+
+## Accessibility
+
+### Keyboard
+
+| Key   | Action                    |
+| ----- | ------------------------- |
+| Tab   | Focus the control.        |
+| Space | Toggle the checked state. |
+
+### ARIA
+
+The input exposes checkbox semantics, including `aria-checked="mixed"` for indeterminate selection. Description and error components associate hint text with the field. `validationState="invalid"` exposes invalid state. Supply a visible label or an accessible name.
+
+### Focus
+
+These controls do not open an overlay or move focus on mount. The native checkbox is visually hidden, so keyboard focus draws the 2px focus ring around the box on `:focus-visible`. Disabled controls cannot receive keyboard focus. Read-only controls remain focusable and do not change value.
+
+## SSR notes
+
+The root, labels, controls, and form inputs render on the server. No part uses a portal. Keep initial values and component order stable between server and client so generated IDs hydrate consistently. Create signals per component instance.
+
+## Theming hooks
+
+The component reads these foundation variables. Shared field labels and messages also use the field typography and validation tokens.
+
+`--cui-action-brand-base`, `--cui-action-brand-hover`, `--cui-action-brand-text`, `--cui-border-width-strong`, `--cui-entries`, `--cui-focus-color`, `--cui-focus-offset`, `--cui-focus-width`, `--cui-radius-md`, `--cui-space-2`, `--cui-surface-input`, `--cui-text-hint`.
+
+## Composition examples
+
+<SolidDemo name="checkbox/form" />
+
+The form demo reads the submitted value with `FormData`. Only checked, enabled inputs submit their value. Unchecked and disabled inputs are omitted. An omitted checkbox or switch value defaults to `"on"`.
+
+## Related
+
+Use [Switch](/docs/components/switch) for a setting that takes effect immediately. Checkbox also supports a mixed selection through `indeterminate`. See [Control helpers](/docs/utilities/control-helpers) for custom compositions.

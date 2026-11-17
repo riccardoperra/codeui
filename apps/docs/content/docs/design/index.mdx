@@ -1,0 +1,71 @@
+---
+title: Inkstone
+description: The design language of CodeUI and CodeImage. A dark, matte interface carved into islands, where the user's work is the only thing that shines.
+---
+
+An inkstone is the stone used in East Asian calligraphy to grind ink. It is dark and matte, and its surface is carved into a well where the ink collects. The stone never draws attention to itself. The ink is the only thing on it that shines.
+
+Inkstone, the design language of `@codeui/kit`, follows the same idea. **The interface is the stone and the user's work is the ink.** The interface stays dark, matte and steady, so the user's work is the most vivid thing on the screen. In CodeImage the work is a code screenshot. In another app it can be a chart, a document or a canvas.
+
+<FigInkstone n={1} caption={<><b>The work is the only thing that shines.</b> Everything around it is a few steps of grey, and blue appears once. Point at a number or a line of the legend to find the part.</>} />
+
+The name also pairs with the kit's possible future name, Meok (먹), the ink stick that is ground on the stone.
+
+## Six traits
+
+Each trait describes something CodeImage already does, and each one rules out a common alternative.
+
+### Carved, not stacked
+
+Most dark interfaces build depth by stacking lighter cards with shadows on a dark page. In Inkstone the page is the lighter surface (`#151516`) and the islands are darker (`#0f0f10`). The islands read as recessed into the page, and they have no border and no shadow. Depth comes from a few small steps of fill.
+
+### Matte, not glossy
+
+The interface has no glass, blur, gradients or glow. CodeImage used to offer a "Glass" window style and replaced it with a thin hairline. Colour and effects belong to the user's content, which keeps the stone around it plain.
+
+### The work moves, controls respond
+
+When a value changes, the content changes smoothly: a radius softens, a theme fades in. Controls answer quickly, usually in 120ms, or not at all. Anything opened from the keyboard appears instantly. Motion is used to explain a change, and is never there just to decorate.
+
+### One signal
+
+The interface is neutral grey. A single blue marks keyboard focus, the selected item, a control that is on, something new, and the one primary action on a surface. Because blue appears so rarely, it is always noticed when it does appear.
+
+### Roomy, not dense
+
+Controls are 36px tall, the side panel is 360px wide, and one section is open at a time. A tighter build with 28px rows was tried and rejected. When a panel fills up, remove something rather than shrink it.
+
+### Exact, not approximate
+
+Radii are concentric, numbers use tabular figures, and labels reserve the width of their longest value. Nothing shifts by a pixel when a value changes. The precision is not something users notice directly, but it makes the interface feel solid.
+
+## The specification and these pages
+
+The rules are kept in one file, [`packages/kit/DESIGN.md`](https://github.com/riccardoperra/codeui/blob/main/packages/kit/DESIGN.md). It is short and says what to do, so people and coding agents can read it before any change. It ships inside the package, so an app always reads the version that matches its kit:
+
+```
+node_modules/@codeui/kit/DESIGN.md
+```
+
+These pages explain why each rule exists, which builds were tried, what was learned from them, and where the kit still disagrees with its own rules. When the two disagree, `DESIGN.md` wins, and the page should be fixed.
+
+## Using Inkstone in an app
+
+1. Point your agents and your own `DESIGN.md` at `node_modules/@codeui/kit/DESIGN.md`. Your file records only your product's decisions. CodeImage's file, for example, keeps the frame, the theme picker and the export flow.
+2. Use the `--cui-*` tokens. If you need a value the kit does not have, define it in your app on top of the kit tokens.
+3. Run the review checklist in `DESIGN.md` §12 on every visual change.
+4. When your app finds a better rule, change it in the kit, so every app gets it.
+
+## The principles
+
+Every rule in the specification applies one of these principles to a specific case.
+
+1. **The work is the product.** Nothing that opens may move, resize or rezoom the user's content.
+2. **Islands, not lines.** Space and fill separate groups. Borders do not.
+3. **Relaxed density.** Remove things instead of shrinking them.
+4. **Overlay, don't reflow.** Pickers and menus open over the layout.
+5. **Nothing jumps.** Reserve space for the widest value and keep the primary action in place.
+6. **Colour is a signal.** Blue has five jobs and no others.
+7. **Preview, then commit.** Hovering shows the result. A click saves it, and Escape puts the old value back.
+8. **One component per pattern, one place per thing.** There is one settings dialog and one command menu. Different layouts place them, but none keeps its own copy.
+9. **Keyboard first, keyboard instant.** Everything works from the keyboard, and nothing opened from the keyboard animates.

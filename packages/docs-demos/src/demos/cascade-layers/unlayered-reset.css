@@ -1,0 +1,8 @@
+/*
+ * An unlayered reset, scoped to the demo. Unlayered rules beat @layer cui,
+ * so this reset also strips the kit button.
+ */
+.unlayered-reset button {
+	background: none;
+	border: 0;
+}

@@ -1,0 +1,34 @@
+---
+title: "Classes"
+description: "Add classes to individual kit parts."
+---
+
+## `mergeClasses`
+
+<SolidDemo name="classes/field" />
+
+`mergeClasses` is a public root export from `@codeui/kit`.
+Its signature is `(...classNames: Array<string | null | undefined>) => string`.
+It removes falsy entries and joins the remaining strings with one space.
+Empty input returns an empty string. Duplicate classes and whitespace inside a string remain unchanged.
+It does not resolve Tailwind conflicts. Booleans, arrays, and objects are not accepted by its TypeScript signature.
+
+## `FieldClasses`
+
+`FieldClasses` is a public type from `@codeui/kit`. Every key is optional and accepts a string.
+The keys identify named parts. They are not literal `data-cui` attribute values.
+
+| Key | TextField `data-cui` |
+| --- | --- |
+| `root` | `text-field` |
+| `input` | `text-field-input` |
+| `label` | `text-field-label` |
+| `description` | `text-field-description` |
+| `errorMessage` | `text-field-error-message` |
+
+The `classes` prop adds these classes to the kit's classes. Other components have their own part keys. Consult the component's anatomy and classes type.
+For styled parts, pass `class` directly to the part you render.
+
+`slotClasses` is a deprecated alias on components that still expose it, retained until 1.0. Prefer `classes` for new code.
+TextField merges the old and new values when both are present. Its legacy `errorLabel` key maps to the new `errorMessage` key.
+Classes do not change keyboard behavior, ARIA, or server rendering. Override visual properties in your stylesheet while preserving visible focus and disabled states.

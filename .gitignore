@@ -34,3 +34,6 @@ Thumbs.db
 # Local Netlify folder
 .netlify
 storybook-static
+
+# kit hydration test: server HTML written by test/hydration.ssr.test.tsx
+.hydration

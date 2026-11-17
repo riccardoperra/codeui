@@ -1,0 +1,117 @@
+---
+title: "Spinner"
+description: "An animated indicator for work of unknown length."
+---
+
+## When to use
+
+Use Spinner for a brief operation with no measurable completion value, such as preparing a PNG export.
+
+## When to choose another component
+
+Use [Skeleton](/docs/components/skeleton) to reserve the shape of content while it loads. Use [Progress](/docs/components/progress) when you can measure completion or need a labeled task bar.
+
+## Live demo
+
+<SolidDemo name="spinner/basic" />
+
+## Anatomy
+
+<Anatomy demo="spinner/anatomy" />
+
+| Export      | Renders  | `classes` key | `data-cui`          | Role |
+| ----------- | -------- | ------------- | ------------------- | ---- |
+| `Indicator` | `path`   | `indicator`   | `spinner-indicator` | None |
+| `Root`      | `svg`    | `root`        | `spinner-root`      | None |
+| `Track`     | `circle` | `track`       | `spinner-track`     | None |
+
+The ready Spinner adds status semantics to Root only when `label` is nonempty.
+
+## Variants
+
+### Sizes
+
+<SolidDemo name="spinner/sizes" />
+
+`sm`, `md`, and `lg` set the SVG dimensions. The default is `md`. Spinner inherits `currentColor` and has no tone or appearance variants.
+
+## Ready API
+
+### `Spinner`
+
+Spinner renders Root, Track, and Indicator. A nonempty `label` makes the ready component a status region. Without `label`, it is decorative.
+
+<PropsTable name="Spinner" />
+
+Native attributes pass through to the root.
+
+## Styled parts API
+
+Import the parts from `@codeui/kit/spinner`. These wrappers use native SVG elements, not Kobalte primitives.
+
+### `Indicator`
+
+Quarter-circle stroke in the root viewBox.
+
+<PropsTable name="SpinnerIndicator" />
+
+### `Root`
+
+SVG with a 24 by 24 viewBox. It accepts `size`, but does not add status semantics.
+
+<PropsTable name="SpinnerRoot" />
+
+### `Track`
+
+Full circle with a muted current-color stroke.
+
+<PropsTable name="SpinnerTrack" />
+
+## Styles export
+
+### `spinnerStyles`
+
+`spinnerStyles` is typed as `SpinnerStyles`. Each part function returns a class string. Use it when you own the markup and semantics. `root({ size })` selects the size. `track()` and `indicator()` return fixed classes.
+
+## Accessibility
+
+### Keyboard
+
+Spinner is non-interactive and has no keyboard commands. It does not add a tab stop.
+
+### ARIA
+
+With a nonempty `label`, Spinner sets `role="status"` and `aria-label`. Status has implicit polite live-region semantics. Without `label`, it sets `aria-hidden="true"` and no role. Supplying only `aria-label` does not enable the ready component's status role. Styled Root needs explicit semantics from you.
+
+### Focus
+
+Mounting or removing the component does not move focus. There is no open or close focus cycle. The containing control or application owns focus.
+
+### Reduced motion
+
+The root rotates during normal motion. Under `prefers-reduced-motion: reduce`, rotation stops and the SVG stays visible. The label and status semantics remain.
+
+## SSR notes
+
+The component renders inline on the server. It has no portal or client-only effect. Use the same initial props on the server and client. The server includes the SVG and label semantics. CSS handles rotation and reduced motion.
+
+## Theming hooks
+
+The component reads these theme variables.
+
+- `--cui-motion-duration-slow`
+- `--cui-space-3`
+- `--cui-space-4`
+- `--cui-space-6`
+
+Defaults come from the kit theme. See [Color](/docs/design/color), [Typography](/docs/design/typography), [Space and shape](/docs/design/space-and-shape), and [Motion](/docs/design/motion).
+
+## Composition examples
+
+<SolidDemo name="spinner/busy-button" />
+
+The busy button names the operation and sets `aria-busy`. Its Spinner omits `label` to avoid a second status region. The disabled button keeps the export from running twice.
+
+## Related
+
+Use [Skeleton](/docs/components/skeleton) to reserve the shape of content while it loads. Use [Progress](/docs/components/progress) when you can measure completion or need a labeled task bar.

@@ -1,0 +1,116 @@
+---
+title: VirtualizedListbox
+description: A scrolling list that mounts only visible options and nearby rows.
+---
+
+## When to use
+
+Use VirtualizedListbox for hundreds of visible choices in a fixed-height scrolling area.
+
+## When to choose another component
+
+Use [Listbox](/docs/components/listbox) for a short collection or sections. Use [Combobox](/docs/components/combobox) when typing is the main way to find an option.
+
+## Live demo
+
+<SolidDemo name="virtualized-listbox/basic" />
+
+This collection contains 500 snippet records across five languages, ten topics, and ten operations.
+Only the visible rows and overscan rows mount. The root class supplies a fixed height and `overflow: auto`.
+Without a bounded scroll container, virtualization cannot limit the visible window.
+
+## Anatomy
+
+<Anatomy demo="virtualized-listbox/anatomy" />
+
+| Export | Renders | `classes` key | `data-cui` | Role |
+| --- | --- | --- | --- | --- |
+| `VirtualizedListbox` | `ul` | `root` | `listbox` | listbox |
+| Internal spacer | Positioned `div` | none | none | Scroll geometry |
+| Internal `ListboxItem` | Positioned `li` | `item` | `listbox-item` | option |
+| Internal label | `div` | `itemLabel` | `listbox-item-label` | Label text |
+| Internal indicator | `div` | `itemIndicator` | `listbox-item-indicator` | Selection check |
+
+## Variants
+
+<SolidDemo name="virtualized-listbox/sizes" />
+
+Row estimates are 30px for `xs`, 36px for `sm`, and 40px for `md`. The default estimate is 40px.
+`virtualizerOptions.estimateSize` overrides the estimate. Keep labels on one line and match estimates to rendered row height.
+`overscan` defaults to five rows. Smooth scrolling is unsupported.
+
+## States
+
+The size gallery includes multiple selection, an initial selection, and a disabled font.
+The main demo uses controlled single selection. Selection uses string keys in a set, as it does in Listbox.
+`selectionMode="none"` disables selection while preserving navigation. `disallowEmptySelection` prevents clearing the last selected key.
+
+<SolidDemo name="virtualized-listbox/empty" />
+
+An empty collection has no rows. Supply your own empty message outside the list.
+
+## Ready API
+
+### `VirtualizedListbox`
+
+Renders the shared Listbox with a virtual spacer and positioned rows.
+
+<PropsTable name="VirtualizedListbox" />
+<PropsTable name="VirtualizedListboxInherited" />
+
+Options are a flat array of `{ value: string; label: string; disabled?: boolean }` objects.
+The component fixes `optionValue`, `optionTextValue`, and `optionDisabled` to those fields.
+It owns `scrollToItem` and the virtualized renderer. Grouped options are not supported by this flat renderer.
+`class` targets the scroll root. `classes` uses the shared Listbox part keys. The public props do not accept `style`.
+Other selection props follow the [Kobalte Listbox contract](https://kobalte.dev/docs/core/components/listbox).
+
+## Accessibility
+
+### Keyboard
+
+| Key | Action |
+| --- | --- |
+| Tab | Enters the list at the selected or first enabled option, then leaves the list. |
+| Up Arrow, Down Arrow | Moves focus between enabled options. |
+| Home, End | Moves to the first or last enabled option. |
+| Enter, Space | Selects the focused option according to the selection mode. |
+| Characters | Moves focus to the next matching text value. |
+| Shift + Arrow | Extends a multiple selection when the selection behavior supports ranges. |
+
+### ARIA
+
+The root has `role="listbox"`. Items have `role="option"`, `aria-selected`, and `aria-disabled` when applicable.
+Multiple selection adds `aria-multiselectable`. Supply `aria-label` or `aria-labelledby` for the list.
+`optionTextValue` provides the plain text used for typeahead when labels contain custom markup.
+
+### Focus
+
+Options take DOM focus. Hover focuses options by default. Disabled options are skipped.
+The list stays inline, so there is no open or close cycle and no focus restoration target.
+
+Keyboard focus navigation calls the virtualizer's `scrollToIndex` for the target key, so offscreen options can receive focus.
+This hook follows focus navigation. It is not an imperative scroll-to-selection API.
+
+## SSR notes
+
+The root and virtual spacer render on the server. There is no measured viewport on the server, so visible rows are established on the client.
+Keep the option array, keys, and initial selection stable for hydration. There is no portal.
+
+## Theming hooks
+
+The list reads `--cui-surface-menu`, `--cui-surface-menu-hover`, `--cui-text-menu`, `--cui-text-selected`, and `--cui-accent-selection`.
+Geometry uses `--cui-radius-xs`, `--cui-radius-sm`, `--cui-radius-lg`, `--cui-control-height-md`, and `--cui-space-1`, `--cui-space-2`, `--cui-space-3`.
+Text uses `--cui-font-size-sm`, `--cui-font-size-md`, and `--cui-font-weight-normal`.
+The legacy bordered mode reads `--cui-border-width`, `--cui-border-divider`, and `--cui-focus-color`.
+The theme also references `--cui-shadow-menu` and `--cui-border-menu`.
+Keep the neutral theme and borderless default for Inkstone. The primary highlight and bordered mode are legacy styles.
+
+## Composition examples
+
+The main demo combines a bounded collection, controlled selection, an external selection summary, and part classes.
+Keep the summary outside the scrolling root so changing selection does not alter row geometry.
+
+## Related
+
+- [Listbox](/docs/components/listbox) supports short collections and section headings.
+- [Combobox](/docs/components/combobox) adds text entry and filtering.

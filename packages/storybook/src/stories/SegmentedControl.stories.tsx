@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "storybook-solidjs";
+import type { Meta, StoryObj } from "storybook-solidjs-vite";
 
 import { Button, SegmentedControl, SegmentedControlItem } from "@codeui/kit";
 import { createSignal, For } from "solid-js";
@@ -205,4 +205,20 @@ export const FluidWidth: Story = {
 			</div>
 		);
 	},
+};
+
+export const FieldApi: Story = {
+	render: () => (
+		<div style={{ height: "160px" }}>
+			<SegmentedControl
+				fluid
+				defaultValue="one"
+				classes={{ list: "segment-list", item: "segment-item" }}
+				onEscapeKeyDown={event => event.preventDefault()}
+			>
+				<SegmentedControlItem value="one">One</SegmentedControlItem>
+				<SegmentedControlItem value="two">Two</SegmentedControlItem>
+			</SegmentedControl>
+		</div>
+	),
 };

@@ -1,0 +1,4806 @@
+{
+  "repo": "codeimage",
+  "ref": "origin/main",
+  "commit": "8fbbf85be89db0fc92c3af2672102c4d1b8e0dca",
+  "scannedFiles": 941,
+  "method": "git ls-tree + git cat-file on apps/** and packages/** .ts/.tsx/.mts (no .d.ts); static import/export-from and side-effect imports",
+  "libraries": {
+    "@codeimage/ui": {
+      "importingFiles": 154,
+      "byZone": {
+        "appOther": 106,
+        "unifiedEditor": 43,
+        "other": 5
+      },
+      "symbols": {
+        "themeVars": {
+          "importingFiles": 69,
+          "files": [
+            "apps/codeimage/src/components/Animation/AnimatePanel.css.ts",
+            "apps/codeimage/src/components/Animation/AnimationPreview.css.ts",
+            "apps/codeimage/src/components/Animation/PhoneSteps.css.ts",
+            "apps/codeimage/src/components/Animation/StepsMenu.css.ts",
+            "apps/codeimage/src/components/Animation/StripTimeline.css.ts",
+            "apps/codeimage/src/components/Animation/easing.css.ts",
+            "apps/codeimage/src/components/Footer/Footer.css.ts",
+            "apps/codeimage/src/components/Frame/Frame.css.ts",
+            "apps/codeimage/src/components/Frame/FrameHandler.css.ts",
+            "apps/codeimage/src/components/Frame/FrameSkeleton.css.ts",
+            "apps/codeimage/src/components/Presets/EmptyPresetFallback/EmptyPresetFallback.css.ts",
+            "apps/codeimage/src/components/Presets/PresetSwitcher/PresetSwitcher.css.ts",
+            "apps/codeimage/src/components/PropertyEditor/EditorSidebar.css.ts",
+            "apps/codeimage/src/components/PropertyEditor/SidebarPopover/SidebarPopover.css.ts",
+            "apps/codeimage/src/components/PropertyEditor/controls/AspectRatioPicker/AspetRatioPicker.css.ts",
+            "apps/codeimage/src/components/PropertyEditor/controls/ColorPicker/CustomColorPicker.css.ts",
+            "apps/codeimage/src/components/PropertyEditor/controls/FontPicker/FontPicker.css.ts",
+            "apps/codeimage/src/components/PropertyEditor/controls/ImagePicker/ImagePicker.css.ts",
+            "apps/codeimage/src/components/Scaffold/Sidebar/Sidebar.css.ts",
+            "apps/codeimage/src/components/Terminal/MacOsTerminal/MacOsTerminal.css.ts",
+            "apps/codeimage/src/components/Terminal/Tabs/Tab/Tab.css.ts",
+            "apps/codeimage/src/components/Terminal/Tabs/TabAddButton/TabAddButton.css.ts",
+            "apps/codeimage/src/components/Terminal/Tabs/TabIcon/TabIcon.css.ts",
+            "apps/codeimage/src/components/Terminal/Tabs/TabName/TabName.css.ts",
+            "apps/codeimage/src/components/Terminal/WindowsTerminal/WindowsTerminal.css.ts",
+            "apps/codeimage/src/components/Terminal/terminal.css.ts",
+            "apps/codeimage/src/components/ThemeSwitcher/ThemeBoxSkeleton.css.ts",
+            "apps/codeimage/src/components/ThemeSwitcher/ThemeSwitcher.css.ts",
+            "apps/codeimage/src/components/Toolbar/SettingsDialog.css.ts",
+            "apps/codeimage/src/components/Toolbar/SettingsDialog.tsx",
+            "apps/codeimage/src/components/Toolbar/Toolbar.css.ts",
+            "apps/codeimage/src/components/UserBadge/UserBadge.css.ts",
+            "apps/codeimage/src/components/WhatsNew/whats-new.css.ts",
+            "apps/codeimage/src/pages/Dashboard/Dashboard.css.ts",
+            "apps/codeimage/src/pages/Dashboard/components/DashboardHeader/DashboardHeader.css.ts",
+            "apps/codeimage/src/pages/Dashboard/components/ProjectItem/ProjectItem.css.ts",
+            "apps/codeimage/src/pages/Dashboard/components/ProjectItemSkeleton/ProjectItemSkeleton.css.ts",
+            "apps/codeimage/src/pages/Dashboard/components/ProjectList/ProjectList.css.ts",
+            "apps/codeimage/src/pages/Dashboard/components/ProjectToolbar/ProjectToolbar.css.ts",
+            "apps/codeimage/src/pages/NotFound/NotFoundPage.css.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/agent-tools/tool-activity.css.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/command-menu/command-menu.css.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/canvas-toolbar.css.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/controls.css.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/overlay.css.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/saved-signatures.css.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/shortcut-help.css.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/signature.css.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/local-ai.css.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/ImagePickerInput.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/choice-fields.css.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/panel.css.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/sheet.css.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export.css.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/header.css.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/settings.css.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/snippet.css.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/theme-styles/aa-list/aa-list.css.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/theme-styles/orb/orb.css.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/theme-styles/picker.css.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/theme-styles/window/window.css.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/dock.css.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/accordion.css.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/rail.css.ts",
+            "apps/codeimage/src/theme/global.css.ts",
+            "apps/codeimage/src/ui/Skeleton/Skeleton.css.ts",
+            "packages/highlight/dev/Editor/Editor.css.ts",
+            "packages/highlight/dev/global.css.ts",
+            "packages/highlight/dev/index.css.ts"
+          ]
+        },
+        "Box": {
+          "importingFiles": 38,
+          "files": [
+            "apps/codeimage/src/components/Footer/Footer.tsx",
+            "apps/codeimage/src/components/Frame/Frame.tsx",
+            "apps/codeimage/src/components/Presets/PresetUpdateDialog.tsx",
+            "apps/codeimage/src/components/PropertyEditor/EditorForm.tsx",
+            "apps/codeimage/src/components/PropertyEditor/PanelRow.tsx",
+            "apps/codeimage/src/components/PropertyEditor/controls/ColorPicker/ColorPickerPresetItem.tsx",
+            "apps/codeimage/src/components/Terminal/GlassReflection/TerminalGlassReflection.tsx",
+            "apps/codeimage/src/components/Terminal/MacOsTerminal/MacOsTerminal.tsx",
+            "apps/codeimage/src/components/Terminal/Tabs/TabIcon/TabIcon.tsx",
+            "apps/codeimage/src/components/Terminal/WindowsTerminal/WindowsTerminal.tsx",
+            "apps/codeimage/src/components/Toolbar/SettingsDialog.tsx",
+            "apps/codeimage/src/components/Toolbar/ToolbarSnippetName.tsx",
+            "apps/codeimage/src/components/Watermark/Watermark.tsx",
+            "apps/codeimage/src/pages/Dashboard/Dashboard.tsx",
+            "apps/codeimage/src/pages/Dashboard/components/DashboardHeader/DashboardHeader.tsx",
+            "apps/codeimage/src/pages/Dashboard/components/ProjectItem/ProjectItem.tsx",
+            "apps/codeimage/src/pages/Dashboard/components/ProjectList/ProjectEmptyListMessage.tsx",
+            "apps/codeimage/src/pages/Dashboard/components/ProjectList/ProjectErrorListFallback.tsx",
+            "apps/codeimage/src/pages/Dashboard/components/ProjectList/ProjectList.tsx",
+            "apps/codeimage/src/pages/Dashboard/components/ProjectToolbar/ProjectToolbar.tsx",
+            "apps/codeimage/src/pages/NotFound/NotFoundPage.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/AspectRatioPicker.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/EmptyPresetFallback.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/ExperimentalFeatureTooltip.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/FontSystemPicker.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/GitHubLoginButton.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/ImagePicker.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/ImagePickerInput.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/ImagePickerList.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/PresetSwitcher.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/PresetTooltipContent.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/SidebarPopoverTitle.tsx",
+            "apps/codeimage/src/state/assets/AssetsImage.tsx",
+            "apps/codeimage/src/ui/ExperimentalFeatureTooltip/ExperimentalFeatureTooltip.tsx",
+            "apps/codeimage/src/ui/GitHubLoginButton/GitHubLoginButton.tsx",
+            "apps/codeimage/src/ui/Skeleton/Skeleton.tsx",
+            "packages/highlight/dev/Editor/Editor.tsx",
+            "packages/highlight/dev/index.tsx"
+          ]
+        },
+        "SvgIcon": {
+          "importingFiles": 24,
+          "files": [
+            "apps/codeimage/src/components/Animation/icons.tsx",
+            "apps/codeimage/src/components/Icons/CheckCircle.tsx",
+            "apps/codeimage/src/components/Icons/Clipboard.tsx",
+            "apps/codeimage/src/components/Icons/CloseIcon.tsx",
+            "apps/codeimage/src/components/Icons/CloudIcon.tsx",
+            "apps/codeimage/src/components/Icons/Collection.tsx",
+            "apps/codeimage/src/components/Icons/DotVertical.tsx",
+            "apps/codeimage/src/components/Icons/Download.tsx",
+            "apps/codeimage/src/components/Icons/EmptyCircle.tsx",
+            "apps/codeimage/src/components/Icons/Exclamation.tsx",
+            "apps/codeimage/src/components/Icons/ExternalLink.tsx",
+            "apps/codeimage/src/components/Icons/Folder.tsx",
+            "apps/codeimage/src/components/Icons/Hint.tsx",
+            "apps/codeimage/src/components/Icons/Pencil.tsx",
+            "apps/codeimage/src/components/Icons/PlusIcon.tsx",
+            "apps/codeimage/src/components/Icons/ShareIcon.tsx",
+            "apps/codeimage/src/components/Icons/SparklesIcon.tsx",
+            "apps/codeimage/src/components/Presets/PresetUpdateDialog.tsx",
+            "apps/codeimage/src/components/Terminal/WindowsTerminal/WindowsTerminalControls.tsx",
+            "apps/codeimage/src/components/Toolbar/SettingsDialog.tsx",
+            "apps/codeimage/src/components/Toolbar/ShareButton.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/GitHubLoginButton.tsx",
+            "apps/codeimage/src/ui/ExperimentalFeatureTooltip/ExperimentalFeatureTooltip.tsx",
+            "apps/codeimage/src/ui/GitHubLoginButton/GitHubLoginButton.tsx"
+          ]
+        },
+        "backgroundColorVar": {
+          "importingFiles": 19,
+          "files": [
+            "apps/codeimage/src/components/FeatureBadge/UnsupportedFeatureBanner.css.ts",
+            "apps/codeimage/src/components/Frame/Frame.css.ts",
+            "apps/codeimage/src/components/PropertyEditor/controls/ColorPicker/ColorPickerPresetItem.tsx",
+            "apps/codeimage/src/components/PropertyEditor/controls/ColorPicker/CustomColorPicker.css.ts",
+            "apps/codeimage/src/components/Terminal/MacOsTerminal/MacOsTerminal.css.ts",
+            "apps/codeimage/src/components/Terminal/MacOsTerminal/MacOsTerminal.tsx",
+            "apps/codeimage/src/components/ThemeSwitcher/ThemeBox.tsx",
+            "apps/codeimage/src/components/ThemeSwitcher/ThemeBoxSkeleton.css.ts",
+            "apps/codeimage/src/components/ThemeSwitcher/ThemeSwitcher.css.ts",
+            "apps/codeimage/src/components/Toolbar/Toolbar.css.ts",
+            "apps/codeimage/src/index.tsx",
+            "apps/codeimage/src/pages/Dashboard/components/ProjectItem/ProjectItem.css.ts",
+            "apps/codeimage/src/pages/Dashboard/components/ProjectItem/ProjectItem.tsx",
+            "apps/codeimage/src/pages/Dashboard/components/ProjectItemSkeleton/ProjectItemSkeleton.css.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/shortcut-help.css.ts",
+            "packages/highlight/dev/Editor/Editor.css.ts",
+            "packages/highlight/dev/Editor/Editor.tsx",
+            "packages/highlight/dev/global.css.ts",
+            "packages/highlight/dev/index.tsx"
+          ]
+        },
+        "SvgIconProps": {
+          "importingFiles": 19,
+          "files": [
+            "apps/codeimage/src/components/Icons/CheckCircle.tsx",
+            "apps/codeimage/src/components/Icons/Clipboard.tsx",
+            "apps/codeimage/src/components/Icons/CloseIcon.tsx",
+            "apps/codeimage/src/components/Icons/CloudIcon.tsx",
+            "apps/codeimage/src/components/Icons/Collection.tsx",
+            "apps/codeimage/src/components/Icons/DotVertical.tsx",
+            "apps/codeimage/src/components/Icons/Download.tsx",
+            "apps/codeimage/src/components/Icons/EmptyCircle.tsx",
+            "apps/codeimage/src/components/Icons/Exclamation.tsx",
+            "apps/codeimage/src/components/Icons/ExternalLink.tsx",
+            "apps/codeimage/src/components/Icons/Folder.tsx",
+            "apps/codeimage/src/components/Icons/Hint.tsx",
+            "apps/codeimage/src/components/Icons/Pencil.tsx",
+            "apps/codeimage/src/components/Icons/PlusIcon.tsx",
+            "apps/codeimage/src/components/Icons/ShareIcon.tsx",
+            "apps/codeimage/src/components/Icons/SparklesIcon.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/GitHubLoginButton.tsx",
+            "apps/codeimage/src/ui/ExperimentalFeatureTooltip/ExperimentalFeatureTooltip.tsx",
+            "apps/codeimage/src/ui/GitHubLoginButton/GitHubLoginButton.tsx"
+          ]
+        },
+        "Text": {
+          "importingFiles": 19,
+          "files": [
+            "apps/codeimage/src/components/Presets/PresetUpdateDialog.tsx",
+            "apps/codeimage/src/components/PropertyEditor/PanelHeader.tsx",
+            "apps/codeimage/src/components/PropertyEditor/PanelRow.tsx",
+            "apps/codeimage/src/components/Terminal/Tabs/Tab/WindowTab.tsx",
+            "apps/codeimage/src/components/ThemeSwitcher/ThemeBox.tsx",
+            "apps/codeimage/src/components/Toolbar/SettingsDialog.tsx",
+            "apps/codeimage/src/components/Toolbar/ToolbarSnippetName.tsx",
+            "apps/codeimage/src/pages/Dashboard/components/ProjectItem/ProjectItem.tsx",
+            "apps/codeimage/src/pages/Dashboard/components/ProjectList/ProjectEmptyListMessage.tsx",
+            "apps/codeimage/src/pages/Dashboard/components/ProjectList/ProjectErrorListFallback.tsx",
+            "apps/codeimage/src/pages/NotFound/NotFoundPage.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/ReadOnlyNotice.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/AspectRatioPicker.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/EmptyPresetFallback.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/FontSystemPicker.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/ImagePickerInput.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/PresetSwitcher.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/SidebarPopoverTitle.tsx",
+            "apps/codeimage/src/ui/ConfirmDialog/ConfirmDialog.tsx"
+          ]
+        },
+        "withThemeMode": {
+          "importingFiles": 17,
+          "files": [
+            "apps/codeimage/src/components/Frame/Frame.css.ts",
+            "apps/codeimage/src/components/Frame/FrameHandler.css.ts",
+            "apps/codeimage/src/components/Frame/FrameSkeleton.css.ts",
+            "apps/codeimage/src/components/Presets/EmptyPresetFallback/EmptyPresetFallback.css.ts",
+            "apps/codeimage/src/components/Presets/PresetSwitcher/PresetSwitcher.css.ts",
+            "apps/codeimage/src/components/PropertyEditor/controls/AspectRatioPicker/AspetRatioPicker.css.ts",
+            "apps/codeimage/src/components/PropertyEditor/controls/ColorPicker/CustomColorPicker.css.ts",
+            "apps/codeimage/src/components/PropertyEditor/controls/ImagePicker/ImagePicker.css.ts",
+            "apps/codeimage/src/components/ThemeSwitcher/ThemeBoxSkeleton.css.ts",
+            "apps/codeimage/src/pages/Dashboard/components/ProjectItem/ProjectItem.css.ts",
+            "apps/codeimage/src/pages/Dashboard/components/ProjectItemSkeleton/ProjectItemSkeleton.css.ts",
+            "apps/codeimage/src/pages/Dashboard/components/ProjectList/ProjectList.css.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/shortcut-help.css.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/settings.css.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/theme-styles/aa-list/aa-list.css.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/theme-styles/picker.css.ts",
+            "apps/codeimage/src/ui/Skeleton/Skeleton.css.ts"
+          ]
+        },
+        "toast": {
+          "importingFiles": 13,
+          "files": [
+            "apps/codeimage/src/components/Animation/AnimationPreview.tsx",
+            "apps/codeimage/src/components/CustomEditor/CanvasEditor.tsx",
+            "apps/codeimage/src/components/Toolbar/CopyAltTextButton.tsx",
+            "apps/codeimage/src/components/Toolbar/ExportSuccessToast.tsx",
+            "apps/codeimage/src/core/rasterize/notify-font-fallback.ts",
+            "apps/codeimage/src/pages/Dashboard/components/CreateNewProjectButton/CreateNewProjectButton.tsx",
+            "apps/codeimage/src/pages/Dashboard/components/ProjectItem/ProjectItem.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/PresetSwitcher.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export.tsx",
+            "apps/codeimage/src/state/editor/activeEditor.ts",
+            "apps/codeimage/src/state/editor/createEditorSync.ts",
+            "apps/codeimage/src/state/presets/presets.ts",
+            "apps/codeimage/src/state/signatures/signatures.ts"
+          ]
+        },
+        "themes/darkTheme:darkGrayScale": {
+          "importingFiles": 11,
+          "files": [
+            "apps/codeimage/src/components/Frame/FrameSkeleton.css.ts",
+            "apps/codeimage/src/components/Presets/EmptyPresetFallback/EmptyPresetFallback.css.ts",
+            "apps/codeimage/src/components/Presets/PresetSwitcher/PresetSwitcher.css.ts",
+            "apps/codeimage/src/components/PropertyEditor/controls/AspectRatioPicker/AspetRatioPicker.css.ts",
+            "apps/codeimage/src/components/PropertyEditor/controls/ColorPicker/CustomColorPicker.css.ts",
+            "apps/codeimage/src/components/PropertyEditor/controls/ImagePicker/ImagePicker.css.ts",
+            "apps/codeimage/src/components/ThemeSwitcher/ThemeBoxSkeleton.css.ts",
+            "apps/codeimage/src/pages/Dashboard/components/ProjectItem/ProjectItem.css.ts",
+            "apps/codeimage/src/pages/Dashboard/components/ProjectItemSkeleton/ProjectItemSkeleton.css.ts",
+            "apps/codeimage/src/pages/Dashboard/components/ProjectList/ProjectList.css.ts",
+            "apps/codeimage/src/ui/Skeleton/Skeleton.css.ts"
+          ]
+        },
+        "HStack": {
+          "importingFiles": 10,
+          "files": [
+            "apps/codeimage/src/components/CustomEditor/CanvasEditor.tsx",
+            "apps/codeimage/src/components/Presets/PresetUpdateDialog.tsx",
+            "apps/codeimage/src/components/Toolbar/SettingsDialog.tsx",
+            "apps/codeimage/src/components/Toolbar/ToolbarSnippetName.tsx",
+            "apps/codeimage/src/pages/Dashboard/components/DashboardHeader/DashboardHeader.tsx",
+            "apps/codeimage/src/pages/Dashboard/components/ProjectItem/ProjectItem.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/ImagePickerList.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/SidebarPopoverTitle.tsx",
+            "apps/codeimage/src/ui/ConfirmDialog/ConfirmDialog.tsx",
+            "apps/codeimage/src/ui/ConfirmDialog/RenameContentDialog.tsx"
+          ]
+        },
+        "FlexField": {
+          "importingFiles": 7,
+          "files": [
+            "apps/codeimage/src/components/Toolbar/SettingsDialog.tsx",
+            "apps/codeimage/src/components/Toolbar/ToolbarSnippetName.tsx",
+            "apps/codeimage/src/pages/Dashboard/components/ProjectToolbar/ProjectToolbar.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/ColorPicker.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/FontPicker.tsx",
+            "apps/codeimage/src/ui/ConfirmDialog/RenameContentDialog.tsx",
+            "packages/highlight/dev/index.tsx"
+          ]
+        },
+        "VStack": {
+          "importingFiles": 7,
+          "files": [
+            "apps/codeimage/src/components/Toolbar/SettingsDialog.tsx",
+            "apps/codeimage/src/pages/Dashboard/components/ProjectList/ProjectEmptyListMessage.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/ColorPicker.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/EmptyPresetFallback.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/FontPicker.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/ImagePicker.tsx",
+            "apps/codeimage/src/state/assets/AssetsImage.tsx"
+          ]
+        },
+        "LoadingCircle": {
+          "importingFiles": 6,
+          "files": [
+            "apps/codeimage/src/components/Toolbar/ToolbarSnippetName.tsx",
+            "apps/codeimage/src/pages/Dashboard/components/CreateNewProjectButton/CreateNewProjectButton.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/ReadOnlyNotice.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/EmptyPresetFallback.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/FontSystemPicker.tsx",
+            "apps/codeimage/src/state/assets/AssetsImage.tsx"
+          ]
+        },
+        "Link": {
+          "importingFiles": 5,
+          "files": [
+            "apps/codeimage/src/components/Footer/Footer.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/ExperimentalFeatureTooltip.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/FontSystemPicker.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/PresetTooltipContent.tsx",
+            "apps/codeimage/src/ui/ExperimentalFeatureTooltip/ExperimentalFeatureTooltip.tsx"
+          ]
+        },
+        "FadeInOutTransition": {
+          "importingFiles": 3,
+          "files": [
+            "apps/codeimage/src/components/Frame/Frame.tsx",
+            "apps/codeimage/src/components/Terminal/TerminalHost.tsx",
+            "apps/codeimage/src/components/Watermark/Watermark.tsx"
+          ]
+        },
+        "textFieldStyles": {
+          "importingFiles": 3,
+          "files": [
+            "apps/codeimage/src/components/PropertyEditor/controls/AspectRatioPicker/AspetRatioPicker.css.ts",
+            "apps/codeimage/src/components/PropertyEditor/controls/ColorPicker/CustomColorPicker.css.ts",
+            "apps/codeimage/src/components/PropertyEditor/controls/FontPicker/FontPicker.css.ts"
+          ]
+        },
+        "FieldLabel": {
+          "importingFiles": 3,
+          "files": [
+            "apps/codeimage/src/components/Toolbar/SettingsDialog.tsx",
+            "apps/codeimage/src/ui/ConfirmDialog/RenameContentDialog.tsx",
+            "packages/highlight/dev/index.tsx"
+          ]
+        },
+        "colorVar": {
+          "importingFiles": 3,
+          "files": [
+            "apps/codeimage/src/components/Toolbar/Toolbar.css.ts",
+            "packages/highlight/dev/Editor/Editor.css.ts",
+            "packages/highlight/dev/Editor/Editor.tsx"
+          ]
+        },
+        "adaptiveFullScreenHeight": {
+          "importingFiles": 3,
+          "files": [
+            "apps/codeimage/src/pages/Dashboard/Dashboard.css.ts",
+            "apps/codeimage/src/pages/NotFound/NotFoundPage.css.ts",
+            "packages/highlight/dev/index.css.ts"
+          ]
+        },
+        "RangeField": {
+          "importingFiles": 3,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/controls/ControlRow.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/choice-fields.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/sections.tsx"
+          ]
+        },
+        "RemoteSvgIcon": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/components/Terminal/Tabs/TabIcon/TabIcon.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/command-menu/CommandMenu.tsx"
+          ]
+        },
+        "Badge": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/components/UserBadge/UserBadge.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/UserBadge.tsx"
+          ]
+        },
+        "CodeImageThemeProvider": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/index.tsx",
+            "packages/highlight/dev/index.tsx"
+          ]
+        },
+        "themes/lightTheme:(side effect)": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/index.tsx",
+            "packages/highlight/dev/index.tsx"
+          ]
+        },
+        "textStyles": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/Dashboard/components/ProjectToolbar/ProjectToolbar.css.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/shortcut-help.css.ts"
+          ]
+        },
+        "fontSize": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/components/PropertyEditor/EditorSidebar.css.ts"
+          ]
+        },
+        "dynamicFullHeight": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/components/Scaffold/Scaffold.tsx"
+          ]
+        },
+        "Loading": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/components/Terminal/Tabs/Tab/WindowTab.tsx"
+          ]
+        },
+        "SvgExternalIconProps": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/components/Terminal/Tabs/TabIcon/TabIcon.tsx"
+          ]
+        },
+        "Group": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/components/Toolbar/SettingsDialog.tsx"
+          ]
+        },
+        "RadioBlock": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/components/Toolbar/SettingsDialog.tsx"
+          ]
+        },
+        "ThemeProviderProps": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/index.tsx"
+          ]
+        },
+        "SnackbarHost": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/index.tsx"
+          ]
+        },
+        "createPagedData": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/Dashboard/dashboard.state.ts"
+          ]
+        },
+        "FieldLabelHint": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/localized/FontSystemPicker.tsx"
+          ]
+        },
+        "themes/darkTheme:(side effect)": {
+          "importingFiles": 1,
+          "files": [
+            "packages/highlight/dev/index.tsx"
+          ]
+        }
+      }
+    },
+    "@codeui/kit": {
+      "importingFiles": 82,
+      "byZone": {
+        "appOther": 43,
+        "unifiedEditor": 38,
+        "other": 1
+      },
+      "symbols": {
+        "Button": {
+          "importingFiles": 43,
+          "files": [
+            "apps/codeimage/src/components/Animation/AnimateToggle.tsx",
+            "apps/codeimage/src/components/Animation/EasingField.tsx",
+            "apps/codeimage/src/components/Animation/PhoneSteps.tsx",
+            "apps/codeimage/src/components/Animation/SegmentDetails.tsx",
+            "apps/codeimage/src/components/Animation/StepsMenu.tsx",
+            "apps/codeimage/src/components/CustomEditor/CanvasEditor.tsx",
+            "apps/codeimage/src/components/Presets/PresetUpdateDialog.tsx",
+            "apps/codeimage/src/components/Toolbar/CopyAltTextButton.tsx",
+            "apps/codeimage/src/components/Toolbar/SettingsDialog.tsx",
+            "apps/codeimage/src/components/Toolbar/ShareButton.tsx",
+            "apps/codeimage/src/components/WhatsNew/NewDot.tsx",
+            "apps/codeimage/src/components/WhatsNew/Nudge.tsx",
+            "apps/codeimage/src/components/WhatsNew/Showcase.tsx",
+            "apps/codeimage/src/pages/Dashboard/components/CreateNewProjectButton/CreateNewProjectButton.tsx",
+            "apps/codeimage/src/pages/Dashboard/components/ProjectList/ProjectErrorListFallback.tsx",
+            "apps/codeimage/src/pages/NotFound/NotFoundPage.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/ReadOnlyNotice.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/agent-tools/FormatTabButton.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/CanvasToolbar.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/ControlOverlay.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/ShortcutHelp.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/LocalAi.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/EmptyPresetFallback.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/FontSystemPicker.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/GitHubLoginButton.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/ImagePickerInput.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/ImagePickerList.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/PresetSwitcher.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/ExportControl.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/Header.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-animation-dialog.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/panel.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/sheet.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/video.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/sections.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/theme-styles/ThemePicker.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/index.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/panels.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/Accordion.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/Rail.tsx",
+            "apps/codeimage/src/ui/ConfirmDialog/ConfirmDialog.tsx",
+            "apps/codeimage/src/ui/ConfirmDialog/RenameContentDialog.tsx",
+            "apps/codeimage/src/ui/GitHubLoginButton/GitHubLoginButton.tsx"
+          ]
+        },
+        "IconButton": {
+          "importingFiles": 20,
+          "files": [
+            "apps/codeimage/src/components/Animation/PhoneSteps.tsx",
+            "apps/codeimage/src/components/Animation/TransportBar.tsx",
+            "apps/codeimage/src/components/Toolbar/ShareButton.tsx",
+            "apps/codeimage/src/components/Toolbar/ToolbarSettings.tsx",
+            "apps/codeimage/src/components/WhatsNew/Nudge.tsx",
+            "apps/codeimage/src/components/WhatsNew/Showcase.tsx",
+            "apps/codeimage/src/pages/Dashboard/components/ProjectItem/ProjectItem.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/agent-tools/ToolActivity.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/ControlOverlay.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/ShortcutHelp.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/LocalAi.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/PresetSwitcher.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/SidebarPopoverTitle.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/Header.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/SettingsDialog.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/panel.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/sheet.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/video.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/index.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/Rail.tsx"
+          ]
+        },
+        "icons": {
+          "importingFiles": 15,
+          "files": [
+            "apps/codeimage/src/components/Animation/SegmentDetails.tsx",
+            "apps/codeimage/src/components/FeatureBadge/FeatureCheckBanner.tsx",
+            "apps/codeimage/src/components/WhatsNew/Nudge.tsx",
+            "apps/codeimage/src/components/WhatsNew/Showcase.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/agent-tools/FormatTabButton.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/agent-tools/ToolActivity.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/command-menu/CommandMenu.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/ControlOverlay.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/ShortcutHelp.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/LocalAi.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/FontPicker.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/panel.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/sheet.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/video.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/theme-styles/aa-list/index.tsx"
+          ]
+        },
+        "TextField": {
+          "importingFiles": 14,
+          "files": [
+            "apps/codeimage/src/components/Animation/EasingField.tsx",
+            "apps/codeimage/src/components/Animation/HeaderField.tsx",
+            "apps/codeimage/src/components/Animation/SegmentDetails.tsx",
+            "apps/codeimage/src/components/Toolbar/ToolbarSnippetName.tsx",
+            "apps/codeimage/src/pages/Dashboard/components/ProjectToolbar/ProjectToolbar.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/SavedSignatures.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/SignatureFields.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/ColorPicker.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/FontSystemPicker.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/ImagePickerInput.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/SettingsDialog.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-animation-dialog.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/theme-styles/ThemePicker.tsx",
+            "apps/codeimage/src/ui/ConfirmDialog/RenameContentDialog.tsx"
+          ]
+        },
+        "DropdownMenu": {
+          "importingFiles": 8,
+          "files": [
+            "apps/codeimage/src/components/Animation/PhoneSteps.tsx",
+            "apps/codeimage/src/components/Animation/StepsMenu.tsx",
+            "apps/codeimage/src/components/Toolbar/ToolbarSettings.tsx",
+            "apps/codeimage/src/components/UserBadge/UserBadge.tsx",
+            "apps/codeimage/src/pages/Dashboard/components/ProjectItem/ProjectItem.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/SavedSignatures.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/PresetSwitcher.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/UserBadge.tsx"
+          ]
+        },
+        "DropdownMenuTrigger": {
+          "importingFiles": 8,
+          "files": [
+            "apps/codeimage/src/components/Animation/PhoneSteps.tsx",
+            "apps/codeimage/src/components/Animation/StepsMenu.tsx",
+            "apps/codeimage/src/components/Toolbar/ToolbarSettings.tsx",
+            "apps/codeimage/src/components/UserBadge/UserBadge.tsx",
+            "apps/codeimage/src/pages/Dashboard/components/ProjectItem/ProjectItem.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/SavedSignatures.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/PresetSwitcher.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/UserBadge.tsx"
+          ]
+        },
+        "DropdownMenuPortal": {
+          "importingFiles": 8,
+          "files": [
+            "apps/codeimage/src/components/Animation/PhoneSteps.tsx",
+            "apps/codeimage/src/components/Animation/StepsMenu.tsx",
+            "apps/codeimage/src/components/Toolbar/ToolbarSettings.tsx",
+            "apps/codeimage/src/components/UserBadge/UserBadge.tsx",
+            "apps/codeimage/src/pages/Dashboard/components/ProjectItem/ProjectItem.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/SavedSignatures.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/PresetSwitcher.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/UserBadge.tsx"
+          ]
+        },
+        "DropdownMenuContent": {
+          "importingFiles": 8,
+          "files": [
+            "apps/codeimage/src/components/Animation/PhoneSteps.tsx",
+            "apps/codeimage/src/components/Animation/StepsMenu.tsx",
+            "apps/codeimage/src/components/Toolbar/ToolbarSettings.tsx",
+            "apps/codeimage/src/components/UserBadge/UserBadge.tsx",
+            "apps/codeimage/src/pages/Dashboard/components/ProjectItem/ProjectItem.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/SavedSignatures.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/PresetSwitcher.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/UserBadge.tsx"
+          ]
+        },
+        "DropdownMenuItem": {
+          "importingFiles": 8,
+          "files": [
+            "apps/codeimage/src/components/Animation/PhoneSteps.tsx",
+            "apps/codeimage/src/components/Animation/StepsMenu.tsx",
+            "apps/codeimage/src/components/Toolbar/ToolbarSettings.tsx",
+            "apps/codeimage/src/components/UserBadge/UserBadge.tsx",
+            "apps/codeimage/src/pages/Dashboard/components/ProjectItem/ProjectItem.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/SavedSignatures.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/PresetSwitcher.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/UserBadge.tsx"
+          ]
+        },
+        "themeTokens": {
+          "importingFiles": 7,
+          "files": [
+            "apps/codeimage/src/components/FeatureBadge/UnsupportedFeatureBanner.css.ts",
+            "apps/codeimage/src/components/Frame/Frame.css.ts",
+            "apps/codeimage/src/components/PropertyEditor/SidebarPopover/SidebarPopover.css.ts",
+            "apps/codeimage/src/components/PropertyEditor/controls/FontPicker/FontPicker.css.ts",
+            "apps/codeimage/src/components/PropertyEditor/controls/ImagePicker/ImagePicker.css.ts",
+            "apps/codeimage/src/ui/Alert/Alert.css.ts",
+            "apps/codeimage/src/ui/ExperimentalChip/ExperimentalChip.css.ts"
+          ]
+        },
+        "responsiveStyle": {
+          "importingFiles": 6,
+          "files": [
+            "apps/codeimage/src/components/Footer/Footer.css.ts",
+            "apps/codeimage/src/components/PropertyEditor/SidebarPopover/SidebarPopover.css.ts",
+            "apps/codeimage/src/components/PropertyEditor/controls/AspectRatioPicker/AspetRatioPicker.css.ts",
+            "apps/codeimage/src/components/PropertyEditor/controls/ColorPicker/CustomColorPicker.css.ts",
+            "apps/codeimage/src/components/PropertyEditor/controls/FontPicker/FontPicker.css.ts",
+            "apps/codeimage/src/components/PropertyEditor/controls/ImagePicker/ImagePicker.css.ts"
+          ]
+        },
+        "Dialog": {
+          "importingFiles": 6,
+          "files": [
+            "apps/codeimage/src/components/Presets/PresetUpdateDialog.tsx",
+            "apps/codeimage/src/components/Toolbar/SettingsDialog.tsx",
+            "apps/codeimage/src/components/WhatsNew/Showcase.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/SettingsDialog.tsx",
+            "apps/codeimage/src/ui/ConfirmDialog/ConfirmDialog.tsx",
+            "apps/codeimage/src/ui/ConfirmDialog/RenameContentDialog.tsx"
+          ]
+        },
+        "DialogPanelContent": {
+          "importingFiles": 6,
+          "files": [
+            "apps/codeimage/src/components/Presets/PresetUpdateDialog.tsx",
+            "apps/codeimage/src/components/Toolbar/SettingsDialog.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/ExportControl.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-animation-dialog.tsx",
+            "apps/codeimage/src/ui/ConfirmDialog/ConfirmDialog.tsx",
+            "apps/codeimage/src/ui/ConfirmDialog/RenameContentDialog.tsx"
+          ]
+        },
+        "DialogPanelFooter": {
+          "importingFiles": 6,
+          "files": [
+            "apps/codeimage/src/components/Presets/PresetUpdateDialog.tsx",
+            "apps/codeimage/src/components/Toolbar/SettingsDialog.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/ExportControl.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-animation-dialog.tsx",
+            "apps/codeimage/src/ui/ConfirmDialog/ConfirmDialog.tsx",
+            "apps/codeimage/src/ui/ConfirmDialog/RenameContentDialog.tsx"
+          ]
+        },
+        "Select": {
+          "importingFiles": 5,
+          "files": [
+            "apps/codeimage/src/components/Animation/HeaderField.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/SignatureFields.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/fields.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-animation-dialog.tsx",
+            "packages/highlight/dev/index.tsx"
+          ]
+        },
+        "Tooltip": {
+          "importingFiles": 5,
+          "files": [
+            "apps/codeimage/src/components/Toolbar/CopyAltTextButton.tsx",
+            "apps/codeimage/src/components/WhatsNew/Showcase.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/ExperimentalFeatureTooltip.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/PresetSwitcher.tsx",
+            "apps/codeimage/src/ui/ExperimentalFeatureTooltip/ExperimentalFeatureTooltip.tsx"
+          ]
+        },
+        "Listbox": {
+          "importingFiles": 4,
+          "files": [
+            "apps/codeimage/src/components/PropertyEditor/controls/FontPicker/FontPickerListbox.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/PickerContent.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/FontPicker.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/panels.tsx"
+          ]
+        },
+        "Link": {
+          "importingFiles": 3,
+          "files": [
+            "apps/codeimage/src/components/FeatureBadge/FeatureCheckBanner.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/ImagePickerInput.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/Header.tsx"
+          ]
+        },
+        "themeVars": {
+          "importingFiles": 3,
+          "files": [
+            "apps/codeimage/src/components/FeatureBadge/UnsupportedFeatureBanner.css.ts",
+            "apps/codeimage/src/ui/Alert/Alert.css.ts",
+            "apps/codeimage/src/ui/ExperimentalChip/ExperimentalChip.css.ts"
+          ]
+        },
+        "buttonStyles": {
+          "importingFiles": 3,
+          "files": [
+            "apps/codeimage/src/components/Toolbar/ExportSuccessToast.css.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/Header.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/sections.tsx"
+          ]
+        },
+        "Popover": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/components/Animation/EasingField.tsx",
+            "apps/codeimage/src/components/PropertyEditor/SidebarPopover/SidebarPopover.tsx"
+          ]
+        },
+        "PopoverTrigger": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/components/Animation/EasingField.tsx",
+            "apps/codeimage/src/components/PropertyEditor/SidebarPopover/SidebarPopover.tsx"
+          ]
+        },
+        "PopoverContent": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/components/Animation/EasingField.tsx",
+            "apps/codeimage/src/components/PropertyEditor/SidebarPopover/SidebarPopover.tsx"
+          ]
+        },
+        "RadioList": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/components/Toolbar/SettingsDialog.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-animation-dialog.tsx"
+          ]
+        },
+        "createSelectOptions": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/controls/fields.tsx",
+            "packages/highlight/dev/index.tsx"
+          ]
+        },
+        "Checkbox": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/localized/FontSystemPicker.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/sheet.tsx"
+          ]
+        },
+        "DropdownSubMenu": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/components/Animation/StepsMenu.tsx"
+          ]
+        },
+        "DropdownSubMenuTrigger": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/components/Animation/StepsMenu.tsx"
+          ]
+        },
+        "DropdownSubMenuContent": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/components/Animation/StepsMenu.tsx"
+          ]
+        },
+        "RadioListItem": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/components/Toolbar/SettingsDialog.tsx"
+          ]
+        },
+        "Pagination": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/Dashboard/components/ProjectList/ProjectList.tsx"
+          ]
+        },
+        "NumberField": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/controls/ControlRow.tsx"
+          ]
+        },
+        "DropdownMenuSeparator": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/controls/SavedSignatures.tsx"
+          ]
+        },
+        "TextArea": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/LocalAi.tsx"
+          ]
+        },
+        "VirtualizedListbox": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/localized/FontSystemPicker.tsx"
+          ]
+        },
+        "SegmentedControlProps": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/ui/SegmentedField/SegmentedField.tsx"
+          ]
+        },
+        "SegmentedControl": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/ui/SegmentedField/SegmentedField.tsx"
+          ]
+        },
+        "SegmentedControlItem": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/ui/SegmentedField/SegmentedField.tsx"
+          ]
+        }
+      }
+    },
+    "@floating-ui": {
+      "importingFiles": 2,
+      "byZone": {
+        "unifiedEditor": 1,
+        "packagesUi": 1
+      },
+      "symbols": {
+        "dom:autoUpdate": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/controls/ShortcutHelp.tsx",
+            "packages/ui/src/lib/hooks/useFloating.tsx"
+          ]
+        },
+        "dom:computePosition": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/controls/ShortcutHelp.tsx",
+            "packages/ui/src/lib/hooks/useFloating.tsx"
+          ]
+        },
+        "dom:flip": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/controls/ShortcutHelp.tsx"
+          ]
+        },
+        "dom:offset": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/controls/ShortcutHelp.tsx"
+          ]
+        },
+        "dom:shift": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/controls/ShortcutHelp.tsx"
+          ]
+        },
+        "core:ComputePositionConfig": {
+          "importingFiles": 1,
+          "files": [
+            "packages/ui/src/lib/hooks/useFloating.tsx"
+          ]
+        },
+        "core:MiddlewareData": {
+          "importingFiles": 1,
+          "files": [
+            "packages/ui/src/lib/hooks/useFloating.tsx"
+          ]
+        },
+        "core:Placement": {
+          "importingFiles": 1,
+          "files": [
+            "packages/ui/src/lib/hooks/useFloating.tsx"
+          ]
+        },
+        "dom:ReferenceElement": {
+          "importingFiles": 1,
+          "files": [
+            "packages/ui/src/lib/hooks/useFloating.tsx"
+          ]
+        }
+      }
+    },
+    "@kobalte/core": {
+      "importingFiles": 20,
+      "byZone": {
+        "appOther": 5,
+        "unifiedEditor": 15
+      },
+      "symbols": {
+        "dialog:Dialog": {
+          "importingFiles": 10,
+          "files": [
+            "apps/codeimage/src/components/Animation/PhoneSteps.tsx",
+            "apps/codeimage/src/components/WhatsNew/Showcase.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/command-menu/CommandMenu.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/ControlOverlay.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/ShortcutHelp.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/ExportControl.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/SettingsDialog.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-animation-dialog.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/sheet.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/Sheet.tsx"
+          ]
+        },
+        "popover:Popover": {
+          "importingFiles": 4,
+          "files": [
+            "apps/codeimage/src/components/WhatsNew/NewDot.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/panel.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/video.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/index.tsx"
+          ]
+        },
+        "radio-group:RadioGroup": {
+          "importingFiles": 4,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/controls/WindowStyleTiles.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-animation-dialog.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/choice-fields.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/sections.tsx"
+          ]
+        },
+        "dialog:Content": {
+          "importingFiles": 3,
+          "files": [
+            "apps/codeimage/src/components/Animation/PhoneSteps.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/ControlOverlay.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/ShortcutHelp.tsx"
+          ]
+        },
+        "Combobox": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/components/Terminal/Tabs/TabName/TabName.tsx"
+          ]
+        },
+        "switch:Switch": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/controls/fields.tsx"
+          ]
+        },
+        "progress:Progress": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-animation-dialog.tsx"
+          ]
+        },
+        "PolymorphicProps": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/ui/Alert/Alert.tsx"
+          ]
+        },
+        "alert:AlertRootProps": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/ui/Alert/Alert.tsx"
+          ]
+        },
+        "alert:Alert": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/ui/Alert/Alert.tsx"
+          ]
+        }
+      }
+    },
+    "@kobalte/vanilla-extract": {
+      "importingFiles": 1,
+      "byZone": {
+        "appOther": 1
+      },
+      "symbols": {
+        "componentStateStyles": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/components/Terminal/Tabs/TabName/TabName.css.ts"
+          ]
+        }
+      }
+    },
+    "@solid-aria": {
+      "importingFiles": 6,
+      "byZone": {
+        "packagesUi": 6
+      },
+      "symbols": {
+        "types:ElementType": {
+          "importingFiles": 6,
+          "files": [
+            "packages/ui/src/lib/primitives/Box/Box.tsx",
+            "packages/ui/src/lib/primitives/Button/Button.tsx",
+            "packages/ui/src/lib/primitives/IconButton/IconButton.tsx",
+            "packages/ui/src/lib/primitives/Text/Text.tsx",
+            "packages/ui/src/lib/primitives/Transition/Transition.tsx",
+            "packages/ui/src/lib/utils/factory.tsx"
+          ]
+        },
+        "types:DOMElements": {
+          "importingFiles": 1,
+          "files": [
+            "packages/ui/src/lib/utils/factory.tsx"
+          ]
+        }
+      }
+    },
+    "@thisbeyond/solid-dnd": {
+      "importingFiles": 4,
+      "byZone": {
+        "appOther": 4
+      },
+      "symbols": {
+        "createSortable": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/components/Terminal/Tabs/Tab/DraggableWindowTab.tsx"
+          ]
+        },
+        "closestCorners": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/components/Terminal/Tabs/TerminalWindowTabList.tsx"
+          ]
+        },
+        "DragDropProvider": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/components/Terminal/Tabs/TerminalWindowTabList.tsx"
+          ]
+        },
+        "DragDropSensors": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/components/Terminal/Tabs/TerminalWindowTabList.tsx"
+          ]
+        },
+        "SortableProvider": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/components/Terminal/Tabs/TerminalWindowTabList.tsx"
+          ]
+        },
+        "Transformer": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/core/modules/dnd/ConstrainDragAxis.tsx"
+          ]
+        },
+        "useDragDropContext": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/core/modules/dnd/ConstrainDragAxis.tsx"
+          ]
+        },
+        "DragEventHandler": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/core/modules/dnd/types.ts"
+          ]
+        }
+      }
+    },
+    "motion": {
+      "importingFiles": 8,
+      "byZone": {
+        "appOther": 1,
+        "other": 7
+      },
+      "symbols": {
+        "motionone:Motion": {
+          "importingFiles": 5,
+          "files": [
+            "apps/website/src/components/Landing/ComingSoon/ComingSoon.tsx",
+            "apps/website/src/components/Landing/EditorSteps/EditorScene/DynamicBackgroundExpansion/DynamicBackgroundExpansion.tsx",
+            "apps/website/src/components/Landing/EditorSteps/EditorScene/EditorScene.tsx",
+            "apps/website/src/components/Landing/EditorSteps/EditorScene/TwitterCard/TwitterCard.tsx",
+            "apps/website/src/components/Landing/Showcase/Showcase.tsx"
+          ]
+        },
+        "animate": {
+          "importingFiles": 4,
+          "files": [
+            "apps/codeimage/src/ui/DynamicSizedContainer/DynamicSizedContainer.tsx",
+            "apps/website/src/components/Landing/ComingSoon/ComingSoon.tsx",
+            "apps/website/src/components/Landing/EditorSteps/EditorScene/EditorScene.tsx",
+            "apps/website/src/components/Landing/Projects/Projects.tsx"
+          ]
+        },
+        "scroll": {
+          "importingFiles": 4,
+          "files": [
+            "apps/website/src/components/Landing/ComingSoon/ComingSoon.tsx",
+            "apps/website/src/components/Landing/EditorSteps/EditorScene/EditorScene.tsx",
+            "apps/website/src/components/Landing/EditorSteps/EditorSteps.tsx",
+            "apps/website/src/components/Landing/Projects/Projects.tsx"
+          ]
+        },
+        "inView": {
+          "importingFiles": 3,
+          "files": [
+            "apps/website/src/components/Landing/ComingSoon/ComingSoon.tsx",
+            "apps/website/src/components/Landing/EditorSteps/EditorSteps.tsx",
+            "apps/website/src/components/Landing/Showcase/Showcase.tsx"
+          ]
+        },
+        "AnimationControls": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/ui/DynamicSizedContainer/DynamicSizedContainer.tsx"
+          ]
+        }
+      }
+    },
+    "solid-headless": {
+      "importingFiles": 7,
+      "byZone": {
+        "appOther": 1,
+        "packagesUi": 6
+      },
+      "symbols": {
+        "src/utils/dynamic-prop:DynamicNode": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/core/helpers/create-ref.ts"
+          ]
+        },
+        "src/utils/dynamic-prop:WithRef": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/core/helpers/create-ref.ts"
+          ]
+        },
+        "src/utils/dynamic-prop:ValidConstructor": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/core/helpers/create-ref.ts"
+          ]
+        },
+        "ButtonProps": {
+          "importingFiles": 1,
+          "files": [
+            "packages/ui/src/lib/primitives/Button/Button.tsx"
+          ]
+        },
+        "MenuItemProps": {
+          "importingFiles": 1,
+          "files": [
+            "packages/ui/src/lib/primitives/Dropdown/DropdownItem.tsx"
+          ]
+        },
+        "MenuItem": {
+          "importingFiles": 1,
+          "files": [
+            "packages/ui/src/lib/primitives/Dropdown/DropdownItem.tsx"
+          ]
+        },
+        "PopoverPanelProps": {
+          "importingFiles": 1,
+          "files": [
+            "packages/ui/src/lib/primitives/Dropdown/DropdownMenu.tsx"
+          ]
+        },
+        "Menu": {
+          "importingFiles": 1,
+          "files": [
+            "packages/ui/src/lib/primitives/Dropdown/DropdownMenu.tsx"
+          ]
+        },
+        "PopoverPanel": {
+          "importingFiles": 1,
+          "files": [
+            "packages/ui/src/lib/primitives/Dropdown/DropdownMenu.tsx"
+          ]
+        },
+        "Toast": {
+          "importingFiles": 1,
+          "files": [
+            "packages/ui/src/lib/primitives/Snackbar/Snackbar.tsx"
+          ]
+        },
+        "ToggleProps": {
+          "importingFiles": 1,
+          "files": [
+            "packages/ui/src/lib/primitives/Toggle/Toggle.tsx"
+          ]
+        },
+        "Toggle": {
+          "importingFiles": 1,
+          "files": [
+            "packages/ui/src/lib/primitives/Toggle/Toggle.tsx"
+          ]
+        },
+        "TransitionChildProps": {
+          "importingFiles": 1,
+          "files": [
+            "packages/ui/src/lib/primitives/Transition/Transition.tsx"
+          ]
+        },
+        "TransitionProps": {
+          "importingFiles": 1,
+          "files": [
+            "packages/ui/src/lib/primitives/Transition/Transition.tsx"
+          ]
+        },
+        "Transition": {
+          "importingFiles": 1,
+          "files": [
+            "packages/ui/src/lib/primitives/Transition/Transition.tsx"
+          ]
+        },
+        "TransitionChild": {
+          "importingFiles": 1,
+          "files": [
+            "packages/ui/src/lib/primitives/Transition/Transition.tsx"
+          ]
+        }
+      }
+    },
+    "solid-toast": {
+      "importingFiles": 2,
+      "byZone": {
+        "packagesUi": 2
+      },
+      "symbols": {
+        "ToastHandler": {
+          "importingFiles": 2,
+          "files": [
+            "packages/ui/src/lib/primitives/Snackbar/SnackbarHost.tsx",
+            "packages/ui/src/lib/primitives/Snackbar/patch-solid-toast.ts"
+          ]
+        },
+        "toast": {
+          "importingFiles": 2,
+          "files": [
+            "packages/ui/src/lib/primitives/Snackbar/SnackbarHost.tsx",
+            "packages/ui/src/lib/primitives/Snackbar/patch-solid-toast.ts"
+          ]
+        },
+        "Toaster": {
+          "importingFiles": 1,
+          "files": [
+            "packages/ui/src/lib/primitives/Snackbar/SnackbarHost.tsx"
+          ]
+        },
+        "Message": {
+          "importingFiles": 1,
+          "files": [
+            "packages/ui/src/lib/primitives/Snackbar/patch-solid-toast.ts"
+          ]
+        },
+        "ToastOptions": {
+          "importingFiles": 1,
+          "files": [
+            "packages/ui/src/lib/primitives/Snackbar/patch-solid-toast.ts"
+          ]
+        }
+      }
+    }
+  },
+  "localComponents": {
+    "apps/codeimage/src/components/Animation/AnimatePanel": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "AnimatePanel": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/stage.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/Animation/AnimateToggle": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "AnimateToggle": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/stage.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/Animation/AnimationPreview": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "AnimationPreview": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/stage.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/Animation/planPreview": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "CodeStyle": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-animation.tsx"
+          ]
+        },
+        "PreviewTab": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-animation.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/CustomEditor/AnimatedCodeView": {
+      "importingFiles": 3,
+      "byZone": {
+        "appOther": 2,
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "default": {
+          "importingFiles": 3,
+          "files": [
+            "apps/codeimage/src/components/Animation/AnimationPreview.tsx",
+            "apps/codeimage/src/core/animation/AnimatedCodeView.test.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-animation.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/CustomEditor/CustomEditorPreview": {
+      "importingFiles": 1,
+      "byZone": {
+        "appOther": 1
+      },
+      "symbols": {
+        "default": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/components/Presets/PresetPreview/PresetPreview.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/CustomEditor/StaticCodeView": {
+      "importingFiles": 6,
+      "byZone": {
+        "appOther": 5,
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "default": {
+          "importingFiles": 6,
+          "files": [
+            "apps/codeimage/src/components/Animation/AnimationPreview.tsx",
+            "apps/codeimage/src/components/Animation/planPreview.tsx",
+            "apps/codeimage/src/components/Frame/PreviewFrame.tsx",
+            "apps/codeimage/src/core/snapshot/StaticCodeView.test.ts",
+            "apps/codeimage/src/core/snapshot/focusSelection.test.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-animation.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/Footer/Footer": {
+      "importingFiles": 1,
+      "byZone": {
+        "appOther": 1
+      },
+      "symbols": {
+        "Footer": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/Dashboard/Dashboard.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/Frame/FittedWindow": {
+      "importingFiles": 2,
+      "byZone": {
+        "appOther": 1,
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "FITTED_WINDOW_MIN_WIDTH": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/components/Animation/AnimationPreview.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-animation.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/Frame/FrameSignature": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "PlatformIcon": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/controls/SignatureFields.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/Frame/FrameSkeleton": {
+      "importingFiles": 2,
+      "byZone": {
+        "appOther": 1,
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "FrameSkeleton": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/components/Terminal/Tabs/TerminalWindowTabListPreview.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/stage.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/Frame/PreviewFrame": {
+      "importingFiles": 5,
+      "byZone": {
+        "appOther": 2,
+        "unifiedEditor": 3
+      },
+      "symbols": {
+        "FrameView": {
+          "importingFiles": 3,
+          "files": [
+            "apps/codeimage/src/components/Animation/AnimationPreview.tsx",
+            "apps/codeimage/src/components/Animation/planPreview.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-animation.tsx"
+          ]
+        },
+        "PreviewFrame": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/stage.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/Icons/Clipboard": {
+      "importingFiles": 1,
+      "byZone": {
+        "appOther": 1
+      },
+      "symbols": {
+        "ClipboardIcon": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/components/Toolbar/CopyAltTextButton.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/Icons/CloseIcon": {
+      "importingFiles": 6,
+      "byZone": {
+        "appOther": 5,
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "CloseIcon": {
+          "importingFiles": 6,
+          "files": [
+            "apps/codeimage/src/components/Animation/PhoneSteps.tsx",
+            "apps/codeimage/src/components/Animation/TransportBar.tsx",
+            "apps/codeimage/src/components/FeatureBadge/FeatureCheckBanner.tsx",
+            "apps/codeimage/src/components/Terminal/Tabs/Tab/DraggableWindowTab.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/SidebarPopoverTitle.tsx",
+            "apps/codeimage/src/ui/Alert/Alert.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/Icons/CloudIcon": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "CloudIcon": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/localized/PresetSwitcher.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/Icons/CodeImageLogoV2": {
+      "importingFiles": 3,
+      "byZone": {
+        "appOther": 2,
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "CodeImageLogoV2": {
+          "importingFiles": 3,
+          "files": [
+            "apps/codeimage/src/components/Watermark/Watermark.tsx",
+            "apps/codeimage/src/pages/Dashboard/components/DashboardHeader/DashboardHeader.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/Header.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/Icons/Collection": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "CollectionIcon": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/Header.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/Icons/DotVertical": {
+      "importingFiles": 3,
+      "byZone": {
+        "appOther": 2,
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "DotHorizontalIcon": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/Dashboard/components/ProjectItem/ProjectItem.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/PresetSwitcher.tsx"
+          ]
+        },
+        "MenuAlt2Icon": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/components/Toolbar/ToolbarSettings.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/Icons/Download": {
+      "importingFiles": 3,
+      "byZone": {
+        "unifiedEditor": 3
+      },
+      "symbols": {
+        "DownloadIcon": {
+          "importingFiles": 3,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/panel.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/sheet.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/video.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/Icons/EmptyBox": {
+      "importingFiles": 2,
+      "byZone": {
+        "appOther": 1,
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "EmptyBox": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/Dashboard/components/ProjectList/ProjectEmptyListMessage.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/EmptyPresetFallback.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/Icons/Exclamation": {
+      "importingFiles": 4,
+      "byZone": {
+        "appOther": 4
+      },
+      "symbols": {
+        "ExclamationAltIcon": {
+          "importingFiles": 3,
+          "files": [
+            "apps/codeimage/src/components/FeatureBadge/FeatureCheckBanner.tsx",
+            "apps/codeimage/src/pages/Dashboard/components/ProjectList/ProjectErrorListFallback.tsx",
+            "apps/codeimage/src/ui/Alert/Alert.tsx"
+          ]
+        },
+        "ExclamationIcon": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/state/assets/AssetsImage.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/Icons/ExternalLink": {
+      "importingFiles": 1,
+      "byZone": {
+        "appOther": 1
+      },
+      "symbols": {
+        "ExternalLinkIcon": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/components/Toolbar/ToolbarSettings.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/Icons/Hint": {
+      "importingFiles": 3,
+      "byZone": {
+        "unifiedEditor": 2,
+        "appOther": 1
+      },
+      "symbols": {
+        "HintIcon": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/controls/ShortcutHelp.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/FontSystemPicker.tsx"
+          ]
+        },
+        "HintOutlineIcon": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/ui/Alert/Alert.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/Icons/Pencil": {
+      "importingFiles": 1,
+      "byZone": {
+        "appOther": 1
+      },
+      "symbols": {
+        "PencilAlt": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/components/Toolbar/ToolbarSnippetName.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/Icons/PlusIcon": {
+      "importingFiles": 3,
+      "byZone": {
+        "appOther": 2,
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "PlusIcon": {
+          "importingFiles": 3,
+          "files": [
+            "apps/codeimage/src/components/Terminal/Tabs/TabAddButton/TabAddButton.tsx",
+            "apps/codeimage/src/pages/Dashboard/components/CreateNewProjectButton/CreateNewProjectButton.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/EmptyPresetFallback.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/Icons/ShareIcon": {
+      "importingFiles": 1,
+      "byZone": {
+        "appOther": 1
+      },
+      "symbols": {
+        "ShareIcon": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/components/Toolbar/ShareButton.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/Icons/SparklesIcon": {
+      "importingFiles": 3,
+      "byZone": {
+        "appOther": 1,
+        "unifiedEditor": 2
+      },
+      "symbols": {
+        "SparklesIcon": {
+          "importingFiles": 3,
+          "files": [
+            "apps/codeimage/src/components/CustomEditor/CanvasEditor.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/panels.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/Rail.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/Presets/PresetPreview/PresetPreview": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "PresetPreview": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/localized/PresetSwitcher.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/Presets/PresetUpdateDialog": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "PresetUpdateDialog": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/localized/PresetSwitcher.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/PropertyEditor/controls/ColorPicker/ColorPickerPresetItem": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "ColorPickerPresetItem": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/localized/ColorPicker.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/PropertyEditor/EditorForm": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "EditorForm": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/panels.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/PropertyEditor/PanelDivider": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "PanelDivider": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/localized/PresetSwitcher.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/PropertyEditor/PanelHeader": {
+      "importingFiles": 2,
+      "byZone": {
+        "unifiedEditor": 2
+      },
+      "symbols": {
+        "PanelHeader": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/panels.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/panels.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/PropertyEditor/PanelRow": {
+      "importingFiles": 3,
+      "byZone": {
+        "unifiedEditor": 3
+      },
+      "symbols": {
+        "PanelRow": {
+          "importingFiles": 3,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/controls/ControlOverlay.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/ControlRow.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/panels.tsx"
+          ]
+        },
+        "TwoColumnPanelRow": {
+          "importingFiles": 3,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/controls/ControlOverlay.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/ControlRow.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/panels.tsx"
+          ]
+        },
+        "FullWidthPanelRow": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/panels.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/PropertyEditor/SidebarPopover/SidebarPopover": {
+      "importingFiles": 2,
+      "byZone": {
+        "unifiedEditor": 2
+      },
+      "symbols": {
+        "SidebarPopover": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/localized/AspectRatioPicker.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/FontPicker.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/PropertyEditor/SuspenseEditorItem": {
+      "importingFiles": 2,
+      "byZone": {
+        "appOther": 1,
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "SuspenseEditorItem": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/components/Toolbar/ToolbarSnippetName.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/stage.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/Scaffold/Scaffold": {
+      "importingFiles": 1,
+      "byZone": {
+        "appOther": 1
+      },
+      "symbols": {
+        "Scaffold": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/index.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/Terminal/DynamicTerminal/DynamicTerminal": {
+      "importingFiles": 3,
+      "byZone": {
+        "appOther": 3
+      },
+      "symbols": {
+        "DynamicTerminal": {
+          "importingFiles": 3,
+          "files": [
+            "apps/codeimage/src/components/Frame/ManagedFrame.tsx",
+            "apps/codeimage/src/components/Frame/PreviewFrame.tsx",
+            "apps/codeimage/src/components/Presets/PresetPreview/PresetPreview.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/Terminal/MacOsTerminal/MacOsTerminal": {
+      "importingFiles": 1,
+      "byZone": {
+        "appOther": 1
+      },
+      "symbols": {
+        "MacOsTerminal": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/core/configuration/terminal-themes.ts"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/Terminal/MacOsTerminal/MacOsTerminalGrayTheme": {
+      "importingFiles": 1,
+      "byZone": {
+        "appOther": 1
+      },
+      "symbols": {
+        "MacOsTerminalGrayTheme": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/core/configuration/terminal-themes.ts"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/Terminal/MacOsTerminal/MacOsTerminalOutlineTheme": {
+      "importingFiles": 1,
+      "byZone": {
+        "appOther": 1
+      },
+      "symbols": {
+        "MacOsTerminalOutlineTheme": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/core/configuration/terminal-themes.ts"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/Terminal/TerminalHost": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "TerminalHost": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/stage.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/Terminal/WindowsTerminal/WindowsTerminal": {
+      "importingFiles": 1,
+      "byZone": {
+        "appOther": 1
+      },
+      "symbols": {
+        "WindowsTerminal": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/core/configuration/terminal-themes.ts"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/Terminal/WindowStyles/WindowStyles": {
+      "importingFiles": 1,
+      "byZone": {
+        "appOther": 1
+      },
+      "symbols": {
+        "CardTerminal": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/core/configuration/terminal-themes.ts"
+          ]
+        },
+        "EditorTerminal": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/core/configuration/terminal-themes.ts"
+          ]
+        },
+        "ShellTerminal": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/core/configuration/terminal-themes.ts"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/ThemeSwitcher/ThemeBox": {
+      "importingFiles": 1,
+      "byZone": {
+        "appOther": 1
+      },
+      "symbols": {
+        "ThemeBox": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/components/Presets/PresetPreview/PresetPreview.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/ThemeSwitcher/ThemeBoxSkeleton": {
+      "importingFiles": 2,
+      "byZone": {
+        "unifiedEditor": 2
+      },
+      "symbols": {
+        "ThemeBoxSkeleton": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/localized/PresetSwitcher.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/stage.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/Toolbar/CopyAltTextButton": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "CopyAltTextButton": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/sections.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/Toolbar/ShareButton": {
+      "importingFiles": 2,
+      "byZone": {
+        "unifiedEditor": 2
+      },
+      "symbols": {
+        "ShareButton": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/Header.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/Rail.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/Toolbar/ToolbarSettings": {
+      "importingFiles": 1,
+      "byZone": {
+        "appOther": 1
+      },
+      "symbols": {
+        "ToolbarSettingsButton": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/Dashboard/components/DashboardHeader/DashboardHeader.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/Toolbar/ToolbarSnippetName": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "ToolbarSnippetName": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/Header.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/UserBadge/UserBadge": {
+      "importingFiles": 1,
+      "byZone": {
+        "appOther": 1
+      },
+      "symbols": {
+        "UserBadge": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/Dashboard/components/DashboardHeader/DashboardHeader.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/Watermark/Watermark": {
+      "importingFiles": 1,
+      "byZone": {
+        "appOther": 1
+      },
+      "symbols": {
+        "Watermark": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/components/Terminal/DynamicTerminal/DynamicTerminal.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/WhatsNew/NewDot": {
+      "importingFiles": 7,
+      "byZone": {
+        "appOther": 1,
+        "unifiedEditor": 6
+      },
+      "symbols": {
+        "NewDot": {
+          "importingFiles": 7,
+          "files": [
+            "apps/codeimage/src/components/CustomEditor/plugins/lineMarks/news.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/command-menu/CommandMenuButton.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/ControlRow.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/SettingsDialog.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-actions.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/panel.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/sheet.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/WhatsNew/SparkleIcon": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "SparkleIcon": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/Header.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/components/WhatsNew/WhatsNewHost": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "WhatsNewHost": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/harness.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/agent-tools/activity": {
+      "importingFiles": 2,
+      "byZone": {
+        "unifiedEditor": 2
+      },
+      "symbols": {
+        "SummaryWords": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/agent-tools/ToolActivity.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/agent-tools/activity.test.ts"
+          ]
+        },
+        "ToolCall": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/agent-tools/ToolActivity.tsx"
+          ]
+        },
+        "ToolSource": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/agent-tools/ToolActivity.tsx"
+          ]
+        },
+        "MAX_CALLS": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/agent-tools/activity.test.ts"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/agent-tools/AgentTools": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "AgentTools": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/harness.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/agent-tools/FormatTabButton": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "FormatTabButton": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/agent-tools/ToolActivity.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/agent-tools/ToolActivity": {
+      "importingFiles": 2,
+      "byZone": {
+        "unifiedEditor": 2
+      },
+      "symbols": {
+        "ToolActivity": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/harness.tsx"
+          ]
+        },
+        "ToolRow": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/LocalAi.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/agent-tools/tools": {
+      "importingFiles": 8,
+      "byZone": {
+        "unifiedEditor": 8
+      },
+      "symbols": {
+        "AgentTool": {
+          "importingFiles": 7,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/agent-tools/AgentTools.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/agent-tools/activity.test.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/agent-tools/activity.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/agent-tools/adapters.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/LocalAi.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/agent.test.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/agent.ts"
+          ]
+        },
+        "ToolResult": {
+          "importingFiles": 3,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/agent-tools/activity.test.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/agent.test.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/agent.ts"
+          ]
+        },
+        "AgentToolsContext": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/agent-tools/tools.test.ts"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/agent-tools/values": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "AgentControl": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/agent-tools/tools.ts"
+          ]
+        },
+        "Parsed": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/agent-tools/tools.ts"
+          ]
+        },
+        "TabEntry": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/agent-tools/tools.ts"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/command-menu/CommandMenu": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "CommandMenu": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/harness.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/command-menu/CommandMenuButton": {
+      "importingFiles": 4,
+      "byZone": {
+        "unifiedEditor": 4
+      },
+      "symbols": {
+        "CommandMenuButton": {
+          "importingFiles": 4,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/Header.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/index.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/panels.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/Rail.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/command-menu/commands": {
+      "importingFiles": 2,
+      "byZone": {
+        "unifiedEditor": 2
+      },
+      "symbols": {
+        "Command": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/command-menu/CommandMenu.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/commands.ts"
+          ]
+        },
+        "Action": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/command-menu/CommandMenu.tsx"
+          ]
+        },
+        "Leading": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/command-menu/CommandMenu.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/command-menu/listed-model": {
+      "importingFiles": 4,
+      "byZone": {
+        "unifiedEditor": 4
+      },
+      "symbols": {
+        "ListedModel": {
+          "importingFiles": 4,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/agent-tools/tools.test.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/agent-tools/tools.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/command-menu/commands.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/fields.ts"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/contract": {
+      "importingFiles": 6,
+      "byZone": {
+        "unifiedEditor": 6
+      },
+      "symbols": {
+        "VariantProps": {
+          "importingFiles": 5,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/index.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/Accordion.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/Rail.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/index.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/panels.tsx"
+          ]
+        },
+        "VariantMeta": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/index.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/index.tsx"
+          ]
+        },
+        "Variant": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/registry.ts"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/controls/AmbientSwatch": {
+      "importingFiles": 2,
+      "byZone": {
+        "unifiedEditor": 2
+      },
+      "symbols": {
+        "AmbientSwatch": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/controls/ControlOverlay.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/panels.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/controls/CanvasToolbar": {
+      "importingFiles": 3,
+      "byZone": {
+        "unifiedEditor": 3
+      },
+      "symbols": {
+        "CanvasToolbar": {
+          "importingFiles": 3,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/index.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/Accordion.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/Rail.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/controls/ControlOverlay": {
+      "importingFiles": 3,
+      "byZone": {
+        "unifiedEditor": 3
+      },
+      "symbols": {
+        "ControlOverlay": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/command-menu/CommandMenu.tsx"
+          ]
+        },
+        "PickerField": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/controls/ControlRow.tsx"
+          ]
+        },
+        "SignatureRow": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/panels.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/controls/ControlRow": {
+      "importingFiles": 3,
+      "byZone": {
+        "unifiedEditor": 3
+      },
+      "symbols": {
+        "ControlRow": {
+          "importingFiles": 3,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/controls/ControlOverlay.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/panels.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/panels.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/controls/fields": {
+      "importingFiles": 7,
+      "byZone": {
+        "unifiedEditor": 7
+      },
+      "symbols": {
+        "SegmentedChoice": {
+          "importingFiles": 3,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/controls/ControlRow.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/index.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/panels.tsx"
+          ]
+        },
+        "SelectChoice": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/controls/ControlRow.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/index.tsx"
+          ]
+        },
+        "SwitchField": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/controls/ControlRow.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/sections.tsx"
+          ]
+        },
+        "FieldSize": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/controls/ControlRow.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/SignatureFields.tsx"
+          ]
+        },
+        "ChoiceControl": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/controls/PickerContent.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/WindowStyleTiles.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/controls/PickerContent": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "ChoiceList": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/controls/ControlOverlay.tsx"
+          ]
+        },
+        "FontEditor": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/controls/ControlOverlay.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/controls/PickerValue": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "PickerValue": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/controls/ControlOverlay.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/controls/SavedSignatures": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "SavedSignaturesField": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/model.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/controls/ShortcutHelp": {
+      "importingFiles": 4,
+      "byZone": {
+        "unifiedEditor": 4
+      },
+      "symbols": {
+        "ShortcutHelp": {
+          "importingFiles": 4,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/stage.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/index.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/Accordion.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/Rail.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/controls/SignatureFields": {
+      "importingFiles": 2,
+      "byZone": {
+        "unifiedEditor": 2
+      },
+      "symbols": {
+        "SignatureIconChoice": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/controls/ControlRow.tsx"
+          ]
+        },
+        "SignaturePositionChoice": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/controls/ControlRow.tsx"
+          ]
+        },
+        "SignatureStyleChoice": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/controls/ControlRow.tsx"
+          ]
+        },
+        "SignatureAvatarField": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/model.tsx"
+          ]
+        },
+        "SignatureHandleField": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/model.tsx"
+          ]
+        },
+        "SignatureNameField": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/model.tsx"
+          ]
+        },
+        "SignatureProfileField": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/model.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/controls/WindowPreview": {
+      "importingFiles": 2,
+      "byZone": {
+        "unifiedEditor": 2
+      },
+      "symbols": {
+        "WindowPreview": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/controls/PickerValue.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/WindowStyleTiles.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/controls/WindowStyleTiles": {
+      "importingFiles": 2,
+      "byZone": {
+        "unifiedEditor": 2
+      },
+      "symbols": {
+        "WindowStyleTiles": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/controls/ControlOverlay.tsx"
+          ]
+        },
+        "SurfaceTiles": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/controls/ControlRow.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/EditingControls": {
+      "importingFiles": 3,
+      "byZone": {
+        "unifiedEditor": 3
+      },
+      "symbols": {
+        "EditingControls": {
+          "importingFiles": 3,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/index.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/Accordion.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/Rail.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/EditorHost": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "EditorHost": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/harness.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/FitFrame": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "FitFrame": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/stage.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/harness": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "UnifiedEditor": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/index.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/local-ai/agent": {
+      "importingFiles": 3,
+      "byZone": {
+        "unifiedEditor": 3
+      },
+      "symbols": {
+        "Run": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/LocalAi.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/agent.test.ts"
+          ]
+        },
+        "MAX_TURNS": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/LocalAi.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/agent.test.ts"
+          ]
+        },
+        "SYSTEM_PROMPT": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/agent-tools/tools.test.ts"
+          ]
+        },
+        "Entry": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/LocalAi.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/local-ai/chrome-provider": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "NATIVE_PROBE": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/providers.ts"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/local-ai/language-model": {
+      "importingFiles": 8,
+      "byZone": {
+        "unifiedEditor": 8
+      },
+      "symbols": {
+        "LanguageModelApi": {
+          "importingFiles": 6,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/chrome-provider.test.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/chrome-provider.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/language-model.test.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/prompt-api.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/structured-provider.test.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/structured-provider.ts"
+          ]
+        },
+        "Session": {
+          "importingFiles": 5,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/chrome-provider.test.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/chrome-provider.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/prompt-api.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/structured-provider.test.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/structured-provider.ts"
+          ]
+        },
+        "LANGUAGES": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/providers.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/structured-provider.ts"
+          ]
+        },
+        "POLL_MS": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/language-model.test.ts"
+          ]
+        },
+        "ModelState": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/sections.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/local-ai/LocalAi": {
+      "importingFiles": 2,
+      "byZone": {
+        "unifiedEditor": 2
+      },
+      "symbols": {
+        "AskAiButton": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/controls/CanvasToolbar.tsx"
+          ]
+        },
+        "PromptBar": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/controls/CanvasToolbar.tsx"
+          ]
+        },
+        "LocalAi": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/harness.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/local-ai/model": {
+      "importingFiles": 9,
+      "byZone": {
+        "unifiedEditor": 9
+      },
+      "symbols": {
+        "ModelEvent": {
+          "importingFiles": 6,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/agent.test.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/chrome-provider.test.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/chrome-provider.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/prompt-api.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/structured-provider.test.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/structured-provider.ts"
+          ]
+        },
+        "TurnInput": {
+          "importingFiles": 6,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/agent.test.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/agent.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/chrome-provider.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/prompt-api.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/structured-provider.test.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/structured-provider.ts"
+          ]
+        },
+        "ModelProvider": {
+          "importingFiles": 5,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/agent.test.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/agent.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/chrome-provider.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/providers.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/structured-provider.ts"
+          ]
+        },
+        "Availability": {
+          "importingFiles": 4,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/agent.test.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/chrome-provider.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/language-model.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/structured-provider.ts"
+          ]
+        },
+        "ToolSpec": {
+          "importingFiles": 4,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/agent.test.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/chrome-provider.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/providers.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/structured-provider.ts"
+          ]
+        },
+        "ContextFullError": {
+          "importingFiles": 4,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/agent.test.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/agent.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/chrome-provider.test.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/prompt-api.ts"
+          ]
+        },
+        "ModelSession": {
+          "importingFiles": 4,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/agent.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/chrome-provider.test.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/prompt-api.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/structured-provider.test.ts"
+          ]
+        },
+        "ModelStartError": {
+          "importingFiles": 3,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/agent.test.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/agent.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/prompt-api.ts"
+          ]
+        },
+        "ModelToolResult": {
+          "importingFiles": 3,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/agent.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/chrome-provider.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/structured-provider.ts"
+          ]
+        },
+        "ToolStep": {
+          "importingFiles": 3,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/agent.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/chrome-provider.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/structured-provider.ts"
+          ]
+        },
+        "ModelToolCall": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/agent.ts"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/local-ai/requirements": {
+      "importingFiles": 2,
+      "byZone": {
+        "unifiedEditor": 2
+      },
+      "symbols": {
+        "Requirement": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/requirements.test.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/sections.tsx"
+          ]
+        },
+        "Environment": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/requirements.test.ts"
+          ]
+        },
+        "RequirementStatus": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/sections.tsx"
+          ]
+        },
+        "MEMORY_CAP": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/sections.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/local-ai/structured-provider": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "CONTINUE": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/structured-provider.test.ts"
+          ]
+        },
+        "RETRY": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/structured-provider.test.ts"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/localized/AspectRatioPicker": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "AspectRatioPicker": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/controls/fields.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/localized/ColorPicker": {
+      "importingFiles": 2,
+      "byZone": {
+        "unifiedEditor": 2
+      },
+      "symbols": {
+        "ColorPickerPopover": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/controls/ControlOverlay.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/panels.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/localized/EmptyPresetFallback": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "EmptyPresetFallback": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/localized/PresetSwitcher.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/localized/ExperimentalFeatureTooltip": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "ExperimentalFeatureTooltip": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/localized/SidebarPopoverTitle.tsx"
+          ]
+        },
+        "ExperimentalIcon": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/localized/SidebarPopoverTitle.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/localized/FontPicker": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "FontPicker": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/model.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/localized/FontSystemPicker": {
+      "importingFiles": 4,
+      "byZone": {
+        "unifiedEditor": 4
+      },
+      "symbols": {
+        "FontSystemPicker": {
+          "importingFiles": 4,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/controls/PickerContent.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/FontPicker.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/panels.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/panels.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/localized/GitHubLoginButton": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "GitHubLoginButton": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/localized/UserBadge.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/localized/ImagePicker": {
+      "importingFiles": 2,
+      "byZone": {
+        "unifiedEditor": 2
+      },
+      "symbols": {
+        "ImagePicker": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/localized/ColorPicker.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/model.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/localized/ImagePickerInput": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "ImagePickerInput": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/localized/ImagePicker.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/localized/ImagePickerList": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "ImagePickerList": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/localized/ImagePicker.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/localized/PresetSwitcher": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "PresetSwitcher": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/panels.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/localized/PresetTooltipContent": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "PresetTooltipContent": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/localized/PresetSwitcher.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/localized/SidebarPopoverTitle": {
+      "importingFiles": 2,
+      "byZone": {
+        "unifiedEditor": 2
+      },
+      "symbols": {
+        "SidebarPopoverTitle": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/localized/AspectRatioPicker.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/FontPicker.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/localized/UserBadge": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "UserBadge": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/Header.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/model": {
+      "importingFiles": 31,
+      "byZone": {
+        "unifiedEditor": 31
+      },
+      "symbols": {
+        "EditorControlsModel": {
+          "importingFiles": 15,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/agent-tools/tools.test.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/agent-tools/tools.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/command-menu/CommandMenu.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/command-menu/commands.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/command-menu/listed-model.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/contract.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/ControlOverlay.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/PickerContent.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/SettingsDialog.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/sections.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/theme-styles/ThemePicker.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/theme-styles/browser.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/context.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/fields.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/panels.tsx"
+          ]
+        },
+        "ControlId": {
+          "importingFiles": 15,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/agent-tools/values.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/command-menu/commands.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/command-menu/listed-model.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/ControlOverlay.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/ControlRow.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/fields.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/overlay-placement.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/reveal-control.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/places.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/fields.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/index.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/Accordion.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/panels.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/places.test.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/places.ts"
+          ]
+        },
+        "ThemeEntry": {
+          "importingFiles": 9,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/ThemeSwatch.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/agent-tools/values.test.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/agent-tools/values.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/command-menu/commands.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/command-menu/listed-model.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/sections.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/stage.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/theme-styles/ThemePicker.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/theme-styles/browser.ts"
+          ]
+        },
+        "Control": {
+          "importingFiles": 8,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/agent-tools/values.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/command-menu/commands.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/command-menu/listed-model.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/ControlOverlay.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/ControlRow.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/PickerValue.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/fields.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/panels.tsx"
+          ]
+        },
+        "SelectControl": {
+          "importingFiles": 4,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/agent-tools/tools.test.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/agent-tools/values.test.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/command-menu/listed-model.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/fields.tsx"
+          ]
+        },
+        "ToggleControl": {
+          "importingFiles": 3,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/agent-tools/tools.test.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/agent-tools/values.test.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/command-menu/listed-model.ts"
+          ]
+        },
+        "SegmentedControl": {
+          "importingFiles": 3,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/command-menu/listed-model.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/SignatureFields.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/fields.tsx"
+          ]
+        },
+        "BackgroundControl": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/agent-tools/values.test.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/AmbientSwatch.tsx"
+          ]
+        },
+        "RangeControl": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/agent-tools/values.test.ts"
+          ]
+        },
+        "ChoiceOption": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/agent-tools/values.ts"
+          ]
+        },
+        "Section": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/command-menu/listed-model.ts"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/page-state": {
+      "importingFiles": 8,
+      "byZone": {
+        "unifiedEditor": 8
+      },
+      "symbols": {
+        "EditorPageState": {
+          "importingFiles": 8,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/EditingControls.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/ReadOnlyNotice.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/agent-tools/tools.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/command-menu/CommandMenu.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/contract.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/LocalAi.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/stage.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/places": {
+      "importingFiles": 1,
+      "byZone": {
+        "appOther": 1
+      },
+      "symbols": {
+        "UnifiedWhere": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/state/whats-new/places.test.ts"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/preview": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "PreviewSession": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/model.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/ReadOnlyNotice": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "ReadOnlyNotice": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/stage.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/shell/export": {
+      "importingFiles": 6,
+      "byZone": {
+        "unifiedEditor": 6
+      },
+      "symbols": {
+        "Exporter": {
+          "importingFiles": 6,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/agent-tools/tools.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/shortcuts.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/ExportControl.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/commands.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-actions.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/stage.tsx"
+          ]
+        },
+        "ExportOutcome": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/agent-tools/tools.ts"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/shell/export-actions": {
+      "importingFiles": 3,
+      "byZone": {
+        "unifiedEditor": 3
+      },
+      "symbols": {
+        "ExportItem": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/places.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/sheet.tsx"
+          ]
+        },
+        "ExportAction": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/panel.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/sheet.tsx"
+          ]
+        },
+        "ExportActionContent": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/panel.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/sheet.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/shell/export-animation-dialog": {
+      "importingFiles": 3,
+      "byZone": {
+        "unifiedEditor": 3
+      },
+      "symbols": {
+        "AnimationExportDialog": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/ExportControl.tsx"
+          ]
+        },
+        "AnimationExportContent": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/video.tsx"
+          ]
+        },
+        "AnimationExporter": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/shell/export-formats": {
+      "importingFiles": 8,
+      "byZone": {
+        "unifiedEditor": 8
+      },
+      "symbols": {
+        "ExportChoice": {
+          "importingFiles": 6,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/agent-tools/tools.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-actions.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/choice-fields.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/panel.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/sheet.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export.tsx"
+          ]
+        },
+        "EXPORT_SCALES": {
+          "importingFiles": 4,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/agent-tools/tools.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/commands.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/choice-fields.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/sections.tsx"
+          ]
+        },
+        "JPEG_QUALITY": {
+          "importingFiles": 3,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/agent-tools/tools.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/choice-fields.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/sections.tsx"
+          ]
+        },
+        "EXPORT_FORMATS": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-actions.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/choice-fields.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/choice-fields": {
+      "importingFiles": 2,
+      "byZone": {
+        "unifiedEditor": 2
+      },
+      "symbols": {
+        "FormatChoice": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/panel.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/sheet.tsx"
+          ]
+        },
+        "QualityChoice": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/panel.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/sheet.tsx"
+          ]
+        },
+        "ScaleChoice": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/panel.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/sheet.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/panel": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "PanelExport": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/ExportControl.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/sheet": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "SheetExport": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/ExportControl.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/video": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "VideoExport": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/ExportControl.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/shell/ExportControl": {
+      "importingFiles": 4,
+      "byZone": {
+        "unifiedEditor": 4
+      },
+      "symbols": {
+        "ExportControlProps": {
+          "importingFiles": 3,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/panel.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/sheet.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/video.tsx"
+          ]
+        },
+        "ExportControl": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/stage.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/shell/Header": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "Header": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/harness.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/shell/icons": {
+      "importingFiles": 13,
+      "byZone": {
+        "unifiedEditor": 13
+      },
+      "symbols": {
+        "ExternalIcon": {
+          "importingFiles": 4,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/command-menu/CommandMenu.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/commands.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-actions.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/sections.tsx"
+          ]
+        },
+        "IconProps": {
+          "importingFiles": 4,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/command-menu/commands.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/commands.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-actions.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-formats.ts"
+          ]
+        },
+        "ExperimentsIcon": {
+          "importingFiles": 4,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/Header.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/commands.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/sections.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/Rail.tsx"
+          ]
+        },
+        "SettingsIcon": {
+          "importingFiles": 4,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/Header.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/commands.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/index.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/Rail.tsx"
+          ]
+        },
+        "NewsIcon": {
+          "importingFiles": 3,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/command-menu/CommandMenu.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/commands.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/sections.tsx"
+          ]
+        },
+        "CopyIcon": {
+          "importingFiles": 3,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/controls/CanvasToolbar.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/commands.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-actions.tsx"
+          ]
+        },
+        "ExportIcon": {
+          "importingFiles": 3,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/commands.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-actions.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/sections.tsx"
+          ]
+        },
+        "GeneralIcon": {
+          "importingFiles": 3,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/commands.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-actions.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/sections.tsx"
+          ]
+        },
+        "GitHubIcon": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/command-menu/CommandMenu.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/Rail.tsx"
+          ]
+        },
+        "SparklesIcon": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/command-menu/CommandMenu.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/CanvasToolbar.tsx"
+          ]
+        },
+        "SearchIcon": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/Header.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/SettingsDialog.tsx"
+          ]
+        },
+        "CloseIcon": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/SettingsDialog.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/sections.tsx"
+          ]
+        },
+        "AboutIcon": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/commands.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/sections.tsx"
+          ]
+        },
+        "AltTextIcon": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/commands.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-actions.tsx"
+          ]
+        },
+        "AppearanceIcon": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/commands.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/sections.tsx"
+          ]
+        },
+        "ShareIcon": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/commands.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-actions.tsx"
+          ]
+        },
+        "StackIcon": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/commands.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-actions.tsx"
+          ]
+        },
+        "CheckIcon": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/panel.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/sections.tsx"
+          ]
+        },
+        "ArrowUpIcon": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/LocalAi.tsx"
+          ]
+        },
+        "PromptIcon": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/LocalAi.tsx"
+          ]
+        },
+        "HideIcon": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-actions.tsx"
+          ]
+        },
+        "CameraIcon": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-formats.ts"
+          ]
+        },
+        "PhotoIcon": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-formats.ts"
+          ]
+        },
+        "VectorIcon": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/export-formats.ts"
+          ]
+        },
+        "RestoreIcon": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/sections.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/shell/preferences": {
+      "importingFiles": 5,
+      "byZone": {
+        "unifiedEditor": 5
+      },
+      "symbols": {
+        "LayoutId": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/registry.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/previews.tsx"
+          ]
+        },
+        "COLOUR_MODES": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/commands.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/sections.tsx"
+          ]
+        },
+        "LAYOUTS": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/commands.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/sections.tsx"
+          ]
+        },
+        "PANEL_NAVS": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/commands.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/sections.tsx"
+          ]
+        },
+        "THEME_CARDS": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/commands.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/sections.tsx"
+          ]
+        },
+        "LocalAiProviderId": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/local-ai/providers.ts"
+          ]
+        },
+        "ColourModeId": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/previews.tsx"
+          ]
+        },
+        "PanelNav": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/previews.tsx"
+          ]
+        },
+        "PanelSide": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/previews.tsx"
+          ]
+        },
+        "ThemeCardsId": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/sections.tsx"
+          ]
+        },
+        "DEFAULT_CARDS": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/sections.tsx"
+          ]
+        },
+        "DEFAULT_LAYOUT": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/sections.tsx"
+          ]
+        },
+        "EXPORT_STYLES": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/sections.tsx"
+          ]
+        },
+        "LOCAL_AI_PROVIDERS": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/sections.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/shell/previews": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "ColourModeOrb": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/sections.tsx"
+          ]
+        },
+        "LayoutPreview": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/sections.tsx"
+          ]
+        },
+        "NavPreview": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/sections.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/shell/sections": {
+      "importingFiles": 2,
+      "byZone": {
+        "unifiedEditor": 2
+      },
+      "symbols": {
+        "SettingRowId": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/places.ts"
+          ]
+        },
+        "SettingGroup": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/SettingsDialog.tsx"
+          ]
+        },
+        "SettingRow": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/SettingsDialog.tsx"
+          ]
+        },
+        "SettingSection": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/SettingsDialog.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/shell/settings-state": {
+      "importingFiles": 2,
+      "byZone": {
+        "unifiedEditor": 2
+      },
+      "symbols": {
+        "SECTIONS": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/commands.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/sections.tsx"
+          ]
+        },
+        "SectionId": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/shell/commands.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/sections.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/shell/SettingsDialog": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "SettingsDialog": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/harness.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/stage": {
+      "importingFiles": 6,
+      "byZone": {
+        "unifiedEditor": 6
+      },
+      "symbols": {
+        "Stage": {
+          "importingFiles": 6,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/command-menu/CommandMenu.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/contract.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/CanvasToolbar.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/Header.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/theme-styles/ThemePicker.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/context.ts"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/syntax": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "SyntaxColors": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/model.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/theme-styles/aa-list": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "AaList": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/theme-styles/ThemePicker.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/theme-styles/browser": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "ThemeBrowser": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/theme-styles/ThemePicker.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/theme-styles/ModeIcon": {
+      "importingFiles": 2,
+      "byZone": {
+        "unifiedEditor": 2
+      },
+      "symbols": {
+        "ModeIcon": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/theme-styles/orb/index.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/theme-styles/window/index.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/theme-styles/orb": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "OrbList": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/theme-styles/ThemePicker.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/theme-styles/style": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "ThemeStyleId": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/theme-styles/ThemePicker.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/theme-styles/ThemePicker": {
+      "importingFiles": 6,
+      "byZone": {
+        "unifiedEditor": 6
+      },
+      "symbols": {
+        "ThemePickerSlotProps": {
+          "importingFiles": 3,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/contract.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/harness.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/context.ts"
+          ]
+        },
+        "ThemeListProps": {
+          "importingFiles": 3,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/theme-styles/aa-list/index.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/theme-styles/orb/index.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/theme-styles/window/index.tsx"
+          ]
+        },
+        "ThemePicker": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/harness.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/theme-styles/window": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "WindowList": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/theme-styles/ThemePicker.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/ThemeSwatch": {
+      "importingFiles": 7,
+      "byZone": {
+        "unifiedEditor": 7
+      },
+      "symbols": {
+        "ThemeSwatch": {
+          "importingFiles": 6,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/command-menu/CommandMenu.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/sections.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/theme-styles/aa-list/index.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/theme-styles/orb/index.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/theme-styles/window/index.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/index.tsx"
+          ]
+        },
+        "SwatchVariant": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/theme-styles/style.ts"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/variants/dock": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "default": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/registry.ts"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/variants/dock/context": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "DockContext": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/index.tsx"
+          ]
+        },
+        "DockApi": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/index.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/variants/dock/fields": {
+      "importingFiles": 5,
+      "byZone": {
+        "unifiedEditor": 5
+      },
+      "symbols": {
+        "PanelId": {
+          "importingFiles": 5,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/Sheet.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/context.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/index.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/panels.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/places.test.ts"
+          ]
+        },
+        "PLACES": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/index.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/places.test.ts"
+          ]
+        },
+        "Fields": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/context.ts"
+          ]
+        },
+        "GROUPS": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/panels.tsx"
+          ]
+        },
+        "GroupId": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/panels.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/variants/dock/icons": {
+      "importingFiles": 2,
+      "byZone": {
+        "unifiedEditor": 2
+      },
+      "symbols": {
+        "SearchIcon": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/index.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/panels.tsx"
+          ]
+        },
+        "CodeIcon": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/index.tsx"
+          ]
+        },
+        "PaddingIcon": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/index.tsx"
+          ]
+        },
+        "SlidersIcon": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/index.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/variants/dock/panels": {
+      "importingFiles": 2,
+      "byZone": {
+        "unifiedEditor": 2
+      },
+      "symbols": {
+        "PANELS": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/Sheet.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/index.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/variants/dock/Sheet": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "Sheet": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/index.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "default": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/registry.ts"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/Accordion": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "Accordion": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/index.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/icons": {
+      "importingFiles": 2,
+      "byZone": {
+        "unifiedEditor": 2
+      },
+      "symbols": {
+        "CloseIcon": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/Rail.tsx"
+          ]
+        },
+        "CollapseIcon": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/Rail.tsx"
+          ]
+        },
+        "SearchIcon": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/Rail.tsx"
+          ]
+        },
+        "IconComponent": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/panels.tsx"
+          ]
+        },
+        "CodeIcon": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/panels.tsx"
+          ]
+        },
+        "FrameIcon": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/panels.tsx"
+          ]
+        },
+        "PresetsIcon": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/panels.tsx"
+          ]
+        },
+        "ThemesIcon": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/panels.tsx"
+          ]
+        },
+        "WindowIcon": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/panels.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/panels": {
+      "importingFiles": 5,
+      "byZone": {
+        "unifiedEditor": 5
+      },
+      "symbols": {
+        "PanelId": {
+          "importingFiles": 4,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/Accordion.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/Rail.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/places.test.ts",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/places.ts"
+          ]
+        },
+        "PANELS": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/Accordion.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/Rail.tsx"
+          ]
+        },
+        "Panel": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/Rail.tsx"
+          ]
+        },
+        "PanelProps": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/ThemesPanel.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/places": {
+      "importingFiles": 3,
+      "byZone": {
+        "unifiedEditor": 3
+      },
+      "symbols": {
+        "PLACES": {
+          "importingFiles": 3,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/Accordion.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/Rail.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/places.test.ts"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/Rail": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "Rail": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/index.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/ThemesPanel": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "ThemesPanel": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/panels.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/ui/Alert/Alert": {
+      "importingFiles": 1,
+      "byZone": {
+        "appOther": 1
+      },
+      "symbols": {
+        "Alert": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/components/FeatureBadge/FeatureCheckBanner.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/ui/ConfirmDialog/ConfirmDialog": {
+      "importingFiles": 2,
+      "byZone": {
+        "appOther": 1,
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "ConfirmDialog": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/Dashboard/components/ProjectItem/ProjectItem.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/PresetSwitcher.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/ui/ConfirmDialog/RenameContentDialog": {
+      "importingFiles": 3,
+      "byZone": {
+        "appOther": 1,
+        "unifiedEditor": 2
+      },
+      "symbols": {
+        "RenameContentDialog": {
+          "importingFiles": 3,
+          "files": [
+            "apps/codeimage/src/pages/Dashboard/components/ProjectItem/ProjectItem.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/EmptyPresetFallback.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/PresetSwitcher.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/ui/DynamicSizedContainer/DynamicSizedContainer": {
+      "importingFiles": 1,
+      "byZone": {
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "DynamicSizedContainer": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/localized/FontPicker.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/ui/ExperimentalChip/ExperimentalChip": {
+      "importingFiles": 1,
+      "byZone": {
+        "appOther": 1
+      },
+      "symbols": {
+        "ExperimentalChip": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/components/Toolbar/SettingsDialog.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/ui/ExperimentalFeatureTooltip/ExperimentalFeatureTooltip": {
+      "importingFiles": 2,
+      "byZone": {
+        "unifiedEditor": 1,
+        "appOther": 1
+      },
+      "symbols": {
+        "ExperimentalIcon": {
+          "importingFiles": 2,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/localized/ExperimentalFeatureTooltip.tsx",
+            "apps/codeimage/src/ui/ExperimentalChip/ExperimentalChip.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/ui/GitHubLoginButton/GitHubLoginButton": {
+      "importingFiles": 1,
+      "byZone": {
+        "appOther": 1
+      },
+      "symbols": {
+        "GitHubLoginButton": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/components/UserBadge/UserBadge.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/ui/SegmentedField/SegmentedField": {
+      "importingFiles": 10,
+      "byZone": {
+        "appOther": 1,
+        "unifiedEditor": 9
+      },
+      "symbols": {
+        "SegmentedField": {
+          "importingFiles": 10,
+          "files": [
+            "apps/codeimage/src/components/Animation/EasingField.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/PickerContent.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/SignatureFields.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/controls/fields.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/ColorPicker.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/FontPicker.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/shell/sections.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/theme-styles/ThemePicker.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/dock/panels.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/panels.tsx"
+          ]
+        },
+        "SegmentedFieldItem": {
+          "importingFiles": 1,
+          "files": [
+            "apps/codeimage/src/pages/UnifiedEditor/localized/ColorPicker.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/ui/Skeleton/Skeleton": {
+      "importingFiles": 5,
+      "byZone": {
+        "appOther": 4,
+        "unifiedEditor": 1
+      },
+      "symbols": {
+        "SkeletonLine": {
+          "importingFiles": 5,
+          "files": [
+            "apps/codeimage/src/components/Frame/FrameSkeleton.tsx",
+            "apps/codeimage/src/components/ThemeSwitcher/ThemeBoxSkeleton.tsx",
+            "apps/codeimage/src/components/Toolbar/ToolbarSnippetName.tsx",
+            "apps/codeimage/src/pages/Dashboard/components/ProjectItemSkeleton/ProjectItemSkeleton.tsx",
+            "apps/codeimage/src/pages/UnifiedEditor/localized/ImagePickerList.tsx"
+          ]
+        }
+      }
+    },
+    "apps/codeimage/src/ui/Skeleton/SkeletonDivider": {
+      "importingFiles": 3,
+      "byZone": {
+        "appOther": 3
+      },
+      "symbols": {
+        "SkeletonDivider": {
+          "importingFiles": 3,
+          "files": [
+            "apps/codeimage/src/components/Frame/FrameSkeleton.tsx",
+            "apps/codeimage/src/components/ThemeSwitcher/ThemeBoxSkeleton.tsx",
+            "apps/codeimage/src/pages/Dashboard/components/ProjectItemSkeleton/ProjectItemSkeleton.tsx"
+          ]
+        }
+      }
+    }
+  },
+  "tsExpectErrorsInKitImporters": [
+    {
+      "file": "apps/codeimage/src/components/PropertyEditor/controls/FontPicker/FontPickerListbox.tsx",
+      "line": 42,
+      "comment": "// @ts-expect-error TODO: Fix iterable types",
+      "next": "onChange: values => props.onChange(values.keys().next().value),"
+    },
+    {
+      "file": "apps/codeimage/src/pages/UnifiedEditor/controls/fields.tsx",
+      "line": 80,
+      "comment": "// @ts-expect-error The kit's Select types reject the props its own helper returns.",
+      "next": "<Select"
+    },
+    {
+      "file": "apps/codeimage/src/pages/UnifiedEditor/localized/FontSystemPicker.tsx",
+      "line": 108,
+      "comment": "/* @ts-expect-error Fix @codeui/kit types */",
+      "next": "class={styles.virtualizedFontListbox}"
+    }
+  ],
+  "kitExportsUnused": [
+    "ButtonProps",
+    "fieldStyles",
+    "styleFieldMessage",
+    "createBaseFieldProps",
+    "BaseFieldProps",
+    "createFieldErrorMessageProps",
+    "FieldWithErrorMessageSupport",
+    "fieldErrorStyles",
+    "fieldLabelStyles",
+    "createFieldLabelProps",
+    "TextFieldLabel",
+    "textFieldStyles",
+    "TextFieldProps",
+    "TextAreaLabel",
+    "TextAreaProps",
+    "NumberFieldLabel",
+    "NumberFieldProps",
+    "CheckBoxProps",
+    "DialogPanel",
+    "DialogProps",
+    "dropdownMenuStyles",
+    "popoverStyles",
+    "RadioListProps",
+    "Tabs",
+    "TabsHeader",
+    "TabsList",
+    "TabsContent",
+    "SegmentedControlItemProps",
+    "ListboxItem",
+    "SvgIcon",
+    "breakpoints",
+    "layoutVars",
+    "mergeClasses"
+  ]
+}

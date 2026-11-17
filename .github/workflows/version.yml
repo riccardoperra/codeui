@@ -9,10 +9,10 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   release:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [ 20.12.2 ]
+        node-version: [ 20.19.0 ]
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v4

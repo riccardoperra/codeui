@@ -1,5 +1,5 @@
 import { Listbox, VirtualizedListbox } from "@codeui/kit";
-import type { Meta, StoryObj } from "storybook-solidjs";
+import type { Meta, StoryObj } from "storybook-solidjs-vite";
 
 type Story = StoryObj<typeof meta>;
 
@@ -141,4 +141,26 @@ export const ListboxVirtualized: Story = {
 			overflow: "auto",
 		},
 	},
+};
+
+export const FieldApi: Story = {
+	render: () => (
+		<>
+			<Listbox
+				aria-label="Fruit"
+				options={["Apple", "Pear"]}
+				class="fruit-list"
+				classes={{ item: "fruit-option" }}
+			/>
+			<VirtualizedListbox
+				aria-label="Fonts"
+				class="font-list"
+				classes={{ itemLabel: "font-label" }}
+				options={Array.from({ length: 100 }, (_, i) => ({
+					value: String(i),
+					label: `Font ${i}`,
+				}))}
+			/>
+		</>
+	),
 };

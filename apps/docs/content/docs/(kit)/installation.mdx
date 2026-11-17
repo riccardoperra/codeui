@@ -1,0 +1,46 @@
+---
+title: "Installation"
+description: "Set up the kit in a Vite and Solid app."
+---
+
+## Requirements
+
+Use Solid `^1.9.8`, Vite, and `vite-plugin-solid`. The current package ships vanilla-extract `.css.js` modules. The vanilla-extract Vite plugin is required to process them.
+Without the plugin, style evaluation can throw “Styles were unable to be assigned to a file” before any component renders.
+
+## Install
+
+```sh
+pnpm add @codeui/kit solid-js@^1.9.8
+pnpm add -D vite vite-plugin-solid @vanilla-extract/vite-plugin@4.0.15
+```
+
+## Configure Vite
+
+```ts title="vite.config.ts"
+import { defineConfig } from "vite";
+import solid from "vite-plugin-solid";
+import { vanillaExtractPlugin } from "@vanilla-extract/vite-plugin";
+
+export default defineConfig({
+	plugins: [vanillaExtractPlugin(), solid()],
+});
+```
+
+This is the verified browser workaround from `examples/run-consumer-check.mjs --with-vanilla-extract`.
+For SSR, the fixture uses `solid({ ssr: true })`, `ssr.noExternal: ["@codeui/kit"]`, and `ssr.resolve.conditions: ["solid", "node"]`.
+The plugin fixes SSR style evaluation, but the consumer check still fails because portalled Dialog and Popover bodies are absent from server markup. Do not rely on those bodies for server content.
+The reproducible setup and results live in `docs/kit-2026/consumer.md` and `examples/` in the repository.
+
+## Use a component
+
+<SolidDemo name="first-component/export-screen" />
+
+Import ready components from `@codeui/kit`. Import styled parts as a namespace from the component subpath, as in the [parts example](/docs/ready-or-parts).
+
+## Pick a theme
+
+Set `data-cui-theme="dark"` or `data-cui-theme="light"` on the document's `html` element. This lets content portalled to the document body inherit the theme too.
+Without an explicit theme attribute, the theme follows the system color scheme.
+No separate `@codeui/kit/theme.css` import is exported by the current package. Component imports include the style modules that the plugin processes.
+See [Theming](/docs/foundations/theming) for token overrides.

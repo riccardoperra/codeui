@@ -1,0 +1,72 @@
+
+> codeui-monorepo@0.0.1 test /Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d
+> turbo run test --filter=!@codeui/*playground
+
+• Packages in scope: @codeui/kit, @codeui/vanilla-extract
+• Running test in 2 packages
+• Remote caching disabled
+@codeui/vanilla-extract:build: cache hit, replaying logs d1f53406ee907457
+@codeui/vanilla-extract:build: 
+@codeui/vanilla-extract:build: > @codeui/vanilla-extract@0.2.0 build /Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/packages/vanilla-extract
+@codeui/vanilla-extract:build: > rollup -c
+@codeui/vanilla-extract:build: 
+@codeui/vanilla-extract:build: [36m
+@codeui/vanilla-extract:build: [1msrc/index.ts, src/vite-plugin/index.ts[22m → [1mdist, dist[22m...[39m
+@codeui/vanilla-extract:build: [1m[33m(!) Unresolved dependencies[39m[22m
+@codeui/vanilla-extract:build: [90mhttps://rollupjs.org/guide/en/#warning-treating-module-as-external-dependency[39m
+@codeui/vanilla-extract:build: [1mpath[22m (imported by src/vite-plugin/index.ts)
+@codeui/vanilla-extract:build: [1mnode:fs[22m (imported by src/esbuild/vanillaCssTsFilesLoader.ts)
+@codeui/vanilla-extract:build: [1mnode:path[22m (imported by src/esbuild/vanillaCssTsFilesLoader.ts)
+@codeui/vanilla-extract:build: [1m[33m(!) Plugin typescript: @rollup/plugin-typescript TS2688: Cannot find type definition file for '@testing-library/jest-dom'.
+@codeui/vanilla-extract:build:   The file is in the program because:
+@codeui/vanilla-extract:build:     Entry point of type library '@testing-library/jest-dom' specified in compilerOptions[39m[22m
+@codeui/vanilla-extract:build: [32mcreated [1mdist, dist[22m in [1m488ms[22m[39m
+@codeui/kit:test: cache miss, executing 559b404249ac4652
+@codeui/kit:test: 
+@codeui/kit:test: > @codeui/kit@0.1.5 test /Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/packages/kit
+@codeui/kit:test: > pnpm run test:client && pnpm run test:ssr
+@codeui/kit:test: 
+@codeui/kit:test: 
+@codeui/kit:test: > @codeui/kit@0.1.5 test:client /Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/packages/kit
+@codeui/kit:test: > jest --config jest.config.ts
+@codeui/kit:test: 
+@codeui/kit:test: watchman warning:  Recrawled this watch 1 time, most recently because:
+@codeui/kit:test: MustScanSubDirs UserDroppedTo resolve, please review the information on
+@codeui/kit:test: https://facebook.github.io/watchman/docs/troubleshooting.html#recrawl
+@codeui/kit:test: To clear this warning, run:
+@codeui/kit:test: `watchman watch-del '/Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d' ; watchman watch-project '/Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d'`
+@codeui/kit:test: 
+@codeui/kit:test: ts-jest[ts-jest-transformer] (WARN) Define `ts-jest` config under `globals` is deprecated. Please do
+@codeui/kit:test: transform: {
+@codeui/kit:test:     <transform_regex>: ['ts-jest', { /* ts-jest config goes here in Jest */ }],
+@codeui/kit:test: },
+@codeui/kit:test: See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/presets#advanced
+@codeui/kit:test: FAIL test/index.test.tsx
+@codeui/kit:test:   ● Test suite failed to run
+@codeui/kit:test: 
+@codeui/kit:test:     [96mtest/index.test.tsx[0m:[93m3[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../src"' has no exported member 'createHello'.
+@codeui/kit:test: 
+@codeui/kit:test:     [7m3[0m import { createHello, Hello } from "../src"
+@codeui/kit:test:     [7m [0m [91m         ~~~~~~~~~~~[0m
+@codeui/kit:test:     [96mtest/index.test.tsx[0m:[93m3[0m:[93m23[0m - [91merror[0m[90m TS2305: [0mModule '"../src"' has no exported member 'Hello'.
+@codeui/kit:test: 
+@codeui/kit:test:     [7m3[0m import { createHello, Hello } from "../src"
+@codeui/kit:test:     [7m [0m [91m                      ~~~~~[0m
+@codeui/kit:test: 
+@codeui/kit:test: Test Suites: 1 failed, 1 total
+@codeui/kit:test: Tests:       0 total
+@codeui/kit:test: Snapshots:   0 total
+@codeui/kit:test: Time:        1.252 s
+@codeui/kit:test: Ran all test suites.
+@codeui/kit:test:  ELIFECYCLE  Command failed with exit code 1.
+@codeui/kit:test:  ELIFECYCLE  Test failed. See above for more details.
+@codeui/kit:test: ERROR: command finished with error: command (/Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/packages/kit) /opt/homebrew/bin/pnpm run test exited (1)
+@codeui/kit#test: command (/Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/packages/kit) /opt/homebrew/bin/pnpm run test exited (1)
+
+ Tasks:    1 successful, 2 total
+Cached:    1 cached, 2 total
+  Time:    3.098s 
+Failed:    @codeui/kit#test
+
+ ERROR  run failed: command  exited (1)
+ ELIFECYCLE  Test failed. See above for more details.

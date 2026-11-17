@@ -1,0 +1,11 @@
+.dialog-classes-demo-panel {
+	border-radius: var(--cui-radius-command);
+}
+
+.dialog-classes-demo-header {
+	border-bottom: 0;
+}
+
+.dialog-classes-demo-description {
+	color: var(--cui-text-muted);
+}

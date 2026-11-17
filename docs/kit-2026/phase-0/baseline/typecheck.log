@@ -1,0 +1,49 @@
+
+> codeui-monorepo@0.0.1 typecheck /Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d
+> turbo run typecheck --filter=!@codeui/*playground
+
+• Packages in scope: @codeui/kit, @codeui/vanilla-extract
+• Running typecheck in 2 packages
+• Remote caching disabled
+@codeui/vanilla-extract:build: cache hit, replaying logs d1f53406ee907457
+@codeui/vanilla-extract:build: 
+@codeui/vanilla-extract:build: > @codeui/vanilla-extract@0.2.0 build /Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/packages/vanilla-extract
+@codeui/vanilla-extract:build: > rollup -c
+@codeui/vanilla-extract:build: 
+@codeui/vanilla-extract:build: [36m
+@codeui/vanilla-extract:build: [1msrc/index.ts, src/vite-plugin/index.ts[22m → [1mdist, dist[22m...[39m
+@codeui/vanilla-extract:build: [1m[33m(!) Unresolved dependencies[39m[22m
+@codeui/vanilla-extract:build: [90mhttps://rollupjs.org/guide/en/#warning-treating-module-as-external-dependency[39m
+@codeui/vanilla-extract:build: [1mpath[22m (imported by src/vite-plugin/index.ts)
+@codeui/vanilla-extract:build: [1mnode:fs[22m (imported by src/esbuild/vanillaCssTsFilesLoader.ts)
+@codeui/vanilla-extract:build: [1mnode:path[22m (imported by src/esbuild/vanillaCssTsFilesLoader.ts)
+@codeui/vanilla-extract:build: [1m[33m(!) Plugin typescript: @rollup/plugin-typescript TS2688: Cannot find type definition file for '@testing-library/jest-dom'.
+@codeui/vanilla-extract:build:   The file is in the program because:
+@codeui/vanilla-extract:build:     Entry point of type library '@testing-library/jest-dom' specified in compilerOptions[39m[22m
+@codeui/vanilla-extract:build: [32mcreated [1mdist, dist[22m in [1m488ms[22m[39m
+@codeui/kit:typecheck: cache miss, executing ca5870142169a9fc
+@codeui/kit:typecheck: 
+@codeui/kit:typecheck: > @codeui/kit@0.1.5 typecheck /Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/packages/kit
+@codeui/kit:typecheck: > tsc --noEmit
+@codeui/kit:typecheck: 
+@codeui/kit:typecheck: src/components/Field/FieldMessage/createFieldMessageProps.ts(9,37): error TS2322: Type '"children"' is not assignable to type '"as" | Exclude<keyof ComponentProps<TComponent>, "as">'.
+@codeui/kit:typecheck: src/components/Listbox/VirtualizedListbox.tsx(36,40): error TS2344: Type 'HTMLUListElement | undefined' does not satisfy the constraint 'Element'.
+@codeui/kit:typecheck:   Type 'undefined' is not assignable to type 'Element'.
+@codeui/kit:typecheck: src/utils/maskito.ts(27,37): error TS2345: Argument of type 'MaskitoElement | Promise<MaskitoElement>' is not assignable to parameter of type 'MaskitoElement'.
+@codeui/kit:typecheck:   Type 'Promise<MaskitoElement>' is not assignable to type 'MaskitoElement'.
+@codeui/kit:typecheck:     Type 'Promise<MaskitoElement>' is missing the following properties from type 'HTMLElement': accessKey, accessKeyLabel, autocapitalize, dir, and 298 more.
+@codeui/kit:typecheck: test/index.ssr.test.tsx(2,10): error TS2305: Module '"../src"' has no exported member 'createHello'.
+@codeui/kit:typecheck: test/index.ssr.test.tsx(2,23): error TS2305: Module '"../src"' has no exported member 'Hello'.
+@codeui/kit:typecheck: test/index.test.tsx(3,10): error TS2305: Module '"../src"' has no exported member 'createHello'.
+@codeui/kit:typecheck: test/index.test.tsx(3,23): error TS2305: Module '"../src"' has no exported member 'Hello'.
+@codeui/kit:typecheck:  ELIFECYCLE  Command failed with exit code 2.
+@codeui/kit:typecheck: ERROR: command finished with error: command (/Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/packages/kit) /opt/homebrew/bin/pnpm run typecheck exited (2)
+@codeui/kit#typecheck: command (/Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/packages/kit) /opt/homebrew/bin/pnpm run typecheck exited (2)
+
+ Tasks:    1 successful, 2 total
+Cached:    1 cached, 2 total
+  Time:    1.455s 
+Failed:    @codeui/kit#typecheck
+
+ ERROR  run failed: command  exited (2)
+ ELIFECYCLE  Command failed with exit code 2.

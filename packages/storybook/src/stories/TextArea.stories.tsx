@@ -1,5 +1,5 @@
 import { Button, TextArea, TextAreaProps } from "@codeui/kit";
-import type { Meta, StoryObj } from "storybook-solidjs";
+import type { Meta, StoryObj } from "storybook-solidjs-vite";
 import { DocsItemsContainer, DocsMultipleItemsContainer } from "./components/Section.jsx";
 import { For } from "solid-js";
 
@@ -223,4 +223,15 @@ export const TextAreaCustomClasses: Story = {
 			label: "font-italic",
 		},
 	},
+};
+
+export const FieldApi: Story = {
+	render: () => (
+		<TextArea
+			aria-label="Notes"
+			maxLength={200}
+			description={<strong>Up to 200 characters</strong>}
+			classes={{ input: "notes-input" }}
+		/>
+	),
 };

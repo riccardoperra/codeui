@@ -9,10 +9,12 @@
 	"scripts": {
 		"dev": "turbo run dev --parallel",
 		"build": "turbo run build",
+		"api:update": "node tools/api-snapshot.mjs --update",
+		"api:check": "node tools/api-snapshot.mjs",
 		"build:kit": "turbo run build --filter=@codeui/kit",
-		"test": "turbo run test --filter=!./playgrounds/*",
-		"typecheck": "turbo run typecheck --filter=!./playgrounds/*",
-		"build-test": "turbo run build test typecheck --filter=!./playgrounds/*",
+		"test": "turbo run test --filter=!@codeui/*playground",
+		"typecheck": "turbo run typecheck --filter=!@codeui/*playground",
+		"build-test": "turbo run build test typecheck --filter=!@codeui/*playground",
 		"format": "prettier -w \"packages/**/*.{js,ts,json,css,tsx,jsx,md}\" \"playgrounds/**/*.{js,ts,json,css,tsx,jsx,md}\"",
 		"changeset": "changeset",
 		"version-packages": "changeset version && pnpm i",
@@ -20,7 +22,11 @@
 		"release": "pnpm run build:kit && changeset publish",
 		"update-deps": "taze -w -r && pnpm i",
 		"publish": "changeset publish",
-		"prepublish": "pnpm build"
+		"prepublish": "pnpm build",
+		"docs:scaffold": "node tools/docs/scaffold.mjs",
+		"docs:coverage": "node tools/docs/coverage.mjs",
+		"docs:check-llms": "node tools/docs/check-llms.mjs",
+		"docs:lint": "node tools/docs/lint-demos.mjs && node tools/docs/lint-links.mjs && node tools/docs/lint-anatomy.mjs"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.25.2",
@@ -33,7 +39,7 @@
 		"prettier": "3.3.3",
 		"rollup": "^4.21.3",
 		"rollup-preset-solid": "^2.0.1",
-		"solid-js": "^1.8.22",
+		"solid-js": "^1.9.8",
 		"taze": "^0.16.8",
 		"ts-jest": "^29.2.5",
 		"turbo": "^2.1.1",
@@ -44,5 +50,8 @@
 	"packageManager": "pnpm@9.5.0",
 	"dependencies": {
 		"@changesets/changelog-git": "^0.2.0"
+	},
+	"engines": {
+		"node": "^20.19.0 || >=22.12.0"
 	}
 }

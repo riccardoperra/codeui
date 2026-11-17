@@ -27,66 +27,418 @@
 		"access": "public"
 	},
 	"files": [
-		"dist"
+		"dist",
+		"DESIGN.md"
 	],
 	"type": "module",
 	"module": "dist/esm/index.js",
 	"types": "dist/types/index.d.ts",
 	"exports": {
 		".": {
-			"types": "./dist/types/index.d.ts",
-			"solid": "./dist/source/index.jsx",
-			"import": "./dist/esm/index.js",
-			"browser": {
-				"import": "./dist/esm/index.js"
+			"solid": {
+				"types": "./dist/types/index.d.ts",
+				"default": "./dist/source/index.jsx"
+			},
+			"import": {
+				"types": "./dist/types/index.d.ts",
+				"default": "./dist/esm/index.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/index.d.cts",
+				"default": "./dist/cjs/index.cjs"
 			}
+		},
+		"./dialog": {
+			"solid": {
+				"types": "./dist/types/parts/dialog.d.ts",
+				"default": "./dist/source/parts/dialog.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/dialog.d.ts",
+				"default": "./dist/esm/parts/dialog.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/dialog.d.cts",
+				"default": "./dist/cjs/parts/dialog.cjs"
+			}
+		},
+		"./popover": {
+			"solid": {
+				"types": "./dist/types/parts/popover.d.ts",
+				"default": "./dist/source/parts/popover.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/popover.d.ts",
+				"default": "./dist/esm/parts/popover.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/popover.d.cts",
+				"default": "./dist/cjs/parts/popover.cjs"
+			}
+		},
+		"./package.json": "./package.json",
+		"./tokens": {
+			"solid": {
+				"types": "./dist/types/tokens.d.ts",
+				"default": "./dist/source/tokens.js"
+			},
+			"import": {
+				"types": "./dist/types/tokens.d.ts",
+				"default": "./dist/esm/tokens.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/tokens.d.cts",
+				"default": "./dist/cjs/tokens.cjs"
+			}
+		},
+		"./stack": {
+			"solid": {
+				"types": "./dist/types/parts/stack.d.ts",
+				"default": "./dist/source/parts/stack.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/stack.d.ts",
+				"default": "./dist/esm/parts/stack.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/stack.d.cts",
+				"default": "./dist/cjs/parts/stack.cjs"
+			}
+		},
+		"./text": {
+			"solid": {
+				"types": "./dist/types/parts/text.d.ts",
+				"default": "./dist/source/parts/text.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/text.d.ts",
+				"default": "./dist/esm/parts/text.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/text.d.cts",
+				"default": "./dist/cjs/parts/text.cjs"
+			}
+		},
+		"./switch": {
+			"solid": {
+				"types": "./dist/types/parts/switch.d.ts",
+				"default": "./dist/source/parts/switch.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/switch.d.ts",
+				"default": "./dist/esm/parts/switch.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/switch.d.cts",
+				"default": "./dist/cjs/parts/switch.cjs"
+			}
+		},
+		"./slider": {
+			"solid": {
+				"types": "./dist/types/parts/slider.d.ts",
+				"default": "./dist/source/parts/slider.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/slider.d.ts",
+				"default": "./dist/esm/parts/slider.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/slider.d.cts",
+				"default": "./dist/cjs/parts/slider.cjs"
+			}
+		},
+		"./progress": {
+			"solid": {
+				"types": "./dist/types/parts/progress.d.ts",
+				"default": "./dist/source/parts/progress.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/progress.d.ts",
+				"default": "./dist/esm/parts/progress.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/progress.d.cts",
+				"default": "./dist/cjs/parts/progress.cjs"
+			}
+		},
+		"./combobox": {
+			"solid": {
+				"types": "./dist/types/parts/combobox.d.ts",
+				"default": "./dist/source/parts/combobox.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/combobox.d.ts",
+				"default": "./dist/esm/parts/combobox.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/combobox.d.cts",
+				"default": "./dist/cjs/parts/combobox.cjs"
+			}
+		},
+		"./command-menu": {
+			"solid": {
+				"types": "./dist/types/parts/command-menu.d.ts",
+				"default": "./dist/source/parts/command-menu.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/command-menu.d.ts",
+				"default": "./dist/esm/parts/command-menu.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/command-menu.d.cts",
+				"default": "./dist/cjs/parts/command-menu.cjs"
+			}
+		},
+		"./kbd": {
+			"solid": {
+				"types": "./dist/types/parts/kbd.d.ts",
+				"default": "./dist/source/parts/kbd.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/kbd.d.ts",
+				"default": "./dist/esm/parts/kbd.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/kbd.d.cts",
+				"default": "./dist/cjs/parts/kbd.cjs"
+			}
+		},
+		"./badge": {
+			"solid": {
+				"types": "./dist/types/parts/badge.d.ts",
+				"default": "./dist/source/parts/badge.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/badge.d.ts",
+				"default": "./dist/esm/parts/badge.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/badge.d.cts",
+				"default": "./dist/cjs/parts/badge.cjs"
+			}
+		},
+		"./spinner": {
+			"solid": {
+				"types": "./dist/types/parts/spinner.d.ts",
+				"default": "./dist/source/parts/spinner.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/spinner.d.ts",
+				"default": "./dist/esm/parts/spinner.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/spinner.d.cts",
+				"default": "./dist/cjs/parts/spinner.cjs"
+			}
+		},
+		"./skeleton": {
+			"solid": {
+				"types": "./dist/types/parts/skeleton.d.ts",
+				"default": "./dist/source/parts/skeleton.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/skeleton.d.ts",
+				"default": "./dist/esm/parts/skeleton.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/skeleton.d.cts",
+				"default": "./dist/cjs/parts/skeleton.cjs"
+			}
+		},
+		"./alert": {
+			"solid": {
+				"types": "./dist/types/parts/alert.d.ts",
+				"default": "./dist/source/parts/alert.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/alert.d.ts",
+				"default": "./dist/esm/parts/alert.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/alert.d.cts",
+				"default": "./dist/cjs/parts/alert.cjs"
+			}
+		},
+		"./toast": {
+			"solid": {
+				"types": "./dist/types/parts/toast.d.ts",
+				"default": "./dist/source/parts/toast.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/toast.d.ts",
+				"default": "./dist/esm/parts/toast.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/toast.d.cts",
+				"default": "./dist/cjs/parts/toast.cjs"
+			}
+		},
+		"./option-card": {
+			"solid": {
+				"types": "./dist/types/parts/option-card.d.ts",
+				"default": "./dist/source/parts/option-card.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/option-card.d.ts",
+				"default": "./dist/esm/parts/option-card.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/option-card.d.cts",
+				"default": "./dist/cjs/parts/option-card.cjs"
+			}
+		},
+		"./accordion": {
+			"solid": {
+				"types": "./dist/types/parts/accordion.d.ts",
+				"default": "./dist/source/parts/accordion.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/accordion.d.ts",
+				"default": "./dist/esm/parts/accordion.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/accordion.d.cts",
+				"default": "./dist/cjs/parts/accordion.cjs"
+			}
+		},
+		"./sheet": {
+			"solid": {
+				"types": "./dist/types/parts/sheet.d.ts",
+				"default": "./dist/source/parts/sheet.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/sheet.d.ts",
+				"default": "./dist/esm/parts/sheet.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/sheet.d.cts",
+				"default": "./dist/cjs/parts/sheet.cjs"
+			}
+		},
+		"./settings": {
+			"solid": {
+				"types": "./dist/types/parts/settings.d.ts",
+				"default": "./dist/source/parts/settings.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/settings.d.ts",
+				"default": "./dist/esm/parts/settings.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/settings.d.cts",
+				"default": "./dist/cjs/parts/settings.cjs"
+			}
+		}
+	},
+	"typesVersions": {
+		"*": {
+			"dialog": [
+				"dist/types/parts/dialog.d.ts"
+			],
+			"popover": [
+				"dist/types/parts/popover.d.ts"
+			],
+			"tokens": [
+				"dist/types/tokens.d.ts"
+			],
+			"stack": [
+				"dist/types/parts/stack.d.ts"
+			],
+			"text": [
+				"dist/types/parts/text.d.ts"
+			],
+			"switch": [
+				"dist/types/parts/switch.d.ts"
+			],
+			"slider": [
+				"dist/types/parts/slider.d.ts"
+			],
+			"progress": [
+				"dist/types/parts/progress.d.ts"
+			],
+			"combobox": [
+				"dist/types/parts/combobox.d.ts"
+			],
+			"command-menu": [
+				"dist/types/parts/command-menu.d.ts"
+			],
+			"kbd": [
+				"dist/types/parts/kbd.d.ts"
+			],
+			"badge": [
+				"dist/types/parts/badge.d.ts"
+			],
+			"spinner": [
+				"dist/types/parts/spinner.d.ts"
+			],
+			"skeleton": [
+				"dist/types/parts/skeleton.d.ts"
+			],
+			"alert": [
+				"dist/types/parts/alert.d.ts"
+			],
+			"toast": [
+				"dist/types/parts/toast.d.ts"
+			],
+			"option-card": [
+				"dist/types/parts/option-card.d.ts"
+			],
+			"accordion": [
+				"dist/types/parts/accordion.d.ts"
+			],
+			"sheet": [
+				"dist/types/parts/sheet.d.ts"
+			],
+			"settings": [
+				"dist/types/parts/settings.d.ts"
+			]
 		}
 	},
 	"scripts": {
 		"dev": "pnpm run build -w",
 		"build": "rollup -c rollup.config.js",
-		"test": "pnpm run test:client && pnpm run test:ssr",
+		"test": "pnpm run test:client && pnpm run test:ssr && pnpm run test:hydration && pnpm run test:tokens-consumer",
 		"test:client": "jest --config jest.config.ts",
 		"test:ssr": "jest --config jest.config.ssr.ts",
+		"test:hydration": "jest --config jest.config.ssr.ts test/hydration.ssr && jest --config jest.config.hydration.ts",
 		"typecheck": "tsc --noEmit",
-		"prepublish": "pnpm build"
+		"prepublish": "pnpm build",
+		"test:tokens-consumer": "pnpm run build && node fixtures/tokens-consumer/check.mjs && node fixtures/tokens-consumer/check.mjs --solid"
 	},
 	"devDependencies": {
 		"@codeui/vanilla-extract": "workspace:*",
 		"@testing-library/jest-dom": "^6.5.0",
+		"@vanilla-extract/jest-transform": "1.1.11",
 		"jest": "^29.7.0",
 		"jest-environment-jsdom": "^29.7.0",
 		"rollup": "^4.21.3",
 		"rollup-preset-solid": "^2.0.1",
-		"solid-js": "^1.8.22",
+		"solid-js": "^1.9.8",
 		"solid-testing-library": "^0.5.1",
 		"ts-node": "^10.9.2",
 		"typescript": "^5.6.2",
-		"vite-tsconfig-paths": "^5.0.1"
+		"vite-tsconfig-paths": "^5.0.1",
+		"@vanilla-extract/vite-plugin": "^4.0.15",
+		"motion": "^10.18.0"
 	},
 	"peerDependencies": {
-		"solid-js": "^1.7.0"
+		"solid-js": "^1.9.8"
 	},
 	"packageManager": "pnpm@7.33.7",
 	"dependencies": {
-		"@kobalte/core": "^0.13.6",
-		"@kobalte/utils": "^0.9.1",
+		"@kobalte/core": "^0.13.14",
+		"@kobalte/utils": "^0.9.2",
 		"@kobalte/vanilla-extract": "^0.5.0",
 		"@maskito/core": "^3.0.1",
 		"@maskito/kit": "^3.0.1",
-		"@motionone/solid": "^10.16.4",
 		"@radix-ui/colors": "^3.0.0",
 		"@solid-primitives/pagination": "^0.3.0",
 		"@solid-primitives/scheduled": "^1.4.3",
 		"@tanstack/solid-virtual": "^3.10.7",
-		"@tanstack/virtual-core": "^3.10.7",
 		"@vanilla-extract/css": "^1.15.5",
 		"@vanilla-extract/dynamic": "^2.1.2",
 		"@vanilla-extract/recipes": "^0.5.5",
-		"@vanilla-extract/vite-plugin": "^4.0.15",
-		"example-basic": "link:/Users/riccardoperra/WebstormProjects/pipelineui/packages/app",
-		"motion": "^10.18.0",
-		"polished": "^4.3.1",
-		"statebuilder": "^0.6.0"
-	}
+		"polished": "^4.3.1"
+	},
+	"main": "dist/cjs/index.cjs"
 }

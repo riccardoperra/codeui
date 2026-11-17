@@ -1,0 +1,2704 @@
+{
+  "sourceRef": "origin/main, existing local ref, no fetch",
+  "tokens": [
+    {
+      "group": "surfaces",
+      "token": "surface.canvas",
+      "css": "--cui-surface-canvas",
+      "dark": "#0f0f10",
+      "light": "#f7fafc",
+      "source": "measured preview, semanticTokens.background"
+    },
+    {
+      "group": "text",
+      "token": "text.default",
+      "css": "--cui-text-default",
+      "dark": "#ededed",
+      "light": "#4a5568",
+      "source": "measured preview, semanticTokens.baseText"
+    },
+    {
+      "group": "surfaces",
+      "token": "surface.toolbar",
+      "css": "--cui-surface-toolbar",
+      "dark": "#2b2b2b",
+      "light": "#fff",
+      "source": "measured preview, semanticTokens.bottomBar-backgroundColor"
+    },
+    {
+      "group": "text",
+      "token": "text.toolbar",
+      "css": "--cui-text-toolbar",
+      "dark": "#a0a0a0",
+      "light": "#4a5568",
+      "source": "measured preview, semanticTokens.bottomBar-textColor"
+    },
+    {
+      "group": "accent and status colors",
+      "token": "action.neutral.active",
+      "css": "--cui-action-neutral-active",
+      "dark": "#505050",
+      "light": "#a0aec0",
+      "source": "measured preview, semanticTokens.button-base-activeColor"
+    },
+    {
+      "group": "accent and status colors",
+      "token": "action.neutral.base",
+      "css": "--cui-action-neutral-base",
+      "dark": "#333",
+      "light": "#e2e8f0",
+      "source": "measured preview, semanticTokens.button-base-backgroundColor"
+    },
+    {
+      "group": "accent and status colors",
+      "token": "action.neutral.hover",
+      "css": "--cui-action-neutral-hover",
+      "dark": "#3e3e3e",
+      "light": "#cbd5e0",
+      "source": "measured preview, semanticTokens.button-base-hoverColor"
+    },
+    {
+      "group": "text",
+      "token": "action.neutral.text",
+      "css": "--cui-action-neutral-text",
+      "dark": "#ededed",
+      "light": "#2d3748",
+      "source": "measured preview, semanticTokens.button-base-textColor"
+    },
+    {
+      "group": "accent and status colors",
+      "token": "action.danger.active",
+      "css": "--cui-action-danger-active",
+      "dark": "#9b2c2c",
+      "light": "#9b2c2c",
+      "source": "K5 implementation, raised to WCAG AA text contrast; design #c53030 / #c53030"
+    },
+    {
+      "group": "accent and status colors",
+      "token": "action.danger.base",
+      "css": "--cui-action-danger-base",
+      "dark": "#c53030",
+      "light": "#c53030",
+      "source": "K5 implementation, raised to WCAG AA text contrast; design #f56565 / #f56565"
+    },
+    {
+      "group": "accent and status colors",
+      "token": "action.danger.hover",
+      "css": "--cui-action-danger-hover",
+      "dark": "#b52b2b",
+      "light": "#b52b2b",
+      "source": "K5 implementation, raised to WCAG AA text contrast; design #e53e3e / #e53e3e"
+    },
+    {
+      "group": "text",
+      "token": "action.danger.text",
+      "css": "--cui-action-danger-text",
+      "dark": "#fff",
+      "light": "#fff",
+      "source": "measured preview, semanticTokens.button-danger-textColor"
+    },
+    {
+      "group": "accent and status colors",
+      "token": "action.brand.active",
+      "css": "--cui-action-brand-active",
+      "dark": "#07f",
+      "light": "#07f",
+      "source": "measured preview, maintainer chose the CodeImage primary over AA contrast for white text"
+    },
+    {
+      "group": "accent and status colors",
+      "token": "action.brand.base",
+      "css": "--cui-action-brand-base",
+      "dark": "#09f",
+      "light": "#09f",
+      "source": "measured preview, maintainer chose the CodeImage primary over AA contrast for white text"
+    },
+    {
+      "group": "accent and status colors",
+      "token": "action.brand.hover",
+      "css": "--cui-action-brand-hover",
+      "dark": "#08f",
+      "light": "#08f",
+      "source": "measured preview, maintainer chose the CodeImage primary over AA contrast for white text"
+    },
+    {
+      "group": "text",
+      "token": "action.brand.text",
+      "css": "--cui-action-brand-text",
+      "dark": "#fff",
+      "light": "#fff",
+      "source": "measured preview, semanticTokens.button-primary-textColor"
+    },
+    {
+      "group": "accent and status colors",
+      "token": "action.brandSoft.base",
+      "css": "--cui-action-brand-soft-base",
+      "dark": "#0099ff26",
+      "light": "#0099ff26",
+      "source": "measured preview, semanticTokens.button-primaryAlt-backgroundColor"
+    },
+    {
+      "group": "accent and status colors",
+      "token": "action.brandSoft.hover",
+      "css": "--cui-action-brand-soft-hover",
+      "dark": "#007acc26",
+      "light": "#007acc26",
+      "source": "measured preview, semanticTokens.button-primaryAlt-hoverColor"
+    },
+    {
+      "group": "text",
+      "token": "action.brandSoft.text",
+      "css": "--cui-action-brand-soft-text",
+      "dark": "#09f",
+      "light": "#09f",
+      "source": "measured preview, maintainer chose the CodeImage primary over AA contrast for white text"
+    },
+    {
+      "group": "text",
+      "token": "text.muted",
+      "css": "--cui-text-muted",
+      "dark": "#999",
+      "light": "#4a5568",
+      "source": "measured preview, semanticTokens.descriptionTextColor"
+    },
+    {
+      "group": "surfaces",
+      "token": "surface.scrim",
+      "css": "--cui-surface-scrim",
+      "dark": "#000000b3",
+      "light": "#0006",
+      "source": "measured preview, semanticTokens.dialog-overlayBackgroundColor"
+    },
+    {
+      "group": "surfaces",
+      "token": "surface.dialog",
+      "css": "--cui-surface-dialog",
+      "dark": "#1d1d1d",
+      "light": "#fff",
+      "source": "measured preview, semanticTokens.dialog-panelBackgroundColor"
+    },
+    {
+      "group": "shadows",
+      "token": "shadow.dialog",
+      "css": "--cui-shadow-dialog",
+      "dark": "0 10px 30px 0 #00000026, inset 0 0 0 1px #232323",
+      "light": "0 10px 15px -3px #0000001a, 0 4px 6px -2px #0000000d",
+      "source": "measured preview, semanticTokens.dialog-panelShadow"
+    },
+    {
+      "group": "text",
+      "token": "text.dialog",
+      "css": "--cui-text-dialog",
+      "dark": "#ededed",
+      "light": "#2d3748",
+      "source": "measured preview, semanticTokens.dialog-panelTextColor"
+    },
+    {
+      "group": "borders/hairlines",
+      "token": "border.dialogTitle",
+      "css": "--cui-border-dialog-title",
+      "dark": "#2b2b2b",
+      "light": "#e2e8f0",
+      "source": "measured preview, semanticTokens.dialog-titleBorderColor"
+    },
+    {
+      "group": "text",
+      "token": "text.dialogTitle",
+      "css": "--cui-text-dialog-title",
+      "dark": "#ededed",
+      "light": "#2d3748",
+      "source": "measured preview, semanticTokens.dialog-titleTextColor"
+    },
+    {
+      "group": "borders/hairlines",
+      "token": "border.divider",
+      "css": "--cui-border-divider",
+      "dark": "#252525",
+      "light": "#e2e8f0",
+      "source": "measured preview, semanticTokens.divider"
+    },
+    {
+      "group": "surfaces",
+      "token": "surface.inputAccent",
+      "css": "--cui-surface-input-accent",
+      "dark": "#505050",
+      "light": "#fff",
+      "source": "measured preview, semanticTokens.input-accentColor"
+    },
+    {
+      "group": "surfaces",
+      "token": "surface.input",
+      "css": "--cui-surface-input",
+      "dark": "#232323",
+      "light": "#f3f3f3",
+      "source": "measured preview, semanticTokens.input-backgroundColor"
+    },
+    {
+      "group": "borders/hairlines",
+      "token": "border.input",
+      "css": "--cui-border-input",
+      "dark": "transparent",
+      "light": "transparent",
+      "source": "measured preview, semanticTokens.input-borderColor"
+    },
+    {
+      "group": "text",
+      "token": "text.label",
+      "css": "--cui-text-label",
+      "dark": "#ededed",
+      "light": "#2d3748",
+      "source": "measured preview, semanticTokens.input-labelTextColor"
+    },
+    {
+      "group": "text",
+      "token": "text.hint",
+      "css": "--cui-text-hint",
+      "dark": "#a0a0a0",
+      "light": "#4a5568",
+      "source": "measured preview, semanticTokens.input-labelTextHintColor"
+    },
+    {
+      "group": "text",
+      "token": "text.input",
+      "css": "--cui-text-input",
+      "dark": "#ededed",
+      "light": "#333",
+      "source": "measured preview, semanticTokens.input-textColor"
+    },
+    {
+      "group": "accent and status colors",
+      "token": "accent.selection",
+      "css": "--cui-accent-selection",
+      "dark": "#07f",
+      "light": "#09f",
+      "source": "measured preview, maintainer chose the CodeImage primary over AA contrast for white text"
+    },
+    {
+      "group": "text",
+      "token": "text.selected",
+      "css": "--cui-text-selected",
+      "dark": "#fff",
+      "light": "#fff",
+      "source": "K5 implementation, raised to WCAG AA text contrast; design #ededed / #fff"
+    },
+    {
+      "group": "surfaces",
+      "token": "surface.menuHover",
+      "css": "--cui-surface-menu-hover",
+      "dark": "#333",
+      "light": "#f7fafc",
+      "source": "measured preview, semanticTokens.listBox-hoverBackgroundColor"
+    },
+    {
+      "group": "surfaces",
+      "token": "surface.menu",
+      "css": "--cui-surface-menu",
+      "dark": "#282828",
+      "light": "#fff",
+      "source": "measured preview, semanticTokens.listBox-panelBackground"
+    },
+    {
+      "group": "text",
+      "token": "text.menu",
+      "css": "--cui-text-menu",
+      "dark": "#ededed",
+      "light": "#2d3748",
+      "source": "measured preview, semanticTokens.listBox-textColor"
+    },
+    {
+      "group": "surfaces",
+      "token": "surface.panel",
+      "css": "--cui-surface-panel",
+      "dark": "#151516",
+      "light": "#fff",
+      "source": "measured preview, semanticTokens.panel-background"
+    },
+    {
+      "group": "text",
+      "token": "text.panelMuted",
+      "css": "--cui-text-panel-muted",
+      "dark": "#ccc",
+      "light": "#666",
+      "source": "measured preview, semanticTokens.panel-textColorAlt"
+    },
+    {
+      "group": "text",
+      "token": "text.panel",
+      "css": "--cui-text-panel",
+      "dark": "#fff",
+      "light": "#000",
+      "source": "measured preview, semanticTokens.panel-textColor"
+    },
+    {
+      "group": "accent and status colors",
+      "token": "accent.focus",
+      "css": "--cui-accent-focus",
+      "dark": "#63b3ed",
+      "light": "#09f",
+      "source": "measured preview, semanticTokens.primary"
+    },
+    {
+      "group": "surfaces",
+      "token": "surface.scrollThumb",
+      "css": "--cui-surface-scroll-thumb",
+      "dark": "#505050",
+      "light": "#cbd5e0",
+      "source": "measured preview, semanticTokens.scrollBar-backgroundColor"
+    },
+    {
+      "group": "surfaces",
+      "token": "surface.scrollThumbHover",
+      "css": "--cui-surface-scroll-thumb-hover",
+      "dark": "#333",
+      "light": "#a0aec0",
+      "source": "measured preview, semanticTokens.scrollBar-hoverBackgroundColor"
+    },
+    {
+      "group": "surfaces",
+      "token": "surface.secondary",
+      "css": "--cui-surface-secondary",
+      "dark": "#edf2f7",
+      "light": "#edf2f7",
+      "source": "measured preview, semanticTokens.secondary"
+    },
+    {
+      "group": "surfaces",
+      "token": "surface.toast",
+      "css": "--cui-surface-toast",
+      "dark": "#2b2b2b",
+      "light": "#fff",
+      "source": "measured preview, semanticTokens.snackbar-backgroundColor"
+    },
+    {
+      "group": "text",
+      "token": "text.toast",
+      "css": "--cui-text-toast",
+      "dark": "#fff",
+      "light": "#333",
+      "source": "measured preview, semanticTokens.snackbar-textColor"
+    },
+    {
+      "group": "text",
+      "token": "text.danger",
+      "css": "--cui-text-danger",
+      "dark": "#fc8181",
+      "light": "#c53030",
+      "source": "K5 implementation, raised to WCAG AA text contrast; proposed error text role"
+    },
+    {
+      "group": "accent and status colors",
+      "token": "action.brandSoft.active",
+      "css": "--cui-action-brand-soft-active",
+      "dark": "#007acc26",
+      "light": "#007acc26",
+      "source": "packages/ui hover value reused, proposed active"
+    },
+    {
+      "group": "accent and status colors",
+      "token": "action.caution.base",
+      "css": "--cui-action-caution-base",
+      "dark": "#F08C00",
+      "light": "#F08C00",
+      "source": "kit caution"
+    },
+    {
+      "group": "accent and status colors",
+      "token": "action.caution.hover",
+      "css": "--cui-action-caution-hover",
+      "dark": "#d77d00",
+      "light": "#d77d00",
+      "source": "kit cautionAccentHover"
+    },
+    {
+      "group": "accent and status colors",
+      "token": "action.caution.active",
+      "css": "--cui-action-caution-active",
+      "dark": "#bd6e00",
+      "light": "#bd6e00",
+      "source": "kit cautionAccentActive"
+    },
+    {
+      "group": "accent and status colors",
+      "token": "action.success.base",
+      "css": "--cui-action-success-base",
+      "dark": "#48bb78",
+      "light": "#48bb78",
+      "source": "packages/ui colors.green.500"
+    },
+    {
+      "group": "accent and status colors",
+      "token": "action.success.hover",
+      "css": "--cui-action-success-hover",
+      "dark": "#38a169",
+      "light": "#38a169",
+      "source": "packages/ui colors.green.600"
+    },
+    {
+      "group": "accent and status colors",
+      "token": "action.success.active",
+      "css": "--cui-action-success-active",
+      "dark": "#2f855a",
+      "light": "#2f855a",
+      "source": "packages/ui colors.green.700"
+    },
+    {
+      "group": "accent and status colors",
+      "token": "action.caution.text",
+      "css": "--cui-action-caution-text",
+      "dark": "#000",
+      "light": "#000",
+      "source": "kit, proposed readable status foreground"
+    },
+    {
+      "group": "accent and status colors",
+      "token": "action.success.text",
+      "css": "--cui-action-success-text",
+      "dark": "#000",
+      "light": "#000",
+      "source": "packages/ui, proposed readable status foreground"
+    },
+    {
+      "group": "borders/hairlines",
+      "token": "border.menu",
+      "css": "--cui-border-menu",
+      "dark": "#333",
+      "light": "#e8e8e8",
+      "source": "kit dropdownBorder, light HSL normalized"
+    },
+    {
+      "group": "borders/hairlines",
+      "token": "border.width",
+      "css": "--cui-border-width",
+      "dark": "1px",
+      "light": "1px",
+      "source": "packages/ui borderWidth.default"
+    },
+    {
+      "group": "borders/hairlines",
+      "token": "border.widthStrong",
+      "css": "--cui-border-width-strong",
+      "dark": "2px",
+      "light": "2px",
+      "source": "packages/ui borderWidth.2"
+    },
+    {
+      "group": "focus ring",
+      "token": "focus.color",
+      "css": "--cui-focus-color",
+      "dark": "var(--cui-accent-focus)",
+      "light": "var(--cui-accent-focus)",
+      "source": "measured preview primary, inferred focus role"
+    },
+    {
+      "group": "focus ring",
+      "token": "focus.width",
+      "css": "--cui-focus-width",
+      "dark": "2px",
+      "light": "2px",
+      "source": "measured preview settings keyboard outline"
+    },
+    {
+      "group": "focus ring",
+      "token": "focus.offset",
+      "css": "--cui-focus-offset",
+      "dark": "2px",
+      "light": "2px",
+      "source": "proposed kit default; selection cards retain inset -2px locally"
+    },
+    {
+      "group": "radii",
+      "token": "radius.none",
+      "css": "--cui-radius-none",
+      "dark": "0px",
+      "light": "0px",
+      "source": "measured preview controlTokens; full from kit"
+    },
+    {
+      "group": "radii",
+      "token": "radius.badge",
+      "css": "--cui-radius-badge",
+      "dark": "6px",
+      "light": "6px",
+      "source": "measured preview controlTokens; full from kit"
+    },
+    {
+      "group": "radii",
+      "token": "radius.xs",
+      "css": "--cui-radius-xs",
+      "dark": "7px",
+      "light": "7px",
+      "source": "measured preview controlTokens; full from kit"
+    },
+    {
+      "group": "radii",
+      "token": "radius.sm",
+      "css": "--cui-radius-sm",
+      "dark": "9px",
+      "light": "9px",
+      "source": "measured preview controlTokens; full from kit"
+    },
+    {
+      "group": "radii",
+      "token": "radius.nav",
+      "css": "--cui-radius-nav",
+      "dark": "10px",
+      "light": "10px",
+      "source": "measured preview controlTokens; full from kit"
+    },
+    {
+      "group": "radii",
+      "token": "radius.md",
+      "css": "--cui-radius-md",
+      "dark": "12px",
+      "light": "12px",
+      "source": "measured preview controlTokens; full from kit"
+    },
+    {
+      "group": "radii",
+      "token": "radius.lg",
+      "css": "--cui-radius-lg",
+      "dark": "14px",
+      "light": "14px",
+      "source": "measured preview controlTokens; full from kit"
+    },
+    {
+      "group": "radii",
+      "token": "radius.card",
+      "css": "--cui-radius-card",
+      "dark": "16px",
+      "light": "16px",
+      "source": "measured preview controlTokens; full from kit"
+    },
+    {
+      "group": "radii",
+      "token": "radius.xl",
+      "css": "--cui-radius-xl",
+      "dark": "18px",
+      "light": "18px",
+      "source": "measured preview controlTokens; full from kit"
+    },
+    {
+      "group": "radii",
+      "token": "radius.command",
+      "css": "--cui-radius-command",
+      "dark": "22px",
+      "light": "22px",
+      "source": "measured preview controlTokens; full from kit"
+    },
+    {
+      "group": "radii",
+      "token": "radius.dialog",
+      "css": "--cui-radius-dialog",
+      "dark": "24px",
+      "light": "24px",
+      "source": "CodeImage export dialog, export-styles/sheet.css.ts borderRadius"
+    },
+    {
+      "group": "radii",
+      "token": "radius.full",
+      "css": "--cui-radius-full",
+      "dark": "9999px",
+      "light": "9999px",
+      "source": "measured preview controlTokens; full from kit"
+    },
+    {
+      "group": "spacing",
+      "token": "space.auto",
+      "css": "--cui-space-auto",
+      "dark": "auto",
+      "light": "auto",
+      "source": "kit and packages/ui spacing; half steps measured preview gaps"
+    },
+    {
+      "group": "spacing",
+      "token": "space.px",
+      "css": "--cui-space-px",
+      "dark": "1px",
+      "light": "1px",
+      "source": "kit and packages/ui spacing; half steps measured preview gaps"
+    },
+    {
+      "group": "spacing",
+      "token": "space.0",
+      "css": "--cui-space-0",
+      "dark": "0",
+      "light": "0",
+      "source": "kit and packages/ui spacing; half steps measured preview gaps"
+    },
+    {
+      "group": "spacing",
+      "token": "space.0.5",
+      "css": "--cui-space-0-5",
+      "dark": "2px",
+      "light": "2px",
+      "source": "kit and packages/ui spacing; half steps measured preview gaps"
+    },
+    {
+      "group": "spacing",
+      "token": "space.1",
+      "css": "--cui-space-1",
+      "dark": "0.25rem",
+      "light": "0.25rem",
+      "source": "kit and packages/ui spacing; half steps measured preview gaps"
+    },
+    {
+      "group": "spacing",
+      "token": "space.1.5",
+      "css": "--cui-space-1-5",
+      "dark": "6px",
+      "light": "6px",
+      "source": "kit and packages/ui spacing; half steps measured preview gaps"
+    },
+    {
+      "group": "spacing",
+      "token": "space.2",
+      "css": "--cui-space-2",
+      "dark": "0.5rem",
+      "light": "0.5rem",
+      "source": "kit and packages/ui spacing; half steps measured preview gaps"
+    },
+    {
+      "group": "spacing",
+      "token": "space.2.5",
+      "css": "--cui-space-2-5",
+      "dark": "10px",
+      "light": "10px",
+      "source": "kit and packages/ui spacing; half steps measured preview gaps"
+    },
+    {
+      "group": "spacing",
+      "token": "space.3",
+      "css": "--cui-space-3",
+      "dark": "0.75rem",
+      "light": "0.75rem",
+      "source": "kit and packages/ui spacing; half steps measured preview gaps"
+    },
+    {
+      "group": "spacing",
+      "token": "space.4",
+      "css": "--cui-space-4",
+      "dark": "1rem",
+      "light": "1rem",
+      "source": "kit and packages/ui spacing; half steps measured preview gaps"
+    },
+    {
+      "group": "spacing",
+      "token": "space.5",
+      "css": "--cui-space-5",
+      "dark": "1.25rem",
+      "light": "1.25rem",
+      "source": "kit and packages/ui spacing; half steps measured preview gaps"
+    },
+    {
+      "group": "spacing",
+      "token": "space.6",
+      "css": "--cui-space-6",
+      "dark": "1.5rem",
+      "light": "1.5rem",
+      "source": "kit and packages/ui spacing; half steps measured preview gaps"
+    },
+    {
+      "group": "spacing",
+      "token": "space.8",
+      "css": "--cui-space-8",
+      "dark": "2rem",
+      "light": "2rem",
+      "source": "kit and packages/ui spacing; half steps measured preview gaps"
+    },
+    {
+      "group": "spacing",
+      "token": "space.10",
+      "css": "--cui-space-10",
+      "dark": "2.5rem",
+      "light": "2.5rem",
+      "source": "kit and packages/ui spacing; half steps measured preview gaps"
+    },
+    {
+      "group": "spacing",
+      "token": "space.12",
+      "css": "--cui-space-12",
+      "dark": "3rem",
+      "light": "3rem",
+      "source": "kit and packages/ui spacing; half steps measured preview gaps"
+    },
+    {
+      "group": "spacing",
+      "token": "space.16",
+      "css": "--cui-space-16",
+      "dark": "4rem",
+      "light": "4rem",
+      "source": "kit and packages/ui spacing; half steps measured preview gaps"
+    },
+    {
+      "group": "spacing",
+      "token": "space.20",
+      "css": "--cui-space-20",
+      "dark": "5rem",
+      "light": "5rem",
+      "source": "kit and packages/ui spacing; half steps measured preview gaps"
+    },
+    {
+      "group": "spacing",
+      "token": "space.24",
+      "css": "--cui-space-24",
+      "dark": "6rem",
+      "light": "6rem",
+      "source": "kit and packages/ui spacing; half steps measured preview gaps"
+    },
+    {
+      "group": "spacing",
+      "token": "space.32",
+      "css": "--cui-space-32",
+      "dark": "8rem",
+      "light": "8rem",
+      "source": "kit and packages/ui spacing; half steps measured preview gaps"
+    },
+    {
+      "group": "spacing",
+      "token": "space.40",
+      "css": "--cui-space-40",
+      "dark": "10rem",
+      "light": "10rem",
+      "source": "kit and packages/ui spacing; half steps measured preview gaps"
+    },
+    {
+      "group": "spacing",
+      "token": "space.48",
+      "css": "--cui-space-48",
+      "dark": "12rem",
+      "light": "12rem",
+      "source": "kit and packages/ui spacing; half steps measured preview gaps"
+    },
+    {
+      "group": "spacing",
+      "token": "space.56",
+      "css": "--cui-space-56",
+      "dark": "14rem",
+      "light": "14rem",
+      "source": "kit and packages/ui spacing; half steps measured preview gaps"
+    },
+    {
+      "group": "spacing",
+      "token": "space.64",
+      "css": "--cui-space-64",
+      "dark": "16rem",
+      "light": "16rem",
+      "source": "kit and packages/ui spacing; half steps measured preview gaps"
+    },
+    {
+      "group": "control heights",
+      "token": "control.height.compact",
+      "css": "--cui-control-height-compact",
+      "dark": "28px",
+      "light": "28px",
+      "source": "measured preview segmented item"
+    },
+    {
+      "group": "control heights",
+      "token": "control.height.xs",
+      "css": "--cui-control-height-xs",
+      "dark": "30px",
+      "light": "30px",
+      "source": "kit sizes; sm/md also DESIGN.md"
+    },
+    {
+      "group": "control heights",
+      "token": "control.height.sm",
+      "css": "--cui-control-height-sm",
+      "dark": "36px",
+      "light": "36px",
+      "source": "kit sizes; sm/md also DESIGN.md"
+    },
+    {
+      "group": "control heights",
+      "token": "control.height.md",
+      "css": "--cui-control-height-md",
+      "dark": "40px",
+      "light": "40px",
+      "source": "kit sizes; sm/md also DESIGN.md"
+    },
+    {
+      "group": "control heights",
+      "token": "control.height.lg",
+      "css": "--cui-control-height-lg",
+      "dark": "48px",
+      "light": "48px",
+      "source": "kit sizes; sm/md also DESIGN.md"
+    },
+    {
+      "group": "control heights",
+      "token": "control.height.xl",
+      "css": "--cui-control-height-xl",
+      "dark": "56px",
+      "light": "56px",
+      "source": "kit sizes; sm/md also DESIGN.md"
+    },
+    {
+      "group": "type scale",
+      "token": "font.size.badge",
+      "css": "--cui-font-size-badge",
+      "dark": "11px",
+      "light": "11px",
+      "source": "measured preview clusters"
+    },
+    {
+      "group": "type scale",
+      "token": "font.size.xs",
+      "css": "--cui-font-size-xs",
+      "dark": "12px",
+      "light": "12px",
+      "source": "measured preview clusters"
+    },
+    {
+      "group": "type scale",
+      "token": "font.size.caption",
+      "css": "--cui-font-size-caption",
+      "dark": "13px",
+      "light": "13px",
+      "source": "measured preview clusters"
+    },
+    {
+      "group": "type scale",
+      "token": "font.size.sm",
+      "css": "--cui-font-size-sm",
+      "dark": "14px",
+      "light": "14px",
+      "source": "measured preview clusters"
+    },
+    {
+      "group": "type scale",
+      "token": "font.size.md",
+      "css": "--cui-font-size-md",
+      "dark": "16px",
+      "light": "16px",
+      "source": "measured preview clusters"
+    },
+    {
+      "group": "type scale",
+      "token": "font.size.lg",
+      "css": "--cui-font-size-lg",
+      "dark": "18px",
+      "light": "18px",
+      "source": "measured preview clusters"
+    },
+    {
+      "group": "type scale",
+      "token": "font.size.xl",
+      "css": "--cui-font-size-xl",
+      "dark": "20px",
+      "light": "20px",
+      "source": "measured preview clusters"
+    },
+    {
+      "group": "type scale",
+      "token": "font.size.2xl",
+      "css": "--cui-font-size-2xl",
+      "dark": "24px",
+      "light": "24px",
+      "source": "packages/ui fontSize.2xl"
+    },
+    {
+      "group": "type scale",
+      "token": "font.family.sans",
+      "css": "--cui-font-family-sans",
+      "dark": "\"Inter var\", system-ui, -apple-system, sans-serif",
+      "light": "\"Inter var\", system-ui, -apple-system, sans-serif",
+      "source": "measured preview; consumer supplies font, system fallback otherwise"
+    },
+    {
+      "group": "type scale",
+      "token": "font.family.mono",
+      "css": "--cui-font-family-mono",
+      "dark": "ui-monospace, SFMono-Regular, Consolas, \"Liberation Mono\", Menlo, monospace",
+      "light": "ui-monospace, SFMono-Regular, Consolas, \"Liberation Mono\", Menlo, monospace",
+      "source": "measured preview"
+    },
+    {
+      "group": "type scale",
+      "token": "font.weight.normal",
+      "css": "--cui-font-weight-normal",
+      "dark": "400",
+      "light": "400",
+      "source": "measured preview"
+    },
+    {
+      "group": "type scale",
+      "token": "font.weight.medium",
+      "css": "--cui-font-weight-medium",
+      "dark": "500",
+      "light": "500",
+      "source": "measured preview"
+    },
+    {
+      "group": "type scale",
+      "token": "font.weight.semibold",
+      "css": "--cui-font-weight-semibold",
+      "dark": "600",
+      "light": "600",
+      "source": "measured preview"
+    },
+    {
+      "group": "type scale",
+      "token": "font.lineHeight.compact",
+      "css": "--cui-font-line-height-compact",
+      "dark": "1.15",
+      "light": "1.15",
+      "source": "measured preview body and packages/ui lineHeight.normal"
+    },
+    {
+      "group": "type scale",
+      "token": "font.lineHeight.snug",
+      "css": "--cui-font-line-height-snug",
+      "dark": "1.3",
+      "light": "1.3",
+      "source": "DESIGN.md §3 Label and Title steps; measured preview toast 16px/20.8px"
+    },
+    {
+      "group": "type scale",
+      "token": "font.lineHeight.normal",
+      "css": "--cui-font-line-height-normal",
+      "dark": "1.5",
+      "light": "1.5",
+      "source": "measured preview body and packages/ui lineHeight.normal"
+    },
+    {
+      "group": "type scale",
+      "token": "font.lineHeight.badge",
+      "css": "--cui-font-line-height-badge",
+      "dark": "1.2",
+      "light": "1.2",
+      "source": "Inkstone §3 type scale, paired with font.size.badge"
+    },
+    {
+      "group": "type scale",
+      "token": "font.lineHeight.xs",
+      "css": "--cui-font-line-height-xs",
+      "dark": "1.4",
+      "light": "1.4",
+      "source": "Inkstone §3 type scale, paired with font.size.xs"
+    },
+    {
+      "group": "type scale",
+      "token": "font.lineHeight.caption",
+      "css": "--cui-font-line-height-caption",
+      "dark": "1.5",
+      "light": "1.5",
+      "source": "Inkstone §3 type scale, paired with font.size.caption"
+    },
+    {
+      "group": "type scale",
+      "token": "font.lineHeight.sm",
+      "css": "--cui-font-line-height-sm",
+      "dark": "1.3",
+      "light": "1.3",
+      "source": "Inkstone §3 type scale, paired with font.size.sm"
+    },
+    {
+      "group": "type scale",
+      "token": "font.lineHeight.md",
+      "css": "--cui-font-line-height-md",
+      "dark": "1.3",
+      "light": "1.3",
+      "source": "Inkstone §3 type scale, paired with font.size.md"
+    },
+    {
+      "group": "type scale",
+      "token": "font.tracking.normal",
+      "css": "--cui-font-tracking-normal",
+      "dark": "normal",
+      "light": "normal",
+      "source": "measured preview"
+    },
+    {
+      "group": "shadows",
+      "token": "shadow.menu",
+      "css": "--cui-shadow-menu",
+      "dark": "0 1px #0000000d, 0 4px 10px #0000004d",
+      "light": "0 1px #0000000d, 0 4px 10px #0000001a",
+      "source": "kit dropdownBoxShadow; no matched preview measurement"
+    },
+    {
+      "group": "shadows",
+      "token": "shadow.none",
+      "css": "--cui-shadow-none",
+      "dark": "none",
+      "light": "none",
+      "source": "kit and packages/ui boxShadow"
+    },
+    {
+      "group": "shadows",
+      "token": "shadow.sm",
+      "css": "--cui-shadow-sm",
+      "dark": "0 1px 3px 0 #0000001a, 0 1px 2px 0 #0000000f",
+      "light": "0 1px 3px 0 #0000001a, 0 1px 2px 0 #0000000f",
+      "source": "kit and packages/ui boxShadow"
+    },
+    {
+      "group": "shadows",
+      "token": "shadow.md",
+      "css": "--cui-shadow-md",
+      "dark": "0 4px 6px -1px #0000001a, 0 2px 4px -1px #0000000f",
+      "light": "0 4px 6px -1px #0000001a, 0 2px 4px -1px #0000000f",
+      "source": "kit and packages/ui boxShadow"
+    },
+    {
+      "group": "shadows",
+      "token": "shadow.thumb",
+      "css": "--cui-shadow-thumb",
+      "dark": "0 1px 2px #0000004d",
+      "light": "0 1px 2px #0000004d",
+      "source": "CodeImage switch thumb (controls.css.ts switchThumb)"
+    },
+    {
+      "group": "shadows",
+      "token": "shadow.lg",
+      "css": "--cui-shadow-lg",
+      "dark": "0 10px 15px -3px #0000001a, 0 4px 6px -2px #0000000d",
+      "light": "0 10px 15px -3px #0000001a, 0 4px 6px -2px #0000000d",
+      "source": "CodeImage range thumb (shadow-lg)"
+    },
+    {
+      "group": "motion",
+      "token": "motion.duration.none",
+      "css": "--cui-motion-duration-none",
+      "dark": "0ms",
+      "light": "0ms",
+      "source": "measured preview fast/normal/panel; DESIGN.md 260ms ceiling for usual transitions"
+    },
+    {
+      "group": "motion",
+      "token": "motion.duration.fast",
+      "css": "--cui-motion-duration-fast",
+      "dark": "120ms",
+      "light": "120ms",
+      "source": "measured preview fast/normal/panel; DESIGN.md 260ms ceiling for usual transitions"
+    },
+    {
+      "group": "motion",
+      "token": "motion.duration.normal",
+      "css": "--cui-motion-duration-normal",
+      "dark": "160ms",
+      "light": "160ms",
+      "source": "measured preview fast/normal/panel; DESIGN.md 260ms ceiling for usual transitions"
+    },
+    {
+      "group": "motion",
+      "token": "motion.duration.panel",
+      "css": "--cui-motion-duration-panel",
+      "dark": "200ms",
+      "light": "200ms",
+      "source": "measured preview fast/normal/panel; DESIGN.md 260ms ceiling for usual transitions"
+    },
+    {
+      "group": "motion",
+      "token": "motion.duration.slow",
+      "css": "--cui-motion-duration-slow",
+      "dark": "260ms",
+      "light": "260ms",
+      "source": "measured preview fast/normal/panel; DESIGN.md 260ms ceiling for usual transitions"
+    },
+    {
+      "group": "motion",
+      "token": "motion.duration.rise",
+      "css": "--cui-motion-duration-rise",
+      "dark": "400ms",
+      "light": "400ms",
+      "source": "DESIGN.md §7.3 Rise (toast, corner card); measured preview toast 350ms and Nudge 400ms"
+    },
+    {
+      "group": "motion",
+      "token": "motion.ease.out",
+      "css": "--cui-motion-ease-out",
+      "dark": "cubic-bezier(0.23, 1, 0.32, 1)",
+      "light": "cubic-bezier(0.23, 1, 0.32, 1)",
+      "source": "measured preview and DESIGN.md; threads rule"
+    }
+  ],
+  "mappings": {
+    "themeVars.dynamicColors.background": {
+      "target": "surface.canvas",
+      "reason": "semantic UI role"
+    },
+    "themeColors.background": {
+      "target": "surface.canvas",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.baseText": {
+      "target": "text.default",
+      "reason": "semantic UI role"
+    },
+    "themeColors.baseText": {
+      "target": "text.default",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.bottomBar.backgroundColor": {
+      "target": "surface.toolbar",
+      "reason": "semantic UI role"
+    },
+    "themeColors.bottomBar.backgroundColor": {
+      "target": "surface.toolbar",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.bottomBar.textColor": {
+      "target": "text.toolbar",
+      "reason": "semantic UI role"
+    },
+    "themeColors.bottomBar.textColor": {
+      "target": "text.toolbar",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.button.base.activeColor": {
+      "target": "action.neutral.active",
+      "reason": "semantic UI role"
+    },
+    "themeColors.button.base.activeColor": {
+      "target": "action.neutral.active",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.button.base.backgroundColor": {
+      "target": "action.neutral.base",
+      "reason": "semantic UI role"
+    },
+    "themeColors.button.base.backgroundColor": {
+      "target": "action.neutral.base",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.button.base.hoverColor": {
+      "target": "action.neutral.hover",
+      "reason": "semantic UI role"
+    },
+    "themeColors.button.base.hoverColor": {
+      "target": "action.neutral.hover",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.button.base.textColor": {
+      "target": "action.neutral.text",
+      "reason": "semantic UI role"
+    },
+    "themeColors.button.base.textColor": {
+      "target": "action.neutral.text",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.button.danger.activeColor": {
+      "target": "action.danger.active",
+      "reason": "semantic UI role"
+    },
+    "themeColors.button.danger.activeColor": {
+      "target": "action.danger.active",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.button.danger.backgroundColor": {
+      "target": "action.danger.base",
+      "reason": "semantic UI role"
+    },
+    "themeColors.button.danger.backgroundColor": {
+      "target": "action.danger.base",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.button.danger.hoverColor": {
+      "target": "action.danger.hover",
+      "reason": "semantic UI role"
+    },
+    "themeColors.button.danger.hoverColor": {
+      "target": "action.danger.hover",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.button.danger.textColor": {
+      "target": "action.danger.text",
+      "reason": "semantic UI role"
+    },
+    "themeColors.button.danger.textColor": {
+      "target": "action.danger.text",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.button.primary.activeColor": {
+      "target": "action.brand.active",
+      "reason": "semantic UI role"
+    },
+    "themeColors.button.primary.activeColor": {
+      "target": "action.brand.active",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.button.primary.backgroundColor": {
+      "target": "action.brand.base",
+      "reason": "semantic UI role"
+    },
+    "themeColors.button.primary.backgroundColor": {
+      "target": "action.brand.base",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.button.primary.hoverColor": {
+      "target": "action.brand.hover",
+      "reason": "semantic UI role"
+    },
+    "themeColors.button.primary.hoverColor": {
+      "target": "action.brand.hover",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.button.primary.textColor": {
+      "target": "action.brand.text",
+      "reason": "semantic UI role"
+    },
+    "themeColors.button.primary.textColor": {
+      "target": "action.brand.text",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.button.primaryAlt.backgroundColor": {
+      "target": "action.brandSoft.base",
+      "reason": "semantic UI role"
+    },
+    "themeColors.button.primaryAlt.backgroundColor": {
+      "target": "action.brandSoft.base",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.button.primaryAlt.hoverColor": {
+      "target": "action.brandSoft.hover",
+      "reason": "semantic UI role"
+    },
+    "themeColors.button.primaryAlt.hoverColor": {
+      "target": "action.brandSoft.hover",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.button.primaryAlt.textColor": {
+      "target": "action.brandSoft.text",
+      "reason": "semantic UI role"
+    },
+    "themeColors.button.primaryAlt.textColor": {
+      "target": "action.brandSoft.text",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.descriptionTextColor": {
+      "target": "text.muted",
+      "reason": "semantic UI role"
+    },
+    "themeColors.descriptionTextColor": {
+      "target": "text.muted",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.dialog.overlayBackgroundColor": {
+      "target": "surface.scrim",
+      "reason": "semantic UI role"
+    },
+    "themeColors.dialog.overlayBackgroundColor": {
+      "target": "surface.scrim",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.dialog.panelBackgroundColor": {
+      "target": "surface.dialog",
+      "reason": "semantic UI role"
+    },
+    "themeColors.dialog.panelBackgroundColor": {
+      "target": "surface.dialog",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.dialog.panelShadow": {
+      "target": "shadow.dialog",
+      "reason": "semantic UI role"
+    },
+    "themeColors.dialog.panelShadow": {
+      "target": "shadow.dialog",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.dialog.panelTextColor": {
+      "target": "text.dialog",
+      "reason": "semantic UI role"
+    },
+    "themeColors.dialog.panelTextColor": {
+      "target": "text.dialog",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.dialog.titleBorderColor": {
+      "target": "border.dialogTitle",
+      "reason": "semantic UI role"
+    },
+    "themeColors.dialog.titleBorderColor": {
+      "target": "border.dialogTitle",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.dialog.titleTextColor": {
+      "target": "text.dialogTitle",
+      "reason": "semantic UI role"
+    },
+    "themeColors.dialog.titleTextColor": {
+      "target": "text.dialogTitle",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.divider": {
+      "target": "border.divider",
+      "reason": "semantic UI role"
+    },
+    "themeColors.divider": {
+      "target": "border.divider",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.input.accentColor": {
+      "target": "surface.inputAccent",
+      "reason": "semantic UI role"
+    },
+    "themeColors.input.accentColor": {
+      "target": "surface.inputAccent",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.input.backgroundColor": {
+      "target": "surface.input",
+      "reason": "semantic UI role"
+    },
+    "themeColors.input.backgroundColor": {
+      "target": "surface.input",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.input.borderColor": {
+      "target": "border.input",
+      "reason": "semantic UI role"
+    },
+    "themeColors.input.borderColor": {
+      "target": "border.input",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.input.labelTextColor": {
+      "target": "text.label",
+      "reason": "semantic UI role"
+    },
+    "themeColors.input.labelTextColor": {
+      "target": "text.label",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.input.labelTextHintColor": {
+      "target": "text.hint",
+      "reason": "semantic UI role"
+    },
+    "themeColors.input.labelTextHintColor": {
+      "target": "text.hint",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.input.textColor": {
+      "target": "text.input",
+      "reason": "semantic UI role"
+    },
+    "themeColors.input.textColor": {
+      "target": "text.input",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.listBox.activeBackgroundColor": {
+      "target": "accent.selection",
+      "reason": "semantic UI role"
+    },
+    "themeColors.listBox.activeBackgroundColor": {
+      "target": "accent.selection",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.listBox.activeTextColor": {
+      "target": "text.selected",
+      "reason": "semantic UI role"
+    },
+    "themeColors.listBox.activeTextColor": {
+      "target": "text.selected",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.listBox.hoverBackgroundColor": {
+      "target": "surface.menuHover",
+      "reason": "semantic UI role"
+    },
+    "themeColors.listBox.hoverBackgroundColor": {
+      "target": "surface.menuHover",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.listBox.panelBackground": {
+      "target": "surface.menu",
+      "reason": "semantic UI role"
+    },
+    "themeColors.listBox.panelBackground": {
+      "target": "surface.menu",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.listBox.textColor": {
+      "target": "text.menu",
+      "reason": "semantic UI role"
+    },
+    "themeColors.listBox.textColor": {
+      "target": "text.menu",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.panel.background": {
+      "target": "surface.panel",
+      "reason": "semantic UI role"
+    },
+    "themeColors.panel.background": {
+      "target": "surface.panel",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.panel.textColorAlt": {
+      "target": "text.panelMuted",
+      "reason": "semantic UI role"
+    },
+    "themeColors.panel.textColorAlt": {
+      "target": "text.panelMuted",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.panel.textColor": {
+      "target": "text.panel",
+      "reason": "semantic UI role"
+    },
+    "themeColors.panel.textColor": {
+      "target": "text.panel",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.primary": {
+      "target": "accent.focus",
+      "reason": "semantic UI role"
+    },
+    "themeColors.primary": {
+      "target": "accent.focus",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.scrollBar.backgroundColor": {
+      "target": "surface.scrollThumb",
+      "reason": "semantic UI role"
+    },
+    "themeColors.scrollBar.backgroundColor": {
+      "target": "surface.scrollThumb",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.scrollBar.hoverBackgroundColor": {
+      "target": "surface.scrollThumbHover",
+      "reason": "semantic UI role"
+    },
+    "themeColors.scrollBar.hoverBackgroundColor": {
+      "target": "surface.scrollThumbHover",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.secondary": {
+      "target": "surface.secondary",
+      "reason": "semantic UI role"
+    },
+    "themeColors.secondary": {
+      "target": "surface.secondary",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.snackbar.backgroundColor": {
+      "target": "surface.toast",
+      "reason": "semantic UI role"
+    },
+    "themeColors.snackbar.backgroundColor": {
+      "target": "surface.toast",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors.snackbar.textColor": {
+      "target": "text.toast",
+      "reason": "semantic UI role"
+    },
+    "themeColors.snackbar.textColor": {
+      "target": "text.toast",
+      "reason": "semantic UI role"
+    },
+    "themeVars.dynamicColors": {
+      "target": null,
+      "reason": "utility or object namespace, not a semantic theme leaf; preserve in app utility adapter and expand accesses before codemod"
+    },
+    "themeVars.borderRadius.xl": {
+      "target": "radius.card",
+      "reason": "semantic or scale role"
+    },
+    "themeVars.fontSize.sm": {
+      "target": "font.size.sm",
+      "reason": "semantic or scale role"
+    },
+    "themeVars.borderRadius.lg": {
+      "target": null,
+      "reason": "legacy 2px/4px/8px geometry; app-local compatibility value, do not silently round to 0px/9px"
+    },
+    "themeVars.backgroundColor.gray.800": {
+      "target": null,
+      "reason": "fixed palette literal; app artwork and legacy palette references require per-use semantic review, not a mode-dependent substitution"
+    },
+    "themeVars.backgroundColor.white": {
+      "target": null,
+      "reason": "fixed palette literal; app artwork and legacy palette references require per-use semantic review, not a mode-dependent substitution"
+    },
+    "themeVars.borderRadius.md": {
+      "target": "radius.badge",
+      "reason": "semantic or scale role"
+    },
+    "themeVars.fontSize.base": {
+      "target": "font.size.md",
+      "reason": "semantic or scale role"
+    },
+    "themeVars.fontSize.xs": {
+      "target": "font.size.xs",
+      "reason": "semantic or scale role"
+    },
+    "themeVars.brandSecondary": {
+      "target": "action.neutral.base",
+      "reason": "semantic or scale role"
+    },
+    "themeVars.brand": {
+      "target": "action.brand.base",
+      "reason": "semantic or scale role"
+    },
+    "themeVars.brandLink": {
+      "target": "accent.focus",
+      "reason": "semantic or scale role"
+    },
+    "backgroundColorVar": {
+      "target": null,
+      "reason": "locally assigned component variable, including editor artwork and status banners; not a global theme value"
+    },
+    "themeVars.zIndex.20": {
+      "target": null,
+      "reason": "utility or object namespace, not a semantic theme leaf; preserve in app utility adapter and expand accesses before codemod"
+    },
+    "themeVars.backgroundColor.black": {
+      "target": null,
+      "reason": "fixed palette literal; app artwork and legacy palette references require per-use semantic review, not a mode-dependent substitution"
+    },
+    "themeVars.boxShadow.lg": {
+      "target": "shadow.dialog",
+      "reason": "semantic or scale role"
+    },
+    "themeVars.backgroundColor.gray.300": {
+      "target": null,
+      "reason": "fixed palette literal; app artwork and legacy palette references require per-use semantic review, not a mode-dependent substitution"
+    },
+    "themeVars.backgroundColor.gray.100": {
+      "target": null,
+      "reason": "fixed palette literal; app artwork and legacy palette references require per-use semantic review, not a mode-dependent substitution"
+    },
+    "themeVars.backgroundColor.gray.200": {
+      "target": null,
+      "reason": "fixed palette literal; app artwork and legacy palette references require per-use semantic review, not a mode-dependent substitution"
+    },
+    "themeVars.backgroundColor.gray.400": {
+      "target": null,
+      "reason": "fixed palette literal; app artwork and legacy palette references require per-use semantic review, not a mode-dependent substitution"
+    },
+    "themeVars.spacing.8": {
+      "target": "space.8",
+      "reason": "semantic or scale role"
+    },
+    "themeVars.spacing.2": {
+      "target": "space.2",
+      "reason": "semantic or scale role"
+    },
+    "themeVars.spacing.5": {
+      "target": "space.5",
+      "reason": "semantic or scale role"
+    },
+    "themeVars.boxShadow.md": {
+      "target": "shadow.md",
+      "reason": "semantic or scale role"
+    },
+    "themeVars.borderColor.default": {
+      "target": "border.divider",
+      "reason": "semantic or scale role"
+    },
+    "themeVars.boxShadow.default": {
+      "target": "shadow.sm",
+      "reason": "semantic or scale role"
+    },
+    "themeVars.spacing.3": {
+      "target": "space.3",
+      "reason": "semantic or scale role"
+    },
+    "themeVars.spacing.1": {
+      "target": "space.1",
+      "reason": "semantic or scale role"
+    },
+    "themeVars.spacing.4": {
+      "target": "space.4",
+      "reason": "semantic or scale role"
+    },
+    "themeVars.borderRadius.sm": {
+      "target": null,
+      "reason": "legacy 2px/4px/8px geometry; app-local compatibility value, do not silently round to 0px/9px"
+    },
+    "themeVars.width.full": {
+      "target": null,
+      "reason": "utility or object namespace, not a semantic theme leaf; preserve in app utility adapter and expand accesses before codemod"
+    },
+    "themeVars.borderRadius.full": {
+      "target": "radius.full",
+      "reason": "semantic or scale role"
+    },
+    "themeVars.boxShadow.outline": {
+      "target": "focus.color + focus.width + focus.offset",
+      "reason": "semantic or scale role"
+    },
+    "themeVars.spacing": {
+      "target": null,
+      "reason": "utility or object namespace, not a semantic theme leaf; preserve in app utility adapter and expand accesses before codemod"
+    },
+    "themeVars.backgroundColor.gray.500": {
+      "target": null,
+      "reason": "fixed palette literal; app artwork and legacy palette references require per-use semantic review, not a mode-dependent substitution"
+    },
+    "themeVars.fontWeight.semibold": {
+      "target": "font.weight.semibold",
+      "reason": "semantic or scale role"
+    },
+    "themeVars.zIndex.50": {
+      "target": null,
+      "reason": "utility or object namespace, not a semantic theme leaf; preserve in app utility adapter and expand accesses before codemod"
+    },
+    "themeVars.fontWeight.normal": {
+      "target": "font.weight.normal",
+      "reason": "semantic or scale role"
+    },
+    "themeVars.lineHeight.normal": {
+      "target": "font.lineHeight.normal",
+      "reason": "semantic or scale role"
+    },
+    "themeVars.spacing.12": {
+      "target": "space.12",
+      "reason": "semantic or scale role"
+    },
+    "themeVars.backgroundColor.blue.700": {
+      "target": null,
+      "reason": "fixed palette literal; app artwork and legacy palette references require per-use semantic review, not a mode-dependent substitution"
+    },
+    "themeVars.backgroundColor.yellow.400": {
+      "target": null,
+      "reason": "fixed palette literal; app artwork and legacy palette references require per-use semantic review, not a mode-dependent substitution"
+    },
+    "themeVars.backgroundColor.indigo.500": {
+      "target": null,
+      "reason": "fixed palette literal; app artwork and legacy palette references require per-use semantic review, not a mode-dependent substitution"
+    },
+    "themeVars.backgroundColor.indigo.300": {
+      "target": null,
+      "reason": "fixed palette literal; app artwork and legacy palette references require per-use semantic review, not a mode-dependent substitution"
+    },
+    "themeVars.zIndex.10": {
+      "target": null,
+      "reason": "utility or object namespace, not a semantic theme leaf; preserve in app utility adapter and expand accesses before codemod"
+    },
+    "colorVar": {
+      "target": null,
+      "reason": "locally assigned component variable, including editor artwork and status banners; not a global theme value"
+    },
+    "themeVars.backgroundColor.blue.600": {
+      "target": null,
+      "reason": "fixed palette literal; app artwork and legacy palette references require per-use semantic review, not a mode-dependent substitution"
+    },
+    "themeVars.fontSize.lg": {
+      "target": "font.size.lg",
+      "reason": "semantic or scale role"
+    },
+    "themeVars.spacing.6": {
+      "target": "space.6",
+      "reason": "semantic or scale role"
+    },
+    "themeVars.fontWeight.medium": {
+      "target": "font.weight.medium",
+      "reason": "semantic or scale role"
+    },
+    "themeVars.spacing.10": {
+      "target": "space.10",
+      "reason": "semantic or scale role"
+    },
+    "themeVars.spacing.24": {
+      "target": "space.24",
+      "reason": "semantic or scale role"
+    },
+    "themeVars.opacity.50": {
+      "target": null,
+      "reason": "utility or object namespace, not a semantic theme leaf; preserve in app utility adapter and expand accesses before codemod"
+    },
+    "themeVars.borderWidth.default": {
+      "target": "border.width",
+      "reason": "semantic or scale role"
+    },
+    "themeVars.borderWidth.2": {
+      "target": "border.widthStrong",
+      "reason": "semantic or scale role"
+    },
+    "themeVars.backgroundColor.red.500": {
+      "target": null,
+      "reason": "fixed palette literal; app artwork and legacy palette references require per-use semantic review, not a mode-dependent substitution"
+    },
+    "themeVars.brandSoft": {
+      "target": "action.brandSoft.base",
+      "reason": "semantic or scale role"
+    },
+    "themeVars.caution": {
+      "target": "action.caution.base",
+      "reason": "semantic or scale role"
+    },
+    "themeVars.critical": {
+      "target": "action.danger.base",
+      "reason": "semantic or scale role"
+    },
+    "themeVars.brandSoftAccentActive": {
+      "target": "action.brandSoft.active",
+      "reason": "semantic or scale role"
+    },
+    "themeVars.fontSize.xl": {
+      "target": "font.size.xl",
+      "reason": "semantic or scale role"
+    },
+    "themeVars.zIndex.40": {
+      "target": null,
+      "reason": "utility or object namespace, not a semantic theme leaf; preserve in app utility adapter and expand accesses before codemod"
+    },
+    "themeVars.fontSize.2xl": {
+      "target": "font.size.2xl",
+      "reason": "semantic or scale role"
+    },
+    "themeVars.margin.3": {
+      "target": "space.3",
+      "reason": "semantic or scale role"
+    },
+    "themeVars.backgroundColor.blue.500": {
+      "target": null,
+      "reason": "fixed palette literal; app artwork and legacy palette references require per-use semantic review, not a mode-dependent substitution"
+    },
+    "themeVars.backgroundColor.transparent": {
+      "target": null,
+      "reason": "fixed palette literal; app artwork and legacy palette references require per-use semantic review, not a mode-dependent substitution"
+    },
+    "themeVars.backgroundColor.gray": {
+      "target": null,
+      "reason": "fixed palette literal; app artwork and legacy palette references require per-use semantic review, not a mode-dependent substitution"
+    },
+    "themeVars.borderRadius.default": {
+      "target": null,
+      "reason": "legacy 2px/4px/8px geometry; app-local compatibility value, do not silently round to 0px/9px"
+    },
+    "themeVars.fontWeight": {
+      "target": null,
+      "reason": "utility or object namespace, not a semantic theme leaf; preserve in app utility adapter and expand accesses before codemod"
+    },
+    "themeVars.fontSize": {
+      "target": null,
+      "reason": "utility or object namespace, not a semantic theme leaf; preserve in app utility adapter and expand accesses before codemod"
+    },
+    "themeVars.spacing.px": {
+      "target": "space.px",
+      "reason": "semantic or scale role"
+    },
+    "themeVars.borderRadius": {
+      "target": null,
+      "reason": "utility or object namespace, not a semantic theme leaf; preserve in app utility adapter and expand accesses before codemod"
+    },
+    "themeVars.lineHeight": {
+      "target": null,
+      "reason": "utility or object namespace, not a semantic theme leaf; preserve in app utility adapter and expand accesses before codemod"
+    },
+    "themeVars.backgroundColor.blue.400": {
+      "target": null,
+      "reason": "fixed palette literal; app artwork and legacy palette references require per-use semantic review, not a mode-dependent substitution"
+    },
+    "themeVars.backgroundColor.red.700": {
+      "target": null,
+      "reason": "fixed palette literal; app artwork and legacy palette references require per-use semantic review, not a mode-dependent substitution"
+    },
+    "themeVars.backgroundColor.red.600": {
+      "target": null,
+      "reason": "fixed palette literal; app artwork and legacy palette references require per-use semantic review, not a mode-dependent substitution"
+    },
+    "themeVars.textColor.gray.700": {
+      "target": null,
+      "reason": "fixed palette literal; app artwork and legacy palette references require per-use semantic review, not a mode-dependent substitution"
+    },
+    "themeVars.backgroundColor.gray.700": {
+      "target": null,
+      "reason": "fixed palette literal; app artwork and legacy palette references require per-use semantic review, not a mode-dependent substitution"
+    }
+  },
+  "observedUses": {
+    "backgroundColorVar": [
+      "apps/codeimage/src/components/FeatureBadge/UnsupportedFeatureBanner.css.ts",
+      "apps/codeimage/src/components/Frame/Frame.css.ts",
+      "apps/codeimage/src/components/PropertyEditor/controls/ColorPicker/ColorPickerPresetItem.tsx",
+      "apps/codeimage/src/components/PropertyEditor/controls/ColorPicker/CustomColorPicker.css.ts",
+      "apps/codeimage/src/components/Terminal/MacOsTerminal/MacOsTerminal.css.ts",
+      "apps/codeimage/src/components/Terminal/MacOsTerminal/MacOsTerminal.tsx",
+      "apps/codeimage/src/components/ThemeSwitcher/ThemeBox.tsx",
+      "apps/codeimage/src/components/ThemeSwitcher/ThemeBoxSkeleton.css.ts",
+      "apps/codeimage/src/components/ThemeSwitcher/ThemeSwitcher.css.ts",
+      "apps/codeimage/src/components/Toolbar/Toolbar.css.ts",
+      "apps/codeimage/src/index.tsx",
+      "apps/codeimage/src/pages/Dashboard/components/ProjectItem/ProjectItem.css.ts",
+      "apps/codeimage/src/pages/Dashboard/components/ProjectItem/ProjectItem.tsx",
+      "apps/codeimage/src/pages/Dashboard/components/ProjectItemSkeleton/ProjectItemSkeleton.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/shortcut-help.css.ts",
+      "packages/ui/src/lib/primitives/Button/Button.css.ts",
+      "packages/ui/src/lib/theme/global2.css.ts",
+      "packages/ui/src/lib/theme/variables.css.ts"
+    ],
+    "colorVar": [
+      "apps/codeimage/src/components/Toolbar/Toolbar.css.ts",
+      "packages/ui/src/lib/primitives/Button/Button.css.ts",
+      "packages/ui/src/lib/theme/variables.css.ts"
+    ],
+    "themeVars.backgroundColor.black": [
+      "apps/codeimage/src/components/Frame/Frame.css.ts",
+      "apps/codeimage/src/components/Terminal/Tabs/Tab/Tab.css.ts",
+      "apps/codeimage/src/components/Terminal/Tabs/TabAddButton/TabAddButton.css.ts",
+      "apps/codeimage/src/components/Terminal/WindowsTerminal/WindowsTerminal.css.ts",
+      "packages/ui/src/lib/primitives/Loader/Loader.css.ts",
+      "packages/ui/src/lib/themes/light-theme.css.ts"
+    ],
+    "themeVars.backgroundColor.blue.400": [
+      "packages/ui/src/lib/themes/dark-theme.css.ts"
+    ],
+    "themeVars.backgroundColor.blue.500": [
+      "packages/ui/src/lib/primitives/RadioBlock/RadioBlock.css.ts",
+      "packages/ui/src/lib/primitives/RangeField/RangeField.css.ts",
+      "packages/ui/src/lib/primitives/TextField/TextField.css.ts",
+      "packages/ui/src/lib/themes/dark-theme.css.ts",
+      "packages/ui/src/lib/themes/light-theme.css.ts"
+    ],
+    "themeVars.backgroundColor.blue.600": [
+      "apps/codeimage/src/components/UserBadge/UserBadge.css.ts",
+      "packages/ui/src/lib/themes/dark-theme.css.ts",
+      "packages/ui/src/lib/themes/light-theme.css.ts"
+    ],
+    "themeVars.backgroundColor.blue.700": [
+      "apps/codeimage/src/components/Toolbar/SettingsDialog.tsx",
+      "packages/ui/src/lib/themes/dark-theme.css.ts",
+      "packages/ui/src/lib/themes/light-theme.css.ts"
+    ],
+    "themeVars.backgroundColor.gray": [
+      "packages/ui/src/lib/primitives/RangeField/RangeField.css.ts"
+    ],
+    "themeVars.backgroundColor.gray.100": [
+      "apps/codeimage/src/components/Frame/FrameSkeleton.css.ts",
+      "apps/codeimage/src/components/ThemeSwitcher/ThemeBoxSkeleton.css.ts",
+      "apps/codeimage/src/pages/Dashboard/components/ProjectItemSkeleton/ProjectItemSkeleton.css.ts",
+      "packages/ui/src/lib/themes/light-theme.css.ts"
+    ],
+    "themeVars.backgroundColor.gray.200": [
+      "apps/codeimage/src/components/Frame/FrameSkeleton.css.ts",
+      "apps/codeimage/src/components/Presets/EmptyPresetFallback/EmptyPresetFallback.css.ts",
+      "apps/codeimage/src/pages/Dashboard/components/ProjectList/ProjectList.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/theme-styles/picker.css.ts",
+      "packages/ui/src/lib/themes/dark-theme.css.ts",
+      "packages/ui/src/lib/themes/light-theme.css.ts"
+    ],
+    "themeVars.backgroundColor.gray.300": [
+      "apps/codeimage/src/components/Frame/FrameHandler.css.ts",
+      "apps/codeimage/src/ui/Skeleton/Skeleton.css.ts",
+      "packages/ui/src/lib/themes/light-theme.css.ts"
+    ],
+    "themeVars.backgroundColor.gray.400": [
+      "apps/codeimage/src/components/Frame/FrameSkeleton.css.ts",
+      "apps/codeimage/src/ui/Skeleton/Skeleton.css.ts",
+      "packages/ui/src/lib/themes/light-theme.css.ts"
+    ],
+    "themeVars.backgroundColor.gray.500": [
+      "apps/codeimage/src/components/Terminal/MacOsTerminal/MacOsTerminal.css.ts",
+      "packages/ui/src/lib/themes/light-theme.css.ts"
+    ],
+    "themeVars.backgroundColor.gray.700": [
+      "packages/ui/src/lib/themes/light-theme.css.ts"
+    ],
+    "themeVars.backgroundColor.gray.800": [
+      "apps/codeimage/src/components/Animation/AnimationPreview.css.ts",
+      "apps/codeimage/src/components/Terminal/terminal.css.ts",
+      "packages/ui/src/lib/themes/light-theme.css.ts"
+    ],
+    "themeVars.backgroundColor.indigo.300": [
+      "apps/codeimage/src/components/Toolbar/SettingsDialog.tsx",
+      "packages/ui/src/lib/primitives/Toggle/Toggle.css.ts"
+    ],
+    "themeVars.backgroundColor.indigo.500": [
+      "apps/codeimage/src/components/Toolbar/SettingsDialog.tsx",
+      "packages/ui/src/lib/primitives/Toggle/Toggle.css.ts"
+    ],
+    "themeVars.backgroundColor.red.500": [
+      "apps/codeimage/src/pages/UnifiedEditor/shell/settings.css.ts",
+      "packages/ui/src/lib/themes/dark-theme.css.ts",
+      "packages/ui/src/lib/themes/light-theme.css.ts"
+    ],
+    "themeVars.backgroundColor.red.600": [
+      "packages/ui/src/lib/themes/dark-theme.css.ts",
+      "packages/ui/src/lib/themes/light-theme.css.ts"
+    ],
+    "themeVars.backgroundColor.red.700": [
+      "packages/ui/src/lib/themes/dark-theme.css.ts",
+      "packages/ui/src/lib/themes/light-theme.css.ts"
+    ],
+    "themeVars.backgroundColor.transparent": [
+      "packages/ui/src/lib/primitives/RangeField/RangeField.css.ts"
+    ],
+    "themeVars.backgroundColor.white": [
+      "apps/codeimage/src/components/Animation/AnimationPreview.css.ts",
+      "apps/codeimage/src/components/Presets/PresetSwitcher/PresetSwitcher.css.ts",
+      "apps/codeimage/src/components/PropertyEditor/controls/ImagePicker/ImagePicker.css.ts",
+      "apps/codeimage/src/components/Terminal/Tabs/Tab/Tab.css.ts",
+      "apps/codeimage/src/components/Terminal/Tabs/TabAddButton/TabAddButton.css.ts",
+      "apps/codeimage/src/components/Terminal/WindowsTerminal/WindowsTerminal.css.ts",
+      "apps/codeimage/src/components/Terminal/terminal.css.ts",
+      "apps/codeimage/src/components/ThemeSwitcher/ThemeSwitcher.css.ts",
+      "apps/codeimage/src/components/Toolbar/Toolbar.css.ts",
+      "apps/codeimage/src/components/UserBadge/UserBadge.css.ts",
+      "apps/codeimage/src/pages/Dashboard/components/ProjectItem/ProjectItem.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/settings.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/theme-styles/aa-list/aa-list.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/theme-styles/picker.css.ts",
+      "packages/ui/src/lib/primitives/Loader/Loader.css.ts",
+      "packages/ui/src/lib/primitives/RangeField/RangeField.css.ts",
+      "packages/ui/src/lib/themes/dark-theme.css.ts",
+      "packages/ui/src/lib/themes/light-theme.css.ts"
+    ],
+    "themeVars.backgroundColor.yellow.400": [
+      "apps/codeimage/src/components/Toolbar/SettingsDialog.tsx"
+    ],
+    "themeVars.borderColor.default": [
+      "apps/codeimage/src/components/Presets/PresetSwitcher/PresetSwitcher.css.ts",
+      "apps/codeimage/src/components/PropertyEditor/controls/AspectRatioPicker/AspetRatioPicker.css.ts",
+      "apps/codeimage/src/components/PropertyEditor/controls/ImagePicker/ImagePicker.css.ts",
+      "apps/codeimage/src/pages/Dashboard/components/ProjectItem/ProjectItem.css.ts",
+      "packages/ui/src/lib/themes/light-theme.css.ts"
+    ],
+    "themeVars.borderRadius": [
+      "packages/ui/src/lib/theme/sprinkles.css.ts"
+    ],
+    "themeVars.borderRadius.default": [
+      "packages/ui/src/lib/primitives/SegmentedField/SegmentedField.css.ts"
+    ],
+    "themeVars.borderRadius.full": [
+      "apps/codeimage/src/components/PropertyEditor/controls/ColorPicker/CustomColorPicker.css.ts",
+      "apps/codeimage/src/components/Terminal/MacOsTerminal/MacOsTerminal.css.ts",
+      "apps/codeimage/src/components/Terminal/Tabs/Tab/Tab.css.ts",
+      "apps/codeimage/src/components/Terminal/Tabs/TabAddButton/TabAddButton.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export.css.ts",
+      "apps/codeimage/src/theme/global.css.ts",
+      "packages/ui/src/lib/primitives/Box/Box.css.ts",
+      "packages/ui/src/lib/primitives/Button/Button.css.ts",
+      "packages/ui/src/lib/primitives/RangeField/RangeField.css.ts",
+      "packages/ui/src/lib/primitives/Toggle/Toggle.css.ts"
+    ],
+    "themeVars.borderRadius.lg": [
+      "apps/codeimage/src/components/Animation/AnimationPreview.css.ts",
+      "apps/codeimage/src/components/Frame/Frame.css.ts",
+      "apps/codeimage/src/components/Frame/FrameSkeleton.css.ts",
+      "apps/codeimage/src/components/Presets/EmptyPresetFallback/EmptyPresetFallback.css.ts",
+      "apps/codeimage/src/components/PropertyEditor/controls/AspectRatioPicker/AspetRatioPicker.css.ts",
+      "apps/codeimage/src/components/Terminal/Tabs/Tab/Tab.css.ts",
+      "apps/codeimage/src/components/Terminal/Tabs/TabName/TabName.css.ts",
+      "apps/codeimage/src/components/ThemeSwitcher/ThemeSwitcher.css.ts",
+      "apps/codeimage/src/components/Toolbar/Toolbar.css.ts",
+      "apps/codeimage/src/pages/Dashboard/components/ProjectItem/ProjectItem.css.ts",
+      "apps/codeimage/src/pages/Dashboard/components/ProjectList/ProjectList.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/saved-signatures.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/shortcut-help.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/signature.css.ts",
+      "packages/ui/src/lib/primitives/Badge/Badge.css.ts",
+      "packages/ui/src/lib/primitives/Button/Button.css.ts",
+      "packages/ui/src/lib/primitives/Dropdown/Dropdown.css.ts"
+    ],
+    "themeVars.borderRadius.md": [
+      "apps/codeimage/src/components/Animation/PhoneSteps.css.ts",
+      "apps/codeimage/src/components/Animation/StripTimeline.css.ts",
+      "apps/codeimage/src/components/Frame/FrameSkeleton.css.ts",
+      "apps/codeimage/src/components/PropertyEditor/controls/AspectRatioPicker/AspetRatioPicker.css.ts",
+      "apps/codeimage/src/components/PropertyEditor/controls/ColorPicker/CustomColorPicker.css.ts",
+      "apps/codeimage/src/pages/Dashboard/components/ProjectItem/ProjectItem.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/overlay.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/shortcut-help.css.ts",
+      "packages/ui/src/lib/primitives/Dropdown/Dropdown.css.ts",
+      "packages/ui/src/lib/primitives/RadioBlock/RadioBlock.css.ts",
+      "packages/ui/src/lib/primitives/SegmentedField/SegmentedField.css.ts",
+      "packages/ui/src/lib/primitives/TextField/TextField.css.ts"
+    ],
+    "themeVars.borderRadius.sm": [
+      "apps/codeimage/src/components/PropertyEditor/controls/AspectRatioPicker/AspetRatioPicker.css.ts"
+    ],
+    "themeVars.borderRadius.xl": [
+      "apps/codeimage/src/components/Animation/AnimatePanel.css.ts",
+      "apps/codeimage/src/components/Animation/AnimationPreview.css.ts",
+      "apps/codeimage/src/components/Animation/PhoneSteps.css.ts",
+      "apps/codeimage/src/components/Frame/FrameHandler.css.ts",
+      "apps/codeimage/src/components/Presets/PresetSwitcher/PresetSwitcher.css.ts",
+      "apps/codeimage/src/components/ThemeSwitcher/ThemeSwitcher.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/overlay.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/shortcut-help.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export.css.ts",
+      "apps/codeimage/src/theme/global.css.ts",
+      "packages/ui/src/lib/primitives/Snackbar/Snackbar.css.ts"
+    ],
+    "themeVars.borderWidth.2": [
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export.css.ts"
+    ],
+    "themeVars.borderWidth.default": [
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export.css.ts"
+    ],
+    "themeVars.boxShadow.default": [
+      "apps/codeimage/src/components/Presets/PresetSwitcher/PresetSwitcher.css.ts",
+      "apps/codeimage/src/components/PropertyEditor/controls/AspectRatioPicker/AspetRatioPicker.css.ts",
+      "apps/codeimage/src/pages/Dashboard/components/ProjectItem/ProjectItem.css.ts",
+      "packages/ui/src/lib/primitives/SegmentedField/SegmentedField.css.ts"
+    ],
+    "themeVars.boxShadow.lg": [
+      "apps/codeimage/src/components/Frame/Frame.css.ts",
+      "apps/codeimage/src/components/Terminal/terminal.css.ts",
+      "apps/codeimage/src/components/ThemeSwitcher/ThemeSwitcher.css.ts",
+      "packages/ui/src/lib/primitives/RangeField/RangeField.css.ts",
+      "packages/ui/src/lib/themes/light-theme.css.ts"
+    ],
+    "themeVars.boxShadow.md": [
+      "apps/codeimage/src/components/Presets/PresetSwitcher/PresetSwitcher.css.ts",
+      "apps/codeimage/src/components/PropertyEditor/controls/ColorPicker/CustomColorPicker.css.ts",
+      "apps/codeimage/src/pages/Dashboard/components/ProjectItem/ProjectItem.css.ts",
+      "packages/ui/src/lib/primitives/Dropdown/Dropdown.css.ts"
+    ],
+    "themeVars.boxShadow.outline": [
+      "apps/codeimage/src/components/PropertyEditor/controls/ColorPicker/CustomColorPicker.css.ts"
+    ],
+    "themeVars.brand": [
+      "apps/codeimage/src/components/FeatureBadge/UnsupportedFeatureBanner.css.ts"
+    ],
+    "themeVars.brandLink": [
+      "apps/codeimage/src/components/FeatureBadge/UnsupportedFeatureBanner.css.ts",
+      "apps/codeimage/src/ui/Alert/Alert.css.ts",
+      "apps/codeimage/src/ui/ExperimentalChip/ExperimentalChip.css.ts"
+    ],
+    "themeVars.brandSecondary": [
+      "apps/codeimage/src/components/FeatureBadge/UnsupportedFeatureBanner.css.ts"
+    ],
+    "themeVars.brandSoft": [
+      "apps/codeimage/src/ui/Alert/Alert.css.ts",
+      "apps/codeimage/src/ui/ExperimentalChip/ExperimentalChip.css.ts"
+    ],
+    "themeVars.brandSoftAccentActive": [
+      "apps/codeimage/src/ui/ExperimentalChip/ExperimentalChip.css.ts"
+    ],
+    "themeVars.caution": [
+      "apps/codeimage/src/ui/Alert/Alert.css.ts"
+    ],
+    "themeVars.critical": [
+      "apps/codeimage/src/ui/Alert/Alert.css.ts"
+    ],
+    "themeVars.dynamicColors": [
+      "apps/codeimage/src/components/Animation/AnimatePanel.css.ts",
+      "apps/codeimage/src/components/Animation/PhoneSteps.css.ts",
+      "apps/codeimage/src/components/Animation/StripTimeline.css.ts",
+      "apps/codeimage/src/components/Animation/easing.css.ts",
+      "apps/codeimage/src/components/WhatsNew/whats-new.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/agent-tools/tool-activity.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/command-menu/command-menu.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/canvas-toolbar.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/controls.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/overlay.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/saved-signatures.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/signature.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/local-ai/local-ai.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/choice-fields.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/panel.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/sheet.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/header.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/settings.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/variants/dock/dock.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/accordion.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/rail.css.ts"
+    ],
+    "themeVars.dynamicColors.background": [
+      "apps/codeimage/src/components/Animation/StripTimeline.css.ts",
+      "apps/codeimage/src/components/WhatsNew/whats-new.css.ts",
+      "apps/codeimage/src/pages/Dashboard/components/DashboardHeader/DashboardHeader.css.ts",
+      "apps/codeimage/src/pages/NotFound/NotFoundPage.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/agent-tools/tool-activity.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/sheet.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/settings.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/theme-styles/orb/orb.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/variants/dock/dock.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/accordion.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/rail.css.ts",
+      "apps/codeimage/src/theme/global.css.ts"
+    ],
+    "themeVars.dynamicColors.baseText": [
+      "apps/codeimage/src/components/Animation/AnimatePanel.css.ts",
+      "apps/codeimage/src/components/Animation/PhoneSteps.css.ts",
+      "apps/codeimage/src/components/Animation/StepsMenu.css.ts",
+      "apps/codeimage/src/components/Animation/StripTimeline.css.ts",
+      "apps/codeimage/src/components/Animation/easing.css.ts",
+      "apps/codeimage/src/components/Presets/PresetSwitcher/PresetSwitcher.css.ts",
+      "apps/codeimage/src/components/PropertyEditor/controls/AspectRatioPicker/AspetRatioPicker.css.ts",
+      "apps/codeimage/src/components/PropertyEditor/controls/ImagePicker/ImagePicker.css.ts",
+      "apps/codeimage/src/components/WhatsNew/whats-new.css.ts",
+      "apps/codeimage/src/pages/Dashboard/components/ProjectItem/ProjectItem.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/agent-tools/tool-activity.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/command-menu/command-menu.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/controls.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/overlay.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/saved-signatures.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/shortcut-help.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/signature.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/local-ai/local-ai.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/choice-fields.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/sheet.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/settings.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/variants/dock/dock.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/accordion.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/rail.css.ts",
+      "packages/ui/dev/global.css.ts",
+      "packages/ui/src/lib/primitives/Button/Button.css.ts"
+    ],
+    "themeVars.dynamicColors.button.base.backgroundColor": [
+      "apps/codeimage/src/pages/UnifiedEditor/controls/controls.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/settings.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/theme-styles/picker.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/variants/dock/dock.css.ts",
+      "packages/ui/src/lib/primitives/Button/Button.css.ts"
+    ],
+    "themeVars.dynamicColors.button.base.hoverColor": [
+      "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/accordion.css.ts",
+      "packages/ui/src/lib/primitives/Button/Button.css.ts"
+    ],
+    "themeVars.dynamicColors.button.base.textColor": [
+      "apps/codeimage/src/pages/UnifiedEditor/controls/shortcut-help.css.ts",
+      "packages/ui/src/lib/primitives/Button/Button.css.ts"
+    ],
+    "themeVars.dynamicColors.button.danger.backgroundColor": [
+      "apps/codeimage/src/pages/UnifiedEditor/agent-tools/tool-activity.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/local-ai/local-ai.css.ts",
+      "packages/ui/src/lib/primitives/Button/Button.css.ts"
+    ],
+    "themeVars.dynamicColors.button.danger.hoverColor": [
+      "packages/ui/src/lib/primitives/Button/Button.css.ts"
+    ],
+    "themeVars.dynamicColors.button.danger.textColor": [
+      "packages/ui/src/lib/primitives/Button/Button.css.ts"
+    ],
+    "themeVars.dynamicColors.button.primary.backgroundColor": [
+      "packages/ui/src/lib/primitives/Button/Button.css.ts"
+    ],
+    "themeVars.dynamicColors.button.primary.hoverColor": [
+      "packages/ui/src/lib/primitives/Button/Button.css.ts"
+    ],
+    "themeVars.dynamicColors.button.primary.textColor": [
+      "packages/ui/src/lib/primitives/Button/Button.css.ts"
+    ],
+    "themeVars.dynamicColors.button.primaryAlt.backgroundColor": [
+      "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/rail.css.ts",
+      "packages/ui/src/lib/primitives/Button/Button.css.ts"
+    ],
+    "themeVars.dynamicColors.button.primaryAlt.hoverColor": [
+      "packages/ui/src/lib/primitives/Button/Button.css.ts"
+    ],
+    "themeVars.dynamicColors.button.primaryAlt.textColor": [
+      "packages/ui/src/lib/primitives/Button/Button.css.ts"
+    ],
+    "themeVars.dynamicColors.descriptionTextColor": [
+      "apps/codeimage/src/components/Footer/Footer.css.ts",
+      "apps/codeimage/src/components/Presets/EmptyPresetFallback/EmptyPresetFallback.css.ts",
+      "apps/codeimage/src/components/PropertyEditor/SidebarPopover/SidebarPopover.css.ts",
+      "apps/codeimage/src/components/PropertyEditor/controls/AspectRatioPicker/AspetRatioPicker.css.ts",
+      "apps/codeimage/src/components/PropertyEditor/controls/FontPicker/FontPicker.css.ts",
+      "apps/codeimage/src/components/WhatsNew/whats-new.css.ts",
+      "apps/codeimage/src/pages/Dashboard/components/ProjectItem/ProjectItem.css.ts",
+      "apps/codeimage/src/pages/Dashboard/components/ProjectList/ProjectList.css.ts",
+      "apps/codeimage/src/pages/NotFound/NotFoundPage.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/agent-tools/tool-activity.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/command-menu/command-menu.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/controls.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/saved-signatures.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/signature.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/local-ai/local-ai.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/localized/ImagePickerInput.tsx",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/choice-fields.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/panel.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/sheet.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/header.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/settings.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/theme-styles/aa-list/aa-list.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/theme-styles/picker.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/variants/dock/dock.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/accordion.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/rail.css.ts"
+    ],
+    "themeVars.dynamicColors.dialog.overlayBackgroundColor": [
+      "apps/codeimage/src/components/Animation/PhoneSteps.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/shortcut-help.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/sheet.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export.css.ts"
+    ],
+    "themeVars.dynamicColors.dialog.panelBackgroundColor": [
+      "apps/codeimage/src/components/Animation/AnimatePanel.css.ts",
+      "apps/codeimage/src/components/Animation/PhoneSteps.css.ts",
+      "apps/codeimage/src/components/Animation/easing.css.ts",
+      "apps/codeimage/src/components/Terminal/Tabs/TabName/TabName.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/command-menu/command-menu.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/local-ai/local-ai.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/sheet.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/variants/dock/dock.css.ts"
+    ],
+    "themeVars.dynamicColors.dialog.panelShadow": [
+      "apps/codeimage/src/components/Animation/AnimatePanel.css.ts",
+      "apps/codeimage/src/components/Animation/PhoneSteps.css.ts",
+      "apps/codeimage/src/components/Terminal/Tabs/TabName/TabName.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/command-menu/command-menu.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/overlay.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/shortcut-help.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/local-ai/local-ai.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/sheet.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/variants/dock/dock.css.ts"
+    ],
+    "themeVars.dynamicColors.dialog.titleBorderColor": [
+      "apps/codeimage/src/components/Toolbar/SettingsDialog.css.ts"
+    ],
+    "themeVars.dynamicColors.divider": [
+      "apps/codeimage/src/components/PropertyEditor/EditorSidebar.css.ts",
+      "apps/codeimage/src/components/Scaffold/Sidebar/Sidebar.css.ts",
+      "apps/codeimage/src/components/Terminal/Tabs/TabName/TabName.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/local-ai/local-ai.css.ts",
+      "packages/ui/src/lib/primitives/RangeField/RangeField.css.ts"
+    ],
+    "themeVars.dynamicColors.input.accentColor": [
+      "apps/codeimage/src/components/Toolbar/Toolbar.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/rail.css.ts",
+      "packages/ui/src/lib/primitives/SegmentedField/SegmentedField.css.ts"
+    ],
+    "themeVars.dynamicColors.input.backgroundColor": [
+      "apps/codeimage/src/components/Presets/PresetSwitcher/PresetSwitcher.css.ts",
+      "apps/codeimage/src/components/PropertyEditor/controls/ImagePicker/ImagePicker.css.ts",
+      "apps/codeimage/src/components/WhatsNew/whats-new.css.ts",
+      "apps/codeimage/src/pages/Dashboard/components/ProjectItem/ProjectItem.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/agent-tools/tool-activity.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/command-menu/command-menu.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/controls.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/overlay.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/saved-signatures.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/signature.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/choice-fields.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/settings.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/theme-styles/aa-list/aa-list.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/theme-styles/picker.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/variants/dock/dock.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/rail.css.ts",
+      "packages/ui/src/lib/primitives/TextField/TextField.css.ts"
+    ],
+    "themeVars.dynamicColors.input.borderColor": [
+      "packages/ui/src/lib/primitives/TextField/TextField.css.ts"
+    ],
+    "themeVars.dynamicColors.input.labelTextColor": [
+      "packages/ui/src/lib/primitives/Label/FieldLabel.css.ts"
+    ],
+    "themeVars.dynamicColors.input.labelTextHintColor": [
+      "packages/ui/src/lib/primitives/Label/FieldLabel.css.ts"
+    ],
+    "themeVars.dynamicColors.input.textColor": [
+      "apps/codeimage/src/pages/UnifiedEditor/command-menu/command-menu.css.ts",
+      "packages/ui/src/lib/primitives/SegmentedField/SegmentedField.css.ts",
+      "packages/ui/src/lib/primitives/TextField/TextField.css.ts"
+    ],
+    "themeVars.dynamicColors.listBox.activeBackgroundColor": [
+      "apps/codeimage/src/components/Terminal/Tabs/TabName/TabName.css.ts",
+      "packages/ui/src/lib/primitives/Dropdown/Dropdown.css.ts"
+    ],
+    "themeVars.dynamicColors.listBox.activeTextColor": [
+      "apps/codeimage/src/components/Terminal/Tabs/TabName/TabName.css.ts",
+      "packages/ui/src/lib/primitives/Dropdown/Dropdown.css.ts"
+    ],
+    "themeVars.dynamicColors.listBox.hoverBackgroundColor": [
+      "apps/codeimage/src/components/Terminal/Tabs/TabName/TabName.css.ts",
+      "packages/ui/src/lib/primitives/Dropdown/Dropdown.css.ts"
+    ],
+    "themeVars.dynamicColors.listBox.panelBackground": [
+      "packages/ui/src/lib/primitives/Dropdown/Dropdown.css.ts"
+    ],
+    "themeVars.dynamicColors.listBox.textColor": [
+      "apps/codeimage/src/components/Terminal/Tabs/TabName/TabName.css.ts",
+      "packages/ui/src/lib/primitives/Dropdown/Dropdown.css.ts"
+    ],
+    "themeVars.dynamicColors.panel.background": [
+      "apps/codeimage/src/components/Animation/PhoneSteps.css.ts",
+      "apps/codeimage/src/components/Animation/StripTimeline.css.ts",
+      "apps/codeimage/src/components/Presets/PresetSwitcher/PresetSwitcher.css.ts",
+      "apps/codeimage/src/components/Scaffold/Sidebar/Sidebar.css.ts",
+      "apps/codeimage/src/components/Toolbar/Toolbar.css.ts",
+      "apps/codeimage/src/components/WhatsNew/whats-new.css.ts",
+      "apps/codeimage/src/pages/Dashboard/Dashboard.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/canvas-toolbar.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/overlay.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/shortcut-help.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/local-ai/local-ai.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/header.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/settings.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/snippet.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/variants/dock/dock.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/accordion.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/rail.css.ts",
+      "apps/codeimage/src/theme/global.css.ts",
+      "packages/ui/dev/global.css.ts"
+    ],
+    "themeVars.dynamicColors.panel.textColor": [
+      "apps/codeimage/src/components/PropertyEditor/EditorSidebar.css.ts",
+      "apps/codeimage/src/components/Scaffold/Sidebar/Sidebar.css.ts",
+      "apps/codeimage/src/components/Toolbar/Toolbar.css.ts",
+      "apps/codeimage/src/pages/Dashboard/Dashboard.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/canvas-toolbar.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/local-ai/local-ai.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/header.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/snippet.css.ts"
+    ],
+    "themeVars.dynamicColors.panel.textColorAlt": [
+      "apps/codeimage/src/components/PropertyEditor/EditorSidebar.css.ts"
+    ],
+    "themeVars.dynamicColors.primary": [
+      "apps/codeimage/src/components/Animation/AnimationPreview.css.ts",
+      "apps/codeimage/src/components/Animation/PhoneSteps.css.ts",
+      "apps/codeimage/src/components/Animation/StripTimeline.css.ts",
+      "apps/codeimage/src/components/Animation/easing.css.ts",
+      "apps/codeimage/src/components/PropertyEditor/controls/AspectRatioPicker/AspetRatioPicker.css.ts",
+      "apps/codeimage/src/components/PropertyEditor/controls/ImagePicker/ImagePicker.css.ts",
+      "apps/codeimage/src/components/ThemeSwitcher/ThemeSwitcher.css.ts",
+      "apps/codeimage/src/components/WhatsNew/whats-new.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/command-menu/command-menu.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/controls.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/saved-signatures.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/signature.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/choice-fields.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/header.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/settings.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/theme-styles/aa-list/aa-list.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/theme-styles/picker.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/accordion.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/rail.css.ts",
+      "packages/ui/src/lib/theme/sprinkles.css.ts"
+    ],
+    "themeVars.dynamicColors.scrollBar.backgroundColor": [
+      "apps/codeimage/src/pages/UnifiedEditor/command-menu/command-menu.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/theme-styles/picker.css.ts",
+      "apps/codeimage/src/theme/global.css.ts",
+      "packages/ui/src/lib/primitives/Box/Box.css.ts"
+    ],
+    "themeVars.dynamicColors.scrollBar.hoverBackgroundColor": [
+      "apps/codeimage/src/theme/global.css.ts",
+      "packages/ui/src/lib/primitives/Box/Box.css.ts"
+    ],
+    "themeVars.dynamicColors.snackbar.backgroundColor": [
+      "packages/ui/src/lib/primitives/Snackbar/Snackbar.css.ts"
+    ],
+    "themeVars.dynamicColors.snackbar.textColor": [
+      "packages/ui/src/lib/primitives/Snackbar/Snackbar.css.ts"
+    ],
+    "themeVars.fontSize": [
+      "packages/ui/src/lib/primitives/Text/Text.css.ts",
+      "packages/ui/src/lib/theme/sprinkles.css.ts"
+    ],
+    "themeVars.fontSize.2xl": [
+      "packages/ui/src/lib/primitives/IconButton/IconButton.css.ts"
+    ],
+    "themeVars.fontSize.base": [
+      "apps/codeimage/src/components/Animation/PhoneSteps.css.ts",
+      "apps/codeimage/src/components/Terminal/terminal.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/panel.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/settings.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/rail.css.ts",
+      "packages/ui/src/lib/primitives/Button/Button.css.ts",
+      "packages/ui/src/lib/primitives/Field/FlexField.css.ts",
+      "packages/ui/src/lib/primitives/IconButton/IconButton.css.ts"
+    ],
+    "themeVars.fontSize.lg": [
+      "apps/codeimage/src/components/WhatsNew/whats-new.css.ts",
+      "apps/codeimage/src/pages/NotFound/NotFoundPage.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/sheet.css.ts",
+      "packages/ui/src/lib/primitives/Button/Button.css.ts",
+      "packages/ui/src/lib/primitives/IconButton/IconButton.css.ts"
+    ],
+    "themeVars.fontSize.sm": [
+      "apps/codeimage/src/components/Animation/AnimatePanel.css.ts",
+      "apps/codeimage/src/components/Animation/PhoneSteps.css.ts",
+      "apps/codeimage/src/components/Terminal/Tabs/Tab/Tab.css.ts",
+      "apps/codeimage/src/components/Terminal/Tabs/TabName/TabName.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/command-menu/command-menu.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/overlay.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/saved-signatures.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/shortcut-help.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/signature.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/choice-fields.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/settings.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/theme-styles/picker.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/variants/dock/dock.css.ts",
+      "packages/ui/src/lib/primitives/Button/Button.css.ts",
+      "packages/ui/src/lib/primitives/Field/FlexField.css.ts"
+    ],
+    "themeVars.fontSize.xl": [
+      "packages/ui/src/lib/primitives/Button/Button.css.ts",
+      "packages/ui/src/lib/primitives/IconButton/IconButton.css.ts"
+    ],
+    "themeVars.fontSize.xs": [
+      "apps/codeimage/src/components/Animation/StepsMenu.css.ts",
+      "apps/codeimage/src/components/PropertyEditor/EditorSidebar.css.ts",
+      "apps/codeimage/src/components/PropertyEditor/SidebarPopover/SidebarPopover.css.ts",
+      "apps/codeimage/src/components/PropertyEditor/controls/AspectRatioPicker/AspetRatioPicker.css.ts",
+      "apps/codeimage/src/components/PropertyEditor/controls/FontPicker/FontPicker.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/command-menu/command-menu.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/controls.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/saved-signatures.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/signature.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/choice-fields.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/panel.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/sheet.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/settings.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/theme-styles/aa-list/aa-list.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/variants/dock/dock.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/variants/sidebar/rail.css.ts",
+      "packages/ui/src/lib/primitives/Button/Button.css.ts",
+      "packages/ui/src/lib/primitives/Field/FlexField.css.ts",
+      "packages/ui/src/lib/primitives/IconButton/IconButton.css.ts"
+    ],
+    "themeVars.fontWeight": [
+      "packages/ui/src/lib/primitives/Text/Text.css.ts"
+    ],
+    "themeVars.fontWeight.medium": [
+      "apps/codeimage/src/pages/UnifiedEditor/agent-tools/tool-activity.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/local-ai/local-ai.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/choice-fields.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/sheet.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/settings.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/theme-styles/aa-list/aa-list.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/theme-styles/picker.css.ts",
+      "packages/ui/src/lib/primitives/Button/Button.css.ts",
+      "packages/ui/src/lib/primitives/SegmentedField/SegmentedField.css.ts"
+    ],
+    "themeVars.fontWeight.normal": [
+      "apps/codeimage/src/components/Terminal/Tabs/TabName/TabName.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/command-menu/command-menu.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/choice-fields.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export.css.ts"
+    ],
+    "themeVars.fontWeight.semibold": [
+      "apps/codeimage/src/components/Terminal/Tabs/Tab/Tab.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/agent-tools/tool-activity.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/command-menu/command-menu.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/overlay.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/shortcut-help.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/panel.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export-styles/sheet.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/settings.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/theme-styles/picker.css.ts",
+      "packages/ui/src/lib/primitives/SegmentedField/SegmentedField.css.ts"
+    ],
+    "themeVars.lineHeight": [
+      "packages/ui/src/lib/theme/sprinkles.css.ts"
+    ],
+    "themeVars.lineHeight.normal": [
+      "apps/codeimage/src/components/Terminal/terminal.css.ts"
+    ],
+    "themeVars.margin.3": [
+      "packages/ui/src/lib/primitives/Label/FieldLabel.css.ts"
+    ],
+    "themeVars.opacity.50": [
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export.css.ts"
+    ],
+    "themeVars.spacing": [
+      "apps/codeimage/src/components/PropertyEditor/controls/ImagePicker/ImagePicker.css.ts",
+      "packages/ui/src/lib/primitives/Box/Stack.tsx",
+      "packages/ui/src/lib/primitives/Button/Button.css.ts",
+      "packages/ui/src/lib/theme/sprinkles.css.ts"
+    ],
+    "themeVars.spacing.1": [
+      "apps/codeimage/src/components/Presets/PresetSwitcher/PresetSwitcher.css.ts",
+      "apps/codeimage/src/components/PropertyEditor/EditorSidebar.css.ts",
+      "apps/codeimage/src/components/PropertyEditor/controls/AspectRatioPicker/AspetRatioPicker.css.ts",
+      "apps/codeimage/src/components/PropertyEditor/controls/ColorPicker/CustomColorPicker.css.ts",
+      "apps/codeimage/src/components/Terminal/Tabs/Tab/Tab.css.ts",
+      "apps/codeimage/src/components/ThemeSwitcher/ThemeSwitcher.css.ts",
+      "apps/codeimage/src/components/Toolbar/Toolbar.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/command-menu/command-menu.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/shortcut-help.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/settings.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/theme-styles/aa-list/aa-list.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/theme-styles/window/window.css.ts",
+      "packages/ui/src/lib/primitives/Dropdown/Dropdown.css.ts",
+      "packages/ui/src/lib/primitives/SegmentedField/SegmentedField.css.ts"
+    ],
+    "themeVars.spacing.10": [
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export.css.ts"
+    ],
+    "themeVars.spacing.12": [
+      "apps/codeimage/src/components/Toolbar/SettingsDialog.css.ts",
+      "apps/codeimage/src/pages/Dashboard/Dashboard.css.ts",
+      "apps/codeimage/src/pages/Dashboard/components/ProjectList/ProjectList.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/settings.css.ts"
+    ],
+    "themeVars.spacing.2": [
+      "apps/codeimage/src/components/Presets/PresetSwitcher/PresetSwitcher.css.ts",
+      "apps/codeimage/src/components/PropertyEditor/EditorSidebar.css.ts",
+      "apps/codeimage/src/components/PropertyEditor/controls/AspectRatioPicker/AspetRatioPicker.css.ts",
+      "apps/codeimage/src/components/Scaffold/Sidebar/Sidebar.css.ts",
+      "apps/codeimage/src/components/Terminal/MacOsTerminal/MacOsTerminal.css.ts",
+      "apps/codeimage/src/components/Terminal/Tabs/Tab/Tab.css.ts",
+      "apps/codeimage/src/components/Terminal/Tabs/TabIcon/TabIcon.css.ts",
+      "apps/codeimage/src/components/Terminal/terminal.css.ts",
+      "apps/codeimage/src/components/ThemeSwitcher/ThemeSwitcher.css.ts",
+      "apps/codeimage/src/pages/Dashboard/components/ProjectItem/ProjectItem.css.ts",
+      "apps/codeimage/src/pages/Dashboard/components/ProjectToolbar/ProjectToolbar.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/command-menu/command-menu.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/overlay.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/shortcut-help.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/header.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/settings.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/theme-styles/aa-list/aa-list.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/theme-styles/orb/orb.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/theme-styles/picker.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/theme-styles/window/window.css.ts",
+      "packages/ui/src/lib/primitives/Button/Button.css.ts",
+      "packages/ui/src/lib/primitives/Dropdown/Dropdown.css.ts",
+      "packages/ui/src/lib/primitives/Snackbar/Snackbar.css.ts"
+    ],
+    "themeVars.spacing.24": [
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export.css.ts"
+    ],
+    "themeVars.spacing.3": [
+      "apps/codeimage/src/components/Presets/PresetSwitcher/PresetSwitcher.css.ts",
+      "apps/codeimage/src/components/PropertyEditor/EditorSidebar.css.ts",
+      "apps/codeimage/src/components/PropertyEditor/controls/AspectRatioPicker/AspetRatioPicker.css.ts",
+      "apps/codeimage/src/components/PropertyEditor/controls/ColorPicker/CustomColorPicker.css.ts",
+      "apps/codeimage/src/components/PropertyEditor/controls/FontPicker/FontPicker.css.ts",
+      "apps/codeimage/src/components/Terminal/Tabs/Tab/Tab.css.ts",
+      "apps/codeimage/src/components/Terminal/Tabs/TabName/TabName.css.ts",
+      "apps/codeimage/src/components/Terminal/WindowsTerminal/WindowsTerminal.css.ts",
+      "apps/codeimage/src/components/Terminal/terminal.css.ts",
+      "apps/codeimage/src/components/ThemeSwitcher/ThemeSwitcher.css.ts",
+      "apps/codeimage/src/components/Toolbar/SettingsDialog.css.ts",
+      "apps/codeimage/src/components/Toolbar/Toolbar.css.ts",
+      "apps/codeimage/src/pages/Dashboard/Dashboard.css.ts",
+      "apps/codeimage/src/pages/Dashboard/components/DashboardHeader/DashboardHeader.css.ts",
+      "apps/codeimage/src/pages/Dashboard/components/ProjectList/ProjectList.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/command-menu/command-menu.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/overlay.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/header.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/settings.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/snippet.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/theme-styles/aa-list/aa-list.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/theme-styles/orb/orb.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/theme-styles/picker.css.ts",
+      "packages/ui/src/lib/primitives/Button/Button.css.ts",
+      "packages/ui/src/lib/primitives/Snackbar/Snackbar.css.ts",
+      "packages/ui/src/lib/primitives/TextField/TextField.css.ts"
+    ],
+    "themeVars.spacing.4": [
+      "apps/codeimage/src/components/PropertyEditor/EditorSidebar.css.ts",
+      "apps/codeimage/src/components/Terminal/MacOsTerminal/MacOsTerminal.css.ts",
+      "apps/codeimage/src/components/Terminal/WindowsTerminal/WindowsTerminal.css.ts",
+      "apps/codeimage/src/components/Terminal/terminal.css.ts",
+      "apps/codeimage/src/components/ThemeSwitcher/ThemeSwitcher.css.ts",
+      "apps/codeimage/src/components/Toolbar/Toolbar.css.ts",
+      "apps/codeimage/src/pages/Dashboard/Dashboard.css.ts",
+      "apps/codeimage/src/pages/Dashboard/components/ProjectList/ProjectList.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/overlay.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/shortcut-help.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/settings.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/theme-styles/aa-list/aa-list.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/theme-styles/picker.css.ts",
+      "packages/ui/src/lib/primitives/Snackbar/Snackbar.css.ts"
+    ],
+    "themeVars.spacing.5": [
+      "apps/codeimage/src/components/Presets/PresetSwitcher/PresetSwitcher.css.ts",
+      "apps/codeimage/src/components/Terminal/WindowsTerminal/WindowsTerminal.css.ts",
+      "apps/codeimage/src/components/Terminal/terminal.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/settings.css.ts"
+    ],
+    "themeVars.spacing.6": [
+      "apps/codeimage/src/pages/Dashboard/components/ProjectToolbar/ProjectToolbar.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/controls/overlay.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/settings.css.ts",
+      "packages/ui/src/lib/primitives/Button/Button.css.ts",
+      "packages/ui/src/lib/primitives/TextField/TextField.css.ts"
+    ],
+    "themeVars.spacing.8": [
+      "apps/codeimage/src/components/Presets/PresetSwitcher/PresetSwitcher.css.ts",
+      "apps/codeimage/src/components/ThemeSwitcher/ThemeSwitcher.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export.css.ts"
+    ],
+    "themeVars.spacing.px": [
+      "packages/ui/src/lib/primitives/TextField/TextField.css.ts"
+    ],
+    "themeVars.textColor.gray.700": [
+      "packages/ui/src/lib/themes/light-theme.css.ts"
+    ],
+    "themeVars.width.full": [
+      "apps/codeimage/src/components/PropertyEditor/controls/ColorPicker/CustomColorPicker.css.ts"
+    ],
+    "themeVars.zIndex.10": [
+      "apps/codeimage/src/components/Toolbar/Toolbar.css.ts"
+    ],
+    "themeVars.zIndex.20": [
+      "apps/codeimage/src/components/Footer/Footer.css.ts"
+    ],
+    "themeVars.zIndex.40": [
+      "packages/ui/src/lib/primitives/Dropdown/Dropdown.css.ts",
+      "packages/ui/src/lib/primitives/PortalHost/PortalHost.css.ts",
+      "packages/ui/src/lib/primitives/Snackbar/Snackbar.css.ts"
+    ],
+    "themeVars.zIndex.50": [
+      "apps/codeimage/src/components/Terminal/Tabs/TabName/TabName.css.ts",
+      "apps/codeimage/src/pages/UnifiedEditor/shell/export.css.ts"
+    ]
+  },
+  "attributes": {
+    "data-theme-mode": [
+      "apps/codeimage/src/components/Icons/CodeImageLogoV2.tsx",
+      "apps/codeimage/src/components/Terminal/GlassReflection/TerminalGlassReflection.css.ts",
+      "apps/codeimage/src/components/Terminal/Tabs/Tab/Tab.css.ts",
+      "apps/codeimage/src/components/Terminal/Tabs/TabAddButton/TabAddButton.css.ts",
+      "apps/codeimage/src/components/Terminal/TerminalHost.tsx",
+      "apps/codeimage/src/components/Terminal/WindowsTerminal/WindowsTerminal.css.ts",
+      "apps/codeimage/src/components/Terminal/terminal.css.ts",
+      "apps/codeimage/src/components/Watermark/Watermark.tsx",
+      "apps/codeimage/src/pages/UnifiedEditor/verify-i18n.mjs",
+      "packages/ui/src/lib/primitives/Loader/Loader.css.ts"
+    ],
+    "data-codeimage-theme": [
+      "apps/codeimage/src/theme/global.css.ts",
+      "packages/ui/src/lib/primitives/Snackbar/patch-solid-toast.ts",
+      "packages/ui/src/lib/theme/with-theme-mode.ts",
+      "packages/ui/src/lib/tokens/createCodeImageTheme.ts",
+      "packages/ui/src/lib/tokens/tokens.tsx"
+    ]
+  },
+  "counts": {
+    "surfaces": 13,
+    "text": 18,
+    "accent and status colors": 22,
+    "shadows": 5,
+    "borders/hairlines": 6,
+    "focus ring": 3,
+    "radii": 11,
+    "spacing": 23,
+    "control heights": 6,
+    "type scale": 16,
+    "motion": 6
+  },
+  "observedLeafMappingCounts": {
+    "clean": 78,
+    "staysInApp": 32
+  },
+  "visualComponents": [
+    "Button",
+    "CheckBox",
+    "Dialog",
+    "Dropdown",
+    "Field",
+    "FieldError",
+    "FieldLabel",
+    "Listbox",
+    "NumberField",
+    "Popover",
+    "RadioList",
+    "SegmentedControl",
+    "Select",
+    "Tabs",
+    "TextArea",
+    "TextField",
+    "Tooltip"
+  ]
+}

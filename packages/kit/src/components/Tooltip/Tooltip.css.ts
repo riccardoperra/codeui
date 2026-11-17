@@ -1,44 +1,22 @@
-import { createTheme, keyframes, style } from "@vanilla-extract/css";
-import { themeTokens } from "../../foundation/themes.css";
-import { RecipeVariants, recipe } from "@vanilla-extract/recipes";
-import { tokens } from "../../foundation/contract.css";
-import { componentStateStyles } from "@kobalte/vanilla-extract";
+import { createTheme, recipe, style } from "../../foundation/layer.css";
+import { RecipeVariants } from "@vanilla-extract/recipes";
+import { tokens } from "../../foundation/cui.css";
+import { popAnimation } from "../../foundation/motion.css";
 
 export const [tooltipTheme, tooltipVars] = createTheme({
-	fontSize: themeTokens.fontSize.sm,
-	backgroundColor: tokens.neutral,
-	color: themeTokens.colors.gray12,
-	padding: `${themeTokens.spacing["2"]} ${themeTokens.spacing["4"]}`,
-	borderRadius: themeTokens.radii.xl,
-	zIndex: themeTokens.zIndex[50],
+	fontSize: tokens.font.size.sm,
+	lineHeight: tokens.font.lineHeight.compact,
+	backgroundColor: tokens.action.neutral.base,
+	color: tokens.action.neutral.text,
+	padding: `${tokens.space["2"]} ${tokens.space["4"]}`,
+	borderRadius: tokens.radius.xl,
+	zIndex: "50",
 });
 
 const TooltipThemes = {
 	primary: "primary",
 	secondary: "secondary",
 } as const;
-
-const contentShow = keyframes({
-	from: {
-		opacity: 0,
-		transform: "scale(0.95)",
-	},
-	to: {
-		opacity: 1,
-		transform: "scale(1)",
-	},
-});
-
-const contentHide = keyframes({
-	from: {
-		opacity: 1,
-		transform: "scale(1)",
-	},
-	to: {
-		opacity: 0,
-		transform: "scale(0.95)",
-	},
-});
 
 export const tooltipContent = recipe({
 	base: [
@@ -48,33 +26,27 @@ export const tooltipContent = recipe({
 			width: "auto",
 			zIndex: tooltipVars.zIndex,
 			fontSize: tooltipVars.fontSize,
+			lineHeight: tooltipVars.lineHeight,
 			padding: tooltipVars.padding,
 			borderRadius: tooltipVars.borderRadius,
 			color: tooltipVars.color,
 			backgroundColor: tooltipVars.backgroundColor,
-			boxShadow: themeTokens.boxShadow.md,
-			animation: `${contentHide} 150ms ease-in forwards`,
-			transformOrigin: "var(--kb-tooltip-content-transform-origin)",
+			boxShadow: tokens.shadow.md,
 		},
-		componentStateStyles({
-			expanded: {
-				animation: `${contentShow} 250ms ease-out`,
-			},
-		}),
+		popAnimation(),
 	],
 	variants: {
 		theme: {
 			[TooltipThemes.primary]: {
 				vars: {
-					// TODO: add generic tokens `foreground` for colors (brand, neutral, negative etc) to use in all components
-					[tooltipVars.color]: "#fff",
-					[tooltipVars.backgroundColor]: tokens.brand,
+					[tooltipVars.color]: tokens.action.brand.text,
+					[tooltipVars.backgroundColor]: tokens.action.brand.base,
 				},
 			},
 			[TooltipThemes.secondary]: {
 				vars: {
-					[tooltipVars.color]: tokens.foreground,
-					[tooltipVars.backgroundColor]: tokens.brandSecondary,
+					[tooltipVars.color]: tokens.action.neutral.text,
+					[tooltipVars.backgroundColor]: tokens.action.neutral.base,
 				},
 			},
 		},

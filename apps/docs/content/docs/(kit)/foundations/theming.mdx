@@ -1,0 +1,145 @@
+---
+title: Theming
+description: Every kit value is a --cui-* CSS custom property. Change them with plain CSS, per app, per mode or per subtree.
+---
+
+The CodeImage look is the default. Every color, radius, space, shadow and motion value is a `--cui-*` custom property, and every component reads only those properties. You change the theme with plain CSS. Your own stylesheets need no vanilla-extract.
+
+<SolidDemo name="theming/modes" />
+
+Both groups render the same components. The first sets `data-cui-theme="dark"`, the second `data-cui-theme="light"`.
+
+## Pick dark, light or system
+
+`data-cui-theme` is the only theme attribute. It takes two values.
+
+| Attribute | Result |
+| --- | --- |
+| `data-cui-theme="dark"` | Dark values. `color-scheme: dark`. |
+| `data-cui-theme="light"` | Light values. `color-scheme: light`. |
+| No attribute | System. Dark values under `prefers-color-scheme: dark`, light values otherwise. |
+
+- Set the attribute on `<html>` to theme the whole page.
+- Set it on any element to theme that subtree. Each scope sets every token again, so a light scope inside a dark page works.
+- To follow the system setting, remove the attribute. There is no `system` value.
+
+The kit ships no theme provider. If your app stores a dark, light or system preference, write the attribute yourself. Set it before the first paint, for example from a small inline script in `<head>`, so a server-rendered page does not flash the wrong mode. This site sets the attribute from its theme toggle, so the page and the demos switch together.
+
+### Portaled content takes the page theme
+
+Menus, popovers, tooltips, dialogs and sheets render in a portal at the end of `document.body`. They take their theme from `<html>`, not from the scope around their trigger. To keep an overlay in a scoped theme, theme `<html>` instead, or mount the portal inside the scope. `Popover` takes a `mount` prop for this.
+
+A toast has its own `theme` option. Pass `theme: "light"` to `toaster.show()` to render that toast in light mode whatever the page theme. See [Toast](/docs/components/toast).
+
+## Override tokens with plain CSS
+
+<SolidDemo name="theming/brand-override" />
+
+The demo scopes its overrides to `.docs-brand`, so it does not change this site. Here is its stylesheet:
+
+```css title="brand-override.css"
+/* Every mode, including nested data-cui-theme scopes. */
+.docs-brand,
+.docs-brand [data-cui-theme] {
+	--cui-action-brand-base: #7c3aed;
+	--cui-action-brand-hover: #6d28d9;
+	--cui-action-brand-active: #5b21b6;
+	--cui-accent-focus: #a78bfa;
+	--cui-accent-selection: #7c3aed;
+	--cui-radius-md: 6px;
+	--cui-radius-sm: 6px;
+}
+
+/* One mode only. */
+.docs-brand [data-cui-theme="light"] {
+	--cui-surface-canvas: #faf5ff;
+	--cui-accent-focus: #7c3aed;
+}
+
+.docs-brand [data-cui-theme="dark"] {
+	--cui-surface-canvas: #120d1c;
+}
+
+/* One instance, with a class on the component. */
+.docs-brand .delete-snippet {
+	--cui-action-danger-base: #9b2c2c;
+	border-radius: 0;
+}
+```
+
+In an app, the same stylesheet targets the page instead of a class. This is the complete version, with the system mode covered:
+
+```css title="app.css"
+/* Every mode, including nested data-cui-theme scopes. */
+:root,
+[data-cui-theme] {
+	--cui-action-brand-base: #7c3aed;
+	--cui-action-brand-hover: #6d28d9;
+	--cui-action-brand-active: #5b21b6;
+	--cui-accent-focus: #a78bfa;
+	--cui-accent-selection: #7c3aed;
+	--cui-radius-md: 6px;
+	--cui-radius-sm: 6px;
+	--cui-font-family-sans: "IBM Plex Sans", system-ui, sans-serif;
+}
+
+/* Light only: an explicit light scope, or the system default. */
+:root:not([data-cui-theme]),
+[data-cui-theme="light"] {
+	--cui-surface-canvas: #faf5ff;
+	--cui-accent-focus: #7c3aed;
+}
+
+/* Dark only: an explicit dark scope, or the system preference. */
+[data-cui-theme="dark"] {
+	--cui-surface-canvas: #120d1c;
+	--cui-accent-focus: #a78bfa;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-cui-theme]) {
+		--cui-surface-canvas: #120d1c;
+		--cui-accent-focus: #a78bfa;
+	}
+}
+
+/* One instance, with a class on the component. */
+.delete-snippet {
+	--cui-action-danger-base: #9b2c2c;
+	border-radius: 0;
+}
+```
+
+Load this file anywhere. Order and specificity do not matter against kit rules, because kit rules sit in the `cui` cascade layer. Among your own rules, the usual order applies, so keep the mode blocks after the shared block.
+
+### Why `:root` alone is not enough
+
+The kit sets every token on `:root` and again on each `[data-cui-theme]` element. An element with the attribute takes the kit's value for that scope, not the value it would inherit from `:root`. An override written only on `:root` therefore stops at the first nested scope. Write `:root, [data-cui-theme]` to reach every scope. If you set the attribute only on `<html>`, `:root` is enough.
+
+### Change one instance
+
+Set a token on a class, as `.delete-snippet` does above. The component resolves `var(--cui-…)` on its own element, so the new value applies to that instance and its children. A plain property such as `border-radius` on the same class also wins, for the same cascade layer reason.
+
+### What still needs vanilla-extract
+
+Your overrides are plain CSS. The kit's own styles ship as vanilla-extract `.css.js` modules, so your bundler still needs the vanilla-extract plugin to compile them. See [Installation](/docs/installation).
+
+## Find the token to change
+
+Names follow `--cui-<role>-<name>`. The roles are `surface`, `text`, `action`, `accent`, `border`, `focus`, `shadow`, `radius`, `space`, `control`, `font` and `motion`.
+
+| To change | Override |
+| --- | --- |
+| The primary button | `--cui-action-brand-base`, `--cui-action-brand-hover`, `--cui-action-brand-active` |
+| The focus ring | `--cui-accent-focus` |
+| Island and page backgrounds | `--cui-surface-canvas`, `--cui-surface-panel` |
+| Field backgrounds | `--cui-surface-input` |
+| Menus and dialogs | `--cui-surface-menu`, `--cui-surface-dialog`, `--cui-shadow-menu`, `--cui-shadow-dialog` |
+| Button and field corners | `--cui-radius-sm`, `--cui-radius-md` |
+| The interface font | `--cui-font-family-sans` |
+
+[Tokens](/docs/foundations/tokens) lists all 129 names with their dark and light values. In TypeScript, [`tokens`](/docs/utilities/token-exports#tokens) holds the same names as `var(--cui-…)` strings.
+
+## Keep app resets below the kit
+
+All kit rules live in `@layer cui`. Unlayered CSS always wins over it, and that includes a CSS reset. An unlayered `button { background: none }` strips the fill from every kit button. Put the reset in a layer declared before `cui`. [Cascade layers](/docs/foundations/cascade-layers) shows how.

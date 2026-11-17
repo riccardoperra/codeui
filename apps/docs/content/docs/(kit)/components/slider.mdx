@@ -1,0 +1,175 @@
+---
+title: "Slider"
+description: "A thumb on a track for choosing a number in a range."
+---
+
+## When to use
+
+Choose a numeric value in a useful range, such as background opacity.
+
+## When to choose another component
+
+Use NumberField when you need an exact typed value. Pair a slider with a number field when both input methods are useful.
+
+## Live demo
+
+<SolidDemo name="slider/basic" />
+
+## Anatomy
+
+<Anatomy demo="slider/anatomy" />
+
+| Export         | Renders | `classes` key  | `data-cui`             | Role   |
+| -------------- | ------- | -------------- | ---------------------- | ------ |
+| `Root`         | `div`   | `root`         | `slider-root`          | none   |
+| `Label`        | `label` | `label`        | `slider-label`         | none   |
+| `Description`  | `div`   | `description`  | `slider-description`   | none   |
+| `ErrorMessage` | `div`   | `errorMessage` | `slider-error-message` | none   |
+| `Track`        | `div`   | `track`        | `slider-track`         | none   |
+| `Fill`         | `div`   | `fill`         | `slider-fill`          | none   |
+| `Thumb`        | `span`  | `thumb`        | `slider-thumb`         | slider |
+| `Input`        | `input` | `input`        | `slider-input`         | none   |
+| `ValueLabel`   | `div`   | `valueLabel`   | `slider-value-label`   | none   |
+
+## Variants
+
+<SolidDemo name="slider/vertical" />
+
+<SolidDemo name="slider/value-label" />
+
+The track is a 2px line in `--cui-border-divider` with the filled part in `--cui-action-brand-base`. The thumb is a 12px white dot with a 1px divider border and `--cui-shadow-lg`, as CodeImage draws its range thumb, so it keeps an edge on a light surface. Its hit area stays 28px, 40px on a touch screen. `sliderStyles.track({ orientation: "vertical" })` and `fill({ orientation: "vertical" })` return the vertical classes for custom markup.
+
+## States
+
+<SolidDemo name="slider/controlled" />
+
+<SolidDemo name="slider/disabled" />
+
+<SolidDemo name="slider/read-only" />
+
+<SolidDemo name="slider/required" />
+
+<SolidDemo name="slider/invalid" />
+
+## Ready API
+
+### `Slider`
+
+Renders the complete field. `SliderProps` is the public props type.
+
+<PropsTable name="Slider" />
+
+<PropsTable name="SliderInherited" />
+
+Inherited behavior follows the [Kobalte slider contract](https://kobalte.dev/docs/core/components/slider).
+
+## Styled parts API
+
+Import the parts from `@codeui/kit/slider`.
+
+### `Description`
+
+Wraps Kobalte `Slider.Description` with kit styles.
+
+<PropsTable name="SliderDescription" />
+
+### `ErrorMessage`
+
+Wraps Kobalte `Slider.ErrorMessage` with kit styles.
+
+<PropsTable name="SliderErrorMessage" />
+
+### `Fill`
+
+Wraps Kobalte `Slider.Fill` with kit styles.
+
+<PropsTable name="SliderFill" />
+
+### `Input`
+
+Wraps Kobalte `Slider.Input` with kit styles.
+
+<PropsTable name="SliderInput" />
+
+### `Label`
+
+Wraps Kobalte `Slider.Label` with kit styles.
+
+<PropsTable name="SliderLabel" />
+
+### `Root`
+
+Wraps Kobalte `Slider.Root` with kit styles.
+
+<PropsTable name="SliderRoot" />
+
+<PropsTable name="SliderRootInherited" />
+
+### `Thumb`
+
+Wraps Kobalte `Slider.Thumb` with kit styles.
+
+<PropsTable name="SliderThumb" />
+
+### `Track`
+
+Wraps Kobalte `Slider.Track` with kit styles.
+
+<PropsTable name="SliderTrack" />
+
+### `useSliderContext`
+
+Reads the Kobalte context inside its Root. Call it from a descendant component. It exposes reactive field state and throws outside the provider.
+
+### `ValueLabel`
+
+Wraps Kobalte `Slider.ValueLabel` with kit styles.
+
+<PropsTable name="SliderValueLabel" />
+
+## Styles export
+
+### `sliderStyles`
+
+`sliderStyles` maps each part name to a function that returns its kit class string. Functions accept `SliderVariants`. Use the functions on custom markup when you already own its behavior. They do not add ARIA or keyboard handling. `SliderStyles` types the map. `SliderParts` exposes the styled components as a namespace.
+
+## Accessibility
+
+### Keyboard
+
+| Key                    | Action                                                                                 |
+| ---------------------- | -------------------------------------------------------------------------------------- |
+| Tab                    | Focus the thumb.                                                                       |
+| Right Arrow, Up Arrow  | Increase by one step in the default direction.                                         |
+| Left Arrow, Down Arrow | Decrease by one step in the default direction.                                         |
+| Page Up, Page Down     | Increase or decrease by one tenth of the range, snapped to step and at least one step. |
+| Shift + Arrow key      | Change by the page step.                                                               |
+| Home, End              | Set the minimum or maximum value.                                                      |
+
+### ARIA
+
+The thumb has `role="slider"`, `aria-valuemin`, `aria-valuemax`, `aria-valuenow`, and `aria-valuetext`. `getValueLabel` formats both the visible value and the spoken value. Orientation and direction affect arrow behavior. The ready API takes scalar numbers. Styled Root takes arrays for multiple thumbs. Description and error components associate hint text with the field. `validationState="invalid"` exposes invalid state. Supply a visible label or an accessible name.
+
+### Focus
+
+These controls do not open an overlay or move focus on mount. Disabled controls cannot receive keyboard focus. Read-only controls remain focusable and do not change value.
+
+## SSR notes
+
+The root, labels, controls, and form inputs render on the server. No part uses a portal. Keep initial values and component order stable between server and client so generated IDs hydrate consistently. Create signals per component instance.
+
+## Theming hooks
+
+The component reads these foundation variables. Shared field labels and messages also use the field typography and validation tokens.
+
+`--cui-action-brand-base`, `--cui-action-brand-text`, `--cui-border-divider`, `--cui-border-width`, `--cui-shadow-lg`, `--cui-control-height-compact`, `--cui-control-height-md`, `--cui-focus-color`, `--cui-focus-offset`, `--cui-focus-width`, `--cui-font-size-caption`, `--cui-font-size-xs`, `--cui-font-line-height-caption`, `--cui-font-line-height-xs`, `--cui-radius-full`, `--cui-space-0-5`, `--cui-space-2`, `--cui-space-3`, `--cui-space-32`, `--cui-text-danger`, `--cui-text-default`, `--cui-text-hint`, `--cui-text-label`.
+
+## Composition examples
+
+<SolidDemo name="slider/form" />
+
+The form demo reads the submitted value with `FormData`. The named input submits the numeric value as a string.
+
+## Related
+
+Use NumberField when you need an exact typed value. Pair a slider with a number field when both input methods are useful. See [Control helpers](/docs/utilities/control-helpers) for custom compositions.

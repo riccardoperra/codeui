@@ -4,10 +4,10 @@ on: [ push ]
 
 jobs:
   release:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [ 20.12.2 ]
+        node-version: [ 20.19.0 ]
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v4
@@ -16,14 +16,56 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
 
       - name: Install dependencies
         run: pnpm install
 
       - name: Build
-        run: pnpm run build
+        run: pnpm turbo run build --filter=!@codeui/docs
 
         env:
           CI: true
+
+      - name: Test
+        run: pnpm test
+
+      - name: Typecheck
+        if: ${{ !cancelled() }}
+        run: pnpm typecheck
+
+      - name: Check public API
+        if: ${{ !cancelled() }}
+        run: pnpm api:check
+
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.5.0
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          # TanStack Start and Nitro need Node 22.
+          node-version: 22.22.0
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build docs
+        run: pnpm turbo run build --filter=@codeui/docs...
+        env:
+          CI: true
+
+      - name: Check docs export coverage
+        run: node tools/docs/coverage.mjs
+
+      - name: Check docs Markdown routes
+        run: |
+          PORT=6150 node apps/docs/.output/server/index.mjs &
+          npx --yes wait-on@8.0.3 --timeout 30000 http://localhost:6150/llms.txt
+          node tools/docs/check-llms.mjs http://localhost:6150

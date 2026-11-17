@@ -1,0 +1,104 @@
+---
+title: "Accessibility"
+description: "What the kit guarantees for keyboard, screen readers, and focus, and what stays your job."
+---
+
+Kit components are built on [Kobalte](https://kobalte.dev), which implements the WAI-ARIA patterns for each widget. The kit adds the styles, the focus ring and the defaults. This page lists what the kit commits to, where it falls short today, and what stays your job.
+
+## The Kobalte engine
+
+Kobalte renders the roles and ARIA attributes, manages focus and handles the keyboard. For example, `Select` renders a trigger button and a `listbox` of `option` elements, and `Dialog` keeps focus inside itself and takes its accessible name from its title. The kit does not reimplement this behavior.
+
+Each component page records what Kobalte gives that component:
+
+- a keyboard map with the columns Key and Action;
+- the roles and ARIA attributes it renders;
+- where focus goes when it opens and when it closes.
+
+Kobalte also fixes behavior the kit relies on. Closing an overlay returns focus to its trigger. Escape closes only the top layer.
+
+## Keyboard
+
+<SolidDemo name="accessibility/focus-ring" />
+
+Press Tab to move through the field, the switch and the button. Every kit control works from the keyboard. Pickers and cards open with Enter and Space. Arrow keys move inside lists, menus, tabs, radio groups and segmented controls.
+
+Motion follows the keyboard rule in [Motion](/docs/foundations/motion#keyboard-actions-are-instant). Accordion, Sheet and Command menu do not animate when the keyboard opens them.
+
+## Focus ring
+
+Kit controls draw one ring:
+
+| Token | Value |
+| --- | --- |
+| `--cui-focus-color` | `var(--cui-accent-focus)`. `#63b3ed` dark, `#09f` light. |
+| `--cui-focus-width` | `2px` |
+| `--cui-focus-offset` | `2px` |
+
+The ring is an `outline` on `:focus-visible`. A mouse click does not show it, and a key press does. Override `--cui-accent-focus` to recolor it everywhere. Do not remove the outline in your own CSS without drawing another ring.
+
+Text fields mark focus differently today. The field border takes `--cui-focus-color` on `:focus`, without the 2px ring.
+
+## Hit targets
+
+| Pointer | Smallest target |
+| --- | --- |
+| Mouse or trackpad | 28px |
+| Touch | 40px |
+
+The smallest kit control height is `--cui-control-height-compact` (`28px`), the item in a segmented control. Buttons default to `md` (`40px`). Fields default to `md`, which is 36px on desktop and 40px on a phone.
+
+Accordion headers and option cards grow under `(pointer: coarse)`. Other components keep the size you pick, so on a touch layout pick `md` or larger. A small mark, such as a close icon, keeps a hit box of at least 24px.
+
+## Text size
+
+No kit text is smaller than `--cui-font-size-badge` (`11px`). Keep your own interface text at 11px or more. Phone inputs use 16px, so iOS does not zoom into the field. The Command menu input does this already.
+
+## Contrast
+
+<SolidDemo name="accessibility/contrast" />
+
+Inkstone asks for 4.5:1 for text up to 18px, and 3:1 for large text, icons, rings and control edges, in both themes. These pairs were measured from the token values:
+
+| Pair | Dark | Light |
+| --- | --- | --- |
+| `text.default` on `surface.canvas` | 16.4:1 | 7.2:1 |
+| `text.muted` on `surface.canvas` | 6.7:1 | 7.2:1 |
+| `text.hint` on `surface.input` | 6.0:1 | 6.8:1 |
+| `action.neutral.text` on `action.neutral.base` | 10.8:1 | 9.7:1 |
+| `action.danger.text` on `action.danger.base` | 5.5:1 | 5.5:1 |
+| `action.caution.text` on `action.caution.base` | 8.5:1 | 8.5:1 |
+| `action.success.text` on `action.success.base` | 8.7:1 | 8.7:1 |
+| `text.danger` on `surface.canvas` | 7.8:1 | 5.5:1 on `#fff` |
+| `accent.focus` ring on `surface.canvas` | 8.4:1 | 3.0:1 on `#fff` |
+| `action.brand.text` on `action.brand.base` | **3.0:1** | **3.0:1** |
+| `action.brandSoft.text` on `#fff` | | **3.0:1** |
+
+White text on the CodeImage primary, `#09f`, is 3.0:1. It meets the 3:1 rule for large text, and it fails 4.5:1 for the 14px label of a primary button. The maintainer chose the CodeImage primary over AA contrast for this color. `action.brandSoft.text` uses the same `#09f`, so link-style text on a light surface is also 3.0:1.
+
+If your app needs AA for every label, override the three brand tokens with darker blues. `--cui-action-brand-base: #0070f0` is 4.6:1 with white, `--cui-action-brand-hover: #0066dc` is 5.3:1, and `--cui-action-brand-active: #005bc4` is 6.4:1. [Theming](/docs/foundations/theming#override-tokens-with-plain-css) shows the selector that reaches every scope.
+
+Check contrast again whenever you override a color token. The kit cannot check your values.
+
+## Accessible names
+
+<SolidDemo name="accessibility/accessible-names" />
+
+`IconButton` requires `aria-label` in its type, so TypeScript rejects an icon button without a name. Wrap it in a `Tooltip` with the same text, so sighted users get the name too.
+
+Fields take a `label`. If a design has no visible label, pass `aria-label`. Never use a placeholder as the only label.
+
+## Reduced motion
+
+Under `prefers-reduced-motion: reduce`, kit overlays fade instead of moving, and loops stop. [Motion](/docs/foundations/motion#reduced-motion-keeps-fades) lists each component.
+
+## What stays your job
+
+- Give every field, icon button and landmark a name.
+- Keep color from being the only signal. Pair an error color with an icon or text.
+- Check contrast for every token you override.
+- Pick touch sizes on touch layouts.
+- Keep page structure in order: one `h1`, headings without skipped levels, and a `lang` attribute on `<html>`.
+- Test in Chrome, Firefox and Safari, with the keyboard and a screen reader.
+
+Maintainers verify each component with the steps in [Verify accessibility and SSR](/docs/contributing/verify-accessibility-and-ssr). The rules behind this page are in Inkstone, section 10 of `packages/kit/DESIGN.md`.

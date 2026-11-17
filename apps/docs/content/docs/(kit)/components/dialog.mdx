@@ -1,0 +1,379 @@
+---
+title: Dialog
+description: A modal window over the page, for a decision that blocks the user.
+---
+
+## When to use
+
+Use a dialog for settings, or for a decision the user must make before they continue, such as deleting a snippet.
+The dialog traps focus, puts a scrim behind the panel, and returns focus to the opener when it closes.
+
+## When to choose another component
+
+- [Popover](/docs/components/popover) picks a value for one row. It has no scrim and does not block the page.
+- [Sheet](/docs/components/sheet) holds a panel on a phone.
+- [Command menu](/docs/components/command-menu) finds an action by name.
+- For an action the user can undo, skip the dialog. Run the action and offer undo in a [toast](/docs/components/toast).
+
+## Live demo
+
+<SolidDemo name="dialog/basic" />
+
+`Dialog` renders the overlay, the panel, and a header with the title and a close button.
+Put the body in `DialogPanelContent` and the actions in `DialogPanelFooter`. Close and Confirm sit on the right.
+
+## Anatomy
+
+<Anatomy demo="dialog/anatomy" />
+
+| Export | Renders | `classes` key | `data-cui` | Role |
+| --- | --- | --- | --- | --- |
+| `Root` (parts only) | Nothing. Holds the open state | none | none | none |
+| `Trigger` (parts only) | `button` | none | `dialog-trigger` | Opens the dialog |
+| `Portal` | Nothing. Moves the content to `mount` | none | none | none |
+| `Overlay` | `div` | `overlay` | `dialog-overlay` | Layer behind the panel |
+| `Positioner` | `div` | `positioner` | `dialog-positioner` | Centers the panel and paints the scrim |
+| `DialogPanel`, `Content` | `div` | `panel` | `dialog-panel` | `role="dialog"` |
+| `Header` | `div` | `header` | `dialog-panel-title` | Row with the title and the close button |
+| `Title` | `h2` | `title` | `dialog-title` | Accessible name of the dialog |
+| `CloseButton` | `button` | `closeButton` | `dialog-close-button` | Closes the dialog |
+| `Description` | `p` | `description` | `dialog-description` | Accessible description |
+| `DialogPanelContent`, `Body` | `div` | none, use `class` | `dialog-panel-content` | Scrolling content area |
+| `DialogPanelFooter`, `Footer` | `div` | none, use `class` | `dialog-panel-footer` | Row of actions |
+| `Sidebar` (parts only) | `div` | `sidebar` | `dialog-sidebar` | Left pane of a settings dialog |
+| `Sidebar` search wrapper | `div` | `sidebarSearch` | `dialog-sidebar-search` | Holds the `search` content |
+| `Nav` (parts only) | `nav` with a `ul` | `nav` | `dialog-nav` | Named list of sections |
+| `NavItem` (parts only) | `li` with a `button` | `navItem` | `dialog-nav-item` | One section. `aria-current="page"` when current |
+| `NavItem` icon | `span` | `navIcon` | `dialog-nav-icon` | Decorative icon, hidden from assistive technology |
+| `Main` (parts only) | `div` | `main` | `dialog-main` | Pane next to the sidebar |
+| `Section` (parts only) | `section` | `section` | `dialog-section` | A titled island, or a well |
+| `Section` title | `h3` | `sectionTitle` | `dialog-section-title` | Heading of the section |
+| `Section` content | `div` | `sectionContent` | `dialog-section-content` | The island that holds rows or actions |
+
+The header part carries `dialog-panel-title`, not `dialog-header`. Target it by that name.
+
+## Variants
+
+### Size
+
+<SolidDemo name="dialog/sizes" />
+
+`size` sets the panel width: `xs` 24rem, `sm` 28rem, `md` 32rem, `lg` 48rem from the `md` breakpoint, `xl` 64rem from the `lg` breakpoint.
+Below those breakpoints, `lg` and `xl` take the width of the viewport less the gutter. `full` covers the viewport with no radius.
+
+Two sizes fit CodeImage's layouts:
+
+- `settings` is 1000×680, for a sidebar beside a pane. On a smaller viewport it shrinks to fit, and at 768px and below it fills the viewport less the gutter.
+- `export` is 800 wide and as tall as its content. When it is taller than the viewport, the panel scrolls.
+
+The positioner keeps an 8px gutter on every side, 16px around an `export` panel, so a dialog never touches the edge of a phone screen. Change it with the `gutter` theme variable.
+
+### Chrome
+
+<SolidDemo name="dialog/inset" />
+
+`chrome` sets how the header sits in the panel. `bar`, the default, puts the title in a 56px bar with a divider under it.
+`inset` puts the title in the panel padding with no divider. The panel gets 20px padding, a 20px gap between its children, and 24px corners. The close button becomes a small ghost icon button.
+A `settings` panel keeps 14px corners, because its panes reach the edges.
+With `inset`, `Footer` becomes a right-aligned row of actions that stacks at 768px and below. Close and Confirm sit on the right.
+
+### Split body and sections
+
+<SolidDemo name="dialog/export" />
+
+`layout="split"` on `Body` puts its first child beside its second, at 1.1fr to 1fr with a 20px gap. At 768px and below the two stack.
+Put the preview in a `Section` with `variant="well"`. The well is an island: the canvas fill, 16px corners, and 12px padding.
+A well with a `title` shows the title inside the island in small secondary text. `columns={2}` lays its content out in two columns, one at 768px and below. The export dialog uses one for the More actions.
+
+The options are kit components too. A `SettingsGroup` holds a `SettingsRow` with `layout="wide"` for the format cards and one for the scale, and the More well holds a `SettingsRow` per action with its icon in `picture`. The preview is an inline SVG: a schematic of the snippet in its own colours. The demo has no CSS of its own.
+
+### Title and description
+
+<SolidDemo name="dialog/title-and-description" />
+
+`title` and `description` take JSX, so a title can carry a badge and a description can carry a keycap.
+The title names the dialog through `aria-labelledby`. The description renders in a `p` element, so keep it to inline content.
+Without `title`, the header and its close button do not render. Then give the dialog an `aria-label`.
+
+### Footer and long content
+
+<SolidDemo name="dialog/overflow" />
+
+`DialogPanelContent` scrolls when the content is taller than the viewport. The header and the footer stay in place.
+`DialogPanelFooter` adds padding only. Lay out the buttons inside it with your own flex row.
+
+### Classes
+
+<SolidDemo name="dialog/classes" />
+
+`classes` sets a class on each part that `Dialog` renders. App CSS is unlayered, so it wins over the kit styles in the `cui` layer with one class.
+To style `DialogPanelContent` or `DialogPanelFooter`, pass `class` to them directly.
+
+### Mount
+
+<SolidDemo name="dialog/mount" />
+
+`mount` sets the node the dialog is portaled into. The default is `document.body`.
+Use it to keep the dialog inside a themed subtree, such as an element with `data-cui-theme`, or inside a shadow root.
+The positioner is `position: fixed`, so the dialog still covers the viewport.
+
+## States
+
+### Controlled and uncontrolled
+
+The ready `Dialog` has no trigger, so you control it with `open` and `onOpenChange`.
+For an uncontrolled dialog, compose the styled parts with a `Trigger` and leave `open` unset. The [settings layout](#build-a-custom-layout) below does this.
+
+### Motion
+
+The panel pops in from `scale(0.96)` with a fade over 200ms, and leaves toward `scale(0.98)` over 120ms. The scrim fades in and out with it.
+A dialog opened or closed from the keyboard does not move. Kit parts mark it with `data-motion="none"`. So do opens from code with no pointer press before them.
+Pointer opens and closes animate. Set `motion="none"` on `Dialog` or `Root` to never animate.
+With reduced motion, the panel and the scrim only fade.
+
+### Focus return without a trigger
+
+<SolidDemo name="dialog/focus-return" />
+
+Kobalte returns focus only to its own trigger part. The kit `Content` part adds the rest.
+When the dialog opens, `Content` records the focused element. When it closes, focus goes back to that element.
+So two buttons can open the same dialog, and focus returns to the one the user pressed.
+
+Focus does not return when one of these is true:
+
+- your `onCloseAutoFocus` calls `preventDefault()`;
+- the dialog has a `Trigger` part, so Kobalte handles the return;
+- a non-modal dialog closed because the user clicked or focused outside it;
+- the recorded element is no longer in the document.
+
+## Ready API
+
+### `Dialog`
+
+Renders the portal, overlay, positioner, panel, and, when `title` is set, the header.
+
+<PropsTable name="Dialog" />
+
+Inherited from Kobalte's [dialog](https://kobalte.dev/docs/core/components/dialog). `Dialog` also passes `onFocusOutside` and `onInteractOutside` to the panel.
+
+<PropsTable name="DialogInherited" />
+
+### `DialogPanel`
+
+The `Content` part under another name. Use it when you compose your own dialog from parts.
+
+<PropsTable name="DialogPanel" />
+
+### `DialogPanelContent`
+
+The `Body` part. A `div` with the content padding that scrolls on overflow. It takes every `div` attribute.
+
+### `DialogPanelFooter`
+
+The `Footer` part. A `div` with the content padding. With `size="full"` it sticks to the bottom of the panel. It takes every `div` attribute.
+
+## Styled parts API
+
+Import the parts from `@codeui/kit/dialog`. Each part carries the kit styles and a `data-cui` attribute, and wraps the matching Kobalte primitive.
+
+<SolidDemo name="dialog/parts" />
+
+### Build a custom layout
+
+<SolidDemo name="dialog/settings-layout" />
+
+This settings dialog follows [Inkstone's settings dialog](/docs/design/patterns): a 232px sidebar with the sections, a breadcrumb title, a close button, and no footer.
+`Content` with a `Sidebar` child lays out in two panes and drops its padding. Each pane holds its own. At 768px and below, the header moves to the top, the sections wrap into rows of three, and the body fills the rest.
+The title is still the `Title` part, so the breadcrumb names the dialog. The body is still the `Body` part, so the rows scroll.
+Put each group of rows in a [`SettingsGroup`](/docs/components/settings-row): a title over one island, with the rows touching inside it. The [Build settings](/docs/patterns/build-settings) pattern adds a search field and CodeImage's six sections.
+
+### `Root`
+
+Kobalte's `Dialog` root. Holds the open state and takes every Kobalte root option, such as `open`, `defaultOpen`, `onOpenChange`, and `modal`. It renders no element.
+It also records whether the user last pressed a pointer or a key, so `Positioner` and `Content` know whether to animate.
+
+<PropsTable name="DialogRootPart" />
+
+### `Trigger`
+
+Kobalte's `Dialog.Trigger`. A `button` that opens the dialog. Use `as={Button}` for a kit button. Kobalte returns focus to it on close.
+
+### `Portal`
+
+Kobalte's `Dialog.Portal`. Takes `mount`. It renders no element.
+
+### `Overlay`
+
+Kobalte's `Dialog.Overlay`. A fixed `div` behind the panel.
+
+### `Positioner`
+
+A fixed `div` that centers the panel and paints the scrim from `--cui-surface-scrim`. It is not a Kobalte part.
+
+<PropsTable name="DialogPositionerPart" />
+
+### `Content`
+
+Kobalte's `Dialog.Content`. The panel. It adds focus return without a trigger, described under [States](#focus-return-without-a-trigger).
+
+<PropsTable name="DialogContentPart" />
+
+### `Header`
+
+A `div` that lays out the title and the close button in one row. With `chrome="bar"` it has a divider under it. It is not a Kobalte part.
+
+### `Title`
+
+Kobalte's `Dialog.Title`. An `h2` that names the dialog.
+
+### `Description`
+
+Kobalte's `Dialog.Description`. A `p` that describes the dialog.
+
+### `CloseButton`
+
+Kobalte's `Dialog.CloseButton`, rendered as an extra-small secondary [IconButton](/docs/components/icon-button) with a close icon. With `chrome="inset"` it is a small ghost icon button. `size`, `theme`, and `variant` override both defaults.
+
+<PropsTable name="DialogCloseButtonPart" />
+
+### `Body`
+
+A `div` with the content padding that scrolls on overflow. The same component as `DialogPanelContent`.
+With `chrome="inset"` it has no padding of its own. Inside `Main` it is a column of sections with 24px gaps that scrolls.
+
+<PropsTable name="DialogBodyPart" />
+
+### `Footer`
+
+A `div` with the content padding. The same component as `DialogPanelFooter`. With `chrome="inset"` it is a right-aligned row of actions.
+
+### `Sidebar`
+
+A 232px column on the panel's own surface, for the sections of a settings dialog. Put a `Nav` in it.
+`search` renders above the navigation, in a wrapper with the same side padding as the items.
+
+<PropsTable name="DialogSidebarPart" />
+
+### `Nav`
+
+A `nav` that holds a `ul` of `NavItem`s. Give it an `aria-label`.
+The arrow keys move focus between the items and wrap at the ends. <kbd>Home</kbd> and <kbd>End</kbd> jump to the first and last item. Each item stays in the tab order.
+
+<PropsTable name="DialogNavPart" />
+
+### `NavItem`
+
+A `button` in an `li`. 36px tall, 40px at 768px and below, with 10px corners.
+`current` sets `aria-current="page"` and gives the item the field fill. Select a section in `onClick`. Enter and Space click the focused button.
+
+<PropsTable name="DialogNavItemPart" />
+
+### `Main`
+
+A `div` that fills the pane next to the `Sidebar`, on the page surface. Put the `Header` and the `Body` in it. It takes every `div` attribute.
+
+### `Section`
+
+A `section` with an optional `h3` title and a content `div`. `variant="group"`, the default, puts the title over one island whose rows touch. `variant="well"` makes the section the island.
+
+<PropsTable name="DialogSectionPart" />
+
+## Styles export
+
+### `dialogStyles`
+
+`dialogStyles` from `@codeui/kit/dialog` maps each part name to a function that returns its class string.
+`dialogStyles.panel({ size, chrome })` takes the size and the chrome. `dialogStyles.body({ layout })` takes the layout, and `dialogStyles.section({ variant })` the variant. The other functions take no arguments.
+The styles read `data-chrome` on the panel, `data-layout` on the body, and `data-variant` and `data-columns` on a section. Set them when you apply the classes to your own elements.
+`trigger`, `title`, and `closeButton` return an empty string, because those parts take their look from other components.
+
+Call a style function when you render the Kobalte primitive yourself and want the kit look. Add the matching `data-cui` value from `dialogParts` too, so selectors that target the part still match.
+`positioner` and `panel` include the class that sets the dialog's local variables. Apply one of them to an ancestor of the other parts.
+
+## Accessibility
+
+### Keyboard
+
+| Key | Action |
+| --- | --- |
+| <kbd>Tab</kbd> | Moves focus to the next focusable element in the panel. Wraps from the last to the first. |
+| <kbd>Shift</kbd>+<kbd>Tab</kbd> | Moves focus to the previous focusable element in the panel. Wraps from the first to the last. |
+| <kbd>Escape</kbd> | Closes the dialog. If a menu, popover, or select is open inside it, Escape closes that layer first. |
+| <kbd>Enter</kbd>, <kbd>Space</kbd> | On the `Trigger` part, opens the dialog. On a `NavItem`, selects that section. |
+| <kbd>ArrowDown</kbd>, <kbd>ArrowRight</kbd> | In a `Nav`, moves focus to the next item. Wraps from the last to the first. |
+| <kbd>ArrowUp</kbd>, <kbd>ArrowLeft</kbd> | In a `Nav`, moves focus to the previous item. Wraps from the first to the last. |
+| <kbd>Home</kbd>, <kbd>End</kbd> | In a `Nav`, moves focus to the first or the last item. |
+
+### ARIA
+
+- The panel has `role="dialog"`. Kobalte links it to `Title` with `aria-labelledby` and to `Description` with `aria-describedby`.
+- The `Trigger` part has `aria-haspopup="dialog"`, `aria-expanded`, and `aria-controls`.
+- The close button's accessible name is `close`. Change it with `closeLabel` on `Dialog` or `aria-label` on `CloseButton`.
+- A modal dialog hides the rest of the page from assistive technology while it is open.
+- `Nav` is a `nav` landmark named by its `aria-label`, with a list of buttons. The current item has `aria-current="page"`.
+- A `NavItem` icon is `aria-hidden`. The label names the button.
+
+### Focus
+
+On open, focus moves to the first focusable element in the panel. In the ready `Dialog` that is the close button.
+On close, focus returns to the `Trigger` part, or to the element that had focus when the dialog opened.
+To focus a specific field on open, call `preventDefault()` in `onOpenAutoFocus` and focus it yourself. On a phone, do not focus a text field on open.
+The settings demos focus the current `NavItem` this way, not the search field.
+
+## SSR notes
+
+The portal renders nothing on the server. The overlay and the panel render on the client after hydration, and only while the dialog is open.
+`Positioner` and the `size` classes are plain class strings, so they are the same on the server and the client.
+IDs for the title and the description come from Solid's `createUniqueId`, so they match between server and client.
+
+## Theming hooks
+
+`Dialog` reads these `--cui-*` variables. See [Tokens](/docs/foundations/tokens) for the defaults.
+
+| Variable | Used for |
+| --- | --- |
+| `--cui-surface-dialog` | Panel fill |
+| `--cui-shadow-dialog` | Panel shadow |
+| `--cui-text-dialog` | Body and description text |
+| `--cui-text-dialog-title` | Title text |
+| `--cui-border-dialog-title`, `--cui-border-width` | Divider under the header |
+| `--cui-surface-scrim` | Scrim behind the panel |
+| `--cui-radius-lg` | Panel radius |
+| `--cui-radius-dialog` | Panel radius with `chrome="inset"`, except `settings` |
+| `--cui-space-6` | Panel padding |
+| `--cui-space-5` | Panel padding and gap with `chrome="inset"`, split body gap |
+| `--cui-space-2`, `--cui-space-4` | Gutter around the panel, and around an `export` panel |
+| `--cui-surface-panel` | `Main` fill. In light mode, the current `NavItem` fill |
+| `--cui-surface-canvas` | `Section` island fill. In light mode, the `Sidebar` fill |
+| `--cui-surface-input` | Current `NavItem` fill |
+| `--cui-text-muted`, `--cui-text-default` | `NavItem` text, idle and current |
+| `--cui-radius-card`, `--cui-radius-nav` | `Section` island and `NavItem` corners |
+| `--cui-focus-width`, `--cui-focus-color`, `--cui-focus-offset` | `NavItem` focus ring |
+| `--cui-control-height-xl` | Header height |
+| `--cui-font-size-lg`, `--cui-font-weight-medium` | Title type |
+| `--cui-motion-duration-panel`, `--cui-motion-duration-fast`, `--cui-motion-ease-out` | Open and close animation of the panel and the scrim |
+
+`dialogThemeVars` from `@codeui/kit/dialog` holds the dialog's local variables. Set them on the panel with a vanilla-extract class (`vars`) or `assignInlineVars` to tune one dialog:
+
+| Variable | Default | Used for |
+| --- | --- | --- |
+| `gutter` | `--cui-space-2`, `--cui-space-4` with `export` | Space between the panel and the viewport edges |
+| `width` | `62.5rem` with `settings`, `50rem` with `export` | Panel width before the viewport caps it |
+| `height` | `42.5rem` with `settings` | Panel height before the viewport caps it |
+| `sidebarBackground` | `--cui-surface-dialog` | `Sidebar` fill |
+| `navCurrentBackground` | `--cui-surface-input` | Current `NavItem` fill |
+| `mainBackground` | `--cui-surface-panel` | `Main` fill |
+| `islandBackground` | `--cui-surface-canvas` | `Section` island fill |
+| `splitColumns` | `minmax(0, 1.1fr) minmax(0, 1fr)` | Columns of a split body |
+
+## Composition examples
+
+- [Nest overlays](/docs/patterns/nest-overlays) puts a segmented control and a menu inside a dialog and shows where Escape goes.
+- [Compose styled parts](/docs/patterns/compose-styled-parts) compares the ready component, the parts, and Kobalte with kit classes.
+- [Build settings](/docs/patterns/build-settings) builds the full settings dialog.
+
+## Related
+
+- [Popover](/docs/components/popover) anchors to a trigger and has no scrim.
+- [Sheet](/docs/components/sheet) slides up from the bottom on a phone.
+- [Choose ready components or parts](/docs/ready-or-parts) explains the three layers.

@@ -1,5 +1,5 @@
 import { Button, NumberField, NumberFieldProps } from "@codeui/kit";
-import type { Meta, StoryObj } from "storybook-solidjs";
+import type { Meta, StoryObj } from "storybook-solidjs-vite";
 import { DocsItemsContainer, DocsMultipleItemsContainer } from "./components/Section.jsx";
 import { createSignal, For } from "solid-js";
 
@@ -277,5 +277,16 @@ export const Validation: Story = {
 				)}
 			</For>
 		</DocsMultipleItemsContainer>
+	),
+};
+
+export const FieldApi: Story = {
+	render: () => (
+		<NumberField
+			aria-label="Quantity"
+			inputmode="decimal"
+			description={<strong>Number of items</strong>}
+			classes={{ input: "quantity-input" }}
+		/>
 	),
 };

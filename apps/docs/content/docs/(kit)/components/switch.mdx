@@ -1,0 +1,159 @@
+---
+title: "Switch"
+description: "A toggle that turns a setting on or off immediately."
+---
+
+## When to use
+
+Turn a setting on or off immediately, such as line numbers in the editor preview.
+
+## When to choose another component
+
+Use [Checkbox](/docs/components/checkbox) for agreement or independent options submitted together. Switch has no indeterminate state.
+
+## Live demo
+
+<SolidDemo name="switch/basic" />
+
+## Anatomy
+
+<Anatomy demo="switch/anatomy" />
+
+| Export         | Renders | `classes` key  | `data-cui`             | Role   |
+| -------------- | ------- | -------------- | ---------------------- | ------ |
+| `Root`         | `div`   | `root`         | `switch-root`          | none   |
+| `Input`        | `input` | `input`        | `switch-input`         | switch |
+| `Control`      | `div`   | `control`      | `switch-control`       | none   |
+| `Thumb`        | `div`   | `thumb`        | `switch-thumb`         | none   |
+| `Label`        | `label` | `label`        | `switch-label`         | none   |
+| `Description`  | `div`   | `description`  | `switch-description`   | none   |
+| `ErrorMessage` | `div`   | `errorMessage` | `switch-error-message` | none   |
+
+## Variants
+
+<SolidDemo name="switch/sizes" />
+
+`md` is a 36×22 track with a 16px thumb, as in CodeImage. `sm` is a 28×16 track with a 12px thumb. On a touch screen both grow to 44×26 with a 20px thumb, so the target is at least 40px. The thumb carries `--cui-shadow-thumb`, so it stays visible on a light track.
+
+## Motion
+
+A pointer toggle slides the thumb in 120ms with the ease-out curve and fades the track colour in 120ms. A toggle from the keyboard is instant, and the 2px focus ring shows only after keyboard input: Kobalte focuses the input from script after a click, which the browser marks `:focus-visible`, so the kit reads the last input from `<html data-cui-input>` instead. Reduced motion keeps the colour fade and drops the slide.
+
+## States
+
+<SolidDemo name="switch/controlled" />
+
+<SolidDemo name="switch/disabled" />
+
+<SolidDemo name="switch/read-only" />
+
+<SolidDemo name="switch/required" />
+
+<SolidDemo name="switch/invalid" />
+
+## Ready API
+
+### `Switch`
+
+Renders the complete field. `SwitchProps` is the public props type.
+
+<PropsTable name="Switch" />
+
+<PropsTable name="SwitchInherited" />
+
+Inherited behavior follows the [Kobalte switch contract](https://kobalte.dev/docs/core/components/switch).
+
+## Styled parts API
+
+Import the parts from `@codeui/kit/switch`.
+
+### `Control`
+
+Wraps Kobalte `Switch.Control` with kit styles.
+
+<PropsTable name="SwitchControl" />
+
+### `Description`
+
+Wraps Kobalte `Switch.Description` with kit styles.
+
+<PropsTable name="SwitchDescription" />
+
+### `ErrorMessage`
+
+Wraps Kobalte `Switch.ErrorMessage` with kit styles.
+
+<PropsTable name="SwitchErrorMessage" />
+
+### `Input`
+
+Wraps Kobalte `Switch.Input` with kit styles.
+
+<PropsTable name="SwitchInput" />
+
+### `Label`
+
+Wraps Kobalte `Switch.Label` with kit styles.
+
+<PropsTable name="SwitchLabel" />
+
+### `Root`
+
+Wraps Kobalte `Switch.Root` with kit styles.
+
+<PropsTable name="SwitchRoot" />
+
+<PropsTable name="SwitchRootInherited" />
+
+### `Thumb`
+
+Wraps Kobalte `Switch.Thumb` with kit styles.
+
+<PropsTable name="SwitchThumb" />
+
+### `useSwitchContext`
+
+Reads the Kobalte context inside its Root. Call it from a descendant component. It exposes reactive field state and throws outside the provider.
+
+## Styles export
+
+### `switchStyles`
+
+`switchStyles` maps each part name to a function that returns its kit class string. Functions accept `SwitchVariants`; `control({ size: "sm" })` and `thumb({ size: "sm" })` return the small track and thumb. Use the functions on custom markup when you already own its behavior. They do not add ARIA or keyboard handling. `SwitchStyles` types the map. `SwitchParts` exposes the styled components as a namespace.
+
+## Accessibility
+
+### Keyboard
+
+| Key   | Action                    |
+| ----- | ------------------------- |
+| Tab   | Focus the control.        |
+| Space | Toggle the checked state. |
+
+### ARIA
+
+The input exposes `role="switch"` and `aria-checked`. Description and error components associate hint text with the field. `validationState="invalid"` exposes invalid state. Supply a visible label or an accessible name.
+
+### Focus
+
+These controls do not open an overlay or move focus on mount. Disabled controls cannot receive keyboard focus. Read-only controls remain focusable and do not change value.
+
+## SSR notes
+
+The root, labels, controls, and form inputs render on the server. No part uses a portal. Keep initial values and component order stable between server and client so generated IDs hydrate consistently. Create signals per component instance.
+
+## Theming hooks
+
+The component reads these foundation variables. Shared field labels and messages also use the field typography and validation tokens.
+
+`--cui-accent-focus` (on), `--cui-action-neutral-active` (off), `--cui-action-brand-text`, `--cui-shadow-thumb`, `--cui-control-height-compact`, `--cui-control-height-md`, `--cui-control-height-sm`, `--cui-focus-color`, `--cui-focus-offset`, `--cui-focus-width`, `--cui-font-size-caption`, `--cui-font-size-xs`, `--cui-font-line-height-caption`, `--cui-font-line-height-xs`, `--cui-motion-duration-fast`, `--cui-motion-ease-out`, `--cui-radius-full`, `--cui-space-0-5`, `--cui-space-1`, `--cui-space-2`, `--cui-space-3`, `--cui-space-4`, `--cui-space-5`, `--cui-space-6`, `--cui-space-10`, `--cui-text-danger`, `--cui-text-default`, `--cui-text-hint`, `--cui-text-label`.
+
+## Composition examples
+
+<SolidDemo name="switch/form" />
+
+The form demo reads the submitted value with `FormData`. Only checked, enabled inputs submit their value. Unchecked and disabled inputs are omitted. An omitted checkbox or switch value defaults to `"on"`.
+
+## Related
+
+Use [Checkbox](/docs/components/checkbox) for agreement or independent options submitted together. Switch has no indeterminate state. See [Control helpers](/docs/utilities/control-helpers) for custom compositions.

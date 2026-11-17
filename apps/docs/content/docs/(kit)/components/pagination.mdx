@@ -1,0 +1,105 @@
+---
+title: Pagination
+description: Page buttons with previous, next, and optional boundary controls.
+---
+
+## When to use
+
+Use Pagination to select a page of snippets or search results when you know the total page count.
+
+## When to choose another component
+
+Use a load-more button for an unknown total. Use [Tabs](/docs/components/tabs) for named panels rather than numbered result pages.
+
+## Live demo
+
+<SolidDemo name="pagination/basic" />
+
+Pages start at 1. The controlled page updates through `onChange`. Fetch or slice your result data in the parent.
+
+## Anatomy
+
+<Anatomy demo="pagination/anatomy" />
+
+| Export | Renders | `classes` key | `data-cui` | Role |
+| --- | --- | --- | --- | --- |
+| `Pagination` | `nav` | none | `pagination` | navigation |
+| Internal `IconButton` | `button` | none | `pagination-item` | button |
+
+Pagination does not accept `class`, `classes`, or arbitrary DOM props. Wrap it when you need layout styles.
+
+## Variants
+
+### Numeric window and sibling counts
+
+<SolidDemo name="pagination/window" />
+
+`maxPages` limits numeric buttons. The default is five. Navigation buttons do not count toward that limit.
+There is no `siblingCount` prop. Away from the boundaries, `maxPages={3}` gives one sibling on each side and `maxPages={5}` gives two.
+Near either boundary, the window shifts to keep the available numeric buttons visible. It does not render ellipses.
+
+### Sizes and rounded buttons
+
+<SolidDemo name="pagination/sizes" />
+
+Sizes are `xs`, `sm`, `md`, `lg`, and `xl`. `rounded` makes each button a pill.
+
+## States
+
+<SolidDemo name="pagination/boundaries" />
+
+Previous and first controls disable on page 1. Next and last controls disable on the last page.
+For a single page, all navigation controls disable. Visibility callbacks can hide controls at boundaries instead.
+Supply a positive page count. For zero results, render an empty state and omit Pagination.
+
+## Ready API
+
+### `Pagination`
+
+Renders numbered buttons and optional navigation controls inside a navigation landmark.
+
+<PropsTable name="Pagination" />
+<PropsTable name="PaginationInherited" />
+
+The component uses `createPagination` from `@solid-primitives/pagination`, rather than Kobalte.
+`showFirst`, `showPrev`, `showNext`, and `showLast` accept booleans or functions of the current page and page count.
+
+## Accessibility
+
+### Keyboard
+
+| Key | Action |
+| --- | --- |
+| Tab, Shift + Tab | Moves between enabled page buttons. |
+| Enter, Space | Activates the focused button. |
+
+### ARIA
+
+The root is a navigation landmark. Numbered buttons receive names such as `Page 3` and `Page 3 active`.
+The current numeric button receives `aria-current`. Boundary controls use native disabled buttons.
+The navigation landmark has no built-in accessible label and the public API does not forward one.
+
+### Focus
+
+Changing page does not move focus to the result region. Keep a result heading and status message in the parent when loading another page.
+There is no open or close cycle.
+
+## SSR notes
+
+The navigation landmark and initial page buttons render on the server. Keep `pages` and the initial page equal on the server and client.
+There is no portal. Page changes run on the client.
+
+## Theming hooks
+
+Pagination reads `--cui-space-0-5` for gaps and inherits the [IconButton](/docs/components/icon-button) styles.
+The active button uses the primary theme. Other buttons use the secondary theme.
+It reserves numeric widths with tabular numbers.
+
+## Composition examples
+
+The main demo places a page summary beside controlled Pagination. Use the same page signal to select results and update the summary.
+
+## Related
+
+- [Tabs](/docs/components/tabs) switches named content panels.
+- [IconButton](/docs/components/icon-button) supplies the page button styles.

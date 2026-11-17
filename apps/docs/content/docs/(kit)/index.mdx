@@ -1,0 +1,27 @@
+---
+title: "Introduction"
+description: "CodeImage’s design system for Solid apps."
+---
+
+## What the kit is
+
+`@codeui/kit` is CodeImage's design system. It combines Solid components, Kobalte behavior, and the Inkstone visual specification.
+It is for CodeImage contributors and other Solid app authors who want the same controls and theme contract.
+
+## Three layers
+
+| Layer | Import | Responsibility |
+| --- | --- | --- |
+| Kobalte engine | `@kobalte/core/<component>` | Keyboard interaction, focus, state, and ARIA without kit styles. |
+| Styled parts | `@codeui/kit/<component>` | Individual elements with kit styles and stable `data-cui` markers. |
+| Ready components | `@codeui/kit` | Common compositions with labels, icons, and messages wired together. |
+
+Start with ready components. Use parts when you need to change the composition. Use Kobalte directly when you need to own the styling too.
+[Choose ready components or parts](/docs/ready-or-parts) compares all three with live examples.
+
+## Next steps
+
+- [Installation](/docs/installation) configures the required build plugin and theme.
+- [First component](/docs/first-component) builds a snippet export screen.
+- [Components](/docs/components) lists every component by purpose.
+- [Theming](/docs/foundations/theming) describes the CSS custom properties.

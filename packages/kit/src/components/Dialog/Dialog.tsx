@@ -1,63 +1,78 @@
-import { Dialog as KDialog, DialogRootOptions as KDialogRootOptions } from "@kobalte/core/dialog";
-import { JSXElement, ParentProps, Show, splitProps } from "solid-js";
-import * as styles from "./Dialog.css";
-import { mergeClasses } from "../../utils/css";
-import { IconButton } from "../IconButton/IconButton";
-import { CloseIcon } from "../../icons";
+import type {
+	DialogContentOptions as KDialogContentOptions,
+	DialogRootOptions as KDialogRootOptions,
+} from "@kobalte/core/dialog";
+import { type JSX, type ParentProps, Show, splitProps } from "solid-js";
+import * as D from "../../parts/dialog";
 
 export type DialogProps = KDialogRootOptions &
-	styles.DialogPanelVariants & {
-	title?: string;
-};
+	Pick<
+		KDialogContentOptions,
+		| "onOpenAutoFocus"
+		| "onCloseAutoFocus"
+		| "onEscapeKeyDown"
+		| "onPointerDownOutside"
+		| "onFocusOutside"
+		| "onInteractOutside"
+	> & {
+		size?: D.DialogSize;
+		/** How the header sits in the panel. Defaults to `bar`. */
+		chrome?: D.DialogChrome;
+		/** `auto` animates pointer opens and closes; `none` never animates. Defaults to `auto`. */
+		motion?: D.DialogMotion;
+		title?: JSX.Element;
+		description?: JSX.Element;
+		/** Accessible name of the close button. Defaults to "close". */
+		closeLabel?: string;
+		/** Node the dialog is portaled into. Defaults to `document.body`. */
+		mount?: Node;
+		/** Classes for the parts this component renders, keyed by part name. */
+		classes?: Pick<
+			D.DialogClasses,
+			"overlay" | "positioner" | "panel" | "header" | "title" | "description" | "closeButton"
+		>;
+		"aria-label"?: string;
+	};
 
-export function DialogPanelContent(props: ParentProps): JSXElement {
-	return <div data-cui="dialog-panel-content" class={styles.panelContent}>{props.children}</div>;
-}
-
-export function DialogPanelFooter(props: ParentProps): JSXElement {
-	return <div data-cui="dialog-panel-footer" class={styles.panelFooter}>{props.children}</div>;
-}
-
-type DialogPanelProps = styles.DialogPanelVariants &
-	Parameters<typeof KDialog.Content>[0];
-
-export function DialogPanel(props: ParentProps<DialogPanelProps>): JSXElement {
-	return (
-		<KDialog.Content
-			{...props}
-			class={styles.panel({
-				size: props.size,
-			})}
-		>
-			{props.children}
-		</KDialog.Content>
-	);
-}
+export const DialogPanel = D.Content;
+export const DialogPanelContent = D.Body;
+export const DialogPanelFooter = D.Footer;
 
 export function Dialog(props: ParentProps<DialogProps>) {
-	const [local, others] = splitProps(props, ["size", "children", "title"]);
+	const [local, content, others] = splitProps(
+		props,
+		["size", "chrome", "children", "title", "description", "closeLabel", "mount", "classes"],
+		[
+			"aria-label",
+			"onOpenAutoFocus",
+			"onCloseAutoFocus",
+			"onEscapeKeyDown",
+			"onPointerDownOutside",
+			"onFocusOutside",
+			"onInteractOutside",
+		],
+	);
 	return (
-		<KDialog {...others} data-cui="cui-dialog-root">
-			<KDialog.Portal>
-				<KDialog.Overlay class={styles.overlay} />
-				<div class={mergeClasses(styles.dialogTheme, styles.positioner)} data-panel-size={local.size}>
-					<DialogPanel size={local.size}>
-						<Show when={local.title} keyed={false}>
-							<div class={styles.title} data-cui="dialog-panel-title">
-								<KDialog.Title>{props.title}</KDialog.Title>
-								<KDialog.CloseButton
-									as={IconButton}
-									aria-label={'close'}
-									size={'xs'}
-									theme={'secondary'}>
-									<CloseIcon/>
-								</KDialog.CloseButton>
-							</div>
+		<D.Root {...others}>
+			<D.Portal mount={local.mount}>
+				<D.Overlay class={local.classes?.overlay} />
+				<D.Positioner size={local.size} class={local.classes?.positioner}>
+					<D.Content {...content} size={local.size} chrome={local.chrome} class={local.classes?.panel}>
+						<Show when={local.title}>
+							{title => (
+							<D.Header class={local.classes?.header}>
+								<D.Title class={local.classes?.title}>{title()}</D.Title>
+								<D.CloseButton aria-label={local.closeLabel} class={local.classes?.closeButton} />
+							</D.Header>
+							)}
+						</Show>
+						<Show when={local.description}>
+							{description => <D.Description class={local.classes?.description}>{description()}</D.Description>}
 						</Show>
 						{local.children}
-					</DialogPanel>
-				</div>
-			</KDialog.Portal>
-		</KDialog>
+					</D.Content>
+				</D.Positioner>
+			</D.Portal>
+		</D.Root>
 	);
 }

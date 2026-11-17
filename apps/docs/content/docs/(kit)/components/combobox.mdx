@@ -1,0 +1,340 @@
+---
+title: "Combobox"
+description: "A text input that filters a list of options as the user types."
+---
+
+## When to use
+
+Use `Combobox` when the user picks one value from a list that is too long to scan, such as the snippet language or the editor font. The user types a few letters, the list narrows, and Enter selects.
+
+## When to choose another component
+
+| Component | Use it when | The deciding difference |
+| --- | --- | --- |
+| [Select](/docs/components/select) | The list is short and the user knows the names. | A button opens the list. No typing. Supports multiple selection. |
+| `Combobox` | The list is long enough to need search. | A text input filters the list and holds one value. |
+| [Listbox](/docs/components/listbox) | The options stay visible on the page. | No input, no trigger, and no popover. |
+| [CommandMenu](/docs/components/command-menu) | The user searches for an action to run, such as Export as PNG. | A dialog that runs a command and keeps no value. |
+
+## Live demo
+
+<SolidDemo name="combobox/basic" />
+
+## Anatomy
+
+<Anatomy demo="combobox/anatomy" />
+
+| Export | Renders | `classes` key | `data-cui` | Role |
+| --- | --- | --- | --- | --- |
+| `Root` | `div` | `root` | `combobox-root` | None |
+| `Label` | `span` | `label` | `combobox-label` | None |
+| `Control` | `div` | `control` | `combobox-control` | None |
+| `Input` | `input` | `input` | `combobox-input` | Combobox |
+| `Trigger` | `button` | `trigger` | `combobox-trigger` | Button, out of the tab order |
+| `Icon` | `span` | `icon` | `combobox-icon` | None, hidden from assistive technology |
+| `Description` | `div` | `description` | `combobox-description` | None |
+| `ErrorMessage` | `div` | `errorMessage` | `combobox-error-message` | None |
+| `Portal` | No DOM of its own | None | None | None |
+| `Content` | `div`, portalled | `content` | `combobox-content` | None |
+| `Listbox` | `ul` | `listbox` | `combobox-listbox` | Listbox |
+| `Item` | `li` | `item` | `combobox-item` | Option |
+| `ItemLabel` | `div` | `itemLabel` | `combobox-item-label` | None |
+| `ItemDescription` | `div` | `itemDescription` | `combobox-item-description` | None |
+| `ItemIndicator` | `div` | `itemIndicator` | `combobox-item-indicator` | None |
+| `Section` | `li` | `section` | `combobox-section` | Presentation |
+| `Arrow` | `div` | `arrow` | `combobox-arrow` | None |
+| `HiddenSelect` | `select`, visually hidden | `hiddenSelect` | `combobox-hidden-select` | None |
+
+The ready `Combobox` renders every part from `Root` to `ItemIndicator`, except `Portal`, which has no DOM. It does not render `ItemDescription`, `Section`, `Arrow`, or `HiddenSelect`. Compose the [styled parts](#styled-parts-api) to use them.
+
+The ready `Combobox` also renders two elements without a `data-cui` marker or a `classes` key. The empty message is a `div` with `role="presentation"` inside `Content`. Form submission uses one `input type="hidden"` for each selected value.
+
+## Variants
+
+### String options
+
+The [live demo](#live-demo) passes a `string[]`. Each string is the value, the label in the input, and the text the filter searches.
+
+### Object options with `createComboboxOptions`
+
+<SolidDemo name="combobox/object-options" />
+
+`createComboboxOptions` maps your objects to options with `valueKey`, `labelKey`, and an optional `disabledKey`. Spread `props()` for the options and the keys Kobalte reads. Spread `controlled(value, setValue)` to keep your own value, here the file extension, instead of the option object. See [Options and collections](/docs/utilities/options-and-collections).
+
+### Object options without the helper
+
+<SolidDemo name="combobox/raw-objects" />
+
+Without the helper, set `optionValue`, `optionTextValue`, and `optionLabel`. `optionTextValue` is the text the filter searches. `optionLabel` is the text the input shows after a selection. `renderOption` changes how each option looks in the list. The filter still reads `optionTextValue`, so the extra "Dark" and "Light" text in the demo is not searchable.
+
+### Disabled options
+
+Both object demos above mark one option disabled, through `disabledKey` or `optionDisabled`. A disabled option stays in the list, takes no selection, and is skipped by the arrow keys.
+
+### Sizes
+
+<SolidDemo name="combobox/sizes" />
+
+`size="md"`, or no size, uses `--cui-control-height-sm`, 36px. `size="sm"` uses `--cui-control-height-compact`, 28px, for dense toolbars. On a coarse pointer, both grow to `--cui-control-height-md`, 40px.
+
+### Filtering
+
+<SolidDemo name="combobox/filtering" />
+
+`defaultFilter` decides which options match the text. The default, `"contains"`, matches anywhere in the text value. `"startsWith"` and `"endsWith"` anchor the match. A function receives each option and the current text and returns `true` to keep the option. The demo matches the capital letters, so "ts" finds TypeScript.
+
+### Description
+
+<SolidDemo name="combobox/description" />
+
+`description` renders a hint under the control and links it as the accessible description of the input.
+
+### Multiple selection
+
+`Combobox` accepts Kobalte's `multiple` prop, but the ready component has no way to show more than one value. After each pick, the input clears and the selected options appear only as check marks in the open list. Use [Select](/docs/components/select#multiple-selection) with `multiple` instead.
+
+## States
+
+### Controlled and uncontrolled
+
+<SolidDemo name="combobox/controlled" />
+
+Pass `value` and `onChange` to own the value. Pass `defaultValue` to let `Combobox` keep it, as the live demo does. `onChange` receives `null` when the selection is cleared. To control a value with no selection, pass `null`.
+
+### Controlled input text
+
+<SolidDemo name="combobox/input-value" />
+
+`inputValue` controls the text in the input, apart from the selected value. `onInputChange` reports each change. The parent can reject a change. In the demo, the text stops at 12 characters. Filtering and the highlighted option follow the controlled text.
+
+### Empty
+
+<SolidDemo name="combobox/empty" />
+
+`emptyContent` renders inside the list when no option matches the text. Setting it also keeps the list open with no matches, because it sets `allowsEmptyCollection` to `true` unless you pass that prop. Without `emptyContent`, the list closes when nothing matches.
+
+### Escape restores, then clears
+
+The Escape key works in two steps.
+
+1. With the list open, Escape closes the list and puts back the label of the selected option. The text the user typed is discarded.
+2. With the list closed, Escape clears the text. In an uncontrolled combobox, empty text also clears the selection, and `onChange` receives `null`.
+
+Inside a [Dialog](/docs/components/dialog), pass the dialog panel to `mount` so the list renders inside the dialog. Then the first Escape closes only the list, and the next Escape closes the dialog.
+
+### Known gap: clearing a controlled value
+
+<SolidDemo name="combobox/controlled-clear" />
+
+Kobalte clears the selection on empty text only when `value` is `undefined`. When you pass `value`, even `null`, the second Escape empties the input but keeps the value and does not call `onChange`. Deleting all the text with Backspace behaves the same way. When the input loses focus, the label of the kept value comes back. `createComboboxOptions().controlled()` always passes a value, so it has the same gap.
+
+To get the uncontrolled behavior, clear the value yourself when the text becomes empty. The demo does this in `onInputChange`:
+
+```tsx
+onInputChange={text => {
+	if (text === "") setLanguage(null);
+}}
+```
+
+### Disabled
+
+<SolidDemo name="combobox/disabled" />
+
+`disabled` disables the input and the trigger, and typing does not open the list.
+
+### Read only
+
+<SolidDemo name="combobox/read-only" />
+
+`readOnly` keeps the input focusable and ignores keys that would open the list or change the value.
+
+### Invalid and required
+
+<SolidDemo name="combobox/invalid" />
+
+`validationState="invalid"` marks the input with `aria-invalid`, draws the control border in the danger color, and shows `errorMessage`. `required` marks the input as required. Set `validationState` from your form logic.
+
+## Ready API
+
+### `Combobox`
+
+`Combobox` renders a label, an input with a trigger button, the messages, and a portalled list, built on Kobalte's combobox. It imports from `@codeui/kit`.
+
+<PropsTable name="Combobox" />
+
+`ComboboxProps`, `ComboboxClasses`, and `ComboboxPart` are exported from `@codeui/kit`.
+
+Inherited from Kobalte's [combobox root](https://kobalte.dev/docs/core/components/combobox):
+
+<PropsTable name="ComboboxInherited" />
+
+### Style the list popover with `classes`
+
+<SolidDemo name="combobox/classes" />
+
+`classes` puts a class on any part in the anatomy table. `classes.content` reaches the portalled list. `class` and `classes.root` both land on the root. The kit classes come first and your classes come after, so your rules win at equal specificity. The empty message has no `classes` key.
+
+### Submit with a form
+
+<SolidDemo name="combobox/form" />
+
+With `name`, the ready `Combobox` renders one hidden input for each selected value. The submitted value is the option key, which is `optionValue` converted to a string. For string options, that is the string. Disabled comboboxes disable the hidden inputs, so they submit nothing.
+
+## Styled parts API
+
+Import the parts from `@codeui/kit/combobox`. Each part wraps the Kobalte combobox part of the same name, adds the kit class and `data-cui`, and merges your `class` after the kit class. `ComboboxParts` groups all of them in one object and is also exported from `@codeui/kit`.
+
+<SolidDemo name="combobox/parts" />
+
+Every part except `Portal` accepts the variant below. It sets `data-size` on the element.
+
+<PropsTable name="ComboboxPartVariants" />
+
+### `Root`
+
+Renders the root `div` and holds the state. It wraps Kobalte's `Combobox.Root`, so it takes every root option, including `itemComponent`, which is required.
+
+<PropsTable name="ComboboxRootPart" />
+
+`RootProps` is exported from `@codeui/kit/combobox`.
+
+### `Label`
+
+Renders the visible label as a `span`, linked to the input. Wraps `Combobox.Label`. Props: `LabelProps`.
+
+### `Control`
+
+Renders the `div` that frames the input and the trigger. It draws the field box, the focus ring, and the invalid border. Wraps `Combobox.Control`. Its `size` sets the height. Props: `ControlProps`.
+
+### `Input`
+
+Renders the text `input` with `role="combobox"`. Wraps `Combobox.Input`. Props: `InputProps`.
+
+### `Trigger`
+
+Renders the `button` that toggles the list. It is out of the tab order. Wraps `Combobox.Trigger`. Props: `TriggerProps`.
+
+### `Icon`
+
+Renders the `span` for the trigger icon, hidden from assistive technology. Pass the icon as children. Wraps `Combobox.Icon`. Props: `IconProps`.
+
+### `Description`
+
+Renders the hint `div` and links it to the input with `aria-describedby`. Wraps `Combobox.Description`. Props: `DescriptionProps`.
+
+### `ErrorMessage`
+
+Renders the error `div`. It shows only when the root has `validationState="invalid"`. Wraps `Combobox.ErrorMessage`. Props: `ErrorMessageProps`.
+
+### `Portal`
+
+Moves the list to `document.body`, or to `mount`. It renders no element of its own and takes no kit class. Wraps `Combobox.Portal`. Props: `PortalProps`.
+
+### `Content`
+
+Renders the popover `div` around the list. It sizes to the control width and scrolls past 400px. Wraps `Combobox.Content`. Props: `ContentProps`.
+
+### `Arrow`
+
+Renders an arrow that points from the popover to the control, filled with the menu surface. Wraps `Combobox.Arrow`. Props: `ArrowProps`.
+
+### `Listbox`
+
+Renders the `ul` with `role="listbox"`. It renders one `itemComponent` per option. Wraps `Combobox.Listbox`. Props: `ListboxProps`.
+
+### `Item`
+
+Renders one option as an `li` with `role="option"`. Pass the `item` that `itemComponent` receives. Wraps `Combobox.Item`. Props: `ItemProps`.
+
+### `ItemLabel`
+
+Renders the option label and gives the option its accessible name. Wraps `Combobox.ItemLabel`. Props: `ItemLabelProps`.
+
+### `ItemDescription`
+
+Renders secondary text under the label in the hint color, linked as the option's description. Wraps `Combobox.ItemDescription`. Props: `ItemDescriptionProps`.
+
+### `ItemIndicator`
+
+Renders its children only when the option is selected. Put the check icon inside. Wraps `Combobox.ItemIndicator`. Props: `ItemIndicatorProps`.
+
+### `Section`
+
+Renders a section heading as an `li`, for grouped options. Return it from the root's `sectionComponent`. Wraps `Combobox.Section`. Props: `SectionProps`.
+
+### `HiddenSelect`
+
+Renders a visually hidden native `select` for form submission and browser autofill. Use it when you compose the parts and set `name` on `Root`. Wraps `Combobox.HiddenSelect`. Props: `HiddenSelectProps`.
+
+### `useComboboxContext`
+
+Kobalte's `useComboboxContext`, re-exported. Call it inside `Root` to read the combobox state, such as `inputValue()`, `isOpen()`, and `listState()`. The ready `Combobox` uses it to sync `inputValue` and to render the hidden inputs and the empty message.
+
+## Styles export
+
+### `comboboxStyles`
+
+`comboboxStyles` maps each part name to a function that returns the kit class for that part. Only `control` reads a variant, `{ size: "sm" | "md" }`. The other functions ignore their argument.
+
+<SolidDemo name="combobox/styles" />
+
+Call it when you render your own element and want the kit look without the combobox behavior. The demo shows a detected value with the combobox frame and no list. Prefer the part when one exists, because the part also sets `data-cui` and the ARIA wiring. `comboboxStyles` and the `ComboboxStyles` and `ComboboxVariants` types are exported from both `@codeui/kit` and `@codeui/kit/combobox`.
+
+## Accessibility
+
+### Keyboard
+
+| Key | Action |
+| --- | --- |
+| Tab or Shift+Tab | Moves focus to or away from the input. The trigger button is skipped. If the list is open, it closes and the input shows the selected label. |
+| A printable character | Types into the input, filters the list, and opens it when an option matches. |
+| ArrowDown | Opens the list and highlights the first option, or moves the highlight down. |
+| ArrowUp | Opens the list and highlights the last option, or moves the highlight up. |
+| Alt+ArrowDown | Opens the list without highlighting an option. |
+| Alt+ArrowUp | Closes the list and puts back the selected label. |
+| Enter | Selects the highlighted option and closes the list. |
+| Escape, list open | Closes the list and puts back the selected label. |
+| Escape, list closed | Clears the text. See [Escape restores, then clears](#escape-restores-then-clears). |
+
+### ARIA
+
+The input has `role="combobox"`, `aria-autocomplete="list"`, `aria-haspopup="listbox"`, and `aria-expanded`. While the list is open, `aria-controls` points to it and `aria-activedescendant` points to the highlighted option. The list is a `listbox` and each item is an `option` with `aria-selected`. Disabled options have `aria-disabled="true"`.
+
+The input takes its name from `label`, or from `aria-label` or `aria-labelledby` when there is no visible label. `description` and `errorMessage` are linked with `aria-describedby`. The trigger button has Kobalte's default name, "Show suggestions", and is labelled by the field label too.
+
+### Focus
+
+Focus stays in the input the whole time. The highlighted option is announced through `aria-activedescendant`, not by moving focus. Clicking the trigger keeps focus in the input. The control draws the focus ring with `--cui-focus-{width,color,offset}` when the input has focus.
+
+## SSR notes
+
+The label, the control, the input, and the messages render on the server. A controlled `inputValue` is written into the server HTML as the input's `value`. The list renders in a portal only on the client, after it opens. The hidden form inputs render on the server for the initial value. Kobalte generates the ids that link the label and the messages, and they match between the server and the client.
+
+## Theming hooks
+
+- `--cui-surface-input`, `--cui-text-input`, `--cui-border-input`, and `--cui-border-width` for the control.
+- `--cui-text-default`, `--cui-text-label`, `--cui-text-hint`, and `--cui-text-danger` for the root, the label, the placeholder and description, and the error.
+- `--cui-focus-{width,color,offset}` for the focus ring on the control.
+- `--cui-control-height-{compact,sm,md}` for the control, the trigger, and the items.
+- `--cui-surface-menu`, `--cui-border-menu`, `--cui-shadow-menu`, and `--cui-text-menu` for the list.
+- `--cui-accent-selection` and `--cui-text-selected` for the highlighted option.
+- `--cui-radius-{xs,sm,md}`, `--cui-space-{0-5,1,1-5,2,3,4}`, `--cui-font-size-{xs,caption,sm}`, and `--cui-font-weight-{medium,semibold}`.
+- `--cui-motion-duration-fast` and `--cui-motion-ease-out` for the border-color transition.
+- `--cui-motion-duration-{fast,normal}` and `--cui-motion-ease-out` for the list's Pop when the trigger button opens it with a pointer. Typing or the arrow keys open it in place (`data-motion="none"`).
+
+Each brace expands to a separate variable. See [Inkstone color](/docs/design/color).
+
+The highlighted option uses the accent fill. Inkstone §2 says a highlighted or selected row in a list is neutral, with the field fill and primary text. The code and the specification disagree here, and this page documents the shipped style.
+
+## Composition examples
+
+- [Known gap: clearing a controlled value](#known-gap-clearing-a-controlled-value) keeps a controlled value in step with the text.
+- [Styled parts API](#styled-parts-api) adds option descriptions with `ItemDescription`.
+- [Run commands](/docs/patterns/run-commands) covers search that runs an action instead of picking a value.
+
+## Related
+
+- [Select](/docs/components/select) picks from a short list with no typing.
+- [Listbox](/docs/components/listbox) shows the options inline.
+- [CommandMenu](/docs/components/command-menu) searches actions in a dialog.
+- [Options and collections](/docs/utilities/options-and-collections) documents `createComboboxOptions`.

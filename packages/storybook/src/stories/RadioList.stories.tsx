@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "storybook-solidjs";
+import type { Meta, StoryObj } from "storybook-solidjs-vite";
 
 import { RadioList, RadioListItem, RadioListProps } from "@codeui/kit";
 import { For } from "solid-js";
@@ -94,5 +94,22 @@ export const Validation: Story = {
 				)}
 			</For>
 		</DocsMultipleItemsContainer>
+	),
+};
+
+export const FieldApi: Story = {
+	render: () => (
+		<RadioList
+			aria-label="Layout"
+			class="layout-options"
+			classes={{ items: "layout-items" }}
+		>
+			<RadioListItem
+				value="compact"
+				label={<strong>Compact</strong>}
+				class="compact-option"
+			/>
+			<RadioListItem value="wide" label="Wide" disabled />
+		</RadioList>
 	),
 };

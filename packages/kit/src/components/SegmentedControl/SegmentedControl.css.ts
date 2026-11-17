@@ -1,22 +1,23 @@
-import { createTheme, style } from "@vanilla-extract/css";
-import { themeTokens, themeVars } from "../../foundation";
-import { recipe, RecipeVariants } from "@vanilla-extract/recipes";
+import { createTheme, recipe, style } from "../../foundation/layer.css";
+import { tokens } from "../../foundation/cui.css";
+import { transition } from "../../foundation/motion.css";
+import { RecipeVariants } from "@vanilla-extract/recipes";
 import { mapSizeValue } from "../../foundation/sizes";
 import { componentStateStyles } from "@kobalte/vanilla-extract";
+import { whileKeyboard } from "../../utils/modality";
 
 export const [segmentedFieldTheme, segmentedFieldVars] = createTheme({
-	// TODO fix this
-	activeSegmentedBackgroundColor: themeVars.brandSecondaryAccentHover,
-	segmentedTextColor: themeVars.foreground,
-	activeSegmentedTextColor: themeVars.foreground,
-	segmentWrapperSolidBackground: themeVars.formAccent,
-	segmentWrapperBorderedColor: themeVars.formAccentBorder,
-	segmentWrapperRadius: themeTokens.radii.md,
-	segmentWrapperPadding: themeTokens.spacing["1"],
+	activeSegmentedBackgroundColor: tokens.surface.inputAccent,
+	segmentedTextColor: tokens.text.default,
+	activeSegmentedTextColor: tokens.action.neutral.text,
+	segmentWrapperSolidBackground: tokens.surface.input,
+	segmentWrapperBorderedColor: tokens.border.menu,
+	segmentWrapperRadius: tokens.radius.md,
+	segmentWrapperPadding: tokens.space["1"],
 	segmentHeight: "",
 	segmentPadding: "",
-	segmentRadius: themeTokens.radii.sm,
-	segmentFontSize: themeTokens.fontSize.sm,
+	segmentRadius: tokens.radius.sm,
+	segmentFontSize: tokens.font.size.sm,
 });
 
 const SegmentedControlSizes = {
@@ -38,6 +39,7 @@ export const segmentedControlWrapper = recipe({
 			overflow: "visible",
 			cursor: "default",
 			textAlign: "center",
+			lineHeight: tokens.font.lineHeight.sm,
 			userSelect: "none",
 			borderRadius: segmentedFieldVars.segmentWrapperRadius,
 		},
@@ -47,6 +49,7 @@ export const segmentedControlWrapper = recipe({
 			},
 		}),
 	],
+	defaultVariants: { size: "md" },
 	variants: {
 		theme: {
 			neutral: {
@@ -54,8 +57,8 @@ export const segmentedControlWrapper = recipe({
 			},
 			primary: {
 				vars: {
-					[segmentedFieldVars.activeSegmentedBackgroundColor]: themeVars.brand,
-					[segmentedFieldVars.activeSegmentedTextColor]: themeTokens.colors.gray12,
+					[segmentedFieldVars.activeSegmentedBackgroundColor]: tokens.action.brand.base,
+					[segmentedFieldVars.activeSegmentedTextColor]: tokens.action.brand.text,
 				},
 			},
 		},
@@ -65,74 +68,72 @@ export const segmentedControlWrapper = recipe({
 			},
 			bordered: {
 				backgroundColor: "transparent",
-				boxShadow: `0 0 0 2px ${segmentedFieldVars.segmentWrapperBorderedColor}`,
+				boxShadow: `0 0 0 ${tokens.border.widthStrong} ${segmentedFieldVars.segmentWrapperBorderedColor}`,
 			},
 		},
 		size: {
 			[SegmentedControlSizes.xl]: {
 				vars: {
-					[segmentedFieldVars.segmentWrapperPadding]: `calc(${themeTokens.spacing["1"]} * 1.5)`,
+					[segmentedFieldVars.segmentWrapperPadding]: `calc(${tokens.space["1"]} * 1.5)`,
 					[segmentedFieldVars.segmentHeight]: mapSizeValue("xl"),
-					[segmentedFieldVars.segmentFontSize]: themeTokens.fontSize.lg,
-					[segmentedFieldVars.segmentPadding]: themeTokens.spacing["6"],
-					[segmentedFieldVars.segmentRadius]: themeTokens.radii.lg,
-					[segmentedFieldVars.segmentWrapperRadius]: themeTokens.radii.xl,
+					[segmentedFieldVars.segmentFontSize]: tokens.font.size.lg,
+					[segmentedFieldVars.segmentPadding]: tokens.space["6"],
+					[segmentedFieldVars.segmentRadius]: tokens.radius.lg,
+					[segmentedFieldVars.segmentWrapperRadius]: tokens.radius.xl,
 				},
 			},
 			[SegmentedControlSizes.lg]: {
 				vars: {
-					[segmentedFieldVars.segmentWrapperPadding]: themeTokens.spacing["1"],
+					[segmentedFieldVars.segmentWrapperPadding]: tokens.space["1"],
 					[segmentedFieldVars.segmentHeight]: mapSizeValue("lg"),
-					[segmentedFieldVars.segmentFontSize]: themeTokens.fontSize.md,
-					[segmentedFieldVars.segmentPadding]: themeTokens.spacing["5"],
-					[segmentedFieldVars.segmentRadius]: themeTokens.radii.sm,
-					[segmentedFieldVars.segmentWrapperRadius]: themeTokens.radii.md,
+					[segmentedFieldVars.segmentFontSize]: tokens.font.size.md,
+					[segmentedFieldVars.segmentPadding]: tokens.space["5"],
+					[segmentedFieldVars.segmentRadius]: tokens.radius.sm,
+					[segmentedFieldVars.segmentWrapperRadius]: tokens.radius.md,
 				},
 			},
+			// Inkstone §6: a 36px track around 28px segments, Label text.
 			[SegmentedControlSizes.md]: {
 				vars: {
-					[segmentedFieldVars.segmentWrapperPadding]: themeTokens.spacing["1"],
-					[segmentedFieldVars.segmentHeight]: mapSizeValue("md"),
-					[segmentedFieldVars.segmentFontSize]: themeTokens.fontSize.md,
-					[segmentedFieldVars.segmentPadding]: themeTokens.spacing["4"],
-					[segmentedFieldVars.segmentRadius]: themeTokens.radii.sm,
-					[segmentedFieldVars.segmentWrapperRadius]: themeTokens.radii.md,
+					[segmentedFieldVars.segmentWrapperPadding]: tokens.space["1"],
+					[segmentedFieldVars.segmentHeight]: mapSizeValue("sm"),
+					[segmentedFieldVars.segmentFontSize]: tokens.font.size.sm,
+					[segmentedFieldVars.segmentPadding]: tokens.space["4"],
+					[segmentedFieldVars.segmentRadius]: tokens.radius.sm,
+					[segmentedFieldVars.segmentWrapperRadius]: tokens.radius.md,
 				},
 			},
 			[SegmentedControlSizes.sm]: {
 				vars: {
-					[segmentedFieldVars.segmentWrapperPadding]: themeTokens.spacing["1"],
+					[segmentedFieldVars.segmentWrapperPadding]: tokens.space["1"],
 					[segmentedFieldVars.segmentHeight]: mapSizeValue("sm"),
-					[segmentedFieldVars.segmentFontSize]: themeTokens.fontSize.sm,
-					[segmentedFieldVars.segmentPadding]: themeTokens.spacing["3"],
-					[segmentedFieldVars.segmentRadius]: themeTokens.radii.xs,
-					[segmentedFieldVars.segmentWrapperRadius]: themeTokens.radii.sm,
+					[segmentedFieldVars.segmentFontSize]: tokens.font.size.sm,
+					[segmentedFieldVars.segmentPadding]: tokens.space["3"],
+					[segmentedFieldVars.segmentRadius]: tokens.radius.xs,
+					[segmentedFieldVars.segmentWrapperRadius]: tokens.radius.sm,
 				},
 			},
 			[SegmentedControlSizes.xs]: {
 				vars: {
-					[segmentedFieldVars.segmentWrapperPadding]: `calc(${themeTokens.spacing["1"]} - 1px)`,
+					[segmentedFieldVars.segmentWrapperPadding]: `calc(${tokens.space["1"]} - 1px)`,
 					[segmentedFieldVars.segmentHeight]: mapSizeValue("xs"),
-					[segmentedFieldVars.segmentFontSize]: `calc(${themeTokens.fontSize.xs} - 1px)`,
-					[segmentedFieldVars.segmentPadding]: themeTokens.spacing["2"],
-					[segmentedFieldVars.segmentRadius]: themeTokens.radii.xs,
-					[segmentedFieldVars.segmentWrapperRadius]: themeTokens.radii.sm,
+					[segmentedFieldVars.segmentFontSize]: `calc(${tokens.font.size.xs} - 1px)`,
+					[segmentedFieldVars.segmentPadding]: tokens.space["2"],
+					[segmentedFieldVars.segmentRadius]: tokens.radius.xs,
+					[segmentedFieldVars.segmentWrapperRadius]: tokens.radius.sm,
 				},
 			},
 		},
 		fluid: {
 			true: {
 				width: "100%",
-				vars: {
-					[segmentedFieldVars.segmentHeight]: "100%",
-				},
 			},
 		},
 		pill: {
 			true: {
 				vars: {
-					[segmentedFieldVars.segmentRadius]: themeTokens.radii.full,
-					[segmentedFieldVars.segmentWrapperRadius]: themeTokens.radii.full,
+					[segmentedFieldVars.segmentRadius]: tokens.radius.full,
+					[segmentedFieldVars.segmentWrapperRadius]: tokens.radius.full,
 				},
 			},
 		},
@@ -141,7 +142,7 @@ export const segmentedControlWrapper = recipe({
 
 export const list = style({
 	display: "flex",
-	gap: themeTokens.spacing["1"],
+	gap: tokens.space["1"],
 	position: "relative",
 	flex: 1,
 	flexWrap: "nowrap",
@@ -167,19 +168,14 @@ export const segment = style([
 		fontSize: segmentedFieldVars.segmentFontSize,
 		padding: `0 ${segmentedFieldVars.segmentPadding}`,
 		color: segmentedFieldVars.segmentedTextColor,
-		opacity: 0.8,
 		zIndex: 1,
-		fontWeight: themeTokens.fontWeight.medium,
+		fontWeight: tokens.font.weight.medium,
 		borderRadius: segmentedFieldVars.segmentRadius,
-		gap: themeTokens.spacing["2"],
-		transition:
-			"opacity .2s, background-color .2s, transform .2s, outline-color 150ms ease-in-out, outline-offset 150ms ease-in",
-		outlineColor: `transparent`,
-		outlineOffset: "0px",
+		gap: tokens.space["2"],
+		transition: transition(["opacity", "background-color", "color"]),
 		cursor: "pointer",
 		selectors: {
 			"&[data-selected]": {
-				opacity: 1,
 				color: segmentedFieldVars.activeSegmentedTextColor,
 			},
 			[`${segmentedFieldTheme}[data-autoWidth] &`]: {
@@ -189,8 +185,8 @@ export const segment = style([
 			},
 		},
 		":focus-visible": {
-			outlineOffset: "2px",
-			outline: `2px solid ${themeVars.brand}`,
+			outlineOffset: tokens.focus.offset,
+			outline: `${tokens.focus.width} solid ${tokens.focus.color}`,
 		},
 	},
 	componentStateStyles({
@@ -201,24 +197,19 @@ export const segment = style([
 	}),
 ]);
 
-export const indicator = style([
-	{
-		position: "absolute",
-		height: "100%",
-		transition:
-			"width 250ms cubic-bezier(.2, 0, 0, 1), transform 250ms cubic-bezier(.2, 0, 0, 1)",
-		backgroundColor: segmentedFieldVars.activeSegmentedBackgroundColor,
-		content: "",
-		boxShadow: themeTokens.boxShadow.default,
-		borderRadius: segmentedFieldVars.segmentRadius,
+export const indicator = style({
+	position: "absolute",
+	height: "100%",
+	transition: transition(["width", "transform"], tokens.motion.duration.normal),
+	selectors: {
+		// Arrow keys and Enter move the selection instantly (Inkstone §7.1).
+		[`${whileKeyboard} &`]: { transition: "none" },
 	},
-	{
-		selectors: {
-			[`[data-cui-theme=light] ${segmentedFieldTheme} &`]: {
-				vars: {
-					[segmentedFieldVars.activeSegmentedBackgroundColor]: "#fff",
-				},
-			},
-		},
+	"@media": {
+		"(prefers-reduced-motion: reduce)": { transition: "none" },
 	},
-]);
+	backgroundColor: segmentedFieldVars.activeSegmentedBackgroundColor,
+	content: "",
+	boxShadow: tokens.shadow.sm,
+	borderRadius: segmentedFieldVars.segmentRadius,
+});

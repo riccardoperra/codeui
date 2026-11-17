@@ -1,7 +1,6 @@
-import { createTheme, style } from "@vanilla-extract/css";
-import { themeTokens } from "../../foundation/themes.css";
+import { createTheme, style } from "../../foundation/layer.css";
+import { tokens } from "../../foundation/cui.css";
 import { baseFieldTheme, FieldSizes } from "../Field/Field.css";
-import { themeVars } from "../../foundation";
 
 export const [numberFieldTheme, numberFieldVars] = createTheme({
 	controlSize: "",
@@ -12,14 +11,14 @@ export const baseFieldContainer = style([
 	{
 		display: "flex",
 		flexDirection: "column",
-		gap: themeTokens.spacing["3"],
+		gap: tokens.space["3"],
 	},
 ]);
 
 export const textField = style([
 	{
-		paddingRight: themeTokens.spacing["3"],
-		paddingLeft: themeTokens.spacing["3"],
+		paddingRight: tokens.space["3"],
+		paddingLeft: tokens.space["3"],
 		paddingTop: 0,
 		paddingBottom: 0,
 		outline: "none",
@@ -32,16 +31,17 @@ export const numberFieldContainer = style({
 
 export const controlsContainer = style({
 	position: "absolute",
-	right: "8px",
+	right: tokens.space["2"],
 	top: "50%",
 	transform: `translateY(-50%)`,
 	flexDirection: "column",
 	flexWrap: "nowrap",
 	gap: "0px",
-	zIndex: themeTokens.zIndex["10"],
+	zIndex: 10,
 	display: "none",
-	backgroundColor: themeVars.formAccentBorder,
-	borderRadius: themeTokens.radii.md,
+	backgroundColor: tokens.surface.inputAccent,
+	color: tokens.text.input,
+	borderRadius: tokens.radius.md,
 
 	selectors: {
 		[`${numberFieldContainer}:hover &`]: {
@@ -56,6 +56,8 @@ export const controlsContainer = style({
 export const controlButton = style({
 	appearance: "none",
 	border: "0",
+	background: "transparent",
+	color: "inherit",
 	cursor: "pointer",
 	width: numberFieldVars.controlSize,
 	height: numberFieldVars.controlSize,

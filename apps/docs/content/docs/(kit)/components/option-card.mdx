@@ -1,0 +1,247 @@
+---
+title: "OptionCard"
+description: "Selectable cards with labels, descriptions, and schematic previews."
+---
+
+## When to use
+
+Use option cards for a single choice where a preview helps you compare options, such as colour mode, navigation, or snippet themes.
+
+## When to choose another component
+
+Use [SegmentedControl](/docs/components/segmented-control) for short text choices. Use [Switch](/docs/components/switch) for an independent boolean. Use [Select](/docs/components/select) for a long list of names.
+
+## Live demo
+
+<SolidDemo name="option-card/basic" />
+
+`OptionCardGroup` renders the group label, description, error message, and one `OptionCard` per entry. `OptionCard` renders one item and needs a radio-group root. It does not create a group itself.
+
+## Anatomy
+
+<Anatomy demo="option-card/anatomy" />
+
+| Export | Renders | `classes` key | `data-cui` | Role |
+| --- | --- | --- | --- | --- |
+| `Root` | div | `root` | `option-card-root` | radiogroup |
+| `Label` | span | `label` | `option-card-label` | Group name |
+| `Description` | div | `description` | `option-card-description` | Group description |
+| `ErrorMessage` | div | `errorMessage` | `option-card-error-message` | Validation message |
+| `Item` | div | `item` | `option-card-item` | group |
+| `ItemInput` | input | `itemInput` | `option-card-item-input` | Native radio |
+| `ItemControl` | div | `itemControl` | `option-card-item-control` | Visual control |
+| `ItemIndicator` | div | `itemIndicator` | `option-card-item-indicator` | Selection mark |
+| `ItemLabel` | label | `itemLabel` | `option-card-item-label` | Input label |
+| `ItemDescription` | div; span in ready item | `itemDescription` | `option-card-item-description` | Input description |
+| `Preview` | div | `preview` | `option-card-preview` | Decorative |
+| `Badge` | span | `badge` | `option-card-badge` | Status text |
+
+The ready item renders `ItemInput` and `ItemLabel`. It does not render `ItemControl` or `ItemIndicator`. Preview, badge, and description render only when supplied. The label is the card title.
+
+## Variants
+
+### Card and tile
+
+<SolidDemo name="option-card/themes" />
+
+`card` is the default. `tile` reduces label padding to 8px. Previews are noninteractive, decorative wells above the title; draw a schematic in the option's own colours, not a miniature of real content. Keep the choice understandable from its label alone. The `Default` badge sits on the title row, 8px after the title, and the row is 20px tall with or without it. It is supplied content, independent of selection.
+
+### Grid and column
+
+<SolidDemo name="option-card/vertical" />
+
+The horizontal root fills its container and lays the cards out three across, each at least 128px wide: three 224px columns with an 8px gap in a 688px settings pane, as in CodeImage. At 768px and narrower the cards stack in one column and each card puts its preview beside its text. Vertical orientation always uses one column. Orientation also controls arrow-key navigation.
+
+## States
+
+### Selected and controlled
+
+<SolidDemo name="option-card/controlled" />
+
+Use `defaultValue` for an initial selection or `value` with `onChange` for a controlled selection. `OptionCardEntry<T>` keeps values and the callback in the same string union. `createOptionCardItems` wraps an items accessor as `{ items }` without changing entries.
+
+A card has the field fill, a 12px radius, 12px padding and no border. The selected card rises one fill step and gets a 2px `--cui-accent-focus` outline inset 2px from its edge, and its title goes from weight 500 to 600. Hovering a card with a fine pointer raises the same fill step. Pressing a card scales it to 0.98 over 120ms with the ease-out curve; reduced motion keeps the fill change and drops the scale. Keyboard focus draws the 2px focus ring outside the card instead.
+
+### Disabled
+
+<SolidDemo name="option-card/disabled" />
+
+An entry can disable one card. Group `disabled` disables all entries. `readOnly` prevents value changes without the disabled appearance.
+
+### Read-only
+
+<SolidDemo name="option-card/read-only" />
+
+The managed value remains focusable, but user input cannot change it.
+
+### Required and invalid
+
+<SolidDemo name="option-card/invalid" />
+
+`required` enables native form validation. `validationState="invalid"` exposes the invalid state and displays `errorMessage`. The invalid border replaces the selected accent border.
+
+### Long labels
+
+<SolidDemo name="option-card/long-labels" />
+
+Labels and descriptions wrap, including unbroken text. Cards stretch across each grid row. Keep previews at a consistent height so titles align. Do not truncate labels.
+
+## Ready API
+
+### `OptionCardGroup`
+
+Renders a complete group from `readonly OptionCardEntry<T>[]`. Each entry has a required `value` and `label`, plus optional `description`, `preview`, `badge`, and `disabled`.
+
+<PropsTable name="OptionCardGroup" />
+<PropsTable name="OptionCardGroupInherited" />
+
+### `OptionCard`
+
+Renders one radio item inside a styled `Root`. Its `variant` defaults to the ready group's appearance when rendered by `OptionCardGroup`.
+
+<PropsTable name="OptionCard" />
+
+## Styled parts API
+
+Import the parts from `@codeui/kit/option-card`. These exports are direct named parts, with no namespace alias. The Kobalte parts retain their polymorphic `as` prop. Each styled radio part accepts `class` and `variant`; direct parts set their own variant rather than inheriting it from `Root`.
+
+### `Badge`
+
+Renders the kit Badge for supplied status text. Its variant is the badge appearance, not the card layout.
+
+<PropsTable name="OptionCardBadge" />
+<PropsTable name="OptionCardBadgeInherited" />
+
+### `Description`
+
+Wraps Kobalte RadioGroup.Description and connects the group description.
+
+<PropsTable name="Description" />
+
+### `ErrorMessage`
+
+Wraps Kobalte RadioGroup.ErrorMessage. It renders for invalid state or when force-mounted.
+
+<PropsTable name="ErrorMessage" />
+<PropsTable name="ErrorMessageInherited" />
+
+### `Item`
+
+Wraps Kobalte RadioGroup.Item. Supply a unique value and an optional disabled state.
+
+<PropsTable name="Item" />
+<PropsTable name="ItemInherited" />
+
+### `ItemControl`
+
+Wraps Kobalte RadioGroup.ItemControl for a custom visual control.
+
+<PropsTable name="ItemControl" />
+
+### `ItemDescription`
+
+Wraps Kobalte RadioGroup.ItemDescription and connects explanatory text to the input.
+
+<PropsTable name="ItemDescription" />
+
+### `ItemIndicator`
+
+Wraps Kobalte RadioGroup.ItemIndicator for content that appears when selected.
+
+<PropsTable name="ItemIndicator" />
+<PropsTable name="ItemIndicatorInherited" />
+
+### `ItemInput`
+
+Wraps Kobalte RadioGroup.ItemInput. Keep this native radio in every custom item.
+
+<PropsTable name="ItemInput" />
+
+### `ItemLabel`
+
+Wraps Kobalte RadioGroup.ItemLabel. Clicking this label selects its input.
+
+<PropsTable name="ItemLabel" />
+
+### `Label`
+
+Wraps Kobalte RadioGroup.Label and names the group.
+
+<PropsTable name="Label" />
+
+### `Preview`
+
+Renders a div with aria-hidden="true" and pointer-events disabled. Do not put focusable controls inside it.
+
+<PropsTable name="Preview" />
+
+### `Root`
+
+Wraps Kobalte RadioGroup.Root and supplies the responsive grid.
+
+<PropsTable name="Root" />
+<PropsTable name="RootInherited" />
+
+### `useRadioGroupContext`
+
+Re-exports Kobalte's hook. Call it inside `Root` to read the radio group's context. It renders no DOM and accepts no props.
+
+The inherited behavior follows the [Kobalte RadioGroup contract](https://kobalte.dev/docs/core/components/radio-group).
+
+## Styles export
+
+### `optionCardStyles`
+
+`optionCardStyles` is exported from `@codeui/kit` and `@codeui/kit/option-card`. Each anatomy key is a function that returns a class string. `OptionCardStyles` describes those functions. `OptionCardPart` is the key union, and `OptionCardClasses` is a partial map of keys to class names.
+
+Functions accept `OptionCardVariants`. `optionCardStyles.itemLabel({ variant: "tile" })` returns the tile padding class, so custom markup gets the tile look from the function alone. The single-column layout still depends on `data-orientation="vertical"`, which Kobalte sets on the root. A class string alone does not supply radio semantics or state attributes.
+
+## Accessibility
+
+### Keyboard
+
+| Key | Action |
+| --- | --- |
+| Tab | Enters the group once, at the selected enabled radio or the first enabled radio. The next Tab leaves. |
+| Shift+Tab | Moves to the previous tab stop. |
+| Right or Left arrow | Moves focus and selects the next or previous enabled option in horizontal orientation. |
+| Down or Up arrow | Moves focus and selects the next or previous enabled option in vertical orientation. |
+| Space | Selects the focused radio. |
+
+### ARIA
+
+The root renders `role="radiogroup"` with its label and description connected through ARIA IDs. The item container renders `role="group"`. Its visually hidden native `input type="radio"` exposes selection, disabled, required, and invalid state. Group validation uses `aria-invalid`, `aria-required`, and `aria-disabled`. An invalid error message joins the description IDs. Preview content is hidden from assistive technology.
+
+### Focus
+
+Focus stays on the native input and shows a 2px ring around its card, only on `:focus-visible`. Selection moves focus within the group. Cards open no overlay and have no open or close focus behavior.
+
+## SSR notes
+
+The group, inputs, labels, and supplied content render on the server. There is no portal or client-only preview. Keep item values, order, and initial selection identical during hydration. Create controlled state inside the component instance so requests do not share it.
+
+## Theming hooks
+
+The card reads `--cui-font-family-sans`, `--cui-font-size-sm`, `--cui-font-size-xs`, `--cui-text-default`, `--cui-text-muted`, and `--cui-text-hint`. Errors read `--cui-text-danger` and `--cui-action-danger-base`.
+
+Cards use `--cui-surface-input`, mixed 6% toward `--cui-text-default` for the hovered and selected step. The preview well is 68px tall with an 8px radius on `--cui-surface-panel`. Selection uses `--cui-accent-focus`; focus uses `--cui-focus-width`, `--cui-focus-color`, and `--cui-focus-offset`. Shape uses `--cui-radius-md`. Spacing reads `--cui-space-0-5`, `--cui-space-1`, `--cui-space-2`, `--cui-space-3`, `--cui-space-5`, `--cui-space-8`, `--cui-space-10`, `--cui-space-16`, `--cui-space-24`, and `--cui-space-32`. Text sets `--cui-font-line-height-sm` and `--cui-font-line-height-xs`, so the cards never inherit the page's leading. Press motion uses `--cui-motion-duration-fast` and `--cui-motion-ease-out`.
+
+The optional badge uses the [Badge theming hooks](/docs/components/badge). Token defaults are described in [Inkstone colour](/docs/design/color) and [space and shape](/docs/design/space-and-shape).
+
+## Composition examples
+
+### Navigation choice
+
+<SolidDemo name="option-card/navigation" />
+
+### Custom item layout
+
+<SolidDemo name="option-card/parts" />
+
+Use `OptionCard` inside `Root` for a ready item alongside custom parts. Use `OptionCardGroup` when all options fit the entry shape. See [Build settings](/docs/patterns/build-settings) for the complete dialog.
+
+## Related
+
+- [SegmentedControl](/docs/components/segmented-control) uses compact text choices.
+- [Switch](/docs/components/switch) represents one boolean.
+- [Build settings](/docs/patterns/build-settings) combines cards with settings rows.

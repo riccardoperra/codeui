@@ -1,0 +1,57 @@
+---
+title: "Nest overlays"
+description: "Open a popover, menu, or tooltip inside a dialog."
+---
+
+Kit overlays stack. A menu, popover, select, or tooltip opened inside a dialog becomes a new layer above it.
+Escape closes the innermost layer only, as [Inkstone](/docs/design/patterns) asks, and focus returns to the control that opened that layer.
+
+## Put a segmented control in a dialog
+
+<SolidDemo name="nest-overlays/segmented-in-dialog" />
+
+Inside a modal dialog, use a [SegmentedControl](/docs/components/segmented-control), a [Switch](/docs/components/switch), or [option cards](/docs/components/option-card) to pick a value. Inkstone does not use a Select there.
+
+A segmented control is not a layer. When it has focus, Escape goes to the dialog and closes it.
+Kobalte's tabs would block that Escape, so `SegmentedControl` releases it to the enclosing layer. You do not need to do anything.
+
+## Keep the dialog open on Escape
+
+<SolidDemo name="nest-overlays/keep-open-on-escape" />
+
+To stop Escape on a segmented control from closing the dialog, call `preventDefault()` in its `onEscapeKeyDown`.
+To guard the whole dialog instead, for example while a form has unsaved changes, call `preventDefault()` in the dialog's `onEscapeKeyDown`.
+
+## Open a menu or a tooltip in a dialog
+
+<SolidDemo name="nest-overlays/menu-in-dialog" />
+
+Open the Scale menu and press Escape. The menu closes, focus returns to the Scale button, and the dialog stays open. Press Escape again to close the dialog.
+
+The same order holds for a [Popover](/docs/components/popover), a [Select](/docs/components/select), and a submenu of a [DropdownMenu](/docs/components/dropdown-menu): each Escape closes one layer, from the top down.
+A [Tooltip](/docs/components/tooltip) is a layer too. Focus the Why scale? button and press Escape. The tooltip closes first, and the dialog stays open.
+
+A click outside the menu closes the menu only. A click on the scrim, outside every layer, closes the dialog.
+
+## Return focus to the right control
+
+Each layer returns focus to its own trigger when it closes:
+
+1. Closing the menu returns focus to the Scale button inside the dialog.
+2. Closing the dialog returns focus to the Export snippet button on the page.
+
+The ready `Dialog` has no trigger part. It records the focused element when it opens and returns focus there on close. See [focus return without a trigger](/docs/components/dialog#focus-return-without-a-trigger).
+
+## Choose where nested overlays mount
+
+Every kit overlay portals to `document.body` by default. A menu inside a dialog is not a DOM child of the dialog, but Kobalte still tracks it as a child layer.
+So pointer events inside the menu do not count as outside the dialog, and a modal dialog does not hide the menu from assistive technology.
+
+Set `mount` on `Dialog` or `PopoverContent`, or on the `Portal` part, when the overlay must render inside a themed subtree, for example an element with `data-cui-theme`.
+Nested overlays do not inherit the parent's `mount`. Pass the same node to each one that needs it.
+
+## Related
+
+- [Dialog](/docs/components/dialog) explains focus trapping and `onEscapeKeyDown`.
+- [DropdownMenu](/docs/components/dropdown-menu) lists the menu keyboard map.
+- [Build settings](/docs/patterns/build-settings) builds a full settings dialog.

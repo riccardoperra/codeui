@@ -1,0 +1,32 @@
+/*
+ * The demo scopes its overrides to .docs-brand so it does not retheme the
+ * docs site. In your app, write :root where this file writes .docs-brand.
+ */
+
+/* Every mode, including nested data-cui-theme scopes. */
+.docs-brand,
+.docs-brand [data-cui-theme] {
+	--cui-action-brand-base: #7c3aed;
+	--cui-action-brand-hover: #6d28d9;
+	--cui-action-brand-active: #5b21b6;
+	--cui-accent-focus: #a78bfa;
+	--cui-accent-selection: #7c3aed;
+	--cui-radius-md: 6px;
+	--cui-radius-sm: 6px;
+}
+
+/* One mode only. */
+.docs-brand [data-cui-theme="light"] {
+	--cui-surface-canvas: #faf5ff;
+	--cui-accent-focus: #7c3aed;
+}
+
+.docs-brand [data-cui-theme="dark"] {
+	--cui-surface-canvas: #120d1c;
+}
+
+/* One instance, with a class on the component. */
+.docs-brand .delete-snippet {
+	--cui-action-danger-base: #9b2c2c;
+	border-radius: 0;
+}

@@ -1,0 +1,158 @@
+---
+title: Button
+description: A labeled action with themes, sizes, and loading feedback.
+---
+
+## When to use
+
+Use `Button` for an action with a visible label, such as exporting a PNG or copying a snippet. Keep one primary action in each group.
+
+## When to choose another component
+
+Use [IconButton](/docs/components/icon-button) for a familiar icon action with a tooltip. Use [Link](/docs/components/link) for inline navigation.
+
+## Live demo
+
+<SolidDemo name="button/basic" />
+
+## Anatomy
+
+<Anatomy demo="button/anatomy" />
+
+| Export | Renders | `classes` key | `data-cui` | Role |
+| --- | --- | --- | --- | --- |
+| `Button` | `button` by default | None | `button` | Button |
+
+The leading icon uses an internal `span` without a `data-cui` marker. The loading overlay contains three animated dots.
+
+## Variants
+
+### Themes
+
+<SolidDemo name="button/themes" />
+
+`primary` uses brand fill. `secondary` is neutral. `tertiary` uses soft brand fill. `caution` and `negative` use warning and danger colors. There is no default theme, so specify one.
+
+### Sizes
+
+<SolidDemo name="button/sizes" />
+
+`xs`, `sm`, `md`, `lg`, and `xl` currently measure 30, 36, 40, 48, and 56px high. The default is `md`. Inkstone calls for 36px desktop controls and at least 40px phone targets.
+
+### Ghost
+
+<SolidDemo name="button/ghost" />
+
+`variant="ghost"` removes the idle fill. Theme colors appear on hover.
+
+### Pill
+
+<SolidDemo name="button/pill" />
+
+`pill` uses fully rounded corners.
+
+### Block
+
+<SolidDemo name="button/block" />
+
+`block` sets width to 100% and flex to 1. Reserve full-width actions for layouts such as stacked phone controls. Desktop dialog and toast actions stay compact.
+
+### Leading and trailing icons
+
+<SolidDemo name="button/icons" />
+
+`leftIcon` places an icon before the label. There is no `rightIcon` prop. Put a trailing icon after the label in `children`. Set `aria-hidden="true"` on decorative icons.
+
+### Render as a link
+
+<SolidDemo name="button/as-link" />
+
+`as="a"` accepts `href` and renders an anchor with button styling. An anchor with `href` retains native link semantics and uses Enter to follow the destination. Space does not activate an anchor. Use `Link` for ordinary navigation. A router component passed through `as` must forward the relevant props and ref.
+
+## States
+
+### Disabled
+
+<SolidDemo name="button/disabled" />
+
+`disabled` disables a native button and removes it from the tab order. Non-native controls only receive `aria-disabled` and `data-disabled`. Kobalte does not add an activation guard or remove `href` from a button rendered as an anchor. Guard navigation and handlers yourself for that case.
+
+### Loading
+
+<SolidDemo name="button/loading" />
+
+`loading` places animated dots over the existing content without changing its dimensions. It sets `data-loading` and blocks pointer events through CSS.
+It does not set `disabled` or `aria-busy`, and it does not prevent keyboard activation. Pair all three props while an action runs, as the example does.
+
+## Ready API
+
+### `Button`
+
+`Button` renders a styled Kobalte button.
+
+<PropsTable name="Button" />
+
+`ButtonProps` is exported from `@codeui/kit`. The root also exports `buttonStyles`, whose `button` recipe accepts the same visual variants. `buttonIcon` and `buttonText` are class names. `buttonTheme` and `buttonVars` expose the local theme contract. These styles alone add no semantics or event behavior.
+
+Inherited from Kobalte's [button contract](https://kobalte.dev/docs/core/components/button):
+
+<PropsTable name="ButtonInherited" />
+
+## Accessibility
+
+### Keyboard
+
+| Key | Action |
+| --- | --- |
+| Tab or Shift+Tab | Moves focus between enabled controls. |
+| Enter | Activates the focused button. |
+| Space | Activates the focused button. |
+
+### ARIA
+
+The default native element has button semantics. Kobalte supplies `role="button"` for non-native elements except anchors with `href`. It does not add keyboard activation handlers to arbitrary elements. Disabled controls expose `data-disabled`.
+The visible text supplies the accessible name. Hide decorative icons from assistive technology.
+Loading adds an internal `aria-label="Loading"` span. It does not provide a live region. Supply status feedback outside the button when completion needs an announcement.
+
+### Focus
+
+The button styles draw a focus-visible ring with the shared focus tokens.
+These controls do not open an overlay or move focus on their own. If your handler opens or closes an overlay, that overlay owns focus placement and restoration.
+
+## SSR notes
+
+The root and its children render on the server. There is no portal or client-only mount step in `Button`.
+Event handlers become active after hydration. Keep the initial props equal on the server and client.
+
+
+## Theming hooks
+
+The shared button styles read these global variables. `IconButton` uses the same variables.
+
+- `--cui-action-brand-{base,hover,active,text}` for primary.
+- `--cui-action-neutral-{base,hover,active,text}` for secondary and disabled controls.
+- `--cui-action-brand-soft-{base,hover,active,text}` for tertiary.
+- `--cui-action-danger-{base,hover,active,text}` for negative.
+- `--cui-action-caution-{base,hover,active,text}` for caution.
+- `--cui-control-height-{xs,sm,md,lg,xl}` and `--cui-font-size-{xs,sm,md,lg,xl}`.
+- `--cui-radius-{xs,sm,md,lg,xl,full}`, `--cui-space-{1,2,4,5,6}`, and `--cui-font-weight-medium`.
+- `--cui-border-width`, `--cui-text-default`, and `--cui-focus-{width,color,offset}`.
+- `--cui-motion-duration-{fast,normal}` and `--cui-motion-ease-out` for transitions and the loading overlay.
+
+Each brace expands to a separate variable. See [Inkstone color](/docs/design/color) and [motion](/docs/design/motion).
+The local `buttonStyles.buttonVars` contract controls height, font size, fills, text color, border, padding, and radius.
+
+Current kit sizes, borders, hover rules, and loading motion differ from parts of the Inkstone specification. These galleries document the shipped API.
+
+## Composition examples
+
+<SolidDemo name="button/composition" />
+
+Keep the export action primary, the copy action neutral, and the navigation link inline.
+
+## Related
+
+- [Button](/docs/components/button) provides a visible action label.
+- [IconButton](/docs/components/icon-button) provides a compact named action.
+- [Link](/docs/components/link) provides inline navigation.
+- [Tooltip](/docs/components/tooltip) explains an icon action on hover and focus.

@@ -1,0 +1,97 @@
+---
+title: Link
+description: An inline navigation link with an optional hover underline.
+---
+
+## When to use
+
+Use `Link` for navigation in text, such as a reference to a snippet or the source repository.
+
+## When to choose another component
+
+Use [Button](/docs/components/button) for an action or prominent navigation styled as a button. Use [IconButton](/docs/components/icon-button) for a compact icon action with a tooltip.
+
+## Live demo
+
+<SolidDemo name="link/basic" />
+
+## Anatomy
+
+<Anatomy demo="link/anatomy" />
+
+| Export | Renders | `classes` key | `data-cui` | Role |
+| --- | --- | --- | --- | --- |
+| `Link` | `a` by default | None | `link` | Link with an `href` |
+
+The root inherits its text color and line height from its parent.
+
+## Variants
+
+<SolidDemo name="link/variants" />
+
+The default has no underline. `variant="underline"` adds an underline on hover only. There are no theme, size, pill, loading, or icon-slot props. Place decorative icons in the children.
+
+## States
+
+### Disabled
+
+<SolidDemo name="link/disabled" />
+
+`disabled` prevents activation and removes the control from the tab order. Kobalte removes the destination from a disabled anchor and sets `aria-disabled`.
+
+## Ready API
+
+### `Link`
+
+`Link` renders a styled Kobalte link.
+
+<PropsTable name="Link" />
+
+The package root exports `Link` but does not export its props type. The table derives its props from the public component.
+
+Inherited from Kobalte's [link contract](https://kobalte.dev/docs/core/components/link):
+
+<PropsTable name="LinkInherited" />
+
+## Accessibility
+
+### Keyboard
+
+| Key | Action |
+| --- | --- |
+| Tab or Shift+Tab | Moves focus between enabled controls. |
+| Enter | Follows the focused link. |
+
+### ARIA
+
+The anchor with `href` has native link semantics. Disabled links expose `aria-disabled` and `data-disabled`.
+The visible text supplies the accessible name. Hide decorative icons from assistive technology.
+Choose link text that describes the destination. Include new-tab behavior in the label when relevant.
+
+### Focus
+
+The kit Link styles remove the outline and do not add a focus-visible ring. Supply a visible focus style in your app until the kit fixes this gap.
+These controls do not open an overlay or move focus on their own. If your handler opens or closes an overlay, that overlay owns focus placement and restoration.
+
+## SSR notes
+
+The root and its children render on the server. There is no portal or client-only mount step in `Link`.
+Event handlers become active after hydration. Keep the initial props equal on the server and client.
+
+
+## Theming hooks
+
+`Link.css.ts` reads no `--cui-*` variables. It inherits color and line height. Override its `class` for app-specific text and focus styles.
+
+## Composition examples
+
+<SolidDemo name="link/composition" />
+
+`as` can select a router component that forwards anchor props. This example uses an explicit anchor and includes `rel` for a new-tab destination.
+
+## Related
+
+- [Button](/docs/components/button) provides a visible action label.
+- [IconButton](/docs/components/icon-button) provides a compact named action.
+- [Link](/docs/components/link) provides inline navigation.
+- [Tooltip](/docs/components/tooltip) explains an icon action on hover and focus.

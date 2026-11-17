@@ -1,0 +1,111 @@
+---
+title: "Build settings"
+description: "Build CodeImage's settings dialog from the Dialog layout parts: a sidebar with search and sections, and one island of rows per group."
+---
+
+## Build the dialog
+
+<SolidDemo name="build-settings/basic" />
+
+The dialog is 1000×680 on a desktop and fills a phone less an 8px gutter. Set `size="settings"` on both `Positioner` and `Content`, and `chrome="inset"` on `Content` for the header with no divider and the ghost close button.
+
+`Content` with a `Sidebar` child lays out in two panes:
+
+- `Sidebar` is the 232px left pane. Its `search` holds the search field, and its children hold the `Nav`.
+- `Main` is the pane on the right. It holds the `Header` with the breadcrumb title and the close button, and the `Body` that scrolls.
+
+The breadcrumb is the `Title` part, so "Settings / General" names the dialog. There is no footer. A change applies at once.
+
+The demo has a little CSS of its own, for app content the kit does not draw: the breadcrumb's muted root, a section's intro line, the empty search message and a plain value.
+
+```css title="build-settings/settings.css"
+/* App content the kit does not draw: the breadcrumb, a section's intro line, the empty search and a plain value. */
+.settings-demo-crumbs {
+	display: flex;
+	align-items: center;
+	gap: var(--cui-space-2);
+}
+
+.settings-demo-crumbs > :not(:last-child) {
+	color: var(--cui-text-muted);
+	font-weight: var(--cui-font-weight-medium);
+}
+
+.settings-demo-intro {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--cui-space-2) var(--cui-space-4);
+	padding: 0 var(--cui-space-1);
+}
+
+.settings-demo-intro p,
+.settings-demo-empty {
+	margin: 0;
+	color: var(--cui-text-muted);
+	font-size: var(--cui-font-size-sm);
+}
+
+.settings-demo-value {
+	color: var(--cui-text-muted);
+	font-size: var(--cui-font-size-xs);
+	font-variant-numeric: tabular-nums;
+}
+```
+
+## Add the sections
+
+Put one `NavItem` per section in a `Nav` with an accessible label. Pass the section icon to `icon` and set `current` on the section on screen. `current` sets `aria-current="page"` and the neutral field fill. Select the section in `onClick`.
+
+At 768px and below, the header moves to the top, the icons hide, and the six sections wrap into two rows of three.
+
+## Add the rows
+
+Put each group of rows in a [`SettingsGroup`](/docs/components/settings-row) with a `title`. The group draws the title over one island with the canvas fill and 16px corners. Rows touch inside it.
+
+Each setting is a `SettingsRow`: the label and a one-line description on the left, the control on the right, at least 56px tall. Pass the control as a function, so the row hands it the `aria-labelledby` and `aria-describedby` that name it. Below 900px the control moves under the text.
+
+The demo recreates CodeImage's sections:
+
+- **General**: Language, a segmented control.
+- **Appearance**: Colour mode and Sidebar navigation as option cards, and Panel side as a segmented control. Option cards use `layout="wide"`, so they sit under the text at full width.
+- **Export**: Format and Scale, and a switch for the active tab.
+- **Experiments**: an intro line with Restore defaults, the Takumi switch, and the Layout and Theme cards. Restore defaults resets these three settings only.
+
+A segmented control is 84px per option in settings. Each option card's preview is an inline SVG schematic in the option's own colours.
+
+All settings live in one store, read by every row, so a setting found by search shows the same value as in its section.
+
+Inside a modal dialog, use a segmented control, a switch or option cards, not a select.
+
+## Add search
+
+The search field filters every section's rows by title and description. While the field holds text, the breadcrumb reads "Settings / Search", no section is current, and the body lists the matches under their section names. A click on a section clears the search.
+
+## Focus the current section on open
+
+The dialog would focus its first field, the search. On a phone that opens the keyboard over the settings. The demo calls `preventDefault()` in `onOpenAutoFocus` and focuses the current `NavItem` instead.
+
+## Keep keyboard access intact
+
+| Key | Action |
+| --- | --- |
+| Enter or Space on the trigger | Opens settings with no animation. |
+| Tab or Shift+Tab | Moves through the search, each section, the close button and the controls. Focus stays in the dialog. |
+| Up or Down arrow in the sections | Moves focus to the previous or next section, wrapping at the ends. Left and Right do the same. |
+| Home or End in the sections | Moves focus to the first or last section. |
+| Enter or Space on a section | Shows that section and marks it current. |
+| Escape | Closes the dialog and returns focus to the trigger. |
+
+The dialog renders `role="dialog"` named by the breadcrumb. The sections are a `nav` landmark with a list of buttons. Segmented controls use tab semantics, and switches expose their checked state.
+
+## Render on the server
+
+The trigger renders on the server. The portalled dialog renders on the client. Create the section and search signals inside the component, with the same initial values on the server and the client.
+
+## Related
+
+- [Dialog](/docs/components/dialog) documents the layout parts, sizes, chrome and motion.
+- [Segmented control](/docs/components/segmented-control) documents the row controls.
+- [Inkstone patterns](/docs/design/patterns) specifies settings rows and the settings dialog.

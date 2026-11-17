@@ -1,5 +1,5 @@
-import { style } from "@vanilla-extract/css";
-import { themeTokens } from "../../../foundation/themes.css";
+import { style } from "../../../foundation/layer.css";
+import { tokens } from "../../../foundation/cui.css";
 import { styleFieldMessage } from "../fieldStyle";
 
 export const label = style([
@@ -11,7 +11,9 @@ export const label = style([
 		xl: "md",
 	}),
 	{
-		fontWeight: themeTokens.fontWeight.medium,
+		fontWeight: tokens.font.weight.medium,
+		color: tokens.text.label,
 		userSelect: "none",
+		lineHeight: tokens.font.lineHeight.sm,
 	},
 ]);

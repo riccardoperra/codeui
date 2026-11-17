@@ -1,0 +1,35 @@
+@storybook/core v8.3.0
+
+info => Cleaning outputDir: ../../tools/baseline/storybook-static
+[33mThe CJS build of Vite's Node API is deprecated. See https://vitejs.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.[39m
+info => Loading presets
+WARN The "@storybook/addon-mdx-gfm" addon is meant as a migration assistant for Storybook 8.0; and will likely be removed in a future version.
+WARN It's recommended you read this document:
+WARN https://storybook.js.org/docs/writing-docs/mdx#markdown-tables-arent-rendering-correctly
+WARN 
+WARN Once you've made the necessary changes, you can remove the addon from your package.json and storybook config.
+SB_CORE-SERVER_0002 (CriticalPresetLoadError): Storybook failed to load the following preset: /Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/node_modules/.pnpm/storybook-solidjs-vite@1.0.0-beta.2_storybook@8.3.0_typescript@5.6.2_vite@5.4.4_@types+node@2_z7fts7wwrrihd4dshr5rqdsnbi/node_modules/storybook-solidjs-vite/preset.
+
+Please check whether your setup is correct, the Storybook dependencies (and their peer dependencies) are installed correctly and there are no package version clashes.
+
+If you believe this is a bug, please open an issue on Github.
+
+ReferenceError: module is not defined in ES module scope
+This file is being treated as an ES module because it has a '.js' file extension and '/Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/node_modules/.pnpm/storybook-solidjs-vite@1.0.0-beta.2_storybook@8.3.0_typescript@5.6.2_vite@5.4.4_@types+node@2_z7fts7wwrrihd4dshr5rqdsnbi/node_modules/storybook-solidjs-vite/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension.
+    at file:///Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/node_modules/.pnpm/storybook-solidjs-vite@1.0.0-beta.2_storybook@8.3.0_typescript@5.6.2_vite@5.4.4_@types+node@2_z7fts7wwrrihd4dshr5rqdsnbi/node_modules/storybook-solidjs-vite/preset.js:1:1
+    at ModuleJobSync.runSync (node:internal/modules/esm/module_job:673:37)
+    at ModuleLoader.importSyncForRequire (node:internal/modules/esm/loader:350:47)
+    at loadESMFromCJS (node:internal/modules/cjs/loader:1752:24)
+    at Module._compile (node:internal/modules/cjs/loader:1916:5)
+    at node:internal/modules/cjs/loader:2074:10
+    at Object.newLoader (/Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/node_modules/.pnpm/esbuild-register@3.6.0_esbuild@0.23.1/node_modules/esbuild-register/dist/node.js:2262:9)
+    at extensions..js (/Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/node_modules/.pnpm/esbuild-register@3.6.0_esbuild@0.23.1/node_modules/esbuild-register/dist/node.js:4833:24)
+    at Module.load (node:internal/modules/cjs/loader:1656:32)
+    at Module._load (node:internal/modules/cjs/loader:1448:12)
+
+More info: 
+
+    at loadPreset (/Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/node_modules/.pnpm/@storybook+core@8.3.0/node_modules/@storybook/core/dist/common/index.cjs:139445:13)
+undefined
+/Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/packages/storybook:
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 1: storybook build --output-dir /Users/riccardoperra/.t3/worktrees/codeui/t3-6fbe4be0-b9b5556357ab428d/tools/baseline/storybook-static --disable-telemetry

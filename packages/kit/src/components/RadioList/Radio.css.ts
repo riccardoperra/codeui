@@ -1,18 +1,19 @@
-import { createTheme, keyframes, style } from "@vanilla-extract/css";
-import { themeTokens } from "../../foundation/themes.css";
-import { tokens } from "../../foundation/contract.css";
+import { createTheme, globalStyle, recipe, style } from "../../foundation/layer.css";
+import { keyframes } from "@vanilla-extract/css";
+import { tokens } from "../../foundation/cui.css";
+import { transition } from "../../foundation/motion.css";
 import { componentStateStyles } from "@kobalte/vanilla-extract";
 import { FieldSizes } from "../Field/Field.css";
-import { recipe } from "@vanilla-extract/recipes";
 import { mapFontSizeValue } from "../../foundation/sizes";
 
 export const [radioTheme, radioVars] = createTheme({
-	inputColor: tokens.formAccentBorder,
-	inputBackground: tokens.brand,
-	inputInvalidBackground: tokens.critical,
-	inputText: tokens.foreground,
+	inputColor: tokens.text.hint,
+	inputBackground: tokens.action.brand.base,
+	inputInvalidBackground: tokens.action.danger.base,
+	inputText: tokens.action.brand.text,
 	inputSize: "",
 	labelSize: "",
+	inputFill: "transparent",
 });
 
 export const radioList = recipe({
@@ -20,12 +21,23 @@ export const radioList = recipe({
 		radioTheme,
 		{
 			display: "flex",
-			gap: "16px",
-			lineHeight: "1.5",
-			marginTop: themeTokens.spacing["1"],
+			gap: tokens.space["4"],
+			lineHeight: tokens.font.lineHeight.sm,
+			marginTop: tokens.space["1"],
 		},
 	],
 	variants: {
+		// `filled` gives the circle the field fill and drops its outline;
+		// `inline`, the default, draws the outline on the surface.
+		theme: {
+			filled: {
+				vars: {
+					[radioVars.inputColor]: "transparent",
+					[radioVars.inputFill]: tokens.surface.input,
+				},
+			},
+			inline: {},
+		},
 		orientation: {
 			horizontal: {
 				flexDirection: "row",
@@ -76,8 +88,9 @@ export const radioItem = style([
 	{
 		display: "flex",
 		alignItems: "center",
-		gap: themeTokens.spacing["3"],
+		gap: tokens.space["3"],
 		fontSize: radioVars.labelSize,
+		lineHeight: tokens.font.lineHeight.sm,
 	},
 ]);
 
@@ -88,10 +101,10 @@ export const radio = style([
 		position: "relative",
 		display: "block",
 		flexShrink: 0,
-		borderRadius: "100%",
-		transition: "background 200ms ease-in-out",
-		background: "transparent",
-		color: "#fff",
+		borderRadius: tokens.radius.full,
+		transition: transition(["background-color"]),
+		background: radioVars.inputFill,
+		color: radioVars.inputText,
 
 		":after": {
 			position: "absolute",
@@ -101,13 +114,13 @@ export const radio = style([
 			bottom: 0,
 			content: "",
 			borderRadius: "inherit",
-			border: `1px solid ${radioVars.inputColor}`,
+			border: `${tokens.border.width} solid ${radioVars.inputColor}`,
 			pointerEvents: "none",
 			color: "transparent",
 		},
 
 		":hover": {
-			background: tokens.formAccent,
+			background: tokens.surface.input,
 		},
 
 		selectors: {
@@ -146,7 +159,15 @@ export const indicator = style({
 	height: "50%",
 	position: "absolute",
 	backgroundColor: "currentColor",
-	borderRadius: "100%",
-	transition: "background 200ms ease-in-out",
-	animation: `${contentShow} 250ms ease-in-out`,
+	borderRadius: tokens.radius.full,
+	animation: `${contentShow} ${tokens.motion.duration.normal} ${tokens.motion.ease.out}`,
+	"@media": {
+		"(prefers-reduced-motion: reduce)": { animation: "none" },
+	},
+});
+
+// The input is visually hidden, so its keyboard focus rings the circle.
+globalStyle(`[data-cui="radio-list-item"]:has(input:focus-visible) ${radio}`, {
+	outline: `${tokens.focus.width} solid ${tokens.focus.color}`,
+	outlineOffset: tokens.focus.offset,
 });

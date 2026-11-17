@@ -1,0 +1,24 @@
+
+@codeui/kit v0.1.5
+
+Build tools:
+- typescript@^5.6.2
+- rollup@^4.21.3
+
+🥴 Import found in a type declaration file failed to resolve. Either this indicates that runtime resolution errors will occur, or (more likely) the types misrepresent the contents of the JavaScript files. Use -f json to see the imports that failed to resolve. https://github.com/arethetypeswrong/arethetypeswrong.github.io/blob/main/docs/problems/InternalResolutionError.md
+
+⚠️ A require call resolved to an ESM JavaScript file, which is an error in Node and some bundlers. CommonJS consumers will need to use a dynamic import. https://github.com/arethetypeswrong/arethetypeswrong.github.io/blob/main/docs/problems/CJSResolvesToESM.md
+
+
+┌───────────────────┬──────────────────────────────┐
+│                   │ "@codeui/kit"                │
+├───────────────────┼──────────────────────────────┤
+│ node10            │ 🥴 Internal resolution error │
+├───────────────────┼──────────────────────────────┤
+│ node16 (from CJS) │ ⚠️ ESM (dynamic import only) │
+│                   │ 🥴 Internal resolution error │
+├───────────────────┼──────────────────────────────┤
+│ node16 (from ESM) │ 🥴 Internal resolution error │
+├───────────────────┼──────────────────────────────┤
+│ bundler           │ 🥴 Internal resolution error │
+└───────────────────┴──────────────────────────────┘
