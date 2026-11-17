@@ -11,6 +11,8 @@ This guide connects a [`CommandMenu`](/docs/components/command-menu) to your app
 
 The menu does not listen for a shortcut. Your app binds one, once, at its root.
 
+This page already uses <kbd>Cmd</kbd>+<kbd>K</kbd> for search. The demo answers the shortcut only while its menu is open or focus is in the demo, and it stops the event before the search sees it. Your app owns the shortcut, so it needs neither check.
+
 1. Add a `keydown` listener on `window` in `onMount`, so it runs only on the client.
 2. Match <kbd>Cmd</kbd>+<kbd>K</kbd> on macOS and <kbd>Ctrl</kbd>+<kbd>K</kbd> elsewhere with `event.metaKey || event.ctrlKey`.
 3. Call `event.preventDefault()`. Browsers use <kbd>Ctrl</kbd>+<kbd>K</kbd> to focus the address bar.

@@ -11,22 +11,31 @@ export default function ShortcutDemo() {
 	const [open, setOpen] = createSignal(false);
 	const [last, setLast] = createSignal("");
 
-	// The app owns the shortcut. Bind it once, at the root of the app.
+	// An app binds the shortcut once, on `window`. This page already uses Cmd+K for its search, so
+	// the demo acts only while the menu is open or focus is in the demo, and listens in the capture
+	// phase to stop the event before the search sees it.
+	let root!: HTMLDivElement;
 	onMount(() => {
 		const onKeyDown = (event: KeyboardEvent) => {
 			if (event.isComposing || event.repeat) return;
 			if (!(event.metaKey || event.ctrlKey) || event.key.toLowerCase() !== "k") return;
+			if (!open() && !root.contains(document.activeElement)) return;
 			event.preventDefault();
+			event.stopPropagation();
 			setOpen(value => !value);
 		};
-		window.addEventListener("keydown", onKeyDown);
-		onCleanup(() => window.removeEventListener("keydown", onKeyDown));
+		window.addEventListener("keydown", onKeyDown, true);
+		onCleanup(() => window.removeEventListener("keydown", onKeyDown, true));
 	});
 
 	return (
-		<div style={{ display: "grid", gap: "var(--cui-space-3)", "justify-items": "start" }}>
+		<div
+			ref={root}
+			tabIndex={-1}
+			style={{ display: "grid", gap: "var(--cui-space-3)", "justify-items": "start" }}
+		>
 			<p style={{ margin: 0 }}>
-				Press <Kbd>⌘</Kbd> <Kbd>K</Kbd> or <Kbd>Ctrl</Kbd> <Kbd>K</Kbd> to open the menu.
+				Click here, then press <Kbd>⌘</Kbd> <Kbd>K</Kbd> or <Kbd>Ctrl</Kbd> <Kbd>K</Kbd> to open the menu.
 			</p>
 			<p aria-live="polite" style={{ margin: 0, color: "var(--cui-text-hint)" }}>
 				{last()}
