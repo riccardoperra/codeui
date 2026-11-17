@@ -10,6 +10,12 @@ const csrfMiddleware = createCsrfMiddleware({
 const llmMiddleware = createMiddleware().server(({ next, request }) => {
   const url = new URL(request.url);
 
+  // The prerender requests every path with a trailing slash, which the `{$}.md` routes do not match.
+  if (/\.(md|txt)\/$/.test(url.pathname)) {
+    url.pathname = url.pathname.slice(0, -1);
+    throw redirect({ href: url.href });
+  }
+
   // files like `/docs/page.md` are served by their routes
   if (
     url.pathname.startsWith(docsRoute) &&
