@@ -1,0 +1,306 @@
+import { fromObject, type Theme } from "./theme";
+
+/**
+ * Starting points: seven themes of CodeImage, with the colours of
+ * `packages/highlight/src/lib/themes/` in github.com/riccardoperra/codeimage, in the shape
+ * `createTheme` takes. They go through the same reader as an imported theme.
+ *
+ * Three of them are transcribed, because upstream does not write their colours as literals:
+ * - One Dark wraps `@codemirror/theme-one-dark`. Its editor colours are that package's, mapped
+ *   onto the keys of `defineEditorTheme` by the tag each key colours.
+ * - GitHub Dark and GitHub Light read `@primer/primitives` 7.17.1. The values are that release's.
+ *
+ * What the format cannot say is left out: the extra `HighlightStyle` rules some themes add beside
+ * `defineEditorTheme` (control keywords in the VS Code themes, definitions in Dracula).
+ */
+const sources = [
+	{
+		id: "oneDark",
+		editorTheme: {
+			darkMode: true,
+			// From @codemirror/theme-one-dark (MIT, Copyright Marijn Haverbeke and others), which
+			// follows github.com/one-dark/vscode-one-dark-theme.
+			selection: { backgroundColor: "#3E4451", activeLine: "#6699ff0b" },
+			cursor: { color: "#528bff" },
+			lineNumbers: { color: "#7d8799" },
+			autocomplete: { background: "#353a42", selectedBackground: "#2c313a", selectedColor: "#abb2bf" },
+			highlight: {
+				base: "#abb2bf",
+				background: "#282c34",
+				keywords: "#c678dd",
+				strings: "#98c379",
+				comments: "#7d8799",
+				numbers: "#e5c07b",
+				regexp: "#56b6c2",
+				tag: "#e5c07b",
+				variableName: "#e06c75",
+				delimiters: "#abb2bf",
+				function: "#61afef",
+				className: "#e5c07b",
+				typeName: "#e5c07b",
+				propertyName: "#e06c75",
+				variableNameSpecial: "#d19a66",
+				self: "#e5c07b",
+				attrName: "#e06c75",
+				boolean: "#d19a66",
+				atom: "#d19a66",
+				annotation: "#e5c07b",
+				meta: "#7d8799",
+				operators: "#56b6c2",
+			},
+		},
+		properties: { darkMode: true, label: "One dark", previewBackground: "#814CE2", terminal: { accent: "#c678dd", main: "#282c34", text: "#e5c07b" } },
+	},
+	{
+		id: "vsCodeDark2026",
+		editorTheme: {
+			// Colors from microsoft/vscode fde6187a0, MIT, Copyright Microsoft Corporation.
+			darkMode: true,
+			selection: { backgroundColor: "#276782dd" },
+			cursor: { color: "#BBBEBF" },
+			lineNumbers: { color: "#858889" },
+			autocomplete: { background: "#202122", border: "#2A2B2C", selectedBackground: "#FFFFFF26", selectedColor: "#bfbfbf" },
+			highlight: {
+				base: "#BBBEBF",
+				background: "#121314",
+				keywords: "#ff7b72",
+				strings: "#a5d6ff",
+				comments: "#8b949e",
+				numbers: "#b5cea8",
+				function: "#d2a8ff",
+				tag: "#7ee787",
+				typeName: "#4EC9B0",
+				className: "#4EC9B0",
+				propertyName: "#c9d1d9",
+				variableName: "#c9d1d9",
+				variableNameSpecial: "#79c0ff",
+				regexp: "#a5d6ff",
+				boolean: "#569cd6",
+				attrName: "#9cdcfe",
+				attrValue: "#a5d6ff",
+				moduleKeyword: "#C586C0",
+				self: "#79c0ff",
+				operators: "#d4d4d4",
+				punctuation: "#BBBEBF",
+				delimiters: "#BBBEBF",
+				brackets: "#BBBEBF",
+				paren: "#BBBEBF",
+				annotation: "#d2a8ff",
+				meta: "#569cd6",
+				atom: "#569cd6",
+				quote: "#7ee787",
+			},
+		},
+		properties: {
+			darkMode: true,
+			label: "VSCode Dark 2026",
+			previewBackground: "linear-gradient(135deg, #3994BC 0%, #d2a8ff 100%)",
+			terminal: { main: "#121314", text: "#BBBEBF", tabs: { background: "#191A1B", activeTabBackground: "#121314", inactiveTabBackground: "#191A1B", textColor: "#bfbfbf" } },
+		},
+	},
+	{
+		id: "vsCodeLight2026",
+		editorTheme: {
+			// Colors from microsoft/vscode fde6187a0, MIT, Copyright Microsoft Corporation.
+			darkMode: false,
+			selection: { backgroundColor: "#0069CC40" },
+			cursor: { color: "#202020" },
+			lineNumbers: { color: "#606060" },
+			autocomplete: { background: "#FAFAFD", border: "#E4E5E6", selectedBackground: "#00000025", selectedColor: "#202020" },
+			highlight: {
+				base: "#202020",
+				background: "#FFFFFF",
+				keywords: "#cf222e",
+				strings: "#0a3069",
+				comments: "#6e7781",
+				numbers: "#098658",
+				function: "#8250df",
+				tag: "#116329",
+				typeName: "#267f99",
+				className: "#267f99",
+				propertyName: "#1f2328",
+				variableName: "#1f2328",
+				variableNameSpecial: "#0550ae",
+				regexp: "#0a3069",
+				boolean: "#0000ff",
+				attrName: "#e50000",
+				attrValue: "#0a3069",
+				moduleKeyword: "#AF00DB",
+				self: "#0550ae",
+				operators: "#000000",
+				punctuation: "#202020",
+				delimiters: "#202020",
+				brackets: "#202020",
+				paren: "#202020",
+				annotation: "#8250df",
+				meta: "#0000ff",
+				atom: "#0000ff",
+				quote: "#116329",
+			},
+		},
+		properties: {
+			darkMode: false,
+			label: "VSCode Light 2026",
+			previewBackground: "linear-gradient(135deg, #0069CC 0%, #8250df 100%)",
+			terminal: { main: "#FFFFFF", text: "#202020", tabs: { background: "#FAFAFD", activeTabBackground: "#FFFFFF", inactiveTabBackground: "#FAFAFD", textColor: "#202020" } },
+		},
+	},
+	{
+		id: "githubDark",
+		editorTheme: {
+			// Colours of @primer/primitives 7.17.1, dark (MIT, Copyright GitHub Inc.).
+			darkMode: true,
+			cursor: { color: "#e6edf3" },
+			lineNumbers: { color: "#848d97" },
+			selection: { activeLine: "rgba(110,118,129,0.1)", backgroundColor: "rgba(56,139,253,0.4)", color: "#e6edf3" },
+			autocomplete: { background: "#161b22", border: "#30363d", selectedBackground: "rgba(110,118,129,0.1)", selectedColor: "#e6edf3" },
+			highlight: {
+				base: "#e6edf3",
+				background: "#0d1117",
+				tag: "#7ee787",
+				delimiters: "#b1bac4",
+				numbers: "#a5d6ff",
+				punctuation: "#f2cc60",
+				className: "#ffa657",
+				brackets: "#f2cc60",
+				keywords: "#ff7b72",
+				strings: "#a5d6ff",
+				propertyName: "#d2a8ff",
+				variableName: "#e6edf3",
+				regexp: "#7ee787",
+				comments: "#8b949e",
+				function: "#d2a8ff",
+				typeName: "#79c0ff",
+			},
+		},
+		properties: {
+			darkMode: true,
+			label: "GitHub Dark",
+			previewBackground: "linear-gradient(135deg, #E233FF 0%, #FF6B00 100%)",
+			terminal: { accent: "#ff7b72", main: "#0d1117", text: "#e6edf3", tabs: { inactiveTabBackground: "#21262d" } },
+		},
+	},
+	{
+		id: "githubLight",
+		editorTheme: {
+			// Colours of @primer/primitives 7.17.1, light (MIT, Copyright GitHub Inc.).
+			darkMode: false,
+			cursor: { color: "#1F2328" },
+			lineNumbers: { color: "#656d76" },
+			selection: { activeLine: "rgba(234,238,242,0.5)", backgroundColor: "rgba(84,174,255,0.4)", color: "#1F2328" },
+			autocomplete: { background: "#32383f", border: "#424a53", selectedBackground: "#424a53", selectedColor: "#f6f8fa" },
+			highlight: {
+				base: "#1F2328",
+				background: "#ffffff",
+				tag: "#116329",
+				delimiters: "#6e7781",
+				numbers: "#0a3069",
+				punctuation: "#bf8700",
+				className: "#953800",
+				brackets: "#bf8700",
+				keywords: "#cf222e",
+				strings: "#0a3069",
+				propertyName: "#0a3069",
+				variableName: "#953800",
+				regexp: "#116329",
+				comments: "#57606a",
+				attrName: "#0550ae",
+				function: "#6639ba",
+				typeName: "#0550ae",
+			},
+		},
+		properties: {
+			darkMode: false,
+			label: "GitHub Light",
+			previewBackground: "linear-gradient(-45deg, rgba(73,84,222,1) 0%,rgba(73,221,216,1) 100%)",
+			terminal: { accent: "#cf222e", main: "#ffffff", text: "#1F2328", tabs: { inactiveTabBackground: "#eaeef2" } },
+		},
+	},
+	{
+		id: "nightOwlTheme",
+		editorTheme: {
+			darkMode: true,
+			selection: { backgroundColor: "#1d3b53", color: "#D0D8E5" },
+			cursor: { color: "#D0D8E5" },
+			lineNumbers: { color: "#4b6479" },
+			autocomplete: { background: "#011423", border: "#5f7e97", selectedBackground: "#011220", selectedColor: "#F78C6C" },
+			highlight: {
+				className: "#ffcb8b",
+				typeName: "#c5e478",
+				propertyName: "#82AAFF",
+				keywords: "#c792ea",
+				delimiters: "#5f7e97",
+				boolean: "#ff5874",
+				strings: "#ffcb8b",
+				regexp: "#5ca7e4",
+				tag: "#caece6",
+				comments: "#637777",
+				variableName: "#82AAFF",
+				annotation: "#c792ea",
+				base: "#D0D8E5",
+				numbers: "#F78C6C",
+				paren: "#e2b93d",
+				function: "#82AAFF",
+			},
+		},
+		properties: {
+			darkMode: true,
+			label: "Night Owl",
+			previewBackground: "linear-gradient(140deg, rgb(9, 171, 241), rgb(5, 105, 148), rgb(4, 84, 118), rgb(6, 119, 167))",
+			terminal: { accent: "#c792ea", main: "#041c31", text: "#D0D8E5", tabs: { background: "#132d43", inactiveTabBackground: "#021525" } },
+		},
+	},
+	{
+		id: "dracula",
+		editorTheme: {
+			darkMode: true,
+			selection: { backgroundColor: "#BD93F925", color: "#f8f8f2" },
+			cursor: { color: "#f8f8f0" },
+			lineNumbers: { color: "#6272A4" },
+			autocomplete: { background: "#282a36", border: "#6272A4", selectedColor: "#f8f8f2", selectedBackground: "#BD93F950" },
+			highlight: {
+				comments: "#BD93F9",
+				strings: "#f1fa8c",
+				numbers: "#BD93F9",
+				variableName: "#50FA7B",
+				variableNameSpecial: "#f8f8f2",
+				operators: "#FF79C6",
+				keywords: "#FF79C6",
+				atom: "#BD93F9",
+				attrName: "#8BE9FD",
+				attrValue: "#f8f8f2",
+				propertyName: "#66d9ef",
+				tag: "#50FA7B",
+				function: "#50FA7B",
+				regexp: "#f1fa8c",
+				base: "#f8f8f2",
+				delimiters: "#FF5555",
+				brackets: "#8BE9FD",
+				self: "#BD93F9",
+				annotation: "#FF79C6",
+				punctuation: "#8BE9FD",
+				className: "#8BE9FD",
+				moduleKeyword: "#FF79C6",
+				typeName: "#8BE9FD",
+				boolean: "#BD93F9",
+				meta: "#50FA7B",
+			},
+		},
+		properties: {
+			darkMode: true,
+			label: "Dracula",
+			previewBackground: "linear-gradient(135deg,  rgba(171,73,222,1) 0%,rgba(73,84,222,1) 100%)",
+			terminal: { accent: "#FF79C6", main: "#282a36", text: "#BD93F9" },
+		},
+	},
+];
+
+export const presets: Theme[] = sources.map(source => {
+	const result = fromObject(source);
+	if ("errors" in result) throw new Error(`Preset ${source.id}: ${result.errors.join(" ")}`);
+	return result.theme;
+});
+
+export const findPreset = (id: string) => presets.find(preset => preset.id === id);
+/** The theme a first visit starts from. */
+export const startPreset = presets[1];

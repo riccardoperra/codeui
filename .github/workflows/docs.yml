@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'apps/docs/**'
+      - 'apps/examples/**'
       - 'tools/docs/**'
       - 'packages/kit/**'
       - 'packages/docs-demos/**'
@@ -16,6 +17,7 @@ on:
   pull_request:
     paths:
       - 'apps/docs/**'
+      - 'apps/examples/**'
       - 'tools/docs/**'
       - 'packages/kit/**'
       - 'packages/docs-demos/**'

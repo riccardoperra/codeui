@@ -1,0 +1,310 @@
+/* The side panel is 360px. The content island takes the rest (DESIGN.md §8). */
+.pmi-body {
+	display: grid;
+	grid-template-columns: 360px minmax(0, 1fr);
+	gap: var(--cui-space-2);
+	min-height: 0;
+}
+
+.pmi-doc-name {
+	padding-inline: var(--cui-space-2);
+}
+
+/* "Open" and "Close" swap in place, so the label reserves the wider of the two. */
+.pmi-inspect {
+	min-width: 176px;
+}
+
+/* --- Side panel ------------------------------------------------------------------------------ */
+
+/* Positioned, so a visually hidden label inside the list is clipped with it and never stretches the page. */
+.pmi-side {
+	position: relative;
+	padding: var(--cui-space-2);
+}
+
+.pmi-side-body {
+	display: flex;
+	flex-direction: column;
+	gap: var(--cui-space-4);
+	min-height: 100%;
+}
+
+.pmi-side-footer {
+	display: flex;
+	justify-content: space-between;
+	gap: var(--cui-space-2);
+	margin-top: auto;
+	padding: var(--cui-space-2);
+}
+
+.pmi-section {
+	display: grid;
+	gap: var(--cui-space-3);
+	padding: var(--cui-space-1) var(--cui-space-2) var(--cui-space-3);
+}
+
+/* A nav row: 36px, radius 10, a fill on hover and on the current entry, never a line or an accent. */
+.pmi-nav {
+	display: grid;
+}
+
+.pmi-nav-row {
+	display: flex;
+	align-items: center;
+	gap: var(--cui-space-2);
+	width: 100%;
+	min-height: var(--cui-control-height-sm);
+	padding: 0 var(--cui-space-2);
+	border: 0;
+	border-radius: var(--cui-radius-nav);
+	background: none;
+	color: var(--cui-text-muted);
+	font: inherit;
+	font-size: var(--cui-font-size-sm);
+	font-weight: var(--cui-font-weight-medium);
+	line-height: var(--cui-font-line-height-snug);
+	text-align: start;
+	cursor: pointer;
+}
+
+.pmi-nav-row > :first-child {
+	flex: 1;
+	min-width: 0;
+}
+
+/* Sections sit under their page, behind the 20px leading slot. */
+.pmi-nav-child {
+	padding-inline-start: calc(var(--cui-space-2) + 20px);
+	font-weight: var(--cui-font-weight-normal);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.pmi-nav-row:hover {
+		background: var(--cui-surface-input);
+	}
+}
+
+.pmi-nav-row[aria-current] {
+	background: var(--cui-surface-input);
+	color: var(--cui-text-default);
+}
+
+/* The dock takes a script focus when its button opens it, which a mouse user must not see as a ring (DESIGN.md §7.3). */
+.pmi-nav-row:focus-visible,
+[data-cui-input="keyboard"] .pmi-dock:focus-visible {
+	outline: var(--cui-focus-width) solid var(--cui-focus-color);
+	outline-offset: var(--cui-focus-offset);
+}
+
+.pmi-dock {
+	outline: none;
+}
+
+/* The selected scenario is a card. Its height is reserved for the longest text, so choosing another never moves the list under it. */
+.pmi-scenario {
+	display: flex;
+	flex-direction: column;
+	gap: var(--cui-space-3);
+	min-height: 268px;
+	padding: var(--cui-space-3);
+	border-radius: var(--cui-radius-md);
+	background: var(--cui-surface-input);
+}
+
+/* The hint sits on the card's fill, so it takes the next step up. */
+.pmi-scenario [data-cui="alert-root"] {
+	background: var(--cui-surface-field-hover);
+}
+
+/* DESIGN.md §3 sets a list row in Label, 14px. The kit's Listbox sets 16px at this size. */
+.pmi-section [data-cui="listbox-item"] {
+	font-size: var(--cui-font-size-sm);
+}
+
+.pmi-scenario-actions {
+	display: flex;
+	align-items: center;
+	gap: var(--cui-space-2);
+	margin-top: auto;
+}
+
+
+.pmi-lab {
+	gap: var(--cui-space-6);
+}
+
+.pmi-lab-group {
+	display: grid;
+	gap: var(--cui-space-3);
+	justify-items: start;
+}
+
+.pmi-lab-group > [data-cui="slider-root"],
+.pmi-lab-group > [data-cui="segmentedControl"],
+.pmi-lab-group > [data-cui="switch-root"] {
+	width: 100%;
+}
+
+/* Each bulk edit next to its last result, in the same two columns, so the pair compares at a glance. */
+.pmi-lab-compare {
+	display: grid;
+	grid-template-columns: auto minmax(0, 1fr);
+	align-items: center;
+	gap: var(--cui-space-2) var(--cui-space-3);
+	width: 100%;
+}
+
+.pmi-lab-compare > button {
+	width: 100%;
+}
+
+/* --- Content island -------------------------------------------------------------------------- */
+
+.pmi-main {
+	position: relative;
+	display: grid;
+	min-height: 0;
+	overflow: hidden;
+	--pmi-dock-height: min(56%, 460px);
+}
+
+/* The top padding clears the floating bar. With the inspector open, the bottom clears the dock, so the last page still scrolls into view. */
+.pmi-scroll {
+	padding: calc(var(--cui-control-height-sm) + var(--cui-space-8)) var(--cui-space-6) var(--cui-space-6);
+}
+
+@media (max-width: 1180px) {
+	.pmi-scroll {
+		padding-inline: var(--cui-space-4);
+	}
+}
+
+.pmi-main[data-inspector] .pmi-scroll {
+	padding-bottom: calc(var(--pmi-dock-height) + var(--cui-space-6));
+}
+
+/* A floating surface (DESIGN.md §2.1, §5.2): the bar and the dock overlay the paper and take no layout space. */
+.pmi-bar,
+.pmi-dock {
+	position: absolute;
+	z-index: 2;
+	border-radius: var(--cui-radius-command);
+	background: var(--cui-surface-dialog);
+	box-shadow:
+		inset 0 0 0 1px var(--cui-border-menu),
+		var(--cui-shadow-dialog);
+}
+
+.pmi-bar {
+	top: var(--cui-space-2);
+	left: 50%;
+	display: flex;
+	align-items: center;
+	gap: var(--cui-space-0-5);
+	max-width: calc(100% - var(--cui-space-4));
+	padding: var(--cui-space-1-5);
+	transform: translateX(-50%);
+}
+
+.pmi-bar-gap {
+	width: var(--cui-space-2);
+}
+
+.pmi-bar-note {
+	display: flex;
+	align-items: center;
+	gap: var(--cui-space-2);
+	padding-inline: var(--cui-space-2);
+	color: var(--cui-text-muted);
+	white-space: nowrap;
+}
+
+/* The widest block name reserves the trigger's width, so moving the caret never resizes the bar. */
+.pmi-block-label {
+	min-width: 88px;
+	text-align: start;
+}
+
+/* "On" is the soft accent wash, not a filled control (DESIGN.md §2.3). */
+.pmi-bar .pmi-on,
+.pmi-bar .pmi-on:hover {
+	background: var(--cui-action-brand-soft-base);
+	color: var(--cui-action-brand-soft-text);
+}
+
+.pmi-find {
+	display: flex;
+	align-items: center;
+	gap: var(--cui-space-0-5);
+}
+
+.pmi-find-field {
+	width: 220px;
+	min-width: 0;
+}
+
+/* Reserved for "999 of 9999", so the buttons hold still while the count changes. */
+.pmi-find-count {
+	min-width: 88px;
+	padding-inline: var(--cui-space-2);
+	text-align: end;
+	white-space: nowrap;
+}
+
+.pmi-dock {
+	inset: auto var(--cui-space-2) var(--cui-space-2);
+	display: grid;
+	grid-template-rows: auto minmax(0, 1fr);
+	height: var(--pmi-dock-height);
+	overflow: hidden;
+}
+
+.pmi-dock-tall {
+	height: calc(100% - var(--cui-space-4));
+}
+
+.pmi-dock-header {
+	display: flex;
+	align-items: center;
+	gap: var(--cui-space-1);
+	padding: var(--cui-space-1-5) var(--cui-space-1-5) var(--cui-space-1-5) var(--cui-space-4);
+}
+
+.pmi-dock-body {
+	min-height: 0;
+	overflow: hidden;
+}
+
+@media (max-width: 768px) {
+	.pmi-body {
+		grid-template-columns: minmax(0, 1fr);
+	}
+	.pmi-scroll {
+		padding: calc(var(--cui-control-height-md) + var(--cui-space-6)) var(--cui-space-2) var(--cui-space-2);
+	}
+	.pmi-main {
+		--pmi-dock-height: 62%;
+	}
+	.pmi-nav-row {
+		min-height: var(--cui-control-height-md);
+	}
+	/* Find takes the bar's full width, so the field keeps room for a word. */
+	.pmi-bar:has(.pmi-find) {
+		width: calc(100% - var(--cui-space-4));
+	}
+	.pmi-find,
+	.pmi-find-field {
+		flex: 1;
+		width: auto;
+	}
+	.pmi-find-count {
+		min-width: 0;
+	}
+	.pmi-side-body {
+		min-height: 0;
+	}
+	.pmi-side-body > .pmi-section {
+		padding-inline: 0;
+	}
+}

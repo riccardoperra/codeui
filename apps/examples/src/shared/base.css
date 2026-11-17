@@ -1,0 +1,180 @@
+@import "@fontsource-variable/jetbrains-mono/wght.css";
+
+/* The kit's family name is "Inter var", so the face is declared under that name. */
+@font-face {
+	font-family: "Inter var";
+	font-style: normal;
+	font-weight: 100 900;
+	font-display: swap;
+	src: url("@fontsource-variable/inter/files/inter-latin-wght-normal.woff2") format("woff2-variations");
+}
+
+@layer reset {
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+	body,
+	h1,
+	h2,
+	h3,
+	p,
+	ul,
+	ol,
+	dl,
+	dd,
+	figure,
+	table {
+		margin: 0;
+	}
+	ul,
+	ol {
+		padding: 0;
+		list-style: none;
+	}
+	table {
+		border-collapse: collapse;
+	}
+	th {
+		text-align: start;
+		font-weight: inherit;
+	}
+}
+
+html,
+body,
+#root {
+	height: 100%;
+}
+
+body {
+	background: var(--cui-surface-panel);
+	color: var(--cui-text-default);
+	font-family: var(--cui-font-family-sans);
+	font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+	font-size: var(--cui-font-size-caption);
+	line-height: var(--cui-font-line-height-normal);
+	-webkit-font-smoothing: antialiased;
+}
+
+/*
+ * Inkstone layout (DESIGN.md §8): the page is the lighter surface, with an 8px inset and an 8px
+ * gap between islands. The header has no bar: it is the first row, and its edges align with the
+ * islands below.
+ */
+.ex-page {
+	display: grid;
+	grid-template-rows: auto minmax(0, 1fr);
+	gap: var(--cui-space-2);
+	height: 100dvh;
+	padding: var(--cui-space-2);
+}
+
+.ex-header {
+	display: flex;
+	align-items: center;
+	gap: var(--cui-space-2);
+	/* 36px on desktop: the kit's `sm` control height. */
+	min-height: var(--cui-control-height-sm);
+	/* The brand lines up with the first item inside a 22px island corner. */
+	padding-inline-start: var(--cui-space-2);
+}
+
+.ex-header-spacer {
+	flex: 1;
+}
+
+.ex-brand {
+	display: flex;
+	align-items: center;
+	gap: var(--cui-space-2);
+	color: var(--cui-text-default);
+	font-size: var(--cui-font-size-sm);
+	font-weight: var(--cui-font-weight-semibold);
+	line-height: var(--cui-font-line-height-snug);
+	white-space: nowrap;
+}
+
+.ex-brand-mark {
+	display: grid;
+	place-items: center;
+	width: 24px;
+	height: 24px;
+	border-radius: var(--cui-radius-badge);
+	background: var(--cui-surface-input);
+	color: var(--cui-text-default);
+}
+
+.ex-island {
+	min-width: 0;
+	border-radius: var(--cui-radius-command);
+	background: var(--cui-surface-canvas);
+}
+
+.ex-scroll {
+	/* Positioned, so a visually hidden child is clipped here and cannot stretch the document. */
+	position: relative;
+	overflow: auto;
+	scrollbar-color: var(--cui-surface-scroll-thumb) transparent;
+	scrollbar-width: thin;
+}
+
+.ex-tabular {
+	font-variant-numeric: tabular-nums;
+}
+
+.ex-truncate {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.ex-sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
+
+/* A menu row's leading icon slot is 20px wide, so labels align with or without an icon. */
+.ex-menu-icon {
+	display: inline-grid;
+	place-items: center;
+	width: 20px;
+	margin-inline-end: var(--cui-space-2);
+	color: var(--cui-text-muted);
+}
+
+.ex-made-with {
+	color: var(--cui-text-muted);
+	font-size: var(--cui-font-size-xs);
+	line-height: var(--cui-font-line-height-snug);
+	white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+	.ex-header {
+		min-height: 40px;
+		padding-inline-start: var(--cui-space-1);
+	}
+	.ex-hide-phone {
+		display: none !important;
+	}
+}
+
+@media (min-width: 769px) {
+	.ex-only-phone {
+		display: none !important;
+	}
+}
+
+/*
+ * The kit's progress track is `--cui-surface-input-accent`, which is white in the light theme and
+ * vanishes on the page and on an open accordion section. One fill step above a field shows on every surface.
+ */
+[data-cui="progress-track"] {
+	background: var(--cui-surface-field-hover);
+}

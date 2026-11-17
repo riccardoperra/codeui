@@ -1,6 +1,7 @@
 import react from '@vitejs/plugin-react';
 import { tanstackStart } from '@tanstack/react-start/plugin/vite';
-import { defineConfig } from 'vite';
+import { existsSync } from 'node:fs';
+import { defineConfig, type Plugin } from 'vite';
 import tailwindcss from '@tailwindcss/vite';
 import { fumadocsMdx } from 'fumadocs-mdx/vite';
 import { nitro } from 'nitro/vite';
@@ -8,17 +9,40 @@ import { remarkKit } from './src/lib/remark-kit';
 import { docsUrls, staticFiles } from './scripts/docs-urls.mjs';
 
 // Crawling from `/` finds the HTML pages. The Markdown routes are not linked as `<a>`, so they are listed.
-const prerenderPages = ['/', '/llms.txt', '/llms-full.txt', ...docsUrls().flatMap((url) => staticFiles(url).filter((f) => !f.endsWith('.html')))];
+const prerenderPages = ['/', '/examples', '/llms.txt', '/llms-full.txt', ...docsUrls().flatMap((url) => staticFiles(url).filter((f) => !f.endsWith('.html')))];
+
+/**
+ * `/examples/<slug>/` is a static page from `public/examples`. Every host serves a folder's
+ * `index.html`, but Vite's dev server only serves public files by their full name.
+ */
+const exampleIndex = (): Plugin => ({
+  name: 'codeui:example-index',
+  configureServer(server) {
+    server.middlewares.use((req, _res, next) => {
+      const [pathname, query] = (req.url ?? '').split('?');
+      if (/^\/examples\/[\w-]+\/$/.test(pathname) && existsSync(`public${pathname}index.html`)) {
+        req.url = `${pathname}index.html${query ? `?${query}` : ''}`;
+      }
+      next();
+    });
+  },
+});
 
 export default defineConfig({
   preview: { port: 6150 },
   server: { port: 6150 },
   plugins: [
+    exampleIndex(),
     fumadocsMdx({ globalOptions: { mdxOptions: { remarkPlugins: (plugins) => [remarkKit, ...plugins] } } }),
     tailwindcss(),
     tanstackStart({
       // `docs/button.html` rather than `docs/button/index.html`: Cloudflare Pages redirects `/x` to `/x/` for the latter.
-      prerender: { enabled: true, autoSubfolderIndex: false },
+      prerender: {
+        enabled: true,
+        autoSubfolderIndex: false,
+        // The example apps are static files already. The crawler finds their links on `/examples`.
+        filter: (page) => !page.path.startsWith('/examples/'),
+      },
       pages: prerenderPages.map((path) => ({ path })),
     }),
     react(),
