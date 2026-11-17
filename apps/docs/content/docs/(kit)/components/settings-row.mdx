@@ -1,0 +1,204 @@
+---
+title: "SettingsRow"
+description: "Settings rows with a label, a description, and a control, grouped on islands."
+---
+
+## When to use
+
+Use `SettingsRow` for one preference in a settings dialog or panel: a title, a one-line description, and the control that changes it. Use `SettingsGroup` to put related rows under one heading on one island, as in a settings dialog's Interface, Colours, and Sidebar groups.
+
+## When to choose another component
+
+Use a field's own `label` and `description` when the field stands alone in a form, as in [TextField](/docs/components/text-field) or [Switch](/docs/components/switch). Use [OptionCard](/docs/components/option-card) inside a wide row when a preview helps people choose. Settings navigation, search, and deep links belong to your app. The kit has no section component.
+
+## Live demo
+
+<SolidDemo name="settings-row/basic" />
+
+`SettingsGroup` renders a heading and an island. Each `SettingsRow` puts its label and description on the left and its control on the right. Pass the control as a function child to receive the `aria-labelledby` and `aria-describedby` props that connect the row text to the control.
+
+## Anatomy
+
+| Export | Renders | `classes` key | `data-cui` | Role |
+| --- | --- | --- | --- | --- |
+| `Row` | div | `root` | `settings-row-root` | group in the ready row |
+| `Label` | span; label with `for` | `label` | `settings-row-label` | Row and control name |
+| `Description` | div | `description` | `settings-row-description` | Row and control description |
+| `Details` | div | `details` | `settings-row-details` | Extra content |
+| `Control` | div | `control` | `settings-row-control` | Control slot |
+| `Picture` | div | `picture` | `settings-row-picture` | Leading content |
+| `Marker` | span | `marker` | `settings-row-marker` | Badge after the label |
+| `Group` | section | `root` | `settings-group-root` | region when named |
+| `GroupTitle` | h3 | `title` | `settings-group-title` | Group heading |
+| `GroupDescription` | p | `description` | `settings-group-description` | Group description |
+| `GroupContent` | div | `content` | `settings-group-content` | The island |
+
+Row keys go in `SettingsRow` `classes`. Group keys go in `SettingsGroup` `classes`. The ready row renders `Picture`, `Description`, `Details`, and `Marker` only when you supply them.
+
+## Variants
+
+### Inline and wide
+
+<SolidDemo name="settings-row/wide" />
+
+`layout="inline"` is the default. The control sits on the right and the text column takes the rest. `layout="wide"` puts the control under the text at full width, for option cards, sliders, or any control wider than half the row.
+
+### Compact control
+
+<SolidDemo name="settings-row/compact-control" />
+
+Below 900px, inline rows put the control under the text. `compactControl` keeps a small control, such as a switch, on the right at every width. The breakpoint follows Inkstone §9.2 and uses the viewport width, not the row width.
+
+### Markers, pictures, and details
+
+<SolidDemo name="settings-row/markers" />
+
+`marker` renders after the label, inside it, so a `New` or `Experimental` badge joins the control's accessible name. `picture` renders before the text and spans every text line. `details` renders under the description for content such as requirements, links, or progress.
+
+A button keeps its visible text as its name. Do not spread the control props on it. Pass the row label as its description instead, as `aria-describedby={control["aria-labelledby"]}` does in this demo, so it reads as "Download, On-device model".
+
+## States
+
+### Disabled
+
+<SolidDemo name="settings-row/disabled" />
+
+The row has no disabled state of its own. Disable the control. The row text keeps its colour, so people can still read why the control is unavailable.
+
+### Labelled native input
+
+<SolidDemo name="settings-row/native-label" />
+
+Set `controlId` to the id of one labelable input. The label then renders as `<label for>`, and clicking the title focuses the input. Composite controls, such as SegmentedControl or OptionCardGroup, take `aria-labelledby` instead. Do not wrap several controls in one label.
+
+### Long labels
+
+<SolidDemo name="settings-row/long-labels" />
+
+Labels and descriptions wrap, including unbroken text. The control keeps its width. Do not truncate labels.
+
+## Ready API
+
+### `SettingsRow`
+
+Renders one row as a `group` named by its label and described by its description. Ids are `<id>-label` and `<id>-description` when you pass `id`, and generated otherwise.
+
+<PropsTable name="SettingsRow" />
+
+### `SettingsGroup`
+
+Renders a `section` named by its title and described by its description, with the rows on one island.
+
+<PropsTable name="SettingsGroup" />
+
+### `createSettingsRowProps`
+
+Takes an accessor to `{ id?, controlId?, description? }` and returns `root`, `label`, `description`, and `control` accessors. Spread them on the styled parts and the control. `control()` returns `aria-labelledby` and, when there is a description, `aria-describedby`. Join that value with the control's own description ids rather than replacing them. The helper is exported from `@codeui/kit` and `@codeui/kit/settings`.
+
+## Styled parts API
+
+Import the parts from `@codeui/kit/settings`. These exports are direct named parts with no namespace alias and no Kobalte engine. Each part accepts `class` and the attributes of the element it renders.
+
+<SolidDemo name="settings-row/parts" />
+
+### `Row`
+
+Renders the grid. `layout` sets `data-layout` and `compactControl` sets `data-compact-control`. Add `role="group"` and the ARIA props from `createSettingsRowProps` yourself.
+
+<PropsTable name="SettingsRowRoot" />
+
+### `Label`
+
+Renders a `span`, or a `label` when `for` is set.
+
+<PropsTable name="SettingsRowLabel" />
+
+### `Description`
+
+<PropsTable name="SettingsRowDescription" />
+
+### `Details`
+
+<PropsTable name="SettingsRowDetails" />
+
+### `Control`
+
+Holds the control on the right, or under the text in the wide and narrow layouts.
+
+<PropsTable name="SettingsRowControl" />
+
+### `Picture`
+
+<PropsTable name="SettingsRowPicture" />
+
+### `Marker`
+
+Place it inside `Label`.
+
+<PropsTable name="SettingsRowMarker" />
+
+### `Group`
+
+Renders a `section`. Name it with `aria-labelledby` pointing at the title.
+
+<PropsTable name="SettingsGroupRoot" />
+
+### `GroupTitle`
+
+Renders an `h3` by default. Use `as` to match the heading outline of your page.
+
+<PropsTable name="SettingsGroupTitle" />
+
+### `GroupDescription`
+
+<PropsTable name="SettingsGroupDescription" />
+
+### `GroupContent`
+
+Renders the island. Rows touch inside it.
+
+<PropsTable name="SettingsGroupContent" />
+
+## Styles export
+
+### `settingsRowStyles`
+
+`settingsRowStyles` and `settingsGroupStyles` are exported from `@codeui/kit` and `@codeui/kit/settings`. Each anatomy key is a function that returns a class string. `SettingsRowStyles` and `SettingsGroupStyles` describe those functions. `SettingsRowPart` and `SettingsGroupPart` are the key unions, and `SettingsRowClasses` and `SettingsGroupClasses` are partial maps of keys to class names.
+
+Row functions accept `SettingsRowVariants`, but ignore that argument. The wide layout depends on `data-layout="wide"`, the compact control on `data-compact-control`, and the picture column on a direct `settings-row-picture` child. Use the styled parts to set those attributes.
+
+## Accessibility
+
+### Keyboard
+
+The row and the group add no keyboard behavior and no tab stop. Tab moves through the controls in reading order. Each control keeps its own keys.
+
+### ARIA
+
+The ready row renders `role="group"` with `aria-labelledby` on its label and `aria-describedby` on its description. A function child receives the same two props for the control, so a switch reads as "Visible, switch" with its description. SegmentedControl puts these props on its tab list. The ready group renders a `section` with `aria-labelledby` on its title, which exposes it as a region. A marker inside the label joins the accessible name, so keep it to one word.
+
+### Focus
+
+Rows show no focus ring. The control shows its own. Clicking a label that has `for` focuses its input.
+
+## SSR notes
+
+Rows, groups, labels, and the ARIA ids render on the server. Pass `id` to `SettingsRow` and `SettingsGroup` when the ids must match across server and client renders in different component trees. The function child runs once, during render.
+
+## Theming hooks
+
+The row reads `--cui-font-family-sans`, `--cui-font-size-sm`, `--cui-font-size-xs`, `--cui-font-weight-medium`, `--cui-font-line-height-compact`, `--cui-font-line-height-normal`, `--cui-text-default`, and `--cui-text-muted`. Its size reads `--cui-control-height-xl` for the 56px minimum height. Spacing reads `--cui-space-0-5`, `--cui-space-1-5`, `--cui-space-2`, `--cui-space-3`, `--cui-space-4`, and `--cui-space-6`.
+
+The group reads `--cui-font-size-md`, `--cui-font-weight-semibold`, and `--cui-space-1` for its title. The island reads `--cui-surface-canvas`, `--cui-radius-card`, and `--cui-space-1-5`. `surface-canvas` is the island fill in Inkstone, so place groups on `--cui-surface-panel`. See [Inkstone colour](/docs/design/color).
+
+Inkstone specifies line height 1.3 for row titles and 1.4 for descriptions. The kit has no such tokens, so titles use `compact` (1.15, as CodeImage renders them) and descriptions use `normal` (1.5).
+
+## Composition examples
+
+See [Build settings](/docs/patterns/build-settings) for a complete settings dialog with navigation, groups, and rows.
+
+## Related
+
+- [Switch](/docs/components/switch) is the usual compact control.
+- [SegmentedControl](/docs/components/segmented-control) chooses between two to four short options.
+- [OptionCard](/docs/components/option-card) fits a wide row.

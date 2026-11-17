@@ -8,6 +8,7 @@ export type SwitchProps = Omit<P.RootProps, "children"> &
 		inputId?: string;
 		"aria-label"?: string;
 		"aria-labelledby"?: string;
+		"aria-describedby"?: string;
 		size?: "sm" | "md";
 		classes?: P.SwitchClasses;
 	};
@@ -21,6 +22,7 @@ export function createSwitchProps(props: Accessor<SwitchProps>) {
 			"inputId",
 			"aria-label",
 			"aria-labelledby",
+			"aria-describedby",
 			"classes",
 		]);
 		return rest;
@@ -32,6 +34,7 @@ export function createSwitchProps(props: Accessor<SwitchProps>) {
 			"aria-label": props()["aria-label"],
 			"aria-labelledby":
 				props()["aria-labelledby"] ?? (props().label ? ids.label() : undefined),
+			"aria-describedby": props()["aria-describedby"],
 			class: props().classes?.input,
 		}),
 		label: () => ({ id: ids.label(), for: ids.input(), class: props().classes?.label }),

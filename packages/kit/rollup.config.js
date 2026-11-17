@@ -3,7 +3,7 @@ import ts from "typescript";
 import path from "node:path";
 import { mkdirSync, writeFileSync } from "node:fs";
 
-const entries = ["src/index.tsx", "src/tokens.ts", "src/parts/dialog.tsx", "src/parts/popover.tsx", "src/parts/stack.tsx", "src/parts/text.tsx", "src/parts/switch.tsx", "src/parts/slider.tsx", "src/parts/progress.tsx", "src/parts/combobox.tsx", "src/parts/command-menu.tsx", "src/parts/kbd.tsx", "src/parts/badge.tsx", "src/parts/spinner.tsx", "src/parts/skeleton.tsx", "src/parts/alert.tsx", "src/parts/toast.tsx", "src/parts/option-card.tsx", "src/parts/accordion.tsx", "src/parts/sheet.tsx"];
+const entries = ["src/index.tsx", "src/tokens.ts", "src/parts/dialog.tsx", "src/parts/popover.tsx", "src/parts/stack.tsx", "src/parts/text.tsx", "src/parts/switch.tsx", "src/parts/slider.tsx", "src/parts/progress.tsx", "src/parts/combobox.tsx", "src/parts/command-menu.tsx", "src/parts/kbd.tsx", "src/parts/badge.tsx", "src/parts/spinner.tsx", "src/parts/skeleton.tsx", "src/parts/alert.tsx", "src/parts/toast.tsx", "src/parts/option-card.tsx", "src/parts/accordion.tsx", "src/parts/sheet.tsx", "src/parts/settings.tsx"];
 
 function tsTypes() {
 	return {
