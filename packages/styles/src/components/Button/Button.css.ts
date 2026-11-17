@@ -275,3 +275,5 @@ globalStyle(":is(.cui-icon-button,.cui-dialog-close-button) svg", iconRule);
 finish();
 
 export const buttonDefaults = registry.button.defaults;
+
+export const buttonPart = registry.button.parts.button;

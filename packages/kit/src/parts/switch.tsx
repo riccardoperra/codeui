@@ -8,7 +8,7 @@ import * as styles from "../components/Switch/Switch.css";
 import { createFieldLabelProps } from "../components/Field/FieldLabel/createFieldLabelProps";
 import { trackInputModality } from "../utils/modality";
 export { useSwitchContext } from "@kobalte/core/switch";
-import { switchParts, type SwitchVariants, type SwitchPart, type SwitchClasses, type SwitchStyles, switchStyles } from "@codeui/styles/switch";
+import { switchDefaults, switchParts, type SwitchVariants, type SwitchPart, type SwitchClasses, type SwitchStyles, switchStyles } from "@codeui/styles/switch";
 export { switchParts, type SwitchVariants, type SwitchPart, type SwitchClasses, type SwitchStyles, switchStyles } from "@codeui/styles/switch";
 export type RootProps<T extends ValidComponent = "div"> = K.SwitchRootProps<T> &
 	SwitchVariants;
@@ -23,8 +23,8 @@ export function Root<T extends ValidComponent = "div">(
 	return (
 		<K.Root
 			{...others}
-			data-cui="switch-root"
-			data-size={local.size}
+			data-cui={switchParts.root}
+			data-size={local.size ?? switchDefaults.size}
 			class={mergeClasses(switchStyles.root(local), local.class)}
 		/>
 	);
@@ -41,7 +41,7 @@ export function Input<T extends ValidComponent = "input">(
 	return (
 		<K.Input
 			{...others}
-			data-cui="switch-input"
+			data-cui={switchParts.input}
 			data-size={local.size}
 			class={mergeClasses(switchStyles.input(local), local.class)}
 		/>
@@ -59,7 +59,7 @@ export function Control<T extends ValidComponent = "div">(
 	return (
 		<K.Control
 			{...others}
-			data-cui="switch-control"
+			data-cui={switchParts.control}
 			data-size={local.size}
 			class={mergeClasses(switchStyles.control(local), local.class)}
 		/>
@@ -77,7 +77,7 @@ export function Thumb<T extends ValidComponent = "div">(
 	return (
 		<K.Thumb
 			{...others}
-			data-cui="switch-thumb"
+			data-cui={switchParts.thumb}
 			data-size={local.size}
 			class={mergeClasses(switchStyles.thumb(local), local.class)}
 		/>
@@ -95,7 +95,7 @@ export function Label<T extends ValidComponent = "label">(
 	return (
 		<K.Label
 			{...others}
-			data-cui="switch-label"
+			data-cui={switchParts.label}
 			data-size={local.size}
 			class={mergeClasses(
 				switchStyles.label(local),
@@ -116,7 +116,7 @@ export function Description<T extends ValidComponent = "div">(
 	return (
 		<K.Description
 			{...others}
-			data-cui="switch-description"
+			data-cui={switchParts.description}
 			data-size={local.size}
 			class={mergeClasses(switchStyles.description(local), local.class)}
 		/>
@@ -134,7 +134,7 @@ export function ErrorMessage<T extends ValidComponent = "div">(
 	return (
 		<K.ErrorMessage
 			{...others}
-			data-cui="switch-error-message"
+			data-cui={switchParts.errorMessage}
 			data-size={local.size}
 			class={mergeClasses(switchStyles.errorMessage(local), local.class)}
 		/>

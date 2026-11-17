@@ -12,3 +12,5 @@ export const iconButton = style(
 );
 
 finish();
+
+export const iconButtonPart = registry.iconButton.parts.iconButton;

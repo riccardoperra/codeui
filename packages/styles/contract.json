@@ -534,6 +534,7 @@
       "size": "md"
     },
     "buttonIcon": "cui-button-buttonIcon",
+    "buttonPart": "button",
     "buttonText": "cui-button-buttonText",
     "buttonTheme": "cui-button-buttonTheme",
     "buttonVars": {
@@ -1004,7 +1005,8 @@
     "inputHeight": "var(--cui-field-inputHeight)"
   },
   "icon-button": {
-    "iconButton": "cui-icon-button"
+    "iconButton": "cui-icon-button",
+    "iconButtonPart": "icon-button"
   },
   "kbd": {
     "kbdParts": {

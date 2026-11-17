@@ -390,6 +390,7 @@ export type ButtonVariants = RecipeVariants<typeof button>;
 export declare const buttonDefaults: {
     readonly size: "md";
 };
+export declare const buttonPart: "button";
 ```
 
 ## @codeui/styles/internal/components/Button/Loading.css.d.ts
@@ -778,6 +779,7 @@ export declare function styleFieldMessage(sizesMap: Record<BaseComponentSize, Ba
 
 ```ts
 export declare const iconButton: string;
+export declare const iconButtonPart: "icon-button";
 ```
 
 ## @codeui/styles/internal/components/Kbd/Kbd.css.d.ts

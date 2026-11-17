@@ -49,7 +49,7 @@ export function Button<T extends ValidComponent = "button">(props: PolymorphicPr
 
 	return (
 		<KButton
-			data-cui="button"
+			data-cui={styles.buttonPart}
 			data-theme={local.theme}
 			data-size={local.size ?? styles.buttonDefaults.size}
 			data-variant={local.variant}
