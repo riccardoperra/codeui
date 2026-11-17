@@ -63,14 +63,15 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Lint docs content
-        run: pnpm docs:lint
-
       - name: Build docs
         run: pnpm turbo run build --filter=@codeui/docs...
         env:
           CI: true
           NITRO_PRESET: cloudflare-pages
+
+      # After the build: the anatomy check renders the built demos.
+      - name: Lint docs content
+        run: pnpm docs:lint
 
       - name: Create the Pages project if missing
         working-directory: apps/docs
