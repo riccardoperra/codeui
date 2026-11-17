@@ -30,7 +30,7 @@ export default defineConfig({
       // narrows `_routes.json` after it, once the pages are static files.
       cloudflare: { wrangler: { name: 'codeui-docs' } },
       // The prerender step serves the build through this command. See the script for why.
-      commands: { preview: 'node scripts/wrangler-pages-dev.mjs' },
+      commands: { preview: 'node scripts/prerender-server.mjs' },
     }),
   ],
   resolve: { tsconfigPaths: true },

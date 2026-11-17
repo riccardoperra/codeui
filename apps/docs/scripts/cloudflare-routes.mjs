@@ -1,8 +1,9 @@
 // Cloudflare Pages runs `_worker.js` for every path `_routes.json` includes. Nitro includes `/*`,
 // which sent each prerendered page through the worker and hit the CPU limit (error 1102).
 // After the prerender, only search and the client-navigation server function stay dynamic.
-// The build fails if a docs page has no static file, because Pages would answer it with a 404.
-import { existsSync, writeFileSync } from 'node:fs';
+// The build fails if a docs page has no static file, because Pages would answer it with a 404,
+// or if a page carries a bundler `__name()` helper, which throws in the browser.
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { docsUrls, staticFiles } from './docs-urls.mjs';
 
 const dist = 'dist';
@@ -12,6 +13,12 @@ const expected = ['index.html', 'llms.txt', 'llms-full.txt', ...docsUrls().flatM
 const missing = expected.filter((file) => !existsSync(`${dist}/${file}`));
 if (missing.length) {
   console.error(`cloudflare-routes: ${missing.length} pages were not prerendered:\n${missing.join('\n')}`);
+  process.exit(1);
+}
+
+const broken = expected.filter((file) => file.endsWith('.html') && readFileSync(`${dist}/${file}`, 'utf8').includes('__name('));
+if (broken.length) {
+  console.error(`cloudflare-routes: ${broken.length} pages call __name(), which is undefined in the browser:\n${broken.join('\n')}`);
   process.exit(1);
 }
 
