@@ -18,9 +18,9 @@ export function IconButton<T extends ValidComponent = "button">(props: Polymorph
 
 	return (
 		<Button
+			data-cui="icon-button"
 			{...others as KButtonRootProps}
 			class={mergeClasses(styles.iconButton, local.class)}
-			data-cui="icon-button"
 		/>
 	);
 }
