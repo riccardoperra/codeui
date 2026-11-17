@@ -540,6 +540,7 @@ export declare const dialogTheme: string, dialogThemeVars: {
 export declare const overlay: string;
 /** The pane next to the sidebar. Holds the header and the body. */
 export declare const main: string;
+export declare const splitBody: string;
 export declare const panelContent: string;
 export declare const panelFooter: string;
 /**
@@ -1435,6 +1436,7 @@ export declare const control: import("../../types.js").RuntimeFn<{
         md: {};
     };
 }>;
+export declare const smallRoot: string;
 export declare const thumb: import("../../types.js").RuntimeFn<{
     size: {
         sm: {};

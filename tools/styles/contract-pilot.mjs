@@ -3,7 +3,7 @@ import { readFile, mkdir, writeFile } from "node:fs/promises";
 import { chromium } from "playwright";
 import { button } from "../../packages/styles/dist/esm/button.js";
 import { switchStyles } from "../../packages/styles/dist/esm/switch.js";
-import { panel } from "../../packages/styles/dist/esm/dialog.js";
+import { panel, dialogStyles } from "../../packages/styles/dist/esm/dialog.js";
 
 const directory = new URL("../../.artifacts/styles-pilot/", import.meta.url);
 await mkdir(directory, { recursive: true });
@@ -32,6 +32,8 @@ try {
 <button id="compound-mixed" class="${button({ loading: true, theme: "primary" })}" data-variant="ghost">Save</button>
 <div class="cui-switch-root" data-size="sm"><div id="switch-inherited" class="cui-switch-control"></div><div id="switch-explicit" class="cui-switch-control" data-size="md"></div></div>
 <div id="switch-helper" class="${switchStyles.control({ size: "sm" })}"></div>
+<div class="${switchStyles.root({ size: "sm" })}"><div id="root-helper-control" class="cui-switch-control"></div></div>
+<div id="body-helper" class="${dialogStyles.body({ layout: "split" })}"></div><div id="body-attribute" class="cui-dialog-panel-content" data-layout="split"></div>
 <button id="icon" class="cui-icon-button" data-size="sm" data-theme="primary">X</button>
 <button id="close" class="cui-dialog-close-button" data-size="sm" data-theme="primary">X</button>
 <div id="dialog" class="${panel({ size: "settings", chrome: "inset" })}" data-motion="none"></div>
@@ -83,6 +85,10 @@ try {
 			assert.deepEqual(values.icon, values.close);
 			count++;
 			assert.equal(values.icon.width, values.icon.height);
+			count++;
+			assert.equal(values["root-helper-control"].width, values["switch-helper"].width);
+			count++;
+			assert.deepEqual(values["body-helper"], values["body-attribute"]);
 			count++;
 			assert.equal(values["main-body"].display, "flex");
 			count++;

@@ -103,6 +103,7 @@ export const main = style(
 	registry.dialog.parts.main,
 );
 
+export const splitBody = style({}, "splitBody");
 export const panelContent = style(
 	[
 		{
@@ -127,7 +128,7 @@ export const panelContent = style(
 					overscrollBehavior: "contain",
 					scrollbarWidth: "thin",
 				},
-				"&[data-layout=split]": {
+				[`&:is([data-layout=split], .${splitBody}:not([data-layout]))`]: {
 					display: "grid",
 					gridTemplateColumns: dialogThemeVars.splitColumns,
 					gap: tokens.space["5"],
@@ -137,7 +138,9 @@ export const panelContent = style(
 			"@media": {
 				[phone]: {
 					selectors: {
-						"&[data-layout=split]": { gridTemplateColumns: "minmax(0, 1fr)" },
+						[`&:is([data-layout=split], .${splitBody}:not([data-layout]))`]: {
+							gridTemplateColumns: "minmax(0, 1fr)",
+						},
 						[`.${main} > &`]: {
 							gap: tokens.space["5"],
 							padding: `${tokens.space["4"]} ${tokens.space["3"]} calc(${tokens.space["4"]} + env(safe-area-inset-bottom, 0px))`,

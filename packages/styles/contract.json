@@ -900,7 +900,7 @@
     "overlay": "cui-dialog-overlay",
     "panel": {
       "classNames": {
-        "base": "cui-dialog-2yx8y1f",
+        "base": "cui-dialog-2yx8y1g",
         "variants": {
           "size": {
             "xs": "cui-dialog-panel_size_xs",
@@ -924,7 +924,7 @@
     "positioner": "cui-dialog-positioner",
     "section": {
       "classNames": {
-        "base": "cui-dialog-2yx8y1t",
+        "base": "cui-dialog-2yx8y1u",
         "variants": {
           "variant": {
             "group": "cui-dialog-section_variant_group",
@@ -937,6 +937,7 @@
     "sectionTitle": "cui-dialog-section-title",
     "sidebar": "cui-dialog-sidebar",
     "sidebarSearch": "cui-dialog-sidebar-search",
+    "splitBody": "cui-dialog-splitBody",
     "title": "cui-dialog-panel-title"
   },
   "dropdown": {
@@ -1715,6 +1716,7 @@
     "input": "cui-switch-input",
     "label": "cui-switch-label",
     "root": "cui-switch-root",
+    "smallRoot": "cui-switch-smallRoot",
     "switchDefaults": {
       "size": "md"
     },
@@ -1752,7 +1754,7 @@
     },
     "thumb": {
       "classNames": {
-        "base": "cui-switch-ohc8hxa",
+        "base": "cui-switch-ohc8hxb",
         "variants": {
           "size": {
             "sm": "cui-switch-thumb_size_sm",

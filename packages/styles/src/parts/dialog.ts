@@ -84,7 +84,11 @@ export const dialogStyles: DialogStyles = {
 	title: () => "cui-" + dialogParts.title,
 	description: () => styles.description,
 	closeButton: () => "cui-" + dialogParts.closeButton,
-	body: () => styles.panelContent,
+	body: variants =>
+		mergeClasses(
+			styles.panelContent,
+			variants?.layout === "split" ? styles.splitBody : undefined,
+		),
 	footer: () => styles.panelFooter,
 	sidebar: () => styles.sidebar,
 	sidebarSearch: () => styles.sidebarSearch,

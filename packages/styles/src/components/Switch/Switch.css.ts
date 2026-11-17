@@ -103,10 +103,14 @@ export const control = recipe(
 	"control",
 	registry.switch.parts.control,
 );
+export const smallRoot = style({}, "smallRoot");
 // A Root with `size="sm"` sizes the parts inside it as well.
-globalStyle(`.cui-switch-root[data-size="sm"] .cui-switch-control:not([data-size])`, {
-	"@media": { [notCoarse]: { vars: small } },
-});
+globalStyle(
+	`:is(.cui-switch-root[data-size="sm"],.cui-switch-root.${smallRoot}:not([data-size])) .cui-switch-control:not([data-size])`,
+	{
+		"@media": { [notCoarse]: { vars: small } },
+	},
+);
 export const thumb = recipe(
 	{
 		base: {
