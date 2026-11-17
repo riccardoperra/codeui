@@ -403,7 +403,7 @@
 		"test:hydration": "vitest run --project ssr test/hydration.ssr && vitest run --project hydration",
 		"typecheck": "tsc --noEmit",
 		"prepublish": "pnpm build",
-		"test:tokens-consumer": "pnpm run build && node fixtures/tokens-consumer/check.mjs && node fixtures/tokens-consumer/check.mjs --solid"
+		"test:tokens-consumer": "node fixtures/tokens-consumer/check.mjs && node fixtures/tokens-consumer/check.mjs --solid"
 	},
 	"devDependencies": {
 		"@codeui/vanilla-extract": "workspace:*",
