@@ -4,11 +4,12 @@
 	"type": "module",
 	"sideEffects": false,
 	"scripts": {
-		"dev": "node scripts/generate-props.mjs && node scripts/copy-examples.mjs && vite dev",
-		"build": "node scripts/generate-props.mjs && node scripts/copy-examples.mjs && vite build && node scripts/cloudflare-routes.mjs",
+		"dev": "node scripts/generate-props.mjs && node scripts/copy-examples.mjs && pnpm palette && vite dev",
+		"build": "node scripts/generate-props.mjs && node scripts/copy-examples.mjs && pnpm palette && vite build && node scripts/cloudflare-routes.mjs",
 		"start": "vite preview",
 		"typecheck": "tsc --noEmit",
-		"props": "node scripts/generate-props.mjs"
+		"props": "node scripts/generate-props.mjs",
+		"palette": "node ../../tools/palette/generate.mjs css .generated/inkstone-palette.css && node ../../tools/palette/generate.mjs docs-css .generated/inkstone-docs.css && node ../../tools/palette/generate.mjs reference .generated/inkstone-palette.json"
 	},
 	"dependencies": {
 		"@codeui/docs-demos": "workspace:*",

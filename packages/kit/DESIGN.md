@@ -39,6 +39,8 @@ When a case is not covered below, choose the option that best fits these six tra
 
 ## 2. Colour
 
+Use semantic `--cui-*` tokens in component styles. Keep raw colour values and ramp steps in theme definitions and swatch references so components can inherit the active theme.
+
 ### 2.1 Surfaces
 
 The page is the lighter surface. Islands are carved into it.
@@ -92,7 +94,7 @@ The accent is never a surface or a large fill. It has five uses:
 - A selected row in a list, menu, command menu or nav is neutral: field fill and primary text. Never an accent fill.
 - "On" uses the soft wash. "Do" uses the filled button. Two same-shaped blue controls side by side read as one.
 - Accent on user content must not read as semantic red or green.
-- One brand blue fills everything, the same in both themes: `--cui-action-brand-base` `#0083e5` (OKLCH L 0.60, C 0.18, H 251), hover `#0076cf`, active `#0069b8`. The filled button, the switch "on" track, the check of a checkbox and radio, the slider and progress fill, the primary segment and the tab indicator all use it. White text on it is 3.9:1 (hover 4.7:1, active 5.7:1); keep button labels at 14px medium or larger, and never put body text on this fill. As a control fill it is 3.9:1 on the light page, 3.4:1 on the light field, 4.9:1 on the dark island and 4.0:1 on the dark field.
+- One brand blue is shared by both themes: `--cui-action-brand-base` `#0083e5` (OKLCH L 0.60, C 0.18, H 251), hover `#0076cf`, active `#0069b8`. The filled button, the switch "on" track, the check of a checkbox and radio, the slider and progress fill, the primary segment and the tab indicator all use it. White text on the compatible base is 3.9:1 (hover 4.7:1, active 5.7:1). The base falls below the 4.5:1 threshold for normal text. Check the label against the fill in each state when changing the theme. As a control fill it is 3.9:1 on the light page, 3.4:1 on the light field, 4.9:1 on the dark island and 4.0:1 on the dark field.
 - It replaces CodeImage's `#0099ff`. CodeImage picks it up when it moves to the kit tokens.
 - The focus ring stays a separate token, `--cui-accent-focus`: `#63b3ed` dark, `#0083e5` light (3.9:1 on the page, 3.4:1 on the field, 3.1:1 on a selected card). Selected-card rings use it too.
 - Accent text (links, brand-soft labels) is `--cui-action-brand-soft-text`, the brand hue at another lightness: `#3fa0fe` dark (6.7:1 on the page, 5.7:1 on the field, 4.6:1 or more on the 15% wash over any surface), `#0260aa` light (6.5:1 on the page, 5.6:1 on the field, 5.4:1 on the wash). The soft wash is the brand at 15% (`#0083e526`; hover and active `#0069b826`).

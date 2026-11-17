@@ -36,6 +36,7 @@ if (page) {
 	const index = await get('/llms.txt');
 	check(index.status === 200 && index.type.startsWith('text/plain'), `/llms.txt is ${index.status} ${index.type}`);
 	check(/^# CodeUI kit \(@codeui\/kit \d/.test(index.body), '/llms.txt names the kit and its version');
+	check(index.body.includes('[Inkstone colour rules](/docs/design/color.md)'), '/llms.txt points to the colour rules');
 	const links = [...index.body.matchAll(/\]\((\/[^)]+)\)/g)].map(m => m[1]);
 	check(links.length > 60, `/llms.txt links ${links.length} files`);
 	const broken = [];
@@ -46,12 +47,19 @@ if (page) {
 	check(full.status === 200 && full.type.startsWith('text/plain'), `/llms-full.txt is ${full.status} ${full.type}`);
 	const titles = full.body.match(/^# .+ \(\/docs[^)]*\)$/gm) ?? [];
 	check(titles.length === new Set(titles).size, `/llms-full.txt has ${titles.length} pages, each once`);
-	check(!titles.some(t => t.includes('(/docs/design')), '/llms-full.txt leaves out the Inkstone pages');
+	const designTitles = titles.filter(t => t.includes('(/docs/design'));
+	check(designTitles.length === 1 && designTitles[0] === '# Colour (/docs/design/color)', '/llms-full.txt includes the Inkstone colour guide');
+	const colour = await get('/docs/design/color.md');
+	check(full.body.includes(colour.body.trim()), '/llms-full.txt includes the complete colour guide');
+	check(/\| `surface\.island` \| `--cui-surface-canvas` \| `gray\.\d+` `#[\da-f]+` \| `gray\.\d+` `#[\da-f]+` \|/i.test(colour.body), 'Colour Markdown resolves generated palette roles');
+	check(colour.body.includes('Use colours by role') && colour.body.includes('background-color: var(--cui-surface-field-hover)'), 'Colour Markdown contains rules and a CSS example');
+	check(!/<ColourPalette|<PaletteComparison/.test(colour.body), 'Colour Markdown expands visual palette components');
 	// Draft pages may still hold authored TypeTables. Each lane's --page run fails on them.
 	console.log(`info ${leaks(full.body)} unexpanded tags left in /llms-full.txt, from draft pages`);
 
 	await checkPage('components/badge');
 	await checkPage('components/dialog');
+	await checkPage('design/color');
 	const missing = await get('/docs/components/does-not-exist.md');
 	check(missing.status === 404, `/docs/components/does-not-exist.md is ${missing.status}`);
 }

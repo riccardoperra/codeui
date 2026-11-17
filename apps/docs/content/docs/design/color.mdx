@@ -1,7 +1,78 @@
 ---
 title: Colour
-description: Carved surfaces, two text tones and one accent with five jobs.
+description: Palette swatches, theme tokens, and rules for using colour in Inkstone.
 ---
+
+## Colour palette
+
+The shared-grey candidate uses the same ramp for Light and Dark. Blue has its own ramp for actions and focus. Components use the CSS tokens in **Theme roles**. The numbered steps are for theme authors.
+
+<ColourPalette />
+
+### Use colours by role
+
+- **Build the surface hierarchy.** Use `--cui-surface-panel` for the page, `--cui-surface-canvas` inside it, and `--cui-surface-input` for fields and tiles on the island. Use `--cui-surface-dialog` for floating UI.
+- **Pair the surface with its text.** Use `--cui-text-default` for titles and values. Use `--cui-text-muted` for descriptions and metadata.
+- **Keep selected rows neutral.** Use `--cui-surface-field-hover` and primary text. For a selected card, add an accent ring as well as the fill change.
+- **Reserve a filled accent for one primary action per surface.** Pair `--cui-action-brand-base` with `--cui-action-brand-text`. Use `--cui-focus-color` for keyboard focus.
+- **Use status colours for feedback.** Use `--cui-action-danger-base` for destructive confirmation, `--cui-action-caution-base` for risk, and `--cui-action-success-base` for a positive outcome. Pair status colour with a label or icon.
+- **Check new colour pairs in both themes.** Use at least 4.5:1 for normal text and 3:1 for large text, focus rings, and visual cues needed to identify controls or states.
+- **Keep raw colours in theme definitions and swatch references.** Use `var(--cui-…)` in component styles so a theme change reaches the component.
+
+### Apply the tokens in CSS
+
+This example uses a neutral selection for an export format and a single filled export action. Use the appropriate selection semantics for the control and include a visible selected indicator.
+
+```css
+.export-island {
+	background-color: var(--cui-surface-canvas);
+	color: var(--cui-text-default);
+}
+
+.export-format[aria-selected="true"] {
+	background-color: var(--cui-surface-field-hover);
+	color: var(--cui-text-default);
+}
+
+.export-action {
+	background-color: var(--cui-action-brand-base);
+	color: var(--cui-action-brand-text);
+}
+
+.export-action:focus-visible {
+	outline: var(--cui-focus-width) solid var(--cui-focus-color);
+	outline-offset: var(--cui-focus-offset);
+}
+```
+
+### Compare the palettes
+
+Choose **Compatible** to see the current kit colours. Choose **Shared grey ramp** to try the candidate. The **Theme** selector sets the preview's `data-cui-theme` to `light` or `dark`.
+
+<PaletteComparison />
+
+### Generate an OKLCH palette
+
+The candidate uses one grey ramp for both themes and a separate blue ramp for the accent. Gosfuig generates the ramps from `tools/palette/inkstone.json`. Each DTCG colour has OKLCH components and an sRGB hex value. [gosfuig](https://codeberg.org/Toghen/gosfuig)
+
+Run these commands from the repository root to export the candidate as DTCG JSON.
+
+```sh
+pnpm --silent palette:generate > inkstone.palette.tokens.json
+pnpm --silent palette:generate light > inkstone.light.tokens.json
+pnpm --silent palette:generate dark > inkstone.dark.tokens.json
+pnpm --silent palette:generate css > inkstone-shared-gray.css
+```
+
+In a Toghen resolver, load the palette as a base source and the alias files in their matching theme contexts. For example, `surface.island` points to `{palette.gray.150}` in Light and `{palette.gray.950}` in Dark.
+
+The CSS export targets scopes that have both `data-cui-theme` and `data-cui-palette="shared-gray"`. It uses the kit's current CSS token names. The preview loads this export alongside the kit stylesheet.
+
+The Fumadocs build also projects the same ramps into `--color-fd-*` tokens for its page, sidebar, controls, and links. The Compatible example uses the kit's colours so you can compare it with the shared ramp.
+
+The export writes sRGB hex values first. An `@supports (color: oklch(0.5 0 0))` block supplies the OKLCH values. Test the colour on a CSS property such as `color`, because an unregistered custom property accepts the text of either value. [CSS custom properties](https://www.w3.org/TR/css-variables-1/#invalid-variables) · [CSS feature queries](https://www.w3.org/TR/css-conditional-3/#at-supports)
+
+The export checks normal text, secondary text, and the focus colour on each preview surface. It also checks the white label on the primary action and the action fill against the floating surface.
 
 ## Surfaces are carved
 
@@ -59,7 +130,7 @@ Light mode keeps the same order with its own tones: primary `#1d2229`, secondary
 
 The light theme used to mix two families: Tailwind's cool slate and pure neutral greys. A menu had a neutral ring, a slate hover and slate text, and a field (`#f3f3f3`) was only 1.06:1 on its slate island. CodeImage hid the problem by lifting cards to white.
 
-Every light grey is now a step of one twelve-step ramp at OKLCH hue 255. Chroma rises from 0.004 to 0.016 toward the dark end, so the greys keep a trace of CodeImage's cool page but stay quieter than the user's content and the blue signal. The fill steps are 0.025–0.03 apart in lightness, which lets a field read on its island at half of dark mode's step.
+Every grey in the compatible Light theme is a step of one twelve-step ramp at OKLCH hue 255. Chroma rises from 0.004 to 0.016 toward the dark end, so the greys keep a trace of CodeImage's cool page but stay quieter than the user's content and the blue signal. The fill steps are 0.025–0.03 apart in lightness, which lets a field read on its island at half of dark mode's step.
 
 | Step | Hex | Role |
 | --- | --- | --- |
@@ -116,7 +187,7 @@ Blue appears rarely, so users notice it when it does.
 
 Filled buttons and every selected or checked fill use `--cui-action-brand-base`, `#0083e5`, in both themes: the switch "on" track, the check of a checkbox and radio, the slider and progress fill, the primary segment and the tab indicator. Hover is `#0076cf` and active is `#0069b8`. The kit used to draw these with three different blues (`#09f`, `#63b3ed` and `#07f`), so a switch and a checkbox side by side did not match.
 
-White text on the base is 3.9:1, on hover 4.7:1 and on active 5.7:1. Keep button labels at 14px medium or larger, and never put body text on this fill.
+In the compatible palette, white text on the base is 3.9:1. Hover reaches 4.7:1 and active 5.7:1. The base falls below the 4.5:1 threshold for normal text. Check the label against the fill in each state when you change the theme.
 
 `#0083e5` replaces CodeImage's old brand blue, `#0099ff`, on which white text was 3.0:1. CodeImage picks it up when it moves to the kit tokens.
 

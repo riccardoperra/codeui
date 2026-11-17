@@ -27,6 +27,7 @@
 		"docs:coverage": "node tools/docs/coverage.mjs",
 		"docs:check-llms": "node tools/docs/check-llms.mjs",
 		"docs:lint": "node tools/docs/lint-demos.mjs && node tools/docs/lint-links.mjs && node tools/docs/lint-anatomy.mjs",
+		"palette:generate": "node tools/palette/generate.mjs",
 		"test:hydration": "pnpm --filter @codeui/kit test:hydration",
 		"test:stories": "pnpm --filter @codeui/storybook-playground test:stories"
 	},
@@ -35,6 +36,7 @@
 		"@testing-library/jest-dom": "6.5.0",
 		"@types/node": "^22.5.4",
 		"@vitest/browser": "3.2.7",
+		"gosfuig": "0.2.1",
 		"jsdom": "20.0.3",
 		"playwright": "1.56.1",
 		"prettier": "3.3.3",
