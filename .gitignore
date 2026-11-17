@@ -37,3 +37,6 @@ storybook-static
 
 # kit hydration test: server HTML written by test/hydration.ssr.test.tsx
 .hydration
+
+# docs: the example apps, copied from apps/examples/dist by scripts/copy-examples.mjs
+apps/docs/public/examples

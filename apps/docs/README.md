@@ -18,6 +18,14 @@ pnpm --filter @codeui/docs dev                         # http://localhost:6150
 
 The site reads the built demos. After you change a demo or the kit, rebuild the demos and reload the page.
 
+## Examples
+
+The apps at `/examples/<slug>/` are static Solid pages built by `apps/examples`. `scripts/copy-examples.mjs` copies that build into `public/examples` before `dev` and `build`, and the `/examples` route (`src/routes/examples.tsx`) is the gallery that links to them. They are not part of the router: the prerender skips them, and in `dev` a small Vite plugin serves each folder's `index.html`. After you change an example, rebuild it and restart `dev`:
+
+```bash
+pnpm turbo run build --filter=@codeui/examples...
+```
+
 ## Add a demo
 
 1. Add `packages/docs-demos/src/demos/<name>.tsx` with a default-exported Solid component.
