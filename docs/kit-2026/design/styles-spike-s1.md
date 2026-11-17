@@ -80,8 +80,13 @@ emitter tooling from the coexistence build.
 Plain declaration CSS: Button 314, IconButton 9, Switch 180, Dialog 619,
 **1,122 total**. Count compatibility modules, legacy type contracts, runtime recipe,
 registry and inventories separately when assessing the total; CSS-only line counts
-understate the cost. The build adds 59 net lines (including formatting), plus a
-68-line lint; no build tool is removed. The repeatable comparison tool is 103 lines.
+understate the cost. Those support files add 524 lines; with the shared 159-line
+registry the direct plain path totals **1,805 lines**, versus 1,541 for the
+pilot. Coexistence also retains the 247-line emitter and 2-line composition helper
+(**2,054 lines** including that retained mechanism). The build adds 59 net lines (including formatting), plus a
+68-line lint; no build tool is removed. The repeatable comparison tool is 103 lines; the timing harness is 33 lines.
+Together the build/lint/comparison/timing additions are 263 net tooling lines,
+with no tooling removed.
 
 An `xs` Switch in #126 requires registry/type updates plus a new dimensions entry;
 the emitter generates public and private predicates. In S1 it requires the same
@@ -114,7 +119,7 @@ Number formatting and truncation are not exercised. The static HTML cannot prove
 focus trapping, focus return or Escape semantics; renderer tests remain necessary.
 Cross-browser consumer hydration is checked separately from Chromium pixels.
 
-Validation results and build-time measurements are recorded below after the runs.
+Validation results and build-time measurements follow below.
 
 ## Migration estimate and risks
 
@@ -132,3 +137,55 @@ two authoring systems coexisting during migration. Native nesting reduces some
 repetition but cannot remove these compatibility obligations. A later experiment
 could generate helper metadata from the registry, but should measure its own total
 source cost and preserve the same API gate before changing this recommendation.
+
+## Completed checks
+
+- `pnpm api:check`: passes, with **no snapshot change**; also rechecked the
+  emitted graph directly after packing.
+- `pnpm typecheck`: all seven tasks pass.
+- `pnpm test:hydration`: SSR guard (2 tests) and browser hydration (40 tests) pass.
+- Final root `pnpm test` retry passes, including **191 Storybook tests**.
+- Full kit retry: 585 browser tests, 30 node tests, 2 SSR tests, 40 hydration tests
+  and both token-consumer conditions pass. The first root `pnpm test` run had one
+  intermittent DropdownMenu keyboard lookup failure (584/585); its 13-test suite
+  and the entire kit suite passed without code changes. No renderer change was
+  made to hide this failure.
+- Packed consumer runner: passes, including CSS composition permutations, token
+  overrides, automatic imports and SSR node adoption.
+- `tools/styles/bundle-check.mjs`: all 12 CSS/Solid × Vite/webpack ×
+  unused/Button/lazy cases pass.
+- `tools/styles/hydration.mjs`: packed SSR adoption passes in Chromium, Firefox
+  and WebKit, with zero browser errors.
+- `git diff --check`: passes. `.artifacts/` is excluded from all staging.
+
+Root commands must run serially: they rebuild the same dist. An early concurrent
+validation attempt produced missing-file errors; these are not included as valid
+behavior results. The successful reruns above use completed artifacts.
+
+## Build timing
+
+Five alternating uncached package builds per side, same 8-logical-CPU machine and Node 26.5.0;
+the timed region runs `node scripts/build.mjs`, including extraction, CSS emission,
+ESM/CJS helpers, declarations and contract validation for all 40 components. Every
+run exited successfully and wrote validated artifacts. The other 36 component
+paths are identical, so this measures the end-to-end cost of changing these four,
+not an isolated CSS parser benchmark. `tools/styles/spike-s1-time.mjs` reproduces
+this with a separately prepared pilot styles package directory.
+
+| Seconds | #126 | Plain CSS |
+| --- | ---: | ---: |
+| Median | 9.02 | 9.01 |
+| Range | 8.40–13.52 | 5.65–12.85 |
+| Runs | 13.52, 9.10, 9.02, 8.49, 8.40 | 12.85, 8.74, 9.01, 9.04, 5.65 |
+
+**Inconclusive: no measurable build-speed advantage.** The machine's observed load
+average was 18.89, with other checkout builds active during this work. Even with
+alternation, warmup and load variation dwarf the 0.01s median gap. No isolated CPU
+profile was collected, so no compiler-specific speed claim is justified. Much of
+the build still compiles legacy components and emits declarations; changing four
+scopes cannot remove that shared work. A quiet-machine profile is needed before
+using build time as an adoption argument.
+
+The first GitHub CI run is green: Build and Test run 44182967372 and Docs run
+44182995051, at implementation head `3da5c2db69334bb95546dde460cdc4fb93f1ffe5`.
+Report/timing-harness follow-up commits do not change component behavior.
