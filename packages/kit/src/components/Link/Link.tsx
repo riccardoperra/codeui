@@ -11,13 +11,12 @@ type LinkProps<T extends ValidComponent | HTMLElement = HTMLElement> = KLinkRoot
 export function Link<T extends ValidComponent = "a">(props: PolymorphicProps<T, LinkProps<T>>) {
 	const [local, others] = splitProps(props as PolymorphicProps<"a", LinkProps>, ["class", "variant"]);
 
-	const classes = () =>
-		mergeClasses(
-			styles.link({
-				variant: local.variant,
-			}),
-			local.class,
-		);
-
-	return <KLink data-cui={"link"} {...others} class={classes()} />;
+	return (
+		<KLink
+			data-cui="link"
+			data-variant={local.variant}
+			{...others}
+			class={mergeClasses(styles.link(), local.class)}
+		/>
+	);
 }

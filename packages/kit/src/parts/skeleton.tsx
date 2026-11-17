@@ -6,7 +6,7 @@ import { splitProps, type ValidComponent } from "solid-js";
 import * as styles from "../components/Skeleton/Skeleton.css";
 import { mergeClasses } from "../utils/css";
 
-import { skeletonParts, type SkeletonPart, type SkeletonClasses, type SkeletonVariants, type SkeletonStyles, skeletonStyles } from "@codeui/styles/skeleton";
+import { skeletonParts, type SkeletonPart, type SkeletonClasses, type SkeletonVariants, type SkeletonStyles } from "@codeui/styles/skeleton";
 export { skeletonParts, type SkeletonPart, type SkeletonClasses, type SkeletonVariants, type SkeletonStyles, skeletonStyles } from "@codeui/styles/skeleton";
 export type RootProps<T extends ValidComponent = "div"> = KSkeletonRootProps<T> & { class?: string };
 
@@ -19,9 +19,10 @@ export function Root<T extends ValidComponent = "div">(props: PolymorphicProps<T
 	return (
 		<KSkeleton
 			data-cui={skeletonParts.root}
+			data-circle={others.circle || undefined}
 			aria-hidden={others.visible === false ? undefined : true}
 			class={mergeClasses(
-				skeletonStyles.root({ circle: others.circle, animate: others.animate }),
+				styles.root.classNames.base,
 				local.class,
 			)}
 			{...others}

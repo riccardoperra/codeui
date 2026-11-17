@@ -48,7 +48,7 @@
     opacity: 0.4;
     cursor: not-allowed;
   }
-  .cui-combobox-control_size_sm {
+  :where(.cui-combobox-control)[data-size="sm"] {
     height: var(--cui-component-combobox-control-size-sm-height);
     font-size: var(--cui-component-combobox-control-size-sm-font-size);
   }
@@ -184,7 +184,7 @@
     font-size: var(--cui-font-size-xs);
     font-weight: var(--cui-font-weight-semibold);
   }
-  @media (pointer: coarse) {
+  @media (--cui-coarse-pointer) {
     .cui-combobox-control {
       height: var(--cui-control-height-md);
     }
@@ -196,7 +196,7 @@
       min-height: var(--cui-control-height-md);
     }
   }
-  @media (prefers-reduced-motion: reduce) {
+  @media (--cui-reduced-motion) {
     .cui-combobox-content {
       animation-name: cui-motion-fadeOut;
     }

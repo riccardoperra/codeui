@@ -61,7 +61,7 @@ export function Control<T extends ValidComponent = "div">(
 			{...others}
 			data-cui="switch-control"
 			data-size={local.size}
-			class={mergeClasses(switchStyles.control(local), local.class)}
+			class={mergeClasses(styles.control.classNames.base, local.class)}
 		/>
 	);
 }
@@ -79,7 +79,7 @@ export function Thumb<T extends ValidComponent = "div">(
 			{...others}
 			data-cui="switch-thumb"
 			data-size={local.size}
-			class={mergeClasses(switchStyles.thumb(local), local.class)}
+			class={mergeClasses(styles.thumb.classNames.base, local.class)}
 		/>
 	);
 }

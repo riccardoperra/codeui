@@ -4,8 +4,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import ts from "typescript";
 import { build } from "esbuild";
-import { Features, transform } from "lightningcss";
-import { bundleComponentTokens } from "./component-tokens.mjs";
+import { compileStylesheet } from "./component-tokens.mjs";
+import { variantSelectorVisitor } from "./variant-selectors.mjs";
 import { generateTheme } from "./tokens.mjs";
 import { collectContracts } from "./contracts.mjs";
 
@@ -31,72 +31,6 @@ const { css: theme, media, componentAliases } = await generateTheme(root);
 const sourceFiles = (await files(src)).filter(file => file.endsWith(".ts"));
 const sources = JSON.parse(await readFile(path.join(root, "style-sources.json"), "utf8"));
 const scopesByModule = new Map(Object.entries(sources));
-const cssByScope = new Map();
-const layerOrder = "@layer cui;\n@layer cui.base, cui.components, cui.overrides;\n";
-const emittedAliases = new Set();
-for (const scope of new Set(Object.values(sources).flat())) {
-	const filename = scope.replace(/\.ts$/, "");
-	const sourcePath = path.join(root, "css", filename);
-	const source =
-		scope === "foundation/cui.css.ts" ? theme : await readFile(sourcePath, "utf8");
-	const css = await bundleComponentTokens({
-		source,
-		sourcePath,
-		media,
-		componentAliases,
-		emittedAliases,
-	});
-	const hasCustomMedia = /@media[^{}]*\(--/.test(css);
-	cssByScope.set(
-		scope,
-		hasCustomMedia
-			? transform({
-					filename,
-					code: Buffer.from(media + "\n" + css),
-					drafts: { customMedia: true },
-					include: Features.MediaQueries,
-				}).code.toString()
-			: css,
-	);
-}
-for (const name of componentAliases.keys())
-	assert(emittedAliases.has(name), `Component token has no CSS consumer: ${name}`);
-const themeScopes = new Set(
-	registry.theme.modules.flatMap(id => [...scopesByModule.get(id)]),
-);
-const stylesheet = scopes =>
-	layerOrder + scopes.map(scope => cssByScope.get(scope)).join("\n");
-const componentClosure = (name, seen = new Set()) => {
-	if (!registry[name]) throw new Error(`Unknown component dependency ${name}`);
-	if (seen.has(name)) return seen;
-	seen.add(name);
-	for (const dependency of registry[name].dependencies)
-		componentClosure(dependency, seen);
-	return seen;
-};
-const manifest = { version: 1, layer: "cui", entries: {}, modules: {} };
-for (const [id, scopes] of scopesByModule) manifest.modules[id] = [...scopes].sort();
-for (const [name, entry] of Object.entries(registry)) {
-	const components = [...componentClosure(name)];
-	const scopes = new Set(
-		components.flatMap(component =>
-			registry[component].modules.flatMap(id => [...scopesByModule.get(id)]),
-		),
-	);
-	if (name !== "theme") for (const scope of themeScopes) scopes.delete(scope);
-	const orderedScopes = [...scopes].sort();
-	await writeFile(path.join(out, `${name}.css`), stylesheet(orderedScopes));
-	manifest.entries[name] = {
-		css: `${name}.css`,
-		dependencies: entry.dependencies,
-		components,
-		scopes: orderedScopes,
-	};
-}
-await writeFile(
-	path.join(out, "all.css"),
-	stylesheet([...cssByScope.keys()].sort((a, b) => a.localeCompare(b))),
-);
 const helperExports = async (entry, prefix) => {
 	if (!entry.helpers) return "";
 	const code = await readFile(path.join(src, entry.helpers), "utf8");
@@ -152,6 +86,65 @@ for (const format of ["esm", "cjs"])
 		minifyWhitespace: true,
 		logLevel: "warning",
 	});
+const publicContract = await collectContracts(out);
+const cssByScope = new Map();
+const layerOrder = "@layer cui;\n@layer cui.base, cui.components, cui.overrides;\n";
+const emittedAliases = new Set();
+const visitor = variantSelectorVisitor(publicContract);
+const sharedMedia = await readFile(path.join(root, "css/media.css"), "utf8");
+for (const scope of new Set(Object.values(sources).flat())) {
+	const filename = scope.replace(/\.ts$/, "");
+	const sourcePath = path.join(root, "css", filename);
+	const source =
+		scope === "foundation/cui.css.ts" ? theme : await readFile(sourcePath, "utf8");
+	const css = await compileStylesheet({
+		source,
+		sourcePath,
+		media: `${sharedMedia}\n${media}`,
+		visitor,
+		componentAliases,
+		emittedAliases,
+	});
+	cssByScope.set(scope, css);
+}
+for (const name of componentAliases.keys())
+	assert(emittedAliases.has(name), `Component token has no CSS consumer: ${name}`);
+const themeScopes = new Set(
+	registry.theme.modules.flatMap(id => [...scopesByModule.get(id)]),
+);
+const stylesheet = scopes =>
+	layerOrder + scopes.map(scope => cssByScope.get(scope)).join("\n");
+const componentClosure = (name, seen = new Set()) => {
+	if (!registry[name]) throw new Error(`Unknown component dependency ${name}`);
+	if (seen.has(name)) return seen;
+	seen.add(name);
+	for (const dependency of registry[name].dependencies)
+		componentClosure(dependency, seen);
+	return seen;
+};
+const manifest = { version: 1, layer: "cui", entries: {}, modules: {} };
+for (const [id, scopes] of scopesByModule) manifest.modules[id] = [...scopes].sort();
+for (const [name, entry] of Object.entries(registry)) {
+	const components = [...componentClosure(name)];
+	const scopes = new Set(
+		components.flatMap(component =>
+			registry[component].modules.flatMap(id => [...scopesByModule.get(id)]),
+		),
+	);
+	if (name !== "theme") for (const scope of themeScopes) scopes.delete(scope);
+	const orderedScopes = [...scopes].sort();
+	await writeFile(path.join(out, `${name}.css`), stylesheet(orderedScopes));
+	manifest.entries[name] = {
+		css: `${name}.css`,
+		dependencies: entry.dependencies,
+		components,
+		scopes: orderedScopes,
+	};
+}
+await writeFile(
+	path.join(out, "all.css"),
+	stylesheet([...cssByScope.keys()].sort((a, b) => a.localeCompare(b))),
+);
 const program = ts.createProgram(sourceFiles, {
 	target: ts.ScriptTarget.ESNext,
 	module: ts.ModuleKind.ESNext,
@@ -264,12 +257,12 @@ await writeFile(
 	path.join(out, "manifest.json"),
 	JSON.stringify(manifest, null, 2) + "\n",
 );
-const contract = JSON.stringify(await collectContracts(out), null, 2) + "\n";
+const contract = JSON.stringify(publicContract, null, 2) + "\n";
 if (process.argv.includes("--update-contract"))
 	await writeFile(path.join(root, "contract.json"), contract);
 else
 	assert.deepEqual(
-		JSON.parse(contract),
+		publicContract,
 		JSON.parse(await readFile(path.join(root, "contract.json"), "utf8")),
 		"Public CSS contract changed. Review the diff and rebuild with --update-contract.",
 	);

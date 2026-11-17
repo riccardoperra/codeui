@@ -121,7 +121,7 @@
       --cui-selectTheme-contentMaxHeight: 400px;
     }
   }
-  @media (prefers-reduced-motion: reduce) {
+  @media (--cui-reduced-motion) {
     .cui-select-content {
       animation-name: cui-motion-fadeOut;
     }

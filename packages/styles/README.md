@@ -88,7 +88,9 @@ pnpm --filter @codeui/styles check
 pnpm --filter @codeui/styles typecheck
 ```
 
-Component rules live in `css/`. The build bundles each entry and its dependencies. Lightning CSS expands custom media such as `@media screen and (--cui-sm)` when used. TypeScript files in `src/` export class names, variant maps and token references.
+Component rules live in `css/`. Write variant selectors as `:where(.part)[data-size="sm"]` and compound selectors as `.part:where([data-tone="info"][data-variant="outline"])`. The Lightning CSS selector visitor adds the class fallback from the built style helpers. Each attribute can override the corresponding variant class. TypeScript files in `src/` export the existing class helpers, variant maps and token references.
+
+The build bundles each entry and its dependencies. Lightning CSS lowers nesting and media query ranges, and expands `@custom-media` aliases from the breakpoint tokens and `css/media.css`. Use `@media (--cui-md)` for a shared width and `@media (--cui-reduced-motion)` for the reduced-motion preference.
 
 The token source is `tokens/inkstone.resolver.json` and its referenced DTCG JSON files. Component token files contain local aliases. The virtual `<component>-tokens.generated.css` import identifies the token set and loads shared media aliases at build time. The build inserts each custom property into the rule that reads it before passing the stylesheet to Lightning CSS. Edit those inputs and run `pnpm --filter @codeui/styles build` to regenerate theme values, references and breakpoints. `tokens/web-values.json` holds CSS-specific values. The web emitter preserves scoped light and dark values, live aliases and the existing radius and color formulas.
 

@@ -31,11 +31,11 @@
   .cui-tooltip-tooltipContent[data-motion=none], .cui-tooltip-tooltipContent[data-motion=none][data-expanded] {
     animation: none;
   }
-  .cui-tooltip-tooltipContent_theme_primary {
+  :where(.cui-tooltip-tooltipContent)[data-theme="primary"] {
     --cui-tooltipTheme-color: var(--cui-component-tooltip-tooltip-content-theme-primary-color);
     --cui-tooltipTheme-backgroundColor: var(--cui-component-tooltip-tooltip-content-theme-primary-background-color);
   }
-  .cui-tooltip-tooltipContent_theme_secondary {
+  :where(.cui-tooltip-tooltipContent)[data-theme="secondary"] {
     --cui-tooltipTheme-color: var(--cui-component-tooltip-tooltip-content-theme-secondary-color);
     --cui-tooltipTheme-backgroundColor: var(--cui-component-tooltip-tooltip-content-theme-secondary-background-color);
   }
@@ -43,7 +43,7 @@
     display: inline-block;
     appearance: none;
   }
-  @media (prefers-reduced-motion: reduce) {
+  @media (--cui-reduced-motion) {
     .cui-tooltip-tooltipContent {
       animation-name: cui-motion-fadeOut;
     }

@@ -76,7 +76,8 @@ export function Content<T extends ValidComponent = "div">(props: PolymorphicProp
 		<KPopover.Content
 			ref={mergeRefs(motionRef(), local.ref)}
 			data-cui={popoverParts.content}
-			class={mergeClasses(popoverStyles.content({ variant: local.variant }), local.class)}
+			data-variant={local.variant}
+			class={mergeClasses(styles.content(), local.class)}
 			{...others}
 		/>
 	);

@@ -153,7 +153,7 @@
     color: var(--cui-text-hint);
     font-size: var(--cui-font-size-sm);
   }
-  @media (pointer: coarse) {
+  @media (--cui-coarse-pointer) {
     .cui-command-menu-search {
       min-height: var(--cui-control-height-md);
     }
@@ -176,7 +176,7 @@
       display: none;
     }
   }
-  @media (prefers-reduced-motion: reduce) {
+  @media (--cui-reduced-motion) {
     .cui-command-menu-content {
       animation-name: none;
     }

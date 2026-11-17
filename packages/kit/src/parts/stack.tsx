@@ -5,7 +5,7 @@ import { Dynamic } from "solid-js/web";
 import { root } from "../components/Stack/Stack.css";
 import { mergeClasses } from "../utils/css";
 
-import { type Gap, type StackVariants, stackParts, type StackPart, type StackClasses, type StackStyles, stackStyles } from "@codeui/styles/stack";
+import { type Gap, type StackVariants, stackParts, type StackPart, type StackClasses, type StackStyles } from "@codeui/styles/stack";
 export { type Gap, type StackVariants, stackParts, type StackPart, type StackClasses, type StackStyles, stackStyles } from "@codeui/styles/stack";
 export type StackProps<T extends ValidComponent = "div"> = StackVariants & {
 	as?: T;
@@ -36,7 +36,7 @@ export function Root<T extends ValidComponent = "div">(props: StackProps<T>) {
 			{...others}
 			component={local.as ?? "div"}
 			data-cui={stackParts.root}
-			class={mergeClasses(stackStyles.root(local), local.classes?.root, local.class)}
+			class={mergeClasses(root.classNames.base, local.classes?.root, local.class)}
 			data-gap={local.gap ?? "2"}
 			data-align={local.align ?? "stretch"}
 			data-justify={local.justify ?? "start"}

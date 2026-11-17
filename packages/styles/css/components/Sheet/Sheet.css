@@ -65,7 +65,7 @@
     box-shadow: var(--cui-shadow-dialog);
     outline: none;
   }
-  .cui-sheet-content_side_bottom {
+  :where(.cui-sheet-content)[data-side="bottom"] {
     left: 0;
     right: 0;
     bottom: 0;
@@ -74,13 +74,13 @@
     padding-bottom: env(safe-area-inset-bottom);
     animation: cui-sheet-slide_bottom_exit var(--cui-motion-duration-panel) var(--cui-motion-ease-out) forwards;
   }
-  .cui-sheet-content_side_bottom[data-expanded] {
+  :where(.cui-sheet-content)[data-side="bottom"][data-expanded] {
     animation: cui-sheet-slide_bottom_enter var(--cui-motion-duration-panel) var(--cui-motion-ease-out);
   }
-  .cui-sheet-content_side_bottom[data-motion=none], .cui-sheet-content_side_bottom[data-motion=none][data-expanded] {
+  :where(.cui-sheet-content)[data-side="bottom"][data-motion=none], :where(.cui-sheet-content)[data-side="bottom"][data-motion=none][data-expanded] {
     animation: none;
   }
-  .cui-sheet-content_side_left {
+  :where(.cui-sheet-content)[data-side="left"] {
     top: 0;
     bottom: 0;
     width: min(24rem, calc(100vw - var(--cui-space-10)));
@@ -91,13 +91,13 @@
     padding-left: env(safe-area-inset-left);
     animation: cui-sheet-slide_left_exit var(--cui-motion-duration-panel) var(--cui-motion-ease-out) forwards;
   }
-  .cui-sheet-content_side_left[data-expanded] {
+  :where(.cui-sheet-content)[data-side="left"][data-expanded] {
     animation: cui-sheet-slide_left_enter var(--cui-motion-duration-panel) var(--cui-motion-ease-out);
   }
-  .cui-sheet-content_side_left[data-motion=none], .cui-sheet-content_side_left[data-motion=none][data-expanded] {
+  :where(.cui-sheet-content)[data-side="left"][data-motion=none], :where(.cui-sheet-content)[data-side="left"][data-motion=none][data-expanded] {
     animation: none;
   }
-  .cui-sheet-content_side_right {
+  :where(.cui-sheet-content)[data-side="right"] {
     top: 0;
     bottom: 0;
     width: min(24rem, calc(100vw - var(--cui-space-10)));
@@ -108,10 +108,10 @@
     padding-right: env(safe-area-inset-right);
     animation: cui-sheet-slide_right_exit var(--cui-motion-duration-panel) var(--cui-motion-ease-out) forwards;
   }
-  .cui-sheet-content_side_right[data-expanded] {
+  :where(.cui-sheet-content)[data-side="right"][data-expanded] {
     animation: cui-sheet-slide_right_enter var(--cui-motion-duration-panel) var(--cui-motion-ease-out);
   }
-  .cui-sheet-content_side_right[data-motion=none], .cui-sheet-content_side_right[data-motion=none][data-expanded] {
+  :where(.cui-sheet-content)[data-side="right"][data-motion=none], :where(.cui-sheet-content)[data-side="right"][data-motion=none][data-expanded] {
     animation: none;
   }
   .cui-sheet-header {
@@ -186,40 +186,40 @@
     padding: var(--cui-space-4) var(--cui-space-6);
     border-top: var(--cui-border-width) solid var(--cui-border-dialog-title);
   }
-  @media (prefers-reduced-motion: reduce) {
+  @media (--cui-reduced-motion) {
     .cui-sheet-overlay {
       animation-name: cui-sheet-fadeOut;
     }
     .cui-sheet-overlay[data-expanded] {
       animation-name: cui-sheet-fadeIn;
     }
-    .cui-sheet-content_side_bottom {
+    :where(.cui-sheet-content)[data-side="bottom"] {
       animation-name: cui-sheet-fadeOut;
     }
-    .cui-sheet-content_side_bottom[data-expanded] {
+    :where(.cui-sheet-content)[data-side="bottom"][data-expanded] {
       animation-name: cui-sheet-fadeIn;
     }
-    .cui-sheet-content_side_left {
+    :where(.cui-sheet-content)[data-side="left"] {
       animation-name: cui-sheet-fadeOut;
     }
-    .cui-sheet-content_side_left[data-expanded] {
+    :where(.cui-sheet-content)[data-side="left"][data-expanded] {
       animation-name: cui-sheet-fadeIn;
     }
-    .cui-sheet-content_side_right {
+    :where(.cui-sheet-content)[data-side="right"] {
       animation-name: cui-sheet-fadeOut;
     }
-    .cui-sheet-content_side_right[data-expanded] {
+    :where(.cui-sheet-content)[data-side="right"][data-expanded] {
       animation-name: cui-sheet-fadeIn;
     }
   }
-  @media (pointer: coarse) {
+  @media (--cui-coarse-pointer) {
     .cui-sheet-closeButton::after {
       content: "";
       position: absolute;
       inset: calc((var(--cui-control-height-xs) - var(--cui-control-height-md)) / 2);
     }
   }
-  @media (hover: hover) and (pointer: fine) {
+  @media (--cui-hover-pointer) {
     .cui-sheet-handle:hover::before {
       background-color: var(--cui-text-muted);
     }

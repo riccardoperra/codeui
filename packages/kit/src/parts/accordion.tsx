@@ -103,12 +103,13 @@ export function Header<T extends ValidComponent = "h3">(
 	);
 }
 export type TriggerProps<T extends ValidComponent = "button"> =
-	K.AccordionTriggerProps<T>;
+	K.AccordionTriggerProps<T> & AccordionVariants;
 export function Trigger<T extends ValidComponent = "button">(
 	props: PolymorphicProps<T, TriggerProps<T>>,
 ) {
 	const [local, others] = splitProps(props as PolymorphicProps<"button", TriggerProps>, [
 		"class",
+		"density",
 		"onFocus",
 	]);
 	const context = K.useAccordionContext();
@@ -124,6 +125,7 @@ export function Trigger<T extends ValidComponent = "button">(
 			}}
 			{...others}
 			data-cui={accordionParts.trigger}
+			data-density={local.density}
 			class={mergeClasses(accordionStyles.trigger(), local.class)}
 		/>
 	);

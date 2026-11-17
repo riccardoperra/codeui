@@ -385,7 +385,7 @@ export function Section(props: SectionProps) {
 			data-cui={dialogParts.section}
 			data-variant={variant()}
 			data-columns={local.columns === 2 ? "2" : undefined}
-			class={mergeClasses(dialogStyles.section({ variant: variant() }), local.class)}
+			class={mergeClasses(styles.section.classNames.base, local.class)}
 			{...others}
 		>
 			<Show when={local.title}>

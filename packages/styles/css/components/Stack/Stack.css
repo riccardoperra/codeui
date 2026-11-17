@@ -3,118 +3,118 @@
   .cui-stack-root {
     display: flex;
   }
-  .cui-stack-root_gap_0 {
+  :where(.cui-stack-root)[data-gap="0"] {
     gap: var(--cui-space-0);
   }
-  .cui-stack-root_gap_1 {
+  :where(.cui-stack-root)[data-gap="1"] {
     gap: var(--cui-space-1);
   }
-  .cui-stack-root_gap_2 {
+  :where(.cui-stack-root)[data-gap="2"] {
     gap: var(--cui-space-2);
   }
-  .cui-stack-root_gap_3 {
+  :where(.cui-stack-root)[data-gap="3"] {
     gap: var(--cui-space-3);
   }
-  .cui-stack-root_gap_4 {
+  :where(.cui-stack-root)[data-gap="4"] {
     gap: var(--cui-space-4);
   }
-  .cui-stack-root_gap_5 {
+  :where(.cui-stack-root)[data-gap="5"] {
     gap: var(--cui-space-5);
   }
-  .cui-stack-root_gap_6 {
+  :where(.cui-stack-root)[data-gap="6"] {
     gap: var(--cui-space-6);
   }
-  .cui-stack-root_gap_8 {
+  :where(.cui-stack-root)[data-gap="8"] {
     gap: var(--cui-space-8);
   }
-  .cui-stack-root_gap_10 {
+  :where(.cui-stack-root)[data-gap="10"] {
     gap: var(--cui-space-10);
   }
-  .cui-stack-root_gap_12 {
+  :where(.cui-stack-root)[data-gap="12"] {
     gap: var(--cui-space-12);
   }
-  .cui-stack-root_gap_16 {
+  :where(.cui-stack-root)[data-gap="16"] {
     gap: var(--cui-space-16);
   }
-  .cui-stack-root_gap_20 {
+  :where(.cui-stack-root)[data-gap="20"] {
     gap: var(--cui-space-20);
   }
-  .cui-stack-root_gap_24 {
+  :where(.cui-stack-root)[data-gap="24"] {
     gap: var(--cui-space-24);
   }
-  .cui-stack-root_gap_32 {
+  :where(.cui-stack-root)[data-gap="32"] {
     gap: var(--cui-space-32);
   }
-  .cui-stack-root_gap_40 {
+  :where(.cui-stack-root)[data-gap="40"] {
     gap: var(--cui-space-40);
   }
-  .cui-stack-root_gap_48 {
+  :where(.cui-stack-root)[data-gap="48"] {
     gap: var(--cui-space-48);
   }
-  .cui-stack-root_gap_56 {
+  :where(.cui-stack-root)[data-gap="56"] {
     gap: var(--cui-space-56);
   }
-  .cui-stack-root_gap_64 {
+  :where(.cui-stack-root)[data-gap="64"] {
     gap: var(--cui-space-64);
   }
-  .cui-stack-root_gap_auto {
+  :where(.cui-stack-root)[data-gap="auto"] {
     gap: var(--cui-space-auto);
   }
-  .cui-stack-root_gap_px {
+  :where(.cui-stack-root)[data-gap="px"] {
     gap: var(--cui-space-px);
   }
-  .cui-stack-root_gap_0-5 {
+  :where(.cui-stack-root)[data-gap="0.5"] {
     gap: var(--cui-space-0-5);
   }
-  .cui-stack-root_gap_1-5 {
+  :where(.cui-stack-root)[data-gap="1.5"] {
     gap: var(--cui-space-1-5);
   }
-  .cui-stack-root_gap_2-5 {
+  :where(.cui-stack-root)[data-gap="2.5"] {
     gap: var(--cui-space-2-5);
   }
-  .cui-stack-root_direction_column {
+  :where(.cui-stack-root)[data-direction="column"] {
     flex-direction: column;
   }
-  .cui-stack-root_direction_row {
+  :where(.cui-stack-root)[data-direction="row"] {
     flex-direction: row;
   }
-  .cui-stack-root_wrap_true {
+  :where(.cui-stack-root)[data-wrap="true"] {
     flex-wrap: wrap;
   }
-  .cui-stack-root_wrap_false {
+  :where(.cui-stack-root)[data-wrap="false"] {
     flex-wrap: nowrap;
   }
-  .cui-stack-root_align_start {
+  :where(.cui-stack-root)[data-align="start"] {
     align-items: flex-start;
   }
-  .cui-stack-root_align_center {
+  :where(.cui-stack-root)[data-align="center"] {
     align-items: center;
   }
-  .cui-stack-root_align_end {
+  :where(.cui-stack-root)[data-align="end"] {
     align-items: flex-end;
   }
-  .cui-stack-root_align_stretch {
+  :where(.cui-stack-root)[data-align="stretch"] {
     align-items: stretch;
   }
-  .cui-stack-root_align_baseline {
+  :where(.cui-stack-root)[data-align="baseline"] {
     align-items: baseline;
   }
-  .cui-stack-root_justify_start {
+  :where(.cui-stack-root)[data-justify="start"] {
     justify-content: flex-start;
   }
-  .cui-stack-root_justify_center {
+  :where(.cui-stack-root)[data-justify="center"] {
     justify-content: center;
   }
-  .cui-stack-root_justify_end {
+  :where(.cui-stack-root)[data-justify="end"] {
     justify-content: flex-end;
   }
-  .cui-stack-root_justify_between {
+  :where(.cui-stack-root)[data-justify="between"] {
     justify-content: space-between;
   }
-  .cui-stack-root_justify_around {
+  :where(.cui-stack-root)[data-justify="around"] {
     justify-content: space-around;
   }
-  .cui-stack-root_justify_evenly {
+  :where(.cui-stack-root)[data-justify="evenly"] {
     justify-content: space-evenly;
   }
 }

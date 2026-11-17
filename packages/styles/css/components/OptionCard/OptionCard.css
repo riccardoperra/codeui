@@ -70,7 +70,7 @@
     cursor: not-allowed;
     color: var(--cui-text-hint);
   }
-  .cui-option-card-itemLabel_variant_tile {
+  :where(.cui-option-card-itemLabel)[data-variant="tile"] {
     padding: var(--cui-component-option-card-item-label-variant-tile-padding);
   }
   .cui-option-card-item:has(input:focus-visible) .cui-option-card-itemLabel {
@@ -129,17 +129,17 @@
   [data-checked] .cui-option-card-badge[data-cui="option-card-badge"][data-tone=neutral][data-variant=soft] {
     background-color: var(--cui-component-option-card-badge-checked-tone-neutral-variant-soft-background-color);
   }
-  @media (pointer: coarse) {
+  @media (--cui-coarse-pointer) {
     .cui-option-card-itemLabel {
       min-height: var(--cui-space-10);
     }
   }
-  @media (hover: hover) and (pointer: fine) {
+  @media (--cui-hover-pointer) {
     .cui-option-card-itemLabel:hover:not(:is([data-disabled], :disabled)) {
       background: var(--cui-surface-field-hover);
     }
   }
-  @media (prefers-reduced-motion: reduce) {
+  @media (--cui-reduced-motion) {
     .cui-option-card-itemLabel {
       transition: background-color var(--cui-motion-duration-fast) var(--cui-motion-ease-out);
     }

@@ -88,29 +88,29 @@
     opacity: 1;
     transform: scale(1);
   }
-  .cui-check-box-control_theme_filled {
+  :where(.cui-check-box-control)[data-theme="filled"] {
     --cui-checkboxTheme-borderColor: transparent;
     --cui-checkboxTheme-fill: var(--cui-component-checkbox-check-box-control-theme-filled-fill);
   }
-  .cui-check-box-control_size_xs {
+  :where(.cui-check-box-control)[data-size="xs"] {
     --cui-checkboxTheme-size: 1rem;
     --cui-checkboxTheme-fontSize: var(--cui-component-checkbox-check-box-control-size-xs-font-size);
     --cui-checkboxTheme-radius: calc(var(--cui-radius-md) * .5);
   }
-  .cui-check-box-control_size_sm {
+  :where(.cui-check-box-control)[data-size="sm"] {
     --cui-checkboxTheme-size: 1.25rem;
     --cui-checkboxTheme-fontSize: var(--cui-component-checkbox-check-box-control-size-sm-font-size);
   }
-  .cui-check-box-control_size_md {
+  :where(.cui-check-box-control)[data-size="md"] {
     --cui-checkboxTheme-size: 1.5rem;
     --cui-checkboxTheme-fontSize: var(--cui-component-checkbox-check-box-control-size-md-font-size);
   }
-  .cui-check-box-control_size_lg {
+  :where(.cui-check-box-control)[data-size="lg"] {
     --cui-checkboxTheme-size: 1.75rem;
     --cui-checkboxTheme-fontSize: var(--cui-component-checkbox-check-box-control-size-lg-font-size);
     --cui-checkboxTheme-radius: calc(var(--cui-radius-md) * .7);
   }
-  .cui-check-box-control_size_xl {
+  :where(.cui-check-box-control)[data-size="xl"] {
     --cui-checkboxTheme-size: 2rem;
     --cui-checkboxTheme-fontSize: var(--cui-component-checkbox-check-box-control-size-xl-font-size);
     --cui-checkboxTheme-radius: calc(var(--cui-radius-md) * .8);

@@ -1,6 +1,6 @@
 import { cleanup, fireEvent, render, screen } from "solid-testing-library";
 import { createSignal } from "solid-js";
-import { Switch, switchStyles } from "../src/components/Switch/Switch";
+import { Switch } from "../src/components/Switch/Switch";
 afterEach(cleanup);
 it("links rich field content, exposes invalid state and submits checked values", () => {
 	const { container } = render(() => (
@@ -84,10 +84,6 @@ it("records a pointer press, so a click shows no keyboard focus ring", () => {
 });
 it("sizes the track and thumb parts with the Switch size", () => {
 	render(() => <Switch label="Compact" size="sm" />);
-	expect(document.querySelector('[data-cui="switch-control"]')).toHaveClass(
-		switchStyles.control({ size: "sm" }),
-	);
-	expect(document.querySelector('[data-cui="switch-thumb"]')).toHaveClass(
-		switchStyles.thumb({ size: "sm" }),
-	);
+	expect(document.querySelector('[data-cui="switch-control"]')).toHaveAttribute("data-size", "sm");
+	expect(document.querySelector('[data-cui="switch-thumb"]')).toHaveAttribute("data-size", "sm");
 });

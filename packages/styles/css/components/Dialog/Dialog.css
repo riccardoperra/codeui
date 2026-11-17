@@ -156,7 +156,7 @@
     padding: var(--cui-space-3) var(--cui-space-3) var(--cui-space-2) var(--cui-space-6);
     font-size: var(--cui-font-size-md);
   }
-  .cui-dialog-panel:where([data-chrome="inset"], .cui-dialog-panel_chrome_inset:not([data-chrome])):where([data-size="settings"], .cui-dialog-panel_size_settings:not([data-size])) {
+  .cui-dialog-panel:where([data-chrome="inset"][data-size="settings"]) {
     --cui-dialogTheme-panelRadius: var(--cui-component-dialog-panel-compound-chrome-inset-size-settings-panel-radius);
   }
   .cui-dialog-panel {
@@ -189,16 +189,16 @@
   .cui-dialog-panel[data-motion=none], .cui-dialog-panel[data-motion=none][data-expanded] {
     animation: none;
   }
-  :is(.cui-dialog-panel_size_xs:where(:not([data-size])), :where(.cui-dialog-panel)[data-size="xs"]) {
+  :where(.cui-dialog-panel)[data-size="xs"] {
     width: 24rem;
   }
-  :is(.cui-dialog-panel_size_sm:where(:not([data-size])), :where(.cui-dialog-panel)[data-size="sm"]) {
+  :where(.cui-dialog-panel)[data-size="sm"] {
     width: 28rem;
   }
-  :is(.cui-dialog-panel_size_md:where(:not([data-size])), :where(.cui-dialog-panel)[data-size="md"]) {
+  :where(.cui-dialog-panel)[data-size="md"] {
     width: 32rem;
   }
-  :is(.cui-dialog-panel_size_full:where(:not([data-size])), :where(.cui-dialog-panel)[data-size="full"]) {
+  :where(.cui-dialog-panel)[data-size="full"] {
     padding: 0;
     margin: 0;
     min-height: 100%;
@@ -206,28 +206,28 @@
     border-radius: 0;
     height: 100%;
   }
-  :is(.cui-dialog-panel_size_full:where(:not([data-size])), :where(.cui-dialog-panel)[data-size="full"]):focus-visible {
+  :where(.cui-dialog-panel)[data-size="full"]:focus-visible {
     box-shadow: none;
     outline: none;
   }
-  :is(.cui-dialog-panel_size_settings:where(:not([data-size])), :where(.cui-dialog-panel)[data-size="settings"]) {
+  :where(.cui-dialog-panel)[data-size="settings"] {
     --cui-dialogTheme-width: 62.5rem;
     --cui-dialogTheme-height: 42.5rem;
     width: min(var(--cui-dialogTheme-width), 100%);
     height: min(var(--cui-dialogTheme-height), 100%);
   }
-  :is(.cui-dialog-panel_size_export:where(:not([data-size])), :where(.cui-dialog-panel)[data-size="export"]) {
+  :where(.cui-dialog-panel)[data-size="export"] {
     --cui-dialogTheme-width: 50rem;
     width: min(var(--cui-dialogTheme-width), 100%);
     overflow-y: auto;
     overscroll-behavior: contain;
   }
-  :is(.cui-dialog-panel_chrome_inset:where(:not([data-chrome])), :where(.cui-dialog-panel)[data-chrome="inset"]) {
+  :where(.cui-dialog-panel)[data-chrome="inset"] {
     --cui-dialogTheme-panelRadius: var(--cui-component-dialog-panel-chrome-inset-panel-radius);
     gap: var(--cui-space-5);
     padding: var(--cui-space-5);
   }
-  :is(.cui-dialog-panel_chrome_inset:where(:not([data-chrome])), :where(.cui-dialog-panel)[data-chrome="inset"]):has(> [data-cui=dialog-sidebar]) {
+  :where(.cui-dialog-panel)[data-chrome="inset"]:has(> [data-cui=dialog-sidebar]) {
     flex-direction: row;
     gap: 0;
     padding: 0;
@@ -308,7 +308,7 @@
     min-width: 0;
     margin: 0;
   }
-  .cui-dialog-section_variant_well {
+  :where(.cui-dialog-section)[data-variant="well"] {
     padding: var(--cui-component-dialog-section-variant-well-padding);
     border-radius: var(--cui-component-dialog-section-variant-well-border-radius);
     background-color: var(--cui-dialogTheme-islandBackground);
@@ -342,12 +342,12 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--cui-space-0-5);
   }
-  @media (hover: hover) and (pointer: fine) {
+  @media (--cui-hover-pointer) {
     .cui-dialog-navItem:hover:not([aria-current]):not(:disabled) {
       color: var(--cui-text-default);
     }
   }
-  @media (prefers-reduced-motion: reduce) {
+  @media (--cui-reduced-motion) {
     .cui-dialog-panel {
       animation-name: cui-dialog-fadeOut;
     }
@@ -384,14 +384,14 @@
       order: -1;
       padding: var(--cui-space-2) var(--cui-space-2) 0 var(--cui-space-4);
     }
-    :is(.cui-dialog-panel_size_settings:where(:not([data-size])), :where(.cui-dialog-panel)[data-size="settings"]) {
+    :where(.cui-dialog-panel)[data-size="settings"] {
       height: 100%;
     }
-    :is(.cui-dialog-panel_chrome_inset:where(:not([data-chrome])), :where(.cui-dialog-panel)[data-chrome="inset"]) {
+    :where(.cui-dialog-panel)[data-chrome="inset"] {
       gap: var(--cui-space-4);
       padding: var(--cui-space-4);
     }
-    :is(.cui-dialog-panel_chrome_inset:where(:not([data-chrome])), :where(.cui-dialog-panel)[data-chrome="inset"]):has(> [data-cui=dialog-sidebar]) {
+    :where(.cui-dialog-panel)[data-chrome="inset"]:has(> [data-cui=dialog-sidebar]) {
       flex-direction: column;
     }
     .cui-dialog-sidebar {
@@ -421,16 +421,16 @@
       grid-template-columns: minmax(0, 1fr);
     }
   }
-  @media screen and (min-width: 768px) {
-    :is(.cui-dialog-panel_size_lg:where(:not([data-size])), :where(.cui-dialog-panel)[data-size="lg"]) {
+  @media screen and (--cui-md) {
+    :where(.cui-dialog-panel)[data-size="lg"] {
       width: 48rem;
     }
-    :is(.cui-dialog-panel_size_xl:where(:not([data-size])), :where(.cui-dialog-panel)[data-size="xl"]) {
+    :where(.cui-dialog-panel)[data-size="xl"] {
       width: 48rem;
     }
   }
-  @media screen and (min-width: 1024px) {
-    :is(.cui-dialog-panel_size_xl:where(:not([data-size])), :where(.cui-dialog-panel)[data-size="xl"]) {
+  @media screen and (--cui-lg) {
+    :where(.cui-dialog-panel)[data-size="xl"] {
       width: 64rem;
     }
   }

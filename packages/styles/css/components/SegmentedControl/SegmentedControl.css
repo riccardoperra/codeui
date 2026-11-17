@@ -30,18 +30,18 @@
   .cui-segmented-control-segmentedControlWrapper[data-disabled] {
     opacity: 0.5;
   }
-  .cui-segmented-control-segmentedControlWrapper_theme_primary {
+  :where(.cui-segmented-control-segmentedControlWrapper)[data-theme="primary"] {
     --cui-segmentedFieldTheme-activeSegmentedBackgroundColor: var(--cui-component-segmented-control-segmented-control-wrapper-theme-primary-active-segmented-background-color);
     --cui-segmentedFieldTheme-activeSegmentedTextColor: var(--cui-component-segmented-control-segmented-control-wrapper-theme-primary-active-segmented-text-color);
   }
-  .cui-segmented-control-segmentedControlWrapper_variant_solid {
+  :where(.cui-segmented-control-segmentedControlWrapper)[data-variant="solid"] {
     background-color: var(--cui-segmentedFieldTheme-segmentWrapperSolidBackground);
   }
-  .cui-segmented-control-segmentedControlWrapper_variant_bordered {
+  :where(.cui-segmented-control-segmentedControlWrapper)[data-variant="bordered"] {
     background-color: transparent;
     box-shadow: 0 0 0 var(--cui-border-width-strong) var(--cui-segmentedFieldTheme-segmentWrapperBorderedColor);
   }
-  .cui-segmented-control-segmentedControlWrapper_size_xl {
+  :where(.cui-segmented-control-segmentedControlWrapper)[data-size="xl"] {
     --cui-segmentedFieldTheme-segmentWrapperPadding: calc(var(--cui-space-1) * 1.5);
     --cui-segmentedFieldTheme-segmentHeight: var(--cui-component-segmented-control-segmented-control-wrapper-size-xl-segment-height);
     --cui-segmentedFieldTheme-segmentFontSize: var(--cui-component-segmented-control-segmented-control-wrapper-size-xl-segment-font-size);
@@ -49,7 +49,7 @@
     --cui-segmentedFieldTheme-segmentRadius: var(--cui-component-segmented-control-segmented-control-wrapper-size-xl-segment-radius);
     --cui-segmentedFieldTheme-segmentWrapperRadius: var(--cui-component-segmented-control-segmented-control-wrapper-size-xl-segment-wrapper-radius);
   }
-  .cui-segmented-control-segmentedControlWrapper_size_lg {
+  :where(.cui-segmented-control-segmentedControlWrapper)[data-size="lg"] {
     --cui-segmentedFieldTheme-segmentWrapperPadding: var(--cui-component-segmented-control-segmented-control-wrapper-size-lg-segment-wrapper-padding);
     --cui-segmentedFieldTheme-segmentHeight: var(--cui-component-segmented-control-segmented-control-wrapper-size-lg-segment-height);
     --cui-segmentedFieldTheme-segmentFontSize: var(--cui-component-segmented-control-segmented-control-wrapper-size-lg-segment-font-size);
@@ -57,7 +57,7 @@
     --cui-segmentedFieldTheme-segmentRadius: var(--cui-component-segmented-control-segmented-control-wrapper-size-lg-segment-radius);
     --cui-segmentedFieldTheme-segmentWrapperRadius: var(--cui-component-segmented-control-segmented-control-wrapper-size-lg-segment-wrapper-radius);
   }
-  .cui-segmented-control-segmentedControlWrapper_size_md {
+  :where(.cui-segmented-control-segmentedControlWrapper)[data-size="md"] {
     --cui-segmentedFieldTheme-segmentWrapperPadding: var(--cui-component-segmented-control-segmented-control-wrapper-size-md-segment-wrapper-padding);
     --cui-segmentedFieldTheme-segmentHeight: var(--cui-component-segmented-control-segmented-control-wrapper-size-md-segment-height);
     --cui-segmentedFieldTheme-segmentFontSize: var(--cui-component-segmented-control-segmented-control-wrapper-size-md-segment-font-size);
@@ -65,7 +65,7 @@
     --cui-segmentedFieldTheme-segmentRadius: var(--cui-component-segmented-control-segmented-control-wrapper-size-md-segment-radius);
     --cui-segmentedFieldTheme-segmentWrapperRadius: var(--cui-component-segmented-control-segmented-control-wrapper-size-md-segment-wrapper-radius);
   }
-  .cui-segmented-control-segmentedControlWrapper_size_sm {
+  :where(.cui-segmented-control-segmentedControlWrapper)[data-size="sm"] {
     --cui-segmentedFieldTheme-segmentWrapperPadding: var(--cui-component-segmented-control-segmented-control-wrapper-size-sm-segment-wrapper-padding);
     --cui-segmentedFieldTheme-segmentHeight: var(--cui-component-segmented-control-segmented-control-wrapper-size-sm-segment-height);
     --cui-segmentedFieldTheme-segmentFontSize: var(--cui-component-segmented-control-segmented-control-wrapper-size-sm-segment-font-size);
@@ -73,7 +73,7 @@
     --cui-segmentedFieldTheme-segmentRadius: var(--cui-component-segmented-control-segmented-control-wrapper-size-sm-segment-radius);
     --cui-segmentedFieldTheme-segmentWrapperRadius: var(--cui-component-segmented-control-segmented-control-wrapper-size-sm-segment-wrapper-radius);
   }
-  .cui-segmented-control-segmentedControlWrapper_size_xs {
+  :where(.cui-segmented-control-segmentedControlWrapper)[data-size="xs"] {
     --cui-segmentedFieldTheme-segmentWrapperPadding: calc(var(--cui-space-1) - 1px);
     --cui-segmentedFieldTheme-segmentHeight: var(--cui-component-segmented-control-segmented-control-wrapper-size-xs-segment-height);
     --cui-segmentedFieldTheme-segmentFontSize: calc(var(--cui-font-size-xs) - 1px);
@@ -81,10 +81,10 @@
     --cui-segmentedFieldTheme-segmentRadius: var(--cui-component-segmented-control-segmented-control-wrapper-size-xs-segment-radius);
     --cui-segmentedFieldTheme-segmentWrapperRadius: var(--cui-component-segmented-control-segmented-control-wrapper-size-xs-segment-wrapper-radius);
   }
-  .cui-segmented-control-segmentedControlWrapper_fluid_true {
+  :where(.cui-segmented-control-segmentedControlWrapper)[data-fluid] {
     width: 100%;
   }
-  .cui-segmented-control-segmentedControlWrapper_pill_true {
+  :where(.cui-segmented-control-segmentedControlWrapper)[data-pill] {
     --cui-segmentedFieldTheme-segmentRadius: var(--cui-component-segmented-control-segmented-control-wrapper-pill-true-segment-radius);
     --cui-segmentedFieldTheme-segmentWrapperRadius: var(--cui-component-segmented-control-segmented-control-wrapper-pill-true-segment-wrapper-radius);
   }
@@ -147,7 +147,7 @@
   :root[data-cui-input="keyboard"] .cui-segmented-control-indicator {
     transition: none;
   }
-  @media (prefers-reduced-motion: reduce) {
+  @media (--cui-reduced-motion) {
     .cui-segmented-control-indicator {
       transition: none;
     }

@@ -110,7 +110,7 @@
   .cui-dropdown-item[data-highlighted] .cui-dropdown-rightSlot {
     color: var(--cui-dropdownMenuTheme-itemHoverTextColor);
   }
-  @media (prefers-reduced-motion: reduce) {
+  @media (--cui-reduced-motion) {
     .cui-dropdown-content {
       animation-name: cui-motion-fadeOut;
     }

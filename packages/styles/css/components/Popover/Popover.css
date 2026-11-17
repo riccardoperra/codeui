@@ -40,7 +40,7 @@
   .cui-popover-content[data-motion=none], .cui-popover-content[data-motion=none][data-expanded] {
     animation: none;
   }
-  .cui-popover-content_variant_bordered {
+  :where(.cui-popover-content)[data-variant="bordered"] {
     border: var(--cui-border-width) solid var(--cui-popoverTheme-contentBorderColor);
   }
   .cui-popover-title {
@@ -57,7 +57,7 @@
     font-size: var(--cui-popoverTheme-contentFontSize);
     line-height: var(--cui-popoverTheme-contentLineHeight);
   }
-  @media (prefers-reduced-motion: reduce) {
+  @media (--cui-reduced-motion) {
     .cui-popover-content {
       animation-name: cui-motion-fadeOut;
     }

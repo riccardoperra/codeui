@@ -68,7 +68,7 @@
     right: -1px;
     width: 2px;
   }
-  @media (prefers-reduced-motion: reduce) {
+  @media (--cui-reduced-motion) {
     .cui-tabs-indicator {
       transition: none;
     }

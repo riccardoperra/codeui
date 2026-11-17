@@ -27,33 +27,33 @@
     line-height: var(--cui-font-line-height-sm);
     margin-top: var(--cui-space-1);
   }
-  .cui-radio-radioList_theme_filled {
+  :where(.cui-radio-radioList)[data-theme="filled"] {
     --cui-radioTheme-inputColor: transparent;
     --cui-radioTheme-inputFill: var(--cui-component-radio-list-radio-radio-list-theme-filled-input-fill);
   }
-  .cui-radio-radioList_orientation_horizontal {
+  :where(.cui-radio-radioList)[data-orientation="horizontal"] {
     flex-direction: row;
   }
-  .cui-radio-radioList_orientation_vertical {
+  :where(.cui-radio-radioList)[data-orientation="vertical"] {
     flex-direction: column;
   }
-  .cui-radio-radioList_size_xs {
+  :where(.cui-radio-radioList)[data-size="xs"] {
     --cui-radioTheme-inputSize: 1rem;
     --cui-radioTheme-labelSize: var(--cui-component-radio-list-radio-radio-list-size-xs-label-size);
   }
-  .cui-radio-radioList_size_sm {
+  :where(.cui-radio-radioList)[data-size="sm"] {
     --cui-radioTheme-inputSize: 1rem;
     --cui-radioTheme-labelSize: var(--cui-component-radio-list-radio-radio-list-size-sm-label-size);
   }
-  .cui-radio-radioList_size_md {
+  :where(.cui-radio-radioList)[data-size="md"] {
     --cui-radioTheme-inputSize: 1.25rem;
     --cui-radioTheme-labelSize: var(--cui-component-radio-list-radio-radio-list-size-md-label-size);
   }
-  .cui-radio-radioList_size_lg {
+  :where(.cui-radio-radioList)[data-size="lg"] {
     --cui-radioTheme-inputSize: 1.5rem;
     --cui-radioTheme-labelSize: var(--cui-component-radio-list-radio-radio-list-size-lg-label-size);
   }
-  .cui-radio-radioList_size_xl {
+  :where(.cui-radio-radioList)[data-size="xl"] {
     --cui-radioTheme-inputSize: 1.5rem;
     --cui-radioTheme-labelSize: var(--cui-component-radio-list-radio-radio-list-size-xl-label-size);
   }
@@ -113,7 +113,7 @@
     outline: var(--cui-focus-width) solid var(--cui-focus-color);
     outline-offset: var(--cui-focus-offset);
   }
-  @media (prefers-reduced-motion: reduce) {
+  @media (--cui-reduced-motion) {
     .cui-radio-indicator {
       animation: none;
     }

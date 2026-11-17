@@ -16,7 +16,8 @@ import {
 	createFieldErrorMessageProps,
 	FieldWithErrorMessageSupport,
 } from "../Field/FieldError/createFieldErrorMessageProps";
-import { BaseFieldProps, createBaseFieldProps } from "../Field/createBaseFieldProps";
+import type { BaseFieldProps } from "../Field/createBaseFieldProps";
+import { baseFieldVariants } from "../Field/Field.css";
 import { SlotProp } from "../../utils/component";
 
 // TODO: add to base field slot that respect the BaseFieldProps signature?
@@ -52,12 +53,11 @@ export function TextField(props: TextFieldProps) {
 	const generatedId = createUniqueId();
 	const inputId = () => `${rootProps.id ?? generatedId}-input`;
 
-	const baseFieldProps = createBaseFieldProps(props);
 	const errorMessageProps = createFieldErrorMessageProps(props);
 
 	const inputClasses = () =>
 		mergeClasses(
-			baseFieldProps.baseStyle(),
+			baseFieldVariants.classNames.base,
 			styles.textField,
 			local.slotClasses?.input,
 			local.classes?.input,
@@ -89,6 +89,8 @@ export function TextField(props: TextFieldProps) {
 				{...inputProps}
 				id={inputId()}
 				data-cui="text-field-input"
+				data-size={local.size ?? "md"}
+				data-theme={local.theme ?? "filled"}
 				class={inputClasses()}
 				placeholder={local.placeholder}
 				ref={local.ref}

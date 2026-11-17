@@ -9,7 +9,7 @@
     color: inherit;
     cursor: pointer;
   }
-  .cui-link-link_variant_underline:hover {
+  :where(.cui-link-link)[data-variant="underline"]:hover {
     text-decoration: underline;
   }
 }

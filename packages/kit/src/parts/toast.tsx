@@ -37,7 +37,7 @@ export function Region<T extends ValidComponent = "div">(
 		<KToast.Region
 			data-cui={toastParts.region}
 			data-position={local.position ?? "bottom-center"}
-			class={mergeClasses(toastStyles.region({ position: local.position }), local.class)}
+			class={mergeClasses(styles.region.classNames.base, local.class)}
 			{...others}
 		/>
 	);
@@ -88,7 +88,7 @@ export function Root<T extends ValidComponent = "li">(
 			data-cui={toastParts.root}
 			data-tone={local.tone ?? "neutral"}
 			priority={local.priority ?? (local.tone === "danger" ? "high" : "low")}
-			class={mergeClasses(toastStyles.root({ tone: local.tone }), local.class)}
+			class={mergeClasses(styles.root.classNames.base, local.class)}
 			{...others}
 		/>
 	);

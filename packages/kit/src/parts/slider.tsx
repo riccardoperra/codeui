@@ -95,7 +95,7 @@ export function Track<T extends ValidComponent = "div">(
 			{...others}
 			data-cui={sliderParts.track}
 			data-orientation={local.orientation}
-			class={mergeClasses(sliderStyles.track(local), local.class)}
+			class={mergeClasses(styles.track.classNames.base, local.class)}
 		/>
 	);
 }
@@ -113,7 +113,7 @@ export function Fill<T extends ValidComponent = "div">(
 			{...others}
 			data-cui={sliderParts.fill}
 			data-orientation={local.orientation}
-			class={mergeClasses(sliderStyles.fill(local), local.class)}
+			class={mergeClasses(styles.fill.classNames.base, local.class)}
 		/>
 	);
 }

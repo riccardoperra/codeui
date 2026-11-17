@@ -26,7 +26,7 @@ function partAttributes(part: ComboboxPart, local: Local) {
 			return local.size;
 		},
 		get class() {
-			return mergeClasses(comboboxStyles[part](local), local.class);
+			return mergeClasses(part === "control" ? styles.control.classNames.base : comboboxStyles[part](), local.class);
 		},
 	};
 }

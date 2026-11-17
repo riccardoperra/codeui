@@ -14,27 +14,27 @@
     font-size: var(--cui-font-size-caption);
     line-height: var(--cui-font-line-height-normal);
   }
-  .cui-alert-root_tone_neutral {
+  :where(.cui-alert-root)[data-tone="neutral"] {
     background: var(--cui-component-alert-root-tone-neutral-background);
     color: var(--cui-component-alert-root-tone-neutral-color);
   }
-  .cui-alert-root_tone_info {
+  :where(.cui-alert-root)[data-tone="info"] {
     background: var(--cui-component-alert-root-tone-info-background);
     color: var(--cui-component-alert-root-tone-info-color);
   }
-  .cui-alert-root_tone_success {
+  :where(.cui-alert-root)[data-tone="success"] {
     background: var(--cui-component-alert-root-tone-success-background);
     color: var(--cui-component-alert-root-tone-success-color);
   }
-  .cui-alert-root_tone_warning {
+  :where(.cui-alert-root)[data-tone="warning"] {
     background: var(--cui-component-alert-root-tone-warning-background);
     color: var(--cui-component-alert-root-tone-warning-color);
   }
-  .cui-alert-root_tone_danger {
+  :where(.cui-alert-root)[data-tone="danger"] {
     background: var(--cui-component-alert-root-tone-danger-background);
     color: var(--cui-component-alert-root-tone-danger-color);
   }
-  .cui-alert-root_fluid_true {
+  :where(.cui-alert-root)[data-fluid] {
     display: grid;
     width: 100%;
   }

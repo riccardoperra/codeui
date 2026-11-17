@@ -42,15 +42,6 @@ export function Checkbox(props: CheckBoxProps) {
 
 	const labelClasses = () => mergeClasses(styles.label, local.slotClasses?.label);
 
-	const controlClasses = () =>
-		mergeClasses(
-			styles.control({
-				size: local.size,
-				theme: local.theme ?? "inline",
-			}),
-			local.slotClasses?.control,
-		);
-
 	return (
 		<KCheckbox
 			data-cui={"checkbox"}
@@ -60,7 +51,11 @@ export function Checkbox(props: CheckBoxProps) {
 			{...others}
 		>
 			<KCheckbox.Input class={inputClasses()} ref={local.ref} />
-			<KCheckbox.Control class={controlClasses()}>
+			<KCheckbox.Control
+				data-size={local.size ?? "md"}
+				data-theme={local.theme ?? "inline"}
+				class={mergeClasses(styles.control.classNames.base, local.slotClasses?.control)}
+			>
 				<KCheckbox.Indicator forceMount={true} class={styles.indicator}>
 					<CheckIcon class={styles.icon} />
 				</KCheckbox.Indicator>

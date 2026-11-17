@@ -29,7 +29,7 @@ export function Root<T extends ValidComponent = "div">(
 			data-tone={local.tone ?? "neutral"}
 			data-fluid={local.fluid ? "" : undefined}
 			class={mergeClasses(
-				alertStyles.root({ tone: local.tone, fluid: local.fluid }),
+				styles.root.classNames.base,
 				local.class,
 			)}
 			{...others}

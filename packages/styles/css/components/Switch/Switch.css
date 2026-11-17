@@ -86,7 +86,7 @@
     font-size: var(--cui-font-size-xs);
     line-height: var(--cui-font-line-height-xs);
   }
-  @media (pointer: coarse) {
+  @media (--cui-coarse-pointer) {
     .cui-switch-root {
       min-height: var(--cui-control-height-md);
     }
@@ -100,7 +100,7 @@
     }
   }
   @media (pointer: fine), (pointer: none) {
-    .cui-switch-control_size_sm {
+    :where(.cui-switch-control)[data-size="sm"] {
       --cui-switch-trackWidth: var(--cui-component-switch-control-size-sm-track-width);
       --cui-switch-trackHeight: var(--cui-component-switch-control-size-sm-track-height);
       --cui-switch-thumbSize: var(--cui-component-switch-control-size-sm-thumb-size);
@@ -111,7 +111,7 @@
       --cui-switch-thumbSize: var(--cui-component-switch-control-size-sm-thumb-size);
     }
   }
-  @media (prefers-reduced-motion: reduce) {
+  @media (--cui-reduced-motion) {
     .cui-switch-thumb {
       transition: none;
     }

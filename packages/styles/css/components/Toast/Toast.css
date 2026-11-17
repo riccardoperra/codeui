@@ -42,29 +42,29 @@
     outline: none;
     pointer-events: none;
   }
-  .cui-toast-region_position_top-left {
+  :where(.cui-toast-region)[data-position="top-left"] {
     top: 0;
     left: 0;
   }
-  .cui-toast-region_position_top-center {
+  :where(.cui-toast-region)[data-position="top-center"] {
     top: 0;
     left: 50%;
     transform: translateX(-50%);
   }
-  .cui-toast-region_position_top-right {
+  :where(.cui-toast-region)[data-position="top-right"] {
     top: 0;
     right: 0;
   }
-  .cui-toast-region_position_bottom-left {
+  :where(.cui-toast-region)[data-position="bottom-left"] {
     bottom: var(--cui-space-16);
     left: 0;
   }
-  .cui-toast-region_position_bottom-center {
+  :where(.cui-toast-region)[data-position="bottom-center"] {
     bottom: var(--cui-space-16);
     left: 50%;
     transform: translateX(-50%);
   }
-  .cui-toast-region_position_bottom-right {
+  :where(.cui-toast-region)[data-position="bottom-right"] {
     bottom: var(--cui-space-16);
     right: 0;
   }
@@ -126,19 +126,19 @@
   .cui-toast-root[data-swipe=end] {
     animation: cui-toast-swipeOut var(--cui-motion-duration-panel) var(--cui-motion-ease-out) forwards;
   }
-  .cui-toast-root_tone_neutral {
+  :where(.cui-toast-root)[data-tone="neutral"] {
     --cui-toast-accent: var(--cui-component-toast-root-tone-neutral-accent);
   }
-  .cui-toast-root_tone_info {
+  :where(.cui-toast-root)[data-tone="info"] {
     --cui-toast-accent: var(--cui-component-toast-root-tone-info-accent);
   }
-  .cui-toast-root_tone_success {
+  :where(.cui-toast-root)[data-tone="success"] {
     --cui-toast-accent: var(--cui-component-toast-root-tone-success-accent);
   }
-  .cui-toast-root_tone_warning {
+  :where(.cui-toast-root)[data-tone="warning"] {
     --cui-toast-accent: var(--cui-component-toast-root-tone-warning-accent);
   }
-  .cui-toast-root_tone_danger {
+  :where(.cui-toast-root)[data-tone="danger"] {
     --cui-toast-accent: var(--cui-component-toast-root-tone-danger-accent);
   }
   .cui-toast-icon {
@@ -228,7 +228,7 @@
     width: var(--cui-toast-progress-fill-width);
     background-color: var(--cui-toast-accent);
   }
-  @media (prefers-reduced-motion: reduce) {
+  @media (--cui-reduced-motion) {
     .cui-toast-root[data-opened], [data-position^=top] .cui-toast-root[data-opened] {
       animation-name: cui-toast-fadeIn;
     }
@@ -244,7 +244,7 @@
       background-color: var(--cui-action-neutral-base);
     }
   }
-  @media (pointer: coarse) {
+  @media (--cui-coarse-pointer) {
     .cui-toast-action {
       min-height: var(--cui-control-height-md);
     }

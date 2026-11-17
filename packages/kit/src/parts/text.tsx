@@ -6,7 +6,7 @@ import { tokens } from "../foundation/cui.css";
 import { root } from "../components/Text/Text.css";
 import { mergeClasses } from "../utils/css";
 
-import { type TextVariants, textParts, type TextPart, type TextClasses, type TextStyles, textStyles } from "@codeui/styles/text";
+import { type TextVariants, textParts, type TextPart, type TextClasses, type TextStyles } from "@codeui/styles/text";
 export { type TextVariants, textParts, type TextPart, type TextClasses, type TextStyles, textStyles } from "@codeui/styles/text";
 export type TextProps<T extends ValidComponent = "span"> = TextVariants & {
 	as?: T;
@@ -30,7 +30,7 @@ export function Root<T extends ValidComponent = "span">(props: TextProps<T>) {
 			{...others}
 			component={local.as ?? "span"}
 			data-cui={textParts.root}
-			class={mergeClasses(textStyles.root(local), local.classes?.root, local.class)}
+			class={mergeClasses(root.classNames.base, local.classes?.root, local.class)}
 			data-size={local.size ?? "sm"}
 			data-weight={local.weight ?? "normal"}
 			data-tone={local.tone ?? "default"}

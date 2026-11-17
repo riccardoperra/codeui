@@ -201,7 +201,7 @@ export function ItemLabel<T extends ValidComponent = "label">(
 			data-cui={optionCardParts.itemLabel}
 			data-variant={local.variant ?? "card"}
 			class={mergeClasses(
-				optionCardStyles.itemLabel({ variant: local.variant }),
+				styles.itemLabel.classNames.base,
 				local.class,
 			)}
 		/>

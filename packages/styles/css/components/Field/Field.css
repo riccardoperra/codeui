@@ -43,35 +43,35 @@
     cursor: not-allowed;
     opacity: 0.4;
   }
-  .cui-field-baseFieldVariants_size_xs {
+  :where(.cui-field-baseFieldVariants)[data-size="xs"] {
     --cui-baseFieldTheme-inputHeight: var(--cui-component-field-base-field-variants-size-xs-input-height);
     --cui-baseFieldTheme-fontSize: var(--cui-component-field-base-field-variants-size-xs-font-size);
     border-radius: var(--cui-component-field-base-field-variants-size-xs-border-radius);
   }
-  .cui-field-baseFieldVariants_size_sm {
+  :where(.cui-field-baseFieldVariants)[data-size="sm"] {
     --cui-baseFieldTheme-inputHeight: var(--cui-component-field-base-field-variants-size-sm-input-height);
     --cui-baseFieldTheme-fontSize: var(--cui-component-field-base-field-variants-size-sm-font-size);
     border-radius: var(--cui-component-field-base-field-variants-size-sm-border-radius);
   }
-  .cui-field-baseFieldVariants_size_md {
+  :where(.cui-field-baseFieldVariants)[data-size="md"] {
     --cui-baseFieldTheme-inputHeight: var(--cui-component-field-base-field-variants-size-md-input-height);
     --cui-baseFieldTheme-fontSize: var(--cui-component-field-base-field-variants-size-md-font-size);
     border-radius: var(--cui-component-field-base-field-variants-size-md-border-radius);
   }
-  .cui-field-baseFieldVariants_size_lg {
+  :where(.cui-field-baseFieldVariants)[data-size="lg"] {
     --cui-baseFieldTheme-inputHeight: var(--cui-component-field-base-field-variants-size-lg-input-height);
     --cui-baseFieldTheme-fontSize: var(--cui-component-field-base-field-variants-size-lg-font-size);
     border-radius: var(--cui-component-field-base-field-variants-size-lg-border-radius);
   }
-  .cui-field-baseFieldVariants_size_xl {
+  :where(.cui-field-baseFieldVariants)[data-size="xl"] {
     --cui-baseFieldTheme-inputHeight: var(--cui-component-field-base-field-variants-size-xl-input-height);
     --cui-baseFieldTheme-fontSize: var(--cui-component-field-base-field-variants-size-xl-font-size);
     border-radius: var(--cui-component-field-base-field-variants-size-xl-border-radius);
   }
-  .cui-field-baseFieldVariants_theme_filled {
+  :where(.cui-field-baseFieldVariants)[data-theme="filled"] {
     --cui-baseFieldTheme-borderColor: transparent;
   }
-  .cui-field-baseFieldVariants_theme_inline {
+  :where(.cui-field-baseFieldVariants)[data-theme="inline"] {
     background-color: transparent;
     border: none;
     border-bottom: var(--cui-border-width-strong) solid var(--cui-baseFieldTheme-background);
@@ -79,11 +79,11 @@
     padding-left: 0;
     padding-right: 0;
   }
-  .cui-field-baseFieldVariants_theme_inline[data-disabled] {
+  :where(.cui-field-baseFieldVariants)[data-theme="inline"][data-disabled] {
     background-color: transparent;
   }
   @media (max-width: 768px) {
-    .cui-field-baseFieldVariants_size_md {
+    :where(.cui-field-baseFieldVariants)[data-size="md"] {
       --cui-baseFieldTheme-inputHeight: var(--cui-component-field-base-field-variants-size-md-max-width-768px-input-height);
       --cui-baseFieldTheme-fontSize: var(--cui-component-field-base-field-variants-size-md-max-width-768px-font-size);
     }

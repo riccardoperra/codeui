@@ -13,15 +13,15 @@
     color: currentColor;
     animation: cui-spinner-spin calc(var(--cui-motion-duration-slow) * 3) linear infinite;
   }
-  .cui-spinner-root_size_sm {
+  :where(.cui-spinner-root)[data-size="sm"] {
     width: var(--cui-component-spinner-root-size-sm-width);
     height: var(--cui-component-spinner-root-size-sm-height);
   }
-  .cui-spinner-root_size_md {
+  :where(.cui-spinner-root)[data-size="md"] {
     width: var(--cui-component-spinner-root-size-md-width);
     height: var(--cui-component-spinner-root-size-md-height);
   }
-  .cui-spinner-root_size_lg {
+  :where(.cui-spinner-root)[data-size="lg"] {
     width: var(--cui-component-spinner-root-size-lg-width);
     height: var(--cui-component-spinner-root-size-lg-height);
   }
@@ -35,7 +35,7 @@
     stroke: currentColor;
     stroke-linecap: round;
   }
-  @media (prefers-reduced-motion: reduce) {
+  @media (--cui-reduced-motion) {
     .cui-spinner-root {
       animation: none;
     }

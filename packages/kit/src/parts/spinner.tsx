@@ -17,7 +17,7 @@ export function Root(props: RootProps) {
 			fill="none"
 			data-cui={spinnerParts.root}
 			data-size={local.size ?? "md"}
-			class={mergeClasses(spinnerStyles.root({ size: local.size }), local.class)}
+			class={mergeClasses(styles.root.classNames.base, local.class)}
 			{...others}
 		/>
 	);

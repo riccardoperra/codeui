@@ -32,7 +32,7 @@
   [data-size="md"] .cui-progress-track {
     height: var(--cui-component-progress-track-size-md-height);
   }
-  .cui-progress-track_size_md {
+  :where(.cui-progress-track)[data-size="md"] {
     height: var(--cui-component-progress-track-size-md-height);
   }
   .cui-progress-fill {
@@ -45,7 +45,7 @@
     width: 100%;
     animation: cui-progress-pulse calc(var(--cui-motion-duration-slow) * 4) var(--cui-motion-ease-out) infinite alternate;
   }
-  @media (prefers-reduced-motion: reduce) {
+  @media (--cui-reduced-motion) {
     .cui-progress-fill[data-indeterminate] {
       animation: none;
     }

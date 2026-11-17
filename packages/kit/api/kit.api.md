@@ -3242,7 +3242,7 @@ import { FieldInputProps, FieldClasses } from "../Field/inputProps.js";
 import { TextFieldRootOptions as KTextFieldRootOptions } from "@kobalte/core/text-field";
 import { JSX, Ref } from "solid-js";
 import { SlotProp } from "../../utils/component.js";
-import { BaseFieldProps } from "../Field/createBaseFieldProps.js";
+import type { BaseFieldProps } from "../Field/createBaseFieldProps.js";
 import { FieldWithErrorMessageSupport } from "../Field/FieldError/createFieldErrorMessageProps.js";
 import type { InputNumberOptions } from "./options.js";
 type TextFieldSlot = "root" | "input" | "label" | "errorLabel";
@@ -3483,7 +3483,7 @@ export declare function SegmentedControlItem<T extends ValidComponent = "button"
 ```ts
 import { SelectItemProps as KSelectItemProps, SelectRootProps as KSelectRootProps } from "@kobalte/core/select";
 import { Accessor, JSX, JSXElement, ParentProps } from "solid-js";
-import { BaseFieldProps } from "../Field/createBaseFieldProps.js";
+import type { BaseFieldProps } from "../Field/createBaseFieldProps.js";
 import { FieldWithErrorMessageSupport } from "../Field/FieldError/createFieldErrorMessageProps.js";
 type SelectSlot = "root" | "input" | "label" | "errorLabel" | "itemValue";
 export declare const selectParts: {
@@ -3894,7 +3894,7 @@ import { FieldInputProps, FieldClasses } from "../Field/inputProps.js";
 import { TextFieldRootOptions as KTextFieldRootOptions, TextFieldTextAreaProps as KTextFieldTextAreaProps } from "@kobalte/core/text-field";
 import { JSX, Ref } from "solid-js";
 import { FieldWithErrorMessageSupport } from "../Field/FieldError/createFieldErrorMessageProps.js";
-import { BaseFieldProps } from "../Field/createBaseFieldProps.js";
+import type { BaseFieldProps } from "../Field/createBaseFieldProps.js";
 import { SlotProp } from "../../utils/component.js";
 type TextAreaSlot = "root" | "input" | "label" | "errorLabel";
 export type TextAreaProps = KTextFieldRootOptions & BaseFieldProps & FieldWithErrorMessageSupport & {
@@ -3933,7 +3933,7 @@ import { FieldInputProps, FieldClasses } from "../Field/inputProps.js";
 import { TextFieldRootOptions as KTextFieldRootOptions } from "@kobalte/core/text-field";
 import { JSX, Ref } from "solid-js";
 import { FieldWithErrorMessageSupport } from "../Field/FieldError/createFieldErrorMessageProps.js";
-import { BaseFieldProps } from "../Field/createBaseFieldProps.js";
+import type { BaseFieldProps } from "../Field/createBaseFieldProps.js";
 import { SlotProp } from "../../utils/component.js";
 type TextFieldSlot = "root" | "input" | "label" | "errorLabel";
 export type TextFieldProps = KTextFieldRootOptions & BaseFieldProps & FieldWithErrorMessageSupport & {
@@ -4249,6 +4249,7 @@ export type { SettingsRowPart, SettingsRowClasses, SettingsRowLayout, SettingsRo
 import * as K from "@kobalte/core/accordion";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import { type JSX, type ValidComponent } from "solid-js";
+import { type AccordionVariants } from "@codeui/styles/accordion";
 export { accordionParts, type AccordionPart, type AccordionClasses, type AccordionVariants, type AccordionStyles, accordionStyles } from "@codeui/styles/accordion";
 export declare const useAccordionContext: typeof K.useAccordionContext;
 export type RootProps<T extends ValidComponent = "div"> = K.AccordionRootProps<T> & {
@@ -4259,7 +4260,7 @@ export type ItemProps<T extends ValidComponent = "div"> = K.AccordionItemProps<T
 export declare function Item<T extends ValidComponent = "div">(props: PolymorphicProps<T, ItemProps<T>>): JSX.Element;
 export type HeaderProps<T extends ValidComponent = "h3"> = K.AccordionHeaderProps<T>;
 export declare function Header<T extends ValidComponent = "h3">(props: PolymorphicProps<T, HeaderProps<T>>): JSX.Element;
-export type TriggerProps<T extends ValidComponent = "button"> = K.AccordionTriggerProps<T>;
+export type TriggerProps<T extends ValidComponent = "button"> = K.AccordionTriggerProps<T> & AccordionVariants;
 export declare function Trigger<T extends ValidComponent = "button">(props: PolymorphicProps<T, TriggerProps<T>>): JSX.Element;
 export type ContentProps<T extends ValidComponent = "div"> = K.AccordionContentProps<T>;
 export declare function Content<T extends ValidComponent = "div">(props: PolymorphicProps<T, ContentProps<T>>): JSX.Element;

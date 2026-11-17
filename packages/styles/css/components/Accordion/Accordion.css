@@ -44,10 +44,10 @@
     color: var(--cui-text-muted);
     cursor: default;
   }
-  .cui-accordion-trigger_density_compact {
+  :where(.cui-accordion-trigger)[data-density="compact"] {
     padding-block: var(--cui-space-1);
   }
-  .cui-accordion-trigger_density_comfortable {
+  :where(.cui-accordion-trigger)[data-density="comfortable"] {
     padding-block: var(--cui-space-3);
   }
   .cui-accordion-content {
@@ -122,17 +122,17 @@
   .cui-accordion-contentBody {
     padding-bottom: var(--cui-space-2);
   }
-  @media (pointer: coarse) {
+  @media (--cui-coarse-pointer) {
     .cui-accordion-trigger {
       min-height: var(--cui-control-height-md);
     }
   }
-  @media (hover: hover) and (pointer: fine) {
+  @media (--cui-hover-pointer) {
     .cui-accordion-trigger:hover:not(:disabled):not([data-expanded]) {
       background: var(--cui-surface-input);
     }
   }
-  @media (prefers-reduced-motion: reduce) {
+  @media (--cui-reduced-motion) {
     .cui-accordion-content {
       transition: opacity var(--cui-motion-duration-panel) var(--cui-motion-ease-out);
     }

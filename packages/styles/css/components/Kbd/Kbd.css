@@ -15,23 +15,23 @@
     background-color: var(--cui-action-neutral-base);
     border: var(--cui-border-width) solid transparent;
   }
-  .cui-kbd-root_size_sm {
+  :where(.cui-kbd-root)[data-size="sm"] {
     min-width: var(--cui-component-kbd-root-size-sm-min-width);
     min-height: var(--cui-component-kbd-root-size-sm-min-height);
     padding-inline: var(--cui-component-kbd-root-size-sm-padding-inline);
     font-size: var(--cui-component-kbd-root-size-sm-font-size);
   }
-  .cui-kbd-root_size_md {
+  :where(.cui-kbd-root)[data-size="md"] {
     min-width: var(--cui-component-kbd-root-size-md-min-width);
     min-height: var(--cui-component-kbd-root-size-md-min-height);
     padding-inline: var(--cui-component-kbd-root-size-md-padding-inline);
     font-size: var(--cui-component-kbd-root-size-md-font-size);
   }
-  .cui-kbd-root_variant_keycap {
+  :where(.cui-kbd-root)[data-variant="keycap"] {
     color: var(--cui-component-kbd-root-variant-keycap-color);
     border-color: var(--cui-component-kbd-root-variant-keycap-border-color);
   }
-  .cui-kbd-root_variant_hint {
+  :where(.cui-kbd-root)[data-variant="hint"] {
     color: var(--cui-component-kbd-root-variant-hint-color);
   }
 }

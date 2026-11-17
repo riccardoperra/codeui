@@ -59,7 +59,7 @@ export function Track<T extends ValidComponent = "div">(
 			{...others}
 			data-cui={progressParts.track}
 			data-size={local.size}
-			class={mergeClasses(progressStyles.track(local), local.class)}
+			class={mergeClasses(styles.track.classNames.base, local.class)}
 		/>
 	);
 }
