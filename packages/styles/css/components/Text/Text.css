@@ -1,3 +1,5 @@
+@import "./text-tokens.generated.css";
+
 @layer cui.components;
 @layer cui.components {
   .cui-text-root {
@@ -5,28 +7,28 @@
     line-height: var(--cui-font-line-height-normal);
   }
   .cui-text-root_size_badge {
-    font-size: var(--cui-font-size-badge);
+    font-size: var(--cui-component-text-root-size-badge-font-size);
   }
   .cui-text-root_size_xs {
-    font-size: var(--cui-font-size-xs);
+    font-size: var(--cui-component-text-root-size-xs-font-size);
   }
   .cui-text-root_size_caption {
-    font-size: var(--cui-font-size-caption);
+    font-size: var(--cui-component-text-root-size-caption-font-size);
   }
   .cui-text-root_size_sm {
-    font-size: var(--cui-font-size-sm);
+    font-size: var(--cui-component-text-root-size-sm-font-size);
   }
   .cui-text-root_size_md {
-    font-size: var(--cui-font-size-md);
+    font-size: var(--cui-component-text-root-size-md-font-size);
   }
   .cui-text-root_size_lg {
-    font-size: var(--cui-font-size-lg);
+    font-size: var(--cui-component-text-root-size-lg-font-size);
   }
   .cui-text-root_size_xl {
-    font-size: var(--cui-font-size-xl);
+    font-size: var(--cui-component-text-root-size-xl-font-size);
   }
   .cui-text-root_size_2xl {
-    font-size: var(--cui-font-size-2xl);
+    font-size: var(--cui-component-text-root-size-2xl-font-size);
   }
   .cui-text-root_weight_normal {
     font-weight: var(--cui-font-weight-normal);
@@ -38,19 +40,19 @@
     font-weight: var(--cui-font-weight-semibold);
   }
   .cui-text-root_tone_default {
-    color: var(--cui-text-default);
+    color: var(--cui-component-text-root-tone-default-color);
   }
   .cui-text-root_tone_muted {
-    color: var(--cui-text-muted);
+    color: var(--cui-component-text-root-tone-muted-color);
   }
   .cui-text-root_tone_hint {
-    color: var(--cui-text-hint);
+    color: var(--cui-component-text-root-tone-hint-color);
   }
   .cui-text-root_tone_label {
-    color: var(--cui-text-label);
+    color: var(--cui-component-text-root-tone-label-color);
   }
   .cui-text-root_tone_danger {
-    color: var(--cui-text-danger);
+    color: var(--cui-component-text-root-tone-danger-color);
   }
   .cui-text-root_tone_success {
     color: color-mix(in srgb, var(--cui-action-success-active) 85%, var(--cui-text-panel));

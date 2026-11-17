@@ -1,18 +1,20 @@
+@import "./listbox-tokens.generated.css";
+
 @layer cui.components;
 @layer cui.components {
   .cui-listbox-listTheme {
-    --cui-listTheme-contentBackground: var(--cui-surface-menu);
-    --cui-listTheme-contentRadius: var(--cui-radius-lg);
+    --cui-listTheme-contentBackground: var(--cui-component-listbox-list-theme-content-background);
+    --cui-listTheme-contentRadius: var(--cui-component-listbox-list-theme-content-radius);
     --cui-listTheme-contentBoxShadow: var(--cui-shadow-menu);
-    --cui-listTheme-contentPadding: var(--cui-space-2);
-    --cui-listTheme-contentBorderColor: var(--cui-border-menu);
+    --cui-listTheme-contentPadding: var(--cui-component-listbox-list-theme-content-padding);
+    --cui-listTheme-contentBorderColor: var(--cui-component-listbox-list-theme-content-border-color);
     --cui-listTheme-contentMaxHeight: 400px;
     --cui-listTheme-contentMaxHeightXs: 270px;
-    --cui-listTheme-separator: var(--cui-border-menu);
-    --cui-listTheme-itemMinHeight: var(--cui-control-height-md);
-    --cui-listTheme-itemTextColor: var(--cui-text-menu);
-    --cui-listTheme-itemHoverBackground: var(--cui-surface-menu-hover);
-    --cui-listTheme-itemHoverTextColor: var(--cui-text-menu);
+    --cui-listTheme-separator: var(--cui-component-listbox-list-theme-separator);
+    --cui-listTheme-itemMinHeight: var(--cui-component-listbox-list-theme-item-min-height);
+    --cui-listTheme-itemTextColor: var(--cui-component-listbox-list-theme-item-text-color);
+    --cui-listTheme-itemHoverBackground: var(--cui-component-listbox-list-theme-item-hover-background);
+    --cui-listTheme-itemHoverTextColor: var(--cui-component-listbox-list-theme-item-hover-text-color);
     --cui-listTheme-itemDisabledOpacity: .4;
     --cui-listTheme-indicatorSize: 20px;
   }
@@ -31,9 +33,9 @@
     border-color: var(--cui-focus-color);
   }
   .cui-listbox-list:is([data-theme=primary], [data-theme=neutral]) {
-    --cui-listTheme-itemTextColor: var(--cui-text-menu);
-    --cui-listTheme-itemHoverBackground: var(--cui-surface-menu-hover);
-    --cui-listTheme-itemHoverTextColor: var(--cui-text-menu);
+    --cui-listTheme-itemTextColor: var(--cui-component-listbox-list-theme-primary-theme-neutral-item-text-color);
+    --cui-listTheme-itemHoverBackground: var(--cui-component-listbox-list-theme-primary-theme-neutral-item-hover-background);
+    --cui-listTheme-itemHoverTextColor: var(--cui-component-listbox-list-theme-primary-theme-neutral-item-hover-text-color);
   }
   .cui-listbox-item {
     text-align: left;
@@ -70,18 +72,18 @@
   }
   .cui-listbox-item[data-size=xs] {
     height: 30px;
-    font-size: var(--cui-font-size-sm);
-    border-radius: var(--cui-radius-xs);
+    font-size: var(--cui-component-listbox-item-size-xs-font-size);
+    border-radius: var(--cui-component-listbox-item-size-xs-border-radius);
     min-height: 0;
   }
   .cui-listbox-item[data-size=sm] {
     height: 36px;
-    font-size: var(--cui-font-size-md);
+    font-size: var(--cui-component-listbox-item-size-sm-font-size);
     min-height: 0;
   }
   .cui-listbox-item[data-size=md] {
     height: 40px;
-    font-size: var(--cui-font-size-md);
+    font-size: var(--cui-component-listbox-item-size-md-font-size);
   }
   .cui-listbox-item[data-highlighted] {
     box-shadow: none;

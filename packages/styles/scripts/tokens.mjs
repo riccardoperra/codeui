@@ -93,11 +93,11 @@ export async function generateTheme(root) {
 	const values = await readJson(path.join(dir, "web-values.json"));
 	const references = {};
 	const breakpoints = {};
-	const buttonAliases = new Map();
+	const componentAliases = new Map();
 	for (const name of collection.getAllPaths()) {
 		if (name.startsWith("palette.")) continue;
 		const keys = name.split(".");
-		if (name.startsWith("component.button.")) {
+		if (name.startsWith("component.")) {
 			const aliasIn = mode => {
 				const raw = collection.getToken(name, `theme=${mode}`).$value;
 				const match = /^\{([^{}]+)\}$/.exec(raw);
@@ -111,7 +111,12 @@ export async function generateTheme(root) {
 				target,
 				`Theme must not change the reference for ${name}`,
 			);
-			buttonAliases.set(cssName(keys), cssName(target.split(".")));
+			const cssAlias = cssName(keys);
+			assert(!componentAliases.has(cssAlias), `Duplicate component token: ${cssAlias}`);
+			componentAliases.set(cssAlias, {
+				component: keys[1],
+				target: cssName(target.split(".")),
+			});
 			continue;
 		}
 		const valueIn = mode => {
@@ -155,8 +160,11 @@ export async function generateTheme(root) {
 		assign(references, keys, `var(--${name})`);
 	}
 
-	for (const target of buttonAliases.values())
-		assert(names.has(target), `Button alias references an unpublished token: ${target}`);
+	for (const { target } of componentAliases.values())
+		assert(
+			names.has(target),
+			`Component alias references an unpublished token: ${target}`,
+		);
 
 	const src = path.join(root, "src/foundation");
 	const object = data => JSON.stringify(data, null, "\t");
@@ -219,13 +227,7 @@ export async function generateTheme(root) {
 		.filter(([name]) => name !== "xs")
 		.map(([name, width]) => `@custom-media --cui-${name} (min-width: ${width}px);`)
 		.join("\n");
-	const button = `@layer cui.components {
-  .cui-button-button {
-${[...buttonAliases].map(([name, target]) => `    --${name}: var(--${target});`).join("\n")}
-  }
-}
-`;
-	return { css: `@layer cui.components {\n${css}\n}\n`, media, button };
+	return { css: `@layer cui.components {\n${css}\n}\n`, media, componentAliases };
 }
 
 if (process.argv[1] === new URL(import.meta.url).pathname) {

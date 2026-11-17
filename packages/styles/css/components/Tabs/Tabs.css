@@ -1,12 +1,14 @@
+@import "./tabs-tokens.generated.css";
+
 @layer cui.components;
 @layer cui.components {
   .cui-tabs-tabsTheme {
-    --cui-tabsTheme-tabListIndicatorColor: var(--cui-border-divider);
-    --cui-tabsTheme-tabHeaderHoverBackgroundColor: var(--cui-action-neutral-hover);
-    --cui-tabsTheme-tabHeaderColor: var(--cui-text-muted);
-    --cui-tabsTheme-tabHeaderHoverColor: var(--cui-text-default);
-    --cui-tabsTheme-tabHeaderSelectedColor: var(--cui-text-default);
-    --cui-tabsTheme-tabIndicatorColor: var(--cui-action-brand-base);
+    --cui-tabsTheme-tabListIndicatorColor: var(--cui-component-tabs-tabs-theme-tab-list-indicator-color);
+    --cui-tabsTheme-tabHeaderHoverBackgroundColor: var(--cui-component-tabs-tabs-theme-tab-header-hover-background-color);
+    --cui-tabsTheme-tabHeaderColor: var(--cui-component-tabs-tabs-theme-tab-header-color);
+    --cui-tabsTheme-tabHeaderHoverColor: var(--cui-component-tabs-tabs-theme-tab-header-hover-color);
+    --cui-tabsTheme-tabHeaderSelectedColor: var(--cui-component-tabs-tabs-theme-tab-header-selected-color);
+    --cui-tabsTheme-tabIndicatorColor: var(--cui-component-tabs-tabs-theme-tab-indicator-color);
   }
   .cui-tabs-tabsRoot[data-orientation=vertical] {
     display: flex;

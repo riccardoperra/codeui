@@ -1,17 +1,19 @@
+@import "./segmented-control-tokens.generated.css";
+
 @layer cui.components;
 @layer cui.components {
   .cui-segmented-control-segmentedFieldTheme {
-    --cui-segmentedFieldTheme-activeSegmentedBackgroundColor: var(--cui-surface-input-accent);
-    --cui-segmentedFieldTheme-segmentedTextColor: var(--cui-text-default);
-    --cui-segmentedFieldTheme-activeSegmentedTextColor: var(--cui-action-neutral-text);
-    --cui-segmentedFieldTheme-segmentWrapperSolidBackground: var(--cui-surface-input);
-    --cui-segmentedFieldTheme-segmentWrapperBorderedColor: var(--cui-border-menu);
-    --cui-segmentedFieldTheme-segmentWrapperRadius: var(--cui-radius-md);
-    --cui-segmentedFieldTheme-segmentWrapperPadding: var(--cui-space-1);
+    --cui-segmentedFieldTheme-activeSegmentedBackgroundColor: var(--cui-component-segmented-control-segmented-field-theme-active-segmented-background-color);
+    --cui-segmentedFieldTheme-segmentedTextColor: var(--cui-component-segmented-control-segmented-field-theme-segmented-text-color);
+    --cui-segmentedFieldTheme-activeSegmentedTextColor: var(--cui-component-segmented-control-segmented-field-theme-active-segmented-text-color);
+    --cui-segmentedFieldTheme-segmentWrapperSolidBackground: var(--cui-component-segmented-control-segmented-field-theme-segment-wrapper-solid-background);
+    --cui-segmentedFieldTheme-segmentWrapperBorderedColor: var(--cui-component-segmented-control-segmented-field-theme-segment-wrapper-bordered-color);
+    --cui-segmentedFieldTheme-segmentWrapperRadius: var(--cui-component-segmented-control-segmented-field-theme-segment-wrapper-radius);
+    --cui-segmentedFieldTheme-segmentWrapperPadding: var(--cui-component-segmented-control-segmented-field-theme-segment-wrapper-padding);
     --cui-segmentedFieldTheme-segmentHeight: ;
     --cui-segmentedFieldTheme-segmentPadding: ;
-    --cui-segmentedFieldTheme-segmentRadius: var(--cui-radius-sm);
-    --cui-segmentedFieldTheme-segmentFontSize: var(--cui-font-size-sm);
+    --cui-segmentedFieldTheme-segmentRadius: var(--cui-component-segmented-control-segmented-field-theme-segment-radius);
+    --cui-segmentedFieldTheme-segmentFontSize: var(--cui-component-segmented-control-segmented-field-theme-segment-font-size);
   }
   .cui-segmented-control-segmentedControlWrapper {
     display: inline-flex;
@@ -29,8 +31,8 @@
     opacity: 0.5;
   }
   .cui-segmented-control-segmentedControlWrapper_theme_primary {
-    --cui-segmentedFieldTheme-activeSegmentedBackgroundColor: var(--cui-action-brand-base);
-    --cui-segmentedFieldTheme-activeSegmentedTextColor: var(--cui-action-brand-text);
+    --cui-segmentedFieldTheme-activeSegmentedBackgroundColor: var(--cui-component-segmented-control-segmented-control-wrapper-theme-primary-active-segmented-background-color);
+    --cui-segmentedFieldTheme-activeSegmentedTextColor: var(--cui-component-segmented-control-segmented-control-wrapper-theme-primary-active-segmented-text-color);
   }
   .cui-segmented-control-segmentedControlWrapper_variant_solid {
     background-color: var(--cui-segmentedFieldTheme-segmentWrapperSolidBackground);
@@ -41,50 +43,50 @@
   }
   .cui-segmented-control-segmentedControlWrapper_size_xl {
     --cui-segmentedFieldTheme-segmentWrapperPadding: calc(var(--cui-space-1) * 1.5);
-    --cui-segmentedFieldTheme-segmentHeight: var(--cui-control-height-xl);
-    --cui-segmentedFieldTheme-segmentFontSize: var(--cui-font-size-lg);
-    --cui-segmentedFieldTheme-segmentPadding: var(--cui-space-6);
-    --cui-segmentedFieldTheme-segmentRadius: var(--cui-radius-lg);
-    --cui-segmentedFieldTheme-segmentWrapperRadius: var(--cui-radius-xl);
+    --cui-segmentedFieldTheme-segmentHeight: var(--cui-component-segmented-control-segmented-control-wrapper-size-xl-segment-height);
+    --cui-segmentedFieldTheme-segmentFontSize: var(--cui-component-segmented-control-segmented-control-wrapper-size-xl-segment-font-size);
+    --cui-segmentedFieldTheme-segmentPadding: var(--cui-component-segmented-control-segmented-control-wrapper-size-xl-segment-padding);
+    --cui-segmentedFieldTheme-segmentRadius: var(--cui-component-segmented-control-segmented-control-wrapper-size-xl-segment-radius);
+    --cui-segmentedFieldTheme-segmentWrapperRadius: var(--cui-component-segmented-control-segmented-control-wrapper-size-xl-segment-wrapper-radius);
   }
   .cui-segmented-control-segmentedControlWrapper_size_lg {
-    --cui-segmentedFieldTheme-segmentWrapperPadding: var(--cui-space-1);
-    --cui-segmentedFieldTheme-segmentHeight: var(--cui-control-height-lg);
-    --cui-segmentedFieldTheme-segmentFontSize: var(--cui-font-size-md);
-    --cui-segmentedFieldTheme-segmentPadding: var(--cui-space-5);
-    --cui-segmentedFieldTheme-segmentRadius: var(--cui-radius-sm);
-    --cui-segmentedFieldTheme-segmentWrapperRadius: var(--cui-radius-md);
+    --cui-segmentedFieldTheme-segmentWrapperPadding: var(--cui-component-segmented-control-segmented-control-wrapper-size-lg-segment-wrapper-padding);
+    --cui-segmentedFieldTheme-segmentHeight: var(--cui-component-segmented-control-segmented-control-wrapper-size-lg-segment-height);
+    --cui-segmentedFieldTheme-segmentFontSize: var(--cui-component-segmented-control-segmented-control-wrapper-size-lg-segment-font-size);
+    --cui-segmentedFieldTheme-segmentPadding: var(--cui-component-segmented-control-segmented-control-wrapper-size-lg-segment-padding);
+    --cui-segmentedFieldTheme-segmentRadius: var(--cui-component-segmented-control-segmented-control-wrapper-size-lg-segment-radius);
+    --cui-segmentedFieldTheme-segmentWrapperRadius: var(--cui-component-segmented-control-segmented-control-wrapper-size-lg-segment-wrapper-radius);
   }
   .cui-segmented-control-segmentedControlWrapper_size_md {
-    --cui-segmentedFieldTheme-segmentWrapperPadding: var(--cui-space-1);
-    --cui-segmentedFieldTheme-segmentHeight: var(--cui-control-height-sm);
-    --cui-segmentedFieldTheme-segmentFontSize: var(--cui-font-size-sm);
-    --cui-segmentedFieldTheme-segmentPadding: var(--cui-space-4);
-    --cui-segmentedFieldTheme-segmentRadius: var(--cui-radius-sm);
-    --cui-segmentedFieldTheme-segmentWrapperRadius: var(--cui-radius-md);
+    --cui-segmentedFieldTheme-segmentWrapperPadding: var(--cui-component-segmented-control-segmented-control-wrapper-size-md-segment-wrapper-padding);
+    --cui-segmentedFieldTheme-segmentHeight: var(--cui-component-segmented-control-segmented-control-wrapper-size-md-segment-height);
+    --cui-segmentedFieldTheme-segmentFontSize: var(--cui-component-segmented-control-segmented-control-wrapper-size-md-segment-font-size);
+    --cui-segmentedFieldTheme-segmentPadding: var(--cui-component-segmented-control-segmented-control-wrapper-size-md-segment-padding);
+    --cui-segmentedFieldTheme-segmentRadius: var(--cui-component-segmented-control-segmented-control-wrapper-size-md-segment-radius);
+    --cui-segmentedFieldTheme-segmentWrapperRadius: var(--cui-component-segmented-control-segmented-control-wrapper-size-md-segment-wrapper-radius);
   }
   .cui-segmented-control-segmentedControlWrapper_size_sm {
-    --cui-segmentedFieldTheme-segmentWrapperPadding: var(--cui-space-1);
-    --cui-segmentedFieldTheme-segmentHeight: var(--cui-control-height-sm);
-    --cui-segmentedFieldTheme-segmentFontSize: var(--cui-font-size-sm);
-    --cui-segmentedFieldTheme-segmentPadding: var(--cui-space-3);
-    --cui-segmentedFieldTheme-segmentRadius: var(--cui-radius-xs);
-    --cui-segmentedFieldTheme-segmentWrapperRadius: var(--cui-radius-sm);
+    --cui-segmentedFieldTheme-segmentWrapperPadding: var(--cui-component-segmented-control-segmented-control-wrapper-size-sm-segment-wrapper-padding);
+    --cui-segmentedFieldTheme-segmentHeight: var(--cui-component-segmented-control-segmented-control-wrapper-size-sm-segment-height);
+    --cui-segmentedFieldTheme-segmentFontSize: var(--cui-component-segmented-control-segmented-control-wrapper-size-sm-segment-font-size);
+    --cui-segmentedFieldTheme-segmentPadding: var(--cui-component-segmented-control-segmented-control-wrapper-size-sm-segment-padding);
+    --cui-segmentedFieldTheme-segmentRadius: var(--cui-component-segmented-control-segmented-control-wrapper-size-sm-segment-radius);
+    --cui-segmentedFieldTheme-segmentWrapperRadius: var(--cui-component-segmented-control-segmented-control-wrapper-size-sm-segment-wrapper-radius);
   }
   .cui-segmented-control-segmentedControlWrapper_size_xs {
     --cui-segmentedFieldTheme-segmentWrapperPadding: calc(var(--cui-space-1) - 1px);
-    --cui-segmentedFieldTheme-segmentHeight: var(--cui-control-height-xs);
+    --cui-segmentedFieldTheme-segmentHeight: var(--cui-component-segmented-control-segmented-control-wrapper-size-xs-segment-height);
     --cui-segmentedFieldTheme-segmentFontSize: calc(var(--cui-font-size-xs) - 1px);
-    --cui-segmentedFieldTheme-segmentPadding: var(--cui-space-2);
-    --cui-segmentedFieldTheme-segmentRadius: var(--cui-radius-xs);
-    --cui-segmentedFieldTheme-segmentWrapperRadius: var(--cui-radius-sm);
+    --cui-segmentedFieldTheme-segmentPadding: var(--cui-component-segmented-control-segmented-control-wrapper-size-xs-segment-padding);
+    --cui-segmentedFieldTheme-segmentRadius: var(--cui-component-segmented-control-segmented-control-wrapper-size-xs-segment-radius);
+    --cui-segmentedFieldTheme-segmentWrapperRadius: var(--cui-component-segmented-control-segmented-control-wrapper-size-xs-segment-wrapper-radius);
   }
   .cui-segmented-control-segmentedControlWrapper_fluid_true {
     width: 100%;
   }
   .cui-segmented-control-segmentedControlWrapper_pill_true {
-    --cui-segmentedFieldTheme-segmentRadius: var(--cui-radius-full);
-    --cui-segmentedFieldTheme-segmentWrapperRadius: var(--cui-radius-full);
+    --cui-segmentedFieldTheme-segmentRadius: var(--cui-component-segmented-control-segmented-control-wrapper-pill-true-segment-radius);
+    --cui-segmentedFieldTheme-segmentWrapperRadius: var(--cui-component-segmented-control-segmented-control-wrapper-pill-true-segment-wrapper-radius);
   }
   .cui-segmented-control-list {
     display: flex;

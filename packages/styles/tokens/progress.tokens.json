@@ -1,0 +1,14 @@
+{
+  "component": {
+    "progress": {
+      "track": {
+        "size-md": {
+          "height": {
+            "$type": "dimension",
+            "$value": "{space.2}"
+          }
+        }
+      }
+    }
+  }
+}

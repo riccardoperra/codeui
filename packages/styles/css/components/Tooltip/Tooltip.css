@@ -1,12 +1,14 @@
+@import "./tooltip-tokens.generated.css";
+
 @layer cui.components;
 @layer cui.components {
   .cui-tooltip-tooltipTheme {
-    --cui-tooltipTheme-fontSize: var(--cui-font-size-sm);
-    --cui-tooltipTheme-lineHeight: var(--cui-font-line-height-compact);
-    --cui-tooltipTheme-backgroundColor: var(--cui-action-neutral-base);
-    --cui-tooltipTheme-color: var(--cui-action-neutral-text);
+    --cui-tooltipTheme-fontSize: var(--cui-component-tooltip-tooltip-theme-font-size);
+    --cui-tooltipTheme-lineHeight: var(--cui-component-tooltip-tooltip-theme-line-height);
+    --cui-tooltipTheme-backgroundColor: var(--cui-component-tooltip-tooltip-theme-background-color);
+    --cui-tooltipTheme-color: var(--cui-component-tooltip-tooltip-theme-color);
     --cui-tooltipTheme-padding: var(--cui-space-2) var(--cui-space-4);
-    --cui-tooltipTheme-borderRadius: var(--cui-radius-xl);
+    --cui-tooltipTheme-borderRadius: var(--cui-component-tooltip-tooltip-theme-border-radius);
     --cui-tooltipTheme-zIndex: 50;
   }
   .cui-tooltip-tooltipContent {
@@ -30,12 +32,12 @@
     animation: none;
   }
   .cui-tooltip-tooltipContent_theme_primary {
-    --cui-tooltipTheme-color: var(--cui-action-brand-text);
-    --cui-tooltipTheme-backgroundColor: var(--cui-action-brand-base);
+    --cui-tooltipTheme-color: var(--cui-component-tooltip-tooltip-content-theme-primary-color);
+    --cui-tooltipTheme-backgroundColor: var(--cui-component-tooltip-tooltip-content-theme-primary-background-color);
   }
   .cui-tooltip-tooltipContent_theme_secondary {
-    --cui-tooltipTheme-color: var(--cui-action-neutral-text);
-    --cui-tooltipTheme-backgroundColor: var(--cui-action-neutral-base);
+    --cui-tooltipTheme-color: var(--cui-component-tooltip-tooltip-content-theme-secondary-color);
+    --cui-tooltipTheme-backgroundColor: var(--cui-component-tooltip-tooltip-content-theme-secondary-background-color);
   }
   .cui-tooltip-trigger {
     display: inline-block;

@@ -1,3 +1,5 @@
+@import "./command-menu-tokens.generated.css";
+
 @layer cui.components;
 @layer cui.components {
   .cui-command-menu-overlay {
@@ -6,7 +8,7 @@
     z-index: 50;
   }
   .cui-command-menu-content {
-    --cui-dialogTheme-panelRadius: var(--cui-radius-command);
+    --cui-dialogTheme-panelRadius: var(--cui-component-command-menu-content-panel-radius);
     position: fixed;
     left: 50%;
     bottom: var(--cui-space-4);

@@ -1,0 +1,58 @@
+{
+  "component": {
+    "alert": {
+      "root": {
+        "tone-neutral": {
+          "background": {
+            "$type": "color",
+            "$value": "{action.neutral.base}"
+          },
+          "color": {
+            "$type": "color",
+            "$value": "{action.neutral.text}"
+          }
+        },
+        "tone-info": {
+          "background": {
+            "$type": "color",
+            "$value": "{action.brandSoft.base}"
+          },
+          "color": {
+            "$type": "color",
+            "$value": "{action.brandSoft.text}"
+          }
+        },
+        "tone-success": {
+          "background": {
+            "$type": "color",
+            "$value": "{action.success.base}"
+          },
+          "color": {
+            "$type": "color",
+            "$value": "{action.success.text}"
+          }
+        },
+        "tone-warning": {
+          "background": {
+            "$type": "color",
+            "$value": "{action.caution.base}"
+          },
+          "color": {
+            "$type": "color",
+            "$value": "{action.caution.text}"
+          }
+        },
+        "tone-danger": {
+          "background": {
+            "$type": "color",
+            "$value": "{action.danger.base}"
+          },
+          "color": {
+            "$type": "color",
+            "$value": "{action.danger.text}"
+          }
+        }
+      }
+    }
+  }
+}

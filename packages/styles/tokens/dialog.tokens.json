@@ -1,0 +1,126 @@
+{
+  "component": {
+    "dialog": {
+      "dialog-theme": {
+        "contentBackground": {
+          "$type": "color",
+          "$value": "{surface.dialog}"
+        },
+        "contentTextColor": {
+          "$type": "color",
+          "$value": "{text.dialog}"
+        },
+        "contentPadding": {
+          "$type": "dimension",
+          "$value": "{space.6}"
+        },
+        "titleHeight": {
+          "$type": "dimension",
+          "$value": "{control.height.xl}"
+        },
+        "panelRadius": {
+          "$type": "dimension",
+          "$value": "{radius.lg}"
+        },
+        "dividerColor": {
+          "$type": "color",
+          "$value": "{border.dialogTitle}"
+        },
+        "titleFontSize": {
+          "$type": "dimension",
+          "$value": "{font.size.lg}"
+        },
+        "overlayBackground": {
+          "$type": "color",
+          "$value": "{surface.scrim}"
+        },
+        "gutter": {
+          "$type": "dimension",
+          "$value": "{space.2}"
+        },
+        "sidebarBackground": {
+          "$type": "color",
+          "$value": "{surface.dialog}"
+        },
+        "navCurrentBackground": {
+          "$type": "color",
+          "$value": "{surface.input}"
+        },
+        "mainBackground": {
+          "$type": "color",
+          "$value": "{surface.panel}"
+        },
+        "islandBackground": {
+          "$type": "color",
+          "$value": "{surface.canvas}"
+        }
+      },
+      "positioner": {
+        "panel-size-export": {
+          "gutter": {
+            "$type": "dimension",
+            "$value": "{space.4}"
+          }
+        }
+      },
+      "panel": {
+        "compound-chrome-inset-size-settings": {
+          "panelRadius": {
+            "$type": "dimension",
+            "$value": "{radius.lg}"
+          }
+        },
+        "sidebarBackground": {
+          "$type": "color",
+          "$value": "{surface.canvas}"
+        },
+        "navCurrentBackground": {
+          "$type": "color",
+          "$value": "{surface.panel}"
+        },
+        "chrome-inset": {
+          "panelRadius": {
+            "$type": "dimension",
+            "$value": "{radius.dialog}"
+          }
+        }
+      },
+      "section": {
+        "variant-well": {
+          "padding": {
+            "$type": "dimension",
+            "$value": "{space.3}"
+          },
+          "border-radius": {
+            "$type": "dimension",
+            "$value": "{radius.card}"
+          }
+        }
+      },
+      "section-title": {
+        "variant-well": {
+          "color": {
+            "$type": "color",
+            "$value": "{text.muted}"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "{font.size.xs}"
+          },
+          "font-weight": {
+            "$type": "number",
+            "$value": "{font.weight.medium}"
+          }
+        }
+      },
+      "section-content": {
+        "variant-group": {
+          "border-radius": {
+            "$type": "dimension",
+            "$value": "{radius.card}"
+          }
+        }
+      }
+    }
+  }
+}

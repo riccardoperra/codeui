@@ -1,3 +1,5 @@
+@import "./radio-list-tokens.generated.css";
+
 @keyframes cui-radio-contentShow {
   from {
     opacity: 0;
@@ -11,10 +13,10 @@
 @layer cui.components;
 @layer cui.components {
   .cui-radio-radioTheme {
-    --cui-radioTheme-inputColor: var(--cui-text-hint);
-    --cui-radioTheme-inputBackground: var(--cui-action-brand-base);
-    --cui-radioTheme-inputInvalidBackground: var(--cui-action-danger-base);
-    --cui-radioTheme-inputText: var(--cui-action-brand-text);
+    --cui-radioTheme-inputColor: var(--cui-component-radio-list-radio-radio-theme-input-color);
+    --cui-radioTheme-inputBackground: var(--cui-component-radio-list-radio-radio-theme-input-background);
+    --cui-radioTheme-inputInvalidBackground: var(--cui-component-radio-list-radio-radio-theme-input-invalid-background);
+    --cui-radioTheme-inputText: var(--cui-component-radio-list-radio-radio-theme-input-text);
     --cui-radioTheme-inputSize: ;
     --cui-radioTheme-labelSize: ;
     --cui-radioTheme-inputFill: transparent;
@@ -27,7 +29,7 @@
   }
   .cui-radio-radioList_theme_filled {
     --cui-radioTheme-inputColor: transparent;
-    --cui-radioTheme-inputFill: var(--cui-surface-input);
+    --cui-radioTheme-inputFill: var(--cui-component-radio-list-radio-radio-list-theme-filled-input-fill);
   }
   .cui-radio-radioList_orientation_horizontal {
     flex-direction: row;
@@ -37,23 +39,23 @@
   }
   .cui-radio-radioList_size_xs {
     --cui-radioTheme-inputSize: 1rem;
-    --cui-radioTheme-labelSize: var(--cui-font-size-xs);
+    --cui-radioTheme-labelSize: var(--cui-component-radio-list-radio-radio-list-size-xs-label-size);
   }
   .cui-radio-radioList_size_sm {
     --cui-radioTheme-inputSize: 1rem;
-    --cui-radioTheme-labelSize: var(--cui-font-size-sm);
+    --cui-radioTheme-labelSize: var(--cui-component-radio-list-radio-radio-list-size-sm-label-size);
   }
   .cui-radio-radioList_size_md {
     --cui-radioTheme-inputSize: 1.25rem;
-    --cui-radioTheme-labelSize: var(--cui-font-size-md);
+    --cui-radioTheme-labelSize: var(--cui-component-radio-list-radio-radio-list-size-md-label-size);
   }
   .cui-radio-radioList_size_lg {
     --cui-radioTheme-inputSize: 1.5rem;
-    --cui-radioTheme-labelSize: var(--cui-font-size-md);
+    --cui-radioTheme-labelSize: var(--cui-component-radio-list-radio-radio-list-size-lg-label-size);
   }
   .cui-radio-radioList_size_xl {
     --cui-radioTheme-inputSize: 1.5rem;
-    --cui-radioTheme-labelSize: var(--cui-font-size-md);
+    --cui-radioTheme-labelSize: var(--cui-component-radio-list-radio-radio-list-size-xl-label-size);
   }
   .cui-radio-radioItem {
     display: flex;

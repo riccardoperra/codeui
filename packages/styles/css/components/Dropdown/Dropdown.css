@@ -1,22 +1,24 @@
+@import "./dropdown-tokens.generated.css";
+
 @layer cui.components;
 @layer cui.components {
   .cui-dropdown-dropdownMenuTheme {
-    --cui-dropdownMenuTheme-contentBackground: var(--cui-surface-dialog);
-    --cui-dropdownMenuTheme-contentRadius: var(--cui-radius-card);
+    --cui-dropdownMenuTheme-contentBackground: var(--cui-component-dropdown-dropdown-menu-theme-content-background);
+    --cui-dropdownMenuTheme-contentRadius: var(--cui-component-dropdown-dropdown-menu-theme-content-radius);
     --cui-dropdownMenuTheme-contentBoxShadow: var(--cui-shadow-dialog);
-    --cui-dropdownMenuTheme-contentPadding: var(--cui-space-1-5);
-    --cui-dropdownMenuTheme-contentMinWidth: var(--cui-space-48);
-    --cui-dropdownMenuTheme-contentBorderColor: var(--cui-border-menu);
-    --cui-dropdownMenuTheme-separator: var(--cui-border-menu);
-    --cui-dropdownMenuTheme-itemTextColor: var(--cui-text-menu);
-    --cui-dropdownMenuTheme-itemHoverBackground: var(--cui-surface-menu-hover);
-    --cui-dropdownMenuTheme-itemHoverTextColor: var(--cui-text-menu);
+    --cui-dropdownMenuTheme-contentPadding: var(--cui-component-dropdown-dropdown-menu-theme-content-padding);
+    --cui-dropdownMenuTheme-contentMinWidth: var(--cui-component-dropdown-dropdown-menu-theme-content-min-width);
+    --cui-dropdownMenuTheme-contentBorderColor: var(--cui-component-dropdown-dropdown-menu-theme-content-border-color);
+    --cui-dropdownMenuTheme-separator: var(--cui-component-dropdown-dropdown-menu-theme-separator);
+    --cui-dropdownMenuTheme-itemTextColor: var(--cui-component-dropdown-dropdown-menu-theme-item-text-color);
+    --cui-dropdownMenuTheme-itemHoverBackground: var(--cui-component-dropdown-dropdown-menu-theme-item-hover-background);
+    --cui-dropdownMenuTheme-itemHoverTextColor: var(--cui-component-dropdown-dropdown-menu-theme-item-hover-text-color);
     --cui-dropdownMenuTheme-itemDisabledOpacity: .4;
-    --cui-dropdownMenuTheme-itemMinHeight: var(--cui-control-height-sm);
+    --cui-dropdownMenuTheme-itemMinHeight: var(--cui-component-dropdown-dropdown-menu-theme-item-min-height);
     --cui-dropdownMenuTheme-itemPadding: var(--cui-space-1-5) var(--cui-space-2-5);
-    --cui-dropdownMenuTheme-itemRadius: var(--cui-radius-nav);
-    --cui-dropdownMenuTheme-itemFontSize: var(--cui-font-size-sm);
-    --cui-dropdownMenuTheme-itemLineHeight: var(--cui-font-line-height-snug);
+    --cui-dropdownMenuTheme-itemRadius: var(--cui-component-dropdown-dropdown-menu-theme-item-radius);
+    --cui-dropdownMenuTheme-itemFontSize: var(--cui-component-dropdown-dropdown-menu-theme-item-font-size);
+    --cui-dropdownMenuTheme-itemLineHeight: var(--cui-component-dropdown-dropdown-menu-theme-item-line-height);
   }
   .cui-dropdown-content {
     box-shadow: var(--cui-dropdownMenuTheme-contentBoxShadow);

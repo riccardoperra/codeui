@@ -8,10 +8,10 @@
     --cui-buttonTheme-background: ;
     --cui-buttonTheme-hoverBackground: ;
     --cui-buttonTheme-activeBackground: ;
-    --cui-buttonTheme-color: var(--cui-action-neutral-text);
+    --cui-buttonTheme-color: var(--cui-component-button-button-theme-color);
     --cui-buttonTheme-borderColor: ;
     --cui-buttonTheme-padding: ;
-    --cui-buttonTheme-borderRadius: var(--cui-radius-md);
+    --cui-buttonTheme-borderRadius: var(--cui-component-button-button-theme-border-radius);
   }
   .cui-button-button_compound_loading_true_variant_ghost {
     background: var(--cui-layout-layoutBackgroundColor, var(--cui-buttonTheme-background));
@@ -55,8 +55,8 @@
     transform: scale(0.97);
   }
   .cui-button-button[data-disabled] {
-    --cui-buttonTheme-background: var(--cui-action-neutral-base);
-    --cui-buttonTheme-color: var(--cui-action-neutral-text);
+    --cui-buttonTheme-background: var(--cui-component-button-button-disabled-background);
+    --cui-buttonTheme-color: var(--cui-component-button-button-disabled-color);
     opacity: 0.5;
   }
   :is(.cui-button-button_size_xl:where(:not([data-size])), :where(.cui-button-button)[data-size="xl"]) {
@@ -125,14 +125,14 @@
   }
   .cui-button-button_variant_ghost:not(:hover) {
     border-color: transparent;
-    color: var(--cui-text-default);
+    color: var(--cui-component-button-button-variant-ghost-hover-color);
   }
   .cui-button-button_block_true {
     width: 100%;
     flex: 1;
   }
   .cui-button-button_pill_true {
-    --cui-buttonTheme-borderRadius: var(--cui-radius-full);
+    --cui-buttonTheme-borderRadius: var(--cui-component-button-button-pill-true-border-radius);
   }
   .cui-button-button_loading_true {
     pointer-events: none;

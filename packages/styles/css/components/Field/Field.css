@@ -1,13 +1,15 @@
+@import "./field-tokens.generated.css";
+
 @layer cui.components;
 @layer cui.components {
   .cui-field-baseFieldTheme {
     --cui-baseFieldTheme-borderColor: var(--cui-border-input);
-    --cui-baseFieldTheme-background: var(--cui-surface-input);
-    --cui-baseFieldTheme-color: var(--cui-text-input);
+    --cui-baseFieldTheme-background: var(--cui-component-field-base-field-theme-background);
+    --cui-baseFieldTheme-color: var(--cui-component-field-base-field-theme-color);
     --cui-baseFieldTheme-inputHeight: var(--cui-field-inputHeight);
     --cui-baseFieldTheme-fontSize: var(--cui-field-fontSize);
-    --cui-baseFieldTheme-descriptionColor: var(--cui-text-hint);
-    --cui-baseFieldTheme-disabledBackground: var(--cui-surface-dialog);
+    --cui-baseFieldTheme-descriptionColor: var(--cui-component-field-base-field-theme-description-color);
+    --cui-baseFieldTheme-disabledBackground: var(--cui-component-field-base-field-theme-disabled-background);
   }
   .cui-field-baseFieldVariants {
     appearance: none;
@@ -42,29 +44,29 @@
     opacity: 0.4;
   }
   .cui-field-baseFieldVariants_size_xs {
-    --cui-baseFieldTheme-inputHeight: var(--cui-control-height-xs);
-    --cui-baseFieldTheme-fontSize: var(--cui-font-size-xs);
-    border-radius: var(--cui-radius-xs);
+    --cui-baseFieldTheme-inputHeight: var(--cui-component-field-base-field-variants-size-xs-input-height);
+    --cui-baseFieldTheme-fontSize: var(--cui-component-field-base-field-variants-size-xs-font-size);
+    border-radius: var(--cui-component-field-base-field-variants-size-xs-border-radius);
   }
   .cui-field-baseFieldVariants_size_sm {
-    --cui-baseFieldTheme-inputHeight: var(--cui-control-height-sm);
-    --cui-baseFieldTheme-fontSize: var(--cui-font-size-sm);
-    border-radius: var(--cui-radius-sm);
+    --cui-baseFieldTheme-inputHeight: var(--cui-component-field-base-field-variants-size-sm-input-height);
+    --cui-baseFieldTheme-fontSize: var(--cui-component-field-base-field-variants-size-sm-font-size);
+    border-radius: var(--cui-component-field-base-field-variants-size-sm-border-radius);
   }
   .cui-field-baseFieldVariants_size_md {
-    --cui-baseFieldTheme-inputHeight: var(--cui-control-height-sm);
-    --cui-baseFieldTheme-fontSize: var(--cui-font-size-sm);
-    border-radius: var(--cui-radius-md);
+    --cui-baseFieldTheme-inputHeight: var(--cui-component-field-base-field-variants-size-md-input-height);
+    --cui-baseFieldTheme-fontSize: var(--cui-component-field-base-field-variants-size-md-font-size);
+    border-radius: var(--cui-component-field-base-field-variants-size-md-border-radius);
   }
   .cui-field-baseFieldVariants_size_lg {
-    --cui-baseFieldTheme-inputHeight: var(--cui-control-height-lg);
-    --cui-baseFieldTheme-fontSize: var(--cui-font-size-md);
-    border-radius: var(--cui-radius-lg);
+    --cui-baseFieldTheme-inputHeight: var(--cui-component-field-base-field-variants-size-lg-input-height);
+    --cui-baseFieldTheme-fontSize: var(--cui-component-field-base-field-variants-size-lg-font-size);
+    border-radius: var(--cui-component-field-base-field-variants-size-lg-border-radius);
   }
   .cui-field-baseFieldVariants_size_xl {
-    --cui-baseFieldTheme-inputHeight: var(--cui-control-height-xl);
-    --cui-baseFieldTheme-fontSize: var(--cui-font-size-lg);
-    border-radius: var(--cui-radius-xl);
+    --cui-baseFieldTheme-inputHeight: var(--cui-component-field-base-field-variants-size-xl-input-height);
+    --cui-baseFieldTheme-fontSize: var(--cui-component-field-base-field-variants-size-xl-font-size);
+    border-radius: var(--cui-component-field-base-field-variants-size-xl-border-radius);
   }
   .cui-field-baseFieldVariants_theme_filled {
     --cui-baseFieldTheme-borderColor: transparent;
@@ -82,8 +84,8 @@
   }
   @media (max-width: 768px) {
     .cui-field-baseFieldVariants_size_md {
-      --cui-baseFieldTheme-inputHeight: var(--cui-control-height-md);
-      --cui-baseFieldTheme-fontSize: var(--cui-font-size-md);
+      --cui-baseFieldTheme-inputHeight: var(--cui-component-field-base-field-variants-size-md-max-width-768px-input-height);
+      --cui-baseFieldTheme-fontSize: var(--cui-component-field-base-field-variants-size-md-max-width-768px-font-size);
     }
   }
 }

@@ -1,0 +1,128 @@
+{
+  "component": {
+    "badge": {
+      "root": {
+        "compound-tone-neutral-variant-soft": {
+          "background-color": {
+            "$type": "color",
+            "$value": "{action.neutral.base}"
+          },
+          "color": {
+            "$type": "color",
+            "$value": "{text.panelMuted}"
+          }
+        },
+        "compound-tone-neutral-variant-outline": {
+          "border-color": {
+            "$type": "color",
+            "$value": "{action.neutral.active}"
+          },
+          "color": {
+            "$type": "color",
+            "$value": "{text.panelMuted}"
+          }
+        },
+        "compound-tone-info-variant-soft": {
+          "background-color": {
+            "$type": "color",
+            "$value": "{action.brandSoft.base}"
+          },
+          "color": {
+            "$type": "color",
+            "$value": "{action.brandSoft.text}"
+          }
+        },
+        "compound-tone-info-variant-outline": {
+          "border-color": {
+            "$type": "color",
+            "$value": "{action.brand.base}"
+          },
+          "color": {
+            "$type": "color",
+            "$value": "{action.brandSoft.text}"
+          }
+        },
+        "compound-tone-success-variant-soft": {
+          "background-color": {
+            "$type": "color",
+            "$value": "{action.success.base}"
+          },
+          "color": {
+            "$type": "color",
+            "$value": "{action.success.text}"
+          }
+        },
+        "compound-tone-success-variant-outline": {
+          "border-color": {
+            "$type": "color",
+            "$value": "{action.success.base}"
+          },
+          "color": {
+            "$type": "color",
+            "$value": "{text.default}"
+          }
+        },
+        "compound-tone-warning-variant-soft": {
+          "background-color": {
+            "$type": "color",
+            "$value": "{action.caution.base}"
+          },
+          "color": {
+            "$type": "color",
+            "$value": "{action.caution.text}"
+          }
+        },
+        "compound-tone-warning-variant-outline": {
+          "border-color": {
+            "$type": "color",
+            "$value": "{action.caution.base}"
+          },
+          "color": {
+            "$type": "color",
+            "$value": "{text.default}"
+          }
+        },
+        "compound-tone-danger-variant-soft": {
+          "background-color": {
+            "$type": "color",
+            "$value": "{action.danger.base}"
+          },
+          "color": {
+            "$type": "color",
+            "$value": "{action.danger.text}"
+          }
+        },
+        "compound-tone-danger-variant-outline": {
+          "border-color": {
+            "$type": "color",
+            "$value": "{action.danger.base}"
+          },
+          "color": {
+            "$type": "color",
+            "$value": "{text.danger}"
+          }
+        },
+        "size-sm": {
+          "min-height": {
+            "$type": "dimension",
+            "$value": "{space.4}"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "{font.size.badge}"
+          }
+        },
+        "size-md": {
+          "min-height": {
+            "$type": "dimension",
+            "$value": "{space.5}"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "{font.size.xs}"
+          }
+        }
+      }
+    }
+  }
+}

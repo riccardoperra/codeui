@@ -1,3 +1,5 @@
+@import "./alert-tokens.generated.css";
+
 @layer cui.components;
 @layer cui.components {
   .cui-alert-root {
@@ -13,24 +15,24 @@
     line-height: var(--cui-font-line-height-normal);
   }
   .cui-alert-root_tone_neutral {
-    background: var(--cui-action-neutral-base);
-    color: var(--cui-action-neutral-text);
+    background: var(--cui-component-alert-root-tone-neutral-background);
+    color: var(--cui-component-alert-root-tone-neutral-color);
   }
   .cui-alert-root_tone_info {
-    background: var(--cui-action-brand-soft-base);
-    color: var(--cui-action-brand-soft-text);
+    background: var(--cui-component-alert-root-tone-info-background);
+    color: var(--cui-component-alert-root-tone-info-color);
   }
   .cui-alert-root_tone_success {
-    background: var(--cui-action-success-base);
-    color: var(--cui-action-success-text);
+    background: var(--cui-component-alert-root-tone-success-background);
+    color: var(--cui-component-alert-root-tone-success-color);
   }
   .cui-alert-root_tone_warning {
-    background: var(--cui-action-caution-base);
-    color: var(--cui-action-caution-text);
+    background: var(--cui-component-alert-root-tone-warning-background);
+    color: var(--cui-component-alert-root-tone-warning-color);
   }
   .cui-alert-root_tone_danger {
-    background: var(--cui-action-danger-base);
-    color: var(--cui-action-danger-text);
+    background: var(--cui-component-alert-root-tone-danger-background);
+    color: var(--cui-component-alert-root-tone-danger-color);
   }
   .cui-alert-root_fluid_true {
     display: grid;

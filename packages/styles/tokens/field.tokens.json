@@ -1,0 +1,106 @@
+{
+  "component": {
+    "field": {
+      "base-field-theme": {
+        "background": {
+          "$type": "color",
+          "$value": "{surface.input}"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{text.input}"
+        },
+        "descriptionColor": {
+          "$type": "color",
+          "$value": "{text.hint}"
+        },
+        "disabledBackground": {
+          "$type": "color",
+          "$value": "{surface.dialog}"
+        }
+      },
+      "base-field-variants": {
+        "size-xs": {
+          "inputHeight": {
+            "$type": "dimension",
+            "$value": "{control.height.xs}"
+          },
+          "fontSize": {
+            "$type": "dimension",
+            "$value": "{font.size.xs}"
+          },
+          "border-radius": {
+            "$type": "dimension",
+            "$value": "{radius.xs}"
+          }
+        },
+        "size-sm": {
+          "inputHeight": {
+            "$type": "dimension",
+            "$value": "{control.height.sm}"
+          },
+          "fontSize": {
+            "$type": "dimension",
+            "$value": "{font.size.sm}"
+          },
+          "border-radius": {
+            "$type": "dimension",
+            "$value": "{radius.sm}"
+          }
+        },
+        "size-md": {
+          "inputHeight": {
+            "$type": "dimension",
+            "$value": "{control.height.sm}"
+          },
+          "fontSize": {
+            "$type": "dimension",
+            "$value": "{font.size.sm}"
+          },
+          "border-radius": {
+            "$type": "dimension",
+            "$value": "{radius.md}"
+          }
+        },
+        "size-lg": {
+          "inputHeight": {
+            "$type": "dimension",
+            "$value": "{control.height.lg}"
+          },
+          "fontSize": {
+            "$type": "dimension",
+            "$value": "{font.size.md}"
+          },
+          "border-radius": {
+            "$type": "dimension",
+            "$value": "{radius.lg}"
+          }
+        },
+        "size-xl": {
+          "inputHeight": {
+            "$type": "dimension",
+            "$value": "{control.height.xl}"
+          },
+          "fontSize": {
+            "$type": "dimension",
+            "$value": "{font.size.lg}"
+          },
+          "border-radius": {
+            "$type": "dimension",
+            "$value": "{radius.xl}"
+          }
+        },
+        "size-md-max-width-768px": {
+          "inputHeight": {
+            "$type": "dimension",
+            "$value": "{control.height.md}"
+          },
+          "fontSize": {
+            "$type": "dimension",
+            "$value": "{font.size.md}"
+          }
+        }
+      }
+    }
+  }
+}

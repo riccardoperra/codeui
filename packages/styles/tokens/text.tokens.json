@@ -1,0 +1,86 @@
+{
+  "component": {
+    "text": {
+      "root": {
+        "size-badge": {
+          "font-size": {
+            "$type": "dimension",
+            "$value": "{font.size.badge}"
+          }
+        },
+        "size-xs": {
+          "font-size": {
+            "$type": "dimension",
+            "$value": "{font.size.xs}"
+          }
+        },
+        "size-caption": {
+          "font-size": {
+            "$type": "dimension",
+            "$value": "{font.size.caption}"
+          }
+        },
+        "size-sm": {
+          "font-size": {
+            "$type": "dimension",
+            "$value": "{font.size.sm}"
+          }
+        },
+        "size-md": {
+          "font-size": {
+            "$type": "dimension",
+            "$value": "{font.size.md}"
+          }
+        },
+        "size-lg": {
+          "font-size": {
+            "$type": "dimension",
+            "$value": "{font.size.lg}"
+          }
+        },
+        "size-xl": {
+          "font-size": {
+            "$type": "dimension",
+            "$value": "{font.size.xl}"
+          }
+        },
+        "size-2xl": {
+          "font-size": {
+            "$type": "dimension",
+            "$value": "{font.size.2xl}"
+          }
+        },
+        "tone-default": {
+          "color": {
+            "$type": "color",
+            "$value": "{text.default}"
+          }
+        },
+        "tone-muted": {
+          "color": {
+            "$type": "color",
+            "$value": "{text.muted}"
+          }
+        },
+        "tone-hint": {
+          "color": {
+            "$type": "color",
+            "$value": "{text.hint}"
+          }
+        },
+        "tone-label": {
+          "color": {
+            "$type": "color",
+            "$value": "{text.label}"
+          }
+        },
+        "tone-danger": {
+          "color": {
+            "$type": "color",
+            "$value": "{text.danger}"
+          }
+        }
+      }
+    }
+  }
+}

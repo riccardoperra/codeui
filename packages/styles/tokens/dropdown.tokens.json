@@ -1,0 +1,60 @@
+{
+  "component": {
+    "dropdown": {
+      "dropdown-menu-theme": {
+        "contentBackground": {
+          "$type": "color",
+          "$value": "{surface.dialog}"
+        },
+        "contentRadius": {
+          "$type": "dimension",
+          "$value": "{radius.card}"
+        },
+        "contentPadding": {
+          "$type": "dimension",
+          "$value": "{space.1-5}"
+        },
+        "contentMinWidth": {
+          "$type": "dimension",
+          "$value": "{space.48}"
+        },
+        "contentBorderColor": {
+          "$type": "color",
+          "$value": "{border.menu}"
+        },
+        "separator": {
+          "$type": "color",
+          "$value": "{border.menu}"
+        },
+        "itemTextColor": {
+          "$type": "color",
+          "$value": "{text.menu}"
+        },
+        "itemHoverBackground": {
+          "$type": "color",
+          "$value": "{surface.menuHover}"
+        },
+        "itemHoverTextColor": {
+          "$type": "color",
+          "$value": "{text.menu}"
+        },
+        "itemMinHeight": {
+          "$type": "dimension",
+          "$value": "{control.height.sm}"
+        },
+        "itemRadius": {
+          "$type": "dimension",
+          "$value": "{radius.nav}"
+        },
+        "itemFontSize": {
+          "$type": "dimension",
+          "$value": "{font.size.sm}"
+        },
+        "itemLineHeight": {
+          "$type": "number",
+          "$value": "{font.lineHeight.snug}"
+        }
+      }
+    }
+  }
+}

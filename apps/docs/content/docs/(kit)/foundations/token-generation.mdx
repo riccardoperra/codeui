@@ -17,9 +17,9 @@ The build creates `@codeui/styles/theme.css` from the resolved tokens. Shared va
 
 The same build generates the TypeScript token references and breakpoint values. A TypeScript reference such as `tokens.control.height.md` is a string containing `var(--cui-control-height-md)`. Breakpoints also feed the build-time aliases used in custom media queries.
 
-## Button defines component aliases
+## Components define local aliases
 
-A component token says which design value the component uses. Give a value a component token when the design system needs to name or change that choice independently. A declaration that always follows the shared design system can read the shared variable directly. Button's medium height is an alias for the shared medium control height. In `packages/styles/tokens/button.tokens.json`, the token at `component.button.size.md.buttonHeight` has this value:
+A component token says which design value the component uses. Give a value a component token when the design system needs to name or change that choice independently. A declaration that always follows the shared design system can read the shared variable directly. Button's medium height is an alias for the shared medium control height. This is the token at `component.button.size.md.buttonHeight` in `packages/styles/tokens/button.tokens.json`.
 
 ```json
 {
@@ -28,21 +28,21 @@ A component token says which design value the component uses. Give a value a com
 }
 ```
 
-Toghen verifies that the referenced token resolves. The CSS emitter keeps the reference live in the browser:
+Toghen verifies that the referenced token resolves. The CSS emitter keeps the reference live in the browser. This excerpt shows the selector for the `data-size="md"` branch.
 
 ```css
-.cui-button-button {
+:where(.cui-button-button)[data-size="md"] {
   --cui-component-button-size-md-button-height: var(--cui-control-height-md);
 }
 ```
 
-An application override of `--cui-control-height-md` therefore reaches a medium Button in that scope. The component alias is emitted on the button itself, where CSS can read the closest theme's value.
+An application override of `--cui-control-height-md` therefore reaches a medium Button in that scope. The build emits the alias on the element selected by the rule that reads it. CSS can then read the closest theme value, including an override on the element itself.
 
 ## The stylesheet chooses when to apply an alias
 
-The Button stylesheet imports its generated aliases with `@import "./button-tokens.generated.css"`. The file is virtual. The build supplies its contents to Lightning CSS, which inlines the fragment and compiles nested selectors. The resulting `button.css` contains the declarations and rules together.
+Each component that owns design aliases has a token file and a stylesheet import. The Button stylesheet imports its generated aliases with `@import "./button-tokens.generated.css"`. The file is virtual. The build reads the alias references in the authored CSS and emits the declarations in the same selectors and at-rule scopes. Lightning CSS inlines the generated fragment and compiles nested selectors. The resulting `button.css` contains the declarations and rules together.
 
-Button's stylesheet still owns the selector and the property. Its medium-size rule assigns the alias to `--cui-buttonTheme-buttonHeight`, which the base rule uses for `height`. A plain HTML button can select that rule with attributes:
+Button's stylesheet still owns the selector and the property. Its medium-size rule assigns the alias to `--cui-buttonTheme-buttonHeight`, which the base rule uses for `height`. In plain HTML, set the size and theme with attributes.
 
 ```html
 <button class="cui-button-button" data-size="md" data-theme="primary">
@@ -51,6 +51,14 @@ Button's stylesheet still owns the selector and the property. Its medium-size ru
 ```
 
 The existing class helpers still produce the established size and theme classes. Those selectors apply when the corresponding attribute is absent. Use CSS pseudo-classes for browser states such as `:focus-visible` and the component's documented attributes for state supplied by its adapter.
+
+Other components use the same pipeline for size, tone, theme, and component-specific custom property assignments. A layout or calculation can still use CSS directly. For example, Switch uses `calc()` to combine shared spacing values for its track height.
+
+## Toghen's styling extensions
+
+A DTCG token reference such as `{control.height.md}` identifies another token. Extension data can also tell a tool how to interpret a group. The [Toghen PostCSS adapter](https://codeberg.org/Toghen/postcss) can read component parts and selector spellings from `$extensions["com.toghen"]` and emit mixins for `@apply`. Toghen's resolver and that stylesheet adapter serve different roles.
+
+CodeUI uses Toghen for token resolution. Selectors, attributes, pseudo-classes, and cascade stay in the authored CSS. Keep interaction logic in the component adapter. A token file can name the value for a state while the corresponding CSS rule decides which DOM state activates it.
 
 The older `--cui-buttonTheme-*` variables remain the local styling hooks. Empty declarations in the base rule reset those local values before variant rules apply. Generated component aliases stay in `button.css`, so loading the global theme or an unrelated component does not load Button's aliases.
 

@@ -1,3 +1,5 @@
+@import "./kbd-tokens.generated.css";
+
 @layer cui.components;
 @layer cui.components {
   .cui-kbd-root {
@@ -14,22 +16,22 @@
     border: var(--cui-border-width) solid transparent;
   }
   .cui-kbd-root_size_sm {
-    min-width: var(--cui-space-4);
-    min-height: var(--cui-space-4);
-    padding-inline: var(--cui-space-1);
-    font-size: var(--cui-font-size-badge);
+    min-width: var(--cui-component-kbd-root-size-sm-min-width);
+    min-height: var(--cui-component-kbd-root-size-sm-min-height);
+    padding-inline: var(--cui-component-kbd-root-size-sm-padding-inline);
+    font-size: var(--cui-component-kbd-root-size-sm-font-size);
   }
   .cui-kbd-root_size_md {
-    min-width: var(--cui-space-5);
-    min-height: var(--cui-space-5);
-    padding-inline: var(--cui-space-1-5);
-    font-size: var(--cui-font-size-xs);
+    min-width: var(--cui-component-kbd-root-size-md-min-width);
+    min-height: var(--cui-component-kbd-root-size-md-min-height);
+    padding-inline: var(--cui-component-kbd-root-size-md-padding-inline);
+    font-size: var(--cui-component-kbd-root-size-md-font-size);
   }
   .cui-kbd-root_variant_keycap {
-    color: var(--cui-action-neutral-text);
-    border-color: var(--cui-border-divider);
+    color: var(--cui-component-kbd-root-variant-keycap-color);
+    border-color: var(--cui-component-kbd-root-variant-keycap-border-color);
   }
   .cui-kbd-root_variant_hint {
-    color: var(--cui-text-hint);
+    color: var(--cui-component-kbd-root-variant-hint-color);
   }
 }

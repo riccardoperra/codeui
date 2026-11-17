@@ -1,3 +1,5 @@
+@import "./option-card-tokens.generated.css";
+
 @layer cui.components;
 @layer cui.components {
   .cui-option-card-root {
@@ -69,7 +71,7 @@
     color: var(--cui-text-hint);
   }
   .cui-option-card-itemLabel_variant_tile {
-    padding: var(--cui-space-2);
+    padding: var(--cui-component-option-card-item-label-variant-tile-padding);
   }
   .cui-option-card-item:has(input:focus-visible) .cui-option-card-itemLabel {
     outline: var(--cui-focus-width) solid var(--cui-focus-color);
@@ -125,7 +127,7 @@
     line-height: var(--cui-font-line-height-badge);
   }
   [data-checked] .cui-option-card-badge[data-cui="option-card-badge"][data-tone=neutral][data-variant=soft] {
-    background-color: var(--cui-action-neutral-hover);
+    background-color: var(--cui-component-option-card-badge-checked-tone-neutral-variant-soft-background-color);
   }
   @media (pointer: coarse) {
     .cui-option-card-itemLabel {

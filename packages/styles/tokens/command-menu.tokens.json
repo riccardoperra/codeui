@@ -1,0 +1,12 @@
+{
+  "component": {
+    "command-menu": {
+      "content": {
+        "panelRadius": {
+          "$type": "dimension",
+          "$value": "{radius.command}"
+        }
+      }
+    }
+  }
+}

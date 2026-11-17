@@ -12,6 +12,75 @@
         },
         {
           "$ref": "./button.tokens.json"
+        },
+        {
+          "$ref": "./alert.tokens.json"
+        },
+        {
+          "$ref": "./badge.tokens.json"
+        },
+        {
+          "$ref": "./checkbox.tokens.json"
+        },
+        {
+          "$ref": "./combobox.tokens.json"
+        },
+        {
+          "$ref": "./command-menu.tokens.json"
+        },
+        {
+          "$ref": "./dialog.tokens.json"
+        },
+        {
+          "$ref": "./dropdown.tokens.json"
+        },
+        {
+          "$ref": "./field.tokens.json"
+        },
+        {
+          "$ref": "./kbd.tokens.json"
+        },
+        {
+          "$ref": "./listbox.tokens.json"
+        },
+        {
+          "$ref": "./option-card.tokens.json"
+        },
+        {
+          "$ref": "./pagination.tokens.json"
+        },
+        {
+          "$ref": "./popover.tokens.json"
+        },
+        {
+          "$ref": "./progress.tokens.json"
+        },
+        {
+          "$ref": "./radio-list.tokens.json"
+        },
+        {
+          "$ref": "./segmented-control.tokens.json"
+        },
+        {
+          "$ref": "./select.tokens.json"
+        },
+        {
+          "$ref": "./spinner.tokens.json"
+        },
+        {
+          "$ref": "./switch.tokens.json"
+        },
+        {
+          "$ref": "./tabs.tokens.json"
+        },
+        {
+          "$ref": "./text.tokens.json"
+        },
+        {
+          "$ref": "./toast.tokens.json"
+        },
+        {
+          "$ref": "./tooltip.tokens.json"
         }
       ]
     }

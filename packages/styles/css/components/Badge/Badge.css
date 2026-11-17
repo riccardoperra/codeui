@@ -1,44 +1,46 @@
+@import "./badge-tokens.generated.css";
+
 @layer cui.components;
 @layer cui.components {
   .cui-badge-root_compound_tone_neutral_variant_soft {
-    background-color: var(--cui-action-neutral-base);
-    color: var(--cui-text-panel-muted);
+    background-color: var(--cui-component-badge-root-compound-tone-neutral-variant-soft-background-color);
+    color: var(--cui-component-badge-root-compound-tone-neutral-variant-soft-color);
   }
   .cui-badge-root_compound_tone_neutral_variant_outline {
-    border-color: var(--cui-action-neutral-active);
-    color: var(--cui-text-panel-muted);
+    border-color: var(--cui-component-badge-root-compound-tone-neutral-variant-outline-border-color);
+    color: var(--cui-component-badge-root-compound-tone-neutral-variant-outline-color);
   }
   .cui-badge-root_compound_tone_info_variant_soft {
-    background-color: var(--cui-action-brand-soft-base);
-    color: var(--cui-action-brand-soft-text);
+    background-color: var(--cui-component-badge-root-compound-tone-info-variant-soft-background-color);
+    color: var(--cui-component-badge-root-compound-tone-info-variant-soft-color);
   }
   .cui-badge-root_compound_tone_info_variant_outline {
-    border-color: var(--cui-action-brand-base);
-    color: var(--cui-action-brand-soft-text);
+    border-color: var(--cui-component-badge-root-compound-tone-info-variant-outline-border-color);
+    color: var(--cui-component-badge-root-compound-tone-info-variant-outline-color);
   }
   .cui-badge-root_compound_tone_success_variant_soft {
-    background-color: var(--cui-action-success-base);
-    color: var(--cui-action-success-text);
+    background-color: var(--cui-component-badge-root-compound-tone-success-variant-soft-background-color);
+    color: var(--cui-component-badge-root-compound-tone-success-variant-soft-color);
   }
   .cui-badge-root_compound_tone_success_variant_outline {
-    border-color: var(--cui-action-success-base);
-    color: var(--cui-text-default);
+    border-color: var(--cui-component-badge-root-compound-tone-success-variant-outline-border-color);
+    color: var(--cui-component-badge-root-compound-tone-success-variant-outline-color);
   }
   .cui-badge-root_compound_tone_warning_variant_soft {
-    background-color: var(--cui-action-caution-base);
-    color: var(--cui-action-caution-text);
+    background-color: var(--cui-component-badge-root-compound-tone-warning-variant-soft-background-color);
+    color: var(--cui-component-badge-root-compound-tone-warning-variant-soft-color);
   }
   .cui-badge-root_compound_tone_warning_variant_outline {
-    border-color: var(--cui-action-caution-base);
-    color: var(--cui-text-default);
+    border-color: var(--cui-component-badge-root-compound-tone-warning-variant-outline-border-color);
+    color: var(--cui-component-badge-root-compound-tone-warning-variant-outline-color);
   }
   .cui-badge-root_compound_tone_danger_variant_soft {
-    background-color: var(--cui-action-danger-base);
-    color: var(--cui-action-danger-text);
+    background-color: var(--cui-component-badge-root-compound-tone-danger-variant-soft-background-color);
+    color: var(--cui-component-badge-root-compound-tone-danger-variant-soft-color);
   }
   .cui-badge-root_compound_tone_danger_variant_outline {
-    border-color: var(--cui-action-danger-base);
-    color: var(--cui-text-danger);
+    border-color: var(--cui-component-badge-root-compound-tone-danger-variant-outline-border-color);
+    color: var(--cui-component-badge-root-compound-tone-danger-variant-outline-color);
   }
   .cui-badge-root {
     display: inline-flex;
@@ -54,14 +56,14 @@
     vertical-align: middle;
   }
   .cui-badge-root_size_sm {
-    min-height: var(--cui-space-4);
+    min-height: var(--cui-component-badge-root-size-sm-min-height);
     padding: var(--cui-space-px) var(--cui-space-1-5);
-    font-size: var(--cui-font-size-badge);
+    font-size: var(--cui-component-badge-root-size-sm-font-size);
   }
   .cui-badge-root_size_md {
-    min-height: var(--cui-space-5);
+    min-height: var(--cui-component-badge-root-size-md-min-height);
     padding: var(--cui-space-0-5) var(--cui-space-2);
-    font-size: var(--cui-font-size-xs);
+    font-size: var(--cui-component-badge-root-size-md-font-size);
   }
   .cui-badge-root_variant_outline {
     background-color: transparent;

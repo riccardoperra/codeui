@@ -188,6 +188,40 @@
             "$value": "{action.caution.text}"
           }
         }
+      },
+      "button-theme": {
+        "color": {
+          "$type": "color",
+          "$value": "{action.neutral.text}"
+        },
+        "borderRadius": {
+          "$type": "dimension",
+          "$value": "{radius.md}"
+        }
+      },
+      "button": {
+        "disabled": {
+          "background": {
+            "$type": "color",
+            "$value": "{action.neutral.base}"
+          },
+          "color": {
+            "$type": "color",
+            "$value": "{action.neutral.text}"
+          }
+        },
+        "variant-ghost-hover": {
+          "color": {
+            "$type": "color",
+            "$value": "{text.default}"
+          }
+        },
+        "pill-true": {
+          "borderRadius": {
+            "$type": "dimension",
+            "$value": "{radius.full}"
+          }
+        }
       }
     }
   }

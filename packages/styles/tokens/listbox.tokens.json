@@ -1,0 +1,84 @@
+{
+  "component": {
+    "listbox": {
+      "list-theme": {
+        "contentBackground": {
+          "$type": "color",
+          "$value": "{surface.menu}"
+        },
+        "contentRadius": {
+          "$type": "dimension",
+          "$value": "{radius.lg}"
+        },
+        "contentPadding": {
+          "$type": "dimension",
+          "$value": "{space.2}"
+        },
+        "contentBorderColor": {
+          "$type": "color",
+          "$value": "{border.menu}"
+        },
+        "separator": {
+          "$type": "color",
+          "$value": "{border.menu}"
+        },
+        "itemMinHeight": {
+          "$type": "dimension",
+          "$value": "{control.height.md}"
+        },
+        "itemTextColor": {
+          "$type": "color",
+          "$value": "{text.menu}"
+        },
+        "itemHoverBackground": {
+          "$type": "color",
+          "$value": "{surface.menuHover}"
+        },
+        "itemHoverTextColor": {
+          "$type": "color",
+          "$value": "{text.menu}"
+        }
+      },
+      "list": {
+        "theme-primary-theme-neutral": {
+          "itemTextColor": {
+            "$type": "color",
+            "$value": "{text.menu}"
+          },
+          "itemHoverBackground": {
+            "$type": "color",
+            "$value": "{surface.menuHover}"
+          },
+          "itemHoverTextColor": {
+            "$type": "color",
+            "$value": "{text.menu}"
+          }
+        }
+      },
+      "item": {
+        "size-xs": {
+          "font-size": {
+            "$type": "dimension",
+            "$value": "{font.size.sm}"
+          },
+          "border-radius": {
+            "$type": "dimension",
+            "$value": "{radius.xs}"
+          }
+        },
+        "size-sm": {
+          "font-size": {
+            "$type": "dimension",
+            "$value": "{font.size.md}"
+          }
+        },
+        "size-md": {
+          "font-size": {
+            "$type": "dimension",
+            "$value": "{font.size.md}"
+          }
+        }
+      }
+    }
+  }
+}

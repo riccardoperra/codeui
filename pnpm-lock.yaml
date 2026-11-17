@@ -305,6 +305,9 @@ importers:
       lightningcss:
         specifier: 1.33.0
         version: 1.33.0
+      postcss:
+        specifier: ^8.5.33
+        version: 8.5.33
       typescript:
         specifier: ^5.6.2
         version: 5.6.2

@@ -1,18 +1,20 @@
+@import "./select-tokens.generated.css";
+
 @layer cui.components;
 @layer cui.components {
   .cui-select-selectTheme {
-    --cui-selectTheme-contentBackground: var(--cui-surface-menu);
-    --cui-selectTheme-contentRadius: var(--cui-radius-lg);
+    --cui-selectTheme-contentBackground: var(--cui-component-select-select-theme-content-background);
+    --cui-selectTheme-contentRadius: var(--cui-component-select-select-theme-content-radius);
     --cui-selectTheme-contentBoxShadow: var(--cui-shadow-menu);
-    --cui-selectTheme-contentPadding: var(--cui-space-2);
-    --cui-selectTheme-contentBorderColor: var(--cui-border-menu);
+    --cui-selectTheme-contentPadding: var(--cui-component-select-select-theme-content-padding);
+    --cui-selectTheme-contentBorderColor: var(--cui-component-select-select-theme-content-border-color);
     --cui-selectTheme-contentMaxHeight: 400px;
     --cui-selectTheme-contentMaxHeightXs: 270px;
-    --cui-selectTheme-separator: var(--cui-border-menu);
-    --cui-selectTheme-itemMinHeight: var(--cui-control-height-md);
-    --cui-selectTheme-itemTextColor: var(--cui-text-menu);
-    --cui-selectTheme-itemHoverBackground: var(--cui-surface-menu-hover);
-    --cui-selectTheme-itemHoverTextColor: var(--cui-text-menu);
+    --cui-selectTheme-separator: var(--cui-component-select-select-theme-separator);
+    --cui-selectTheme-itemMinHeight: var(--cui-component-select-select-theme-item-min-height);
+    --cui-selectTheme-itemTextColor: var(--cui-component-select-select-theme-item-text-color);
+    --cui-selectTheme-itemHoverBackground: var(--cui-component-select-select-theme-item-hover-background);
+    --cui-selectTheme-itemHoverTextColor: var(--cui-component-select-select-theme-item-hover-text-color);
     --cui-selectTheme-itemDisabledOpacity: .4;
     --cui-selectTheme-indicatorSize: 20px;
   }

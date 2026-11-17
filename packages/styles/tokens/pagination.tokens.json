@@ -1,0 +1,12 @@
+{
+  "component": {
+    "pagination": {
+      "pagination-theme": {
+        "paginationItemMargin": {
+          "$type": "dimension",
+          "$value": "{space.0-5}"
+        }
+      }
+    }
+  }
+}

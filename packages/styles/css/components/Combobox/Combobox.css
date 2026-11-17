@@ -1,3 +1,5 @@
+@import "./combobox-tokens.generated.css";
+
 @layer cui.components;
 @layer cui.components {
   .cui-combobox-root {
@@ -47,8 +49,8 @@
     cursor: not-allowed;
   }
   .cui-combobox-control_size_sm {
-    height: var(--cui-control-height-compact);
-    font-size: var(--cui-font-size-caption);
+    height: var(--cui-component-combobox-control-size-sm-height);
+    font-size: var(--cui-component-combobox-control-size-sm-font-size);
   }
   .cui-combobox-input {
     appearance: none;

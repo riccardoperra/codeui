@@ -1,3 +1,5 @@
+@import "./spinner-tokens.generated.css";
+
 @keyframes cui-spinner-spin {
   to {
     transform: rotate(360deg);
@@ -12,16 +14,16 @@
     animation: cui-spinner-spin calc(var(--cui-motion-duration-slow) * 3) linear infinite;
   }
   .cui-spinner-root_size_sm {
-    width: var(--cui-space-3);
-    height: var(--cui-space-3);
+    width: var(--cui-component-spinner-root-size-sm-width);
+    height: var(--cui-component-spinner-root-size-sm-height);
   }
   .cui-spinner-root_size_md {
-    width: var(--cui-space-4);
-    height: var(--cui-space-4);
+    width: var(--cui-component-spinner-root-size-md-width);
+    height: var(--cui-component-spinner-root-size-md-height);
   }
   .cui-spinner-root_size_lg {
-    width: var(--cui-space-6);
-    height: var(--cui-space-6);
+    width: var(--cui-component-spinner-root-size-lg-width);
+    height: var(--cui-component-spinner-root-size-lg-height);
   }
   .cui-spinner-track {
     fill: none;

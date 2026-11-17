@@ -4,7 +4,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import ts from "typescript";
 import { build } from "esbuild";
-import { bundleAsync, Features, transform } from "lightningcss";
+import { Features, transform } from "lightningcss";
+import { bundleComponentTokens } from "./component-tokens.mjs";
 import { generateTheme } from "./tokens.mjs";
 import { collectContracts } from "./contracts.mjs";
 
@@ -26,32 +27,25 @@ const files = async dir =>
 	)
 		.flat()
 		.sort();
-const { css: theme, media, button } = await generateTheme(root);
+const { css: theme, media, componentAliases } = await generateTheme(root);
 const sourceFiles = (await files(src)).filter(file => file.endsWith(".ts"));
 const sources = JSON.parse(await readFile(path.join(root, "style-sources.json"), "utf8"));
 const scopesByModule = new Map(Object.entries(sources));
 const cssByScope = new Map();
 const layerOrder = "@layer cui;\n@layer cui.base, cui.components, cui.overrides;\n";
+const emittedAliases = new Set();
 for (const scope of new Set(Object.values(sources).flat())) {
 	const filename = scope.replace(/\.ts$/, "");
 	const sourcePath = path.join(root, "css", filename);
-	const css =
-		scope === "foundation/cui.css.ts"
-			? theme
-			: filename === "components/Button/Button.css"
-				? (
-						await bundleAsync({
-							filename: sourcePath,
-							include: Features.Nesting,
-							resolver: {
-								read: file =>
-									path.basename(file) === "button-tokens.generated.css"
-										? button
-										: readFile(file, "utf8"),
-							},
-						})
-					).code.toString()
-				: await readFile(sourcePath, "utf8");
+	const source =
+		scope === "foundation/cui.css.ts" ? theme : await readFile(sourcePath, "utf8");
+	const css = await bundleComponentTokens({
+		source,
+		sourcePath,
+		media,
+		componentAliases,
+		emittedAliases,
+	});
 	const hasCustomMedia = /@media[^{}]*\(--/.test(css);
 	cssByScope.set(
 		scope,
@@ -65,6 +59,8 @@ for (const scope of new Set(Object.values(sources).flat())) {
 			: css,
 	);
 }
+for (const name of componentAliases.keys())
+	assert(emittedAliases.has(name), `Component token has no CSS consumer: ${name}`);
 const themeScopes = new Set(
 	registry.theme.modules.flatMap(id => [...scopesByModule.get(id)]),
 );

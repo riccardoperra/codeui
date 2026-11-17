@@ -1,3 +1,5 @@
+@import "./progress-tokens.generated.css";
+
 @keyframes cui-progress-pulse {
   from {
     opacity: 0.45;
@@ -28,10 +30,10 @@
     overflow: hidden;
   }
   [data-size="md"] .cui-progress-track {
-    height: var(--cui-space-2);
+    height: var(--cui-component-progress-track-size-md-height);
   }
   .cui-progress-track_size_md {
-    height: var(--cui-space-2);
+    height: var(--cui-component-progress-track-size-md-height);
   }
   .cui-progress-fill {
     height: 100%;

@@ -1,0 +1,66 @@
+{
+  "component": {
+    "checkbox": {
+      "check-box-checkbox-theme": {
+        "borderColor": {
+          "$type": "color",
+          "$value": "{text.hint}"
+        },
+        "background": {
+          "$type": "color",
+          "$value": "{action.brand.base}"
+        },
+        "activeHoverBackground": {
+          "$type": "color",
+          "$value": "{action.brand.hover}"
+        },
+        "nonActiveHoverBackground": {
+          "$type": "color",
+          "$value": "{surface.input}"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{action.brand.text}"
+        }
+      },
+      "check-box-control": {
+        "theme-filled": {
+          "fill": {
+            "$type": "color",
+            "$value": "{surface.input}"
+          }
+        },
+        "size-xs": {
+          "fontSize": {
+            "$type": "dimension",
+            "$value": "{font.size.xs}"
+          }
+        },
+        "size-sm": {
+          "fontSize": {
+            "$type": "dimension",
+            "$value": "{font.size.sm}"
+          }
+        },
+        "size-md": {
+          "fontSize": {
+            "$type": "dimension",
+            "$value": "{font.size.md}"
+          }
+        },
+        "size-lg": {
+          "fontSize": {
+            "$type": "dimension",
+            "$value": "{font.size.md}"
+          }
+        },
+        "size-xl": {
+          "fontSize": {
+            "$type": "dimension",
+            "$value": "{font.size.lg}"
+          }
+        }
+      }
+    }
+  }
+}

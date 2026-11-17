@@ -1,3 +1,5 @@
+@import "./switch-tokens.generated.css";
+
 @layer cui.components;
 @layer cui.components {
   .cui-switch-root {
@@ -15,9 +17,9 @@
     opacity: 0.4;
   }
   .cui-switch-control {
-    --cui-switch-trackWidth: var(--cui-control-height-sm);
+    --cui-switch-trackWidth: var(--cui-component-switch-control-track-width);
     --cui-switch-trackHeight: calc(var(--cui-space-5) + var(--cui-space-0-5));
-    --cui-switch-thumbSize: var(--cui-space-4);
+    --cui-switch-thumbSize: var(--cui-component-switch-control-thumb-size);
     position: relative;
     display: inline-flex;
     align-items: center;
@@ -91,7 +93,7 @@
     .cui-switch-control {
       --cui-switch-trackWidth: calc(var(--cui-space-10) + var(--cui-space-1));
       --cui-switch-trackHeight: calc(var(--cui-space-6) + var(--cui-space-0-5));
-      --cui-switch-thumbSize: var(--cui-space-5);
+      --cui-switch-thumbSize: var(--cui-component-switch-control-pointer-coarse-thumb-size);
     }
     .cui-switch-control::before {
       inset: calc((var(--cui-switch-trackHeight) - var(--cui-control-height-md)) / 2) 0;
@@ -99,14 +101,14 @@
   }
   @media (pointer: fine), (pointer: none) {
     .cui-switch-control_size_sm {
-      --cui-switch-trackWidth: var(--cui-control-height-compact);
-      --cui-switch-trackHeight: var(--cui-space-4);
-      --cui-switch-thumbSize: var(--cui-space-3);
+      --cui-switch-trackWidth: var(--cui-component-switch-control-size-sm-track-width);
+      --cui-switch-trackHeight: var(--cui-component-switch-control-size-sm-track-height);
+      --cui-switch-thumbSize: var(--cui-component-switch-control-size-sm-thumb-size);
     }
     [data-cui="switch-root"][data-size="sm"] [data-cui="switch-control"] {
-      --cui-switch-trackWidth: var(--cui-control-height-compact);
-      --cui-switch-trackHeight: var(--cui-space-4);
-      --cui-switch-thumbSize: var(--cui-space-3);
+      --cui-switch-trackWidth: var(--cui-component-switch-control-size-sm-track-width);
+      --cui-switch-trackHeight: var(--cui-component-switch-control-size-sm-track-height);
+      --cui-switch-thumbSize: var(--cui-component-switch-control-size-sm-thumb-size);
     }
   }
   @media (prefers-reduced-motion: reduce) {

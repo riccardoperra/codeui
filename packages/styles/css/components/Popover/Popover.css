@@ -1,17 +1,19 @@
+@import "./popover-tokens.generated.css";
+
 @layer cui.components;
 @layer cui.components {
   .cui-popover-popoverTheme {
-    --cui-popoverTheme-contentBackground: var(--cui-surface-dialog);
+    --cui-popoverTheme-contentBackground: var(--cui-component-popover-popover-theme-content-background);
     --cui-popoverTheme-contentBoxShadow: var(--cui-shadow-dialog);
     --cui-popoverTheme-contentMaxWidth: min(360px, calc(100vw - 2 * var(--cui-space-4)));
-    --cui-popoverTheme-contentRadius: var(--cui-radius-xl);
-    --cui-popoverTheme-contentPadding: var(--cui-space-4);
-    --cui-popoverTheme-contentFontSize: var(--cui-font-size-sm);
-    --cui-popoverTheme-contentLineHeight: var(--cui-font-line-height-snug);
-    --cui-popoverTheme-titleColor: var(--cui-text-dialog-title);
-    --cui-popoverTheme-titleFontSize: var(--cui-font-size-md);
-    --cui-popoverTheme-descriptionColor: var(--cui-text-dialog);
-    --cui-popoverTheme-contentBorderColor: var(--cui-border-menu);
+    --cui-popoverTheme-contentRadius: var(--cui-component-popover-popover-theme-content-radius);
+    --cui-popoverTheme-contentPadding: var(--cui-component-popover-popover-theme-content-padding);
+    --cui-popoverTheme-contentFontSize: var(--cui-component-popover-popover-theme-content-font-size);
+    --cui-popoverTheme-contentLineHeight: var(--cui-component-popover-popover-theme-content-line-height);
+    --cui-popoverTheme-titleColor: var(--cui-component-popover-popover-theme-title-color);
+    --cui-popoverTheme-titleFontSize: var(--cui-component-popover-popover-theme-title-font-size);
+    --cui-popoverTheme-descriptionColor: var(--cui-component-popover-popover-theme-description-color);
+    --cui-popoverTheme-contentBorderColor: var(--cui-component-popover-popover-theme-content-border-color);
   }
   .cui-popover-content {
     box-shadow: var(--cui-popoverTheme-contentBoxShadow);
