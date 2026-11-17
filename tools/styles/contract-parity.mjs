@@ -110,7 +110,7 @@ for (const [component, story, selector] of [
 						.join("") +
 					"</div>",
 			);
-		const html = `<!doctype html><html data-cui-theme="${theme}" data-cui-input="keyboard"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="stylesheet" href="reset.css"><link rel="stylesheet" href="contract.css"><style>html,body{font-family:Arial;background:var(--cui-surface-panel);color:var(--cui-text-default)} body{padding:32px} *,*::before,*::after{animation:none!important;transition:none!important}</style><body>${markup}</body></html>`;
+		const html = `<!doctype html><html data-cui-theme="${theme}" data-cui-input="keyboard"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="stylesheet" href="reset.css"><link rel="stylesheet" href="contract.css"><style>html,body{font-family:Arial;background:var(--cui-surface-canvas);color:var(--cui-text-default)} body{padding:32px} *,*::before,*::after{animation:none!important;transition:none!important}</style><body>${markup}</body></html>`;
 		const file = `${component}-${theme}.html`;
 		await writeFile(dir + file, html);
 		samples.push({ component, theme, file });
