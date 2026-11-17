@@ -1,9 +1,11 @@
+import assert from "node:assert/strict";
 import { readFile, writeFile, mkdir, rm, readdir } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import ts from "typescript";
 import { build } from "esbuild";
-import { compile, processVanillaFile } from "@vanilla-extract/integration";
+import { Features, transform } from "lightningcss";
+import { generateTheme } from "./tokens.mjs";
 import { collectContracts } from "./contracts.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -24,58 +26,36 @@ const files = async dir =>
 	)
 		.flat()
 		.sort();
+const { css: theme, media } = await generateTheme(root);
 const sourceFiles = (await files(src)).filter(file => file.endsWith(".ts"));
-const cssFiles = sourceFiles.filter(
-	file => file.endsWith(".css.ts") && !/\/(layer|motion)\.css\.ts$/.test(file),
-);
-const moduleId = file => normalize(path.relative(src, file)).replace(/\.ts$/, "");
-const authoredName = file =>
-	normalize(file)
-		.replace(/^.*?src\//, "")
-		.replace(/\.css\.ts$/, "")
-		.split("/")
-		.filter((part, index, all) => index === all.length - 1)
-		.join("-")
-		.replace(/([a-z0-9])([A-Z])/g, "$1-$2")
-		.toLowerCase();
-const identifiers = ({ debugId, filePath }) => {
-	if (!debugId)
-		throw new Error(
-			`Unnamed style identifier in ${filePath}. Give every style, recipe, variable, and keyframe an explicit name.`,
-		);
-	return `cui-${authoredName(filePath)}-${debugId}`.replace(/[^a-zA-Z0-9_-]/g, "-");
-};
+const sources = JSON.parse(await readFile(path.join(root, "style-sources.json"), "utf8"));
+const scopesByModule = new Map(Object.entries(sources));
 const cssByScope = new Map();
-const scopesByModule = new Map();
-const compiled = new Map();
-await rm(out, { recursive: true, force: true });
-await mkdir(out, { recursive: true });
-for (const file of cssFiles) {
-	const scopes = new Set();
-	const { source } = await compile({
-		filePath: file,
-		cwd: root,
-		identOption: identifiers,
-	});
-	const code = await processVanillaFile({
-		source,
-		filePath: file,
-		identOption: identifiers,
-		serializeVirtualCssPath: ({ fileScope, source: css }) => {
-			const scope = normalize(fileScope.filePath).replace(/^src\//, "");
-			if (cssByScope.has(scope) && cssByScope.get(scope) !== css)
-				throw new Error(`Non-deterministic CSS scope ${scope}`);
-			cssByScope.set(scope, css);
-			scopes.add(scope);
-			return "";
-		},
-	});
-	compiled.set(file, code);
-	scopesByModule.set(moduleId(file) + ".ts", scopes);
+const layerOrder = "@layer cui;\n@layer cui.base, cui.components, cui.overrides;\n";
+for (const scope of new Set(Object.values(sources).flat())) {
+	const filename = scope.replace(/\.ts$/, "");
+	const css =
+		scope === "foundation/cui.css.ts"
+			? theme
+			: await readFile(path.join(root, "css", filename), "utf8");
+	const hasCustomMedia = /@media[^{}]*\(--/.test(css);
+	cssByScope.set(
+		scope,
+		hasCustomMedia
+			? transform({
+					filename,
+					code: Buffer.from(media + "\n" + css),
+					drafts: { customMedia: true },
+					include: Features.MediaQueries,
+				}).code.toString()
+			: css,
+	);
 }
 const themeScopes = new Set(
 	registry.theme.modules.flatMap(id => [...scopesByModule.get(id)]),
 );
+const stylesheet = scopes =>
+	layerOrder + scopes.map(scope => cssByScope.get(scope)).join("\n");
 const componentClosure = (name, seen = new Set()) => {
 	if (!registry[name]) throw new Error(`Unknown component dependency ${name}`);
 	if (seen.has(name)) return seen;
@@ -95,11 +75,7 @@ for (const [name, entry] of Object.entries(registry)) {
 	);
 	if (name !== "theme") for (const scope of themeScopes) scopes.delete(scope);
 	const orderedScopes = [...scopes].sort();
-	await writeFile(
-		path.join(out, `${name}.css`),
-		"@layer cui;\n@layer cui.base, cui.components, cui.overrides;\n" +
-			orderedScopes.map(scope => cssByScope.get(scope)).join("\n"),
-	);
+	await writeFile(path.join(out, `${name}.css`), stylesheet(orderedScopes));
 	manifest.entries[name] = {
 		css: `${name}.css`,
 		dependencies: entry.dependencies,
@@ -109,11 +85,7 @@ for (const [name, entry] of Object.entries(registry)) {
 }
 await writeFile(
 	path.join(out, "all.css"),
-	"@layer cui;\n@layer cui.base, cui.components, cui.overrides;\n" +
-		[...cssByScope]
-			.sort(([a], [b]) => a.localeCompare(b))
-			.map(([, css]) => css)
-			.join("\n"),
+	stylesheet([...cssByScope.keys()].sort((a, b) => a.localeCompare(b))),
 );
 const helperExports = async (entry, prefix) => {
 	if (!entry.helpers) return "";
@@ -152,17 +124,6 @@ const entryPoints = Object.fromEntries([
 	...compatibility.map(id => [`internal/${id}`, path.join(src, `${id}.ts`)]),
 	...(await files(generated)).map(file => [path.basename(file, ".ts"), file]),
 ]);
-const extraction = {
-	name: "compiled-vanilla-extract",
-	setup(builder) {
-		builder.onLoad({ filter: /\.css\.ts$/ }, ({ path: file }) => {
-			const contents = compiled.get(file);
-			if (contents === undefined)
-				throw new Error(`Authoring-only style module leaked into runtime ${file}`);
-			return { contents, loader: "js", resolveDir: path.dirname(file) };
-		});
-	},
-};
 for (const format of ["esm", "cjs"])
 	await build({
 		entryPoints,
@@ -179,7 +140,6 @@ for (const format of ["esm", "cjs"])
 		minify: true,
 		minifySyntax: true,
 		minifyWhitespace: true,
-		plugins: [extraction],
 		logLevel: "warning",
 	});
 const program = ts.createProgram(sourceFiles, {
@@ -228,21 +188,6 @@ program.emit(undefined, undefined, undefined, undefined, {
 		},
 	],
 });
-for (const file of await files(path.join(out, "types/internal"))) {
-	if (/\/(layer|motion)\.css\.d\.ts$/.test(file)) {
-		await rm(file);
-		continue;
-	}
-	const neutral = normalize(
-		path.relative(path.dirname(file), path.join(out, "types/internal/types.js")),
-	);
-	const specifier = neutral.startsWith(".") ? neutral : `./${neutral}`;
-	const text = (await readFile(file, "utf8")).replace(
-		/(["'])@vanilla-extract\/(?:css|recipes)\1/g,
-		JSON.stringify(specifier),
-	);
-	await writeFile(file, text);
-}
 for (const [name, entry] of Object.entries(registry))
 	await writeFile(
 		path.join(out, "types", `${name}.d.ts`),
@@ -312,8 +257,10 @@ await writeFile(
 const contract = JSON.stringify(await collectContracts(out), null, 2) + "\n";
 if (process.argv.includes("--update-contract"))
 	await writeFile(path.join(root, "contract.json"), contract);
-else if (contract !== (await readFile(path.join(root, "contract.json"), "utf8")))
-	throw new Error(
+else
+	assert.deepEqual(
+		JSON.parse(contract),
+		JSON.parse(await readFile(path.join(root, "contract.json"), "utf8")),
 		"Public CSS contract changed. Review the diff and rebuild with --update-contract.",
 	);
 await writeFile(path.join(out, "contract.json"), contract);

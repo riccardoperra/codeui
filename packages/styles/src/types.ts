@@ -1,7 +1,7 @@
 import type * as CSS from "csstype";
 
 type BooleanKey<T> = T extends "true" | "false" ? boolean : T;
-type VariantSelection<Variants> = {
+export type VariantSelection<Variants> = {
 	[Group in keyof Variants]?: BooleanKey<keyof Variants[Group]>;
 };
 export type RuntimeFn<Variants> = ((options?: VariantSelection<Variants>) => string) & {

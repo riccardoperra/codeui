@@ -1,257 +1,48 @@
-import { createTheme, recipe, style } from "../../foundation/layer.css";
-import { componentStateStyles } from "@kobalte/vanilla-extract";
-import { fallbackVar } from "@vanilla-extract/css";
-import { RecipeVariants } from "@vanilla-extract/recipes";
-import { tokens } from "../../foundation/cui.css";
-import { layoutBackgroundColor } from "../../foundation/layout.css";
-import { mapSizeValue } from "../../foundation/sizes";
-import { transition } from "../../foundation/motion.css";
-
-export const [buttonTheme, buttonVars] = createTheme(
-	{
-		buttonHeight: "",
-		fontSize: "",
-		background: "",
-		hoverBackground: "",
-		activeBackground: "",
-		color: tokens.action.neutral.text,
-		borderColor: "",
-		padding: "",
-		borderRadius: tokens.radius.md,
-	},
-	"buttonTheme",
-);
-
-const ButtonSizes = {
-	xs: "xs",
-	sm: "sm",
-	md: "md",
-	lg: "lg",
-	xl: "xl",
-} as const;
-
-const ButtonThemes = {
-	primary: "primary",
-	secondary: "secondary",
-	tertiary: "tertiary",
-	negative: "negative",
-	caution: "caution",
-} as const;
-
-export const button = recipe(
-	{
-		base: [
-			buttonTheme,
-			{
-				appearance: "none",
-				fontFamily: "inherit",
-				position: "relative",
-				display: "inline-flex",
-				justifyContent: "center",
-				alignItems: "center",
-				flexShrink: 0,
-				whiteSpace: "nowrap",
-				verticalAlign: "middle",
-				height: buttonVars.buttonHeight,
-				color: buttonVars.color,
-				background: buttonVars.background,
-				borderRadius: buttonVars.borderRadius,
-				padding: `0 ${buttonVars.padding}`,
-				fontWeight: tokens.font.weight.medium,
-				fontSize: buttonVars.fontSize,
-				border: `${tokens.border.width} solid ${buttonVars.borderColor}`,
-				transition: transition(["opacity", "background-color", "transform"]),
-				gap: tokens.space["2"],
-				vars: {
-					[buttonVars.borderColor]: buttonVars.background,
-				},
-			},
-			{
-				selectors: {
-					"&:not(:is([data-disabled], :disabled)):hover": {
-						background: buttonVars.hoverBackground,
-					},
-					"&:not(:is([data-disabled], :disabled)):active": {
-						background: buttonVars.activeBackground,
-						animation: "none",
-						transform: "scale(0.97)",
-					},
-					"&:focus-visible": {
-						outline: `${tokens.focus.width} solid ${tokens.focus.color}`,
-						outlineOffset: tokens.focus.offset,
-					},
-				},
-			},
-			componentStateStyles({
-				disabled: {
-					vars: {
-						[buttonVars.background]: tokens.action.neutral.base,
-						[buttonVars.color]: tokens.action.neutral.text,
-					},
-					opacity: 0.5,
-				},
-			}),
-		],
-		variants: {
-			size: {
-				[ButtonSizes.xl]: {
-					vars: {
-						[buttonVars.buttonHeight]: mapSizeValue("xl"),
-						[buttonVars.fontSize]: tokens.font.size.xl,
-						[buttonVars.padding]: tokens.space["6"],
-						[buttonVars.borderRadius]: tokens.radius.xl,
-					},
-				},
-				[ButtonSizes.lg]: {
-					vars: {
-						[buttonVars.buttonHeight]: mapSizeValue("lg"),
-						[buttonVars.fontSize]: tokens.font.size.lg,
-						[buttonVars.padding]: tokens.space["5"],
-						[buttonVars.borderRadius]: tokens.radius.lg,
-					},
-				},
-				[ButtonSizes.md]: {
-					vars: {
-						[buttonVars.buttonHeight]: mapSizeValue("md"),
-						[buttonVars.fontSize]: tokens.font.size.md,
-						[buttonVars.padding]: tokens.space["5"],
-						[buttonVars.borderRadius]: tokens.radius.md,
-					},
-				},
-				[ButtonSizes.sm]: {
-					vars: {
-						[buttonVars.buttonHeight]: mapSizeValue("sm"),
-						[buttonVars.fontSize]: tokens.font.size.sm,
-						[buttonVars.padding]: tokens.space["4"],
-						[buttonVars.borderRadius]: tokens.radius.sm,
-					},
-				},
-				[ButtonSizes.xs]: {
-					vars: {
-						[buttonVars.buttonHeight]: mapSizeValue("xs"),
-						[buttonVars.fontSize]: tokens.font.size.xs,
-						[buttonVars.padding]: tokens.space["2"],
-						[buttonVars.borderRadius]: tokens.radius.xs,
-					},
-				},
-			},
-			theme: {
-				[ButtonThemes.primary]: {
-					vars: {
-						[buttonVars.background]: tokens.action.brand.base,
-						[buttonVars.hoverBackground]: tokens.action.brand.hover,
-						[buttonVars.activeBackground]: tokens.action.brand.active,
-						[buttonVars.color]: tokens.action.brand.text,
-					},
-				},
-				[ButtonThemes.tertiary]: {
-					vars: {
-						[buttonVars.background]: tokens.action.brandSoft.base,
-						[buttonVars.hoverBackground]: tokens.action.brandSoft.hover,
-						[buttonVars.activeBackground]: tokens.action.brandSoft.active,
-						[buttonVars.color]: tokens.action.brandSoft.text,
-					},
-				},
-				[ButtonThemes.secondary]: {
-					vars: {
-						[buttonVars.background]: tokens.action.neutral.base,
-						[buttonVars.hoverBackground]: tokens.action.neutral.hover,
-						[buttonVars.activeBackground]: tokens.action.neutral.active,
-						[buttonVars.color]: tokens.action.neutral.text,
-						[buttonVars.borderColor]: tokens.action.neutral.base,
-					},
-				},
-				[ButtonThemes.negative]: {
-					vars: {
-						[buttonVars.background]: tokens.action.danger.base,
-						[buttonVars.hoverBackground]: tokens.action.danger.hover,
-						[buttonVars.activeBackground]: tokens.action.danger.active,
-						[buttonVars.color]: tokens.action.danger.text,
-					},
-				},
-				[ButtonThemes.caution]: {
-					vars: {
-						[buttonVars.background]: tokens.action.caution.base,
-						[buttonVars.hoverBackground]: tokens.action.caution.hover,
-						[buttonVars.activeBackground]: tokens.action.caution.active,
-						[buttonVars.color]: tokens.action.caution.text,
-					},
-				},
-			},
-			variant: {
-				ghost: {
-					background: "transparent",
-					selectors: {
-						"&:not(:hover)": {
-							borderColor: "transparent",
-							color: tokens.text.default,
-						},
-					},
-				},
-			},
-			block: {
-				true: {
-					width: "100%",
-					flex: 1,
-				},
-			},
-			pill: {
-				true: {
-					vars: {
-						[buttonVars.borderRadius]: tokens.radius.full,
-					},
-				},
-			},
-			loading: {
-				true: {
-					pointerEvents: "none",
-					overflow: "hidden",
-				},
-			},
-		} as const,
-		defaultVariants: {
-			size: "md",
+import type { RecipeVariants } from "../../types";
+import { recipe } from "../../recipe";
+export const button = recipe({
+	defaultClassName: "cui-button-button cui-button-buttonTheme",
+	variantClassNames: {
+		size: {
+			xl: "cui-button-button_size_xl",
+			lg: "cui-button-button_size_lg",
+			md: "cui-button-button_size_md",
+			sm: "cui-button-button_size_sm",
+			xs: "cui-button-button_size_xs",
 		},
-		compoundVariants: [
-			{
-				style: {
-					background: fallbackVar(layoutBackgroundColor, buttonVars.background),
-					selectors: {
-						"&:not(:hover)": {
-							borderColor: buttonVars.borderColor,
-						},
-					},
-				},
-				variants: {
-					variant: "ghost",
-					loading: true,
-				},
-			},
-		],
-	},
-	"button",
-);
-
-export const buttonIcon = style(
-	{
-		display: "inline-flex",
-		alignSelf: "center",
-		flexShrink: 0,
-	},
-	"buttonIcon",
-);
-
-export const buttonText = style(
-	{
-		transition: transition(["opacity"]),
-		display: "contents",
-		selectors: {
-			"[data-loading] &": {
-				opacity: 0,
-			},
+		theme: {
+			primary: "cui-button-button_theme_primary",
+			tertiary: "cui-button-button_theme_tertiary",
+			secondary: "cui-button-button_theme_secondary",
+			negative: "cui-button-button_theme_negative",
+			caution: "cui-button-button_theme_caution",
 		},
+		variant: { ghost: "cui-button-button_variant_ghost" },
+		block: { true: "cui-button-button_block_true" },
+		pill: { true: "cui-button-button_pill_true" },
+		loading: { true: "cui-button-button_loading_true" },
 	},
-	"buttonText",
-);
+	defaultVariants: { size: "md" },
+	compoundVariants: [
+		[
+			{ variant: "ghost", loading: true },
+			"cui-button-button_compound_loading_true_variant_ghost",
+		],
+	],
+});
+export const buttonIcon: string = "cui-button-buttonIcon";
+export const buttonText: string = "cui-button-buttonText";
+export const buttonTheme: string = "cui-button-buttonTheme";
+export const buttonVars = {
+	buttonHeight: "var(--cui-buttonTheme-buttonHeight)" as `var(--${string})`,
+	fontSize: "var(--cui-buttonTheme-fontSize)" as `var(--${string})`,
+	background: "var(--cui-buttonTheme-background)" as `var(--${string})`,
+	hoverBackground: "var(--cui-buttonTheme-hoverBackground)" as `var(--${string})`,
+	activeBackground: "var(--cui-buttonTheme-activeBackground)" as `var(--${string})`,
+	color: "var(--cui-buttonTheme-color)" as `var(--${string})`,
+	borderColor: "var(--cui-buttonTheme-borderColor)" as `var(--${string})`,
+	padding: "var(--cui-buttonTheme-padding)" as `var(--${string})`,
+	borderRadius: "var(--cui-buttonTheme-borderRadius)" as `var(--${string})`,
+};
 
 export type ButtonVariants = RecipeVariants<typeof button>;

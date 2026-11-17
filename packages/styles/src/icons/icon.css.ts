@@ -1,12 +1,2 @@
-import { style } from "../foundation/layer.css";
-import { createVar, fallbackVar } from "@vanilla-extract/css";
-
-export const iconSize = createVar("iconSize");
-
-export const icon = style(
-	{
-		width: fallbackVar(iconSize, "1.1em"),
-		height: fallbackVar(iconSize, "1.1em"),
-	},
-	"icon",
-);
+export const icon: string = "cui-icon-icon";
+export const iconSize: `var(--${string})` = "var(--cui-icon-iconSize)";

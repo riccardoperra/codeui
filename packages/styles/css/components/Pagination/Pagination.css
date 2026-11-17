@@ -1,0 +1,19 @@
+@layer cui.components;
+@layer cui.components {
+  .cui-pagination-paginationTheme {
+    --cui-paginationTheme-paginationItemMargin: var(--cui-space-0-5);
+  }
+  .cui-pagination-pagination {
+    margin: 0;
+    padding: 0;
+    display: inline-flex;
+    position: relative;
+    font-variant: tabular-nums;
+  }
+  .cui-pagination-paginationItem {
+    margin: 0 var(--cui-paginationTheme-paginationItemMargin);
+  }
+  .cui-pagination-paginationIcon {
+    width: 1.1em;
+  }
+}

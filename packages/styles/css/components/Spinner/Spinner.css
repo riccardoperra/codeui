@@ -1,0 +1,41 @@
+@keyframes cui-spinner-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@layer cui.components;
+@layer cui.components {
+  .cui-spinner-root {
+    display: inline-block;
+    flex-shrink: 0;
+    color: currentColor;
+    animation: cui-spinner-spin calc(var(--cui-motion-duration-slow) * 3) linear infinite;
+  }
+  .cui-spinner-root_size_sm {
+    width: var(--cui-space-3);
+    height: var(--cui-space-3);
+  }
+  .cui-spinner-root_size_md {
+    width: var(--cui-space-4);
+    height: var(--cui-space-4);
+  }
+  .cui-spinner-root_size_lg {
+    width: var(--cui-space-6);
+    height: var(--cui-space-6);
+  }
+  .cui-spinner-track {
+    fill: none;
+    stroke: currentColor;
+    opacity: 0.25;
+  }
+  .cui-spinner-indicator {
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cui-spinner-root {
+      animation: none;
+    }
+  }
+}

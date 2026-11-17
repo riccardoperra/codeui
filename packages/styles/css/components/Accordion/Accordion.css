@@ -1,0 +1,143 @@
+@layer cui.components;
+@layer cui.components {
+  .cui-accordion-root {
+    display: flex;
+    flex-direction: column;
+    gap: var(--cui-space-1);
+    min-width: 0;
+    line-height: var(--cui-font-line-height-sm);
+  }
+  .cui-accordion-item {
+    min-width: 0;
+    border-radius: var(--cui-radius-card);
+    color: var(--cui-text-default);
+  }
+  .cui-accordion-item[data-expanded] {
+    background: var(--cui-surface-panel);
+  }
+  .cui-accordion-header {
+    margin: 0;
+    font-size: var(--cui-font-size-sm);
+    font-weight: var(--cui-font-weight-semibold);
+    line-height: var(--cui-font-line-height-sm);
+  }
+  .cui-accordion-trigger {
+    display: flex;
+    align-items: center;
+    gap: var(--cui-space-2-5);
+    width: 100%;
+    min-height: var(--cui-control-height-sm);
+    padding: 0 var(--cui-space-3) 0 var(--cui-space-2);
+    border: 0;
+    border-radius: var(--cui-radius-md);
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+  }
+  .cui-accordion-trigger:focus-visible {
+    outline: var(--cui-focus-width) solid var(--cui-focus-color);
+    outline-offset: var(--cui-focus-offset);
+  }
+  .cui-accordion-trigger:disabled {
+    color: var(--cui-text-muted);
+    cursor: default;
+  }
+  .cui-accordion-trigger_density_compact {
+    padding-block: var(--cui-space-1);
+  }
+  .cui-accordion-trigger_density_comfortable {
+    padding-block: var(--cui-space-3);
+  }
+  .cui-accordion-content {
+    overflow: hidden;
+    min-width: 0;
+    height: 0;
+    opacity: 0;
+    font-size: var(--cui-font-size-caption);
+    line-height: var(--cui-font-line-height-caption);
+    padding-inline: var(--cui-space-2);
+    transition: height var(--cui-motion-duration-panel) var(--cui-motion-ease-out), opacity var(--cui-motion-duration-panel) var(--cui-motion-ease-out);
+  }
+  .cui-accordion-content[data-open] {
+    height: var(--cui-accordion-content-height, auto);
+    opacity: 1;
+  }
+  [data-cui="accordion-root"][data-motion="none"] .cui-accordion-content {
+    transition: none;
+  }
+  :root[data-cui-input="keyboard"] .cui-accordion-content {
+    transition: none;
+  }
+  [data-cui="accordion-content"][inert] {
+    pointer-events: none;
+  }
+  [data-cui="accordion-content"][hidden] {
+    display: none;
+  }
+  .cui-accordion-icon {
+    display: inline-flex;
+    flex-shrink: 0;
+    color: var(--cui-text-muted);
+  }
+  .cui-accordion-title {
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  .cui-accordion-summary {
+    margin-left: auto;
+    max-width: 55%;
+    font-size: var(--cui-font-size-xs);
+    font-weight: var(--cui-font-weight-normal);
+    line-height: var(--cui-font-line-height-xs);
+    color: var(--cui-text-muted);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .cui-accordion-chevron {
+    display: inline-block;
+    flex-shrink: 0;
+    width: var(--cui-space-4);
+    font-size: var(--cui-font-size-xl);
+    line-height: 1;
+    text-align: center;
+    color: var(--cui-text-muted);
+    transition: transform var(--cui-motion-duration-panel) var(--cui-motion-ease-out);
+  }
+  [data-expanded] > [data-cui="accordion-header"] > [data-cui="accordion-trigger"] .cui-accordion-chevron {
+    transform: rotate(90deg);
+  }
+  [data-cui="accordion-root"][data-motion="none"] .cui-accordion-chevron {
+    transition: none;
+  }
+  :root[data-cui-input="keyboard"] .cui-accordion-chevron {
+    transition: none;
+  }
+  [data-cui="accordion-item"][data-expanded] [data-cui="accordion-icon"] {
+    color: var(--cui-accent-focus);
+  }
+  .cui-accordion-contentBody {
+    padding-bottom: var(--cui-space-2);
+  }
+  @media (pointer: coarse) {
+    .cui-accordion-trigger {
+      min-height: var(--cui-control-height-md);
+    }
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .cui-accordion-trigger:hover:not(:disabled):not([data-expanded]) {
+      background: var(--cui-surface-input);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cui-accordion-content {
+      transition: opacity var(--cui-motion-duration-panel) var(--cui-motion-ease-out);
+    }
+    .cui-accordion-chevron {
+      transition: none;
+    }
+  }
+}

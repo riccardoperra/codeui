@@ -1,0 +1,150 @@
+@layer cui.components;
+@layer cui.components {
+  .cui-button-buttonTheme {
+    --cui-buttonTheme-buttonHeight: ;
+    --cui-buttonTheme-fontSize: ;
+    --cui-buttonTheme-background: ;
+    --cui-buttonTheme-hoverBackground: ;
+    --cui-buttonTheme-activeBackground: ;
+    --cui-buttonTheme-color: var(--cui-action-neutral-text);
+    --cui-buttonTheme-borderColor: ;
+    --cui-buttonTheme-padding: ;
+    --cui-buttonTheme-borderRadius: var(--cui-radius-md);
+  }
+  .cui-button-button_compound_loading_true_variant_ghost {
+    background: var(--cui-layout-layoutBackgroundColor, var(--cui-buttonTheme-background));
+  }
+  .cui-button-button_compound_loading_true_variant_ghost:not(:hover) {
+    border-color: var(--cui-buttonTheme-borderColor);
+  }
+  .cui-button-button {
+    --cui-buttonTheme-borderColor: var(--cui-buttonTheme-background);
+    appearance: none;
+    font-family: inherit;
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    white-space: nowrap;
+    vertical-align: middle;
+    height: var(--cui-buttonTheme-buttonHeight);
+    color: var(--cui-buttonTheme-color);
+    background: var(--cui-buttonTheme-background);
+    border-radius: var(--cui-buttonTheme-borderRadius);
+    padding: 0 var(--cui-buttonTheme-padding);
+    font-weight: var(--cui-font-weight-medium);
+    font-size: var(--cui-buttonTheme-fontSize);
+    border: var(--cui-border-width) solid var(--cui-buttonTheme-borderColor);
+    transition: opacity var(--cui-motion-duration-fast) var(--cui-motion-ease-out), background-color var(--cui-motion-duration-fast) var(--cui-motion-ease-out), transform var(--cui-motion-duration-fast) var(--cui-motion-ease-out);
+    gap: var(--cui-space-2);
+  }
+  .cui-button-button:not(:is([data-disabled], :disabled)):hover {
+    background: var(--cui-buttonTheme-hoverBackground);
+  }
+  .cui-button-button:not(:is([data-disabled], :disabled)):active {
+    background: var(--cui-buttonTheme-activeBackground);
+    animation: none;
+    transform: scale(0.97);
+  }
+  .cui-button-button:focus-visible {
+    outline: var(--cui-focus-width) solid var(--cui-focus-color);
+    outline-offset: var(--cui-focus-offset);
+  }
+  .cui-button-button[data-disabled] {
+    --cui-buttonTheme-background: var(--cui-action-neutral-base);
+    --cui-buttonTheme-color: var(--cui-action-neutral-text);
+    opacity: 0.5;
+  }
+  .cui-button-button_size_xl {
+    --cui-buttonTheme-buttonHeight: var(--cui-control-height-xl);
+    --cui-buttonTheme-fontSize: var(--cui-font-size-xl);
+    --cui-buttonTheme-padding: var(--cui-space-6);
+    --cui-buttonTheme-borderRadius: var(--cui-radius-xl);
+  }
+  .cui-button-button_size_lg {
+    --cui-buttonTheme-buttonHeight: var(--cui-control-height-lg);
+    --cui-buttonTheme-fontSize: var(--cui-font-size-lg);
+    --cui-buttonTheme-padding: var(--cui-space-5);
+    --cui-buttonTheme-borderRadius: var(--cui-radius-lg);
+  }
+  .cui-button-button_size_md {
+    --cui-buttonTheme-buttonHeight: var(--cui-control-height-md);
+    --cui-buttonTheme-fontSize: var(--cui-font-size-md);
+    --cui-buttonTheme-padding: var(--cui-space-5);
+    --cui-buttonTheme-borderRadius: var(--cui-radius-md);
+  }
+  .cui-button-button_size_sm {
+    --cui-buttonTheme-buttonHeight: var(--cui-control-height-sm);
+    --cui-buttonTheme-fontSize: var(--cui-font-size-sm);
+    --cui-buttonTheme-padding: var(--cui-space-4);
+    --cui-buttonTheme-borderRadius: var(--cui-radius-sm);
+  }
+  .cui-button-button_size_xs {
+    --cui-buttonTheme-buttonHeight: var(--cui-control-height-xs);
+    --cui-buttonTheme-fontSize: var(--cui-font-size-xs);
+    --cui-buttonTheme-padding: var(--cui-space-2);
+    --cui-buttonTheme-borderRadius: var(--cui-radius-xs);
+  }
+  .cui-button-button_theme_primary {
+    --cui-buttonTheme-background: var(--cui-action-brand-base);
+    --cui-buttonTheme-hoverBackground: var(--cui-action-brand-hover);
+    --cui-buttonTheme-activeBackground: var(--cui-action-brand-active);
+    --cui-buttonTheme-color: var(--cui-action-brand-text);
+  }
+  .cui-button-button_theme_tertiary {
+    --cui-buttonTheme-background: var(--cui-action-brand-soft-base);
+    --cui-buttonTheme-hoverBackground: var(--cui-action-brand-soft-hover);
+    --cui-buttonTheme-activeBackground: var(--cui-action-brand-soft-active);
+    --cui-buttonTheme-color: var(--cui-action-brand-soft-text);
+  }
+  .cui-button-button_theme_secondary {
+    --cui-buttonTheme-background: var(--cui-action-neutral-base);
+    --cui-buttonTheme-hoverBackground: var(--cui-action-neutral-hover);
+    --cui-buttonTheme-activeBackground: var(--cui-action-neutral-active);
+    --cui-buttonTheme-color: var(--cui-action-neutral-text);
+    --cui-buttonTheme-borderColor: var(--cui-action-neutral-base);
+  }
+  .cui-button-button_theme_negative {
+    --cui-buttonTheme-background: var(--cui-action-danger-base);
+    --cui-buttonTheme-hoverBackground: var(--cui-action-danger-hover);
+    --cui-buttonTheme-activeBackground: var(--cui-action-danger-active);
+    --cui-buttonTheme-color: var(--cui-action-danger-text);
+  }
+  .cui-button-button_theme_caution {
+    --cui-buttonTheme-background: var(--cui-action-caution-base);
+    --cui-buttonTheme-hoverBackground: var(--cui-action-caution-hover);
+    --cui-buttonTheme-activeBackground: var(--cui-action-caution-active);
+    --cui-buttonTheme-color: var(--cui-action-caution-text);
+  }
+  .cui-button-button_variant_ghost {
+    background: transparent;
+  }
+  .cui-button-button_variant_ghost:not(:hover) {
+    border-color: transparent;
+    color: var(--cui-text-default);
+  }
+  .cui-button-button_block_true {
+    width: 100%;
+    flex: 1;
+  }
+  .cui-button-button_pill_true {
+    --cui-buttonTheme-borderRadius: var(--cui-radius-full);
+  }
+  .cui-button-button_loading_true {
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .cui-button-buttonIcon {
+    display: inline-flex;
+    align-self: center;
+    flex-shrink: 0;
+  }
+  .cui-button-buttonText {
+    transition: opacity var(--cui-motion-duration-fast) var(--cui-motion-ease-out);
+    display: contents;
+  }
+  [data-loading] .cui-button-buttonText {
+    opacity: 0;
+  }
+}

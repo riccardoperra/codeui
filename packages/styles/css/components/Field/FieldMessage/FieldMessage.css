@@ -1,0 +1,28 @@
+@layer cui.components;
+@layer cui.components {
+  .cui-field-message-description {
+    color: var(--cui-baseFieldTheme-descriptionColor);
+    user-select: none;
+    line-height: var(--cui-font-line-height-xs);
+  }
+  [data-field-size=xs] .cui-field-message-description {
+    font-size: var(--cui-font-size-xs);
+    line-height: var(--cui-font-line-height-xs);
+  }
+  [data-field-size=sm] .cui-field-message-description {
+    font-size: var(--cui-font-size-xs);
+    line-height: var(--cui-font-line-height-xs);
+  }
+  [data-field-size=md] .cui-field-message-description {
+    font-size: var(--cui-font-size-xs);
+    line-height: var(--cui-font-line-height-xs);
+  }
+  [data-field-size=lg] .cui-field-message-description {
+    font-size: var(--cui-font-size-sm);
+    line-height: var(--cui-font-line-height-sm);
+  }
+  [data-field-size=xl] .cui-field-message-description {
+    font-size: var(--cui-font-size-md);
+    line-height: var(--cui-font-line-height-md);
+  }
+}

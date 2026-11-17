@@ -3,3 +3,6 @@
 base = "/"
 publish = "packages/storybook/storybook-static"
 command = "pnpm --filter=@codeui/storybook-playground build"
+
+[build.environment]
+NODE_VERSION = "24"

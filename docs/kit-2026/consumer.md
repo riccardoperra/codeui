@@ -1,6 +1,6 @@
 # Packed kit and CSS consumers
 
-The kit compiles its vanilla-extract sources before publishing. Consumers install the packed `@codeui/kit` and `@codeui/styles` artifacts without a vanilla-extract plugin.
+The kit builds its styles from plain CSS and DTCG JSON before publishing. Consumers install the packed `@codeui/kit` and `@codeui/styles` artifacts without a vanilla-extract plugin.
 
 ## Run the consumer check
 

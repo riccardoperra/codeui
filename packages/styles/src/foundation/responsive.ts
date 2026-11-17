@@ -1,4 +1,4 @@
-import type { StyleRule } from "@vanilla-extract/css";
+import type { StyleRule } from "../types";
 import { breakpoints } from "./breakpoints";
 import { mapValues, omit } from "../utils/object";
 

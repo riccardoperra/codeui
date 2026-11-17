@@ -1,12 +1,12 @@
 # Static styles and the Solid adapter
 
-The supported component framework remains Solid. `@codeui/styles` owns the vanilla-extract sources and compiles them before publishing. `@codeui/kit` owns rendering and behavior through Kobalte. The CSS package has no framework peers, style injection or runtime dependency on vanilla-extract.
+The supported component framework remains Solid. `@codeui/styles` owns plain CSS and builds the Inkstone theme from DTCG JSON through Toghen. `@codeui/kit` owns rendering and behavior through Kobalte. The CSS package has no framework peers, style injection or runtime dependency on vanilla-extract.
 
 Solid renderer modules import their component CSS and theme automatically. Their JavaScript remains removable through package side-effect metadata, while CSS assets are marked as side effects. CSS-only consumers load `@codeui/styles/all.css`, or `theme.css` and individual component files. A component file includes shared styles reachable through its declared dependency closure. All variants and runtime states remain available inside that file.
 
 ## Public contracts
 
-`contract.json` records public classes, variants, variables and part names. Unnamed vanilla-extract identifiers fail the build. An intentional contract change requires reviewing and regenerating that file. CSS and contracts were compared across different checkout paths. Private JavaScript chunk filenames remain bundler-managed.
+`contract.json` records public classes, variants, variables and part names. The build checks it against the class and token helper exports. An intentional contract change requires reviewing and regenerating that file. CSS and contracts were compared across different checkout paths. Private JavaScript chunk filenames remain bundler-managed.
 
 `manifest.json` records CSS entry closures. The renderer-import guard independently checks these declarations against Solid source imports. It also checks that renderer imports load the required CSS and theme automatically. Its traversal is conservative, so styles used by shared renderer helpers can remain in the closure even when a specific caller uses only another helper result.
 

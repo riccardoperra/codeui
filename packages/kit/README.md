@@ -12,7 +12,7 @@ import { Button } from "@codeui/kit";
 
 Each component loads its stylesheet and shared dependencies. Bundlers can remove unused component modules and their CSS. Token-only imports from `@codeui/kit/tokens` remain free of CSS imports.
 
-The styles package can be installed without Solid. The library authors styles with vanilla-extract and extracts them before publishing. Selection is per component, with all its variants and states retained.
+The styles package can be installed without Solid. The library builds its styles from plain CSS and DTCG design tokens. Selection is per component, with all its variants and states retained.
 
 In vanilla-extract `*.css.ts` files, import `tokens`, `themeVars`, `themeTokens`, `layoutVars`, `breakpoints`, and `responsiveStyle` from `@codeui/kit/tokens`.
 This entry has no Solid or Kobalte imports and is safe to evaluate during style builds in Node; the root entry keeps the same exports for compatibility.

@@ -147,10 +147,9 @@ for (const [name, entry] of Object.entries(registry)) {
 assert(!manifest.entries.button.components.includes("switch"));
 assert(!manifest.entries.button.components.includes("dialog"));
 assert(!manifest.entries.theme.scopes.some(scope => scope.startsWith("components/")));
-const actualContract = JSON.stringify(await collectContracts(out), null, 2) + "\n";
-assert.equal(
-	actualContract,
-	await readFile(path.join(root, "contract.json"), "utf8"),
+assert.deepEqual(
+	await collectContracts(out),
+	JSON.parse(await readFile(path.join(root, "contract.json"), "utf8")),
 	"Public CSS contract drifted.",
 );
 const fixture = path.join(out, ".check-types.ts");
@@ -165,11 +164,11 @@ import { button } from './types/button';
 import { dialogStyles, dialogThemeVars } from './types/dialog';
 import { switchStyles } from './types/switch';
 import { responsiveStyle } from './types/tokens';
-import type { StyleRule as AuthoringStyleRule } from '@vanilla-extract/css';
+import type { StyleRule } from './types/internal/types.js';
 button({ theme: 'primary', size: 'md' });
 dialogStyles.panel({ size: 'settings', chrome: 'inset' });
 switchStyles.control({ size: 'sm' });
-const responsive: AuthoringStyleRule = responsiveStyle({
+const responsive: StyleRule = responsiveStyle({
   xs: { ':hover': { color: 'red' }, display: ['-webkit-box', 'flex'], cursor: 'var(--cursor)' },
   md: { '@scope': { '(.card)': { color: 'red' } }, '@starting-style': { opacity: 0 } },
 });

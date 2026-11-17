@@ -1,3 +1,4 @@
+import assert from "node:assert/strict";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
@@ -41,9 +42,11 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
 	const json = JSON.stringify(actual, null, 2) + "\n";
 	const contractFile = path.join(root, "contract.json");
 	if (process.argv.includes("--update")) await writeFile(contractFile, json);
-	else if ((await readFile(contractFile, "utf8")) !== json)
-		throw new Error(
-			"Public CSS contract changed. Review class and variable changes, then run node scripts/contracts.mjs --update.",
+	else
+		assert.deepEqual(
+			actual,
+			JSON.parse(await readFile(contractFile, "utf8")),
+			"Public CSS contract changed. Review the diff and run node scripts/contracts.mjs --update.",
 		);
 	console.log("Public class, variant, part, and variable contract matches.");
 }

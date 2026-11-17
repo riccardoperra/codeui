@@ -1,0 +1,89 @@
+@layer cui.components;
+@layer cui.components {
+  .cui-field-baseFieldTheme {
+    --cui-baseFieldTheme-borderColor: var(--cui-border-input);
+    --cui-baseFieldTheme-background: var(--cui-surface-input);
+    --cui-baseFieldTheme-color: var(--cui-text-input);
+    --cui-baseFieldTheme-inputHeight: var(--cui-field-inputHeight);
+    --cui-baseFieldTheme-fontSize: var(--cui-field-fontSize);
+    --cui-baseFieldTheme-descriptionColor: var(--cui-text-hint);
+    --cui-baseFieldTheme-disabledBackground: var(--cui-surface-dialog);
+  }
+  .cui-field-baseFieldVariants {
+    appearance: none;
+    border: var(--cui-border-width) solid var(--cui-baseFieldTheme-borderColor);
+    background-color: var(--cui-baseFieldTheme-background);
+    border-radius: var(--cui-radius-md);
+    width: 100%;
+    min-width: 0px;
+    font-size: var(--cui-baseFieldTheme-fontSize);
+    height: var(--cui-baseFieldTheme-inputHeight, 100%);
+    color: var(--cui-baseFieldTheme-color);
+    transition: border-color var(--cui-motion-duration-fast) var(--cui-motion-ease-out);
+    line-height: var(--cui-font-line-height-sm);
+  }
+  .cui-field-baseFieldVariants::placeholder {
+    color: var(--cui-text-hint);
+    opacity: 1;
+  }
+  .cui-field-baseFieldVariants:focus {
+    border-color: var(--cui-focus-color);
+  }
+  .cui-field-baseFieldVariants:focus-visible {
+    outline: var(--cui-focus-width) solid var(--cui-focus-color);
+    outline-offset: var(--cui-focus-offset);
+  }
+  .cui-field-baseFieldVariants[data-invalid] {
+    border-color: var(--cui-text-danger);
+    color: var(--cui-text-danger);
+  }
+  .cui-field-baseFieldVariants[data-disabled] {
+    cursor: not-allowed;
+    opacity: 0.4;
+  }
+  .cui-field-baseFieldVariants_size_xs {
+    --cui-baseFieldTheme-inputHeight: var(--cui-control-height-xs);
+    --cui-baseFieldTheme-fontSize: var(--cui-font-size-xs);
+    border-radius: var(--cui-radius-xs);
+  }
+  .cui-field-baseFieldVariants_size_sm {
+    --cui-baseFieldTheme-inputHeight: var(--cui-control-height-sm);
+    --cui-baseFieldTheme-fontSize: var(--cui-font-size-sm);
+    border-radius: var(--cui-radius-sm);
+  }
+  .cui-field-baseFieldVariants_size_md {
+    --cui-baseFieldTheme-inputHeight: var(--cui-control-height-sm);
+    --cui-baseFieldTheme-fontSize: var(--cui-font-size-sm);
+    border-radius: var(--cui-radius-md);
+  }
+  .cui-field-baseFieldVariants_size_lg {
+    --cui-baseFieldTheme-inputHeight: var(--cui-control-height-lg);
+    --cui-baseFieldTheme-fontSize: var(--cui-font-size-md);
+    border-radius: var(--cui-radius-lg);
+  }
+  .cui-field-baseFieldVariants_size_xl {
+    --cui-baseFieldTheme-inputHeight: var(--cui-control-height-xl);
+    --cui-baseFieldTheme-fontSize: var(--cui-font-size-lg);
+    border-radius: var(--cui-radius-xl);
+  }
+  .cui-field-baseFieldVariants_theme_filled {
+    --cui-baseFieldTheme-borderColor: transparent;
+  }
+  .cui-field-baseFieldVariants_theme_inline {
+    background-color: transparent;
+    border: none;
+    border-bottom: var(--cui-border-width-strong) solid var(--cui-baseFieldTheme-background);
+    border-radius: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .cui-field-baseFieldVariants_theme_inline[data-disabled] {
+    background-color: transparent;
+  }
+  @media (max-width: 768px) {
+    .cui-field-baseFieldVariants_size_md {
+      --cui-baseFieldTheme-inputHeight: var(--cui-control-height-md);
+      --cui-baseFieldTheme-fontSize: var(--cui-font-size-md);
+    }
+  }
+}

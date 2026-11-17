@@ -1,116 +1,17 @@
-import { createTheme, style } from "../../foundation/layer.css";
-import { tokens } from "../../foundation/cui.css";
-import { transition } from "../../foundation/motion.css";
-import { componentStateStyles } from "@kobalte/vanilla-extract";
-import { whileKeyboard } from "../../utils/modality";
-
-export const [tabsTheme, tabsVars] = createTheme(
-	{
-		tabListIndicatorColor: tokens.border.divider,
-		tabHeaderHoverBackgroundColor: tokens.action.neutral.hover,
-		tabHeaderColor: tokens.text.muted,
-		tabHeaderHoverColor: tokens.text.default,
-		tabHeaderSelectedColor: tokens.text.default,
-		tabIndicatorColor: tokens.action.brand.base,
-	},
-	"tabsTheme",
-);
-
-export const tabsRoot = style(
-	[
-		tabsTheme,
-		{
-			selectors: {
-				"&[data-orientation=vertical]": {
-					display: "flex",
-					flex: 1,
-					flexShrink: 0,
-				},
-			},
-		},
-	],
-	"tabsRoot",
-);
-
-export const tabsList = style(
-	{
-		display: "flex",
-		position: "relative",
-
-		selectors: {
-			"&[data-orientation=horizontal]": {
-				borderBottom: `${tokens.border.width} solid ${tabsVars.tabListIndicatorColor}`,
-			},
-			"&[data-orientation=vertical]": {
-				alignItems: "stretch",
-				flexDirection: "column",
-				borderRight: `${tokens.border.width} solid ${tabsVars.tabListIndicatorColor}`,
-			},
-		},
-	},
-	"tabsList",
-);
-
-export const tabsHeader = style(
-	[
-		{
-			display: "inline-block",
-			position: "relative",
-			outline: "none",
-			padding: `${tokens.space["2"]} ${tokens.space["4"]}`,
-			fontSize: tokens.font.size.sm,
-			fontWeight: tokens.font.weight.semibold,
-			lineHeight: tokens.font.lineHeight.sm,
-			color: tabsVars.tabHeaderColor,
-			transition: transition(["color"]),
-			":hover": {
-				color: tabsVars.tabHeaderHoverColor,
-			},
-			":focus-visible": {
-				outline: `${tokens.focus.width} solid ${tokens.focus.color}`,
-				outlineOffset: tokens.focus.offset,
-				borderRadius: tokens.radius.badge,
-			},
-		},
-		componentStateStyles({
-			selected: {
-				color: tabsVars.tabHeaderSelectedColor,
-			},
-		}),
-	],
-	"tabsHeader",
-);
-
-export const tabsContent = style(
-	{
-		padding: tokens.space["2"],
-	},
-	"tabsContent",
-);
-
-export const indicator = style(
-	{
-		position: "absolute",
-		transition: transition(
-			["width", "height", "transform", "left", "top"],
-			tokens.motion.duration.normal,
-		),
-		backgroundColor: tabsVars.tabIndicatorColor,
-		"@media": {
-			"(prefers-reduced-motion: reduce)": { transition: "none" },
-		},
-		selectors: {
-			// Arrow keys select the next tab instantly (Inkstone §7.1).
-			[`${whileKeyboard} &`]: { transition: "none" },
-			"&[data-orientation=horizontal]": {
-				bottom: "-2px",
-				height: "3px",
-			},
-			"&[data-orientation=vertical]": {
-				right: "-1px",
-				width: "2px",
-			},
-		},
-	},
-	"indicator",
-);
+export const indicator: string = "cui-tabs-indicator";
+export const tabsContent: string = "cui-tabs-tabsContent";
+export const tabsHeader: string = "cui-tabs-tabsHeader";
+export const tabsList: string = "cui-tabs-tabsList";
+export const tabsRoot: string = "cui-tabs-tabsRoot cui-tabs-tabsTheme";
+export const tabsTheme: string = "cui-tabs-tabsTheme";
+export const tabsVars = {
+	tabListIndicatorColor:
+		"var(--cui-tabsTheme-tabListIndicatorColor)" as `var(--${string})`,
+	tabHeaderHoverBackgroundColor:
+		"var(--cui-tabsTheme-tabHeaderHoverBackgroundColor)" as `var(--${string})`,
+	tabHeaderColor: "var(--cui-tabsTheme-tabHeaderColor)" as `var(--${string})`,
+	tabHeaderHoverColor: "var(--cui-tabsTheme-tabHeaderHoverColor)" as `var(--${string})`,
+	tabHeaderSelectedColor:
+		"var(--cui-tabsTheme-tabHeaderSelectedColor)" as `var(--${string})`,
+	tabIndicatorColor: "var(--cui-tabsTheme-tabIndicatorColor)" as `var(--${string})`,
+};

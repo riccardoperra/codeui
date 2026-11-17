@@ -1,0 +1,52 @@
+@layer cui.components;
+@layer cui.components {
+  .cui-tooltip-tooltipTheme {
+    --cui-tooltipTheme-fontSize: var(--cui-font-size-sm);
+    --cui-tooltipTheme-lineHeight: var(--cui-font-line-height-compact);
+    --cui-tooltipTheme-backgroundColor: var(--cui-action-neutral-base);
+    --cui-tooltipTheme-color: var(--cui-action-neutral-text);
+    --cui-tooltipTheme-padding: var(--cui-space-2) var(--cui-space-4);
+    --cui-tooltipTheme-borderRadius: var(--cui-radius-xl);
+    --cui-tooltipTheme-zIndex: 50;
+  }
+  .cui-tooltip-tooltipContent {
+    margin: 0;
+    width: auto;
+    z-index: var(--cui-tooltipTheme-zIndex);
+    font-size: var(--cui-tooltipTheme-fontSize);
+    line-height: var(--cui-tooltipTheme-lineHeight);
+    padding: var(--cui-tooltipTheme-padding);
+    border-radius: var(--cui-tooltipTheme-borderRadius);
+    color: var(--cui-tooltipTheme-color);
+    background-color: var(--cui-tooltipTheme-backgroundColor);
+    box-shadow: var(--cui-shadow-md);
+    transform-origin: var(--cui-popper-content-transform-origin);
+    animation: cui-motion-popOut var(--cui-motion-duration-fast) var(--cui-motion-ease-out) forwards;
+  }
+  .cui-tooltip-tooltipContent[data-expanded] {
+    animation: cui-motion-popIn var(--cui-motion-duration-normal) var(--cui-motion-ease-out);
+  }
+  .cui-tooltip-tooltipContent[data-motion=none], .cui-tooltip-tooltipContent[data-motion=none][data-expanded] {
+    animation: none;
+  }
+  .cui-tooltip-tooltipContent_theme_primary {
+    --cui-tooltipTheme-color: var(--cui-action-brand-text);
+    --cui-tooltipTheme-backgroundColor: var(--cui-action-brand-base);
+  }
+  .cui-tooltip-tooltipContent_theme_secondary {
+    --cui-tooltipTheme-color: var(--cui-action-neutral-text);
+    --cui-tooltipTheme-backgroundColor: var(--cui-action-neutral-base);
+  }
+  .cui-tooltip-trigger {
+    display: inline-block;
+    appearance: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cui-tooltip-tooltipContent {
+      animation-name: cui-motion-fadeOut;
+    }
+    .cui-tooltip-tooltipContent[data-expanded] {
+      animation-name: cui-motion-fadeIn;
+    }
+  }
+}

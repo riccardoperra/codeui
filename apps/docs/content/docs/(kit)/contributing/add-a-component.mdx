@@ -3,7 +3,7 @@ title: "Add a component"
 description: "Add a component to the kit, from the part to the ready export."
 ---
 
-This page walks through a new kit component, from its styles to its changeset. It uses `Badge` as the model, because it has all three layers and little behavior. Every snippet is copied from the kit source.
+This page walks through a new kit component, from its styles to its changeset. It uses `Badge` as the model, because it has all three layers and little behavior.
 
 Before you start, read `packages/kit/DESIGN.md`, the Inkstone specification. It sets the sizes, colors, motion, and accessibility rules the component must follow. Run its review checklist in section 12 before you open the pull request.
 
@@ -13,7 +13,7 @@ Each component has three layers. Each layer builds on the one before it.
 
 | Layer | File | Exported from | Who uses it |
 | --- | --- | --- | --- |
-| Styles | `packages/kit/src/components/<Name>/<Name>.css.ts` | Not exported directly | The parts |
+| Styles | `packages/styles/css/components/<Name>/<Name>.css` | `@codeui/styles/<name>.css` | The parts |
 | Parts | `packages/kit/src/parts/<name>.tsx` | `@codeui/kit/<name>` | Apps that need a custom layout, and the ready component |
 | Ready component | `packages/kit/src/components/<Name>/<Name>.tsx` | `@codeui/kit` | Most apps |
 
@@ -21,26 +21,18 @@ Wrap a Kobalte primitive when one exists. Check the [Kobalte components](https:/
 
 ## Write the styles
 
-```ts title="packages/kit/src/components/Badge/Badge.css.ts"
-import { globalStyle, recipe, style } from "../../foundation/layer.css";
-import { tokens } from "../../foundation/cui.css";
-
-export const root = recipe({
-	base: {
-		display: "inline-flex",
-		alignItems: "center",
-		gap: tokens.space["1"],
-		boxSizing: "border-box",
-		borderRadius: tokens.radius.badge,
-		border: `${tokens.border.width} solid transparent`,
-		fontFamily: tokens.font.family.sans,
-		// …
-	},
-});
+```css title="packages/styles/css/components/Badge/Badge.css"
+@layer cui.components {
+  .cui-badge-root {
+    display: inline-flex;
+    gap: var(--cui-space-1);
+    border-radius: var(--cui-radius-badge);
+  }
+}
 ```
 
-- Import `style`, `recipe`, `globalStyle`, and `styleVariants` from `foundation/layer.css`, never from `@vanilla-extract/css`. The wrappers put every rule in the `cui` cascade layer, so unlayered app CSS can override it.
-- Read every value from `tokens` in `foundation/cui.css`. A color, a radius, a space, a font size, a shadow, or a duration written as a literal is a bug. If no token fits, explain the literal in the pull request.
+- Keep rules in a `cui` layer and read design values through `var(--cui-…)`.
+- Define class and variant helpers in `packages/styles/src`. Register the component in `entries.json` and its source files in `style-sources.json`. The Solid renderer imports the published component CSS and theme.
 - Style states through the data attributes that Kobalte sets, such as `[data-disabled]`, `[data-checked]`, and `[data-expanded]`. Do not add a parallel state class.
 - Keep motion to the movements named in DESIGN.md section 7.3. Nothing animates when the user acts from the keyboard. Handle `prefers-reduced-motion`.
 

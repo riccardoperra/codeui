@@ -1,0 +1,32 @@
+@keyframes cui-skeleton-pulse {
+  to {
+    opacity: 0.55;
+  }
+}
+@layer cui.components;
+@layer cui.components {
+  .cui-skeleton-base {
+    display: block;
+    border-radius: var(--cui-radius-xs);
+  }
+  .cui-skeleton-base[data-visible] {
+    background-color: var(--cui-action-neutral-base);
+    color: transparent;
+    pointer-events: none;
+    user-select: none;
+  }
+  .cui-skeleton-base[data-visible] * {
+    visibility: hidden;
+  }
+  .cui-skeleton-root_circle_true {
+    border-radius: var(--cui-radius-full);
+  }
+  .cui-skeleton-root_animate_true[data-visible] {
+    animation: cui-skeleton-pulse calc(var(--cui-motion-duration-slow) * 4) var(--cui-motion-ease-out) infinite alternate;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cui-skeleton-root_animate_true[data-visible] {
+      animation: none;
+    }
+  }
+}

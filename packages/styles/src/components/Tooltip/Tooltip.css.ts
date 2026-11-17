@@ -1,73 +1,26 @@
-import { createTheme, recipe, style } from "../../foundation/layer.css";
-import { RecipeVariants } from "@vanilla-extract/recipes";
-import { tokens } from "../../foundation/cui.css";
-import { popAnimation } from "../../foundation/motion.css";
-
-export const [tooltipTheme, tooltipVars] = createTheme(
-	{
-		fontSize: tokens.font.size.sm,
-		lineHeight: tokens.font.lineHeight.compact,
-		backgroundColor: tokens.action.neutral.base,
-		color: tokens.action.neutral.text,
-		padding: `${tokens.space["2"]} ${tokens.space["4"]}`,
-		borderRadius: tokens.radius.xl,
-		zIndex: "50",
-	},
-	"tooltipTheme",
-);
-
-const TooltipThemes = {
-	primary: "primary",
-	secondary: "secondary",
-} as const;
-
-export const tooltipContent = recipe(
-	{
-		base: [
-			tooltipTheme,
-			{
-				margin: 0,
-				width: "auto",
-				zIndex: tooltipVars.zIndex,
-				fontSize: tooltipVars.fontSize,
-				lineHeight: tooltipVars.lineHeight,
-				padding: tooltipVars.padding,
-				borderRadius: tooltipVars.borderRadius,
-				color: tooltipVars.color,
-				backgroundColor: tooltipVars.backgroundColor,
-				boxShadow: tokens.shadow.md,
-			},
-			popAnimation(),
-		],
-		variants: {
-			theme: {
-				[TooltipThemes.primary]: {
-					vars: {
-						[tooltipVars.color]: tokens.action.brand.text,
-						[tooltipVars.backgroundColor]: tokens.action.brand.base,
-					},
-				},
-				[TooltipThemes.secondary]: {
-					vars: {
-						[tooltipVars.color]: tokens.action.neutral.text,
-						[tooltipVars.backgroundColor]: tokens.action.neutral.base,
-					},
-				},
-			},
-		},
-		defaultVariants: {
-			theme: TooltipThemes.primary,
+import type { RecipeVariants } from "../../types";
+import { recipe } from "../../recipe";
+export const tooltipContent = recipe({
+	defaultClassName: "cui-tooltip-tooltipContent cui-tooltip-tooltipTheme",
+	variantClassNames: {
+		theme: {
+			primary: "cui-tooltip-tooltipContent_theme_primary",
+			secondary: "cui-tooltip-tooltipContent_theme_secondary",
 		},
 	},
-	"tooltipContent",
-);
-
-export const trigger = style(
-	{
-		display: "inline-block",
-		appearance: "none",
-	},
-	"trigger",
-);
+	defaultVariants: { theme: "primary" },
+	compoundVariants: [],
+});
+export const tooltipTheme: string = "cui-tooltip-tooltipTheme";
+export const tooltipVars = {
+	fontSize: "var(--cui-tooltipTheme-fontSize)" as `var(--${string})`,
+	lineHeight: "var(--cui-tooltipTheme-lineHeight)" as `var(--${string})`,
+	backgroundColor: "var(--cui-tooltipTheme-backgroundColor)" as `var(--${string})`,
+	color: "var(--cui-tooltipTheme-color)" as `var(--${string})`,
+	padding: "var(--cui-tooltipTheme-padding)" as `var(--${string})`,
+	borderRadius: "var(--cui-tooltipTheme-borderRadius)" as `var(--${string})`,
+	zIndex: "var(--cui-tooltipTheme-zIndex)" as `var(--${string})`,
+};
+export const trigger: string = "cui-tooltip-trigger";
 
 export type TooltipVariants = RecipeVariants<typeof tooltipContent>;

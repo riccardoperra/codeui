@@ -1,83 +1,26 @@
-import { createTheme, recipe, style } from "../../foundation/layer.css";
-import { RecipeVariants } from "@vanilla-extract/recipes";
-import { tokens } from "../../foundation/cui.css";
-import { popAnimation } from "../../foundation/motion.css";
-
-export const [popoverTheme, popoverThemeVars] = createTheme(
-	{
-		contentBackground: tokens.surface.dialog,
-		contentBoxShadow: tokens.shadow.dialog,
-		contentMaxWidth: `min(360px, calc(100vw - 2 * ${tokens.space["4"]}))`,
-		contentRadius: tokens.radius.xl,
-		contentPadding: tokens.space["4"],
-		contentFontSize: tokens.font.size.sm,
-		contentLineHeight: tokens.font.lineHeight.snug,
-		titleColor: tokens.text.dialogTitle,
-		titleFontSize: tokens.font.size.md,
-		descriptionColor: tokens.text.dialog,
-		contentBorderColor: tokens.border.menu,
-	},
-	"popoverTheme",
-);
-
-export const content = recipe(
-	{
-		base: [
-			popoverTheme,
-			{
-				boxShadow: popoverThemeVars.contentBoxShadow,
-				backgroundColor: popoverThemeVars.contentBackground,
-				borderRadius: popoverThemeVars.contentRadius,
-				padding: popoverThemeVars.contentPadding,
-				maxWidth: popoverThemeVars.contentMaxWidth,
-				color: popoverThemeVars.descriptionColor,
-				fontSize: popoverThemeVars.contentFontSize,
-				lineHeight: popoverThemeVars.contentLineHeight,
-				overflow: "hidden",
-				zIndex: 50,
-				listStyleType: "none",
-				display: "flex",
-				flexDirection: "column",
-				rowGap: tokens.space["2"],
-				outline: "none",
-			},
-			popAnimation(),
-		],
-		variants: {
-			variant: {
-				bordered: {
-					border: `${tokens.border.width} solid ${popoverThemeVars.contentBorderColor}`,
-				},
-			},
-		},
-	},
-	"content",
-);
-
-export const title = style(
-	[
-		{
-			color: popoverThemeVars.titleColor,
-			display: "flex",
-			alignItems: "center",
-			fontSize: popoverThemeVars.titleFontSize,
-			lineHeight: popoverThemeVars.contentLineHeight,
-			fontWeight: tokens.font.weight.semibold,
-			justifyContent: "space-between",
-		},
-	],
-	"title",
-);
-
-export const description = style(
-	[
-		{
-			color: popoverThemeVars.descriptionColor,
-			fontSize: popoverThemeVars.contentFontSize,
-			lineHeight: popoverThemeVars.contentLineHeight,
-		},
-	],
-	"description",
-);
+import type { RecipeVariants } from "../../types";
+import { recipe } from "../../recipe";
+export const content = recipe({
+	defaultClassName: "cui-popover-content cui-popover-popoverTheme",
+	variantClassNames: { variant: { bordered: "cui-popover-content_variant_bordered" } },
+	defaultVariants: {},
+	compoundVariants: [],
+});
+export const description: string = "cui-popover-description";
+export const popoverTheme: string = "cui-popover-popoverTheme";
+export const popoverThemeVars = {
+	contentBackground: "var(--cui-popoverTheme-contentBackground)" as `var(--${string})`,
+	contentBoxShadow: "var(--cui-popoverTheme-contentBoxShadow)" as `var(--${string})`,
+	contentMaxWidth: "var(--cui-popoverTheme-contentMaxWidth)" as `var(--${string})`,
+	contentRadius: "var(--cui-popoverTheme-contentRadius)" as `var(--${string})`,
+	contentPadding: "var(--cui-popoverTheme-contentPadding)" as `var(--${string})`,
+	contentFontSize: "var(--cui-popoverTheme-contentFontSize)" as `var(--${string})`,
+	contentLineHeight: "var(--cui-popoverTheme-contentLineHeight)" as `var(--${string})`,
+	titleColor: "var(--cui-popoverTheme-titleColor)" as `var(--${string})`,
+	titleFontSize: "var(--cui-popoverTheme-titleFontSize)" as `var(--${string})`,
+	descriptionColor: "var(--cui-popoverTheme-descriptionColor)" as `var(--${string})`,
+	contentBorderColor: "var(--cui-popoverTheme-contentBorderColor)" as `var(--${string})`,
+};
+export const title: string = "cui-popover-title";
 
 export type PopoverVariants = RecipeVariants<typeof content>;

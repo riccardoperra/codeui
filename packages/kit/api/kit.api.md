@@ -154,140 +154,105 @@ export * from "./tokens.js";
 ## @codeui/styles/internal/components/Accordion/Accordion.css.d.ts
 
 ```ts
-export declare const root: string;
-export declare const item: string;
+export declare const chevron: string;
+export declare const content: string;
+export declare const contentBody: string;
 export declare const header: string;
-/** A 36px row: 8px before the icon, 12px after the chevron, 10px between. */
+export declare const icon: string;
+export declare const item: string;
+export declare const root: string;
+export declare const summary: string;
+export declare const title: string;
 export declare const trigger: import("../../types.js").RuntimeFn<{
     density: {
-        compact: {
-            paddingBlock: `var(--${string})`;
-        };
-        comfortable: {
-            paddingBlock: `var(--${string})`;
-        };
+        compact: string;
+        comfortable: string;
     };
 }>;
-export declare const content: string;
-export declare const icon: string;
-export declare const title: string;
-export declare const summary: string;
-/** CodeImage's "›", 20px, a quarter turn when the section opens. */
-export declare const chevron: string;
-export declare const contentBody: string;
 ```
 
 ## @codeui/styles/internal/components/Alert/Alert.css.d.ts
 
 ```ts
-/**
- * Icon, text and action sit in their own grid columns. Spacing comes from
- * margins rather than `gap`, so an absent icon or action leaves no gap.
- */
+export declare const action: string;
+export declare const description: string;
+export declare const icon: string;
 export declare const root: import("../../types.js").RuntimeFn<{
     tone: {
-        readonly neutral: {
-            readonly background: `var(--${string})`;
-            readonly color: `var(--${string})`;
-        };
-        readonly info: {
-            readonly background: `var(--${string})`;
-            readonly color: `var(--${string})`;
-        };
-        readonly success: {
-            readonly background: `var(--${string})`;
-            readonly color: `var(--${string})`;
-        };
-        readonly warning: {
-            readonly background: `var(--${string})`;
-            readonly color: `var(--${string})`;
-        };
-        readonly danger: {
-            readonly background: `var(--${string})`;
-            readonly color: `var(--${string})`;
-        };
+        neutral: string;
+        info: string;
+        success: string;
+        warning: string;
+        danger: string;
     };
     fluid: {
-        true: {
-            display: "grid";
-            width: "100%";
-        };
-        false: {};
+        true: string;
+        false: string;
     };
 }>;
-export declare const icon: string;
 export declare const title: string;
-export declare const description: string;
-export declare const action: string;
 ```
 
 ## @codeui/styles/internal/components/Badge/Badge.css.d.ts
 
 ```ts
-declare const tones: {
-    neutral: {
-        fill: `var(--${string})`;
-        text: `var(--${string})`;
-        outlineText: `var(--${string})`;
-        border: `var(--${string})`;
-    };
-    info: {
-        fill: `var(--${string})`;
-        text: `var(--${string})`;
-        outlineText: `var(--${string})`;
-        border: `var(--${string})`;
-    };
-    success: {
-        fill: `var(--${string})`;
-        text: `var(--${string})`;
-        outlineText: `var(--${string})`;
-        border: `var(--${string})`;
-    };
-    warning: {
-        fill: `var(--${string})`;
-        text: `var(--${string})`;
-        outlineText: `var(--${string})`;
-        border: `var(--${string})`;
-    };
-    danger: {
-        fill: `var(--${string})`;
-        text: `var(--${string})`;
-        outlineText: `var(--${string})`;
-        border: `var(--${string})`;
-    };
-};
-type Tone = keyof typeof tones;
-export declare const root: import("../../types.js").RuntimeFn<{
-    size: {
-        sm: {
-            minHeight: `var(--${string})`;
-            padding: `var(--${string}) var(--${string})`;
-            fontSize: `var(--${string})`;
-        };
-        md: {
-            minHeight: `var(--${string})`;
-            padding: `var(--${string}) var(--${string})`;
-            fontSize: `var(--${string})`;
-        };
-    };
-    tone: Record<Tone, {}>;
-    variant: {
-        soft: {};
-        outline: {
-            backgroundColor: "transparent";
-        };
-    };
-}>;
 export declare const icon: string;
 export declare const label: string;
-export {};
+export declare const root: import("../../types.js").RuntimeFn<{
+    size: {
+        sm: string;
+        md: string;
+    };
+    tone: {
+        neutral: string;
+        info: string;
+        success: string;
+        warning: string;
+        danger: string;
+    };
+    variant: {
+        soft: string;
+        outline: string;
+    };
+}>;
 ```
 
 ## @codeui/styles/internal/components/Button/Button.css.d.ts
 
 ```ts
-import { RecipeVariants } from "../../types.js";
-export declare const buttonTheme: string, buttonVars: {
+import type { RecipeVariants } from "../../types.js";
+export declare const button: import("../../types.js").RuntimeFn<{
+    size: {
+        xl: string;
+        lg: string;
+        md: string;
+        sm: string;
+        xs: string;
+    };
+    theme: {
+        primary: string;
+        tertiary: string;
+        secondary: string;
+        negative: string;
+        caution: string;
+    };
+    variant: {
+        ghost: string;
+    };
+    block: {
+        true: string;
+    };
+    pill: {
+        true: string;
+    };
+    loading: {
+        true: string;
+    };
+}>;
+export declare const buttonIcon: string;
+export declare const buttonText: string;
+export declare const buttonTheme: string;
+export declare const buttonVars: {
     buttonHeight: `var(--${string})`;
     fontSize: `var(--${string})`;
     background: `var(--${string})`;
@@ -298,110 +263,23 @@ export declare const buttonTheme: string, buttonVars: {
     padding: `var(--${string})`;
     borderRadius: `var(--${string})`;
 };
-export declare const button: import("../../types.js").RuntimeFn<{
-    readonly size: {
-        readonly xl: {
-            readonly vars: {
-                readonly [x: string]: string;
-            };
-        };
-        readonly lg: {
-            readonly vars: {
-                readonly [x: string]: string;
-            };
-        };
-        readonly md: {
-            readonly vars: {
-                readonly [x: string]: string;
-            };
-        };
-        readonly sm: {
-            readonly vars: {
-                readonly [x: string]: string;
-            };
-        };
-        readonly xs: {
-            readonly vars: {
-                readonly [x: string]: string;
-            };
-        };
-    };
-    readonly theme: {
-        readonly primary: {
-            readonly vars: {
-                readonly [x: string]: `var(--${string})`;
-            };
-        };
-        readonly tertiary: {
-            readonly vars: {
-                readonly [x: string]: `var(--${string})`;
-            };
-        };
-        readonly secondary: {
-            readonly vars: {
-                readonly [x: string]: `var(--${string})`;
-            };
-        };
-        readonly negative: {
-            readonly vars: {
-                readonly [x: string]: `var(--${string})`;
-            };
-        };
-        readonly caution: {
-            readonly vars: {
-                readonly [x: string]: `var(--${string})`;
-            };
-        };
-    };
-    readonly variant: {
-        readonly ghost: {
-            readonly background: "transparent";
-            readonly selectors: {
-                readonly "&:not(:hover)": {
-                    readonly borderColor: "transparent";
-                    readonly color: `var(--${string})`;
-                };
-            };
-        };
-    };
-    readonly block: {
-        readonly true: {
-            readonly width: "100%";
-            readonly flex: 1;
-        };
-    };
-    readonly pill: {
-        readonly true: {
-            readonly vars: {
-                readonly [x: string]: `var(--${string})`;
-            };
-        };
-    };
-    readonly loading: {
-        readonly true: {
-            readonly pointerEvents: "none";
-            readonly overflow: "hidden";
-        };
-    };
-}>;
-export declare const buttonIcon: string;
-export declare const buttonText: string;
 export type ButtonVariants = RecipeVariants<typeof button>;
 ```
 
 ## @codeui/styles/internal/components/Button/Loading.css.d.ts
 
 ```ts
-export declare const wrapper: string;
+export declare const pointer: string;
 export declare const pointerAnimationDelay: `var(--${string})`;
 export declare const pointerGroup: string;
-export declare const pointer: string;
+export declare const wrapper: string;
 ```
 
 ## @codeui/styles/internal/components/CheckBox/CheckBox.css.d.ts
 
 ```ts
-export declare const checkboxTheme: string, checkboxVars: {
+export declare const checkboxTheme: string;
+export declare const checkboxVars: {
     size: `var(--${string})`;
     fontSize: `var(--${string})`;
     borderColor: `var(--${string})`;
@@ -413,108 +291,83 @@ export declare const checkboxTheme: string, checkboxVars: {
     fill: `var(--${string})`;
 };
 export declare const container: string;
-export declare const input: string;
-export declare const icon: string;
+export declare const content: string;
 export declare const control: import("../../types.js").RuntimeFn<{
     theme: {
-        filled: {
-            vars: {
-                [x: string]: string;
-            };
-        };
-        inline: {};
+        filled: string;
+        inline: string;
     };
     size: {
-        xs: {
-            vars: {
-                [x: string]: string;
-            };
-        };
-        sm: {
-            vars: {
-                [x: string]: string;
-            };
-        };
-        md: {
-            vars: {
-                [x: string]: string;
-            };
-        };
-        lg: {
-            vars: {
-                [x: string]: string;
-            };
-        };
-        xl: {
-            vars: {
-                [x: string]: string;
-            };
-        };
+        xs: string;
+        sm: string;
+        md: string;
+        lg: string;
+        xl: string;
     };
 }>;
+export declare const icon: string;
 export declare const indicator: string;
+export declare const input: string;
 export declare const label: string;
-export declare const content: string;
 ```
 
 ## @codeui/styles/internal/components/Combobox/Combobox.css.d.ts
 
 ```ts
-export declare const root: string;
-export declare const label: string;
-export declare const description: string;
-export declare const errorMessage: string;
+export declare const arrow: string;
+export declare const content: string;
 export declare const control: import("../../types.js").RuntimeFn<{
     size: {
-        sm: {
-            height: `var(--${string})`;
-            fontSize: `var(--${string})`;
-        };
-        md: {};
+        sm: string;
+        md: string;
     };
 }>;
-export declare const input: string;
-export declare const trigger: string;
-export declare const icon: string;
-export declare const content: string;
-export declare const arrow: string;
-export declare const listbox: string;
+export declare const description: string;
 export declare const empty: string;
+export declare const errorMessage: string;
+export declare const hiddenSelect: string;
+export declare const icon: string;
+export declare const input: string;
 export declare const item: string;
-export declare const itemLabel: string;
 export declare const itemDescription: string;
 export declare const itemIndicator: string;
+export declare const itemLabel: string;
+export declare const label: string;
+export declare const listbox: string;
+export declare const root: string;
 export declare const section: string;
-export declare const hiddenSelect: string;
+export declare const trigger: string;
 ```
 
 ## @codeui/styles/internal/components/CommandMenu/CommandMenu.css.d.ts
 
 ```ts
-export declare const trigger: string;
-export declare const overlay: string;
 export declare const content: string;
-export declare const title: string;
-export declare const search: string;
-export declare const searchInput: string;
-export declare const hint: string;
-export declare const listbox: string;
+export declare const empty: string;
 export declare const group: string;
 export declare const groupLabel: string;
+export declare const hint: string;
 export declare const item: string;
-export declare const leading: string;
-export declare const itemLabel: string;
 export declare const itemDescription: string;
 export declare const itemIndicator: string;
+export declare const itemLabel: string;
+export declare const leading: string;
+export declare const listbox: string;
+export declare const overlay: string;
+export declare const search: string;
+export declare const searchInput: string;
 export declare const shortcut: string;
-export declare const empty: string;
+export declare const title: string;
+export declare const trigger: string;
 ```
 
 ## @codeui/styles/internal/components/Dialog/Dialog.css.d.ts
 
 ```ts
-import { RecipeVariants } from "../../types.js";
-export declare const dialogTheme: string, dialogThemeVars: {
+import type { RecipeVariants } from "../../types.js";
+export declare const description: string;
+export declare const dialogTheme: string;
+export declare const dialogThemeVars: {
     contentBackground: `var(--${string})`;
     contentBoxShadow: `var(--${string})`;
     contentTextColor: `var(--${string})`;
@@ -533,118 +386,51 @@ export declare const dialogTheme: string, dialogThemeVars: {
     islandBackground: `var(--${string})`;
     splitColumns: `var(--${string})`;
 };
-export declare const overlay: string;
-/** The pane next to the sidebar. Holds the header and the body. */
 export declare const main: string;
-export declare const panelContent: string;
-export declare const panelFooter: string;
-/**
- * Centers the panel. The scrim is its `::before`, so it can fade in and out
- * with the panel. Keyboard opens and closes set `data-motion=none`.
- */
-export declare const positioner: string;
-export declare const title: string;
+export declare const nav: string;
+export declare const navIcon: string;
+export declare const navItem: string;
+export declare const navList: string;
+export declare const overlay: string;
 export declare const panel: import("../../types.js").RuntimeFn<{
     size: {
-        xs: {
-            width: "24rem";
-        };
-        sm: {
-            width: "28rem";
-        };
-        md: {
-            width: "32rem";
-        };
-        lg: import("../../types.js").StyleRule;
-        xl: import("../../types.js").StyleRule;
-        full: {
-            padding: number;
-            margin: number;
-            minHeight: "100%";
-            width: "100%";
-            borderRadius: number;
-            height: "100%";
-            ":focus-visible": {
-                boxShadow: "none";
-                outline: "none";
-            };
-        };
-        settings: {
-            vars: {
-                [x: string]: string;
-            };
-            width: `min(var(--${string}), 100%)`;
-            height: `min(var(--${string}), 100%)`;
-            "@media": {
-                "screen and (max-width: 768px)": {
-                    height: "100%";
-                };
-            };
-        };
-        export: {
-            vars: {
-                [x: string]: string;
-            };
-            width: `min(var(--${string}), 100%)`;
-            overflowY: "auto";
-            overscrollBehavior: "contain";
-        };
+        xs: string;
+        sm: string;
+        md: string;
+        lg: string;
+        xl: string;
+        full: string;
+        settings: string;
+        export: string;
     };
     chrome: {
-        bar: {};
-        inset: {
-            vars: {
-                [x: string]: `var(--${string})`;
-            };
-            gap: `var(--${string})`;
-            padding: `var(--${string})`;
-            "@media": {
-                "screen and (max-width: 768px)": {
-                    gap: `var(--${string})`;
-                    padding: `var(--${string})`;
-                    selectors: {
-                        "&:has(> [data-cui=dialog-sidebar])": {
-                            flexDirection: "column";
-                        };
-                    };
-                };
-            };
-            selectors: {
-                "&:has(> [data-cui=dialog-sidebar])": {
-                    flexDirection: "row";
-                    gap: number;
-                    padding: number;
-                };
-            };
-        };
+        bar: string;
+        inset: string;
     };
 }>;
-export type DialogPanelVariants = RecipeVariants<typeof panel>;
-export declare const description: string;
-export declare const sidebar: string;
-export declare const sidebarSearch: string;
-export declare const nav: string;
-export declare const navList: string;
-export declare const navItem: string;
-export declare const navIcon: string;
+export declare const panelContent: string;
+export declare const panelFooter: string;
+export declare const positioner: string;
 export declare const section: import("../../types.js").RuntimeFn<{
     variant: {
-        group: {};
-        well: {
-            padding: `var(--${string})`;
-            borderRadius: `var(--${string})`;
-            backgroundColor: `var(--${string})`;
-        };
+        group: string;
+        well: string;
     };
 }>;
-export declare const sectionTitle: string;
 export declare const sectionContent: string;
+export declare const sectionTitle: string;
+export declare const sidebar: string;
+export declare const sidebarSearch: string;
+export declare const title: string;
+export type DialogPanelVariants = RecipeVariants<typeof panel>;
 ```
 
 ## @codeui/styles/internal/components/Dropdown/Dropdown.css.d.ts
 
 ```ts
-export declare const dropdownMenuTheme: string, dropdownMenuThemeVars: {
+export declare const content: string;
+export declare const dropdownMenuTheme: string;
+export declare const dropdownMenuThemeVars: {
     contentBackground: `var(--${string})`;
     contentRadius: `var(--${string})`;
     contentBoxShadow: `var(--${string})`;
@@ -662,17 +448,16 @@ export declare const dropdownMenuTheme: string, dropdownMenuThemeVars: {
     itemFontSize: `var(--${string})`;
     itemLineHeight: `var(--${string})`;
 };
-export declare const content: string;
-export declare const subMenuContent: string;
-export declare const separator: string;
 export declare const item: string;
 export declare const rightSlot: string;
+export declare const separator: string;
+export declare const subMenuContent: string;
 ```
 
 ## @codeui/styles/internal/components/Field/Field.css.d.ts
 
 ```ts
-import { RecipeVariants } from "../../types.js";
+import type { RecipeVariants } from "../../types.js";
 export declare const FieldSizes: {
     readonly xs: "xs";
     readonly sm: "sm";
@@ -680,9 +465,21 @@ export declare const FieldSizes: {
     readonly lg: "lg";
     readonly xl: "xl";
 };
-export declare const inputHeight: `var(--${string})`;
-export declare const fontSize: `var(--${string})`;
-export declare const baseFieldTheme: string, baseFieldVars: {
+export declare const baseFieldTheme: string;
+export declare const baseFieldVariants: import("../../types.js").RuntimeFn<{
+    size: {
+        xs: string;
+        sm: string;
+        md: string;
+        lg: string;
+        xl: string;
+    };
+    theme: {
+        filled: string;
+        inline: string;
+    };
+}>;
+export declare const baseFieldVars: {
     borderColor: `var(--${string})`;
     background: `var(--${string})`;
     color: `var(--${string})`;
@@ -691,55 +488,8 @@ export declare const baseFieldTheme: string, baseFieldVars: {
     descriptionColor: `var(--${string})`;
     disabledBackground: `var(--${string})`;
 };
-export declare const baseFieldVariants: import("../../types.js").RuntimeFn<{
-    size: {
-        xs: {
-            vars: {
-                [x: string]: string;
-            };
-            borderRadius: `var(--${string})`;
-        };
-        sm: {
-            vars: {
-                [x: string]: string;
-            };
-            borderRadius: `var(--${string})`;
-        };
-        md: {
-            vars: {
-                [x: string]: string;
-            };
-            borderRadius: `var(--${string})`;
-            "@media": {
-                "(max-width: 768px)": {
-                    vars: {
-                        [x: string]: string;
-                    };
-                };
-            };
-        };
-        lg: {
-            vars: {
-                [x: string]: string;
-            };
-            borderRadius: `var(--${string})`;
-        };
-        xl: {
-            vars: {
-                [x: string]: string;
-            };
-            borderRadius: `var(--${string})`;
-        };
-    };
-    theme: {
-        filled: {
-            vars: {
-                [x: string]: string;
-            };
-        };
-        inline: import("../../types.js").StyleRule[];
-    };
-}>;
+export declare const fontSize: `var(--${string})`;
+export declare const inputHeight: `var(--${string})`;
 export type BaseFieldVariants = RecipeVariants<typeof baseFieldVariants>;
 ```
 
@@ -782,27 +532,12 @@ export declare const iconButton: string;
 ```ts
 export declare const root: import("../../types.js").RuntimeFn<{
     size: {
-        sm: {
-            minWidth: `var(--${string})`;
-            minHeight: `var(--${string})`;
-            paddingInline: `var(--${string})`;
-            fontSize: `var(--${string})`;
-        };
-        md: {
-            minWidth: `var(--${string})`;
-            minHeight: `var(--${string})`;
-            paddingInline: `var(--${string})`;
-            fontSize: `var(--${string})`;
-        };
+        sm: string;
+        md: string;
     };
     variant: {
-        keycap: {
-            color: `var(--${string})`;
-            borderColor: `var(--${string})`;
-        };
-        hint: {
-            color: `var(--${string})`;
-        };
+        keycap: string;
+        hint: string;
     };
 }>;
 ```
@@ -810,14 +545,10 @@ export declare const root: import("../../types.js").RuntimeFn<{
 ## @codeui/styles/internal/components/Link/Link.css.d.ts
 
 ```ts
-import { RecipeVariants } from "../../types.js";
+import type { RecipeVariants } from "../../types.js";
 export declare const link: import("../../types.js").RuntimeFn<{
     variant: {
-        underline: {
-            ":hover": {
-                textDecoration: "underline";
-            };
-        };
+        underline: string;
     };
 }>;
 export type LinkVariants = RecipeVariants<typeof link>;
@@ -826,7 +557,11 @@ export type LinkVariants = RecipeVariants<typeof link>;
 ## @codeui/styles/internal/components/Listbox/Listbox.css.d.ts
 
 ```ts
-export declare const listTheme: string, listThemeVars: {
+export declare const item: string;
+export declare const itemIndicator: string;
+export declare const list: string;
+export declare const listTheme: string;
+export declare const listThemeVars: {
     contentBackground: `var(--${string})`;
     contentRadius: `var(--${string})`;
     contentBoxShadow: `var(--${string})`;
@@ -842,12 +577,6 @@ export declare const listTheme: string, listThemeVars: {
     itemDisabledOpacity: `var(--${string})`;
     indicatorSize: `var(--${string})`;
 };
-export declare const list: string;
-/**
- * TODO: same as select!
- */
-export declare const item: string;
-export declare const itemIndicator: string;
 ```
 
 ## @codeui/styles/internal/components/Listbox/sizes.d.ts
@@ -860,68 +589,66 @@ export type ListboxItemSizeKey = "xs" | "sm" | "md";
 ## @codeui/styles/internal/components/NumberField/NumberField.css.d.ts
 
 ```ts
-export declare const numberFieldTheme: string, numberFieldVars: {
+export declare const baseFieldContainer: string;
+export declare const control: string;
+export declare const controlButton: string;
+export declare const controlsContainer: string;
+export declare const numberFieldContainer: string;
+export declare const numberFieldTheme: string;
+export declare const numberFieldVars: {
     controlSize: `var(--${string})`;
 };
-export declare const baseFieldContainer: string;
 export declare const textField: string;
-export declare const numberFieldContainer: string;
-export declare const controlsContainer: string;
-export declare const controlButton: string;
-export declare const control: string;
 ```
 
 ## @codeui/styles/internal/components/OptionCard/OptionCard.css.d.ts
 
 ```ts
-/** Cards three across in a settings pane, stacked on a phone. */
-export declare const root: string;
-export declare const label: string;
+export declare const badge: string;
 export declare const description: string;
 export declare const errorMessage: string;
 export declare const item: string;
-export declare const itemInput: string;
 export declare const itemControl: string;
+export declare const itemDescription: string;
 export declare const itemIndicator: string;
-/**
- * The card: field fill, radius 12, padding 12, no border. Selected: one fill
- * step up and a 2px accent ring inside the edge. Press scales to 0.98.
- */
+export declare const itemInput: string;
 export declare const itemLabel: import("../../types.js").RuntimeFn<{
     variant: {
-        card: {};
-        tile: {
-            padding: `var(--${string})`;
-        };
+        card: string;
+        tile: string;
     };
 }>;
-/** Title and description, 2px apart. */
-export declare const itemText: string;
-/** The title and its badge on one row, as tall with the badge as without. */
 export declare const itemName: string;
-export declare const itemDescription: string;
-/** A 68px well in the page fill that holds the option's schematic. */
+export declare const itemText: string;
+export declare const label: string;
 export declare const preview: string;
-/** CodeImage's Default tag: Micro 500, 1px 6px, radius 6. */
-export declare const badge: string;
+export declare const root: string;
 ```
 
 ## @codeui/styles/internal/components/Pagination/Pagination.css.d.ts
 
 ```ts
-export declare const paginationTheme: string, paginationVars: {
+export declare const pagination: string;
+export declare const paginationIcon: string;
+export declare const paginationItem: string;
+export declare const paginationTheme: string;
+export declare const paginationVars: {
     paginationItemMargin: `var(--${string})`;
 };
-export declare const pagination: string;
-export declare const paginationItem: string;
-export declare const paginationIcon: string;
 ```
 
 ## @codeui/styles/internal/components/Popover/Popover.css.d.ts
 
 ```ts
-import { RecipeVariants } from "../../types.js";
-export declare const popoverTheme: string, popoverThemeVars: {
+import type { RecipeVariants } from "../../types.js";
+export declare const content: import("../../types.js").RuntimeFn<{
+    variant: {
+        bordered: string;
+    };
+}>;
+export declare const description: string;
+export declare const popoverTheme: string;
+export declare const popoverThemeVars: {
     contentBackground: `var(--${string})`;
     contentBoxShadow: `var(--${string})`;
     contentMaxWidth: `var(--${string})`;
@@ -934,39 +661,50 @@ export declare const popoverTheme: string, popoverThemeVars: {
     descriptionColor: `var(--${string})`;
     contentBorderColor: `var(--${string})`;
 };
-export declare const content: import("../../types.js").RuntimeFn<{
-    variant: {
-        bordered: {
-            border: `var(--${string}) solid var(--${string})`;
-        };
-    };
-}>;
 export declare const title: string;
-export declare const description: string;
 export type PopoverVariants = RecipeVariants<typeof content>;
 ```
 
 ## @codeui/styles/internal/components/Progress/Progress.css.d.ts
 
 ```ts
-export declare const root: string;
+export declare const fill: string;
 export declare const label: string;
-export declare const valueLabel: string;
+export declare const root: string;
 export declare const track: import("../../types.js").RuntimeFn<{
     size: {
-        sm: {};
-        md: {
-            height: `var(--${string})`;
-        };
+        sm: string;
+        md: string;
     };
 }>;
-export declare const fill: string;
+export declare const valueLabel: string;
 ```
 
 ## @codeui/styles/internal/components/RadioList/Radio.css.d.ts
 
 ```ts
-export declare const radioTheme: string, radioVars: {
+export declare const indicator: string;
+export declare const radio: string;
+export declare const radioItem: string;
+export declare const radioList: import("../../types.js").RuntimeFn<{
+    theme: {
+        filled: string;
+        inline: string;
+    };
+    orientation: {
+        horizontal: string;
+        vertical: string;
+    };
+    size: {
+        xs: string;
+        sm: string;
+        md: string;
+        lg: string;
+        xl: string;
+    };
+}>;
+export declare const radioTheme: string;
+export declare const radioVars: {
     inputColor: `var(--${string})`;
     inputBackground: `var(--${string})`;
     inputInvalidBackground: `var(--${string})`;
@@ -975,61 +713,40 @@ export declare const radioTheme: string, radioVars: {
     labelSize: `var(--${string})`;
     inputFill: `var(--${string})`;
 };
-export declare const radioList: import("../../types.js").RuntimeFn<{
-    theme: {
-        filled: {
-            vars: {
-                [x: string]: string;
-            };
-        };
-        inline: {};
-    };
-    orientation: {
-        horizontal: {
-            flexDirection: "row";
-        };
-        vertical: {
-            flexDirection: "column";
-        };
-    };
-    size: {
-        xs: {
-            vars: {
-                [x: string]: string;
-            };
-        };
-        sm: {
-            vars: {
-                [x: string]: string;
-            };
-        };
-        md: {
-            vars: {
-                [x: string]: string;
-            };
-        };
-        lg: {
-            vars: {
-                [x: string]: string;
-            };
-        };
-        xl: {
-            vars: {
-                [x: string]: string;
-            };
-        };
-    };
-}>;
-export declare const radioItem: string;
-export declare const radio: string;
-export declare const indicator: string;
 ```
 
 ## @codeui/styles/internal/components/SegmentedControl/SegmentedControl.css.d.ts
 
 ```ts
-import { RecipeVariants } from "../../types.js";
-export declare const segmentedFieldTheme: string, segmentedFieldVars: {
+import type { RecipeVariants } from "../../types.js";
+export declare const indicator: string;
+export declare const list: string;
+export declare const segment: string;
+export declare const segmentedControlWrapper: import("../../types.js").RuntimeFn<{
+    theme: {
+        neutral: string;
+        primary: string;
+    };
+    variant: {
+        solid: string;
+        bordered: string;
+    };
+    size: {
+        xl: string;
+        lg: string;
+        md: string;
+        sm: string;
+        xs: string;
+    };
+    fluid: {
+        true: string;
+    };
+    pill: {
+        true: string;
+    };
+}>;
+export declare const segmentedFieldTheme: string;
+export declare const segmentedFieldVars: {
     activeSegmentedBackgroundColor: `var(--${string})`;
     segmentedTextColor: `var(--${string})`;
     activeSegmentedTextColor: `var(--${string})`;
@@ -1042,76 +759,20 @@ export declare const segmentedFieldTheme: string, segmentedFieldVars: {
     segmentRadius: `var(--${string})`;
     segmentFontSize: `var(--${string})`;
 };
-export declare const segmentedControlWrapper: import("../../types.js").RuntimeFn<{
-    theme: {
-        neutral: {
-            vars: {};
-        };
-        primary: {
-            vars: {
-                [x: string]: `var(--${string})`;
-            };
-        };
-    };
-    variant: {
-        solid: {
-            backgroundColor: `var(--${string})`;
-        };
-        bordered: {
-            backgroundColor: "transparent";
-            boxShadow: `0 0 0 var(--${string}) var(--${string})`;
-        };
-    };
-    size: {
-        xl: {
-            vars: {
-                [x: string]: string;
-            };
-        };
-        lg: {
-            vars: {
-                [x: string]: string;
-            };
-        };
-        md: {
-            vars: {
-                [x: string]: string;
-            };
-        };
-        sm: {
-            vars: {
-                [x: string]: string;
-            };
-        };
-        xs: {
-            vars: {
-                [x: string]: string;
-            };
-        };
-    };
-    fluid: {
-        true: {
-            width: "100%";
-        };
-    };
-    pill: {
-        true: {
-            vars: {
-                [x: string]: `var(--${string})`;
-            };
-        };
-    };
-}>;
-export declare const list: string;
 export type SegmentedControlVariants = RecipeVariants<typeof segmentedControlWrapper>;
-export declare const segment: string;
-export declare const indicator: string;
 ```
 
 ## @codeui/styles/internal/components/Select/Select.css.d.ts
 
 ```ts
-export declare const selectTheme: string, selectThemeVars: {
+export declare const content: string;
+export declare const field: string;
+export declare const input: string;
+export declare const item: string;
+export declare const itemIndicator: string;
+export declare const selectField: string;
+export declare const selectTheme: string;
+export declare const selectThemeVars: {
     contentBackground: `var(--${string})`;
     contentRadius: `var(--${string})`;
     contentBoxShadow: `var(--${string})`;
@@ -1127,131 +788,42 @@ export declare const selectTheme: string, selectThemeVars: {
     itemDisabledOpacity: `var(--${string})`;
     indicatorSize: `var(--${string})`;
 };
-export declare const content: string;
-export declare const input: string;
-export declare const item: string;
-export declare const field: string;
-export declare const selectField: string;
-export declare const itemIndicator: string;
 ```
 
 ## @codeui/styles/internal/components/Settings/Settings.css.d.ts
 
 ```ts
-export declare const row: string;
-export declare const label: string;
+export declare const control: string;
 export declare const description: string;
 export declare const details: string;
-export declare const control: string;
-export declare const picture: string;
-export declare const marker: string;
 export declare const group: string;
-export declare const groupTitle: string;
-export declare const groupDescription: string;
 export declare const groupContent: string;
+export declare const groupDescription: string;
+export declare const groupTitle: string;
+export declare const label: string;
+export declare const marker: string;
+export declare const picture: string;
+export declare const row: string;
 ```
 
 ## @codeui/styles/internal/components/Sheet/Sheet.css.d.ts
 
 ```ts
-export declare const overlay: string;
+export declare const body: string;
+export declare const closeButton: string;
 export declare const content: import("../../types.js").RuntimeFn<{
     side: {
-        bottom: {
-            animation: string;
-            selectors: {
-                "&[data-expanded]": {
-                    animation: string;
-                };
-                "&[data-motion=none], &[data-motion=none][data-expanded]": {
-                    animation: string;
-                };
-            };
-            "@media": {
-                "(prefers-reduced-motion: reduce)": {
-                    animationName: string;
-                    selectors: {
-                        "&[data-expanded]": {
-                            animationName: string;
-                        };
-                    };
-                };
-            };
-            left: number;
-            right: number;
-            bottom: number;
-            maxHeight: `calc(100dvh - var(--${string}))`;
-            borderRadius: `var(--${string}) var(--${string}) 0 0`;
-            paddingBottom: "env(safe-area-inset-bottom)";
-        };
-        left: {
-            animation: string;
-            selectors: {
-                "&[data-expanded]": {
-                    animation: string;
-                };
-                "&[data-motion=none], &[data-motion=none][data-expanded]": {
-                    animation: string;
-                };
-            };
-            "@media": {
-                "(prefers-reduced-motion: reduce)": {
-                    animationName: string;
-                    selectors: {
-                        "&[data-expanded]": {
-                            animationName: string;
-                        };
-                    };
-                };
-            };
-            left: number;
-            borderRadius: `0 var(--${string}) var(--${string}) 0`;
-            paddingLeft: "env(safe-area-inset-left)";
-            top: number;
-            bottom: number;
-            width: string;
-            paddingTop: string;
-            paddingBottom: string;
-        };
-        right: {
-            animation: string;
-            selectors: {
-                "&[data-expanded]": {
-                    animation: string;
-                };
-                "&[data-motion=none], &[data-motion=none][data-expanded]": {
-                    animation: string;
-                };
-            };
-            "@media": {
-                "(prefers-reduced-motion: reduce)": {
-                    animationName: string;
-                    selectors: {
-                        "&[data-expanded]": {
-                            animationName: string;
-                        };
-                    };
-                };
-            };
-            right: number;
-            borderRadius: `var(--${string}) 0 0 var(--${string})`;
-            paddingRight: "env(safe-area-inset-right)";
-            top: number;
-            bottom: number;
-            width: string;
-            paddingTop: string;
-            paddingBottom: string;
-        };
+        bottom: string;
+        left: string;
+        right: string;
     };
 }>;
-export declare const header: string;
-export declare const title: string;
 export declare const description: string;
-/** The close button keeps its size and gets a 40px hit area on touch screens. */
-export declare const closeButton: string;
-export declare const handle: string;
-export declare const body: string;
 export declare const footer: string;
+export declare const handle: string;
+export declare const header: string;
+export declare const overlay: string;
+export declare const title: string;
 ```
 
 ## @codeui/styles/internal/components/Skeleton/Skeleton.css.d.ts
@@ -1259,27 +831,10 @@ export declare const footer: string;
 ```ts
 export declare const root: import("../../types.js").RuntimeFn<{
     circle: {
-        true: {
-            borderRadius: `var(--${string})`;
-        };
+        true: string;
     };
     animate: {
-        true: {
-            selectors: {
-                "&[data-visible]": {
-                    animation: `${string} calc(var(--${string}) * 4) var(--${string}) infinite alternate`;
-                };
-            };
-            "@media": {
-                "(prefers-reduced-motion: reduce)": {
-                    selectors: {
-                        "&[data-visible]": {
-                            animation: "none";
-                        };
-                    };
-                };
-            };
-        };
+        true: string;
     };
 }>;
 ```
@@ -1287,122 +842,92 @@ export declare const root: import("../../types.js").RuntimeFn<{
 ## @codeui/styles/internal/components/Slider/Slider.css.d.ts
 
 ```ts
-export declare const root: string;
-export declare const label: string;
 export declare const description: string;
 export declare const errorMessage: string;
-export declare const valueLabel: string;
-export declare const input: string;
-export declare const track: import("../../types.js").RuntimeFn<{
-    orientation: {
-        horizontal: {};
-        vertical: {
-            height: `var(--${string})`;
-            width: `var(--${string})`;
-            selectors: {
-                "&::before": {
-                    height: string;
-                    width: `var(--${string})`;
-                };
-            };
-        };
-    };
-}>;
 export declare const fill: import("../../types.js").RuntimeFn<{
     orientation: {
-        horizontal: {};
-        vertical: {
-            width: `var(--${string})`;
-            height: string;
-        };
+        horizontal: string;
+        vertical: string;
     };
 }>;
+export declare const input: string;
+export declare const label: string;
+export declare const root: string;
 export declare const thumb: string;
+export declare const track: import("../../types.js").RuntimeFn<{
+    orientation: {
+        horizontal: string;
+        vertical: string;
+    };
+}>;
+export declare const valueLabel: string;
 ```
 
 ## @codeui/styles/internal/components/Spinner/Spinner.css.d.ts
 
 ```ts
+export declare const indicator: string;
 export declare const root: import("../../types.js").RuntimeFn<{
     size: {
-        sm: {
-            width: `var(--${string})`;
-            height: `var(--${string})`;
-        };
-        md: {
-            width: `var(--${string})`;
-            height: `var(--${string})`;
-        };
-        lg: {
-            width: `var(--${string})`;
-            height: `var(--${string})`;
-        };
+        sm: string;
+        md: string;
+        lg: string;
     };
 }>;
 export declare const track: string;
-export declare const indicator: string;
 ```
 
 ## @codeui/styles/internal/components/Stack/Stack.css.d.ts
 
 ```ts
-/** `stackStyles.root(variants)` and `<Stack>` share these classes. */
 export declare const root: import("../../types.js").RuntimeFn<{
-    gap: Record<"auto" | "0" | "1" | "1.5" | "2" | "3" | "4" | "5" | "6" | "8" | "10" | "12" | "16" | "20" | "24" | "32" | "40" | "48" | "56" | "64" | "px" | "0.5" | "2.5", {
-        gap: string;
-    }>;
+    gap: {
+        "0": string;
+        "1": string;
+        "2": string;
+        "3": string;
+        "4": string;
+        "5": string;
+        "6": string;
+        "8": string;
+        "10": string;
+        "12": string;
+        "16": string;
+        "20": string;
+        "24": string;
+        "32": string;
+        "40": string;
+        "48": string;
+        "56": string;
+        "64": string;
+        auto: string;
+        px: string;
+        "0.5": string;
+        "1.5": string;
+        "2.5": string;
+    };
     direction: {
-        column: {
-            flexDirection: "column";
-        };
-        row: {
-            flexDirection: "row";
-        };
+        column: string;
+        row: string;
     };
     wrap: {
-        true: {
-            flexWrap: "wrap";
-        };
-        false: {
-            flexWrap: "nowrap";
-        };
+        true: string;
+        false: string;
     };
     align: {
-        start: {
-            alignItems: "flex-start";
-        };
-        center: {
-            alignItems: "center";
-        };
-        end: {
-            alignItems: "flex-end";
-        };
-        stretch: {
-            alignItems: "stretch";
-        };
-        baseline: {
-            alignItems: "baseline";
-        };
+        start: string;
+        center: string;
+        end: string;
+        stretch: string;
+        baseline: string;
     };
     justify: {
-        start: {
-            justifyContent: "flex-start";
-        };
-        center: {
-            justifyContent: "center";
-        };
-        end: {
-            justifyContent: "flex-end";
-        };
-        between: {
-            justifyContent: "space-between";
-        };
-        around: {
-            justifyContent: "space-around";
-        };
-        evenly: {
-            justifyContent: "space-evenly";
-        };
+        start: string;
+        center: string;
+        end: string;
+        between: string;
+        around: string;
+        evenly: string;
     };
 }>;
 ```
@@ -1410,41 +935,35 @@ export declare const root: import("../../types.js").RuntimeFn<{
 ## @codeui/styles/internal/components/Switch/Switch.css.d.ts
 
 ```ts
-export declare const root: string;
-export declare const input: string;
-/**
- * Track 36×22 with a 16px thumb (CodeImage), 28×16 with a 12px thumb at `sm`,
- * 44×26 with a 20px thumb on touch screens (Inkstone §6).
- */
 export declare const control: import("../../types.js").RuntimeFn<{
     size: {
-        sm: {
-            "@media": {
-                "(pointer: fine), (pointer: none)": {
-                    vars: {
-                        [x: string]: `var(--${string})`;
-                    };
-                };
-            };
-        };
-        md: {};
+        sm: string;
+        md: string;
     };
 }>;
-export declare const thumb: import("../../types.js").RuntimeFn<{
-    size: {
-        sm: {};
-        md: {};
-    };
-}>;
-export declare const label: string;
 export declare const description: string;
 export declare const errorMessage: string;
+export declare const input: string;
+export declare const label: string;
+export declare const root: string;
+export declare const thumb: import("../../types.js").RuntimeFn<{
+    size: {
+        sm: string;
+        md: string;
+    };
+}>;
 ```
 
 ## @codeui/styles/internal/components/Tabs/Tabs.css.d.ts
 
 ```ts
-export declare const tabsTheme: string, tabsVars: {
+export declare const indicator: string;
+export declare const tabsContent: string;
+export declare const tabsHeader: string;
+export declare const tabsList: string;
+export declare const tabsRoot: string;
+export declare const tabsTheme: string;
+export declare const tabsVars: {
     tabListIndicatorColor: `var(--${string})`;
     tabHeaderHoverBackgroundColor: `var(--${string})`;
     tabHeaderColor: `var(--${string})`;
@@ -1452,43 +971,34 @@ export declare const tabsTheme: string, tabsVars: {
     tabHeaderSelectedColor: `var(--${string})`;
     tabIndicatorColor: `var(--${string})`;
 };
-export declare const tabsRoot: string;
-export declare const tabsList: string;
-export declare const tabsHeader: string;
-export declare const tabsContent: string;
-export declare const indicator: string;
 ```
 
 ## @codeui/styles/internal/components/Text/Text.css.d.ts
 
 ```ts
-/** `textStyles.root(variants)` and `<Text>` share these classes. */
 export declare const root: import("../../types.js").RuntimeFn<{
-    size: Record<"caption" | "badge" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl", {
-        fontSize: string;
-    }>;
-    weight: Record<"normal" | "medium" | "semibold", {
-        fontWeight: string;
-    }>;
+    size: {
+        badge: string;
+        xs: string;
+        caption: string;
+        sm: string;
+        md: string;
+        lg: string;
+        xl: string;
+        "2xl": string;
+    };
+    weight: {
+        normal: string;
+        medium: string;
+        semibold: string;
+    };
     tone: {
-        default: {
-            color: `var(--${string})`;
-        };
-        muted: {
-            color: `var(--${string})`;
-        };
-        hint: {
-            color: `var(--${string})`;
-        };
-        label: {
-            color: `var(--${string})`;
-        };
-        danger: {
-            color: `var(--${string})`;
-        };
-        success: {
-            color: `color-mix(in srgb, var(--${string}) 85%, var(--${string}))`;
-        };
+        default: string;
+        muted: string;
+        hint: string;
+        label: string;
+        danger: string;
+        success: string;
     };
 }>;
 ```
@@ -1510,84 +1020,47 @@ export declare const textField: string;
 ## @codeui/styles/internal/components/Toast/Toast.css.d.ts
 
 ```ts
-export declare const region: import("../../types.js").RuntimeFn<{
-    position: {
-        "top-left": {
-            top: number;
-            left: number;
-        };
-        "top-center": {
-            top: number;
-            left: "50%";
-            transform: "translateX(-50%)";
-        };
-        "top-right": {
-            top: number;
-            right: number;
-        };
-        "bottom-left": {
-            bottom: `var(--${string})`;
-            left: number;
-        };
-        "bottom-center": {
-            bottom: `var(--${string})`;
-            left: "50%";
-            transform: "translateX(-50%)";
-        };
-        "bottom-right": {
-            bottom: `var(--${string})`;
-            right: number;
-        };
-    };
-}>;
-export declare const list: string;
-/**
- * Icon, text, action and close button sit in their own grid columns. Margins
- * space them instead of `gap`, so absent parts leave no gap.
- */
-export declare const root: import("../../types.js").RuntimeFn<{
-    tone: {
-        neutral: {
-            vars: {
-                [x: string]: `var(--${string})`;
-            };
-        };
-        info: {
-            vars: {
-                [x: string]: `var(--${string})`;
-            };
-        };
-        success: {
-            vars: {
-                [x: string]: `var(--${string})`;
-            };
-        };
-        warning: {
-            vars: {
-                [x: string]: `var(--${string})`;
-            };
-        };
-        danger: {
-            vars: {
-                [x: string]: `var(--${string})`;
-            };
-        };
-    };
-}>;
-export declare const icon: string;
-export declare const title: string;
-export declare const description: string;
 export declare const action: string;
 export declare const closeButton: string;
-export declare const progressTrack: string;
+export declare const description: string;
+export declare const icon: string;
+export declare const list: string;
 export declare const progressFill: string;
+export declare const progressTrack: string;
+export declare const region: import("../../types.js").RuntimeFn<{
+    position: {
+        "top-left": string;
+        "top-center": string;
+        "top-right": string;
+        "bottom-left": string;
+        "bottom-center": string;
+        "bottom-right": string;
+    };
+}>;
+export declare const root: import("../../types.js").RuntimeFn<{
+    tone: {
+        neutral: string;
+        info: string;
+        success: string;
+        warning: string;
+        danger: string;
+    };
+}>;
+export declare const title: string;
 ```
 
 ## @codeui/styles/internal/components/Tooltip/Tooltip.css.d.ts
 
 ```ts
-import { RecipeVariants } from "../../types.js";
-export declare const tooltipTheme: string, tooltipVars: {
+import type { RecipeVariants } from "../../types.js";
+export declare const tooltipContent: import("../../types.js").RuntimeFn<{
+    theme: {
+        primary: string;
+        secondary: string;
+    };
+}>;
+export declare const tooltipTheme: string;
+export declare const tooltipVars: {
     fontSize: `var(--${string})`;
     lineHeight: `var(--${string})`;
     backgroundColor: `var(--${string})`;
@@ -1596,20 +1069,6 @@ export declare const tooltipTheme: string, tooltipVars: {
     borderRadius: `var(--${string})`;
     zIndex: `var(--${string})`;
 };
-export declare const tooltipContent: import("../../types.js").RuntimeFn<{
-    theme: {
-        primary: {
-            vars: {
-                [x: string]: `var(--${string})`;
-            };
-        };
-        secondary: {
-            vars: {
-                [x: string]: `var(--${string})`;
-            };
-        };
-    };
-}>;
 export declare const trigger: string;
 export type TooltipVariants = RecipeVariants<typeof tooltipContent>;
 ```
@@ -1685,208 +1144,209 @@ export declare const tokens: {
 ## @codeui/styles/internal/foundation/cui.css.d.ts
 
 ```ts
-/**
- * The kit design tokens. Every leaf is `var(--cui-…)`, a stable name that
- * apps can override with plain CSS.
- */
-export declare const tokens: {
-    surface: {
-        canvas: `var(--${string})`;
-        toolbar: `var(--${string})`;
-        scrim: `var(--${string})`;
-        dialog: `var(--${string})`;
-        inputAccent: `var(--${string})`;
-        input: `var(--${string})`;
-        fieldHover: `var(--${string})`;
-        menuHover: `var(--${string})`;
-        menu: `var(--${string})`;
-        panel: `var(--${string})`;
-        scrollThumb: `var(--${string})`;
-        scrollThumbHover: `var(--${string})`;
-        secondary: `var(--${string})`;
-        toast: `var(--${string})`;
-        track: `var(--${string})`;
+type CssRefs<T> = T extends string ? `var(--${string})` : {
+    -readonly [K in keyof T]: CssRefs<T[K]>;
+};
+declare const values: {
+    readonly shadow: {
+        readonly dialog: "var(--cui-shadow-dialog)";
+        readonly menu: "var(--cui-shadow-menu)";
+        readonly none: "var(--cui-shadow-none)";
+        readonly sm: "var(--cui-shadow-sm)";
+        readonly md: "var(--cui-shadow-md)";
+        readonly thumb: "var(--cui-shadow-thumb)";
+        readonly lg: "var(--cui-shadow-lg)";
     };
-    text: {
-        default: `var(--${string})`;
-        toolbar: `var(--${string})`;
-        muted: `var(--${string})`;
-        dialog: `var(--${string})`;
-        dialogTitle: `var(--${string})`;
-        label: `var(--${string})`;
-        hint: `var(--${string})`;
-        tertiary: `var(--${string})`;
-        disabled: `var(--${string})`;
-        input: `var(--${string})`;
-        selected: `var(--${string})`;
-        menu: `var(--${string})`;
-        panelMuted: `var(--${string})`;
-        panel: `var(--${string})`;
-        toast: `var(--${string})`;
-        danger: `var(--${string})`;
+    readonly border: {
+        readonly input: "var(--cui-border-input)";
+        readonly dialogTitle: "var(--cui-border-dialog-title)";
+        readonly divider: "var(--cui-border-divider)";
+        readonly menu: "var(--cui-border-menu)";
+        readonly width: "var(--cui-border-width)";
+        readonly widthStrong: "var(--cui-border-width-strong)";
     };
-    action: {
-        neutral: {
-            active: `var(--${string})`;
-            base: `var(--${string})`;
-            hover: `var(--${string})`;
-            text: `var(--${string})`;
+    readonly space: {
+        readonly "0": "var(--cui-space-0)";
+        readonly "1": "var(--cui-space-1)";
+        readonly "2": "var(--cui-space-2)";
+        readonly "3": "var(--cui-space-3)";
+        readonly "4": "var(--cui-space-4)";
+        readonly "5": "var(--cui-space-5)";
+        readonly "6": "var(--cui-space-6)";
+        readonly "8": "var(--cui-space-8)";
+        readonly "10": "var(--cui-space-10)";
+        readonly "12": "var(--cui-space-12)";
+        readonly "16": "var(--cui-space-16)";
+        readonly "20": "var(--cui-space-20)";
+        readonly "24": "var(--cui-space-24)";
+        readonly "32": "var(--cui-space-32)";
+        readonly "40": "var(--cui-space-40)";
+        readonly "48": "var(--cui-space-48)";
+        readonly "56": "var(--cui-space-56)";
+        readonly "64": "var(--cui-space-64)";
+        readonly auto: "var(--cui-space-auto)";
+        readonly px: "var(--cui-space-px)";
+        readonly "0.5": "var(--cui-space-0-5)";
+        readonly "1.5": "var(--cui-space-1-5)";
+        readonly "2.5": "var(--cui-space-2-5)";
+    };
+    readonly font: {
+        readonly tracking: {
+            readonly normal: "var(--cui-font-tracking-normal)";
         };
-        danger: {
-            active: `var(--${string})`;
-            base: `var(--${string})`;
-            hover: `var(--${string})`;
-            text: `var(--${string})`;
+        readonly size: {
+            readonly badge: "var(--cui-font-size-badge)";
+            readonly xs: "var(--cui-font-size-xs)";
+            readonly caption: "var(--cui-font-size-caption)";
+            readonly sm: "var(--cui-font-size-sm)";
+            readonly md: "var(--cui-font-size-md)";
+            readonly lg: "var(--cui-font-size-lg)";
+            readonly xl: "var(--cui-font-size-xl)";
+            readonly "2xl": "var(--cui-font-size-2xl)";
         };
-        brand: {
-            active: `var(--${string})`;
-            base: `var(--${string})`;
-            hover: `var(--${string})`;
-            text: `var(--${string})`;
+        readonly weight: {
+            readonly normal: "var(--cui-font-weight-normal)";
+            readonly medium: "var(--cui-font-weight-medium)";
+            readonly semibold: "var(--cui-font-weight-semibold)";
         };
-        brandSoft: {
-            base: `var(--${string})`;
-            hover: `var(--${string})`;
-            text: `var(--${string})`;
-            active: `var(--${string})`;
+        readonly lineHeight: {
+            readonly compact: "var(--cui-font-line-height-compact)";
+            readonly snug: "var(--cui-font-line-height-snug)";
+            readonly normal: "var(--cui-font-line-height-normal)";
+            readonly badge: "var(--cui-font-line-height-badge)";
+            readonly xs: "var(--cui-font-line-height-xs)";
+            readonly caption: "var(--cui-font-line-height-caption)";
+            readonly sm: "var(--cui-font-line-height-sm)";
+            readonly md: "var(--cui-font-line-height-md)";
         };
-        caution: {
-            base: `var(--${string})`;
-            hover: `var(--${string})`;
-            active: `var(--${string})`;
-            text: `var(--${string})`;
-        };
-        success: {
-            base: `var(--${string})`;
-            hover: `var(--${string})`;
-            active: `var(--${string})`;
-            text: `var(--${string})`;
-        };
-    };
-    shadow: {
-        dialog: `var(--${string})`;
-        menu: `var(--${string})`;
-        none: `var(--${string})`;
-        sm: `var(--${string})`;
-        md: `var(--${string})`;
-        thumb: `var(--${string})`;
-        lg: `var(--${string})`;
-    };
-    border: {
-        dialogTitle: `var(--${string})`;
-        divider: `var(--${string})`;
-        input: `var(--${string})`;
-        menu: `var(--${string})`;
-        width: `var(--${string})`;
-        widthStrong: `var(--${string})`;
-    };
-    accent: {
-        selection: `var(--${string})`;
-        focus: `var(--${string})`;
-    };
-    focus: {
-        color: `var(--${string})`;
-        width: `var(--${string})`;
-        offset: `var(--${string})`;
-    };
-    radius: {
-        scale: `var(--${string})`;
-        none: `var(--${string})`;
-        badge: `var(--${string})`;
-        xs: `var(--${string})`;
-        sm: `var(--${string})`;
-        nav: `var(--${string})`;
-        md: `var(--${string})`;
-        lg: `var(--${string})`;
-        card: `var(--${string})`;
-        xl: `var(--${string})`;
-        command: `var(--${string})`;
-        dialog: `var(--${string})`;
-        full: `var(--${string})`;
-    };
-    space: {
-        "0": `var(--${string})`;
-        "1": `var(--${string})`;
-        "2": `var(--${string})`;
-        "3": `var(--${string})`;
-        "4": `var(--${string})`;
-        "5": `var(--${string})`;
-        "6": `var(--${string})`;
-        "8": `var(--${string})`;
-        "10": `var(--${string})`;
-        "12": `var(--${string})`;
-        "16": `var(--${string})`;
-        "20": `var(--${string})`;
-        "24": `var(--${string})`;
-        "32": `var(--${string})`;
-        "40": `var(--${string})`;
-        "48": `var(--${string})`;
-        "56": `var(--${string})`;
-        "64": `var(--${string})`;
-        auto: `var(--${string})`;
-        px: `var(--${string})`;
-        "0.5": `var(--${string})`;
-        "1.5": `var(--${string})`;
-        "2.5": `var(--${string})`;
-    };
-    control: {
-        height: {
-            compact: `var(--${string})`;
-            xs: `var(--${string})`;
-            sm: `var(--${string})`;
-            md: `var(--${string})`;
-            lg: `var(--${string})`;
-            xl: `var(--${string})`;
+        readonly family: {
+            readonly sans: "var(--cui-font-family-sans)";
+            readonly mono: "var(--cui-font-family-mono)";
         };
     };
-    font: {
-        size: {
-            badge: `var(--${string})`;
-            xs: `var(--${string})`;
-            caption: `var(--${string})`;
-            sm: `var(--${string})`;
-            md: `var(--${string})`;
-            lg: `var(--${string})`;
-            xl: `var(--${string})`;
-            "2xl": `var(--${string})`;
+    readonly surface: {
+        readonly canvas: "var(--cui-surface-canvas)";
+        readonly toolbar: "var(--cui-surface-toolbar)";
+        readonly scrim: "var(--cui-surface-scrim)";
+        readonly dialog: "var(--cui-surface-dialog)";
+        readonly inputAccent: "var(--cui-surface-input-accent)";
+        readonly input: "var(--cui-surface-input)";
+        readonly fieldHover: "var(--cui-surface-field-hover)";
+        readonly menuHover: "var(--cui-surface-menu-hover)";
+        readonly menu: "var(--cui-surface-menu)";
+        readonly panel: "var(--cui-surface-panel)";
+        readonly scrollThumb: "var(--cui-surface-scroll-thumb)";
+        readonly scrollThumbHover: "var(--cui-surface-scroll-thumb-hover)";
+        readonly secondary: "var(--cui-surface-secondary)";
+        readonly toast: "var(--cui-surface-toast)";
+        readonly track: "var(--cui-surface-track)";
+    };
+    readonly text: {
+        readonly default: "var(--cui-text-default)";
+        readonly toolbar: "var(--cui-text-toolbar)";
+        readonly muted: "var(--cui-text-muted)";
+        readonly dialog: "var(--cui-text-dialog)";
+        readonly dialogTitle: "var(--cui-text-dialog-title)";
+        readonly label: "var(--cui-text-label)";
+        readonly hint: "var(--cui-text-hint)";
+        readonly tertiary: "var(--cui-text-tertiary)";
+        readonly disabled: "var(--cui-text-disabled)";
+        readonly input: "var(--cui-text-input)";
+        readonly selected: "var(--cui-text-selected)";
+        readonly menu: "var(--cui-text-menu)";
+        readonly panelMuted: "var(--cui-text-panel-muted)";
+        readonly panel: "var(--cui-text-panel)";
+        readonly toast: "var(--cui-text-toast)";
+        readonly danger: "var(--cui-text-danger)";
+    };
+    readonly action: {
+        readonly neutral: {
+            readonly active: "var(--cui-action-neutral-active)";
+            readonly base: "var(--cui-action-neutral-base)";
+            readonly hover: "var(--cui-action-neutral-hover)";
+            readonly text: "var(--cui-action-neutral-text)";
         };
-        family: {
-            sans: `var(--${string})`;
-            mono: `var(--${string})`;
+        readonly danger: {
+            readonly active: "var(--cui-action-danger-active)";
+            readonly base: "var(--cui-action-danger-base)";
+            readonly hover: "var(--cui-action-danger-hover)";
+            readonly text: "var(--cui-action-danger-text)";
         };
-        weight: {
-            normal: `var(--${string})`;
-            medium: `var(--${string})`;
-            semibold: `var(--${string})`;
+        readonly brand: {
+            readonly active: "var(--cui-action-brand-active)";
+            readonly base: "var(--cui-action-brand-base)";
+            readonly hover: "var(--cui-action-brand-hover)";
+            readonly text: "var(--cui-action-brand-text)";
         };
-        lineHeight: {
-            compact: `var(--${string})`;
-            snug: `var(--${string})`;
-            normal: `var(--${string})`;
-            badge: `var(--${string})`;
-            xs: `var(--${string})`;
-            caption: `var(--${string})`;
-            sm: `var(--${string})`;
-            md: `var(--${string})`;
+        readonly brandSoft: {
+            readonly base: "var(--cui-action-brand-soft-base)";
+            readonly hover: "var(--cui-action-brand-soft-hover)";
+            readonly text: "var(--cui-action-brand-soft-text)";
+            readonly active: "var(--cui-action-brand-soft-active)";
         };
-        tracking: {
-            normal: `var(--${string})`;
+        readonly caution: {
+            readonly base: "var(--cui-action-caution-base)";
+            readonly hover: "var(--cui-action-caution-hover)";
+            readonly active: "var(--cui-action-caution-active)";
+            readonly text: "var(--cui-action-caution-text)";
+        };
+        readonly success: {
+            readonly base: "var(--cui-action-success-base)";
+            readonly hover: "var(--cui-action-success-hover)";
+            readonly active: "var(--cui-action-success-active)";
+            readonly text: "var(--cui-action-success-text)";
         };
     };
-    motion: {
-        duration: {
-            none: `var(--${string})`;
-            fast: `var(--${string})`;
-            normal: `var(--${string})`;
-            panel: `var(--${string})`;
-            slow: `var(--${string})`;
-            rise: `var(--${string})`;
+    readonly accent: {
+        readonly selection: "var(--cui-accent-selection)";
+        readonly focus: "var(--cui-accent-focus)";
+    };
+    readonly focus: {
+        readonly width: "var(--cui-focus-width)";
+        readonly offset: "var(--cui-focus-offset)";
+        readonly color: "var(--cui-focus-color)";
+    };
+    readonly radius: {
+        readonly scale: "var(--cui-radius-scale)";
+        readonly none: "var(--cui-radius-none)";
+        readonly badge: "var(--cui-radius-badge)";
+        readonly xs: "var(--cui-radius-xs)";
+        readonly sm: "var(--cui-radius-sm)";
+        readonly nav: "var(--cui-radius-nav)";
+        readonly md: "var(--cui-radius-md)";
+        readonly lg: "var(--cui-radius-lg)";
+        readonly card: "var(--cui-radius-card)";
+        readonly xl: "var(--cui-radius-xl)";
+        readonly command: "var(--cui-radius-command)";
+        readonly dialog: "var(--cui-radius-dialog)";
+        readonly full: "var(--cui-radius-full)";
+    };
+    readonly control: {
+        readonly height: {
+            readonly compact: "var(--cui-control-height-compact)";
+            readonly xs: "var(--cui-control-height-xs)";
+            readonly sm: "var(--cui-control-height-sm)";
+            readonly md: "var(--cui-control-height-md)";
+            readonly lg: "var(--cui-control-height-lg)";
+            readonly xl: "var(--cui-control-height-xl)";
         };
-        ease: {
-            out: `var(--${string})`;
+    };
+    readonly motion: {
+        readonly duration: {
+            readonly none: "var(--cui-motion-duration-none)";
+            readonly fast: "var(--cui-motion-duration-fast)";
+            readonly normal: "var(--cui-motion-duration-normal)";
+            readonly panel: "var(--cui-motion-duration-panel)";
+            readonly slow: "var(--cui-motion-duration-slow)";
+            readonly rise: "var(--cui-motion-duration-rise)";
+        };
+        readonly ease: {
+            readonly out: "var(--cui-motion-ease-out)";
         };
     };
 };
+export declare const tokens: CssRefs<typeof values>;
+export {};
 ```
 
 ## @codeui/styles/internal/foundation/derived.d.ts
@@ -1933,7 +1393,7 @@ export {};
 ```ts
 import type { StyleRule } from "../types.js";
 type CSSProps = Omit<StyleRule, "@media" | "@supports">;
-export declare const breakpointQuery: Record<"sm" | "md" | "lg" | "xl" | "2xl", string>;
+export declare const breakpointQuery: Record<"sm" | "md" | "xl" | "lg" | "2xl", string>;
 interface ResponsiveStyle {
     xs?: CSSProps;
     sm?: CSSProps;
@@ -1966,20 +1426,121 @@ export declare const mapFontSizeValue: (size: BaseComponentSize) => `var(--${str
 ## @codeui/styles/internal/foundation/text.css.d.ts
 
 ```ts
-export declare const fontWeight: Record<"black" | "normal" | "medium" | "thin" | "light" | "bold" | "semibold" | "hairline" | "extrabold", string>;
-export declare const fontSize: Record<"xs" | "sm" | "md" | "lg" | "xl", string>;
+export declare const fontSize: {
+    xs: string;
+    sm: string;
+    md: string;
+    lg: string;
+    xl: string;
+};
+export declare const fontWeight: {
+    hairline: string;
+    thin: string;
+    light: string;
+    normal: string;
+    medium: string;
+    semibold: string;
+    bold: string;
+    extrabold: string;
+    black: string;
+};
 ```
 
 ## @codeui/styles/internal/foundation/theme-values.d.ts
 
 ```ts
-/**
- * Values of every `--cui-*` custom property. A string is shared by both modes.
- * Light neutrals are steps of `ramp`; the light blues share the brand blue's
- * hue and chroma.
- * docs/kit-2026/design/k5-token-map.json lists the source of each value.
- */
 export declare const themeValues: {
+    readonly shadow: {
+        readonly dialog: {
+            readonly dark: "0 10px 30px 0 #00000026, inset 0 0 0 1px #232323";
+            readonly light: "0 10px 15px -3px #0000001a, 0 4px 6px -2px #0000000d";
+        };
+        readonly menu: {
+            readonly dark: "0 1px #0000000d, 0 4px 10px #0000004d";
+            readonly light: "0 1px #0000000d, 0 4px 10px #0000001a";
+        };
+        readonly none: "none";
+        readonly sm: "0 1px 3px 0 #0000001a, 0 1px 2px 0 #0000000f";
+        readonly md: "0 4px 6px -1px #0000001a, 0 2px 4px -1px #0000000f";
+        readonly thumb: "0 1px 2px #0000004d";
+        readonly lg: "0 10px 15px -3px #0000001a, 0 4px 6px -2px #0000000d";
+    };
+    readonly border: {
+        readonly input: "transparent";
+        readonly dialogTitle: {
+            readonly dark: "#2b2b2b";
+            readonly light: "#dcdee1";
+        };
+        readonly divider: {
+            readonly dark: "#252525";
+            readonly light: "#dcdee1";
+        };
+        readonly menu: {
+            readonly dark: "#333";
+            readonly light: "#dcdee1";
+        };
+        readonly width: "1px";
+        readonly widthStrong: "2px";
+    };
+    readonly space: {
+        readonly "0": "0";
+        readonly "1": "0.25rem";
+        readonly "2": "0.5rem";
+        readonly "3": "0.75rem";
+        readonly "4": "1rem";
+        readonly "5": "1.25rem";
+        readonly "6": "1.5rem";
+        readonly "8": "2rem";
+        readonly "10": "2.5rem";
+        readonly "12": "3rem";
+        readonly "16": "4rem";
+        readonly "20": "5rem";
+        readonly "24": "6rem";
+        readonly "32": "8rem";
+        readonly "40": "10rem";
+        readonly "48": "12rem";
+        readonly "56": "14rem";
+        readonly "64": "16rem";
+        readonly auto: "auto";
+        readonly px: "1px";
+        readonly "0.5": "2px";
+        readonly "1.5": "6px";
+        readonly "2.5": "10px";
+    };
+    readonly font: {
+        readonly tracking: {
+            readonly normal: "normal";
+        };
+        readonly size: {
+            readonly badge: "11px";
+            readonly xs: "12px";
+            readonly caption: "13px";
+            readonly sm: "14px";
+            readonly md: "16px";
+            readonly lg: "18px";
+            readonly xl: "20px";
+            readonly "2xl": "24px";
+        };
+        readonly weight: {
+            readonly normal: "400";
+            readonly medium: "500";
+            readonly semibold: "600";
+        };
+        readonly lineHeight: {
+            readonly compact: "1.15";
+            readonly snug: "1.3";
+            readonly normal: "1.5";
+            readonly badge: "1.2";
+            readonly xs: "1.4";
+            readonly caption: "1.5";
+            readonly sm: "1.3";
+            readonly md: "1.3";
+        };
+        readonly family: {
+            readonly sans: "\"Inter var\", system-ui, -apple-system, sans-serif";
+            readonly mono: "ui-monospace, SFMono-Regular, Consolas, \"Liberation Mono\", Menlo, monospace";
+        };
+    };
     readonly surface: {
         readonly canvas: {
             readonly dark: "#0f0f10";
@@ -2158,38 +1719,6 @@ export declare const themeValues: {
             readonly text: "#000";
         };
     };
-    readonly shadow: {
-        readonly dialog: {
-            readonly dark: "0 10px 30px 0 #00000026, inset 0 0 0 1px #232323";
-            readonly light: "0 10px 15px -3px #0000001a, 0 4px 6px -2px #0000000d";
-        };
-        readonly menu: {
-            readonly dark: "0 1px #0000000d, 0 4px 10px #0000004d";
-            readonly light: "0 1px #0000000d, 0 4px 10px #0000001a";
-        };
-        readonly none: "none";
-        readonly sm: "0 1px 3px 0 #0000001a, 0 1px 2px 0 #0000000f";
-        readonly md: "0 4px 6px -1px #0000001a, 0 2px 4px -1px #0000000f";
-        readonly thumb: "0 1px 2px #0000004d";
-        readonly lg: "0 10px 15px -3px #0000001a, 0 4px 6px -2px #0000000d";
-    };
-    readonly border: {
-        readonly dialogTitle: {
-            readonly dark: "#2b2b2b";
-            readonly light: "#dcdee1";
-        };
-        readonly divider: {
-            readonly dark: "#252525";
-            readonly light: "#dcdee1";
-        };
-        readonly input: "transparent";
-        readonly menu: {
-            readonly dark: "#333";
-            readonly light: "#dcdee1";
-        };
-        readonly width: "1px";
-        readonly widthStrong: "2px";
-    };
     readonly accent: {
         readonly selection: "#0083e5";
         readonly focus: {
@@ -2198,9 +1727,9 @@ export declare const themeValues: {
         };
     };
     readonly focus: {
-        readonly color: "var(--cui-accent-focus)";
         readonly width: "2px";
         readonly offset: "2px";
+        readonly color: "var(--cui-accent-focus)";
     };
     readonly radius: {
         readonly scale: "1";
@@ -2217,31 +1746,6 @@ export declare const themeValues: {
         readonly dialog: "24px";
         readonly full: "9999px";
     };
-    readonly space: {
-        readonly "0": "0";
-        readonly "1": "0.25rem";
-        readonly "2": "0.5rem";
-        readonly "3": "0.75rem";
-        readonly "4": "1rem";
-        readonly "5": "1.25rem";
-        readonly "6": "1.5rem";
-        readonly "8": "2rem";
-        readonly "10": "2.5rem";
-        readonly "12": "3rem";
-        readonly "16": "4rem";
-        readonly "20": "5rem";
-        readonly "24": "6rem";
-        readonly "32": "8rem";
-        readonly "40": "10rem";
-        readonly "48": "12rem";
-        readonly "56": "14rem";
-        readonly "64": "16rem";
-        readonly auto: "auto";
-        readonly px: "1px";
-        readonly "0.5": "2px";
-        readonly "1.5": "6px";
-        readonly "2.5": "10px";
-    };
     readonly control: {
         readonly height: {
             readonly compact: "28px";
@@ -2250,40 +1754,6 @@ export declare const themeValues: {
             readonly md: "40px";
             readonly lg: "48px";
             readonly xl: "56px";
-        };
-    };
-    readonly font: {
-        readonly size: {
-            readonly badge: "11px";
-            readonly xs: "12px";
-            readonly caption: "13px";
-            readonly sm: "14px";
-            readonly md: "16px";
-            readonly lg: "18px";
-            readonly xl: "20px";
-            readonly "2xl": "24px";
-        };
-        readonly family: {
-            readonly sans: "\"Inter var\", system-ui, -apple-system, sans-serif";
-            readonly mono: "ui-monospace, SFMono-Regular, Consolas, \"Liberation Mono\", Menlo, monospace";
-        };
-        readonly weight: {
-            readonly normal: "400";
-            readonly medium: "500";
-            readonly semibold: "600";
-        };
-        readonly lineHeight: {
-            readonly compact: "1.15";
-            readonly snug: "1.3";
-            readonly normal: "1.5";
-            readonly badge: "1.2";
-            readonly xs: "1.4";
-            readonly caption: "1.5";
-            readonly sm: "1.3";
-            readonly md: "1.3";
-        };
-        readonly tracking: {
-            readonly normal: "normal";
         };
     };
     readonly motion: {
@@ -2305,94 +1775,91 @@ export declare const themeValues: {
 ## @codeui/styles/internal/foundation/themes.css.d.ts
 
 ```ts
-/**
- * @deprecated Use `tokens`. Spacing, radii, font sizes and the shared weights
- * and shadows point at `--cui-*` variables; the rest keep their old values.
- */
+/** @deprecated Use the semantic `tokens` export. */
 export declare const themeTokens: {
     readonly colors: {
-        readonly gray1: `var(--${string})`;
-        readonly gray2: `var(--${string})`;
-        readonly gray3: `var(--${string})`;
-        readonly gray4: `var(--${string})`;
-        readonly gray5: `var(--${string})`;
-        readonly gray6: `var(--${string})`;
-        readonly gray7: `var(--${string})`;
-        readonly gray8: `var(--${string})`;
-        readonly gray9: `var(--${string})`;
-        readonly gray10: `var(--${string})`;
-        readonly gray11: `var(--${string})`;
-        readonly gray12: `var(--${string})`;
+        readonly gray1: "var(--cui-themes-colors-gray1)";
+        readonly gray2: "var(--cui-themes-colors-gray2)";
+        readonly gray3: "var(--cui-themes-colors-gray3)";
+        readonly gray4: "var(--cui-themes-colors-gray4)";
+        readonly gray5: "var(--cui-themes-colors-gray5)";
+        readonly gray6: "var(--cui-themes-colors-gray6)";
+        readonly gray7: "var(--cui-themes-colors-gray7)";
+        readonly gray8: "var(--cui-themes-colors-gray8)";
+        readonly gray9: "var(--cui-themes-colors-gray9)";
+        readonly gray10: "var(--cui-themes-colors-gray10)";
+        readonly gray11: "var(--cui-themes-colors-gray11)";
+        readonly gray12: "var(--cui-themes-colors-gray12)";
     };
     readonly fontSize: {
-        readonly xs: `var(--${string})`;
-        readonly sm: `var(--${string})`;
-        readonly md: `var(--${string})`;
-        readonly lg: `var(--${string})`;
-        readonly xl: `var(--${string})`;
+        readonly xs: "var(--cui-font-size-xs)";
+        readonly sm: "var(--cui-font-size-sm)";
+        readonly md: "var(--cui-font-size-md)";
+        readonly lg: "var(--cui-font-size-lg)";
+        readonly xl: "var(--cui-font-size-xl)";
     };
     readonly fontWeight: {
-        readonly hairline: `var(--${string})`;
-        readonly thin: `var(--${string})`;
-        readonly light: `var(--${string})`;
-        readonly normal: `var(--${string})`;
-        readonly medium: `var(--${string})`;
-        readonly semibold: `var(--${string})`;
-        readonly bold: `var(--${string})`;
-        readonly extrabold: `var(--${string})`;
-        readonly black: `var(--${string})`;
+        readonly hairline: "var(--cui-themes-fontWeight-hairline)";
+        readonly thin: "var(--cui-themes-fontWeight-thin)";
+        readonly light: "var(--cui-themes-fontWeight-light)";
+        readonly normal: "var(--cui-font-weight-normal)";
+        readonly medium: "var(--cui-font-weight-medium)";
+        readonly semibold: "var(--cui-font-weight-semibold)";
+        readonly bold: "var(--cui-themes-fontWeight-bold)";
+        readonly extrabold: "var(--cui-themes-fontWeight-extrabold)";
+        readonly black: "var(--cui-themes-fontWeight-black)";
     };
     readonly spacing: {
-        readonly auto: `var(--${string})`;
-        readonly px: `var(--${string})`;
-        readonly 0: `var(--${string})`;
-        readonly 1: `var(--${string})`;
-        readonly 2: `var(--${string})`;
-        readonly 3: `var(--${string})`;
-        readonly 4: `var(--${string})`;
-        readonly 5: `var(--${string})`;
-        readonly 6: `var(--${string})`;
-        readonly 8: `var(--${string})`;
-        readonly 10: `var(--${string})`;
-        readonly 12: `var(--${string})`;
-        readonly 16: `var(--${string})`;
-        readonly 20: `var(--${string})`;
-        readonly 24: `var(--${string})`;
-        readonly 32: `var(--${string})`;
-        readonly 40: `var(--${string})`;
-        readonly 48: `var(--${string})`;
-        readonly 56: `var(--${string})`;
-        readonly 64: `var(--${string})`;
+        readonly "0": "var(--cui-space-0)";
+        readonly "1": "var(--cui-space-1)";
+        readonly "2": "var(--cui-space-2)";
+        readonly "3": "var(--cui-space-3)";
+        readonly "4": "var(--cui-space-4)";
+        readonly "5": "var(--cui-space-5)";
+        readonly "6": "var(--cui-space-6)";
+        readonly "8": "var(--cui-space-8)";
+        readonly "10": "var(--cui-space-10)";
+        readonly "12": "var(--cui-space-12)";
+        readonly "16": "var(--cui-space-16)";
+        readonly "20": "var(--cui-space-20)";
+        readonly "24": "var(--cui-space-24)";
+        readonly "32": "var(--cui-space-32)";
+        readonly "40": "var(--cui-space-40)";
+        readonly "48": "var(--cui-space-48)";
+        readonly "56": "var(--cui-space-56)";
+        readonly "64": "var(--cui-space-64)";
+        readonly auto: "var(--cui-space-auto)";
+        readonly px: "var(--cui-space-px)";
     };
     readonly radii: {
-        readonly none: `var(--${string})`;
-        readonly xs: `var(--${string})`;
-        readonly sm: `var(--${string})`;
-        readonly default: `var(--${string})`;
-        readonly md: `var(--${string})`;
-        readonly lg: `var(--${string})`;
-        readonly xl: `var(--${string})`;
-        readonly full: `var(--${string})`;
+        readonly none: "var(--cui-radius-none)";
+        readonly xs: "var(--cui-radius-xs)";
+        readonly sm: "var(--cui-radius-sm)";
+        readonly default: "var(--cui-radius-lg)";
+        readonly md: "var(--cui-radius-md)";
+        readonly lg: "var(--cui-radius-lg)";
+        readonly xl: "var(--cui-radius-xl)";
+        readonly full: "var(--cui-radius-full)";
     };
     readonly boxShadow: {
-        readonly default: `var(--${string})`;
-        readonly md: `var(--${string})`;
-        readonly lg: `var(--${string})`;
-        readonly xl: `var(--${string})`;
-        readonly "2xl": `var(--${string})`;
-        readonly inner: `var(--${string})`;
-        readonly outline: `var(--${string})`;
-        readonly none: `var(--${string})`;
+        readonly default: "var(--cui-shadow-sm)";
+        readonly md: "var(--cui-shadow-md)";
+        readonly lg: "var(--cui-themes-boxShadow-lg)";
+        readonly xl: "var(--cui-themes-boxShadow-xl)";
+        readonly "2xl": "var(--cui-themes-boxShadow-2xl)";
+        readonly inner: "var(--cui-themes-boxShadow-inner)";
+        readonly outline: "var(--cui-themes-boxShadow-outline)";
+        readonly none: "var(--cui-shadow-none)";
     };
     readonly zIndex: {
-        readonly "-1": `var(--${string})`;
-        readonly 0: `var(--${string})`;
-        readonly 10: `var(--${string})`;
-        readonly 20: `var(--${string})`;
-        readonly 30: `var(--${string})`;
-        readonly 40: `var(--${string})`;
-        readonly 50: `var(--${string})`;
-        readonly auto: `var(--${string})`;
+        readonly "0": "var(--cui-themes-zIndex-0)";
+        readonly "10": "var(--cui-themes-zIndex-10)";
+        readonly "20": "var(--cui-themes-zIndex-20)";
+        readonly "30": "var(--cui-themes-zIndex-30)";
+        readonly "40": "var(--cui-themes-zIndex-40)";
+        readonly "50": "var(--cui-themes-zIndex-50)";
+        readonly "-1": "var(--cui-themes-zIndex--1)";
+        readonly auto: "var(--cui-themes-zIndex-auto)";
     };
 };
 ```
@@ -2491,8 +1958,8 @@ export declare const tokens: {
 ## @codeui/styles/internal/icons/icon.css.d.ts
 
 ```ts
-export declare const iconSize: `var(--${string})`;
 export declare const icon: string;
+export declare const iconSize: `var(--${string})`;
 ```
 
 ## @codeui/styles/internal/parts/accordion.d.ts
@@ -3004,7 +2471,7 @@ export declare const toastStyles: ToastStyles;
 ```ts
 import type * as CSS from "csstype";
 type BooleanKey<T> = T extends "true" | "false" ? boolean : T;
-type VariantSelection<Variants> = {
+export type VariantSelection<Variants> = {
     [Group in keyof Variants]?: BooleanKey<keyof Variants[Group]>;
 };
 export type RuntimeFn<Variants> = ((options?: VariantSelection<Variants>) => string) & {

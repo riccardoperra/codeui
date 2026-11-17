@@ -1,0 +1,206 @@
+{
+  "components/Accordion/Accordion.css.ts": [
+    "foundation/cui.css.ts",
+    "foundation/motion.css.ts",
+    "components/Accordion/Accordion.css.ts"
+  ],
+  "components/Alert/Alert.css.ts": [
+    "foundation/cui.css.ts",
+    "components/Alert/Alert.css.ts"
+  ],
+  "components/Badge/Badge.css.ts": [
+    "foundation/cui.css.ts",
+    "components/Badge/Badge.css.ts"
+  ],
+  "components/Button/Button.css.ts": [
+    "foundation/cui.css.ts",
+    "foundation/motion.css.ts",
+    "components/Button/Button.css.ts"
+  ],
+  "components/Button/Loading.css.ts": [
+    "foundation/cui.css.ts",
+    "foundation/motion.css.ts",
+    "components/Button/Loading.css.ts"
+  ],
+  "components/CheckBox/CheckBox.css.ts": [
+    "foundation/cui.css.ts",
+    "foundation/motion.css.ts",
+    "components/Field/Field.css.ts",
+    "components/CheckBox/CheckBox.css.ts"
+  ],
+  "components/Combobox/Combobox.css.ts": [
+    "foundation/cui.css.ts",
+    "foundation/motion.css.ts",
+    "components/Combobox/Combobox.css.ts"
+  ],
+  "components/CommandMenu/CommandMenu.css.ts": [
+    "foundation/cui.css.ts",
+    "components/Dialog/Dialog.css.ts",
+    "components/CommandMenu/CommandMenu.css.ts"
+  ],
+  "components/Dialog/Dialog.css.ts": [
+    "foundation/cui.css.ts",
+    "components/Dialog/Dialog.css.ts"
+  ],
+  "components/Dropdown/Dropdown.css.ts": [
+    "foundation/cui.css.ts",
+    "foundation/motion.css.ts",
+    "components/Dropdown/Dropdown.css.ts"
+  ],
+  "components/Field/Field.css.ts": [
+    "foundation/cui.css.ts",
+    "foundation/motion.css.ts",
+    "components/Field/Field.css.ts"
+  ],
+  "components/Field/FieldError/FieldError.css.ts": [
+    "foundation/cui.css.ts",
+    "components/Field/FieldError/FieldError.css.ts"
+  ],
+  "components/Field/FieldLabel/FieldLabel.css.ts": [
+    "foundation/cui.css.ts",
+    "components/Field/FieldLabel/FieldLabel.css.ts"
+  ],
+  "components/Field/FieldMessage/FieldMessage.css.ts": [
+    "foundation/cui.css.ts",
+    "foundation/motion.css.ts",
+    "components/Field/Field.css.ts",
+    "components/Field/FieldMessage/FieldMessage.css.ts"
+  ],
+  "components/IconButton/IconButton.css.ts": [
+    "foundation/cui.css.ts",
+    "foundation/motion.css.ts",
+    "components/Button/Button.css.ts",
+    "components/IconButton/IconButton.css.ts"
+  ],
+  "components/Kbd/Kbd.css.ts": [
+    "foundation/cui.css.ts",
+    "components/Kbd/Kbd.css.ts"
+  ],
+  "components/Link/Link.css.ts": [
+    "components/Link/Link.css.ts"
+  ],
+  "components/Listbox/Listbox.css.ts": [
+    "foundation/cui.css.ts",
+    "components/Listbox/Listbox.css.ts"
+  ],
+  "components/NumberField/NumberField.css.ts": [
+    "foundation/cui.css.ts",
+    "foundation/motion.css.ts",
+    "components/Field/Field.css.ts",
+    "components/NumberField/NumberField.css.ts"
+  ],
+  "components/OptionCard/OptionCard.css.ts": [
+    "foundation/cui.css.ts",
+    "foundation/motion.css.ts",
+    "components/OptionCard/OptionCard.css.ts"
+  ],
+  "components/Pagination/Pagination.css.ts": [
+    "foundation/cui.css.ts",
+    "components/Pagination/Pagination.css.ts"
+  ],
+  "components/Popover/Popover.css.ts": [
+    "foundation/cui.css.ts",
+    "foundation/motion.css.ts",
+    "components/Popover/Popover.css.ts"
+  ],
+  "components/Progress/Progress.css.ts": [
+    "foundation/cui.css.ts",
+    "components/Progress/Progress.css.ts"
+  ],
+  "components/RadioList/Radio.css.ts": [
+    "foundation/cui.css.ts",
+    "foundation/motion.css.ts",
+    "components/Field/Field.css.ts",
+    "components/RadioList/Radio.css.ts"
+  ],
+  "components/SegmentedControl/SegmentedControl.css.ts": [
+    "foundation/cui.css.ts",
+    "foundation/motion.css.ts",
+    "components/SegmentedControl/SegmentedControl.css.ts"
+  ],
+  "components/Select/Select.css.ts": [
+    "foundation/cui.css.ts",
+    "foundation/motion.css.ts",
+    "components/Field/Field.css.ts",
+    "components/Select/Select.css.ts"
+  ],
+  "components/Settings/Settings.css.ts": [
+    "foundation/cui.css.ts",
+    "components/Settings/Settings.css.ts"
+  ],
+  "components/Sheet/Sheet.css.ts": [
+    "foundation/cui.css.ts",
+    "components/Sheet/Sheet.css.ts"
+  ],
+  "components/Skeleton/Skeleton.css.ts": [
+    "foundation/cui.css.ts",
+    "components/Skeleton/Skeleton.css.ts"
+  ],
+  "components/Slider/Slider.css.ts": [
+    "foundation/cui.css.ts",
+    "components/Slider/Slider.css.ts"
+  ],
+  "components/Spinner/Spinner.css.ts": [
+    "foundation/cui.css.ts",
+    "components/Spinner/Spinner.css.ts"
+  ],
+  "components/Stack/Stack.css.ts": [
+    "foundation/cui.css.ts",
+    "components/Stack/Stack.css.ts"
+  ],
+  "components/Switch/Switch.css.ts": [
+    "foundation/cui.css.ts",
+    "foundation/motion.css.ts",
+    "components/Switch/Switch.css.ts"
+  ],
+  "components/Tabs/Tabs.css.ts": [
+    "foundation/cui.css.ts",
+    "foundation/motion.css.ts",
+    "components/Tabs/Tabs.css.ts"
+  ],
+  "components/Text/Text.css.ts": [
+    "foundation/cui.css.ts",
+    "components/Text/Text.css.ts"
+  ],
+  "components/TextArea/TextArea.css.ts": [
+    "foundation/cui.css.ts",
+    "foundation/motion.css.ts",
+    "components/Field/Field.css.ts",
+    "components/TextArea/TextArea.css.ts"
+  ],
+  "components/TextField/TextField.css.ts": [
+    "foundation/cui.css.ts",
+    "foundation/motion.css.ts",
+    "components/Field/Field.css.ts",
+    "components/TextField/TextField.css.ts"
+  ],
+  "components/Toast/Toast.css.ts": [
+    "foundation/cui.css.ts",
+    "foundation/motion.css.ts",
+    "components/Toast/Toast.css.ts"
+  ],
+  "components/Tooltip/Tooltip.css.ts": [
+    "foundation/cui.css.ts",
+    "foundation/motion.css.ts",
+    "components/Tooltip/Tooltip.css.ts"
+  ],
+  "foundation/contract.css.ts": [
+    "foundation/cui.css.ts"
+  ],
+  "foundation/cui.css.ts": [
+    "foundation/cui.css.ts"
+  ],
+  "foundation/layout.css.ts": [],
+  "foundation/text.css.ts": [
+    "foundation/cui.css.ts",
+    "foundation/themes.css.ts",
+    "foundation/text.css.ts"
+  ],
+  "foundation/themes.css.ts": [
+    "foundation/cui.css.ts",
+    "foundation/themes.css.ts"
+  ],
+  "icons/icon.css.ts": [
+    "icons/icon.css.ts"
+  ]
+}

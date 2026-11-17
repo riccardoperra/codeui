@@ -1,0 +1,15 @@
+@layer cui.components;
+@layer cui.components {
+  .cui-link-link {
+    outline: none;
+    display: inline-flex;
+    align-items: center;
+    line-height: inherit;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
+  .cui-link-link_variant_underline:hover {
+    text-decoration: underline;
+  }
+}

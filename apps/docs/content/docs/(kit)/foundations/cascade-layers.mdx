@@ -19,7 +19,7 @@ The second button gets its shape from one class. The kit sets the button's radiu
 
 ## How the layer works
 
-`packages/styles/src/foundation/layer.css.ts` declares the parent layer with vanilla-extract `globalLayer("cui")` during the library build. The generated CSS declares the internal order `cui.base`, `cui.components`, `cui.overrides` before its rules. It wraps `style`, `globalStyle`, `styleVariants`, `recipe` and `createTheme`, and every kit `.css.ts` file imports those wrappers instead of the vanilla-extract originals. The rule each one emits stays inside the `cui` parent. Base field labels and component overrides have fixed internal priorities, so loading their CSS files in a different order does not change those known composition cases.
+The component CSS lives in `packages/styles/css` and uses native cascade layers. Each distributed stylesheet declares the order `cui.base`, `cui.components`, `cui.overrides` before its rules. Base field labels and component overrides have fixed internal priorities, so exchanging their stylesheet order preserves their composition.
 
 The browser resolves a conflict in this order, from weakest to strongest:
 

@@ -1,0 +1,82 @@
+@layer cui.components;
+@layer cui.components {
+  .cui-badge-root_compound_tone_neutral_variant_soft {
+    background-color: var(--cui-action-neutral-base);
+    color: var(--cui-text-panel-muted);
+  }
+  .cui-badge-root_compound_tone_neutral_variant_outline {
+    border-color: var(--cui-action-neutral-active);
+    color: var(--cui-text-panel-muted);
+  }
+  .cui-badge-root_compound_tone_info_variant_soft {
+    background-color: var(--cui-action-brand-soft-base);
+    color: var(--cui-action-brand-soft-text);
+  }
+  .cui-badge-root_compound_tone_info_variant_outline {
+    border-color: var(--cui-action-brand-base);
+    color: var(--cui-action-brand-soft-text);
+  }
+  .cui-badge-root_compound_tone_success_variant_soft {
+    background-color: var(--cui-action-success-base);
+    color: var(--cui-action-success-text);
+  }
+  .cui-badge-root_compound_tone_success_variant_outline {
+    border-color: var(--cui-action-success-base);
+    color: var(--cui-text-default);
+  }
+  .cui-badge-root_compound_tone_warning_variant_soft {
+    background-color: var(--cui-action-caution-base);
+    color: var(--cui-action-caution-text);
+  }
+  .cui-badge-root_compound_tone_warning_variant_outline {
+    border-color: var(--cui-action-caution-base);
+    color: var(--cui-text-default);
+  }
+  .cui-badge-root_compound_tone_danger_variant_soft {
+    background-color: var(--cui-action-danger-base);
+    color: var(--cui-action-danger-text);
+  }
+  .cui-badge-root_compound_tone_danger_variant_outline {
+    border-color: var(--cui-action-danger-base);
+    color: var(--cui-text-danger);
+  }
+  .cui-badge-root {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--cui-space-1);
+    box-sizing: border-box;
+    border-radius: var(--cui-radius-badge);
+    border: var(--cui-border-width) solid transparent;
+    font-family: var(--cui-font-family-sans);
+    font-weight: var(--cui-font-weight-normal);
+    line-height: var(--cui-font-line-height-compact);
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+  .cui-badge-root_size_sm {
+    min-height: var(--cui-space-4);
+    padding: var(--cui-space-px) var(--cui-space-1-5);
+    font-size: var(--cui-font-size-badge);
+  }
+  .cui-badge-root_size_md {
+    min-height: var(--cui-space-5);
+    padding: var(--cui-space-0-5) var(--cui-space-2);
+    font-size: var(--cui-font-size-xs);
+  }
+  .cui-badge-root_variant_outline {
+    background-color: transparent;
+  }
+  .cui-badge-icon {
+    display: inline-flex;
+    flex-shrink: 0;
+  }
+  .cui-badge-icon > svg {
+    width: 1em;
+    height: 1em;
+  }
+  .cui-badge-label {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

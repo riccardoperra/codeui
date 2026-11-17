@@ -3,7 +3,7 @@ import {
 	mapFontSizeValue,
 	mapLineHeightValue,
 } from "../../foundation/sizes";
-import { StyleRule } from "@vanilla-extract/css";
+import { StyleRule } from "../../types";
 
 function makeFieldMessageSize(
 	sizesMap: Record<BaseComponentSize, BaseComponentSize>,

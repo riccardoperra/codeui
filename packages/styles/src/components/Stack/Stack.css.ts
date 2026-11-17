@@ -1,47 +1,59 @@
-import { recipe } from "../../foundation/layer.css";
-import { tokens } from "../../foundation/cui.css";
-
-const gaps = Object.fromEntries(
-	Object.entries(tokens.space).map(([key, value]) => [key, { gap: value }]),
-) as Record<keyof typeof tokens.space, { gap: string }>;
-
-/** `stackStyles.root(variants)` and `<Stack>` share these classes. */
-export const root = recipe(
-	{
-		base: { display: "flex" },
-		variants: {
-			gap: gaps,
-			direction: {
-				column: { flexDirection: "column" },
-				row: { flexDirection: "row" },
-			},
-			wrap: {
-				true: { flexWrap: "wrap" },
-				false: { flexWrap: "nowrap" },
-			},
-			align: {
-				start: { alignItems: "flex-start" },
-				center: { alignItems: "center" },
-				end: { alignItems: "flex-end" },
-				stretch: { alignItems: "stretch" },
-				baseline: { alignItems: "baseline" },
-			},
-			justify: {
-				start: { justifyContent: "flex-start" },
-				center: { justifyContent: "center" },
-				end: { justifyContent: "flex-end" },
-				between: { justifyContent: "space-between" },
-				around: { justifyContent: "space-around" },
-				evenly: { justifyContent: "space-evenly" },
-			},
+import { recipe } from "../../recipe";
+export const root = recipe({
+	defaultClassName: "cui-stack-root",
+	variantClassNames: {
+		gap: {
+			"0": "cui-stack-root_gap_0",
+			"1": "cui-stack-root_gap_1",
+			"2": "cui-stack-root_gap_2",
+			"3": "cui-stack-root_gap_3",
+			"4": "cui-stack-root_gap_4",
+			"5": "cui-stack-root_gap_5",
+			"6": "cui-stack-root_gap_6",
+			"8": "cui-stack-root_gap_8",
+			"10": "cui-stack-root_gap_10",
+			"12": "cui-stack-root_gap_12",
+			"16": "cui-stack-root_gap_16",
+			"20": "cui-stack-root_gap_20",
+			"24": "cui-stack-root_gap_24",
+			"32": "cui-stack-root_gap_32",
+			"40": "cui-stack-root_gap_40",
+			"48": "cui-stack-root_gap_48",
+			"56": "cui-stack-root_gap_56",
+			"64": "cui-stack-root_gap_64",
+			auto: "cui-stack-root_gap_auto",
+			px: "cui-stack-root_gap_px",
+			"0.5": "cui-stack-root_gap_0-5",
+			"1.5": "cui-stack-root_gap_1-5",
+			"2.5": "cui-stack-root_gap_2-5",
 		},
-		defaultVariants: {
-			gap: "2",
-			direction: "column",
-			wrap: false,
-			align: "stretch",
-			justify: "start",
+		direction: {
+			column: "cui-stack-root_direction_column",
+			row: "cui-stack-root_direction_row",
+		},
+		wrap: { true: "cui-stack-root_wrap_true", false: "cui-stack-root_wrap_false" },
+		align: {
+			start: "cui-stack-root_align_start",
+			center: "cui-stack-root_align_center",
+			end: "cui-stack-root_align_end",
+			stretch: "cui-stack-root_align_stretch",
+			baseline: "cui-stack-root_align_baseline",
+		},
+		justify: {
+			start: "cui-stack-root_justify_start",
+			center: "cui-stack-root_justify_center",
+			end: "cui-stack-root_justify_end",
+			between: "cui-stack-root_justify_between",
+			around: "cui-stack-root_justify_around",
+			evenly: "cui-stack-root_justify_evenly",
 		},
 	},
-	"root",
-);
+	defaultVariants: {
+		gap: "2",
+		direction: "column",
+		wrap: false,
+		align: "stretch",
+		justify: "start",
+	},
+	compoundVariants: [],
+});

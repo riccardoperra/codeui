@@ -1,0 +1,74 @@
+@layer cui.components;
+@layer cui.components {
+  .cui-tabs-tabsTheme {
+    --cui-tabsTheme-tabListIndicatorColor: var(--cui-border-divider);
+    --cui-tabsTheme-tabHeaderHoverBackgroundColor: var(--cui-action-neutral-hover);
+    --cui-tabsTheme-tabHeaderColor: var(--cui-text-muted);
+    --cui-tabsTheme-tabHeaderHoverColor: var(--cui-text-default);
+    --cui-tabsTheme-tabHeaderSelectedColor: var(--cui-text-default);
+    --cui-tabsTheme-tabIndicatorColor: var(--cui-action-brand-base);
+  }
+  .cui-tabs-tabsRoot[data-orientation=vertical] {
+    display: flex;
+    flex: 1;
+    flex-shrink: 0;
+  }
+  .cui-tabs-tabsList {
+    display: flex;
+    position: relative;
+  }
+  .cui-tabs-tabsList[data-orientation=horizontal] {
+    border-bottom: var(--cui-border-width) solid var(--cui-tabsTheme-tabListIndicatorColor);
+  }
+  .cui-tabs-tabsList[data-orientation=vertical] {
+    align-items: stretch;
+    flex-direction: column;
+    border-right: var(--cui-border-width) solid var(--cui-tabsTheme-tabListIndicatorColor);
+  }
+  .cui-tabs-tabsHeader {
+    display: inline-block;
+    position: relative;
+    outline: none;
+    padding: var(--cui-space-2) var(--cui-space-4);
+    font-size: var(--cui-font-size-sm);
+    font-weight: var(--cui-font-weight-semibold);
+    line-height: var(--cui-font-line-height-sm);
+    color: var(--cui-tabsTheme-tabHeaderColor);
+    transition: color var(--cui-motion-duration-fast) var(--cui-motion-ease-out);
+  }
+  .cui-tabs-tabsHeader:hover {
+    color: var(--cui-tabsTheme-tabHeaderHoverColor);
+  }
+  .cui-tabs-tabsHeader:focus-visible {
+    outline: var(--cui-focus-width) solid var(--cui-focus-color);
+    outline-offset: var(--cui-focus-offset);
+    border-radius: var(--cui-radius-badge);
+  }
+  .cui-tabs-tabsHeader[data-selected] {
+    color: var(--cui-tabsTheme-tabHeaderSelectedColor);
+  }
+  .cui-tabs-tabsContent {
+    padding: var(--cui-space-2);
+  }
+  .cui-tabs-indicator {
+    position: absolute;
+    transition: width var(--cui-motion-duration-normal) var(--cui-motion-ease-out), height var(--cui-motion-duration-normal) var(--cui-motion-ease-out), transform var(--cui-motion-duration-normal) var(--cui-motion-ease-out), left var(--cui-motion-duration-normal) var(--cui-motion-ease-out), top var(--cui-motion-duration-normal) var(--cui-motion-ease-out);
+    background-color: var(--cui-tabsTheme-tabIndicatorColor);
+  }
+  :root[data-cui-input="keyboard"] .cui-tabs-indicator {
+    transition: none;
+  }
+  .cui-tabs-indicator[data-orientation=horizontal] {
+    bottom: -2px;
+    height: 3px;
+  }
+  .cui-tabs-indicator[data-orientation=vertical] {
+    right: -1px;
+    width: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cui-tabs-indicator {
+      transition: none;
+    }
+  }
+}

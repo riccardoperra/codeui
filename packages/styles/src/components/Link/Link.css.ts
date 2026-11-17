@@ -1,34 +1,10 @@
-import { createTheme, recipe } from "../../foundation/layer.css";
-import { RecipeVariants } from "@vanilla-extract/recipes";
-
-const [linkTheme] = createTheme({}, "linkTheme");
-
-export const link = recipe(
-	{
-		base: [
-			linkTheme,
-			{
-				outline: "none",
-				display: "inline-flex",
-				alignItems: "center",
-				lineHeight: "inherit",
-				textDecoration: "none",
-				color: "inherit",
-				cursor: "pointer",
-			},
-		],
-
-		variants: {
-			variant: {
-				underline: {
-					":hover": {
-						textDecoration: "underline",
-					},
-				},
-			},
-		},
-	},
-	"link",
-);
+import type { RecipeVariants } from "../../types";
+import { recipe } from "../../recipe";
+export const link = recipe({
+	defaultClassName: "cui-link-link cui-link-linkTheme",
+	variantClassNames: { variant: { underline: "cui-link-link_variant_underline" } },
+	defaultVariants: {},
+	compoundVariants: [],
+});
 
 export type LinkVariants = RecipeVariants<typeof link>;

@@ -86,8 +86,12 @@ pnpm --filter @codeui/styles check
 pnpm --filter @codeui/styles typecheck
 ```
 
-The build extracts `.css.ts` sources through the official vanilla-extract integration, gathers CSS by module scope, and emits each component's dependency closure. ESM and CommonJS helpers contain compiled strings and recipe maps. Consumers do not install a vanilla-extract plugin.
+Component rules live in `css/`. The build bundles each entry and its dependencies. Lightning CSS expands custom media such as `@media screen and (--cui-sm)` when used. TypeScript files in `src/` export class names, variant maps and token references.
 
-`entries.json` owns component modules and dependencies. `compatibility.json` owns the exact private module paths used by the Solid adapter. Package exports, declaration wrappers, and manifests are generated from those files. Named identifiers use explicit source names rather than file paths or extraction order.
+The token source is `tokens/inkstone.resolver.json` and its referenced DTCG JSON files. Edit those inputs and run `pnpm --filter @codeui/styles build` to regenerate theme values, references and breakpoints. `tokens/web-values.json` holds CSS-specific values. The web emitter preserves scoped light and dark values, live aliases and the existing radius and color formulas.
+
+Toghen is a build dependency. Its current release requires a different version string, so the build adapts the loaded document in memory while the authored resolver keeps DTCG `2025.10`. Build with Node 24 or later and the workspace pnpm version.
+
+`entries.json` declares component entries and dependencies. `style-sources.json` maps helper modules to their stylesheet sources. `compatibility.json` lists the private paths used by the Solid adapter.
 
 A build fails if the public CSS contract changes. To accept an intentional contract change, review the names and run `pnpm --filter @codeui/styles build --update-contract`. Commit the updated `contract.json` with the source change.
