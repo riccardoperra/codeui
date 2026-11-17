@@ -1,0 +1,8 @@
+/* The anatomy figure draws the panel in the flow, not fixed to the bottom of the viewport. */
+.command-menu-anatomy-panel {
+	position: relative;
+	inset: auto;
+	transform: none;
+	width: 100%;
+	max-width: 100%;
+}
