@@ -42,19 +42,21 @@ export function OptionCard<T extends string>(props: OptionCardProps<T>) {
 			<P.ItemInput class={cls("itemInput")} />
 			<P.ItemLabel variant={variant()} class={cls("itemLabel")}>
 				<Show when={props.preview}>
-					<P.Preview class={cls("preview")}>{props.preview}</P.Preview>
+					{preview => <P.Preview class={cls("preview")}>{preview()}</P.Preview>}
 				</Show>
 				<span class={styles.itemText}>
 					<span class={styles.itemName}>
 						<span>{props.label}</span>
 						<Show when={props.badge}>
-							<P.Badge class={cls("badge")}>{props.badge}</P.Badge>
+							{badge => <P.Badge class={cls("badge")}>{badge()}</P.Badge>}
 						</Show>
 					</span>
 					<Show when={props.description}>
-						<P.ItemDescription as="span" class={cls("itemDescription")}>
-							{props.description}
-						</P.ItemDescription>
+						{description => (
+							<P.ItemDescription as="span" class={cls("itemDescription")}>
+								{description()}
+							</P.ItemDescription>
+						)}
 					</Show>
 				</span>
 			</P.ItemLabel>
@@ -107,22 +109,26 @@ export function OptionCardGroup<T extends string>(props: OptionCardGroupProps<T>
 			class={mergeClasses(local.classes?.root, local.class)}
 		>
 			<Show when={local.label}>
-				<P.Label class={local.classes?.label}>{local.label}</P.Label>
+				{label => <P.Label class={local.classes?.label}>{label()}</P.Label>}
 			</Show>
 			<Show when={local.description}>
-				<P.Description class={local.classes?.description}>
-					{local.description}
-				</P.Description>
+				{description => (
+					<P.Description class={local.classes?.description}>
+						{description()}
+					</P.Description>
+				)}
 			</Show>
 			<AppearanceContext.Provider
 				value={() => ({ classes: local.classes, variant: local.variant })}
 			>
 				<For each={local.items}>{item => <OptionCard {...item} />}</For>
 			</AppearanceContext.Provider>
-			<Show when={local.errorMessage}>
-				<P.ErrorMessage class={local.classes?.errorMessage}>
-					{local.errorMessage}
-				</P.ErrorMessage>
+			<Show when={props.validationState === "invalid" && local.errorMessage}>
+				{errorMessage => (
+					<P.ErrorMessage class={local.classes?.errorMessage}>
+						{errorMessage()}
+					</P.ErrorMessage>
+				)}
 			</Show>
 		</P.Root>
 	);

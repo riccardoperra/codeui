@@ -73,13 +73,15 @@ export function TextField(props: TextFieldProps) {
 			{...rootProps}
 		>
 			<Show when={local.label} keyed={false}>
-				<TextFieldLabel
-					for={inputId()}
-					data-cui="text-field-label"
-					class={mergeClasses(local.slotClasses?.label, local.classes?.label)}
-				>
-					{local.label}
-				</TextFieldLabel>
+				{label => (
+					<TextFieldLabel
+						for={inputId()}
+						data-cui="text-field-label"
+						class={mergeClasses(local.slotClasses?.label, local.classes?.label)}
+					>
+						{label()}
+					</TextFieldLabel>
+				)}
 			</Show>
 			<KTextField.Input
 				{...inputProps}
@@ -90,25 +92,32 @@ export function TextField(props: TextFieldProps) {
 				ref={local.ref}
 			/>
 			<Show when={local.description} keyed={false}>
-				<TextFieldMessage
-					data-cui="text-field-description"
-					class={local.classes?.description}
-				>
-					{local.description}
-				</TextFieldMessage>
+				{description => (
+					<TextFieldMessage
+						data-cui="text-field-description"
+						class={local.classes?.description}
+					>
+						{description()}
+					</TextFieldMessage>
+				)}
 			</Show>
 
-			<Show when={errorMessageProps.errorMessage} keyed={false}>
-				<KTextField.ErrorMessage
-					data-cui="text-field-error-message"
-					class={mergeClasses(
-						errorMessageProps.class,
-						local.slotClasses?.errorLabel,
-						local.classes?.errorMessage,
-					)}
-				>
-					{local.errorMessage}
-				</KTextField.ErrorMessage>
+			<Show
+				when={props.validationState === "invalid" && local.errorMessage}
+				keyed={false}
+			>
+				{errorMessage => (
+					<KTextField.ErrorMessage
+						data-cui="text-field-error-message"
+						class={mergeClasses(
+							errorMessageProps.class,
+							local.slotClasses?.errorLabel,
+							local.classes?.errorMessage,
+						)}
+					>
+						{errorMessage()}
+					</KTextField.ErrorMessage>
+				)}
 			</Show>
 		</KTextField>
 	);

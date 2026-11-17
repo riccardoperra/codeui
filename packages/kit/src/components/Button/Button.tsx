@@ -46,7 +46,9 @@ export function Button<T extends ValidComponent = "button">(props: PolymorphicPr
 				<Loading />
 			</Show>
 			<Show when={internal.leftIcon} keyed={false}>
-				<ButtonIcon>{internal.leftIcon}</ButtonIcon>
+				{leftIcon => (
+					<ButtonIcon>{leftIcon()}</ButtonIcon>
+				)}
 			</Show>
 			{internal.children}
 		</KButton>

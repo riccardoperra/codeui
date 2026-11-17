@@ -108,12 +108,14 @@ export function RadioListItem<T extends ValidComponent = "div">(
 				/>
 			</RadioGroup.ItemControl>
 			<Show when={local.label}>
-				<RadioGroup.ItemLabel
-					data-cui="radio-list-item-label"
-					class={mergeClasses(parentClasses?.()?.itemLabel, local.classes?.itemLabel)}
-				>
-					{local.label}
-				</RadioGroup.ItemLabel>
+				{label => (
+					<RadioGroup.ItemLabel
+						data-cui="radio-list-item-label"
+						class={mergeClasses(parentClasses?.()?.itemLabel, local.classes?.itemLabel)}
+					>
+						{label()}
+					</RadioGroup.ItemLabel>
+				)}
 			</Show>
 		</RadioGroup.Item>
 	);
@@ -140,9 +142,11 @@ export function RadioList<T extends ValidComponent = "div">(
 			class={mergeClasses(baseFieldContainer, local.class, local.classes?.root)}
 		>
 			<Show when={local.label} keyed={false}>
-				<RadioGroupLabel data-cui="radio-list-label" class={local.classes?.label}>
-					{local.label}
-				</RadioGroupLabel>
+				{label => (
+					<RadioGroupLabel data-cui="radio-list-label" class={local.classes?.label}>
+						{label()}
+					</RadioGroupLabel>
+				)}
 			</Show>
 			<div
 				data-cui="radio-list-items"
@@ -160,21 +164,28 @@ export function RadioList<T extends ValidComponent = "div">(
 				</RadioClassesContext.Provider>
 			</div>
 			<Show when={local.description} keyed={false}>
-				<RadioGroupDescription
-					data-cui="radio-list-description"
-					class={local.classes?.description}
-				>
-					{local.description}
-				</RadioGroupDescription>
+				{description => (
+					<RadioGroupDescription
+						data-cui="radio-list-description"
+						class={local.classes?.description}
+					>
+						{description()}
+					</RadioGroupDescription>
+				)}
 			</Show>
 
-			<Show when={errorMessageProps.errorMessage} keyed={false}>
-				<RadioGroup.ErrorMessage
-					data-cui="radio-list-error-message"
-					class={mergeClasses(errorMessageProps.class, local.classes?.errorMessage)}
-				>
-					{local.errorMessage}
-				</RadioGroup.ErrorMessage>
+			<Show
+				when={props.validationState === "invalid" && local.errorMessage}
+				keyed={false}
+			>
+				{errorMessage => (
+					<RadioGroup.ErrorMessage
+						data-cui="radio-list-error-message"
+						class={mergeClasses(errorMessageProps.class, local.classes?.errorMessage)}
+					>
+						{errorMessage()}
+					</RadioGroup.ErrorMessage>
+				)}
 			</Show>
 		</RadioGroup>
 	);

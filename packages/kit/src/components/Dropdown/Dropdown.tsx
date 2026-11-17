@@ -44,7 +44,9 @@ export function DropdownMenuItem<T extends ValidComponent = "div">(
 			{...others} class={mergeClasses(styles.item, props.class)}>
 			{local.children}
 			<Show when={props.rightSlot} keyed={false}>
-				<div class={styles.rightSlot}>{props.rightSlot}</div>
+				{rightSlot => (
+					<div class={styles.rightSlot}>{rightSlot()}</div>
+				)}
 			</Show>
 		</KDropdownMenu.Item>
 	);
@@ -73,7 +75,9 @@ export function DropdownSubMenuTrigger<T extends ValidComponent = "div">(
 		<KDropdownMenu.SubTrigger {...others} class={styles.item}>
 			{local.children}
 			<Show when={local.rightSlot} keyed={false}>
-				<div class={styles.rightSlot}>{local.rightSlot}</div>
+				{rightSlot => (
+					<div class={styles.rightSlot}>{rightSlot()}</div>
+				)}
 			</Show>
 		</KDropdownMenu.SubTrigger>
 	);

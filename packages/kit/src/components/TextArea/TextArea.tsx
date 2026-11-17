@@ -76,13 +76,15 @@ export function TextArea(props: TextAreaProps) {
 			{...rootProps}
 		>
 			<Show when={local.label} keyed={false}>
-				<TextAreaLabel
-					for={inputId()}
-					data-cui="text-field-label"
-					class={mergeClasses(local.slotClasses?.label, local.classes?.label)}
-				>
-					{local.label}
-				</TextAreaLabel>
+				{label => (
+					<TextAreaLabel
+						for={inputId()}
+						data-cui="text-field-label"
+						class={mergeClasses(local.slotClasses?.label, local.classes?.label)}
+					>
+						{label()}
+					</TextAreaLabel>
+				)}
 			</Show>
 			<KTextField.TextArea
 				{...inputProps}
@@ -94,25 +96,32 @@ export function TextArea(props: TextAreaProps) {
 				ref={local.ref}
 			/>
 			<Show when={local.description} keyed={false}>
-				<TextAreaMessage
-					data-cui="text-field-description"
-					class={local.classes?.description}
-				>
-					{local.description}
-				</TextAreaMessage>
+				{description => (
+					<TextAreaMessage
+						data-cui="text-field-description"
+						class={local.classes?.description}
+					>
+						{description()}
+					</TextAreaMessage>
+				)}
 			</Show>
 
-			<Show when={errorMessageProps.errorMessage} keyed={false}>
-				<KTextField.ErrorMessage
-					data-cui="text-field-error-message"
-					class={mergeClasses(
-						errorMessageProps.class,
-						local.slotClasses?.errorLabel,
-						local.classes?.errorMessage,
-					)}
-				>
-					{local.errorMessage}
-				</KTextField.ErrorMessage>
+			<Show
+				when={props.validationState === "invalid" && local.errorMessage}
+				keyed={false}
+			>
+				{errorMessage => (
+					<KTextField.ErrorMessage
+						data-cui="text-field-error-message"
+						class={mergeClasses(
+							errorMessageProps.class,
+							local.slotClasses?.errorLabel,
+							local.classes?.errorMessage,
+						)}
+					>
+						{errorMessage()}
+					</KTextField.ErrorMessage>
+				)}
 			</Show>
 		</KTextField>
 	);

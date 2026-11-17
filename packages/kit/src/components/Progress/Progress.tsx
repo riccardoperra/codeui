@@ -25,7 +25,7 @@ export function Progress(props: ProgressProps) {
 			class={mergeClasses(local.class, local.classes?.root)}
 		>
 			<Show when={local.label}>
-				<P.Label class={local.classes?.label}>{local.label}</P.Label>
+				{label => <P.Label class={local.classes?.label}>{label()}</P.Label>}
 			</Show>
 			<Show when={local.showValue}>
 				<P.ValueLabel class={local.classes?.valueLabel} />
