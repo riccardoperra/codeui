@@ -118,7 +118,68 @@ Pass `value` and `onChange` to own the value. Pass `defaultValue` to let `Combob
 The Escape key works in two steps.
 
 1. With the list open, Escape closes the list and puts back the label of the selected option. The text the user typed is discarded.
-2. With the list closed, Escape clears the text. In an uncontrolled combobox, empty text also clears the selection, and `onChange` receives `null`.
+2. With the list closed, Escape clears the text. Empty text also clears a single selection, and `onChange` receives `null`.
+
+Inside a [Dialog](/docs/components/dialog), pass the dialog panel to `mount` so the list renders inside the dialog. Then the first Escape closes only the list, and the next Escape closes the dialog.
+
+### Clear a controlled value
+
+<SolidDemo name="combobox/controlled-clear" />
+
+When the text becomes empty, by a second Escape or by deleting it, a single-selection combobox calls `onChange(null)`. This holds for a controlled `value` too, including the one from `createComboboxOptions().controlled()`. Set your value to `null` in `onChange`, as the demo does, and the selection clears. Kobalte alone clears only when `value` is `undefined`. The kit's `Root` adds the call for a controlled value. With `multiple`, empty text keeps the selection.
+
+### Disabled options
+
+Both object demos above mark one option disabled, through `disabledKey` or `optionDisabled`. A disabled option stays in the list, takes no selection, and is skipped by the arrow keys.
+
+### Sizes
+
+<SolidDemo name="combobox/sizes" />
+
+`size="md"`, or no size, uses `--cui-control-height-sm`, 36px. `size="sm"` uses `--cui-control-height-compact`, 28px, for dense toolbars. On a coarse pointer, both grow to `--cui-control-height-md`, 40px.
+
+### Filtering
+
+<SolidDemo name="combobox/filtering" />
+
+`defaultFilter` decides which options match the text. The default, `"contains"`, matches anywhere in the text value. `"startsWith"` and `"endsWith"` anchor the match. A function receives each option and the current text and returns `true` to keep the option. The demo matches the capital letters, so "ts" finds TypeScript.
+
+### Description
+
+<SolidDemo name="combobox/description" />
+
+`description` renders a hint under the control and links it as the accessible description of the input.
+
+### Multiple selection
+
+`Combobox` accepts Kobalte's `multiple` prop, but the ready component has no way to show more than one value. After each pick, the input clears and the selected options appear only as check marks in the open list. Use [Select](/docs/components/select#multiple-selection) with `multiple` instead.
+
+## States
+
+### Controlled and uncontrolled
+
+<SolidDemo name="combobox/controlled" />
+
+Pass `value` and `onChange` to own the value. Pass `defaultValue` to let `Combobox` keep it, as the live demo does. `onChange` receives `null` when the selection is cleared. To control a value with no selection, pass `null`.
+
+### Controlled input text
+
+<SolidDemo name="combobox/input-value" />
+
+`inputValue` controls the text in the input, apart from the selected value. `onInputChange` reports each change. The parent can reject a change. In the demo, the text stops at 12 characters. Filtering and the highlighted option follow the controlled text.
+
+### Empty
+
+<SolidDemo name="combobox/empty" />
+
+`emptyContent` renders inside the list when no option matches the text. Setting it also keeps the list open with no matches, because it sets `allowsEmptyCollection` to `true` unless you pass that prop. Without `emptyContent`, the list closes when nothing matches.
+
+### Escape restores, then clears
+
+The Escape key works in two steps.
+
+1. With the list open, Escape closes the list and puts back the label of the selected option. The text the user typed is discarded.
+2. With the list closed, Escape clears the text. Empty text also clears a single selection, and `onChange` receives `null`.
 
 Inside a [Dialog](/docs/components/dialog), pass the dialog panel to `mount` so the list renders inside the dialog. Then the first Escape closes only the list, and the next Escape closes the dialog.
 
@@ -328,7 +389,7 @@ The highlighted option uses the accent fill. Inkstone §2 says a highlighted or 
 
 ## Composition examples
 
-- [Known gap: clearing a controlled value](#known-gap-clearing-a-controlled-value) keeps a controlled value in step with the text.
+- [Clear a controlled value](#clear-a-controlled-value) keeps a controlled value in step with the text.
 - [Styled parts API](#styled-parts-api) adds option descriptions with `ItemDescription`.
 - [Run commands](/docs/patterns/run-commands) covers search that runs an action instead of picking a value.
 

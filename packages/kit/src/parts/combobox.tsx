@@ -81,11 +81,26 @@ export type RootProps<
 export function Root<Option, OptGroup = never, T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, RootProps<Option, OptGroup, T>>,
 ) {
-	const [local, others] = splitProps(
+	const [local, input, others] = splitProps(
 		props as PolymorphicProps<"div", RootProps<Option, OptGroup>> & Local,
 		variantKeys,
+		["onInputChange"],
 	);
-	return <K.Root<Option, OptGroup> {...others} {...partAttributes("root", local)} />;
+	// Kobalte clears a single selection on empty text only when `value` is undefined.
+	// Report the clear for a controlled value too, so the parent can drop it.
+	const onInputChange = (text: string) => {
+		input.onInputChange?.(text);
+		if (text === "" && !others.multiple && others.value != null) {
+			(others.onChange as ((value: Option | null) => void) | undefined)?.(null);
+		}
+	};
+	return (
+		<K.Root<Option, OptGroup>
+			{...others}
+			onInputChange={onInputChange}
+			{...partAttributes("root", local)}
+		/>
+	);
 }
 
 export type ControlProps<

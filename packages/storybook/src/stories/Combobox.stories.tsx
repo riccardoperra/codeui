@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "storybook-solidjs-vite";
 import { Button, Combobox, createComboboxOptions, icons, Stack } from "@codeui/kit";
 import * as C from "@codeui/kit/combobox";
-import type { JSX } from "solid-js";
+import { createSignal, type JSX } from "solid-js";
 
 const meta = { title: "DesignSystem/Combobox", component: Combobox } satisfies Meta<
 	typeof Combobox
@@ -223,6 +223,25 @@ export const OptionsHelper: Story = {
 					defaultValue={options.optionFromValue("pineapple")}
 				/>
 			</div>
+		);
+	},
+};
+
+/** A controlled value from `createComboboxOptions().controlled()`. Clearing the text clears it. */
+export const Controlled: Story = {
+	render: () => {
+		const options = createComboboxOptions(languages, { valueKey: "extension", labelKey: "name" });
+		const [extension, setExtension] = createSignal<string | undefined>("rs");
+		return (
+			<Stack gap="2" style={{ "max-width": "320px" }}>
+				<Combobox
+					{...options.props()}
+					{...options.controlled(extension, setExtension)}
+					label="Language"
+					placeholder="Search languages"
+				/>
+				<output>Selected: {extension() ?? "none"}</output>
+			</Stack>
 		);
 	},
 };
