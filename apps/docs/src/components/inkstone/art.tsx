@@ -237,7 +237,7 @@ export function ArtElevation(props: { good?: boolean }) {
         boxShadow: '0 12px 28px rgb(0 0 0 / 0.55), 0 2px 6px rgb(0 0 0 / 0.4), inset 0 1px 0 rgb(255 255 255 / 0.08)',
       };
   return (
-    <Page style={{ position: 'relative' }}>
+    <Page style={{ position: 'relative', minHeight: 188, alignContent: 'start' }}>
       <Island style={lifted}>
         <Head title="Background" value="Gradient" />
         <Field>Search…</Field>
