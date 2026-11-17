@@ -82,7 +82,7 @@ export function FigSurfaces(props: { n?: number; caption?: ReactNode }) {
           </Page>
         </Pinned>
         <div style={{ position: 'absolute', right: 0, bottom: -20, width: 150 }}>
-          <Pinned n={5} at="r">
+          <Pinned n={5} at="tr">
             <Float>
               <Row label="Gradient" selected end="✓" />
               <Row label="Colour" />

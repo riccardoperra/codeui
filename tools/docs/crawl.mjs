@@ -1,6 +1,6 @@
 // Loads every prerendered docs page in a browser and fails on what a reader would see broken:
-// console errors, demos that render nothing, block demos the card shrink-wraps, and
-// horizontal scroll at phone width.
+// console errors, demos that render nothing, block demos the card shrink-wraps, horizontal scroll
+// at phone width, and Anatomy callouts that do not land on their part.
 //
 //   node tools/docs/crawl.mjs <base-url> [--only <path-substring>] [--json <file>]
 //
@@ -85,8 +85,68 @@ async function visit(pagePath, config) {
     if (d.shrunk > 1) report(pagePath, config, `demo ${d.name} is block content shrunk by ${Math.round(d.shrunk)}px`);
     if (d.overflow > 1) report(pagePath, config, `demo ${d.name} overflows its card by ${d.overflow}px`);
   }
+  for (const m of await anatomyDrift(page)) report(pagePath, config, m);
   await context.close();
   return state.demos.length;
+}
+
+/**
+ * An Anatomy figure must draw each callout on its part after the page settles. Scrolling to the
+ * figure moves overlays that Kobalte positions on scroll, which once left the callouts behind. A wide
+ * figure draws every callout; a narrow one draws a part when its legend row has focus.
+ */
+async function anatomyDrift(page) {
+  const figures = page.locator('figure[data-anatomy]');
+  const out = [];
+  for (let f = 0; f < (await figures.count()); f++) {
+    const figure = figures.nth(f);
+    await figure.evaluate((el) => el.scrollIntoView({ block: 'start' }));
+    await page.mouse.wheel(0, 120);
+    await page.waitForTimeout(300);
+    const check = (fig, only) => {
+      const stage = fig.querySelector('.cui-anatomy__stage').getBoundingClientRect();
+      const frame = fig.getBoundingClientRect();
+      const bad = [];
+      for (const g of fig.querySelectorAll('.cui-anatomy__lines g[data-part]')) {
+        if (only && g.dataset.part !== only) continue;
+        const el = fig.querySelector(`[data-solid-demo] [data-cui="${g.dataset.part}"]`);
+        if (!el) continue;
+        const r = el.getBoundingClientRect();
+        const dot = g.querySelector('circle');
+        const box = g.querySelector('rect');
+        if (dot) {
+          const x = stage.left + Number(dot.getAttribute('cx'));
+          const y = stage.top + Number(dot.getAttribute('cy'));
+          const edge = Math.abs(x - r.left) < 2 || Math.abs(x - r.right) < 2;
+          if (!edge || y < r.top - 1 || y > r.bottom + 1) bad.push(`${g.dataset.part} callout is ${Math.round(x - r.left)},${Math.round(y - r.top)}px from its part`);
+        } else if (box) {
+          const x = stage.left + Number(box.getAttribute('x'));
+          const y = stage.top + Number(box.getAttribute('y'));
+          if (Math.abs(x - r.left) > 2 || Math.abs(y - r.top) > 2) bad.push(`${g.dataset.part} outline is ${Math.round(x - r.left)},${Math.round(y - r.top)}px from its part`);
+        }
+      }
+      for (const m of fig.querySelectorAll('.cui-anatomy__marker')) {
+        const r = m.getBoundingClientRect();
+        if (r.left < frame.left || r.right > frame.right || r.top < frame.top || r.bottom > frame.bottom) bad.push(`marker ${m.textContent} is clipped by the figure`);
+      }
+      return bad;
+    };
+    const name = await figure.getAttribute('data-anatomy');
+    const narrow = await figure.evaluate((fig) => !fig.querySelector('.cui-anatomy__lines path'));
+    if (!narrow) {
+      out.push(...(await figure.evaluate(check)).map((m) => `anatomy ${name}: ${m}`));
+      continue;
+    }
+    const rows = figure.locator('.cui-anatomy__legend li[data-part]:not([data-hidden])');
+    for (let k = 0; k < (await rows.count()); k++) {
+      const row = rows.nth(k);
+      await row.focus();
+      const part = await row.getAttribute('data-part');
+      await page.waitForTimeout(20);
+      out.push(...(await figure.evaluate(check, part)).map((m) => `anatomy ${name}: ${m}`));
+    }
+  }
+  return [...new Set(out)];
 }
 
 let demoCount = 0;
