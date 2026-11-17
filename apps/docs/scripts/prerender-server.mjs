@@ -10,8 +10,9 @@ import { mkdirSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 
 const dist = path.join(import.meta.dirname, '../dist');
-const config = path.join(import.meta.dirname, '../node_modules/.cache/prerender-wrangler.json');
-mkdirSync(path.dirname(config), { recursive: true });
+const cache = path.join(import.meta.dirname, '../node_modules/.cache/prerender');
+const config = path.join(cache, 'wrangler.json');
+mkdirSync(cache, { recursive: true });
 writeFileSync(
   config,
   JSON.stringify({
@@ -19,12 +20,14 @@ writeFileSync(
     main: path.join(dist, '_worker.js/index.js'),
     compatibility_date: '2026-11-01',
     keep_names: false,
-    assets: { directory: dist, binding: 'ASSETS' },
+    // No assets binding: wrangler would watch dist and reload on every page the prerender writes,
+    // dropping requests in flight. The worker reads ASSETS only for /assets/*, which is not prerendered.
   }),
 );
 
 const args = process.argv.slice(2).map((arg) => (arg === '--host' ? '--ip' : arg));
-const child = spawn('wrangler', ['dev', '--config', config, ...args], { stdio: 'inherit', shell: process.platform === 'win32' });
+// Own state directory, so a `wrangler pages dev` serving dist cannot hold the SQLite lock.
+const child = spawn('wrangler', ['dev', '--config', config, '--persist-to', path.join(cache, 'state'), ...args], { stdio: 'inherit', shell: process.platform === 'win32' });
 
 // Nitro stops the preview with SIGTERM once prerendering ends. That is a clean stop.
 let stopping = false;
