@@ -1,0 +1,798 @@
+/* The side panel is 360px. The content island takes the rest (DESIGN.md §8). */
+.ts-body {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) 360px;
+	gap: var(--cui-space-2);
+	min-height: 0;
+}
+
+.ts-stage {
+	position: relative;
+	overflow: hidden;
+}
+
+.ts-side {
+	padding: var(--cui-space-2);
+}
+
+/*
+ * The viewport fills the island. Its block padding keeps the artwork clear of the floating
+ * toolbar, and is equal above and below so the artwork is centred.
+ */
+.ts-viewport {
+	position: absolute;
+	inset: 0;
+	display: grid;
+	padding: calc(var(--cui-space-16) + var(--cui-space-3)) var(--cui-space-6);
+}
+
+.ts-zoom {
+	margin: auto;
+}
+
+/*
+ * The artwork: the theme being edited, drawn as CodeImage draws it. This block is the user's
+ * work, not chrome. Every colour arrives as a custom property from the theme (`Preview.tsx`), and
+ * the measures are the picture's own pixels, scaled as one box.
+ */
+.ts-art {
+	transform-origin: 0 0;
+}
+
+.ts-frame,
+.ts-card-stage {
+	display: grid;
+	place-items: center;
+	width: 100%;
+	height: 100%;
+}
+
+.ts-frame {
+	background: var(--ts-backdrop);
+}
+
+.ts-window {
+	display: flex;
+	flex-direction: column;
+	width: 640px;
+	height: 424px;
+	overflow: hidden;
+	border-radius: 12px;
+	background-color: var(--ts-main);
+	box-shadow: 0 24px 56px rgb(0 0 0 / 0.36);
+}
+
+.ts-bar {
+	display: flex;
+	flex: none;
+	align-items: flex-end;
+	height: 40px;
+	padding-inline: 16px;
+	background-color: var(--ts-tabs);
+	font-family: var(--cui-font-family-sans);
+	font-size: 13px;
+	line-height: 1;
+}
+
+.ts-dots {
+	display: flex;
+	align-self: center;
+	gap: 8px;
+	margin-inline-end: 16px;
+}
+
+.ts-dots b {
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+}
+
+/* A part fades by mixing its colour with nothing, so a tab can dim its text and keep its fill. */
+.ts-tab {
+	display: flex;
+	align-items: center;
+	height: 32px;
+	padding-inline: 14px;
+	border-radius: 8px 8px 0 0;
+	background-color: var(--ts-tab-inactive);
+	color: color-mix(in srgb, var(--ts-tab-text) calc(var(--o-tabs, 1) * 62%), transparent);
+}
+
+.ts-tab[data-active] {
+	background-color: var(--ts-tab-active);
+	box-shadow: inset 0 2px 0 color-mix(in srgb, var(--ts-accent) calc(var(--o-accent, 1) * 100%), transparent);
+	color: color-mix(in srgb, var(--ts-tab-text) calc(var(--o-tabs, 1) * 100%), transparent);
+}
+
+.ts-title {
+	align-self: center;
+	margin-inline-start: 12px;
+	color: color-mix(in srgb, var(--ts-text) calc(var(--o-title, 1) * 100%), transparent);
+	font-size: 18px;
+}
+
+.ts-code {
+	display: flex;
+	flex: 1;
+	padding: 16px 20px;
+	color: var(--k-base);
+	font-family: var(--cui-font-family-mono);
+	font-size: 14px;
+	font-variant-ligatures: none;
+	line-height: var(--ts-line);
+}
+
+.ts-gutter {
+	display: flex;
+	flex-direction: column;
+	min-width: 2ch;
+	margin-inline-end: 18px;
+	color: var(--ts-gutter);
+	opacity: var(--o-gutter, 1);
+	text-align: end;
+}
+
+.ts-source {
+	position: relative;
+	flex: 1;
+}
+
+.ts-source pre,
+pre.ts-source {
+	position: relative;
+	margin: 0;
+	font: inherit;
+}
+
+.ts-line {
+	display: block;
+	height: var(--ts-line);
+	white-space: pre;
+}
+
+.ts-art [data-style="bold"] {
+	font-weight: 700;
+}
+
+.ts-art [data-style="italic"] {
+	font-style: italic;
+}
+
+.ts-active-line,
+.ts-selection,
+.ts-cursor,
+.ts-popup {
+	position: absolute;
+}
+
+.ts-active-line,
+.ts-selection,
+.ts-cursor {
+	height: var(--ts-line);
+}
+
+/* Wider than the window, which clips it: the active line runs under the gutter too. */
+.ts-active-line {
+	inset-inline: -80px;
+	background-color: var(--ts-active-line);
+}
+
+.ts-selection {
+	border-radius: 2px;
+	background-color: var(--ts-selection);
+}
+
+.ts-cursor {
+	width: 2px;
+	margin-inline-start: -1px;
+	background-color: var(--ts-cursor);
+	opacity: var(--o-cursor, 1);
+}
+
+/* The radius and the item padding are CodeImage's (`plugins/autocomplete-style.ts`). */
+.ts-popup {
+	z-index: 1;
+	min-width: 208px;
+	margin: 4px 0 0;
+	padding: 0;
+	overflow: hidden;
+	border-radius: 6px;
+	background-color: var(--ts-popup);
+	box-shadow:
+		0 0 0 1px var(--ts-popup-border),
+		0 10px 28px rgb(0 0 0 / 0.3);
+	list-style: none;
+	opacity: var(--o-popup, 1);
+}
+
+.ts-popup li {
+	padding: 6px 10px;
+	font-size: 13px;
+	line-height: 18px;
+}
+
+.ts-popup li[data-selected] {
+	background-color: var(--ts-popup-selected);
+	color: var(--ts-popup-selected-text);
+}
+
+/* The theme card of CodeImage's picker: the label on the preview background, over a window that runs off the card. */
+.ts-card {
+	position: relative;
+	width: 440px;
+	height: 288px;
+	overflow: hidden;
+	border-radius: 16px;
+	background: var(--ts-backdrop);
+	font-family: var(--cui-font-family-sans);
+}
+
+.ts-card-label {
+	position: absolute;
+	inset: 24px 28px auto;
+	font-size: 20px;
+	font-weight: 600;
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+}
+
+.ts-card-window {
+	position: absolute;
+	inset: 76px -40px -24px 56px;
+	padding: 16px 20px;
+	border-radius: 12px;
+	background-color: var(--ts-main);
+	box-shadow: 0 16px 40px rgb(0 0 0 / 0.32);
+	color: var(--k-base);
+	font-family: var(--cui-font-family-mono);
+	font-size: 12px;
+	font-variant-ligatures: none;
+	--ts-line: 20px;
+	line-height: var(--ts-line);
+}
+
+.ts-card-window .ts-dots {
+	margin-block-end: 12px;
+}
+
+.ts-card-window .ts-dots b {
+	width: 10px;
+	height: 10px;
+}
+
+/* Morph (DESIGN.md §7.3): after a value changes, the changed colour eases to its new value. A spotlight is a response, so it takes the fast step. */
+.ts-window,
+.ts-bar,
+.ts-tab,
+.ts-title,
+.ts-gutter,
+.ts-art [data-key],
+.ts-active-line,
+.ts-selection,
+.ts-cursor,
+.ts-popup,
+.ts-popup li,
+.ts-card-window {
+	transition:
+		color var(--cui-motion-duration-panel) var(--cui-motion-ease-out),
+		background-color var(--cui-motion-duration-panel) var(--cui-motion-ease-out),
+		opacity var(--cui-motion-duration-fast) var(--cui-motion-ease-out);
+}
+
+/*
+ * Instant from the keyboard, the command menu's preview included, and while a picker is open: a
+ * colour that follows the thumb must not lag behind it. Colour and opacity are all that moves, so
+ * reduced motion has nothing to drop.
+ */
+html[data-cui-input="keyboard"] .ts-art *,
+.ts-art[data-live] * {
+	transition: none;
+}
+
+/* A floating surface: it takes no layout space, and its buttons are concentric with its 22px corners. */
+.ts-toolbar {
+	position: absolute;
+	inset-block-end: var(--cui-space-4);
+	inset-inline-start: 50%;
+	z-index: 2;
+	display: flex;
+	align-items: center;
+	gap: var(--cui-space-0-5);
+	padding: var(--cui-space-1);
+	border-radius: var(--cui-radius-command);
+	background: var(--cui-surface-dialog);
+	box-shadow: var(--cui-shadow-dialog);
+	translate: -50% 0;
+}
+
+/* Concentric with the bar: its radius less the 4px between them, and one more step in for a segment (DESIGN.md §5.1). */
+.ts-toolbar [data-cui="segmentedControl"] {
+	border-radius: calc(var(--cui-radius-command) - var(--cui-space-1));
+}
+
+.ts-toolbar [data-cui="segmentedControlItem"],
+.ts-toolbar [data-cui="segmentedControlIndicator"] {
+	border-radius: var(--cui-radius-lg);
+}
+
+.ts-toolbar[hidden] {
+	display: none;
+}
+
+/* Space, not a line, sets the history buttons apart from their neighbours. */
+.ts-toolbar-group {
+	display: flex;
+	align-items: center;
+	gap: var(--cui-space-0-5);
+	margin-inline: var(--cui-space-2);
+}
+
+.ts-tip {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--cui-space-2);
+}
+
+/* The label is a title until it is hovered or focused, then it takes a field's fill. */
+.ts-name {
+	display: inline-grid;
+	flex: 0 1 auto;
+	min-width: 0;
+	max-width: 320px;
+	height: var(--cui-control-height-sm);
+	border-radius: var(--cui-radius-md);
+	color: var(--cui-text-muted);
+	font-size: var(--cui-font-size-sm);
+	font-weight: var(--cui-font-weight-medium);
+	line-height: var(--cui-font-line-height-snug);
+}
+
+.ts-name::after,
+.ts-name input {
+	grid-area: 1 / 1;
+	min-width: 0;
+	padding: 0 var(--cui-space-2);
+	font: inherit;
+}
+
+.ts-name::after {
+	content: attr(data-value);
+	overflow: hidden;
+	white-space: pre;
+	visibility: hidden;
+}
+
+.ts-name input {
+	width: 100%;
+	border: 0;
+	border-radius: inherit;
+	outline: 0;
+	background: transparent;
+	color: inherit;
+	text-overflow: ellipsis;
+}
+
+.ts-name:focus-within {
+	background: var(--cui-surface-input);
+	color: var(--cui-text-default);
+}
+
+.ts-name input:focus-visible {
+	outline: var(--cui-focus-width) solid var(--cui-focus-color);
+	outline-offset: var(--cui-focus-offset);
+}
+
+/* A split control is two parts with a 2px gap and 4px inner corners (DESIGN.md §2.5). The 4px has no token yet. */
+.ts-split {
+	display: flex;
+	gap: var(--cui-space-0-5);
+}
+
+.ts-split-start {
+	border-start-end-radius: 4px;
+	border-end-end-radius: 4px;
+}
+
+.ts-split-end {
+	border-start-start-radius: 4px;
+	border-end-start-radius: 4px;
+}
+
+/* The swatch of a menu row. The ring keeps a fill visible when it matches the menu (DESIGN.md §2.5). */
+.ts-chip {
+	display: block;
+	width: 16px;
+	height: 16px;
+	border-radius: var(--cui-radius-full);
+	box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--cui-text-default) 24%, transparent);
+}
+
+.ts-panel {
+	display: flex;
+	flex-direction: column;
+	gap: var(--cui-space-4);
+	min-height: 100%;
+}
+
+.ts-panel-footer {
+	display: flex;
+	justify-content: space-between;
+	gap: var(--cui-space-2);
+	margin-top: auto;
+	padding: var(--cui-space-2);
+}
+
+.ts-section {
+	display: grid;
+	gap: var(--cui-space-4);
+	padding: var(--cui-space-1) var(--cui-space-2) var(--cui-space-3);
+}
+
+/* The label and the id it derives side by side: the id follows the label until it is typed over. */
+.ts-fields {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	align-items: start;
+	gap: var(--cui-space-2);
+}
+
+/* Label on the left, control on the right, as in a settings row (DESIGN.md §9.2). */
+.ts-section [data-cui="switch-root"] {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto;
+	column-gap: var(--cui-space-3);
+}
+
+.ts-section [data-cui="switch-label"],
+.ts-section [data-cui="switch-description"] {
+	grid-column: 1;
+}
+
+.ts-section [data-cui="switch-control"] {
+	grid-area: 1 / 2;
+}
+
+/* A slider's value sits on the line of its label, at the end. */
+.ts-section [data-cui="slider-root"],
+.ts-picker [data-cui="slider-root"] {
+	grid-template-columns: minmax(0, 1fr) auto;
+	row-gap: var(--cui-space-1);
+}
+
+.ts-section [data-cui="slider-track"],
+.ts-picker [data-cui="slider-track"] {
+	grid-column: 1 / -1;
+}
+
+.ts-mono {
+	font-family: var(--cui-font-family-mono);
+}
+
+/* Rows touch inside their group; the groups stand a step apart (DESIGN.md §4). */
+.ts-group {
+	display: grid;
+	gap: var(--cui-space-0-5);
+}
+
+.ts-group-title {
+	padding: 0 var(--cui-space-2) var(--cui-space-1);
+}
+
+/* The trailing slot is always there, so the contrast figures of a group share one edge. */
+.ts-row {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) var(--cui-control-height-xs);
+	align-items: center;
+	gap: var(--cui-space-1);
+	margin-inline: calc(-1 * var(--cui-space-1));
+}
+
+.ts-row-main {
+	display: grid;
+	grid-template-columns: 20px minmax(0, 1fr) auto;
+	align-items: center;
+	gap: var(--cui-space-3);
+	width: 100%;
+	min-height: 44px;
+	padding: var(--cui-space-1) var(--cui-space-2);
+	border: 0;
+	border-radius: var(--cui-radius-nav);
+	background: transparent;
+	color: inherit;
+	font: inherit;
+	text-align: start;
+	cursor: pointer;
+}
+
+.ts-row[data-open] .ts-row-main {
+	background: var(--cui-surface-input);
+}
+
+.ts-row-main:focus-visible,
+button.ts-swatch:focus-visible {
+	outline: var(--cui-focus-width) solid var(--cui-focus-color);
+	outline-offset: var(--cui-focus-offset);
+}
+
+.ts-row-text {
+	display: grid;
+	min-width: 0;
+}
+
+.ts-row-name {
+	white-space: nowrap;
+	color: var(--cui-text-default);
+	font-size: var(--cui-font-size-caption);
+	font-weight: var(--cui-font-weight-medium);
+	line-height: var(--cui-font-line-height-normal);
+}
+
+.ts-row-value {
+	color: var(--cui-text-muted);
+	font-size: var(--cui-font-size-xs);
+	line-height: 1.4;
+}
+
+.ts-row-value[data-hex],
+.ts-hex,
+.ts-file {
+	font-family: var(--cui-font-family-mono);
+}
+
+/* A colour fill can match the surface under it, so it keeps a neutral ring (DESIGN.md §2.5). */
+.ts-swatch {
+	display: block;
+	width: 20px;
+	height: 20px;
+	border-radius: var(--cui-radius-badge);
+	background: var(--ts-fill);
+	box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--cui-text-default) 24%, transparent);
+}
+
+/* An inherited colour is a dot, not a tile: it is shown, but it is not this row's own. */
+.ts-swatch[data-unset] {
+	border-radius: var(--cui-radius-full);
+	scale: 0.5;
+}
+
+.ts-contrast {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--cui-space-2);
+}
+
+/* The widest figure, 21.0:1, is reserved, so the badge beside it never moves. */
+.ts-ratio {
+	min-width: 6ch;
+	color: var(--cui-text-muted);
+	font-size: var(--cui-font-size-xs);
+	line-height: 1.4;
+	text-align: end;
+}
+
+.ts-row-end {
+	display: grid;
+	place-items: center;
+}
+
+/* Three across in the 360px panel: the kit's 128px minimum would leave two (DESIGN.md §9.1). */
+.ts-cards {
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/*
+ * The schematic of a "Start from" card. It shows a theme, so its sizes are fixed measures and its
+ * colours come from that theme.
+ */
+.ts-sketch {
+	display: grid;
+	place-items: center;
+	width: 100%;
+	height: 100%;
+	border-radius: inherit;
+	box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--cui-text-default) 16%, transparent);
+}
+
+.ts-sketch-window {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 4px;
+	width: 52px;
+	height: 38px;
+	padding: 8px;
+	border-radius: 5px;
+	box-shadow: 0 4px 10px rgb(0 0 0 / 0.25);
+}
+
+.ts-sketch-window i {
+	height: 3px;
+	border-radius: 2px;
+}
+
+.ts-sketch-window i:nth-child(1) {
+	width: 55%;
+}
+.ts-sketch-window i:nth-child(2) {
+	width: 90%;
+}
+.ts-sketch-window i:nth-child(3) {
+	width: 70%;
+}
+
+/* The picker opens over the panel that holds its row: 360px, radius 16, padding 16 (DESIGN.md §9.5). */
+.ts-picker-popover {
+	width: 360px;
+	max-width: calc(100vw - var(--cui-space-4));
+	/* Kobalte measures the room between the row and the edge of the viewport; past it the picker scrolls. */
+	max-height: var(--kb-popper-content-available-height);
+	padding: var(--cui-space-4);
+	overflow: auto;
+	border-radius: var(--cui-radius-card);
+	scrollbar-color: var(--cui-surface-scroll-thumb) transparent;
+	scrollbar-width: thin;
+}
+
+.ts-picker {
+	display: grid;
+	gap: var(--cui-space-3);
+}
+
+/*
+ * A channel's track is painted with the colours its thumb moves through. That gradient is the
+ * content of the control, like a swatch, and comes from the colour being edited.
+ */
+.ts-channel [data-cui="slider-track"]::before {
+	inset-block: calc(50% - var(--cui-space-1-5));
+	height: auto;
+	background: var(--ts-track);
+	box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--cui-text-default) 16%, transparent);
+}
+
+.ts-channel [data-cui="slider-fill"] {
+	background: transparent;
+}
+
+.ts-palette {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--cui-space-2);
+}
+
+button.ts-swatch {
+	width: var(--cui-control-height-compact);
+	height: var(--cui-control-height-compact);
+	padding: 0;
+	border: 0;
+	border-radius: var(--cui-radius-badge);
+	cursor: pointer;
+}
+
+.ts-readout {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--cui-space-3);
+	min-height: var(--cui-space-6);
+}
+
+.ts-readout-value,
+.ts-pass {
+	display: inline-flex;
+	align-items: center;
+	color: var(--cui-text-muted);
+}
+
+/* The generated file, in the colours of the theme it describes. */
+.ts-export-code {
+	height: min(50dvh, 420px);
+	margin: 0;
+	padding: var(--cui-space-4);
+	border-radius: var(--cui-radius-md);
+	background-color: var(--ts-main);
+	color: var(--k-base);
+	font-family: var(--cui-font-family-mono);
+	font-size: var(--cui-font-size-xs);
+	font-variant-ligatures: none;
+	--ts-line: 18px;
+	line-height: var(--ts-line);
+}
+
+.ts-export-code:focus-visible {
+	outline: var(--cui-focus-width) solid var(--cui-focus-color);
+	outline-offset: var(--cui-focus-offset);
+}
+
+.ts-file {
+	color: var(--cui-text-default);
+	font-size: var(--cui-font-size-xs);
+}
+
+.ts-import {
+	min-height: 240px;
+	font-size: var(--cui-font-size-xs);
+	white-space: pre;
+}
+
+.ts-errors {
+	display: grid;
+	gap: var(--cui-space-0-5);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.ts-name:hover,
+	.ts-row-main:hover {
+		background: var(--cui-surface-input);
+	}
+}
+
+@media (max-width: 768px) {
+	.ts-body {
+		grid-template-columns: minmax(0, 1fr);
+	}
+	/* The artwork sits at the top of the island, so it stays in view above the sheet. */
+	.ts-viewport {
+		padding: var(--cui-space-3) var(--cui-space-3) calc(var(--cui-space-16) + var(--cui-space-4));
+	}
+	.ts-zoom {
+		margin-block-start: 0;
+	}
+	.ts-name {
+		height: var(--cui-control-height-md);
+	}
+	.ts-toolbar-group {
+		margin-inline: var(--cui-space-1);
+	}
+	.ts-tabs {
+		display: grid;
+		gap: var(--cui-space-3);
+	}
+	.ts-tabs[hidden] {
+		display: none;
+	}
+	/* A fixed height, so changing tab never moves the sheet under the finger, and the artwork stays in view above it. */
+	.ts-tab-panel,
+	.ts-sheet-picker {
+		height: 40dvh;
+	}
+	.ts-tab-panel .ts-section {
+		padding-inline: 0;
+	}
+	.ts-sheet-picker {
+		display: grid;
+		align-content: start;
+		gap: var(--cui-space-3);
+		overflow: auto;
+		scrollbar-width: thin;
+	}
+	.ts-sheet-picker-head {
+		display: flex;
+		align-items: center;
+		gap: var(--cui-space-2);
+	}
+	.ts-export-code {
+		height: 30dvh;
+	}
+	/* Touch targets are 40px on a phone (DESIGN.md §6). */
+	.ts-row {
+		grid-template-columns: minmax(0, 1fr) var(--cui-control-height-md);
+	}
+	.ts-row-main {
+		min-height: 48px;
+	}
+	button.ts-swatch {
+		width: var(--cui-control-height-md);
+		height: var(--cui-control-height-md);
+		border-radius: var(--cui-radius-nav);
+	}
+	/* Cards stay three across, so they keep the desktop card: the preview over its name. */
+	.ts-cards [data-cui="option-card-item-label"] {
+		flex-direction: column;
+		align-items: stretch;
+		gap: var(--cui-space-1);
+	}
+	.ts-cards [data-cui="option-card-preview"] {
+		width: auto;
+		margin-bottom: var(--cui-space-1);
+	}
+}

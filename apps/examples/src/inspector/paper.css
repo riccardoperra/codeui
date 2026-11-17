@@ -1,0 +1,457 @@
+/*
+ * The paper is the user's content, not chrome, so it has its own palette and its own lines
+ * (DESIGN.md §2.1: "User content never uses these tokens"). A table of money needs rules, and a
+ * sheet needs an edge. The literals below are that palette, once for each theme.
+ */
+.pmi-scroll {
+	--pmi-paper: #ffffff;
+	--pmi-ink: #1d2229;
+	--pmi-ink-muted: #5b6168;
+	--pmi-rule: #e2e5e8;
+	--pmi-wash: #f3f5f7;
+	--pmi-accent: #0b6bcb;
+	--pmi-accent-wash: #0b6bcb1f;
+	--pmi-danger: #b3261e;
+	--pmi-danger-wash: #b3261e12;
+	--pmi-find: #ffe27a;
+	--pmi-edge: 0 0 0 1px #1d222914, 0 12px 32px -16px #1d222933;
+}
+
+[data-cui-theme="dark"] .pmi-scroll {
+	--pmi-paper: #1c1c1f;
+	--pmi-ink: #ececec;
+	--pmi-ink-muted: #a3a3a8;
+	--pmi-rule: #2f2f34;
+	--pmi-wash: #26262a;
+	--pmi-accent: #6cb6ff;
+	--pmi-accent-wash: #6cb6ff26;
+	--pmi-danger: #ff8f85;
+	--pmi-danger-wash: #ff8f851a;
+	--pmi-find: #7a6410;
+	--pmi-edge: 0 0 0 1px #ffffff0f;
+}
+
+.pmi-scroll {
+	container-type: inline-size;
+}
+
+.pmi-paper {
+	display: grid;
+	gap: 16px;
+	max-width: 840px;
+	margin-inline: auto;
+	color: var(--pmi-ink);
+	font-size: 14px;
+	line-height: 1.55;
+	font-variant-numeric: tabular-nums;
+	counter-reset: pmi-page;
+	outline: none;
+}
+
+.pmi-sheet {
+	position: relative;
+	min-width: 0;
+	padding: 28px 56px 64px;
+	border-radius: 6px;
+	background: var(--pmi-paper);
+	box-shadow: var(--pmi-edge);
+	counter-increment: pmi-page;
+}
+
+/* The running title and the page number are derived, never stored: an attribute and a counter. */
+.pmi-sheet::before,
+.pmi-sheet::after {
+	color: var(--pmi-ink-muted);
+	font-size: 12px;
+}
+
+.pmi-sheet::before {
+	content: attr(data-title);
+	display: block;
+	margin-bottom: 28px;
+}
+
+.pmi-sheet::after {
+	content: "Page " counter(pmi-page);
+	position: absolute;
+	right: 56px;
+	bottom: 24px;
+}
+
+.pmi-paper p {
+	margin: 0 0 8px;
+}
+
+.pmi-paper h2,
+.pmi-paper h3 {
+	margin: 24px 0 8px;
+	font-weight: 600;
+	line-height: 1.3;
+}
+
+.pmi-paper h2 {
+	font-size: 18px;
+	letter-spacing: -0.01em;
+}
+
+.pmi-paper h3 {
+	font-size: 15px;
+}
+
+.pmi-sheet > :first-child {
+	margin-top: 0;
+}
+
+.pmi-paper ul,
+.pmi-paper ol {
+	margin: 0 0 8px;
+	padding-left: 22px;
+}
+
+.pmi-paper ul {
+	list-style: disc;
+}
+
+.pmi-paper ol {
+	list-style: decimal;
+}
+
+.pmi-paper li p {
+	margin-bottom: 4px;
+}
+
+.pmi-paper blockquote {
+	margin: 16px 0 0;
+	padding-left: 16px;
+	border-left: 2px solid var(--pmi-rule);
+	color: var(--pmi-ink-muted);
+}
+
+.pmi-paper ::selection {
+	background: var(--pmi-accent-wash);
+}
+
+/* --- Invoice sections ------------------------------------------------------------------------ */
+
+.pmi-meta {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	justify-content: space-between;
+	gap: 16px 32px;
+	margin-bottom: 32px;
+	border-radius: 4px;
+}
+
+.pmi-meta p {
+	margin: 0;
+}
+
+.pmi-meta-kicker,
+.pmi-meta dt,
+.pmi-party::before,
+.pmi-items-head {
+	color: var(--pmi-ink-muted);
+	font-size: 12px;
+}
+
+.pmi-meta-number {
+	font-size: 24px;
+	font-weight: 600;
+	letter-spacing: -0.02em;
+	line-height: 1.2;
+}
+
+.pmi-meta dl {
+	display: flex;
+	gap: 24px;
+}
+
+.pmi-meta dd {
+	font-weight: 500;
+}
+
+.pmi-parties {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 24px;
+	margin-bottom: 24px;
+}
+
+.pmi-party::before {
+	content: attr(data-label);
+	display: block;
+	margin-bottom: 4px;
+}
+
+.pmi-party p {
+	margin: 0;
+}
+
+.pmi-party p:first-child {
+	font-weight: 600;
+}
+
+/* One grid for the header and every row, so the columns line up without a table. */
+.pmi-items-head,
+.pmi-row {
+	display: grid;
+	grid-template-columns: 16px minmax(0, 1fr) 52px 88px 40px 132px 16px;
+	align-items: baseline;
+	gap: 0 8px;
+	border-bottom: 1px solid var(--pmi-rule);
+}
+
+.pmi-items-head {
+	padding: 0 0 6px;
+}
+
+.pmi-items-head > :first-child {
+	grid-column: 2;
+}
+
+.pmi-items-head > :nth-child(n + 2),
+.pmi-row-vat,
+.pmi-row-amount {
+	text-align: end;
+}
+
+.pmi-row {
+	position: relative;
+	padding: 5px 0;
+	border-radius: 4px;
+}
+
+.pmi-row-text {
+	min-width: 0;
+	padding: 2px 0;
+	overflow-wrap: anywhere;
+}
+
+.pmi-row-field {
+	width: 100%;
+	min-width: 0;
+	padding: 2px 4px;
+	border: 0;
+	border-radius: 4px;
+	background: none;
+	color: inherit;
+	font: inherit;
+	font-variant-numeric: tabular-nums;
+	text-align: end;
+}
+
+.pmi-row-field:focus-visible {
+	outline: 2px solid var(--pmi-accent);
+	background: var(--pmi-paper);
+}
+
+.pmi-row-vat {
+	color: var(--pmi-ink-muted);
+}
+
+.pmi-row-amount {
+	font-weight: 500;
+	white-space: nowrap;
+}
+
+.pmi-row-amount:not([data-discount=""])::before {
+	content: attr(data-discount);
+	margin-right: 8px;
+	color: var(--pmi-ink-muted);
+	font-size: 12px;
+	font-weight: 400;
+}
+
+.pmi-row-handle,
+.pmi-row-remove {
+	align-self: center;
+	width: 16px;
+	height: 24px;
+	padding: 0;
+	border: 0;
+	border-radius: 4px;
+	background: none;
+	color: var(--pmi-ink-muted);
+	font: inherit;
+	font-size: 12px;
+	line-height: 1;
+	cursor: pointer;
+	opacity: 0;
+}
+
+.pmi-row-handle {
+	margin-left: -20px;
+	cursor: grab;
+}
+
+.pmi-row-remove {
+	margin-right: -20px;
+	justify-self: end;
+}
+
+.pmi-active .pmi-row-handle,
+.pmi-active .pmi-row-remove {
+	opacity: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.pmi-row:hover .pmi-row-handle,
+	.pmi-row:hover .pmi-row-remove {
+		opacity: 1;
+	}
+	.pmi-row-field:hover:not(:read-only),
+	.pmi-row-handle:hover,
+	.pmi-row-remove:hover {
+		background: var(--pmi-wash);
+		color: var(--pmi-ink);
+	}
+}
+
+/* A locked invoice shows no affordance for an edit it would refuse. */
+.pmi-paper[contenteditable="false"] :is(.pmi-row-handle, .pmi-row-remove) {
+	visibility: hidden;
+}
+
+.pmi-active {
+	background: var(--pmi-wash);
+}
+
+/* An invalid row says why under itself. The mark and the text carry it, not the colour alone. */
+.pmi-invalid {
+	background: var(--pmi-danger-wash);
+	box-shadow: inset 2px 0 0 var(--pmi-danger);
+}
+
+.pmi-invalid::after {
+	content: "⚠ " attr(data-issues);
+	grid-column: 2 / -2;
+	padding-bottom: 2px;
+	color: var(--pmi-danger);
+	font-size: 12px;
+}
+
+.pmi-totals {
+	display: grid;
+	gap: 4px;
+	width: min(100%, 300px);
+	margin: 20px 16px 0 auto;
+}
+
+.pmi-totals > div {
+	display: flex;
+	justify-content: space-between;
+	gap: 16px;
+}
+
+.pmi-totals dt {
+	color: var(--pmi-ink-muted);
+}
+
+.pmi-totals-due {
+	margin-top: 4px;
+	padding-top: 8px;
+	border-top: 1px solid var(--pmi-ink);
+	font-size: 16px;
+	font-weight: 600;
+}
+
+.pmi-totals-due dt {
+	color: inherit;
+}
+
+/* --- Editor states --------------------------------------------------------------------------- */
+
+.pmi-paper .ProseMirror-selectednode,
+.pmi-paper .pmi-spotlit {
+	outline: 2px solid var(--pmi-accent);
+	outline-offset: 2px;
+}
+
+/* A jump lands under the floating bar, so the target keeps clear of it. */
+.pmi-spotlit {
+	scroll-margin-top: 72px;
+}
+
+.pmi-spotlight-text {
+	background: var(--pmi-accent-wash);
+}
+
+.pmi-find-match {
+	border-radius: 2px;
+	background: var(--pmi-find);
+}
+
+/* Beside the side panel on a small laptop the sheet is narrow, so its margins give the table room. */
+@container (max-width: 720px) {
+	.pmi-sheet {
+		padding-inline: 32px;
+	}
+	.pmi-sheet::after {
+		right: 32px;
+	}
+	.pmi-items-head,
+	.pmi-row {
+		grid-template-columns: 16px minmax(0, 1fr) 44px 80px 36px 116px 16px;
+	}
+}
+
+@media (max-width: 768px) {
+	.pmi-paper {
+		gap: 8px;
+		font-size: 13px;
+	}
+	.pmi-sheet {
+		padding: 16px 16px 48px;
+	}
+	.pmi-sheet::before {
+		margin-bottom: 16px;
+	}
+	.pmi-sheet::after {
+		right: 16px;
+		bottom: 16px;
+	}
+	.pmi-meta dl {
+		gap: 16px;
+	}
+	.pmi-parties {
+		grid-template-columns: minmax(0, 1fr);
+		gap: 16px;
+	}
+	/* A row is two lines: what is billed, then its numbers. The VAT rate stays in the totals' breakdown. */
+	.pmi-items-head,
+	.pmi-row {
+		grid-template-columns: 48px 96px minmax(0, 1fr);
+	}
+	.pmi-row-text {
+		grid-column: 1 / -1;
+		font-weight: 500;
+	}
+	.pmi-items-head > :first-child,
+	.pmi-items-head > :nth-child(4),
+	.pmi-row-vat,
+	.pmi-row-handle,
+	.pmi-row-remove {
+		display: none;
+	}
+	.pmi-items-head > :nth-child(n + 2):not(:last-child),
+	.pmi-row-field {
+		text-align: start;
+	}
+	.pmi-row-field {
+		padding-inline: 0;
+	}
+	.pmi-invalid {
+		padding-inline: 8px;
+	}
+	.pmi-invalid::after {
+		grid-column: 1 / -1;
+	}
+	/* 16px keeps iOS from zooming the page when a field takes the focus. */
+	.pmi-row-field {
+		font-size: 16px;
+	}
+	.pmi-totals {
+		margin-right: 0;
+	}
+}

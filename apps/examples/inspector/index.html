@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Inspector playground · Made with CodeUI</title>
+		<script>
+			// Before first paint. The docs site stores its theme under the same key.
+			(() => {
+				let theme = null;
+				try {
+					theme = localStorage.getItem("theme");
+				} catch {}
+				if (theme !== "light" && theme !== "dark") {
+					theme = theme === "system" && matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+				}
+				document.documentElement.setAttribute("data-cui-theme", theme);
+			})();
+		</script>
+		<!-- The reset layer comes before the kit's, so kit rules win over it and app CSS wins over both. -->
+		<style>
+			@layer reset, cui;
+		</style>
+	</head>
+	<body>
+		<div id="root"></div>
+		<script type="module" src="../src/inspector/main.tsx"></script>
+	</body>
+</html>

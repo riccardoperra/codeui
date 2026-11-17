@@ -1,0 +1,38 @@
+{
+	"name": "@codeui/examples",
+	"private": true,
+	"type": "module",
+	"exports": {
+		"./examples.json": "./examples.json"
+	},
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build",
+		"preview": "vite preview",
+		"typecheck": "tsc --noEmit",
+		"screenshots": "node scripts/screenshots.mjs"
+	},
+	"dependencies": {
+		"@codeui/kit": "workspace:*",
+		"@fontsource-variable/inter": "^5.2.8",
+		"@fontsource-variable/jetbrains-mono": "^5.2.8",
+		"@kobalte/core": "^0.13.14",
+		"lucide-solid": "^1.74.0",
+		"prosemirror-commands": "^1.7.2",
+		"prosemirror-history": "^1.5.1",
+		"prosemirror-inspector": "^0.3.0",
+		"prosemirror-keymap": "^1.2.3",
+		"prosemirror-model": "^1.25.13",
+		"prosemirror-schema-list": "^1.6.0",
+		"prosemirror-state": "^1.4.4",
+		"prosemirror-transform": "^1.12.6",
+		"prosemirror-view": "^1.42.9",
+		"solid-js": "^1.9.8"
+	},
+	"devDependencies": {
+		"@vanilla-extract/vite-plugin": "^5.2.6",
+		"typescript": "^5.6.2",
+		"vite": "^8.0.0",
+		"vite-plugin-solid": "^2.11.12"
+	}
+}

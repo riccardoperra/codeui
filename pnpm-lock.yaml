@@ -69,6 +69,9 @@ importers:
       '@codeui/docs-demos':
         specifier: workspace:*
         version: link:../../packages/docs-demos
+      '@codeui/examples':
+        specifier: workspace:*
+        version: link:../examples
       '@tanstack/react-router':
         specifier: 1.170.46
         version: 1.170.46(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
@@ -136,6 +139,67 @@ importers:
       wrangler:
         specifier: 4.156.2
         version: 4.156.2(@types/node@26.6.6)
+
+  apps/examples:
+    dependencies:
+      '@codeui/kit':
+        specifier: workspace:*
+        version: link:../../packages/kit
+      '@fontsource-variable/inter':
+        specifier: ^5.2.8
+        version: 5.3.0
+      '@fontsource-variable/jetbrains-mono':
+        specifier: ^5.2.8
+        version: 5.3.0
+      '@kobalte/core':
+        specifier: ^0.13.14
+        version: 0.13.14(solid-js@1.9.19)
+      lucide-solid:
+        specifier: ^1.74.0
+        version: 1.74.0(solid-js@1.9.19)
+      prosemirror-commands:
+        specifier: ^1.7.2
+        version: 1.7.2
+      prosemirror-history:
+        specifier: ^1.5.1
+        version: 1.5.1
+      prosemirror-inspector:
+        specifier: ^0.3.0
+        version: 0.3.0(@types/react@19.3.0)(prosemirror-history@1.5.1)(prosemirror-model@1.25.13)(prosemirror-state@1.4.4)(prosemirror-transform@1.12.6)(prosemirror-view@1.42.9)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+      prosemirror-keymap:
+        specifier: ^1.2.3
+        version: 1.2.3
+      prosemirror-model:
+        specifier: ^1.25.13
+        version: 1.25.13
+      prosemirror-schema-list:
+        specifier: ^1.6.0
+        version: 1.6.0
+      prosemirror-state:
+        specifier: ^1.4.4
+        version: 1.4.4
+      prosemirror-transform:
+        specifier: ^1.12.6
+        version: 1.12.6
+      prosemirror-view:
+        specifier: ^1.42.9
+        version: 1.42.9
+      solid-js:
+        specifier: ^1.9.8
+        version: 1.9.19
+    devDependencies:
+      '@vanilla-extract/vite-plugin':
+        specifier: ^5.2.6
+        version: 5.2.6(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.2.0)(terser@5.32.0)(tsx@4.19.1)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.2.0)(terser@5.32.0)(tsx@4.19.1)(yaml@2.9.1))(yaml@2.9.1)
+      typescript:
+        specifier: ^5.6.2
+        version: 5.6.2
+      vite:
+        specifier: ^8.0.0
+        version: 8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.2.0)(terser@5.32.0)(tsx@4.19.1)(yaml@2.9.1)
+      vite-plugin-solid:
+        specifier: ^2.11.12
+        version: 2.11.16(@testing-library/jest-dom@6.10.0)(solid-js@1.9.19)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.2.0)(terser@5.32.0)(tsx@4.19.1)(yaml@2.9.1))
 
   packages/docs-demos:
     dependencies:
@@ -1815,6 +1879,12 @@ packages:
   '@floating-ui/utils@0.2.7':
     resolution: {integrity: sha512-X8R8Oj771YRl/w+c1HqAC1szL8zWQRwFvgDwT129k9ACdBoud/+/rX9V0qiMl6LWUdP9voC2nDVZYPMQQsb6eA==}
 
+  '@fontsource-variable/inter@5.3.0':
+    resolution: {integrity: sha512-OupL48va4JNofb97w6NYeF9S7W/kHNKM0Er8Dem5nqi4jeOLrVJDoE8tZEpnMJmtkvNbB1EIPPwHcdkF6b1oUA==}
+
+  '@fontsource-variable/jetbrains-mono@5.3.0':
+    resolution: {integrity: sha512-F32xpS2NsGYoQi2ADSkKTgpJj7ozajsGgDJ8woTnqjmIB+dxDIqImjl4pXZVEExu8UFZ2ndhmX18EBS/hdz3Lw==}
+
   '@fuma-translate/react@1.0.2':
     resolution: {integrity: sha512-uOiOtBx3nRXR8Nu1GzBf1tApgF1FErDBTHxRIAQeyQdyOoZbrNRN6H4kDCWObY4qyGeGbHydG0DHzgeUgFDMIw==}
     peerDependencies:
@@ -3013,6 +3083,33 @@ packages:
       csstype: '*'
     peerDependenciesMeta:
       csstype:
+        optional: true
+
+  '@tanstack/devtools-utils@0.7.2':
+    resolution: {integrity: sha512-77pwyXlWsxiJJh/GKXjFNVl2Y2VnqDY4SFN9zsJcIcNElswZNg1Qtl1pPkukZwMcONxAPp7Rfa23O1R5SxOCZA==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@angular/core': '>=19.0.0'
+      '@types/react': '>=17.0.0'
+      preact: '>=10.0.0'
+      react: '>=17.0.0'
+      solid-js: ^1.9.13
+      svelte: '>=5.0.0'
+      vue: '>=3.2.0'
+    peerDependenciesMeta:
+      '@angular/core':
+        optional: true
+      '@types/react':
+        optional: true
+      preact:
+        optional: true
+      react:
+        optional: true
+      solid-js:
+        optional: true
+      svelte:
+        optional: true
+      vue:
         optional: true
 
   '@tanstack/history@1.162.5':
@@ -5700,6 +5797,11 @@ packages:
       '@types/react':
         optional: true
 
+  lucide-solid@1.74.0:
+    resolution: {integrity: sha512-kvJWtXiG5lvtOcOeIXsqxbHFj+7dsZHE5CmECNXDWmd97WH0j9Oh5tp8ccEvRBKvfDrOiTO2cAKMo2TDmThhIA==}
+    peerDependencies:
+      solid-js: ^1.4.7
+
   lz-string@1.5.0:
     resolution: {integrity: sha512-h5bgJWpxJNswbU7qCrV0tIKQCaS3blPDrqKWx+QxzuzL1zGUzij9XCWLrSLsJPu5t+eWA/ycetzYAO5IOMcWAQ==}
     hasBin: true
@@ -6081,6 +6183,9 @@ packages:
     resolution: {integrity: sha512-YgBpdJHPyQ2UE5x+hlSXcnejzAvD0b22U2OuAP+8OnlJT+PjWPxtgmGqKKc+RgTM63U9gN0YzrYc71R2WT/hTA==}
     engines: {node: '>=18'}
 
+  orderedmap@2.1.1:
+    resolution: {integrity: sha512-TvAWxi0nDe1j/rtMcWcIj94+Ffe6n7zhow33h40SKxmsmozs6dz/e+EajymfoFcHd7sxNn8yHM8839uixMOV6g==}
+
   os-tmpdir@1.0.2:
     resolution: {integrity: sha512-D2FR03Vir7FIu45XBY20mTb+/ZSWB00sjU9jdQXt83gDrI4Ztz5Fs7/yy74g2N5SVQY4xY1qDr4rNddwYRVX0g==}
     engines: {node: '>=0.10.0'}
@@ -6264,6 +6369,69 @@ packages:
 
   property-information@7.2.0:
     resolution: {integrity: sha512-IAtzIB6sUiWaJYrX9smp3V46pBGbBeLFRGdh25kg1334VcBlD8HzhPeNIWQH9zhGmo2itIe25EHt9dQP7G5hmg==}
+
+  prosemirror-commands@1.7.2:
+    resolution: {integrity: sha512-q6Q6szxqdu9Xd6EcdKsqXghu5nQdZTpB4Q9yd04WRc7/jt763e/rT60Owh0L1GYY+T46o5rD+9lEN36dZS43tw==}
+
+  prosemirror-history@1.5.1:
+    resolution: {integrity: sha512-onlwnqKvgtFg6srZOmDOAhlAy1FIHQpOExORybX0S+DvJepE5tPALrB9iGet/2sqqqrelSnB10OoiOJqAvu2DA==}
+
+  prosemirror-inspector@0.3.0:
+    resolution: {integrity: sha512-zpCYY7uXYIEjqAzTSRm/wGB1NUgx5CCMJfNO9l2eHBr1NfxBouHXGgWUKKPZvMEwamjFNToE2s0RkhwrfDSRXg==}
+    peerDependencies:
+      '@angular/core': '>=19.0.0'
+      '@tanstack/react-devtools': '>=0.7.0'
+      preact: '>=10.0.0'
+      prosemirror-collab: '>=1.3.0'
+      prosemirror-history: '>=1.5.0'
+      prosemirror-model: '>=1.19.0'
+      prosemirror-state: '>=1.4.0'
+      prosemirror-transform: '>=1.8.0'
+      prosemirror-view: '>=1.31.0'
+      react: ^19.0.0
+      react-dom: ^19.0.0
+      svelte: '>=5.0.0'
+      vue: '>=3.2.0'
+      yjs: ^13.6.0
+    peerDependenciesMeta:
+      '@angular/core':
+        optional: true
+      '@tanstack/react-devtools':
+        optional: true
+      preact:
+        optional: true
+      prosemirror-collab:
+        optional: true
+      prosemirror-history:
+        optional: true
+      react:
+        optional: true
+      react-dom:
+        optional: true
+      svelte:
+        optional: true
+      vue:
+        optional: true
+      yjs:
+        optional: true
+
+  prosemirror-keymap@1.2.3:
+    resolution: {integrity: sha512-4HucRlpiLd1IPQQXNqeo81BGtkY8Ai5smHhKW9jjPKRc2wQIxksg7Hl1tTI2IfT2B/LgX6bfYvXxEpJl7aKYKw==}
+
+  prosemirror-model@1.25.13:
+    resolution: {integrity: sha512-MlDMWGjYXaYOeCiO17jcybntCOzPnN+97U0809ke2QsgPtxW3n5/sD6ZKyJONUgMw1iP93ohZTjeKjnRJ7L6kQ==}
+
+  prosemirror-schema-list@1.6.0:
+    resolution: {integrity: sha512-G1srDtan+VqWn+qpmWFj/6j0YsZ5zMU+ZIlGVIW41a5JF2jAI3jzfMRWmSABmEH2Qoq1PmAG/o2mucMMdLOsLg==}
+
+  prosemirror-state@1.4.4:
+    resolution: {integrity: sha512-6jiYHH2CIGbCfnxdHbXZ12gySFY/fz/ulZE333G6bPqIZ4F+TXo9ifiR86nAHpWnfoNjOb3o5ESi7J8Uz1jXHw==}
+
+  prosemirror-transform@1.12.6:
+    resolution: {integrity: sha512-Npot0uIQTDObbDLCiw3TUc08EIT1jNcqbuadG+y5T4jT+4NN8f46AP5h/x+6wE++q7NcW8++oBvc1M0wXvFD/g==}
+
+  prosemirror-view@1.42.9:
+    resolution: {integrity: sha512-bKbfzeKZOu2H2JQU2TaJmYu6EBcor3VnGIR4jR31cbEt1ztUnfUB6bKGV1+fJzOJdrVWR+tRU0208zM3oQx4wA==}
 
   prr@1.0.1:
     resolution: {integrity: sha512-yPw4Sng1gWghHQWj0B3ZggWUm4qVbPwPFcRG8KyxiU7J2OHFSoEHKS+EZ3fv5l1t9CyCiop6l/ZYeWbrgoQejw==}
@@ -6479,6 +6647,9 @@ packages:
     resolution: {integrity: sha512-7sqRtBNnEbcBtMeRVc6VRsJMmpI+JU1z9VTvW8D4gXIYQFz0aLcsE6rRkyghZkLfEgUZgVvOG7A5CVz/VW5GIA==}
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
     hasBin: true
+
+  rope-sequence@1.3.4:
+    resolution: {integrity: sha512-UT5EDe2cu2E/6O4igUr5PSFs23nvvukicWHx6GnOPlHAiiYbzNuCRQCuiUdHJQcqKalLKlrYJnjY0ySGsXNQXQ==}
 
   rou3@1.0.0:
     resolution: {integrity: sha512-ySeaQkSrua+ut9g+65I7FHqOFBaY8tV0FmccXItoq0q21se32Q3u4YiW7/RqXSosWgYJaaKwRHXy3BST9PeCNQ==}
@@ -7298,6 +7469,9 @@ packages:
 
   vscode-uri@3.2.0:
     resolution: {integrity: sha512-m2gXo3bn0G1kT9InzMf07fTbqMbGtyckj3bH5ktLO+1Ssv+yiATZ4dhwaQv9UZWxJh6E9IFGnQyjgWVDWVBDrg==}
+
+  w3c-keyname@2.2.8:
+    resolution: {integrity: sha512-dpojBhNsCNN7T82Tm7k26A6G9ML3NkhDsnw9n/eoxSRlVBB4CEtIQ/KTCLI2Fwf3ataSXRhYFkQi3SlnFwPvPQ==}
 
   w3c-xmlserializer@4.0.0:
     resolution: {integrity: sha512-d+BFHzbiCx6zGfz0HyQ6Rg69w9k19nviJspaj4yNscGjrHu94sVP+aRm75yEbCh+r2/yR+7q6hux9LVtbuTGBw==}
@@ -8988,6 +9162,10 @@ snapshots:
 
   '@floating-ui/utils@0.2.7': {}
 
+  '@fontsource-variable/inter@5.3.0': {}
+
+  '@fontsource-variable/jetbrains-mono@5.3.0': {}
+
   '@fuma-translate/react@1.0.2(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
       react: 19.3.1
@@ -10122,6 +10300,12 @@ snapshots:
       - preact
       - react
     optional: true
+
+  '@tanstack/devtools-utils@0.7.2(@types/react@19.3.0)(react@19.3.1)(solid-js@1.9.19)':
+    optionalDependencies:
+      '@types/react': 19.3.0
+      react: 19.3.1
+      solid-js: 1.9.19
 
   '@tanstack/history@1.162.5': {}
 
@@ -13140,6 +13324,10 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.3.0
 
+  lucide-solid@1.74.0(solid-js@1.9.19):
+    dependencies:
+      solid-js: 1.9.19
+
   lz-string@1.5.0: {}
 
   magic-string@0.30.21:
@@ -13793,6 +13981,8 @@ snapshots:
       is-inside-container: 1.0.0
       wsl-utils: 0.1.0
 
+  orderedmap@2.1.1: {}
+
   os-tmpdir@1.0.2: {}
 
   outdent@0.5.0: {}
@@ -13988,6 +14178,65 @@ snapshots:
       sisteransi: 1.0.5
 
   property-information@7.2.0: {}
+
+  prosemirror-commands@1.7.2:
+    dependencies:
+      prosemirror-model: 1.25.13
+      prosemirror-state: 1.4.4
+      prosemirror-transform: 1.12.6
+
+  prosemirror-history@1.5.1:
+    dependencies:
+      prosemirror-state: 1.4.4
+      prosemirror-transform: 1.12.6
+      prosemirror-view: 1.42.9
+      rope-sequence: 1.3.4
+
+  prosemirror-inspector@0.3.0(@types/react@19.3.0)(prosemirror-history@1.5.1)(prosemirror-model@1.25.13)(prosemirror-state@1.4.4)(prosemirror-transform@1.12.6)(prosemirror-view@1.42.9)(react-dom@19.3.1(react@19.3.1))(react@19.3.1):
+    dependencies:
+      '@tanstack/devtools-utils': 0.7.2(@types/react@19.3.0)(react@19.3.1)(solid-js@1.9.19)
+      prosemirror-model: 1.25.13
+      prosemirror-state: 1.4.4
+      prosemirror-transform: 1.12.6
+      prosemirror-view: 1.42.9
+      solid-js: 1.9.19
+    optionalDependencies:
+      prosemirror-history: 1.5.1
+      react: 19.3.1
+      react-dom: 19.3.1(react@19.3.1)
+    transitivePeerDependencies:
+      - '@types/react'
+
+  prosemirror-keymap@1.2.3:
+    dependencies:
+      prosemirror-state: 1.4.4
+      w3c-keyname: 2.2.8
+
+  prosemirror-model@1.25.13:
+    dependencies:
+      orderedmap: 2.1.1
+
+  prosemirror-schema-list@1.6.0:
+    dependencies:
+      prosemirror-model: 1.25.13
+      prosemirror-state: 1.4.4
+      prosemirror-transform: 1.12.6
+
+  prosemirror-state@1.4.4:
+    dependencies:
+      prosemirror-model: 1.25.13
+      prosemirror-transform: 1.12.6
+      prosemirror-view: 1.42.9
+
+  prosemirror-transform@1.12.6:
+    dependencies:
+      prosemirror-model: 1.25.13
+
+  prosemirror-view@1.42.9:
+    dependencies:
+      prosemirror-model: 1.25.13
+      prosemirror-state: 1.4.4
+      prosemirror-transform: 1.12.6
 
   prr@1.0.1:
     optional: true
@@ -14297,6 +14546,8 @@ snapshots:
       '@rollup/rollup-win32-ia32-msvc': 4.21.3
       '@rollup/rollup-win32-x64-msvc': 4.21.3
       fsevents: 2.3.3
+
+  rope-sequence@1.3.4: {}
 
   rou3@1.0.0: {}
 
@@ -15247,6 +15498,8 @@ snapshots:
   vscode-languageserver-types@3.18.5: {}
 
   vscode-uri@3.2.0: {}
+
+  w3c-keyname@2.2.8: {}
 
   w3c-xmlserializer@4.0.0:
     dependencies:
