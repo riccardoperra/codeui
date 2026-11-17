@@ -94,6 +94,19 @@ function colourPaletteMarkdown({ ramps, roles }: ColourPaletteData) {
 	].join('\n\n');
 }
 
+function paletteMatrixMarkdown({ ramps }: ColourPaletteData) {
+	const aliasesCell = (aliases: string[]) => aliases.map(token => `\`${token}\``).join(', ') || '—';
+	return ramps.map(({ label, swatches }) => [
+		`**${escapeCell(label)}**`,
+		'',
+		'| Ramp step | sRGB | Light | Dark |',
+		'| --- | --- | --- | --- |',
+		...swatches.map(({ id, hex, aliases }) =>
+			`| \`${id}\` | \`${hex}\` | ${aliasesCell(aliases.light)} | ${aliasesCell(aliases.dark)} |`,
+		),
+	].join('\n')).join('\n\n');
+}
+
 const fence = (name: string, source: string) => {
 	const ticks = '`'.repeat(Math.max(3, ...[...source.matchAll(/`+/g)].map(m => m[0].length + 1)));
 	return `${ticks}tsx title="${name}.tsx"\n${source}\n${ticks}`;
@@ -164,11 +177,12 @@ export function remarkKit() {
 					children[i] = { ...node, position: undefined, attributes: [...(node.attributes ?? []), expressionAttribute('rows', table.rows)] };
 					continue;
 				}
-				if (node.type === 'mdxJsxFlowElement' && node.name === 'ColourPalette') {
+				if (node.type === 'mdxJsxFlowElement' && (node.name === 'ColourPalette' || node.name === 'PaletteMatrix')) {
 					if (!existsSync(paletteFile)) throw new Error(`${where}: run pnpm palette before building the docs.`);
 					const data: ColourPaletteData = JSON.parse(readFileSync(paletteFile, 'utf8'));
-					replaceSource(file, node as never, colourPaletteMarkdown(data));
-					children[i] = { ...node, position: undefined, attributes: [expressionAttribute('data', data)] };
+					const matrix = node.name === 'PaletteMatrix';
+					replaceSource(file, node as never, matrix ? paletteMatrixMarkdown(data) : colourPaletteMarkdown(data));
+					children[i] = { ...node, position: undefined, attributes: [matrix ? expressionAttribute('ramps', data.ramps) : expressionAttribute('data', data)] };
 					continue;
 				}
 				if (node.type === 'mdxJsxFlowElement' && node.name === 'PaletteComparison') {

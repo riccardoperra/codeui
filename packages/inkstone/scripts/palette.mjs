@@ -70,8 +70,8 @@ for (const family of palette.families) {
 }
 
 export const colorAt = ([family, step]) => tokens.palette[family][step].$value;
-const cssToken = role =>
-	`--cui-${rolePaths[role].replaceAll(".", "-").replace(/([A-Z])/g, "-$1").toLowerCase()}`;
+const cssToken = path =>
+	`--cui-${path.replaceAll(".", "-").replace(/([A-Z])/g, "-$1").toLowerCase()}`;
 const oklch = ({ components }) => `oklch(${components.join(" ")})`;
 
 export function checkContrast(context, foreground, background, minimum) {
@@ -128,7 +128,32 @@ export function colourCss(scopes) {
 	].join("\n");
 }
 
+function tokenLeaves(tree, prefix = []) {
+	return Object.entries(tree).flatMap(([key, value]) => {
+		if (!value || typeof value !== "object" || key.startsWith("$")) return [];
+		const path = [...prefix, key];
+		return Object.hasOwn(value, "$value") ? [[path.join("."), value.$value]] : tokenLeaves(value, path);
+	});
+}
+
+function rampUsage(leaves) {
+	const usage = new Map();
+	for (const [path, value] of leaves) {
+		if (typeof value !== "string") continue;
+		const ref = /^\{palette\.(\w+\.\w+)\}$/.exec(value);
+		if (!ref) continue;
+		const step = ref[1];
+		const aliases = usage.get(step) ?? [];
+		aliases.push(cssToken(path));
+		usage.set(step, aliases);
+	}
+	return usage;
+}
+
 export function paletteReference() {
+	const light = tokenLeaves(foundation);
+	const lightUsage = rampUsage(light);
+	const darkUsage = rampUsage(new Map([...light, ...tokenLeaves(dark)]));
 	const swatch = (family, step) => {
 		const color = colorAt([family, step]);
 		return { id: `${family}.${step}`, hex: color.hex, oklch: oklch(color) };
@@ -137,11 +162,17 @@ export function paletteReference() {
 		ramps: palette.families.map(family => ({
 			name: family.name,
 			label: rampLabels[family.name] ?? family.name,
-			swatches: family.swatches.map(step => swatch(family.name, step.name)),
+			swatches: family.swatches.map(step => {
+				const colour = swatch(family.name, step.name);
+				return {
+					...colour,
+					aliases: { light: lightUsage.get(colour.id) ?? [], dark: darkUsage.get(colour.id) ?? [] },
+				};
+			}),
 		})),
 		roles: Object.keys(themes.light).map(role => ({
 			name: role,
-			cssToken: cssToken(role),
+			cssToken: cssToken(rolePaths[role]),
 			light: swatch(...themes.light[role]),
 			dark: swatch(...themes.dark[role]),
 		})),

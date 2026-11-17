@@ -35,6 +35,12 @@ Each group has a live table and a static table. The live table reads every value
 
 `pnpm --filter @codeui/kit test` checks every name and value against `docs/kit-2026/design/k5-token-map.json`.
 
+## Colour ramp matrix
+
+Each row pairs a Gosfuig ramp step with the CSS tokens that directly alias it in Light and Dark. `blue.500` supplies `--cui-action-brand-base` in both modes. A dash marks a step with no direct alias in that mode.
+
+<PaletteMatrix />
+
 ## Surfaces
 
 The backgrounds of pages, islands, fields and floating layers. The names are inverted today. `surface.canvas` is the island and `surface.panel` is the page. See [Colour](/docs/design/color) for the level each one fills.

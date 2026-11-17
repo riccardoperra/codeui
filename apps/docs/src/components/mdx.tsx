@@ -8,7 +8,7 @@ import { Do, DoDont, Dont, Figure } from './inkstone/frame';
 import * as InkArt from './inkstone/art';
 import * as InkFigures from './inkstone/figures';
 import { PaletteComparison } from './inkstone/palette-comparison';
-import { ColourPalette } from './inkstone/colour-palette';
+import { ColourPalette, PaletteMatrix } from './inkstone/colour-palette';
 
 export function getMDXComponents(components?: MDXComponents) {
   return {
@@ -23,6 +23,7 @@ export function getMDXComponents(components?: MDXComponents) {
     ...InkFigures,
     PaletteComparison,
     ColourPalette,
+    PaletteMatrix,
     TypeTable,
     PropsTable,
     ...components,
