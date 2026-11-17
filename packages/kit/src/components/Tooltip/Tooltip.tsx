@@ -11,6 +11,8 @@ export type TooltipProps = KTooltipRootProps &
 	styles.TooltipVariants &
 	SlotProp<TooltipSlot> & {
 		content: JSX.Element;
+		/** Portal target for the content. Defaults to `document.body`. */
+		mount?: Node;
 	};
 
 const focusable =
@@ -66,7 +68,7 @@ export function Tooltip(props: TooltipProps) {
 	const [open, setOpen] = createSignal(false);
 	const [local, internal, others] = splitProps(
 		props,
-		["theme", "slotClasses", "onOpenChange"],
+		["theme", "slotClasses", "onOpenChange", "mount"],
 		["children", "content"],
 	);
 
@@ -93,11 +95,11 @@ export function Tooltip(props: TooltipProps) {
 
 	return (
 		<KTooltip open={open()} onOpenChange={onOpenChange} {...others}>
-			<KTooltip.Trigger as={TriggerElement} class={mergeClasses(local.slotClasses?.trigger, styles.trigger)}>
+			<KTooltip.Trigger as={TriggerElement} data-cui="tooltip-trigger" class={mergeClasses(local.slotClasses?.trigger, styles.trigger)}>
 				{internal.children}
 			</KTooltip.Trigger>
-			<KTooltip.Portal>
-				<KTooltip.Content ref={contentRef} class={contentClasses()}>
+			<KTooltip.Portal mount={local.mount}>
+				<KTooltip.Content ref={contentRef} data-cui="tooltip-content" class={contentClasses()}>
 					{internal.content}
 				</KTooltip.Content>
 			</KTooltip.Portal>

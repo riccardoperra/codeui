@@ -70,6 +70,8 @@ export type SelectProps<Option, OptGroup = never> = KSelectRootProps<
 	itemLabel?: (item: Option) => JSXElement;
 	valueComponent?: (state: Accessor<Option>) => JSXElement;
 	valueComponentMultiple?: (state: Accessor<Option[]>) => JSXElement;
+	/** Portal target, such as a parent dialog, so the list stays inside it. */
+	mount?: Node;
 } & SelectClassesProps;
 
 export function SelectItem<T>(
@@ -109,6 +111,7 @@ export function Select<Option, OptGroup = never>(props: ParentProps<SelectProps<
 			"valueComponent",
 			"classes",
 			"slotClasses",
+			"mount",
 		],
 		["options", "value"],
 	);
@@ -198,7 +201,7 @@ export function Select<Option, OptGroup = never>(props: ParentProps<SelectProps<
 					</KSelect.ErrorMessage>
 				)}
 			</Show>
-			<KSelect.Portal>
+			<KSelect.Portal mount={local.mount}>
 				<KSelect.Content
 					ref={motionRef()}
 					data-cui={selectParts.content}

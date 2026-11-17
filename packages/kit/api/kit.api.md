@@ -1131,6 +1131,8 @@ export type SelectProps<Option, OptGroup = never> = KSelectRootProps<Option, Opt
     itemLabel?: (item: Option) => JSXElement;
     valueComponent?: (state: Accessor<Option>) => JSXElement;
     valueComponentMultiple?: (state: Accessor<Option[]>) => JSXElement;
+    /** Portal target, such as a parent dialog, so the list stays inside it. */
+    mount?: Node;
 } & SelectClassesProps;
 export declare function SelectItem<T>(props: KSelectItemProps & {
     itemLabel?: (item: T) => JSXElement;
@@ -1697,6 +1699,8 @@ import * as styles from "./Tooltip.css.js";
 type TooltipSlot = "trigger" | "content";
 export type TooltipProps = KTooltipRootProps & styles.TooltipVariants & SlotProp<TooltipSlot> & {
     content: JSX.Element;
+    /** Portal target for the content. Defaults to `document.body`. */
+    mount?: Node;
 };
 export declare function Tooltip(props: TooltipProps): JSX.Element;
 export {};

@@ -22,13 +22,15 @@ Wrap the element in `Tooltip` and pass the label as `content`. Hover the button,
 
 ## Anatomy
 
+<Anatomy demo="tooltip/anatomy" />
+
 | Export | Renders | `classes` key | `data-cui` | Role |
 | --- | --- | --- | --- | --- |
 | `Tooltip` | Nothing. Holds the open state | none | none | none |
-| Trigger | `div`, `display: inline-block`, around the children | `slotClasses.trigger` | none | Wrapper that listens for hover and focus |
-| Content | `div` in a portal | `slotClasses.content` | none | `role="tooltip"` |
+| Trigger | `div`, `display: inline-block`, around the children | `slotClasses.trigger` | `tooltip-trigger` | Wrapper that listens for hover and focus |
+| Content | `div` in a portal on `mount`, or `document.body` | `slotClasses.content` | `tooltip-content` | `role="tooltip"` |
 
-`Tooltip` takes `slotClasses`, not `classes`, and renders no `data-cui` attributes.
+`Tooltip` takes `slotClasses`, not `classes`. The content renders in a portal on `document.body` unless you pass `mount`.
 
 ## Variants
 
