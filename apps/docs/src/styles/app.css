@@ -5,6 +5,7 @@
 @import '@codeui/docs-demos/style.css';
 @import './inkstone.css';
 @import './anatomy.css';
+@import './home.css';
 
 /*
  * The kit's --cui-* tokens drive the docs chrome too, so the page and the

@@ -1,0 +1,239 @@
+/* The homepage: a hero on the page, then the live kit as islands carved into it (Inkstone §2.1). */
+body:has(#nd-home-layout) {
+  background: var(--cui-surface-panel);
+}
+
+/* The header has no bar (Inkstone §4): it sits on the page fill, with no border or blur. */
+#nd-home-layout #nd-nav > * {
+  border-color: transparent;
+  backdrop-filter: none;
+  background-color: var(--cui-surface-panel);
+}
+
+/* 16px inset, so the islands' edges line up with the Fumadocs header row above them. */
+.home {
+  container-type: inline-size;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--fd-layout-width);
+  margin-inline: auto;
+  padding: 0 var(--cui-space-4) var(--cui-space-4);
+}
+
+.home-hero {
+  max-width: 40rem;
+  padding-block: var(--cui-space-16) var(--cui-space-12);
+}
+
+.home-hero h1 {
+  margin: 0;
+  font-size: 48px;
+  font-weight: var(--cui-font-weight-semibold);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--cui-text-default);
+}
+
+.home-hero p {
+  margin: var(--cui-space-3) 0 0;
+  font-size: var(--cui-font-size-md);
+  line-height: var(--cui-font-line-height-normal);
+  color: var(--cui-text-muted);
+  text-wrap: pretty;
+}
+
+.home-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--cui-space-2);
+  margin-top: var(--cui-space-8);
+}
+
+.home-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  height: var(--cui-control-height-sm);
+  padding-inline: var(--cui-space-4);
+  border: 0;
+  border-radius: var(--cui-radius-md);
+  background: var(--cui-action-neutral-base);
+  color: var(--cui-action-neutral-text);
+  font: inherit;
+  font-size: var(--cui-font-size-sm);
+  font-weight: var(--cui-font-weight-medium);
+  line-height: var(--cui-font-line-height-snug);
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color var(--cui-motion-duration-fast) var(--cui-motion-ease-out),
+    transform var(--cui-motion-duration-fast) var(--cui-motion-ease-out);
+}
+
+.home-button:active {
+  background: var(--cui-action-neutral-active);
+  transform: scale(0.97);
+}
+
+.home-button[data-variant='primary'] {
+  background: var(--cui-action-brand-base);
+  color: var(--cui-action-brand-text);
+}
+
+.home-button[data-variant='primary']:active {
+  background: var(--cui-action-brand-active);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .home-button:hover {
+    background: var(--cui-action-neutral-hover);
+  }
+
+  .home-button[data-variant='primary']:hover {
+    background: var(--cui-action-brand-hover);
+  }
+}
+
+.home-button:focus-visible,
+.home-tile-link:focus-visible {
+  outline: var(--cui-focus-width) solid var(--cui-focus-color);
+  outline-offset: var(--cui-focus-offset);
+}
+
+/* The field is an island on the page, so its 12px button sits 4px in from a 16px corner. */
+.home-install {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--cui-space-3);
+  min-width: 0;
+  padding: var(--cui-space-1) var(--cui-space-1) var(--cui-space-1) var(--cui-space-4);
+  border-radius: var(--cui-radius-card);
+  background: var(--cui-surface-canvas);
+}
+
+.home-install code {
+  font-family: var(--cui-font-family-mono);
+  font-size: var(--cui-font-size-caption);
+  color: var(--cui-text-default);
+  white-space: nowrap;
+}
+
+.home-swap {
+  display: grid;
+}
+
+.home-swap > * {
+  grid-area: 1 / 1;
+}
+
+.home-swap[data-copied='true'] > :first-child,
+.home-swap[data-copied='false'] > :last-child {
+  visibility: hidden;
+}
+
+.home-grid {
+  columns: 2;
+  column-gap: var(--cui-space-2);
+}
+
+/*
+ * A third column only once each tile keeps 400px inside its padding: the width of three option cards
+ * (3 × 128px + 2 × 8px, the kit's minimum), the widest vignette. 3 × (400 + 32) + 2 × 8 = 1312.
+ */
+@container (min-width: 1312px) {
+  .home-grid {
+    columns: 3;
+  }
+}
+
+.home-tile {
+  display: flow-root;
+  break-inside: avoid;
+  margin-bottom: var(--cui-space-2);
+  padding: var(--cui-space-4);
+  border-radius: var(--cui-radius-command);
+  background: var(--cui-surface-canvas);
+  /* The Inkstone base (§3), so kit parts without a size of their own read as they do in an app. */
+  font-size: var(--cui-font-size-caption);
+  line-height: var(--cui-font-line-height-normal);
+  /*
+   * Rise, once, staggered 30ms (Inkstone §7.1 rare, §7.3). The delay stops growing at the 15th tile,
+   * so the whole entrance ends by 820ms, under the 850ms ceiling. `backwards` drops the transform once it ends.
+   */
+  animation: home-rise var(--cui-motion-duration-rise) var(--cui-motion-ease-out) backwards;
+  animation-delay: calc(min(var(--i), 14) * 30ms);
+}
+
+/* The title sits 6px in from the tile's 22px corner: 22 − 16 padding. */
+.home-tile-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--cui-space-2);
+  min-height: var(--cui-control-height-compact);
+  margin-top: var(--cui-space-4);
+  border-radius: var(--cui-radius-badge);
+  color: var(--cui-text-default);
+  font-size: var(--cui-font-size-sm);
+  font-weight: var(--cui-font-weight-medium);
+  line-height: var(--cui-font-line-height-snug);
+  text-decoration: none;
+}
+
+.home-tile-link > span {
+  color: var(--cui-text-muted);
+  transition: color var(--cui-motion-duration-fast) var(--cui-motion-ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .home-tile-link:hover > span {
+    color: var(--cui-text-default);
+  }
+}
+
+@keyframes home-rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@keyframes home-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-hero {
+    padding-block: var(--cui-space-10) var(--cui-space-8);
+  }
+
+  .home-hero h1 {
+    font-size: 36px;
+  }
+
+  .home-grid {
+    columns: 1;
+  }
+
+  .home-button {
+    height: var(--cui-control-height-md);
+  }
+
+  .home-tile-link {
+    min-height: var(--cui-control-height-md);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-tile {
+    animation-name: home-fade;
+  }
+
+  .home-button:active {
+    transform: none;
+  }
+}
