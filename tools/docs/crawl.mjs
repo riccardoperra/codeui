@@ -56,10 +56,11 @@ async function visit(pagePath, config) {
     };
     const demos = [...document.querySelectorAll('[data-solid-demo]')].map((el) => {
       const child = el.firstElementChild;
-      // A block root must be as wide in the demo card as in normal block flow. A flex card that
-      // shrink-wraps it collapses grids to one column and resolves width: 100% children to 0.
+      // A single block root must be as wide in the demo card as in normal block flow. A flex card
+      // that shrink-wraps it collapses grids to one column and resolves width: 100% children to 0.
+      // Several roots, such as five Selects, form a row on purpose.
       let shrunk = 0;
-      if (child?.matches('div,section,form,nav,ul,ol,dl,table,fieldset,article,header,footer,aside,figure')) {
+      if (el.childElementCount === 1 && child.matches('div,section,form,nav,ul,ol,dl,table,fieldset,article,header,footer,aside,figure')) {
         const inCard = child.getBoundingClientRect().width;
         const style = getComputedStyle(el);
         const content = el.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
