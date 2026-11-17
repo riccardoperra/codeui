@@ -1,3 +1,4 @@
+import { buttonOwner, iconButtonOwner } from "../../foundation/public.css";
 import { iconRule } from "../../icons/icon.css";
 import { squareButtonRule } from "../Button/composition";
 import { finish } from "../../foundation/public.css";
@@ -257,7 +258,7 @@ export const buttonText = style(
 		transition: transition(["opacity"]),
 		display: "contents",
 		selectors: {
-			":is(.cui-button,.cui-icon-button,.cui-dialog-close-button)[data-loading] &": {
+			[`${buttonOwner}[data-loading] &`]: {
 				opacity: 0,
 			},
 		},
@@ -267,11 +268,8 @@ export const buttonText = style(
 
 export type ButtonVariants = RecipeVariants<typeof button>;
 
-globalStyle(
-	":is(.cui-icon-button,.cui-dialog-close-button)",
-	squareButtonRule(buttonVars.buttonHeight),
-);
-globalStyle(":is(.cui-icon-button,.cui-dialog-close-button) svg", iconRule);
+globalStyle(iconButtonOwner, squareButtonRule(buttonVars.buttonHeight));
+globalStyle(`${iconButtonOwner} svg`, iconRule);
 finish();
 
 export const buttonDefaults = registry.button.defaults;

@@ -1,3 +1,4 @@
+import { partSelector } from "../../foundation/public.css";
 import { finish } from "../../foundation/public.css";
 import { publicStylesRegistry as registry } from "../../registry";
 import { createTheme, publicRecipe as recipe, style } from "../../foundation/public.css";
@@ -39,6 +40,8 @@ export const [dialogTheme, dialogThemeVars] = createTheme(
 	registry.dialog.parts.panel,
 );
 
+const positionerSelector = partSelector(registry.dialog.parts.positioner);
+const sectionSelector = partSelector(registry.dialog.parts.section);
 const phone = "screen and (max-width: 768px)";
 const finePointer = "(hover: hover) and (pointer: fine)";
 const reducedMotion = "(prefers-reduced-motion: reduce)";
@@ -110,7 +113,7 @@ export const panelContent = style(
 			padding: `${dialogThemeVars.contentPadding}`,
 			overflow: "auto",
 			selectors: {
-				".cui-dialog-positioner[data-panel-size=full] &": {
+				[`${positionerSelector}[data-panel-size=full] &`]: {
 					flex: 1,
 				},
 				"[data-chrome=inset] &": {
@@ -159,7 +162,7 @@ export const panelFooter = style(
 	{
 		padding: `${dialogThemeVars.contentPadding}`,
 		selectors: {
-			".cui-dialog-positioner[data-panel-size=full] &": {
+			[`${positionerSelector}[data-panel-size=full] &`]: {
 				marginTop: "auto",
 				marginBottom: "env(safe-area-inset-bottom, 20px)",
 			},
@@ -385,13 +388,15 @@ export const panel = recipe(
 							gap: tokens.space["4"],
 							padding: tokens.space["4"],
 							selectors: {
-								"&:has(> [data-cui=dialog-sidebar])": { flexDirection: "column" },
+								[`&:has(> [data-cui=${registry.dialog.parts.sidebar}])`]: {
+									flexDirection: "column",
+								},
 							},
 						},
 					},
 					selectors: {
 						// With a sidebar the panes reach the edges and hold their own padding.
-						"&:has(> [data-cui=dialog-sidebar])": {
+						[`&:has(> [data-cui=${registry.dialog.parts.sidebar}])`]: {
 							flexDirection: "row",
 							gap: 0,
 							padding: 0,
@@ -489,7 +494,7 @@ export const navList = style(
 		},
 	},
 	"navList",
-	"dialog-nav > ul",
+	registry.dialog.parts.nav + " > ul",
 );
 
 export const navItem = style(
@@ -619,7 +624,7 @@ export const sectionContent = style(
 				borderRadius: tokens.radius.card,
 				backgroundColor: dialogThemeVars.islandBackground,
 			},
-			".cui-dialog-section[data-columns='2'] > &": {
+			[`${sectionSelector}[data-columns='2'] > &`]: {
 				display: "grid",
 				gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
 				gap: tokens.space["0.5"],
@@ -628,7 +633,7 @@ export const sectionContent = style(
 		"@media": {
 			[phone]: {
 				selectors: {
-					".cui-dialog-section[data-columns='2'] > &": {
+					[`${sectionSelector}[data-columns='2'] > &`]: {
 						gridTemplateColumns: "minmax(0, 1fr)",
 					},
 				},

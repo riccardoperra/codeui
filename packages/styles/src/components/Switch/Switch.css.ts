@@ -1,3 +1,4 @@
+import { partSelector } from "../../foundation/public.css";
 import { finish } from "../../foundation/public.css";
 import { publicStylesRegistry as registry } from "../../registry";
 import { createVar } from "@vanilla-extract/css";
@@ -6,6 +7,9 @@ import { tokens as t } from "../../foundation/cui.css";
 import { transition } from "../../foundation/motion.css";
 import { inputModalityAttribute, whileKeyboard } from "../../utils/modality";
 
+const rootSelector = partSelector(registry.switch.parts.root);
+const inputSelector = partSelector(registry.switch.parts.input);
+const controlSelector = partSelector(registry.switch.parts.control);
 const coarse = "(pointer: coarse)";
 const reducedMotion = "(prefers-reduced-motion: reduce)";
 const trackWidth = createVar("trackWidth");
@@ -70,7 +74,7 @@ export const control = recipe(
 				"&[data-invalid]": { outline: `${t.focus.width} solid ${t.text.danger}` },
 				// Kobalte focuses the input from script after a click, which the
 				// browser marks focus-visible. The ring is for the keyboard only.
-				[`:root:not([${inputModalityAttribute}="pointer"]) .cui-switch-root .cui-switch-input:focus-visible ~ &`]:
+				[`:root:not([${inputModalityAttribute}="pointer"]) ${rootSelector} ${inputSelector}:focus-visible ~ &`]:
 					{
 						outline: `${t.focus.width} solid ${t.focus.color}`,
 						outlineOffset: t.focus.offset,
@@ -106,7 +110,7 @@ export const control = recipe(
 export const smallRoot = style({}, "smallRoot");
 // A Root with `size="sm"` sizes the parts inside it as well.
 globalStyle(
-	`:is(.cui-switch-root[data-size="sm"],.cui-switch-root.${smallRoot}:not([data-size])) .cui-switch-control:not([data-size])`,
+	`:is(${rootSelector}[data-size="sm"],${rootSelector}.${smallRoot}:not([data-size])) ${controlSelector}:not([data-size])`,
 	{
 		"@media": { [notCoarse]: { vars: small } },
 	},

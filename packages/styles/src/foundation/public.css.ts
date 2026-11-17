@@ -9,13 +9,23 @@ import {
 import { publicStylesRegistry } from "../registry";
 import { recipe as privateRecipe } from "@vanilla-extract/recipes";
 
-const button = ":is(.cui-button,.cui-icon-button,.cui-dialog-close-button)";
+export const partSelector = (part: string) => ".cui-" + part;
+const owners = (...parts: string[]) => ":is(" + parts.map(partSelector).join(",") + ")";
+export const iconButtonOwner = owners(
+	publicStylesRegistry.iconButton.parts.iconButton,
+	publicStylesRegistry.dialog.parts.closeButton,
+);
+export const buttonOwner = owners(
+	publicStylesRegistry.button.parts.button,
+	publicStylesRegistry.iconButton.parts.iconButton,
+	publicStylesRegistry.dialog.parts.closeButton,
+);
 const selectorFor = (part: string) =>
-	part === "button"
-		? button
-		: part === "icon-button"
-			? ":is(.cui-icon-button,.cui-dialog-close-button)"
-			: ".cui-" + part;
+	part === publicStylesRegistry.button.parts.button
+		? buttonOwner
+		: part === publicStylesRegistry.iconButton.parts.iconButton
+			? iconButtonOwner
+			: partSelector(part);
 const rules = new Map<string, ComplexStyleRule>();
 
 const states: (() => void)[] = [];
@@ -92,7 +102,9 @@ export function style(rule: ComplexStyleRule, debugId?: string, part?: string): 
 		return name;
 	}
 	const selector = selectorFor(part);
-	const name = part.includes(" > ") ? privateStyle({}, debugId) : "cui-" + part;
+	const name = part.includes(" > ")
+		? privateStyle({}, debugId)
+		: partSelector(part).slice(1);
 	rules.set(name, rule);
 	write(selector, rule);
 	return name;
@@ -106,9 +118,9 @@ export function publicRecipe<
 	Variants extends Record<string, Record<string, ComplexStyleRule | string>>,
 >(options: Parameters<typeof privateRecipe<Variants>>[0], debugId: string, part: string) {
 	const descriptor =
-		part === "button"
+		part === publicStylesRegistry.button.parts.button
 			? publicStylesRegistry.button
-			: part.startsWith("switch-")
+			: Object.values(publicStylesRegistry.switch.parts).some(value => value === part)
 				? publicStylesRegistry.switch
 				: publicStylesRegistry.dialog;
 	const axes: Readonly<Record<string, readonly string[]>> = descriptor.variants;
@@ -156,14 +168,14 @@ export function publicRecipe<
 			")"
 		);
 	};
-	if (part === "dialog-panel")
-		for (const value of ["bar", "inset"])
+	if (part === publicStylesRegistry.dialog.parts.panel)
+		for (const value of publicStylesRegistry.dialog.variants.chrome)
 			structural.set(
 				"[data-chrome=" + value + "]",
 				selector + effective("chrome", value),
 			);
-	if (part === "dialog-section")
-		for (const value of ["group", "well"])
+	if (part === publicStylesRegistry.dialog.parts.section)
+		for (const value of publicStylesRegistry.dialog.variants.variant)
 			structural.set(
 				"[data-variant=" + value + "]",
 				selector + effective("variant", value),
@@ -180,7 +192,7 @@ export function publicRecipe<
 					.join(""),
 			compound.style,
 		);
-	const base = "cui-" + part;
+	const base = partSelector(part).slice(1);
 
 	return privateRecipe(
 		{ ...options, base, variants: variants as Variants, compoundVariants: [] },
@@ -193,7 +205,7 @@ export function createTheme<Defaults extends Record<string, string>>(
 	part: string,
 ) {
 	const variables: Readonly<Record<string, string>> =
-		part === "button"
+		part === publicStylesRegistry.button.parts.button
 			? publicStylesRegistry.button.variables
 			: publicStylesRegistry.dialog.variables;
 	const vars = createGlobalThemeContract(
@@ -209,8 +221,14 @@ export function createTheme<Defaults extends Record<string, string>>(
 	rules.set(name, { vars: assignments });
 	write(
 		":is(" +
-			(part === "dialog-panel"
-				? ".cui-dialog-panel,.cui-dialog-positioner,.cui-dialog-overlay"
+			(part === publicStylesRegistry.dialog.parts.panel
+				? [
+						publicStylesRegistry.dialog.parts.panel,
+						publicStylesRegistry.dialog.parts.positioner,
+						publicStylesRegistry.dialog.parts.overlay,
+					]
+						.map(partSelector)
+						.join(",")
 				: selectorFor(part)) +
 			",." +
 			name +
