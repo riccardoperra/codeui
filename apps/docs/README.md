@@ -70,5 +70,3 @@ The workflow needs two repository secrets:
 - `CLOUDFLARE_ACCOUNT_ID`: the Cloudflare account ID.
 
 The workflow creates the `codeui-docs` Pages project, with `main` as the production branch, if it does not exist yet.
-
-The repository's `netlify.toml` still deploys Storybook, and this site does not change it.
