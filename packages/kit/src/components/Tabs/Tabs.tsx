@@ -8,7 +8,8 @@ import {
 } from "@kobalte/core/tabs";
 import { mergeClasses } from "../../utils/css";
 import * as styles from "./Tabs.css";
-import { createContext, Show, splitProps, useContext, ValidComponent } from "solid-js";
+import { createContext, onMount, Show, splitProps, useContext, ValidComponent } from "solid-js";
+import { trackInputModality } from "../../utils/modality";
 import { PolymorphicProps } from "@kobalte/core/polymorphic";
 
 export type TabsProps<T extends ValidComponent = "div"> = KTabsRootProps<T> & {
@@ -24,6 +25,7 @@ const TabsContext = createContext<{
 export function Tabs<T extends ValidComponent = "div">(props: PolymorphicProps<T, TabsProps<T>>) {
 	const [local, others] = splitProps(props as PolymorphicProps<"div", TabsProps<T>>, ["class", "theme"]);
 	const classes = () => mergeClasses(styles.tabsRoot, local.class);
+	onMount(trackInputModality);
 
 	return (
 		<TabsContext.Provider

@@ -15,6 +15,7 @@ export const [checkboxTheme, checkboxVars] = createTheme({
 	nonActiveHoverBackground: tokens.surface.input,
 	color: tokens.action.brand.text,
 	radius: `calc(${tokens.radius.md} * .6)`,
+	fill: "transparent",
 });
 
 export const container = style([
@@ -75,8 +76,14 @@ export const control = recipe({
 				"&:hover::before": {
 					backgroundColor: checkboxVars.nonActiveHoverBackground,
 				},
+				// The input is visually hidden, so its keyboard focus rings the box.
+				[`${input}:focus-visible + &`]: {
+					outline: `${tokens.focus.width} solid ${tokens.focus.color}`,
+					outlineOffset: tokens.focus.offset,
+				},
 				"&:before": {
 					content: "",
+					background: checkboxVars.fill,
 					border: `${tokens.border.widthStrong} solid ${checkboxVars.borderColor}`,
 					borderRadius: checkboxVars.radius,
 					position: "absolute",
@@ -110,6 +117,17 @@ export const control = recipe({
 		},
 	],
 	variants: {
+		// `filled` gives the box the field fill and drops its outline;
+		// `inline`, the default, draws the outline on the surface.
+		theme: {
+			filled: {
+				vars: {
+					[checkboxVars.borderColor]: "transparent",
+					[checkboxVars.fill]: tokens.surface.input,
+				},
+			},
+			inline: {},
+		},
 		size: {
 			[FieldSizes.xs]: {
 				vars: {

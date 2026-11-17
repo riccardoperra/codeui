@@ -121,7 +121,7 @@ Indicator geometry is measured on the client. Keep initial values and tab IDs st
 Tabs reads `--cui-border-divider`, `--cui-border-width`, `--cui-action-neutral-hover`, `--cui-text-muted`, `--cui-text-default`, and `--cui-accent-selection`.
 Text and spacing use `--cui-font-size-sm`, `--cui-font-weight-semibold`, `--cui-space-2`, and `--cui-space-4`.
 Transitions use `--cui-motion-duration-normal` and `--cui-motion-duration-fast` with `--cui-motion-ease-out`.
-The current kit draws a line below or beside the tablist and animates indicator geometry. These styles predate Inkstone's line and keyboard-motion rules.
+The current kit draws a line below or beside the tablist, which predates Inkstone's line rule. The inline indicator slides in 160ms when you click a tab; arrow keys move it instantly (Inkstone §7.1), and reduced motion never slides it. A focused header shows the 2px `--cui-focus-color` ring on `:focus-visible`. Header text sets `--cui-font-line-height-sm`.
 
 ## Composition examples
 

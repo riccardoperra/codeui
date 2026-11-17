@@ -1,6 +1,6 @@
 import { cleanup, fireEvent, render, screen } from "solid-testing-library";
 import { createSignal } from "solid-js";
-import { Switch } from "../src/components/Switch/Switch";
+import { Switch, switchStyles } from "../src/components/Switch/Switch";
 afterEach(cleanup);
 it("links rich field content, exposes invalid state and submits checked values", () => {
 	const { container } = render(() => (
@@ -68,4 +68,26 @@ it("supports CodeImage row labels and changes through the track", () => {
 	expect(track).toHaveClass("row-control");
 	fireEvent.click(track);
 	expect(changed).toHaveBeenCalledWith(true);
+});
+it("records a pointer press, so a click shows no keyboard focus ring", () => {
+	render(() => <Switch label="Preview" />);
+	const control = document.querySelector('[data-cui="switch-control"]')!;
+	fireEvent.pointerDown(control);
+	fireEvent.click(control);
+	expect(screen.getByRole("switch")).toBeChecked();
+	// The ring and the instant toggle key off this attribute, not :focus-visible.
+	expect(document.documentElement).toHaveAttribute("data-cui-input", "pointer");
+	fireEvent.keyDown(screen.getByRole("switch"), { key: " " });
+	expect(document.documentElement).toHaveAttribute("data-cui-input", "keyboard");
+	fireEvent.keyDown(screen.getByRole("switch"), { key: "Shift" });
+	expect(document.documentElement).toHaveAttribute("data-cui-input", "keyboard");
+});
+it("sizes the track and thumb parts with the Switch size", () => {
+	render(() => <Switch label="Compact" size="sm" />);
+	expect(document.querySelector('[data-cui="switch-control"]')).toHaveClass(
+		switchStyles.control({ size: "sm" }),
+	);
+	expect(document.querySelector('[data-cui="switch-thumb"]')).toHaveClass(
+		switchStyles.thumb({ size: "sm" }),
+	);
 });

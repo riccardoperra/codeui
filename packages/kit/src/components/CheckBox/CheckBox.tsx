@@ -44,6 +44,7 @@ export function Checkbox(props: CheckBoxProps) {
 		mergeClasses(
 			styles.control({
 				size: local.size,
+				theme: local.theme ?? "inline",
 			}),
 			local.slotClasses?.control,
 		);
@@ -52,6 +53,7 @@ export function Checkbox(props: CheckBoxProps) {
 		<KCheckbox
 			data-cui={"checkbox"}
 			data-field-size={local.size}
+			data-field-theme={local.theme ?? "inline"}
 			class={mergeClasses(styles.container, local?.slotClasses?.root)}
 			{...others}
 		>

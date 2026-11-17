@@ -36,3 +36,4 @@ Each feature file has an H1, one paragraph of user-visible behavior, and exactly
 - [Theming](./theming.md): `data-cui-theme` modes, `--cui-*` tokens, and the `@layer cui` override contract.
 - [Settings rows](./settings.md): SettingsRow and SettingsGroup labelling, CodeImage parity and phone stacking. Journey: `journeys/settings-row.mjs`.
 - [Feedback](./feedback.md): Tooltip on hover and focus. Keyboard journey: `journeys/tooltip-keyboard.mjs`.
+- [Sidebar and settings controls](./controls.md): Accordion first click, Switch pointer vs keyboard focus, OptionCard keyboard. Journeys: `journeys/accordion-first-click.mjs`, `journeys/switch-focus.mjs`, `journeys/option-card-keyboard.mjs`.

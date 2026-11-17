@@ -27,7 +27,7 @@ Slots `input`, `control`, `label`, and `errorLabel` customize descendants. Those
 
 <SolidDemo name="checkbox/sizes" />
 
-`theme` accepts `filled` and `inline` through BaseFieldProps, but the ready component currently ignores this prop.
+`theme` accepts `filled` and `inline` through BaseFieldProps. `inline`, the default, draws the box as an outline on the surface. `filled` gives the box the field fill (`--cui-surface-input`) and no outline. The root carries `data-field-theme`.
 
 ## States
 
@@ -70,7 +70,7 @@ The input exposes checkbox semantics, including `aria-checked="mixed"` for indet
 
 ### Focus
 
-These controls do not open an overlay or move focus on mount. Disabled controls cannot receive keyboard focus. Read-only controls remain focusable and do not change value.
+These controls do not open an overlay or move focus on mount. The native checkbox is visually hidden, so keyboard focus draws the 2px focus ring around the box on `:focus-visible`. Disabled controls cannot receive keyboard focus. Read-only controls remain focusable and do not change value.
 
 ## SSR notes
 

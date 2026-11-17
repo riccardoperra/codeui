@@ -7,6 +7,8 @@ description: "Sections that reveal settings within a sidebar."
 
 Accordion groups settings in a sidebar. The CodeImage pattern shows an icon, title, value summary, and chevron in each header. One section can be open at a time in the ready component.
 
+A header is a 36px row with a 14px, weight-600 title, 8px before the icon, 10px between its parts and 12px after the chevron. Sections sit 4px apart. The open section sits on the inset fill with a 16px radius, and its icon turns to the accent. Hovering a closed header with a mouse fills it; the open header stays plain.
+
 ## When to choose another component
 
 Use [Tabs](/docs/components/tabs) for views that share one content area. For one independent disclosure, use an Accordion with a single item and `collapsible`.
@@ -41,7 +43,7 @@ Parts expose `compact` and `comfortable` trigger density through `accordionStyle
 
 <SolidDemo name="accordion/motion" />
 
-`motion="none"` disables content animation. With `auto`, mouse actions animate height and opacity using the panel duration and ease-out tokens. Keyboard actions are instant. Reduced motion keeps a fade and removes height motion.
+`motion="none"` disables content animation. With `auto`, the default, a click transitions the body's height and opacity over 200ms with the ease-out curve, and the `›` chevron turns 90° in step. These are transitions, not keyframes: a second click mid-way turns the body around from its current height, and the first click on a header always lands, because nothing restarts under the pointer. A closing body stays mounted until its transition ends. Keyboard toggles are instant: the kit reads the last input from `<html data-cui-input>`. Reduced motion keeps the fade and removes the height and chevron motion.
 
 ## States
 
@@ -71,7 +73,7 @@ Import parts from `@codeui/kit/accordion`. Each export is a named function.
 
 ### `Root`
 
-Kobalte Accordion.Root with input-aware motion. Parts use arrays for `value`, `defaultValue`, and `onChange`. Parts default `collapsible` to false. The ready component defaults it to true.
+Kobalte Accordion.Root. `motion` sets `data-motion` (`auto` or `none`). Parts use arrays for `value`, `defaultValue`, and `onChange`. Parts default `collapsible` to false. The ready component defaults it to true.
 
 <PropsTable name="AccordionRoot" />
 
@@ -101,7 +103,7 @@ Kobalte Accordion.Trigger rendered as a button inside Header.
 
 ### `Content`
 
-Kobalte Accordion.Content with a measured inner wrapper. Collapsed content has `inert` and `aria-hidden`.
+Kobalte Accordion.Content with a measured inner wrapper. It writes `data-open` while the body is open and keeps a closing body mounted until its height transition ends. Collapsed content has `inert` and `aria-hidden`.
 
 <PropsTable name="AccordionContent" />
 
@@ -125,7 +127,7 @@ A span for the current value at the end of the header.
 
 ### `Chevron`
 
-An aria-hidden span with a default chevron that rotates when expanded.
+An aria-hidden span with a default `›` chevron that turns 90° when expanded.
 
 <PropsTable name="AccordionChevron" />
 
@@ -166,9 +168,9 @@ Root, headers, and initially expanded content render on the server. `keepMounted
 
 ## Theming hooks
 
-Accordion reads `--cui-surface-panel`, `--cui-surface-menu-hover`, `--cui-text-default`, `--cui-text-muted`, `--cui-action-brand-base`, `--cui-radius-card`, `--cui-space-1`, and `--cui-space-3`. Typography uses `--cui-font-size-caption`, `--cui-font-size-xs`, `--cui-font-weight-normal`, and `--cui-font-weight-semibold`.
+Accordion reads `--cui-surface-panel`, `--cui-surface-input` (hovered closed header), `--cui-text-default`, `--cui-text-muted`, `--cui-accent-focus` (the open icon), `--cui-radius-card`, `--cui-radius-md`, `--cui-space-1`, `--cui-space-2`, `--cui-space-2-5`, `--cui-space-3`, and `--cui-space-4`. Typography uses `--cui-font-size-sm`, `--cui-font-size-caption`, `--cui-font-size-xs`, `--cui-font-size-xl` (the chevron), `--cui-font-weight-normal`, `--cui-font-weight-semibold`, and the matching `--cui-font-line-height-sm`, `-caption` and `-xs`.
 
-Controls use `--cui-control-height-compact` and `--cui-control-height-md`. Focus uses `--cui-focus-width`, `--cui-focus-color`, and `--cui-focus-offset`. Motion uses `--cui-motion-duration-panel` and `--cui-motion-ease-out`. Content writes the measured `--cui-accordion-content-height` with a fallback to `--kb-accordion-content-height`.
+Headers use `--cui-control-height-sm` (36px) and `--cui-control-height-md` on a coarse pointer. Focus uses `--cui-focus-width`, `--cui-focus-color`, and `--cui-focus-offset`. Motion uses `--cui-motion-duration-panel` and `--cui-motion-ease-out`. Content writes the measured `--cui-accordion-content-height`; before it measures, the open body is `auto` tall, so server markup shows it.
 
 See [Inkstone foundations](/docs/design) for the design rules.
 

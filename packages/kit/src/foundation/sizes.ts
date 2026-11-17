@@ -27,6 +27,19 @@ export const mapSizeValue = (
 	return sizes[size];
 };
 
+const lineHeightsCss = {
+	xs: tokens.font.lineHeight.xs,
+	sm: tokens.font.lineHeight.sm,
+	md: tokens.font.lineHeight.md,
+	lg: tokens.font.lineHeight.md,
+	xl: tokens.font.lineHeight.md,
+};
+
+/** The line height that pairs with `mapFontSizeValue(size)`. */
+export const mapLineHeightValue = (size: BaseComponentSize) => {
+	return lineHeightsCss[size];
+};
+
 export const mapFontSizeValue = (size: BaseComponentSize) => {
 	return fontSizesCss[size];
 };

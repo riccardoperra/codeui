@@ -62,6 +62,7 @@ The command menu opens with no animation because it is opened from the keyboard.
 - **Never start from nothing.** Start at 0.96 scale, not 0.
 - **Tooltips:** after the first one opens, the next ones open instantly, with no delay and no animation.
 - **Drags** track the finger 1:1 from where it was grabbed. On release, the settle animation continues at the finger's speed, and the element rubber-bands at its limits.
+- **Know the input, not the focus.** "Keyboard instant" depends on which input the user touched last, not on `:focus-visible`: a script that focuses an input after a click makes the browser report `:focus-visible` for a mouse user. The kit writes the last input to `<html data-cui-input>` (`keyboard` or `pointer`) and keys its keyboard-only rules on it: the switch's focus ring, and no slide for the switch thumb, the segmented and tab indicators, or the accordion body after a key press.
 - **Reduced motion** keeps fades and colour changes and drops movement and scaling.
 - **Hover effects only on devices with a mouse**, using `@media (hover: hover) and (pointer: fine)`. Otherwise a tap leaves an element stuck in its hover state.
 
@@ -78,6 +79,6 @@ The kit's own components are slower and softer than the app that uses them.
 | Button press: 200ms `ease` | Press, 120ms ease-out |
 | Focus ring: 150ms `ease-in` | A 120ms colour change, ease-out |
 | Dialog entrance: 250ms `ease-in-out` keyframe | Pop, as a reversible transition |
-| Segmented indicator: 250ms `cubic-bezier(0.2, 0, 0, 1)` | 200ms ease-out, or no animation in working panels |
+| Segmented indicator: 160ms ease-out on click, instant from the keyboard | 200ms ease-out, or no animation in working panels |
 
 Two curves are also missing from the tokens: `--cui-motion-ease-in-out` and `--cui-motion-ease-drawer`.

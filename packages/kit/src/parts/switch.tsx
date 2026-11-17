@@ -1,9 +1,10 @@
 import * as K from "@kobalte/core/switch";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
-import { splitProps, type ValidComponent } from "solid-js";
+import { onMount, splitProps, type ValidComponent } from "solid-js";
 import { mergeClasses } from "../utils/css";
 import * as styles from "../components/Switch/Switch.css";
 import { createFieldLabelProps } from "../components/Field/FieldLabel/createFieldLabelProps";
+import { trackInputModality } from "../utils/modality";
 export { useSwitchContext } from "@kobalte/core/switch";
 export const switchParts = {
 	root: "switch-root",
@@ -28,8 +29,8 @@ export type SwitchStyles = Record<SwitchPart, (variants?: SwitchVariants) => str
 export const switchStyles: SwitchStyles = {
 	root: () => styles.root,
 	input: () => styles.input,
-	control: () => styles.control,
-	thumb: () => styles.thumb,
+	control: variants => styles.control({ size: variants?.size ?? "md" }),
+	thumb: variants => styles.thumb({ size: variants?.size ?? "md" }),
 	label: () => styles.label,
 	description: () => styles.description,
 	errorMessage: () => styles.errorMessage,
@@ -43,6 +44,7 @@ export function Root<T extends ValidComponent = "div">(
 		"class",
 		"size",
 	]);
+	onMount(trackInputModality);
 	return (
 		<K.Root
 			{...others}

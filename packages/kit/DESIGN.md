@@ -244,6 +244,7 @@ Rules for every movement:
 - Group entrances stagger 30–80ms per item, and never block input.
 - Illustrations play once, under 850ms, then rest.
 - Drags track the pointer 1:1 from where it was grabbed, hand their release velocity to the settle animation, and rubber-band at the edges.
+- Keyboard-only rules read the last input from `<html data-cui-input>` (`keyboard` or `pointer`), not `:focus-visible`: a script focus after a click reports `:focus-visible` to a mouse user.
 - Reduced motion keeps opacity and colour, drops movement and scale.
 - Hover styles only under `@media (hover: hover) and (pointer: fine)`.
 - **No materials.** Unlike Apple's design language, Inkstone has no translucency or `backdrop-filter` on the interface. Matte is a trait.

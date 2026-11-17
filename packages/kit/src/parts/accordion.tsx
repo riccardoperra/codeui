@@ -1,4 +1,4 @@
-import { callHandler } from "@kobalte/utils";
+import { callHandler, mergeRefs } from "@kobalte/utils";
 import * as K from "@kobalte/core/accordion";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import {
@@ -6,7 +6,9 @@ import {
 	createSignal,
 	createUniqueId,
 	createEffect,
+	on,
 	onCleanup,
+	onMount,
 	useContext,
 	splitProps,
 	type JSX,
@@ -14,6 +16,7 @@ import {
 } from "solid-js";
 import { mergeClasses } from "../utils/css";
 import * as styles from "../components/Accordion/Accordion.css";
+import { trackInputModality } from "../utils/modality";
 
 export const accordionParts = {
 	root: "accordion-root",
@@ -49,6 +52,8 @@ const ItemContext = createContext<{
 	expanded: () => boolean;
 	triggerId: () => string;
 	contentId: string;
+	/** Keeps a closing body mounted until its transition ends. */
+	setClosing: (closing: boolean) => void;
 }>();
 function useItem() {
 	const context = useContext(ItemContext);
@@ -64,23 +69,15 @@ export function Root<T extends ValidComponent = "div">(
 	const [local, others] = splitProps(props as PolymorphicProps<"div", RootProps>, [
 		"class",
 		"motion",
-		"onMouseDown",
-		"onKeyDown",
 	]);
-	const [pointer, setPointer] = createSignal(false);
+	// Keyboard toggles stay instant through `<html data-cui-input>`, which
+	// only changes a transition and never restarts one.
+	onMount(trackInputModality);
 	return (
 		<K.Root
-			onMouseDown={event => {
-				setPointer(true);
-				callHandler(event, local.onMouseDown);
-			}}
-			onKeyDown={event => {
-				setPointer(false);
-				callHandler(event, local.onKeyDown);
-			}}
 			{...others}
 			data-cui={accordionParts.root}
-			data-motion={local.motion !== "none" && pointer() ? "auto" : "none"}
+			data-motion={local.motion ?? "auto"}
 			class={mergeClasses(accordionStyles.root(), local.class)}
 		/>
 	);
@@ -92,18 +89,22 @@ export function Item<T extends ValidComponent = "div">(
 	const [local, others] = splitProps(props as PolymorphicProps<"div", ItemProps>, [
 		"class",
 		"children",
+		"forceMount",
 	]);
 	const context = K.useAccordionContext();
 	const expanded = () => context.listState().selectionManager().isSelected(props.value);
 	const id = createUniqueId();
+	const [closing, setClosing] = createSignal(false);
 	const item = {
 		expanded,
 		triggerId: () => `cui-accordion-${id}-trigger`,
 		contentId: `cui-accordion-${id}-content`,
+		setClosing,
 	};
 	return (
 		<K.Item
 			{...others}
+			forceMount={local.forceMount || closing()}
 			data-cui={accordionParts.item}
 			class={mergeClasses(accordionStyles.item(), local.class)}
 		>
@@ -160,44 +161,94 @@ export function Content<T extends ValidComponent = "div">(
 		"class",
 		"children",
 		"style",
+		"ref",
 	]);
 	const item = useItem();
+	const [element, setElement] = createSignal<HTMLElement>();
 	const [body, setBody] = createSignal<HTMLDivElement>();
 	const [height, setHeight] = createSignal(0);
+	// `open` drives the transition. It trails `expanded` by one style flush on
+	// open, so the body starts from 0, and it keeps a closing body mounted
+	// until its transition ends.
+	const [open, setOpen] = createSignal(item.expanded());
+	const setClosing = item.setClosing;
+	const measure = () => {
+		const inner = body();
+		if (inner) setHeight(inner.scrollHeight);
+	};
 	createEffect(() => {
-		const element = body();
-		if (!element) return;
-		const measure = () => setHeight(element.scrollHeight);
+		const inner = body();
+		if (!inner) return;
 		measure();
 		if (typeof ResizeObserver === "undefined") return;
 		const observer = new ResizeObserver(measure);
-		observer.observe(element);
+		observer.observe(inner);
 		onCleanup(() => observer.disconnect());
 	});
-	createEffect(() => {
-		const parent = body()?.parentElement;
-		if (item.expanded() && parent) parent.style.animationName = "";
-	});
+	createEffect(
+		on(
+			item.expanded,
+			expanded => {
+				setClosing(!expanded);
+				// Kobalte writes an inline `transition-duration: 0s` while it
+				// measures a body it has just mounted; run after its effects.
+				queueMicrotask(() => {
+					const content = element();
+					if (item.expanded() !== expanded) return;
+					if (!content) {
+						setOpen(expanded);
+						setClosing(false);
+						return;
+					}
+					content.style.transitionDuration = "";
+					if (expanded) {
+						measure();
+						void content.offsetHeight;
+						setOpen(true);
+						return;
+					}
+					setOpen(false);
+					if (!hasTransition(content)) setClosing(false);
+				});
+			},
+			{ defer: true },
+		),
+	);
+	const finish = (event: TransitionEvent) => {
+		if (event.target === event.currentTarget && !item.expanded()) setClosing(false);
+	};
 	return (
 		<K.Content
 			id={item.contentId}
 			aria-labelledby={item.triggerId()}
 			{...others}
+			ref={mergeRefs(setElement, local.ref)}
 			style={
 				typeof local.style === "string"
-					? `${local.style};--cui-accordion-content-height:${height()}px`
-					: { ...local.style, "--cui-accordion-content-height": `${height()}px` }
+					? `${local.style}${height() ? `;--cui-accordion-content-height:${height()}px` : ""}`
+					: {
+							...local.style,
+							"--cui-accordion-content-height": height() ? `${height()}px` : undefined,
+						}
 			}
 			data-cui={accordionParts.content}
+			data-open={open() ? "" : undefined}
 			class={mergeClasses(accordionStyles.content(), local.class)}
 			inert={!item.expanded()}
 			aria-hidden={!item.expanded()}
+			onTransitionEnd={finish}
+			onTransitionCancel={finish}
 		>
 			<div ref={setBody} class={styles.contentBody}>
 				{local.children}
 			</div>
 		</K.Content>
 	);
+}
+function hasTransition(element: HTMLElement) {
+	return getComputedStyle(element)
+		.transitionDuration.split(",")
+		.some(duration => parseFloat(duration) > 0);
 }
 export type IconProps = JSX.HTMLAttributes<HTMLSpanElement>;
 export function Icon(props: IconProps) {
@@ -249,7 +300,7 @@ export function Chevron(props: ChevronProps) {
 			class={mergeClasses(accordionStyles.chevron(), local.class)}
 			aria-hidden="true"
 		>
-			{local.children ?? "⌄"}
+			{local.children ?? "›"}
 		</span>
 	);
 }

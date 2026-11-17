@@ -31,6 +31,12 @@ Use [Checkbox](/docs/components/checkbox) for agreement or independent options s
 
 <SolidDemo name="switch/sizes" />
 
+`md` is a 36×22 track with a 16px thumb, as in CodeImage. `sm` is a 28×16 track with a 12px thumb. On a touch screen both grow to 44×26 with a 20px thumb, so the target is at least 40px. The thumb carries `--cui-shadow-thumb`, so it stays visible on a light track.
+
+## Motion
+
+A pointer toggle slides the thumb in 120ms with the ease-out curve and fades the track colour in 120ms. A toggle from the keyboard is instant, and the 2px focus ring shows only after keyboard input: Kobalte focuses the input from script after a click, which the browser marks `:focus-visible`, so the kit reads the last input from `<html data-cui-input>` instead. Reduced motion keeps the colour fade and drops the slide.
+
 ## States
 
 <SolidDemo name="switch/controlled" />
@@ -111,7 +117,7 @@ Reads the Kobalte context inside its Root. Call it from a descendant component. 
 
 ### `switchStyles`
 
-`switchStyles` maps each part name to a function that returns its kit class string. Functions accept `SwitchVariants`. Use the functions on custom markup when you already own its behavior. They do not add ARIA or keyboard handling. `SwitchStyles` types the map. `SwitchParts` exposes the styled components as a namespace.
+`switchStyles` maps each part name to a function that returns its kit class string. Functions accept `SwitchVariants`; `control({ size: "sm" })` and `thumb({ size: "sm" })` return the small track and thumb. Use the functions on custom markup when you already own its behavior. They do not add ARIA or keyboard handling. `SwitchStyles` types the map. `SwitchParts` exposes the styled components as a namespace.
 
 ## Accessibility
 
@@ -138,7 +144,7 @@ The root, labels, controls, and form inputs render on the server. No part uses a
 
 The component reads these foundation variables. Shared field labels and messages also use the field typography and validation tokens.
 
-`--cui-action-brand-base`, `--cui-action-brand-text`, `--cui-action-neutral-active`, `--cui-control-height-compact`, `--cui-control-height-md`, `--cui-control-height-sm`, `--cui-control-height-xs`, `--cui-focus-color`, `--cui-focus-offset`, `--cui-focus-width`, `--cui-font-size-caption`, `--cui-font-size-xs`, `--cui-motion-duration-normal`, `--cui-motion-ease-out`, `--cui-radius-full`, `--cui-space-0-5`, `--cui-space-2`, `--cui-space-3`, `--cui-space-4`, `--cui-space-5`, `--cui-text-danger`, `--cui-text-default`, `--cui-text-hint`, `--cui-text-label`.
+`--cui-accent-focus` (on), `--cui-action-neutral-active` (off), `--cui-action-brand-text`, `--cui-shadow-thumb`, `--cui-control-height-compact`, `--cui-control-height-md`, `--cui-control-height-sm`, `--cui-focus-color`, `--cui-focus-offset`, `--cui-focus-width`, `--cui-font-size-caption`, `--cui-font-size-xs`, `--cui-font-line-height-caption`, `--cui-font-line-height-xs`, `--cui-motion-duration-fast`, `--cui-motion-ease-out`, `--cui-radius-full`, `--cui-space-0-5`, `--cui-space-1`, `--cui-space-2`, `--cui-space-3`, `--cui-space-4`, `--cui-space-5`, `--cui-space-6`, `--cui-space-10`, `--cui-text-danger`, `--cui-text-default`, `--cui-text-hint`, `--cui-text-label`.
 
 ## Composition examples
 

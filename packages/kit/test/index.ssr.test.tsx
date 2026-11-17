@@ -34,7 +34,7 @@ it.each([TextField, TextArea, NumberField])(
 	},
 );
 
-import { Stack } from "../src/components/Stack/Stack";
+import { Stack, stackStyles } from "../src/components/Stack/Stack";
 import { Text } from "../src/components/Text/Text";
 it("server renders Stack tokens and semantic Text content", () => {
 	const html = renderToString(() => (
@@ -45,7 +45,8 @@ it("server renders Stack tokens and semantic Text content", () => {
 		</Stack>
 	));
 	expect(html).toContain("<section");
-	expect(html).toContain("--cui-stack-gap:var(--cui-space-4)");
+	// The gap is a class from the token, so the server markup carries it.
+	expect(html).toContain(stackStyles.root({ gap: "4", justify: "between", wrap: true }));
 	expect(html).toContain('data-justify="between"');
 	expect(html).toContain("<h2");
 	expect(html).toMatch(/<em[^>]*>Export<\/em>/);

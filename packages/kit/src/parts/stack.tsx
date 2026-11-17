@@ -1,6 +1,5 @@
 import { type ComponentProps, type JSX, type ValidComponent, splitProps } from "solid-js";
 import { Dynamic } from "solid-js/web";
-import { tokens } from "../foundation/cui.css";
 import { root } from "../components/Stack/Stack.css";
 import { mergeClasses } from "../utils/css";
 
@@ -10,8 +9,10 @@ export type Gap =
 	| "1"
 	| "1.5"
 	| "2"
+	| "2.5"
 	| "3"
 	| "4"
+	| "5"
 	| "6"
 	| "8"
 	| "10"
@@ -36,7 +37,16 @@ export const stackParts = { root: "stack-root" } as const;
 export type StackPart = keyof typeof stackParts;
 export type StackClasses = Partial<Record<StackPart, string>>;
 export type StackStyles = { root: (variants?: StackVariants) => string };
-export const stackStyles: StackStyles = { root: () => root };
+export const stackStyles: StackStyles = {
+	root: variants =>
+		root({
+			gap: variants?.gap,
+			align: variants?.align,
+			justify: variants?.justify,
+			direction: variants?.direction,
+			wrap: variants?.wrap,
+		}),
+};
 export type StackProps<T extends ValidComponent = "div"> = StackVariants & {
 	as?: T;
 	children?: JSX.Element;
@@ -61,23 +71,18 @@ export function Root<T extends ValidComponent = "div">(props: StackProps<T>) {
 		"wrap",
 		"style",
 	]);
-	const gap = (): Gap => local.gap ?? "2";
 	return (
 		<Dynamic
 			{...others}
 			component={local.as ?? "div"}
 			data-cui={stackParts.root}
-			class={mergeClasses(root, local.classes?.root, local.class)}
+			class={mergeClasses(stackStyles.root(local), local.classes?.root, local.class)}
 			data-gap={local.gap ?? "2"}
 			data-align={local.align ?? "stretch"}
 			data-justify={local.justify ?? "start"}
 			data-direction={local.direction ?? "column"}
 			data-wrap={local.wrap ?? false}
-			style={
-				typeof local.style === "string"
-					? `${local.style};--cui-stack-gap:${tokens.space[gap()]}`
-					: { ...local.style, "--cui-stack-gap": tokens.space[gap()] }
-			}
+			style={local.style || undefined}
 		/>
 	);
 }

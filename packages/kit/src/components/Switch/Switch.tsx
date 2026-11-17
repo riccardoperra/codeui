@@ -54,8 +54,8 @@ export function Switch(props: SwitchProps) {
 			size={props.size ?? "md"}
 		>
 			<P.Input {...field.input()} />
-			<P.Control class={props.classes?.control}>
-				<P.Thumb class={props.classes?.thumb} />
+			<P.Control class={props.classes?.control} size={props.size ?? "md"}>
+				<P.Thumb class={props.classes?.thumb} size={props.size ?? "md"} />
 			</P.Control>
 			<Show when={props.label}>
 				<P.Label {...field.label()}>{props.label}</P.Label>

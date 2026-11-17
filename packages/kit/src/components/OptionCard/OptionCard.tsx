@@ -9,6 +9,7 @@ import {
 } from "solid-js";
 import * as P from "../../parts/option-card";
 import { mergeClasses } from "../../utils/css";
+import * as styles from "./OptionCard.css";
 
 export type OptionCardEntry<T extends string = string> = {
 	value: T;
@@ -43,15 +44,19 @@ export function OptionCard<T extends string>(props: OptionCardProps<T>) {
 				<Show when={props.preview}>
 					<P.Preview class={cls("preview")}>{props.preview}</P.Preview>
 				</Show>
-				<span>{props.label}</span>
-				<Show when={props.badge}>
-					<P.Badge class={cls("badge")}>{props.badge}</P.Badge>
-				</Show>
-				<Show when={props.description}>
-					<P.ItemDescription as="span" class={cls("itemDescription")}>
-						{props.description}
-					</P.ItemDescription>
-				</Show>
+				<span class={styles.itemText}>
+					<span class={styles.itemName}>
+						<span>{props.label}</span>
+						<Show when={props.badge}>
+							<P.Badge class={cls("badge")}>{props.badge}</P.Badge>
+						</Show>
+					</span>
+					<Show when={props.description}>
+						<P.ItemDescription as="span" class={cls("itemDescription")}>
+							{props.description}
+						</P.ItemDescription>
+					</Show>
+				</span>
 			</P.ItemLabel>
 		</P.Item>
 	);

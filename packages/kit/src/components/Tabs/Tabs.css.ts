@@ -2,6 +2,7 @@ import { createTheme, style } from "../../foundation/layer.css";
 import { tokens } from "../../foundation/cui.css";
 import { transition } from "../../foundation/motion.css";
 import { componentStateStyles } from "@kobalte/vanilla-extract";
+import { whileKeyboard } from "../../utils/modality";
 
 export const [tabsTheme, tabsVars] = createTheme({
 	tabListIndicatorColor: tokens.border.divider,
@@ -49,10 +50,16 @@ export const tabsHeader = style([
 		padding: `${tokens.space["2"]} ${tokens.space["4"]}`,
 		fontSize: tokens.font.size.sm,
 		fontWeight: tokens.font.weight.semibold,
+		lineHeight: tokens.font.lineHeight.sm,
 		color: tabsVars.tabHeaderColor,
 		transition: transition(["color"]),
 		":hover": {
 			color: tabsVars.tabHeaderHoverColor,
+		},
+		":focus-visible": {
+			outline: `${tokens.focus.width} solid ${tokens.focus.color}`,
+			outlineOffset: tokens.focus.offset,
+			borderRadius: tokens.radius.badge,
 		},
 	},
 	componentStateStyles({
@@ -70,7 +77,12 @@ export const indicator = style({
 	position: "absolute",
 	transition: transition(["width", "height", "transform", "left", "top"], tokens.motion.duration.normal),
 	backgroundColor: tabsVars.tabIndicatorColor,
+	"@media": {
+		"(prefers-reduced-motion: reduce)": { transition: "none" },
+	},
 	selectors: {
+		// Arrow keys select the next tab instantly (Inkstone §7.1).
+		[`${whileKeyboard} &`]: { transition: "none" },
 		"&[data-orientation=horizontal]": {
 			bottom: "-2px",
 			height: "3px",

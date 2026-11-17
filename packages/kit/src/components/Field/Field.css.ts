@@ -46,8 +46,13 @@ export const baseFieldVariants = recipe({
 			},
 		},
 		{
+			lineHeight: tokens.font.lineHeight.sm,
 			":focus": {
 				borderColor: tokens.focus.color,
+			},
+			":focus-visible": {
+				outline: `${tokens.focus.width} solid ${tokens.focus.color}`,
+				outlineOffset: tokens.focus.offset,
 			},
 		},
 		componentStateStyles({
@@ -77,12 +82,22 @@ export const baseFieldVariants = recipe({
 				},
 				borderRadius: tokens.radius.sm,
 			},
+			// Inkstone §6: 36px and Label text on desktop; 40px and 16px text
+			// on a phone, so iOS does not zoom into the field.
 			[FieldSizes.md]: {
 				vars: {
-					[baseFieldVars.inputHeight]: mapSizeValue("md"),
-					[baseFieldVars.fontSize]: mapFontSizeValue("md"),
+					[baseFieldVars.inputHeight]: mapSizeValue("sm"),
+					[baseFieldVars.fontSize]: mapFontSizeValue("sm"),
 				},
 				borderRadius: tokens.radius.md,
+				"@media": {
+					"(max-width: 768px)": {
+						vars: {
+							[baseFieldVars.inputHeight]: mapSizeValue("md"),
+							[baseFieldVars.fontSize]: mapFontSizeValue("md"),
+						},
+					},
+				},
 			},
 			[FieldSizes.lg]: {
 				vars: {

@@ -14,5 +14,6 @@ export const label = style([
 		fontWeight: tokens.font.weight.medium,
 		color: tokens.text.label,
 		userSelect: "none",
+		lineHeight: tokens.font.lineHeight.sm,
 	},
 ]);

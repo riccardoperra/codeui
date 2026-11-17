@@ -42,13 +42,13 @@ The ready item renders `ItemInput` and `ItemLabel`. It does not render `ItemCont
 
 <SolidDemo name="option-card/themes" />
 
-`card` is the default. `tile` reduces label padding. Previews are noninteractive, decorative areas above the title. Keep the choice understandable from its label alone. The `Default` badge is supplied content, independent of selection.
+`card` is the default. `tile` reduces label padding to 8px. Previews are noninteractive, decorative wells above the title; draw a schematic in the option's own colours, not a miniature of real content. Keep the choice understandable from its label alone. The `Default` badge sits on the title row, 8px after the title, and the row is 20px tall with or without it. It is supplied content, independent of selection.
 
 ### Grid and column
 
 <SolidDemo name="option-card/vertical" />
 
-The horizontal root uses an auto-fit grid with a 128px minimum column width, capped at the container width. Vertical orientation uses one column. Orientation also controls arrow-key navigation.
+The horizontal root fills its container and lays the cards out three across, each at least 128px wide: three 224px columns with an 8px gap in a 688px settings pane, as in CodeImage. At 768px and narrower the cards stack in one column and each card puts its preview beside its text. Vertical orientation always uses one column. Orientation also controls arrow-key navigation.
 
 ## States
 
@@ -58,7 +58,7 @@ The horizontal root uses an auto-fit grid with a 128px minimum column width, cap
 
 Use `defaultValue` for an initial selection or `value` with `onChange` for a controlled selection. `OptionCardEntry<T>` keeps values and the callback in the same string union. `createOptionCardItems` wraps an items accessor as `{ items }` without changing entries.
 
-The selected label gets an accent border. Keyboard focus has a separate outline. Inkstone specifies a selected fill step and an inset accent outline. The current kit uses the same resting fill and a transparent border that becomes accent when checked.
+A card has the field fill, a 12px radius, 12px padding and no border. The selected card rises one fill step and gets a 2px `--cui-accent-focus` outline inset 2px from its edge, and its title goes from weight 500 to 600. Hovering a card with a fine pointer raises the same fill step. Pressing a card scales it to 0.98 over 120ms with the ease-out curve; reduced motion keeps the fill change and drops the scale. Keyboard focus draws the 2px focus ring outside the card instead.
 
 ### Disabled
 
@@ -192,7 +192,7 @@ The inherited behavior follows the [Kobalte RadioGroup contract](https://kobalte
 
 `optionCardStyles` is exported from `@codeui/kit` and `@codeui/kit/option-card`. Each anatomy key is a function that returns a class string. `OptionCardStyles` describes those functions. `OptionCardPart` is the key union, and `OptionCardClasses` is a partial map of keys to class names.
 
-Functions accept `OptionCardVariants`, but currently ignore that argument. Tile padding depends on `data-variant="tile"`, and the single-column layout depends on `data-orientation="vertical"`. Use styled parts to set those attributes. A class string alone does not supply radio semantics or state attributes.
+Functions accept `OptionCardVariants`. `optionCardStyles.itemLabel({ variant: "tile" })` returns the tile padding class, so custom markup gets the tile look from the function alone. The single-column layout still depends on `data-orientation="vertical"`, which Kobalte sets on the root. A class string alone does not supply radio semantics or state attributes.
 
 ## Accessibility
 
@@ -212,7 +212,7 @@ The root renders `role="radiogroup"` with its label and description connected th
 
 ### Focus
 
-Focus stays on the native input and shows an outline around its card. Selection moves focus within the group. Cards open no overlay and have no open or close focus behavior.
+Focus stays on the native input and shows a 2px ring around its card, only on `:focus-visible`. Selection moves focus within the group. Cards open no overlay and have no open or close focus behavior.
 
 ## SSR notes
 
@@ -222,7 +222,7 @@ The group, inputs, labels, and supplied content render on the server. There is n
 
 The card reads `--cui-font-family-sans`, `--cui-font-size-sm`, `--cui-font-size-xs`, `--cui-text-default`, `--cui-text-muted`, and `--cui-text-hint`. Errors read `--cui-text-danger` and `--cui-action-danger-base`.
 
-Surfaces use `--cui-surface-input` and `--cui-surface-input-accent`. Selection uses `--cui-action-brand-base`; focus uses `--cui-focus-width`, `--cui-focus-color`, and `--cui-focus-offset`. Shape uses `--cui-radius-md`. Spacing reads `--cui-space-2`, `--cui-space-3`, `--cui-space-8`, `--cui-space-10`, `--cui-space-16`, and `--cui-space-32`. The preview currently has a 64px minimum height; Inkstone specifies 68px.
+Cards use `--cui-surface-input`, mixed 6% toward `--cui-text-default` for the hovered and selected step. The preview well is 68px tall with an 8px radius on `--cui-surface-panel`. Selection uses `--cui-accent-focus`; focus uses `--cui-focus-width`, `--cui-focus-color`, and `--cui-focus-offset`. Shape uses `--cui-radius-md`. Spacing reads `--cui-space-0-5`, `--cui-space-1`, `--cui-space-2`, `--cui-space-3`, `--cui-space-5`, `--cui-space-8`, `--cui-space-10`, `--cui-space-16`, `--cui-space-24`, and `--cui-space-32`. Text sets `--cui-font-line-height-sm` and `--cui-font-line-height-xs`, so the cards never inherit the page's leading. Press motion uses `--cui-motion-duration-fast` and `--cui-motion-ease-out`.
 
 The optional badge uses the [Badge theming hooks](/docs/components/badge). Token defaults are described in [Inkstone colour](/docs/design/color) and [space and shape](/docs/design/space-and-shape).
 

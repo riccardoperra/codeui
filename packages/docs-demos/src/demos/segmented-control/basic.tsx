@@ -5,9 +5,7 @@ export default function Demo() {
 			<SegmentedControl aria-label="Editor theme" defaultValue="dark">
 				<SegmentedControlItem value="light">Light</SegmentedControlItem>
 				<SegmentedControlItem value="dark">Dark</SegmentedControlItem>
-				<SegmentedControlItem value="system" disabled>
-					System
-				</SegmentedControlItem>
+				<SegmentedControlItem value="system">System</SegmentedControlItem>
 			</SegmentedControl>
 		</div>
 	);
