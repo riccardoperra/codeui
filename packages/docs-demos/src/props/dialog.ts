@@ -38,7 +38,7 @@ export const notes = {
 		size: { description: "Width of the panel. full covers the viewport." },
 		closeLabel: { default: '"close"', description: "Accessible name of the close button." },
 		mount: { default: "document.body", description: "Node the dialog is portaled into." },
-		classes: { description: "Classes for the overlay, positioner, panel, header, title, description, and close button." },
+		classes: { type: "Pick<DialogClasses, …>", description: "Classes for the overlay, positioner, panel, header, title, description, and close button." },
 	},
 	DialogInherited: {
 		open: { description: "Controlled open state." },

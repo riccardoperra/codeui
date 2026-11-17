@@ -5,7 +5,7 @@ export type VirtualizedListboxInherited = Pick<VirtualizedListboxProps<never>, "
 export const notes = {
  VirtualizedListbox: {
   options: { description: "Flat array of objects with value, label, and optional disabled." },
-  virtualizerOptions: { description: "Row estimate and overscan settings. Overscan defaults to 5. Smooth scrolling is unsupported." },
+  virtualizerOptions: { type: "{ estimateSize?, overscan?, enableSmoothScroll?: false }", description: "Row estimate and overscan settings. Overscan defaults to 5. Smooth scrolling is unsupported." },
   size: { description: "Row estimate defaults to md at 40px. xs is 30px and sm is 36px." },
   theme: { default: '"neutral"', description: "Inherited list highlight palette." },
   class: { description: "Class on the scrolling list root." },

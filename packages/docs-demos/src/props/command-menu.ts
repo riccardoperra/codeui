@@ -116,7 +116,7 @@ export const notes = {
 	},
 	CommandMenuContent: {
 		options: { description: "Items, or groups of items when `optionGroupChildren` is set." },
-		defaultFilter: { description: "Filter the engine applies to the options. Pass `() => true` to filter the options yourself." },
+		defaultFilter: { type: '"contains" | "startsWith" | "endsWith" | ((option, inputValue) => boolean)', description: "Filter the engine applies to the options. Pass `() => true` to filter the options yourself." },
 		onHighlightChange: { description: "Called with the option under the highlight, or `undefined`." },
 		onSelect: { description: "Called when Enter or a click picks an option. The part does not close the menu." },
 		class: { description: "Class merged after the kit styles." },

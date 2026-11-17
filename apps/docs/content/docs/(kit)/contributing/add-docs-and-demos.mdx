@@ -98,12 +98,20 @@ export const notes = {
 } satisfies PropNotes;
 ```
 
-`apps/docs/scripts/generate-props.mjs` reads every exported type alias in `packages/docs-demos/src/props/*.ts` and writes `apps/docs/.generated/props.json`. A `PropsTable` element renders the alias named in its `name` attribute, such as `name="Badge"`.
+`apps/docs/scripts/generate-props.mjs` reads every exported type alias in `packages/docs-demos/src/props/*.ts` and writes `apps/docs/.generated/props.json`. A `PropsTable` element renders the alias named in its `name` attribute, such as `name="Badge"`, as a Fumadocs type table. The page's `.md` route gets the same rows as a Markdown table.
+
+The generator keeps each shown type short:
+
+- A union of literals is spelled out when it has at most 6 members and 60 characters, such as `"sm" | "md" | "lg"`.
+- Any other type shows the shortest of the type as the kit source wrote it, the union, and the resolved type. A polymorphic `as` shows `ValidComponent`, and an option key shows `keyof Option`.
+- A kit alias name, such as `Gap` or `SelectClasses`, links to its declaration. The full type opens under the row.
+- The build fails when a shown type is longer than 80 characters. Set `type` in the prop's note to a shorter form. The table keeps the full type under the row.
 
 - Import kit symbols with `import type` only. The generator loads these files in Node, and a runtime import of `@codeui/kit` crashes it.
 - Export one `Pick<…>` projection per ready export and one per styled part. Keep only the props the kit adds or changes.
 - Add a `<Name>Inherited` projection for the Kobalte props that change behavior, such as `open` or `onChange`. Link the Kobalte page for the rest.
 - Put the default and a one-line description of each prop in `notes`, keyed by projection name. The description from the JSDoc comment is used when the note has none.
+- Put a `SolidDemo` or `PropsTable` element on its own line. Inside a paragraph it breaks hydration, and the build fails.
 
 The generator needs a kit build. Run `pnpm build:kit`, then `pnpm --filter @codeui/docs props`.
 
@@ -125,7 +133,7 @@ The pages follow the Inkstone docs in `apps/docs/content/docs/design/`.
 
 ## Check the page
 
-The build fails on a missing demo, a repeated demo name, or a props table with no projection. Run these checks before you open the pull request:
+The build fails on a missing demo, a repeated demo name, a demo or props table inside a paragraph, a props table with no projection, or a prop type longer than 80 characters. Run these checks before you open the pull request:
 
 | Check | Command | Fails when |
 | --- | --- | --- |

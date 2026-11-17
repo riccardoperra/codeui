@@ -54,7 +54,7 @@ export const notes = {
 		"class": { description: 'Class merged after the kit styles.' },
 		"classes": { description: 'Classes keyed by the names in the anatomy table.' },
 		"aria-label": { description: 'Accessible name when no title is provided.' },
-		"contentProps": { description: 'Focus and outside interaction handlers forwarded to Content.' },
+		"contentProps": { type: "Pick<DialogContentProps, …>", description: 'Focus and outside interaction handlers forwarded to Content.' },
 		"motion": { default: '"auto"', description: 'Animates pointer actions. Keyboard actions remain instant.' },
 	},
 	SheetInherited: {

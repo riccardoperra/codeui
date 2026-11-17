@@ -79,7 +79,7 @@ export const notes = {
 		optionTextValue: { description: "Key or function that gives the text used for filtering." },
 		optionLabel: { description: "Key or function that gives the text the input shows after a selection." },
 		optionDisabled: { description: "Key or function that marks an option as disabled." },
-		defaultFilter: { default: '"contains"', description: "How the text matches options. A function receives the option and the text." },
+		defaultFilter: { type: '"contains" | "startsWith" | "endsWith" | ((option, inputValue) => boolean)', default: '"contains"', description: "How the text matches options. A function receives the option and the text." },
 		triggerMode: { default: '"input"', description: "What opens the list: typing, focus, or the trigger button only." },
 		allowsEmptyCollection: { description: "Keeps the list open when no option matches. Defaults to true when emptyContent is set." },
 		noResetInputOnBlur: { default: "false", description: "Keeps the typed text on blur instead of restoring the selected label." },

@@ -1,11 +1,13 @@
 import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { replaceSource } from 'fumadocs-core/mdx-plugins/stringifier';
+import type { PropRow } from '../components/props-table';
 
 // Build-time expansion of the kit's MDX components, so the page and its Markdown route
 // (`/docs/<page>.md`) carry the same readable content.
 //
-// - <PropsTable name="Badge" /> becomes a Markdown table from apps/docs/.generated/props.json.
+// - <PropsTable name="Badge" /> gets its rows from apps/docs/.generated/props.json and renders as
+//   Fumadocs' TypeTable. Its Markdown route gets a Markdown table.
 // - <SolidDemo name="badge/basic" /> fails the build when the demo file is missing, the name
 //   repeats on the page, or the tag sits inside a paragraph, and gets the demo source printed under it as a code block.
 //   In the Markdown route the demo tag is replaced by that code block.
@@ -15,40 +17,35 @@ import { replaceSource } from 'fumadocs-core/mdx-plugins/stringifier';
 
 type VFile = Parameters<typeof replaceSource>[0];
 type Node = { type: string; name?: string; children?: Node[]; attributes?: { name: string; value: unknown }[]; [key: string]: unknown };
-type Row = { name: string; type: string; default: string | null; required: boolean; deprecated: boolean; description: string };
+type Row = PropRow;
 
 const docsDir = path.resolve(import.meta.dirname, '../..');
 const demosDir = path.resolve(docsDir, '../../packages/docs-demos/src/demos');
 const propsFile = path.join(docsDir, '.generated/props.json');
 
-const text = (value: string): Node => ({ type: 'text', value });
-const code = (value: string): Node => ({ type: 'inlineCode', value });
-const cell = (...children: Node[]): Node => ({ type: 'tableCell', children });
-
-/** Text with `code` spans, as JSDoc writes it. */
-const phrasing = (value: string): Node[] =>
-	value.split(/`([^`]+)`/).flatMap((part, i) => (part ? [i % 2 ? code(part) : text(part)] : []));
-
-function propsTable(rows: Row[]): Node {
-	const header = ['Prop', 'Type', 'Default', 'Required', 'Description'];
-	return {
-		type: 'table',
-		align: header.map(() => null),
-		children: [
-			{ type: 'tableRow', children: header.map(h => cell(text(h))) },
-			...rows.map(r => ({
-				type: 'tableRow',
-				children: [
-					cell(code(r.name)),
-					cell(code(r.type)),
-					cell(r.default ? code(r.default) : text('')),
-					cell(text(r.required ? 'Yes' : 'No')),
-					cell(...(r.deprecated ? [{ type: 'strong', children: [text('Deprecated.')] }, text(' ')] : []), ...phrasing(r.description)),
-				],
+/** A JSON value as an ESTree expression, so MDX can pass it to a component as a prop. */
+const estree = (value: unknown): unknown => {
+	if (Array.isArray(value)) return { type: 'ArrayExpression', elements: value.map(estree) };
+	if (value && typeof value === 'object')
+		return {
+			type: 'ObjectExpression',
+			properties: Object.entries(value).map(([key, v]) => ({
+				type: 'Property', kind: 'init', method: false, shorthand: false, computed: false,
+				key: { type: 'Literal', value: key }, value: estree(v),
 			})),
-		],
-	};
-}
+		};
+	return { type: 'Literal', value };
+};
+
+const expressionAttribute = (name: string, value: unknown) => ({
+	type: 'mdxJsxAttribute',
+	name,
+	value: {
+		type: 'mdxJsxAttributeValueExpression',
+		value: JSON.stringify(value),
+		data: { estree: { type: 'Program', sourceType: 'module', body: [{ type: 'ExpressionStatement', expression: estree(value) }] } },
+	},
+});
 
 const escapeCell = (value: string) => value.replace(/\|/g, '\\|').replace(/\n/g, ' ');
 
@@ -100,7 +97,7 @@ export function remarkKit() {
 					const table = name && tables![name];
 					if (!table) throw new Error(`${where}: <PropsTable name="${name}" /> has no projection. Export type ${name} from packages/docs-demos/src/props/<page>.ts.`);
 					replaceSource(file, node as never, propsMarkdown(table.rows));
-					children[i] = propsTable(table.rows);
+					children[i] = { ...node, position: undefined, attributes: [...(node.attributes ?? []), expressionAttribute('rows', table.rows)] };
 					continue;
 				}
 				if (node.type === 'mdxJsxFlowElement' && node.name === 'SolidDemo') {

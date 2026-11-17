@@ -56,6 +56,6 @@ export const notes = {
 		id: { description: "Root id. The input id becomes `${id}-input`." },
 	},
 	TextFieldInputAttributes: {
-		type: { default: '"text"', description: "Input type, such as email, url, or password." },
+		type: { type: '"text" | "email" | "password" | "search" | "url" | … | string', default: '"text"', description: "Input type, such as email, url, or password." },
 	},
 } satisfies PropNotes;
