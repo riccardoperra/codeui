@@ -1,4 +1,6 @@
-import { createTheme, recipe, style } from "../../foundation/layer.css";
+import { finish } from "../../foundation/public.css";
+import { publicStylesRegistry as registry } from "../../registry";
+import { createTheme, publicRecipe as recipe, style } from "../../foundation/public.css";
 import { keyframes } from "@vanilla-extract/css";
 import { RecipeVariants } from "@vanilla-extract/recipes";
 import { responsiveStyle } from "../../foundation/responsive";
@@ -34,6 +36,7 @@ export const [dialogTheme, dialogThemeVars] = createTheme(
 		splitColumns: "minmax(0, 1.1fr) minmax(0, 1fr)",
 	},
 	"dialogTheme",
+	registry.dialog.parts.panel,
 );
 
 const phone = "screen and (max-width: 768px)";
@@ -79,6 +82,7 @@ export const overlay = style(
 		},
 	],
 	"overlay",
+	registry.dialog.parts.overlay,
 );
 
 /** The pane next to the sidebar. Holds the header and the body. */
@@ -96,6 +100,7 @@ export const main = style(
 		},
 	},
 	"main",
+	registry.dialog.parts.main,
 );
 
 export const panelContent = style(
@@ -104,7 +109,7 @@ export const panelContent = style(
 			padding: `${dialogThemeVars.contentPadding}`,
 			overflow: "auto",
 			selectors: {
-				"[data-panel-size=full] &": {
+				".cui-dialog-positioner[data-panel-size=full] &": {
 					flex: 1,
 				},
 				"[data-chrome=inset] &": {
@@ -144,13 +149,14 @@ export const panelContent = style(
 		},
 	],
 	"panelContent",
+	registry.dialog.parts.body,
 );
 
 export const panelFooter = style(
 	{
 		padding: `${dialogThemeVars.contentPadding}`,
 		selectors: {
-			"[data-panel-size=full] &": {
+			".cui-dialog-positioner[data-panel-size=full] &": {
 				marginTop: "auto",
 				marginBottom: "env(safe-area-inset-bottom, 20px)",
 			},
@@ -173,6 +179,7 @@ export const panelFooter = style(
 		},
 	},
 	"panelFooter",
+	registry.dialog.parts.footer,
 );
 
 /**
@@ -212,6 +219,7 @@ export const positioner = style(
 		},
 	},
 	"positioner",
+	registry.dialog.parts.positioner,
 );
 
 export const title = style(
@@ -255,6 +263,7 @@ export const title = style(
 		},
 	],
 	"title",
+	registry.dialog.parts.header,
 );
 
 export const panel = recipe(
@@ -398,6 +407,7 @@ export const panel = recipe(
 		],
 	},
 	"panel",
+	registry.dialog.parts.panel,
 );
 
 export type DialogPanelVariants = RecipeVariants<typeof panel>;
@@ -411,6 +421,7 @@ export const description = style(
 		},
 	},
 	"description",
+	registry.dialog.parts.description,
 );
 
 /* Settings layout */
@@ -428,6 +439,7 @@ export const sidebar = style(
 		},
 	},
 	"sidebar",
+	registry.dialog.parts.sidebar,
 );
 
 export const sidebarSearch = style(
@@ -440,6 +452,7 @@ export const sidebarSearch = style(
 		},
 	},
 	"sidebarSearch",
+	registry.dialog.parts.sidebarSearch,
 );
 
 export const nav = style(
@@ -452,6 +465,7 @@ export const nav = style(
 		},
 	},
 	"nav",
+	registry.dialog.parts.nav,
 );
 
 export const navList = style(
@@ -472,6 +486,7 @@ export const navList = style(
 		},
 	},
 	"navList",
+	"dialog-nav > ul",
 );
 
 export const navItem = style(
@@ -524,6 +539,7 @@ export const navItem = style(
 		},
 	},
 	"navItem",
+	registry.dialog.parts.navItem,
 );
 
 export const navIcon = style(
@@ -535,6 +551,7 @@ export const navIcon = style(
 		},
 	},
 	"navIcon",
+	registry.dialog.parts.navIcon,
 );
 
 /* Sections: a group of rows, or a well */
@@ -564,6 +581,7 @@ export const section = recipe(
 		defaultVariants: { variant: "group" },
 	},
 	"section",
+	registry.dialog.parts.section,
 );
 
 export const sectionTitle = style(
@@ -584,6 +602,7 @@ export const sectionTitle = style(
 		},
 	},
 	"sectionTitle",
+	registry.dialog.parts.sectionTitle,
 );
 
 export const sectionContent = style(
@@ -597,7 +616,7 @@ export const sectionContent = style(
 				borderRadius: tokens.radius.card,
 				backgroundColor: dialogThemeVars.islandBackground,
 			},
-			"[data-columns='2'] > &": {
+			".cui-dialog-section[data-columns='2'] > &": {
 				display: "grid",
 				gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
 				gap: tokens.space["0.5"],
@@ -606,10 +625,15 @@ export const sectionContent = style(
 		"@media": {
 			[phone]: {
 				selectors: {
-					"[data-columns='2'] > &": { gridTemplateColumns: "minmax(0, 1fr)" },
+					".cui-dialog-section[data-columns='2'] > &": {
+						gridTemplateColumns: "minmax(0, 1fr)",
+					},
 				},
 			},
 		},
 	},
 	"sectionContent",
+	registry.dialog.parts.sectionContent,
 );
+
+finish();

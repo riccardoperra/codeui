@@ -71,3 +71,11 @@ Every rule in the specification applies one of these principles to a specific ca
 9. **Keyboard first, keyboard instant.** Everything works from the keyboard, and nothing opened from the keyboard animates.
 
 The compiled token stylesheet is `@codeui/styles/theme.css`. Solid components import it automatically with their component styles. CSS-only consumers load it explicitly. Vanilla-extract runs in the library build, so applying Inkstone does not require a style compiler in the consuming app.
+
+The stable public CSS pilot covers Button, IconButton, Switch and Dialog. Their part
+classes are `cui-` plus the existing `data-cui` value; variant attributes take
+precedence over private helper classes. Public names are authored independently
+of compiler identifiers. Their selectors have zero specificity (pseudo-elements
+add type specificity). Composition uses `cui.components`, with the fixed order
+`cui.tokens, cui.base, cui.components`. Other components retain legacy emission
+during migration. App utility layers must follow `cui`, or use unlayered CSS.

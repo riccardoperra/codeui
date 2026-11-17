@@ -1,4 +1,12 @@
-import { createTheme, recipe, style } from "../../foundation/layer.css";
+import { squareButtonRule } from "../Button/composition";
+import { finish } from "../../foundation/public.css";
+import { publicStylesRegistry as registry } from "../../registry";
+import {
+	globalStyle,
+	createTheme,
+	publicRecipe as recipe,
+	style,
+} from "../../foundation/public.css";
 import { componentStateStyles } from "@kobalte/vanilla-extract";
 import { fallbackVar } from "@vanilla-extract/css";
 import { RecipeVariants } from "@vanilla-extract/recipes";
@@ -20,6 +28,7 @@ export const [buttonTheme, buttonVars] = createTheme(
 		borderRadius: tokens.radius.md,
 	},
 	"buttonTheme",
+	registry.button.parts.button,
 );
 
 const ButtonSizes = {
@@ -210,7 +219,7 @@ export const button = recipe(
 			},
 		} as const,
 		defaultVariants: {
-			size: "md",
+			size: registry.button.defaults.size,
 		},
 		compoundVariants: [
 			{
@@ -230,6 +239,7 @@ export const button = recipe(
 		],
 	},
 	"button",
+	registry.button.parts.button,
 );
 
 export const buttonIcon = style(
@@ -255,3 +265,15 @@ export const buttonText = style(
 );
 
 export type ButtonVariants = RecipeVariants<typeof button>;
+
+globalStyle(
+	":is(.cui-icon-button,.cui-dialog-close-button)",
+	squareButtonRule(buttonVars.buttonHeight),
+);
+globalStyle(":is(.cui-icon-button,.cui-dialog-close-button) svg", {
+	width: "1.1em",
+	height: "1.1em",
+});
+finish();
+
+export const buttonDefaults = registry.button.defaults;

@@ -1,6 +1,8 @@
 import { createThemeContract } from "@vanilla-extract/css";
 import { tokens as cui } from "./cui.css";
-import { globalStyle } from "./layer.css";
+import { globalStyle as layeredGlobalStyle } from "./layer.css";
+import type { GlobalStyleRule } from "@vanilla-extract/css";
+const globalStyle = (selector: string, rule: GlobalStyleRule) => layeredGlobalStyle(selector, rule, "tokens");
 import { tokens as legacyValues } from "./tokens";
 
 const nullLeaves = <T extends Record<string, string>>(group: T) =>

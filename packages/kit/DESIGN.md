@@ -432,3 +432,11 @@ Do not propose these again without a new reason.
 1. Build the alternative next to the current one (a flag in the app, a story in the kit).
 2. Check it in both themes at the three sizes.
 3. If the maintainer picks it, make it the default, delete the loser, and update this file and the matching docs page in the same pull request.
+
+The stable public CSS pilot covers Button, IconButton, Switch and Dialog. Their part
+classes are `cui-` plus the existing `data-cui` value; variant attributes take
+precedence over private helper classes. Public names are authored independently
+of compiler identifiers. Their selectors have zero specificity (pseudo-elements
+add type specificity). Composition uses `cui.components`, with the fixed order
+`cui.tokens, cui.base, cui.components`. Other components retain legacy emission
+during migration. App utility layers must follow `cui`, or use unlayered CSS.

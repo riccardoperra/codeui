@@ -51,7 +51,10 @@ export function Button<T extends ValidComponent = "button">(props: PolymorphicPr
 		<KButton
 			data-cui="button"
 			data-theme={local.theme}
-			data-size={local.size}
+			data-size={local.size ?? styles.buttonDefaults.size}
+			data-variant={local.variant}
+			data-pill={local.pill || undefined}
+			data-block={local.block || undefined}
 			data-loading={local.loading || undefined}
 			class={classes()}
 			{...others}

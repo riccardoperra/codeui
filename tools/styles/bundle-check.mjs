@@ -106,12 +106,12 @@ try {
 				);
 				const css = assets.map(asset => asset.css).join("\n");
 				assert.equal(
-					/\.cui-button-/.test(css),
+					/\.cui-button(?=[\s.:,\[])/.test(css),
 					scenario !== "unused",
 					`${bundler} ${scenario} retains only requested Button CSS`,
 				);
 				assert.equal(
-					/\.cui-dialog-/.test(css),
+					/\.cui-dialog-panel/.test(css),
 					scenario === "lazy",
 					`${bundler} ${scenario} selects Dialog only when imported`,
 				);
@@ -130,11 +130,11 @@ try {
 					const initial = assets.find(asset => /(?:^|\/)main(?:-|\.)/.test(asset.file));
 					assert(initial, `${bundler} initial CSS asset exists`);
 					assert(
-						!/\.cui-dialog-/.test(initial.css),
+						!/\.cui-dialog-panel/.test(initial.css),
 						`${bundler} initial CSS excludes lazy Dialog`,
 					);
 					assert(
-						assets.some(asset => asset !== initial && /\.cui-dialog-/.test(asset.css)),
+						assets.some(asset => asset !== initial && /\.cui-dialog-panel/.test(asset.css)),
 						`${bundler} Dialog has a separate CSS chunk`,
 					);
 				}

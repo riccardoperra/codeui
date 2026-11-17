@@ -499,7 +499,7 @@
   "button": {
     "button": {
       "classNames": {
-        "base": "cui-button-button",
+        "base": "cui-button-a0zfdzf",
         "variants": {
           "size": {
             "xl": "cui-button-button_size_xl",
@@ -529,6 +529,9 @@
           }
         }
       }
+    },
+    "buttonDefaults": {
+      "size": "md"
     },
     "buttonIcon": "cui-button-buttonIcon",
     "buttonText": "cui-button-buttonText",
@@ -784,6 +787,10 @@
   },
   "dialog": {
     "description": "cui-dialog-description",
+    "dialogDefaults": {
+      "chrome": "bar",
+      "variant": "group"
+    },
     "dialogParts": {
       "trigger": "dialog-trigger",
       "overlay": "dialog-overlay",
@@ -886,13 +893,13 @@
     },
     "main": "cui-dialog-main",
     "nav": "cui-dialog-nav",
-    "navIcon": "cui-dialog-navIcon",
-    "navItem": "cui-dialog-navItem",
+    "navIcon": "cui-dialog-nav-icon",
+    "navItem": "cui-dialog-nav-item",
     "navList": "cui-dialog-navList",
-    "overlay": "cui-dialog-overlay cui-dialog-dialogTheme",
+    "overlay": "cui-dialog-overlay",
     "panel": {
       "classNames": {
-        "base": "cui-dialog-panel",
+        "base": "cui-dialog-2yx8y1f",
         "variants": {
           "size": {
             "xs": "cui-dialog-panel_size_xs",
@@ -911,12 +918,12 @@
         }
       }
     },
-    "panelContent": "cui-dialog-panelContent",
-    "panelFooter": "cui-dialog-panelFooter",
+    "panelContent": "cui-dialog-panel-content",
+    "panelFooter": "cui-dialog-panel-footer",
     "positioner": "cui-dialog-positioner",
     "section": {
       "classNames": {
-        "base": "cui-dialog-section",
+        "base": "cui-dialog-2yx8y1t",
         "variants": {
           "variant": {
             "group": "cui-dialog-section_variant_group",
@@ -925,11 +932,11 @@
         }
       }
     },
-    "sectionContent": "cui-dialog-sectionContent",
-    "sectionTitle": "cui-dialog-sectionTitle",
+    "sectionContent": "cui-dialog-section-content",
+    "sectionTitle": "cui-dialog-section-title",
     "sidebar": "cui-dialog-sidebar",
-    "sidebarSearch": "cui-dialog-sidebarSearch",
-    "title": "cui-dialog-title"
+    "sidebarSearch": "cui-dialog-sidebar-search",
+    "title": "cui-dialog-panel-title"
   },
   "dropdown": {
     "content": "cui-dropdown-content cui-dropdown-dropdownMenuTheme",
@@ -997,7 +1004,7 @@
     "inputHeight": "var(--cui-field-inputHeight)"
   },
   "icon-button": {
-    "iconButton": "cui-icon-button-iconButton"
+    "iconButton": "cui-icon-button"
   },
   "kbd": {
     "kbdParts": {
@@ -1692,7 +1699,7 @@
   "switch": {
     "control": {
       "classNames": {
-        "base": "cui-switch-control",
+        "base": "cui-switch-ohc8hx5",
         "variants": {
           "size": {
             "sm": "cui-switch-control_size_sm",
@@ -1702,10 +1709,13 @@
       }
     },
     "description": "cui-switch-description",
-    "errorMessage": "cui-switch-errorMessage",
+    "errorMessage": "cui-switch-error-message",
     "input": "cui-switch-input",
     "label": "cui-switch-label",
     "root": "cui-switch-root",
+    "switchDefaults": {
+      "size": "md"
+    },
     "switchParts": {
       "root": "switch-root",
       "input": "switch-input",
@@ -1740,7 +1750,7 @@
     },
     "thumb": {
       "classNames": {
-        "base": "cui-switch-thumb",
+        "base": "cui-switch-ohc8hxa",
         "variants": {
           "size": {
             "sm": "cui-switch-thumb_size_sm",

@@ -52,6 +52,7 @@
       }
     },
     "./manifest.json": "./dist/manifest.json",
+    "./public-registry.json": "./dist/public-registry.json",
     "./contract.json": "./dist/contract.json",
     "./package.json": "./package.json",
     "./theme.css": "./dist/theme.css",

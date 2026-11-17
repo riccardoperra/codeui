@@ -35,7 +35,7 @@ import { createFocusReturn } from "./dialog-focus";
 import { pointerInitiated, trackInput } from "../utils/open-source";
 
 
-import { dialogParts, type DialogPart, type DialogThemeVar, dialogThemeVars, type DialogClasses, type DialogSize, type DialogChrome, type DialogMotion, type DialogBodyLayout, type DialogSectionVariant, type DialogStyles, dialogStyles } from "@codeui/styles/dialog";
+import { dialogDefaults, dialogParts, type DialogPart, type DialogThemeVar, dialogThemeVars, type DialogClasses, type DialogSize, type DialogChrome, type DialogMotion, type DialogBodyLayout, type DialogSectionVariant, type DialogStyles, dialogStyles } from "@codeui/styles/dialog";
 export { dialogParts, type DialogPart, type DialogThemeVar, dialogThemeVars, type DialogClasses, type DialogSize, type DialogChrome, type DialogMotion, type DialogBodyLayout, type DialogSectionVariant, type DialogStyles, dialogStyles } from "@codeui/styles/dialog";
 type MotionContextValue = { moves: Accessor<boolean> };
 const MotionContext = createContext<MotionContextValue>();
@@ -145,12 +145,13 @@ export function Content<T extends ValidComponent = "div">(props: PolymorphicProp
 	]);
 	const focus = createFocusReturn(local);
 	const motion = motionAttribute();
-	const chrome = () => local.chrome ?? "bar";
+	const chrome = () => local.chrome ?? dialogDefaults.chrome;
 
 	return (
 		<ChromeContext.Provider value={{ chrome }}>
 			<KDialog.Content
 				data-cui={dialogParts.panel}
+				data-size={local.size}
 				data-chrome={chrome()}
 				data-motion={motion()}
 				class={mergeClasses(dialogStyles.panel({ size: local.size, chrome: chrome() }), local.class)}
@@ -378,7 +379,7 @@ export type SectionProps = Omit<ComponentProps<"section">, "title"> & {
 
 export function Section(props: SectionProps) {
 	const [local, others] = splitProps(props, ["class", "classes", "title", "variant", "columns", "children"]);
-	const variant = () => local.variant ?? "group";
+	const variant = () => local.variant ?? dialogDefaults.variant;
 	return (
 		<section
 			data-cui={dialogParts.section}

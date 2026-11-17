@@ -1,0 +1,217 @@
+{
+  "version": 1,
+  "layers": [
+    "cui.tokens",
+    "cui.base",
+    "cui.components"
+  ],
+  "button": {
+    "parts": {
+      "button": "button"
+    },
+    "variants": {
+      "size": [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl"
+      ],
+      "theme": [
+        "primary",
+        "secondary",
+        "tertiary",
+        "negative",
+        "caution"
+      ],
+      "variant": [
+        "ghost"
+      ],
+      "block": [
+        "true"
+      ],
+      "pill": [
+        "true"
+      ],
+      "loading": [
+        "true"
+      ]
+    },
+    "defaults": {
+      "size": "md"
+    },
+    "variables": {
+      "buttonHeight": "--cui-buttonTheme-buttonHeight",
+      "fontSize": "--cui-buttonTheme-fontSize",
+      "background": "--cui-buttonTheme-background",
+      "hoverBackground": "--cui-buttonTheme-hoverBackground",
+      "activeBackground": "--cui-buttonTheme-activeBackground",
+      "color": "--cui-buttonTheme-color",
+      "borderColor": "--cui-buttonTheme-borderColor",
+      "padding": "--cui-buttonTheme-padding",
+      "borderRadius": "--cui-buttonTheme-borderRadius"
+    },
+    "states": {
+      "button": [
+        "data-disabled",
+        "data-loading"
+      ]
+    }
+  },
+  "iconButton": {
+    "parts": {
+      "iconButton": "icon-button"
+    },
+    "composes": "button"
+  },
+  "switch": {
+    "parts": {
+      "root": "switch-root",
+      "input": "switch-input",
+      "control": "switch-control",
+      "thumb": "switch-thumb",
+      "label": "switch-label",
+      "description": "switch-description",
+      "errorMessage": "switch-error-message"
+    },
+    "variants": {
+      "size": [
+        "sm",
+        "md"
+      ]
+    },
+    "defaults": {
+      "size": "md"
+    },
+    "states": {
+      "root": [
+        "data-checked",
+        "data-disabled",
+        "data-invalid",
+        "data-readonly",
+        "data-required"
+      ],
+      "input": [
+        "data-checked",
+        "data-disabled",
+        "data-invalid",
+        "data-readonly",
+        "data-required"
+      ],
+      "control": [
+        "data-checked",
+        "data-disabled",
+        "data-invalid",
+        "data-readonly",
+        "data-required"
+      ],
+      "thumb": [
+        "data-checked",
+        "data-disabled",
+        "data-invalid",
+        "data-readonly",
+        "data-required"
+      ],
+      "label": [
+        "data-checked",
+        "data-disabled",
+        "data-invalid",
+        "data-readonly",
+        "data-required"
+      ],
+      "errorMessage": [
+        "data-invalid"
+      ]
+    }
+  },
+  "dialog": {
+    "parts": {
+      "trigger": "dialog-trigger",
+      "overlay": "dialog-overlay",
+      "positioner": "dialog-positioner",
+      "panel": "dialog-panel",
+      "header": "dialog-panel-title",
+      "title": "dialog-title",
+      "description": "dialog-description",
+      "closeButton": "dialog-close-button",
+      "body": "dialog-panel-content",
+      "footer": "dialog-panel-footer",
+      "sidebar": "dialog-sidebar",
+      "sidebarSearch": "dialog-sidebar-search",
+      "nav": "dialog-nav",
+      "navItem": "dialog-nav-item",
+      "navIcon": "dialog-nav-icon",
+      "main": "dialog-main",
+      "section": "dialog-section",
+      "sectionTitle": "dialog-section-title",
+      "sectionContent": "dialog-section-content"
+    },
+    "variants": {
+      "size": [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+        "full",
+        "settings",
+        "export"
+      ],
+      "chrome": [
+        "bar",
+        "inset"
+      ],
+      "variant": [
+        "group",
+        "well"
+      ],
+      "layout": [
+        "split"
+      ],
+      "columns": [
+        "2"
+      ],
+      "motion": [
+        "auto",
+        "none"
+      ]
+    },
+    "defaults": {
+      "chrome": "bar",
+      "variant": "group"
+    },
+    "variables": {
+      "contentBackground": "--cui-dialogTheme-contentBackground",
+      "contentBoxShadow": "--cui-dialogTheme-contentBoxShadow",
+      "contentTextColor": "--cui-dialogTheme-contentTextColor",
+      "contentPadding": "--cui-dialogTheme-contentPadding",
+      "titleHeight": "--cui-dialogTheme-titleHeight",
+      "panelRadius": "--cui-dialogTheme-panelRadius",
+      "dividerColor": "--cui-dialogTheme-dividerColor",
+      "titleFontSize": "--cui-dialogTheme-titleFontSize",
+      "overlayBackground": "--cui-dialogTheme-overlayBackground",
+      "gutter": "--cui-dialogTheme-gutter",
+      "width": "--cui-dialogTheme-width",
+      "height": "--cui-dialogTheme-height",
+      "sidebarBackground": "--cui-dialogTheme-sidebarBackground",
+      "navCurrentBackground": "--cui-dialogTheme-navCurrentBackground",
+      "mainBackground": "--cui-dialogTheme-mainBackground",
+      "islandBackground": "--cui-dialogTheme-islandBackground",
+      "splitColumns": "--cui-dialogTheme-splitColumns"
+    },
+    "states": {
+      "trigger": [
+        "data-expanded"
+      ],
+      "panel": [
+        "data-expanded"
+      ],
+      "overlay": [
+        "data-expanded"
+      ],
+      "closeButton": [
+        "data-disabled"
+      ]
+    }
+  }
+}

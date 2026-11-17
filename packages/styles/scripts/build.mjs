@@ -11,6 +11,9 @@ const src = path.join(root, "src");
 const compatibility = JSON.parse(
 	await readFile(path.join(root, "compatibility.json"), "utf8"),
 );
+const registrySource = ts.transpileModule(await readFile(path.join(src, "registry.ts"), "utf8"), { compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2020 } }).outputText;
+const { publicStylesRegistry } = await import("data:text/javascript;base64," + Buffer.from(registrySource).toString("base64"));
+if (JSON.stringify(publicStylesRegistry) !== JSON.stringify(JSON.parse(await readFile(path.join(root, "public-registry.json"), "utf8")))) throw new Error("Review and update the public registry snapshot.");
 const registry = JSON.parse(await readFile(path.join(root, "entries.json"), "utf8"));
 const out = path.join(root, "dist");
 const normalize = value => value.split(path.sep).join("/");
@@ -26,7 +29,7 @@ const files = async dir =>
 		.sort();
 const sourceFiles = (await files(src)).filter(file => file.endsWith(".ts"));
 const cssFiles = sourceFiles.filter(
-	file => file.endsWith(".css.ts") && !/\/(layer|motion)\.css\.ts$/.test(file),
+	file => file.endsWith(".css.ts") && !/\/(layer|motion|public)\.css\.ts$/.test(file),
 );
 const moduleId = file => normalize(path.relative(src, file)).replace(/\.ts$/, "");
 const authoredName = file =>
@@ -38,12 +41,12 @@ const authoredName = file =>
 		.join("-")
 		.replace(/([a-z0-9])([A-Z])/g, "$1-$2")
 		.toLowerCase();
-const identifiers = ({ debugId, filePath }) => {
-	if (!debugId)
+const identifiers = ({ debugId, filePath, hash }) => {
+	if (!debugId && !/components\/(Button|IconButton|Switch|Dialog)\//.test(filePath))
 		throw new Error(
 			`Unnamed style identifier in ${filePath}. Give every style, recipe, variable, and keyframe an explicit name.`,
 		);
-	return `cui-${authoredName(filePath)}-${debugId}`.replace(/[^a-zA-Z0-9_-]/g, "-");
+	return `cui-${authoredName(filePath)}-${debugId ?? hash}`.replace(/[^a-zA-Z0-9_-]/g, "-");
 };
 const cssByScope = new Map();
 const scopesByModule = new Map();
@@ -97,7 +100,7 @@ for (const [name, entry] of Object.entries(registry)) {
 	const orderedScopes = [...scopes].sort();
 	await writeFile(
 		path.join(out, `${name}.css`),
-		"@layer cui;\n@layer cui.base, cui.components, cui.overrides;\n" +
+		"@layer cui;\n@layer cui.tokens, cui.base, cui.components;\n" +
 			orderedScopes.map(scope => cssByScope.get(scope)).join("\n"),
 	);
 	manifest.entries[name] = {
@@ -109,7 +112,7 @@ for (const [name, entry] of Object.entries(registry)) {
 }
 await writeFile(
 	path.join(out, "all.css"),
-	"@layer cui;\n@layer cui.base, cui.components, cui.overrides;\n" +
+	"@layer cui;\n@layer cui.tokens, cui.base, cui.components;\n" +
 		[...cssByScope]
 			.sort(([a], [b]) => a.localeCompare(b))
 			.map(([, css]) => css)
@@ -229,7 +232,7 @@ program.emit(undefined, undefined, undefined, undefined, {
 	],
 });
 for (const file of await files(path.join(out, "types/internal"))) {
-	if (/\/(layer|motion)\.css\.d\.ts$/.test(file)) {
+	if (/\/(layer|motion|public)\.css\.d\.ts$/.test(file)) {
 		await rm(file);
 		continue;
 	}
@@ -276,6 +279,7 @@ for (const file of await files(path.join(out, "types"))) {
 		(await readFile(file, "utf8")).replace(/(["'])(\.[^"']*)\.js\1/g, "$1$2.cjs$1"),
 	);
 }
+await writeFile(path.join(out, "public-registry.json"), await readFile(path.join(root, "public-registry.json")));
 const pkg = JSON.parse(await readFile(path.join(root, "package.json"), "utf8"));
 const jsExport = name => ({
 	import: { types: `./dist/types/${name}.d.ts`, default: `./dist/esm/${name}.js` },
@@ -285,6 +289,7 @@ pkg.exports = {
 	".": jsExport("index"),
 	"./tokens": jsExport("tokens"),
 	"./manifest.json": "./dist/manifest.json",
+	"./public-registry.json": "./dist/public-registry.json",
 	"./contract.json": "./dist/contract.json",
 	"./package.json": "./package.json",
 };

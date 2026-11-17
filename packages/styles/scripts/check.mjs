@@ -42,7 +42,7 @@ for (const file of await walk(out)) {
 	if (file.endsWith(".css")) {
 		assert(!text.includes("--kb-"), `${file} leaks engine geometry`);
 		assert(
-			text.startsWith("@layer cui;\n@layer cui.base, cui.components, cui.overrides;\n"),
+			text.startsWith("@layer cui;\n@layer cui.tokens, cui.base, cui.components;\n"),
 		);
 	}
 	if (/\.d\.(ts|cts)$/.test(file))

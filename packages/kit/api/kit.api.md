@@ -60,7 +60,7 @@ export { commandMenuParts, type CommandMenuPart, type CommandMenuClasses, type C
 
 ```ts
 export * from "./internal/components/Dialog/Dialog.css.js";
-export { dialogParts, type DialogPart, type DialogThemeVar, dialogThemeVars, type DialogClasses, type DialogSize, type DialogChrome, type DialogMotion, type DialogBodyLayout, type DialogSectionVariant, type DialogStyles, dialogStyles } from "./internal/parts/dialog.js";
+export { dialogParts, type DialogPart, type DialogThemeVar, dialogThemeVars, type DialogClasses, type DialogSize, type DialogChrome, type DialogMotion, type DialogBodyLayout, type DialogSectionVariant, type DialogStyles, dialogStyles, dialogDefaults } from "./internal/parts/dialog.js";
 ```
 
 ## @codeui/styles/dropdown.d.ts
@@ -387,6 +387,9 @@ export declare const button: import("../../types.js").RuntimeFn<{
 export declare const buttonIcon: string;
 export declare const buttonText: string;
 export type ButtonVariants = RecipeVariants<typeof button>;
+export declare const buttonDefaults: {
+    readonly size: "md";
+};
 ```
 
 ## @codeui/styles/internal/components/Button/Loading.css.d.ts
@@ -2687,6 +2690,10 @@ export type DialogStyles = {
     [P in DialogPart]: P extends "panel" ? (variants?: DialogPanelStyleVariants) => string : P extends "body" ? (variants?: DialogBodyStyleVariants) => string : P extends "section" ? (variants?: DialogSectionStyleVariants) => string : () => string;
 };
 export declare const dialogStyles: DialogStyles;
+export declare const dialogDefaults: {
+    readonly chrome: "bar";
+    readonly variant: "group";
+};
 export {};
 ```
 
@@ -2948,6 +2955,9 @@ export type SwitchPart = "root" | "input" | "control" | "thumb" | "label" | "des
 export type SwitchClasses = Partial<Record<SwitchPart, string>>;
 export type SwitchStyles = Record<SwitchPart, (variants?: SwitchVariants) => string>;
 export declare const switchStyles: SwitchStyles;
+export declare const switchDefaults: {
+    readonly size: "md";
+};
 ```
 
 ## @codeui/styles/internal/parts/text.d.ts
@@ -3173,7 +3183,7 @@ export { type Gap, type StackVariants, stackParts, type StackPart, type StackCla
 
 ```ts
 export * from "./internal/components/Switch/Switch.css.js";
-export { switchParts, type SwitchVariants, type SwitchPart, type SwitchClasses, type SwitchStyles, switchStyles } from "./internal/parts/switch.js";
+export { switchParts, type SwitchVariants, type SwitchPart, type SwitchClasses, type SwitchStyles, switchStyles, switchDefaults } from "./internal/parts/switch.js";
 ```
 
 ## @codeui/styles/tabs.d.ts

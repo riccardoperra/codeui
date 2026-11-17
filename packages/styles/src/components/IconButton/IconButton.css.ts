@@ -1,13 +1,14 @@
-import { style } from "../../foundation/layer.css";
+import { squareButtonRule } from "../Button/composition";
+import { finish } from "../../foundation/public.css";
+import { publicStylesRegistry as registry } from "../../registry";
+import { style } from "../../foundation/public.css";
 import { buttonVars } from "../Button/Button.css";
 
 // noinspection JSSuspiciousNameCombination
 export const iconButton = style(
-	{
-		padding: 0,
-		width: buttonVars.buttonHeight,
-		height: buttonVars.buttonHeight,
-	},
+	squareButtonRule(buttonVars.buttonHeight),
 	"iconButton",
-	"overrides",
+	registry.iconButton.parts.iconButton,
 );
+
+finish();

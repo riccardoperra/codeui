@@ -15,10 +15,10 @@ import { recipe as veRecipe } from "@vanilla-extract/recipes";
  * over kit styles whatever the stylesheet order.
  */
 export const cuiLayer = globalLayer("cui");
+globalLayer("cui.tokens");
 globalLayer("cui.base");
 globalLayer("cui.components");
-globalLayer("cui.overrides");
-type Priority = "base" | "components" | "overrides";
+type Priority = "tokens" | "base" | "components";
 
 function inLayer(rule: StyleRule, priority: Priority = "components"): StyleRule {
 	return { "@layer": { [`cui.${priority}`]: rule } };
@@ -45,8 +45,8 @@ export function style(
 	return veStyle(layerComplex(rule, priority), debugId);
 }
 
-export function globalStyle(selector: string, rule: GlobalStyleRule): void {
-	veGlobalStyle(selector, { "@layer": { "cui.components": rule } });
+export function globalStyle(selector: string, rule: GlobalStyleRule, priority: Priority = "components"): void {
+	veGlobalStyle(selector, { "@layer": { ["cui." + priority]: rule } });
 }
 
 export function styleVariants<Data extends Record<string | number, unknown>>(

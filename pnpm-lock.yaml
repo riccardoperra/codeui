@@ -137,7 +137,7 @@ importers:
   packages/docs-demos:
     dependencies:
       '@codeui/kit':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../kit
       '@codeui/styles':
         specifier: workspace:*

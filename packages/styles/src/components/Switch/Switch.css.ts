@@ -1,5 +1,7 @@
+import { finish } from "../../foundation/public.css";
+import { publicStylesRegistry as registry } from "../../registry";
 import { createVar } from "@vanilla-extract/css";
-import { globalStyle, recipe, style } from "../../foundation/layer.css";
+import { globalStyle, publicRecipe as recipe, style } from "../../foundation/public.css";
 import { tokens as t } from "../../foundation/cui.css";
 import { transition } from "../../foundation/motion.css";
 import { inputModalityAttribute, whileKeyboard } from "../../utils/modality";
@@ -31,8 +33,9 @@ export const root = style(
 		"@media": { [coarse]: { minHeight: t.control.height.md } },
 	},
 	"root",
+	registry.switch.parts.root,
 );
-export const input = style({}, "input");
+export const input = style({}, "input", registry.switch.parts.input);
 /**
  * Track 36×22 with a 16px thumb (CodeImage), 28×16 with a 12px thumb at `sm`,
  * 44×26 with a 20px thumb on touch screens (Inkstone §6).
@@ -98,9 +101,10 @@ export const control = recipe(
 		},
 	},
 	"control",
+	registry.switch.parts.control,
 );
 // A Root with `size="sm"` sizes the parts inside it as well.
-globalStyle(`[data-cui="switch-root"][data-size="sm"] [data-cui="switch-control"]`, {
+globalStyle(`.cui-switch-root[data-size="sm"] .cui-switch-control:not([data-size])`, {
 	"@media": { [notCoarse]: { vars: small } },
 });
 export const thumb = recipe(
@@ -124,6 +128,7 @@ export const thumb = recipe(
 		variants: { size: { sm: {}, md: {} } },
 	},
 	"thumb",
+	registry.switch.parts.thumb,
 );
 export const label = style(
 	{
@@ -132,6 +137,7 @@ export const label = style(
 		cursor: "pointer",
 	},
 	"label",
+	registry.switch.parts.label,
 );
 export const description = style(
 	{
@@ -141,6 +147,7 @@ export const description = style(
 		lineHeight: t.font.lineHeight.xs,
 	},
 	"description",
+	registry.switch.parts.description,
 );
 export const errorMessage = style(
 	{
@@ -150,4 +157,7 @@ export const errorMessage = style(
 		lineHeight: t.font.lineHeight.xs,
 	},
 	"errorMessage",
+	registry.switch.parts.errorMessage,
 );
+
+finish();

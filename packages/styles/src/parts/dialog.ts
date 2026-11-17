@@ -1,26 +1,7 @@
+import { publicStylesRegistry } from "../registry";
 import * as styles from "../components/Dialog/Dialog.css";
 import { mergeClasses } from "../utils/css";
-export const dialogParts = {
-	trigger: "dialog-trigger",
-	overlay: "dialog-overlay",
-	positioner: "dialog-positioner",
-	panel: "dialog-panel",
-	header: "dialog-panel-title",
-	title: "dialog-title",
-	description: "dialog-description",
-	closeButton: "dialog-close-button",
-	body: "dialog-panel-content",
-	footer: "dialog-panel-footer",
-	sidebar: "dialog-sidebar",
-	sidebarSearch: "dialog-sidebar-search",
-	nav: "dialog-nav",
-	navItem: "dialog-nav-item",
-	navIcon: "dialog-nav-icon",
-	main: "dialog-main",
-	section: "dialog-section",
-	sectionTitle: "dialog-section-title",
-	sectionContent: "dialog-section-content",
-} as const;
+export const dialogParts = publicStylesRegistry.dialog.parts;
 
 export type DialogPart = keyof typeof dialogParts;
 
@@ -91,7 +72,7 @@ export type DialogStyles = {
 };
 
 export const dialogStyles: DialogStyles = {
-	trigger: () => "",
+	trigger: () => "cui-" + dialogParts.trigger,
 	overlay: () => styles.overlay,
 	positioner: () => mergeClasses(styles.dialogTheme, styles.positioner),
 	panel: variants =>
@@ -100,9 +81,9 @@ export const dialogStyles: DialogStyles = {
 			styles.panel({ size: variants?.size, chrome: variants?.chrome }),
 		),
 	header: () => styles.title,
-	title: () => "",
+	title: () => "cui-" + dialogParts.title,
 	description: () => styles.description,
-	closeButton: () => "",
+	closeButton: () => "cui-" + dialogParts.closeButton,
 	body: () => styles.panelContent,
 	footer: () => styles.panelFooter,
 	sidebar: () => styles.sidebar,
@@ -115,3 +96,5 @@ export const dialogStyles: DialogStyles = {
 	sectionTitle: () => styles.sectionTitle,
 	sectionContent: () => styles.sectionContent,
 };
+
+export const dialogDefaults = publicStylesRegistry.dialog.defaults;

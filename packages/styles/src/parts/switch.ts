@@ -1,14 +1,7 @@
+import { publicStylesRegistry } from "../registry";
 import { mergeClasses } from "../utils/css";
 import * as styles from "../components/Switch/Switch.css";
-export const switchParts = {
-	root: "switch-root",
-	input: "switch-input",
-	control: "switch-control",
-	thumb: "switch-thumb",
-	label: "switch-label",
-	description: "switch-description",
-	errorMessage: "switch-error-message",
-} as const;
+export const switchParts = publicStylesRegistry.switch.parts;
 export type SwitchVariants = { size?: "sm" | "md" };
 export type SwitchPart =
 	| "root"
@@ -23,9 +16,11 @@ export type SwitchStyles = Record<SwitchPart, (variants?: SwitchVariants) => str
 export const switchStyles: SwitchStyles = {
 	root: () => styles.root,
 	input: () => styles.input,
-	control: variants => styles.control({ size: variants?.size ?? "md" }),
-	thumb: variants => styles.thumb({ size: variants?.size ?? "md" }),
+	control: variants => styles.control({ size: variants?.size ?? publicStylesRegistry.switch.defaults.size }),
+	thumb: variants => styles.thumb({ size: variants?.size ?? publicStylesRegistry.switch.defaults.size }),
 	label: () => styles.label,
 	description: () => styles.description,
 	errorMessage: () => styles.errorMessage,
 };
+
+export const switchDefaults = publicStylesRegistry.switch.defaults;
