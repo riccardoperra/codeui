@@ -138,12 +138,15 @@ The build fails on a missing demo, a repeated demo name, a demo or props table i
 | Check | Command | Fails when |
 | --- | --- | --- |
 | Demo types | `pnpm --filter @codeui/docs-demos exec tsc --noEmit -p .` | A demo does not compile. |
-| Demo references | `node lint-demos.mjs` | A `SolidDemo` points at a missing file, or a name repeats on a page. |
-| Internal links | `node lint-links.mjs` | A `/docs/…` link has no page. |
+| Demo references | `node tools/docs/lint-demos.mjs` | A `SolidDemo` points at a missing file, or a name repeats on a page. |
+| Internal links | `node tools/docs/lint-links.mjs` | A `/docs/…` link has no page. |
 | Export coverage | `pnpm docs:coverage` | A public export has no anchor on a page. `--strict` also fails on drafts. |
 | Markdown routes | `pnpm docs:check-llms <url>` | A page's `.md` route is missing, or still holds a `SolidDemo` or `PropsTable` tag. |
+| Rendered pages | `node tools/docs/crawl.mjs <url>` | A page logs a console error, a demo renders nothing, a block demo is shrink-wrapped, or a page scrolls sideways at 390 px. |
 
-`lint-demos.mjs` and `lint-links.mjs` are standalone scripts that are not in the repository yet. They will move into `tools/docs`, next to `coverage.mjs`.
+`pnpm docs:lint` runs both lints, and the Docs workflow runs it on every pull request.
+
+The crawl loads every prerendered page in dark and light at 1440 and 390 px. Build with `NITRO_PRESET=cloudflare-pages`, serve with `pnpm --filter @codeui/docs exec wrangler pages dev dist`, and install Playwright once with `npm ci --prefix tools/baseline`.
 
 `docs:coverage` reads the kit's emitted declarations, so run `pnpm build:kit` first. `docs:check-llms` needs a running site. Build it with `pnpm --filter @codeui/docs build`, start it with `PORT=6150 node apps/docs/.output/server/index.mjs`, and pass `http://localhost:6150`.
 

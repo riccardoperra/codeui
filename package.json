@@ -25,7 +25,8 @@
 		"prepublish": "pnpm build",
 		"docs:scaffold": "node tools/docs/scaffold.mjs",
 		"docs:coverage": "node tools/docs/coverage.mjs",
-		"docs:check-llms": "node tools/docs/check-llms.mjs"
+		"docs:check-llms": "node tools/docs/check-llms.mjs",
+		"docs:lint": "node tools/docs/lint-demos.mjs && node tools/docs/lint-links.mjs"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.25.2",

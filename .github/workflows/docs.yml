@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'apps/docs/**'
+      - 'tools/docs/**'
       - 'packages/kit/**'
       - 'packages/docs-demos/**'
       - 'packages/vanilla-extract/**'
@@ -15,6 +16,7 @@ on:
   pull_request:
     paths:
       - 'apps/docs/**'
+      - 'tools/docs/**'
       - 'packages/kit/**'
       - 'packages/docs-demos/**'
       - 'packages/vanilla-extract/**'
@@ -60,6 +62,9 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: Lint docs content
+        run: pnpm docs:lint
 
       - name: Build docs
         run: pnpm turbo run build --filter=@codeui/docs...
