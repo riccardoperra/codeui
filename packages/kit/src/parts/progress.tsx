@@ -1,30 +1,12 @@
+import { kobalteStyle } from "../utils/kobalte-style";
 import * as K from "@kobalte/core/progress";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import { splitProps, type ValidComponent } from "solid-js";
 import { mergeClasses } from "../utils/css";
 import * as styles from "../components/Progress/Progress.css";
 export { useProgressContext } from "@kobalte/core/progress";
-export type ProgressVariants = { size?: "sm" | "md" };
-export const progressParts = {
-	root: "progress-root",
-	label: "progress-label",
-	track: "progress-track",
-	fill: "progress-fill",
-	valueLabel: "progress-value-label",
-} as const;
-export type ProgressPart = keyof typeof progressParts;
-export type ProgressClasses = Partial<Record<ProgressPart, string>>;
-export type ProgressStyles = Record<
-	ProgressPart,
-	(variants?: ProgressVariants) => string
->;
-export const progressStyles: ProgressStyles = {
-	root: () => styles.root,
-	label: () => styles.label,
-	track: variants => styles.track({ size: variants?.size }),
-	fill: () => styles.fill,
-	valueLabel: () => styles.valueLabel,
-};
+import { type ProgressVariants, progressParts, type ProgressPart, type ProgressClasses, type ProgressStyles, progressStyles } from "@codeui/styles/progress";
+export { type ProgressVariants, progressParts, type ProgressPart, type ProgressClasses, type ProgressStyles, progressStyles } from "@codeui/styles/progress";
 export type RootProps<T extends ValidComponent = "div"> = K.ProgressRootProps<T> &
 	ProgressVariants;
 export function Root<T extends ValidComponent = "div">(
@@ -86,10 +68,12 @@ export function Fill<T extends ValidComponent = "div">(
 ) {
 	const [local, others] = splitProps(props as PolymorphicProps<"div", FillProps>, [
 		"class",
+		"style",
 		"size",
 	]);
 	return (
 		<K.Fill
+			style={kobalteStyle(local.style)}
 			{...others}
 			data-cui={progressParts.fill}
 			data-size={local.size}

@@ -4,7 +4,6 @@ export default {
 	setupFilesAfterEnv: [],
 	testEnvironmentOptions: { customExportConditions: ["solid", "node"] },
 	transform: {
-		"\\.css\\.ts$": "@vanilla-extract/jest-transform",
 		"^.+\\.tsx?$": "ts-jest",
 		"^.+\\.m?jsx?$": [
 			"babel-jest",

@@ -1,0 +1,6 @@
+{
+	"name": "kit-consumer-css",
+	"private": true,
+	"type": "module",
+	"dependencies": {}
+}

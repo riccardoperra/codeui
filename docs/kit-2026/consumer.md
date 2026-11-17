@@ -1,56 +1,58 @@
-# Packed kit consumer check
+# Packed kit and CSS consumers
 
-K9 checks whether another Solid app can use the packed kit without CodeImage's build setup. S1 must make the default command pass.
+The kit compiles its vanilla-extract sources before publishing. Consumers install the packed `@codeui/kit` and `@codeui/styles` artifacts without a vanilla-extract plugin.
 
-## Run the check
+## Run the consumer check
 
-Run these commands from the repository root with Node 20.19 or a supported newer Node version, pnpm 9.5, and npm available.
+Use the Node and pnpm versions required by the repository. From its root, run:
 
 ```sh
 pnpm install --frozen-lockfile
 node examples/run-consumer-check.mjs
 ```
 
-The runner builds the kit, runs `pnpm --dir packages/kit pack`, and installs the tarball into fresh copies of both fixtures under the system temporary directory. These copies have independent npm dependency trees. Neither fixture is in the pnpm workspace. The runner removes its temporary files and stops its server after the check. Chromium installation requires network access on the first run.
+The runner builds both packages, packs them, and installs the tarballs into three independent temporary npm dependency trees. No workspace alias can hide a missing published file.
 
-The Vite fixture uses Solid's browser compiler. The SSR fixture uses Solid's server compiler, bundles the kit through Vite's `solid` condition, and executes `renderToString` in Node. Neither default configuration includes vanilla-extract. Both render Button, TextField, Select, an open Dialog, an open Popover, and SegmentedControl. The theme attribute is also on the document root so portaled browser content inherits the theme.
+- The Vite consumer renders Button, Switch, TextField, Select, Dialog, Popover and SegmentedControl.
+- The SSR consumer compiles the same components with Solid's server compiler.
+- The CSS-only consumer installs only styles and renders a native button with JavaScript disabled. No Solid package or browser script is required.
 
-The browser check serves the production build on port 6126. It requires all six component markers and no browser errors. It compares the primary Button background with the K5 brand token, `#0070f0`, then adds plain CSS that sets `--cui-action-brand-base` to `rgb(17, 34, 51)`. The second comparison must see that exact color. The SSR check requires form component markers and both overlay bodies in the rendered string. A blocked assertion is a FAIL, and any FAIL makes the command exit nonzero.
+The browser checks component markers, rendering errors, the Button fill against the current theme token, and a plain CSS brand override. The CSS-only check also loads composed FieldLabel and SwitchLabel classes, and Button and IconButton classes, in forward, reverse and duplicate stylesheet orders.
 
-## Verify the consumer workaround
+`@codeui/styles/all.css` includes the theme and every component. Selective consumers load `theme.css` and the files for the components they use. Each file contains its shared dependency closure. All variants and runtime states remain in that file.
+
+Add `--keep` to retain the installed fixtures and production builds. The runner prints their directory. It closes its browser and servers before exiting.
+
+## Known SSR portal limitation
+
+The default command still exits nonzero on the existing assertion that expects `Dialog body` and `Popover body` in server HTML. Kobalte portals omit those bodies. CSS extraction fixes style evaluation in Node but does not alter this portal behavior.
+
+Browser rendering, CSS-only rendering, CSS overrides, and the browser and SSR builds are separate assertions. Their passes do not turn the portal assertion into a pass. Do not rely on those portalled bodies for content that must exist before hydration.
+
+## Check production CSS selection
+
+Install the isolated verification tools and use the retained CSS-only fixture:
 
 ```sh
-node examples/run-consumer-check.mjs --with-vanilla-extract
+npm ci --prefix tools/styles --ignore-scripts --no-audit --no-fund
+node tools/styles/bundle-check.mjs <consumer-artifacts>/css
 ```
 
-This command installs `@vanilla-extract/vite-plugin@4.0.15` into temporary copies only. It adds `vanillaExtractPlugin()` before `solid()` in each Vite configuration and uses port 6127. The committed fixtures remain free of the plugin.
+Both Vite and webpack compile three cases. An unused class-helper import emits no CSS. A Button consumer includes Button and its shared styles, without Dialog, Switch or Combobox. A lazy Dialog import produces a separate CSS chunk and keeps Dialog rules out of the initial CSS.
 
-## CI
+The component source-import guard in `packages/styles/scripts/renderers.mjs` checks the registry against Solid renderer imports. It catches missing styles for rendered labels, errors, icons and nested components rather than trusting only the declared registry.
 
-The separate `consumer.yml` workflow runs only through `workflow_dispatch`. Its failures remain visible and do not participate in the push workflow. It has no `continue-on-error` setting. Dispatch it against this branch to reproduce the expected failure, and against S1 to check the replacement styling output.
+## Compare rendering before and after a change
 
-## Results on 2026-11-16
+`tools/styles/parity.mjs` serves an already built fixture and records computed styles, pseudo-elements and screenshots. It covers both themes, three Inkstone viewports and Switch off/on states. Build the same App against both package versions before comparing.
 
-Measured against K5 commit `4b5be61c96b1602145634ee7b38cf1de969d0e4b` with Node 26.5.0 and pnpm 9.5.0.
-
-The plugin copy builds and executes SSR, but its output omits `Dialog body` and `Popover body`. Kobalte portals do not emit their contents in this server render. The assertion deliberately keeps that gap visible. Adding the plugin alone does not make the full SSR assertion pass. S1 must address the styling failure and account for this overlay markup requirement rather than weakening the check.
-
-| Assertion                   | Without plugin                                             | With plugin                                                                |
-| --------------------------- | ---------------------------------------------------------- | -------------------------------------------------------------------------- |
-| Vite build                  | PASS                                                       | PASS                                                                       |
-| SSR build                   | PASS                                                       | PASS                                                                       |
-| Page renders without errors | FAIL, style evaluation throws before any component renders | PASS, all six markers present and no browser errors                        |
-| Button background           | FAIL, Button absent after page load                        | PASS, `rgb(0, 112, 240)`                                                   |
-| Plain CSS token override    | FAIL, Button absent after page load                        | PASS, `rgb(0, 112, 240)` changes to `rgb(17, 34, 51)` after its transition |
-| SSR markup                  | FAIL, style evaluation throws in Node                      | FAIL, `missing Dialog body, Popover body`                                  |
-
-Both default runtime paths report this exact error:
-
-```text
-Styles were unable to be assigned to a file. This is generally caused by one of the following:
-
-- You may have created styles outside of a '.css.ts' context
-- You may have incorrect configuration. See https://vanilla-extract.style/documentation/getting-started
+```sh
+node tools/styles/parity.mjs <base-fixture> <baseline-output>
+node tools/styles/parity.mjs <head-fixture> <head-output> <baseline-output>
 ```
 
-The Node stack starts in `@vanilla-extract/css/fileScope` at `getFileScope`, called by `globalLayer`. The browser has none of the six required component markers after this exception. Both commands exit 1. The plugin is the verified minimum addition for this browser fixture. It fixes SSR style evaluation too, but the full SSR check still fails on portaled content. No fully passing SSR setup is claimed here.
+The fixture supplies Vite and Playwright. `CODEUI_PLAYWRIGHT` can point to another installed Playwright entry. Set `CODEUI_PARITY_MUTATION=1` for a sensitivity check. The deliberate button opacity change must fail comparison with the unmodified baseline.
+
+## Historical baseline
+
+The original check on 2026-11-16 found that unpacked style modules threw `Styles were unable to be assigned to a file` without a consumer plugin. Adding the plugin enabled browser rendering but still omitted the two portal bodies in SSR. The previous `--with-vanilla-extract` workaround is no longer a runner mode. The default fixtures now consume precompiled CSS directly.

@@ -1,5 +1,4 @@
-import { assignInlineVars } from "@vanilla-extract/dynamic";
-import { mergeClasses } from "../../utils/css";
+import { mergeClasses, assignInlineVars } from "../../utils/css";
 import * as styles from "./Loading.css";
 
 export function Loading() {

@@ -47,7 +47,7 @@ Import from `@codeui/kit/tokens` in every vanilla-extract `.css.ts` file. Import
 - **Named exports.** `tokens`, `themeTokens`, `themeVars`, `breakpoints`, `layoutVars` and `responsiveStyle`. Nothing else.
 - **Parity with the root.** `@codeui/kit` re-exports the same six objects from the same modules. A value from one entry is identical to the value from the other.
 - **No component code.** The entry imports nothing from `solid-js` or `@kobalte/*`. The fixture check fails the test if any file it reaches does.
-- **Side effects.** Its modules are vanilla-extract style modules. They declare the `cui` cascade layer and set the `--cui-*` values for both modes. Your bundler needs the vanilla-extract plugin to load them, as it does for the root entry.
+- **Side effects.** The token entry is a pure JavaScript object module. It does not load CSS or run vanilla-extract. Load `@codeui/styles/theme.css` for token values, or `all.css` for the theme and components. Applications that author their own `.css.ts` files still configure a compiler for those files.
 
 ### Why the root entry fails in a style file
 
@@ -93,7 +93,7 @@ import { themeTokens } from "@codeui/kit";
 | `colors` | The Radix `grayDark` scale, with the old values. |
 | `zIndex` | `-1`, `0`, `10`, `20`, `30`, `40`, `50` and `auto`, with the old values. |
 
-The groups that keep their old values use hashed variable names, not `--cui-*` names. You can change them only from vanilla-extract, and they do not follow `data-cui-theme`.
+The groups that keep their old values retain separate legacy variables. Their references are available from `themeTokens`. Prefer the semantic `tokens` roles for theme overrides.
 
 ## `themeVars`
 
@@ -138,7 +138,7 @@ import { layoutVars } from "@codeui/kit";
 layoutVars.layoutBackgroundColor; // "var(--…)"
 ```
 
-`layoutVars` is a namespace with one member, `layoutBackgroundColor`. It is a vanilla-extract variable with a hashed name, unset by default.
+`layoutVars` is a namespace with one member, `layoutBackgroundColor`. It is a stable CSS custom-property reference, unset by default.
 
 Only one kit rule reads it. A `Button` with `variant="ghost"` and `loading` uses it as its background while the spinner shows, and falls back to the button's own background when it is unset. Set it on a container so that loading ghost buttons inside it match the surface they sit on:
 
@@ -146,7 +146,7 @@ Only one kit rule reads it. A `Button` with `variant="ghost"` and `loading` uses
 vars: { [layoutVars.layoutBackgroundColor]: tokens.surface.canvas }
 ```
 
-The name is hashed, so set it from a vanilla-extract style, as the fixture above does. Plain CSS cannot name it.
+The exported value gives the custom-property name as a `var(--…)` reference. Set that property in plain CSS or through your style system. It does not require a vanilla-extract runtime.
 
 ## `responsiveStyle`
 

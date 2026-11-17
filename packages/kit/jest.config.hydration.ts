@@ -20,7 +20,6 @@ export default {
 		"solid-js": `${solid}/dist/dev.cjs`,
 	},
 	transform: {
-		"\\.css\\.ts$": "@vanilla-extract/jest-transform",
 		"^.+\\.tsx?$": [
 			"ts-jest",
 			{ tsconfig: "<rootDir>/tsconfig.json", babelConfig: { presets } },

@@ -6,7 +6,7 @@ Inkstone is the design language of `@codeui/kit` and CodeImage. This file is the
 - **It ships with the package** as `node_modules/@codeui/kit/DESIGN.md`, so an app reads the version that matches its kit. An app's own `DESIGN.md` starts from this file and records only its product decisions.
 - **CodeImage is the reference app.** When CodeImage and this file disagree, open an issue and fix one of them. Do not copy the drift.
 
-Rules are plain statements. **Proposed** marks a rule that the kit or CodeImage does not follow yet. Token names are the `--cui-*` custom properties from `@codeui/kit/theme.css`.
+Rules are plain statements. **Proposed** marks a rule that the kit or CodeImage does not follow yet. Token names are the `--cui-*` custom properties from `@codeui/styles/theme.css`.
 
 ## The idea
 

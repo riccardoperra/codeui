@@ -112,9 +112,9 @@ A token with a dark and a light value, such as `--cui-surface-canvas` or `--cui-
 
 Set a token on a class, as `.delete-snippet` does above. The component resolves `var(--cui-…)` on its own element, so the new value applies to that instance and its children. A plain property such as `border-radius` on the same class also wins, for the same cascade layer reason.
 
-### What still needs vanilla-extract
+### Compiled styles
 
-Your overrides are plain CSS. The kit's own styles ship as vanilla-extract `.css.js` modules, so your bundler still needs the vanilla-extract plugin to compile them. See [Installation](/docs/installation).
+Load `@codeui/styles/theme.css` and the component styles described in [Installation](/docs/installation). The kit compiles its vanilla-extract sources before publishing. Neither its styles nor your plain CSS overrides require a vanilla-extract plugin in your app.
 
 ## Change the shape and the brand with two tokens
 

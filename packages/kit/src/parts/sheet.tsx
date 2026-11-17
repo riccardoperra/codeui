@@ -33,42 +33,8 @@ import { createFocusReturn } from "./dialog-focus";
 import { createSheetDrag } from "./sheet-drag";
 import { pointerInitiated, trackInput } from "../utils/open-source";
 
-export const sheetParts = {
-	trigger: "sheet-trigger",
-	overlay: "sheet-overlay",
-	content: "sheet-content",
-	header: "sheet-header",
-	title: "sheet-title",
-	description: "sheet-description",
-	closeButton: "sheet-close-button",
-	handle: "sheet-handle",
-	body: "sheet-body",
-	footer: "sheet-footer",
-} as const;
-
-export type SheetPart = keyof typeof sheetParts;
-export type SheetClasses = Partial<Record<SheetPart, string>>;
-export type SheetSide = "bottom" | "left" | "right";
-/** `auto` slides on pointer opens and closes. `none` never moves. */
-export type SheetMotion = "auto" | "none";
-
-export type SheetStyles = {
-	[P in SheetPart]: (variants?: { side?: SheetSide }) => string;
-};
-
-export const sheetStyles: SheetStyles = {
-	trigger: () => "",
-	overlay: () => styles.overlay,
-	content: variants => styles.content({ side: variants?.side }),
-	header: () => styles.header,
-	title: () => styles.title,
-	description: () => styles.description,
-	closeButton: () => styles.closeButton,
-	handle: () => styles.handle,
-	body: () => styles.body,
-	footer: () => styles.footer,
-};
-
+import { sheetParts, type SheetPart, type SheetClasses, type SheetSide, type SheetMotion, type SheetStyles, sheetStyles } from "@codeui/styles/sheet";
+export { sheetParts, type SheetPart, type SheetClasses, type SheetSide, type SheetMotion, type SheetStyles, sheetStyles } from "@codeui/styles/sheet";
 type SheetContextValue = {
 	moves: Accessor<boolean>;
 	overlay: Accessor<HTMLElement | undefined>;

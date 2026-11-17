@@ -1,0 +1,11 @@
+{
+	"name": "codeui-styles-verification",
+	"private": true,
+	"type": "module",
+	"dependencies": {
+		"vite": "5.4.4",
+		"webpack": "5.97.1",
+		"css-loader": "7.1.2",
+		"mini-css-extract-plugin": "2.9.2"
+	}
+}

@@ -1,43 +1,30 @@
 {
 	"$schema": "https://turborepo.org/schema.json",
 	"tasks": {
+		"@codeui/styles#test": {
+			"dependsOn": ["build"],
+			"cache": false
+		},
 		"@codeui/playground#build": {
-			"dependsOn": [
-				"@codeui/kit#build"
-			]
+			"dependsOn": ["@codeui/kit#build"]
 		},
 		"build": {
-			"dependsOn": [
-				"^build"
-			],
-			"outputs": [
-				"dist/**"
-			]
+			"dependsOn": ["^build"],
+			"outputs": ["dist/**"]
 		},
 		"test": {
-			"dependsOn": [
-				"^build"
-			]
+			"dependsOn": ["^build"]
 		},
 		"typecheck": {
-			"dependsOn": [
-				"^build"
-			]
+			"dependsOn": ["^build"]
 		},
 		"dev": {
 			"cache": false
 		},
 		"@codeui/docs#build": {
-			"dependsOn": [
-				"^build"
-			],
-			"env": [
-				"NITRO_PRESET"
-			],
-			"outputs": [
-				".output/**",
-				"dist/**"
-			]
+			"dependsOn": ["^build"],
+			"env": ["NITRO_PRESET"],
+			"outputs": [".output/**", "dist/**"]
 		}
 	}
 }

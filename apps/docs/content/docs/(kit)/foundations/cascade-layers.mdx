@@ -3,7 +3,7 @@ title: "Cascade layers"
 description: "How kit styles are layered, and how app styles override them."
 ---
 
-Every kit rule lives in one cascade layer, `cui`. That includes component styles, global styles and the token values for both modes. Your app's unlayered CSS always wins over a layered rule, whatever the selector specificity and whatever the stylesheet order.
+Every kit rule lives within the `cui` parent cascade layer. That includes component styles, global styles and the token values for both modes. Your app's unlayered CSS always wins over a layered rule, whatever the selector specificity and whatever the stylesheet order.
 
 <SolidDemo name="cascade-layers/app-override" />
 
@@ -19,7 +19,7 @@ The second button gets its shape from one class. The kit sets the button's radiu
 
 ## How the layer works
 
-`packages/kit/src/foundation/layer.css.ts` declares the layer with vanilla-extract `globalLayer("cui")`. It wraps `style`, `globalStyle`, `styleVariants`, `recipe` and `createTheme`, and every kit `.css.ts` file imports those wrappers instead of the vanilla-extract originals. The rule each one emits sits inside `@layer cui { … }`.
+`packages/styles/src/foundation/layer.css.ts` declares the parent layer with vanilla-extract `globalLayer("cui")` during the library build. The generated CSS declares the internal order `cui.base`, `cui.components`, `cui.overrides` before its rules. It wraps `style`, `globalStyle`, `styleVariants`, `recipe` and `createTheme`, and every kit `.css.ts` file imports those wrappers instead of the vanilla-extract originals. The rule each one emits stays inside the `cui` parent. Base field labels and component overrides have fixed internal priorities, so loading their CSS files in a different order does not change those known composition cases.
 
 The browser resolves a conflict in this order, from weakest to strongest:
 

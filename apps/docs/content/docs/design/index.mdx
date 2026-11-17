@@ -69,3 +69,5 @@ Every rule in the specification applies one of these principles to a specific ca
 7. **Preview, then commit.** Hovering shows the result. A click saves it, and Escape puts the old value back.
 8. **One component per pattern, one place per thing.** There is one settings dialog and one command menu. Different layouts place them, but none keeps its own copy.
 9. **Keyboard first, keyboard instant.** Everything works from the keyboard, and nothing opened from the keyboard animates.
+
+The compiled token stylesheet is `@codeui/styles/theme.css`. Load it alongside the component styles. Vanilla-extract runs in the library build, so applying Inkstone does not require a style compiler in the consuming app.

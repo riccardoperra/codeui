@@ -1,6 +1,5 @@
-import { assignInlineVars } from "@vanilla-extract/dynamic";
 import { FlowProps, JSX, splitProps } from "solid-js";
-import { mergeClasses } from "../utils/css";
+import { mergeClasses, assignInlineVars } from "../utils/css";
 import * as styles from "./icon.css";
 
 export type SvgIconProps = JSX.IntrinsicElements["svg"] & {

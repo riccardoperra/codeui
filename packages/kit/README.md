@@ -4,6 +4,18 @@
 
 # CodeUI - [CodeImage](https://github.com/riccardoperra/codeimage) UI Kit
 
+Install `@codeui/kit`, `@codeui/styles` and `solid-js`. Load the compiled CSS in your app entry. No vanilla-extract plugin is required.
+
+```ts
+import "@codeui/styles/theme.css";
+import "@codeui/styles/button.css";
+import { Button } from "@codeui/kit";
+```
+
+Import `@codeui/styles/all.css` instead when you need the theme and every component in one stylesheet. Component CSS files include their shared dependencies. JavaScript imports do not load CSS automatically.
+
+The styles package can be installed without Solid. The library authors styles with vanilla-extract and extracts them before publishing. Selection is per component, with all its variants and states retained.
+
 In vanilla-extract `*.css.ts` files, import `tokens`, `themeVars`, `themeTokens`, `layoutVars`, `breakpoints`, and `responsiveStyle` from `@codeui/kit/tokens`.
 This entry has no Solid or Kobalte imports and is safe to evaluate during style builds in Node; the root entry keeps the same exports for compatibility.
 

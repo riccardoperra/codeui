@@ -20,15 +20,11 @@ pnpm add @codeui/kit solid-js@^1.9.8
 
 The kit depends on `@kobalte/core` 0.13.14 and `@kobalte/utils` 0.9.2. Kobalte 0.13.13 raised its own peer to `solid-js ^1.9.8`, so the kit's peer moved from `^1.7.0` to `^1.9.8`. An app on Solid 1.8 gets a peer dependency warning and can resolve two Solid copies.
 
-## Install the vanilla-extract plugin yourself
+## Load the compiled CSS
 
-The 0.1.x manifest listed build-only packages as runtime dependencies, including `@vanilla-extract/vite-plugin`, `motion`, `@motionone/solid`, `statebuilder`, and a local `link:` dependency. The new manifest lists only what the components import. If your Vite config imports the plugin and your app never declared it, the install now fails to find it. Add it:
+Install `@codeui/styles` alongside `@codeui/kit` and Solid. Import `@codeui/styles/all.css` in the app entry, or use `theme.css` with the individual component files.
 
-```sh
-pnpm add -D @vanilla-extract/vite-plugin
-```
-
-[Installation](/docs/installation) shows the Vite config. The kit's types now also resolve under `node16`, `nodenext`, and `bundler` module resolution, and a `require` condition exists for CommonJS tools.
+The library compiles its vanilla-extract sources before publishing. Remove a vanilla-extract plugin that was configured only for the kit. Keep it if the app authors its own `.css.ts` files. See [Installation](/docs/installation).
 
 ## Check the Kobalte behavior changes
 

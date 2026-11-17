@@ -1,3 +1,4 @@
+import { kobalteStyle } from "../utils/kobalte-style";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import {
 	Toast as KToast,
@@ -15,46 +16,8 @@ import * as styles from "../components/Toast/Toast.css";
 import { CloseIcon } from "../icons/CloseIcon";
 import { mergeClasses } from "../utils/css";
 
-export const toastParts = {
-	region: "toast-region",
-	list: "toast-list",
-	root: "toast-root",
-	title: "toast-title",
-	description: "toast-description",
-	closeButton: "toast-close-button",
-	progressTrack: "toast-progress-track",
-	progressFill: "toast-progress-fill",
-	icon: "toast-icon",
-	action: "toast-action",
-} as const;
-
-export type ToastPart = keyof typeof toastParts;
-export type ToastClasses = Partial<Record<ToastPart, string>>;
-export type ToastTone = "neutral" | "info" | "success" | "warning" | "danger";
-export type ToastPosition =
-	| "top-left"
-	| "top-center"
-	| "top-right"
-	| "bottom-left"
-	| "bottom-center"
-	| "bottom-right";
-export type ToastVariants = { tone?: ToastTone; position?: ToastPosition };
-
-export type ToastStyles = { [P in ToastPart]: (variants?: ToastVariants) => string };
-
-export const toastStyles: ToastStyles = {
-	region: variants => styles.region({ position: variants?.position }),
-	list: () => styles.list,
-	root: variants => styles.root({ tone: variants?.tone }),
-	title: () => styles.title,
-	description: () => styles.description,
-	closeButton: () => styles.closeButton,
-	progressTrack: () => styles.progressTrack,
-	progressFill: () => styles.progressFill,
-	icon: () => styles.icon,
-	action: () => styles.action,
-};
-
+import { toastParts, type ToastPart, type ToastClasses, type ToastTone, type ToastPosition, type ToastVariants, type ToastStyles, toastStyles } from "@codeui/styles/toast";
+export { toastParts, type ToastPart, type ToastClasses, type ToastTone, type ToastPosition, type ToastVariants, type ToastStyles, toastStyles } from "@codeui/styles/toast";
 export type RegionProps<T extends ValidComponent = "div"> = KToastRegionProps<T> & {
 	position?: ToastPosition;
 	class?: string;
@@ -112,11 +75,13 @@ export function Root<T extends ValidComponent = "li">(
 ) {
 	const [local, others] = splitProps(props as PolymorphicProps<"li", RootProps>, [
 		"class",
+		"style",
 		"tone",
 		"priority",
 	]);
 	return (
 		<KToast
+			style={kobalteStyle(local.style)}
 			as="div"
 			data-cui={toastParts.root}
 			data-tone={local.tone ?? "neutral"}
@@ -204,10 +169,11 @@ export function ProgressFill<T extends ValidComponent = "div">(
 ) {
 	const [local, others] = splitProps(
 		props as PolymorphicProps<"div", KToastProgressFillProps>,
-		["class"],
+		["class", "style"],
 	);
 	return (
 		<KToast.ProgressFill
+			style={kobalteStyle(local.style)}
 			data-cui={toastParts.progressFill}
 			class={mergeClasses(toastStyles.progressFill(), local.class)}
 			{...others}

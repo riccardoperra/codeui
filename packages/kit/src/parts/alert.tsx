@@ -7,29 +7,8 @@ import { type JSX, splitProps, type ValidComponent } from "solid-js";
 import * as styles from "../components/Alert/Alert.css";
 import { mergeClasses } from "../utils/css";
 
-export const alertParts = {
-	root: "alert-root",
-	icon: "alert-icon",
-	title: "alert-title",
-	description: "alert-description",
-	action: "alert-action",
-} as const;
-
-export type AlertPart = keyof typeof alertParts;
-export type AlertClasses = Partial<Record<AlertPart, string>>;
-export type AlertTone = "neutral" | "info" | "success" | "warning" | "danger";
-export type AlertVariants = { tone?: AlertTone; fluid?: boolean };
-
-export type AlertStyles = { [P in AlertPart]: (variants?: AlertVariants) => string };
-
-export const alertStyles: AlertStyles = {
-	root: variants => styles.root({ tone: variants?.tone, fluid: variants?.fluid }),
-	icon: () => styles.icon,
-	title: () => styles.title,
-	description: () => styles.description,
-	action: () => styles.action,
-};
-
+import { alertParts, type AlertPart, type AlertClasses, type AlertTone, type AlertVariants, type AlertStyles, alertStyles } from "@codeui/styles/alert";
+export { alertParts, type AlertPart, type AlertClasses, type AlertTone, type AlertVariants, type AlertStyles, alertStyles } from "@codeui/styles/alert";
 export type RootProps<T extends ValidComponent = "div"> = KAlertRootProps<T> &
 	AlertVariants & { class?: string };
 

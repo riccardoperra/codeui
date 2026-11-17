@@ -1,3 +1,4 @@
+import { mapKobalteVariables } from "./kobalte-style";
 import { isServer } from "solid-js/web";
 
 /**
@@ -43,6 +44,7 @@ export function pointerInitiated(options?: { hover?: boolean }): boolean {
  */
 export function motionRef(options?: { hover?: boolean; still?: () => boolean }) {
 	return (element: HTMLElement) => {
+		mapKobalteVariables(element);
 		if (!options?.still?.() && pointerInitiated(options)) element.removeAttribute("data-motion");
 		else element.setAttribute("data-motion", "none");
 	};
