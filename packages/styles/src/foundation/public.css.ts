@@ -208,9 +208,13 @@ export function createTheme<Defaults extends Record<string, string>>(
 	const name = privateStyle({}, debugId);
 	rules.set(name, { vars: assignments });
 	write(
-		part === "dialog-panel"
-			? ":is(.cui-dialog-panel,.cui-dialog-positioner,.cui-dialog-overlay)"
-			: selectorFor(part),
+		":is(" +
+			(part === "dialog-panel"
+				? ".cui-dialog-panel,.cui-dialog-positioner,.cui-dialog-overlay"
+				: selectorFor(part)) +
+			",." +
+			name +
+			")",
 		{ vars: assignments },
 	);
 	return [name, vars] as [string, typeof vars];
