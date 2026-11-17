@@ -103,7 +103,7 @@ export const MessageOnly: Story = {
 	render: () => (
 		<ToastFrame
 			label="Message only"
-			height="120px"
+			height="184px"
 			toasts={[{ description: "Link copied" }]}
 		/>
 	),
@@ -131,7 +131,7 @@ export const FocusedAction: Story = {
 	render: () => (
 		<ToastFrame
 			label="Focused action"
-			height="120px"
+			height="184px"
 			position="bottom-left"
 			toasts={[
 				{
@@ -162,7 +162,7 @@ export const AllPositions: Story = {
 			{position => (
 				<ToastFrame
 					label={position}
-					height="100px"
+					height="164px"
 					position={position}
 					toasts={[{ description: position }]}
 				/>

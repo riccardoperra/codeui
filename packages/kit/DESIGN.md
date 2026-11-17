@@ -120,6 +120,7 @@ No line between islands, around a field, between rows or around an unselected ca
 | Title   | 16px  | 1.3         | 600     | Group title, breadcrumb, phone input text               | `--cui-font-size-md`      |
 | Display | 18px+ | 1.2         | 600     | Sheet titles and announcements only                     | `--cui-font-size-lg`+     |
 
+- Line-height tokens: `--cui-font-line-height-compact` 1.15 (one-line chips: tooltip, keycap), `--cui-font-line-height-snug` 1.3 (Label and Title: menu rows, popover text, toasts), `--cui-font-line-height-normal` 1.5 (running text). A component sets its line height; it never inherits the page's.
 - Never below 11px.
 - Weights 400, 500, 600 only. 400 reads, 500 acts, 600 heads.
 - A selected option may go from 500 to 600 only if its box reserves the 600 width.
@@ -215,6 +216,7 @@ If you cannot name the purpose (feedback, origin, state change, avoiding a jump,
 | `--cui-motion-duration-normal` | 160ms                              | Tooltip, small popover                  |
 | `--cui-motion-duration-panel`  | 200ms                              | Accordion, popover, content change      |
 | `--cui-motion-duration-slow`   | 260ms                              | Clip reveal; ceiling for a control      |
+| `--cui-motion-duration-rise`   | 400ms                              | Rise: toast, corner card                |
 
 ### 7.3 The movements
 
@@ -222,11 +224,11 @@ If you cannot name the purpose (feedback, origin, state change, avoiding a jump,
 | ------------------ | -------------------------------------------- | ------------------------------------------------------------------------------ |
 | **Press**          | Buttons, cards                               | `scale(0.97)` (cards `0.98`), 120ms ease-out, on pointer-down                  |
 | **Toggle**         | Switch                                       | Thumb `transform` 120ms ease-out; track colour 120ms                           |
-| **Pop**            | Popover, menu, tooltip opened by pointer     | In from `scale(0.96)` + fade, 160–180ms; out to `scale(0.98)`, 120ms; `transform-origin` at the trigger |
+| **Pop**            | Popover, menu, list popover, tooltip opened by pointer | In from `scale(0.96)` + fade, 160–180ms; out to `scale(0.98)`, 120ms; `transform-origin` at the trigger. The kit: 160ms (`normal`) in, 120ms (`fast`) out; opened from the keyboard, `data-motion="none"` |
 | **Expand**         | Accordion                                    | `height` + `opacity` 200ms ease-out, retargets mid-way; chevron rotates in step |
 | **Morph**          | The content after a value changes            | The changed property (radius, colour, theme) 150–200ms                         |
 | **Collapse to origin** | Closing something that lives on elsewhere | Scale and move into where it can be found again, 200ms ease-out (What's new → nudge) |
-| **Rise**           | Corner card, toast                           | From the edge, 400ms `ease`; leave 200ms                                        |
+| **Rise**           | Corner card, toast                           | From the edge, 400ms (`--cui-motion-duration-rise`); leave 200ms. The kit uses its ease-out |
 | **Reveal**         | A surface growing in place                   | `clip-path`, 260ms ease-out                                                     |
 | **Slide**          | Phone sheet                                  | `translateY(100%)` → 0, 280ms drawer curve; out 150–200ms; tracks the finger 1:1 when dragged |
 | **Ring**           | Selection ring                               | `scale(0.92)` → 1 with fade, 200ms                                              |
@@ -246,7 +248,7 @@ Rules for every movement:
 - Hover styles only under `@media (hover: hover) and (pointer: fine)`.
 - **No materials.** Unlike Apple's design language, Inkstone has no translucency or `backdrop-filter` on the interface. Matte is a trait.
 
-The kit's own motion is slower than these rules today: buttons press in 200ms `ease`, the focus ring transitions with `ease-in`, and the dialog enters with a 250ms `ease-in-out` keyframe. **Proposed:** move them to Press, a 120ms colour change, and Pop with transitions.
+The kit's popover, menu, list popovers and tooltip follow Pop, and its toast follows Rise. They still use keyframes, because Kobalte unmounts the content when its exit animation ends. The rest of the kit's motion is slower than these rules today: buttons press in 200ms `ease`, and the focus ring transitions with `ease-in`. **Proposed:** move them to Press and a 120ms colour change.
 
 ## 8. Layout
 

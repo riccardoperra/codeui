@@ -39,7 +39,7 @@ Use a toast to confirm the result of an action the user just took, such as an ex
 | `ProgressTrack` | `div`, the track of a time bar | `progressTrack` | `toast-progress-track` | `presentation`, `aria-hidden` |
 | `ProgressFill` | `div`, the fill of the time bar | `progressFill` | `toast-progress-fill` | none |
 
-`Region` also sets `data-position`. `Root` sets `data-tone`, and `data-cui-theme` when the toast sets `theme`.
+`Region` also sets `data-position`. `Root` sets `data-tone`. A toast from `Toaster` also sets `data-cui-theme` to its resolved theme, unless `theme` is `page`.
 
 ## Variants
 
@@ -61,7 +61,7 @@ A `Toaster` has one `position`. The default is `bottom-center`. Toasts rise from
 
 `title` and `description` take JSX or a callback. The callback receives the toast context, `{ id, dismiss }`, so the content can close its own toast. The content renders inside `Toaster`, so it reads the context of the providers around `Toaster`, such as the locale.
 
-`icon` replaces the tone icon. `icon: null` hides it. `theme` renders one toast in the light or the dark theme, whatever the page theme.
+`icon` replaces the tone icon. `icon: null` hides it. `theme` picks the toast's theme. The default, `inverted`, renders the opposite of the theme around the `Toaster`, as CodeImage does: a light card on a dark page, and a dark card on a light page. It follows the page when the theme changes while the toast is open. `page` uses the page theme. `light` and `dark` force one.
 
 ### Action
 
@@ -245,7 +245,7 @@ Showing a toast does not move focus. Each toast is in the tab order. While focus
 
 ### Reduced motion
 
-A toast enters with an 8px rise over `--cui-motion-duration-panel`, or an 8px drop at the top edge. It leaves with a fade over `--cui-motion-duration-normal`. With `prefers-reduced-motion: reduce`, the entrance and the swipe exit are fades with no movement. A toast that follows the finger during a swipe still moves, because the user moves it.
+A toast rises from the edge it sits on: it moves up its own height with a fade over `--cui-motion-duration-rise` (400ms), or drops by its height at the top edge. It leaves with a fade over `--cui-motion-duration-panel` (200ms). With `prefers-reduced-motion: reduce`, the entrance and the swipe exit are fades with no movement. A toast that follows the finger during a swipe still moves, because the user moves it.
 
 ## SSR notes
 
@@ -262,16 +262,17 @@ The toast reads these properties. Their defaults are in [Tokens](/docs/foundatio
 | --- | --- |
 | `--cui-surface-toast`, `--cui-text-toast` | Toast fill and text |
 | `--cui-shadow-menu` | Toast shadow |
-| `--cui-radius-md`, `--cui-radius-xs`, `--cui-radius-full` | Toast, button, and time bar corners |
+| `--cui-radius-card`, `--cui-radius-xs`, `--cui-radius-full` | Toast, button, and time bar corners |
 | `--cui-space-0-5`, `--cui-space-2`, `--cui-space-3`, `--cui-space-4` | Time bar height, gaps, toast padding, region padding |
-| `--cui-font-family-sans`, `--cui-font-size-caption`, `--cui-font-size-md`, `--cui-font-line-height-normal`, `--cui-font-weight-semibold` | Text, icon size, title and action weight |
+| `--cui-space-16` | Extra offset of bottom regions: with the region padding, toasts sit 80px above the bottom edge, clear of a bottom toolbar |
+| `--cui-font-family-sans`, `--cui-font-size-sm`, `--cui-font-size-md`, `--cui-font-line-height-snug`, `--cui-font-weight-semibold` | Text (14px / 1.3), icon size, title and action weight |
 | `--cui-action-brand-base`, `--cui-action-success-base`, `--cui-action-caution-base`, `--cui-action-danger-base` | Accent of the info, success, warning, and danger tones |
 | `--cui-action-neutral-base` | Button hover fill and time bar track |
 | `--cui-action-brand-soft-text` | Action text |
 | `--cui-text-muted` | Close icon |
 | `--cui-control-height-compact`, `--cui-control-height-md` | Button height, and the height on coarse pointers |
 | `--cui-focus-width`, `--cui-focus-color`, `--cui-focus-offset` | Focus ring |
-| `--cui-motion-duration-panel`, `--cui-motion-duration-normal`, `--cui-motion-ease-out` | Entrance, exit, and swipe return |
+| `--cui-motion-duration-rise`, `--cui-motion-duration-panel`, `--cui-motion-ease-out` | Entrance (Rise), exit and swipe return |
 
 ## Composition examples
 

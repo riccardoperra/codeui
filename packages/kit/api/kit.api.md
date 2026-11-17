@@ -385,6 +385,7 @@ export declare const dropdownMenuTheme: string, dropdownMenuThemeVars: {
     contentRadius: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
     contentBoxShadow: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
     contentPadding: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+    contentMinWidth: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
     contentBorderColor: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
     separator: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
     itemTextColor: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
@@ -393,6 +394,9 @@ export declare const dropdownMenuTheme: string, dropdownMenuThemeVars: {
     itemDisabledOpacity: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
     itemMinHeight: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
     itemPadding: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+    itemRadius: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+    itemFontSize: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+    itemLineHeight: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
 };
 export declare const content: string;
 export declare const subMenuContent: string;
@@ -878,7 +882,9 @@ export declare const popoverTheme: string, popoverThemeVars: {
     contentRadius: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
     contentPadding: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
     contentFontSize: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+    contentLineHeight: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
     titleColor: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+    titleFontSize: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
     descriptionColor: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
     contentBorderColor: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
 };
@@ -1494,8 +1500,12 @@ export type ToastOptions = {
     closeable?: boolean;
     /** Milliseconds before the toast closes. `Infinity` keeps it open. */
     duration?: number;
-    /** Renders the toast in this theme, whatever the page theme. */
-    theme?: "light" | "dark";
+    /**
+     * The toast's theme. `inverted` (the default) uses the opposite of the
+     * theme around the toaster, as CodeImage does: a light card on a dark
+     * page. `page` follows the page. `light` and `dark` force one.
+     */
+    theme?: "light" | "dark" | "inverted" | "page";
     class?: string;
     classes?: T.ToastClasses;
     style?: JSX.CSSProperties;
@@ -1554,6 +1564,7 @@ export declare function Toaster(props: ToasterProps): JSX.Element;
 import { RecipeVariants } from "@vanilla-extract/recipes";
 export declare const tooltipTheme: string, tooltipVars: {
     fontSize: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+    lineHeight: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
     backgroundColor: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
     color: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
     padding: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
@@ -1586,7 +1597,7 @@ import { JSX } from "solid-js";
 import { SlotProp } from "../../utils/component.js";
 import * as styles from "./Tooltip.css.js";
 type TooltipSlot = "trigger" | "content";
-type TooltipProps = KTooltipRootProps & styles.TooltipVariants & SlotProp<TooltipSlot> & {
+export type TooltipProps = KTooltipRootProps & styles.TooltipVariants & SlotProp<TooltipSlot> & {
     content: JSX.Element;
 };
 export declare function Tooltip(props: TooltipProps): JSX.Element;
@@ -1832,6 +1843,7 @@ export declare const tokens: {
         };
         lineHeight: {
             compact: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            snug: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
             normal: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
         };
         tracking: {
@@ -1845,6 +1857,7 @@ export declare const tokens: {
             normal: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
             panel: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
             slow: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            rise: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
         };
         ease: {
             out: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
@@ -2108,7 +2121,7 @@ export { RadioList, RadioListItem } from "./components/RadioList/RadioList.js";
 export type { RadioListProps, RadioListItemProps, RadioListClasses, } from "./components/RadioList/RadioList.js";
 export { Link } from "./components/Link/Link.js";
 export { Pagination, type PaginationProps } from "./components/Pagination/Pagination.js";
-export { Tooltip } from "./components/Tooltip/Tooltip.js";
+export { Tooltip, type TooltipProps } from "./components/Tooltip/Tooltip.js";
 export { Tabs, TabsHeader, TabsList, TabsContent } from "./components/Tabs/Tabs.js";
 export { SegmentedControl } from "./components/SegmentedControl/SegmentedControl.js";
 export type { SegmentedControlProps } from "./components/SegmentedControl/SegmentedControl.js";

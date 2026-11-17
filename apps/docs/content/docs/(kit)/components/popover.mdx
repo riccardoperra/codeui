@@ -200,18 +200,22 @@ The trigger and the anchor render on the server. Their IDs come from Solid's `cr
 
 | Variable | Used for |
 | --- | --- |
-| `--cui-surface-menu` | Panel fill |
-| `--cui-shadow-menu` | Panel shadow |
+| `--cui-surface-dialog` | Panel fill, the floating surface CodeImage uses |
+| `--cui-shadow-dialog` | Panel shadow, with a 1px inset ring in dark |
 | `--cui-border-menu`, `--cui-border-width` | Border of the `bordered` variant |
-| `--cui-text-menu` | Title and description text |
-| `--cui-radius-lg` | Panel radius |
-| `--cui-space-4` | Panel padding |
+| `--cui-text-dialog`, `--cui-text-dialog-title` | Description and title text |
+| `--cui-radius-xl` | Panel radius (18px) |
+| `--cui-space-4` | Panel padding, and the phone gutter of the width |
 | `--cui-space-2` | Gap between title, description, and children |
-| `--cui-font-size-md` | Body and description size |
-| `--cui-font-size-lg`, `--cui-font-weight-medium` | Title type |
-| `--cui-motion-duration-normal`, `--cui-motion-duration-fast`, `--cui-motion-ease-out` | Open and close animation |
+| `--cui-font-size-sm`, `--cui-font-line-height-snug` | Body and description type (14px / 1.3) |
+| `--cui-font-size-md`, `--cui-font-weight-semibold` | Title type (16px) |
+| `--cui-motion-duration-normal`, `--cui-motion-duration-fast`, `--cui-motion-ease-out` | Pop: in from `scale(0.96)` over 160ms, out to `scale(0.98)` over 120ms |
 
-The panel is at most 276px wide. That value is a literal in the kit, not a token. Inkstone asks for a 360px picker, so widen the panel with a class when it holds a picker.
+The panel is at most 360px wide, the Inkstone picker width, and never wider than the viewport minus 16px on each side. That value is a literal in the kit, not a token.
+
+### Motion
+
+A popover opened with a pointer pops: it fades in from `scale(0.96)` over 160ms and leaves toward `scale(0.98)` in 120ms, growing from the trigger side (`--kb-popper-content-transform-origin`). Opened from the keyboard, the content gets `data-motion="none"` and appears and leaves in place. With reduced motion, only the fade is left.
 
 ## Composition examples
 

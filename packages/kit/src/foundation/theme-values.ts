@@ -167,6 +167,7 @@ export const themeValues =
 		},
 		lineHeight: {
 			compact: "1.15",
+			snug: "1.3",
 			normal: "1.5",
 		},
 		tracking: {
@@ -180,6 +181,7 @@ export const themeValues =
 			normal: "160ms",
 			panel: "200ms",
 			slow: "260ms",
+			rise: "400ms",
 		},
 		ease: {
 			out: "cubic-bezier(0.23, 1, 0.32, 1)",

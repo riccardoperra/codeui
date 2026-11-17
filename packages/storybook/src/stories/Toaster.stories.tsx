@@ -66,7 +66,7 @@ export const WithAction: Story = {
 	render: () => (
 		<Frame
 			label="Action"
-			height="140px"
+			height="204px"
 			toasts={[
 				{
 					description: "Code pasted. Format it?",
@@ -87,7 +87,7 @@ export const RichContent: Story = {
 	render: () => (
 		<Frame
 			label="Rich content"
-			height="120px"
+			height="184px"
 			toasts={[
 				{
 					tone: "success",
@@ -105,7 +105,7 @@ export const RichContent: Story = {
 
 export const Loading: Story = {
 	render: () => (
-		<Frame label="Loading" height="120px">
+		<Frame label="Loading" height="184px">
 			{toaster => {
 				onMount(() =>
 					toaster.promise(new Promise(() => {}), {

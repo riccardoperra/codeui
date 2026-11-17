@@ -7,6 +7,7 @@ import { Accessor, For, JSX, JSXElement, ParentProps, Show, splitProps } from "s
 import { CheckIcon } from "../../icons/CheckIcon";
 import { SelectorIcon } from "../../icons/SelectorIcon";
 import { mergeClasses } from "../../utils/css";
+import { motionRef } from "../../utils/open-source";
 import { BaseFieldProps, createBaseFieldProps } from "../Field/createBaseFieldProps";
 import {
 	createFieldErrorMessageProps,
@@ -194,6 +195,7 @@ export function Select<Option, OptGroup = never>(props: ParentProps<SelectProps<
 			</Show>
 			<KSelect.Portal>
 				<KSelect.Content
+					ref={motionRef()}
 					data-cui={selectParts.content}
 					class={mergeClasses(styles.content, partClass(local, "content"))}
 				>

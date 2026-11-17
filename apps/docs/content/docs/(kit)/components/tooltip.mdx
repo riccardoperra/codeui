@@ -116,11 +116,13 @@ The trigger `div` and its children render on the server. The content renders on 
 | --- | --- |
 | `--cui-action-brand-base`, `--cui-action-brand-text` | Fill and text of `primary` |
 | `--cui-action-neutral-base`, `--cui-action-neutral-text` | Fill and text of `secondary` |
-| `--cui-font-size-sm` | Text size |
+| `--cui-font-size-sm`, `--cui-font-line-height-compact` | Text size and line height (14px / 1.15) |
 | `--cui-space-2`, `--cui-space-4` | Padding |
 | `--cui-radius-xl` | Radius |
 | `--cui-shadow-md` | Shadow |
-| `--cui-motion-duration-normal`, `--cui-motion-duration-fast`, `--cui-motion-ease-out` | Open and close animation |
+| `--cui-motion-duration-normal`, `--cui-motion-duration-fast`, `--cui-motion-ease-out` | Pop: in from `scale(0.96)` over 160ms, out to `scale(0.98)` over 120ms |
+
+A tooltip opened by hover pops from its trigger. One opened by keyboard focus, and the next tooltip opened within 300ms of another closing, appear with no animation (`data-motion="none"`), as Inkstone asks. The description goes on the first focusable element inside the trigger, so a screen reader reads it with the focused control.
 
 ## Composition examples
 

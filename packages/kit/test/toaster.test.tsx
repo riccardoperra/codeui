@@ -206,6 +206,25 @@ describe("createToaster", () => {
 		expect(await screen.findByRole("status")).toHaveAttribute("data-cui-theme", "light");
 	});
 
+	it("inverts the page theme by default and follows the page with theme page", async () => {
+		const notifications = createToaster();
+		render(() => (
+			<div data-cui-theme="dark">
+				<Toaster toaster={notifications} closeLabel="Close" />
+			</div>
+		));
+		notifications.show({ description: "Copied" });
+		const copied = await screen.findByRole("status");
+		expect(copied).toHaveAttribute("data-cui-theme", "light");
+		// The page switches theme while the toast is open.
+		copied.closest("[data-cui-theme=dark]:not([role=status])")!.setAttribute("data-cui-theme", "light");
+		await waitFor(() => expect(copied).toHaveAttribute("data-cui-theme", "dark"));
+		notifications.clear();
+		notifications.show({ description: "Saved", theme: "page" });
+		const saved = await screen.findByText("Saved");
+		expect(saved.closest("[role=status]")).not.toHaveAttribute("data-cui-theme");
+	});
+
 	it("renders content inside the providers around its Toaster", async () => {
 		const Locale = createContext("en");
 		const notifications = createToaster();

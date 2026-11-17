@@ -13,12 +13,16 @@ import {
 import * as styles from "./Dropdown.css";
 import { JSXElement, Show, splitProps, ValidComponent } from "solid-js";
 import { PolymorphicProps } from "@kobalte/core/polymorphic";
+import { mergeRefs } from "@kobalte/utils";
 import { mergeClasses } from "../../utils/css";
+import { motionRef } from "../../utils/open-source";
 
 export function DropdownMenuContent<T extends ValidComponent = "div">(props: PolymorphicProps<T, KDropdownMenuContentProps<T>>) {
+	const [local, others] = splitProps(props as PolymorphicProps<"div", KDropdownMenuContentProps>, ["ref", "class"]);
 	return <KDropdownMenu.Content
+		ref={mergeRefs(motionRef(), local.ref)}
 		data-cui={"dropdown-menu-content"}
-		{...props} class={mergeClasses(styles.content, props.class)} />;
+		{...others} class={mergeClasses(styles.content, local.class)} />;
 }
 
 export function DropdownMenuPortal(props: GetKobalteParams<typeof KDropdownMenu.Portal>) {
@@ -76,7 +80,9 @@ export function DropdownSubMenuTrigger<T extends ValidComponent = "div">(
 }
 
 export function DropdownSubMenuContent<T extends ValidComponent = "div">(props: PolymorphicProps<T, KDropdownMenuSubContentProps<T>>) {
-	return <KDropdownMenu.SubContent {...props} class={styles.subMenuContent} />;
+	const [local, others] = splitProps(props as PolymorphicProps<"div", KDropdownMenuSubContentProps>, ["ref"]);
+	// A submenu opens on hover, so a pointer that only moved counts.
+	return <KDropdownMenu.SubContent ref={mergeRefs(motionRef({ hover: true }), local.ref)} {...others} class={styles.subMenuContent} />;
 }
 
 export function DropdownMenuSeparator<T extends ValidComponent = "div">(props: PolymorphicProps<T, KDropdownMenuSeparatorProps<T>>) {

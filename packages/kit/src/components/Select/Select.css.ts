@@ -1,8 +1,7 @@
 import { createTheme, style } from "../../foundation/layer.css";
-import { keyframes } from "@vanilla-extract/css";
 import { componentStateStyles } from "@kobalte/vanilla-extract";
 import { tokens } from "../../foundation/cui.css";
-import { presenceAnimation } from "../../foundation/motion.css";
+import { popAnimation } from "../../foundation/motion.css";
 import { baseFieldTheme, baseFieldVars } from "../Field/Field.css";
 import { responsiveStyle } from "../../foundation/responsive";
 
@@ -23,29 +22,6 @@ export const [selectTheme, selectThemeVars] = createTheme({
 	indicatorSize: "20px",
 });
 
-const contentShow = keyframes({
-	from: {
-		opacity: 0,
-		transform: "translateY(-10px)",
-	},
-	to: {
-		opacity: 1,
-		transform: "translateY(0px)",
-	},
-});
-
-const contentHide = keyframes({
-	from: {
-		opacity: 1,
-		transform: "translateY(0px)",
-	},
-	to: {
-		opacity: 0,
-		transform: "translateY(-10px)",
-	},
-});
-
-// TODO: common popover/dropdown style
 export const content = style([
 	selectTheme,
 	{
@@ -75,7 +51,7 @@ export const content = style([
 			},
 		},
 	}),
-	presenceAnimation({ enter: contentShow, exit: contentHide }),
+	popAnimation(),
 ]);
 
 export const input = style([

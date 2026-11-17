@@ -8,6 +8,8 @@ const accent = createVar();
 const coarsePointer = "(pointer: coarse)";
 const reducedMotion = "(prefers-reduced-motion: reduce)";
 
+const bottomOffset = tokens.space["16"];
+
 export const region = recipe({
 	base: {
 		position: "fixed",
@@ -23,9 +25,11 @@ export const region = recipe({
 			"top-left": { top: 0, left: 0 },
 			"top-center": { top: 0, left: "50%", transform: "translateX(-50%)" },
 			"top-right": { top: 0, right: 0 },
-			"bottom-left": { bottom: 0, left: 0 },
-			"bottom-center": { bottom: 0, left: "50%", transform: "translateX(-50%)" },
-			"bottom-right": { bottom: 0, right: 0 },
+			// Bottom toasts clear a bottom toolbar: 64px plus the 16px padding
+			// puts the toast 80px up, where CodeImage shows it.
+			"bottom-left": { bottom: bottomOffset, left: 0 },
+			"bottom-center": { bottom: bottomOffset, left: "50%", transform: "translateX(-50%)" },
+			"bottom-right": { bottom: bottomOffset, right: 0 },
 		},
 	},
 	defaultVariants: { position: "bottom-center" },
@@ -46,8 +50,9 @@ export const list = style({
 	},
 });
 
-const rise = keyframes({ from: { opacity: 0, transform: "translateY(8px)" } });
-const drop = keyframes({ from: { opacity: 0, transform: "translateY(-8px)" } });
+// Rise: in from the edge the toast sits on.
+const rise = keyframes({ from: { opacity: 0, transform: "translateY(100%)" } });
+const drop = keyframes({ from: { opacity: 0, transform: "translateY(-100%)" } });
 const fadeIn = keyframes({ from: { opacity: 0 } });
 const fadeOut = keyframes({ to: { opacity: 0 } });
 const swipeOut = keyframes({
@@ -55,8 +60,8 @@ const swipeOut = keyframes({
 	to: { transform: "translateX(var(--kb-toast-swipe-end-x))", opacity: 0 },
 });
 
-const enter = `${tokens.motion.duration.panel} ${tokens.motion.ease.out}`;
-const exit = `${tokens.motion.duration.normal} ${tokens.motion.ease.out} forwards`;
+const enter = `${tokens.motion.duration.rise} ${tokens.motion.ease.out}`;
+const exit = `${tokens.motion.duration.panel} ${tokens.motion.ease.out} forwards`;
 
 /**
  * Icon, text, action and close button sit in their own grid columns. Margins
@@ -70,13 +75,13 @@ export const root = recipe({
 		boxSizing: "border-box",
 		maxWidth: "100%",
 		padding: tokens.space["3"],
-		borderRadius: tokens.radius.md,
+		borderRadius: tokens.radius.card,
 		backgroundColor: tokens.surface.toast,
 		color: tokens.text.toast,
 		boxShadow: tokens.shadow.menu,
 		fontFamily: tokens.font.family.sans,
-		fontSize: tokens.font.size.caption,
-		lineHeight: tokens.font.lineHeight.normal,
+		fontSize: tokens.font.size.sm,
+		lineHeight: tokens.font.lineHeight.snug,
 		pointerEvents: "auto",
 		selectors: {
 			"&:focus-visible": {

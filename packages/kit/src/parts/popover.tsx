@@ -11,11 +11,13 @@ import {
 	type PopoverTitleProps as KPopoverTitleProps,
 	type PopoverTriggerProps as KPopoverTriggerProps,
 } from "@kobalte/core/popover";
+import { mergeRefs } from "@kobalte/utils";
 import { mergeProps, splitProps, type ValidComponent } from "solid-js";
 import * as styles from "../components/Popover/Popover.css";
 import { IconButton, type IconButtonProps } from "../components/IconButton/IconButton";
 import { CloseIcon } from "../icons";
 import { mergeClasses } from "../utils/css";
+import { motionRef } from "../utils/open-source";
 
 export const popoverParts = {
 	trigger: "popover-trigger",
@@ -86,9 +88,14 @@ export type ContentProps<T extends ValidComponent = "div"> = KPopoverContentProp
 };
 
 export function Content<T extends ValidComponent = "div">(props: PolymorphicProps<T, ContentProps<T>>) {
-	const [local, others] = splitProps(props as PolymorphicProps<"div", ContentProps>, ["class", "variant"]);
+	const [local, others] = splitProps(props as PolymorphicProps<"div", ContentProps>, [
+		"class",
+		"variant",
+		"ref",
+	]);
 	return (
 		<KPopover.Content
+			ref={mergeRefs(motionRef(), local.ref)}
 			data-cui={popoverParts.content}
 			class={mergeClasses(popoverStyles.content({ variant: local.variant }), local.class)}
 			{...others}

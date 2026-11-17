@@ -24,6 +24,8 @@ Hierarchy never comes from a third font family. It comes from tone and weight.
 | Title | 16px | 600 | Group titles, breadcrumbs, phone inputs |
 | Display | 18px+ | 600 | Announcements only |
 
+Every component sets its own line height from three tokens and never inherits the page's: `--cui-font-line-height-compact` (1.15) for one-line chips such as tooltips and keycaps, `--cui-font-line-height-snug` (1.3) for the Label and Title steps (menu rows, popover text, toasts), and `--cui-font-line-height-normal` (1.5) for running text.
+
 ### No text below 11px
 
 The Animate timeline once had a 9.5px label, and it was rejected as unreadable. At 11px and above, Inter stays legible on a standard display.
