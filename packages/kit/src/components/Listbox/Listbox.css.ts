@@ -47,14 +47,9 @@ export const list = style([
 			"&[data-bordered]:focus-visible": {
 				borderColor: tokens.focus.color,
 			},
-			"&[data-theme=primary]": {
-				vars: {
-					[listThemeVars.itemTextColor]: tokens.text.menu,
-					[listThemeVars.itemHoverBackground]: tokens.accent.selection,
-					[listThemeVars.itemHoverTextColor]: tokens.text.selected,
-				},
-			},
-			"&[data-theme=neutral]": {
+			// A highlighted row is neutral in both themes: field fill and primary
+			// text, never an accent fill (Inkstone §2.3).
+			"&:is([data-theme=primary], [data-theme=neutral])": {
 				vars: {
 					[listThemeVars.itemTextColor]: tokens.text.menu,
 					[listThemeVars.itemHoverBackground]: tokens.surface.menuHover,

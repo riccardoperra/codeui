@@ -24,8 +24,6 @@
   }
 
   :root[data-cui-theme='light'] .ink {
-    --ink-t1: #1a202c;
-    --ink-t2: #4a5568;
     --ink-do: #2f855a;
   }
 

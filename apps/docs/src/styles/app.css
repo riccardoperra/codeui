@@ -50,6 +50,12 @@ html > body[data-scroll-locked] {
   border-color: transparent;
 }
 
+/* A selected nav row is neutral: field fill and primary text (Inkstone §2.3). */
+#nd-sidebar a[data-active='true'] {
+  background-color: var(--cui-action-neutral-base);
+  color: var(--cui-action-neutral-text);
+}
+
 /* A heading that is one long API name, such as `createFieldErrorMessageProps`, wraps at phone width. */
 .prose :is(h1, h2, h3, h4) {
   overflow-wrap: anywhere;

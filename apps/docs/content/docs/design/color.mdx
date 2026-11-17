@@ -53,7 +53,30 @@ This is what keeps the screen calm. A panel full of bright labels looks busy eve
 
 The kit has more greys than these two tones. Over time it added `#ccc`, `#a0a0a0`, `#fff` and a `#404040` fill for the segmented control. These all collapse into the two tones plus a disabled tone. **Do not add a new grey.**
 
-The light theme has a real bug. Its default and muted text tokens are both `#4a5568`, and in CodeImage the row labels inside a section render black while the section title above them is grey. The hierarchy is inverted. The light theme needs its own two tones, checked for AA contrast.
+Light mode keeps the same order with its own tones: primary `#1d2229`, secondary `#51565c`, and a tertiary `#656970` for captions on the page, an island or a field. Tertiary is 4.4:1 on a selected card, so it never sits on one. Before this, light default and muted text were both `#4a5568` and CodeImage's row labels rendered black under grey section titles.
+
+## Light mode is one grey family
+
+The light theme used to mix two families: Tailwind's cool slate and pure neutral greys. A menu had a neutral ring, a slate hover and slate text, and a field (`#f3f3f3`) was only 1.06:1 on its slate island. CodeImage hid the problem by lifting cards to white.
+
+Every light grey is now a step of one twelve-step ramp at OKLCH hue 255. Chroma rises from 0.004 to 0.016 toward the dark end, so the greys keep a trace of CodeImage's cool page but stay quieter than the user's content and the blue signal. The fill steps are 0.025–0.03 apart in lightness, which lets a field read on its island at half of dark mode's step.
+
+| Step | Hex | Role |
+| --- | --- | --- |
+| 0 | `#ffffff` | Page, inset, floating surfaces |
+| 1 | `#f7f9fb` | Island |
+| 2 | `#eceff1` | Field, hovered or selected row |
+| 3 | `#e4e6e9` | Field hover, selected card, neutral button |
+| 4 | `#dcdee1` | Hairlines, neutral button hover |
+| 5 | `#d0d3d6` | Neutral button pressed, scroll thumb |
+| 6 | `#b4b8bc` | Disabled text |
+| 7 | `#9b9fa4` | Switch off track, decorative icons |
+| 8 | `#7c8186` | Control edges that must reach 3:1 |
+| 9 | `#656970` | Tertiary text |
+| 10 | `#51565c` | Secondary text |
+| 11 | `#1d2229` | Primary text |
+
+Do not add a light grey outside the ramp. A test over the token map fails on one, and on any light text, ring or edge below its contrast target. The switch off track is the one recorded exception: step 8 reaches 3:1 but makes an off switch look on, so the track uses step 7 and the thumb's position carries the state.
 
 ## One accent, five jobs
 
@@ -91,7 +114,7 @@ Blue appears rarely, so users notice it when it does.
 
 ### Why there are two blues
 
-CodeImage's brand blue is `#0099ff`, and filled buttons use it, so the kit's primary button looks the same as CodeImage's. White text on it has a contrast of 3.0:1, below WCAG AA for 14px text. That is a deliberate product decision. Keep button labels at 14px medium or larger, and never put body text on this fill. Selection, focus and the on state use the lighter `#63b3ed`.
+CodeImage's brand blue is `#0099ff`, and filled buttons use it, so the kit's primary button looks the same as CodeImage's. White text on it has a contrast of 3.0:1, below WCAG AA for 14px text. That is a deliberate product decision. Keep button labels at 14px medium or larger, and never put body text on this fill. In dark mode, selection, focus and the on state use the lighter `#63b3ed`. In light mode they use `#0083e5`, and links use `#006aca`. Both are the brand blue's hue and chroma at a lower lightness, so the focus ring reaches 3:1 on every light surface and link text reaches 4.5:1.
 
 ## Status colours
 

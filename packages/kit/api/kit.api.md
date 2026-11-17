@@ -1790,6 +1790,7 @@ export declare const tokens: {
         dialog: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
         inputAccent: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
         input: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        fieldHover: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
         menuHover: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
         menu: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
         panel: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
@@ -1797,6 +1798,7 @@ export declare const tokens: {
         scrollThumbHover: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
         secondary: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
         toast: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        track: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
     };
     text: {
         default: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
@@ -1806,6 +1808,8 @@ export declare const tokens: {
         dialogTitle: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
         label: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
         hint: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        tertiary: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        disabled: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
         input: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
         selected: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
         menu: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;

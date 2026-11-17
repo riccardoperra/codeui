@@ -4,7 +4,7 @@ import {homedir} from 'node:os';
 import path from 'node:path';
 export const out='docs/kit-2026/phase-0/baseline';
 export const base=process.env.BASELINE_URL||`http://127.0.0.1:${process.env.BASELINE_PORT||6106}`;
-export const backgrounds={light:'rgb(247, 250, 252)',dark:'rgb(15, 15, 16)'};
+export const backgrounds={light:'rgb(247, 249, 251)',dark:'rgb(15, 15, 16)'};
 export async function launch(){
  const cache=path.join(homedir(),'Library/Caches/ms-playwright');
  const versions=(await readdir(cache)).filter(x=>/^chromium-\d+$/.test(x)).sort((a,b)=>Number(b.split('-')[1])-Number(a.split('-')[1]));

@@ -21,7 +21,7 @@ Preconditions:
 
 - Doctor exits 0.
 
-- **Mode switch.** Drive `designsystem-button--primary` with a journey that reads `document.documentElement`: `data-cui-theme` equals the theme, `colorScheme` equals the theme, and `--cui-surface-canvas` is `#0f0f10` dark and `#f7fafc` light. The body background matches `backgrounds[theme]`. Observed in a probe on this base.
+- **Mode switch.** Drive `designsystem-button--primary` with a journey that reads `document.documentElement`: `data-cui-theme` equals the theme, `colorScheme` equals the theme, and `--cui-surface-canvas` is `#0f0f10` dark and `#f7f9fb` light. The body background matches `backgrounds[theme]`. Observed in a probe on this base.
 - **Override.** In the same journey, `page.addStyleTag({ content: ':root{--cui-action-brand-base: rgb(1, 2, 3)}' })`, then `[data-cui=button]` has computed `backgroundColor` `rgb(1, 2, 3)` in both themes. Before the override it is `rgb(0, 112, 240)`. Observed in a probe on this base.
 - **Layer contract.** `BASELINE_URL=<launch url> node tools/baseline/layer.mjs` checks on `[data-cui=button]` that every matching kit rule sits in `@layer cui` and an unlayered app background (`rgb(1, 2, 3)`) wins; exit 0 and four `true` checks. It also writes an untracked `docs/kit-2026/phase-0/baseline/layer.json`; delete it so it is not staged.
 - **Every component in both modes.** `drive.mjs <story-id>` with no journey for each story you touched; compare `dark/01-rendered.png` and `light/01-rendered.png`.

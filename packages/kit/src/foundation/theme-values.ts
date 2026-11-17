@@ -1,46 +1,72 @@
 /**
+ * The light neutral ramp (Inkstone, DESIGN.md §2.6): one family of greys at
+ * OKLCH hue 255, chroma 0.004 → 0.016. Step 0 is the page, step 11 primary
+ * text. Every light surface, line and text grey is a step of it;
+ * test/light-palette.test.ts fails on any other grey.
+ */
+const ramp = [
+	"#ffffff",
+	"#f7f9fb",
+	"#eceff1",
+	"#e4e6e9",
+	"#dcdee1",
+	"#d0d3d6",
+	"#b4b8bc",
+	"#9b9fa4",
+	"#7c8186",
+	"#656970",
+	"#51565c",
+	"#1d2229",
+] as const;
+
+/**
  * Values of every `--cui-*` custom property. A string is shared by both modes.
+ * Light neutrals are steps of `ramp`; the light blues share the brand blue's
+ * hue and chroma.
  * docs/kit-2026/design/k5-token-map.json lists the source of each value.
  */
-export const themeValues = 
-{
+export const themeValues = {
 	surface: {
-		canvas: { dark: "#0f0f10", light: "#f7fafc" },
-		toolbar: { dark: "#2b2b2b", light: "#fff" },
+		canvas: { dark: "#0f0f10", light: ramp[1] },
+		toolbar: { dark: "#2b2b2b", light: ramp[0] },
 		scrim: { dark: "#000000b3", light: "#0006" },
-		dialog: { dark: "#1d1d1d", light: "#fff" },
-		inputAccent: { dark: "#505050", light: "#fff" },
-		input: { dark: "#232323", light: "#f3f3f3" },
-		menuHover: { dark: "#333", light: "#f7fafc" },
-		menu: { dark: "#282828", light: "#fff" },
-		panel: { dark: "#151516", light: "#fff" },
-		scrollThumb: { dark: "#505050", light: "#cbd5e0" },
-		scrollThumbHover: { dark: "#333", light: "#a0aec0" },
-		secondary: "#edf2f7",
-		toast: { dark: "#2b2b2b", light: "#fff" },
+		dialog: { dark: "#1d1d1d", light: ramp[0] },
+		inputAccent: { dark: "#505050", light: ramp[0] },
+		input: { dark: "#232323", light: ramp[2] },
+		fieldHover: { dark: "#2f2f2f", light: ramp[3] },
+		menuHover: { dark: "#333", light: ramp[2] },
+		menu: { dark: "#282828", light: ramp[0] },
+		panel: { dark: "#151516", light: ramp[0] },
+		scrollThumb: { dark: "#505050", light: ramp[5] },
+		scrollThumbHover: { dark: "#333", light: ramp[6] },
+		secondary: { dark: "#333", light: ramp[3] },
+		toast: { dark: "#2b2b2b", light: ramp[0] },
+		track: { dark: "#505050", light: ramp[7] },
 	},
 	text: {
-		default: { dark: "#ededed", light: "#4a5568" },
-		toolbar: { dark: "#a0a0a0", light: "#4a5568" },
-		muted: { dark: "#999", light: "#4a5568" },
-		dialog: { dark: "#ededed", light: "#2d3748" },
-		dialogTitle: { dark: "#ededed", light: "#2d3748" },
-		label: { dark: "#ededed", light: "#2d3748" },
-		hint: { dark: "#a0a0a0", light: "#4a5568" },
-		input: { dark: "#ededed", light: "#333" },
+		default: { dark: "#ededed", light: ramp[11] },
+		toolbar: { dark: "#a0a0a0", light: ramp[10] },
+		muted: { dark: "#999", light: ramp[10] },
+		dialog: { dark: "#ededed", light: ramp[11] },
+		dialogTitle: { dark: "#ededed", light: ramp[11] },
+		label: { dark: "#ededed", light: ramp[11] },
+		hint: { dark: "#a0a0a0", light: ramp[10] },
+		tertiary: { dark: "#8a8a8a", light: ramp[9] },
+		disabled: { dark: "#666", light: ramp[6] },
+		input: { dark: "#ededed", light: ramp[11] },
 		selected: "#fff",
-		menu: { dark: "#ededed", light: "#2d3748" },
-		panelMuted: { dark: "#ccc", light: "#666" },
-		panel: { dark: "#fff", light: "#000" },
-		toast: { dark: "#fff", light: "#333" },
+		menu: { dark: "#ededed", light: ramp[11] },
+		panelMuted: { dark: "#ccc", light: ramp[10] },
+		panel: { dark: "#fff", light: ramp[11] },
+		toast: { dark: "#fff", light: ramp[11] },
 		danger: { dark: "#fc8181", light: "#c53030" },
 	},
 	action: {
 		neutral: {
-			active: { dark: "#505050", light: "#a0aec0" },
-			base: { dark: "#333", light: "#e2e8f0" },
-			hover: { dark: "#3e3e3e", light: "#cbd5e0" },
-			text: { dark: "#ededed", light: "#2d3748" },
+			active: { dark: "#505050", light: ramp[5] },
+			base: { dark: "#333", light: ramp[3] },
+			hover: { dark: "#3e3e3e", light: ramp[4] },
+			text: { dark: "#ededed", light: ramp[11] },
 		},
 		danger: {
 			active: "#9b2c2c",
@@ -57,7 +83,7 @@ export const themeValues =
 		brandSoft: {
 			base: "#0099ff26",
 			hover: "#007acc26",
-			text: "#09f",
+			text: { dark: "#09f", light: "#006aca" },
 			active: "#007acc26",
 		},
 		caution: {
@@ -74,8 +100,14 @@ export const themeValues =
 		},
 	},
 	shadow: {
-		dialog: { dark: "0 10px 30px 0 #00000026, inset 0 0 0 1px #232323", light: "0 10px 15px -3px #0000001a, 0 4px 6px -2px #0000000d" },
-		menu: { dark: "0 1px #0000000d, 0 4px 10px #0000004d", light: "0 1px #0000000d, 0 4px 10px #0000001a" },
+		dialog: {
+			dark: "0 10px 30px 0 #00000026, inset 0 0 0 1px #232323",
+			light: "0 10px 15px -3px #0000001a, 0 4px 6px -2px #0000000d",
+		},
+		menu: {
+			dark: "0 1px #0000000d, 0 4px 10px #0000004d",
+			light: "0 1px #0000000d, 0 4px 10px #0000001a",
+		},
 		none: "none",
 		sm: "0 1px 3px 0 #0000001a, 0 1px 2px 0 #0000000f",
 		md: "0 4px 6px -1px #0000001a, 0 2px 4px -1px #0000000f",
@@ -83,16 +115,16 @@ export const themeValues =
 		lg: "0 10px 15px -3px #0000001a, 0 4px 6px -2px #0000000d",
 	},
 	border: {
-		dialogTitle: { dark: "#2b2b2b", light: "#e2e8f0" },
-		divider: { dark: "#252525", light: "#e2e8f0" },
+		dialogTitle: { dark: "#2b2b2b", light: ramp[4] },
+		divider: { dark: "#252525", light: ramp[4] },
 		input: "transparent",
-		menu: { dark: "#333", light: "#e8e8e8" },
+		menu: { dark: "#333", light: ramp[4] },
 		width: "1px",
 		widthStrong: "2px",
 	},
 	accent: {
-		selection: { dark: "#07f", light: "#09f" },
-		focus: { dark: "#63b3ed", light: "#09f" },
+		selection: { dark: "#07f", light: "#0083e5" },
+		focus: { dark: "#63b3ed", light: "#0083e5" },
 	},
 	focus: {
 		color: "var(--cui-accent-focus)",
@@ -160,8 +192,8 @@ export const themeValues =
 			"2xl": "24px",
 		},
 		family: {
-			sans: "\"Inter var\", system-ui, -apple-system, sans-serif",
-			mono: "ui-monospace, SFMono-Regular, Consolas, \"Liberation Mono\", Menlo, monospace",
+			sans: '"Inter var", system-ui, -apple-system, sans-serif',
+			mono: 'ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace',
 		},
 		weight: {
 			normal: "400",

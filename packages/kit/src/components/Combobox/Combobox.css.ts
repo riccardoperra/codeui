@@ -139,7 +139,8 @@ export const item = style({
 	userSelect: "none",
 	outline: "none",
 	selectors: {
-		"&[data-highlighted]": { background: t.accent.selection, color: t.text.selected },
+		// A highlighted row is neutral: field fill and primary text (Inkstone §2.3).
+		"&[data-highlighted]": { background: t.surface.menuHover, color: t.text.menu },
 		"&[data-disabled]": { opacity: 0.4, cursor: "not-allowed" },
 	},
 	"@media": { [coarse]: { minHeight: t.control.height.md } },

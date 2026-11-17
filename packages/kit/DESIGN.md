@@ -46,13 +46,14 @@ The page is the lighter surface. Islands are carved into it.
 | Level    | Use                                                       | Dark                      | Light               | Token today                |
 | -------- | --------------------------------------------------------- | ------------------------- | ------------------- | -------------------------- |
 | Page     | Behind everything. The header sits directly on it          | `#151516`                 | `#fff`              | `--cui-surface-panel`      |
-| Island   | Content area, side panel, settings group                  | `#0f0f10`                 | `#f7fafc`           | `--cui-surface-canvas`     |
+| Island   | Content area, side panel, settings group                  | `#0f0f10`                 | `#f7f9fb`           | `--cui-surface-canvas`     |
 | Inset    | The open section inside an island                         | `#151516`                 | `#fff`              | `--cui-surface-panel`      |
-| Field    | Field, tile, card, hovered or selected row                | `#232323`                 | `#f3f3f3`           | `--cui-surface-input`      |
+| Field    | Field, tile, card, hovered or selected row                | `#232323`                 | `#eceff1`           | `--cui-surface-input`      |
 | Floating | Menu, popover, command menu, dialog, floating bar         | `#1d1d1d` + ring + shadow | `#fff` + shadow     | `--cui-surface-dialog`     |
 
+- Light uses one grey family: every light surface, line and text grey is a step of the ramp in §2.6.
 - A surface sits on the level below it. A field goes on an island, not on the page.
-- State is a step of fill: hover raises one step, selected raises one step. Pressed changes the fill and keeps the hover radius.
+- State is a step of fill: hover raises one step, selected raises one step (`--cui-surface-field-hover` above a field). Pressed changes the fill and keeps the hover radius.
 - A selected card differs from its island by fill **and** an accent ring, not by the ring alone.
 - User content never uses these tokens.
 - The token names are inverted today: `surface-canvas` is the island and `surface-panel` is the page. Use the table, not the names. **Proposed:** rename to `surface-page`, `surface-island`, `surface-field`, `surface-floating`.
@@ -61,17 +62,19 @@ Why: a bordered, compact build was rejected for "un layout più unito e a isole"
 
 ### 2.2 Text
 
-| Tone      | Use                                                             | Dark      | Light (proposed) |
-| --------- | --------------------------------------------------------------- | --------- | ---------------- |
-| Primary   | Titles, row titles, values the user set, the selected item      | `#ededed` | `#1a202c`        |
-| Secondary | Descriptions, summaries, hints, unselected nav, metadata        | `#999`    | `#4a5568`        |
-| Disabled  | Unavailable controls                                            | `#666`    | `#a0aec0`        |
+| Tone      | Use                                                             | Dark      | Light     | Token                                    |
+| --------- | --------------------------------------------------------------- | --------- | --------- | ---------------------------------------- |
+| Primary   | Titles, row titles, values the user set, the selected item      | `#ededed` | `#1d2229` | `--cui-text-default`                     |
+| Secondary | Descriptions, summaries, hints, unselected nav, metadata        | `#999`    | `#51565c` | `--cui-text-muted`, `--cui-text-hint`    |
+| Tertiary  | Captions and metadata on page, island or field only             | `#8a8a8a` | `#656970` | `--cui-text-tertiary`                    |
+| Disabled  | Unavailable controls                                            | `#666`    | `#b4b8bc` | `--cui-text-disabled`                    |
 
 - Most text is secondary. Primary marks what matters or what is selected.
 - Hierarchy comes from tone, then weight, then size.
 - Accent text is only for links and inline text actions.
 - Do not add a new grey. The kit's `#ccc`, `#a0a0a0`, `#fff` text tokens and the `#404040` segment fill alias these roles.
-- Light mode must keep the order. Today light `text-default` and `text-muted` are both `#4a5568`, and CodeImage shows row labels in black under grey section titles. Both are bugs.
+- Light mode keeps the order: primary 13.9:1, secondary 6.4:1 and tertiary 4.8:1 on the field. Tertiary falls to 4.4:1 on a selected card, so it never sits there.
+- The other light text tokens alias these roles: `text-dialog`, `text-label`, `text-menu`, `text-input`, `text-toast` and `text-panel` are primary; `text-toolbar` and `text-panel-muted` are secondary.
 
 ### 2.3 Accent
 
@@ -89,6 +92,7 @@ The accent is never a surface or a large fill. It has five uses:
 - A selected row in a list, menu, command menu or nav is neutral: field fill and primary text. Never an accent fill.
 - "On" uses the soft wash. "Do" uses the filled button. Two same-shaped blue controls side by side read as one.
 - Accent on user content must not read as semantic red or green.
+- Light focus, selection rings and the switch "on" track use `#0083e5` (`--cui-accent-focus`): 3.9:1 on the page, 3.4:1 on the field, 3.1:1 on a selected card. Light accent text (links, brand-soft labels) uses `#006aca` (`--cui-action-brand-soft-text`): 5.4:1 on the page, 4.6:1 on the field and on the 15% wash. Both keep the brand blue's hue and chroma (OKLCH H 249, C 0.18) and only move its lightness. Dark keeps `#63b3ed` and `#0099ff`.
 - Filled buttons use `--cui-action-brand-base`, which is CodeImage's brand blue `#0099ff` (hover `#0088ff`, active `#0077ff`). This is a product decision. White text on it is 3.0:1, below WCAG AA for 14px text, and the kit accepts that so buttons match CodeImage. Keep button labels at 14px medium or larger, and never put body text on this fill.
 
 ### 2.4 Status
@@ -104,6 +108,30 @@ A line is allowed only where a fill would vanish:
 3. a ring around a colour fill that could match its background (swatch, orb, avatar), neutral at 16–35% alpha.
 
 No line between islands, around a field, between rows or around an unselected card. A split button is two parts with a 2px gap and 4px inner corners.
+
+### 2.6 Light ramp
+
+Light greys come from one ramp: OKLCH hue 255, chroma rising from 0.004 to 0.016 toward the dark end. Fill steps are ΔL 0.025–0.03 apart, so a field reads on its island (ΔL 0.031, half of dark's step).
+
+| Step | Hex       | L     | C      | Roles                                                                 |
+| ---- | --------- | ----- | ------ | --------------------------------------------------------------------- |
+| 0    | `#ffffff` | 1.000 | 0      | Page, inset, floating surfaces, segment "on"                           |
+| 1    | `#f7f9fb` | 0.980 | 0.0040 | Island                                                                |
+| 2    | `#eceff1` | 0.950 | 0.0045 | Field, card, hovered or selected row, menu hover                       |
+| 3    | `#e4e6e9` | 0.925 | 0.0049 | Field hover, selected card, neutral button, selected nav row, `surface-secondary` |
+| 4    | `#dcdee1` | 0.900 | 0.0053 | Hairline (divider, dialog title rule, menu ring), neutral button hover |
+| 5    | `#d0d3d6` | 0.865 | 0.0059 | Neutral button pressed, scroll thumb                                   |
+| 6    | `#b4b8bc` | 0.780 | 0.0073 | Disabled text, scroll thumb hover                                      |
+| 7    | `#9b9fa4` | 0.700 | 0.0086 | Switch off track (§10), decorative icon                                |
+| 8    | `#7c8186` | 0.600 | 0.0102 | A control edge that must reach 3:1                                     |
+| 9    | `#656970` | 0.520 | 0.0116 | Tertiary text                                                          |
+| 10   | `#51565c` | 0.450 | 0.0127 | Secondary text                                                         |
+| 11   | `#1d2229` | 0.250 | 0.0160 | Primary text                                                           |
+
+- Do not add a light grey outside the ramp. `packages/kit/test/light-palette.test.ts` fails on one, and on any text, ring or edge below its contrast target.
+- The blues are not part of the ramp; see §2.3.
+
+Why: the light theme used to mix Tailwind slate with pure neutral greys, so a menu had a neutral ring, a slate hover and slate text, and a field (`#f3f3f3`) was 1.06:1 on its island. CodeImage hid it with white cards.
 
 ## 3. Typography
 
@@ -346,6 +374,7 @@ A loading control swaps its icon for a spinner and keeps its width. A loading re
 ## 10. Accessibility
 
 - Contrast 4.5:1 for text up to 18px; 3:1 for large text, icons, rings and control edges. Both themes.
+- One exception: the light switch "off" track is ramp step 7 (`--cui-surface-track`, 2.7:1 on the page, 2.3:1 on a field). Step 8 reaches 3:1 but reads as a dark "on" switch. The track is not the only signal: the thumb's position and the "on" blue carry the state.
 - Every control works from the keyboard. Pickers and cards open with Enter and Space. Lists preview on focus as on hover.
 - One focus ring: 2px, 2px offset, `--cui-focus-color`, on `:focus-visible`.
 - Closing an overlay returns focus to its trigger. Closing a corner card moves focus to the next control, never into a text field.
