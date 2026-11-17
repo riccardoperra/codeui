@@ -9,7 +9,6 @@ export const tooltipContent = recipe({
 		},
 	},
 	defaultVariants: { theme: "primary" },
-	compoundVariants: [],
 });
 export const tooltipTheme: string = "cui-tooltip-tooltipTheme";
 export const tooltipVars = {

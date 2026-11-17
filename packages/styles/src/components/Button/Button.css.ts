@@ -23,12 +23,6 @@ export const button = recipe({
 		loading: { true: "cui-button-button_loading_true" },
 	},
 	defaultVariants: { size: "md" },
-	compoundVariants: [
-		[
-			{ variant: "ghost", loading: true },
-			"cui-button-button_compound_loading_true_variant_ghost",
-		],
-	],
 });
 export const buttonIcon: string = "cui-button-buttonIcon";
 export const buttonText: string = "cui-button-buttonText";

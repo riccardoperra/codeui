@@ -2,43 +2,43 @@
 
 @layer cui.components;
 @layer cui.components {
-  .cui-badge-root_compound_tone_neutral_variant_soft {
+  .cui-badge-root:where([data-tone="neutral"], .cui-badge-root_tone_neutral:not([data-tone])):where([data-variant="soft"], .cui-badge-root_variant_soft:not([data-variant])) {
     background-color: var(--cui-component-badge-root-compound-tone-neutral-variant-soft-background-color);
     color: var(--cui-component-badge-root-compound-tone-neutral-variant-soft-color);
   }
-  .cui-badge-root_compound_tone_neutral_variant_outline {
+  .cui-badge-root:where([data-tone="neutral"], .cui-badge-root_tone_neutral:not([data-tone])):where([data-variant="outline"], .cui-badge-root_variant_outline:not([data-variant])) {
     border-color: var(--cui-component-badge-root-compound-tone-neutral-variant-outline-border-color);
     color: var(--cui-component-badge-root-compound-tone-neutral-variant-outline-color);
   }
-  .cui-badge-root_compound_tone_info_variant_soft {
+  .cui-badge-root:where([data-tone="info"], .cui-badge-root_tone_info:not([data-tone])):where([data-variant="soft"], .cui-badge-root_variant_soft:not([data-variant])) {
     background-color: var(--cui-component-badge-root-compound-tone-info-variant-soft-background-color);
     color: var(--cui-component-badge-root-compound-tone-info-variant-soft-color);
   }
-  .cui-badge-root_compound_tone_info_variant_outline {
+  .cui-badge-root:where([data-tone="info"], .cui-badge-root_tone_info:not([data-tone])):where([data-variant="outline"], .cui-badge-root_variant_outline:not([data-variant])) {
     border-color: var(--cui-component-badge-root-compound-tone-info-variant-outline-border-color);
     color: var(--cui-component-badge-root-compound-tone-info-variant-outline-color);
   }
-  .cui-badge-root_compound_tone_success_variant_soft {
+  .cui-badge-root:where([data-tone="success"], .cui-badge-root_tone_success:not([data-tone])):where([data-variant="soft"], .cui-badge-root_variant_soft:not([data-variant])) {
     background-color: var(--cui-component-badge-root-compound-tone-success-variant-soft-background-color);
     color: var(--cui-component-badge-root-compound-tone-success-variant-soft-color);
   }
-  .cui-badge-root_compound_tone_success_variant_outline {
+  .cui-badge-root:where([data-tone="success"], .cui-badge-root_tone_success:not([data-tone])):where([data-variant="outline"], .cui-badge-root_variant_outline:not([data-variant])) {
     border-color: var(--cui-component-badge-root-compound-tone-success-variant-outline-border-color);
     color: var(--cui-component-badge-root-compound-tone-success-variant-outline-color);
   }
-  .cui-badge-root_compound_tone_warning_variant_soft {
+  .cui-badge-root:where([data-tone="warning"], .cui-badge-root_tone_warning:not([data-tone])):where([data-variant="soft"], .cui-badge-root_variant_soft:not([data-variant])) {
     background-color: var(--cui-component-badge-root-compound-tone-warning-variant-soft-background-color);
     color: var(--cui-component-badge-root-compound-tone-warning-variant-soft-color);
   }
-  .cui-badge-root_compound_tone_warning_variant_outline {
+  .cui-badge-root:where([data-tone="warning"], .cui-badge-root_tone_warning:not([data-tone])):where([data-variant="outline"], .cui-badge-root_variant_outline:not([data-variant])) {
     border-color: var(--cui-component-badge-root-compound-tone-warning-variant-outline-border-color);
     color: var(--cui-component-badge-root-compound-tone-warning-variant-outline-color);
   }
-  .cui-badge-root_compound_tone_danger_variant_soft {
+  .cui-badge-root:where([data-tone="danger"], .cui-badge-root_tone_danger:not([data-tone])):where([data-variant="soft"], .cui-badge-root_variant_soft:not([data-variant])) {
     background-color: var(--cui-component-badge-root-compound-tone-danger-variant-soft-background-color);
     color: var(--cui-component-badge-root-compound-tone-danger-variant-soft-color);
   }
-  .cui-badge-root_compound_tone_danger_variant_outline {
+  .cui-badge-root:where([data-tone="danger"], .cui-badge-root_tone_danger:not([data-tone])):where([data-variant="outline"], .cui-badge-root_variant_outline:not([data-variant])) {
     border-color: var(--cui-component-badge-root-compound-tone-danger-variant-outline-border-color);
     color: var(--cui-component-badge-root-compound-tone-danger-variant-outline-color);
   }
@@ -55,17 +55,17 @@
     white-space: nowrap;
     vertical-align: middle;
   }
-  .cui-badge-root_size_sm {
+  :is(.cui-badge-root_size_sm:where(:not([data-size])), :where(.cui-badge-root)[data-size="sm"]) {
     min-height: var(--cui-component-badge-root-size-sm-min-height);
     padding: var(--cui-space-px) var(--cui-space-1-5);
     font-size: var(--cui-component-badge-root-size-sm-font-size);
   }
-  .cui-badge-root_size_md {
+  :is(.cui-badge-root_size_md:where(:not([data-size])), :where(.cui-badge-root)[data-size="md"]) {
     min-height: var(--cui-component-badge-root-size-md-min-height);
     padding: var(--cui-space-0-5) var(--cui-space-2);
     font-size: var(--cui-component-badge-root-size-md-font-size);
   }
-  .cui-badge-root_variant_outline {
+  :is(.cui-badge-root_variant_outline:where(:not([data-variant])), :where(.cui-badge-root)[data-variant="outline"]) {
     background-color: transparent;
   }
   .cui-badge-icon {

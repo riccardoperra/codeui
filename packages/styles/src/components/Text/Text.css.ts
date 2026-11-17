@@ -27,5 +27,4 @@ export const root = recipe({
 		},
 	},
 	defaultVariants: { size: "sm", weight: "normal", tone: "default" },
-	compoundVariants: [],
 });

@@ -152,8 +152,9 @@ export function Content<T extends ValidComponent = "div">(props: PolymorphicProp
 			<KDialog.Content
 				data-cui={dialogParts.panel}
 				data-chrome={chrome()}
+				data-size={local.size}
 				data-motion={motion()}
-				class={mergeClasses(dialogStyles.panel({ size: local.size, chrome: chrome() }), local.class)}
+				class={mergeClasses(dialogStyles.panel(), local.class)}
 				{...focus}
 				{...others}
 			/>

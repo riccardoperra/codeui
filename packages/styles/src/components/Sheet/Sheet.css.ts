@@ -11,7 +11,6 @@ export const content = recipe({
 		},
 	},
 	defaultVariants: { side: "bottom" },
-	compoundVariants: [],
 });
 export const description: string = "cui-sheet-description";
 export const footer: string = "cui-sheet-footer";

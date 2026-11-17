@@ -8,6 +8,5 @@ export const track = recipe({
 		size: { sm: "cui-progress-track_size_sm", md: "cui-progress-track_size_md" },
 	},
 	defaultVariants: {},
-	compoundVariants: [],
 });
 export const valueLabel: string = "cui-progress-valueLabel";

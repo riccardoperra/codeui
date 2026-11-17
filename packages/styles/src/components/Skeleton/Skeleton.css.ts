@@ -6,5 +6,4 @@ export const root = recipe({
 		animate: { true: "cui-skeleton-root_animate_true" },
 	},
 	defaultVariants: { animate: true },
-	compoundVariants: [],
 });

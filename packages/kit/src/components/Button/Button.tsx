@@ -34,26 +34,16 @@ export function Button<T extends ValidComponent = "button">(props: PolymorphicPr
 		else if (handler) handler[0](handler[1], event);
 	};
 
-	const classes = () =>
-		mergeClasses(
-			styles.button({
-				size: local.size,
-				theme: local.theme,
-				pill: local.pill,
-				block: local.block,
-				variant: local.variant,
-				loading: local.loading,
-			}),
-			internal.class,
-		);
-
 	return (
 		<KButton
 			data-cui="button"
 			data-theme={local.theme}
-			data-size={local.size}
+			data-size={local.size ?? "md"}
+			data-variant={local.variant}
+			data-pill={local.pill || undefined}
+			data-block={local.block || undefined}
 			data-loading={local.loading || undefined}
-			class={classes()}
+			class={mergeClasses(styles.button.classNames.base, styles.buttonTheme, internal.class)}
 			{...others}
 			aria-busy={local.loading || undefined}
 			aria-disabled={local.loading || internal["aria-disabled"] || undefined}

@@ -19,46 +19,34 @@ export async function bundleComponentTokens({
 		);
 		return source;
 	}
-	const fragment = parse(source, { from: sourcePath });
+	const stylesheet = parse(source, { from: sourcePath });
 
-	// Keep aliases on the same elements and in the same cascade contexts as their reads.
-	function retainAliases(container) {
-		if (container.type === "rule") {
-			const names = new Set();
-			for (const item of container.nodes) {
-				if (item.type !== "decl") continue;
-				for (const [, name] of item.value.matchAll(
-					/var\(\s*--(cui-component-[a-z0-9-]+)\b/g,
-				)) {
-					const alias = componentAliases.get(name);
-					assert(alias, `Unknown component token ${name} in ${sourcePath}`);
-					assert.equal(
-						alias.component,
-						marker[1],
-						`Foreign component token ${name} in ${sourcePath}`,
-					);
-					names.add(name);
-					emittedAliases.add(name);
-				}
+	// Define aliases in the rules that read them to preserve scope without duplicating selectors.
+	stylesheet.walkRules(rule => {
+		const names = new Set();
+		rule.each(item => {
+			if (item.type !== "decl") return;
+			for (const [, name] of item.value.matchAll(
+				/var\(\s*--(cui-component-[a-z0-9-]+)\b/g,
+			)) {
+				const alias = componentAliases.get(name);
+				assert(alias, `Unknown component token ${name} in ${sourcePath}`);
+				assert.equal(
+					alias.component,
+					marker[1],
+					`Foreign component token ${name} in ${sourcePath}`,
+				);
+				names.add(name);
+				emittedAliases.add(name);
 			}
-			for (const item of [...container.nodes]) {
-				if (item.nodes) retainAliases(item);
-				else item.remove();
-			}
-			for (const name of names)
-				container.prepend({
-					prop: `--${name}`,
-					value: `var(--${componentAliases.get(name).target})`,
-				});
-		} else {
-			for (const item of [...container.nodes]) {
-				if (item.nodes) retainAliases(item);
-				else item.remove();
-			}
-		}
-		if (container.parent && container.nodes.length === 0) container.remove();
-	}
-	retainAliases(fragment);
+		});
+		for (const name of names)
+			rule.prepend({
+				prop: `--${name}`,
+				value: `var(--${componentAliases.get(name).target})`,
+			});
+	});
+	const generatedSource = stylesheet.toString();
 	const generatedPath = path.join(
 		path.dirname(sourcePath),
 		`${marker[1]}-tokens.generated.css`,
@@ -70,8 +58,8 @@ export async function bundleComponentTokens({
 		resolver: {
 			read: file => {
 				file = path.normalize(file);
-				if (file === sourcePath) return source;
-				if (file === generatedPath) return `${media}\n${fragment.toString()}`;
+				if (file === sourcePath) return generatedSource;
+				if (file === generatedPath) return media;
 				return readFile(file, "utf8");
 			},
 		},

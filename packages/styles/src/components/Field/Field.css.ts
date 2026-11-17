@@ -18,7 +18,6 @@ export const baseFieldVariants = recipe({
 		},
 	},
 	defaultVariants: { theme: "filled", size: "md" },
-	compoundVariants: [],
 });
 export const baseFieldVars = {
 	borderColor: "var(--cui-baseFieldTheme-borderColor)" as `var(--${string})`,

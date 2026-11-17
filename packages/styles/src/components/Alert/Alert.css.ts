@@ -15,6 +15,5 @@ export const root = recipe({
 		fluid: { true: "cui-alert-root_fluid_true", false: "cui-alert-root_fluid_false" },
 	},
 	defaultVariants: { tone: "neutral", fluid: false },
-	compoundVariants: [],
 });
 export const title: string = "cui-alert-title";

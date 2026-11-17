@@ -22,7 +22,6 @@ export const radioList = recipe({
 		},
 	},
 	defaultVariants: { size: "md" },
-	compoundVariants: [],
 });
 export const radioTheme: string = "cui-radio-radioTheme";
 export const radioVars = {

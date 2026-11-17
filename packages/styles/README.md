@@ -90,7 +90,7 @@ pnpm --filter @codeui/styles typecheck
 
 Component rules live in `css/`. The build bundles each entry and its dependencies. Lightning CSS expands custom media such as `@media screen and (--cui-sm)` when used. TypeScript files in `src/` export class names, variant maps and token references.
 
-The token source is `tokens/inkstone.resolver.json` and its referenced DTCG JSON files. Component token files contain local aliases. Their CSS imports a virtual `<component>-tokens.generated.css` fragment, which Lightning CSS inlines into the component output. Edit those inputs and run `pnpm --filter @codeui/styles build` to regenerate theme values, references and breakpoints. `tokens/web-values.json` holds CSS-specific values. The web emitter preserves scoped light and dark values, live aliases and the existing radius and color formulas.
+The token source is `tokens/inkstone.resolver.json` and its referenced DTCG JSON files. Component token files contain local aliases. The virtual `<component>-tokens.generated.css` import identifies the token set and loads shared media aliases at build time. The build inserts each custom property into the rule that reads it before passing the stylesheet to Lightning CSS. Edit those inputs and run `pnpm --filter @codeui/styles build` to regenerate theme values, references and breakpoints. `tokens/web-values.json` holds CSS-specific values. The web emitter preserves scoped light and dark values, live aliases and the existing radius and color formulas.
 
 Toghen is a build dependency. Its current release requires a different version string, so the build adapts the loaded document in memory while the authored resolver keeps DTCG `2025.10`. Build with Node 24 or later and the workspace pnpm version.
 

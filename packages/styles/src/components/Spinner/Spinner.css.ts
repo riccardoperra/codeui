@@ -10,6 +10,5 @@ export const root = recipe({
 		},
 	},
 	defaultVariants: { size: "md" },
-	compoundVariants: [],
 });
 export const track: string = "cui-spinner-track";

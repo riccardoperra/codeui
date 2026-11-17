@@ -55,5 +55,4 @@ export const root = recipe({
 		align: "stretch",
 		justify: "start",
 	},
-	compoundVariants: [],
 });

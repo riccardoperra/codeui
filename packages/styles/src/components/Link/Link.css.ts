@@ -4,7 +4,6 @@ export const link = recipe({
 	defaultClassName: "cui-link-link cui-link-linkTheme",
 	variantClassNames: { variant: { underline: "cui-link-link_variant_underline" } },
 	defaultVariants: {},
-	compoundVariants: [],
 });
 
 export type LinkVariants = RecipeVariants<typeof link>;

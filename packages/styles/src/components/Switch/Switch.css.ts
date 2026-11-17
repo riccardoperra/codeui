@@ -5,7 +5,6 @@ export const control = recipe({
 		size: { sm: "cui-switch-control_size_sm", md: "cui-switch-control_size_md" },
 	},
 	defaultVariants: {},
-	compoundVariants: [],
 });
 export const description: string = "cui-switch-description";
 export const errorMessage: string = "cui-switch-errorMessage";
@@ -18,5 +17,4 @@ export const thumb = recipe({
 		size: { sm: "cui-switch-thumb_size_sm", md: "cui-switch-thumb_size_md" },
 	},
 	defaultVariants: {},
-	compoundVariants: [],
 });

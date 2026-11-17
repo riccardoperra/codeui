@@ -13,11 +13,12 @@
     --cui-buttonTheme-padding: ;
     --cui-buttonTheme-borderRadius: var(--cui-component-button-button-theme-border-radius);
   }
-  .cui-button-button_compound_loading_true_variant_ghost {
+  .cui-button-button:where([data-variant="ghost"], .cui-button-button_variant_ghost:not([data-variant])):where([data-loading], .cui-button-button_loading_true) {
     background: var(--cui-layout-layoutBackgroundColor, var(--cui-buttonTheme-background));
-  }
-  .cui-button-button_compound_loading_true_variant_ghost:not(:hover) {
-    border-color: var(--cui-buttonTheme-borderColor);
+
+    &:not(:hover) {
+      border-color: var(--cui-buttonTheme-borderColor);
+    }
   }
   .cui-button-button {
     --cui-buttonTheme-borderColor: var(--cui-buttonTheme-background);
@@ -120,21 +121,21 @@
     --cui-buttonTheme-activeBackground: var(--cui-component-button-theme-caution-active-background);
     --cui-buttonTheme-color: var(--cui-component-button-theme-caution-color);
   }
-  .cui-button-button_variant_ghost {
+  :is(.cui-button-button_variant_ghost:where(:not([data-variant])), :where(.cui-button-button)[data-variant="ghost"]) {
     background: transparent;
   }
-  .cui-button-button_variant_ghost:not(:hover) {
+  :is(.cui-button-button_variant_ghost:where(:not([data-variant])), :where(.cui-button-button)[data-variant="ghost"]):not(:hover) {
     border-color: transparent;
     color: var(--cui-component-button-button-variant-ghost-hover-color);
   }
-  .cui-button-button_block_true {
+  :is(.cui-button-button_block_true:where(:not([data-block])), :where(.cui-button-button)[data-block]) {
     width: 100%;
     flex: 1;
   }
-  .cui-button-button_pill_true {
+  :is(.cui-button-button_pill_true:where(:not([data-pill])), :where(.cui-button-button)[data-pill]) {
     --cui-buttonTheme-borderRadius: var(--cui-component-button-button-pill-true-border-radius);
   }
-  .cui-button-button_loading_true {
+  :is(.cui-button-button_loading_true:where(:not([data-loading])), :where(.cui-button-button)[data-loading]) {
     pointer-events: none;
     overflow: hidden;
   }

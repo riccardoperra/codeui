@@ -26,7 +26,6 @@ export const segmentedControlWrapper = recipe({
 		pill: { true: "cui-segmented-control-segmentedControlWrapper_pill_true" },
 	},
 	defaultVariants: { size: "md" },
-	compoundVariants: [],
 });
 export const segmentedFieldTheme: string = "cui-segmented-control-segmentedFieldTheme";
 export const segmentedFieldVars = {

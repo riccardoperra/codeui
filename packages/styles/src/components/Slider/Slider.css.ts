@@ -10,7 +10,6 @@ export const fill = recipe({
 		},
 	},
 	defaultVariants: {},
-	compoundVariants: [],
 });
 export const input: string = "cui-slider-input";
 export const label: string = "cui-slider-label";
@@ -25,6 +24,5 @@ export const track = recipe({
 		},
 	},
 	defaultVariants: {},
-	compoundVariants: [],
 });
 export const valueLabel: string = "cui-slider-valueLabel";

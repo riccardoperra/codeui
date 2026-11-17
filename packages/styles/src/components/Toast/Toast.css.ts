@@ -19,7 +19,6 @@ export const region = recipe({
 		},
 	},
 	defaultVariants: { position: "bottom-center" },
-	compoundVariants: [],
 });
 export const root = recipe({
 	defaultClassName: "cui-toast-root",
@@ -33,6 +32,5 @@ export const root = recipe({
 		},
 	},
 	defaultVariants: { tone: "neutral" },
-	compoundVariants: [],
 });
 export const title: string = "cui-toast-title";

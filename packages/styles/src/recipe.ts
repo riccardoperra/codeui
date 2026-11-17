@@ -4,7 +4,6 @@ export function recipe<Variants extends Record<string, Record<string, string>>>(
 	defaultClassName: string;
 	variantClassNames: Variants;
 	defaultVariants: VariantSelection<Variants>;
-	compoundVariants: readonly (readonly [VariantSelection<Variants>, string])[];
 }): RuntimeFn<Variants> {
 	const defaults = config.defaultVariants;
 	const variants: Record<string, Record<string, string>> = config.variantClassNames;
@@ -18,14 +17,6 @@ export function recipe<Variants extends Record<string, Record<string, string>>>(
 				const group = variants[key];
 				const name = group && Object.hasOwn(group, String(value)) && group[String(value)];
 				if (name) classes.push(name);
-			}
-			for (const [match, name] of config.compoundVariants) {
-				if (
-					(Object.keys(match) as (keyof Variants)[]).every(
-						key => match[key] === (selections[key] ?? defaults[key]),
-					)
-				)
-					classes.push(name);
 			}
 			return classes.join(" ");
 		},

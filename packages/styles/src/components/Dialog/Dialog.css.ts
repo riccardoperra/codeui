@@ -47,12 +47,6 @@ export const panel = recipe({
 		},
 	},
 	defaultVariants: {},
-	compoundVariants: [
-		[
-			{ size: "settings", chrome: "inset" },
-			"cui-dialog-panel_compound_chrome_inset_size_settings",
-		],
-	],
 });
 export const panelContent: string = "cui-dialog-panelContent";
 export const panelFooter: string = "cui-dialog-panelFooter";
@@ -66,7 +60,6 @@ export const section = recipe({
 		},
 	},
 	defaultVariants: { variant: "group" },
-	compoundVariants: [],
 });
 export const sectionContent: string = "cui-dialog-sectionContent";
 export const sectionTitle: string = "cui-dialog-sectionTitle";

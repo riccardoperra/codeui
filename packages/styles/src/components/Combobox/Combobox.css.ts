@@ -7,7 +7,6 @@ export const control = recipe({
 		size: { sm: "cui-combobox-control_size_sm", md: "cui-combobox-control_size_md" },
 	},
 	defaultVariants: {},
-	compoundVariants: [],
 });
 export const description: string = "cui-combobox-description";
 export const empty: string = "cui-combobox-empty";

@@ -40,7 +40,7 @@ An application override of `--cui-control-height-md` therefore reaches a medium 
 
 ## The stylesheet chooses when to apply an alias
 
-Each component that owns design aliases has a token file and a stylesheet import. The Button stylesheet imports its generated aliases with `@import "./button-tokens.generated.css"`. The file is virtual. The build reads the alias references in the authored CSS and emits the declarations in the same selectors and at-rule scopes. Lightning CSS inlines the generated fragment and compiles nested selectors. The resulting `button.css` contains the declarations and rules together.
+Each component that owns design aliases has a token file and a stylesheet import. For Button, `@import "./button-tokens.generated.css"` identifies the component token set and loads the shared media aliases during the build. The build inserts each custom property into the rule that reads it. Lightning CSS compiles the resulting sheet, including nested selectors and custom media queries.
 
 Button's stylesheet still owns the selector and the property. Its medium-size rule assigns the alias to `--cui-buttonTheme-buttonHeight`, which the base rule uses for `height`. In plain HTML, set the size and theme with attributes.
 
@@ -50,7 +50,7 @@ Button's stylesheet still owns the selector and the property. Its medium-size ru
 </button>
 ```
 
-The existing class helpers still produce the established size and theme classes. Those selectors apply when the corresponding attribute is absent. Use CSS pseudo-classes for browser states such as `:focus-visible` and the component's documented attributes for state supplied by its adapter.
+The existing class helpers still produce the established size and theme classes. Those selectors apply when the corresponding attribute is absent. Combine independent attributes for compound variants, such as `[data-variant="ghost"][data-loading]` on Button or `[data-tone="info"][data-variant="outline"]` on Badge. Use CSS pseudo-classes for browser states such as `:focus-visible` and the component's documented attributes for state supplied by its adapter.
 
 Other components use the same pipeline for size, tone, theme, and component-specific custom property assignments. A layout or calculation can still use CSS directly. For example, Switch uses `calc()` to combine shared spacing values for its track height.
 

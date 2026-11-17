@@ -32,7 +32,6 @@ export const control = recipe({
 		},
 	},
 	defaultVariants: { size: "md" },
-	compoundVariants: [],
 });
 export const icon: string = "cui-check-box-icon";
 export const indicator: string = "cui-check-box-indicator";

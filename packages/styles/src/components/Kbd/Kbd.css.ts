@@ -6,5 +6,4 @@ export const root = recipe({
 		variant: { keycap: "cui-kbd-root_variant_keycap", hint: "cui-kbd-root_variant_hint" },
 	},
 	defaultVariants: { size: "sm", variant: "keycap" },
-	compoundVariants: [],
 });

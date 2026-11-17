@@ -24,10 +24,7 @@ export function Root<T extends ValidComponent = "span">(props: PolymorphicProps<
 			data-size={local.size ?? "sm"}
 			data-tone={local.tone ?? "neutral"}
 			data-variant={local.variant ?? "soft"}
-			class={mergeClasses(
-				badgeStyles.root({ size: local.size, tone: local.tone, variant: local.variant }),
-				local.class,
-			)}
+			class={mergeClasses(styles.root.classNames.base, local.class)}
 			{...others}
 		/>
 	);

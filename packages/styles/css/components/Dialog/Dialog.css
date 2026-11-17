@@ -156,7 +156,7 @@
     padding: var(--cui-space-3) var(--cui-space-3) var(--cui-space-2) var(--cui-space-6);
     font-size: var(--cui-font-size-md);
   }
-  .cui-dialog-panel_compound_chrome_inset_size_settings {
+  .cui-dialog-panel:where([data-chrome="inset"], .cui-dialog-panel_chrome_inset:not([data-chrome])):where([data-size="settings"], .cui-dialog-panel_size_settings:not([data-size])) {
     --cui-dialogTheme-panelRadius: var(--cui-component-dialog-panel-compound-chrome-inset-size-settings-panel-radius);
   }
   .cui-dialog-panel {
@@ -189,16 +189,16 @@
   .cui-dialog-panel[data-motion=none], .cui-dialog-panel[data-motion=none][data-expanded] {
     animation: none;
   }
-  .cui-dialog-panel_size_xs {
+  :is(.cui-dialog-panel_size_xs:where(:not([data-size])), :where(.cui-dialog-panel)[data-size="xs"]) {
     width: 24rem;
   }
-  .cui-dialog-panel_size_sm {
+  :is(.cui-dialog-panel_size_sm:where(:not([data-size])), :where(.cui-dialog-panel)[data-size="sm"]) {
     width: 28rem;
   }
-  .cui-dialog-panel_size_md {
+  :is(.cui-dialog-panel_size_md:where(:not([data-size])), :where(.cui-dialog-panel)[data-size="md"]) {
     width: 32rem;
   }
-  .cui-dialog-panel_size_full {
+  :is(.cui-dialog-panel_size_full:where(:not([data-size])), :where(.cui-dialog-panel)[data-size="full"]) {
     padding: 0;
     margin: 0;
     min-height: 100%;
@@ -206,28 +206,28 @@
     border-radius: 0;
     height: 100%;
   }
-  .cui-dialog-panel_size_full:focus-visible {
+  :is(.cui-dialog-panel_size_full:where(:not([data-size])), :where(.cui-dialog-panel)[data-size="full"]):focus-visible {
     box-shadow: none;
     outline: none;
   }
-  .cui-dialog-panel_size_settings {
+  :is(.cui-dialog-panel_size_settings:where(:not([data-size])), :where(.cui-dialog-panel)[data-size="settings"]) {
     --cui-dialogTheme-width: 62.5rem;
     --cui-dialogTheme-height: 42.5rem;
     width: min(var(--cui-dialogTheme-width), 100%);
     height: min(var(--cui-dialogTheme-height), 100%);
   }
-  .cui-dialog-panel_size_export {
+  :is(.cui-dialog-panel_size_export:where(:not([data-size])), :where(.cui-dialog-panel)[data-size="export"]) {
     --cui-dialogTheme-width: 50rem;
     width: min(var(--cui-dialogTheme-width), 100%);
     overflow-y: auto;
     overscroll-behavior: contain;
   }
-  .cui-dialog-panel_chrome_inset {
+  :is(.cui-dialog-panel_chrome_inset:where(:not([data-chrome])), :where(.cui-dialog-panel)[data-chrome="inset"]) {
     --cui-dialogTheme-panelRadius: var(--cui-component-dialog-panel-chrome-inset-panel-radius);
     gap: var(--cui-space-5);
     padding: var(--cui-space-5);
   }
-  .cui-dialog-panel_chrome_inset:has(> [data-cui=dialog-sidebar]) {
+  :is(.cui-dialog-panel_chrome_inset:where(:not([data-chrome])), :where(.cui-dialog-panel)[data-chrome="inset"]):has(> [data-cui=dialog-sidebar]) {
     flex-direction: row;
     gap: 0;
     padding: 0;
@@ -384,14 +384,14 @@
       order: -1;
       padding: var(--cui-space-2) var(--cui-space-2) 0 var(--cui-space-4);
     }
-    .cui-dialog-panel_size_settings {
+    :is(.cui-dialog-panel_size_settings:where(:not([data-size])), :where(.cui-dialog-panel)[data-size="settings"]) {
       height: 100%;
     }
-    .cui-dialog-panel_chrome_inset {
+    :is(.cui-dialog-panel_chrome_inset:where(:not([data-chrome])), :where(.cui-dialog-panel)[data-chrome="inset"]) {
       gap: var(--cui-space-4);
       padding: var(--cui-space-4);
     }
-    .cui-dialog-panel_chrome_inset:has(> [data-cui=dialog-sidebar]) {
+    :is(.cui-dialog-panel_chrome_inset:where(:not([data-chrome])), :where(.cui-dialog-panel)[data-chrome="inset"]):has(> [data-cui=dialog-sidebar]) {
       flex-direction: column;
     }
     .cui-dialog-sidebar {
@@ -422,15 +422,15 @@
     }
   }
   @media screen and (min-width: 768px) {
-    .cui-dialog-panel_size_lg {
+    :is(.cui-dialog-panel_size_lg:where(:not([data-size])), :where(.cui-dialog-panel)[data-size="lg"]) {
       width: 48rem;
     }
-    .cui-dialog-panel_size_xl {
+    :is(.cui-dialog-panel_size_xl:where(:not([data-size])), :where(.cui-dialog-panel)[data-size="xl"]) {
       width: 48rem;
     }
   }
   @media screen and (min-width: 1024px) {
-    .cui-dialog-panel_size_xl {
+    :is(.cui-dialog-panel_size_xl:where(:not([data-size])), :where(.cui-dialog-panel)[data-size="xl"]) {
       width: 64rem;
     }
   }

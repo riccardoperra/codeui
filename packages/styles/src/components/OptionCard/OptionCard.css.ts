@@ -16,7 +16,6 @@ export const itemLabel = recipe({
 		},
 	},
 	defaultVariants: {},
-	compoundVariants: [],
 });
 export const itemName: string = "cui-option-card-itemName";
 export const itemText: string = "cui-option-card-itemText";

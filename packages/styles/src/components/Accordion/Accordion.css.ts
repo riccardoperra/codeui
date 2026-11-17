@@ -17,5 +17,4 @@ export const trigger = recipe({
 		},
 	},
 	defaultVariants: {},
-	compoundVariants: [],
 });

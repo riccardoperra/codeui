@@ -4,7 +4,6 @@ export const content = recipe({
 	defaultClassName: "cui-popover-content cui-popover-popoverTheme",
 	variantClassNames: { variant: { bordered: "cui-popover-content_variant_bordered" } },
 	defaultVariants: {},
-	compoundVariants: [],
 });
 export const description: string = "cui-popover-description";
 export const popoverTheme: string = "cui-popover-popoverTheme";
