@@ -17,6 +17,8 @@ The CSS name is the stable public API. In TypeScript, the [`tokens`](/docs/utili
 
 `:root` sets every token. Most color tokens differ between dark and light, and `data-cui-theme` picks the mode. Each `[data-cui-theme]` scope sets again only the tokens whose dark and light values differ, plus the tokens computed from another token: `--cui-focus-color`, the radii and the brand colors. [Theming](/docs/foundations/theming) covers the attribute and overrides.
 
+See [How the build generates tokens](/docs/foundations/token-generation) for the JSON resolver and the Button stylesheet example.
+
 ## Read a token in your styles
 
 <SolidDemo name="tokens/usage" />

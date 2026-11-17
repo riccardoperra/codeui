@@ -1,0 +1,57 @@
+---
+title: "How the build generates tokens"
+description: "Follow Inkstone design tokens from DTCG JSON to the theme and component stylesheets."
+---
+
+Inkstone stores shared design values in DTCG JSON. Toghen resolves the token files and their references during the library build. CSS custom properties carry the resolved design to the browser and let an application change the theme at runtime.
+
+## The resolver combines token sources
+
+`packages/styles/tokens/inkstone.resolver.json` lists the foundation files and a `theme` modifier. The light context uses the foundation values. The dark context applies `dark.tokens.json` afterwards, so a dark value can replace its foundation value.
+
+A resolver's `version` identifies its DTCG format. CodeUI stores `2025.10` and adapts the loaded document in memory for Toghen 0.1.1. The JSON files on disk keep the [DTCG resolver format](https://www.designtokens.org/tr/2025.10/resolver/).
+
+## The theme stylesheet defines shared values
+
+The build creates `@codeui/styles/theme.css` from the resolved tokens. Shared values live at `:root`. Mode-specific values are set again inside each light or dark theme scope. The stylesheet also uses `prefers-color-scheme` for the default theme and retains the CSS formulas for brand colors and radius scaling.
+
+The same build generates the TypeScript token references and breakpoint values. A TypeScript reference such as `tokens.control.height.md` is a string containing `var(--cui-control-height-md)`. Breakpoints also feed the build-time aliases used in custom media queries.
+
+## Button defines component aliases
+
+A component token says which design value the component uses. Give a value a component token when the design system needs to name or change that choice independently. A declaration that always follows the shared design system can read the shared variable directly. Button's medium height is an alias for the shared medium control height. In `packages/styles/tokens/button.tokens.json`, the token at `component.button.size.md.buttonHeight` has this value:
+
+```json
+{
+  "$type": "dimension",
+  "$value": "{control.height.md}"
+}
+```
+
+Toghen verifies that the referenced token resolves. The CSS emitter keeps the reference live in the browser:
+
+```css
+.cui-button-button {
+  --cui-component-button-size-md-button-height: var(--cui-control-height-md);
+}
+```
+
+An application override of `--cui-control-height-md` therefore reaches a medium Button in that scope. The component alias is emitted on the button itself, where CSS can read the closest theme's value.
+
+## The stylesheet chooses when to apply an alias
+
+The Button stylesheet imports its generated aliases with `@import "./button-tokens.generated.css"`. The file is virtual. The build supplies its contents to Lightning CSS, which inlines the fragment and compiles nested selectors. The resulting `button.css` contains the declarations and rules together.
+
+Button's stylesheet still owns the selector and the property. Its medium-size rule assigns the alias to `--cui-buttonTheme-buttonHeight`, which the base rule uses for `height`. A plain HTML button can select that rule with attributes:
+
+```html
+<button class="cui-button-button" data-size="md" data-theme="primary">
+  Save changes
+</button>
+```
+
+The existing class helpers still produce the established size and theme classes. Those selectors apply when the corresponding attribute is absent. Use CSS pseudo-classes for browser states such as `:focus-visible` and the component's documented attributes for state supplied by its adapter.
+
+The older `--cui-buttonTheme-*` variables remain the local styling hooks. Empty declarations in the base rule reset those local values before variant rules apply. Generated component aliases stay in `button.css`, so loading the global theme or an unrelated component does not load Button's aliases.
+
+[Tokens](/docs/foundations/tokens) lists the shared variables. [Theming](/docs/foundations/theming) explains how to override them. [Installation](/docs/installation) covers loading CSS with HTML and Solid.

@@ -26,7 +26,9 @@ The CSS exports work without a bundler. Serve the package's `dist` files as stat
 
 <div data-cui-theme="light">
   <button
-    class="cui-button-button cui-button-buttonTheme cui-button-button_size_md cui-button-button_theme_primary"
+    class="cui-button-button"
+    data-size="md"
+    data-theme="primary"
   >
     Save changes
   </button>
@@ -37,7 +39,7 @@ Add the native `disabled` attribute to disable the button. Native controls also 
 
 ## Use class helpers
 
-Each component has a JavaScript entry with its existing raw style exports. The helpers return the same stable classes as the HTML example.
+Each component has a JavaScript entry with its existing raw style exports. Button supports size and theme attributes in HTML. Its class helper remains available for callers who compose variants in JavaScript.
 
 ```js
 import { button, buttonVars } from "@codeui/styles/button";

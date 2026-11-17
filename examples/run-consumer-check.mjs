@@ -171,6 +171,25 @@ try {
 					colors.token.trim().length > 0 && colors.actual === colors.expected,
 					`${JSON.stringify(colors)} with JavaScript disabled`,
 				);
+				const buttonStyles = await cssPage.locator("button").evaluateAll(buttons =>
+					buttons.map(button => {
+						const style = getComputedStyle(button);
+						return [
+							style.height,
+							style.backgroundColor,
+							style.color,
+							style.padding,
+							style.borderRadius,
+							style.fontSize,
+						];
+					}),
+				);
+				report(
+					"CSS-only Button data attributes",
+					buttonStyles.length === 2 &&
+						JSON.stringify(buttonStyles[0]) === JSON.stringify(buttonStyles[1]),
+					JSON.stringify(buttonStyles),
+				);
 				report(
 					"CSS-only dependency boundary",
 					!existsSync(join(cssRoot, "node_modules/solid-js")) && !scripts.length,

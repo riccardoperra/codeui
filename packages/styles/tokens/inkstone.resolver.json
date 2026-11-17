@@ -9,6 +9,9 @@
         },
         {
           "$ref": "./foundation.tokens.json"
+        },
+        {
+          "$ref": "./button.tokens.json"
         }
       ]
     }
