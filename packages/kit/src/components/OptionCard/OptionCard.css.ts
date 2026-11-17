@@ -5,8 +5,6 @@ import { transition } from "../../foundation/motion.css";
 const phone = "(max-width: 768px)";
 const finePointer = "(hover: hover) and (pointer: fine)";
 const reducedMotion = "(prefers-reduced-motion: reduce)";
-/** One fill step above a field, for a hovered or selected card (Inkstone §2.1). */
-const raised = `color-mix(in srgb, ${t.surface.input}, ${t.text.default} 6%)`;
 
 /** Cards three across in a settings pane, stacked on a phone. */
 export const root = style({
@@ -70,7 +68,7 @@ export const itemLabel = recipe({
 		transition: transition(["transform", "background-color"]),
 		selectors: {
 			"&[data-checked]": {
-				background: raised,
+				background: t.surface.fieldHover,
 				outline: `${t.focus.width} solid ${t.accent.focus}`,
 				outlineOffset: `calc(-1 * ${t.focus.width})`,
 			},
@@ -80,7 +78,7 @@ export const itemLabel = recipe({
 		"@media": {
 			"(pointer: coarse)": { minHeight: t.space["10"] },
 			[finePointer]: {
-				selectors: { "&:hover:not([data-disabled])": { background: raised } },
+				selectors: { "&:hover:not([data-disabled])": { background: t.surface.fieldHover } },
 			},
 			[reducedMotion]: {
 				transition: transition(["background-color"]),
@@ -157,4 +155,8 @@ globalStyle(`${badge}[data-cui="option-card-badge"]`, {
 	border: 0,
 	fontWeight: t.font.weight.medium,
 	lineHeight: t.font.lineHeight.badge,
+});
+// On a selected card the neutral tag fill equals the card fill, so it steps up once (Inkstone §2.1).
+globalStyle(`[data-checked] ${badge}[data-cui="option-card-badge"][data-tone=neutral][data-variant=soft]`, {
+	backgroundColor: t.action.neutral.hover,
 });

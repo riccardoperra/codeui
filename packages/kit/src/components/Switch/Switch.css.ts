@@ -50,7 +50,7 @@ export const control = recipe({
 		height: trackHeight,
 		padding: `calc((${trackHeight} - ${thumbSize}) / 2)`,
 		borderRadius: t.radius.full,
-		background: t.action.neutral.active,
+		background: t.surface.track,
 		cursor: "pointer",
 		transition: `background-color ${t.motion.duration.fast} ease`,
 		selectors: {
