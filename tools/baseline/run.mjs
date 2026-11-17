@@ -70,7 +70,7 @@ if(!build.code){
  await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(port,'127.0.0.1',resolve)});
  process.env.BASELINE_URL=`http://127.0.0.1:${server.address().port}`;
  console.log(`Baseline server ${process.env.BASELINE_URL}`);
- try{await run('screenshots','node',['tools/baseline/screenshots.mjs']);await run('a11y','node',['tools/baseline/a11y.mjs']);await run('layer','node',['tools/baseline/layer.mjs']);await run('option-card','node',['tools/baseline/option-card.mjs']);}finally{await new Promise(resolve=>server.close(resolve))}
+ try{await run('screenshots','node',['tools/baseline/screenshots.mjs']);await run('a11y','node',['tools/baseline/a11y.mjs']);await run('layer','node',['tools/baseline/layer.mjs']);await run('option-card','node',['tools/baseline/option-card.mjs']);await run('theme-overrides','node',['tools/baseline/theme-overrides.mjs']);}finally{await new Promise(resolve=>server.close(resolve))}
 }
 await writeFile(`${out}/commands.json`,JSON.stringify(results,null,2));
 await import('./report.mjs');
