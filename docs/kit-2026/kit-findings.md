@@ -10,7 +10,7 @@ Severity follows this order.
 
 ## Decided
 
-- [x] **Primary fill color.** Decided: filled buttons keep CodeImage's `#09f`, and `DESIGN.md` §2.3 and the Color page now say so. Previous note: `DESIGN.md` §2.3 says filled buttons use `#0070f0` (4.6:1 with white text). `foundation/theme-values.ts:57` ships `#09f` (3.0:1), which the maintainer chose as "the CodeImage primary". One of the two must change. The K5 design doc's "implementation amendments" also describe values the code no longer has. `action.brandSoft.text` (`#09f`) is 3.0:1 on white too.
+- [x] **Primary fill color.** Decided again in `feat/kit-one-brand-blue`: one brand blue for every fill, the same in both themes. `action.brand` is `#0083e5` (hover `#0076cf`, active `#0069b8`; white text 3.9:1). Filled buttons, the switch "on" track, the tab indicator, checks, slider, progress and the primary segment all use it, where before they used `#09f`, `#63b3ed` and `#07f`. The focus ring stays `accent.focus`. It replaces CodeImage's `#09f`; CodeImage picks it up when it moves to the kit. `DESIGN.md` §2.3 and the Color page say so. Earlier decision: filled buttons kept CodeImage's `#09f` (3.0:1). Previous note: `DESIGN.md` §2.3 says filled buttons use `#0070f0` (4.6:1 with white text). `foundation/theme-values.ts:57` ships `#09f` (3.0:1), which the maintainer chose as "the CodeImage primary". One of the two must change. The K5 design doc's "implementation amendments" also describe values the code no longer has. `action.brandSoft.text` (`#09f`) is 3.0:1 on white too.
 
 ## High
 
@@ -99,7 +99,7 @@ Severity follows this order.
   - Sheet adds divider borders, against "islands, not borders" (`Sheet.css.ts:108,193`).
   - Kbd uses the neutral action fill and a divider border, where §9.8 asks for a field fill and no new border (`Kbd.css.ts:17,36`).
   - The selected OptionCard changes its border but not the fill (`OptionCard.css.ts:37-44`). Fixed in `fix/kit-controls-parity`.
-  - The highlighted Combobox row uses the accent fill, where §2 says selected rows are neutral (`Combobox.css.ts:142`).
+  - The highlighted Combobox row uses the accent fill, where §2 says selected rows are neutral (`Combobox.css.ts:142`). Fixed in `feat/kit-light-palette`: Combobox and Listbox highlight with `surface.menuHover` and `text.menu`, like Select and Dropdown; `feat/kit-one-brand-blue` checks it.
   - The default Tooltip theme uses the brand accent, against §2.3.
   - Alert uses `radius.sm` (`Alert.css.ts:24`). Check it against the radius scale.
 - [ ] **Typography.** Text defaults to `sm` (14px), where the base is 13px, and its line height is a fixed 1.5 instead of one per step (`parts/text.tsx:41`).

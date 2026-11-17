@@ -101,25 +101,25 @@
       "group": "accent and status colors",
       "token": "action.brand.active",
       "css": "--cui-action-brand-active",
-      "dark": "#07f",
-      "light": "#07f",
-      "source": "measured preview, maintainer chose the CodeImage primary over AA contrast for white text"
+      "dark": "#0069b8",
+      "light": "#0069b8",
+      "source": "one brand blue for every fill (DESIGN.md §2.3); was #07f"
     },
     {
       "group": "accent and status colors",
       "token": "action.brand.base",
       "css": "--cui-action-brand-base",
-      "dark": "#09f",
-      "light": "#09f",
-      "source": "measured preview, maintainer chose the CodeImage primary over AA contrast for white text"
+      "dark": "#0083e5",
+      "light": "#0083e5",
+      "source": "one brand blue for every fill (DESIGN.md §2.3); white text 3.9:1; was CodeImage #09f"
     },
     {
       "group": "accent and status colors",
       "token": "action.brand.hover",
       "css": "--cui-action-brand-hover",
-      "dark": "#08f",
-      "light": "#08f",
-      "source": "measured preview, maintainer chose the CodeImage primary over AA contrast for white text"
+      "dark": "#0076cf",
+      "light": "#0076cf",
+      "source": "one brand blue for every fill (DESIGN.md §2.3); was #08f"
     },
     {
       "group": "text",
@@ -133,25 +133,25 @@
       "group": "accent and status colors",
       "token": "action.brandSoft.base",
       "css": "--cui-action-brand-soft-base",
-      "dark": "#0099ff26",
-      "light": "#0099ff26",
-      "source": "measured preview, semanticTokens.button-primaryAlt-backgroundColor"
+      "dark": "#0083e526",
+      "light": "#0083e526",
+      "source": "one brand blue for every fill (DESIGN.md §2.3): the brand base at 15%; was #0099ff26"
     },
     {
       "group": "accent and status colors",
       "token": "action.brandSoft.hover",
       "css": "--cui-action-brand-soft-hover",
-      "dark": "#007acc26",
-      "light": "#007acc26",
-      "source": "measured preview, semanticTokens.button-primaryAlt-hoverColor"
+      "dark": "#0069b826",
+      "light": "#0069b826",
+      "source": "one brand blue for every fill (DESIGN.md §2.3): the brand active at 15%; was #007acc26"
     },
     {
       "group": "text",
       "token": "action.brandSoft.text",
       "css": "--cui-action-brand-soft-text",
-      "dark": "#09f",
-      "light": "#006aca",
-      "source": "light palette: brand blue hue and chroma, raised to its contrast target (DESIGN.md §2.3); was #09f"
+      "dark": "#3fa0fe",
+      "light": "#0260aa",
+      "source": "one brand blue for every fill (DESIGN.md §2.3): brand hue, lightness moved to 4.5:1 on every surface and on the wash; was #09f dark, #006aca light"
     },
     {
       "group": "text",
@@ -293,9 +293,9 @@
       "group": "accent and status colors",
       "token": "accent.selection",
       "css": "--cui-accent-selection",
-      "dark": "#07f",
+      "dark": "#0083e5",
       "light": "#0083e5",
-      "source": "light palette: brand blue hue and chroma, raised to its contrast target (DESIGN.md §2.3); was #09f"
+      "source": "one brand blue for every fill (DESIGN.md §2.3): kept for compatibility, no kit component reads it; was #07f dark"
     },
     {
       "group": "text",
@@ -421,9 +421,9 @@
       "group": "accent and status colors",
       "token": "action.brandSoft.active",
       "css": "--cui-action-brand-soft-active",
-      "dark": "#007acc26",
-      "light": "#007acc26",
-      "source": "packages/ui hover value reused, proposed active"
+      "dark": "#0069b826",
+      "light": "#0069b826",
+      "source": "one brand blue for every fill (DESIGN.md §2.3): the brand active at 15%; was #007acc26"
     },
     {
       "group": "accent and status colors",

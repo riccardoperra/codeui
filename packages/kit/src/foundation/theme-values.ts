@@ -75,16 +75,16 @@ export const themeValues = {
 			text: "#fff",
 		},
 		brand: {
-			active: "#07f",
-			base: "#09f",
-			hover: "#08f",
+			active: "#0069b8",
+			base: "#0083e5",
+			hover: "#0076cf",
 			text: "#fff",
 		},
 		brandSoft: {
-			base: "#0099ff26",
-			hover: "#007acc26",
-			text: { dark: "#09f", light: "#006aca" },
-			active: "#007acc26",
+			base: "#0083e526",
+			hover: "#0069b826",
+			text: { dark: "#3fa0fe", light: "#0260aa" },
+			active: "#0069b826",
 		},
 		caution: {
 			base: "#F08C00",
@@ -123,7 +123,7 @@ export const themeValues = {
 		widthStrong: "2px",
 	},
 	accent: {
-		selection: { dark: "#07f", light: "#0083e5" },
+		selection: "#0083e5",
 		focus: { dark: "#63b3ed", light: "#0083e5" },
 	},
 	focus: {

@@ -15,7 +15,7 @@ interface Theme {
 	readonly brand: string;
 }
 
-const inkstone: Theme = { radiusScale: 1, brand: "#0099ff" };
+const inkstone: Theme = { radiusScale: 1, brand: "#0083e5" };
 
 const presets = {
 	inkstone: { label: "Inkstone", theme: inkstone },
