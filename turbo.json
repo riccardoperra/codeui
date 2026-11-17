@@ -38,6 +38,11 @@
 				".output/**",
 				"dist/**"
 			]
+		},
+		"@codeui/kit#test": {
+			"dependsOn": [
+				"build"
+			]
 		}
 	}
 }

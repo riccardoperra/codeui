@@ -4,9 +4,6 @@ import { type CommandItem, CommandMenu } from "../src/components/CommandMenu/Com
 import { expectDismissed, press, tick } from "./helpers";
 
 afterEach(cleanup);
-beforeAll(() => {
-	window.scrollTo = () => {};
-});
 
 type Theme = CommandItem & { theme?: string };
 const items: Theme[] = [
@@ -145,8 +142,9 @@ it("previews on highlight and commits only on Enter: before close, close, then s
 		"highlight:vercel",
 	]);
 	calls.length = 0;
+	const dialog = screen.getByRole("dialog");
 	press("Enter");
-	await expectDismissed(screen.getByRole("dialog"));
+	await expectDismissed(dialog);
 	expect(calls.filter(call => !call.startsWith("highlight"))).toEqual([
 		"beforeClose",
 		"openChange:false",
@@ -171,8 +169,9 @@ it("cancels on Escape: the highlight clears, then before close, cancel and close
 	await openMenu();
 	press("ArrowDown");
 	calls.length = 0;
+	const dialog = screen.getByRole("dialog");
 	press("Escape");
-	await expectDismissed(screen.getByRole("dialog"));
+	await expectDismissed(dialog);
 	expect(calls).toEqual([
 		"highlight:undefined",
 		"beforeClose",
@@ -210,8 +209,9 @@ it("filters by every word across label text, group, section and plain descriptio
 	await tick();
 	expect(screen.queryAllByRole("option")).toHaveLength(0);
 	expect(screen.getByRole("status")).toHaveTextContent("No command found");
+	const dialog = screen.getByRole("dialog");
 	press("Escape");
-	await expectDismissed(screen.getByRole("dialog"));
+	await expectDismissed(dialog);
 	input = await openMenu();
 	expect(input).toHaveValue("");
 	expect(screen.getAllByRole("option")).toHaveLength(items.length);
@@ -219,7 +219,7 @@ it("filters by every word across label text, group, section and plain descriptio
 
 it("follows a controlled query and asks the app to clear it on close", async () => {
 	const [query, setQuery] = createSignal("nord");
-	const onQueryChange = jest.fn((value: string) => setQuery(value));
+	const onQueryChange = vi.fn((value: string) => setQuery(value));
 	const { openMenu } = renderMenu({ query, onQueryChange });
 	const input = await openMenu();
 	expect(input).toHaveValue("nord");

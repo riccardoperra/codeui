@@ -147,7 +147,7 @@ describe("Toast parts", () => {
 	});
 
 	it("runs the inline action without closing the toast", async () => {
-		const onAction = jest.fn();
+		const onAction = vi.fn();
 		renderRegion();
 		showToast("neutral", onAction);
 		const action = await screen.findByRole("button", { name: "Undo" });

@@ -1,4 +1,4 @@
-import { fireEvent } from "solid-testing-library";
+import { fireEvent, waitFor } from "solid-testing-library";
 
 export function press(key: string) {
 	const target = document.activeElement ?? document.body;
@@ -10,13 +10,8 @@ export function tick() {
 	return new Promise(resolve => setTimeout(resolve, 0));
 }
 
-// jsdom never runs CSS animations, so end the exit animation the way a browser would.
+// Wait for the browser's actual CSS/WAAPI exit, without ending ancestor animations.
 export async function expectDismissed(element: HTMLElement) {
-	for (let node: HTMLElement | null = element; node && node !== document.body; node = node.parentElement) {
-		const end = new Event("animationend");
-		Object.defineProperty(end, "animationName", { value: getComputedStyle(node).animationName });
-		node.dispatchEvent(end);
-	}
+	await waitFor(() => expect(element).not.toBeInTheDocument());
 	await tick();
-	expect(element).not.toBeInTheDocument();
 }

@@ -11,9 +11,6 @@ import { expectDismissed, press, tick } from "./helpers";
 
 afterEach(cleanup);
 
-beforeAll(() => {
-	window.scrollTo = () => {};
-});
 
 function renderPopover() {
 	render(() => (
@@ -42,6 +39,7 @@ describe("Popover", () => {
 	it("pops when a pointer opens it, even if the pointer moved before the click", async () => {
 		const trigger = renderPopover();
 		press("Tab");
+		await tick();
 		fireEvent.pointerDown(trigger);
 		fireEvent.pointerMove(trigger);
 		fireEvent.click(trigger);
@@ -88,8 +86,7 @@ describe("DropdownMenu", () => {
 
 	it("pops when a pointer opens it", async () => {
 		const trigger = renderMenu();
-		// jsdom has no PointerEvent; a MouseEvent carries the primary button Kobalte checks.
-		fireEvent(trigger, new MouseEvent("pointerdown", { bubbles: true, button: 0 }));
+		fireEvent(trigger, new PointerEvent("pointerdown", { bubbles: true, button: 0, pointerType: "mouse" }));
 		await tick();
 		expect(screen.getByRole("menu")).not.toHaveAttribute("data-motion");
 	});
@@ -127,8 +124,9 @@ describe("Tooltip", () => {
 	});
 
 	it("pops on hover", async () => {
-		const button = renderTooltip();
+		// Finish the prior tooltip's focus cleanup and skip-delay window before mounting.
 		await new Promise(resolve => setTimeout(resolve, 350));
+		const button = renderTooltip();
 		fireEvent.pointerMove(button.parentElement!, { pointerType: "mouse" });
 		fireEvent.pointerEnter(button.parentElement!, { pointerType: "mouse" });
 		await new Promise(resolve => setTimeout(resolve, 50));

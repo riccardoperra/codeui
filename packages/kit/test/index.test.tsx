@@ -5,7 +5,7 @@ import { Button } from "../src/components/Button/Button";
 afterEach(cleanup);
 
 it("calls the click handler when the button is clicked", () => {
-	const onClick = jest.fn();
+	const onClick = vi.fn();
 	const { getByRole } = render(() => <Button onClick={onClick}>Save</Button>);
 	fireEvent.click(getByRole("button", { name: "Save" }));
 	expect(onClick).toHaveBeenCalledTimes(1);
