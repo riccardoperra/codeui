@@ -40,6 +40,8 @@ export const [dialogTheme, dialogThemeVars] = createTheme(
 	registry.dialog.parts.panel,
 );
 
+const sidebarChildSelector =
+	`&:has(> [data-cui=${registry.dialog.parts.sidebar}])` as const;
 const positionerSelector = partSelector(registry.dialog.parts.positioner);
 const sectionSelector = partSelector(registry.dialog.parts.section);
 const phone = "screen and (max-width: 768px)";
@@ -388,7 +390,7 @@ export const panel = recipe(
 							gap: tokens.space["4"],
 							padding: tokens.space["4"],
 							selectors: {
-								[`&:has(> [data-cui=${registry.dialog.parts.sidebar}])`]: {
+								[sidebarChildSelector]: {
 									flexDirection: "column",
 								},
 							},
@@ -396,7 +398,7 @@ export const panel = recipe(
 					},
 					selectors: {
 						// With a sidebar the panes reach the edges and hold their own padding.
-						[`&:has(> [data-cui=${registry.dialog.parts.sidebar}])`]: {
+						[sidebarChildSelector]: {
 							flexDirection: "row",
 							gap: 0,
 							padding: 0,
