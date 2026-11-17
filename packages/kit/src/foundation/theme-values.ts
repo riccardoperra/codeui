@@ -132,6 +132,7 @@ export const themeValues = {
 		offset: "2px",
 	},
 	radius: {
+		scale: "1",
 		none: "0px",
 		badge: "6px",
 		xs: "7px",

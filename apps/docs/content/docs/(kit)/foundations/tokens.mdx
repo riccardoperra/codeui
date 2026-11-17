@@ -3,7 +3,7 @@ title: "Tokens"
 description: "The --cui-* custom properties every kit style reads."
 ---
 
-Every color, radius, space, size, shadow and motion value in the kit is a `--cui-*` CSS custom property. Kit components read only these properties, so changing one changes every component that uses it. The kit defines 143 of them.
+Every color, radius, space, size, shadow and motion value in the kit is a `--cui-*` CSS custom property. Kit components read only these properties, so changing one changes every component that uses it. The kit defines 144 of them.
 
 <SolidDemo name="tokens/overview" source="hidden" />
 
@@ -15,7 +15,7 @@ A name is `--cui-` followed by the token path in kebab case. The path `surface.m
 
 The CSS name is the stable public API. In TypeScript, the [`tokens`](/docs/utilities/token-exports#tokens) export holds the same paths, and each leaf is a `var(--cui-…)` string.
 
-`:root` sets every token. Most color tokens differ between dark and light, and `data-cui-theme` picks the mode. Each `[data-cui-theme]` scope sets again only the tokens whose dark and light values differ, plus `--cui-focus-color`. [Theming](/docs/foundations/theming) covers the attribute and overrides.
+`:root` sets every token. Most color tokens differ between dark and light, and `data-cui-theme` picks the mode. Each `[data-cui-theme]` scope sets again only the tokens whose dark and light values differ, plus the tokens computed from another token: `--cui-focus-color`, the radii and the brand colors. [Theming](/docs/foundations/theming) covers the attribute and overrides.
 
 ## Read a token in your styles
 
@@ -107,6 +107,8 @@ Every light surface is a step of one grey ramp ([Colour](/docs/design/color#ligh
 | `accent.selection` | `--cui-accent-selection` | `#07f` | `#0083e5` |
 | `accent.focus` | `--cui-accent-focus` | `#63b3ed` | `#0083e5` |
 
+The table lists the Inkstone values. In a browser that supports relative colors, the other brand and accent tokens in this table are computed from `action.brand.base`, so they follow it when you override it. With the Inkstone base they resolve to the values above. A browser without relative colors uses the values above as they are.
+
 White text on `action.brand.base` (`#09f`) is 3.0:1. [Accessibility](/docs/foundations/accessibility#contrast) explains where that falls short.
 
 ## Status
@@ -161,8 +163,11 @@ Danger, caution and success. They mark a state the user must notice and never de
 
 <SolidDemo name="tokens/radii" source="hidden" />
 
+Every radius except `none` and `full` is its value times `radius.scale`. Set `--cui-radius-scale` to `0` for square corners or above `1` for rounder ones.
+
 | Token | CSS variable | Value |
 | --- | --- | --- |
+| `radius.scale` | `--cui-radius-scale` | `1` |
 | `radius.none` | `--cui-radius-none` | `0px` |
 | `radius.badge` | `--cui-radius-badge` | `6px` |
 | `radius.xs` | `--cui-radius-xs` | `7px` |

@@ -1,5 +1,6 @@
-import { createGlobalThemeContract } from "@vanilla-extract/css";
+import { createGlobalThemeContract, type GlobalStyleRule } from "@vanilla-extract/css";
 import { globalStyle } from "./layer.css";
+import { derivedBrand, derivedRadius, relativeColorSupport } from "./derived";
 import { themeValues } from "./theme-values";
 
 type Mode = "dark" | "light";
@@ -7,11 +8,15 @@ type ModeValues = { readonly dark: string; readonly light: string };
 type Registry = { readonly [key: string]: string | ModeValues | Registry };
 
 type ContractShape<T> = {
-	-readonly [Key in keyof T]: T[Key] extends string | ModeValues ? null : ContractShape<T[Key]>;
+	-readonly [Key in keyof T]: T[Key] extends string | ModeValues
+		? null
+		: ContractShape<T[Key]>;
 };
 
 const isModeValues = (value: Registry[string]): value is ModeValues =>
-	typeof value === "object" && typeof value.dark === "string" && typeof value.light === "string";
+	typeof value === "object" &&
+	typeof value.dark === "string" &&
+	typeof value.light === "string";
 
 function contractShape<T extends Registry>(registry: T): ContractShape<T> {
 	return Object.fromEntries(
@@ -63,7 +68,7 @@ function modeAssignments(mode: Mode, scopedOnly: boolean): Record<string, string
 		}
 	};
 	visit(themeValues, []);
-	return assignments;
+	return { ...assignments, ...derivedRadius(cssVariableName) };
 }
 
 const light = modeAssignments("light", true);
@@ -75,3 +80,21 @@ globalStyle(":root:not([data-cui-theme=light])", {
 });
 globalStyle("[data-cui-theme=dark]", { vars: dark, colorScheme: "dark" });
 globalStyle("[data-cui-theme=light]", { vars: light, colorScheme: "light" });
+
+const brand = {
+	dark: derivedBrand("dark", cssVariableName),
+	light: derivedBrand("light", cssVariableName),
+};
+const whenRelativeColor = (rule: GlobalStyleRule): GlobalStyleRule => ({
+	"@supports": { [relativeColorSupport]: rule },
+});
+
+globalStyle(":root", whenRelativeColor({ vars: brand.light }));
+globalStyle(
+	":root:not([data-cui-theme=light])",
+	whenRelativeColor({
+		"@media": { "(prefers-color-scheme: dark)": { vars: brand.dark } },
+	}),
+);
+globalStyle("[data-cui-theme=dark]", whenRelativeColor({ vars: brand.dark }));
+globalStyle("[data-cui-theme=light]", whenRelativeColor({ vars: brand.light }));

@@ -93,6 +93,7 @@ The accent is never a surface or a large fill. It has five uses:
 - "On" uses the soft wash. "Do" uses the filled button. Two same-shaped blue controls side by side read as one.
 - Accent on user content must not read as semantic red or green.
 - Light focus, selection rings and the switch "on" track use `#0083e5` (`--cui-accent-focus`): 3.9:1 on the page, 3.4:1 on the field, 3.1:1 on a selected card. Light accent text (links, brand-soft labels) uses `#006aca` (`--cui-action-brand-soft-text`): 5.4:1 on the page, 4.6:1 on the field and on the 15% wash. Both keep the brand blue's hue and chroma (OKLCH H 249, C 0.18) and only move its lightness. Dark keeps `#63b3ed` and `#0099ff`.
+- The other brand and accent tokens are relative colors computed from `--cui-action-brand-base`: the same OKLCH steps that take `#0099ff` to each value above. A theme changes the brand with the base alone. Browsers without relative colors keep the fixed values. Contrast is checked for the Inkstone blue only; a theme with another base checks its own.
 - Filled buttons use `--cui-action-brand-base`, which is CodeImage's brand blue `#0099ff` (hover `#0088ff`, active `#0077ff`). This is a product decision. White text on it is 3.0:1, below WCAG AA for 14px text, and the kit accepts that so buttons match CodeImage. Keep button labels at 14px medium or larger, and never put body text on this fill.
 
 ### 2.4 Status
@@ -195,6 +196,8 @@ The header has no bar. It is the first row of islands, and its edges align with 
 | Dot, switch, avatar, pill                                     | full   | `--cui-radius-full`    |
 
 Today buttons are 9px, dialogs 14px and the toolbar 18px. **Proposed:** move them to the table; drop `xs` (7), `sm` (9) and `xl` (18).
+
+Every radius except `none` and `full` is its value times `--cui-radius-scale` (default `1`). A theme changes the shape with the scale, not by editing radii one by one, so the ratios between levels hold. At scale `0` the corners are square; the 4px floor applies to Inkstone only.
 
 ### 5.2 Elevation
 

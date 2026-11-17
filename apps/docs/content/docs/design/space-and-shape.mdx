@@ -43,6 +43,8 @@ The radius therefore depends on where an element sits, not on what kind of compo
 | Badge, tag, keycap | 6px |
 | Dot, switch, pill | full |
 
+A theme changes the shape with one value, `--cui-radius-scale`, which multiplies every radius except `none` and `full`. The levels keep their ratios, so nesting still reads right at any scale. At `0` every corner is square.
+
 The kit currently has eleven radius tokens, and some differ by only 1–2px (7, 9, 10, 12, 14, 16, 18…). CodeImage uses 22, 18 and 16px for things that are all "a floating island". The table above is the target. The 7, 9 and 18px tokens go away.
 
 Content near a large radius also needs room. CodeImage's logo moved to 16px from the island edge because at 8px it looked "troppo attaccato a sx", pushed too far into the corner.

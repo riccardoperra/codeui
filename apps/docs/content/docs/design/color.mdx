@@ -116,6 +116,8 @@ Blue appears rarely, so users notice it when it does.
 
 CodeImage's brand blue is `#0099ff`, and filled buttons use it, so the kit's primary button looks the same as CodeImage's. White text on it has a contrast of 3.0:1, below WCAG AA for 14px text. That is a deliberate product decision. Keep button labels at 14px medium or larger, and never put body text on this fill. In dark mode, selection, focus and the on state use the lighter `#63b3ed`. In light mode they use `#0083e5`, and links use `#006aca`. Both are the brand blue's hue and chroma at a lower lightness, so the focus ring reaches 3:1 on every light surface and link text reaches 4.5:1.
 
+These blues are computed from the brand blue with CSS relative colors. A theme that sets another `--cui-action-brand-base` gets its hover, active, soft, focus and selection colors from the same steps. The contrast figures above hold for `#0099ff` only, so a theme checks its own.
+
 ## Status colours
 
 Danger, caution and success mark states the user must notice: an error, a destructive confirmation, a failed export. They do not decorate anything and are not used to label categories. Danger fills only the confirm button of a destructive dialog, and an error always pairs its colour with an icon.

@@ -1883,6 +1883,7 @@ export declare const tokens: {
         offset: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
     };
     radius: {
+        scale: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
         none: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
         badge: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
         xs: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
