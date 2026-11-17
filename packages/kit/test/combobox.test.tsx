@@ -46,7 +46,7 @@ it("links rich field content, validation and form submission to the input", () =
 });
 
 it("filters by typed text, moves with the arrows and selects with Enter", async () => {
-	const onChange = jest.fn();
+	const onChange = vi.fn();
 	render(() => (
 		<Combobox
 			aria-label="Fruit"
@@ -90,7 +90,7 @@ it("closes on Escape and restores the selection, then clears the text on a secon
 });
 
 it("filters and highlights from controlled input text and keeps out text the parent rejects", async () => {
-	const onInputChange = jest.fn();
+	const onInputChange = vi.fn();
 	let accept = true;
 	const [text, setText] = createSignal("");
 	render(() => (
@@ -217,7 +217,7 @@ describe("clearing a controlled value", () => {
 	}
 
 	it("clears the selection when the user deletes the text", async () => {
-		const onChange = jest.fn();
+		const onChange = vi.fn();
 		render(() => <Controlled onChange={onChange} />);
 		const input = screen.getByRole("combobox");
 		expect(input).toHaveValue("Banana");
@@ -231,7 +231,7 @@ describe("clearing a controlled value", () => {
 	});
 
 	it("clears the selection on a second Escape", async () => {
-		const onChange = jest.fn();
+		const onChange = vi.fn();
 		render(() => <Controlled onChange={onChange} />);
 		const input = screen.getByRole("combobox");
 		input.focus();

@@ -38,7 +38,7 @@ describe("Dialog", () => {
 	});
 
 	it("labels the close button with closeLabel and closes from it", async () => {
-		const onOpenChange = jest.fn();
+		const onOpenChange = vi.fn();
 		render(() => <Dialog open title="Impostazioni" closeLabel="Chiudi" onOpenChange={onOpenChange} />);
 		expect(screen.queryByRole("button", { name: "close" })).not.toBeInTheDocument();
 		fireEvent.click(screen.getByRole("button", { name: "Chiudi" }));
@@ -204,7 +204,7 @@ describe("Popover", () => {
 		host.remove();
 	});
 
-	// jsdom gives every element a zero-size box, so the content sits exactly `gutter` pixels below the trigger.
+	// The browser positions the content below the real trigger box plus its gutter.
 	it.each([
 		[undefined, "6px"],
 		[20, "20px"],
@@ -213,7 +213,8 @@ describe("Popover", () => {
 		await tick();
 		await tick();
 		const positioner = screen.getByRole("dialog").parentElement!;
-		expect(positioner.style.transform).toContain(offset);
+		const bottom = screen.getByRole("button", { name: "Share" }).getBoundingClientRect().bottom;
+		expect(positioner.style.transform).toContain(`${bottom + parseFloat(offset)}px`);
 	});
 });
 

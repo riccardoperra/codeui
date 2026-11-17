@@ -17,7 +17,7 @@ const languages: Language[] = [
 	{ id: "rs", name: "Rust" },
 ];
 
-function renderLanguages(onChange = jest.fn()) {
+function renderLanguages(onChange = vi.fn()) {
 	const [value, setValue] = createSignal<string | undefined>("rs");
 	const languageOptions = createComboboxOptions(languages, {
 		valueKey: "id",
@@ -59,7 +59,7 @@ function renderLanguages(onChange = jest.fn()) {
 }
 
 it("filters options by typed text and selects the highlighted option with Enter", async () => {
-	const onChange = jest.fn();
+	const onChange = vi.fn();
 	const { input } = renderLanguages(onChange);
 	expect(input).toHaveValue("Rust");
 	input.focus();
@@ -83,7 +83,7 @@ it("filters options by typed text and selects the highlighted option with Enter"
 });
 
 it("skips disabled options during keyboard navigation", async () => {
-	const onChange = jest.fn();
+	const onChange = vi.fn();
 	const { input } = renderLanguages(onChange);
 	input.focus();
 	fireEvent.input(input, { target: { value: "script" } });

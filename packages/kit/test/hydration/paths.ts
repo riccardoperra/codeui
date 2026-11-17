@@ -1,3 +1,5 @@
-import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 
-export const serverHtmlFile = join(__dirname, "../../.hydration/server.json");
+export const serverHtmlFile = fileURLToPath(
+	new URL("../../.hydration/server.json", import.meta.url),
+);

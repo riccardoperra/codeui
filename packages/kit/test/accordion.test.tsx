@@ -1,4 +1,4 @@
-import { cleanup, fireEvent, render, screen } from "solid-testing-library";
+import { cleanup, fireEvent, render, screen, waitFor } from "solid-testing-library";
 import { createSignal } from "solid-js";
 import { Accordion } from "../src/components/Accordion/Accordion";
 import { expectDismissed, tick } from "./helpers";
@@ -129,6 +129,8 @@ it("keeps a closing section mounted until its transition ends", async () => {
 	await frame();
 	const size = screen.getByRole("button", { name: "Size 64" });
 	const region = document.getElementById(size.getAttribute("aria-controls")!)!;
+	await waitFor(() => expect(region.getAnimations()).toHaveLength(0));
+	fireEvent.pointerDown(size);
 	region.style.transition = "height 200ms";
 	fireEvent.click(size);
 	await tick();
@@ -144,6 +146,8 @@ it("reopens a closing section from where it is", async () => {
 	await frame();
 	const size = screen.getByRole("button", { name: "Size 64" });
 	const region = document.getElementById(size.getAttribute("aria-controls")!)!;
+	await waitFor(() => expect(region.getAnimations()).toHaveLength(0));
+	fireEvent.pointerDown(size);
 	region.style.transition = "height 200ms";
 	fireEvent.click(size);
 	await tick();

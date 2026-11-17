@@ -42,6 +42,7 @@ describe("Popover", () => {
 	it("pops when a pointer opens it, even if the pointer moved before the click", async () => {
 		const trigger = renderPopover();
 		press("Tab");
+		await tick();
 		fireEvent.pointerDown(trigger);
 		fireEvent.pointerMove(trigger);
 		fireEvent.click(trigger);

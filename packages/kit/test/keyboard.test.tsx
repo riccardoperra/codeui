@@ -21,7 +21,7 @@ beforeAll(() => {
 });
 
 describe("Select", () => {
-	function renderSelect(onChange = jest.fn()) {
+	function renderSelect(onChange = vi.fn()) {
 		render(() => (
 			<Select
 				aria-label="Fruit"
@@ -44,7 +44,7 @@ describe("Select", () => {
 	});
 
 	it("moves with the arrows and selects with Enter", async () => {
-		const onChange = jest.fn();
+		const onChange = vi.fn();
 		const trigger = renderSelect(onChange);
 		press("ArrowDown");
 		await tick();
@@ -60,7 +60,7 @@ describe("Select", () => {
 	});
 
 	it("closes with Escape and returns focus to the trigger", async () => {
-		const onChange = jest.fn();
+		const onChange = vi.fn();
 		const trigger = renderSelect(onChange);
 		press("ArrowDown");
 		await tick();
@@ -137,7 +137,7 @@ describe("Popover", () => {
 });
 
 describe("DropdownMenu", () => {
-	function renderMenu(onSelect = jest.fn()) {
+	function renderMenu(onSelect = vi.fn()) {
 		render(() => (
 			<DropdownMenu>
 				<DropdownMenuTrigger>Actions</DropdownMenuTrigger>
@@ -156,7 +156,7 @@ describe("DropdownMenu", () => {
 	}
 
 	it("opens with ArrowDown, moves with the arrows and runs the item on Enter", async () => {
-		const onSelect = jest.fn();
+		const onSelect = vi.fn();
 		renderMenu(onSelect);
 		press("ArrowDown");
 		await tick();
@@ -176,7 +176,7 @@ describe("DropdownMenu", () => {
 	});
 
 	it("closes with Escape and returns focus to the trigger", async () => {
-		const onSelect = jest.fn();
+		const onSelect = vi.fn();
 		const trigger = renderMenu(onSelect);
 		press("ArrowDown");
 		await tick();

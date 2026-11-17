@@ -398,9 +398,9 @@
 		"dev": "pnpm run build -w",
 		"build": "rollup -c rollup.config.js",
 		"test": "pnpm run test:client && pnpm run test:ssr && pnpm run test:hydration && pnpm run test:tokens-consumer",
-		"test:client": "jest --config jest.config.ts",
-		"test:ssr": "jest --config jest.config.ssr.ts",
-		"test:hydration": "jest --config jest.config.ssr.ts test/hydration.ssr && jest --config jest.config.hydration.ts",
+		"test:client": "vitest run --project browser",
+		"test:ssr": "vitest run --project ssr",
+		"test:hydration": "vitest run --project ssr test/hydration.ssr && vitest run --project hydration",
 		"typecheck": "tsc --noEmit",
 		"prepublish": "pnpm build",
 		"test:tokens-consumer": "pnpm run build && node fixtures/tokens-consumer/check.mjs && node fixtures/tokens-consumer/check.mjs --solid"
@@ -408,18 +408,20 @@
 	"devDependencies": {
 		"@codeui/vanilla-extract": "workspace:*",
 		"@testing-library/jest-dom": "^6.5.0",
-		"@vanilla-extract/jest-transform": "1.1.11",
-		"jest": "^29.7.0",
-		"jest-environment-jsdom": "^29.7.0",
+		"@vanilla-extract/vite-plugin": "^4.0.15",
+		"@vitest/browser": "3.2.7",
+		"motion": "^10.18.0",
+		"playwright": "1.56.1",
 		"rollup": "^4.21.3",
 		"rollup-preset-solid": "^2.0.1",
 		"solid-js": "^1.9.8",
 		"solid-testing-library": "^0.5.1",
-		"ts-node": "^10.9.2",
 		"typescript": "^5.6.2",
+		"vite": "5.4.4",
+		"vite-plugin-solid": "2.11.8",
 		"vite-tsconfig-paths": "^5.0.1",
-		"@vanilla-extract/vite-plugin": "^4.0.15",
-		"motion": "^10.18.0"
+		"vitest": "3.2.7",
+		"@types/node": "22.5.4"
 	},
 	"peerDependencies": {
 		"solid-js": "^1.9.8"

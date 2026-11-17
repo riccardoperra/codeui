@@ -30,7 +30,7 @@ const groups: Group[] = [
 
 function renderMenu() {
 	const highlights: Array<string | undefined> = [];
-	const onSelect = jest.fn();
+	const onSelect = vi.fn();
 	const [open, setOpen] = createSignal(true);
 	const [query, setQuery] = createSignal("");
 	const options = () =>

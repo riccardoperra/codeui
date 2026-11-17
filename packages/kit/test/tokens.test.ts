@@ -1,21 +1,8 @@
-import { readFileSync } from "node:fs";
-import path from "node:path";
 import { tokens } from "../src";
 import { themeValues } from "../src/foundation/theme-values";
 
-interface DesignToken {
-	token: string;
-	css: string;
-	dark: string;
-	light: string;
-}
-
-const design: { tokens: DesignToken[] } = JSON.parse(
-	readFileSync(
-		path.resolve(__dirname, "../../../docs/kit-2026/design/k5-token-map.json"),
-		"utf8",
-	),
-);
+import design from "../../../docs/kit-2026/design/k5-token-map.json";
+import tokenPage from "../../../apps/docs/content/docs/(kit)/foundations/tokens.mdx?raw";
 
 const segments = (token: string) =>
 	token.startsWith("space.") ? ["space", token.slice("space.".length)] : token.split(".");
@@ -62,13 +49,7 @@ it("has no token outside the design", () => {
 });
 
 it("lists every token with its values in the docs static tables", () => {
-	const page = readFileSync(
-		path.resolve(
-			__dirname,
-			"../../../apps/docs/content/docs/(kit)/foundations/tokens.mdx",
-		),
-		"utf8",
-	);
+	const page = tokenPage;
 	const rows = new Map(
 		[...page.matchAll(/^\| `([^`]+)` \| `(--cui-[^`]+)` \| (.*) \|$/gm)].map(match => [
 			match[1],

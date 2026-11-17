@@ -71,7 +71,7 @@ describe("Sheet", () => {
 	});
 
 	it("labels the close button with closeLabel and closes from it", () => {
-		const onOpenChange = jest.fn();
+		const onOpenChange = vi.fn();
 		render(() => <Sheet open title="Livelli" closeLabel="Chiudi" onOpenChange={onOpenChange} />);
 		fireEvent.click(screen.getByRole("button", { name: "Chiudi" }));
 		expect(onOpenChange).toHaveBeenCalledWith(false);
