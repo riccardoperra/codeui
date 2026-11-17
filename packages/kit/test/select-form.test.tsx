@@ -30,7 +30,7 @@ describe("Select in a form", () => {
 			</form>
 		));
 		const form = screen.getByTestId("form") as HTMLFormElement;
-		expect(submittedValues(form, "font")).toEqual([""]);
+		expect(submittedValues(form, "font")).toEqual([]);
 
 		screen.getByRole("button", { name: /Font/ }).focus();
 		press("ArrowDown");
@@ -55,6 +55,15 @@ describe("Select in a form", () => {
 		));
 		const form = screen.getByTestId("form") as HTMLFormElement;
 		expect(submittedValues(form, "fonts")).toEqual(["Inter", "Serif"]);
+	});
+
+	it("submits nothing when disabled", () => {
+		render(() => (
+			<form data-testid="form">
+				<Select aria-label="Font" name="font" options={["Inter"]} defaultValue="Inter" disabled />
+			</form>
+		));
+		expect(submittedValues(screen.getByTestId("form") as HTMLFormElement, "font")).toEqual([]);
 	});
 
 	it("takes its accessible name from label without aria-label", () => {

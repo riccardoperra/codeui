@@ -42,7 +42,7 @@ Inkstone puts Select after segmented controls, switches, and option cards. Insid
 | Internal | `div` | `itemLabel` | `select-item-label` | None |
 | Internal | `div` | `itemIndicator` | `select-item-indicator` | None |
 
-`Select` is the only export. There is no styled parts entry point such as `@codeui/kit/select`. The label, description, and error message render only when you pass them. The list renders in a portal on `document.body` while it is open. `Select` also renders a visually hidden `div` with no `data-cui` marker and no `classes` key. It holds the native `select` that [submits with a form](#submit-with-a-form) and is hidden from assistive technology.
+`Select` is the only export. There is no styled parts entry point such as `@codeui/kit/select`. The label, description, and error message render only when you pass them. The list renders in a portal on `document.body` while it is open. With `name`, `Select` also renders one `input type="hidden"` for each selected value, with no `data-cui` marker and no `classes` key. See [Submit with a form](#submit-with-a-form).
 
 ## Variants
 
@@ -148,7 +148,7 @@ Inherited from Kobalte's [select root](https://kobalte.dev/docs/core/components/
 
 <SolidDemo name="select/form" />
 
-With `name`, `Select` renders a visually hidden native `select` that holds the selection, so the form submits the value under that name. The submitted value is the option key, which is `optionValue` converted to a string. For string options, that is the string. With `multiple`, each selected value submits under the same name. `required` and `disabled` apply to the hidden control too, so a disabled select submits nothing. Kobalte also renders a hidden text input for browser autofill. It moves focus to the trigger when it receives focus.
+With `name`, `Select` renders one `input type="hidden"` for each selected value, so the form submits the value under that name. The submitted value is the option key, which is `optionValue` converted to a string. For string options, that is the string. With `multiple`, each selected value submits under the same name. With nothing selected, or when the select is disabled, the form submits nothing for that name. Hidden inputs take no part in native validation, so check `required` before you submit.
 
 ## Accessibility
 

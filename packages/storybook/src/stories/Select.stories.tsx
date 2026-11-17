@@ -235,3 +235,25 @@ export const SelectCustomObjectWithControlledFunction: Story = {
 		);
 	},
 };
+
+/** `name` submits the selected value with the form. */
+export const SelectForm: Story = {
+	render: () => {
+		const [submitted, setSubmitted] = createSignal<string>();
+		return (
+			<form
+				style={{ display: "flex", "flex-direction": "column", gap: "8px", "max-width": "320px" }}
+				onSubmit={event => {
+					event.preventDefault();
+					setSubmitted(String(new FormData(event.currentTarget).get("format")));
+				}}
+			>
+				<Select label="Export format" name="format" options={["PNG", "SVG", "JPEG"]} defaultValue="PNG" />
+				<Button theme="primary" type="submit">
+					Submit
+				</Button>
+				<output>{submitted() ? `Submitted format=${submitted()}` : "Not submitted"}</output>
+			</form>
+		);
+	},
+};
