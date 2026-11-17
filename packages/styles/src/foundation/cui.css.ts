@@ -1,6 +1,5 @@
 import { createGlobalThemeContract, type GlobalStyleRule } from "@vanilla-extract/css";
 import { globalStyle as layeredGlobalStyle } from "./layer.css";
-import type { GlobalStyleRule } from "@vanilla-extract/css";
 const globalStyle = (selector: string, rule: GlobalStyleRule) =>
 	layeredGlobalStyle(selector, rule, "tokens");
 import { derivedColors, derivedRadius, relativeColorSupport } from "./derived";
