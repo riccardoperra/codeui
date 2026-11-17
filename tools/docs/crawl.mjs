@@ -1,5 +1,5 @@
 // Loads every prerendered docs page in a browser and fails on what a reader would see broken:
-// console errors, demos that render nothing, block demos that do not fill their card, and
+// console errors, demos that render nothing, block demos the card shrink-wraps, and
 // horizontal scroll at phone width.
 //
 //   node tools/docs/crawl.mjs <base-url> [--only <path-substring>] [--json <file>]
@@ -56,12 +56,19 @@ async function visit(pagePath, config) {
     };
     const demos = [...document.querySelectorAll('[data-solid-demo]')].map((el) => {
       const child = el.firstElementChild;
-      const display = child ? getComputedStyle(child).display : '';
+      // A block root must be as wide in the demo card as in normal block flow. A flex card that
+      // shrink-wraps it collapses grids to one column and resolves width: 100% children to 0.
+      let shrunk = 0;
+      if (child?.matches('div,section,form,nav,ul,ol,dl,table,fieldset,article,header,footer,aside,figure')) {
+        const inCard = child.getBoundingClientRect().width;
+        el.style.display = 'block';
+        shrunk = child.getBoundingClientRect().width - inCard;
+        el.style.display = '';
+      }
       return {
         name: el.dataset.solidDemo,
         blank: ![...el.querySelectorAll('*')].some(visible),
-        block: !!child && !display.startsWith('inline') && display !== 'contents',
-        fill: child ? child.getBoundingClientRect().width / (el.clientWidth - parseFloat(getComputedStyle(el).paddingLeft) * 2) : 0,
+        shrunk,
         overflow: el.scrollWidth - el.clientWidth,
       };
     });
@@ -72,7 +79,7 @@ async function visit(pagePath, config) {
   if (state.scroll > 0) report(pagePath, config, `page scrolls horizontally by ${state.scroll}px`);
   for (const d of state.demos) {
     if (d.blank) report(pagePath, config, `demo ${d.name} renders nothing`);
-    if (d.block && d.fill < 0.98) report(pagePath, config, `demo ${d.name} is block content but fills ${Math.round(d.fill * 100)}% of its card`);
+    if (d.shrunk > 1) report(pagePath, config, `demo ${d.name} is block content shrunk by ${Math.round(d.shrunk)}px`);
     if (d.overflow > 1) report(pagePath, config, `demo ${d.name} overflows its card by ${d.overflow}px`);
   }
   await context.close();
