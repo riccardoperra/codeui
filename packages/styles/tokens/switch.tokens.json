@@ -2,10 +2,6 @@
   "component": {
     "switch": {
       "control": {
-        "trackWidth": {
-          "$type": "dimension",
-          "$value": "{control.height.sm}"
-        },
         "thumbSize": {
           "$type": "dimension",
           "$value": "{space.4}"
@@ -17,10 +13,6 @@
           }
         },
         "size-sm": {
-          "trackWidth": {
-            "$type": "dimension",
-            "$value": "{control.height.compact}"
-          },
           "trackHeight": {
             "$type": "dimension",
             "$value": "{space.4}"

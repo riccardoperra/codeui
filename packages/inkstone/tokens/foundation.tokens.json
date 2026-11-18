@@ -588,17 +588,10 @@
   },
   "control": {
     "height": {
-      "compact": {
-        "$type": "dimension",
-        "$value": {
-          "value": 28,
-          "unit": "px"
-        }
-      },
       "xs": {
         "$type": "dimension",
         "$value": {
-          "value": 30,
+          "value": 28,
           "unit": "px"
         }
       },
@@ -612,21 +605,14 @@
       "md": {
         "$type": "dimension",
         "$value": {
-          "value": 40,
+          "value": 44,
           "unit": "px"
         }
       },
       "lg": {
         "$type": "dimension",
         "$value": {
-          "value": 48,
-          "unit": "px"
-        }
-      },
-      "xl": {
-        "$type": "dimension",
-        "$value": {
-          "value": 56,
+          "value": 52,
           "unit": "px"
         }
       }

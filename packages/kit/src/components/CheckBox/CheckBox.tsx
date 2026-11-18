@@ -2,13 +2,12 @@ import type { CheckboxRootOptions } from "@kobalte/core/checkbox";
 import { Show, splitProps, type JSX, type Ref } from "solid-js";
 import * as P from "../../parts/checkbox";
 import type { SlotProp } from "../../utils/component";
-import type { BaseFieldProps } from "../Field/createBaseFieldProps";
 import type { FieldWithErrorMessageSupport } from "../Field/FieldError/createFieldErrorMessageProps";
 
 type CheckBoxSlot = "root" | "input" | "label" | "errorLabel" | "control";
 
 export type CheckBoxProps = CheckboxRootOptions &
-	BaseFieldProps &
+	Pick<P.RootProps, "size" | "theme"> &
 	FieldWithErrorMessageSupport &
 	SlotProp<CheckBoxSlot> & {
 		description?: string;

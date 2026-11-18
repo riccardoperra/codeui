@@ -8,7 +8,7 @@ import {
 } from "./components/Section.jsx";
 import { For } from "solid-js";
 
-const sizes = ["xs", "sm", "md", "lg", "xl"] as const;
+const sizes = ["xs", "sm", "md", "lg"] as const;
 
 const meta = {
 	title: "DesignSystem/Pagination",

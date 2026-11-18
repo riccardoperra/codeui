@@ -10,7 +10,7 @@
     --cui-selectTheme-contentMaxHeight: 400px;
     --cui-selectTheme-contentMaxHeightXs: 270px;
     --cui-selectTheme-separator: var(--cui-component-select-select-theme-separator);
-    --cui-selectTheme-itemMinHeight: var(--cui-component-select-select-theme-item-min-height);
+    --cui-selectTheme-itemMinHeight: 40px;
     --cui-selectTheme-itemTextColor: var(--cui-component-select-select-theme-item-text-color);
     --cui-selectTheme-itemHoverBackground: var(--cui-component-select-select-theme-item-hover-background);
     --cui-selectTheme-itemHoverTextColor: var(--cui-component-select-select-theme-item-hover-text-color);

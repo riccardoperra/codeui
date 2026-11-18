@@ -28,7 +28,7 @@
     --cui-dialogTheme-contentBoxShadow: var(--cui-shadow-dialog);
     --cui-dialogTheme-contentTextColor: var(--cui-component-dialog-dialog-theme-content-text-color);
     --cui-dialogTheme-contentPadding: var(--cui-component-dialog-dialog-theme-content-padding);
-    --cui-dialogTheme-titleHeight: var(--cui-component-dialog-dialog-theme-title-height);
+    --cui-dialogTheme-titleHeight: 56px;
     --cui-dialogTheme-panelRadius: var(--cui-component-dialog-dialog-theme-panel-radius);
     --cui-dialogTheme-dividerColor: var(--cui-component-dialog-dialog-theme-divider-color);
     --cui-dialogTheme-titleFontSize: var(--cui-component-dialog-dialog-theme-title-font-size);
@@ -148,7 +148,7 @@
   }
   [data-chrome=inset] .cui-dialog-title {
     height: auto;
-    min-height: var(--cui-control-height-sm);
+    min-height: 36px;
     gap: var(--cui-space-3);
     padding: 0;
     border-bottom: none;
@@ -281,7 +281,7 @@
     align-items: center;
     gap: var(--cui-space-2-5);
     width: 100%;
-    height: var(--cui-control-height-sm);
+    height: 36px;
     padding: 0 var(--cui-space-2-5);
     border: 0;
     border-radius: var(--cui-radius-nav);
@@ -427,7 +427,7 @@
     }
     .cui-dialog-navItem {
       justify-content: center;
-      height: var(--cui-control-height-md);
+      height: 40px;
       padding: 0 var(--cui-space-1);
       white-space: nowrap;
     }

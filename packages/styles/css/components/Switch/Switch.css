@@ -6,7 +6,7 @@
     grid-template-columns: auto 1fr;
     align-items: center;
     column-gap: var(--cui-space-2);
-    min-height: var(--cui-control-height-compact);
+    min-height: 28px;
     position: relative;
     color: var(--cui-text-default);
     font-size: var(--cui-font-size-caption);
@@ -16,7 +16,7 @@
     opacity: 0.4;
   }
   .cui-switch-control {
-    --cui-switch-trackWidth: var(--cui-component-switch-control-track-width);
+    --cui-switch-trackWidth: 36px;
     --cui-switch-trackHeight: calc(var(--cui-space-5) + var(--cui-space-0-5));
     --cui-switch-thumbSize: var(--cui-component-switch-control-thumb-size);
     position: relative;
@@ -35,7 +35,7 @@
   .cui-switch-control::before {
     content: "";
     position: absolute;
-    inset: calc((var(--cui-switch-trackHeight) - var(--cui-control-height-compact)) / 2) 0;
+    inset: calc((var(--cui-switch-trackHeight) - 28px) / 2) 0;
   }
   .cui-switch-control {
     &[data-checked] {
@@ -90,7 +90,7 @@
   }
   @media (--cui-coarse-pointer) {
     .cui-switch-root {
-      min-height: var(--cui-control-height-md);
+      min-height: 40px;
     }
     .cui-switch-control {
       --cui-switch-trackWidth: calc(var(--cui-space-10) + var(--cui-space-1));
@@ -98,17 +98,17 @@
       --cui-switch-thumbSize: var(--cui-component-switch-control-pointer-coarse-thumb-size);
     }
     .cui-switch-control::before {
-      inset: calc((var(--cui-switch-trackHeight) - var(--cui-control-height-md)) / 2) 0;
+      inset: calc((var(--cui-switch-trackHeight) - 40px) / 2) 0;
     }
   }
   @media (pointer: fine), (pointer: none) {
     :where(.cui-switch-control)[data-size="sm"] {
-      --cui-switch-trackWidth: var(--cui-component-switch-control-size-sm-track-width);
+      --cui-switch-trackWidth: 28px;
       --cui-switch-trackHeight: var(--cui-component-switch-control-size-sm-track-height);
       --cui-switch-thumbSize: var(--cui-component-switch-control-size-sm-thumb-size);
     }
     [data-cui="switch-root"][data-size="sm"] [data-cui="switch-control"] {
-      --cui-switch-trackWidth: var(--cui-component-switch-control-size-sm-track-width);
+      --cui-switch-trackWidth: 28px;
       --cui-switch-trackHeight: var(--cui-component-switch-control-size-sm-track-height);
       --cui-switch-thumbSize: var(--cui-component-switch-control-size-sm-thumb-size);
     }

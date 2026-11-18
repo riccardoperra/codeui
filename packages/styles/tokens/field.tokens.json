@@ -51,7 +51,7 @@
         "size-md": {
           "inputHeight": {
             "$type": "dimension",
-            "$value": "{control.height.sm}"
+            "$value": "{control.height.md}"
           },
           "fontSize": {
             "$type": "dimension",
@@ -74,30 +74,6 @@
           "border-radius": {
             "$type": "dimension",
             "$value": "{radius.lg}"
-          }
-        },
-        "size-xl": {
-          "inputHeight": {
-            "$type": "dimension",
-            "$value": "{control.height.xl}"
-          },
-          "fontSize": {
-            "$type": "dimension",
-            "$value": "{font.size.lg}"
-          },
-          "border-radius": {
-            "$type": "dimension",
-            "$value": "{radius.xl}"
-          }
-        },
-        "size-md-max-width-768px": {
-          "inputHeight": {
-            "$type": "dimension",
-            "$value": "{control.height.md}"
-          },
-          "fontSize": {
-            "$type": "dimension",
-            "$value": "{font.size.md}"
           }
         }
       }

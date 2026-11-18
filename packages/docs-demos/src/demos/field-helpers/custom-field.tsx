@@ -35,7 +35,7 @@ function ExportFormatField(props: ExportFormatFieldProps) {
 			.join(" ") || undefined;
 
 	return (
-		<div class={textFieldStyles.baseFieldContainer} data-field-size={props.size ?? "md"}>
+		<div class={textFieldStyles.baseFieldContainer} data-field-size={field.attributes["data-size"]}>
 			<label {...labelProps}>{props.label}</label>
 			<select
 				id={field.ids.input()}

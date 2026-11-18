@@ -80,7 +80,7 @@ export function FieldInput(props: FieldInputProps & { baseClass: string }) {
 			{...others}
 			id={field.inputId()}
 			data-cui="text-field-input"
-			data-size={local.size ?? field.size() ?? "md"}
+			data-size={local.size ?? field.size() ?? "sm"}
 			data-theme={local.theme ?? field.theme() ?? "filled"}
 			class={mergeClasses(baseFieldVariants(), local.baseClass, local.class)}
 		/>
@@ -95,7 +95,7 @@ export function FieldTextArea(props: FieldTextAreaProps & { baseClass: string })
 			{...others}
 			id={field.inputId()}
 			data-cui="text-field-input"
-			data-size={local.size ?? field.size() ?? "md"}
+			data-size={local.size ?? field.size() ?? "sm"}
 			data-theme={local.theme ?? field.theme() ?? "filled"}
 			class={mergeClasses(baseFieldVariants(), local.baseClass, local.class)}
 		/>

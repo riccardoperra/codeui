@@ -14,10 +14,6 @@
           "$type": "dimension",
           "$value": "{space.6}"
         },
-        "titleHeight": {
-          "$type": "dimension",
-          "$value": "{control.height.xl}"
-        },
         "panelRadius": {
           "$type": "dimension",
           "$value": "{radius.lg}"

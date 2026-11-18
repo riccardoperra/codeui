@@ -8,7 +8,7 @@ import {
 import { createSignal, For } from "solid-js";
 
 // TODO: fix
-const sizes = ["xs", "sm", "md", "lg", "xl"] as TextFieldProps["size"][];
+const sizes = ["xs", "sm", "md", "lg"] as TextFieldProps["size"][];
 
 // TODO: why outline not exist in type?
 const themes = ["inline", "outline", "filled"] as TextFieldProps["theme"][];
@@ -242,17 +242,29 @@ export const SelectForm: Story = {
 		const [submitted, setSubmitted] = createSignal<string>();
 		return (
 			<form
-				style={{ display: "flex", "flex-direction": "column", gap: "8px", "max-width": "320px" }}
+				style={{
+					display: "flex",
+					"flex-direction": "column",
+					gap: "8px",
+					"max-width": "320px",
+				}}
 				onSubmit={event => {
 					event.preventDefault();
 					setSubmitted(String(new FormData(event.currentTarget).get("format")));
 				}}
 			>
-				<Select label="Export format" name="format" options={["PNG", "SVG", "JPEG"]} defaultValue="PNG" />
+				<Select
+					label="Export format"
+					name="format"
+					options={["PNG", "SVG", "JPEG"]}
+					defaultValue="PNG"
+				/>
 				<Button theme="primary" type="submit">
 					Submit
 				</Button>
-				<output>{submitted() ? `Submitted format=${submitted()}` : "Not submitted"}</output>
+				<output>
+					{submitted() ? `Submitted format=${submitted()}` : "Not submitted"}
+				</output>
 			</form>
 		);
 	},

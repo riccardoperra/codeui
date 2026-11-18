@@ -63,7 +63,7 @@ export function Root(props: PolymorphicProps<"div", RootProps>) {
 				ref={mergeRefs(local.ref, el => (rootRef = el))}
 				data-cui="segmentedControl"
 				data-theme={local.theme ?? "neutral"}
-				data-size={local.size ?? "md"}
+				data-size={local.size ?? "sm"}
 				data-variant={local.variant ?? "solid"}
 				data-fluid={local.fluid || undefined}
 				data-pill={local.pill || undefined}

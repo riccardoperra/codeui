@@ -129,7 +129,7 @@
     justify-content: space-between;
     gap: var(--cui-space-3);
     flex-shrink: 0;
-    min-height: var(--cui-control-height-xl);
+    min-height: 56px;
     padding: 0 var(--cui-space-4) 0 var(--cui-space-6);
     border-bottom: var(--cui-border-width) solid var(--cui-border-dialog-title);
   }
@@ -158,7 +158,7 @@
     justify-content: center;
     flex-shrink: 0;
     width: 100%;
-    height: var(--cui-control-height-md);
+    height: 40px;
     padding: 0;
     border: 0;
     background: transparent;
@@ -232,7 +232,7 @@
     .cui-sheet-closeButton::after {
       content: "";
       position: absolute;
-      inset: calc((var(--cui-control-height-xs) - var(--cui-control-height-md)) / 2);
+      inset: calc((30px - 40px) / 2);
     }
   }
   @media (--cui-hover-pointer) {

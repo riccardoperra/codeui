@@ -30,7 +30,7 @@ Use NumberField when the user types an exact number, such as a font size, a padd
 |               | Hint `div`, when `description` is set     | `description`  | `text-field-description`   | none      |
 |               | Error `div`, when invalid and `errorMessage` is set | `errorMessage` | `text-field-error-message` | none |
 
-The input and the step buttons sit in an unnamed wrapper `div`. The buttons are kit [Buttons](/docs/components/button) with `variant="ghost"` and `theme="secondary"`. They show while the pointer is over the field or focus is inside it. They are not tab stops. The root always carries `data-field-size`, `md` by default.
+The input and the step buttons sit in an unnamed wrapper `div`. The buttons are kit [Buttons](/docs/components/button) with `variant="ghost"` and `theme="secondary"`. They show while the pointer is over the field or focus is inside it. They are not tab stops. The root always carries `data-field-size`, `sm` by default.
 
 ## Variants
 
@@ -60,7 +60,7 @@ The input and the step buttons sit in an unnamed wrapper `div`. The buttons are 
 
 <SolidDemo name="number-field/sizes" />
 
-`size` uses the same scale as [TextField](/docs/components/text-field#size), from 30px at `xs` to 56px at `xl`. The step buttons grow with it, from 12px to 20px.
+`size` uses the same scale as [TextField](/docs/components/text-field#size), with a 36px `sm` default at comfortable density. The step buttons range from 12px to 18px.
 
 ### Theme
 

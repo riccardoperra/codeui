@@ -8,7 +8,7 @@ export type ButtonInherited = Pick<ComponentProps<typeof KitButton>, "disabled" 
 export const notes = {
 	Button: {
 		"theme": { default: 'undefined', description: "Color scheme. No theme is selected by default." },
-		"size": { default: '"md"', description: "Control height, padding, and font size." },
+		"size": { default: '"sm"', description: "Control height, padding, and font size." },
 		"variant": { default: 'undefined', description: "Transparent idle fill with theme colors on hover." },
 		"pill": { default: 'false', description: "Uses fully rounded corners." },
 		"block": { default: 'false', description: "Sets width to 100% and flex to 1." },

@@ -66,9 +66,19 @@ A floating surface has no backdrop unless it is modal. A picker that dimmed the 
 
 ## Size
 
-Controls are **36px** tall on desktop and **40–44px** on a phone. A tighter build, with 28px rows and a 300px panel, was the first version of CodeImage's new editor and was rejected as too compact.
+Buttons, icon buttons, fields, select triggers and segmented tracks share one height scale.
 
-- Hit targets are at least 28px on desktop and 40px on a phone. An icon can be 16px, but its button cannot. A tiny mark, such as a line marker in the gutter, keeps a 24px invisible hit box.
-- A segmented control has a fixed height in every container. In CodeImage one once grew to 200px inside a grid popover, because its height came from the parent.
+| Size | Compact | Comfortable | Touch |
+| ---- | ------- | ----------- | ----- |
+| `xs` | 24px | 28px | 32px |
+| `sm` (default) | 32px | 36px | 40px |
+| `md` | 38px | 44px | 50px |
+| `lg` | 46px | 52px | 58px |
+
+Comfortable is the default density. Compact multiplies heights by 0.875, and touch multiplies them by 1.125. Heights round to the nearest 2px. A coarse pointer selects touch density automatically. Set `data-cui-density="compact|comfortable|touch"` on an element to set density for its subtree. Font sizes stay tied to the control size.
+
+Checkbox, Radio and Switch use their own geometry. Menu and navigation rows are specified at 36px. A segment fills the space inside the track padding.
+
+- Choose a size and density that give standalone targets at least 28px on desktop and 40px on a phone. A tiny mark keeps a 24px hit box.
 - A row has a fixed 20px slot for its leading icon, so the text of every row lines up even when some rows have no icon.
 - An icon-only button always has a tooltip and an accessible name.

@@ -75,7 +75,7 @@ Both object demos above mark one option disabled, through `disabledKey` or `opti
 
 <SolidDemo name="combobox/sizes" />
 
-`size="md"`, or no size, uses `--cui-control-height-sm`, 36px. `size="sm"` uses `--cui-control-height-compact`, 28px, for dense toolbars. On a coarse pointer, both grow to `--cui-control-height-md`, 40px.
+The default `sm` field is 36px at comfortable density. Use `md` for 44px. Both sizes follow the shared density scale.
 
 ### Filtering
 
@@ -266,7 +266,7 @@ Kobalte's `useComboboxContext`, re-exported. Call it inside `Root` to read the c
 
 ### `comboboxStyles`
 
-`comboboxStyles` maps each part name to a function that returns its base class. Set `data-size="sm"` on the control for the compact variant.
+`comboboxStyles` maps each part name to a function that returns its base class. Set `data-size` on the control to choose a height from the shared scale. The default is `sm`.
 
 <SolidDemo name="combobox/styles" />
 

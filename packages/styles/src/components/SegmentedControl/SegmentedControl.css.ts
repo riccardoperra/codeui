@@ -1,7 +1,10 @@
+import { type BaseComponentSize } from "../../foundation/sizes";
+
 export const indicator: string = "cui-segmented-control-indicator";
 export const list: string = "cui-segmented-control-list";
 export const segment: string = "cui-segmented-control-segment";
-export const segmentedControlWrapper = (): string => "cui-segmented-control-segmentedControlWrapper cui-segmented-control-segmentedFieldTheme";
+export const segmentedControlWrapper = (): string =>
+	"cui-segmented-control-segmentedControlWrapper cui-segmented-control-segmentedFieldTheme";
 export const segmentedFieldTheme: string = "cui-segmented-control-segmentedFieldTheme";
 export const segmentedFieldVars = {
 	activeSegmentedBackgroundColor:
@@ -24,10 +27,12 @@ export const segmentedFieldVars = {
 	segmentFontSize: "var(--cui-segmentedFieldTheme-segmentFontSize)" as `var(--${string})`,
 };
 
-export type SegmentedControlVariants = {
-	theme?: "neutral" | "primary";
-	variant?: "solid" | "bordered";
-	size?: "xl" | "lg" | "md" | "sm" | "xs";
-	fluid?: boolean;
-	pill?: boolean;
-} | undefined;
+export type SegmentedControlVariants =
+	| {
+			theme?: "neutral" | "primary";
+			variant?: "solid" | "bordered";
+			size?: BaseComponentSize;
+			fluid?: boolean;
+			pill?: boolean;
+	  }
+	| undefined;

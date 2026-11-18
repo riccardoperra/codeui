@@ -158,12 +158,10 @@ Token paths refer to the proposed exported `tokens` object. The CSS name is stab
 
 | Kit token name | CSS custom property name | Dark value | Light value | Source |
 | --- | --- | --- | --- | --- |
-| `control.height.compact` | `--cui-control-height-compact` | `28px` | `28px` | measured preview segmented item |
-| `control.height.xs` | `--cui-control-height-xs` | `30px` | `30px` | kit sizes; sm/md also DESIGN.md |
-| `control.height.sm` | `--cui-control-height-sm` | `36px` | `36px` | kit sizes; sm/md also DESIGN.md |
-| `control.height.md` | `--cui-control-height-md` | `40px` | `40px` | kit sizes; sm/md also DESIGN.md |
-| `control.height.lg` | `--cui-control-height-lg` | `48px` | `48px` | kit sizes; sm/md also DESIGN.md |
-| `control.height.xl` | `--cui-control-height-xl` | `56px` | `56px` | kit sizes; sm/md also DESIGN.md |
+| `control.height.xs` | `--cui-control-height-xs` | `28px` | `28px` | Inkstone shared size scale (comfortable density) |
+| `control.height.sm` | `--cui-control-height-sm` | `36px` | `36px` | Inkstone shared size scale (comfortable density) |
+| `control.height.md` | `--cui-control-height-md` | `44px` | `44px` | Inkstone shared size scale (comfortable density) |
+| `control.height.lg` | `--cui-control-height-lg` | `52px` | `52px` | Inkstone shared size scale (comfortable density) |
 
 ### Type scale
 

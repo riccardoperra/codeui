@@ -13,7 +13,7 @@
     --cui-dropdownMenuTheme-itemHoverBackground: var(--cui-component-dropdown-dropdown-menu-theme-item-hover-background);
     --cui-dropdownMenuTheme-itemHoverTextColor: var(--cui-component-dropdown-dropdown-menu-theme-item-hover-text-color);
     --cui-dropdownMenuTheme-itemDisabledOpacity: .4;
-    --cui-dropdownMenuTheme-itemMinHeight: var(--cui-component-dropdown-dropdown-menu-theme-item-min-height);
+    --cui-dropdownMenuTheme-itemMinHeight: 36px;
     --cui-dropdownMenuTheme-itemPadding: var(--cui-space-1-5) var(--cui-space-2-5);
     --cui-dropdownMenuTheme-itemRadius: var(--cui-component-dropdown-dropdown-menu-theme-item-radius);
     --cui-dropdownMenuTheme-itemFontSize: var(--cui-component-dropdown-dropdown-menu-theme-item-font-size);

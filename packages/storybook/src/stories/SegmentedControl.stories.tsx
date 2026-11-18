@@ -4,7 +4,7 @@ import { Button, SegmentedControl, SegmentedControlItem } from "@codeui/kit";
 import { createSignal, For } from "solid-js";
 import { DocsItemsContainer } from "./components/Section.jsx";
 
-const sizes = ["xs", "sm", "md", "lg", "xl"] as const;
+const sizes = ["xs", "sm", "md", "lg"] as const;
 
 // More on how to set up stories at: https://storybook.js.org/docs/7.0/solid/writing-stories/introduction
 const meta = {

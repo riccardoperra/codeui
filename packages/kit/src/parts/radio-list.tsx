@@ -12,8 +12,12 @@ import * as styles from "../components/RadioList/Radio.css";
 import { baseFieldContainer } from "../components/TextField/TextField.css";
 import { mergeClasses } from "../utils/css";
 
+type ChoiceAppearance = Omit<NonNullable<BaseFieldProps>, "size"> & {
+	size?: NonNullable<BaseFieldProps>["size"] | "xl";
+};
+
 export type RootProps<T extends ValidComponent = "div"> = K.RadioGroupRootProps<T> &
-	BaseFieldProps;
+	ChoiceAppearance;
 export function Root<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, RootProps<T>>,
 ) {
@@ -47,7 +51,7 @@ export function Label<T extends ValidComponent = "span">(
 }
 
 export type ItemsProps = ComponentProps<"div"> &
-	BaseFieldProps & {
+	ChoiceAppearance & {
 		orientation?: K.RadioGroupRootOptions["orientation"];
 	};
 export function Items(props: ItemsProps) {

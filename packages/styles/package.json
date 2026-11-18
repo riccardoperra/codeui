@@ -14,7 +14,7 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "typecheck": "tsc --noEmit",
-    "check": "node scripts/check.mjs",
+    "check": "node scripts/check.mjs && node scripts/check-control-height.mjs",
     "test": "node scripts/check.mjs"
   },
   "dependencies": {

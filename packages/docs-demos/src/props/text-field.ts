@@ -39,7 +39,7 @@ export const notes = {
 		description: { description: "Hint under the input. Accepts JSX. Linked with aria-describedby." },
 		errorMessage: { description: 'Message under the input. Renders only when validationState is "invalid".' },
 		placeholder: { description: "Placeholder of the input." },
-		size: { default: '"md"', description: "Height of the input and font size of every part." },
+		size: { default: '"sm"', description: "Height of the input and font size of every part." },
 		theme: { default: '"filled"', description: "A filled box, or a bottom border only." },
 		classes: { description: "Classes merged after the kit styles, one per part." },
 		ref: { description: "Ref to the input element, not the root." },

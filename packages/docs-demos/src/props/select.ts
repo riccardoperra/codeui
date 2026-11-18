@@ -52,7 +52,7 @@ export const notes = {
 		itemLabel: { description: "Renders the label of each item in the list. Required for object options." },
 		valueComponent: { description: "Renders the selected option in the trigger. Required for object options." },
 		valueComponentMultiple: { description: 'Renders the selected options when multiple is set. Defaults to the options joined by ", ".' },
-		size: { default: '"md"', description: "Height, radius, and font size of the trigger." },
+		size: { default: '"sm"', description: "Height, radius, and font size of the trigger." },
 		theme: { default: '"filled"', description: "Filled box, or a transparent trigger with a bottom border." },
 		classes: { description: "Classes for each part, keyed by part name. content targets the portalled list." },
 		slotClasses: { description: "Deprecated. Use classes." },

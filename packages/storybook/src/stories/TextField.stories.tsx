@@ -4,7 +4,7 @@ import { DocsItemsContainer, DocsMultipleItemsContainer } from "./components/Sec
 import { For } from "solid-js";
 
 // TODO: fix
-const sizes = ["xs", "sm", "md", "lg", "xl"] as TextFieldProps["size"][];
+const sizes = ["xs", "sm", "md", "lg"] as TextFieldProps["size"][];
 
 // TODO: why outline not exist in type?
 const themes = ["inline", "outline", "filled"] as TextFieldProps["theme"][];

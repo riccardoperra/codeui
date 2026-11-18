@@ -52,7 +52,7 @@
       --cui-numberFieldTheme-controlSize: 12px;
     }
 
-    &[data-field-size=sm] .cui-number-field-controlButton {
+    &:is(:not([data-field-size]), [data-field-size="sm"]) .cui-number-field-controlButton {
       --cui-numberFieldTheme-controlSize: 14px;
     }
 
@@ -64,9 +64,6 @@
       --cui-numberFieldTheme-controlSize: 18px;
     }
 
-    &[data-field-size=xl] .cui-number-field-controlButton {
-      --cui-numberFieldTheme-controlSize: 20px;
-    }
   }
   .cui-number-field-control {
     width: inherit;

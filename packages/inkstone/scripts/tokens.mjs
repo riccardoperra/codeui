@@ -4,6 +4,13 @@ import path from "node:path";
 import { load, Resolver } from "@toghen/lib";
 import { tokens as paletteTokens } from "./palette.mjs";
 
+const coarsePointer = "(pointer: coarse)";
+const controlDensities = {
+	compact: 0.875,
+	comfortable: 1,
+	touch: 1.125,
+};
+
 const readJson = async file => JSON.parse(await readFile(file, "utf8"));
 const cssName = keys =>
 	"cui-" +
@@ -22,7 +29,11 @@ function encodeValue(value, type, tokenPath) {
 			const { components, alpha = 1, hex } = value;
 			if (value.colorSpace === "oklch") {
 				assert.match(hex, /^#[\da-f]{6}$/i, tokenPath);
-				return alpha === 1 ? hex : `${hex}${Math.round(alpha * 255).toString(16).padStart(2, "0")}`;
+				return alpha === 1
+					? hex
+					: `${hex}${Math.round(alpha * 255)
+							.toString(16)
+							.padStart(2, "0")}`;
 			}
 			assert.equal(value.colorSpace, "srgb", tokenPath);
 			const bytes = [...components, ...(alpha === 1 ? [] : [alpha])]
@@ -72,7 +83,10 @@ function assign(tree, keys, value) {
 }
 
 async function generateSource(file, code) {
-	await writeIfChanged(file, "// Generated from the token resolver by scripts/tokens.mjs.\n" + code + "\n");
+	await writeIfChanged(
+		file,
+		"// Generated from the token resolver by scripts/tokens.mjs.\n" + code + "\n",
+	);
 }
 
 async function writeIfChanged(file, source) {
@@ -86,7 +100,10 @@ async function writeIfChanged(file, source) {
 
 export async function generateTokens(root) {
 	const dir = path.join(root, "tokens");
-	await writeIfChanged(path.join(dir, "palette.tokens.json"), JSON.stringify(paletteTokens, null, 2) + "\n");
+	await writeIfChanged(
+		path.join(dir, "palette.tokens.json"),
+		JSON.stringify(paletteTokens, null, 2) + "\n",
+	);
 	const resolverPath = path.join(dir, "inkstone.resolver.json");
 	const { document } = await load(resolverPath, { read: file => readFile(file, "utf8") });
 	assert.equal(document.version, "2025.10");
@@ -178,6 +195,7 @@ export function renderTheme(
 	const assignments = (mode, scopedOnly) => ({
 		...Object.fromEntries(
 			entries.flatMap(([keys, value]) => {
+				if (keys[0] === "control" && keys[1] === "height") return [];
 				if (scopedOnly && typeof value === "string" && !value.includes("var(")) return [];
 				return [[`--${cssName(keys)}`, typeof value === "string" ? value : value[mode]]];
 			}),
@@ -193,9 +211,33 @@ export function renderTheme(
 		`${selector} {\n${mode ? `  color-scheme: ${mode};\n` : ""}${Object.entries(vars)
 			.map(([name, value]) => `  ${name}: ${value};`)
 			.join("\n")}\n}`;
+	const controlHeights = entries.filter(
+		([keys]) => keys[0] === "control" && keys[1] === "height",
+	);
+	const densityVars = {
+		"--cui-density": controlDensities.comfortable,
+		...Object.fromEntries(
+			controlHeights.map(([keys, value]) => [`--${cssName(keys)}-base`, value]),
+		),
+	};
+	const heights = Object.fromEntries(
+		controlHeights.map(([keys]) => {
+			const name = `--${cssName(keys)}`;
+			return [name, `round(nearest, calc(var(${name}-base) * var(--cui-density)), 2px)`];
+		}),
+	);
+	const density = [
+		rule(":root", densityVars),
+		`@media ${coarsePointer} {\n${rule(":root", { "--cui-density": controlDensities.touch })}\n}`,
+		...Object.entries(controlDensities).map(([name, multiplier]) =>
+			rule(`[data-cui-density=${name}]`, { "--cui-density": multiplier }),
+		),
+		rule(":root, [data-cui-density]", heights),
+	].join("\n");
 	const darkMedia = css => `@media ${darkScheme} {\n${css}\n}`;
 	const css = [
 		rule(rootLight, assignments("light", false), "light"),
+		density,
 		darkMedia(rule(rootDark, assignments("dark", true), "dark")),
 		rule(darkScope, assignments("dark", true), "dark"),
 		rule(lightScope, assignments("light", true), "light"),
@@ -206,9 +248,11 @@ export function renderTheme(
 			rule(lightScope, derivedColors("light", cssName)),
 		].join("\n")}\n}`,
 	].join("\n");
-	const media = Object.entries(breakpoints)
-		.filter(([name]) => name !== "xs")
-		.map(([name, width]) => `@custom-media --cui-${name} (min-width: ${width}px);`)
-		.join("\n");
+	const media = [
+		`@custom-media --cui-coarse-pointer ${coarsePointer};`,
+		...Object.entries(breakpoints)
+			.filter(([name]) => name !== "xs")
+			.map(([name, width]) => `@custom-media --cui-${name} (min-width: ${width}px);`),
+	].join("\n");
 	return { css: `@layer cui.components {\n${css}\n}\n`, media };
 }

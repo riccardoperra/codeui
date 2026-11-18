@@ -321,12 +321,10 @@
       },
       "control": {
         "height": {
-          "compact": "var(--cui-control-height-compact)",
           "xs": "var(--cui-control-height-xs)",
           "sm": "var(--cui-control-height-sm)",
           "md": "var(--cui-control-height-md)",
-          "lg": "var(--cui-control-height-lg)",
-          "xl": "var(--cui-control-height-xl)"
+          "lg": "var(--cui-control-height-lg)"
         }
       },
       "motion": {
@@ -463,7 +461,7 @@
       "default": {
         "class": "cui-button-button cui-button-buttonTheme",
         "data-cui": "button",
-        "data-size": "md"
+        "data-size": "sm"
       }
     },
     "buttonText": "cui-button-buttonText",
@@ -848,8 +846,7 @@
       "xs": "xs",
       "sm": "sm",
       "md": "md",
-      "lg": "lg",
-      "xl": "xl"
+      "lg": "lg"
     },
     "baseFieldTheme": "cui-field-baseFieldTheme",
     "baseFieldVariants": {

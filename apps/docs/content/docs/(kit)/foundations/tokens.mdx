@@ -3,7 +3,7 @@ title: "Tokens"
 description: "The --cui-* custom properties every kit style reads."
 ---
 
-Every color, radius, space, size, shadow and motion value in the kit is a `--cui-*` CSS custom property. Kit components read only these properties, so changing one changes every component that uses it. The kit defines 144 of them.
+Every color, radius, space, size, shadow and motion value in the kit is a `--cui-*` CSS custom property. Kit components read only these properties, so changing one changes every component that uses it. The kit defines 142 of them.
 
 <SolidDemo name="tokens/overview" source="hidden" />
 
@@ -229,14 +229,12 @@ Every radius except `none` and `full` is its value times `radius.scale`. Set `--
 
 | Token | CSS variable | Value |
 | --- | --- | --- |
-| `control.height.compact` | `--cui-control-height-compact` | `28px` |
-| `control.height.xs` | `--cui-control-height-xs` | `30px` |
+| `control.height.xs` | `--cui-control-height-xs` | `28px` |
 | `control.height.sm` | `--cui-control-height-sm` | `36px` |
-| `control.height.md` | `--cui-control-height-md` | `40px` |
-| `control.height.lg` | `--cui-control-height-lg` | `48px` |
-| `control.height.xl` | `--cui-control-height-xl` | `56px` |
+| `control.height.md` | `--cui-control-height-md` | `44px` |
+| `control.height.lg` | `--cui-control-height-lg` | `52px` |
 
-A component's `size` prop maps `xs`, `sm`, `md`, `lg` and `xl` to these heights. `compact` is the item inside a segmented control.
+The table shows comfortable density. Controls default to `sm`. Comfortable is the default density. Compact multiplies heights by 0.875, and touch multiplies them by 1.125. Heights round to the nearest 2px. A coarse pointer selects touch density automatically. Set `data-cui-density="compact|comfortable|touch"` on an element to set density for its subtree. Font sizes stay tied to the control size.
 
 ## Type scale
 

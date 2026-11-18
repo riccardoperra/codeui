@@ -2,24 +2,6 @@
   "component": {
     "button": {
       "size": {
-        "xl": {
-          "buttonHeight": {
-            "$type": "dimension",
-            "$value": "{control.height.xl}"
-          },
-          "fontSize": {
-            "$type": "dimension",
-            "$value": "{font.size.xl}"
-          },
-          "padding": {
-            "$type": "dimension",
-            "$value": "{space.6}"
-          },
-          "borderRadius": {
-            "$type": "dimension",
-            "$value": "{radius.xl}"
-          }
-        },
         "lg": {
           "buttonHeight": {
             "$type": "dimension",

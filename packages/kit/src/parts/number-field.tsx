@@ -272,7 +272,7 @@ export function Root(props: RootProps) {
 				{...others}
 				marker="number-field"
 				baseClass={styles.baseFieldContainer}
-				size={others.size ?? "md"}
+				size={others.size ?? "sm"}
 				value={control.displayValue()}
 				onChange={control.onValueChange}
 			/>

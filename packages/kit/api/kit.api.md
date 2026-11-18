@@ -199,12 +199,10 @@ declare const values: {
     };
     readonly control: {
         readonly height: {
-            readonly compact: "var(--cui-control-height-compact)";
             readonly xs: "var(--cui-control-height-xs)";
             readonly sm: "var(--cui-control-height-sm)";
             readonly md: "var(--cui-control-height-md)";
             readonly lg: "var(--cui-control-height-lg)";
-            readonly xl: "var(--cui-control-height-xl)";
         };
     };
     readonly motion: {
@@ -547,12 +545,10 @@ export declare const themeValues: {
     };
     readonly control: {
         readonly height: {
-            readonly compact: "28px";
-            readonly xs: "30px";
+            readonly xs: "28px";
             readonly sm: "36px";
-            readonly md: "40px";
-            readonly lg: "48px";
-            readonly xl: "56px";
+            readonly md: "44px";
+            readonly lg: "52px";
         };
     };
     readonly motion: {
@@ -755,6 +751,7 @@ export declare const root: () => string;
 ## @codeui/styles/internal/components/Button/Button.css.d.ts
 
 ```ts
+import { type BaseComponentSize } from "../../foundation/sizes.js";
 export declare const button: () => string;
 export declare const buttonIcon: string;
 export declare const buttonText: string;
@@ -771,7 +768,7 @@ export declare const buttonVars: {
     borderRadius: `var(--${string})`;
 };
 type ButtonAppearance = {
-    size?: "xl" | "lg" | "md" | "sm" | "xs";
+    size?: BaseComponentSize;
     theme?: "primary" | "tertiary" | "secondary" | "negative" | "caution";
     variant?: "ghost";
     block?: boolean;
@@ -786,7 +783,7 @@ export type ButtonStyleOptions = ButtonAppearance & {
 export declare function buttonStyleProps({ size, theme, variant, block, pill, class: className, }?: ButtonStyleOptions): {
     class: string;
     "data-cui": "button";
-    "data-size": "xl" | "lg" | "md" | "sm" | "xs";
+    "data-size": "xs" | "sm" | "md" | "lg";
     "data-theme": "primary" | "tertiary" | "secondary" | "negative" | "caution" | undefined;
     "data-variant": "ghost" | undefined;
     "data-block": string | undefined;
@@ -951,12 +948,12 @@ export declare const subMenuContent: string;
 ## @codeui/styles/internal/components/Field/Field.css.d.ts
 
 ```ts
+import { type BaseComponentSize } from "../../foundation/sizes.js";
 export declare const FieldSizes: {
     readonly xs: "xs";
     readonly sm: "sm";
     readonly md: "md";
     readonly lg: "lg";
-    readonly xl: "xl";
 };
 export declare const baseFieldTheme: string;
 export declare const baseFieldVariants: () => string;
@@ -972,7 +969,7 @@ export declare const baseFieldVars: {
 export declare const fontSize: `var(--${string})`;
 export declare const inputHeight: `var(--${string})`;
 export type BaseFieldVariants = {
-    size?: "xs" | "sm" | "md" | "lg" | "xl";
+    size?: BaseComponentSize;
     theme?: "filled" | "inline";
 } | undefined;
 ```
@@ -998,9 +995,9 @@ export declare const description: string;
 ## @codeui/styles/internal/components/Field/fieldStyle.d.ts
 
 ```ts
-import { BaseComponentSize } from "../../foundation/sizes.js";
+import { BaseComponentSize, mapFontSizeValue } from "../../foundation/sizes.js";
 import { StyleRule } from "../../types.js";
-export declare function styleFieldMessage(sizesMap: Record<BaseComponentSize, BaseComponentSize>): {
+export declare function styleFieldMessage(sizesMap: Record<BaseComponentSize, Parameters<typeof mapFontSizeValue>[0]>): {
     selectors: StyleRule["selectors"];
 };
 ```
@@ -1161,6 +1158,7 @@ export declare const radioVars: {
 ## @codeui/styles/internal/components/SegmentedControl/SegmentedControl.css.d.ts
 
 ```ts
+import { type BaseComponentSize } from "../../foundation/sizes.js";
 export declare const indicator: string;
 export declare const list: string;
 export declare const segment: string;
@@ -1182,7 +1180,7 @@ export declare const segmentedFieldVars: {
 export type SegmentedControlVariants = {
     theme?: "neutral" | "primary";
     variant?: "solid" | "bordered";
-    size?: "xl" | "lg" | "md" | "sm" | "xs";
+    size?: BaseComponentSize;
     fluid?: boolean;
     pill?: boolean;
 } | undefined;
@@ -1470,7 +1468,7 @@ export {};
 ```ts
 import type { StyleRule } from "../types.js";
 type CSSProps = Omit<StyleRule, "@media" | "@supports">;
-export declare const breakpointQuery: Record<"xl" | "lg" | "md" | "sm" | "2xl", string>;
+export declare const breakpointQuery: Record<"sm" | "md" | "lg" | "xl" | "2xl", string>;
 interface ResponsiveStyle {
     xs?: CSSProps;
     sm?: CSSProps;
@@ -1486,18 +1484,26 @@ export {};
 ## @codeui/styles/internal/foundation/sizes.d.ts
 
 ```ts
-export type BaseComponentSize = "xs" | "sm" | "md" | "lg" | "xl";
+import { tokens } from "./cui.css.js";
+export type BaseComponentSize = keyof typeof tokens.control.height;
 export declare const ComponentSizes: {
     readonly xs: "xs";
     readonly sm: "sm";
     readonly md: "md";
     readonly lg: "lg";
-    readonly xl: "xl";
+};
+declare const fontSizesCss: {
+    xs: `var(--${string})`;
+    sm: `var(--${string})`;
+    md: `var(--${string})`;
+    lg: `var(--${string})`;
+    xl: `var(--${string})`;
 };
 export declare const mapSizeValue: (size: keyof typeof ComponentSizes, sizes?: Record<string, string>) => string;
 /** The line height that pairs with `mapFontSizeValue(size)`. */
-export declare const mapLineHeightValue: (size: BaseComponentSize) => `var(--${string})`;
-export declare const mapFontSizeValue: (size: BaseComponentSize) => `var(--${string})`;
+export declare const mapLineHeightValue: (size: keyof typeof fontSizesCss) => `var(--${string})`;
+export declare const mapFontSizeValue: (size: keyof typeof fontSizesCss) => `var(--${string})`;
+export {};
 ```
 
 ## @codeui/styles/internal/foundation/text.css.d.ts
@@ -2162,37 +2168,37 @@ export declare const switchStyleProps: {
     root: ({ size, class: className }?: SwitchStyleOptions) => {
         class: string;
         "data-cui": "switch-root";
-        "data-size": "md" | "sm" | undefined;
+        "data-size": "sm" | "md" | undefined;
     };
     input: ({ size, class: className }?: SwitchStyleOptions) => {
         class: string;
         "data-cui": "switch-input";
-        "data-size": "md" | "sm" | undefined;
+        "data-size": "sm" | "md" | undefined;
     };
     control: ({ size, class: className }?: SwitchStyleOptions) => {
         class: string;
         "data-cui": "switch-control";
-        "data-size": "md" | "sm" | undefined;
+        "data-size": "sm" | "md" | undefined;
     };
     thumb: ({ size, class: className }?: SwitchStyleOptions) => {
         class: string;
         "data-cui": "switch-thumb";
-        "data-size": "md" | "sm" | undefined;
+        "data-size": "sm" | "md" | undefined;
     };
     label: ({ size, class: className }?: SwitchStyleOptions) => {
         class: string;
         "data-cui": "switch-label";
-        "data-size": "md" | "sm" | undefined;
+        "data-size": "sm" | "md" | undefined;
     };
     description: ({ size, class: className }?: SwitchStyleOptions) => {
         class: string;
         "data-cui": "switch-description";
-        "data-size": "md" | "sm" | undefined;
+        "data-size": "sm" | "md" | undefined;
     };
     errorMessage: ({ size, class: className }?: SwitchStyleOptions) => {
         class: string;
         "data-cui": "switch-error-message";
-        "data-size": "md" | "sm" | undefined;
+        "data-size": "sm" | "md" | undefined;
     };
 };
 ```
@@ -2558,11 +2564,11 @@ export declare function Button<T extends ValidComponent = "button">(props: Polym
 ```ts
 import type { CheckboxRootOptions } from "@kobalte/core/checkbox";
 import { type JSX, type Ref } from "solid-js";
+import * as P from "../../parts/checkbox.js";
 import type { SlotProp } from "../../utils/component.js";
-import type { BaseFieldProps } from "../Field/createBaseFieldProps.js";
 import type { FieldWithErrorMessageSupport } from "../Field/FieldError/createFieldErrorMessageProps.js";
 type CheckBoxSlot = "root" | "input" | "label" | "errorLabel" | "control";
-export type CheckBoxProps = CheckboxRootOptions & BaseFieldProps & FieldWithErrorMessageSupport & SlotProp<CheckBoxSlot> & {
+export type CheckBoxProps = CheckboxRootOptions & Pick<P.RootProps, "size" | "theme"> & FieldWithErrorMessageSupport & SlotProp<CheckBoxSlot> & {
     description?: string;
     label?: JSX.Element;
     ref?: Ref<HTMLInputElement>;
@@ -3127,7 +3133,7 @@ export declare function OptionCardGroup<T extends string>(props: OptionCardGroup
 
 ```ts
 import * as P from "../../parts/pagination.js";
-type PaginationItemSize = "xs" | "sm" | "md" | "lg" | "xl";
+type PaginationItemSize = NonNullable<P.ItemProps["size"]>;
 export interface PaginationProps extends P.PaginationOptions {
     rounded?: boolean;
     size?: PaginationItemSize;
@@ -3189,9 +3195,9 @@ export type { ProgressClasses, ProgressPart, ProgressVariants, ProgressStyles, }
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import type { RadioGroupItemProps as KRadioGroupItemProps, RadioGroupRootProps as KRadioGroupRootProps } from "@kobalte/core/radio-group";
 import { type JSXElement, type ValidComponent } from "solid-js";
-import type { BaseFieldProps } from "../Field/createBaseFieldProps.js";
+import * as P from "../../parts/radio-list.js";
 import type { FieldWithErrorMessageSupport } from "../Field/FieldError/createFieldErrorMessageProps.js";
-export type RadioListProps<T extends ValidComponent = "div"> = KRadioGroupRootProps<T> & BaseFieldProps & FieldWithErrorMessageSupport & {
+export type RadioListProps<T extends ValidComponent = "div"> = KRadioGroupRootProps<T> & Pick<P.RootProps, "size" | "theme"> & FieldWithErrorMessageSupport & {
     label?: JSXElement;
     description?: JSXElement;
     classes?: RadioListClasses;
@@ -4061,11 +4067,14 @@ import * as K from "@kobalte/core/checkbox";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import { type ComponentProps, type ValidComponent } from "solid-js";
 import type { BaseFieldProps } from "../components/Field/createBaseFieldProps.js";
-export type RootProps<T extends ValidComponent = "div"> = K.CheckboxRootProps<T> & BaseFieldProps;
+type ChoiceAppearance = Omit<NonNullable<BaseFieldProps>, "size"> & {
+    size?: NonNullable<BaseFieldProps>["size"] | "xl";
+};
+export type RootProps<T extends ValidComponent = "div"> = K.CheckboxRootProps<T> & ChoiceAppearance;
 export declare function Root<T extends ValidComponent = "div">(props: PolymorphicProps<T, RootProps<T>>): import("solid-js").JSX.Element;
 export type InputProps<T extends ValidComponent = "input"> = K.CheckboxInputProps<T>;
 export declare function Input<T extends ValidComponent = "input">(props: PolymorphicProps<T, InputProps<T>>): import("solid-js").JSX.Element;
-export type ControlProps<T extends ValidComponent = "div"> = K.CheckboxControlProps<T> & BaseFieldProps;
+export type ControlProps<T extends ValidComponent = "div"> = K.CheckboxControlProps<T> & ChoiceAppearance;
 export declare function Control<T extends ValidComponent = "div">(props: PolymorphicProps<T, ControlProps<T>>): import("solid-js").JSX.Element;
 export type IndicatorProps<T extends ValidComponent = "div"> = K.CheckboxIndicatorProps<T>;
 export declare function Indicator<T extends ValidComponent = "div">(props: PolymorphicProps<T, IndicatorProps<T>>): import("solid-js").JSX.Element;
@@ -4077,6 +4086,7 @@ export type DescriptionProps<T extends ValidComponent = "div"> = K.CheckboxDescr
 export declare function Description<T extends ValidComponent = "div">(props: PolymorphicProps<T, DescriptionProps<T>>): import("solid-js").JSX.Element;
 export type ErrorMessageProps<T extends ValidComponent = "div"> = K.CheckboxErrorMessageProps<T>;
 export declare function ErrorMessage<T extends ValidComponent = "div">(props: PolymorphicProps<T, ErrorMessageProps<T>>): import("solid-js").JSX.Element;
+export {};
 ```
 
 ## parts/combobox.d.ts
@@ -4088,7 +4098,7 @@ import { type ValidComponent } from "solid-js";
 export { useComboboxContext } from "@kobalte/core/combobox";
 export { createComboboxOptions, type ComboboxOption, type ComboboxOptionsConfig, type CreateComboboxOptionsReturn, } from "../components/Combobox/createComboboxOptions.js";
 import { type ComboboxVariants } from "@codeui/styles/combobox";
-export { type ComboboxVariants, comboboxParts, type ComboboxPart, type ComboboxClasses, type ComboboxStyles, comboboxStyles } from "@codeui/styles/combobox";
+export { type ComboboxVariants, comboboxParts, type ComboboxPart, type ComboboxClasses, type ComboboxStyles, comboboxStyles, } from "@codeui/styles/combobox";
 export type RootProps<Option, OptGroup = never, T extends ValidComponent = "div"> = K.ComboboxRootProps<Option, OptGroup, T> & ComboboxVariants;
 export declare function Root<Option, OptGroup = never, T extends ValidComponent = "div">(props: PolymorphicProps<T, RootProps<Option, OptGroup, T>>): import("solid-js").JSX.Element;
 export type ControlProps<Option, T extends ValidComponent = "div"> = K.ComboboxControlProps<Option, T> & ComboboxVariants;
@@ -4552,11 +4562,14 @@ import * as K from "@kobalte/core/radio-group";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import { type ComponentProps, type ValidComponent } from "solid-js";
 import type { BaseFieldProps } from "../components/Field/createBaseFieldProps.js";
-export type RootProps<T extends ValidComponent = "div"> = K.RadioGroupRootProps<T> & BaseFieldProps;
+type ChoiceAppearance = Omit<NonNullable<BaseFieldProps>, "size"> & {
+    size?: NonNullable<BaseFieldProps>["size"] | "xl";
+};
+export type RootProps<T extends ValidComponent = "div"> = K.RadioGroupRootProps<T> & ChoiceAppearance;
 export declare function Root<T extends ValidComponent = "div">(props: PolymorphicProps<T, RootProps<T>>): import("solid-js").JSX.Element;
 export type LabelProps<T extends ValidComponent = "span"> = K.RadioGroupLabelProps<T>;
 export declare function Label<T extends ValidComponent = "span">(props: PolymorphicProps<T, LabelProps<T>>): import("solid-js").JSX.Element;
-export type ItemsProps = ComponentProps<"div"> & BaseFieldProps & {
+export type ItemsProps = ComponentProps<"div"> & ChoiceAppearance & {
     orientation?: K.RadioGroupRootOptions["orientation"];
 };
 export declare function Items(props: ItemsProps): import("solid-js").JSX.Element;

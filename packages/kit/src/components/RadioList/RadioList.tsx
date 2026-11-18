@@ -14,11 +14,10 @@ import {
 } from "solid-js";
 import * as P from "../../parts/radio-list";
 import { mergeClasses } from "../../utils/css";
-import type { BaseFieldProps } from "../Field/createBaseFieldProps";
 import type { FieldWithErrorMessageSupport } from "../Field/FieldError/createFieldErrorMessageProps";
 
 export type RadioListProps<T extends ValidComponent = "div"> = KRadioGroupRootProps<T> &
-	BaseFieldProps &
+	Pick<P.RootProps, "size" | "theme"> &
 	FieldWithErrorMessageSupport & {
 		label?: JSXElement;
 		description?: JSXElement;

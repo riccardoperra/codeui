@@ -221,7 +221,7 @@ import { dialogStyles, dialogThemeVars } from '@codeui/styles/dialog';
 import { styleFieldMessage } from '@codeui/styles/internal/components/Field/fieldStyle';
 button();
 dialogStyles.panel();
-styleFieldMessage({ xs: 'xs', sm: 'sm', md: 'md', lg: 'lg', xl: 'xl' });
+styleFieldMessage({ xs: 'xs', sm: 'sm', md: 'md', lg: 'lg' });
 `,
 		);
 	const program = ts.createProgram(nodeFixtures, {

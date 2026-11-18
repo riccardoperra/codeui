@@ -1,4 +1,6 @@
-export const FieldSizes = { xs: "xs", sm: "sm", md: "md", lg: "lg", xl: "xl" } as const;
+import { ComponentSizes, type BaseComponentSize } from "../../foundation/sizes";
+
+export const FieldSizes = ComponentSizes;
 export const baseFieldTheme: string = "cui-field-baseFieldTheme";
 export const baseFieldVariants = (): string => "cui-field-baseFieldVariants";
 export const baseFieldVars = {
@@ -14,7 +16,9 @@ export const baseFieldVars = {
 export const fontSize: `var(--${string})` = "var(--cui-field-fontSize)";
 export const inputHeight: `var(--${string})` = "var(--cui-field-inputHeight)";
 
-export type BaseFieldVariants = {
-	size?: "xs" | "sm" | "md" | "lg" | "xl";
-	theme?: "filled" | "inline";
-} | undefined;
+export type BaseFieldVariants =
+	| {
+			size?: BaseComponentSize;
+			theme?: "filled" | "inline";
+	  }
+	| undefined;

@@ -86,13 +86,13 @@ The helper renders nothing and sets no id or role. Render the message only while
 import { styleFieldMessage } from "@codeui/kit";
 
 function styleFieldMessage(
-	sizesMap: Record<"xs" | "sm" | "md" | "lg" | "xl", "xs" | "sm" | "md" | "lg" | "xl">,
+	sizesMap: Record<"xs" | "sm" | "md" | "lg", "xs" | "sm" | "md" | "lg" | "xl">,
 ): { selectors: StyleRule["selectors"] };
 ```
 
 The helper builds a vanilla-extract style rule. For each field size, it maps `[data-field-size=<size>] &` to the font size you pick for that size. Call it in a `.css.ts` file. It needs vanilla-extract at build time and does nothing at runtime.
 
-The kit styles its error message with it, in `packages/kit/src/components/Field/FieldError/FieldError.css.ts`:
+Use it to size a custom field message:
 
 ```ts
 export const errorMessage = style([
@@ -101,7 +101,6 @@ export const errorMessage = style([
 		sm: "xs",
 		md: "xs",
 		lg: "sm",
-		xl: "sm",
 	}),
 	{
 		userSelect: "none",
@@ -121,7 +120,7 @@ These namespaces hold the classes and variables that the helpers and the ready f
 | `fieldStyles.baseFieldTheme`          | Class that defines the field variables. Put it on the field root.                   |
 | `fieldStyles.baseFieldVars`           | The field variables: `background`, `borderColor`, `color`, `descriptionColor`, `inputHeight`, `fontSize`, `disabledBackground`. |
 | `fieldStyles.baseFieldVariants`       | The base class helper behind `baseStyle()`.                          |
-| `fieldStyles.FieldSizes`              | The five size names, `xs` to `xl`.                                                  |
+| `fieldStyles.FieldSizes`              | The four size names, `xs` to `lg`.                                                  |
 | `fieldStyles.inputHeight`, `fieldStyles.fontSize` | Raw variables for the control height and font size.                    |
 | `fieldLabelStyles.label`              | The label class that `createFieldLabelProps` adds.                                  |
 | `fieldErrorStyles.errorMessage`       | The error class that `createFieldErrorMessageProps` adds.                           |

@@ -827,19 +827,11 @@
     },
     {
       "group": "control heights",
-      "token": "control.height.compact",
-      "css": "--cui-control-height-compact",
-      "dark": "28px",
-      "light": "28px",
-      "source": "measured preview segmented item"
-    },
-    {
-      "group": "control heights",
       "token": "control.height.xs",
       "css": "--cui-control-height-xs",
-      "dark": "30px",
-      "light": "30px",
-      "source": "kit sizes; sm/md also DESIGN.md"
+      "dark": "28px",
+      "light": "28px",
+      "source": "Inkstone shared size scale (comfortable density)"
     },
     {
       "group": "control heights",
@@ -847,31 +839,23 @@
       "css": "--cui-control-height-sm",
       "dark": "36px",
       "light": "36px",
-      "source": "kit sizes; sm/md also DESIGN.md"
+      "source": "Inkstone shared size scale (comfortable density)"
     },
     {
       "group": "control heights",
       "token": "control.height.md",
       "css": "--cui-control-height-md",
-      "dark": "40px",
-      "light": "40px",
-      "source": "kit sizes; sm/md also DESIGN.md"
+      "dark": "44px",
+      "light": "44px",
+      "source": "Inkstone shared size scale (comfortable density)"
     },
     {
       "group": "control heights",
       "token": "control.height.lg",
       "css": "--cui-control-height-lg",
-      "dark": "48px",
-      "light": "48px",
-      "source": "kit sizes; sm/md also DESIGN.md"
-    },
-    {
-      "group": "control heights",
-      "token": "control.height.xl",
-      "css": "--cui-control-height-xl",
-      "dark": "56px",
-      "light": "56px",
-      "source": "kit sizes; sm/md also DESIGN.md"
+      "dark": "52px",
+      "light": "52px",
+      "source": "Inkstone shared size scale (comfortable density)"
     },
     {
       "group": "type scale",

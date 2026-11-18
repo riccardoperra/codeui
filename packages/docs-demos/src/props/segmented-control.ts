@@ -28,7 +28,7 @@ export const notes = {
 	SegmentedControl: {
 		size: {
 			description: "Control size.",
-			default: '"md"',
+			default: '"sm"',
 		},
 		theme: {
 			description: "Field theme.",
