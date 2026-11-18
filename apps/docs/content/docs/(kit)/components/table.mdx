@@ -1,0 +1,72 @@
+---
+title: "Table"
+description: "Style native HTML tables with Inkstone."
+---
+
+## When to use
+
+Use `Table` to present data in rows and columns. Add a caption to name the table and use header cells to identify rows or columns.
+
+## Live demo
+
+<SolidDemo name="table/basic" />
+
+## Anatomy
+
+<Anatomy demo="table/anatomy" />
+
+| Export            | Renders | `classes` key | `data-cui`          | Role              |
+| ----------------- | ------- | ------------- | ------------------- | ----------------- |
+| `Table`           | `table` | `root`        | `table-root`        | Table             |
+| `TableScrollArea` | `div`   | `scrollArea`  | `table-scroll-area` | Region when named |
+
+Use native `caption`, `thead`, `tbody`, `tfoot`, `tr`, `th`, and `td` inside `Table`. The table stylesheet applies to these elements.
+
+## Variants
+
+### Size
+
+<SolidDemo name="table/compact" />
+
+`size="sm"` reduces cell padding. Use the default `md` when you have room for more space between rows.
+
+### Striped rows
+
+<SolidDemo name="table/striped" />
+
+Set `striped` to give alternating body rows a neutral fill.
+
+## Ready API
+
+Import `Table` and `TableScrollArea` from `@codeui/kit` or `@codeui/kit/table`.
+
+### `Table`
+
+Pass native table attributes such as `id` and `aria-describedby` to `Table`.
+Use `class` or `classes.root` to extend the table styles. Add classes directly to cells for column-specific styles.
+
+| Prop      | Type           | Default |
+| --------- | -------------- | ------: |
+| `size`    | `"sm" \| "md"` |  `"md"` |
+| `striped` | `boolean`      | `false` |
+
+### `TableScrollArea`
+
+Wrap `Table` in `TableScrollArea` when the columns may exceed the available width. Give the scroll area a name with `aria-label` or `aria-labelledby`, so keyboard users can identify it.
+Use `class` or `classes.scrollArea` to extend the scroll area styles.
+
+## Styles export
+
+### `tableStyles`
+
+Load `@codeui/styles/theme.css` and `@codeui/styles/table.css` when you use the styles outside Solid. Import `tableStyles` from `@codeui/styles/table`. Apply `tableStyles.root()` to a native table and `tableStyles.scrollArea()` to its scroll container.
+
+Set `data-size="sm"` for compact cells and `data-striped="true"` for alternating row fills. The Markdown table in [Ready API](#ready-api) uses the same stylesheet.
+
+## Accessibility
+
+Add `scope="col"` to column headers and `scope="row"` to row headers. Use a `caption` when the table needs a visible name. Keep interactive content in native controls so it stays in the page's tab order.
+
+## SSR notes
+
+`Table` and `TableScrollArea` render their native HTML, classes, and attributes on the server.

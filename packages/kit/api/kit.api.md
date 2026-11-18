@@ -702,6 +702,7 @@ export * as slider from "./slider.js";
 export * as spinner from "./spinner.js";
 export * as stack from "./stack.js";
 export * as switch from "./switch.js";
+export * as table from "./table.js";
 export * as tabs from "./tabs.js";
 export * as text from "./text.js";
 export * as textArea from "./text-area.js";
@@ -1288,6 +1289,13 @@ export declare const input: string;
 export declare const label: string;
 export declare const root: string;
 export declare const thumb: () => string;
+```
+
+## @codeui/styles/internal/components/Table/Table.css.d.ts
+
+```ts
+export declare const root: () => string;
+export declare const scrollArea: () => string;
 ```
 
 ## @codeui/styles/internal/components/Tabs/Tabs.css.d.ts
@@ -2203,6 +2211,26 @@ export declare const switchStyleProps: {
 };
 ```
 
+## @codeui/styles/internal/parts/table.d.ts
+
+```ts
+export declare const tableParts: {
+    readonly root: "table-root";
+    readonly scrollArea: "table-scroll-area";
+};
+export type TablePart = keyof typeof tableParts;
+export type TableClasses = Partial<Record<TablePart, string>>;
+export type TableSize = "sm" | "md";
+export type TableVariants = {
+    size?: TableSize;
+    striped?: boolean;
+};
+export type TableStyles = {
+    [P in TablePart]: () => string;
+};
+export declare const tableStyles: TableStyles;
+```
+
 ## @codeui/styles/internal/parts/text.d.ts
 
 ```ts
@@ -2411,6 +2439,13 @@ export { type Gap, type StackVariants, stackParts, type StackPart, type StackCla
 ```ts
 export * from "./internal/components/Switch/Switch.css.js";
 export { switchParts, type SwitchVariants, type SwitchPart, type SwitchClasses, type SwitchStyles, switchStyles, type SwitchStyleOptions, switchStyleProps } from "./internal/parts/switch.js";
+```
+
+## @codeui/styles/table.d.ts
+
+```ts
+export * from "./internal/components/Table/Table.css.js";
+export { tableParts, type TablePart, type TableClasses, type TableSize, type TableVariants, type TableStyles, tableStyles } from "./internal/parts/table.js";
 ```
 
 ## @codeui/styles/tabs.d.ts
@@ -3610,6 +3645,32 @@ export { switchStyles, SwitchParts } from "../../parts/switch.js";
 export type { SwitchClasses, SwitchPart, SwitchVariants, SwitchStyles, } from "../../parts/switch.js";
 ```
 
+## components/Table/Table.d.ts
+
+```ts
+import { type ComponentProps } from "solid-js";
+import { type TableClasses, type TableVariants } from "@codeui/styles/table";
+export { tableParts, tableStyles, type TablePart, type TableClasses, type TableSize, type TableVariants, type TableStyles, } from "@codeui/styles/table";
+export type TableProps = ComponentProps<"table"> & TableVariants & {
+    /** Classes for the parts this component renders, keyed by part name. */
+    classes?: Pick<TableClasses, "root">;
+};
+/**
+ * A native `table`. Write `caption`, `thead`, `tbody`, `tfoot`, `tr`, `th` and `td`
+ * as children; the styles reach them without wrappers and stop at nested tables.
+ */
+export declare function Table(props: TableProps): import("solid-js").JSX.Element;
+export type TableScrollAreaProps = ComponentProps<"div"> & {
+    /** Classes for the parts this component renders, keyed by part name. */
+    classes?: Pick<TableClasses, "scrollArea">;
+};
+/**
+ * Scrolls a wide table sideways inside its own box. Name it with `aria-label` or
+ * `aria-labelledby` to make it a focusable region the keyboard can scroll.
+ */
+export declare function TableScrollArea(props: TableScrollAreaProps): import("solid-js").JSX.Element;
+```
+
 ## components/Tabs/Tabs.d.ts
 
 ```ts
@@ -3959,6 +4020,7 @@ export * from "./ready/link.js";
 export * from "./ready/pagination.js";
 export * from "./ready/tooltip.js";
 export * from "./ready/tabs.js";
+export * from "./ready/table.js";
 export * from "./ready/segmented-control.js";
 export * from "./ready/listbox.js";
 export * from "./ready/virtualized-listbox.js";
@@ -5199,6 +5261,12 @@ export { SvgIcon } from "../icons/SvgIcon.js";
 ```ts
 export { Switch, createSwitchProps, switchStyles, SwitchParts, } from "../components/Switch/Switch.js";
 export type { SwitchProps, SwitchClasses, SwitchPart, SwitchVariants, SwitchStyles, } from "../components/Switch/Switch.js";
+```
+
+## ready/table.d.ts
+
+```ts
+export * from "../components/Table/Table.js";
 ```
 
 ## ready/tabs.d.ts

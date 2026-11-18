@@ -795,6 +795,20 @@
 				"default": "./dist/cjs/ready/tabs.cjs"
 			}
 		},
+		"./table": {
+			"solid": {
+				"types": "./dist/types/ready/table.d.ts",
+				"default": "./dist/source/ready/table.js"
+			},
+			"import": {
+				"types": "./dist/types/ready/table.d.ts",
+				"default": "./dist/esm/ready/table.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/ready/table.d.cts",
+				"default": "./dist/cjs/ready/table.cjs"
+			}
+		},
 		"./segmented-control": {
 			"solid": {
 				"types": "./dist/types/ready/segmented-control.d.ts",
@@ -1166,6 +1180,9 @@
 			],
 			"tabs": [
 				"dist/types/ready/tabs.d.ts"
+			],
+			"table": [
+				"dist/types/ready/table.d.ts"
 			],
 			"segmented-control": [
 				"dist/types/ready/segmented-control.d.ts"

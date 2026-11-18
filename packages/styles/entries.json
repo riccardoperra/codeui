@@ -267,6 +267,13 @@
 		],
 		"helpers": "parts/switch.ts"
 	},
+	"table": {
+		"modules": [
+			"components/Table/Table.css.ts"
+		],
+		"dependencies": [],
+		"helpers": "parts/table.ts"
+	},
 	"tabs": {
 		"modules": [
 			"components/Tabs/Tabs.css.ts"

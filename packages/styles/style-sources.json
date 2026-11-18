@@ -153,6 +153,10 @@
     "foundation/motion.css.ts",
     "components/Switch/Switch.css.ts"
   ],
+  "components/Table/Table.css.ts": [
+    "foundation/cui.css.ts",
+    "components/Table/Table.css.ts"
+  ],
   "components/Tabs/Tabs.css.ts": [
     "foundation/cui.css.ts",
     "foundation/motion.css.ts",

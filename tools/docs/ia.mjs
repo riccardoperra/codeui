@@ -45,6 +45,8 @@ export const families = [
 				'inline and wide, compactControl stacking below 900px, markers, pictures, details, controlId labels, disabled controls, long labels, styled parts and createSettingsRowProps.'),
 			component('stack', 'Stack', 'A flex container that spaces its children with token gaps.', '05', ['Stack'], 'stack',
 				'Row and column, wrap, align start, center, end, stretch, baseline, justify start, center, end, between, around, evenly. Every Gap value.'),
+			component('table', 'Table', 'A native table with Inkstone styles.', '05', ['Table', 'TableScrollArea'], 'table',
+				'Native table markup, size, striped rows, and horizontal scrolling.'),
 			component('text', 'Text', 'Text set in the kit type scale, with tones and polymorphic headings.', '05', ['Text'], 'text',
 				'Every font size and weight token, tones default, muted, hint, label, danger, success, polymorphic headings.'),
 		],

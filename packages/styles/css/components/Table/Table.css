@@ -1,0 +1,100 @@
+@layer cui.components {
+  .cui-table-root {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-family: var(--cui-font-family-sans);
+    font-size: var(--cui-font-size-caption);
+    line-height: var(--cui-font-line-height-normal);
+    font-variant-numeric: tabular-nums;
+    text-align: start;
+    color: var(--cui-text-default);
+
+    & > caption {
+      caption-side: top;
+      padding-block-end: var(--cui-space-2);
+      font-size: var(--cui-font-size-xs);
+      line-height: var(--cui-font-line-height-xs);
+      text-align: start;
+      color: var(--cui-text-muted);
+    }
+
+    & > :is(thead, tbody, tfoot) > tr {
+      height: var(--cui-control-height-sm);
+    }
+
+    & > :is(thead, tbody, tfoot) > tr > :is(th, td) {
+      padding-block: calc((var(--cui-control-height-sm) - 1lh) / 2);
+      padding-inline: var(--cui-space-3);
+      border: 0;
+      vertical-align: baseline;
+    }
+
+    & > :is(thead, tbody, tfoot) > tr > th {
+      font-weight: var(--cui-font-weight-medium);
+    }
+
+    & > :is(thead, tbody, tfoot) > tr > th:not([align]) {
+      text-align: inherit;
+    }
+
+    & > thead > tr > :is(th, td) {
+      background-color: var(--cui-surface-input);
+      font-size: var(--cui-font-size-xs);
+      font-weight: var(--cui-font-weight-semibold);
+      line-height: var(--cui-font-line-height-xs);
+      color: var(--cui-text-muted);
+    }
+
+    & > thead > tr:first-child > :first-child,
+    & > tbody > tr > :first-child {
+      border-start-start-radius: var(--cui-radius-nav);
+    }
+
+    & > thead > tr:first-child > :last-child,
+    & > tbody > tr > :last-child {
+      border-start-end-radius: var(--cui-radius-nav);
+    }
+
+    & > thead > tr:last-child > :first-child,
+    & > tbody > tr > :first-child {
+      border-end-start-radius: var(--cui-radius-nav);
+    }
+
+    & > thead > tr:last-child > :last-child,
+    & > tbody > tr > :last-child {
+      border-end-end-radius: var(--cui-radius-nav);
+    }
+  }
+  :where(.cui-table-root) {
+    &[data-size="sm"] {
+      font-size: var(--cui-font-size-xs);
+      line-height: var(--cui-font-line-height-xs);
+
+      & > :is(thead, tbody, tfoot) > tr {
+        height: var(--cui-control-height-xs);
+      }
+
+      & > :is(thead, tbody, tfoot) > tr > :is(th, td) {
+        padding-block: calc((var(--cui-control-height-xs) - 1lh) / 2);
+        padding-inline: var(--cui-space-2);
+      }
+    }
+
+    &[data-striped] > tbody > tr:nth-child(even) > :is(th, td) {
+      background-color: color-mix(in srgb, var(--cui-surface-input) 50%, transparent);
+    }
+  }
+  .cui-table-scrollArea {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    border-radius: var(--cui-radius-nav);
+    scrollbar-color: var(--cui-surface-scroll-thumb) transparent;
+
+    &:focus-visible {
+      outline: var(--cui-focus-width) solid var(--cui-focus-color);
+      outline-offset: var(--cui-focus-offset);
+    }
+  }
+}
