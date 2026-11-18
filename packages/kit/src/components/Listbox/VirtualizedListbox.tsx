@@ -1,7 +1,6 @@
 import { createVirtualizer } from "@tanstack/solid-virtual";
 import { Listbox, ListboxItem, ListboxProps } from "./Listbox";
-import { For, splitProps } from "solid-js";
-import { LISTBOX_ITEM_SIZE } from "./sizes";
+import { For, onCleanup, splitProps } from "solid-js";
 
 export type VirtualizedListboxProps<OptGroup> = Omit<
 	ListboxProps<Item, OptGroup>,
@@ -32,6 +31,7 @@ export function VirtualizedListbox<OptGroup = never>(
 	props: VirtualizedListboxProps<OptGroup>,
 ) {
 	let listboxRef: HTMLUListElement | undefined;
+	let rowHeight = 36;
 
 	const virtualizer = createVirtualizer<HTMLUListElement, HTMLLIElement>({
 		get count() {
@@ -42,9 +42,7 @@ export function VirtualizedListbox<OptGroup = never>(
 		},
 		getScrollElement: () => listboxRef ?? null,
 		estimateSize: (index: number) =>
-			// TODO: fix that size
-			props.virtualizerOptions?.estimateSize?.(index) ??
-			LISTBOX_ITEM_SIZE[props.size ?? "md"],
+			props.virtualizerOptions?.estimateSize?.(index) ?? rowHeight,
 		getItemKey: (index: number) => {
 			return props.options[index].value;
 		},
@@ -74,6 +72,25 @@ export function VirtualizedListbox<OptGroup = never>(
 						position: "relative",
 					}}
 				>
+					<div
+						aria-hidden="true"
+						style={{
+							position: "absolute",
+							visibility: "hidden",
+							height: "var(--cui-control-height-sm)",
+						}}
+						ref={element => {
+							const observer = new ResizeObserver(([entry]) => {
+								const height = entry.contentRect.height;
+								if (height > 0 && height !== rowHeight) {
+									rowHeight = height;
+									virtualizer.measure();
+								}
+							});
+							observer.observe(element);
+							onCleanup(() => observer.disconnect());
+						}}
+					/>
 					<For each={virtualizer.getVirtualItems()}>
 						{virtualRow => {
 							// TODO what if key is not string?
@@ -91,8 +108,8 @@ export function VirtualizedListbox<OptGroup = never>(
 											position: "absolute",
 											top: 0,
 											left: 0,
+											margin: 0,
 											width: "100%",
-											height: `${virtualRow.size}px`,
 											transform: `translateY(${virtualRow.start}px)`,
 										}}
 									/>

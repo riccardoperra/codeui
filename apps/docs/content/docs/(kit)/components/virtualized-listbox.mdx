@@ -37,7 +37,7 @@ Use `@codeui/kit/virtualized-listbox` when the control needs to render only the 
 
 <SolidDemo name="virtualized-listbox/sizes" />
 
-Row estimates are 30px for `xs`, 36px for `sm`, and 40px for `md`. The default estimate is 40px.
+Rows use the shared `sm` height (32px compact, 36px comfortable, 40px touch). The virtualizer measures that height for its default estimate.
 `virtualizerOptions.estimateSize` overrides the estimate. Keep labels on one line and match estimates to rendered row height.
 `overscan` defaults to five rows. Smooth scrolling is unsupported.
 

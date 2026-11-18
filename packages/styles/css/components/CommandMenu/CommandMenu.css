@@ -1,4 +1,5 @@
 @import "./command-menu-tokens.generated.css";
+@import "../Field/text-minimum.css";
 
 @layer cui.components {
   .cui-command-menu-overlay {
@@ -48,7 +49,9 @@
     align-items: center;
     flex-shrink: 0;
     gap: var(--cui-space-3);
-    min-height: 36px;
+    /* Search chrome keeps its own height. */
+    --cui-command-menu-searchHeight: 36px;
+    min-height: var(--cui-command-menu-searchHeight);
     padding: 0 var(--cui-space-3);
     border-radius: var(--cui-radius-lg);
     background: var(--cui-surface-input);
@@ -58,14 +61,14 @@
     appearance: none;
     flex: 1;
     min-width: 0;
-    height: 36px;
+    height: var(--cui-command-menu-searchHeight);
     padding: 0;
     border: 0;
     outline: none;
     background: transparent;
     color: var(--cui-text-input);
     font: inherit;
-    font-size: var(--cui-font-size-caption);
+    font-size: max(var(--cui-font-size-caption), var(--cui-field-textMinimum, 0px));
   }
   .cui-command-menu-searchInput::placeholder {
     color: var(--cui-text-hint);
@@ -82,7 +85,7 @@
     padding: 0;
     list-style: none;
     outline: none;
-    max-height: calc(6 * 36px + var(--cui-space-4));
+    max-height: calc(6 * var(--cui-control-height-sm) + var(--cui-space-4));
     overflow-y: auto;
     overscroll-behavior: contain;
     scroll-padding-block: var(--cui-space-2);
@@ -99,7 +102,7 @@
     display: flex;
     align-items: center;
     gap: var(--cui-space-2);
-    min-height: 36px;
+    min-height: var(--cui-control-height-sm);
     padding: 0 var(--cui-space-3);
     border-radius: var(--cui-radius-nav);
     color: var(--cui-text-dialog);
@@ -162,13 +165,7 @@
   }
   @media (--cui-coarse-pointer) {
     .cui-command-menu-search {
-      min-height: 40px;
-    }
-    .cui-command-menu-searchInput {
-      height: 40px;
-    }
-    .cui-command-menu-item {
-      min-height: 40px;
+      --cui-command-menu-searchHeight: 40px;
     }
   }
   @media (max-width: 767px) {

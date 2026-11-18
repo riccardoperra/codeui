@@ -6,7 +6,8 @@
     align-content: center;
     align-items: center;
     column-gap: var(--cui-space-6);
-    min-height: 56px;
+    --cui-settings-rowMinHeight: 56px;
+    min-height: var(--cui-settings-rowMinHeight);
     padding: var(--cui-space-2) var(--cui-space-4);
     box-sizing: border-box;
     min-width: 0;

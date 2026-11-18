@@ -1,4 +1,5 @@
 import { cleanup, render } from "solid-testing-library";
+import { Combobox } from "../src/components/Combobox/Combobox";
 import { Button } from "../src/components/Button/Button";
 import { IconButton } from "../src/components/IconButton/IconButton";
 import { NumberField } from "../src/components/NumberField/NumberField";
@@ -74,3 +75,35 @@ it.each(densities)("aligns all four control sizes at %s density", density => {
 it("defaults to a 36px control height without a reset", () => {
 	expectRowHeight(row(), 36);
 });
+
+const fields = selectors.slice(2, 6);
+
+it("uses Button md typography for medium fields", () => {
+	const container = row("md", "comfortable");
+	const button = getComputedStyle(container.querySelector(selectors[0])!);
+	expect(button.fontSize).toBe("16px");
+	for (const selector of fields)
+		expect(getComputedStyle(container.querySelector(selector)!).fontSize, selector).toBe(
+			button.fontSize,
+		);
+});
+
+it.each(sizes)("keeps %s field text at 16px at touch density", size => {
+	const container = row(size, "touch");
+	for (const selector of fields)
+		expect(getComputedStyle(container.querySelector(selector)!).fontSize, selector).toBe(
+			"16px",
+		);
+});
+
+it.each(["sm", "md"] as const)(
+	"uses 16px for %s combobox input at touch density",
+	size => {
+		const { getByRole } = render(() => (
+			<div data-cui-density="touch">
+				<Combobox aria-label="Format" options={["PNG", "SVG"]} size={size} />
+			</div>
+		));
+		expect(getComputedStyle(getByRole("combobox")).fontSize).toBe("16px");
+	},
+);

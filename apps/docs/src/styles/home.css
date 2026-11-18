@@ -172,7 +172,7 @@ body:has(#nd-home-layout) {
   align-items: center;
   justify-content: space-between;
   gap: var(--cui-space-2);
-  min-height: 28px;
+  min-height: var(--cui-control-height-sm);
   margin-top: var(--cui-space-4);
   border-radius: var(--cui-radius-badge);
   color: var(--color-fd-foreground);
@@ -221,10 +221,6 @@ body:has(#nd-home-layout) {
 
   .home-button {
     height: var(--cui-control-height-md);
-  }
-
-  .home-tile-link {
-    min-height: var(--cui-control-height-md);
   }
 }
 
