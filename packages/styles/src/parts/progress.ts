@@ -2,7 +2,7 @@ import type { ProgressStyleOptions } from "../generated-appearance/progress";
 import * as styles from "../components/Progress/Progress.css";
 export type ProgressVariants = Omit<ProgressStyleOptions, "class">;
 export const progressParts = {
-	root: "progress-root",
+	root: "progress",
 	label: "progress-label",
 	track: "progress-track",
 	fill: "progress-fill",

@@ -49,10 +49,10 @@ export function ExportDialog() {
 				</SettingsGroup>
 			</DialogPanelContent>
 			<DialogPanelFooter>
-				<Button theme="secondary" size="sm" leftIcon={<Copy size={16} />} onClick={() => studio.copy()}>
+				<Button variant="secondary" size="sm" leftIcon={<Copy size={16} />} onClick={() => studio.copy()}>
 					Copy
 				</Button>
-				<Button theme="primary" size="sm" leftIcon={<Download size={16} />} onClick={() => studio.download()}>
+				<Button variant="primary" size="sm" leftIcon={<Download size={16} />} onClick={() => studio.download()}>
 					Download {studio.fileName()}
 				</Button>
 			</DialogPanelFooter>
@@ -104,10 +104,10 @@ export function ImportDialog() {
 			</DialogPanelContent>
 			<DialogPanelFooter>
 				<Stack direction="row" gap="2" justify="end">
-					<Button theme="secondary" size="sm" onClick={() => close(false)}>
+					<Button variant="secondary" size="sm" onClick={() => close(false)}>
 						Cancel
 					</Button>
-					<Button theme="primary" size="sm" disabled={!text().trim()} onClick={submit}>
+					<Button variant="primary" size="sm" disabled={!text().trim()} onClick={submit}>
 						Import
 					</Button>
 				</Stack>

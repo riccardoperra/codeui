@@ -17,7 +17,7 @@ import { mergeClasses } from "../../utils/css";
 import type { FieldWithErrorMessageSupport } from "../Field/FieldError/createFieldErrorMessageProps";
 
 export type RadioListProps<T extends ValidComponent = "div"> = KRadioGroupRootProps<T> &
-	Pick<P.RootProps, "size" | "theme"> &
+	Pick<P.RootProps, "size" | "variant"> &
 	FieldWithErrorMessageSupport & {
 		label?: JSXElement;
 		description?: JSXElement;
@@ -90,7 +90,7 @@ export function RadioList<T extends ValidComponent = "div">(
 		"description",
 		"size",
 		"label",
-		"theme",
+		"variant",
 		"errorMessage",
 		"class",
 		"classes",
@@ -99,7 +99,7 @@ export function RadioList<T extends ValidComponent = "div">(
 	return (
 		<P.Root
 			size={local.size}
-			theme={local.theme}
+			variant={local.variant}
 			{...others}
 			class={mergeClasses(local.class, local.classes?.root)}
 		>
@@ -108,7 +108,7 @@ export function RadioList<T extends ValidComponent = "div">(
 			</Show>
 			<P.Items
 				size={local.size}
-				theme={local.theme}
+				variant={local.variant}
 				orientation={props.orientation}
 				class={local.classes?.items}
 			>

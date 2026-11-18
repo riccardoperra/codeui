@@ -11,9 +11,9 @@ import {
 } from "../src";
 
 it.each([
-	[stackStyles.root, "cui-stack-root"],
-	[textStyles.root, "cui-text-root"],
-	[optionCardStyles.itemLabel, "cui-option-card-itemLabel"],
+	[stackStyles.root, "cui-stack"],
+	[textStyles.root, "cui-text"],
+	[optionCardStyles.itemLabel, "cui-optioncard-item-label"],
 	[switchStyles.control, "cui-switch-control"],
 	[progressStyles.track, "cui-progress-track"],
 	[sliderStyles.track, "cui-slider-track"],
@@ -31,14 +31,14 @@ it("keeps custom field attributes in sync with its props", () => {
 			get size() {
 				return size();
 			},
-			theme: "inline",
+			variant: "inline",
 		});
 		return <input {...field.attributes} class={field.baseStyle()} />;
 	});
 	const input = screen.getByRole("textbox");
-	expect(input).toHaveClass("cui-field-baseFieldVariants");
+	expect(input).toHaveClass("cui-field-input");
 	expect(input).toHaveAttribute("data-size", "sm");
-	expect(input).toHaveAttribute("data-theme", "inline");
+	expect(input).toHaveAttribute("data-variant", "inline");
 	setSize("lg");
 	expect(input).toHaveAttribute("data-size", "lg");
 });

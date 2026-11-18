@@ -32,7 +32,7 @@ export default function DialogExport() {
 	const name = () => formats.find(item => item.value === format())?.label;
 	return (
 		<Dialog.Root>
-			<Dialog.Trigger as={Button} theme="primary" leftIcon={<DownloadIcon />}>
+			<Dialog.Trigger as={Button} variant="primary" leftIcon={<DownloadIcon />}>
 				Export
 			</Dialog.Trigger>
 			<Dialog.Portal>
@@ -66,10 +66,10 @@ export default function DialogExport() {
 							</Stack>
 						</Dialog.Body>
 						<Dialog.Footer>
-							<Button size="sm" theme="secondary" leftIcon={<CopyIcon />}>
+							<Button size="sm" variant="secondary" leftIcon={<CopyIcon />}>
 								Copy image
 							</Button>
-							<Button size="sm" theme="primary" leftIcon={<DownloadIcon />}>
+							<Button size="sm" variant="primary" leftIcon={<DownloadIcon />}>
 								Download {name()} · {scale()}x
 							</Button>
 						</Dialog.Footer>
@@ -78,7 +78,7 @@ export default function DialogExport() {
 								{item => (
 									<SettingsRow label={item.label} description={item.description} picture={<item.icon />} compactControl>
 										{control => (
-											<Button aria-describedby={control["aria-labelledby"]} size="sm" theme="secondary" variant="ghost" disabled={item.disabled}>
+											<Button aria-describedby={control["aria-labelledby"]} size="sm" variant="secondary" ghost disabled={item.disabled}>
 												{item.action}
 											</Button>
 										)}

@@ -1,0 +1,89 @@
+---
+title: Listbox
+description: An inline list of options with a check mark on the selected ones, in plain HTML.
+---
+
+Load `@codeui/styles/listbox.css`, or `all.css`. The Solid component is documented in [Listbox](/docs/components/listbox).
+
+## Demo
+
+<HtmlDemo name="listbox/basic" />
+
+## Markup
+
+| Part | Element | Class | `data-cui` |
+| --- | --- | --- | --- |
+| List | `ul` | `cui-listbox-list` | `listbox` |
+| Item | `li` | `cui-listbox-item` | `listbox-item` |
+| Item indicator | `svg` | `cui-listbox-item-indicator` | `listbox-item-indicator` |
+
+The list class does not reset the `ul`. Remove its padding, margin, and bullets, as the demos do inline.
+The indicator is a check mark drawn with `stroke-dasharray="32"`. The CSS hides it with `stroke-dashoffset` and draws it in when the item is selected. Put one in every item.
+
+| Attribute | Values | Default |
+| --- | --- | --- |
+| `data-variant` on the list | `primary`, `neutral` | `neutral` |
+| `data-bordered` on the list | Presence | Off |
+| `data-size` on the item and the indicator | `xs`, `sm`, `md` | `sm` |
+| `data-selected` on an item | Presence | Off |
+| `data-highlighted` on an item | Presence | Off |
+| `data-disabled` on an item | Presence | Off |
+
+## Variants
+
+### Sizes
+
+<HtmlDemo name="listbox/sizes" />
+
+Rows use the shared `sm` control height: 32px compact, 36px comfortable, 40px touch. `data-size` sets the row text and, on the indicator, the check mark size: 14px, 18px, and 20px. Set the same size on the item and its indicator.
+
+### Bordered
+
+<HtmlDemo name="listbox/bordered" />
+
+`data-bordered` adds 8px padding and a 1px divider border. The border takes the focus color when the list has keyboard focus.
+
+### Primary and neutral
+
+`primary` and `neutral` render the same colors today. Both select neutral text and a neutral highlight, as Inkstone keeps selected rows neutral.
+
+## States
+
+### Selected
+
+`data-selected` draws the check mark. Set `aria-selected="true"` on the same item.
+
+<HtmlDemo name="listbox/multiple" />
+
+For multiple selection, set `aria-multiselectable="true"` on the list and `data-selected` on each selected item.
+
+### Highlighted and disabled
+
+<HtmlDemo name="listbox/states" />
+
+`data-highlighted` gives the item the hover fill. Move it with the arrow keys and the pointer. An item with focus gets the same fill.
+`data-disabled` dims an item to 40%. Set `aria-disabled="true"` too. Synthwave '84 is disabled in this demo.
+
+## What you supply
+
+- `role="listbox"` and an accessible name on the list, and `role="option"` with `aria-selected` on each item.
+- Focus on the list, or roving focus on the items. Up and Down Arrow move `data-highlighted`, Home and End jump to the ends, and type-ahead finds an item.
+- Enter, Space, and a click select the highlighted item, and update `data-selected` and `aria-selected`.
+- Skipping disabled items.
+
+## Helper
+
+```ts
+import "@codeui/styles/listbox.css";
+import { applyStyleProps } from "@codeui/styles";
+import { listboxStyleProps } from "@codeui/styles/listbox";
+
+const list = document.querySelector<HTMLElement>("[role=listbox]")!;
+applyStyleProps(list, listboxStyleProps({ bordered: true }));
+for (const item of list.querySelectorAll<HTMLElement>("[role=option]")) {
+  applyStyleProps(item, listboxStyleProps.item({ size: "md" }));
+}
+// list: class="cui-listbox-list" data-cui="listbox" data-variant="neutral" data-bordered=""
+```
+
+`listboxStyleProps.itemIndicator({ size: "md" })` styles the check mark. Applying it replaces the element's class, so on an `svg` that also needs `cui-icon`, pass it through `class`.

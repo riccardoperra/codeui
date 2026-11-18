@@ -1,3 +1,3 @@
 export const baseFieldContainer: string =
-	"cui-text-area-baseFieldContainer cui-field-baseFieldTheme";
-export const textArea: string = "cui-text-area-textArea";
+	"cui-textarea cui-field";
+export const textArea: string = "cui-textarea-input";

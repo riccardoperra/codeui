@@ -1,33 +1,30 @@
-import type { SegmentedControlStyleOptions } from "../../generated-appearance/segmented-control";
-export const indicator: string = "cui-segmented-control-indicator";
-export const list: string = "cui-segmented-control-list";
-export const segment: string = "cui-segmented-control-segment";
+import type { SegmentedControlStyleOptions } from "../../generated-appearance/segmentedcontrol";
+export const indicator: string = "cui-segmentedcontrol-indicator";
+export const list: string = "cui-segmentedcontrol-list";
+export const segment: string = "cui-segmentedcontrol-segment";
 export const segmentedControlWrapper = (): string =>
-	"cui-segmented-control-segmentedControlWrapper cui-segmented-control-segmentedFieldTheme";
-export const segmentedFieldTheme: string = "cui-segmented-control-segmentedFieldTheme";
+	"cui-segmentedcontrol";
 export const segmentedFieldVars = {
 	activeSegmentedBackgroundColor:
-		"var(--cui-segmentedFieldTheme-activeSegmentedBackgroundColor)" as `var(--${string})`,
+		"var(--cui-segmentedcontrol-active-segmented-background-color)" as `var(--${string})`,
 	segmentedTextColor:
-		"var(--cui-segmentedFieldTheme-segmentedTextColor)" as `var(--${string})`,
+		"var(--cui-segmentedcontrol-segmented-text-color)" as `var(--${string})`,
 	activeSegmentedTextColor:
-		"var(--cui-segmentedFieldTheme-activeSegmentedTextColor)" as `var(--${string})`,
+		"var(--cui-segmentedcontrol-active-segmented-text-color)" as `var(--${string})`,
 	segmentWrapperSolidBackground:
-		"var(--cui-segmentedFieldTheme-segmentWrapperSolidBackground)" as `var(--${string})`,
+		"var(--cui-segmentedcontrol-segment-wrapper-solid-background)" as `var(--${string})`,
 	segmentWrapperBorderedColor:
-		"var(--cui-segmentedFieldTheme-segmentWrapperBorderedColor)" as `var(--${string})`,
+		"var(--cui-segmentedcontrol-segment-wrapper-bordered-color)" as `var(--${string})`,
 	segmentWrapperRadius:
-		"var(--cui-segmentedFieldTheme-segmentWrapperRadius)" as `var(--${string})`,
+		"var(--cui-segmentedcontrol-segment-wrapper-radius)" as `var(--${string})`,
 	segmentWrapperPadding:
-		"var(--cui-segmentedFieldTheme-segmentWrapperPadding)" as `var(--${string})`,
-	segmentHeight: "var(--cui-segmentedFieldTheme-segmentHeight)" as `var(--${string})`,
-	segmentPadding: "var(--cui-segmentedFieldTheme-segmentPadding)" as `var(--${string})`,
-	segmentRadius: "var(--cui-segmentedFieldTheme-segmentRadius)" as `var(--${string})`,
-	segmentFontSize: "var(--cui-segmentedFieldTheme-segmentFontSize)" as `var(--${string})`,
+		"var(--cui-segmentedcontrol-segment-wrapper-padding)" as `var(--${string})`,
+	segmentHeight: "var(--cui-segmentedcontrol-segment-height)" as `var(--${string})`,
+	segmentPadding: "var(--cui-segmentedcontrol-segment-padding)" as `var(--${string})`,
+	segmentRadius: "var(--cui-segmentedcontrol-segment-radius)" as `var(--${string})`,
+	segmentFontSize: "var(--cui-segmentedcontrol-segment-font-size)" as `var(--${string})`,
 };
 
 export type SegmentedControlVariants =
-	| (Omit<SegmentedControlStyleOptions, "class" | "theme" | "autoWidth"> & {
-			theme?: NonNullable<SegmentedControlStyleOptions["theme"]> | "neutral";
-	  })
+	| Omit<SegmentedControlStyleOptions, "class" | "autoWidth">
 	| undefined;

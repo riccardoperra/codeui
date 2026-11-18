@@ -42,12 +42,12 @@ const row = (size?: Size, density?: Density) =>
 
 const selectors = [
 	'[data-cui="button"]',
-	'[data-cui="icon-button"]',
+	'[data-cui="iconbutton"]',
 	'input[aria-label="Name"]',
 	"textarea",
 	'[data-cui="select-trigger"]',
 	'[role="spinbutton"]',
-	'[data-cui="segmentedControl"]',
+	'[data-cui="segmentedcontrol"]',
 ];
 
 function expectRowHeight(container: Element, expected: number) {
@@ -58,7 +58,7 @@ function expectRowHeight(container: Element, expected: number) {
 		expect(control!.getBoundingClientRect().height, selector).toBe(expected);
 	}
 
-	const track = container.querySelector('[data-cui="segmentedControl"]')!;
+	const track = container.querySelector('[data-cui="segmentedcontrol"]')!;
 	const style = getComputedStyle(track);
 	const innerHeight =
 		expected - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom);

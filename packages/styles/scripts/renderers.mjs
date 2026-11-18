@@ -71,7 +71,7 @@ export function checkRenderers(root, registry, manifest) {
 		if (name === "toast") roots.push(path.join(kit, "components/Toast/Toaster.tsx"));
 		if (name === "listbox")
 			roots.push(path.join(kit, "components/Listbox/VirtualizedListbox.tsx"));
-		if (name === "radio-list")
+		if (name === "radiolist")
 			roots.push(path.join(kit, "components/RadioList/RadioList.tsx"));
 		const expected = new Set();
 		for (const file of roots) {

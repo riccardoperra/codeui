@@ -4,11 +4,11 @@
   }
 }
 @layer cui.components {
-  .cui-skeleton-base {
+  .cui-skeleton {
     display: block;
     border-radius: var(--cui-radius-xs);
   }
-  .cui-skeleton-base {
+  .cui-skeleton {
     &[data-visible] {
       background-color: var(--cui-action-neutral-base);
       color: transparent;
@@ -20,7 +20,7 @@
       visibility: hidden;
     }
   }
-  :where(.cui-skeleton-base) {
+  :where(.cui-skeleton) {
     &[data-circle] {
       border-radius: var(--cui-radius-full);
     }

@@ -17,27 +17,27 @@ export default function Buttons() {
 			<div class="showcase-group">
 				<p class="showcase-group-label">Themes</p>
 				<div class="showcase-row">
-					<Button size="sm" theme="primary">Primary</Button>
-					<Button size="sm" theme="secondary">Secondary</Button>
-					<Button size="sm" theme="tertiary">Tertiary</Button>
-					<Button size="sm" theme="secondary" variant="ghost">Ghost</Button>
-					<Button size="sm" theme="negative">Danger</Button>
+					<Button size="sm" variant="primary">Primary</Button>
+					<Button size="sm" variant="secondary">Secondary</Button>
+					<Button size="sm" variant="tertiary">Tertiary</Button>
+					<Button size="sm" variant="secondary" ghost>Ghost</Button>
+					<Button size="sm" variant="negative">Danger</Button>
 				</div>
 			</div>
 			<div class="showcase-group">
 				<p class="showcase-group-label">Sizes</p>
 				<div class="showcase-row">
-					<Button size="xs" theme="secondary">Extra small</Button>
-					<Button size="sm" theme="secondary">Small</Button>
-					<Button size="md" theme="secondary">Medium</Button>
+					<Button size="xs" variant="secondary">Extra small</Button>
+					<Button size="sm" variant="secondary">Small</Button>
+					<Button size="md" variant="secondary">Medium</Button>
 				</div>
 			</div>
 			<div class="showcase-group">
 				<p class="showcase-group-label">States</p>
 				<div class="showcase-row">
-					<Button size="sm" theme="secondary" leftIcon={<PlusIcon />}>New project</Button>
-					<Button size="sm" theme="secondary" loading={saving()} onClick={save}>Save changes</Button>
-					<Button size="sm" theme="secondary" disabled>Disabled</Button>
+					<Button size="sm" variant="secondary" leftIcon={<PlusIcon />}>New project</Button>
+					<Button size="sm" variant="secondary" loading={saving()} onClick={save}>Save changes</Button>
+					<Button size="sm" variant="secondary" disabled>Disabled</Button>
 				</div>
 			</div>
 		</div>

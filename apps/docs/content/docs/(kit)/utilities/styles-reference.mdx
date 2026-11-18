@@ -22,13 +22,13 @@ The published `@codeui/styles/contract.json` includes the options, allowed value
 
 Advanced raw namespace from `@codeui/kit`. These exports expose class names, variant helpers and CSS variable references.
 
-`button()` returns the base class string. Set `data-size`, `data-theme`, or `data-variant="ghost"` on custom markup. `buttonIcon`, `buttonText`, and `buttonTheme` are class strings. `buttonVars` exposes the local CSS variables.
+`button()` returns the base class string. Set `data-size`, `data-variant`, or the `data-ghost` presence attribute on custom markup. `buttonIcon` and `buttonText` are class strings. `buttonVars` exposes the local CSS variables.
 
 ## `fieldStyles`
 
 Advanced raw namespace from `@codeui/kit`. These exports expose class names, variant helpers and CSS variable references.
 
-`baseFieldVariants()` returns the base class. Set `data-size` and `data-theme` on the input. `FieldSizes` contains size names, `baseFieldTheme` is a class string, and `baseFieldVars`, `inputHeight`, and `fontSize` provide CSS variable references.
+`baseFieldVariants()` returns the base class. Set `data-size` and `data-variant` on the input. `FieldSizes` contains size names, `baseFieldTheme` is a class string, and `baseFieldVars`, `inputHeight`, and `fontSize` provide CSS variable references.
 
 ## `fieldErrorStyles`
 
@@ -52,13 +52,13 @@ Advanced raw namespace from `@codeui/kit`. These exports expose class names, var
 
 Advanced raw namespace from `@codeui/kit`. These exports expose class names, variant helpers and CSS variable references.
 
-`content`, `subMenuContent`, `separator`, `item`, `rightSlot`, and `dropdownMenuTheme` are class strings. `dropdownMenuThemeVars` is a variable contract. There are no callable recipes or variants.
+`content`, `subMenuContent`, `separator`, `item`, and `rightSlot` are class strings. `dropdownMenuThemeVars` is a variable contract. There are no callable recipes or variants.
 
 ## `popoverStyles`
 
 Advanced raw namespace from `@codeui/kit`. These exports expose class names, variant helpers and CSS variable references.
 
-The root namespace exports `content()` for the base classes. Use `data-variant="bordered"` for the bordered variant. The namespace also exposes the title, description, and theme classes and the theme variables.
+The root namespace exports `content()` for the base classes. Use `data-variant="bordered"` for the bordered variant. The namespace also exposes the title and description classes and the `popoverThemeVars` variable contract.
 
 ## `styleFieldMessage`
 
@@ -192,8 +192,8 @@ Import from `@codeui/kit/dialog/parts`.
 | --- | --- |
 | `trigger()` | `""` |
 | `overlay()` | `styles.overlay` |
-| `positioner()` | `mergeClasses(styles.dialogTheme, styles.positioner)` |
-| `panel()` | `mergeClasses(styles.dialogTheme, styles.panel())` |
+| `positioner()` | `styles.positioner` |
+| `panel()` | `styles.panel()` |
 | `header()` | `styles.title` |
 | `title()` | `""` |
 | `description()` | `styles.description` |

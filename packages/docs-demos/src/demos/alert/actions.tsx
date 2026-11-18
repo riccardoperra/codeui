@@ -25,7 +25,7 @@ export default function Demo() {
 				</span>
 			}
 			action={
-				<Button theme="secondary" onClick={() => setSaved(true)}>
+				<Button variant="secondary" onClick={() => setSaved(true)}>
 					Save settings
 				</Button>
 			}

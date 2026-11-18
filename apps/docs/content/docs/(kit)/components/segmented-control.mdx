@@ -19,12 +19,12 @@ Use [RadioList](/docs/components/radio-list) for form choices with native radio 
 
 <Anatomy demo="segmented-control/anatomy" />
 
-| Export                 | Renders       | `classes` key      | `data-cui`                  | Role    |
-| ---------------------- | ------------- | ------------------ | --------------------------- | ------- |
-| `SegmentedControl`     | Root div      | `root`             | `segmentedControl`          | none    |
-| `SegmentedControl`     | List div      | `list`             | `segmentedControlList`      | tablist |
-| `SegmentedControl`     | Indicator div | `indicator`        | `segmentedControlIndicator` | none    |
-| `SegmentedControlItem` | Button        | `item` from parent | `segmentedControlItem`      | tab     |
+| Export                 | Renders       | `classes` key      | `data-cui`                   | Role    |
+| ---------------------- | ------------- | ------------------ | ---------------------------- | ------- |
+| `SegmentedControl`     | Root div      | `root`             | `segmentedcontrol`           | none    |
+| `SegmentedControl`     | List div      | `list`             | `segmentedcontrol-list`      | tablist |
+| `SegmentedControl`     | Indicator div | `indicator`        | `segmentedcontrol-indicator` | none    |
+| `SegmentedControlItem` | Button        | `item` from parent | `segmentedcontrol-item`      | tab     |
 
 ## Variants
 
@@ -42,7 +42,7 @@ Use [RadioList](/docs/components/radio-list) for form choices with native radio 
 
 <SolidDemo name="segmented-control/fluid" />
 
-`xs`, `sm`, `md`, and `lg` are 28px, 36px, 44px, and 52px at comfortable density. The default is `sm`. Density adjusts the height without changing the font size. Each segment fills the track height inside its padding. The indicator slides between segments in 160ms when you click; arrow keys and Enter move it instantly, and reduced motion never slides it. `pill` combines with either variant. `fluid` fills width only. The control keeps its size height even inside the taller demo container. `autoWidth` sets each segment to a 1px base width with equal flex growth and removes horizontal padding. It does not measure text widths.
+`xs`, `sm`, `md`, and `lg` are 28px, 36px, 44px, and 52px at comfortable density. The default is `sm`. Density adjusts the height without changing the font size. Each segment fills the track height inside its padding. The indicator slides between segments in 160ms when you click; arrow keys and Enter move it instantly, and reduced motion never slides it. `pill` combines with either variant. `accent` fills the indicator with the brand color. `fluid` fills width only. The control keeps its size height even inside the taller demo container. `autoWidth` sets each segment to a 1px base width with equal flex growth and removes horizontal padding. It does not measure text widths.
 
 ## States
 

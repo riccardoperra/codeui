@@ -68,7 +68,7 @@ Without the helper, set `optionValue` and `optionTextValue`, and pass `itemLabel
 
 `optionDisabled` takes a key or a function. Disabled options stay in the list, take no selection, and are skipped by the arrow keys. `createSelectOptions` has no disabled mapping. With the helper, pass `optionDisabled` as a function over the `{ label, value }` option.
 
-### Themes
+### Filled and inline
 
 <SolidDemo name="select/themes" />
 
@@ -177,7 +177,7 @@ import * as S from "@codeui/kit/select/parts";
 </S.Root>
 ```
 
-The anatomy table lists the styled elements. Set `size` and `theme` on `Trigger`. Set the same `size` on `Root` to size the label and messages. Use `Portal` to mount the list and `Section` to render option groups. To submit selected keys with a form, put `FormValue` inside `Root` with the field `name` and the same `disabled` state.
+The anatomy table lists the styled elements. Set `size` and `variant` on `Trigger`. Set the same `size` on `Root` to size the label and messages. Use `Portal` to mount the list and `Section` to render option groups. To submit selected keys with a form, put `FormValue` inside `Root` with the field `name` and the same `disabled` state.
 
 ## Accessibility
 
@@ -214,7 +214,7 @@ The trigger uses the shared field styles. The list uses the menu surfaces.
 - `--cui-text-danger` for the invalid border and the error message.
 - `--cui-surface-dialog` for the disabled fill.
 - `--cui-focus-color` for the focus ring.
-- `--cui-border-width` and `--cui-border-width-strong`, the second for the `inline` theme.
+- `--cui-border-width` and `--cui-border-width-strong`, the second for the `inline` variant.
 - `--cui-control-height-{xs,sm,md,lg}`, `--cui-font-size-{xs,sm,md,lg}`, and `--cui-radius-{xs,sm,md,lg,xl}` for sizes.
 - `--cui-surface-menu`, `--cui-border-menu`, `--cui-shadow-menu`, and `--cui-text-menu` for the list.
 - `--cui-surface-menu-hover` for the highlighted option.

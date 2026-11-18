@@ -6,7 +6,7 @@ Form fields take keyboard input, show a label, description and error message, an
 
 - `textfield-input` types into a labeled textbox.
 - `textfield-states` renders filled, outline, inline variants and disabled, read-only, required states.
-- `textfield-validation` marks the textbox invalid and shows `text-field-error-message`.
+- `textfield-validation` marks the textbox invalid and shows `textfield-error-message`.
 - `select-pick` opens the options and picks one with arrows and Enter.
 - `listbox-select` selects options with arrows and Enter, single and multiple.
 - `numberfield-step` increments and decrements with arrow keys within min and max.
@@ -37,8 +37,8 @@ Preconditions:
 
 The results below were observed in a probe on this base. No journey file ships for them yet.
 
-- **TextField.** Tab, then `page.keyboard.type('hello')`. `getByRole('textbox', { name: 'Input label' })` has value `hello`; focus is on `[data-cui=text-field-input]`.
-- **TextField validation.** Drive `--validation` without a journey. Each `textbox` is `[aria-invalid=true]` and a `[data-cui=text-field-error-message]` reads `Value is required.`
+- **TextField.** Tab, then `page.keyboard.type('hello')`. `getByRole('textbox', { name: 'Input label' })` has value `hello`; focus is on `[data-cui=textfield-input]`.
+- **TextField validation.** Drive `--validation` without a journey. Each `textbox` is `[aria-invalid=true]` and a `[data-cui=textfield-error-message]` reads `Value is required.`
 - **Select.** Tab focuses `[data-cui=select-trigger]`; Enter opens `getByRole('listbox')` with options `Apple`, `Banana`, `Blueberry`, `Grapes`, `Pineapple` and focus on `Apple`; ArrowDown, Enter closes the listbox, `[data-cui=select-value]` reads `Banana`, focus returns to the trigger.
 - **Listbox.** Tab focuses option `Item1`; ArrowDown, Enter makes `Item2` the only `[aria-selected=true]` option.
 - **NumberField.** Tab into `--min-max`; ArrowUp changes the spinbutton from `60` to `61`. The next Tab leaves the field: the step buttons have `tabindex=-1`.

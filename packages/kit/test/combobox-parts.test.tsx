@@ -139,7 +139,7 @@ it("reflects controlled value changes in the input", async () => {
 
 it("marks every rendered part and merges app classes after kit classes", async () => {
 	const { input } = renderLanguages();
-	const root = input.closest('[data-cui="combobox-root"]')!;
+	const root = input.closest('[data-cui="combobox"]')!;
 	expect(root).toHaveClass("app-root");
 	expect(root.className.split(" ").at(-1)).toBe("app-root");
 	expect(input).toHaveAttribute("data-cui", "combobox-input");

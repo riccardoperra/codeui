@@ -133,7 +133,9 @@ for (const [name, entry] of Object.entries(registry)) {
 						: "";
 			if (typeof base !== "string") continue;
 			for (const className of base.split(" ").filter(value => value.startsWith("cui-"))) {
-				if (className.includes("Theme")) continue;
+				// `cui-<component>-<part>`: a class owned by a dependency, such as the shared `cui-field`, is expected.
+				const owner = registry[className.split("-")[1]];
+				if (owner?.modules.some(scope => expectedScopes.has(scope))) continue;
 				assert(
 					!css.includes(`.${className} {`),
 					`${name} includes unrelated component ${component}`,

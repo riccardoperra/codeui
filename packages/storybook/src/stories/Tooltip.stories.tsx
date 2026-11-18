@@ -25,7 +25,7 @@ const meta = {
 			defaultValue: "top-start",
 			control: { type: "select" },
 		},
-		theme: {
+		variant: {
 			options: ["primary", "secondary"],
 			defaultValue: "primary",
 			control: { type: "inline-radio" },
@@ -45,11 +45,11 @@ export const TooltipStory: Story = {
 	name: "Primary (default)",
 	args: {
 		content: "My tooltip content.",
-		theme: "primary",
+		variant: "primary",
 	},
 	render: props => (
 		<Tooltip {...props}>
-			<Button theme="primary" disabled={props.disabled}>
+			<Button variant="primary" disabled={props.disabled}>
 				Hover me
 			</Button>
 		</Tooltip>
@@ -60,11 +60,11 @@ export const TooltipSecondary: Story = {
 	name: "Secondary",
 	args: {
 		content: "My tooltip content.",
-		theme: "secondary",
+		variant: "secondary",
 	},
 	render: props => (
 		<Tooltip {...props}>
-			<Button theme="secondary">Hover me</Button>
+			<Button variant="secondary">Hover me</Button>
 		</Tooltip>
 	),
 };
@@ -73,12 +73,12 @@ export const TooltipDisabled: Story = {
 	name: "Disabled",
 	args: {
 		content: "My tooltip content.",
-		theme: "secondary",
+		variant: "secondary",
 		disabled: true,
 	},
 	render: () => (
-		<Tooltip content={"My tooltip content."} theme={"secondary"} disabled>
-			<Button theme="secondary" disabled>
+		<Tooltip content={"My tooltip content."} variant={"secondary"} disabled>
+			<Button variant="secondary" disabled>
 				Hover me
 			</Button>
 		</Tooltip>
@@ -89,19 +89,19 @@ export const CustomJsxComponent: Story = {
 	name: "Custom component",
 	args: {
 		content: "My tooltip content.",
-		theme: "secondary",
+		variant: "secondary",
 		disabled: true,
 	},
 	render: () => (
 		<Tooltip
 			content={
-				<Button theme={"primary"} size="xs">
+				<Button variant={"primary"} size="xs">
 					Custom content
 				</Button>
 			}
-			theme={"secondary"}
+			variant={"secondary"}
 		>
-			<Button theme="secondary">Hover me</Button>
+			<Button variant="secondary">Hover me</Button>
 		</Tooltip>
 	),
 };

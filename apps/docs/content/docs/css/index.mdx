@@ -1,0 +1,45 @@
+---
+title: Overview
+description: Inkstone styles as plain CSS, for HTML pages and any framework.
+---
+
+`@codeui/styles` is the stylesheet behind `@codeui/kit`, published on its own. It ships standard CSS files, `cui-` class names, `data-*` variant attributes, and small class helpers. It has no framework peer and no runtime that injects styles.
+
+<HtmlDemo name="playground/starter" />
+
+The form above is plain HTML. Every demo in this section renders in a sandboxed frame that loads `@codeui/styles/all.css` and blocks scripts. What you see is the stylesheet alone.
+
+## What the CSS does
+
+- Draws every component of the kit: the same tokens, sizes, density, and motion.
+- Reads appearance from attributes such as `data-variant="primary"` and `data-size="md"`.
+- Reads state from attributes such as `data-checked`, `data-invalid`, and `data-expanded`, plus native pseudo-classes such as `:focus-visible`.
+- Switches light and dark with `data-cui-theme` on any container.
+
+## What the CSS does not do
+
+CSS styles state. It does not create it. A static page shows a menu open or a tab selected because the markup says so. A working page needs code that:
+
+- Handles events, keyboard navigation, and focus.
+- Sets accessible names, roles, and ARIA state.
+- Toggles the `data-*` state attributes the CSS reads.
+- Positions overlays and writes geometry variables such as `--cui-progress-fill-width`.
+
+Native controls carry much of this for free: a `button`, an `input type="checkbox"`, or a `table` needs no script. Composite widgets such as Select, Tabs, Dialog, or Command menu need behavior. Write it yourself, use a headless library, or use the Solid components in [`@codeui/kit`](/docs).
+
+## When to use it
+
+| You build with | Use |
+| --- | --- |
+| Solid | [`@codeui/kit`](/docs). It loads this CSS and supplies the behavior. |
+| Static HTML, a server template, or a CMS | `@codeui/styles` and the markup on these pages. |
+| React, Vue, Svelte, Angular, or Web Components | `@codeui/styles` plus your own or a headless behavior layer. The `StyleProps` helpers return the attributes to spread. |
+
+## In this section
+
+- [Installation](/docs/css/installation) loads the CSS with or without a bundler.
+- [Markup](/docs/css/markup) explains classes, part markers, and variant attributes.
+- [States](/docs/css/states) lists the attributes a behavior layer sets.
+- [Theming](/docs/css/theming) covers light and dark, tokens, density, and cascade layers.
+- [Playground](/docs/css/playground) lets you edit any demo live.
+- The component pages show the markup for each part, with demos.

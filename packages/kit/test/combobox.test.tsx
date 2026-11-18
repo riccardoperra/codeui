@@ -187,7 +187,7 @@ it("applies part classes after kit classes", async () => {
 	const input = screen.getByRole("combobox", { name: "Fruit" });
 	expect(input).toHaveClass("app-input");
 	expect(input.parentElement).toHaveClass("app-control");
-	expect(input.closest('[data-cui="combobox-root"]')).toHaveClass("app", "app-root");
+	expect(input.closest('[data-cui="combobox"]')).toHaveClass("app", "app-root");
 	input.focus();
 	press("ArrowDown");
 	await tick();

@@ -29,7 +29,7 @@ export default function ToastParts() {
 
 	return (
 		<>
-			<Button theme="primary" onClick={showExport}>
+			<Button variant="primary" onClick={showExport}>
 				Export with a time bar
 			</Button>
 			<T.Region regionId={region} position="bottom-right" aria-label="Export notifications">

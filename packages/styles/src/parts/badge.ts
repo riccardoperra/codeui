@@ -1,7 +1,7 @@
 import type { BadgeStyleOptions } from "../generated-appearance/badge";
 import * as styles from "../components/Badge/Badge.css";
 export const badgeParts = {
-	root: "badge-root",
+	root: "badge",
 	icon: "badge-icon",
 	label: "badge-label",
 } as const;

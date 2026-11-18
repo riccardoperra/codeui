@@ -134,17 +134,17 @@ export const Interactive: Story = {
 				return (
 					<div style={{ display: "flex", gap: "8px", padding: "16px" }}>
 						<Button
-							theme="secondary"
+							variant="secondary"
 							onClick={() =>
 								toaster.show({ description: `Message ${++count}`, duration: 4000 })
 							}
 						>
 							Show
 						</Button>
-						<Button theme="secondary" onClick={save}>
+						<Button variant="secondary" onClick={save}>
 							Save
 						</Button>
-						<Button theme="secondary" onClick={() => toaster.clear()}>
+						<Button variant="secondary" onClick={() => toaster.clear()}>
 							Clear
 						</Button>
 					</div>

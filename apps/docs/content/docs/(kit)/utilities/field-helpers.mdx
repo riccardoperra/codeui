@@ -12,15 +12,15 @@ The demo builds an export format field from a native `select`. It uses all three
 ## `createBaseFieldProps`
 
 ```tsx
-const field = createBaseFieldProps({ size: "sm", theme: "filled" });
+const field = createBaseFieldProps({ size: "sm", variant: "filled" });
 return <input {...field.attributes} class={field.baseStyle()} />;
 ```
 
-`BaseFieldProps` supplies size and theme. Pass the component props directly to keep the attributes reactive.
+`BaseFieldProps` supplies size and variant. Pass the component props directly to keep the attributes reactive.
 
 <PropsTable name="BaseField" />
 
-`baseStyle()` returns the base class. Spread `field.attributes` to set the current `data-size` and `data-theme`.
+`baseStyle()` returns the base class. Spread `field.attributes` to set the current `data-size` and `data-variant`.
 
 Pass the `field` accessor to also get `ids`. The helper reads only `id` and `inputId` from it. `ids` holds four accessors that return linked ids:
 

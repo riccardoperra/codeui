@@ -81,7 +81,7 @@ export function Transactions() {
 						<Text as="p" size="xs" tone="muted">
 							Nothing in this period fits the search and the category.
 						</Text>
-						<Button theme="secondary" size={size()} onClick={clear}>
+						<Button variant="secondary" size={size()} onClick={clear}>
 							Clear filters
 						</Button>
 					</div>
@@ -167,7 +167,7 @@ function Row(props: { transaction: Transaction }) {
 			</td>
 			<td class="fin-actions">
 				<DropdownMenu placement="bottom-end">
-					<DropdownMenuTrigger as={IconButton} size="xs" theme="secondary" variant="ghost" aria-label={`Actions for ${t().merchant}`}>
+					<DropdownMenuTrigger as={IconButton} size="xs" variant="secondary" ghost aria-label={`Actions for ${t().merchant}`}>
 						<Ellipsis size={16} />
 					</DropdownMenuTrigger>
 					<DropdownMenuPortal>

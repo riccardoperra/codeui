@@ -1,5 +1,5 @@
 export const body: string = "cui-sheet-body";
-export const closeButton: string = "cui-sheet-closeButton";
+export const closeButton: string = "cui-sheet-close-button";
 export const content = (): string => "cui-sheet-content";
 export const description: string = "cui-sheet-description";
 export const footer: string = "cui-sheet-footer";

@@ -5,7 +5,7 @@ export default function Demo() {
 	const [mount, setMount] = createSignal<HTMLDivElement>();
 	return <S.Root modal={false}>
 		<div style={{ position: "relative", height: "360px", width: "100%" }}>
-			<S.Trigger as={Button} theme="secondary">Open docked layers</S.Trigger>
+			<S.Trigger as={Button} variant="secondary">Open docked layers</S.Trigger>
 			<div ref={setMount} style={{ position: "absolute", inset: "48px 0 0" }} />
 			<Show when={mount()}>{target => <S.Portal mount={target()}>
 				<S.Content style={{ position: "absolute", "max-height": "100%" }}>

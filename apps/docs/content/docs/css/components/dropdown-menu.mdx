@@ -1,0 +1,75 @@
+---
+title: Dropdown menu
+description: A list of actions under a trigger, in plain HTML.
+---
+
+Load `@codeui/styles/dropdownmenu.css`, or `all.css`. The Solid component is documented in [DropdownMenu](/docs/components/dropdown-menu).
+
+## Demo
+
+<HtmlDemo name="dropdown-menu/basic" />
+
+The demos render the open menu in normal flow, under its trigger. On a page, the menu floats and your positioning code places it.
+
+## Markup
+
+| Part | Element | Class | `data-cui` |
+| --- | --- | --- | --- |
+| Trigger | `button` | Button classes | None |
+| Content | `div` | `cui-dropdownmenu-content` | `dropdownmenu-content` |
+| Item | `div` or `button` | `cui-dropdownmenu-item` | `dropdownmenu-item` |
+| Right slot | `div` or `span` | `cui-dropdownmenu-right-slot` | None |
+| Separator | `div` | `cui-dropdownmenu-separator` | None |
+| Submenu content | `div` | `cui-dropdownmenu-submenu-content cui-dropdownmenu-content` | None |
+
+The right slot holds a shortcut or a submenu arrow. It pushes itself to the end of the item and uses muted text.
+
+| Attribute | Values | Default |
+| --- | --- | --- |
+| `data-expanded` on the content | Presence | Off |
+| `data-motion` on the content | `none` | None |
+| `data-highlighted` on an item | Presence | Off |
+| `data-disabled` on an item | Presence | Off |
+
+The menu has no variant attributes. It is at least 12rem wide, or as wide as `--cui-popper-anchor-width` when that is larger.
+
+## Variants
+
+### Groups
+
+<HtmlDemo name="dropdown-menu/groups" />
+
+Split related actions with a separator. Keep a destructive action, such as Delete, in its own group at the end.
+
+### Submenu
+
+<HtmlDemo name="dropdown-menu/submenu" />
+
+A submenu is a second content element with `cui-dropdownmenu-submenu-content` added. Put it beside its trigger item. The kit overlaps it 4px into the parent menu, so its first item lines up with the trigger. The demo does that with `margin-left: -4px`.
+Keep `data-highlighted` on the submenu trigger while the submenu is open.
+
+## States
+
+### Highlighted
+
+`data-highlighted` gives an item the hover fill and turns its right slot to the item text color. The menu has no `:hover` rule, so set it on pointer move and on arrow-key focus. The basic demo highlights Save as PNG.
+
+### Disabled
+
+<HtmlDemo name="dropdown-menu/disabled" />
+
+`data-disabled` dims an item to 40%. A `button` item also dims on `:disabled`. Set `aria-disabled="true"`, skip the item with the arrow keys, and ignore clicks on it.
+
+### Open
+
+`data-expanded` plays the pop-in: a fade from `scale(0.96)`. The animation grows from `--cui-popper-content-transform-origin`.
+Without `data-expanded`, the content plays its exit animation and stays transparent. Set it on an open menu even without a script. `data-motion="none"` turns off both animations, for a menu opened from the keyboard.
+
+## What you supply
+
+- `aria-haspopup="menu"`, `aria-expanded`, and `aria-controls` on the trigger.
+- `role="menu"` on the content, `role="menuitem"` on each item, and `role="separator"` on separators.
+- Arrow-key navigation with `data-highlighted` on the current item, Home and End, and type-ahead.
+- Enter and Space run the highlighted item. Escape closes the menu and returns focus to the trigger. A click outside closes it.
+- Opening a submenu on hover or ArrowRight, and closing it on ArrowLeft.
+- Placement next to the trigger, `--cui-popper-anchor-width`, and `--cui-popper-content-transform-origin`.

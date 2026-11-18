@@ -7,7 +7,7 @@ export default function PopoverAnatomy() {
 		<P.Root open placement="bottom-start">
 			<div style={{ display: "grid", gap: "var(--cui-space-2)", "justify-items": "start" }}>
 				<P.Anchor style={{ display: "flex", gap: "var(--cui-space-2)" }}>
-					<P.Trigger as={Button} theme="secondary">
+					<P.Trigger as={Button} variant="secondary">
 						Font settings
 					</P.Trigger>
 				</P.Anchor>

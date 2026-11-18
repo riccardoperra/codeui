@@ -14,7 +14,7 @@ export default function ComboboxFormDemo() {
 			}}
 		>
 			<Combobox label="Language" name="language" required options={languages} />
-			<Button theme="primary" type="submit">
+			<Button variant="primary" type="submit">
 				Save snippet
 			</Button>
 			<p>{submitted() === undefined ? "Not submitted yet." : `Submitted language=${submitted()}`}</p>

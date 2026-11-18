@@ -1,0 +1,88 @@
+---
+title: Slider
+description: A single-value slider in plain HTML, with a track, a fill, and a thumb you position inline.
+---
+
+Load `@codeui/styles/slider.css`, or `all.css`. The Solid component is documented in [Slider](/docs/components/slider).
+
+## Demo
+
+<HtmlDemo name="slider/basic" />
+
+## Markup
+
+| Part | Element | Class | `data-cui` |
+| --- | --- | --- | --- |
+| Root | `div` | `cui-slider` | `slider` |
+| Label | `label` | `cui-slider-label` | `slider-label` |
+| Value | `div` | `cui-slider-value-label` | `slider-value-label` |
+| Track | `div` | `cui-slider-track` | `slider-track` |
+| Fill | `div` | `cui-slider-fill` | `slider-fill` |
+| Thumb | `span role="slider"` | `cui-slider-thumb` | `slider-thumb` |
+| Input | `input type="hidden"` | `cui-slider-input` | `slider-input` |
+| Hint | `div` | `cui-slider-description` | `slider-description` |
+| Error | `div` | `cui-slider-error-message` | `slider-error-message` |
+
+The track is a 2px line in `--cui-border-divider`, and the fill draws its brand-colored part. The thumb is a 12px white dot inside a 28px hit area, 40px on a touch screen. The value uses tabular numbers.
+
+| Attribute | Element | Values | Default |
+| --- | --- | --- | --- |
+| `data-orientation` | Track and fill | `horizontal`, `vertical` | `horizontal` |
+
+## Position
+
+The styles do not place the fill or the thumb. Set their position inline from the value, as a percentage of the range:
+
+- Fill: `left: 0%; right: 25%` for 75 on a 0 to 100 range.
+- Thumb: `position: absolute; left: 75%; transform: translateX(-50%)`.
+
+The track is a flex container that centers its children, so the fill and the thumb need no `top`.
+
+## Variants
+
+### Value label
+
+<HtmlDemo name="slider/value-label" />
+
+The value element holds any text. Write the same text in the thumb's `aria-valuetext`, so a screen reader reads "75 percent opacity" instead of 0.75.
+
+### Vertical
+
+<HtmlDemo name="slider/vertical" />
+
+Set `data-orientation="vertical"` on the track and the fill. The track becomes a 128px column. Position the fill with `bottom` and `top`, and the thumb with `bottom` and `transform: translateY(50%)`.
+
+## States
+
+### Disabled
+
+<HtmlDemo name="slider/disabled" />
+
+`data-disabled` on the track dims it to 40% opacity. On the thumb it sets the `not-allowed` cursor. Remove the thumb from the tab order and set `aria-disabled="true"`.
+
+### Invalid
+
+<HtmlDemo name="slider/invalid" />
+
+`data-invalid` on the thumb draws a 2px `--cui-text-danger` outline around the dot. Render the error only while the value is invalid, and set `aria-invalid="true"` on the thumb.
+
+## What you supply
+
+- Pointer dragging on the track and the thumb, and the inline position of the fill and the thumb.
+- Arrow keys, Page Up, Page Down, Home, and End on the thumb.
+- `aria-valuenow`, `aria-valuetext`, `aria-valuemin`, and `aria-valuemax` on the thumb, and the hidden input's `value` for forms.
+- `aria-labelledby` on the thumb for the label, and `aria-orientation` that matches `data-orientation`.
+
+A native `input type="range"` is simpler when you do not need this look.
+
+## Helper
+
+```ts
+import "@codeui/styles/slider.css";
+import { applyStyleProps } from "@codeui/styles";
+import { sliderStyleProps } from "@codeui/styles/slider";
+
+applyStyleProps(document.querySelector("[data-cui=slider-track]")!, sliderStyleProps({ orientation: "vertical" }));
+applyStyleProps(document.querySelector("[data-cui=slider-fill]")!, sliderStyleProps.fill({ orientation: "vertical" }));
+// class="cui-slider-fill" data-cui="slider-fill" data-orientation="vertical"
+```

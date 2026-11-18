@@ -24,7 +24,7 @@ export default function CommandMenuAnatomy() {
 				{(options, index) => (
 					<M.Root modal={false} open>
 						{index() === 0 ? (
-							<M.Trigger as={Button} theme="secondary">
+							<M.Trigger as={Button} variant="secondary">
 								Open commands
 							</M.Trigger>
 						) : null}

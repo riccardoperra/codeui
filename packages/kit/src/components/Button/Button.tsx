@@ -17,7 +17,7 @@ export type ButtonProps<T extends ValidComponent = "button"> = KButtonRootProps<
 export function Button<T extends ValidComponent = "button">(props: PolymorphicProps<T, ButtonProps<T>>) {
 	const [local, internal, others] = splitProps(
 		props as PolymorphicProps<"button", ButtonProps>,
-		["size", "theme", "pill", "block", "variant", "loading"],
+		["size", "variant", "pill", "block", "ghost", "loading"],
 		["class", "children", "leftIcon", "onClick", "aria-disabled"],
 	);
 
@@ -37,8 +37,8 @@ export function Button<T extends ValidComponent = "button">(props: PolymorphicPr
 		<KButton
 			{...styles.buttonStyleProps({
 				size: local.size,
-				theme: local.theme,
 				variant: local.variant,
+				ghost: local.ghost,
 				pill: local.pill,
 				block: local.block,
 				class: internal.class,

@@ -1,22 +1,21 @@
-export const checkboxTheme: string = "cui-check-box-checkboxTheme";
 export const checkboxVars = {
-	size: "var(--cui-checkboxTheme-size)" as `var(--${string})`,
-	fontSize: "var(--cui-checkboxTheme-fontSize)" as `var(--${string})`,
-	borderColor: "var(--cui-checkboxTheme-borderColor)" as `var(--${string})`,
-	background: "var(--cui-checkboxTheme-background)" as `var(--${string})`,
+	size: "var(--cui-checkbox-size)" as `var(--${string})`,
+	fontSize: "var(--cui-checkbox-font-size)" as `var(--${string})`,
+	borderColor: "var(--cui-checkbox-border-color)" as `var(--${string})`,
+	background: "var(--cui-checkbox-background)" as `var(--${string})`,
 	activeHoverBackground:
-		"var(--cui-checkboxTheme-activeHoverBackground)" as `var(--${string})`,
+		"var(--cui-checkbox-active-hover-background)" as `var(--${string})`,
 	nonActiveHoverBackground:
-		"var(--cui-checkboxTheme-nonActiveHoverBackground)" as `var(--${string})`,
-	color: "var(--cui-checkboxTheme-color)" as `var(--${string})`,
-	radius: "var(--cui-checkboxTheme-radius)" as `var(--${string})`,
-	fill: "var(--cui-checkboxTheme-fill)" as `var(--${string})`,
+		"var(--cui-checkbox-non-active-hover-background)" as `var(--${string})`,
+	color: "var(--cui-checkbox-color)" as `var(--${string})`,
+	radius: "var(--cui-checkbox-radius)" as `var(--${string})`,
+	fill: "var(--cui-checkbox-fill)" as `var(--${string})`,
 };
 export const container: string =
-	"cui-check-box-container cui-field-baseFieldTheme cui-check-box-checkboxTheme";
-export const content: string = "cui-check-box-content";
-export const control = (): string => "cui-check-box-control";
-export const icon: string = "cui-check-box-icon";
-export const indicator: string = "cui-check-box-indicator";
-export const input: string = "cui-check-box-input";
-export const label: string = "cui-check-box-label";
+	"cui-checkbox cui-field";
+export const content: string = "cui-checkbox-content";
+export const control = (): string => "cui-checkbox-control";
+export const icon: string = "cui-checkbox-icon";
+export const indicator: string = "cui-checkbox-indicator";
+export const input: string = "cui-checkbox-input";
+export const label: string = "cui-checkbox-label";

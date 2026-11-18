@@ -9,7 +9,7 @@ it.each([undefined, "xs", "sm", "md", "lg", "xl"] as const)(
 		const { container, getByText } = render(() => (
 			<Checkbox size={size} label="Show line numbers" />
 		));
-		const box = container.querySelector('[data-cui="check-box-control"], .cui-check-box-control')!;
+		const box = container.querySelector('[data-cui="check-box-control"], .cui-checkbox-control')!;
 		const label = getByText("Show line numbers");
 		const range = document.createRange();
 		range.selectNodeContents(label);

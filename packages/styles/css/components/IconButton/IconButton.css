@@ -1,7 +1,7 @@
 @layer cui.overrides {
-  .cui-icon-button-iconButton {
+  .cui-iconbutton {
     padding: 0;
-    width: var(--cui-buttonTheme-buttonHeight);
-    height: var(--cui-buttonTheme-buttonHeight);
+    width: var(--cui-button-button-height);
+    height: var(--cui-button-button-height);
   }
 }

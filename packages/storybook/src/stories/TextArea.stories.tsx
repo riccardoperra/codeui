@@ -22,7 +22,7 @@ const meta = {
 			type: "string",
 			control: { type: "text" },
 		},
-		theme: {
+		variant: {
 			options: themes,
 			default: "filled",
 			control: { type: "radio" },
@@ -61,7 +61,7 @@ export const TextAreaStory: Story = {
 		options: { autoResize: true },
 		placeholder: "Insert a value...",
 		label: "Textarea label",
-		theme: "filled",
+		variant: "filled",
 	},
 };
 
@@ -72,7 +72,7 @@ export const TextAreaFilledVariant: Story = {
 		options: { autoResize: true },
 		placeholder: "Insert a value",
 		label: "Textarea label",
-		theme: "filled",
+		variant: "filled",
 		description: "Your username is description",
 	},
 };
@@ -85,7 +85,7 @@ export const TextAreaOutlineVariant: Story = {
 		placeholder: "Insert a value",
 		label: "Textarea label",
 		// @ts-expect-error Fix
-		theme: "outline",
+		variant: "outline",
 		description: "Lorem ipsum dolor sit amet",
 	},
 };
@@ -98,7 +98,7 @@ export const TextAreaInlineVariant: Story = {
 		options: { autoResize: true },
 		placeholder: "Insert a value",
 		label: "Textarea label",
-		theme: "inline",
+		variant: "inline",
 		description: "Lorem ipsum dolor sit amet",
 	},
 };
@@ -115,7 +115,7 @@ export const TextAreaDisabled: Story = {
 						description={"Lorem ipsum dolor sit amet."}
 						label={"Input"}
 						size={"md"}
-						theme={theme}
+						variant={theme}
 						disabled
 					/>
 				)}
@@ -136,7 +136,7 @@ export const TextAreaReadonly: Story = {
 						description={"Lorem ipsum dolor sit amet."}
 						label={"Input"}
 						size={"md"}
-						theme={theme}
+						variant={theme}
 						readOnly
 					/>
 				)}
@@ -158,13 +158,13 @@ export const TextAreaRequired: Story = {
 							description={"Lorem ipsum dolor sit amet."}
 							label={"Input"}
 							size={"md"}
-							theme={theme}
+							variant={theme}
 							required
 						/>
 					)}
 				</For>
 			</DocsItemsContainer>
-			<Button theme={"secondary"} type={"submit"}>
+			<Button variant={"secondary"} type={"submit"}>
 				Submit
 			</Button>
 		</form>
@@ -216,7 +216,7 @@ export const TextAreaCustomClasses: Story = {
 		options: { autoResize: true },
 		placeholder: "Insert a value",
 		label: "Textarea label",
-		theme: "inline",
+		variant: "inline",
 		description: "Lorem ipsum dolor sit amet",
 		slotClasses: {
 			input: "text-center",

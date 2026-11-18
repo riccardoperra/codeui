@@ -4,7 +4,6 @@ import type {
 	DialogSectionStyleOptions,
 } from "../generated-appearance/dialog";
 import * as styles from "../components/Dialog/Dialog.css";
-import { mergeClasses } from "../utils/css";
 export const dialogParts = {
 	trigger: "dialog-trigger",
 	overlay: "dialog-overlay",
@@ -78,8 +77,8 @@ export type DialogStyles = Record<DialogPart, () => string>;
 export const dialogStyles: DialogStyles = {
 	trigger: () => "",
 	overlay: () => styles.overlay,
-	positioner: () => mergeClasses(styles.dialogTheme, styles.positioner),
-	panel: () => mergeClasses(styles.dialogTheme, styles.panel()),
+	positioner: () => styles.positioner,
+	panel: () => styles.panel(),
 	header: () => styles.title,
 	title: () => "",
 	description: () => styles.description,

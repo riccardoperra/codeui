@@ -5,7 +5,7 @@ import type { PropNotes } from "./notes";
 /** Props that TextField adds on top of Kobalte's text field root. */
 export type TextField = Pick<
 	TextFieldProps,
-	"label" | "description" | "errorMessage" | "placeholder" | "size" | "theme" | "classes" | "ref"
+	"label" | "description" | "errorMessage" | "placeholder" | "size" | "variant" | "classes" | "ref"
 >;
 
 /** Kobalte text field root options that TextField passes through. */
@@ -40,7 +40,7 @@ export const notes = {
 		errorMessage: { description: 'Message under the input. Renders only when validationState is "invalid".' },
 		placeholder: { description: "Placeholder of the input." },
 		size: { default: '"sm"', description: "Height of the input and font size of every part." },
-		theme: { default: '"filled"', description: "A filled box, or a bottom border only." },
+		variant: { default: '"filled"', description: "A filled box, or a bottom border only." },
 		classes: { description: "Classes merged after the kit styles, one per part." },
 		ref: { description: "Ref to the input element, not the root." },
 	},

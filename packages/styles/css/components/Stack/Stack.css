@@ -1,8 +1,8 @@
 @layer cui.components {
-  .cui-stack-root {
+  .cui-stack {
     display: flex;
   }
-  :where(.cui-stack-root) {
+  :where(.cui-stack) {
     &[data-gap="0"] {
       gap: var(--cui-space-0);
     }

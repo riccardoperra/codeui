@@ -14,7 +14,7 @@ import {
 export default function DropdownMenuSubmenu() {
 	return (
 		<DropdownMenu>
-			<DropdownMenuTrigger as={Button} theme="secondary">
+			<DropdownMenuTrigger as={Button} variant="secondary">
 				Share
 			</DropdownMenuTrigger>
 			<DropdownMenuPortal>

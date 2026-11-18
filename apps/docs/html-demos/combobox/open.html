@@ -1,0 +1,50 @@
+<div class="cui-stack" data-gap="1.5" style="max-width: 280px; margin-inline: auto">
+  <div role="group" class="cui-combobox" data-cui="combobox">
+    <label for="open-lang" class="cui-combobox-label" data-cui="combobox-label">Language</label>
+    <div class="cui-combobox-control" data-cui="combobox-control" data-size="sm" data-expanded>
+      <input id="open-lang" type="text" role="combobox" value="TypeScript" placeholder="Search languages" autocomplete="off" aria-autocomplete="list" aria-expanded="true" aria-controls="open-lang-listbox" class="cui-combobox-input" data-cui="combobox-input" data-expanded />
+      <button type="button" tabindex="-1" aria-label="Show languages" aria-expanded="true" class="cui-combobox-trigger" data-cui="combobox-trigger" data-expanded>
+        <span aria-hidden="true" class="cui-combobox-icon" data-cui="combobox-icon">
+          <svg class="cui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
+          </svg>
+        </span>
+      </button>
+    </div>
+  </div>
+  <div class="cui-combobox-content" data-cui="combobox-content" data-expanded>
+    <ul id="open-lang-listbox" role="listbox" aria-label="Suggestions" class="cui-combobox-listbox" data-cui="combobox-listbox">
+      <li role="presentation" class="cui-combobox-section" data-cui="combobox-section">Web</li>
+      <li role="option" aria-selected="true" class="cui-combobox-item" data-cui="combobox-item" data-selected>
+        <div>
+          <div class="cui-combobox-item-label" data-cui="combobox-item-label">TypeScript</div>
+          <div class="cui-combobox-item-description" data-cui="combobox-item-description">.ts and .mts files</div>
+        </div>
+        <div aria-hidden="true" class="cui-combobox-item-indicator" data-cui="combobox-item-indicator">
+          <svg class="cui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 6 9 17l-5-5" />
+          </svg>
+        </div>
+      </li>
+      <li role="option" aria-selected="false" class="cui-combobox-item" data-cui="combobox-item" data-highlighted>
+        <div>
+          <div class="cui-combobox-item-label" data-cui="combobox-item-label">JavaScript</div>
+          <div class="cui-combobox-item-description" data-cui="combobox-item-description">.js and .mjs files</div>
+        </div>
+      </li>
+      <li role="presentation" class="cui-combobox-section" data-cui="combobox-section">Systems</li>
+      <li role="option" aria-selected="false" class="cui-combobox-item" data-cui="combobox-item">
+        <div>
+          <div class="cui-combobox-item-label" data-cui="combobox-item-label">Rust</div>
+          <div class="cui-combobox-item-description" data-cui="combobox-item-description">.rs files</div>
+        </div>
+      </li>
+      <li role="option" aria-selected="false" class="cui-combobox-item" data-cui="combobox-item" aria-disabled="true" data-disabled>
+        <div>
+          <div class="cui-combobox-item-label" data-cui="combobox-item-label">Zig</div>
+          <div class="cui-combobox-item-description" data-cui="combobox-item-description">.zig files</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

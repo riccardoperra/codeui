@@ -23,7 +23,7 @@ export default function AliasesDemo() {
 	const [last, setLast] = createSignal("");
 	return (
 		<div style={{ display: "grid", gap: "var(--cui-space-3)", "justify-items": "start" }}>
-			<Button theme="secondary" onClick={() => setOpen(true)}>
+			<Button variant="secondary" onClick={() => setOpen(true)}>
 				Open commands
 			</Button>
 			<p aria-live="polite" style={{ margin: 0, color: "var(--cui-text-hint)" }}>

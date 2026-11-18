@@ -4,8 +4,8 @@ import "./app-override.css";
 export default function CascadeAppOverride() {
 	return (
 		<>
-			<Button theme="primary">Export PNG</Button>
-			<Button theme="primary" class="export-pill">
+			<Button variant="primary">Export PNG</Button>
+			<Button variant="primary" class="export-pill">
 				Export PNG
 			</Button>
 		</>

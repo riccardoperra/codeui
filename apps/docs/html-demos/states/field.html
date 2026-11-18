@@ -1,0 +1,35 @@
+<div class="cui-stack" data-gap="5" style="max-width: 360px; margin-inline: auto">
+  <div role="group" class="cui-textfield cui-field" data-cui="textfield" data-field-size="sm">
+    <label for="name-invalid" class="cui-field-label" data-cui="textfield-label">File name</label>
+    <input
+      id="name-invalid"
+      type="text"
+      value="my snippet?.png"
+      aria-invalid="true"
+      aria-describedby="name-invalid-error"
+      class="cui-field-input cui-textfield-input"
+      data-cui="textfield-input"
+      data-size="sm"
+      data-variant="filled"
+      data-invalid
+    />
+    <div id="name-invalid-error" class="cui-field-error" data-cui="textfield-error-message">
+      Use letters, numbers, and dashes.
+    </div>
+  </div>
+
+  <div role="group" class="cui-textfield cui-field" data-cui="textfield" data-field-size="sm">
+    <label for="name-disabled" class="cui-field-label" data-cui="textfield-label">Export folder</label>
+    <input
+      id="name-disabled"
+      type="text"
+      value="~/Pictures/CodeImage"
+      disabled
+      class="cui-field-input cui-textfield-input"
+      data-cui="textfield-input"
+      data-size="sm"
+      data-variant="filled"
+      data-disabled
+    />
+  </div>
+</div>

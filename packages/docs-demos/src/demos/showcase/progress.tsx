@@ -39,7 +39,7 @@ export default function Upload() {
 				</Show>
 			</section>
 			<div class="showcase-row" style={{ "justify-content": "flex-end" }}>
-				<Button theme="secondary" size="sm" loading={running()} onClick={start}>
+				<Button variant="secondary" size="sm" loading={running()} onClick={start}>
 					Upload again
 				</Button>
 			</div>

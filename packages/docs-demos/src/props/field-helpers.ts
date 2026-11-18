@@ -2,7 +2,7 @@ import type { BaseFieldProps, FieldWithErrorMessageSupport } from "@codeui/kit";
 import type { PropNotes } from "./notes";
 
 /** Variants that createBaseFieldProps reads. */
-export type BaseField = Pick<NonNullable<BaseFieldProps>, "size" | "theme">;
+export type BaseField = Pick<NonNullable<BaseFieldProps>, "size" | "variant">;
 
 /** Props that createFieldErrorMessageProps reads. */
 export type FieldErrorMessageSupport = Pick<FieldWithErrorMessageSupport, "errorMessage">;
@@ -10,7 +10,7 @@ export type FieldErrorMessageSupport = Pick<FieldWithErrorMessageSupport, "error
 export const notes = {
 	BaseField: {
 		size: { default: '"sm"', description: "Height, font size, and corner radius of the control." },
-		theme: { default: '"filled"', description: "A filled box, or a bottom border only." },
+		variant: { default: '"filled"', description: "A filled box, or a bottom border only." },
 	},
 	FieldErrorMessageSupport: {
 		errorMessage: { description: "The message to render. The helper passes it through unchanged." },

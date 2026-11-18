@@ -23,7 +23,7 @@ Wrap a Kobalte primitive when one exists. Check the [Kobalte components](https:/
 
 ```css title="packages/styles/css/components/Badge/Badge.css"
 @layer cui.components {
-  .cui-badge-root {
+  .cui-badge {
     display: inline-flex;
     gap: var(--cui-space-1);
     border-radius: var(--cui-radius-badge);
@@ -40,7 +40,7 @@ Wrap a Kobalte primitive when one exists. Check the [Kobalte components](https:/
 
 ```tsx title="packages/kit/src/parts/badge.tsx"
 export const badgeParts = {
-	root: "badge-root",
+	root: "badge",
 	icon: "badge-icon",
 	label: "badge-label",
 } as const;
@@ -82,7 +82,7 @@ export function Root<T extends ValidComponent = "span">(props: PolymorphicProps<
 
 Each parts file exports the same set of names:
 
-- `<name>Parts`, a map from each part key to its `data-cui` value. The value is `<name>-<part>` in kebab case, such as `badge-root` or `toast-close-button`. Apps and tests select parts by this attribute, so treat a rename as a breaking change.
+- `<name>Parts`, a map from each part key to its `data-cui` value. The value is `<name>-<part>` in kebab case, such as `badge` or `toast-close-button`. Apps and tests select parts by this attribute, so treat a rename as a breaking change.
 - `<Name>Part`, `<Name>Classes`, and `<Name>Variants` types. `<Name>Classes` is a partial record of part keys, and it is the type of the ready component's `classes` prop.
 - `<name>Styles`, typed `<Name>Styles`, with one function per part. Each function returns the base class string. An app calls it to give its own element the kit look without the behavior.
 - One component per part, named after the Kobalte part it wraps, such as `Root`, `Label`, or `Content`. Each part sets `data-cui`, merges its style class with the caller's `class`, and spreads the rest of its props onto the Kobalte part.

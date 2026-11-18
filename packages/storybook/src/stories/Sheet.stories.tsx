@@ -36,7 +36,7 @@ export const Sides: Story = {
 					const [open, setOpen] = createSignal(false);
 					return (
 						<>
-							<Button theme={"secondary"} onClick={() => setOpen(true)}>
+							<Button variant={"secondary"} onClick={() => setOpen(true)}>
 								Open ({side})
 							</Button>
 							<Sheet
@@ -46,7 +46,7 @@ export const Sides: Story = {
 								title={`Layers (${side})`}
 								description="Reorder what the frame shows."
 								footer={
-									<Button theme={"primary"} size={"sm"} onClick={() => setOpen(false)}>
+									<Button variant={"primary"} size={"sm"} onClick={() => setOpen(false)}>
 										Done
 									</Button>
 								}
@@ -75,10 +75,10 @@ export const Bottom: Story = {
 			description="The image keeps the frame's size."
 			footer={
 				<>
-					<Button theme={"secondary"} size={"sm"}>
+					<Button variant={"secondary"} size={"sm"}>
 						Copy
 					</Button>
-					<Button theme={"primary"} size={"sm"}>
+					<Button variant={"primary"} size={"sm"}>
 						Export
 					</Button>
 				</>
@@ -128,7 +128,7 @@ export const DockedParts: Story = {
 				}}
 			>
 				<div style={{ flex: 1, display: "grid", "place-items": "center" }}>
-					<Button theme={"secondary"}>Frame</Button>
+					<Button variant={"secondary"}>Frame</Button>
 				</div>
 				<div ref={setSlot} style={{ position: "relative", height: "40%" }} />
 				<Show when={slot()}>

@@ -28,14 +28,14 @@ export function Root<T extends ValidComponent = "div">(
 	const [local, others] = splitProps(props as PolymorphicProps<"div", RootProps>, [
 		"class",
 		"size",
-		"theme",
+		"variant",
 	]);
 	return (
 		<K.Root
 			{...others}
 			data-cui="checkbox"
 			data-field-size={checkboxStyleProps({ fieldSize: local.size })["data-field-size"]}
-			data-field-theme={local.theme ?? "inline"}
+			data-field-variant={local.variant ?? "inline"}
 			class={mergeClasses(styles.container, local.class)}
 		/>
 	);
@@ -56,13 +56,13 @@ export function Control<T extends ValidComponent = "div">(
 	const [local, others] = splitProps(props as PolymorphicProps<"div", ControlProps>, [
 		"class",
 		"size",
-		"theme",
+		"variant",
 	]);
 	return (
 		<K.Control
 			{...others}
 			data-size={checkboxStyleProps.control({ size: local.size })["data-size"]}
-			data-theme={local.theme ?? "inline"}
+			data-variant={local.variant ?? "inline"}
 			class={mergeClasses(styles.control(), local.class)}
 		/>
 	);

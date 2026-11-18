@@ -1,22 +1,22 @@
 @layer cui.components {
-  .cui-field-error-errorMessage {
+  .cui-field-error {
     user-select: none;
     line-height: var(--cui-font-line-height-xs);
     color: var(--cui-text-danger);
   }
-  [data-field-size=xs] .cui-field-error-errorMessage {
+  [data-field-size=xs] .cui-field-error {
     font-size: var(--cui-font-size-xs);
     line-height: var(--cui-font-line-height-xs);
   }
-  :where(.cui-field-baseFieldTheme):is(:not([data-field-size]), [data-field-size="sm"], [data-field-size="md"]) .cui-field-error-errorMessage {
+  :where(.cui-field):is(:not([data-field-size]), [data-field-size="sm"], [data-field-size="md"]) .cui-field-error {
     font-size: var(--cui-font-size-xs);
     line-height: var(--cui-font-line-height-xs);
   }
-  [data-field-size=lg] .cui-field-error-errorMessage {
+  [data-field-size=lg] .cui-field-error {
     font-size: var(--cui-font-size-sm);
     line-height: var(--cui-font-line-height-sm);
   }
-  [data-field-size=xl] .cui-field-error-errorMessage {
+  [data-field-size=xl] .cui-field-error {
     font-size: var(--cui-font-size-sm);
     line-height: var(--cui-font-line-height-sm);
   }

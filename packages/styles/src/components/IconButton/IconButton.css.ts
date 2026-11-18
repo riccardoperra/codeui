@@ -1,1 +1,1 @@
-export const iconButton: string = "cui-icon-button-iconButton";
+export const iconButton: string = "cui-iconbutton";

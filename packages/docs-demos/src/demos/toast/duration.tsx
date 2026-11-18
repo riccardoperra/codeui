@@ -6,13 +6,13 @@ export default function ToastDuration() {
 	return (
 		<>
 			<Button
-				theme="secondary"
+				variant="secondary"
 				onClick={() => notifications.show({ description: "Theme switched to Dracula." })}
 			>
 				3 seconds
 			</Button>
 			<Button
-				theme="secondary"
+				variant="secondary"
 				onClick={() =>
 					notifications.show({
 						description: "Rendering a 60-frame video. Hover to keep this open.",
@@ -23,7 +23,7 @@ export default function ToastDuration() {
 				10 seconds
 			</Button>
 			<Button
-				theme="secondary"
+				variant="secondary"
 				onClick={() =>
 					notifications.show({
 						tone: "warning",

@@ -1,0 +1,76 @@
+---
+title: Popover
+description: A floating panel anchored to a trigger, in plain HTML.
+---
+
+Load `@codeui/styles/popover.css`, or `all.css`. The Solid component is documented in [Popover](/docs/components/popover).
+
+## Demo
+
+<HtmlDemo name="popover/basic" />
+
+The demos render the open panel in normal flow, under its trigger. On a page, the panel floats and your positioning code places it.
+
+## Markup
+
+| Part | Element | Class | `data-cui` |
+| --- | --- | --- | --- |
+| Trigger | `button` | Button classes | `popover-trigger` |
+| Content | `div` | `cui-popover-content` | `popover-content` |
+| Title | `h2` | `cui-popover-title` | `popover-title` |
+| Description | `p` | `cui-popover-description` | `popover-description` |
+| Close button | `button` | IconButton classes | `popover-close-button` |
+
+The content is a column with an 8px gap, so the title, the description, and the children stack without extra markup. Children go straight in the content, so a grid of buttons or a form is valid inside it.
+The title and the description classes set color and type, but not margin. Reset the heading and paragraph margins, as the demos do inline.
+
+| Attribute | Values | Default |
+| --- | --- | --- |
+| `data-variant` on the content | `default`, `bordered` | `default` |
+| `data-expanded` on the content | Presence | Off |
+| `data-motion` on the content | `none` | None |
+
+## Variants
+
+### Bordered
+
+<HtmlDemo name="popover/bordered" />
+
+`data-variant="bordered"` adds a 1px border in `--cui-border-menu`. Use it when the panel sits on a surface of the same color.
+
+### Rich title and block content
+
+<HtmlDemo name="popover/rich-content" />
+
+The title is a flex row with its items at both ends, so a badge or a close button fits in it. Keep a close button outside the heading, so it does not join the accessible name.
+
+## States
+
+### Open
+
+`data-expanded` plays the pop-in: a fade from `scale(0.96)`. The animation grows from `--cui-popper-content-transform-origin`, so set it to the side that faces the trigger.
+Without `data-expanded`, the content plays its exit animation and stays transparent. Set it on an open panel even without a script.
+
+### Closing
+
+Remove `data-expanded` while the panel is still in the page, and remove the markup when the animation ends. `data-motion="none"` turns off both animations. With reduced motion, the panel only fades.
+
+## What you supply
+
+- Opening and closing on the trigger, and `aria-expanded` and `aria-controls` on it.
+- Placement. Position the content next to the trigger, flip it when it does not fit, and set `--cui-popper-content-transform-origin`. The panel is 360px wide at most, less 16px on each side on a phone.
+- `role="dialog"`, `aria-labelledby`, and `aria-describedby` on the content.
+- Escape and a click outside close the panel. Return focus to the trigger.
+- An arrow, if you want one. The popover CSS has no arrow class.
+
+## Helper
+
+```ts
+import "@codeui/styles/popover.css";
+import { applyStyleProps } from "@codeui/styles";
+import { popoverStyleProps } from "@codeui/styles/popover";
+
+const panel = document.querySelector<HTMLElement>("[role=dialog]")!;
+applyStyleProps(panel, popoverStyleProps({ variant: "bordered" }));
+// class="cui-popover-content" data-cui="popover-content" data-variant="bordered"
+```

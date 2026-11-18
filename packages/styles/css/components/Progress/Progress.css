@@ -9,7 +9,7 @@
   }
 }
 @layer cui.components {
-  .cui-progress-root {
+  .cui-progress {
     display: grid;
     gap: var(--cui-space-2);
     color: var(--cui-text-default);
@@ -18,7 +18,7 @@
   .cui-progress-label {
     color: var(--cui-text-label);
   }
-  .cui-progress-valueLabel {
+  .cui-progress-value-label {
     color: var(--cui-text-hint);
     font-variant-numeric: tabular-nums;
   }

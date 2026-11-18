@@ -1,0 +1,68 @@
+---
+title: Spinner
+description: An animated SVG indicator in plain HTML for work of unknown length.
+---
+
+Load `@codeui/styles/spinner.css`, or `all.css`. The Solid component is documented in [Spinner](/docs/components/spinner).
+
+## Demo
+
+<HtmlDemo name="spinner/basic" />
+
+## Markup
+
+| Part | Element | Class | `data-cui` |
+| --- | --- | --- | --- |
+| Root | `svg` | `cui-spinner` | `spinner` |
+| Track | `circle` | `cui-spinner-track` | `spinner-track` |
+| Indicator | `path` | `cui-spinner-indicator` | `spinner-indicator` |
+
+The geometry is your markup. Use `viewBox="0 0 24 24"`, a track circle with `r="9"`, and an indicator arc `d="M12 3a9 9 0 0 1 9 9"`, both with `stroke-width="3"`. The classes set the strokes, the track opacity, and the rotation.
+
+| Attribute | Values | Default |
+| --- | --- | --- |
+| `data-size` | `sm`, `md`, `lg` | `md` |
+
+## Variants
+
+### Sizes
+
+<HtmlDemo name="spinner/sizes" />
+
+`sm`, `md`, and `lg` set the SVG width and height. Omitting `data-size` renders `md`.
+
+### Color
+
+<HtmlDemo name="spinner/color" />
+
+The spinner draws in `currentColor`. It has no tone attribute, so set `color` on the spinner or a parent.
+
+### In a button
+
+<HtmlDemo name="spinner/in-button" />
+
+Put a `sm` spinner in `span.cui-button-icon` for a button that reports its own work. Hide the spinner with `aria-hidden="true"` and set `aria-busy="true"` on the button.
+
+## States
+
+The spinner rotates with a CSS animation, so it moves without a script. Under `prefers-reduced-motion: reduce`, the rotation stops and the SVG stays visible.
+
+## What you supply
+
+- `role="status"` and an `aria-label` on a standalone spinner, such as "Preparing PNG export". The status role announces it politely.
+- `aria-hidden="true"` on a spinner inside a control that already has a name.
+- Removing the spinner when the work ends.
+
+## Helper
+
+```ts
+import "@codeui/styles/spinner.css";
+import { applyStyleProps } from "@codeui/styles";
+import { spinnerStyleProps, spinnerStyles } from "@codeui/styles/spinner";
+
+const spinner = document.querySelector("svg")!;
+applyStyleProps(spinner, spinnerStyleProps({ size: "sm" }));
+// class="cui-spinner" data-cui="spinner" data-size="sm"
+spinner.querySelector("circle")!.setAttribute("class", spinnerStyles.track());
+spinner.querySelector("path")!.setAttribute("class", spinnerStyles.indicator());
+```

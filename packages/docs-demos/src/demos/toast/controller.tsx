@@ -27,16 +27,16 @@ export default function ToastController() {
 
 	return (
 		<>
-			<Button theme="secondary" onClick={start}>
+			<Button variant="secondary" onClick={start}>
 				Start sync
 			</Button>
-			<Button theme="secondary" onClick={finish}>
+			<Button variant="secondary" onClick={finish}>
 				Finish
 			</Button>
-			<Button theme="secondary" onClick={cancel}>
+			<Button variant="secondary" onClick={cancel}>
 				Dismiss
 			</Button>
-			<Button theme="secondary" onClick={() => notifications.clear()}>
+			<Button variant="secondary" onClick={() => notifications.clear()}>
 				Clear all
 			</Button>
 			<Toaster toaster={notifications} closeLabel="Dismiss" />

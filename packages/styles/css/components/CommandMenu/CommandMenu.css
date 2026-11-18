@@ -2,15 +2,15 @@
 @import "../Field/text-minimum.css";
 
 @layer cui.components {
-  .cui-command-menu-overlay {
+  .cui-commandmenu-overlay {
     position: fixed;
     inset: 0;
     z-index: 50;
   }
   /* The Solid panel also carries Dialog's base class. */
-  .cui-command-menu-content,
-  .cui-dialog-panel.cui-command-menu-content {
-    --cui-dialogTheme-panelRadius: var(--cui-component-command-menu-content-panel-radius);
+  .cui-commandmenu-content,
+  .cui-dialog-panel.cui-commandmenu-content {
+    --cui-dialog-panel-radius: var(--cui-component-command-menu-content-panel-radius);
     position: fixed;
     left: 50%;
     bottom: var(--cui-space-4);
@@ -33,7 +33,7 @@
       bottom: auto;
     }
   }
-  .cui-command-menu-title {
+  .cui-commandmenu-title {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -44,43 +44,43 @@
     white-space: nowrap;
     border: 0;
   }
-  .cui-command-menu-search {
+  .cui-commandmenu-search {
     display: flex;
     align-items: center;
     flex-shrink: 0;
     gap: var(--cui-space-3);
     /* Search chrome keeps its own height. */
-    --cui-command-menu-searchHeight: 36px;
-    min-height: var(--cui-command-menu-searchHeight);
+    --cui-commandmenu-search-height: 36px;
+    min-height: var(--cui-commandmenu-search-height);
     padding: 0 var(--cui-space-3);
     border-radius: var(--cui-radius-lg);
     background: var(--cui-surface-input);
     color: var(--cui-text-hint);
   }
-  .cui-command-menu-searchInput {
+  .cui-commandmenu-search-input {
     appearance: none;
     flex: 1;
     min-width: 0;
-    height: var(--cui-command-menu-searchHeight);
+    height: var(--cui-commandmenu-search-height);
     padding: 0;
     border: 0;
     outline: none;
     background: transparent;
     color: var(--cui-text-input);
     font: inherit;
-    font-size: max(var(--cui-font-size-caption), var(--cui-field-textMinimum, 0px));
+    font-size: max(var(--cui-font-size-caption), var(--cui-field-text-minimum, 0px));
   }
-  .cui-command-menu-searchInput::placeholder {
+  .cui-commandmenu-search-input::placeholder {
     color: var(--cui-text-hint);
     opacity: 1;
   }
-  .cui-command-menu-hint {
+  .cui-commandmenu-hint {
     flex-shrink: 0;
     color: var(--cui-text-hint);
     font-size: var(--cui-font-size-xs);
     white-space: nowrap;
   }
-  .cui-command-menu-listbox {
+  .cui-commandmenu-listbox {
     margin: 0;
     padding: 0;
     list-style: none;
@@ -92,13 +92,13 @@
     scrollbar-width: thin;
     scrollbar-color: var(--cui-surface-scroll-thumb) transparent;
   }
-  .cui-command-menu-group {
+  .cui-commandmenu-group {
     padding: var(--cui-space-3) var(--cui-space-3) var(--cui-space-1);
     color: var(--cui-text-hint);
     font-size: var(--cui-font-size-xs);
     font-weight: var(--cui-font-weight-semibold);
   }
-  .cui-command-menu-item {
+  .cui-commandmenu-item {
     display: flex;
     align-items: center;
     gap: var(--cui-space-2);
@@ -110,14 +110,14 @@
     user-select: none;
     outline: none;
   }
-  .cui-command-menu-item[data-highlighted] {
+  .cui-commandmenu-item[data-highlighted] {
     background: var(--cui-surface-input);
   }
-  .cui-command-menu-item:is([data-disabled], :disabled) {
+  .cui-commandmenu-item:is([data-disabled], :disabled) {
     opacity: 0.4;
     cursor: not-allowed;
   }
-  .cui-command-menu-leading {
+  .cui-commandmenu-leading {
     display: grid;
     place-items: center;
     flex-shrink: 0;
@@ -125,17 +125,17 @@
     height: var(--cui-space-5);
     color: var(--cui-text-hint);
   }
-  .cui-command-menu-item[data-highlighted] .cui-command-menu-leading {
+  .cui-commandmenu-item[data-highlighted] .cui-commandmenu-leading {
     color: var(--cui-text-dialog);
   }
-  .cui-command-menu-itemLabel {
+  .cui-commandmenu-item-label {
     flex: 1;
     min-width: 0;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-  .cui-command-menu-itemDescription {
+  .cui-commandmenu-item-description {
     flex-shrink: 0;
     max-width: 40%;
     overflow: hidden;
@@ -144,35 +144,35 @@
     color: var(--cui-text-hint);
     font-size: var(--cui-font-size-xs);
   }
-  .cui-command-menu-itemIndicator {
+  .cui-commandmenu-item-indicator {
     display: inline-flex;
     flex-shrink: 0;
     width: var(--cui-space-4);
     height: var(--cui-space-4);
     color: var(--cui-action-brand-base);
   }
-  .cui-command-menu-shortcut {
+  .cui-commandmenu-shortcut {
     flex-shrink: 0;
     color: var(--cui-text-hint);
     font-size: var(--cui-font-size-xs);
     white-space: nowrap;
   }
-  .cui-command-menu-empty {
+  .cui-commandmenu-empty {
     margin: 0;
     padding: var(--cui-space-3);
     color: var(--cui-text-hint);
     font-size: var(--cui-font-size-sm);
   }
   @media (--cui-coarse-pointer) {
-    .cui-command-menu-search {
-      --cui-command-menu-searchHeight: 40px;
+    .cui-commandmenu-search {
+      --cui-commandmenu-search-height: 40px;
     }
   }
   @media (max-width: 767px) {
-    .cui-command-menu-searchInput {
+    .cui-commandmenu-search-input {
       font-size: var(--cui-font-size-md);
     }
-    .cui-command-menu-hint {
+    .cui-commandmenu-hint {
       display: none;
     }
   }

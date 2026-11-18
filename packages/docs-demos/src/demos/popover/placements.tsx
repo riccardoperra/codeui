@@ -17,7 +17,7 @@ export default function PopoverPlacements() {
 		<For each={placements}>
 			{placement => (
 				<Popover placement={placement}>
-					<PopoverTrigger as={Button} theme="secondary" size="sm">
+					<PopoverTrigger as={Button} variant="secondary" size="sm">
 						{placement}
 					</PopoverTrigger>
 					<PopoverContent title={placement}>The panel opens on this side of the trigger.</PopoverContent>

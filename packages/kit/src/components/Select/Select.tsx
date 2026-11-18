@@ -84,7 +84,7 @@ export function Select<Option, OptGroup = never>(
 		"aria-label",
 		"children",
 		"size",
-		"theme",
+		"variant",
 		"errorMessage",
 		"description",
 		"label",
@@ -116,7 +116,7 @@ export function Select<Option, OptGroup = never>(
 			</Show>
 			<P.Trigger
 				size={local.size}
-				theme={local.theme}
+				variant={local.variant}
 				aria-label={local["aria-label"]}
 				class={partClass(local, "trigger")}
 			>

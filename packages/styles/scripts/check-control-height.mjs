@@ -14,13 +14,13 @@ try {
 		try {
 			await page.setContent(`
 				<style>${styles.join("\n")}</style>
-				<button class="cui-button-button">Save</button>
-				<input class="cui-field-baseFieldTheme cui-field-baseFieldVariants" data-size="sm" />
+				<button class="cui-button">Save</button>
+				<input class="cui-field cui-field-input" data-size="sm" />
 				<section data-cui-density="compact">
-					<input class="cui-field-baseFieldTheme cui-field-baseFieldVariants" data-size="sm" />
-					<button class="cui-button-button">Save</button>
+					<input class="cui-field cui-field-input" data-size="sm" />
+					<button class="cui-button">Save</button>
 					<div data-cui-density="comfortable">
-						<button class="cui-button-button">Save</button>
+						<button class="cui-button">Save</button>
 					</div>
 				</section>
 			`);

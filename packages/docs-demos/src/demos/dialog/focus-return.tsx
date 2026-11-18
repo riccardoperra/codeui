@@ -5,10 +5,10 @@ export default function DialogFocusReturn() {
 	const [open, setOpen] = createSignal(false);
 	return (
 		<>
-			<Button theme="secondary" onClick={() => setOpen(true)}>
+			<Button variant="secondary" onClick={() => setOpen(true)}>
 				Rename
 			</Button>
-			<Button theme="secondary" onClick={() => setOpen(true)}>
+			<Button variant="secondary" onClick={() => setOpen(true)}>
 				Duplicate
 			</Button>
 			<Dialog open={open()} onOpenChange={setOpen} size="sm" title="Snippet actions">

@@ -60,3 +60,10 @@ html > body[data-scroll-locked] {
     font-family: var(--cui-font-family-mono);
   }
 }
+
+/* HTML demo source (html-source.tsx). Fumadocs colors code spans from the Shiki variables, so the tokens
+   set those, in the colors of the Shiki theme the other code blocks use. */
+.html-source .html-tag { --shiki-light: #22863a; --shiki-dark: #85e89d; }
+.html-source .html-attr { --shiki-light: #6f42c1; --shiki-dark: #b392f0; }
+.html-source .html-value { --shiki-light: #032f62; --shiki-dark: #9ecbff; }
+.html-source .html-comment { --shiki-light: #6a737d; --shiki-dark: #959da5; }

@@ -36,10 +36,10 @@ export const WrappingContent: Story = {
 	render: () => (
 		<div style={{ display: "flex", gap: "12px" }}>
 			<Skeleton width="fit-content">
-				<Button theme="secondary">Hidden while loading</Button>
+				<Button variant="secondary">Hidden while loading</Button>
 			</Skeleton>
 			<Skeleton width="fit-content" visible={false}>
-				<Button theme="secondary">Loaded</Button>
+				<Button variant="secondary">Loaded</Button>
 			</Skeleton>
 		</div>
 	),

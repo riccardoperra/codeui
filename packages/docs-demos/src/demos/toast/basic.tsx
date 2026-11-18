@@ -5,7 +5,7 @@ export default function ToastBasic() {
 	return (
 		<>
 			<Button
-				theme="primary"
+				variant="primary"
 				onClick={() =>
 					notifications.show({ tone: "success", description: "Snippet exported as PNG." })
 				}

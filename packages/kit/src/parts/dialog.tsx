@@ -207,8 +207,8 @@ export function CloseButton(props: CloseButtonProps) {
 		<KDialog.CloseButton
 			as={IconButton}
 			size={chrome() === "inset" ? "sm" : "xs"}
-			theme={"secondary"}
-			variant={chrome() === "inset" ? "ghost" : undefined}
+			variant={"secondary"}
+			ghost={chrome() === "inset"}
 			{...others}
 			data-cui={dialogParts.closeButton}
 			aria-label={local["aria-label"] ?? "close"}

@@ -1,0 +1,78 @@
+---
+title: Kbd
+description: A keycap in plain HTML that shows a key or a keyboard shortcut.
+---
+
+Load `@codeui/styles/kbd.css`, or `all.css`. The Solid component is documented in [Kbd](/docs/components/kbd).
+
+## Demo
+
+<HtmlDemo name="kbd/basic" />
+
+## Markup
+
+| Part | Element | Class | `data-cui` |
+| --- | --- | --- | --- |
+| Root | `kbd` | `cui-kbd` | `kbd` |
+
+One root holds one key. A shortcut such as ⇧⌘E is three roots side by side.
+
+| Attribute | Values | Default |
+| --- | --- | --- |
+| `data-size` | `sm`, `md` | `sm` |
+| `data-variant` | `keycap`, `hint` | `keycap` |
+
+## Variants
+
+### Size
+
+<HtmlDemo name="kbd/size" />
+
+`sm` is 16px high with 11px text. `md` is 20px high with 12px text. Use `md` next to `md` text or inside a larger control.
+
+### Variant
+
+<HtmlDemo name="kbd/variant" />
+
+`keycap` draws a filled key with a divider border. `hint` drops the border and uses the hint text color, so the key reads as secondary. Use `hint` inside a button or a menu item, where the label matters more.
+
+### Single keys
+
+<HtmlDemo name="kbd/keys" />
+
+Write the key as the user sees it on the keyboard. Use words for named keys (`Esc`, `Enter`, `Tab`) and symbols for arrows and modifiers.
+
+### Chords and sequences
+
+<HtmlDemo name="kbd/chord" />
+
+For a chord, put one root per key inside an outer `kbd`. The HTML specification uses a `kbd` nested in a `kbd` for a key combination. Give the outer `kbd` the Stack classes for the gap. On macOS, list modifiers in the order ⌃ ⌥ ⇧ ⌘. For a sequence, put a word such as "then" between the keys.
+
+### In a button
+
+<HtmlDemo name="kbd/in-button" />
+
+The button lays out its children with an 8px gap, so the keycaps sit after the label with no extra markup. The `hint` variant keeps them quieter than the label.
+
+## States
+
+Kbd has no states. It is not focusable and has no behavior.
+
+## What you supply
+
+- The platform label. Kbd does not detect the platform, so render ⌘ on macOS and Ctrl elsewhere.
+- `aria-keyshortcuts` on the control the shortcut triggers, such as `Meta+K`, and `aria-hidden="true"` on its keycaps. Screen readers read symbols such as ⌘ inconsistently.
+- The keyboard handler for the shortcut.
+
+## Helper
+
+```ts
+import "@codeui/styles/kbd.css";
+import { applyStyleProps } from "@codeui/styles";
+import { kbdStyleProps } from "@codeui/styles/kbd";
+
+const key = document.createElement("kbd");
+key.textContent = "K";
+applyStyleProps(key, kbdStyleProps({ variant: "hint" }));
+// class="cui-kbd" data-cui="kbd" data-size="sm" data-variant="hint"
+```

@@ -5,7 +5,7 @@ import type { PropNotes } from "./notes";
 type TooltipProps = ComponentProps<typeof TooltipComponent>;
 
 /** Props that Tooltip adds on top of Kobalte's tooltip root. */
-export type Tooltip = Pick<TooltipProps, "content" | "theme" | "slotClasses">;
+export type Tooltip = Pick<TooltipProps, "content" | "variant" | "slotClasses">;
 
 /** Kobalte tooltip root options that change behavior. Some defaults are set by the kit. */
 export type TooltipInherited = Pick<
@@ -16,7 +16,7 @@ export type TooltipInherited = Pick<
 export const notes = {
 	Tooltip: {
 		content: { description: "Content of the tooltip. Takes JSX." },
-		theme: { default: '"primary"', description: "Color of the tooltip." },
+		variant: { default: '"primary"', description: "Color of the tooltip." },
 		slotClasses: { description: "Classes for the trigger wrapper and the content." },
 	},
 	TooltipInherited: {

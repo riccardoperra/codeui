@@ -6,7 +6,7 @@ import * as styles from "../components/Toast/Toast.css";
 export const toastParts = {
 	region: "toast-region",
 	list: "toast-list",
-	root: "toast-root",
+	root: "toast",
 	title: "toast-title",
 	description: "toast-description",
 	closeButton: "toast-close-button",

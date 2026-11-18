@@ -25,7 +25,7 @@ export const Aligned: StoryObj<typeof meta> = {
 						}}
 					>
 						<span>{size}</span>
-						<Button theme="primary" size={size}>
+						<Button variant="primary" size={size}>
 							Save
 						</Button>
 						<TextField aria-label={`Name (${size})`} placeholder="Name" size={size} />

@@ -2,7 +2,7 @@ import type { CheckBoxProps } from "@codeui/kit";
 import type { PropNotes } from "./notes";
 export type Checkbox = Pick<
 	CheckBoxProps,
-	"size" | "theme" | "label" | "description" | "errorMessage" | "ref" | "slotClasses"
+	"size" | "variant" | "label" | "description" | "errorMessage" | "ref" | "slotClasses"
 >;
 export type CheckboxInherited = Pick<
 	CheckBoxProps,
@@ -23,7 +23,7 @@ export const notes = {
 			description: "Control size.",
 			default: '"md"',
 		},
-		theme: {
+		variant: {
 			description:
 				"Accepts filled or inline from BaseFieldProps. This component currently ignores theme.",
 		},

@@ -129,7 +129,7 @@ export function Picker(props: { slotKey: SlotKey }) {
 				<div class="ts-palette" role="group" aria-label="Colours of this theme">
 					<For each={palette()}>
 						{hex => (
-							<Tooltip content={<span class="ts-mono">{hex}</span>} placement="top" theme="secondary">
+							<Tooltip content={<span class="ts-mono">{hex}</span>} placement="top" variant="secondary">
 								<button type="button" class="ts-swatch" style={{ "--ts-fill": hex }} aria-label={`Use ${hex}`} onClick={() => use(hex)} />
 							</Tooltip>
 						)}
@@ -240,8 +240,8 @@ export function ColorRow(props: { slotKey: SlotKey }) {
 			</Show>
 			<span class="ts-row-end">
 				<Show when={optional && isSet()}>
-					<Tooltip content={`Clear: ${fallbackHint({ ...studio.theme(), colors: { ...studio.theme().colors, [colorKey!]: undefined } }, colorKey!)}`} placement="left" theme="secondary">
-						<IconButton theme="secondary" variant="ghost" size={isPhone() ? "md" : "xs"} aria-label={`Clear ${label}`} onClick={() => studio.setColor(key, undefined)}>
+					<Tooltip content={`Clear: ${fallbackHint({ ...studio.theme(), colors: { ...studio.theme().colors, [colorKey!]: undefined } }, colorKey!)}`} placement="left" variant="secondary">
+						<IconButton variant="secondary" ghost size={isPhone() ? "md" : "xs"} aria-label={`Clear ${label}`} onClick={() => studio.setColor(key, undefined)}>
 							<X size={14} />
 						</IconButton>
 					</Tooltip>
@@ -257,14 +257,14 @@ export function SheetPicker(props: { slotKey: SlotKey }) {
 	return (
 		<div class="ts-sheet-picker">
 			<div class="ts-sheet-picker-head">
-				<IconButton theme="secondary" variant="ghost" size="md" aria-label="Back to the colours" ref={element => queueMicrotask(() => element.focus())} onClick={() => studio.closePicker(true)}>
+				<IconButton variant="secondary" ghost size="md" aria-label="Back to the colours" ref={element => queueMicrotask(() => element.focus())} onClick={() => studio.closePicker(true)}>
 					<ChevronLeft size={16} />
 				</IconButton>
 				<Text as="h2" size="sm" weight="semibold">
 					{slotLabel(props.slotKey)}
 				</Text>
 				<span class="ex-header-spacer" />
-				<Button theme="secondary" variant="ghost" size="md" onClick={() => studio.closePicker(false)}>
+				<Button variant="secondary" ghost size="md" onClick={() => studio.closePicker(false)}>
 					Cancel
 				</Button>
 			</div>

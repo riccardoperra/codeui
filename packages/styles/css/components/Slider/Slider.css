@@ -1,6 +1,6 @@
 @layer cui.components {
-  .cui-slider-root {
-    --cui-slider-hitSize: 28px;
+  .cui-slider {
+    --cui-slider-hit-size: 28px;
     display: grid;
     gap: var(--cui-space-2);
     color: var(--cui-text-default);
@@ -16,18 +16,18 @@
     font-size: var(--cui-font-size-xs);
     line-height: var(--cui-font-line-height-xs);
   }
-  .cui-slider-errorMessage {
+  .cui-slider-error-message {
     color: var(--cui-text-danger);
     font-size: var(--cui-font-size-xs);
     line-height: var(--cui-font-line-height-xs);
   }
-  .cui-slider-valueLabel {
+  .cui-slider-value-label {
     color: var(--cui-text-hint);
     font-variant-numeric: tabular-nums;
   }
   .cui-slider-track {
     position: relative;
-    height: var(--cui-slider-hitSize);
+    height: var(--cui-slider-hit-size);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -46,7 +46,7 @@
   .cui-slider-track {
     &[data-orientation=vertical] {
       height: var(--cui-space-32);
-      width: var(--cui-slider-hitSize);
+      width: var(--cui-slider-hit-size);
     }
 
     &[data-orientation=vertical]::before {
@@ -72,8 +72,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: var(--cui-slider-hitSize);
-    height: var(--cui-slider-hitSize);
+    width: var(--cui-slider-hit-size);
+    height: var(--cui-slider-hit-size);
     border-radius: var(--cui-radius-full);
     cursor: pointer;
   }
@@ -98,12 +98,12 @@
     cursor: not-allowed;
   }
   @media (--cui-coarse-pointer) {
-    .cui-slider-root {
-      --cui-slider-hitSize: 40px;
+    .cui-slider {
+      --cui-slider-hit-size: 40px;
     }
     .cui-slider-track {
-      min-height: var(--cui-slider-hitSize);
-      min-width: var(--cui-slider-hitSize);
+      min-height: var(--cui-slider-hit-size);
+      min-width: var(--cui-slider-hit-size);
     }
   }
 }

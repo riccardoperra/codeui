@@ -2,7 +2,7 @@
 @import "../Field/text-minimum.css";
 
 @layer cui.components {
-  .cui-combobox-root {
+  .cui-combobox {
     display: flex;
     flex-direction: column;
     gap: var(--cui-space-2);
@@ -18,7 +18,7 @@
     color: var(--cui-text-hint);
     font-size: var(--cui-font-size-xs);
   }
-  .cui-combobox-errorMessage {
+  .cui-combobox-error-message {
     color: var(--cui-text-danger);
     font-size: var(--cui-font-size-xs);
   }
@@ -62,7 +62,7 @@
     background: transparent;
     color: inherit;
     font: inherit;
-    font-size: max(1em, var(--cui-field-textMinimum, 0px));
+    font-size: max(1em, var(--cui-field-text-minimum, 0px));
   }
   .cui-combobox-input::placeholder {
     color: var(--cui-text-hint);
@@ -108,10 +108,10 @@
     box-shadow: var(--cui-shadow-menu);
     outline: none;
     transform-origin: var(--cui-popper-content-transform-origin);
-    animation: cui-motion-popOut var(--cui-motion-duration-fast) var(--cui-motion-ease-out) forwards;
+    animation: cui-motion-pop-out var(--cui-motion-duration-fast) var(--cui-motion-ease-out) forwards;
   }
   .cui-combobox-content[data-expanded] {
-    animation: cui-motion-popIn var(--cui-motion-duration-normal) var(--cui-motion-ease-out);
+    animation: cui-motion-pop-in var(--cui-motion-duration-normal) var(--cui-motion-ease-out);
   }
   .cui-combobox-content[data-motion=none], .cui-combobox-content[data-motion=none][data-expanded] {
     animation: none;
@@ -154,7 +154,7 @@
     opacity: 0.4;
     cursor: not-allowed;
   }
-  .cui-combobox-itemLabel {
+  .cui-combobox-item-label {
     display: flex;
     align-items: center;
     gap: var(--cui-space-2);
@@ -164,14 +164,14 @@
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-  .cui-combobox-itemDescription {
+  .cui-combobox-item-description {
     color: var(--cui-text-hint);
     font-size: var(--cui-font-size-xs);
   }
-  .cui-combobox-item[data-highlighted] .cui-combobox-itemDescription {
+  .cui-combobox-item[data-highlighted] .cui-combobox-item-description {
     color: inherit;
   }
-  .cui-combobox-itemIndicator {
+  .cui-combobox-item-indicator {
     display: inline-flex;
     flex-shrink: 0;
     width: var(--cui-space-4);
@@ -191,17 +191,17 @@
   @media (--cui-coarse-pointer) {
     .cui-combobox-trigger {
       /* The nested trigger keeps a 40px hit target on coarse pointers. */
-      --cui-combobox-triggerTouchTarget: 40px;
-      width: var(--cui-combobox-triggerTouchTarget);
-      height: var(--cui-combobox-triggerTouchTarget);
+      --cui-combobox-trigger-touch-target: 40px;
+      width: var(--cui-combobox-trigger-touch-target);
+      height: var(--cui-combobox-trigger-touch-target);
     }
   }
   @media (--cui-reduced-motion) {
     .cui-combobox-content {
-      animation-name: cui-motion-fadeOut;
+      animation-name: cui-motion-fade-out;
     }
     .cui-combobox-content[data-expanded] {
-      animation-name: cui-motion-fadeIn;
+      animation-name: cui-motion-fade-in;
     }
   }
 }

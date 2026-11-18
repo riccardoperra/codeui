@@ -58,10 +58,10 @@ export function Scenarios() {
 				</div>
 				<Alert tone="neutral" fluid title={panels[selected().panel]} description={selected().observe} />
 				<div class="pmi-scenario-actions">
-					<Button theme="primary" size={size()} leftIcon={<Play size={16} />} loading={bench.busy() === selectedId()} disabled={bench.busy() !== null} onClick={() => run(selected())}>
+					<Button variant="primary" size={size()} leftIcon={<Play size={16} />} loading={bench.busy() === selectedId()} disabled={bench.busy() !== null} onClick={() => run(selected())}>
 						Run
 					</Button>
-					<Button theme="secondary" variant="ghost" size={size()} onClick={() => bench.inspect(selected().panel)}>
+					<Button variant="secondary" ghost size={size()} onClick={() => bench.inspect(selected().panel)}>
 						Open panel
 					</Button>
 				</div>

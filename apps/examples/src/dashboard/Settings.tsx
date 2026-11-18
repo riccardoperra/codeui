@@ -105,7 +105,7 @@ export function Settings() {
 											<Text as="p" size="xs" tone="muted">
 												Nothing in settings is called “{query().trim()}”.
 											</Text>
-											<Button theme="secondary" size="sm" onClick={() => setQuery("")}>
+											<Button variant="secondary" size="sm" onClick={() => setQuery("")}>
 												Clear search
 											</Button>
 										</div>
@@ -257,7 +257,7 @@ function Members() {
 						validationState={error() ? "invalid" : "valid"}
 						errorMessage={error()}
 					/>
-					<Button type="submit" theme="primary" size="sm">
+					<Button type="submit" variant="primary" size="sm">
 						Send invite
 					</Button>
 				</form>
@@ -284,7 +284,7 @@ function Members() {
 								}
 							>
 								<DropdownMenu placement="bottom-end">
-									<DropdownMenuTrigger as={Button} theme="secondary" size="sm" class="dash-role" aria-label={`Role of ${member.name}: ${member.role}`}>
+									<DropdownMenuTrigger as={Button} variant="secondary" size="sm" class="dash-role" aria-label={`Role of ${member.name}: ${member.role}`}>
 										{member.role}
 										<ChevronDown size={16} />
 									</DropdownMenuTrigger>

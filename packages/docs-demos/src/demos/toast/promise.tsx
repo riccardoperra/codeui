@@ -21,10 +21,10 @@ export default function ToastPromise() {
 		});
 	return (
 		<>
-			<Button theme="secondary" onClick={() => share(false)}>
+			<Button variant="secondary" onClick={() => share(false)}>
 				Share as Gist
 			</Button>
-			<Button theme="secondary" onClick={() => share(true)}>
+			<Button variant="secondary" onClick={() => share(true)}>
 				Share, then fail
 			</Button>
 			<Toaster toaster={notifications} closeLabel="Dismiss" />

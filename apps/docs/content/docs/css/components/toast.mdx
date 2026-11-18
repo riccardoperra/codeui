@@ -1,0 +1,97 @@
+---
+title: Toast
+description: Short notifications in plain HTML, with the open toasts written into the region by hand.
+---
+
+Load `@codeui/styles/toast.css`, or `all.css`. The Solid component is documented in [Toast](/docs/components/toast).
+
+## Demo
+
+<HtmlDemo name="toast/basic" />
+
+## Markup
+
+| Part | Element | Class | `data-cui` |
+| --- | --- | --- | --- |
+| Region | `div` | `cui-toast-region` | `toast-region` |
+| List | `div` or `ol` | `cui-toast-list` | `toast-list` |
+| Root | `div` or `li` | `cui-toast` | `toast` |
+| Icon | `span` | `cui-toast-icon` | `toast-icon` |
+| Title | `div` | `cui-toast-title` | `toast-title` |
+| Description | `div` | `cui-toast-description` | `toast-description` |
+| Action | `button` | `cui-toast-action` | `toast-action` |
+| Close button | `button` | `cui-toast-close-button` | `toast-close-button` |
+| Progress track | `div` | `cui-toast-progress-track` | `toast-progress-track` |
+| Progress fill | `div` | `cui-toast-progress-fill` | `toast-progress-fill` |
+
+The root is a grid: icon, text, action, close button, with the progress track as a full-width last row. Every part is optional except the description. Without a title, the description centers against the icon.
+
+| Attribute | Values | Default |
+| --- | --- | --- |
+| `data-tone` on the root | `neutral`, `info`, `success`, `warning`, `danger` | `neutral` |
+| `data-position` on the region | `top-left`, `top-center`, `top-right`, `bottom-left`, `bottom-center`, `bottom-right` | `bottom-center` |
+
+The demos on this page put the list in normal flow, without the fixed region, so each toast shows in place.
+
+## Variants
+
+### Tones
+
+<HtmlDemo name="toast/tones" />
+
+The tone sets `--cui-toast-accent`, which colors the icon and the progress fill. The card itself keeps the toast surface in every tone. A neutral toast usually has no icon.
+
+### Content
+
+<HtmlDemo name="toast/content" />
+
+A title is optional. The action is one inline text button in the soft brand color. The close button is a 24px icon button with an accessible name. Keep one action per toast.
+
+### Region and position
+
+<HtmlDemo name="toast/region" minHeight={240} />
+
+The region is fixed to the viewport, up to 512px wide with 16px padding. Bottom positions sit 64px above the bottom edge. Center positions translate the region by half its width. The list stacks toasts with 8px between them and aligns them to the region's side. In this demo the region is fixed to the frame.
+
+## States
+
+### Time bar
+
+<HtmlDemo name="toast/progress" />
+
+Set `--cui-toast-progress-fill-width` on the fill, such as `35%`. Update it as the close timer runs.
+
+### Entrance and exit
+
+`data-opened` on the root plays the entrance once: it rises its own height and fades in over 400ms, or drops at a top position. `data-closed` fades it out over 200ms and keeps it hidden. Remove the root after the exit ends. With reduced motion, both are fades. `data-cui-replaced` together with `data-opened` skips the entrance, for a toast whose content changed in place.
+
+### Swipe
+
+`data-swipe="move"` translates the root by `--cui-toast-swipe-move-x`. `cancel` returns it to place over 200ms. `end` slides it out from `--cui-toast-swipe-end-x` with a fade.
+
+### Focus
+
+The root, the action and the close button show the 2px focus ring on `:focus-visible`. The action and close button get the neutral fill on hover.
+
+## What you supply
+
+- Adding and removing toasts, the close timer, and pausing it while the pointer or focus is inside the region.
+- `role="status"` with polite announcements for most tones, and `role="alert"` for danger.
+- An accessible name on the region, and a hotkey such as F8 that moves focus into it.
+- The swipe gesture and its geometry variables.
+- The icon for each tone. The Solid `Toaster` also inverts the theme, a light card on a dark page. Set `data-cui-theme` on the region to do the same.
+
+## Helper
+
+```ts
+import "@codeui/styles/toast.css";
+import { applyStyleProps } from "@codeui/styles";
+import { toastStyleProps } from "@codeui/styles/toast";
+
+const region = document.querySelector<HTMLElement>("[data-cui=toast-region]")!;
+const toast = region.querySelector<HTMLElement>("[data-cui=toast]")!;
+
+applyStyleProps(region, toastStyleProps.region({ position: "top-right" }));
+applyStyleProps(toast, toastStyleProps({ tone: "success" }));
+// toast: class="cui-toast" data-cui="toast" data-tone="success"
+```

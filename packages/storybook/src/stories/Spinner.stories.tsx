@@ -27,7 +27,7 @@ export const Sizes: Story = {
 
 export const InsideBusyButton: Story = {
 	render: () => (
-		<Button theme="secondary" aria-busy="true" leftIcon={<Spinner size="sm" />}>
+		<Button variant="secondary" aria-busy="true" leftIcon={<Spinner size="sm" />}>
 			Exporting
 		</Button>
 	),

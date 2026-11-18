@@ -1,11 +1,11 @@
 @import "./text-tokens.generated.css";
 
 @layer cui.components {
-  .cui-text-root {
+  .cui-text {
     font-family: var(--cui-font-family-sans);
     line-height: var(--cui-font-line-height-normal);
   }
-  :where(.cui-text-root) {
+  :where(.cui-text) {
     &[data-size="badge"] {
       font-size: var(--cui-component-text-root-size-badge-font-size);
     }

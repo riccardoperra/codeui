@@ -5,7 +5,7 @@ export default function DropdownMenuAnatomy() {
 	return (
 		<div style={{ display: "grid", gap: "var(--cui-space-2)", "justify-items": "start" }}>
 			<DropdownMenu open>
-				<DropdownMenuTrigger as={Button} theme="secondary">
+				<DropdownMenuTrigger as={Button} variant="secondary">
 					Export
 				</DropdownMenuTrigger>
 				<DropdownMenuContent>

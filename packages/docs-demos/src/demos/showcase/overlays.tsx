@@ -24,17 +24,17 @@ export default function Overlays() {
 		<div class="showcase-stack">
 			<div class="showcase-row">
 				<Popover placement="bottom-start">
-					<PopoverTrigger as={Button} theme="secondary" size="sm">
+					<PopoverTrigger as={Button} variant="secondary" size="sm">
 						Share
 					</PopoverTrigger>
 					<PopoverContent title="Share project" description="Anyone with the link can view it.">
 						Editors you invite can change it.
 					</PopoverContent>
 				</Popover>
-				<Button theme="secondary" size="sm" onClick={archive}>
+				<Button variant="secondary" size="sm" onClick={archive}>
 					Archive
 				</Button>
-				<Button theme="secondary" size="sm" onClick={() => setConfirm(true)}>
+				<Button variant="secondary" size="sm" onClick={() => setConfirm(true)}>
 					Delete project
 				</Button>
 			</div>
@@ -43,10 +43,10 @@ export default function Overlays() {
 				<DialogPanelContent>Its files and history are removed for everyone. This cannot be undone.</DialogPanelContent>
 				<DialogPanelFooter>
 					<div class="showcase-row" style={{ "justify-content": "flex-end" }}>
-						<Button theme="secondary" size="sm" onClick={() => setConfirm(false)}>
+						<Button variant="secondary" size="sm" onClick={() => setConfirm(false)}>
 							Cancel
 						</Button>
-						<Button theme="negative" size="sm" onClick={() => setConfirm(false)}>
+						<Button variant="negative" size="sm" onClick={() => setConfirm(false)}>
 							Delete
 						</Button>
 					</div>

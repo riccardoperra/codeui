@@ -1,10 +1,10 @@
 @layer cui.components {
-  .cui-text-area-baseFieldContainer {
+  .cui-textarea {
     display: flex;
     flex-direction: column;
     gap: var(--cui-space-3);
   }
-  .cui-text-area-textArea {
+  .cui-textarea-input {
     padding-right: var(--cui-space-3);
     padding-left: var(--cui-space-3);
     padding-top: var(--cui-space-2);

@@ -14,12 +14,12 @@ export default function EditorToolbar() {
 				checked={lineNumbers()}
 				onChange={setLineNumbers}
 			/>
-			<Button variant="ghost" onClick={() => setLineNumbers(true)}>
+			<Button ghost onClick={() => setLineNumbers(true)}>
 				Reset
 			</Button>
 			<Button
 				class="editor-toolbar__save"
-				theme="primary"
+				variant="primary"
 				onClick={() => setSavedLineNumbers(lineNumbers())}
 			>
 				Save

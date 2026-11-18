@@ -1,0 +1,68 @@
+---
+title: Table
+description: A native data table in plain HTML, styled by size and stripe attributes.
+---
+
+Load `@codeui/styles/table.css`, or `all.css`. The Solid component is documented in [Table](/docs/components/table).
+
+## Demo
+
+<HtmlDemo name="table/basic" />
+
+## Markup
+
+| Part | Element | Class | `data-cui` |
+| --- | --- | --- | --- |
+| Scroll area | `div` | `cui-table-scroll-area` | `table-scroll-area` |
+| Root | `table` | `cui-table` | `table` |
+
+The root styles its own `caption`, `thead`, `tbody`, `tfoot`, `tr`, `th` and `td` children. They take no classes. The rules use child combinators, so rows must sit directly in a row group.
+
+| Attribute | Values | Default |
+| --- | --- | --- |
+| `data-size` | `sm`, `md` | `md` |
+| `data-striped` | Presence | Off |
+
+## Variants
+
+### Size
+
+<HtmlDemo name="table/compact" />
+
+`md` rows are 36px tall with 12px inline padding and 13px text. `sm` rows are 28px tall with 8px inline padding and 12px text. Omitting `data-size` renders `md`.
+
+### Striped rows
+
+<HtmlDemo name="table/striped" />
+
+`data-striped` gives even body rows a half-strength field fill.
+
+### Scroll area
+
+<HtmlDemo name="table/scroll" />
+
+Wrap a wide table in the scroll area. It scrolls horizontally and clips to the row radius. Give it `role="region"`, an accessible name and `tabindex="0"`, so keyboard users can focus it and scroll with the arrow keys. It shows the focus ring on `:focus-visible`.
+
+## States
+
+The table has no state attributes. Header cells use the field fill with muted 12px text. Body rows have no fill and no lines. Their first and last cells take the 10px row radius, so a striped fill, or one you add, reads as one rounded row. Numbers use tabular figures.
+
+Cells inherit the start alignment. Set `text-align: end` on numeric columns, or use the `align` attribute, which the CSS respects.
+
+## What you supply
+
+- `scope="col"` on column headers and `scope="row"` on row headers.
+- A `caption`, or `aria-label` on the table, that names it.
+- Sorting, selection and pagination. The styles have no sort or selected-row states.
+
+## Helper
+
+```ts
+import "@codeui/styles/table.css";
+import { applyStyleProps } from "@codeui/styles";
+import { tableStyleProps } from "@codeui/styles/table";
+
+const table = document.querySelector("table")!;
+applyStyleProps(table, tableStyleProps({ size: "sm", striped: true }));
+// class="cui-table" data-cui="table" data-size="sm" data-striped=""
+```

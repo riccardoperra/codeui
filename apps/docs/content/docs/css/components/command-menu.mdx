@@ -1,0 +1,85 @@
+---
+title: CommandMenu
+description: A search field over a list of commands in plain HTML, with the open menu written by hand.
+---
+
+Load `@codeui/styles/commandmenu.css`, or `all.css`. The entry includes the Dialog styles that draw the panel. The Solid component is documented in [CommandMenu](/docs/components/command-menu).
+
+## Demo
+
+<HtmlDemo name="command-menu/basic" minHeight={256} />
+
+The panel is fixed to the viewport. The demo frames are narrower than 768px, so it sits at the top of the frame with the hint hidden, as on a phone.
+
+## Markup
+
+| Part | Element | Class | `data-cui` |
+| --- | --- | --- | --- |
+| Content | `div` | `cui-dialog-panel cui-commandmenu-content` | `commandmenu-content` |
+| Title | `h2` | `cui-commandmenu-title` | `commandmenu-title` |
+| Search | `div` | `cui-commandmenu-search` | `commandmenu-search` |
+| Search input | `input` | `cui-commandmenu-search-input` | `commandmenu-search-input` |
+| Hint | `span` | `cui-commandmenu-hint` | `commandmenu-hint` |
+| Listbox | `ul` | `cui-commandmenu-listbox` | `commandmenu-listbox` |
+| Group | `li` | `cui-commandmenu-group` | `commandmenu-group` |
+| Group label | `span` | `cui-commandmenu-group-label` | `commandmenu-group-label` |
+| Item | `li` | `cui-commandmenu-item` | `commandmenu-item` |
+| Leading | `span` | `cui-commandmenu-leading` | `commandmenu-leading` |
+| Item label | `div` | `cui-commandmenu-item-label` | `commandmenu-item-label` |
+| Item description | `div` | `cui-commandmenu-item-description` | `commandmenu-item-description` |
+| Item indicator | `div` | `cui-commandmenu-item-indicator` | `commandmenu-item-indicator` |
+| Shortcut | `span` | `cui-commandmenu-shortcut` | `commandmenu-shortcut` |
+| Empty | `div` | `cui-commandmenu-empty` | `commandmenu-empty` |
+| Overlay | `div` | `cui-commandmenu-overlay` | `commandmenu-overlay` |
+
+The content needs the Dialog panel classes too: `cui-dialog-panel` draws the floating surface, its shadow and radius. The command menu class then fixes the panel at 640px wide, 16px above the bottom edge, and turns off the Dialog animation. Below 768px of viewport width it moves 8px from the top edge, hides the hint and sets the search text to 16px.
+
+The title is visually hidden. It names the dialog, the search input and the listbox. The listbox scrolls after six rows.
+
+The command menu has no variant attributes.
+
+## Variants
+
+### Groups and row details
+
+<HtmlDemo name="command-menu/groups" minHeight={312} />
+
+- A group is a `li` with `role="presentation"` before its items. Write a section as a prefix, as in "Editor / Font".
+- The leading part is a 20px box before the label for an icon or swatch. Give every row of a group the box when one row has it, so the labels line up.
+- The description shows after the label in the hint color, up to 40% of the row.
+- The shortcut is key text at the end of the row. Bind the keys yourself.
+- The item indicator is a check in the brand color that marks the value in use, such as the applied theme.
+
+### Overlay
+
+`cui-commandmenu-overlay` is a fixed, transparent layer over the page that catches outside clicks. It has no scrim, so the content behind the menu stays visible as the preview.
+
+## States
+
+### Highlighted
+
+`data-highlighted` on an item gives it the field fill, and its leading visual takes the primary text color. It is neutral, never an accent fill. Point `aria-activedescendant` on the search input at the highlighted item.
+
+### Disabled
+
+`data-disabled` and `aria-disabled="true"` on an item show it at 40% opacity with a not-allowed cursor.
+
+### Empty
+
+<HtmlDemo name="command-menu/empty" minHeight={128} />
+
+Show the empty part while no item matches, with `role="status"` so the change is announced. Say what is missing and how to get results back.
+
+### Open and closed
+
+Add the content to the page to open the menu and remove it to close. It opens and closes without animation, because people open it from the keyboard many times a session.
+
+## What you supply
+
+- Opening from your own shortcut, such as ⌘ K, and closing on Escape and outside click.
+- `role="dialog"` on the content, labelled by the title, and focus on the search input when it opens.
+- `role="combobox"` on the input with `aria-controls`, `aria-expanded` and `aria-activedescendant`, and `role="listbox"` and `role="option"` on the list.
+- Filtering, moving `data-highlighted` with the arrow keys and the pointer, and Enter to run the highlighted command.
+- The check for the current value, and skipping disabled items.
+
+The command menu entry exports class names, not a style props helper. Use the class names above, or `commandMenuStyles` from `@codeui/styles/commandmenu`.

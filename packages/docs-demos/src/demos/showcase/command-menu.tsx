@@ -20,7 +20,7 @@ export default function Commands() {
 				<p class="showcase-meta" aria-live="polite">
 					Last command: {last()}
 				</p>
-				<Button theme="secondary" size="sm" onClick={() => setOpen(true)}>
+				<Button variant="secondary" size="sm" onClick={() => setOpen(true)}>
 					Search commands
 				</Button>
 			</div>

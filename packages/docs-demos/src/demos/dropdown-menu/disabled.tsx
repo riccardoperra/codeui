@@ -13,7 +13,7 @@ import {
 export default function DropdownMenuDisabled() {
 	return (
 		<DropdownMenu>
-			<DropdownMenuTrigger as={Button} theme="secondary">
+			<DropdownMenuTrigger as={Button} variant="secondary">
 				Export
 			</DropdownMenuTrigger>
 			<DropdownMenuPortal>

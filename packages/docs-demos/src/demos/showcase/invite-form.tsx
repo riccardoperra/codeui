@@ -23,7 +23,7 @@ export default function InviteMember() {
 				<p class="showcase-meta" role="status">
 					{sent()}
 				</p>
-				<Button type="submit" theme="primary" size="sm">
+				<Button type="submit" variant="primary" size="sm">
 					Send invite
 				</Button>
 			</div>

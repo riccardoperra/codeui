@@ -2,7 +2,7 @@
 // keyboard focus draws one ring outside it.
 export default async ({ page, step, check, focus, axe }) => {
 	const radios = page.getByRole("radio");
-	const labels = page.locator('[data-cui="option-card-item-label"]');
+	const labels = page.locator('[data-cui="optioncard-item-label"]');
 	await step("Tab into the group", () => page.keyboard.press("Tab"));
 	await check("focus lands on the selected card", async () =>
 		radios.nth(0).evaluate(el => el === document.activeElement),
@@ -42,7 +42,7 @@ export default async ({ page, step, check, focus, axe }) => {
 	});
 	await check("preview well is 68px", async () => {
 		const h = await page
-			.locator('[data-cui="option-card-preview"]')
+			.locator('[data-cui="optioncard-preview"]')
 			.first()
 			.evaluate(p => p.getBoundingClientRect().height);
 		return { pass: h === 68, h };

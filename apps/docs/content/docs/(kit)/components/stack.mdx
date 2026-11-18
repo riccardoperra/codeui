@@ -23,7 +23,7 @@ Use `Stack` to lay out a group of siblings in one row or one column with a gap f
 
 | Export  | Renders                     | `classes` key | `data-cui`   | Role |
 | ------- | --------------------------- | ------------- | ------------ | ---- |
-| `Stack` | `div`, or the element in `as` | `root`        | `stack-root` | None |
+| `Stack` | `div`, or the element in `as` | `root`        | `stack` | None |
 
 The root also renders these attributes, which the stylesheet reads:
 
@@ -85,7 +85,7 @@ This design has three results that matter in an app:
 - The server renders the same markup the client renders. There is no style tag to hydrate and no class that depends on render order.
 - `stackStyles.root()` gives custom markup the base class for layout controlled by attributes.
 
-`Stack` also writes `data-gap`, `data-align`, `data-justify`, `data-direction` and `data-wrap`, so you can target any state with an attribute selector, such as `[data-cui="stack-root"][data-direction="row"]`. The kit rules sit in the `cui` cascade layer, so your unlayered CSS wins. To change the gap from CSS, set `gap` in your own class.
+`Stack` also writes `data-gap`, `data-align`, `data-justify`, `data-direction` and `data-wrap`, so you can target any state with an attribute selector, such as `[data-cui="stack"][data-direction="row"]`. The kit rules sit in the `cui` cascade layer, so your unlayered CSS wins. To change the gap from CSS, set `gap` in your own class.
 
 ## Ready API
 
@@ -115,7 +115,7 @@ Call `stackStyles.root()` for the base class. Set `data-direction`, `data-align`
 
 <SolidDemo name="stack/styles" />
 
-Prefer `<Stack as="ul">`. Call `stackStyles` only when you cannot render the component, for example on markup that another library renders. `stackParts.root` holds the `data-cui` value, `stack-root`.
+Prefer `<Stack as="ul">`. Call `stackStyles` only when you cannot render the component, for example on markup that another library renders. `stackParts.root` holds the `data-cui` value, `stack`.
 
 ## Accessibility
 

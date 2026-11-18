@@ -5,7 +5,7 @@ export default function ToastContent() {
 	return (
 		<>
 			<Button
-				theme="secondary"
+				variant="secondary"
 				onClick={() =>
 					notifications.show({
 						title: "Snippet saved",
@@ -16,7 +16,7 @@ export default function ToastContent() {
 				Title and description
 			</Button>
 			<Button
-				theme="secondary"
+				variant="secondary"
 				onClick={() =>
 					notifications.show({
 						tone: "success",
@@ -31,7 +31,7 @@ export default function ToastContent() {
 				JSX description
 			</Button>
 			<Button
-				theme="secondary"
+				variant="secondary"
 				onClick={() =>
 					notifications.show({
 						description: toast => (
@@ -48,7 +48,7 @@ export default function ToastContent() {
 				Callback description
 			</Button>
 			<Button
-				theme="secondary"
+				variant="secondary"
 				onClick={() =>
 					notifications.show({
 						icon: <icons.CheckIcon />,
@@ -59,7 +59,7 @@ export default function ToastContent() {
 				Custom icon
 			</Button>
 			<Button
-				theme="secondary"
+				variant="secondary"
 				onClick={() =>
 					notifications.show({
 						tone: "success",
@@ -71,7 +71,7 @@ export default function ToastContent() {
 				No icon
 			</Button>
 			<Button
-				theme="secondary"
+				variant="secondary"
 				onClick={() =>
 					notifications.show({
 						theme: "light",

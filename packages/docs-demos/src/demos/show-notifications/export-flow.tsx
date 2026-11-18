@@ -55,10 +55,10 @@ export default function ExportFlow() {
 
 	return (
 		<>
-			<Button theme="primary" onClick={() => exportPng(2)}>
+			<Button variant="primary" onClick={() => exportPng(2)}>
 				Export PNG
 			</Button>
-			<Button theme="secondary" onClick={() => exportPng(64)}>
+			<Button variant="secondary" onClick={() => exportPng(64)}>
 				Export at 64×
 			</Button>
 			<Toaster toaster={notifications} closeLabel="Dismiss" />

@@ -1,0 +1,69 @@
+<div role="dialog" aria-labelledby="cm-title" tabindex="-1" class="cui-dialog-panel cui-commandmenu-content" data-cui="commandmenu-content" data-motion="none" data-expanded>
+  <h2 id="cm-title" class="cui-commandmenu-title" data-cui="commandmenu-title">Commands</h2>
+  <div class="cui-commandmenu-search" data-cui="commandmenu-search">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+      <circle cx="7" cy="7" r="4.25" />
+      <path d="m10.25 10.25 3.25 3.25" />
+    </svg>
+    <input type="text" role="combobox" placeholder="Search commands" autocomplete="off" spellcheck="false" aria-labelledby="cm-title" aria-expanded="true" aria-controls="cm-listbox" aria-autocomplete="list" aria-activedescendant="export-png" class="cui-commandmenu-search-input" data-cui="commandmenu-search-input" />
+    <span aria-hidden="true" class="cui-commandmenu-hint" data-cui="commandmenu-hint">↑↓ preview · ↵ apply · esc cancel</span>
+  </div>
+  <ul role="listbox" id="cm-listbox" aria-labelledby="cm-title" class="cui-commandmenu-listbox" data-cui="commandmenu-listbox">
+    <li role="presentation" class="cui-commandmenu-group" data-cui="commandmenu-group">
+      <span class="cui-commandmenu-group-label" data-cui="commandmenu-group-label">Export</span>
+    </li>
+    <li role="option" id="export-png" aria-selected="false" aria-disabled="false" aria-labelledby="export-png-label" class="cui-commandmenu-item" data-cui="commandmenu-item" data-highlighted>
+      <div id="export-png-label" class="cui-commandmenu-item-label" data-cui="commandmenu-item-label">Export as PNG</div>
+      <span class="cui-commandmenu-shortcut" data-cui="commandmenu-shortcut">⌘ E</span>
+    </li>
+    <li role="option" id="export-svg" aria-selected="false" aria-disabled="false" aria-labelledby="export-svg-label" class="cui-commandmenu-item" data-cui="commandmenu-item">
+      <div id="export-svg-label" class="cui-commandmenu-item-label" data-cui="commandmenu-item-label">Export as SVG</div>
+    </li>
+    <li role="option" id="copy-link" aria-selected="false" aria-disabled="false" aria-labelledby="copy-link-label" class="cui-commandmenu-item" data-cui="commandmenu-item">
+      <div id="copy-link-label" class="cui-commandmenu-item-label" data-cui="commandmenu-item-label">Copy share link</div>
+      <span class="cui-commandmenu-shortcut" data-cui="commandmenu-shortcut">⌘ ⇧ C</span>
+    </li>
+    <li role="presentation" class="cui-commandmenu-group" data-cui="commandmenu-group">
+      <span class="cui-commandmenu-group-label" data-cui="commandmenu-group-label">Themes</span>
+    </li>
+    <li role="option" id="vercel" aria-selected="false" aria-disabled="false" aria-labelledby="vercel-label" class="cui-commandmenu-item" data-cui="commandmenu-item">
+      <span aria-hidden="true" class="cui-commandmenu-leading" data-cui="commandmenu-leading">
+        <span style="width: 16px; height: 16px; border-radius: 50%; background: linear-gradient(135deg, #0a0a0a 50%, #52a8ff 50%); box-shadow: inset 0 0 0 1px rgb(127 127 127 / 35%)"></span>
+      </span>
+      <div id="vercel-label" class="cui-commandmenu-item-label" data-cui="commandmenu-item-label">Vercel</div>
+      <div aria-hidden="true" class="cui-commandmenu-item-indicator" data-cui="commandmenu-item-indicator">
+        <svg class="cui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 6 9 17l-5-5" />
+        </svg>
+      </div>
+    </li>
+    <li role="option" id="dracula" aria-selected="false" aria-disabled="false" aria-labelledby="dracula-label" class="cui-commandmenu-item" data-cui="commandmenu-item">
+      <span aria-hidden="true" class="cui-commandmenu-leading" data-cui="commandmenu-leading">
+        <span style="width: 16px; height: 16px; border-radius: 50%; background: linear-gradient(135deg, #282a36 50%, #ff79c6 50%); box-shadow: inset 0 0 0 1px rgb(127 127 127 / 35%)"></span>
+      </span>
+      <div id="dracula-label" class="cui-commandmenu-item-label" data-cui="commandmenu-item-label">Dracula</div>
+    </li>
+    <li role="option" id="legacy" aria-selected="false" aria-disabled="true" data-disabled aria-labelledby="legacy-label" class="cui-commandmenu-item" data-cui="commandmenu-item">
+      <span aria-hidden="true" class="cui-commandmenu-leading" data-cui="commandmenu-leading">
+        <span style="width: 16px; height: 16px; border-radius: 50%; background: linear-gradient(135deg, #ffffff 50%, #999999 50%); box-shadow: inset 0 0 0 1px rgb(127 127 127 / 35%)"></span>
+      </span>
+      <div id="legacy-label" class="cui-commandmenu-item-label" data-cui="commandmenu-item-label">Legacy light</div>
+    </li>
+    <li role="presentation" class="cui-commandmenu-group" data-cui="commandmenu-group">
+      <span class="cui-commandmenu-group-label" data-cui="commandmenu-group-label">Editor / Font</span>
+    </li>
+    <li role="option" id="jetbrains" aria-selected="false" aria-disabled="false" aria-labelledby="jetbrains-label" aria-describedby="jetbrains-desc" class="cui-commandmenu-item" data-cui="commandmenu-item">
+      <div id="jetbrains-label" class="cui-commandmenu-item-label" data-cui="commandmenu-item-label">JetBrains Mono</div>
+      <div id="jetbrains-desc" class="cui-commandmenu-item-description" data-cui="commandmenu-item-description">Monospace with ligatures</div>
+      <div aria-hidden="true" class="cui-commandmenu-item-indicator" data-cui="commandmenu-item-indicator">
+        <svg class="cui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 6 9 17l-5-5" />
+        </svg>
+      </div>
+    </li>
+    <li role="option" id="fira" aria-selected="false" aria-disabled="false" aria-labelledby="fira-label" aria-describedby="fira-desc" class="cui-commandmenu-item" data-cui="commandmenu-item">
+      <div id="fira-label" class="cui-commandmenu-item-label" data-cui="commandmenu-item-label">Fira Code</div>
+      <div id="fira-desc" class="cui-commandmenu-item-description" data-cui="commandmenu-item-description">Monospace with ligatures</div>
+    </li>
+  </ul>
+</div>

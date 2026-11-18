@@ -1,11 +1,10 @@
 export const baseFieldContainer: string =
-	"cui-number-field-baseFieldContainer cui-field-baseFieldTheme";
-export const control: string = "cui-number-field-control";
-export const controlButton: string = "cui-number-field-controlButton";
-export const controlsContainer: string = "cui-number-field-controlsContainer";
-export const numberFieldContainer: string = "cui-number-field-numberFieldContainer";
-export const numberFieldTheme: string = "cui-number-field-numberFieldTheme";
+	"cui-numberfield cui-field";
+export const control: string = "cui-numberfield-control";
+export const controlButton: string = "cui-numberfield-control-button";
+export const controlsContainer: string = "cui-numberfield-controls";
+export const numberFieldContainer: string = "cui-numberfield-group";
 export const numberFieldVars = {
-	controlSize: "var(--cui-numberFieldTheme-controlSize)" as `var(--${string})`,
+	controlSize: "var(--cui-numberfield-control-size)" as `var(--${string})`,
 };
-export const textField: string = "cui-number-field-textField";
+export const textField: string = "cui-numberfield-input";

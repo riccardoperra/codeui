@@ -30,7 +30,7 @@ export const DropdownMenuStory: Story = {
 	name: "DropdownMenu",
 	render: () => (
 		<DropdownMenu>
-			<DropdownMenuTrigger as={Button} theme={"primary"}>
+			<DropdownMenuTrigger as={Button} variant={"primary"}>
 				Menu
 			</DropdownMenuTrigger>
 			<DropdownMenuPortal>
@@ -48,7 +48,7 @@ export const DropdownMenuNestedStory: Story = {
 	name: "DropdownMenu Nested",
 	render: () => (
 		<DropdownMenu gutter={6}>
-			<DropdownMenuTrigger as={Button} theme={"tertiary"}>
+			<DropdownMenuTrigger as={Button} variant={"tertiary"}>
 				Menu
 			</DropdownMenuTrigger>
 

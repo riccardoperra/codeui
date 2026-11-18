@@ -84,7 +84,7 @@ function renderMenu() {
 function highlighted(input: HTMLElement) {
 	const id = input.getAttribute("aria-activedescendant");
 	return id
-		? document.getElementById(id)?.querySelector("[data-cui=command-menu-item-label]")
+		? document.getElementById(id)?.querySelector("[data-cui=commandmenu-item-label]")
 				?.textContent
 		: undefined;
 }
@@ -105,7 +105,7 @@ it("renders the search and the grouped list inline in one dialog", () => {
 	expect(screen.getAllByRole("dialog")).toHaveLength(1);
 	expect(screen.getByText("Themes")).toHaveAttribute(
 		"data-cui",
-		"command-menu-group-label",
+		"commandmenu-group-label",
 	);
 	expect(screen.getAllByRole("option").map(option => option.textContent)).toEqual([
 		"•Randomize theme⌘K",
@@ -200,7 +200,7 @@ it("reports no highlight when the menu closes", async () => {
 it("marks every rendered part with its data-cui name", () => {
 	renderMenu();
 	const dialog = screen.getByRole("dialog");
-	expect(dialog).toHaveAttribute("data-cui", "command-menu-content");
+	expect(dialog).toHaveAttribute("data-cui", "commandmenu-content");
 	for (const part of [
 		"title",
 		"search",
@@ -213,6 +213,6 @@ it("marks every rendered part with its data-cui name", () => {
 		"item-label",
 		"shortcut",
 	]) {
-		expect(dialog.querySelector(`[data-cui=command-menu-${part}]`)).not.toBeNull();
+		expect(dialog.querySelector(`[data-cui=commandmenu-${part}]`)).not.toBeNull();
 	}
 });

@@ -1,0 +1,71 @@
+---
+title: Skeleton
+description: A placeholder shape in plain HTML, shown while content loads.
+---
+
+Load `@codeui/styles/skeleton.css`, or `all.css`. The Solid component is documented in [Skeleton](/docs/components/skeleton).
+
+## Demo
+
+<HtmlDemo name="skeleton/basic" />
+
+## Markup
+
+| Part | Element | Class | `data-cui` |
+| --- | --- | --- | --- |
+| Root | `div` | `cui-skeleton` | `skeleton` |
+
+The root is a block with a small radius. Set its size with your own `width` and `height`. Without a height, it takes the height of its children.
+
+| Attribute | Values | Default |
+| --- | --- | --- |
+| `data-visible` | Presence | Off |
+| `data-animate` | Presence | Off |
+| `data-circle` | Presence | Off |
+
+## Variants
+
+### Shapes
+
+<HtmlDemo name="skeleton/shapes" />
+
+`data-circle` uses a full radius. Give a circle equal width and height. For another radius, set `border-radius` yourself. Match the dimensions of the content that will load, so the layout does not move.
+
+### Animation
+
+<HtmlDemo name="skeleton/animation" />
+
+`data-animate` pulses the opacity of a visible placeholder. The first bar pulses and the second is static. The pulse is a CSS animation, so it runs without a script.
+
+## States
+
+### Visible
+
+<HtmlDemo name="skeleton/revealed" />
+
+`data-visible` draws the placeholder. It fills the root, makes the text transparent, hides the children, and blocks pointer events and selection. Without it, the root is a plain block and its children show. Keep the children in the DOM and remove `data-visible` when the content is ready.
+
+### Reduced motion
+
+Under `prefers-reduced-motion: reduce`, the pulse stops and the placeholder stays visible.
+
+## What you supply
+
+- Setting and removing `data-visible` when content loads.
+- `aria-hidden="true"` on a visible placeholder, and `aria-busy="true"` on the region that is loading.
+- Width and height for each placeholder.
+
+## Helper
+
+```ts
+import "@codeui/styles/skeleton.css";
+import { applyStyleProps } from "@codeui/styles";
+import { skeletonStyleProps } from "@codeui/styles/skeleton";
+
+const title = document.querySelector(".snippet-title")!;
+applyStyleProps(title, skeletonStyleProps({ animate: true, class: "snippet-title" }));
+// class="cui-skeleton snippet-title" data-cui="skeleton" data-animate=""
+title.toggleAttribute("data-visible", true);
+```
+
+The helper does not emit `data-visible`, because it is state, not appearance.

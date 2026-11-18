@@ -1,0 +1,79 @@
+---
+title: Installation
+description: Load the theme and the component stylesheets, with or without a bundler.
+---
+
+## Install
+
+```sh
+pnpm add @codeui/styles
+```
+
+The package depends only on `@codeui/inkstone`, which supplies the shared tokens.
+
+## Load everything
+
+`all.css` contains the theme and every component. Use it when you do not need to pick components.
+
+```js
+import "@codeui/styles/all.css";
+```
+
+## Load per component
+
+Load `theme.css` once, then the entry of each component you use. Each entry already includes the stylesheets it depends on, such as the field styles for a text field, so the order of imports does not matter.
+
+```js
+import "@codeui/styles/theme.css";
+import "@codeui/styles/button.css";
+import "@codeui/styles/textfield.css";
+```
+
+`@codeui/styles/manifest.json` lists each CSS entry with its component and its dependency closure. Use it to generate import lists or to check bundle contents.
+
+## Without a bundler
+
+The CSS files are plain stylesheets. Copy `node_modules/@codeui/styles/dist/*.css` to your static assets and link them.
+
+```html
+<!doctype html>
+<html lang="en" data-cui-theme="dark">
+  <head>
+    <link rel="stylesheet" href="/assets/codeui/theme.css" />
+    <link rel="stylesheet" href="/assets/codeui/button.css" />
+  </head>
+  <body>
+    <button type="button" class="cui-button" data-cui="button" data-variant="primary">
+      Save changes
+    </button>
+  </body>
+</html>
+```
+
+## Fonts
+
+The theme sets `--cui-font-family-sans` to `"Inter var"` with a system fallback. The package does not load the font. Add it yourself to match the kit exactly. Without it, the system font renders and the metrics stay close.
+
+## Page defaults
+
+`theme.css` sets `box-sizing: border-box` on every element with a `cui-` class and on its `::before` and `::after`. A control's height includes its padding and border with no page reset. The rule sits in `@layer cui.base` with zero specificity, so your styles override it.
+
+The theme does not style `body`. Set the page font, text color, and background from tokens:
+
+```css
+body {
+  font-family: var(--cui-font-family-sans);
+  color: var(--cui-text-default);
+  background: var(--cui-surface-canvas);
+}
+```
+
+## Class helpers
+
+Each entry also has a JavaScript module with its class names, part markers, and `StyleProps` helpers. They are pure functions with no side effects, so tree shaking drops what you do not call.
+
+```js
+import { button, buttonStyleProps } from "@codeui/styles/button";
+```
+
+See [Markup](/docs/css/markup) for how to use them.

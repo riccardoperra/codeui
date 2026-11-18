@@ -88,7 +88,7 @@ function PartsMenu(props: { options: Group[]; placeholder?: string }): JSX.Eleme
 	const [open, setOpen] = createSignal(true);
 	return (
 		<M.Root open={open()} onOpenChange={setOpen}>
-			<M.Trigger as={Button} theme="secondary">
+			<M.Trigger as={Button} variant="secondary">
 				Open commands
 			</M.Trigger>
 			<M.Portal>
@@ -175,7 +175,7 @@ function Ready(props: { defaultOpen?: boolean; query?: string }) {
 	const [previewed, setPreviewed] = createSignal<string>();
 	return (
 		<>
-			<Button theme="secondary" onClick={() => setOpen(true)}>
+			<Button variant="secondary" onClick={() => setOpen(true)}>
 				Commands ⌘K
 			</Button>
 			<p>Previewing: {previewed() ?? "nothing"}</p>

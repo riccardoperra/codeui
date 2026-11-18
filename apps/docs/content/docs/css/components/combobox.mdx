@@ -1,0 +1,101 @@
+---
+title: Combobox
+description: A text input that filters a list of options, in plain HTML.
+---
+
+Load `@codeui/styles/combobox.css`, or `all.css`. The Solid component is documented in [Combobox](/docs/components/combobox).
+
+## Demo
+
+<HtmlDemo name="combobox/basic" />
+
+## Markup
+
+| Part | Element | Class | `data-cui` |
+| --- | --- | --- | --- |
+| Root | `div` | `cui-combobox` | `combobox` |
+| Label | `label` | `cui-combobox-label` | `combobox-label` |
+| Control | `div` | `cui-combobox-control` | `combobox-control` |
+| Input | `input` | `cui-combobox-input` | `combobox-input` |
+| Trigger | `button` | `cui-combobox-trigger` | `combobox-trigger` |
+| Icon | `span` with an `svg` | `cui-combobox-icon` | `combobox-icon` |
+| Description | `div` | `cui-combobox-description` | `combobox-description` |
+| Error message | `div` | `cui-combobox-error-message` | `combobox-error-message` |
+| Content | `div` | `cui-combobox-content` | `combobox-content` |
+| Listbox | `ul` | `cui-combobox-listbox` | `combobox-listbox` |
+| Section | `li` | `cui-combobox-section` | `combobox-section` |
+| Item | `li` | `cui-combobox-item` | `combobox-item` |
+| Item label | `div` | `cui-combobox-item-label` | `combobox-item-label` |
+| Item description | `div` | `cui-combobox-item-description` | `combobox-item-description` |
+| Item indicator | `div` with an `svg` | `cui-combobox-item-indicator` | `combobox-item-indicator` |
+| Empty message | `div` | `cui-combobox-empty` | None |
+
+The control is the field box. It holds the input and the trigger, and shows the focus ring when the input has focus. The content is a sibling of the root, not a child.
+Unlike Select, the combobox carries its own label and message classes, and the listbox class resets the `ul`.
+
+| Attribute | Values | Default |
+| --- | --- | --- |
+| `data-size` on the control | `sm`, `md` | `sm` |
+| `data-invalid` on the control | Presence | Off |
+| `data-disabled` on the control | Presence | Off |
+| `data-expanded` on the content | Presence | Off |
+| `data-motion` on the content | `none` | None |
+| `data-highlighted`, `data-disabled` on an item | Presence | Off |
+
+## Variants
+
+### Sizes
+
+<HtmlDemo name="combobox/sizes" />
+
+The default `sm` control is 36px at comfortable density. `md` is 44px with larger text. Both follow the shared density scale. Only the control reads `data-size`.
+
+## States
+
+### Open
+
+<HtmlDemo name="combobox/open" />
+
+`data-expanded` on the content plays the pop-in from `--cui-popper-content-transform-origin`. Without it, the content plays its exit animation and stays transparent. `data-motion="none"` turns off both animations.
+The list is at least as wide as `--cui-popper-anchor-width` and at most 400px tall, or `--cui-popper-content-available-height` when that is smaller. It scrolls past that. The demo matches the control width with the column around both.
+
+A section is a small heading row with `role="presentation"`. `data-highlighted` gives an item the menu hover fill and lifts its description to the item color. `data-disabled` dims an item. Render the check mark only in the selected item.
+JavaScript is highlighted and Zig is disabled in this demo.
+
+### Empty
+
+<HtmlDemo name="combobox/empty" />
+
+Put a `div.cui-combobox-empty` in the content, after the listbox, when no option matches the text.
+
+### Description, invalid, and disabled
+
+<HtmlDemo name="combobox/states" />
+
+A description goes under the control. Link it to the input with `aria-describedby`.
+`data-invalid` on the control turns its border to the danger color. Show the error message and set `aria-invalid="true"` on the input.
+`data-disabled` on the control dims it. Set the native `disabled` on the input and the trigger too.
+
+## What you supply
+
+- Filtering the options as the user types, and opening the list on typing, ArrowDown, or a trigger click.
+- `role="combobox"`, `aria-expanded`, `aria-controls`, and `aria-autocomplete="list"` on the input. Move `aria-activedescendant` with the highlight.
+- `role="listbox"` on the list and `role="option"` with `aria-selected` on each item.
+- Up and Down Arrow move `data-highlighted`. Enter selects. Escape closes the list and restores the selected label, and a second Escape clears the text.
+- The trigger stays out of the tab order with `tabindex="-1"`. Give it an accessible name.
+- Placement under the control, `--cui-popper-anchor-width`, `--cui-popper-content-available-height`, and `--cui-popper-content-transform-origin`.
+- A hidden native `select` or input if the value goes into a form.
+
+## Helper
+
+```ts
+import "@codeui/styles/combobox.css";
+import { applyStyleProps } from "@codeui/styles";
+import { comboboxStyleProps } from "@codeui/styles/combobox";
+
+const control = document.querySelector<HTMLElement>("[data-combobox-control]")!;
+applyStyleProps(control, comboboxStyleProps({ size: "md" }));
+// class="cui-combobox-control" data-cui="combobox-control" data-size="md"
+```
+
+`comboboxStyleProps` styles the control only. Use the `comboboxStyles` class helpers from the same entry for the other parts.

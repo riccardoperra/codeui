@@ -33,7 +33,23 @@ const sharedAttributes = new Set([
 	"data-cui-input",
 	"data-cui-theme",
 ]);
-const camel = name => name.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
+// Entry names are one lowercase word (`textfield`). Their JavaScript names keep the camel case of
+// the component (`textFieldStyleProps`).
+const jsNames = {
+	commandmenu: "commandMenu",
+	dropdownmenu: "dropdownMenu",
+	fielderror: "fieldError",
+	fieldlabel: "fieldLabel",
+	fieldmessage: "fieldMessage",
+	iconbutton: "iconButton",
+	numberfield: "numberField",
+	optioncard: "optionCard",
+	radiolist: "radioList",
+	segmentedcontrol: "segmentedControl",
+	textarea: "textArea",
+	textfield: "textField",
+};
+const camel = name => jsNames[name] ?? name.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
 const upper = name => name[0].toUpperCase() + name.slice(1);
 const attributeName = name =>
 	"data-" + name.replace(/[A-Z]/g, letter => "-" + letter.toLowerCase());

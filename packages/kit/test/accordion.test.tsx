@@ -90,7 +90,7 @@ it.each(["Enter", " "])("toggles with %s and marks the input as keyboard", async
 	expect(trigger).toHaveAttribute("aria-expanded", "true");
 	// Styles drop the height transition while the last input is the keyboard.
 	expect(document.documentElement).toHaveAttribute("data-cui-input", "keyboard");
-	expect(trigger.closest('[data-cui="accordion-root"]')).toHaveAttribute(
+	expect(trigger.closest('[data-cui="accordion"]')).toHaveAttribute(
 		"data-motion",
 		"auto",
 	);
@@ -107,7 +107,7 @@ it("opens a closed section on the first click while another is open", async () =
 	const observer = new MutationObserver(records =>
 		records.forEach(record => changes.push(`${record.attributeName}`)),
 	);
-	observer.observe(size.closest('[data-cui="accordion-root"]')!, {
+	observer.observe(size.closest('[data-cui="accordion"]')!, {
 		attributes: true,
 		subtree: true,
 	});

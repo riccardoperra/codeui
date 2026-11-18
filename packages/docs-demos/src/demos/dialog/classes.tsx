@@ -6,7 +6,7 @@ export default function DialogClasses() {
 	const [open, setOpen] = createSignal(false);
 	return (
 		<>
-			<Button theme="secondary" onClick={() => setOpen(true)}>
+			<Button variant="secondary" onClick={() => setOpen(true)}>
 				Open share settings
 			</Button>
 			<Dialog

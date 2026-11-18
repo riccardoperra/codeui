@@ -6,7 +6,7 @@ export default function DialogParts() {
 	const [open, setOpen] = createSignal(false);
 	return (
 		<D.Root open={open()} onOpenChange={setOpen}>
-			<D.Trigger as={Button} theme="secondary">
+			<D.Trigger as={Button} variant="secondary">
 				Export as video
 			</D.Trigger>
 			<D.Portal>
@@ -21,7 +21,7 @@ export default function DialogParts() {
 						<D.Body>The export runs in the background. You can keep editing.</D.Body>
 						<D.Footer>
 							<div style={{ display: "flex", "justify-content": "flex-end" }}>
-								<Button theme="primary" onClick={() => setOpen(false)}>
+								<Button variant="primary" onClick={() => setOpen(false)}>
 									Start export
 								</Button>
 							</div>

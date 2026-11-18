@@ -2,7 +2,7 @@ import type { RadioListProps, RadioListItemProps } from "@codeui/kit";
 import type { PropNotes } from "./notes";
 export type RadioList = Pick<
 	RadioListProps,
-	"size" | "theme" | "label" | "description" | "errorMessage" | "classes"
+	"size" | "variant" | "label" | "description" | "errorMessage" | "classes"
 >;
 export type RadioListInherited = Pick<
 	RadioListProps,
@@ -24,7 +24,7 @@ export const notes = {
 			description: "Control size.",
 			default: '"md"',
 		},
-		theme: {
+		variant: {
 			description:
 				"Accepts filled or inline from BaseFieldProps. This component currently ignores theme.",
 		},

@@ -1,15 +1,14 @@
-export const indicator: string = "cui-radio-indicator";
-export const radio: string = "cui-radio-radio";
-export const radioItem: string = "cui-radio-radioItem";
-export const radioList = (): string => "cui-radio-radioList cui-radio-radioTheme";
-export const radioTheme: string = "cui-radio-radioTheme";
+export const indicator: string = "cui-radiolist-indicator";
+export const radio: string = "cui-radiolist-radio";
+export const radioItem: string = "cui-radiolist-item";
+export const radioList = (): string => "cui-radiolist";
 export const radioVars = {
-	inputColor: "var(--cui-radioTheme-inputColor)" as `var(--${string})`,
-	inputBackground: "var(--cui-radioTheme-inputBackground)" as `var(--${string})`,
+	inputColor: "var(--cui-radiolist-input-color)" as `var(--${string})`,
+	inputBackground: "var(--cui-radiolist-input-background)" as `var(--${string})`,
 	inputInvalidBackground:
-		"var(--cui-radioTheme-inputInvalidBackground)" as `var(--${string})`,
-	inputText: "var(--cui-radioTheme-inputText)" as `var(--${string})`,
-	inputSize: "var(--cui-radioTheme-inputSize)" as `var(--${string})`,
-	labelSize: "var(--cui-radioTheme-labelSize)" as `var(--${string})`,
-	inputFill: "var(--cui-radioTheme-inputFill)" as `var(--${string})`,
+		"var(--cui-radiolist-input-invalid-background)" as `var(--${string})`,
+	inputText: "var(--cui-radiolist-input-text)" as `var(--${string})`,
+	inputSize: "var(--cui-radiolist-input-size)" as `var(--${string})`,
+	labelSize: "var(--cui-radiolist-label-size)" as `var(--${string})`,
+	inputFill: "var(--cui-radiolist-input-fill)" as `var(--${string})`,
 };

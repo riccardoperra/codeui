@@ -2,14 +2,14 @@ import type { IconButton } from "@codeui/kit";
 import type { ComponentProps } from "solid-js";
 import type { PropNotes } from "./notes";
 
-export type IconButton = Pick<ComponentProps<typeof IconButton>, "theme" | "size" | "variant" | "pill" | "block" | "loading" | "class" | "aria-label">;
+export type IconButton = Pick<ComponentProps<typeof IconButton>, "variant" | "size" | "ghost" | "pill" | "block" | "loading" | "class" | "aria-label">;
 export type IconButtonInherited = Pick<ComponentProps<typeof IconButton>, "disabled" | "as" | "type">;
 
 export const notes = {
 	IconButton: {
-		"theme": { default: 'undefined', description: "Color scheme. No theme is selected by default." },
+		"variant": { default: 'undefined', description: "Color scheme. No variant is selected by default." },
 		"size": { default: '"sm"', description: "Control height, padding, and font size." },
-		"variant": { default: 'undefined', description: "Transparent idle fill with theme colors on hover." },
+		"ghost": { default: 'false', description: "Transparent idle fill with the variant colors on hover." },
 		"pill": { default: 'false', description: "Uses fully rounded corners." },
 		"block": { default: 'false', description: "Sets width to 100% and flex to 1." },
 		"loading": { default: 'false', description: "Overlays animated dots and blocks pointer events. Does not disable keyboard activation." },

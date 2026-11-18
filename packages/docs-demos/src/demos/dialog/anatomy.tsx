@@ -10,7 +10,7 @@ export default function DialogAnatomy() {
 	return (
 		<D.Root modal={false} open motion="none">
 			<div style={{ display: "grid", gap: "var(--cui-space-3)", "justify-items": "center", width: "100%" }}>
-				<D.Trigger as={Button} theme="secondary">
+				<D.Trigger as={Button} variant="secondary">
 					Settings
 				</D.Trigger>
 				<div style={{ position: "relative", width: "100%", "max-width": "640px", "border-radius": "16px", overflow: "hidden" }}>
@@ -39,7 +39,7 @@ export default function DialogAnatomy() {
 									</D.Section>
 								</D.Body>
 								<D.Footer style={{ padding: "0 24px 16px" }}>
-									<Button size="sm" theme="secondary">
+									<Button size="sm" variant="secondary">
 										Done
 									</Button>
 								</D.Footer>

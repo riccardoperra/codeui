@@ -11,7 +11,7 @@ import {
 export default function DropdownMenuIconTrigger() {
 	return (
 		<DropdownMenu placement="bottom-end">
-			<DropdownMenuTrigger as={IconButton} theme="secondary" aria-label="More export options">
+			<DropdownMenuTrigger as={IconButton} variant="secondary" aria-label="More export options">
 				<icons.ChevronDownIcon />
 			</DropdownMenuTrigger>
 			<DropdownMenuPortal>

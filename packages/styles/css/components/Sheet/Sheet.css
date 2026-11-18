@@ -1,9 +1,9 @@
-@keyframes cui-sheet-fadeIn {
+@keyframes cui-sheet-fade-in {
   from {
     opacity: 0;
   }
 }
-@keyframes cui-sheet-fadeOut {
+@keyframes cui-sheet-fade-out {
   to {
     opacity: 0;
   }
@@ -44,10 +44,10 @@
     inset: 0;
     z-index: 40;
     background-color: var(--cui-surface-scrim);
-    animation: cui-sheet-fadeOut var(--cui-motion-duration-panel) var(--cui-motion-ease-out) forwards;
+    animation: cui-sheet-fade-out var(--cui-motion-duration-panel) var(--cui-motion-ease-out) forwards;
   }
   .cui-sheet-overlay[data-expanded] {
-    animation: cui-sheet-fadeIn var(--cui-motion-duration-panel) var(--cui-motion-ease-out);
+    animation: cui-sheet-fade-in var(--cui-motion-duration-panel) var(--cui-motion-ease-out);
   }
   .cui-sheet-overlay[data-motion=none], .cui-sheet-overlay[data-motion=none][data-expanded] {
     animation: none;
@@ -129,8 +129,8 @@
     justify-content: space-between;
     gap: var(--cui-space-3);
     flex-shrink: 0;
-    --cui-sheet-headerMinHeight: 56px;
-    min-height: var(--cui-sheet-headerMinHeight);
+    --cui-sheet-header-min-height: 56px;
+    min-height: var(--cui-sheet-header-min-height);
     padding: 0 var(--cui-space-4) 0 var(--cui-space-6);
     border-bottom: var(--cui-border-width) solid var(--cui-border-dialog-title);
   }
@@ -147,7 +147,7 @@
     color: var(--cui-text-dialog);
     font-size: var(--cui-font-size-sm);
   }
-  .cui-sheet-closeButton {
+  .cui-sheet-close-button {
     position: relative;
     flex-shrink: 0;
     margin-inline-start: auto;
@@ -159,8 +159,8 @@
     justify-content: center;
     flex-shrink: 0;
     width: 100%;
-    --cui-sheet-handleHitHeight: 40px;
-    height: var(--cui-sheet-handleHitHeight);
+    --cui-sheet-handle-hit-height: 40px;
+    height: var(--cui-sheet-handle-hit-height);
     padding: 0;
     border: 0;
     background: transparent;
@@ -199,39 +199,39 @@
   }
   @media (--cui-reduced-motion) {
     .cui-sheet-overlay {
-      animation-name: cui-sheet-fadeOut;
+      animation-name: cui-sheet-fade-out;
     }
     .cui-sheet-overlay[data-expanded] {
-      animation-name: cui-sheet-fadeIn;
+      animation-name: cui-sheet-fade-in;
     }
     :where(.cui-sheet-content) {
       &:is(:not([data-side]), [data-side="bottom"]) {
-        animation-name: cui-sheet-fadeOut;
+        animation-name: cui-sheet-fade-out;
       }
 
       &:is(:not([data-side]), [data-side="bottom"])[data-expanded] {
-        animation-name: cui-sheet-fadeIn;
+        animation-name: cui-sheet-fade-in;
       }
 
       &[data-side="left"] {
-        animation-name: cui-sheet-fadeOut;
+        animation-name: cui-sheet-fade-out;
       }
 
       &[data-side="left"][data-expanded] {
-        animation-name: cui-sheet-fadeIn;
+        animation-name: cui-sheet-fade-in;
       }
 
       &[data-side="right"] {
-        animation-name: cui-sheet-fadeOut;
+        animation-name: cui-sheet-fade-out;
       }
 
       &[data-side="right"][data-expanded] {
-        animation-name: cui-sheet-fadeIn;
+        animation-name: cui-sheet-fade-in;
       }
     }
   }
   @media (--cui-coarse-pointer) {
-    .cui-sheet-closeButton::after {
+    .cui-sheet-close-button::after {
       content: "";
       position: absolute;
       inset: -5px;

@@ -1,1 +1,1 @@
-export const root = (): string => "cui-text-root";
+export const root = (): string => "cui-text";

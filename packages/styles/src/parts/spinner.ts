@@ -1,7 +1,7 @@
 import type { SpinnerStyleOptions } from "../generated-appearance/spinner";
 import * as styles from "../components/Spinner/Spinner.css";
 export const spinnerParts = {
-	root: "spinner-root",
+	root: "spinner",
 	track: "spinner-track",
 	indicator: "spinner-indicator",
 } as const;

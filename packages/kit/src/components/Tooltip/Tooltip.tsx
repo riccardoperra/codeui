@@ -15,7 +15,7 @@ export type TooltipProps = P.RootProps &
 
 export function Tooltip(props: TooltipProps) {
 	const [local, others] = splitProps(props, [
-		"theme",
+		"variant",
 		"slotClasses",
 		"mount",
 		"children",
@@ -26,7 +26,7 @@ export function Tooltip(props: TooltipProps) {
 		<P.Root {...others}>
 			<P.Trigger class={local.slotClasses?.trigger}>{local.children}</P.Trigger>
 			<P.Portal mount={local.mount}>
-				<P.Content theme={local.theme} class={local.slotClasses?.content}>
+				<P.Content variant={local.variant} class={local.slotClasses?.content}>
 					{local.content}
 				</P.Content>
 			</P.Portal>

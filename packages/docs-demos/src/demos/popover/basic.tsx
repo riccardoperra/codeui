@@ -3,7 +3,7 @@ import { Button, Popover, PopoverContent, PopoverTrigger } from "@codeui/kit";
 export default function PopoverBasic() {
 	return (
 		<Popover placement="bottom-start">
-			<PopoverTrigger as={Button} theme="secondary">
+			<PopoverTrigger as={Button} variant="secondary">
 				Font settings
 			</PopoverTrigger>
 			<PopoverContent title="Font settings" description="Applies to every new snippet.">

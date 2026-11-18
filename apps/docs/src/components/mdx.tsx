@@ -5,6 +5,8 @@ import type { MDXComponents } from 'mdx/types';
 import { TypeTable } from 'fumadocs-ui/components/type-table';
 import { PropsTable } from './props-table';
 import { SolidDemo } from './solid-demo';
+import { HtmlDemo } from './html-demo';
+import { CssPlayground } from './css-playground';
 import { Anatomy } from './anatomy';
 import { Do, DoDont, Dont, Figure } from './inkstone/frame';
 import * as InkArt from './inkstone/art';
@@ -36,6 +38,8 @@ export function getMDXComponents(components?: MDXComponents) {
     ...defaultMdxComponents,
     table: MdxTable,
     SolidDemo,
+    HtmlDemo,
+    CssPlayground,
     Anatomy,
     Figure,
     DoDont,

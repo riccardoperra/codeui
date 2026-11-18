@@ -1,1 +1,1 @@
-export const errorMessage: string = "cui-field-error-errorMessage";
+export const errorMessage: string = "cui-field-error";

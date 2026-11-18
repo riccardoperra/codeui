@@ -1,7 +1,7 @@
 import type { AccordionStyleOptions } from "../generated-appearance/accordion";
 import * as styles from "../components/Accordion/Accordion.css";
 export const accordionParts = {
-	root: "accordion-root",
+	root: "accordion",
 	item: "accordion-item",
 	header: "accordion-header",
 	trigger: "accordion-trigger",

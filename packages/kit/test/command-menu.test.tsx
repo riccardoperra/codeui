@@ -89,7 +89,7 @@ function renderMenu(
 function highlighted(input: HTMLElement) {
 	const id = input.getAttribute("aria-activedescendant");
 	return id
-		? document.getElementById(id)?.querySelector("[data-cui=command-menu-item-label]")
+		? document.getElementById(id)?.querySelector("[data-cui=commandmenu-item-label]")
 				?.textContent
 		: undefined;
 }
@@ -115,20 +115,20 @@ it("renders rich content: the leading visual, the current check, the description
 	const { openMenu } = renderMenu();
 	await openMenu();
 	const vercel = screen.getByRole("option", { name: "Vercel" });
-	expect(vercel.querySelector("[data-cui=command-menu-leading]")).toHaveTextContent(
+	expect(vercel.querySelector("[data-cui=commandmenu-leading]")).toHaveTextContent(
 		"orb",
 	);
-	expect(vercel.querySelector("[data-cui=command-menu-item-indicator]")).not.toBeNull();
+	expect(vercel.querySelector("[data-cui=commandmenu-item-indicator]")).not.toBeNull();
 	const dracula = screen.getByRole("option", { name: "Dracula" });
 	expect(dracula.querySelector("b")).toHaveTextContent("Dracula");
 	expect(dracula).toHaveTextContent("Dark purple");
-	expect(dracula.querySelector("[data-cui=command-menu-leading]")).not.toBeNull();
-	expect(dracula.querySelector("[data-cui=command-menu-item-indicator]")).toBeNull();
+	expect(dracula.querySelector("[data-cui=commandmenu-leading]")).not.toBeNull();
+	expect(dracula.querySelector("[data-cui=commandmenu-item-indicator]")).toBeNull();
 	const shortcuts = screen.getByRole("option", { name: "Keyboard shortcuts" });
-	expect(shortcuts.querySelector("[data-cui=command-menu-shortcut]")).toHaveTextContent(
+	expect(shortcuts.querySelector("[data-cui=commandmenu-shortcut]")).toHaveTextContent(
 		"?",
 	);
-	expect(shortcuts.querySelector("[data-cui=command-menu-leading]")).toBeNull();
+	expect(shortcuts.querySelector("[data-cui=commandmenu-leading]")).toBeNull();
 });
 
 it("previews on highlight and commits only on Enter: before close, close, then select", async () => {

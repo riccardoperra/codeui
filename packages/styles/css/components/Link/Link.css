@@ -1,5 +1,5 @@
 @layer cui.components {
-  .cui-link-link {
+  .cui-link {
     outline: none;
     display: inline-flex;
     align-items: center;
@@ -8,7 +8,7 @@
     color: inherit;
     cursor: pointer;
   }
-  :where(.cui-link-link)[data-variant="underline"]:hover {
+  :where(.cui-link)[data-variant="underline"]:hover {
     text-decoration: underline;
   }
 }

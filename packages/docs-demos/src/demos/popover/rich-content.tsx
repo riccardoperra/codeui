@@ -3,7 +3,7 @@ import { Badge, Button, Popover, PopoverContent, PopoverTrigger } from "@codeui/
 export default function PopoverRichContent() {
 	return (
 		<Popover placement="bottom-start">
-			<PopoverTrigger as={Button} theme="secondary">
+			<PopoverTrigger as={Button} variant="secondary">
 				Export styles
 			</PopoverTrigger>
 			<PopoverContent
@@ -15,8 +15,8 @@ export default function PopoverRichContent() {
 				description="Applies to every new export."
 			>
 				<div style={{ display: "grid", "grid-template-columns": "1fr 1fr", gap: "8px" }}>
-					<Button theme="secondary">PNG</Button>
-					<Button theme="secondary">SVG</Button>
+					<Button variant="secondary">PNG</Button>
+					<Button variant="secondary">SVG</Button>
 				</div>
 			</PopoverContent>
 		</Popover>

@@ -31,7 +31,7 @@ export function TextArea(props: TextAreaProps) {
 		"description",
 		"size",
 		"label",
-		"theme",
+		"variant",
 		"errorMessage",
 		"placeholder",
 		"ref",
@@ -44,7 +44,7 @@ export function TextArea(props: TextAreaProps) {
 	return (
 		<P.Root
 			size={local.size}
-			theme={local.theme}
+			variant={local.variant}
 			inputId={local.options?.id}
 			class={mergeClasses(local.slotClasses?.root, local.classes?.root)}
 			{...rootProps}

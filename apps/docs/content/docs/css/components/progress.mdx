@@ -1,0 +1,82 @@
+---
+title: Progress
+description: A bar in plain HTML that shows how much of a task is done.
+---
+
+Load `@codeui/styles/progress.css`, or `all.css`. The Solid component is documented in [Progress](/docs/components/progress).
+
+## Demo
+
+<HtmlDemo name="progress/basic" />
+
+## Markup
+
+| Part | Element | Class | `data-cui` |
+| --- | --- | --- | --- |
+| Root | `div` | `cui-progress` | `progress` |
+| Label | `span` | `cui-progress-label` | `progress-label` |
+| Value label | `div` | `cui-progress-value-label` | `progress-value-label` |
+| Track | `div` | `cui-progress-track` | `progress-track` |
+| Fill | `div` | `cui-progress-fill` | `progress-fill` |
+
+The root is a grid that stacks the label, the value label, and the track with an 8px gap. The fill goes inside the track.
+
+| Attribute | Values | Default |
+| --- | --- | --- |
+| `data-size` | `sm`, `md` | `sm` |
+
+| CSS variable | Part | Value |
+| --- | --- | --- |
+| `--cui-progress-fill-width` | Fill | The completed share, such as `40%` |
+
+## Variants
+
+### Sizes
+
+<HtmlDemo name="progress/sizes" />
+
+`sm` is a 4px track. `md` makes the track taller. Set `data-size` on the root, the track, or both. The track reads it from either.
+
+### Value text
+
+<HtmlDemo name="progress/custom-value" />
+
+The value label is plain text, so it can say "12 of 24 frames" as well as a percentage. Keep `aria-valuetext` equal to it.
+
+## States
+
+### Value
+
+<HtmlDemo name="progress/states" />
+
+Set `--cui-progress-fill-width` on the fill to the completed share. The fill has no transition, so it jumps to each new value. Without the variable the fill spans the whole track, so always set it, even to `0%`.
+
+### Indeterminate
+
+<HtmlDemo name="progress/indeterminate" />
+
+`data-indeterminate` on the fill spans the track and pulses its opacity. The pulse is a CSS animation, so it runs without a script. Under `prefers-reduced-motion: reduce`, the pulse stops and the full-width fill stays. Leave out `aria-valuenow` and `aria-valuetext` while the bar is indeterminate.
+
+## What you supply
+
+- `role="progressbar"`, `aria-valuemin`, `aria-valuemax`, `aria-valuenow`, and `aria-valuetext` on the root.
+- `aria-labelledby` from the root to the label's `id`.
+- `--cui-progress-fill-width` on the fill each time the value changes, and the matching value text.
+- An announcement when the task ends. The value label is not a live region.
+
+## Helper
+
+```ts
+import "@codeui/styles/progress.css";
+import { applyStyleProps } from "@codeui/styles";
+import { progressStyleProps, progressStyles } from "@codeui/styles/progress";
+
+const root = document.querySelector(".export-progress")!;
+applyStyleProps(root, progressStyleProps({ size: "md", class: "export-progress" }));
+// class="cui-progress export-progress" data-cui="progress" data-size="md"
+applyStyleProps(root.querySelector(".track")!, progressStyleProps.track({ size: "md", class: "track" }));
+// class="cui-progress-track track" data-cui="progress-track" data-size="md"
+
+const fill = root.querySelector<HTMLElement>(`.${progressStyles.fill()}`)!;
+fill.style.setProperty("--cui-progress-fill-width", "40%");
+```

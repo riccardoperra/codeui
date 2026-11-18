@@ -6,7 +6,7 @@ export default function KeepOpenOnEscape() {
 	const [align, setAlign] = createSignal("left");
 	return (
 		<>
-			<Button theme="secondary" onClick={() => setOpen(true)}>
+			<Button variant="secondary" onClick={() => setOpen(true)}>
 				Text alignment
 			</Button>
 			<Dialog open={open()} onOpenChange={setOpen} size="sm" title="Text alignment">

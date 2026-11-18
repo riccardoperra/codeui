@@ -151,10 +151,10 @@ export default function ThemingPresets() {
 								<Badge>Draft</Badge>
 							</div>
 							<div style={row}>
-								<Button theme="primary" size="sm">
+								<Button variant="primary" size="sm">
 									Export PNG
 								</Button>
-								<Button theme="secondary" size="sm">
+								<Button variant="secondary" size="sm">
 									Copy link
 								</Button>
 							</div>
@@ -166,7 +166,7 @@ export default function ThemingPresets() {
 				style={{ display: "flex", "flex-direction": "column", gap: "var(--cui-space-2)" }}
 			>
 				<div style={{ display: "flex", "justify-content": "flex-end" }}>
-					<Button theme="secondary" size="xs" onClick={copy}>
+					<Button variant="secondary" size="xs" onClick={copy}>
 						{copied() ? "Copied" : "Copy CSS"}
 					</Button>
 				</div>

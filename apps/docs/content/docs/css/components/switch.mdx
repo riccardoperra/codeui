@@ -1,0 +1,75 @@
+---
+title: Switch
+description: An on and off toggle in plain HTML, with a track, a thumb, and a label.
+---
+
+Load `@codeui/styles/switch.css`, or `all.css`. The Solid component is documented in [Switch](/docs/components/switch).
+
+## Demo
+
+<HtmlDemo name="switch/basic" />
+
+## Markup
+
+| Part | Element | Class | `data-cui` |
+| --- | --- | --- | --- |
+| Root | `div` | `cui-switch` | `switch` |
+| Input | `input type="checkbox" role="switch"` | `cui-switch-input` | `switch-input` |
+| Track | `div` | `cui-switch-control` | `switch-control` |
+| Thumb | `div` | `cui-switch-thumb` | `switch-thumb` |
+| Label | `label` | `cui-switch-label cui-field-label` | `switch-label` |
+| Hint | `div` | `cui-switch-description` | `switch-description` |
+| Error | `div` | `cui-switch-error-message` | `switch-error-message` |
+
+The root is a two-column grid. The track sits in the first column, and the label, the hint, and the error sit in the second. `cui-switch-input` has no rules, so hide the input visually with your own style, as the demos do inline. The focus ring selects `[data-cui="switch-input"]:focus-visible ~ .cui-switch-control`, so the input keeps its `data-cui` and comes before the track.
+
+| Attribute | Element | Values | Default |
+| --- | --- | --- | --- |
+| `data-size` | Root or track | `sm`, `md` | `md` |
+
+## Variants
+
+### Sizes
+
+<HtmlDemo name="switch/sizes" />
+
+`md` is a 36×22 track with a 16px thumb. `sm` is a 28×16 track with a 12px thumb. On a touch screen both grow to 44×26 with a 20px thumb, so the target is at least 40px. `data-size="sm"` works on the track, or on a root with `data-cui="switch"`.
+
+## States
+
+### Checked
+
+<HtmlDemo name="switch/checked" />
+
+Set `data-checked` on both the track and the thumb. The track takes the brand fill and the thumb slides to the end. Keep the native `checked` property in sync.
+
+### Disabled
+
+<HtmlDemo name="switch/disabled" />
+
+`data-disabled` on the root dims the switch to 40% opacity. On the track it sets the `not-allowed` cursor. Set the native `disabled` attribute on the input too.
+
+### Invalid
+
+<HtmlDemo name="switch/invalid" />
+
+`data-invalid` on the track draws a 2px `--cui-text-danger` outline. Render the error only while the switch is invalid, and set `aria-invalid="true"` on the input.
+
+## What you supply
+
+- A click handler on the track that toggles the input. The label toggles it natively through `for`.
+- `data-checked` on the track and the thumb whenever the input's `checked` changes.
+- `html[data-cui-input]` set to `keyboard` or `pointer`. With `pointer`, the focus ring stays hidden after a click. With `keyboard`, the toggle is instant.
+- Matching `id` and `for`, and `aria-describedby` for the hint and the error.
+
+## Helper
+
+```ts
+import "@codeui/styles/switch.css";
+import { applyStyleProps } from "@codeui/styles";
+import { switchStyleProps } from "@codeui/styles/switch";
+
+applyStyleProps(document.querySelector("[data-cui=switch-control]")!, switchStyleProps.control({ size: "sm" }));
+applyStyleProps(document.querySelector("[data-cui=switch-thumb]")!, switchStyleProps.thumb({ size: "sm" }));
+// class="cui-switch-control" data-cui="switch-control" data-size="sm"
+```

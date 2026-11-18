@@ -35,7 +35,7 @@ export default function MotionDurations() {
 				)}
 			</For>
 			<div>
-				<Button theme="secondary" size="sm" onClick={() => setMoved(!moved())}>
+				<Button variant="secondary" size="sm" onClick={() => setMoved(!moved())}>
 					Play
 				</Button>
 			</div>

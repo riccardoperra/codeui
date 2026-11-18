@@ -1,6 +1,6 @@
 import { HydratablePortal } from "../utils/hydratable-portal";
 import "@codeui/styles/theme.css";
-import "@codeui/styles/command-menu.css";
+import "@codeui/styles/commandmenu.css";
 import * as K from "@kobalte/core/combobox";
 import {
 	Dialog as KDialog,
@@ -30,8 +30,8 @@ import * as styles from "../components/CommandMenu/CommandMenu.css";
 import { mergeClasses } from "../utils/css";
 import * as Dialog from "./dialog";
 
-import { commandMenuParts, type CommandMenuPart, type CommandMenuClasses, type CommandMenuStyles, commandMenuStyles } from "@codeui/styles/command-menu";
-export { commandMenuParts, type CommandMenuPart, type CommandMenuClasses, type CommandMenuStyles, commandMenuStyles } from "@codeui/styles/command-menu";
+import { commandMenuParts, type CommandMenuPart, type CommandMenuClasses, type CommandMenuStyles, commandMenuStyles } from "@codeui/styles/commandmenu";
+export { commandMenuParts, type CommandMenuPart, type CommandMenuClasses, type CommandMenuStyles, commandMenuStyles } from "@codeui/styles/commandmenu";
 function partAttributes(part: CommandMenuPart, local: { class?: string }) {
 	return {
 		"data-cui": commandMenuParts[part],

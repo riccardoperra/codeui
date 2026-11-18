@@ -16,7 +16,7 @@ export default function ToastAction() {
 		});
 	return (
 		<>
-			<Button theme="secondary" onClick={paste}>
+			<Button variant="secondary" onClick={paste}>
 				Paste code
 			</Button>
 			<Toaster toaster={notifications} closeLabel="Dismiss" />

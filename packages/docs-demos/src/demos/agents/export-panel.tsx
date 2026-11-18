@@ -23,7 +23,7 @@ export default function ExportPanel() {
 			/>
 			<Switch label="Show line numbers" checked={lineNumbers()} onChange={setLineNumbers} />
 			<Button
-				theme="primary"
+				variant="primary"
 				onClick={() =>
 					notifications.show({ tone: "success", description: `hello-world.${format().toLowerCase()} exported` })
 				}

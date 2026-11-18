@@ -91,10 +91,10 @@ export function AddTransaction() {
 				</DialogPanelContent>
 				<DialogPanelFooter>
 					<Stack direction="row" gap="2" justify="end">
-						<Button type="button" theme="secondary" onClick={close}>
+						<Button type="button" variant="secondary" onClick={close}>
 							Cancel
 						</Button>
-						<Button type="submit" theme="primary">
+						<Button type="submit" variant="primary">
 							Add transaction
 						</Button>
 					</Stack>

@@ -1,5 +1,5 @@
 import "@codeui/styles/theme.css";
-import "@codeui/styles/number-field.css";
+import "@codeui/styles/numberfield.css";
 import { createControllableSignal } from "@kobalte/core/primitives/create-controllable-signal";
 import { callHandler, clamp, mergeRefs } from "@kobalte/utils";
 import {
@@ -270,7 +270,7 @@ export function Root(props: RootProps) {
 		<NumberFieldContext.Provider value={control}>
 			<FieldRoot
 				{...others}
-				marker="number-field"
+				marker="numberfield"
 				baseClass={styles.baseFieldContainer}
 				size={others.size ?? "sm"}
 				value={control.displayValue()}

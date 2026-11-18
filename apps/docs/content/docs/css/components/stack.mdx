@@ -1,0 +1,88 @@
+---
+title: Stack
+description: A flex container in plain HTML that spaces its children with token gaps.
+---
+
+Load `@codeui/styles/stack.css`, or `all.css`. The Solid component is documented in [Stack](/docs/components/stack).
+
+## Demo
+
+<HtmlDemo name="stack/basic" />
+
+## Markup
+
+| Part | Element | Class | `data-cui` |
+| --- | --- | --- | --- |
+| Root | Any element | `cui-stack` | `stack` |
+
+Stack adds no color, padding, or border. It only places its children.
+
+| Attribute | Values | Default |
+| --- | --- | --- |
+| `data-direction` | `row`, `column` | `column` |
+| `data-gap` | `0`, `px`, `0.5`, `1`, `1.5`, `2`, `2.5`, `3`, `4`, `5`, `6`, `8`, `10`, `12`, `16`, `20`, `24`, `32`, `40`, `48`, `56`, `64` | `2` |
+| `data-align` | `start`, `center`, `end`, `stretch`, `baseline` | `stretch` |
+| `data-justify` | `start`, `center`, `end`, `between`, `around`, `evenly` | `start` |
+| `data-wrap` | `true`, `false` | `false` |
+
+## Variants
+
+### Direction
+
+<HtmlDemo name="stack/direction" />
+
+`data-direction` sets the main axis. The default is `column`, because most stacks in a panel are vertical.
+
+### Gap
+
+<HtmlDemo name="stack/gap" />
+
+`data-gap` takes a key of the space scale. Key `1` is 4px and each step follows the 4px grid. `0.5` is 2px, `1.5` is 6px, and `px` is 1px. The default is `2`, which is 8px. Keep space inside a group smaller than space between groups: `0.5` or `1` from a title to its description, `4` to `6` between groups.
+
+The stylesheet also selects `data-gap="auto"`, but it sets `gap: auto`, which is not a valid `gap` value. Browsers ignore it and the children touch.
+
+### Align
+
+<HtmlDemo name="stack/align" />
+
+`data-align` sets `align-items` on the cross axis. Use `center` for a row of controls, and `baseline` when the row mixes text sizes.
+
+### Justify
+
+<HtmlDemo name="stack/justify" />
+
+`data-justify` sets `justify-content` on the main axis. `between`, `around`, and `evenly` map to `space-between`, `space-around`, and `space-evenly`.
+
+### Wrap
+
+<HtmlDemo name="stack/wrap" />
+
+`data-wrap="true"` lets children flow onto new lines. The value is a string: write `data-wrap="true"`, not a bare `data-wrap`. Without it, children stay on one line and can overflow.
+
+### Elements
+
+<HtmlDemo name="stack/list" />
+
+The class works on any element. Use the element that gives the group its meaning, such as `nav`, `ul`, `ol`, or `kbd`. Reset the list style and padding of a `ul` yourself.
+
+## States
+
+Stack has no states.
+
+## What you supply
+
+- The element and ARIA that give the group meaning, such as `nav` with an `aria-label`.
+- A DOM order that matches the visual order. There is no reverse direction, so focus moves in the order the reader sees.
+- CSS grid in your own class when the layout needs two axes.
+
+## Helper
+
+```ts
+import "@codeui/styles/stack.css";
+import { applyStyleProps } from "@codeui/styles";
+import { stackStyleProps } from "@codeui/styles/stack";
+
+const actions = document.querySelector(".actions")!;
+applyStyleProps(actions, stackStyleProps({ direction: "row", gap: "3", align: "center", class: "actions" }));
+// class="cui-stack actions" data-cui="stack" data-gap="3" data-align="center" data-justify="start" data-direction="row" data-wrap="false"
+```

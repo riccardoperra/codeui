@@ -11,7 +11,7 @@ function Toolbar(props: { actions: Action[]; ghost?: boolean }) {
 			<For each={props.actions}>
 				{([label, Icon]) => (
 					<Tooltip content={label}>
-						<IconButton size="sm" theme="secondary" variant={props.ghost ? "ghost" : undefined} aria-label={label}>
+						<IconButton size="sm" variant="secondary" ghost={props.ghost} aria-label={label}>
 							<Icon />
 						</IconButton>
 					</Tooltip>

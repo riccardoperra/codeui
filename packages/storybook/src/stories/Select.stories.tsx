@@ -23,7 +23,7 @@ const meta = {
 			type: "string",
 			control: { type: "text" },
 		},
-		theme: {
+		variant: {
 			options: themes,
 			default: "filled",
 			control: { type: "radio" },
@@ -65,7 +65,7 @@ export const SelectStory: Story = {
 		"aria-label": "Fruit",
 		placeholder: "Insert a value...",
 		label: "Input label",
-		theme: "filled",
+		variant: "filled",
 		options: ["Apple", "Banana", "Blueberry", "Grapes", "Pineapple"],
 	},
 };
@@ -77,7 +77,7 @@ export const SelectStoryFilledVariant: Story = {
 	name: "Filled variant",
 	args: {
 		...SelectStory.args,
-		theme: "filled",
+		variant: "filled",
 	},
 };
 //
@@ -86,7 +86,7 @@ export const SelectOutlineVariant: Story = {
 	name: "Outline variant",
 	args: {
 		...SelectStory.args,
-		theme: "outline",
+		variant: "outline",
 	},
 };
 
@@ -94,7 +94,7 @@ export const SelectInlineVariant: Story = {
 	name: "Inline variant",
 	args: {
 		...SelectStory.args,
-		theme: "inline",
+		variant: "inline",
 	},
 };
 
@@ -103,7 +103,7 @@ export const SelectDisabled: Story = {
 	args: { ...SelectStory.args },
 	render: args => (
 		<DocsItemsContainer>
-			<For each={themes}>{theme => <Select {...args} theme={theme} disabled />}</For>
+			<For each={themes}>{theme => <Select {...args} variant={theme} disabled />}</For>
 		</DocsItemsContainer>
 	),
 };
@@ -113,7 +113,7 @@ export const SelectReadonly: Story = {
 	args: { ...SelectStory.args },
 	render: args => (
 		<DocsItemsContainer>
-			<For each={themes}>{theme => <Select {...args} theme={theme} readOnly />}</For>
+			<For each={themes}>{theme => <Select {...args} variant={theme} readOnly />}</For>
 		</DocsItemsContainer>
 	),
 };
@@ -125,9 +125,9 @@ export const SelectRequired: Story = {
 		<form>
 			<DocsContainerFlex>
 				<DocsItemsContainer>
-					<Select {...args} theme={"filled"} required />
+					<Select {...args} variant={"filled"} required />
 				</DocsItemsContainer>
-				<Button theme={"secondary"} type={"submit"}>
+				<Button variant={"secondary"} type={"submit"}>
 					Submit
 				</Button>
 			</DocsContainerFlex>
@@ -198,7 +198,7 @@ export const SelectCustomObject: Story = {
 			aria-label={"Fruit"}
 			placeholder={"Choose a fruit."}
 			label={"Fruit"}
-			theme={"filled"}
+			variant={"filled"}
 			options={args.options as Fruit[]}
 			optionValue="value"
 			optionTextValue="name"
@@ -230,7 +230,7 @@ export const SelectCustomObjectWithControlledFunction: Story = {
 				aria-label={"Fruit"}
 				placeholder={"Choose a fruit."}
 				label={"Fruit"}
-				theme={"filled"}
+				variant={"filled"}
 			/>
 		);
 	},
@@ -259,7 +259,7 @@ export const SelectForm: Story = {
 					options={["PNG", "SVG", "JPEG"]}
 					defaultValue="PNG"
 				/>
-				<Button theme="primary" type="submit">
+				<Button variant="primary" type="submit">
 					Submit
 				</Button>
 				<output>

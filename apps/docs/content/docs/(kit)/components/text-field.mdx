@@ -23,11 +23,11 @@ Use TextField for one line of free text, such as a snippet name, a share link, o
 
 | Export      | Renders                     | `classes` key  | `data-cui`                 | Role               |
 | ----------- | --------------------------- | -------------- | -------------------------- | ------------------ |
-| `TextField` | Root `div`                  | `root`         | `text-field`               | `group`            |
-|             | `label`, when `label` is set | `label`       | `text-field-label`         | none               |
-|             | `input`                     | `input`        | `text-field-input`         | `textbox`          |
-|             | Hint `div`, when `description` is set | `description` | `text-field-description` | none   |
-|             | Error `div`, when invalid and `errorMessage` is set | `errorMessage` | `text-field-error-message` | none |
+| `TextField` | Root `div`                  | `root`         | `textfield`               | `group`            |
+|             | `label`, when `label` is set | `label`       | `textfield-label`         | none               |
+|             | `input`                     | `input`        | `textfield-input`         | `textbox`          |
+|             | Hint `div`, when `description` is set | `description` | `textfield-description` | none   |
+|             | Error `div`, when invalid and `errorMessage` is set | `errorMessage` | `textfield-error-message` | none |
 
 The root, the label, the input, the hint, and the error carry Kobalte's state attributes: `data-invalid`, `data-valid`, `data-required`, `data-disabled`, and `data-readonly`. The root also carries `data-field-size` when you set `size`.
 
@@ -48,11 +48,11 @@ The root, the label, the input, the hint, and the error carry Kobalte's state at
 
 The default is `sm` with a 9px radius, the size CodeImage’s sidebar fields use. Density adjusts the heights in the table. Touch density and touch devices use at least 16px for input text.
 
-### Theme
+### Filled and inline
 
 <SolidDemo name="text-field/themes" />
 
-`filled` draws the field fill with a transparent border. `inline` drops the fill and the radius and keeps a 2px bottom border, for a field that sits inside a row of text. These are the only two themes the source defines.
+`filled` draws the field fill with a transparent border. `inline` drops the fill and the radius and keeps a 2px bottom border, for a field that sits inside a row of text. These are the only two variants the source defines.
 
 ### Description
 

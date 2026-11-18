@@ -20,10 +20,10 @@ export default function ThemingBrandOverride() {
 				{mode => (
 					<div data-cui-theme={mode} style={scope}>
 						<Switch label="Show line numbers" defaultChecked />
-						<Button theme="primary" size="sm">
+						<Button variant="primary" size="sm">
 							Export PNG
 						</Button>
-						<Button theme="negative" size="sm" class="delete-snippet">
+						<Button variant="negative" size="sm" class="delete-snippet">
 							Delete snippet
 						</Button>
 					</div>

@@ -7,7 +7,7 @@ export default function AlertAnatomy() {
 			showIcon
 			title="Export ready"
 			description="snippet.png is 1280 × 720."
-			action={<Button theme="secondary">Open</Button>}
+			action={<Button variant="secondary">Open</Button>}
 		/>
 	);
 }

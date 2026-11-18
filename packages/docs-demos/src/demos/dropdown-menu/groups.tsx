@@ -11,7 +11,7 @@ import {
 export default function DropdownMenuGroups() {
 	return (
 		<DropdownMenu>
-			<DropdownMenuTrigger as={Button} theme="secondary">
+			<DropdownMenuTrigger as={Button} variant="secondary">
 				Snippet
 			</DropdownMenuTrigger>
 			<DropdownMenuPortal>

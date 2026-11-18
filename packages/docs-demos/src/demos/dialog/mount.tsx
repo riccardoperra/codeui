@@ -6,7 +6,7 @@ export default function DialogMount() {
 	const [host, setHost] = createSignal<HTMLElement>();
 	return (
 		<div ref={setHost} data-demo-host="editor">
-			<Button theme="secondary" onClick={() => setOpen(true)}>
+			<Button variant="secondary" onClick={() => setOpen(true)}>
 				Open in the editor host
 			</Button>
 			<Show when={host()}>

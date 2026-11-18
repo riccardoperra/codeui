@@ -1,5 +1,5 @@
 import "@codeui/styles/theme.css";
-import "@codeui/styles/segmented-control.css";
+import "@codeui/styles/segmentedcontrol.css";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import {
 	Tabs,
@@ -35,7 +35,7 @@ export type RootProps = Omit<TabsRootProps, "orientation"> &
 export function Root(props: PolymorphicProps<"div", RootProps>) {
 	const [local, others] = splitProps(props, [
 		"class",
-		"theme",
+		"accent",
 		"fluid",
 		"size",
 		"variant",
@@ -61,14 +61,14 @@ export function Root(props: PolymorphicProps<"div", RootProps>) {
 		<SegmentedControlContext.Provider value={contextState}>
 			<Tabs
 				ref={mergeRefs(local.ref, el => (rootRef = el))}
-				data-cui="segmentedControl"
-				data-theme={local.theme ?? "neutral"}
+				data-cui="segmentedcontrol"
+				data-accent={local.accent ? "" : undefined}
 				data-size={local.size ?? "sm"}
 				data-variant={local.variant ?? "solid"}
 				data-fluid={local.fluid || undefined}
 				data-pill={local.pill || undefined}
 				data-disabled={props.disabled ? "" : undefined}
-				data-autoWidth={local.autoWidth ? "" : undefined}
+				data-auto-width={local.autoWidth ? "" : undefined}
 				activationMode="manual"
 				orientation="horizontal"
 				class={mergeClasses(local.class, styles.segmentedControlWrapper())}
@@ -110,7 +110,7 @@ export function List<T extends ValidComponent = "div">(
 	return (
 		<Tabs.List
 			{...others}
-			data-cui="segmentedControlList"
+			data-cui="segmentedcontrol-list"
 			class={mergeClasses(styles.list, local.class)}
 			ref={mergeRefs(local.ref, el => (listRef = el))}
 		/>
@@ -139,7 +139,7 @@ export function Indicator<T extends ValidComponent = "div">(
 	return (
 		<Tabs.Indicator
 			{...others}
-			data-cui="segmentedControlIndicator"
+			data-cui="segmentedcontrol-indicator"
 			class={mergeClasses(styles.indicator, local.class)}
 			ref={mergeRefs(local.ref, el => (indicatorRef = el))}
 		/>

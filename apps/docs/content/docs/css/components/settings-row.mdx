@@ -1,0 +1,92 @@
+---
+title: SettingsRow
+description: Labelled settings rows and groups in plain HTML, with any control on the right or below.
+---
+
+Load `@codeui/styles/settings.css`, or `all.css`. The entry styles rows and groups only; load the CSS of the controls you put in them too. The Solid component is documented in [SettingsRow](/docs/components/settings-row).
+
+## Demo
+
+<HtmlDemo name="settings-row/basic" />
+
+## Markup
+
+| Part | Element | Class | `data-cui` |
+| --- | --- | --- | --- |
+| Group | `section` | `cui-settings-group` | `settings-group` |
+| Group title | `h3` | `cui-settings-group-title` | `settings-group-title` |
+| Group description | `p` | `cui-settings-group-description` | `settings-group-description` |
+| Group content | `div` | `cui-settings-group-content` | `settings-group-content` |
+| Row | `div` | `cui-settings-row` | `settings-row` |
+| Label | `span` or `label` | `cui-settings-row-label` | `settings-row-label` |
+| Marker | `span` | `cui-settings-row-marker` | `settings-row-marker` |
+| Description | `div` | `cui-settings-row-description` | `settings-row-description` |
+| Details | `div` | `cui-settings-row-details` | `settings-row-details` |
+| Control | `div` | `cui-settings-row-control` | `settings-row-control` |
+| Picture | `div` | `cui-settings-row-picture` | `settings-row-picture` |
+
+The group content is the island: 16px radius, island fill, and 6px block padding. Rows sit directly in it, with no lines between them. A row is a grid with the text column on the left and the control on the right, at least 56px tall.
+
+| Attribute | Values | Default |
+| --- | --- | --- |
+| `data-layout` on a row | `wide` | Inline |
+| `data-compact-control` on a row | Presence | Off |
+
+## Variants
+
+### Wide
+
+<HtmlDemo name="settings-row/wide" />
+
+`data-layout="wide"` puts the control under the text at full width. Use it for option cards, sliders, or any control wider than half the row. Without the attribute the row is inline.
+
+### Compact control
+
+<HtmlDemo name="settings-row/compact-control" />
+
+Below 900px of viewport width, an inline row puts its control under the text. `data-compact-control` keeps a small control, such as a switch, on the right at every width. The breakpoint is a media query on the viewport, not on the row. The frames on this page are narrower than 900px, so the second row stacks here.
+
+### Markers, pictures and details
+
+<HtmlDemo name="settings-row/markers" />
+
+Put a marker, such as a [Badge](/docs/css/components/badge), inside the label after its text, so it joins the control's accessible name. A picture goes first in the row and spans every text line. Details go after the description, for requirements, links or progress.
+
+## States
+
+### Disabled
+
+<HtmlDemo name="settings-row/disabled" />
+
+The row has no disabled state. Disable the control. The row text keeps its color, so people can still read why the control is unavailable.
+
+### Native label
+
+<HtmlDemo name="settings-row/native-label" />
+
+When the control is one labelable input, render the label as `<label for>`, so clicking the title focuses the input. Composite controls, such as a segmented control, take `aria-labelledby` instead.
+
+### Long text
+
+Labels and descriptions wrap, including unbroken text. The control keeps its width. Do not truncate labels.
+
+## What you supply
+
+- `role="group"` on each row, with `aria-labelledby` and `aria-describedby` pointing at its label and description.
+- The same references on the control, or a `label for` that points at a native input.
+- `aria-labelledby` on the group pointing at its title.
+- The control's own markup and behavior.
+
+## Helper
+
+```ts
+import "@codeui/styles/settings.css";
+import { applyStyleProps } from "@codeui/styles";
+import { settingsStyleProps } from "@codeui/styles/settings";
+
+const row = document.querySelector<HTMLElement>("[data-cui=settings-row-root]")!;
+applyStyleProps(row, settingsStyleProps({ compactControl: true }));
+// class="cui-settings-row" data-cui="settings-row" data-compact-control=""
+```
+
+The helper covers the row. The other parts use their class names and markers from the table above.

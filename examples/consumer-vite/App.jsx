@@ -13,7 +13,7 @@ import {
 export default function App() {
 	return (
 		<main data-cui-theme="dark">
-			<Button theme="primary" id="consumer-button">
+			<Button variant="primary" id="consumer-button">
 				Consumer button
 			</Button>
 			<TextField label="Consumer text" value="Hello consumer" />

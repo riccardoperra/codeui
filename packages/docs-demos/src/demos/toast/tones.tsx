@@ -15,7 +15,7 @@ export default function ToastTones() {
 		<>
 			<For each={messages}>
 				{message => (
-					<Button theme="secondary" onClick={() => notifications.show(message)}>
+					<Button variant="secondary" onClick={() => notifications.show(message)}>
 						{message.tone}
 					</Button>
 				)}

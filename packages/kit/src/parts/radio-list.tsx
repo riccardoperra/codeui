@@ -1,7 +1,7 @@
-import { radioListStyleProps } from "@codeui/styles/radio-list";
+import { radioListStyleProps } from "@codeui/styles/radiolist";
 import "@codeui/styles/theme.css";
-import "@codeui/styles/radio-list.css";
-import "@codeui/styles/text-field.css";
+import "@codeui/styles/radiolist.css";
+import "@codeui/styles/textfield.css";
 import * as K from "@kobalte/core/radio-group";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import { splitProps, type ComponentProps, type ValidComponent } from "solid-js";
@@ -25,13 +25,13 @@ export function Root<T extends ValidComponent = "div">(
 	const [local, others] = splitProps(props as PolymorphicProps<"div", RootProps>, [
 		"class",
 		"size",
-		"theme",
+		"variant",
 	]);
 	return (
 		<K.Root
-			data-cui="radio-group-field"
+			data-cui="radiolist"
 			data-field-size={local.size ?? "md"}
-			data-field-theme={local.theme ?? "inline"}
+			data-field-variant={local.variant ?? "inline"}
 			{...others}
 			class={mergeClasses(baseFieldContainer, local.class)}
 		/>
@@ -45,7 +45,7 @@ export function Label<T extends ValidComponent = "span">(
 	return (
 		<K.Label<T>
 			{...props}
-			data-cui="radio-list-label"
+			data-cui="radiolist-label"
 			class={mergeClasses(props.class, label)}
 		/>
 	);
@@ -56,14 +56,14 @@ export type ItemsProps = ComponentProps<"div"> &
 		orientation?: K.RadioGroupRootOptions["orientation"];
 	};
 export function Items(props: ItemsProps) {
-	const [local, others] = splitProps(props, ["class", "size", "theme", "orientation"]);
+	const [local, others] = splitProps(props, ["class", "size", "variant", "orientation"]);
 	return (
 		<div
 			{...others}
-			data-cui="radio-list-items"
+			data-cui="radiolist-items"
 			data-size={local.size ?? "md"}
 			data-orientation={radioListStyleProps({ orientation: local.orientation })["data-orientation"]}
-			data-theme={local.theme ?? "inline"}
+			data-variant={local.variant ?? "inline"}
 			class={mergeClasses(local.class, styles.radioList())}
 		/>
 	);
@@ -77,7 +77,7 @@ export function Description<T extends ValidComponent = "div">(
 	return (
 		<K.Description<T>
 			{...props}
-			data-cui="radio-list-description"
+			data-cui="radiolist-description"
 			class={mergeClasses(props.class, description)}
 		/>
 	);
@@ -91,7 +91,7 @@ export function ErrorMessage<T extends ValidComponent = "div">(
 	return (
 		<K.ErrorMessage<T>
 			{...props}
-			data-cui="radio-list-error-message"
+			data-cui="radiolist-error-message"
 			class={mergeClasses(errorMessage, props.class)}
 		/>
 	);
@@ -104,7 +104,7 @@ export function Item<T extends ValidComponent = "div">(
 	return (
 		<K.Item<T>
 			{...props}
-			data-cui="radio-list-item"
+			data-cui="radiolist-item"
 			class={mergeClasses(styles.radioItem, props.class)}
 		/>
 	);
@@ -118,7 +118,7 @@ export function ItemControl<T extends ValidComponent = "div">(
 	return (
 		<K.ItemControl<T>
 			{...props}
-			data-cui="radio-list-item-control"
+			data-cui="radiolist-item-control"
 			class={mergeClasses(styles.radio, props.class)}
 		/>
 	);
@@ -132,7 +132,7 @@ export function ItemIndicator<T extends ValidComponent = "div">(
 	return (
 		<K.ItemIndicator<T>
 			{...props}
-			data-cui="radio-list-item-indicator"
+			data-cui="radiolist-item-indicator"
 			class={mergeClasses(styles.indicator, props.class)}
 		/>
 	);
@@ -143,7 +143,7 @@ export type ItemLabelProps<T extends ValidComponent = "label"> =
 export function ItemLabel<T extends ValidComponent = "label">(
 	props: PolymorphicProps<T, ItemLabelProps<T>>,
 ) {
-	return <K.ItemLabel<T> {...props} data-cui="radio-list-item-label" />;
+	return <K.ItemLabel<T> {...props} data-cui="radiolist-item-label" />;
 }
 
 export {

@@ -37,11 +37,11 @@
 			"components/Button/Button.css.ts"
 		],
 		"dependencies": [
-			"button-loading",
+			"loading",
 			"icon"
 		]
 	},
-	"button-loading": {
+	"loading": {
 		"modules": [
 			"components/Button/Loading.css.ts"
 		],
@@ -53,9 +53,9 @@
 		],
 		"dependencies": [
 			"field",
-			"field-label",
-			"field-message",
-			"field-error",
+			"fieldlabel",
+			"fieldmessage",
+			"fielderror",
 			"icon"
 		]
 	},
@@ -68,7 +68,7 @@
 		],
 		"helpers": "parts/combobox.ts"
 	},
-	"command-menu": {
+	"commandmenu": {
 		"modules": [
 			"components/CommandMenu/CommandMenu.css.ts"
 		],
@@ -83,11 +83,11 @@
 			"components/Dialog/Dialog.css.ts"
 		],
 		"dependencies": [
-			"icon-button"
+			"iconbutton"
 		],
 		"helpers": "parts/dialog.ts"
 	},
-	"dropdown": {
+	"dropdownmenu": {
 		"modules": [
 			"components/Dropdown/Dropdown.css.ts"
 		],
@@ -101,7 +101,7 @@
 		],
 		"dependencies": []
 	},
-	"icon-button": {
+	"iconbutton": {
 		"modules": [
 			"components/IconButton/IconButton.css.ts"
 		],
@@ -130,20 +130,20 @@
 			"icon"
 		]
 	},
-	"number-field": {
+	"numberfield": {
 		"modules": [
 			"components/NumberField/NumberField.css.ts"
 		],
 		"dependencies": [
 			"field",
-			"field-label",
-			"field-message",
-			"field-error",
+			"fieldlabel",
+			"fieldmessage",
+			"fielderror",
 			"button",
-			"icon-button"
+			"iconbutton"
 		]
 	},
-	"option-card": {
+	"optioncard": {
 		"modules": [
 			"components/OptionCard/OptionCard.css.ts"
 		],
@@ -159,7 +159,7 @@
 		],
 		"dependencies": [
 			"button",
-			"icon-button"
+			"iconbutton"
 		]
 	},
 	"popover": {
@@ -167,7 +167,7 @@
 			"components/Popover/Popover.css.ts"
 		],
 		"dependencies": [
-			"icon-button"
+			"iconbutton"
 		],
 		"helpers": "parts/popover.ts"
 	},
@@ -178,19 +178,19 @@
 		"dependencies": [],
 		"helpers": "parts/progress.ts"
 	},
-	"radio-list": {
+	"radiolist": {
 		"modules": [
 			"components/RadioList/Radio.css.ts"
 		],
 		"dependencies": [
 			"field",
-			"text-field",
-			"field-label",
-			"field-message",
-			"field-error"
+			"textfield",
+			"fieldlabel",
+			"fieldmessage",
+			"fielderror"
 		]
 	},
-	"segmented-control": {
+	"segmentedcontrol": {
 		"modules": [
 			"components/SegmentedControl/SegmentedControl.css.ts"
 		],
@@ -206,9 +206,9 @@
 			"field",
 			"listbox",
 			"icon",
-			"field-label",
-			"field-message",
-			"field-error"
+			"fieldlabel",
+			"fieldmessage",
+			"fielderror"
 		]
 	},
 	"settings": {
@@ -223,7 +223,7 @@
 			"components/Sheet/Sheet.css.ts"
 		],
 		"dependencies": [
-			"icon-button"
+			"iconbutton"
 		],
 		"helpers": "parts/sheet.ts"
 	},
@@ -262,7 +262,7 @@
 			"components/Switch/Switch.css.ts"
 		],
 		"dependencies": [
-			"field-label",
+			"fieldlabel",
 			"field"
 		],
 		"helpers": "parts/switch.ts"
@@ -287,26 +287,26 @@
 		"dependencies": [],
 		"helpers": "parts/text.ts"
 	},
-	"text-area": {
+	"textarea": {
 		"modules": [
 			"components/TextArea/TextArea.css.ts"
 		],
 		"dependencies": [
 			"field",
-			"field-label",
-			"field-message",
-			"field-error"
+			"fieldlabel",
+			"fieldmessage",
+			"fielderror"
 		]
 	},
-	"text-field": {
+	"textfield": {
 		"modules": [
 			"components/TextField/TextField.css.ts"
 		],
 		"dependencies": [
 			"field",
-			"field-label",
-			"field-message",
-			"field-error"
+			"fieldlabel",
+			"fieldmessage",
+			"fielderror"
 		]
 	},
 	"toast": {
@@ -314,7 +314,7 @@
 			"components/Toast/Toast.css.ts"
 		],
 		"dependencies": [
-			"icon-button",
+			"iconbutton",
 			"spinner"
 		],
 		"helpers": "parts/toast.ts"
@@ -325,19 +325,19 @@
 		],
 		"dependencies": []
 	},
-	"field-label": {
+	"fieldlabel": {
 		"modules": [
 			"components/Field/FieldLabel/FieldLabel.css.ts"
 		],
 		"dependencies": []
 	},
-	"field-message": {
+	"fieldmessage": {
 		"modules": [
 			"components/Field/FieldMessage/FieldMessage.css.ts"
 		],
 		"dependencies": []
 	},
-	"field-error": {
+	"fielderror": {
 		"modules": [
 			"components/Field/FieldError/FieldError.css.ts"
 		],

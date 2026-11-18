@@ -3,7 +3,7 @@ import { Button, Popover, PopoverContent, PopoverTrigger } from "@codeui/kit";
 export default function PopoverBordered() {
 	return (
 		<Popover placement="bottom-start">
-			<PopoverTrigger as={Button} theme="secondary">
+			<PopoverTrigger as={Button} variant="secondary">
 				Window style
 			</PopoverTrigger>
 			<PopoverContent variant="bordered" title="Window style" description="The frame drawn around the code.">

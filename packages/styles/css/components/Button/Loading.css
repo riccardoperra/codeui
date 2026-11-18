@@ -1,4 +1,4 @@
-@keyframes cui-loading-wrapperAnimation {
+@keyframes cui-loading-wrapper-animation {
   0% {
     opacity: 0;
   }
@@ -6,7 +6,7 @@
     opacity: 1;
   }
 }
-@keyframes cui-loading-opacityAnimation {
+@keyframes cui-loading-opacity-animation {
   0% {
     opacity: 0.2;
   }
@@ -18,7 +18,7 @@
   }
 }
 @layer cui.components {
-  .cui-loading-wrapper {
+  .cui-loading {
     position: absolute;
     left: 0;
     top: 0;
@@ -27,10 +27,10 @@
     background: inherit;
     opacity: 0;
     transition: opacity var(--cui-motion-duration-normal) var(--cui-motion-ease-out);
-    animation: cui-loading-wrapperAnimation var(--cui-motion-duration-normal) var(--cui-motion-ease-out);
+    animation: cui-loading-wrapper-animation var(--cui-motion-duration-normal) var(--cui-motion-ease-out);
     animation-fill-mode: forwards;
   }
-  .cui-loading-pointerGroup {
+  .cui-loading-pointer-group {
     display: flex;
     position: relative;
     inset: 0;
@@ -49,7 +49,7 @@
     border-radius: var(--cui-radius-full);
     background: currentColor;
     margin: 0px 1.5px;
-    animation: 1.4s ease 0s infinite normal both running cui-loading-opacityAnimation;
-    animation-delay: var(--cui-loading-pointerAnimationDelay, 0);
+    animation: 1.4s ease 0s infinite normal both running cui-loading-opacity-animation;
+    animation-delay: var(--cui-loading-pointer-delay, 0);
   }
 }

@@ -344,7 +344,7 @@
   },
   "accordion": {
     "accordionParts": {
-      "root": "accordion-root",
+      "root": "accordion",
       "item": "accordion-item",
       "header": "accordion-header",
       "trigger": "accordion-trigger",
@@ -363,7 +363,7 @@
     },
     "accordionStyles": {
       "root": {
-        "default": "cui-accordion-root"
+        "default": "cui-accordion"
       },
       "item": {
         "default": "cui-accordion-item"
@@ -392,11 +392,11 @@
     },
     "chevron": "cui-accordion-chevron",
     "content": "cui-accordion-content",
-    "contentBody": "cui-accordion-contentBody",
+    "contentBody": "cui-accordion-content-body",
     "header": "cui-accordion-header",
     "icon": "cui-accordion-icon",
     "item": "cui-accordion-item",
-    "root": "cui-accordion-root",
+    "root": "cui-accordion",
     "summary": "cui-accordion-summary",
     "title": "cui-accordion-title",
     "trigger": {
@@ -406,7 +406,7 @@
   "alert": {
     "action": "cui-alert-action",
     "alertParts": {
-      "root": "alert-root",
+      "root": "alert",
       "icon": "alert-icon",
       "title": "alert-title",
       "description": "alert-description",
@@ -414,14 +414,14 @@
     },
     "alertStyleProps": {
       "default": {
-        "class": "cui-alert-root",
-        "data-cui": "alert-root",
+        "class": "cui-alert",
+        "data-cui": "alert",
         "data-tone": "neutral"
       }
     },
     "alertStyles": {
       "root": {
-        "default": "cui-alert-root"
+        "default": "cui-alert"
       },
       "icon": {
         "default": "cui-alert-icon"
@@ -439,20 +439,20 @@
     "description": "cui-alert-description",
     "icon": "cui-alert-icon",
     "root": {
-      "default": "cui-alert-root"
+      "default": "cui-alert"
     },
     "title": "cui-alert-title"
   },
   "badge": {
     "badgeParts": {
-      "root": "badge-root",
+      "root": "badge",
       "icon": "badge-icon",
       "label": "badge-label"
     },
     "badgeStyleProps": {
       "default": {
-        "class": "cui-badge-root",
-        "data-cui": "badge-root",
+        "class": "cui-badge",
+        "data-cui": "badge",
         "data-size": "sm",
         "data-tone": "neutral",
         "data-variant": "soft"
@@ -460,7 +460,7 @@
     },
     "badgeStyles": {
       "root": {
-        "default": "cui-badge-root"
+        "default": "cui-badge"
       },
       "icon": {
         "default": "cui-badge-icon"
@@ -472,89 +472,87 @@
     "icon": "cui-badge-icon",
     "label": "cui-badge-label",
     "root": {
-      "default": "cui-badge-root"
+      "default": "cui-badge"
     }
   },
   "button": {
     "button": {
-      "default": "cui-button-button cui-button-buttonTheme"
+      "default": "cui-button"
     },
-    "buttonIcon": "cui-button-buttonIcon",
+    "buttonIcon": "cui-button-icon",
     "buttonStyleProps": {
       "default": {
-        "class": "cui-button-button cui-button-buttonTheme",
+        "class": "cui-button",
         "data-cui": "button",
         "data-size": "sm"
       }
     },
-    "buttonText": "cui-button-buttonText",
-    "buttonTheme": "cui-button-buttonTheme",
+    "buttonText": "cui-button-text",
     "buttonVars": {
-      "buttonHeight": "var(--cui-buttonTheme-buttonHeight)",
-      "fontSize": "var(--cui-buttonTheme-fontSize)",
-      "background": "var(--cui-buttonTheme-background)",
-      "hoverBackground": "var(--cui-buttonTheme-hoverBackground)",
-      "activeBackground": "var(--cui-buttonTheme-activeBackground)",
-      "color": "var(--cui-buttonTheme-color)",
-      "borderColor": "var(--cui-buttonTheme-borderColor)",
-      "padding": "var(--cui-buttonTheme-padding)",
-      "borderRadius": "var(--cui-buttonTheme-borderRadius)"
+      "buttonHeight": "var(--cui-button-button-height)",
+      "fontSize": "var(--cui-button-font-size)",
+      "background": "var(--cui-button-background)",
+      "hoverBackground": "var(--cui-button-hover-background)",
+      "activeBackground": "var(--cui-button-active-background)",
+      "color": "var(--cui-button-color)",
+      "borderColor": "var(--cui-button-border-color)",
+      "padding": "var(--cui-button-padding)",
+      "borderRadius": "var(--cui-button-border-radius)"
     }
   },
-  "button-loading": {
+  "loading": {
     "pointer": "cui-loading-pointer",
-    "pointerAnimationDelay": "var(--cui-loading-pointerAnimationDelay)",
-    "pointerGroup": "cui-loading-pointerGroup",
-    "wrapper": "cui-loading-wrapper"
+    "pointerAnimationDelay": "var(--cui-loading-pointer-delay)",
+    "pointerGroup": "cui-loading-pointer-group",
+    "wrapper": "cui-loading"
   },
   "checkbox": {
     "checkboxStyleProps": {
       "default": {
-        "class": "cui-check-box-container cui-field-baseFieldTheme cui-check-box-checkboxTheme",
+        "class": "cui-checkbox cui-field",
         "data-cui": "checkbox",
         "data-field-size": "md"
       },
       "root": {
         "default": {
-          "class": "cui-check-box-container cui-field-baseFieldTheme cui-check-box-checkboxTheme",
+          "class": "cui-checkbox cui-field",
           "data-cui": "checkbox",
           "data-field-size": "md"
         }
       },
       "control": {
         "default": {
-          "class": "cui-check-box-control",
+          "class": "cui-checkbox-control",
           "data-cui": "checkbox-control",
           "data-size": "md"
         }
       }
     },
-    "checkboxTheme": "cui-check-box-checkboxTheme",
     "checkboxVars": {
-      "size": "var(--cui-checkboxTheme-size)",
-      "fontSize": "var(--cui-checkboxTheme-fontSize)",
-      "borderColor": "var(--cui-checkboxTheme-borderColor)",
-      "background": "var(--cui-checkboxTheme-background)",
-      "activeHoverBackground": "var(--cui-checkboxTheme-activeHoverBackground)",
-      "nonActiveHoverBackground": "var(--cui-checkboxTheme-nonActiveHoverBackground)",
-      "color": "var(--cui-checkboxTheme-color)",
-      "radius": "var(--cui-checkboxTheme-radius)",
-      "fill": "var(--cui-checkboxTheme-fill)"
+      "size": "var(--cui-checkbox-size)",
+      "fontSize": "var(--cui-checkbox-font-size)",
+      "borderColor": "var(--cui-checkbox-border-color)",
+      "background": "var(--cui-checkbox-background)",
+      "activeHoverBackground": "var(--cui-checkbox-active-hover-background)",
+      "nonActiveHoverBackground": "var(--cui-checkbox-non-active-hover-background)",
+      "color": "var(--cui-checkbox-color)",
+      "radius": "var(--cui-checkbox-radius)",
+      "fill": "var(--cui-checkbox-fill)"
     },
-    "container": "cui-check-box-container cui-field-baseFieldTheme cui-check-box-checkboxTheme",
-    "content": "cui-check-box-content",
+    "container": "cui-checkbox cui-field",
+    "content": "cui-checkbox-content",
     "control": {
-      "default": "cui-check-box-control"
+      "default": "cui-checkbox-control"
     },
-    "icon": "cui-check-box-icon",
-    "indicator": "cui-check-box-indicator",
-    "input": "cui-check-box-input",
-    "label": "cui-check-box-label"
+    "icon": "cui-checkbox-icon",
+    "indicator": "cui-checkbox-indicator",
+    "input": "cui-checkbox-input",
+    "label": "cui-checkbox-label"
   },
   "combobox": {
     "arrow": "cui-combobox-arrow",
     "comboboxParts": {
-      "root": "combobox-root",
+      "root": "combobox",
       "control": "combobox-control",
       "input": "combobox-input",
       "trigger": "combobox-trigger",
@@ -581,7 +579,7 @@
     },
     "comboboxStyles": {
       "root": {
-        "default": "cui-combobox-root"
+        "default": "cui-combobox"
       },
       "control": {
         "default": "cui-combobox-control"
@@ -608,19 +606,19 @@
         "default": "cui-combobox-item"
       },
       "itemLabel": {
-        "default": "cui-combobox-itemLabel"
+        "default": "cui-combobox-item-label"
       },
       "itemDescription": {
-        "default": "cui-combobox-itemDescription"
+        "default": "cui-combobox-item-description"
       },
       "itemIndicator": {
-        "default": "cui-combobox-itemIndicator"
+        "default": "cui-combobox-item-indicator"
       },
       "section": {
         "default": "cui-combobox-section"
       },
       "hiddenSelect": {
-        "default": "cui-combobox-hiddenSelect"
+        "default": "cui-combobox-hidden-select"
       },
       "label": {
         "default": "cui-combobox-label"
@@ -629,7 +627,7 @@
         "default": "cui-combobox-description"
       },
       "errorMessage": {
-        "default": "cui-combobox-errorMessage"
+        "default": "cui-combobox-error-message"
       }
     },
     "content": "cui-combobox-content",
@@ -638,110 +636,110 @@
     },
     "description": "cui-combobox-description",
     "empty": "cui-combobox-empty",
-    "errorMessage": "cui-combobox-errorMessage",
-    "hiddenSelect": "cui-combobox-hiddenSelect",
+    "errorMessage": "cui-combobox-error-message",
+    "hiddenSelect": "cui-combobox-hidden-select",
     "icon": "cui-combobox-icon",
     "input": "cui-combobox-input",
     "item": "cui-combobox-item",
-    "itemDescription": "cui-combobox-itemDescription",
-    "itemIndicator": "cui-combobox-itemIndicator",
-    "itemLabel": "cui-combobox-itemLabel",
+    "itemDescription": "cui-combobox-item-description",
+    "itemIndicator": "cui-combobox-item-indicator",
+    "itemLabel": "cui-combobox-item-label",
     "label": "cui-combobox-label",
     "listbox": "cui-combobox-listbox",
-    "root": "cui-combobox-root",
+    "root": "cui-combobox",
     "section": "cui-combobox-section",
     "trigger": "cui-combobox-trigger"
   },
-  "command-menu": {
+  "commandmenu": {
     "commandMenuParts": {
-      "trigger": "command-menu-trigger",
-      "overlay": "command-menu-overlay",
-      "content": "command-menu-content",
-      "title": "command-menu-title",
-      "search": "command-menu-search",
-      "searchInput": "command-menu-search-input",
-      "hint": "command-menu-hint",
-      "listbox": "command-menu-listbox",
-      "group": "command-menu-group",
-      "groupLabel": "command-menu-group-label",
-      "item": "command-menu-item",
-      "leading": "command-menu-leading",
-      "itemLabel": "command-menu-item-label",
-      "itemDescription": "command-menu-item-description",
-      "itemIndicator": "command-menu-item-indicator",
-      "shortcut": "command-menu-shortcut",
-      "empty": "command-menu-empty"
+      "trigger": "commandmenu-trigger",
+      "overlay": "commandmenu-overlay",
+      "content": "commandmenu-content",
+      "title": "commandmenu-title",
+      "search": "commandmenu-search",
+      "searchInput": "commandmenu-search-input",
+      "hint": "commandmenu-hint",
+      "listbox": "commandmenu-listbox",
+      "group": "commandmenu-group",
+      "groupLabel": "commandmenu-group-label",
+      "item": "commandmenu-item",
+      "leading": "commandmenu-leading",
+      "itemLabel": "commandmenu-item-label",
+      "itemDescription": "commandmenu-item-description",
+      "itemIndicator": "commandmenu-item-indicator",
+      "shortcut": "commandmenu-shortcut",
+      "empty": "commandmenu-empty"
     },
     "commandMenuStyles": {
       "trigger": {
-        "default": "cui-command-menu-trigger"
+        "default": "cui-commandmenu-trigger"
       },
       "overlay": {
-        "default": "cui-command-menu-overlay"
+        "default": "cui-commandmenu-overlay"
       },
       "content": {
-        "default": "cui-command-menu-content"
+        "default": "cui-commandmenu-content"
       },
       "title": {
-        "default": "cui-command-menu-title"
+        "default": "cui-commandmenu-title"
       },
       "search": {
-        "default": "cui-command-menu-search"
+        "default": "cui-commandmenu-search"
       },
       "searchInput": {
-        "default": "cui-command-menu-searchInput"
+        "default": "cui-commandmenu-search-input"
       },
       "hint": {
-        "default": "cui-command-menu-hint"
+        "default": "cui-commandmenu-hint"
       },
       "listbox": {
-        "default": "cui-command-menu-listbox"
+        "default": "cui-commandmenu-listbox"
       },
       "group": {
-        "default": "cui-command-menu-group"
+        "default": "cui-commandmenu-group"
       },
       "groupLabel": {
-        "default": "cui-command-menu-groupLabel"
+        "default": "cui-commandmenu-group-label"
       },
       "item": {
-        "default": "cui-command-menu-item"
+        "default": "cui-commandmenu-item"
       },
       "leading": {
-        "default": "cui-command-menu-leading"
+        "default": "cui-commandmenu-leading"
       },
       "itemLabel": {
-        "default": "cui-command-menu-itemLabel"
+        "default": "cui-commandmenu-item-label"
       },
       "itemDescription": {
-        "default": "cui-command-menu-itemDescription"
+        "default": "cui-commandmenu-item-description"
       },
       "itemIndicator": {
-        "default": "cui-command-menu-itemIndicator"
+        "default": "cui-commandmenu-item-indicator"
       },
       "shortcut": {
-        "default": "cui-command-menu-shortcut"
+        "default": "cui-commandmenu-shortcut"
       },
       "empty": {
-        "default": "cui-command-menu-empty"
+        "default": "cui-commandmenu-empty"
       }
     },
-    "content": "cui-command-menu-content",
-    "empty": "cui-command-menu-empty",
-    "group": "cui-command-menu-group",
-    "groupLabel": "cui-command-menu-groupLabel",
-    "hint": "cui-command-menu-hint",
-    "item": "cui-command-menu-item",
-    "itemDescription": "cui-command-menu-itemDescription",
-    "itemIndicator": "cui-command-menu-itemIndicator",
-    "itemLabel": "cui-command-menu-itemLabel",
-    "leading": "cui-command-menu-leading",
-    "listbox": "cui-command-menu-listbox",
-    "overlay": "cui-command-menu-overlay",
-    "search": "cui-command-menu-search",
-    "searchInput": "cui-command-menu-searchInput",
-    "shortcut": "cui-command-menu-shortcut",
-    "title": "cui-command-menu-title",
-    "trigger": "cui-command-menu-trigger"
+    "content": "cui-commandmenu-content",
+    "empty": "cui-commandmenu-empty",
+    "group": "cui-commandmenu-group",
+    "groupLabel": "cui-commandmenu-group-label",
+    "hint": "cui-commandmenu-hint",
+    "item": "cui-commandmenu-item",
+    "itemDescription": "cui-commandmenu-item-description",
+    "itemIndicator": "cui-commandmenu-item-indicator",
+    "itemLabel": "cui-commandmenu-item-label",
+    "leading": "cui-commandmenu-leading",
+    "listbox": "cui-commandmenu-listbox",
+    "overlay": "cui-commandmenu-overlay",
+    "search": "cui-commandmenu-search",
+    "searchInput": "cui-commandmenu-search-input",
+    "shortcut": "cui-commandmenu-shortcut",
+    "title": "cui-commandmenu-title",
+    "trigger": "cui-commandmenu-trigger"
   },
   "dialog": {
     "description": "cui-dialog-description",
@@ -768,27 +766,27 @@
     },
     "dialogStyleProps": {
       "default": {
-        "class": "cui-dialog-dialogTheme cui-dialog-panel",
+        "class": "cui-dialog-panel",
         "data-cui": "dialog-panel",
         "data-size": "auto"
       },
       "panel": {
         "default": {
-          "class": "cui-dialog-dialogTheme cui-dialog-panel",
+          "class": "cui-dialog-panel",
           "data-cui": "dialog-panel",
           "data-size": "auto"
         }
       },
       "positioner": {
         "default": {
-          "class": "cui-dialog-dialogTheme cui-dialog-positioner",
+          "class": "cui-dialog-positioner",
           "data-cui": "dialog-positioner",
           "data-panel-size": "auto"
         }
       },
       "body": {
         "default": {
-          "class": "cui-dialog-panelContent",
+          "class": "cui-dialog-panel-content",
           "data-cui": "dialog-panel-content",
           "data-layout": "default"
         }
@@ -806,13 +804,13 @@
         "default": ""
       },
       "overlay": {
-        "default": "cui-dialog-overlay cui-dialog-dialogTheme"
+        "default": "cui-dialog-overlay"
       },
       "positioner": {
-        "default": "cui-dialog-dialogTheme cui-dialog-positioner"
+        "default": "cui-dialog-positioner"
       },
       "panel": {
-        "default": "cui-dialog-dialogTheme cui-dialog-panel"
+        "default": "cui-dialog-panel"
       },
       "header": {
         "default": "cui-dialog-title"
@@ -827,25 +825,25 @@
         "default": ""
       },
       "body": {
-        "default": "cui-dialog-panelContent"
+        "default": "cui-dialog-panel-content"
       },
       "footer": {
-        "default": "cui-dialog-panelFooter"
+        "default": "cui-dialog-panel-footer"
       },
       "sidebar": {
         "default": "cui-dialog-sidebar"
       },
       "sidebarSearch": {
-        "default": "cui-dialog-sidebarSearch"
+        "default": "cui-dialog-sidebar-search"
       },
       "nav": {
         "default": "cui-dialog-nav"
       },
       "navItem": {
-        "default": "cui-dialog-navItem"
+        "default": "cui-dialog-nav-item"
       },
       "navIcon": {
-        "default": "cui-dialog-navIcon"
+        "default": "cui-dialog-nav-icon"
       },
       "main": {
         "default": "cui-dialog-main"
@@ -854,78 +852,76 @@
         "default": "cui-dialog-section"
       },
       "sectionTitle": {
-        "default": "cui-dialog-sectionTitle"
+        "default": "cui-dialog-section-title"
       },
       "sectionContent": {
-        "default": "cui-dialog-sectionContent"
+        "default": "cui-dialog-section-content"
       }
     },
-    "dialogTheme": "cui-dialog-dialogTheme",
     "dialogThemeVars": {
-      "contentBackground": "var(--cui-dialogTheme-contentBackground)",
-      "contentBoxShadow": "var(--cui-dialogTheme-contentBoxShadow)",
-      "contentTextColor": "var(--cui-dialogTheme-contentTextColor)",
-      "contentPadding": "var(--cui-dialogTheme-contentPadding)",
-      "titleHeight": "var(--cui-dialogTheme-titleHeight)",
-      "panelRadius": "var(--cui-dialogTheme-panelRadius)",
-      "dividerColor": "var(--cui-dialogTheme-dividerColor)",
-      "titleFontSize": "var(--cui-dialogTheme-titleFontSize)",
-      "overlayBackground": "var(--cui-dialogTheme-overlayBackground)",
-      "gutter": "var(--cui-dialogTheme-gutter)",
-      "width": "var(--cui-dialogTheme-width)",
-      "height": "var(--cui-dialogTheme-height)",
-      "sidebarBackground": "var(--cui-dialogTheme-sidebarBackground)",
-      "navCurrentBackground": "var(--cui-dialogTheme-navCurrentBackground)",
-      "mainBackground": "var(--cui-dialogTheme-mainBackground)",
-      "islandBackground": "var(--cui-dialogTheme-islandBackground)",
-      "splitColumns": "var(--cui-dialogTheme-splitColumns)"
+      "contentBackground": "var(--cui-dialog-content-background)",
+      "contentBoxShadow": "var(--cui-dialog-content-box-shadow)",
+      "contentTextColor": "var(--cui-dialog-content-text-color)",
+      "contentPadding": "var(--cui-dialog-content-padding)",
+      "titleHeight": "var(--cui-dialog-title-height)",
+      "panelRadius": "var(--cui-dialog-panel-radius)",
+      "dividerColor": "var(--cui-dialog-divider-color)",
+      "titleFontSize": "var(--cui-dialog-title-font-size)",
+      "overlayBackground": "var(--cui-dialog-overlay-background)",
+      "gutter": "var(--cui-dialog-gutter)",
+      "width": "var(--cui-dialog-width)",
+      "height": "var(--cui-dialog-height)",
+      "sidebarBackground": "var(--cui-dialog-sidebar-background)",
+      "navCurrentBackground": "var(--cui-dialog-nav-current-background)",
+      "mainBackground": "var(--cui-dialog-main-background)",
+      "islandBackground": "var(--cui-dialog-island-background)",
+      "splitColumns": "var(--cui-dialog-split-columns)"
     },
     "main": "cui-dialog-main",
     "nav": "cui-dialog-nav",
-    "navIcon": "cui-dialog-navIcon",
-    "navItem": "cui-dialog-navItem",
-    "navList": "cui-dialog-navList",
-    "overlay": "cui-dialog-overlay cui-dialog-dialogTheme",
+    "navIcon": "cui-dialog-nav-icon",
+    "navItem": "cui-dialog-nav-item",
+    "navList": "cui-dialog-nav-list",
+    "overlay": "cui-dialog-overlay",
     "panel": {
       "default": "cui-dialog-panel"
     },
-    "panelContent": "cui-dialog-panelContent",
-    "panelFooter": "cui-dialog-panelFooter",
+    "panelContent": "cui-dialog-panel-content",
+    "panelFooter": "cui-dialog-panel-footer",
     "positioner": "cui-dialog-positioner",
     "section": {
       "default": "cui-dialog-section"
     },
-    "sectionContent": "cui-dialog-sectionContent",
-    "sectionTitle": "cui-dialog-sectionTitle",
+    "sectionContent": "cui-dialog-section-content",
+    "sectionTitle": "cui-dialog-section-title",
     "sidebar": "cui-dialog-sidebar",
-    "sidebarSearch": "cui-dialog-sidebarSearch",
+    "sidebarSearch": "cui-dialog-sidebar-search",
     "title": "cui-dialog-title"
   },
-  "dropdown": {
-    "content": "cui-dropdown-content cui-dropdown-dropdownMenuTheme",
-    "dropdownMenuTheme": "cui-dropdown-dropdownMenuTheme",
+  "dropdownmenu": {
+    "content": "cui-dropdownmenu-content",
     "dropdownMenuThemeVars": {
-      "contentBackground": "var(--cui-dropdownMenuTheme-contentBackground)",
-      "contentRadius": "var(--cui-dropdownMenuTheme-contentRadius)",
-      "contentBoxShadow": "var(--cui-dropdownMenuTheme-contentBoxShadow)",
-      "contentPadding": "var(--cui-dropdownMenuTheme-contentPadding)",
-      "contentMinWidth": "var(--cui-dropdownMenuTheme-contentMinWidth)",
-      "contentBorderColor": "var(--cui-dropdownMenuTheme-contentBorderColor)",
-      "separator": "var(--cui-dropdownMenuTheme-separator)",
-      "itemTextColor": "var(--cui-dropdownMenuTheme-itemTextColor)",
-      "itemHoverBackground": "var(--cui-dropdownMenuTheme-itemHoverBackground)",
-      "itemHoverTextColor": "var(--cui-dropdownMenuTheme-itemHoverTextColor)",
-      "itemDisabledOpacity": "var(--cui-dropdownMenuTheme-itemDisabledOpacity)",
-      "itemMinHeight": "var(--cui-dropdownMenuTheme-itemMinHeight)",
-      "itemPadding": "var(--cui-dropdownMenuTheme-itemPadding)",
-      "itemRadius": "var(--cui-dropdownMenuTheme-itemRadius)",
-      "itemFontSize": "var(--cui-dropdownMenuTheme-itemFontSize)",
-      "itemLineHeight": "var(--cui-dropdownMenuTheme-itemLineHeight)"
+      "contentBackground": "var(--cui-dropdownmenu-content-background)",
+      "contentRadius": "var(--cui-dropdownmenu-content-radius)",
+      "contentBoxShadow": "var(--cui-dropdownmenu-content-box-shadow)",
+      "contentPadding": "var(--cui-dropdownmenu-content-padding)",
+      "contentMinWidth": "var(--cui-dropdownmenu-content-min-width)",
+      "contentBorderColor": "var(--cui-dropdownmenu-content-border-color)",
+      "separator": "var(--cui-dropdownmenu-separator)",
+      "itemTextColor": "var(--cui-dropdownmenu-item-text-color)",
+      "itemHoverBackground": "var(--cui-dropdownmenu-item-hover-background)",
+      "itemHoverTextColor": "var(--cui-dropdownmenu-item-hover-text-color)",
+      "itemDisabledOpacity": "var(--cui-dropdownmenu-item-disabled-opacity)",
+      "itemMinHeight": "var(--cui-dropdownmenu-item-min-height)",
+      "itemPadding": "var(--cui-dropdownmenu-item-padding)",
+      "itemRadius": "var(--cui-dropdownmenu-item-radius)",
+      "itemFontSize": "var(--cui-dropdownmenu-item-font-size)",
+      "itemLineHeight": "var(--cui-dropdownmenu-item-line-height)"
     },
-    "item": "cui-dropdown-item",
-    "rightSlot": "cui-dropdown-rightSlot",
-    "separator": "cui-dropdown-separator",
-    "subMenuContent": "cui-dropdown-subMenuContent cui-dropdown-content cui-dropdown-dropdownMenuTheme"
+    "item": "cui-dropdownmenu-item",
+    "rightSlot": "cui-dropdownmenu-right-slot",
+    "separator": "cui-dropdownmenu-separator",
+    "subMenuContent": "cui-dropdownmenu-submenu-content cui-dropdownmenu-content"
   },
   "field": {
     "FieldSizes": {
@@ -934,68 +930,68 @@
       "md": "md",
       "lg": "lg"
     },
-    "baseFieldTheme": "cui-field-baseFieldTheme",
+    "baseFieldTheme": "cui-field",
     "baseFieldVariants": {
-      "default": "cui-field-baseFieldVariants"
+      "default": "cui-field-input"
     },
     "baseFieldVars": {
-      "borderColor": "var(--cui-baseFieldTheme-borderColor)",
-      "background": "var(--cui-baseFieldTheme-background)",
-      "color": "var(--cui-baseFieldTheme-color)",
-      "inputHeight": "var(--cui-baseFieldTheme-inputHeight)",
-      "fontSize": "var(--cui-baseFieldTheme-fontSize)",
-      "descriptionColor": "var(--cui-baseFieldTheme-descriptionColor)",
-      "disabledBackground": "var(--cui-baseFieldTheme-disabledBackground)"
+      "borderColor": "var(--cui-field-border-color)",
+      "background": "var(--cui-field-background)",
+      "color": "var(--cui-field-color)",
+      "inputHeight": "var(--cui-field-input-height)",
+      "fontSize": "var(--cui-field-font-size)",
+      "descriptionColor": "var(--cui-field-description-color)",
+      "disabledBackground": "var(--cui-field-disabled-background)"
     },
     "fieldStyleProps": {
       "default": {
-        "class": "cui-field-baseFieldTheme cui-field-baseFieldVariants",
+        "class": "cui-field cui-field-input",
         "data-cui": "field",
         "data-size": "sm",
-        "data-theme": "filled"
+        "data-variant": "filled"
       }
     },
-    "fontSize": "var(--cui-field-fontSize)",
-    "inputHeight": "var(--cui-field-inputHeight)"
+    "fontSize": "var(--cui-field-base-font-size)",
+    "inputHeight": "var(--cui-field-base-input-height)"
   },
-  "icon-button": {
-    "iconButton": "cui-icon-button-iconButton",
+  "iconbutton": {
+    "iconButton": "cui-iconbutton",
     "iconButtonStyleProps": {
       "default": {
-        "class": "cui-button-button cui-button-buttonTheme cui-icon-button-iconButton",
-        "data-cui": "icon-button",
+        "class": "cui-button cui-iconbutton",
+        "data-cui": "iconbutton",
         "data-size": "sm"
       }
     }
   },
   "kbd": {
     "kbdParts": {
-      "root": "kbd-root"
+      "root": "kbd"
     },
     "kbdStyleProps": {
       "default": {
-        "class": "cui-kbd-root",
-        "data-cui": "kbd-root",
+        "class": "cui-kbd",
+        "data-cui": "kbd",
         "data-size": "sm",
         "data-variant": "keycap"
       }
     },
     "kbdStyles": {
       "root": {
-        "default": "cui-kbd-root"
+        "default": "cui-kbd"
       }
     },
     "root": {
-      "default": "cui-kbd-root"
+      "default": "cui-kbd"
     }
   },
   "link": {
     "link": {
-      "default": "cui-link-link cui-link-linkTheme"
+      "default": "cui-link"
     },
     "linkStyleProps": {
       "default": {
-        "class": "cui-link-link cui-link-linkTheme",
+        "class": "cui-link",
         "data-cui": "link",
         "data-variant": "default"
       }
@@ -1003,36 +999,35 @@
   },
   "listbox": {
     "item": "cui-listbox-item",
-    "itemIndicator": "cui-listbox-itemIndicator",
-    "list": "cui-listbox-list cui-listbox-listTheme",
-    "listTheme": "cui-listbox-listTheme",
+    "itemIndicator": "cui-listbox-item-indicator",
+    "list": "cui-listbox-list",
     "listThemeVars": {
-      "contentBackground": "var(--cui-listTheme-contentBackground)",
-      "contentRadius": "var(--cui-listTheme-contentRadius)",
-      "contentBoxShadow": "var(--cui-listTheme-contentBoxShadow)",
-      "contentPadding": "var(--cui-listTheme-contentPadding)",
-      "contentBorderColor": "var(--cui-listTheme-contentBorderColor)",
-      "contentMaxHeight": "var(--cui-listTheme-contentMaxHeight)",
-      "contentMaxHeightXs": "var(--cui-listTheme-contentMaxHeightXs)",
-      "separator": "var(--cui-listTheme-separator)",
-      "itemMinHeight": "var(--cui-listTheme-itemMinHeight)",
-      "itemTextColor": "var(--cui-listTheme-itemTextColor)",
-      "itemHoverBackground": "var(--cui-listTheme-itemHoverBackground)",
-      "itemHoverTextColor": "var(--cui-listTheme-itemHoverTextColor)",
-      "itemDisabledOpacity": "var(--cui-listTheme-itemDisabledOpacity)",
-      "indicatorSize": "var(--cui-listTheme-indicatorSize)"
+      "contentBackground": "var(--cui-listbox-content-background)",
+      "contentRadius": "var(--cui-listbox-content-radius)",
+      "contentBoxShadow": "var(--cui-listbox-content-box-shadow)",
+      "contentPadding": "var(--cui-listbox-content-padding)",
+      "contentBorderColor": "var(--cui-listbox-content-border-color)",
+      "contentMaxHeight": "var(--cui-listbox-content-max-height)",
+      "contentMaxHeightXs": "var(--cui-listbox-content-max-height-xs)",
+      "separator": "var(--cui-listbox-separator)",
+      "itemMinHeight": "var(--cui-listbox-item-min-height)",
+      "itemTextColor": "var(--cui-listbox-item-text-color)",
+      "itemHoverBackground": "var(--cui-listbox-item-hover-background)",
+      "itemHoverTextColor": "var(--cui-listbox-item-hover-text-color)",
+      "itemDisabledOpacity": "var(--cui-listbox-item-disabled-opacity)",
+      "indicatorSize": "var(--cui-listbox-indicator-size)"
     },
     "listboxStyleProps": {
       "default": {
-        "class": "cui-listbox-list cui-listbox-listTheme",
+        "class": "cui-listbox-list",
         "data-cui": "listbox",
-        "data-theme": "neutral"
+        "data-variant": "neutral"
       },
       "list": {
         "default": {
-          "class": "cui-listbox-list cui-listbox-listTheme",
+          "class": "cui-listbox-list",
           "data-cui": "listbox",
-          "data-theme": "neutral"
+          "data-variant": "neutral"
         }
       },
       "item": {
@@ -1044,97 +1039,96 @@
       },
       "itemIndicator": {
         "default": {
-          "class": "cui-listbox-itemIndicator",
+          "class": "cui-listbox-item-indicator",
           "data-cui": "listbox-item-indicator",
           "data-size": "sm"
         }
       }
     }
   },
-  "number-field": {
-    "baseFieldContainer": "cui-number-field-baseFieldContainer cui-field-baseFieldTheme",
-    "control": "cui-number-field-control",
-    "controlButton": "cui-number-field-controlButton",
-    "controlsContainer": "cui-number-field-controlsContainer",
-    "numberFieldContainer": "cui-number-field-numberFieldContainer",
+  "numberfield": {
+    "baseFieldContainer": "cui-numberfield cui-field",
+    "control": "cui-numberfield-control",
+    "controlButton": "cui-numberfield-control-button",
+    "controlsContainer": "cui-numberfield-controls",
+    "numberFieldContainer": "cui-numberfield-group",
     "numberFieldStyleProps": {
       "default": {
-        "class": "cui-number-field-baseFieldContainer cui-field-baseFieldTheme",
-        "data-cui": "number-field",
+        "class": "cui-numberfield cui-field",
+        "data-cui": "numberfield",
         "data-field-size": "sm"
       },
       "root": {
         "default": {
-          "class": "cui-number-field-baseFieldContainer cui-field-baseFieldTheme",
-          "data-cui": "number-field",
+          "class": "cui-numberfield cui-field",
+          "data-cui": "numberfield",
           "data-field-size": "sm"
         }
       },
       "input": {
         "default": {
-          "class": "cui-field-baseFieldVariants cui-number-field-textField",
-          "data-cui": "text-field-input",
+          "class": "cui-field-input cui-numberfield-input",
+          "data-cui": "textfield-input",
           "data-size": "sm",
-          "data-theme": "filled"
+          "data-variant": "filled"
         }
       }
     },
-    "numberFieldTheme": "cui-number-field-numberFieldTheme",
     "numberFieldVars": {
-      "controlSize": "var(--cui-numberFieldTheme-controlSize)"
+      "controlSize": "var(--cui-numberfield-control-size)"
     },
-    "textField": "cui-number-field-textField"
+    "textField": "cui-numberfield-input"
   },
-  "option-card": {
-    "badge": "cui-option-card-badge",
-    "description": "cui-option-card-description",
-    "errorMessage": "cui-option-card-errorMessage",
-    "item": "cui-option-card-item",
-    "itemControl": "cui-option-card-itemControl",
-    "itemDescription": "cui-option-card-itemDescription",
-    "itemIndicator": "cui-option-card-itemIndicator",
-    "itemInput": "cui-option-card-itemInput",
+  "optioncard": {
+    "badge": "cui-optioncard-badge",
+    "description": "cui-optioncard-description",
+    "errorMessage": "cui-optioncard-error-message",
+    "item": "cui-optioncard-item",
+    "itemControl": "cui-optioncard-item-control",
+    "itemDescription": "cui-optioncard-item-description",
+    "itemIndicator": "cui-optioncard-item-indicator",
+    "itemInput": "cui-optioncard-item-input",
     "itemLabel": {
-      "default": "cui-option-card-itemLabel"
+      "default": "cui-optioncard-item-label"
     },
-    "itemName": "cui-option-card-itemName",
-    "itemText": "cui-option-card-itemText",
-    "label": "cui-option-card-label",
+    "itemName": "cui-optioncard-item-name",
+    "itemText": "cui-optioncard-item-text",
+    "label": "cui-optioncard-label",
     "optionCardParts": {
-      "root": "option-card-root",
-      "label": "option-card-label",
-      "description": "option-card-description",
-      "errorMessage": "option-card-error-message",
-      "item": "option-card-item",
-      "itemInput": "option-card-item-input",
-      "itemControl": "option-card-item-control",
-      "itemIndicator": "option-card-item-indicator",
-      "itemLabel": "option-card-item-label",
-      "itemDescription": "option-card-item-description",
-      "preview": "option-card-preview",
-      "badge": "option-card-badge"
+      "root": "optioncard",
+      "label": "optioncard-label",
+      "description": "optioncard-description",
+      "errorMessage": "optioncard-error-message",
+      "item": "optioncard-item",
+      "itemInput": "optioncard-item-input",
+      "itemControl": "optioncard-item-control",
+      "itemIndicator": "optioncard-item-indicator",
+      "itemLabel": "optioncard-item-label",
+      "itemDescription": "optioncard-item-description",
+      "preview": "optioncard-preview",
+      "badge": "optioncard-badge"
     },
     "optionCardStyleProps": {
       "default": {
-        "class": "cui-option-card-root",
-        "data-cui": "option-card-root"
+        "class": "cui-optioncard",
+        "data-cui": "optioncard"
       },
       "root": {
         "default": {
-          "class": "cui-option-card-root",
-          "data-cui": "option-card-root"
+          "class": "cui-optioncard",
+          "data-cui": "optioncard"
         }
       },
       "itemLabel": {
         "default": {
-          "class": "cui-option-card-itemLabel",
-          "data-cui": "option-card-item-label"
+          "class": "cui-optioncard-item-label",
+          "data-cui": "optioncard-item-label"
         }
       },
       "badge": {
         "default": {
-          "class": "cui-badge-root cui-option-card-badge",
-          "data-cui": "option-card-badge",
+          "class": "cui-badge cui-optioncard-badge",
+          "data-cui": "optioncard-badge",
           "data-size": "sm",
           "data-tone": "neutral",
           "data-variant": "soft"
@@ -1142,64 +1136,63 @@
       },
       "item": {
         "default": {
-          "class": "cui-option-card-item",
-          "data-cui": "option-card-item"
+          "class": "cui-optioncard-item",
+          "data-cui": "optioncard-item"
         }
       }
     },
     "optionCardStyles": {
       "root": {
-        "default": "cui-option-card-root"
+        "default": "cui-optioncard"
       },
       "label": {
-        "default": "cui-option-card-label"
+        "default": "cui-optioncard-label"
       },
       "description": {
-        "default": "cui-option-card-description"
+        "default": "cui-optioncard-description"
       },
       "errorMessage": {
-        "default": "cui-option-card-errorMessage"
+        "default": "cui-optioncard-error-message"
       },
       "item": {
-        "default": "cui-option-card-item"
+        "default": "cui-optioncard-item"
       },
       "itemInput": {
-        "default": "cui-option-card-itemInput"
+        "default": "cui-optioncard-item-input"
       },
       "itemControl": {
-        "default": "cui-option-card-itemControl"
+        "default": "cui-optioncard-item-control"
       },
       "itemIndicator": {
-        "default": "cui-option-card-itemIndicator"
+        "default": "cui-optioncard-item-indicator"
       },
       "itemLabel": {
-        "default": "cui-option-card-itemLabel"
+        "default": "cui-optioncard-item-label"
       },
       "itemDescription": {
-        "default": "cui-option-card-itemDescription"
+        "default": "cui-optioncard-item-description"
       },
       "preview": {
-        "default": "cui-option-card-preview"
+        "default": "cui-optioncard-preview"
       },
       "badge": {
-        "default": "cui-option-card-badge"
+        "default": "cui-optioncard-badge"
       }
     },
-    "preview": "cui-option-card-preview",
-    "root": "cui-option-card-root"
+    "preview": "cui-optioncard-preview",
+    "root": "cui-optioncard"
   },
   "pagination": {
-    "pagination": "cui-pagination-pagination cui-pagination-paginationTheme",
-    "paginationIcon": "cui-pagination-paginationIcon",
-    "paginationItem": "cui-pagination-paginationItem",
-    "paginationTheme": "cui-pagination-paginationTheme",
+    "pagination": "cui-pagination",
+    "paginationIcon": "cui-pagination-icon",
+    "paginationItem": "cui-pagination-item",
     "paginationVars": {
-      "paginationItemMargin": "var(--cui-paginationTheme-paginationItemMargin)"
+      "paginationItemMargin": "var(--cui-pagination-item-margin)"
     }
   },
   "popover": {
     "content": {
-      "default": "cui-popover-content cui-popover-popoverTheme"
+      "default": "cui-popover-content"
     },
     "description": "cui-popover-description",
     "popoverParts": {
@@ -1213,7 +1206,7 @@
     },
     "popoverStyleProps": {
       "default": {
-        "class": "cui-popover-content cui-popover-popoverTheme",
+        "class": "cui-popover-content",
         "data-cui": "popover-content",
         "data-variant": "default"
       }
@@ -1226,7 +1219,7 @@
         "default": ""
       },
       "content": {
-        "default": "cui-popover-content cui-popover-popoverTheme"
+        "default": "cui-popover-content"
       },
       "arrow": {
         "default": ""
@@ -1241,19 +1234,18 @@
         "default": ""
       }
     },
-    "popoverTheme": "cui-popover-popoverTheme",
     "popoverThemeVars": {
-      "contentBackground": "var(--cui-popoverTheme-contentBackground)",
-      "contentBoxShadow": "var(--cui-popoverTheme-contentBoxShadow)",
-      "contentMaxWidth": "var(--cui-popoverTheme-contentMaxWidth)",
-      "contentRadius": "var(--cui-popoverTheme-contentRadius)",
-      "contentPadding": "var(--cui-popoverTheme-contentPadding)",
-      "contentFontSize": "var(--cui-popoverTheme-contentFontSize)",
-      "contentLineHeight": "var(--cui-popoverTheme-contentLineHeight)",
-      "titleColor": "var(--cui-popoverTheme-titleColor)",
-      "titleFontSize": "var(--cui-popoverTheme-titleFontSize)",
-      "descriptionColor": "var(--cui-popoverTheme-descriptionColor)",
-      "contentBorderColor": "var(--cui-popoverTheme-contentBorderColor)"
+      "contentBackground": "var(--cui-popover-content-background)",
+      "contentBoxShadow": "var(--cui-popover-content-box-shadow)",
+      "contentMaxWidth": "var(--cui-popover-content-max-width)",
+      "contentRadius": "var(--cui-popover-content-radius)",
+      "contentPadding": "var(--cui-popover-content-padding)",
+      "contentFontSize": "var(--cui-popover-content-font-size)",
+      "contentLineHeight": "var(--cui-popover-content-line-height)",
+      "titleColor": "var(--cui-popover-title-color)",
+      "titleFontSize": "var(--cui-popover-title-font-size)",
+      "descriptionColor": "var(--cui-popover-description-color)",
+      "contentBorderColor": "var(--cui-popover-content-border-color)"
     },
     "title": "cui-popover-title"
   },
@@ -1261,7 +1253,7 @@
     "fill": "cui-progress-fill",
     "label": "cui-progress-label",
     "progressParts": {
-      "root": "progress-root",
+      "root": "progress",
       "label": "progress-label",
       "track": "progress-track",
       "fill": "progress-fill",
@@ -1269,14 +1261,14 @@
     },
     "progressStyleProps": {
       "default": {
-        "class": "cui-progress-root",
-        "data-cui": "progress-root",
+        "class": "cui-progress",
+        "data-cui": "progress",
         "data-size": "sm"
       },
       "root": {
         "default": {
-          "class": "cui-progress-root",
-          "data-cui": "progress-root",
+          "class": "cui-progress",
+          "data-cui": "progress",
           "data-size": "sm"
         }
       },
@@ -1290,7 +1282,7 @@
     },
     "progressStyles": {
       "root": {
-        "default": "cui-progress-root"
+        "default": "cui-progress"
       },
       "label": {
         "default": "cui-progress-label"
@@ -1302,148 +1294,145 @@
         "default": "cui-progress-fill"
       },
       "valueLabel": {
-        "default": "cui-progress-valueLabel"
+        "default": "cui-progress-value-label"
       }
     },
-    "root": "cui-progress-root",
+    "root": "cui-progress",
     "track": {
       "default": "cui-progress-track"
     },
-    "valueLabel": "cui-progress-valueLabel"
+    "valueLabel": "cui-progress-value-label"
   },
-  "radio-list": {
-    "indicator": "cui-radio-indicator",
-    "radio": "cui-radio-radio",
-    "radioItem": "cui-radio-radioItem",
+  "radiolist": {
+    "indicator": "cui-radiolist-indicator",
+    "radio": "cui-radiolist-radio",
+    "radioItem": "cui-radiolist-item",
     "radioList": {
-      "default": "cui-radio-radioList cui-radio-radioTheme"
+      "default": "cui-radiolist"
     },
     "radioListStyleProps": {
       "default": {
-        "class": "cui-radio-radioList cui-radio-radioTheme",
-        "data-cui": "radio-list-items",
+        "class": "cui-radiolist",
+        "data-cui": "radiolist-items",
         "data-size": "md",
         "data-orientation": "horizontal"
       },
       "items": {
         "default": {
-          "class": "cui-radio-radioList cui-radio-radioTheme",
-          "data-cui": "radio-list-items",
+          "class": "cui-radiolist",
+          "data-cui": "radiolist-items",
           "data-size": "md",
           "data-orientation": "horizontal"
         }
       },
       "root": {
         "default": {
-          "class": "cui-text-field-baseFieldContainer cui-field-baseFieldTheme",
-          "data-cui": "radio-group-field",
+          "class": "cui-textfield cui-field",
+          "data-cui": "radiolist",
           "data-field-size": "md"
         }
       }
     },
-    "radioTheme": "cui-radio-radioTheme",
     "radioVars": {
-      "inputColor": "var(--cui-radioTheme-inputColor)",
-      "inputBackground": "var(--cui-radioTheme-inputBackground)",
-      "inputInvalidBackground": "var(--cui-radioTheme-inputInvalidBackground)",
-      "inputText": "var(--cui-radioTheme-inputText)",
-      "inputSize": "var(--cui-radioTheme-inputSize)",
-      "labelSize": "var(--cui-radioTheme-labelSize)",
-      "inputFill": "var(--cui-radioTheme-inputFill)"
+      "inputColor": "var(--cui-radiolist-input-color)",
+      "inputBackground": "var(--cui-radiolist-input-background)",
+      "inputInvalidBackground": "var(--cui-radiolist-input-invalid-background)",
+      "inputText": "var(--cui-radiolist-input-text)",
+      "inputSize": "var(--cui-radiolist-input-size)",
+      "labelSize": "var(--cui-radiolist-label-size)",
+      "inputFill": "var(--cui-radiolist-input-fill)"
     }
   },
-  "segmented-control": {
-    "indicator": "cui-segmented-control-indicator",
-    "list": "cui-segmented-control-list",
-    "segment": "cui-segmented-control-segment",
+  "segmentedcontrol": {
+    "indicator": "cui-segmentedcontrol-indicator",
+    "list": "cui-segmentedcontrol-list",
+    "segment": "cui-segmentedcontrol-segment",
     "segmentedControlStyleProps": {
       "default": {
-        "class": "cui-segmented-control-segmentedControlWrapper cui-segmented-control-segmentedFieldTheme",
-        "data-cui": "segmentedControl",
+        "class": "cui-segmentedcontrol",
+        "data-cui": "segmentedcontrol",
         "data-size": "sm",
         "data-variant": "solid"
       }
     },
     "segmentedControlWrapper": {
-      "default": "cui-segmented-control-segmentedControlWrapper cui-segmented-control-segmentedFieldTheme"
+      "default": "cui-segmentedcontrol"
     },
-    "segmentedFieldTheme": "cui-segmented-control-segmentedFieldTheme",
     "segmentedFieldVars": {
-      "activeSegmentedBackgroundColor": "var(--cui-segmentedFieldTheme-activeSegmentedBackgroundColor)",
-      "segmentedTextColor": "var(--cui-segmentedFieldTheme-segmentedTextColor)",
-      "activeSegmentedTextColor": "var(--cui-segmentedFieldTheme-activeSegmentedTextColor)",
-      "segmentWrapperSolidBackground": "var(--cui-segmentedFieldTheme-segmentWrapperSolidBackground)",
-      "segmentWrapperBorderedColor": "var(--cui-segmentedFieldTheme-segmentWrapperBorderedColor)",
-      "segmentWrapperRadius": "var(--cui-segmentedFieldTheme-segmentWrapperRadius)",
-      "segmentWrapperPadding": "var(--cui-segmentedFieldTheme-segmentWrapperPadding)",
-      "segmentHeight": "var(--cui-segmentedFieldTheme-segmentHeight)",
-      "segmentPadding": "var(--cui-segmentedFieldTheme-segmentPadding)",
-      "segmentRadius": "var(--cui-segmentedFieldTheme-segmentRadius)",
-      "segmentFontSize": "var(--cui-segmentedFieldTheme-segmentFontSize)"
+      "activeSegmentedBackgroundColor": "var(--cui-segmentedcontrol-active-segmented-background-color)",
+      "segmentedTextColor": "var(--cui-segmentedcontrol-segmented-text-color)",
+      "activeSegmentedTextColor": "var(--cui-segmentedcontrol-active-segmented-text-color)",
+      "segmentWrapperSolidBackground": "var(--cui-segmentedcontrol-segment-wrapper-solid-background)",
+      "segmentWrapperBorderedColor": "var(--cui-segmentedcontrol-segment-wrapper-bordered-color)",
+      "segmentWrapperRadius": "var(--cui-segmentedcontrol-segment-wrapper-radius)",
+      "segmentWrapperPadding": "var(--cui-segmentedcontrol-segment-wrapper-padding)",
+      "segmentHeight": "var(--cui-segmentedcontrol-segment-height)",
+      "segmentPadding": "var(--cui-segmentedcontrol-segment-padding)",
+      "segmentRadius": "var(--cui-segmentedcontrol-segment-radius)",
+      "segmentFontSize": "var(--cui-segmentedcontrol-segment-font-size)"
     }
   },
   "select": {
-    "content": "cui-select-content cui-select-selectTheme",
-    "field": "cui-select-field cui-field-baseFieldTheme",
+    "content": "cui-select-content",
+    "field": "cui-select cui-field",
     "input": "cui-select-input",
     "item": "cui-select-item",
-    "itemIndicator": "cui-select-itemIndicator",
-    "selectField": "cui-select-selectField",
+    "itemIndicator": "cui-select-item-indicator",
+    "selectField": "cui-select-trigger",
     "selectStyleProps": {
       "default": {
-        "class": "cui-field-baseFieldVariants cui-select-selectField",
+        "class": "cui-field-input cui-select-trigger",
         "data-cui": "select-trigger",
         "data-size": "sm",
-        "data-theme": "filled"
+        "data-variant": "filled"
       },
       "trigger": {
         "default": {
-          "class": "cui-field-baseFieldVariants cui-select-selectField",
+          "class": "cui-field-input cui-select-trigger",
           "data-cui": "select-trigger",
           "data-size": "sm",
-          "data-theme": "filled"
+          "data-variant": "filled"
         }
       },
       "root": {
         "default": {
-          "class": "cui-select-field cui-field-baseFieldTheme",
-          "data-cui": "select-root",
+          "class": "cui-select cui-field",
+          "data-cui": "select",
           "data-field-size": "sm"
         }
       }
     },
-    "selectTheme": "cui-select-selectTheme",
     "selectThemeVars": {
-      "contentBackground": "var(--cui-selectTheme-contentBackground)",
-      "contentRadius": "var(--cui-selectTheme-contentRadius)",
-      "contentBoxShadow": "var(--cui-selectTheme-contentBoxShadow)",
-      "contentPadding": "var(--cui-selectTheme-contentPadding)",
-      "contentBorderColor": "var(--cui-selectTheme-contentBorderColor)",
-      "contentMaxHeight": "var(--cui-selectTheme-contentMaxHeight)",
-      "contentMaxHeightXs": "var(--cui-selectTheme-contentMaxHeightXs)",
-      "separator": "var(--cui-selectTheme-separator)",
-      "itemMinHeight": "var(--cui-selectTheme-itemMinHeight)",
-      "itemTextColor": "var(--cui-selectTheme-itemTextColor)",
-      "itemHoverBackground": "var(--cui-selectTheme-itemHoverBackground)",
-      "itemHoverTextColor": "var(--cui-selectTheme-itemHoverTextColor)",
-      "itemDisabledOpacity": "var(--cui-selectTheme-itemDisabledOpacity)",
-      "indicatorSize": "var(--cui-selectTheme-indicatorSize)"
+      "contentBackground": "var(--cui-select-content-background)",
+      "contentRadius": "var(--cui-select-content-radius)",
+      "contentBoxShadow": "var(--cui-select-content-box-shadow)",
+      "contentPadding": "var(--cui-select-content-padding)",
+      "contentBorderColor": "var(--cui-select-content-border-color)",
+      "contentMaxHeight": "var(--cui-select-content-max-height)",
+      "contentMaxHeightXs": "var(--cui-select-content-max-height-xs)",
+      "separator": "var(--cui-select-separator)",
+      "itemMinHeight": "var(--cui-select-item-min-height)",
+      "itemTextColor": "var(--cui-select-item-text-color)",
+      "itemHoverBackground": "var(--cui-select-item-hover-background)",
+      "itemHoverTextColor": "var(--cui-select-item-hover-text-color)",
+      "itemDisabledOpacity": "var(--cui-select-item-disabled-opacity)",
+      "indicatorSize": "var(--cui-select-indicator-size)"
     }
   },
   "settings": {
-    "control": "cui-settings-control",
-    "description": "cui-settings-description",
-    "details": "cui-settings-details",
+    "control": "cui-settings-row-control",
+    "description": "cui-settings-row-description",
+    "details": "cui-settings-row-details",
     "group": "cui-settings-group",
-    "groupContent": "cui-settings-groupContent",
-    "groupDescription": "cui-settings-groupDescription",
-    "groupTitle": "cui-settings-groupTitle",
-    "label": "cui-settings-label",
-    "marker": "cui-settings-marker",
-    "picture": "cui-settings-picture",
+    "groupContent": "cui-settings-group-content",
+    "groupDescription": "cui-settings-group-description",
+    "groupTitle": "cui-settings-group-title",
+    "label": "cui-settings-row-label",
+    "marker": "cui-settings-row-marker",
+    "picture": "cui-settings-row-picture",
     "row": "cui-settings-row",
     "settingsGroupParts": {
-      "root": "settings-group-root",
+      "root": "settings-group",
       "title": "settings-group-title",
       "description": "settings-group-description",
       "content": "settings-group-content"
@@ -1453,17 +1442,17 @@
         "default": "cui-settings-group"
       },
       "title": {
-        "default": "cui-settings-groupTitle"
+        "default": "cui-settings-group-title"
       },
       "description": {
-        "default": "cui-settings-groupDescription"
+        "default": "cui-settings-group-description"
       },
       "content": {
-        "default": "cui-settings-groupContent"
+        "default": "cui-settings-group-content"
       }
     },
     "settingsRowParts": {
-      "root": "settings-row-root",
+      "root": "settings-row",
       "label": "settings-row-label",
       "description": "settings-row-description",
       "details": "settings-row-details",
@@ -1476,34 +1465,34 @@
         "default": "cui-settings-row"
       },
       "label": {
-        "default": "cui-settings-label"
+        "default": "cui-settings-row-label"
       },
       "description": {
-        "default": "cui-settings-description"
+        "default": "cui-settings-row-description"
       },
       "details": {
-        "default": "cui-settings-details"
+        "default": "cui-settings-row-details"
       },
       "control": {
-        "default": "cui-settings-control"
+        "default": "cui-settings-row-control"
       },
       "picture": {
-        "default": "cui-settings-picture"
+        "default": "cui-settings-row-picture"
       },
       "marker": {
-        "default": "cui-settings-marker"
+        "default": "cui-settings-row-marker"
       }
     },
     "settingsStyleProps": {
       "default": {
         "class": "cui-settings-row",
-        "data-cui": "settings-row-root"
+        "data-cui": "settings-row"
       }
     }
   },
   "sheet": {
     "body": "cui-sheet-body",
-    "closeButton": "cui-sheet-closeButton",
+    "closeButton": "cui-sheet-close-button",
     "content": {
       "default": "cui-sheet-content"
     },
@@ -1551,7 +1540,7 @@
         "default": "cui-sheet-description"
       },
       "closeButton": {
-        "default": "cui-sheet-closeButton"
+        "default": "cui-sheet-close-button"
       },
       "handle": {
         "default": "cui-sheet-handle"
@@ -1567,34 +1556,34 @@
   },
   "skeleton": {
     "root": {
-      "default": "cui-skeleton-base"
+      "default": "cui-skeleton"
     },
     "skeletonParts": {
-      "root": "skeleton-root"
+      "root": "skeleton"
     },
     "skeletonStyleProps": {
       "default": {
-        "class": "cui-skeleton-base",
-        "data-cui": "skeleton-root"
+        "class": "cui-skeleton",
+        "data-cui": "skeleton"
       }
     },
     "skeletonStyles": {
       "root": {
-        "default": "cui-skeleton-base"
+        "default": "cui-skeleton"
       }
     }
   },
   "slider": {
     "description": "cui-slider-description",
-    "errorMessage": "cui-slider-errorMessage",
+    "errorMessage": "cui-slider-error-message",
     "fill": {
       "default": "cui-slider-fill"
     },
     "input": "cui-slider-input",
     "label": "cui-slider-label",
-    "root": "cui-slider-root",
+    "root": "cui-slider",
     "sliderParts": {
-      "root": "slider-root",
+      "root": "slider",
       "label": "slider-label",
       "description": "slider-description",
       "errorMessage": "slider-error-message",
@@ -1627,7 +1616,7 @@
     },
     "sliderStyles": {
       "root": {
-        "default": "cui-slider-root"
+        "default": "cui-slider"
       },
       "label": {
         "default": "cui-slider-label"
@@ -1636,7 +1625,7 @@
         "default": "cui-slider-description"
       },
       "errorMessage": {
-        "default": "cui-slider-errorMessage"
+        "default": "cui-slider-error-message"
       },
       "track": {
         "default": "cui-slider-track"
@@ -1651,35 +1640,35 @@
         "default": "cui-slider-input"
       },
       "valueLabel": {
-        "default": "cui-slider-valueLabel"
+        "default": "cui-slider-value-label"
       }
     },
     "thumb": "cui-slider-thumb",
     "track": {
       "default": "cui-slider-track"
     },
-    "valueLabel": "cui-slider-valueLabel"
+    "valueLabel": "cui-slider-value-label"
   },
   "spinner": {
     "indicator": "cui-spinner-indicator",
     "root": {
-      "default": "cui-spinner-root"
+      "default": "cui-spinner"
     },
     "spinnerParts": {
-      "root": "spinner-root",
+      "root": "spinner",
       "track": "spinner-track",
       "indicator": "spinner-indicator"
     },
     "spinnerStyleProps": {
       "default": {
-        "class": "cui-spinner-root",
-        "data-cui": "spinner-root",
+        "class": "cui-spinner",
+        "data-cui": "spinner",
         "data-size": "md"
       }
     },
     "spinnerStyles": {
       "root": {
-        "default": "cui-spinner-root"
+        "default": "cui-spinner"
       },
       "track": {
         "default": "cui-spinner-track"
@@ -1692,15 +1681,15 @@
   },
   "stack": {
     "root": {
-      "default": "cui-stack-root"
+      "default": "cui-stack"
     },
     "stackParts": {
-      "root": "stack-root"
+      "root": "stack"
     },
     "stackStyleProps": {
       "default": {
-        "class": "cui-stack-root",
-        "data-cui": "stack-root",
+        "class": "cui-stack",
+        "data-cui": "stack",
         "data-gap": "2",
         "data-align": "stretch",
         "data-justify": "start",
@@ -1710,7 +1699,7 @@
     },
     "stackStyles": {
       "root": {
-        "default": "cui-stack-root"
+        "default": "cui-stack"
       }
     }
   },
@@ -1719,12 +1708,12 @@
       "default": "cui-switch-control"
     },
     "description": "cui-switch-description",
-    "errorMessage": "cui-switch-errorMessage",
+    "errorMessage": "cui-switch-error-message",
     "input": "cui-switch-input",
     "label": "cui-switch-label",
-    "root": "cui-switch-root",
+    "root": "cui-switch",
     "switchParts": {
-      "root": "switch-root",
+      "root": "switch",
       "input": "switch-input",
       "control": "switch-control",
       "thumb": "switch-thumb",
@@ -1734,14 +1723,14 @@
     },
     "switchStyleProps": {
       "default": {
-        "class": "cui-switch-root",
-        "data-cui": "switch-root",
+        "class": "cui-switch",
+        "data-cui": "switch",
         "data-size": "md"
       },
       "root": {
         "default": {
-          "class": "cui-switch-root",
-          "data-cui": "switch-root",
+          "class": "cui-switch",
+          "data-cui": "switch",
           "data-size": "md"
         }
       },
@@ -1768,7 +1757,7 @@
       },
       "label": {
         "default": {
-          "class": "cui-switch-label cui-field-label-label",
+          "class": "cui-switch-label cui-field-label",
           "data-cui": "switch-label",
           "data-size": "md"
         }
@@ -1782,7 +1771,7 @@
       },
       "errorMessage": {
         "default": {
-          "class": "cui-switch-errorMessage",
+          "class": "cui-switch-error-message",
           "data-cui": "switch-error-message",
           "data-size": "md"
         }
@@ -1790,7 +1779,7 @@
     },
     "switchStyles": {
       "root": {
-        "default": "cui-switch-root"
+        "default": "cui-switch"
       },
       "input": {
         "default": "cui-switch-input"
@@ -1808,7 +1797,7 @@
         "default": "cui-switch-description"
       },
       "errorMessage": {
-        "default": "cui-switch-errorMessage"
+        "default": "cui-switch-error-message"
       }
     },
     "thumb": {
@@ -1817,55 +1806,55 @@
   },
   "table": {
     "root": {
-      "default": "cui-table-root"
+      "default": "cui-table"
     },
     "scrollArea": {
-      "default": "cui-table-scrollArea"
+      "default": "cui-table-scroll-area"
     },
     "tableParts": {
-      "root": "table-root",
+      "root": "table",
       "scrollArea": "table-scroll-area"
     },
     "tableStyleProps": {
       "default": {
-        "class": "cui-table-root",
-        "data-cui": "table-root",
+        "class": "cui-table",
+        "data-cui": "table",
         "data-size": "md"
       }
     },
     "tableStyles": {
       "root": {
-        "default": "cui-table-root"
+        "default": "cui-table"
       },
       "scrollArea": {
-        "default": "cui-table-scrollArea"
+        "default": "cui-table-scroll-area"
       }
     }
   },
   "tabs": {
     "indicator": "cui-tabs-indicator",
-    "tabsContent": "cui-tabs-tabsContent",
-    "tabsHeader": "cui-tabs-tabsHeader",
-    "tabsList": "cui-tabs-tabsList",
-    "tabsRoot": "cui-tabs-tabsRoot cui-tabs-tabsTheme",
+    "tabsContent": "cui-tabs-content",
+    "tabsHeader": "cui-tabs-header",
+    "tabsList": "cui-tabs-list",
+    "tabsRoot": "cui-tabs",
     "tabsStyleProps": {
       "default": {
-        "class": "cui-tabs-tabsRoot cui-tabs-tabsTheme",
+        "class": "cui-tabs",
         "data-cui": "tabs",
         "data-orientation": "horizontal",
-        "data-tabs-theme": "default"
+        "data-variant": "default"
       },
       "root": {
         "default": {
-          "class": "cui-tabs-tabsRoot cui-tabs-tabsTheme",
+          "class": "cui-tabs",
           "data-cui": "tabs",
           "data-orientation": "horizontal",
-          "data-tabs-theme": "default"
+          "data-variant": "default"
         }
       },
       "list": {
         "default": {
-          "class": "cui-tabs-tabsList",
+          "class": "cui-tabs-list",
           "data-cui": "tabs-list",
           "data-orientation": "horizontal"
         }
@@ -1878,27 +1867,26 @@
         }
       }
     },
-    "tabsTheme": "cui-tabs-tabsTheme",
     "tabsVars": {
-      "tabListIndicatorColor": "var(--cui-tabsTheme-tabListIndicatorColor)",
-      "tabHeaderHoverBackgroundColor": "var(--cui-tabsTheme-tabHeaderHoverBackgroundColor)",
-      "tabHeaderColor": "var(--cui-tabsTheme-tabHeaderColor)",
-      "tabHeaderHoverColor": "var(--cui-tabsTheme-tabHeaderHoverColor)",
-      "tabHeaderSelectedColor": "var(--cui-tabsTheme-tabHeaderSelectedColor)",
-      "tabIndicatorColor": "var(--cui-tabsTheme-tabIndicatorColor)"
+      "tabListIndicatorColor": "var(--cui-tabs-tab-list-indicator-color)",
+      "tabHeaderHoverBackgroundColor": "var(--cui-tabs-tab-header-hover-background-color)",
+      "tabHeaderColor": "var(--cui-tabs-tab-header-color)",
+      "tabHeaderHoverColor": "var(--cui-tabs-tab-header-hover-color)",
+      "tabHeaderSelectedColor": "var(--cui-tabs-tab-header-selected-color)",
+      "tabIndicatorColor": "var(--cui-tabs-tab-indicator-color)"
     }
   },
   "text": {
     "root": {
-      "default": "cui-text-root"
+      "default": "cui-text"
     },
     "textParts": {
-      "root": "text-root"
+      "root": "text"
     },
     "textStyleProps": {
       "default": {
-        "class": "cui-text-root",
-        "data-cui": "text-root",
+        "class": "cui-text",
+        "data-cui": "text",
         "data-size": "sm",
         "data-tone": "default",
         "data-weight": "normal"
@@ -1906,59 +1894,59 @@
     },
     "textStyles": {
       "root": {
-        "default": "cui-text-root"
+        "default": "cui-text"
       }
     }
   },
-  "text-area": {
-    "baseFieldContainer": "cui-text-area-baseFieldContainer cui-field-baseFieldTheme",
-    "textArea": "cui-text-area-textArea",
+  "textarea": {
+    "baseFieldContainer": "cui-textarea cui-field",
+    "textArea": "cui-textarea-input",
     "textAreaStyleProps": {
       "default": {
-        "class": "cui-field-baseFieldVariants cui-text-area-textArea",
-        "data-cui": "text-field-input",
+        "class": "cui-field-input cui-textarea-input",
+        "data-cui": "textfield-input",
         "data-size": "sm",
-        "data-theme": "filled"
+        "data-variant": "filled"
       },
       "input": {
         "default": {
-          "class": "cui-field-baseFieldVariants cui-text-area-textArea",
-          "data-cui": "text-field-input",
+          "class": "cui-field-input cui-textarea-input",
+          "data-cui": "textfield-input",
           "data-size": "sm",
-          "data-theme": "filled"
+          "data-variant": "filled"
         }
       },
       "root": {
         "default": {
-          "class": "cui-text-area-baseFieldContainer cui-field-baseFieldTheme",
-          "data-cui": "text-field",
+          "class": "cui-textarea cui-field",
+          "data-cui": "textfield",
           "data-field-size": "sm"
         }
       }
     }
   },
-  "text-field": {
-    "baseFieldContainer": "cui-text-field-baseFieldContainer cui-field-baseFieldTheme",
-    "textField": "cui-text-field-textField",
+  "textfield": {
+    "baseFieldContainer": "cui-textfield cui-field",
+    "textField": "cui-textfield-input",
     "textFieldStyleProps": {
       "default": {
-        "class": "cui-field-baseFieldVariants cui-text-field-textField",
-        "data-cui": "text-field-input",
+        "class": "cui-field-input cui-textfield-input",
+        "data-cui": "textfield-input",
         "data-size": "sm",
-        "data-theme": "filled"
+        "data-variant": "filled"
       },
       "input": {
         "default": {
-          "class": "cui-field-baseFieldVariants cui-text-field-textField",
-          "data-cui": "text-field-input",
+          "class": "cui-field-input cui-textfield-input",
+          "data-cui": "textfield-input",
           "data-size": "sm",
-          "data-theme": "filled"
+          "data-variant": "filled"
         }
       },
       "root": {
         "default": {
-          "class": "cui-text-field-baseFieldContainer cui-field-baseFieldTheme",
-          "data-cui": "text-field",
+          "class": "cui-textfield cui-field",
+          "data-cui": "textfield",
           "data-field-size": "sm"
         }
       }
@@ -1966,23 +1954,23 @@
   },
   "toast": {
     "action": "cui-toast-action",
-    "closeButton": "cui-toast-closeButton",
+    "closeButton": "cui-toast-close-button",
     "description": "cui-toast-description",
     "icon": "cui-toast-icon",
     "list": "cui-toast-list",
-    "progressFill": "cui-toast-progressFill",
-    "progressTrack": "cui-toast-progressTrack",
+    "progressFill": "cui-toast-progress-fill",
+    "progressTrack": "cui-toast-progress-track",
     "region": {
       "default": "cui-toast-region"
     },
     "root": {
-      "default": "cui-toast-root"
+      "default": "cui-toast"
     },
     "title": "cui-toast-title",
     "toastParts": {
       "region": "toast-region",
       "list": "toast-list",
-      "root": "toast-root",
+      "root": "toast",
       "title": "toast-title",
       "description": "toast-description",
       "closeButton": "toast-close-button",
@@ -1993,14 +1981,14 @@
     },
     "toastStyleProps": {
       "default": {
-        "class": "cui-toast-root",
-        "data-cui": "toast-root",
+        "class": "cui-toast",
+        "data-cui": "toast",
         "data-tone": "neutral"
       },
       "root": {
         "default": {
-          "class": "cui-toast-root",
-          "data-cui": "toast-root",
+          "class": "cui-toast",
+          "data-cui": "toast",
           "data-tone": "neutral"
         }
       },
@@ -2020,7 +2008,7 @@
         "default": "cui-toast-list"
       },
       "root": {
-        "default": "cui-toast-root"
+        "default": "cui-toast"
       },
       "title": {
         "default": "cui-toast-title"
@@ -2029,13 +2017,13 @@
         "default": "cui-toast-description"
       },
       "closeButton": {
-        "default": "cui-toast-closeButton"
+        "default": "cui-toast-close-button"
       },
       "progressTrack": {
-        "default": "cui-toast-progressTrack"
+        "default": "cui-toast-progress-track"
       },
       "progressFill": {
-        "default": "cui-toast-progressFill"
+        "default": "cui-toast-progress-fill"
       },
       "icon": {
         "default": "cui-toast-icon"
@@ -2047,38 +2035,37 @@
   },
   "tooltip": {
     "tooltipContent": {
-      "default": "cui-tooltip-tooltipContent cui-tooltip-tooltipTheme"
+      "default": "cui-tooltip-content"
     },
     "tooltipStyleProps": {
       "default": {
-        "class": "cui-tooltip-tooltipContent cui-tooltip-tooltipTheme",
+        "class": "cui-tooltip-content",
         "data-cui": "tooltip-content"
       }
     },
-    "tooltipTheme": "cui-tooltip-tooltipTheme",
     "tooltipVars": {
-      "fontSize": "var(--cui-tooltipTheme-fontSize)",
-      "lineHeight": "var(--cui-tooltipTheme-lineHeight)",
-      "backgroundColor": "var(--cui-tooltipTheme-backgroundColor)",
-      "color": "var(--cui-tooltipTheme-color)",
-      "padding": "var(--cui-tooltipTheme-padding)",
-      "borderRadius": "var(--cui-tooltipTheme-borderRadius)",
-      "zIndex": "var(--cui-tooltipTheme-zIndex)"
+      "fontSize": "var(--cui-tooltip-font-size)",
+      "lineHeight": "var(--cui-tooltip-line-height)",
+      "backgroundColor": "var(--cui-tooltip-background-color)",
+      "color": "var(--cui-tooltip-color)",
+      "padding": "var(--cui-tooltip-padding)",
+      "borderRadius": "var(--cui-tooltip-border-radius)",
+      "zIndex": "var(--cui-tooltip-z-index)"
     },
     "trigger": "cui-tooltip-trigger"
   },
-  "field-label": {
-    "label": "cui-field-label-label"
+  "fieldlabel": {
+    "label": "cui-field-label"
   },
-  "field-message": {
-    "description": "cui-field-message-description"
+  "fieldmessage": {
+    "description": "cui-field-description"
   },
-  "field-error": {
-    "errorMessage": "cui-field-error-errorMessage"
+  "fielderror": {
+    "errorMessage": "cui-field-error"
   },
   "icon": {
-    "icon": "cui-icon-icon",
-    "iconSize": "var(--cui-icon-iconSize)"
+    "icon": "cui-icon",
+    "iconSize": "var(--cui-icon-size)"
   },
   "$appearance": {
     "alert": {
@@ -2167,7 +2154,7 @@
           ],
           "default": "sm"
         },
-        "theme": {
+        "variant": {
           "kind": "enum",
           "values": [
             "primary",
@@ -2177,11 +2164,8 @@
             "caution"
           ]
         },
-        "variant": {
-          "kind": "enum",
-          "values": [
-            "ghost"
-          ]
+        "ghost": {
+          "kind": "boolean"
         },
         "block": {
           "kind": "boolean"
@@ -2197,8 +2181,8 @@
           ],
           "options": [
             "size",
-            "theme",
             "variant",
+            "ghost",
             "block",
             "pill"
           ]
@@ -2218,7 +2202,7 @@
           ],
           "default": "md"
         },
-        "theme": {
+        "variant": {
           "kind": "enum",
           "values": [
             "filled"
@@ -2246,7 +2230,7 @@
           ],
           "options": [
             "size",
-            "theme"
+            "variant"
           ],
           "marker": "checkbox-control"
         }
@@ -2323,7 +2307,7 @@
           ],
           "base": {
             "value": "default",
-            "class": "cui-dialog-panelContent"
+            "class": "cui-dialog-panel-content"
           },
           "default": "default"
         },
@@ -2396,7 +2380,7 @@
           ],
           "default": "sm"
         },
-        "theme": {
+        "variant": {
           "kind": "enum",
           "values": [
             "filled",
@@ -2413,21 +2397,21 @@
           ],
           "options": [
             "size",
-            "theme"
+            "variant"
           ]
         }
       }
     },
-    "icon-button": {
+    "iconbutton": {
       "variants": {
         "size": {
           "use": "button:size"
         },
-        "theme": {
-          "use": "button:theme"
-        },
         "variant": {
           "use": "button:variant"
+        },
+        "ghost": {
+          "use": "button:ghost"
         },
         "block": {
           "use": "button:block"
@@ -2444,8 +2428,8 @@
           ],
           "options": [
             "size",
-            "theme",
             "variant",
+            "ghost",
             "block",
             "pill"
           ]
@@ -2494,7 +2478,7 @@
           ],
           "base": {
             "value": "default",
-            "class": "cui-link-link"
+            "class": "cui-link"
           },
           "default": "default"
         }
@@ -2521,7 +2505,7 @@
           ],
           "default": "sm"
         },
-        "theme": {
+        "variant": {
           "kind": "enum",
           "values": [
             "primary",
@@ -2539,7 +2523,7 @@
             "list"
           ],
           "options": [
-            "theme",
+            "variant",
             "bordered"
           ],
           "marker": "listbox"
@@ -2564,7 +2548,7 @@
         }
       }
     },
-    "number-field": {
+    "numberfield": {
       "variants": {
         "fieldSize": {
           "use": "field:size",
@@ -2573,8 +2557,8 @@
         "size": {
           "use": "field:size"
         },
-        "theme": {
-          "use": "field:theme"
+        "variant": {
+          "use": "field:variant"
         }
       },
       "parts": {
@@ -2585,7 +2569,7 @@
           "options": [
             "fieldSize"
           ],
-          "marker": "number-field"
+          "marker": "numberfield"
         },
         "input": {
           "classes": [
@@ -2594,13 +2578,13 @@
           ],
           "options": [
             "size",
-            "theme"
+            "variant"
           ],
-          "marker": "text-field-input"
+          "marker": "textfield-input"
         }
       }
     },
-    "option-card": {
+    "optioncard": {
       "variants": {
         "orientation": {
           "kind": "enum",
@@ -2733,13 +2717,13 @@
         }
       }
     },
-    "radio-list": {
+    "radiolist": {
       "variants": {
         "size": {
           "use": "checkbox:size",
           "check": true
         },
-        "theme": {
+        "variant": {
           "kind": "enum",
           "values": [
             "filled"
@@ -2754,7 +2738,7 @@
           "default": "horizontal"
         },
         "fieldSize": {
-          "use": "field-label:fieldSize",
+          "use": "fieldlabel:fieldSize",
           "default": "md"
         }
       },
@@ -2765,33 +2749,30 @@
           ],
           "options": [
             "size",
-            "theme",
+            "variant",
             "orientation"
           ],
-          "marker": "radio-list-items"
+          "marker": "radiolist-items"
         },
         "root": {
           "classes": [
-            "text-field:baseFieldContainer"
+            "textfield:baseFieldContainer"
           ],
           "options": [
             "fieldSize"
           ],
-          "marker": "radio-group-field"
+          "marker": "radiolist"
         }
       }
     },
-    "segmented-control": {
+    "segmentedcontrol": {
       "variants": {
         "size": {
           "use": "field:size",
           "check": true
         },
-        "theme": {
-          "kind": "enum",
-          "values": [
-            "primary"
-          ]
+        "accent": {
+          "kind": "boolean"
         },
         "variant": {
           "kind": "enum",
@@ -2808,8 +2789,7 @@
           "kind": "boolean"
         },
         "autoWidth": {
-          "kind": "boolean",
-          "attribute": "data-autoWidth"
+          "kind": "boolean"
         }
       },
       "parts": {
@@ -2819,13 +2799,13 @@
           ],
           "options": [
             "size",
-            "theme",
+            "accent",
             "variant",
             "fluid",
             "pill",
             "autoWidth"
           ],
-          "marker": "segmentedControl"
+          "marker": "segmentedcontrol"
         }
       }
     },
@@ -2834,8 +2814,8 @@
         "size": {
           "use": "field:size"
         },
-        "theme": {
-          "use": "field:theme"
+        "variant": {
+          "use": "field:variant"
         },
         "fieldSize": {
           "use": "field:size"
@@ -2849,7 +2829,7 @@
           ],
           "options": [
             "size",
-            "theme"
+            "variant"
           ],
           "marker": "select-trigger"
         },
@@ -2860,7 +2840,7 @@
           "options": [
             "fieldSize"
           ],
-          "marker": "select-root"
+          "marker": "select"
         }
       }
     },
@@ -3142,7 +3122,7 @@
             "size"
           ],
           "marker": "switchParts.label",
-          "afterClass": "field-label:label"
+          "afterClass": "fieldlabel:label"
         },
         "description": {
           "classes": [
@@ -3174,14 +3154,13 @@
           ],
           "default": "horizontal"
         },
-        "theme": {
+        "variant": {
           "kind": "enum",
           "values": [
             "default",
             "inline"
           ],
           "default": "default",
-          "attribute": "data-tabs-theme",
           "adapterOnly": true
         }
       },
@@ -3192,7 +3171,7 @@
           ],
           "options": [
             "orientation",
-            "theme"
+            "variant"
           ],
           "marker": "tabs"
         },
@@ -3268,13 +3247,13 @@
         }
       }
     },
-    "text-area": {
+    "textarea": {
       "variants": {
         "size": {
           "use": "field:size"
         },
-        "theme": {
-          "use": "field:theme"
+        "variant": {
+          "use": "field:variant"
         },
         "fieldSize": {
           "use": "field:size"
@@ -3288,9 +3267,9 @@
           ],
           "options": [
             "size",
-            "theme"
+            "variant"
           ],
-          "marker": "text-field-input"
+          "marker": "textfield-input"
         },
         "root": {
           "classes": [
@@ -3299,17 +3278,17 @@
           "options": [
             "fieldSize"
           ],
-          "marker": "text-field"
+          "marker": "textfield"
         }
       }
     },
-    "text-field": {
+    "textfield": {
       "variants": {
         "size": {
           "use": "field:size"
         },
-        "theme": {
-          "use": "field:theme"
+        "variant": {
+          "use": "field:variant"
         },
         "fieldSize": {
           "use": "field:size"
@@ -3323,9 +3302,9 @@
           ],
           "options": [
             "size",
-            "theme"
+            "variant"
           ],
-          "marker": "text-field-input"
+          "marker": "textfield-input"
         },
         "root": {
           "classes": [
@@ -3334,7 +3313,7 @@
           "options": [
             "fieldSize"
           ],
-          "marker": "text-field"
+          "marker": "textfield"
         }
       }
     },
@@ -3387,7 +3366,7 @@
     },
     "tooltip": {
       "variants": {
-        "theme": {
+        "variant": {
           "kind": "enum",
           "values": [
             "primary",
@@ -3401,13 +3380,13 @@
             "tooltipContent()"
           ],
           "options": [
-            "theme"
+            "variant"
           ],
           "marker": "tooltip-content"
         }
       }
     },
-    "field-label": {
+    "fieldlabel": {
       "variants": {
         "fieldSize": {
           "kind": "enum",
@@ -3424,20 +3403,20 @@
       "parts": {},
       "selectorOnly": true
     },
-    "field-message": {
+    "fieldmessage": {
       "variants": {
         "fieldSize": {
-          "use": "field-label:fieldSize",
+          "use": "fieldlabel:fieldSize",
           "check": true
         }
       },
       "parts": {},
       "selectorOnly": true
     },
-    "field-error": {
+    "fielderror": {
       "variants": {
         "fieldSize": {
-          "use": "field-label:fieldSize",
+          "use": "fieldlabel:fieldSize",
           "check": true
         }
       },
@@ -3482,7 +3461,7 @@
           ],
           "base": {
             "value": "md",
-            "class": "cui-table-root"
+            "class": "cui-table"
           },
           "default": "md"
         },

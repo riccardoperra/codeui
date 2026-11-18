@@ -2,7 +2,7 @@ import type { ComboboxStyleOptions } from "../generated-appearance/combobox";
 import * as styles from "../components/Combobox/Combobox.css";
 export type ComboboxVariants = Omit<ComboboxStyleOptions, "class">;
 export const comboboxParts = {
-	root: "combobox-root",
+	root: "combobox",
 	control: "combobox-control",
 	input: "combobox-input",
 	trigger: "combobox-trigger",

@@ -1,0 +1,81 @@
+---
+title: Tabs
+description: Named panels that share one content area, in plain HTML.
+---
+
+Load `@codeui/styles/tabs.css`, or `all.css`. The Solid component is documented in [Tabs](/docs/components/tabs).
+
+## Demo
+
+<HtmlDemo name="tabs/basic" />
+
+## Markup
+
+| Part | Element | Class | `data-cui` |
+| --- | --- | --- | --- |
+| Root | `div` | `cui-tabs` | `tabs` |
+| List | `div` | `cui-tabs-list` | `tabs-list` |
+| Header | `button` | `cui-tabs-header` | None |
+| Panel | `div` | `cui-tabs-content` | None |
+| Indicator | `span` or `div` | `cui-tabs-indicator` | `tabs-indicator` |
+
+| Attribute | Values | Default |
+| --- | --- | --- |
+| `data-orientation` on the root, list and indicator | `horizontal`, `vertical` | `horizontal` |
+| `data-selected` on a header | Presence | Off |
+
+The root class sets the colors. The CSS reads no variant attribute: the inline variant is the indicator element. The helper still emits `data-variant` for adapters.
+
+## Variants
+
+### Inline indicator
+
+<HtmlDemo name="tabs/inline" />
+
+The indicator is a 3px bar under the selected header. It is absolutely positioned inside the nearest positioned ancestor. An adapter puts it in the list and sets `left` and `width` from the selected header. Without a script, put it inside the selected header with `left: 0; right: 0`, because the header is positioned too.
+
+The default variant has no indicator. The selected header changes only its text color.
+
+### Vertical orientation
+
+<HtmlDemo name="tabs/vertical" />
+
+Set `data-orientation="vertical"` on the root, the list and the indicator. The root becomes a row, the headers stack in a column, and the line moves to the right of the list. The vertical indicator is 2px wide; set `top` and `height`, or `top: 0; bottom: 0` inside the selected header.
+
+## States
+
+### Selected
+
+`data-selected` on a header sets the primary text color. Set `aria-selected="true"` on the same header. Hide inactive panels with the `hidden` attribute.
+
+### Disabled
+
+The CSS has no disabled style for a header. Set `disabled` and `aria-disabled="true"` so the header leaves the tab order. It looks like an unselected header.
+
+### Focus
+
+A header shows the 2px focus ring on `:focus-visible`. The indicator slides in 160ms when it moves. Set `html[data-cui-input="keyboard"]` while the user navigates with arrow keys, and the indicator moves without a transition. Reduced motion never slides it.
+
+## What you supply
+
+- A button reset on the headers. The header class sets padding, type and color, but not `background`, `border` or `font-family`. The demos reset them inline; a page-wide reset works too.
+- `role="tablist"` and `aria-orientation` on the list, and an accessible label.
+- `role="tab"`, `aria-selected` and `aria-controls` on headers. `role="tabpanel"` and `aria-labelledby` on panels.
+- Roving focus: only the selected header has `tabindex="0"`. Left and Right Arrow move between horizontal headers, Up and Down Arrow between vertical ones, and Home and End go to the ends.
+- Moving `data-selected` and `aria-selected`, and toggling `hidden` on the panels.
+- The indicator geometry, when the indicator lives in the list.
+
+## Helper
+
+```ts
+import "@codeui/styles/tabs.css";
+import { applyStyleProps } from "@codeui/styles";
+import { tabsStyleProps } from "@codeui/styles/tabs";
+
+const root = document.querySelector<HTMLElement>("[data-tabs]")!;
+const list = root.querySelector<HTMLElement>("[role=tablist]")!;
+
+applyStyleProps(root, tabsStyleProps({ orientation: "vertical", variant: "inline" }));
+applyStyleProps(list, tabsStyleProps.list({ orientation: "vertical" }));
+// root: class="cui-tabs" data-cui="tabs" data-orientation="vertical" data-variant="inline"
+```

@@ -1,0 +1,100 @@
+---
+title: Button
+description: A labeled action in plain HTML, styled by variant, size, and ghost attributes.
+---
+
+Load `@codeui/styles/button.css`, or `all.css`. The Solid component is documented in [Button](/docs/components/button).
+
+## Demo
+
+<HtmlDemo name="button/basic" />
+
+## Markup
+
+| Part | Element | Class | `data-cui` |
+| --- | --- | --- | --- |
+| Root | `button` or `a` | `cui-button` | `button` |
+| Leading icon | `span` | `cui-button-icon` | None |
+| Loading overlay | `div` | `cui-loading` | None |
+
+| Attribute | Values | Default |
+| --- | --- | --- |
+| `data-variant` | `primary`, `secondary`, `tertiary`, `caution`, `negative` | None. Set one. |
+| `data-size` | `xs`, `sm`, `md`, `lg` | `sm` |
+| `data-ghost` | Presence | Off |
+| `data-pill` | Presence | Off |
+| `data-block` | Presence | Off |
+
+## Variants
+
+### Colors
+
+<HtmlDemo name="button/themes" />
+
+`primary` uses brand fill. `secondary` is neutral. `tertiary` uses soft brand fill. `caution` and `negative` use warning and danger colors. Keep one primary action in each group.
+
+### Sizes
+
+<HtmlDemo name="button/sizes" />
+
+`xs`, `sm`, `md`, and `lg` are 28px, 36px, 44px, and 52px at comfortable density. Omitting `data-size` renders `sm`.
+
+### Ghost
+
+<HtmlDemo name="button/ghost" />
+
+`data-ghost` removes the idle fill. The `data-variant` colors appear on hover.
+
+### Pill
+
+<HtmlDemo name="button/pill" />
+
+### Block
+
+<HtmlDemo name="button/block" />
+
+`data-block` sets width to 100% and flex to 1.
+
+### Icons
+
+<HtmlDemo name="button/icons" />
+
+Wrap a leading icon in `span.cui-button-icon`. A trailing icon goes after the label. Give decorative icons `aria-hidden="true"`.
+
+### Link
+
+<HtmlDemo name="button/as-link" />
+
+The classes work on an anchor. It keeps link semantics: Enter follows it and Space does not.
+
+## States
+
+### Disabled
+
+<HtmlDemo name="button/disabled" />
+
+Set both `disabled` and `data-disabled`. The native attribute removes the button from the tab order and blocks clicks. The dimmed fill selects on `data-disabled`.
+
+### Loading
+
+<HtmlDemo name="button/loading" />
+
+`data-loading` blocks pointer events and dims the label under three animated dots. The dots are plain markup, so the animation runs without a script. Set `aria-busy="true"` and `aria-disabled="true"` yourself, and ignore activation while the work runs.
+
+## What you supply
+
+- Click handlers and form submission.
+- `aria-busy` and `aria-disabled` while loading, plus a guard that ignores Enter, Space, and clicks.
+- An accessible name for a button whose only content is an icon. Use [IconButton](/docs/css/components/icon-button) for that case.
+
+## Helper
+
+```ts
+import "@codeui/styles/button.css";
+import { applyStyleProps } from "@codeui/styles";
+import { buttonStyleProps } from "@codeui/styles/button";
+
+const save = document.querySelector("button")!;
+applyStyleProps(save, buttonStyleProps({ variant: "primary", size: "md" }));
+// class="cui-button" data-cui="button" data-size="md" data-variant="primary"
+```

@@ -1,0 +1,134 @@
+---
+title: Dialog
+description: A modal panel over the page in plain HTML, with the scrim, sizes, and an inset layout.
+---
+
+Load `@codeui/styles/dialog.css`, or `all.css`. The Solid component is documented in [Dialog](/docs/components/dialog).
+
+## Demo
+
+<HtmlDemo name="dialog/basic" minHeight={360} />
+
+The positioner is `position: fixed`, so in these demos it fills the frame. On a page it covers the viewport.
+
+## Markup
+
+| Part | Element | Class | `data-cui` |
+| --- | --- | --- | --- |
+| Positioner | `div` | `cui-dialog-positioner` | `dialog-positioner` |
+| Panel | `div` | `cui-dialog-panel` | `dialog-panel` |
+| Header | `div` | `cui-dialog-title` | `dialog-panel-title` |
+| Title | `h2` | None | `dialog-title` |
+| Close button | `button` | IconButton classes | `dialog-close-button` |
+| Description | `p` | `cui-dialog-description` | `dialog-description` |
+| Body | `div` | `cui-dialog-panel-content` | `dialog-panel-content` |
+| Footer | `div` | `cui-dialog-panel-footer` | `dialog-panel-footer` |
+| Overlay | `div` | `cui-dialog-overlay` | `dialog-overlay` |
+| Sidebar | `div` | `cui-dialog-sidebar` | `dialog-sidebar` |
+| Sidebar search | `div` | `cui-dialog-sidebar-search` | `dialog-sidebar-search` |
+| Nav | `nav` | `cui-dialog-nav` | `dialog-nav` |
+| Nav list | `ul` | `cui-dialog-nav-list` | None |
+| Nav item | `button` in an `li` | `cui-dialog-nav-item` | `dialog-nav-item` |
+| Nav icon | `span` | `cui-dialog-nav-icon` | `dialog-nav-icon` |
+| Main | `div` | `cui-dialog-main` | `dialog-main` |
+| Section | `section` | `cui-dialog-section` | `dialog-section` |
+| Section title | `h3` | `cui-dialog-section-title` | `dialog-section-title` |
+| Section content | `div` | `cui-dialog-section-content` | `dialog-section-content` |
+
+The header part carries `dialog-panel-title`, not `dialog-header`. The title has no class. It takes its size and weight from the header, so reset the heading's own margin and font, as the demos do with `margin: 0; font: inherit`.
+The description class sets padding but not margin. Reset the `p` margin too.
+The positioner paints the scrim in its `::before`. The overlay is an extra fixed layer and paints nothing. You can leave it out.
+
+| Attribute | Values | Default |
+| --- | --- | --- |
+| `data-size` on the panel | `auto`, `xs`, `sm`, `md`, `lg`, `xl`, `full`, `settings`, `export` | `auto` |
+| `data-chrome` on the panel and the positioner | `inset` | None |
+| `data-panel-size` on the positioner | `auto`, `export`, `full` | `auto` |
+| `data-layout` on the body | `default`, `split` | `default` |
+| `data-variant` on a section | `group`, `well` | `group` |
+| `data-columns` on a section | `2` | None |
+| `data-expanded` on the panel | Presence | Off |
+| `aria-current` on a nav item | `page` | None |
+
+## Variants
+
+### Sizes
+
+<HtmlDemo name="dialog/sizes" />
+
+`data-size` sets the panel width: `xs` 24rem, `sm` 28rem, `md` 32rem, `lg` 48rem from the `md` breakpoint, `xl` 64rem from the `lg` breakpoint. `auto` fills the positioner, less the gutter.
+`full` covers the viewport with no radius. Set `data-panel-size="full"` on the positioner too, so it drops the gutter.
+`settings` is 1000×680 and `export` is 800 wide. Both shrink to fit a smaller viewport. Set `data-panel-size="export"` on the positioner of an `export` panel for its 16px gutter.
+
+This demo shows bare panels without a positioner. The panel class declares its own colors, so it keeps them. Inside a positioner, the panel cannot grow past the gutter; here `max-width: 100%` does that job.
+
+### Inset chrome
+
+<HtmlDemo name="dialog/inset" minHeight={300} />
+
+`data-chrome="inset"` puts the title in the panel padding with no divider. The panel gets 20px padding, a 20px gap between its children, and 24px corners.
+The footer becomes a right-aligned row of actions that stacks at 768px and below. The media query reads the frame width, so the actions stack in this demo. Use a small ghost IconButton for the close button.
+
+Set `data-chrome="inset"` on the positioner as well. The body and footer rules read it from any ancestor.
+
+### Title and description
+
+<HtmlDemo name="dialog/description" minHeight={340} />
+
+Put the description in a `p` between the header and the body. Link the title with `aria-labelledby` and the description with `aria-describedby`.
+
+### Settings layout
+
+<HtmlDemo name="dialog/settings" minHeight={520} />
+
+An inset `settings` panel with a sidebar as its first child lays out in two panes and drops its padding. Put the header and the body in `main`.
+Inside `main`, the body is a column of sections with 24px gaps. A `group` section puts its title over one island. The rows here are [Switch](/docs/css/components/switch) controls in [settings rows](/docs/css/components/settings-row).
+At 768px and below, the sidebar moves on top and the nav items wrap into rows of three. The frame in this demo is narrow enough to show that layout on a phone.
+
+`data-layout="split"` on the body puts its first child beside its second, at 1.1fr to 1fr. A `well` section is its own island. `data-columns="2"` lays out a section's content in two columns.
+
+## States
+
+### Open
+
+`data-expanded` on the panel plays the open animation: a fade from `scale(0.96)` over 200ms. The positioner's scrim fades in when its direct child has `data-expanded`.
+Without `data-expanded`, the scrim stays transparent. Set it on an open panel even without a script.
+
+### Closing
+
+Remove `data-expanded` while the panel is still in the page. The panel fades toward `scale(0.98)` over 120ms and the scrim fades out. Remove the markup when the animation ends.
+
+### No motion
+
+`data-motion="none"` on the positioner and the panel turns off both animations. Set it when the dialog opens or closes from the keyboard. With reduced motion, the panel only fades.
+
+### Current section
+
+`aria-current="page"` on a nav item gives it the field fill and default text. A disabled nav item is dimmed.
+
+## What you supply
+
+- A reset on the title heading and the description paragraph. The demos reset them inline; a page-wide reset works too.
+- Opening and closing, and `data-expanded` while open.
+- `role="dialog"`, `aria-modal="true"`, and `aria-labelledby` on the panel. `aria-describedby` when there is a description.
+- A focus trap: Tab and Shift+Tab wrap inside the panel. Move focus into the panel on open and return it to the opener on close.
+- Escape and the close button close the dialog. Hide the rest of the page from assistive technology while a modal dialog is open, for example with `inert`.
+- Arrow-key navigation between nav items, and `aria-current` on the current one.
+- Scroll locking on the page behind the dialog.
+
+## Helper
+
+```ts
+import "@codeui/styles/dialog.css";
+import { applyStyleProps } from "@codeui/styles";
+import { dialogStyleProps } from "@codeui/styles/dialog";
+
+const positioner = document.querySelector<HTMLElement>("[data-dialog-positioner]")!;
+const panel = positioner.querySelector<HTMLElement>("[role=dialog]")!;
+
+applyStyleProps(positioner, dialogStyleProps.positioner({ chrome: "inset" }));
+applyStyleProps(panel, dialogStyleProps({ size: "sm", chrome: "inset" }));
+// panel: class="cui-dialog-panel" data-cui="dialog-panel" data-size="sm" data-chrome="inset"
+```
+
+`dialogStyleProps.body({ layout: "split" })` and `dialogStyleProps.section({ variant: "well" })` style the body and a section.

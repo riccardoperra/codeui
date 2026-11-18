@@ -1,5 +1,5 @@
 import "@codeui/styles/theme.css";
-import "@codeui/styles/segmented-control.css";
+import "@codeui/styles/segmentedcontrol.css";
 import { onCleanup, onMount, splitProps, ValidComponent } from "solid-js";
 import { mergeClasses } from "../../utils/css";
 import * as styles from "./SegmentedControl.css";
@@ -30,7 +30,7 @@ export function SegmentedControlItem<T extends ValidComponent = "button">(
 
 	return (
 		<Tabs.Trigger
-			data-cui={"segmentedControlItem"}
+			data-cui={"segmentedcontrol-item"}
 			class={classes()}
 			ref={mergeRefs(local.ref, el => (ref = el))}
 			{...others}

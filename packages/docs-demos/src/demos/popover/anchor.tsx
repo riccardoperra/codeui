@@ -15,7 +15,7 @@ export default function PopoverAnchor() {
 				}}
 			>
 				<span>Background</span>
-				<P.Trigger as={Button} theme="secondary" size="sm">
+				<P.Trigger as={Button} variant="secondary" size="sm">
 					#1d1d1d
 				</P.Trigger>
 			</P.Anchor>

@@ -35,7 +35,7 @@ export default function Members() {
 						</span>
 						<Badge>{member.role}</Badge>
 						<DropdownMenu>
-							<DropdownMenuTrigger as={IconButton} size="sm" theme="secondary" variant="ghost" aria-label={`Actions for ${member.name}`}>
+							<DropdownMenuTrigger as={IconButton} size="sm" variant="secondary" ghost aria-label={`Actions for ${member.name}`}>
 								<MoreIcon />
 							</DropdownMenuTrigger>
 							<DropdownMenuPortal>

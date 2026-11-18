@@ -1,46 +1,46 @@
 @import "./dialog-tokens.generated.css";
 
-@keyframes cui-dialog-fadeIn {
+@keyframes cui-dialog-fade-in {
   from {
     opacity: 0;
   }
 }
-@keyframes cui-dialog-fadeOut {
+@keyframes cui-dialog-fade-out {
   to {
     opacity: 0;
   }
 }
-@keyframes cui-dialog-contentShow {
+@keyframes cui-dialog-content-show {
   from {
     opacity: 0;
     transform: scale(0.96);
   }
 }
-@keyframes cui-dialog-contentHide {
+@keyframes cui-dialog-content-hide {
   to {
     opacity: 0;
     transform: scale(0.98);
   }
 }
 @layer cui.components {
-  .cui-dialog-dialogTheme {
-    --cui-dialogTheme-contentBackground: var(--cui-component-dialog-dialog-theme-content-background);
-    --cui-dialogTheme-contentBoxShadow: var(--cui-shadow-dialog);
-    --cui-dialogTheme-contentTextColor: var(--cui-component-dialog-dialog-theme-content-text-color);
-    --cui-dialogTheme-contentPadding: var(--cui-component-dialog-dialog-theme-content-padding);
-    --cui-dialogTheme-titleHeight: 56px;
-    --cui-dialogTheme-panelRadius: var(--cui-component-dialog-dialog-theme-panel-radius);
-    --cui-dialogTheme-dividerColor: var(--cui-component-dialog-dialog-theme-divider-color);
-    --cui-dialogTheme-titleFontSize: var(--cui-component-dialog-dialog-theme-title-font-size);
-    --cui-dialogTheme-overlayBackground: var(--cui-component-dialog-dialog-theme-overlay-background);
-    --cui-dialogTheme-gutter: var(--cui-component-dialog-dialog-theme-gutter);
-    --cui-dialogTheme-width: auto;
-    --cui-dialogTheme-height: auto;
-    --cui-dialogTheme-sidebarBackground: var(--cui-component-dialog-dialog-theme-sidebar-background);
-    --cui-dialogTheme-navCurrentBackground: var(--cui-component-dialog-dialog-theme-nav-current-background);
-    --cui-dialogTheme-mainBackground: var(--cui-component-dialog-dialog-theme-main-background);
-    --cui-dialogTheme-islandBackground: var(--cui-component-dialog-dialog-theme-island-background);
-    --cui-dialogTheme-splitColumns: minmax(0, 1.1fr) minmax(0, 1fr);
+  .cui-dialog-overlay, .cui-dialog-positioner, .cui-dialog-panel {
+    --cui-dialog-content-background: var(--cui-component-dialog-dialog-theme-content-background);
+    --cui-dialog-content-box-shadow: var(--cui-shadow-dialog);
+    --cui-dialog-content-text-color: var(--cui-component-dialog-dialog-theme-content-text-color);
+    --cui-dialog-content-padding: var(--cui-component-dialog-dialog-theme-content-padding);
+    --cui-dialog-title-height: 56px;
+    --cui-dialog-panel-radius: var(--cui-component-dialog-dialog-theme-panel-radius);
+    --cui-dialog-divider-color: var(--cui-component-dialog-dialog-theme-divider-color);
+    --cui-dialog-title-font-size: var(--cui-component-dialog-dialog-theme-title-font-size);
+    --cui-dialog-overlay-background: var(--cui-component-dialog-dialog-theme-overlay-background);
+    --cui-dialog-gutter: var(--cui-component-dialog-dialog-theme-gutter);
+    --cui-dialog-width: auto;
+    --cui-dialog-height: auto;
+    --cui-dialog-sidebar-background: var(--cui-component-dialog-dialog-theme-sidebar-background);
+    --cui-dialog-nav-current-background: var(--cui-component-dialog-dialog-theme-nav-current-background);
+    --cui-dialog-main-background: var(--cui-component-dialog-dialog-theme-main-background);
+    --cui-dialog-island-background: var(--cui-component-dialog-dialog-theme-island-background);
+    --cui-dialog-split-columns: minmax(0, 1.1fr) minmax(0, 1fr);
   }
   .cui-dialog-overlay {
     position: fixed;
@@ -57,20 +57,20 @@
     flex-direction: column;
     min-width: 0;
     min-height: 0;
-    background-color: var(--cui-dialogTheme-mainBackground);
+    background-color: var(--cui-dialog-main-background);
   }
-  .cui-dialog-panelContent {
-    padding: var(--cui-dialogTheme-contentPadding);
+  .cui-dialog-panel-content {
+    padding: var(--cui-dialog-content-padding);
     overflow: auto;
   }
-  [data-panel-size=full] .cui-dialog-panelContent {
+  [data-panel-size=full] .cui-dialog-panel-content {
     flex: 1;
   }
-  [data-chrome=inset] .cui-dialog-panelContent {
+  [data-chrome=inset] .cui-dialog-panel-content {
     padding: 0;
     overflow: visible;
   }
-  .cui-dialog-main > .cui-dialog-panelContent {
+  .cui-dialog-main > .cui-dialog-panel-content {
     display: flex;
     flex: 1;
     flex-direction: column;
@@ -81,20 +81,20 @@
     overscroll-behavior: contain;
     scrollbar-width: thin;
   }
-  .cui-dialog-panelContent[data-layout=split] {
+  .cui-dialog-panel-content[data-layout=split] {
     display: grid;
-    grid-template-columns: var(--cui-dialogTheme-splitColumns);
+    grid-template-columns: var(--cui-dialog-split-columns);
     gap: var(--cui-space-5);
     align-items: start;
   }
-  .cui-dialog-panelFooter {
-    padding: var(--cui-dialogTheme-contentPadding);
+  .cui-dialog-panel-footer {
+    padding: var(--cui-dialog-content-padding);
   }
-  [data-panel-size=full] .cui-dialog-panelFooter {
+  [data-panel-size=full] .cui-dialog-panel-footer {
     margin-top: auto;
     margin-bottom: env(safe-area-inset-bottom, 20px);
   }
-  [data-chrome=inset] .cui-dialog-panelFooter {
+  [data-chrome=inset] .cui-dialog-panel-footer {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -109,15 +109,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: var(--cui-dialogTheme-gutter);
+    padding: var(--cui-dialog-gutter);
   }
   .cui-dialog-positioner::before {
     content: "";
     position: absolute;
     inset: 0;
     z-index: -1;
-    background-color: var(--cui-dialogTheme-overlayBackground);
-    animation: cui-dialog-fadeOut var(--cui-motion-duration-fast) var(--cui-motion-ease-out) forwards;
+    background-color: var(--cui-dialog-overlay-background);
+    animation: cui-dialog-fade-out var(--cui-motion-duration-fast) var(--cui-motion-ease-out) forwards;
   }
   .cui-dialog-positioner {
     &[data-panel-size=full] {
@@ -125,23 +125,23 @@
     }
 
     &[data-panel-size=export] {
-      --cui-dialogTheme-gutter: var(--cui-component-dialog-positioner-panel-size-export-gutter);
+      --cui-dialog-gutter: var(--cui-component-dialog-positioner-panel-size-export-gutter);
     }
   }
   .cui-dialog-positioner:has(> [data-expanded])::before {
-    animation: cui-dialog-fadeIn var(--cui-motion-duration-panel) var(--cui-motion-ease-out);
+    animation: cui-dialog-fade-in var(--cui-motion-duration-panel) var(--cui-motion-ease-out);
   }
   .cui-dialog-positioner[data-motion=none]::before, .cui-dialog-positioner[data-motion=none]:has(> [data-expanded])::before {
     animation: none;
   }
   .cui-dialog-title {
     color: var(--cui-text-dialog-title);
-    height: var(--cui-dialogTheme-titleHeight);
-    border-bottom: var(--cui-border-width) solid var(--cui-dialogTheme-dividerColor);
-    padding: 0 var(--cui-dialogTheme-contentPadding);
+    height: var(--cui-dialog-title-height);
+    border-bottom: var(--cui-border-width) solid var(--cui-dialog-divider-color);
+    padding: 0 var(--cui-dialog-content-padding);
     display: flex;
     align-items: center;
-    font-size: var(--cui-dialogTheme-titleFontSize);
+    font-size: var(--cui-dialog-title-font-size);
     font-weight: var(--cui-font-weight-medium);
     justify-content: space-between;
     flex-shrink: 0;
@@ -167,23 +167,23 @@
     overflow: hidden;
     text-align: left;
     align-items: stretch;
-    color: var(--cui-dialogTheme-contentTextColor);
-    box-shadow: var(--cui-dialogTheme-contentBoxShadow);
-    border-radius: var(--cui-dialogTheme-panelRadius);
-    background-color: var(--cui-dialogTheme-contentBackground);
+    color: var(--cui-dialog-content-text-color);
+    box-shadow: var(--cui-dialog-content-box-shadow);
+    border-radius: var(--cui-dialog-panel-radius);
+    background-color: var(--cui-dialog-content-background);
     transform: translate(0, 0);
     transform-origin: center;
-    animation: cui-dialog-contentHide var(--cui-motion-duration-fast) var(--cui-motion-ease-out);
+    animation: cui-dialog-content-hide var(--cui-motion-duration-fast) var(--cui-motion-ease-out);
   }
   .cui-dialog-panel:focus-visible {
     outline: none;
   }
   [data-cui-theme=light] .cui-dialog-panel {
-    --cui-dialogTheme-sidebarBackground: var(--cui-component-dialog-panel-sidebar-background);
-    --cui-dialogTheme-navCurrentBackground: var(--cui-component-dialog-panel-nav-current-background);
+    --cui-dialog-sidebar-background: var(--cui-component-dialog-panel-sidebar-background);
+    --cui-dialog-nav-current-background: var(--cui-component-dialog-panel-nav-current-background);
   }
   .cui-dialog-panel[data-expanded] {
-    animation: cui-dialog-contentShow var(--cui-motion-duration-panel) var(--cui-motion-ease-out);
+    animation: cui-dialog-content-show var(--cui-motion-duration-panel) var(--cui-motion-ease-out);
   }
   .cui-dialog-panel[data-motion=none], .cui-dialog-panel[data-motion=none][data-expanded] {
     animation: none;
@@ -216,26 +216,26 @@
     }
 
     &[data-size="settings"] {
-      --cui-dialogTheme-width: 62.5rem;
-      --cui-dialogTheme-height: 42.5rem;
-      width: min(var(--cui-dialogTheme-width), 100%);
-      height: min(var(--cui-dialogTheme-height), 100%);
+      --cui-dialog-width: 62.5rem;
+      --cui-dialog-height: 42.5rem;
+      width: min(var(--cui-dialog-width), 100%);
+      height: min(var(--cui-dialog-height), 100%);
     }
 
     &[data-size="export"] {
-      --cui-dialogTheme-width: 50rem;
-      width: min(var(--cui-dialogTheme-width), 100%);
+      --cui-dialog-width: 50rem;
+      width: min(var(--cui-dialog-width), 100%);
       overflow-y: auto;
       overscroll-behavior: contain;
     }
 
     &[data-chrome="inset"] {
-      --cui-dialogTheme-panelRadius: var(--cui-component-dialog-panel-chrome-inset-panel-radius);
+      --cui-dialog-panel-radius: var(--cui-component-dialog-panel-chrome-inset-panel-radius);
       gap: var(--cui-space-5);
       padding: var(--cui-space-5);
 
       &[data-size="settings"] {
-        --cui-dialogTheme-panelRadius: var(--cui-component-dialog-panel-compound-chrome-inset-size-settings-panel-radius);
+        --cui-dialog-panel-radius: var(--cui-component-dialog-panel-compound-chrome-inset-size-settings-panel-radius);
       }
     }
 
@@ -246,8 +246,8 @@
     }
   }
   .cui-dialog-description {
-    color: var(--cui-dialogTheme-contentTextColor);
-    padding: var(--cui-dialogTheme-contentPadding) var(--cui-dialogTheme-contentPadding) 0;
+    color: var(--cui-dialog-content-text-color);
+    padding: var(--cui-dialog-content-padding) var(--cui-dialog-content-padding) 0;
   }
   [data-chrome=inset] .cui-dialog-description {
     padding: 0;
@@ -258,9 +258,9 @@
     flex-direction: column;
     width: 232px;
     min-height: 0;
-    background-color: var(--cui-dialogTheme-sidebarBackground);
+    background-color: var(--cui-dialog-sidebar-background);
   }
-  .cui-dialog-sidebarSearch {
+  .cui-dialog-sidebar-search {
     padding: var(--cui-space-3) var(--cui-space-3) var(--cui-space-2);
   }
   .cui-dialog-nav {
@@ -268,7 +268,7 @@
     overflow-y: auto;
     padding: var(--cui-space-1) var(--cui-space-3) var(--cui-space-3);
   }
-  .cui-dialog-navList {
+  .cui-dialog-nav-list {
     display: flex;
     flex-direction: column;
     gap: var(--cui-space-0-5);
@@ -276,7 +276,7 @@
     padding: 0;
     list-style: none;
   }
-  .cui-dialog-navItem {
+  .cui-dialog-nav-item {
     display: flex;
     align-items: center;
     gap: var(--cui-space-2-5);
@@ -294,22 +294,22 @@
     cursor: pointer;
     transition: background-color var(--cui-motion-duration-fast) var(--cui-motion-ease-out), color var(--cui-motion-duration-fast) var(--cui-motion-ease-out), transform var(--cui-motion-duration-fast) var(--cui-motion-ease-out);
   }
-  .cui-dialog-navItem:active {
+  .cui-dialog-nav-item:active {
     transform: scale(0.98);
   }
-  .cui-dialog-navItem:focus-visible {
+  .cui-dialog-nav-item:focus-visible {
     outline: var(--cui-focus-width) solid var(--cui-focus-color);
     outline-offset: var(--cui-focus-offset);
   }
-  .cui-dialog-navItem[aria-current] {
-    background-color: var(--cui-dialogTheme-navCurrentBackground);
+  .cui-dialog-nav-item[aria-current] {
+    background-color: var(--cui-dialog-nav-current-background);
     color: var(--cui-text-default);
   }
-  .cui-dialog-navItem:disabled {
+  .cui-dialog-nav-item:disabled {
     opacity: 0.5;
     cursor: default;
   }
-  .cui-dialog-navIcon {
+  .cui-dialog-nav-icon {
     display: flex;
     flex: none;
   }
@@ -324,9 +324,9 @@
   :where(.cui-dialog-section)[data-variant="well"] {
     padding: var(--cui-component-dialog-section-variant-well-padding);
     border-radius: var(--cui-component-dialog-section-variant-well-border-radius);
-    background-color: var(--cui-dialogTheme-islandBackground);
+    background-color: var(--cui-dialog-island-background);
   }
-  .cui-dialog-sectionTitle {
+  .cui-dialog-section-title {
     margin: 0;
     padding: 0 var(--cui-space-1);
     color: var(--cui-text-dialog-title);
@@ -334,46 +334,46 @@
     font-weight: var(--cui-font-weight-semibold);
     line-height: 1.3;
   }
-  [data-variant=well] > .cui-dialog-sectionTitle {
+  [data-variant=well] > .cui-dialog-section-title {
     padding: 0 var(--cui-space-2);
     color: var(--cui-component-dialog-section-title-variant-well-color);
     font-size: var(--cui-component-dialog-section-title-variant-well-font-size);
     font-weight: var(--cui-component-dialog-section-title-variant-well-font-weight);
   }
-  .cui-dialog-sectionContent {
+  .cui-dialog-section-content {
     display: flex;
     flex-direction: column;
     min-width: 0;
   }
-  :where(.cui-dialog-section):is(:not([data-variant]), [data-variant="group"]) > .cui-dialog-sectionContent {
+  :where(.cui-dialog-section):is(:not([data-variant]), [data-variant="group"]) > .cui-dialog-section-content {
     padding: var(--cui-space-1-5) 0;
     border-radius: var(--cui-component-dialog-section-content-variant-group-border-radius);
-    background-color: var(--cui-dialogTheme-islandBackground);
+    background-color: var(--cui-dialog-island-background);
   }
-  [data-columns='2'] > .cui-dialog-sectionContent {
+  [data-columns='2'] > .cui-dialog-section-content {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--cui-space-0-5);
   }
   @media (--cui-hover-pointer) {
-    .cui-dialog-navItem:hover:not([aria-current]):not(:disabled) {
+    .cui-dialog-nav-item:hover:not([aria-current]):not(:disabled) {
       color: var(--cui-text-default);
     }
   }
   @media (--cui-reduced-motion) {
     .cui-dialog-panel {
-      animation-name: cui-dialog-fadeOut;
+      animation-name: cui-dialog-fade-out;
     }
     .cui-dialog-panel[data-expanded] {
-      animation-name: cui-dialog-fadeIn;
+      animation-name: cui-dialog-fade-in;
     }
     .cui-dialog-panel[data-motion=none], .cui-dialog-panel[data-motion=none][data-expanded] {
       animation: none;
     }
-    .cui-dialog-navItem {
+    .cui-dialog-nav-item {
       transition: none;
     }
-    .cui-dialog-navItem:active {
+    .cui-dialog-nav-item:active {
       transform: none;
     }
   }
@@ -381,15 +381,15 @@
     .cui-dialog-main {
       display: contents;
     }
-    .cui-dialog-panelContent[data-layout=split] {
+    .cui-dialog-panel-content[data-layout=split] {
       grid-template-columns: minmax(0, 1fr);
     }
-    .cui-dialog-main > .cui-dialog-panelContent {
+    .cui-dialog-main > .cui-dialog-panel-content {
       gap: var(--cui-space-5);
       padding: var(--cui-space-4) var(--cui-space-3) calc(var(--cui-space-4) + env(safe-area-inset-bottom, 0px));
-      background-color: var(--cui-dialogTheme-mainBackground);
+      background-color: var(--cui-dialog-main-background);
     }
-    [data-chrome=inset] .cui-dialog-panelFooter {
+    [data-chrome=inset] .cui-dialog-panel-footer {
       flex-direction: column;
       align-items: stretch;
     }
@@ -414,26 +414,26 @@
     .cui-dialog-sidebar {
       width: auto;
     }
-    .cui-dialog-sidebarSearch {
+    .cui-dialog-sidebar-search {
       padding: var(--cui-space-2) var(--cui-space-2) var(--cui-space-2);
     }
     .cui-dialog-nav {
       padding: 0 var(--cui-space-2) var(--cui-space-2);
     }
-    .cui-dialog-navList {
+    .cui-dialog-nav-list {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: var(--cui-space-1);
     }
-    .cui-dialog-navItem {
+    .cui-dialog-nav-item {
       justify-content: center;
       padding: 0 var(--cui-space-1);
       white-space: nowrap;
     }
-    .cui-dialog-navIcon {
+    .cui-dialog-nav-icon {
       display: none;
     }
-    [data-columns='2'] > .cui-dialog-sectionContent {
+    [data-columns='2'] > .cui-dialog-section-content {
       grid-template-columns: minmax(0, 1fr);
     }
   }

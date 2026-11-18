@@ -7,7 +7,7 @@ export default function ExportScreen() {
 		<Text as="h2" size="md" weight="semibold">Export snippet</Text>
 		<TextField label="Snippet name" value={name()} onChange={value => { setName(value); setSaved(false); }} />
 		<Text size="xs" tone="muted">Save a PNG for your documentation.</Text>
-		<Stack direction="row"><Button theme="primary" disabled={!name().trim()} onClick={() => setSaved(true)}>Save export settings</Button></Stack>
+		<Stack direction="row"><Button variant="primary" disabled={!name().trim()} onClick={() => setSaved(true)}>Save export settings</Button></Stack>
 		<Text size="xs" tone="muted" role="status">{saved() ? `Settings saved for ${name()}.` : "Settings are ready to save."}</Text>
 	</Stack>;
 }
