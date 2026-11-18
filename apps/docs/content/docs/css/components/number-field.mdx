@@ -1,0 +1,90 @@
+---
+title: NumberField
+description: A numeric input in plain HTML, with step buttons that show on hover and focus.
+---
+
+Load `@codeui/styles/numberfield.css`, or `all.css`. The step buttons also need `button.css`, which `all.css` includes. The Solid component is documented in [NumberField](/docs/components/number-field).
+
+## Demo
+
+<HtmlDemo name="number-field/basic" />
+
+Hover the field or focus the input to show the step buttons.
+
+## Markup
+
+| Part | Element | Class | `data-cui` |
+| --- | --- | --- | --- |
+| Root | `div` | `cui-numberfield cui-field` | `number-field` |
+| Label | `label` | `cui-field-label` | `textfield-label` |
+| Wrapper | `div` | `cui-numberfield-group` | None |
+| Input | `input` | `cui-field-input cui-numberfield-input` | `textfield-input` |
+| Buttons group | `div` | `cui-numberfield-controls` | None |
+| Step button | `button` | `cui-button cui-numberfield-control-button` | `button` |
+| Step icon | `svg` | `cui-icon cui-numberfield-control` | None |
+| Hint | `div` | `cui-field-description` | `textfield-description` |
+| Error | `div` | `cui-field-error` | `textfield-error-message` |
+
+The step buttons are [Buttons](/docs/css/components/button) with `data-variant="secondary"`, `data-ghost`, and `data-size="sm"`.
+
+| Attribute | Element | Values | Default |
+| --- | --- | --- | --- |
+| `data-size` | Input | `xs`, `sm`, `md`, `lg` | `sm` |
+| `data-variant` | Input | `filled`, `inline` | `filled` |
+| `data-field-size` | Root | `xs`, `sm`, `md`, `lg` | `sm` |
+
+`data-field-size` on the root also sizes the step buttons, from 12px at `xs` to 18px at `lg`.
+
+## Variants
+
+### Sizes
+
+<HtmlDemo name="number-field/sizes" />
+
+`data-size` uses the same scale as [TextField](/docs/css/components/text-field), with a 36px `sm` default at comfortable density.
+
+### Filled and inline
+
+<HtmlDemo name="number-field/themes" />
+
+`filled` draws the field fill. `inline` keeps a 2px bottom border only.
+
+### Units
+
+<HtmlDemo name="number-field/units" />
+
+A prefix or a postfix is text in the input value, such as `1 280 px`. The kit formats it with a mask. In plain HTML, write the formatted text in `value` and the number in `aria-valuenow`.
+
+## States
+
+### Required, read-only, and disabled
+
+<HtmlDemo name="number-field/states" />
+
+`required` and `readonly` change no style. For read-only and disabled fields, disable the step buttons too. For disabled, set both `disabled` and `data-disabled` on the input. The 40% opacity selects on `data-disabled`.
+
+### Invalid
+
+<HtmlDemo name="number-field/invalid" />
+
+`data-invalid` on the input colors the border and the text with `--cui-text-danger`. Render the error only while the field is invalid, and set `aria-invalid="true"`.
+
+## What you supply
+
+- Parsing, clamping to `min` and `max`, stepping, and formatting the value.
+- Arrow Up and Arrow Down to step, and clicks on the step buttons.
+- `role="spinbutton"` with `aria-valuenow`, `aria-valuetext`, `aria-valuemin`, and `aria-valuemax` kept in sync.
+- `tabindex="-1"` and an `aria-label` on each step button, so they are not tab stops.
+- `data-invalid`, `aria-invalid`, and `data-disabled`, as for TextField.
+
+## Helper
+
+```ts
+import "@codeui/styles/numberfield.css";
+import { applyStyleProps } from "@codeui/styles";
+import { numberFieldStyleProps } from "@codeui/styles/numberfield";
+
+applyStyleProps(document.querySelector("[data-cui=numberfield]")!, numberFieldStyleProps({ fieldSize: "md" }));
+applyStyleProps(document.querySelector("input")!, numberFieldStyleProps.input({ size: "md" }));
+// class="cui-field-input cui-numberfield-input" data-cui="textfield-input" data-size="md" data-variant="filled"
+```

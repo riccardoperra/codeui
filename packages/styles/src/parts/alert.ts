@@ -1,7 +1,7 @@
 import type { AlertStyleOptions } from "../generated-appearance/alert";
 import * as styles from "../components/Alert/Alert.css";
 export const alertParts = {
-	root: "alert-root",
+	root: "alert",
 	icon: "alert-icon",
 	title: "alert-title",
 	description: "alert-description",

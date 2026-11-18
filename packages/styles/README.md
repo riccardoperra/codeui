@@ -26,9 +26,9 @@ The CSS exports work without a bundler. Serve the package's `dist` files as stat
 
 <div data-cui-theme="light">
   <button
-    class="cui-button-button"
+    class="cui-button"
     data-size="md"
-    data-theme="primary"
+    data-variant="primary"
   >
     Save changes
   </button>
@@ -49,10 +49,10 @@ import { button } from "@codeui/styles/button";
 const element = document.createElement("button");
 element.className = button();
 element.dataset.size = "md";
-element.dataset.theme = "primary";
+element.dataset.variant = "primary";
 ```
 
-Parts contracts retain existing `data-cui` values. For example, `switchParts.control` is `switch-control`. Non-native state uses the documented `data-*` attributes. Use the class helpers with variant attributes such as `data-size="md"` and `data-theme="primary"`.
+Parts contracts hold the `data-cui` values. For example, `switchParts.control` is `switch-control`. Non-native state uses the documented `data-*` attributes. Use the class helpers with variant attributes such as `data-size="md"` and `data-variant="primary"`.
 
 ## Apply appearance props
 
@@ -63,7 +63,7 @@ import { applyStyleProps } from "@codeui/styles";
 import { buttonStyleProps } from "@codeui/styles/button";
 import { switchStyleProps } from "@codeui/styles/switch";
 
-const save = buttonStyleProps({ theme: "primary", block: true, class: "checkout" });
+const save = buttonStyleProps({ variant: "primary", block: true, class: "checkout" });
 const track = switchStyleProps.control({ size: "sm", class: "preview-track" });
 
 applyStyleProps(document.querySelector("button")!, save);
@@ -82,34 +82,34 @@ When CSS supports a named default, the helper emits that value and bare markup r
 | --- | --- | --- |
 | `@codeui/styles/alert` | `alertStyleProps()` | `tone` `neutral`, `info`, `success`, `warning`, `danger` (default `neutral`) · `fluid` boolean |
 | `@codeui/styles/badge` | `badgeStyleProps()` | `size` `sm`, `md` (default `sm`) · `tone` `neutral`, `info`, `success`, `warning`, `danger` (default `neutral`) · `variant` `soft`, `outline` (default `soft`) |
-| `@codeui/styles/button` | `buttonStyleProps()` | `size` `xs`, `sm`, `md`, `lg` (default `sm`) · `theme` `primary`, `secondary`, `tertiary`, `negative`, `caution` · `variant` `ghost` · `block` boolean · `pill` boolean |
+| `@codeui/styles/button` | `buttonStyleProps()` | `size` `xs`, `sm`, `md`, `lg` (default `sm`) · `variant` `primary`, `secondary`, `tertiary`, `negative`, `caution` · `ghost` boolean · `block` boolean · `pill` boolean |
 | `@codeui/styles/checkbox` | `checkboxStyleProps()` (root) | `fieldSize` `xs`, `sm`, `md`, `lg`, `xl` (default `md`) |
-| `@codeui/styles/checkbox` | `checkboxStyleProps.control()` | `size` `xs`, `sm`, `md`, `lg`, `xl` (default `md`) · `theme` `filled` |
+| `@codeui/styles/checkbox` | `checkboxStyleProps.control()` | `size` `xs`, `sm`, `md`, `lg`, `xl` (default `md`) · `variant` `filled` |
 | `@codeui/styles/combobox` | `comboboxStyleProps()` | `size` `sm`, `md` (default `sm`) |
 | `@codeui/styles/dialog` | `dialogStyleProps()` (panel) | `size` `auto`, `xs`, `sm`, `md`, `lg`, `xl`, `full`, `settings`, `export` (default `auto`) · `chrome` `inset` |
 | `@codeui/styles/dialog` | `dialogStyleProps.positioner()` | `panelSize` `auto`, `export`, `full` (default `auto`) · `chrome` `inset` |
 | `@codeui/styles/dialog` | `dialogStyleProps.body()` | `layout` `default`, `split` (default `default`) |
 | `@codeui/styles/dialog` | `dialogStyleProps.section()` | `variant` `group`, `well` (default `group`) · `columns` `2` |
-| `@codeui/styles/field` | `fieldStyleProps()` | `size` `xs`, `sm`, `md`, `lg` (default `sm`) · `theme` `filled`, `inline` (default `filled`) |
-| `@codeui/styles/icon-button` | `iconButtonStyleProps()` | `size` `xs`, `sm`, `md`, `lg` (default `sm`) · `theme` `primary`, `secondary`, `tertiary`, `negative`, `caution` · `variant` `ghost` · `block` boolean · `pill` boolean |
+| `@codeui/styles/field` | `fieldStyleProps()` | `size` `xs`, `sm`, `md`, `lg` (default `sm`) · `variant` `filled`, `inline` (default `filled`) |
+| `@codeui/styles/iconbutton` | `iconButtonStyleProps()` | `size` `xs`, `sm`, `md`, `lg` (default `sm`) · `variant` `primary`, `secondary`, `tertiary`, `negative`, `caution` · `ghost` boolean · `block` boolean · `pill` boolean |
 | `@codeui/styles/kbd` | `kbdStyleProps()` | `size` `sm`, `md` (default `sm`) · `variant` `keycap`, `hint` (default `keycap`) |
 | `@codeui/styles/link` | `linkStyleProps()` | `variant` `default`, `underline` (default `default`) |
-| `@codeui/styles/listbox` | `listboxStyleProps()` (list) | `theme` `primary`, `neutral` (default `neutral`) · `bordered` boolean |
+| `@codeui/styles/listbox` | `listboxStyleProps()` (list) | `variant` `primary`, `neutral` (default `neutral`) · `bordered` boolean |
 | `@codeui/styles/listbox` | `listboxStyleProps.item()` | `size` `xs`, `sm`, `md` (default `sm`) |
 | `@codeui/styles/listbox` | `listboxStyleProps.itemIndicator()` | `size` `xs`, `sm`, `md` (default `sm`) |
-| `@codeui/styles/number-field` | `numberFieldStyleProps()` (root) | `fieldSize` `xs`, `sm`, `md`, `lg` (default `sm`) |
-| `@codeui/styles/number-field` | `numberFieldStyleProps.input()` | `size` `xs`, `sm`, `md`, `lg` (default `sm`) · `theme` `filled`, `inline` (default `filled`) |
-| `@codeui/styles/option-card` | `optionCardStyleProps()` (root) | `orientation` `vertical` |
-| `@codeui/styles/option-card` | `optionCardStyleProps.itemLabel()` | `variant` `tile` |
-| `@codeui/styles/option-card` | `optionCardStyleProps.badge()` | `size` `sm`, `md` (default `sm`) · `tone` `neutral`, `info`, `success`, `warning`, `danger` (default `neutral`) · `variant` `soft`, `outline` (default `soft`) |
-| `@codeui/styles/option-card` | `optionCardStyleProps.item()` | `variant` `tile` |
+| `@codeui/styles/numberfield` | `numberFieldStyleProps()` (root) | `fieldSize` `xs`, `sm`, `md`, `lg` (default `sm`) |
+| `@codeui/styles/numberfield` | `numberFieldStyleProps.input()` | `size` `xs`, `sm`, `md`, `lg` (default `sm`) · `variant` `filled`, `inline` (default `filled`) |
+| `@codeui/styles/optioncard` | `optionCardStyleProps()` (root) | `orientation` `vertical` |
+| `@codeui/styles/optioncard` | `optionCardStyleProps.itemLabel()` | `variant` `tile` |
+| `@codeui/styles/optioncard` | `optionCardStyleProps.badge()` | `size` `sm`, `md` (default `sm`) · `tone` `neutral`, `info`, `success`, `warning`, `danger` (default `neutral`) · `variant` `soft`, `outline` (default `soft`) |
+| `@codeui/styles/optioncard` | `optionCardStyleProps.item()` | `variant` `tile` |
 | `@codeui/styles/popover` | `popoverStyleProps()` | `variant` `default`, `bordered` (default `default`) |
 | `@codeui/styles/progress` | `progressStyleProps()` (root) | `size` `sm`, `md` (default `sm`) |
 | `@codeui/styles/progress` | `progressStyleProps.track()` | `size` `sm`, `md` (default `sm`) |
-| `@codeui/styles/radio-list` | `radioListStyleProps()` (items) | `size` `xs`, `sm`, `md`, `lg`, `xl` (default `md`) · `theme` `filled` · `orientation` `horizontal`, `vertical` (default `horizontal`) |
-| `@codeui/styles/radio-list` | `radioListStyleProps.root()` | `fieldSize` `xs`, `sm`, `md`, `lg`, `xl` (default `md`) |
-| `@codeui/styles/segmented-control` | `segmentedControlStyleProps()` | `size` `xs`, `sm`, `md`, `lg` (default `sm`) · `theme` `primary` · `variant` `solid`, `bordered` (default `solid`) · `fluid` boolean · `pill` boolean · `autoWidth` boolean |
-| `@codeui/styles/select` | `selectStyleProps()` (trigger) | `size` `xs`, `sm`, `md`, `lg` (default `sm`) · `theme` `filled`, `inline` (default `filled`) |
+| `@codeui/styles/radiolist` | `radioListStyleProps()` (items) | `size` `xs`, `sm`, `md`, `lg`, `xl` (default `md`) · `variant` `filled` · `orientation` `horizontal`, `vertical` (default `horizontal`) |
+| `@codeui/styles/radiolist` | `radioListStyleProps.root()` | `fieldSize` `xs`, `sm`, `md`, `lg`, `xl` (default `md`) |
+| `@codeui/styles/segmentedcontrol` | `segmentedControlStyleProps()` | `size` `xs`, `sm`, `md`, `lg` (default `sm`) · `accent` boolean · `variant` `solid`, `bordered` (default `solid`) · `fluid` boolean · `pill` boolean · `autoWidth` boolean |
+| `@codeui/styles/select` | `selectStyleProps()` (trigger) | `size` `xs`, `sm`, `md`, `lg` (default `sm`) · `variant` `filled`, `inline` (default `filled`) |
 | `@codeui/styles/select` | `selectStyleProps.root()` | `fieldSize` `xs`, `sm`, `md`, `lg` (default `sm`) |
 | `@codeui/styles/settings` | `settingsStyleProps()` | `layout` `wide` · `compactControl` boolean |
 | `@codeui/styles/sheet` | `sheetStyleProps()` | `side` `bottom`, `left`, `right` (default `bottom`) |
@@ -125,17 +125,17 @@ When CSS supports a named default, the helper emits that value and bare markup r
 | `@codeui/styles/switch` | `switchStyleProps.label()` | `size` `sm`, `md` (default `md`) |
 | `@codeui/styles/switch` | `switchStyleProps.description()` | `size` `sm`, `md` (default `md`) |
 | `@codeui/styles/switch` | `switchStyleProps.errorMessage()` | `size` `sm`, `md` (default `md`) |
-| `@codeui/styles/tabs` | `tabsStyleProps()` (root) | `orientation` `horizontal`, `vertical` (default `horizontal`) · `theme` `default`, `inline` (default `default`) |
+| `@codeui/styles/tabs` | `tabsStyleProps()` (root) | `orientation` `horizontal`, `vertical` (default `horizontal`) · `variant` `default`, `inline` (default `default`) |
 | `@codeui/styles/tabs` | `tabsStyleProps.list()` | `orientation` `horizontal`, `vertical` (default `horizontal`) |
 | `@codeui/styles/tabs` | `tabsStyleProps.indicator()` | `orientation` `horizontal`, `vertical` (default `horizontal`) |
 | `@codeui/styles/text` | `textStyleProps()` | `size` `badge`, `caption`, `xs`, `sm`, `md`, `lg`, `xl`, `2xl` (default `sm`) · `tone` `default`, `muted`, `hint`, `label`, `danger`, `success` (default `default`) · `weight` `normal`, `medium`, `semibold` (default `normal`) |
-| `@codeui/styles/text-area` | `textAreaStyleProps()` (input) | `size` `xs`, `sm`, `md`, `lg` (default `sm`) · `theme` `filled`, `inline` (default `filled`) |
-| `@codeui/styles/text-area` | `textAreaStyleProps.root()` | `fieldSize` `xs`, `sm`, `md`, `lg` (default `sm`) |
-| `@codeui/styles/text-field` | `textFieldStyleProps()` (input) | `size` `xs`, `sm`, `md`, `lg` (default `sm`) · `theme` `filled`, `inline` (default `filled`) |
-| `@codeui/styles/text-field` | `textFieldStyleProps.root()` | `fieldSize` `xs`, `sm`, `md`, `lg` (default `sm`) |
+| `@codeui/styles/textarea` | `textAreaStyleProps()` (input) | `size` `xs`, `sm`, `md`, `lg` (default `sm`) · `variant` `filled`, `inline` (default `filled`) |
+| `@codeui/styles/textarea` | `textAreaStyleProps.root()` | `fieldSize` `xs`, `sm`, `md`, `lg` (default `sm`) |
+| `@codeui/styles/textfield` | `textFieldStyleProps()` (input) | `size` `xs`, `sm`, `md`, `lg` (default `sm`) · `variant` `filled`, `inline` (default `filled`) |
+| `@codeui/styles/textfield` | `textFieldStyleProps.root()` | `fieldSize` `xs`, `sm`, `md`, `lg` (default `sm`) |
 | `@codeui/styles/toast` | `toastStyleProps()` (root) | `tone` `neutral`, `info`, `success`, `warning`, `danger` (default `neutral`) |
 | `@codeui/styles/toast` | `toastStyleProps.region()` | `position` `top-left`, `top-center`, `top-right`, `bottom-left`, `bottom-center`, `bottom-right` (default `bottom-center`) |
-| `@codeui/styles/tooltip` | `tooltipStyleProps()` | `theme` `primary`, `secondary` |
+| `@codeui/styles/tooltip` | `tooltipStyleProps()` | `variant` `primary`, `secondary` |
 | `@codeui/styles/accordion` | `accordionStyleProps()` | `density` `default`, `compact`, `comfortable` (default `default`) |
 | `@codeui/styles/table` | `tableStyleProps()` | `size` `sm`, `md` (default `md`) · `striped` boolean |
 

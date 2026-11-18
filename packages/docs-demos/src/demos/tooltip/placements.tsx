@@ -8,7 +8,7 @@ export default function TooltipPlacements() {
 		<For each={placements}>
 			{placement => (
 				<Tooltip content={`Opens on ${placement}`} placement={placement}>
-					<Button theme="secondary" size="sm">
+					<Button variant="secondary" size="sm">
 						{placement}
 					</Button>
 				</Tooltip>

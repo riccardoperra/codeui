@@ -25,7 +25,7 @@ type PickerPopoverProps = ParentProps<{
 export function PickerPopover(props: PickerPopoverProps) {
 	return (
 		<P.Root placement="bottom-start">
-			<P.Trigger as={Button} theme="secondary">
+			<P.Trigger as={Button} variant="secondary">
 				{props.triggerLabel}
 			</P.Trigger>
 			<P.Portal>
@@ -140,7 +140,7 @@ The toolbar sets the layout and chooses the variants of the controls it renders.
 }
 ```
 
-`theme="primary"` gives Save the kit's primary treatment. The `editor-toolbar__save` class pushes that instance to the end of the row. A selector such as `.editor-toolbar [data-cui="button"]` would also match Reset and any buttons nested inside future toolbar children.
+`variant="primary"` gives Save the kit's primary treatment. The `editor-toolbar__save` class pushes that instance to the end of the row. A selector such as `.editor-toolbar [data-cui="button"]` would also match Reset and any buttons nested inside future toolbar children.
 
 To style a part of a ready Switch, pass `classes={{ control: "line-numbers-track" }}` when you can set its props. With styled parts, pass `class="line-numbers-track"` directly to `Switch.Control`. Both give the track a class you can target directly.
 

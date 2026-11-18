@@ -12,8 +12,8 @@ export default function StackBasic() {
 				</Text>
 			</Stack>
 			<Stack direction="row" gap="2" justify="end">
-				<Button theme="secondary">Cancel</Button>
-				<Button theme="primary">Export</Button>
+				<Button variant="secondary">Cancel</Button>
+				<Button variant="primary">Export</Button>
 			</Stack>
 		</Stack>
 	);

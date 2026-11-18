@@ -1,0 +1,37 @@
+<div class="cui-stack" data-gap="4" style="max-width: 280px; margin-inline: auto">
+  <div role="group" class="cui-select cui-field" data-cui="select" data-field-size="sm">
+    <span id="desc-font-label" class="cui-field-label" data-cui="select-label">Font</span>
+    <button type="button" id="desc-font" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="desc-font-label desc-font" class="cui-field-input cui-select-trigger" data-cui="select-trigger" data-size="sm" data-variant="filled" aria-describedby="desc-font-hint">
+      <span data-cui="select-value">Fira Code</span>
+      <span aria-hidden="true" data-cui="select-icon">
+        <svg class="cui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
+        </svg>
+      </span>
+    </button>
+    <div id="desc-font-hint" class="cui-field-description" data-cui="select-description">Used by every new snippet.</div>
+  </div>
+  <div role="group" class="cui-select cui-field" data-cui="select" data-field-size="sm" data-invalid>
+    <span id="err-font-label" class="cui-field-label" data-cui="select-label">Fallback font</span>
+    <button type="button" id="err-font" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="err-font-label err-font" class="cui-field-input cui-select-trigger" data-cui="select-trigger" data-size="sm" data-variant="filled" aria-invalid="true" aria-describedby="err-font-error" data-invalid>
+      <span data-cui="select-value">Comic Mono</span>
+      <span aria-hidden="true" data-cui="select-icon">
+        <svg class="cui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
+        </svg>
+      </span>
+    </button>
+    <div id="err-font-error" class="cui-field-error" data-cui="select-error-message">This font has no ligatures.</div>
+  </div>
+  <div role="group" class="cui-select cui-field" data-cui="select" data-field-size="sm" data-disabled>
+    <span id="dis-font-label" class="cui-field-label" data-cui="select-label">Workspace font</span>
+    <button type="button" id="dis-font" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="dis-font-label dis-font" class="cui-field-input cui-select-trigger" data-cui="select-trigger" data-size="sm" data-variant="filled" disabled data-disabled>
+      <span data-cui="select-value">JetBrains Mono</span>
+      <span aria-hidden="true" data-cui="select-icon">
+        <svg class="cui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
+        </svg>
+      </span>
+    </button>
+  </div>
+</div>

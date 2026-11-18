@@ -1,7 +1,7 @@
 @import "./kbd-tokens.generated.css";
 
 @layer cui.components {
-  .cui-kbd-root {
+  .cui-kbd {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -14,7 +14,7 @@
     background-color: var(--cui-action-neutral-base);
     border: var(--cui-border-width) solid transparent;
   }
-  :where(.cui-kbd-root) {
+  :where(.cui-kbd) {
     &:is(:not([data-size]), [data-size="sm"]) {
       min-width: var(--cui-component-kbd-root-size-sm-min-width);
       min-height: var(--cui-component-kbd-root-size-sm-min-height);

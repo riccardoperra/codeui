@@ -21,7 +21,7 @@ const meta = {
 		"aria-label": "Icon",
 	},
 	argTypes: {
-		theme: {
+		variant: {
 			options: buttonThemes,
 			control: { type: "inline-radio" },
 		},
@@ -47,7 +47,7 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
 	args: {
 		"aria-label": "Primary Icon",
-		theme: "primary",
+		variant: "primary",
 		children: <ShareIcon />,
 	},
 };
@@ -55,7 +55,7 @@ export const Primary: Story = {
 export const Secondary: Story = {
 	args: {
 		"aria-label": "Secondary Icon",
-		theme: "secondary",
+		variant: "secondary",
 		children: <ShareIcon />,
 	},
 };
@@ -63,7 +63,7 @@ export const Secondary: Story = {
 export const Tertiary: Story = {
 	args: {
 		"aria-label": "Tertiary Icon",
-		theme: "tertiary",
+		variant: "tertiary",
 		children: <ShareIcon />,
 	},
 };
@@ -71,7 +71,7 @@ export const Tertiary: Story = {
 export const Caution: Story = {
 	args: {
 		"aria-label": "Caution Icon",
-		theme: "caution",
+		variant: "caution",
 		children: <ShareIcon />,
 	},
 };
@@ -79,7 +79,7 @@ export const Caution: Story = {
 export const Negative: Story = {
 	args: {
 		"aria-label": "Negative Icon",
-		theme: "negative",
+		variant: "negative",
 		children: <ShareIcon />,
 	},
 };
@@ -87,7 +87,7 @@ export const Negative: Story = {
 export const Disabled: Story = {
 	args: {
 		"aria-label": "Negative Icon",
-		theme: "secondary",
+		variant: "secondary",
 		disabled: true,
 		children: <ShareIcon />,
 	},
@@ -98,7 +98,7 @@ export const Sizes: Story = {
 		<div class="itemsContainer">
 			<For each={buttonSizes}>
 				{size => (
-					<IconButton aria-label={`Icon (${size})`} size={size} theme={"primary"}>
+					<IconButton aria-label={`Icon (${size})`} size={size} variant={"primary"}>
 						<ShareIcon />
 					</IconButton>
 				)}
@@ -112,7 +112,7 @@ export const Pill: Story = {
 		<div class="itemsContainer">
 			<For each={buttonSizes}>
 				{size => (
-					<IconButton aria-label={"Icon"} size={size} theme={"secondary"} pill>
+					<IconButton aria-label={"Icon"} size={size} variant={"secondary"} pill>
 						<ShareIcon />
 					</IconButton>
 				)}
@@ -129,7 +129,7 @@ export const Loading: Story = {
 					<DocsItemsContainer>
 						<For each={buttonSizes}>
 							{size => (
-								<IconButton aria-label={"Icon"} size={size} theme={theme} loading>
+								<IconButton aria-label={"Icon"} size={size} variant={theme} loading>
 									<ShareIcon />
 								</IconButton>
 							)}

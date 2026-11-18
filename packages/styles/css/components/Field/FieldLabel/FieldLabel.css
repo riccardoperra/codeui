@@ -1,23 +1,23 @@
 @layer cui.base {
-  .cui-field-label-label {
+  .cui-field-label {
     font-weight: var(--cui-font-weight-medium);
     color: var(--cui-text-label);
     user-select: none;
     line-height: var(--cui-font-line-height-sm);
   }
-  [data-field-size=xs] .cui-field-label-label {
+  [data-field-size=xs] .cui-field-label {
     font-size: var(--cui-font-size-xs);
     line-height: var(--cui-font-line-height-xs);
   }
-  :where(.cui-field-baseFieldTheme):is(:not([data-field-size]), [data-field-size="sm"], [data-field-size="md"]) .cui-field-label-label {
+  :where(.cui-field):is(:not([data-field-size]), [data-field-size="sm"], [data-field-size="md"]) .cui-field-label {
     font-size: var(--cui-font-size-sm);
     line-height: var(--cui-font-line-height-sm);
   }
-  [data-field-size=lg] .cui-field-label-label {
+  [data-field-size=lg] .cui-field-label {
     font-size: var(--cui-font-size-md);
     line-height: var(--cui-font-line-height-md);
   }
-  [data-field-size=xl] .cui-field-label-label {
+  [data-field-size=xl] .cui-field-label {
     font-size: var(--cui-font-size-md);
     line-height: var(--cui-font-line-height-md);
   }

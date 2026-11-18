@@ -1,0 +1,75 @@
+---
+title: TextArea
+description: A multi-line text input in plain HTML, with a label, a hint, and an error message.
+---
+
+Load `@codeui/styles/textarea.css`, or `all.css`. The Solid component is documented in [TextArea](/docs/components/text-area).
+
+## Demo
+
+<HtmlDemo name="text-area/basic" />
+
+## Markup
+
+| Part | Element | Class | `data-cui` |
+| --- | --- | --- | --- |
+| Root | `div` | `cui-textarea cui-field` | `text-field` |
+| Label | `label` | `cui-field-label` | `textfield-label` |
+| Input | `textarea` | `cui-field-input cui-textarea-input` | `textfield-input` |
+| Hint | `div` | `cui-field-description` | `textfield-description` |
+| Error | `div` | `cui-field-error` | `textfield-error-message` |
+
+TextArea shares the `data-cui` markers of [TextField](/docs/css/components/text-field).
+
+| Attribute | Element | Values | Default |
+| --- | --- | --- | --- |
+| `data-size` | Input | `xs`, `sm`, `md`, `lg` | `sm` |
+| `data-variant` | Input | `filled`, `inline` | `filled` |
+| `data-field-size` | Root | `xs`, `sm`, `md`, `lg` | `sm` |
+
+## Variants
+
+### Sizes
+
+<HtmlDemo name="text-area/sizes" />
+
+`data-size` sets the height, the font size, and the corner radius with the same scale as TextField. The height is fixed: the default `sm` textarea is 36px at comfortable density, and `rows` leaves it in place. To show more lines, set `height: auto` with `rows`, or a `min-height`, as the first demo does.
+
+### Filled and inline
+
+<HtmlDemo name="text-area/themes" />
+
+`filled` draws the field fill. `inline` drops the fill and the radius and keeps a 2px bottom border.
+
+## States
+
+### Required, read-only, and disabled
+
+<HtmlDemo name="text-area/states" />
+
+`required` and `readonly` are native attributes and change no style. For disabled, set both `disabled` and `data-disabled` on the textarea. The 40% opacity selects on `data-disabled`.
+
+### Invalid
+
+<HtmlDemo name="text-area/invalid" />
+
+`data-invalid` on the textarea colors the border and the text with `--cui-text-danger`. Render the error only while the field is invalid, and set `aria-invalid="true"`.
+
+## What you supply
+
+- Matching `id` and `for` on the textarea and the label, and `aria-describedby` for the hint and the error.
+- The height. Grow the textarea with a script that sets `height` from `scrollHeight`, or set `rows` and `height: auto`.
+- Submit on Enter, if you want it. A native textarea inserts a new line.
+- `data-invalid`, `aria-invalid`, and `data-disabled`, as for TextField.
+
+## Helper
+
+```ts
+import "@codeui/styles/textarea.css";
+import { applyStyleProps } from "@codeui/styles";
+import { textAreaStyleProps } from "@codeui/styles/textarea";
+
+applyStyleProps(document.querySelector("[data-cui=textfield]")!, textAreaStyleProps.root({ fieldSize: "sm" }));
+applyStyleProps(document.querySelector("textarea")!, textAreaStyleProps({ variant: "inline" }));
+// class="cui-field-input cui-textarea-input" data-cui="textfield-input" data-size="sm" data-variant="inline"
+```

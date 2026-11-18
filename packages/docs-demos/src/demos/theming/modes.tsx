@@ -19,7 +19,7 @@ export default function ThemingModes() {
 				<div data-cui-theme={mode} style={scope}>
 					<TextField size="sm" label="Snippet name" placeholder="Untitled" />
 					<Switch label="Show line numbers" defaultChecked />
-					<Button theme="primary" size="sm">
+					<Button variant="primary" size="sm">
 						Export PNG
 					</Button>
 				</div>

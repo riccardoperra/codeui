@@ -30,7 +30,7 @@ const meta = {
 		bordered: {
 			type: "boolean",
 		},
-		theme: {
+		variant: {
 			control: { type: "radio" },
 			options: ["primary", "neutral"],
 		},
@@ -48,7 +48,7 @@ export default meta;
 export const ListboxStory: Story = {
 	name: "Listbox",
 	args: {
-		theme: "neutral",
+		variant: "neutral",
 		size: "md",
 		bordered: false,
 		options: ["Item1", "Item2", "Item3"],

@@ -1,0 +1,76 @@
+---
+title: Text
+description: Interface text in plain HTML, set in the kit type scale with size, weight, and tone attributes.
+---
+
+Load `@codeui/styles/text.css`, or `all.css`. The Solid component is documented in [Text](/docs/components/text).
+
+## Demo
+
+<HtmlDemo name="text/basic" />
+
+## Markup
+
+| Part | Element | Class | `data-cui` |
+| --- | --- | --- | --- |
+| Root | Any text element | `cui-text` | `text` |
+
+| Attribute | Values | Default |
+| --- | --- | --- |
+| `data-size` | `badge`, `xs`, `caption`, `sm`, `md`, `lg`, `xl`, `2xl` | `sm` |
+| `data-weight` | `normal`, `medium`, `semibold` | `normal` |
+| `data-tone` | `default`, `muted`, `hint`, `label`, `danger`, `success` | `default` |
+
+## Variants
+
+### Size
+
+<HtmlDemo name="text/size" />
+
+`data-size` takes a key of the `--cui-font-size-*` scale: 11px, 12px, 13px, 14px, 16px, 18px, 20px, and 24px. Omitting it renders `sm`. Inkstone uses the sizes above `md` only for sheet titles and announcements.
+
+### Weight
+
+<HtmlDemo name="text/weight" />
+
+`normal` is 400, `medium` is 500, and `semibold` is 600. Inkstone reads them as "400 reads, 500 acts, 600 heads".
+
+### Tone
+
+<HtmlDemo name="text/tone" />
+
+`default` is for titles and values the user set. `muted` is for descriptions and metadata. `hint` is for hints and timestamps. `label` is for group labels over a set of controls. `danger` and `success` are for error and confirmation messages. Most interface text is secondary, so `muted` is the common tone under a title.
+
+### Elements
+
+<HtmlDemo name="text/elements" />
+
+The class works on any element. Use `h1` to `h6` for headings, `p` for paragraphs, and `label` for form labels. The size does not follow the element, so set `data-size` on a heading. The class does not reset margins, so remove the browser margin on headings and paragraphs yourself.
+
+### Truncation
+
+<HtmlDemo name="text/truncate" />
+
+There is no truncation attribute. Set `overflow: hidden`, `text-overflow: ellipsis`, and `white-space: nowrap` in your own class, and `min-width: 0` when the text sits in a flex row. Truncate values, not labels, and keep the full text reachable.
+
+## States
+
+Text has no states.
+
+## What you supply
+
+- The element that gives the text its meaning. Pick the heading level from the document outline, not from the size.
+- Words that say what failed or succeeded. Color alone does not carry meaning.
+- The `for` attribute on a `label`, or use the field's own label part.
+
+## Helper
+
+```ts
+import "@codeui/styles/text.css";
+import { applyStyleProps } from "@codeui/styles";
+import { textStyleProps } from "@codeui/styles/text";
+
+const summary = document.querySelector("p")!;
+applyStyleProps(summary, textStyleProps({ tone: "muted" }));
+// class="cui-text" data-cui="text" data-size="sm" data-tone="muted" data-weight="normal"
+```

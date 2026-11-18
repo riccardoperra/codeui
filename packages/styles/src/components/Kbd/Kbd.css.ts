@@ -1,1 +1,1 @@
-export const root = (): string => "cui-kbd-root";
+export const root = (): string => "cui-kbd";

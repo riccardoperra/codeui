@@ -554,7 +554,7 @@ span.dash-role {
 	.dash-nav-item {
 		height: var(--cui-control-height-md);
 	}
-	.dash-toolbar > [data-cui="segmented-control"],
+	.dash-toolbar > [data-cui="segmentedcontrol"],
 	.dash-search,
 	.dash-settings-field {
 		width: 100%;

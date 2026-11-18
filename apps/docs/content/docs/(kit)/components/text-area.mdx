@@ -24,11 +24,11 @@ TextArea shares the `data-cui` names of TextField, so one selector styles both.
 
 | Export     | Renders                     | `classes` key  | `data-cui`                 | Role      |
 | ---------- | --------------------------- | -------------- | -------------------------- | --------- |
-| `TextArea` | Root `div`                  | `root`         | `text-field`               | `group`   |
-|            | `label`, when `label` is set | `label`       | `text-field-label`         | none      |
-|            | `textarea`                  | `input`        | `text-field-input`         | `textbox` |
-|            | Hint `div`, when `description` is set | `description` | `text-field-description` | none |
-|            | Error `div`, when invalid and `errorMessage` is set | `errorMessage` | `text-field-error-message` | none |
+| `TextArea` | Root `div`                  | `root`         | `textfield`               | `group`   |
+|            | `label`, when `label` is set | `label`       | `textfield-label`         | none      |
+|            | `textarea`                  | `input`        | `textfield-input`         | `textbox` |
+|            | Hint `div`, when `description` is set | `description` | `textfield-description` | none |
+|            | Error `div`, when invalid and `errorMessage` is set | `errorMessage` | `textfield-error-message` | none |
 
 The parts carry Kobalte's state attributes: `data-invalid`, `data-valid`, `data-required`, `data-disabled`, and `data-readonly`. The root also carries `data-field-size` when you set `size`.
 
@@ -40,11 +40,11 @@ The parts carry Kobalte's state attributes: `data-invalid`, `data-valid`, `data-
 
 `size` sets the height, the font size, and the corner radius with the same scale as [TextField](/docs/components/text-field#size). The height is fixed. The default `sm` textarea is 36px at comfortable density. The `rows` attribute leaves the fixed height in place. Set `options={{ autoResize: true }}` or a `min-height` through `classes.input` to show more lines.
 
-### Theme
+### Filled and inline
 
 <SolidDemo name="text-area/themes" />
 
-`filled` draws the field fill. `inline` drops the fill and the radius and keeps a 2px bottom border. These are the only two themes the source defines.
+`filled` draws the field fill. `inline` drops the fill and the radius and keeps a 2px bottom border. These are the only two variants the source defines.
 
 ### Auto resize and submit on Enter
 

@@ -16,32 +16,32 @@ import { trackInputModality } from "../../utils/modality";
 import { PolymorphicProps } from "@kobalte/core/polymorphic";
 
 export type TabsProps<T extends ValidComponent = "div"> = KTabsRootProps<T> & {
-	theme?: "inline" | "default";
+	variant?: "inline" | "default";
 };
 
 const TabsContext = createContext<{
-	theme: TabsProps["theme"];
+	variant: TabsProps["variant"];
 }>({
-	theme: tabsStyleProps()["data-tabs-theme"],
+	variant: tabsStyleProps()["data-variant"],
 });
 
 export function Tabs<T extends ValidComponent = "div">(props: PolymorphicProps<T, TabsProps<T>>) {
-	const [local, others] = splitProps(props as PolymorphicProps<"div", TabsProps<T>>, ["class", "theme"]);
-	const theme = () => tabsStyleProps({ theme: local.theme })["data-tabs-theme"];
+	const [local, others] = splitProps(props as PolymorphicProps<"div", TabsProps<T>>, ["class", "variant"]);
+	const variant = () => tabsStyleProps({ variant: local.variant })["data-variant"];
 	const classes = () => mergeClasses(styles.tabsRoot, local.class);
 	onMount(trackInputModality);
 
 	return (
 		<TabsContext.Provider
 			value={{
-				get theme() {
-					return theme();
+				get variant() {
+					return variant();
 				},
 			}}
 		>
 			<KTabs
 				data-cui={"tabs"}
-				data-tabs-theme={theme()}
+				data-variant={variant()}
 				{...others}
 				class={classes()}
 			/>
@@ -66,7 +66,7 @@ export function TabsList<T extends ValidComponent = "div">(
 	return (
 		<TabsListPart {...others}>
 			{local.children}
-			<Show when={context.theme === "inline"}>
+			<Show when={context.variant === "inline"}>
 				<TabsIndicator />
 			</Show>
 		</TabsListPart>

@@ -5,7 +5,7 @@ import { popoverParts, popoverStyles } from "@codeui/kit/popover/parts";
 export default function ComposeStyles() {
 	return (
 		<Popover placement="bottom-start" gutter={6}>
-			<Popover.Trigger class={buttonStyles.button()} data-theme="secondary" data-size="md">Line height</Popover.Trigger>
+			<Popover.Trigger class={buttonStyles.button()} data-variant="secondary" data-size="md">Line height</Popover.Trigger>
 			<Popover.Portal>
 				<Popover.Content data-cui={popoverParts.content} class={popoverStyles.content()} data-variant="bordered">
 					<Popover.Title data-cui={popoverParts.title} class={popoverStyles.title()}>

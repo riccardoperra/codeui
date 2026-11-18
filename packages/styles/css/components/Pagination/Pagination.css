@@ -1,20 +1,20 @@
 @import "./pagination-tokens.generated.css";
 
 @layer cui.components {
-  .cui-pagination-paginationTheme {
-    --cui-paginationTheme-paginationItemMargin: var(--cui-component-pagination-pagination-theme-pagination-item-margin);
+  .cui-pagination {
+    --cui-pagination-item-margin: var(--cui-component-pagination-pagination-theme-pagination-item-margin);
   }
-  .cui-pagination-pagination {
+  .cui-pagination {
     margin: 0;
     padding: 0;
     display: inline-flex;
     position: relative;
     font-variant: tabular-nums;
   }
-  .cui-pagination-paginationItem {
-    margin: 0 var(--cui-paginationTheme-paginationItemMargin);
+  .cui-pagination-item {
+    margin: 0 var(--cui-pagination-item-margin);
   }
-  .cui-pagination-paginationIcon {
+  .cui-pagination-icon {
     width: 1.1em;
   }
 }

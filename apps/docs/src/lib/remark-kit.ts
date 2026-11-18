@@ -12,6 +12,8 @@ import type { ColourPaletteData } from '../components/inkstone/colour-palette';
 // - <SolidDemo name="badge/basic" /> fails the build when the demo file is missing, the name
 //   repeats on the page, or the tag sits inside a paragraph, and gets the demo source printed under it as a code block.
 //   In the Markdown route the demo tag is replaced by that code block.
+// - <HtmlDemo name="button/themes" /> renders apps/docs/html-demos/button/themes.html in a frame that
+//   loads only @codeui/styles, and gets the HTML printed under it the same way.
 // - <Anatomy demo="select/anatomy" /> gets its parts from the Anatomy table that follows it in the
 //   same section (rows with a `data-cui`). Its Markdown route drops the tag and keeps the table.
 //
@@ -24,6 +26,7 @@ type Row = PropRow;
 
 const docsDir = path.resolve(import.meta.dirname, '../..');
 const demosDir = path.resolve(docsDir, '../../packages/docs-demos/src/demos');
+const htmlDemosDir = path.join(docsDir, 'html-demos');
 const propsFile = path.join(docsDir, '.generated/props.json');
 const paletteFile = path.join(docsDir, '.generated/inkstone-palette.json');
 
@@ -107,9 +110,9 @@ function paletteMatrixMarkdown({ ramps }: ColourPaletteData) {
 	].join('\n')).join('\n\n');
 }
 
-const fence = (name: string, source: string) => {
+const fence = (name: string, source: string, lang = 'tsx') => {
 	const ticks = '`'.repeat(Math.max(3, ...[...source.matchAll(/`+/g)].map(m => m[0].length + 1)));
-	return `${ticks}tsx title="${name}.tsx"\n${source}\n${ticks}`;
+	return `${ticks}${lang} title="${name}.${lang}"\n${source}\n${ticks}`;
 };
 
 /** The text of an mdast node: `inlineCode` and `text` leaves joined. */
@@ -163,7 +166,7 @@ export function remarkKit() {
 				const node = children[i];
 				// MDX wraps a tag that shares a line with text in a <p>. Both render <div>s, and a <div>
 				// inside a <p> makes the server HTML and React's tree differ (hydration error #418).
-				if (node.type === 'mdxJsxTextElement' && (node.name === 'SolidDemo' || node.name === 'PropsTable' || node.name === 'Anatomy')) {
+				if (node.type === 'mdxJsxTextElement' && ['SolidDemo', 'HtmlDemo', 'CssPlayground', 'PropsTable', 'Anatomy'].includes(node.name ?? '')) {
 					const line = (node.position as { start?: { line: number } } | undefined)?.start?.line;
 					throw new Error(`${where}:${line}: <${node.name}> sits inside a paragraph. Put it on its own line with a blank line around it.`);
 				}
@@ -203,6 +206,24 @@ export function remarkKit() {
 					if (!parts.length) throw new Error(`${where}: <Anatomy demo="${name}" /> needs an Anatomy table with a data-cui column after it, in the same section.`);
 					replaceSource(file, node as never, '');
 					children[i] = { ...node, position: undefined, attributes: [...(node.attributes ?? []), expressionAttribute('parts', parts)] };
+					continue;
+				}
+				if (node.type === 'mdxJsxFlowElement' && node.name === 'HtmlDemo') {
+					const name = attribute(node, 'name');
+					const demo = path.join(htmlDemosDir, `${name}.html`);
+					if (!name || !existsSync(demo)) throw new Error(`${where}: <HtmlDemo name="${name}" /> has no file at apps/docs/html-demos/${name}.html.`);
+					if (demos.has(name)) throw new Error(`${where}: <HtmlDemo name="${name}" /> appears twice.`);
+					demos.add(name);
+					const source = readFileSync(demo, 'utf8').trim();
+					children[i] = { ...node, position: undefined };
+					replaceSource(file, node as never, fence(name, source, 'html'));
+					children.splice(i + 1, 0, { type: 'code', lang: 'html', meta: `title="${name}.html"`, value: source });
+					i++;
+					continue;
+				}
+				if (node.type === 'mdxJsxFlowElement' && node.name === 'CssPlayground') {
+					replaceSource(file, node as never, 'The interactive playground runs in the browser. Every demo on the CSS pages is available in it as a preset.');
+					children[i] = { ...node, position: undefined };
 					continue;
 				}
 				if (node.type === 'mdxJsxFlowElement' && node.name === 'SolidDemo') {

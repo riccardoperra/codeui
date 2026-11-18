@@ -64,14 +64,14 @@ export function Trigger<T extends ValidComponent = "button">(
 	const [local, others] = splitProps(props as PolymorphicProps<"button", TriggerProps>, [
 		"class",
 		"size",
-		"theme",
+		"variant",
 	]);
 	return (
 		<K.Trigger
 			{...others}
 			data-cui={selectParts.trigger}
 			data-size={selectStyleProps({ size: local.size })["data-size"]}
-			data-theme={local.theme ?? "filled"}
+			data-variant={local.variant ?? "filled"}
 			class={mergeClasses(baseFieldVariants(), styles.selectField, local.class)}
 		/>
 	);

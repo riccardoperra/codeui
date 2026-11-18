@@ -110,9 +110,9 @@ assert.equal(require("@codeui/inkstone/package.json").dependencies, undefined);
 		const html = run("node", ["dist/entry.mjs"], fixtures.ssr.cwd);
 		const markers = [
 			'data-cui="button"',
-			'data-cui="text-field-input"',
+			'data-cui="textfield-input"',
 			'data-cui="select-trigger"',
-			'data-cui="segmentedControl"',
+			'data-cui="segmentedcontrol"',
 			"Dialog body",
 			"Popover body",
 		];
@@ -221,7 +221,7 @@ assert.equal(require("@codeui/inkstone/package.json").dependencies, undefined);
 				report(
 					"CSS-only Button data attributes",
 					buttonStyles.length === 2 &&
-						buttonStyles[0][0] === "40px" &&
+						buttonStyles[0][0] === "44px" &&
 						buttonStyles[1][0] === "36px" &&
 						buttonStyles[0][1] === buttonStyles[1][1],
 					JSON.stringify(buttonStyles),
@@ -239,8 +239,8 @@ assert.equal(require("@codeui/inkstone/package.json").dependencies, undefined);
 							"-e",
 							`
 import { button } from '@codeui/styles/button';
-import { iconButton } from '@codeui/styles/icon-button';
-import { label } from '@codeui/styles/field-label';
+import { iconButton } from '@codeui/styles/iconbutton';
+import { label } from '@codeui/styles/fieldlabel';
 import { switchStyles } from '@codeui/styles/switch';
 console.log(JSON.stringify({ button: button() + ' ' + iconButton, label: label + ' ' + switchStyles.label() }));
 `,
@@ -248,7 +248,7 @@ console.log(JSON.stringify({ button: button() + ' ' + iconButton, label: label +
 						cssRoot,
 					),
 				);
-				const cssFiles = ["button", "icon-button", "field-label", "switch"];
+				const cssFiles = ["button", "iconbutton", "fieldlabel", "switch"];
 				const themeCss = readFileSync(
 					join(cssRoot, "node_modules/@codeui/styles/dist/theme.css"),
 					"utf8",
@@ -268,7 +268,7 @@ console.log(JSON.stringify({ button: button() + ' ' + iconButton, label: label +
 						)
 						.join("\n");
 					await cssPage.setContent(
-						`<html data-cui-theme="dark"><head><style>${themeCss}</style><style>${css}</style></head><body><label id="label" class="${classes.label}">Name</label><button id="icon" class="${classes.button}" data-size="md" data-theme="primary">+</button></body></html>`,
+						`<html data-cui-theme="dark"><head><style>${themeCss}</style><style>${css}</style></head><body><label id="label" class="${classes.label}">Name</label><button id="icon" class="${classes.button}" data-size="md" data-variant="primary">+</button></body></html>`,
 					);
 					const composition = await cssPage.evaluate(() => {
 						const label = getComputedStyle(document.querySelector("#label"));
@@ -325,11 +325,11 @@ console.log(JSON.stringify({ button: button() + ' ' + iconButton, label: label +
 			await page.goto(`http://127.0.0.1:${port}`, { waitUntil: "networkidle" });
 			const parts = [
 				"button",
-				"text-field-input",
+				"textfield-input",
 				"select-trigger",
 				"dialog-panel",
 				"popover-content",
-				"segmentedControl",
+				"segmentedcontrol",
 			];
 			const missing = [];
 			for (const part of parts)

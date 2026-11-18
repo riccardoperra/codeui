@@ -1,7 +1,7 @@
 @import "./badge-tokens.generated.css";
 
 @layer cui.components {
-  .cui-badge-root {
+  .cui-badge {
     display: inline-flex;
     align-items: center;
     gap: var(--cui-space-1);
@@ -64,7 +64,7 @@
       color: var(--cui-component-badge-root-compound-tone-danger-variant-outline-color);
     }
   }
-  :where(.cui-badge-root) {
+  :where(.cui-badge) {
     &:is(:not([data-size]), [data-size="sm"]) {
       min-height: var(--cui-component-badge-root-size-sm-min-height);
       padding: var(--cui-space-px) var(--cui-space-1-5);

@@ -1,0 +1,63 @@
+<div class="cui-dialog-positioner" data-cui="dialog-positioner" data-panel-size="auto" data-chrome="inset">
+  <div role="dialog" aria-modal="true" aria-labelledby="settings-title" tabindex="-1" class="cui-dialog-panel" data-cui="dialog-panel" data-size="settings" data-chrome="inset" data-expanded>
+    <div class="cui-dialog-sidebar" data-cui="dialog-sidebar">
+      <nav class="cui-dialog-nav" data-cui="dialog-nav" aria-label="Settings sections">
+        <ul class="cui-dialog-nav-list">
+          <li><button type="button" class="cui-dialog-nav-item" data-cui="dialog-nav-item" aria-current="page">General</button></li>
+          <li><button type="button" class="cui-dialog-nav-item" data-cui="dialog-nav-item">Editor</button></li>
+          <li><button type="button" class="cui-dialog-nav-item" data-cui="dialog-nav-item">Export</button></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="cui-dialog-main" data-cui="dialog-main">
+      <div class="cui-dialog-title" data-cui="dialog-panel-title">
+        <h2 id="settings-title" data-cui="dialog-title" style="margin: 0; font: inherit">Settings / General</h2>
+        <button type="button" aria-label="Close settings" class="cui-button cui-iconbutton" data-cui="dialog-close-button" data-size="sm" data-variant="secondary" data-ghost>
+          <svg class="cui-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
+          </svg>
+        </button>
+      </div>
+      <div class="cui-dialog-panel-content" data-cui="dialog-panel-content" data-layout="default">
+        <section class="cui-dialog-section" data-cui="dialog-section" data-variant="group">
+          <h3 class="cui-dialog-section-title" data-cui="dialog-section-title">Editor</h3>
+          <div class="cui-dialog-section-content" data-cui="dialog-section-content">
+          <div role="group" aria-labelledby="line-numbers-label" class="cui-settings-row" data-cui="settings-row" data-layout="inline" data-compact-control>
+            <span id="line-numbers-label" class="cui-settings-row-label" data-cui="settings-row-label">Line numbers</span>
+            <div class="cui-settings-row-control" data-cui="settings-row-control">
+              <div class="cui-switch" data-cui="switch" data-size="md" data-checked>
+                <input id="line-numbers" type="checkbox" role="switch" aria-labelledby="line-numbers-label" class="cui-switch-input" data-cui="switch-input" data-size="md" checked data-checked style="position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap" />
+                <div class="cui-switch-control" data-cui="switch-control" data-size="md" data-checked aria-hidden="true">
+                  <div class="cui-switch-thumb" data-cui="switch-thumb" data-size="md" data-checked></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div role="group" aria-labelledby="ligatures-label" class="cui-settings-row" data-cui="settings-row" data-layout="inline" data-compact-control>
+            <span id="ligatures-label" class="cui-settings-row-label" data-cui="settings-row-label">Font ligatures</span>
+            <div class="cui-settings-row-control" data-cui="settings-row-control">
+              <div class="cui-switch" data-cui="switch" data-size="md" data-checked>
+                <input id="ligatures" type="checkbox" role="switch" aria-labelledby="ligatures-label" class="cui-switch-input" data-cui="switch-input" data-size="md" checked data-checked style="position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap" />
+                <div class="cui-switch-control" data-cui="switch-control" data-size="md" data-checked aria-hidden="true">
+                  <div class="cui-switch-thumb" data-cui="switch-thumb" data-size="md" data-checked></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div role="group" aria-labelledby="word-wrap-label" class="cui-settings-row" data-cui="settings-row" data-layout="inline" data-compact-control>
+            <span id="word-wrap-label" class="cui-settings-row-label" data-cui="settings-row-label">Wrap long lines</span>
+            <div class="cui-settings-row-control" data-cui="settings-row-control">
+              <div class="cui-switch" data-cui="switch" data-size="md">
+                <input id="word-wrap" type="checkbox" role="switch" aria-labelledby="word-wrap-label" class="cui-switch-input" data-cui="switch-input" data-size="md" style="position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap" />
+                <div class="cui-switch-control" data-cui="switch-control" data-size="md" aria-hidden="true">
+                  <div class="cui-switch-thumb" data-cui="switch-thumb" data-size="md"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>

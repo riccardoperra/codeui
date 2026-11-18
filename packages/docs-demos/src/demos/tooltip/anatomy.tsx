@@ -7,7 +7,7 @@ export default function TooltipAnatomy() {
 	return (
 		<div style={{ display: "grid", gap: "var(--cui-space-1)", "justify-items": "center" }}>
 			<Tooltip content="Copy snippet" open mount={content()}>
-				<Button theme="secondary">Copy</Button>
+				<Button variant="secondary">Copy</Button>
 			</Tooltip>
 			<div ref={setContent} />
 		</div>

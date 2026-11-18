@@ -31,8 +31,8 @@ Handle a choice with `onSelect` on the item.
 | `DropdownMenu` | Nothing. Holds the open state | none | none | none |
 | `DropdownMenuTrigger` | `button` | none | none | Opens the menu |
 | `DropdownMenuPortal` | Nothing. Moves the menu to `document.body` | none | none | none |
-| `DropdownMenuContent` | `div` | none, use `class` | `dropdown-menu-content` | `role="menu"` |
-| `DropdownMenuItem` | `div` | none, use `class` | `dropdown-menu-item` | `role="menuitem"` |
+| `DropdownMenuContent` | `div` | none, use `class` | `dropdownmenu-content` | `role="menu"` |
+| `DropdownMenuItem` | `div` | none, use `class` | `dropdownmenu-item` | `role="menuitem"` |
 | `DropdownMenuSeparator` | `hr` | none | none | `role="separator"` |
 | `DropdownSubMenu` | Nothing. Holds the submenu state | none | none | none |
 | `DropdownSubMenuTrigger` | `div` | none | none | `role="menuitem"` that opens the submenu |
@@ -143,7 +143,7 @@ import * as M from "@codeui/kit/dropdown-menu/parts";
 import { Text } from "@codeui/kit/text";
 
 <M.Root>
-	<M.Trigger as={Button} theme="secondary">Export</M.Trigger>
+	<M.Trigger as={Button} variant="secondary">Export</M.Trigger>
 	<M.Portal>
 		<M.Content>
 			<M.Group>

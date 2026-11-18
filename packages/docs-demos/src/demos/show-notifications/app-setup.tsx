@@ -24,7 +24,7 @@ function SaveButton() {
 	const notifications = useNotifications();
 	return (
 		<Button
-			theme="primary"
+			variant="primary"
 			onClick={() => notifications.show({ tone: "success", description: "Preset saved." })}
 		>
 			Save preset

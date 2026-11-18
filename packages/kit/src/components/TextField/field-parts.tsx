@@ -27,7 +27,7 @@ export type FieldRootProps = PolymorphicProps<"div", K.TextFieldRootProps<"div">
 const FieldContext = createContext<{
 	inputId: () => string;
 	size: () => Appearance["size"];
-	theme: () => Appearance["theme"];
+	variant: () => Appearance["variant"];
 }>();
 
 export function useFieldParts() {
@@ -42,7 +42,7 @@ export function FieldRoot(props: FieldRootProps & { marker: string; baseClass: s
 		"baseClass",
 		"inputId",
 		"size",
-		"theme",
+		"variant",
 		"class",
 	]);
 	const generatedId = createUniqueId();
@@ -51,7 +51,7 @@ export function FieldRoot(props: FieldRootProps & { marker: string; baseClass: s
 			value={{
 				inputId: () => local.inputId ?? `${others.id ?? generatedId}-input`,
 				size: () => local.size ?? defaultFieldSize,
-				theme: () => local.theme,
+				variant: () => local.variant,
 			}}
 		>
 			<K.Root
@@ -77,14 +77,14 @@ export type FieldTextAreaProps = Omit<
 
 export function FieldInput(props: FieldInputProps & { baseClass: string }) {
 	const field = useFieldParts();
-	const [local, others] = splitProps(props, ["baseClass", "size", "theme", "class"]);
+	const [local, others] = splitProps(props, ["baseClass", "size", "variant", "class"]);
 	return (
 		<K.Input
 			{...others}
 			id={field.inputId()}
-			data-cui="text-field-input"
+			data-cui="textfield-input"
 			data-size={local.size ?? field.size() ?? defaultFieldSize}
-			data-theme={local.theme ?? field.theme() ?? "filled"}
+			data-variant={local.variant ?? field.variant() ?? "filled"}
 			class={mergeClasses(baseFieldVariants(), local.baseClass, local.class)}
 		/>
 	);
@@ -92,14 +92,14 @@ export function FieldInput(props: FieldInputProps & { baseClass: string }) {
 
 export function FieldTextArea(props: FieldTextAreaProps & { baseClass: string }) {
 	const field = useFieldParts();
-	const [local, others] = splitProps(props, ["baseClass", "size", "theme", "class"]);
+	const [local, others] = splitProps(props, ["baseClass", "size", "variant", "class"]);
 	return (
 		<K.TextArea
 			{...others}
 			id={field.inputId()}
-			data-cui="text-field-input"
+			data-cui="textfield-input"
 			data-size={local.size ?? field.size() ?? defaultFieldSize}
-			data-theme={local.theme ?? field.theme() ?? "filled"}
+			data-variant={local.variant ?? field.variant() ?? "filled"}
 			class={mergeClasses(baseFieldVariants(), local.baseClass, local.class)}
 		/>
 	);
@@ -118,14 +118,14 @@ export function Label(props: LabelProps) {
 			props,
 		),
 	);
-	return <K.Label data-cui="text-field-label" {...labelProps} />;
+	return <K.Label data-cui="textfield-label" {...labelProps} />;
 }
 
 export type DescriptionProps = Parameters<typeof K.Description>[0];
 export function Description(props: DescriptionProps) {
 	return (
 		<K.Description
-			data-cui="text-field-description"
+			data-cui="textfield-description"
 			{...createFieldMessageProps(props)}
 		/>
 	);
@@ -136,7 +136,7 @@ export function ErrorMessage(props: ErrorMessageProps) {
 	const [local, others] = splitProps(props, ["class"]);
 	return (
 		<K.ErrorMessage
-			data-cui="text-field-error-message"
+			data-cui="textfield-error-message"
 			{...others}
 			class={mergeClasses(errorMessage, local.class)}
 		/>

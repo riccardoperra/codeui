@@ -31,8 +31,8 @@ export function ExampleMenu(props: { slug: string; children?: JSX.Element }) {
 	return (
 		<DropdownMenu placement="bottom-end">
 			{/* The neutral tooltip: the accent is never a surface (DESIGN.md §2.3). */}
-			<Tooltip content="More" placement="bottom" theme="secondary">
-				<DropdownMenuTrigger as={IconButton} theme="secondary" variant="ghost" size={size()} aria-label="More">
+			<Tooltip content="More" placement="bottom" variant="secondary">
+				<DropdownMenuTrigger as={IconButton} variant="secondary" ghost size={size()} aria-label="More">
 					<Ellipsis size={16} />
 				</DropdownMenuTrigger>
 			</Tooltip>

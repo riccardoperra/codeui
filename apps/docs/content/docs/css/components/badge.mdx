@@ -1,0 +1,81 @@
+---
+title: Badge
+description: A short status label in plain HTML, styled by tone, size, and variant attributes.
+---
+
+Load `@codeui/styles/badge.css`, or `all.css`. The Solid component is documented in [Badge](/docs/components/badge).
+
+## Demo
+
+<HtmlDemo name="badge/basic" />
+
+## Markup
+
+| Part | Element | Class | `data-cui` |
+| --- | --- | --- | --- |
+| Root | `span` | `cui-badge` | `badge` |
+| Icon | `span` | `cui-badge-icon` | `badge-icon` |
+| Label | `span` | `cui-badge-label` | `badge-label` |
+
+| Attribute | Values | Default |
+| --- | --- | --- |
+| `data-tone` | `neutral`, `info`, `success`, `warning`, `danger` | `neutral` |
+| `data-variant` | `soft`, `outline` | `soft` |
+| `data-size` | `sm`, `md` | `sm` |
+
+All three attributes go on the root.
+
+## Variants
+
+### Tones
+
+<HtmlDemo name="badge/tones" />
+
+The tones are `neutral`, `info`, `success`, `warning`, and `danger`. Let the text carry the status as well as the color.
+
+### Outline
+
+<HtmlDemo name="badge/outline" />
+
+`soft` is the default tinted fill. `data-variant="outline"` uses a transparent fill and a status border.
+
+### Sizes
+
+<HtmlDemo name="badge/sizes" />
+
+`sm` is the default. `md` gives the label more height and space.
+
+### Icon
+
+<HtmlDemo name="badge/icon" />
+
+Put the icon in `span.cui-badge-icon` before the label. The icon's `svg` is sized to 1em, so it follows the badge text. Give the wrapper `aria-hidden="true"`. When the label holds rich content, set `aria-label` on the root with the plain text.
+
+### Truncation
+
+<HtmlDemo name="badge/truncate" />
+
+The label clips with an ellipsis when the root has a `max-width`. Keep the full text reachable, such as in a `title`.
+
+## States
+
+Badge has no states. It is not interactive and adds no tab stop.
+
+## What you supply
+
+- `role="status"` on the root when the badge changes and the change should be announced. The kit adds it to every badge. A badge that never changes does not need it.
+- `aria-hidden="true"` on the icon wrapper.
+
+## Helper
+
+```ts
+import "@codeui/styles/badge.css";
+import { applyStyleProps } from "@codeui/styles";
+import { badgeStyleProps } from "@codeui/styles/badge";
+
+const status = document.querySelector("span")!;
+applyStyleProps(status, badgeStyleProps({ tone: "success" }));
+// class="cui-badge" data-cui="badge" data-size="sm" data-tone="success" data-variant="soft"
+```
+
+`badgeStyles.icon()` and `badgeStyles.label()` return the part classes.

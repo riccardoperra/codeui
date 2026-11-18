@@ -1,0 +1,93 @@
+---
+title: Sheet
+description: A panel that slides in from the bottom or a side, in plain HTML.
+---
+
+Load `@codeui/styles/sheet.css`, or `all.css`. The Solid component is documented in [Sheet](/docs/components/sheet).
+
+## Demo
+
+<HtmlDemo name="sheet/basic" minHeight={360} />
+
+The overlay and the content are `position: fixed`, so in these demos they fill the frame. On a page they cover the viewport.
+
+## Markup
+
+| Part | Element | Class | `data-cui` |
+| --- | --- | --- | --- |
+| Overlay | `div` | `cui-sheet-overlay` | `sheet-overlay` |
+| Content | `div` | `cui-sheet-content` | `sheet-content` |
+| Handle | `button` | `cui-sheet-handle` | `sheet-handle` |
+| Header | `div` | `cui-sheet-header` | `sheet-header` |
+| Title | `h2` | `cui-sheet-title` | `sheet-title` |
+| Close button | `button` | IconButton classes and `cui-sheet-close-button` | `sheet-close-button` |
+| Description | `p` | `cui-sheet-description` | `sheet-description` |
+| Body | `div` | `cui-sheet-body` | `sheet-body` |
+| Footer | `div` | `cui-sheet-footer` | `sheet-footer` |
+
+The overlay and the content are siblings. Put the overlay first.
+
+| Attribute | Values | Default |
+| --- | --- | --- |
+| `data-side` on the content | `bottom`, `left`, `right` | `bottom` |
+| `data-expanded` on the overlay and the content | Presence | Off |
+| `data-motion` on the overlay and the content | `none` | None |
+
+## Variants
+
+### Sides
+
+<HtmlDemo name="sheet/left" minHeight={360} />
+
+<HtmlDemo name="sheet/right" minHeight={360} />
+
+`data-side="left"` and `data-side="right"` pin the sheet to that edge at full height. It is 24rem wide, and at least 40px narrower than the viewport. The corners on the open edge are rounded.
+A bottom sheet spans the width and stops 40px below the top of the viewport. Omitting `data-side` renders a bottom sheet.
+
+### Handle
+
+<HtmlDemo name="sheet/handle" minHeight={360} />
+
+Put a `button.cui-sheet-handle` first in a bottom sheet. It is a 40px tall hit area with a 40×4 bar. Give it an accessible name, because it has no text.
+The handle has `touch-action: none`, so a script can track a drag on it while the body still scrolls.
+
+### Non-modal
+
+<HtmlDemo name="sheet/non-modal" minHeight={360} />
+
+Leave out the overlay and the page behind stays visible and usable. Set `aria-modal="false"`, or leave it out, and do not trap focus.
+
+## States
+
+### Open
+
+`data-expanded` on the content slides it in from its side over the panel duration. `data-expanded` on the overlay fades the scrim in.
+Without `data-expanded`, both play their exit animation and stay hidden: the content off screen and the scrim transparent. Set it on an open sheet even without a script.
+
+### Closing
+
+Remove `data-expanded` from both while they are still in the page. The content slides out and the overlay fades. Remove the markup when the animation ends.
+
+### No motion
+
+`data-motion="none"` on the overlay and the content turns off both animations. Set it when the sheet opens or closes from the keyboard. With reduced motion, the slide becomes a fade.
+
+## What you supply
+
+- Opening and closing, and `data-expanded` while open.
+- `role="dialog"`, `aria-modal`, `aria-labelledby`, and `aria-describedby` on the content.
+- For a modal sheet, a focus trap and `inert` on the rest of the page. Return focus to the opener on close.
+- Escape, the close button, and a click on the overlay close the sheet.
+- The drag gesture on the handle: move the content with `transform` while the pointer is down, and close it past a distance or a flick.
+
+## Helper
+
+```ts
+import "@codeui/styles/sheet.css";
+import { applyStyleProps } from "@codeui/styles";
+import { sheetStyleProps } from "@codeui/styles/sheet";
+
+const content = document.querySelector<HTMLElement>("[role=dialog]")!;
+applyStyleProps(content, sheetStyleProps({ side: "right" }));
+// class="cui-sheet-content" data-cui="sheet-content" data-side="right"
+```

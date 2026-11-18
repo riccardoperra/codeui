@@ -1,7 +1,7 @@
 import type { KbdStyleOptions } from "../generated-appearance/kbd";
 import * as styles from "../components/Kbd/Kbd.css";
 export const kbdParts = {
-	root: "kbd-root",
+	root: "kbd",
 } as const;
 
 export type KbdPart = keyof typeof kbdParts;

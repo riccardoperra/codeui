@@ -1,0 +1,16 @@
+{
+  "title": "CSS",
+  "description": "Inkstone styles in plain HTML, without a framework",
+  "icon": "Paintbrush",
+  "root": true,
+  "pages": [
+    "---Getting started---",
+    "index",
+    "installation",
+    "markup",
+    "states",
+    "theming",
+    "playground",
+    "...components"
+  ]
+}

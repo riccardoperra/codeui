@@ -1,0 +1,43 @@
+<div class="cui-stack" data-gap="4" style="max-width: 280px; margin-inline: auto">
+  <div role="group" class="cui-combobox" data-cui="combobox">
+    <label for="desc-lang" class="cui-combobox-label" data-cui="combobox-label">Language</label>
+    <div class="cui-combobox-control" data-cui="combobox-control" data-size="sm">
+      <input id="desc-lang" type="text" role="combobox" value="" placeholder="Search languages" autocomplete="off" aria-autocomplete="list" aria-expanded="false" class="cui-combobox-input" data-cui="combobox-input" aria-describedby="desc-lang-hint" />
+      <button type="button" tabindex="-1" aria-label="Show languages" aria-expanded="false" class="cui-combobox-trigger" data-cui="combobox-trigger">
+        <span aria-hidden="true" class="cui-combobox-icon" data-cui="combobox-icon">
+          <svg class="cui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
+          </svg>
+        </span>
+      </button>
+    </div>
+    <div id="desc-lang-hint" class="cui-combobox-description" data-cui="combobox-description">Sets the syntax highlighting.</div>
+  </div>
+  <div role="group" class="cui-combobox" data-cui="combobox" data-invalid>
+    <label for="err-lang" class="cui-combobox-label" data-cui="combobox-label">Grammar</label>
+    <div class="cui-combobox-control" data-cui="combobox-control" data-size="sm" data-invalid>
+      <input id="err-lang" type="text" role="combobox" value="COBOL" placeholder="Search languages" autocomplete="off" aria-autocomplete="list" aria-expanded="false" class="cui-combobox-input" data-cui="combobox-input" aria-invalid="true" aria-describedby="err-lang-error" data-invalid />
+      <button type="button" tabindex="-1" aria-label="Show languages" aria-expanded="false" class="cui-combobox-trigger" data-cui="combobox-trigger">
+        <span aria-hidden="true" class="cui-combobox-icon" data-cui="combobox-icon">
+          <svg class="cui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
+          </svg>
+        </span>
+      </button>
+    </div>
+    <div id="err-lang-error" class="cui-combobox-error-message" data-cui="combobox-error-message">This language has no grammar.</div>
+  </div>
+  <div role="group" class="cui-combobox" data-cui="combobox" data-disabled>
+    <label for="dis-lang" class="cui-combobox-label" data-cui="combobox-label">Workspace language</label>
+    <div class="cui-combobox-control" data-cui="combobox-control" data-size="sm" data-disabled>
+      <input id="dis-lang" type="text" role="combobox" value="TypeScript" placeholder="Search languages" autocomplete="off" aria-autocomplete="list" aria-expanded="false" class="cui-combobox-input" data-cui="combobox-input" disabled data-disabled />
+      <button type="button" tabindex="-1" aria-label="Show languages" aria-expanded="false" class="cui-combobox-trigger" data-cui="combobox-trigger" disabled>
+        <span aria-hidden="true" class="cui-combobox-icon" data-cui="combobox-icon">
+          <svg class="cui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
+          </svg>
+        </span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -78,7 +78,7 @@ function Bills() {
 								{formatMoneyWhole(bill.amount)} · due {formatDay(bill.due)}
 							</Text>
 						</div>
-						<Button theme="secondary" size="xs" class="fin-plan-value" aria-label={`Mark ${bill.name} as paid`} onClick={() => pay(bill)}>
+						<Button variant="secondary" size="xs" class="fin-plan-value" aria-label={`Mark ${bill.name} as paid`} onClick={() => pay(bill)}>
 							Mark paid
 						</Button>
 					</li>

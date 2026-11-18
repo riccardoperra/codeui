@@ -4,7 +4,7 @@ import "./override.css";
 export default function ComposeOverride() {
 	return (
 		<Popover placement="bottom-start">
-			<PopoverTrigger as={Button} theme="secondary">
+			<PopoverTrigger as={Button} variant="secondary">
 				Wider picker
 			</PopoverTrigger>
 			<PopoverContent

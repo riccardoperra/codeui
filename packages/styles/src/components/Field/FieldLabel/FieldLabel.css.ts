@@ -1,1 +1,1 @@
-export const label: string = "cui-field-label-label";
+export const label: string = "cui-field-label";

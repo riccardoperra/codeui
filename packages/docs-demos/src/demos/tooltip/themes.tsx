@@ -3,11 +3,11 @@ import { Button, Tooltip } from "@codeui/kit";
 export default function TooltipThemes() {
 	return (
 		<>
-			<Tooltip content="Primary tooltip" theme="primary">
-				<Button theme="secondary">primary</Button>
+			<Tooltip content="Primary tooltip" variant="primary">
+				<Button variant="secondary">primary</Button>
 			</Tooltip>
-			<Tooltip content="Secondary tooltip" theme="secondary">
-				<Button theme="secondary">secondary</Button>
+			<Tooltip content="Secondary tooltip" variant="secondary">
+				<Button variant="secondary">secondary</Button>
 			</Tooltip>
 		</>
 	);

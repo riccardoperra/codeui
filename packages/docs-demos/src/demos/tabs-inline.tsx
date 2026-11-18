@@ -2,7 +2,7 @@ import { Tabs, TabsContent, TabsHeader, TabsList } from "@codeui/kit";
 
 export default function TabsInlineDemo() {
 	return (
-		<Tabs theme="inline" defaultValue="snippets">
+		<Tabs variant="inline" defaultValue="snippets">
 			<TabsList>
 				<TabsHeader value="snippets">Snippets</TabsHeader>
 				<TabsHeader value="presets">Presets</TabsHeader>

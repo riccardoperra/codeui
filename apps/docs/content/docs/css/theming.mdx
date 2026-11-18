@@ -1,0 +1,54 @@
+---
+title: Theming
+description: Light and dark scopes, token overrides, density, and cascade layers.
+---
+
+## Light and dark
+
+Set `data-cui-theme="light"` or `data-cui-theme="dark"` on any element. The theme applies to its subtree, so one page can hold both.
+
+<HtmlDemo name="theming/scopes" />
+
+With no attribute on the root, the page follows the system `prefers-color-scheme`. Set the attribute on `<html>` to force a theme, and switch it at run time to follow a user setting.
+
+Content outside the theme scope does not get its tokens. If you move overlays to the end of `body`, keep a `data-cui-theme` element around them.
+
+## Tokens
+
+Components read semantic `--cui-*` custom properties. Override them on a theme scope or on any ancestor of the components that should change.
+
+```css
+[data-cui-theme="dark"] {
+  --cui-action-brand-base: #4f8cff;
+  --cui-radius-scale: 1.2;
+}
+```
+
+<HtmlDemo name="theming/tokens" />
+
+The [Inkstone colour](/docs/design/color) page lists the semantic roles. Each component page in the [kit docs](/docs) lists the tokens it reads under "Theming hooks".
+
+## Density
+
+`data-cui-density` sets control heights for a subtree: `compact`, `comfortable` (the default), or `touch`. A coarse pointer selects touch automatically. Font sizes stay the same.
+
+<HtmlDemo name="theming/density" />
+
+## Cascade layers
+
+All component rules live in the `cui` layer, in the order `cui.base`, `cui.components`, `cui.overrides`. Every CSS entry declares that order first, so entries can load in any order.
+
+Unlayered CSS beats layered CSS. Your own rules override the library without extra specificity:
+
+```css
+/* Wins over the library, even with a lower specificity. */
+.checkout-button {
+  border-radius: 999px;
+}
+```
+
+If your app uses its own layers, declare `cui` before them:
+
+```css
+@layer cui, app;
+```

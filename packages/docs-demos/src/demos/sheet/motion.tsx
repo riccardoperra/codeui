@@ -4,9 +4,9 @@ import { createSignal, For } from "solid-js";
 function Example(props: { side?: "left" | "right" | "bottom" }) {
 	const [open, setOpen] = createSignal(false);
 	return <>
-		<Button theme="secondary" onClick={() => setOpen(true)}>Open {props.side ?? "export options"}</Button>
+		<Button variant="secondary" onClick={() => setOpen(true)}>Open {props.side ?? "export options"}</Button>
 		<Sheet open={open()} onOpenChange={setOpen} motion="none" title="Export options" description="Choose how to share your snippet." closeLabel="Close export options"
-			footer={<Button theme="primary" onClick={() => setOpen(false)}>Done</Button>}>
+			footer={<Button variant="primary" onClick={() => setOpen(false)}>Done</Button>}>
 			<p>PNG preserves the frame background. SVG keeps text sharp at any size.</p>
 		</Sheet>
 	</>;

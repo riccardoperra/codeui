@@ -1,0 +1,48 @@
+<div class="cui-stack" data-gap="6" style="max-width: 600px; margin-inline: auto; padding: 8px 24px 24px; border-radius: var(--cui-radius-card); background: var(--cui-surface-panel)">
+  <section class="cui-settings-group" data-cui="settings-group" aria-labelledby="local-ai-title" aria-describedby="local-ai-gdesc">
+    <h3 id="local-ai-title" class="cui-settings-group-title" data-cui="settings-group-title">Local AI</h3>
+    <p id="local-ai-gdesc" class="cui-settings-group-description" data-cui="settings-group-description">Choices that are not the default yet.</p>
+    <div class="cui-settings-group-content" data-cui="settings-group-content">
+      <div class="cui-settings-row" data-cui="settings-row" data-compact-control role="group" aria-labelledby="takumi-label" aria-describedby="takumi-desc">
+        <span id="takumi-label" class="cui-settings-row-label" data-cui="settings-row-label">
+          Takumi
+          <span class="cui-settings-row-marker" data-cui="settings-row-marker">
+            <span class="cui-badge" data-cui="badge" data-tone="neutral" data-variant="soft" data-size="sm">
+              <span class="cui-badge-label" data-cui="badge-label">Experimental</span>
+            </span>
+          </span>
+        </span>
+        <div id="takumi-desc" class="cui-settings-row-description" data-cui="settings-row-description">Use the experimental Takumi engine for image exports.</div>
+        <div class="cui-settings-row-control" data-cui="settings-row-control">
+          <div class="cui-switch" data-cui="switch" data-size="md">
+            <input id="takumi" type="checkbox" role="switch" aria-labelledby="takumi-label" aria-describedby="takumi-desc" class="cui-switch-input" data-cui="switch-input" data-size="md" style="position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap" />
+            <div class="cui-switch-control" data-cui="switch-control" data-size="md" aria-hidden="true">
+              <div class="cui-switch-thumb" data-cui="switch-thumb" data-size="md"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cui-settings-row" data-cui="settings-row" data-compact-control role="group" aria-labelledby="on-device-label" aria-describedby="on-device-desc">
+        <div class="cui-settings-row-picture" data-cui="settings-row-picture">
+          <svg width="104" height="64" viewBox="0 0 104 64" aria-hidden="true">
+            <rect width="104" height="64" rx="10" fill="var(--cui-surface-input)" />
+            <path d="M20 22h64M20 34h40M20 46h52" stroke="var(--cui-text-muted)" stroke-width="4" />
+          </svg>
+        </div>
+        <span id="on-device-label" class="cui-settings-row-label" data-cui="settings-row-label">
+          On-device model
+          <span class="cui-settings-row-marker" data-cui="settings-row-marker">
+            <span class="cui-badge" data-cui="badge" data-tone="success" data-variant="soft" data-size="sm">
+              <span class="cui-badge-label" data-cui="badge-label">New</span>
+            </span>
+          </span>
+        </span>
+        <div id="on-device-desc" class="cui-settings-row-description" data-cui="settings-row-description">Chrome downloads it once, a few GB.</div>
+        <div class="cui-settings-row-details" data-cui="settings-row-details">Chrome 148 or later, on a computer.</div>
+        <div class="cui-settings-row-control" data-cui="settings-row-control">
+          <button type="button" class="cui-button" data-cui="button" data-size="sm" data-variant="secondary" aria-describedby="on-device-label">Download</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

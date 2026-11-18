@@ -34,7 +34,7 @@ export const PopoverStory: Story = {
 	name: "Popover",
 	render: props => (
 		<Popover {...props}>
-			<PopoverTrigger asChild as={Button} theme={"secondary"}>
+			<PopoverTrigger asChild as={Button} variant={"secondary"}>
 				Click me
 			</PopoverTrigger>
 			<PopoverContent title={"Title"}>
@@ -49,7 +49,7 @@ export const PopoverBordered: Story = {
 	name: "Popover Bordered",
 	render: props => (
 		<Popover {...props}>
-			<PopoverTrigger asChild as={Button} theme={"secondary"}>
+			<PopoverTrigger asChild as={Button} variant={"secondary"}>
 				Click me
 			</PopoverTrigger>
 			<PopoverContent title={"Title"} variant={"bordered"}>
@@ -66,7 +66,7 @@ export const CustomPosition: Story = {
 			<For each={placements}>
 				{position => (
 					<Popover placement={position}>
-						<PopoverTrigger as={Button} theme={"secondary"}>
+						<PopoverTrigger as={Button} variant={"secondary"}>
 							{position}
 						</PopoverTrigger>
 						<PopoverContent title={"Title"}>
@@ -85,7 +85,7 @@ export const Parts: Story = {
 	tags: ["!autodocs"],
 	render: () => (
 		<P.Root defaultOpen placement={"bottom-start"} gutter={10}>
-			<P.Trigger as={Button} theme={"secondary"}>
+			<P.Trigger as={Button} variant={"secondary"}>
 				What's new
 			</P.Trigger>
 			<P.Portal>
@@ -103,13 +103,13 @@ export const OpenWithBlockContent: Story = {
 	tags: ["!autodocs"],
 	render: () => (
 		<Popover defaultOpen placement={"bottom-start"}>
-			<PopoverTrigger as={Button} theme={"secondary"}>
+			<PopoverTrigger as={Button} variant={"secondary"}>
 				Export styles
 			</PopoverTrigger>
 			<PopoverContent title={"Export styles"} description={"Applies to every new export."}>
 				<div style={{ display: "grid", "grid-template-columns": "1fr 1fr", gap: "8px" }}>
-					<Button theme={"secondary"}>PNG</Button>
-					<Button theme={"secondary"}>SVG</Button>
+					<Button variant={"secondary"}>PNG</Button>
+					<Button variant={"secondary"}>SVG</Button>
 				</div>
 			</PopoverContent>
 		</Popover>

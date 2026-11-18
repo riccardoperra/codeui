@@ -1,0 +1,81 @@
+---
+title: TextField
+description: A single-line text input in plain HTML, with a label, a hint, and an error message.
+---
+
+Load `@codeui/styles/textfield.css`, or `all.css`. The Solid component is documented in [TextField](/docs/components/text-field).
+
+## Demo
+
+<HtmlDemo name="text-field/basic" />
+
+## Markup
+
+| Part | Element | Class | `data-cui` |
+| --- | --- | --- | --- |
+| Root | `div` | `cui-textfield cui-field` | `text-field` |
+| Label | `label` | `cui-field-label` | `textfield-label` |
+| Input | `input` | `cui-field-input cui-textfield-input` | `textfield-input` |
+| Hint | `div` | `cui-field-description` | `textfield-description` |
+| Error | `div` | `cui-field-error` | `textfield-error-message` |
+
+| Attribute | Element | Values | Default |
+| --- | --- | --- | --- |
+| `data-size` | Input | `xs`, `sm`, `md`, `lg` | `sm` |
+| `data-variant` | Input | `filled`, `inline` | `filled` |
+| `data-field-size` | Root | `xs`, `sm`, `md`, `lg` | `sm` |
+
+The input reads `data-size`. The label, the hint, and the error read `data-field-size` from the root. Set both to the same value.
+
+## Variants
+
+### Sizes
+
+<HtmlDemo name="text-field/sizes" />
+
+`xs`, `sm`, `md`, and `lg` are 28px, 36px, 44px, and 52px at comfortable density. Omitting `data-size` renders `sm`. Touch density and touch devices use at least 16px for input text.
+
+### Filled and inline
+
+<HtmlDemo name="text-field/themes" />
+
+`filled` draws the field fill with a transparent border. `inline` drops the fill and the radius and keeps a 2px bottom border, for a field that sits inside a row of text.
+
+### Description
+
+<HtmlDemo name="text-field/description" />
+
+The hint is a plain `div`, so it can hold code, a link, or a formatted value. Point the input's `aria-describedby` at its `id`.
+
+## States
+
+### Required, read-only, and disabled
+
+<HtmlDemo name="text-field/states" />
+
+`required` and `readonly` are native attributes and change no style. The kit adds no asterisk, so say "required" in the label or the hint when it matters. For disabled, set both `disabled` and `data-disabled` on the input. The native attribute blocks input. The 40% opacity selects on `data-disabled`.
+
+### Invalid
+
+<HtmlDemo name="text-field/invalid" />
+
+`data-invalid` on the input colors the border and the text with `--cui-text-danger`. Render the error only while the field is invalid, and set `aria-invalid="true"` on the input.
+
+## What you supply
+
+- Matching `id` and `for` on the input and the label, and `aria-describedby` for the hint and the error.
+- `data-invalid` and `aria-invalid` when your validation fails, plus the error element.
+- `data-disabled` next to the native `disabled` attribute.
+- Value handling and form submission. The input is a native `input`, so typing and focus work without a script.
+
+## Helper
+
+```ts
+import "@codeui/styles/textfield.css";
+import { applyStyleProps } from "@codeui/styles";
+import { textFieldStyleProps } from "@codeui/styles/textfield";
+
+applyStyleProps(document.querySelector("[data-cui=textfield]")!, textFieldStyleProps.root({ fieldSize: "md" }));
+applyStyleProps(document.querySelector("input")!, textFieldStyleProps({ size: "md", variant: "inline" }));
+// class="cui-field-input cui-textfield-input" data-cui="textfield-input" data-size="md" data-variant="inline"
+```

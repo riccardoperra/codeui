@@ -1,0 +1,97 @@
+---
+title: IconButton
+description: A square icon action in plain HTML, built on the Button classes.
+---
+
+Load `@codeui/styles/iconbutton.css`, or `all.css`. The entry includes the Button styles. The Solid component is documented in [IconButton](/docs/components/icon-button).
+
+## Demo
+
+<HtmlDemo name="icon-button/basic" />
+
+## Markup
+
+| Part | Element | Class | `data-cui` |
+| --- | --- | --- | --- |
+| Root | `button` or `a` | `cui-button cui-iconbutton` | `icon-button` |
+| Icon | `svg` | None | None |
+| Loading overlay | `div` | `cui-loading` | None |
+
+The root takes all three classes. `cui-iconbutton` removes the padding and sets the width to the button height, so the button is square.
+
+| Attribute | Values | Default |
+| --- | --- | --- |
+| `data-variant` | `primary`, `secondary`, `tertiary`, `caution`, `negative` | None. Set one. |
+| `data-size` | `xs`, `sm`, `md`, `lg` | `sm` |
+| `data-ghost` | Presence | Off |
+| `data-pill` | Presence | Off |
+| `data-block` | Presence | Off |
+
+## Variants
+
+### Colors
+
+<HtmlDemo name="icon-button/themes" />
+
+`primary` uses brand fill. `secondary` is neutral. `tertiary` uses soft brand fill. `caution` and `negative` use warning and danger colors. There is no default `data-variant`, so set one.
+
+### Sizes
+
+<HtmlDemo name="icon-button/sizes" />
+
+`xs`, `sm`, `md`, and `lg` are 28px, 36px, 44px, and 52px square at comfortable density. Omitting `data-size` renders `sm`.
+
+### Ghost
+
+<HtmlDemo name="icon-button/ghost" />
+
+`data-ghost` removes the idle fill. The `data-variant` colors appear on hover.
+
+### Pill
+
+<HtmlDemo name="icon-button/pill" />
+
+`data-pill` uses fully rounded corners, so the button reads as a circle.
+
+### Link
+
+<HtmlDemo name="icon-button/as-link" />
+
+The classes work on an anchor. It keeps link semantics: Enter follows it and Space does not. Use [Link](/docs/css/components/link) for ordinary navigation in text.
+
+### Block
+
+`data-block` sets width to 100% and flex to 1. It competes with the square width rule, so avoid full-width icon actions.
+
+## States
+
+### Disabled
+
+<HtmlDemo name="icon-button/disabled" />
+
+Set both `disabled` and `data-disabled`. The native attribute removes the button from the tab order and blocks clicks. The dimmed fill selects on `data-disabled`.
+
+### Loading
+
+<HtmlDemo name="icon-button/loading" />
+
+`data-loading` blocks pointer events and places three animated dots over the icon. The dots are plain markup, so the animation runs without a script. Set `aria-busy="true"` and `aria-disabled="true"` yourself, and ignore activation while the work runs.
+
+## What you supply
+
+- An accessible name on every icon button, such as `aria-label="Copy snippet"`. Name the action, not the icon shape.
+- `aria-hidden="true"` on the icon.
+- A tooltip that shows the name on hover and focus. The kit pairs every icon button with a [Tooltip](/docs/components/tooltip).
+- Click handlers, plus a guard that ignores Enter, Space, and clicks while `data-loading` is set.
+
+## Helper
+
+```ts
+import "@codeui/styles/iconbutton.css";
+import { applyStyleProps } from "@codeui/styles";
+import { iconButtonStyleProps } from "@codeui/styles/iconbutton";
+
+const copy = document.querySelector("button")!;
+applyStyleProps(copy, iconButtonStyleProps({ variant: "secondary" }));
+// class="cui-button cui-iconbutton" data-cui="iconbutton" data-size="sm" data-variant="secondary"
+```

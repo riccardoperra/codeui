@@ -306,12 +306,12 @@ html[data-cui-input="keyboard"] .ts-art *,
 }
 
 /* Concentric with the bar: its radius less the 4px between them, and one more step in for a segment (DESIGN.md §5.1). */
-.ts-toolbar [data-cui="segmentedControl"] {
+.ts-toolbar [data-cui="segmentedcontrol"] {
 	border-radius: calc(var(--cui-radius-command) - var(--cui-space-1));
 }
 
-.ts-toolbar [data-cui="segmentedControlItem"],
-.ts-toolbar [data-cui="segmentedControlIndicator"] {
+.ts-toolbar [data-cui="segmentedcontrol-item"],
+.ts-toolbar [data-cui="segmentedcontrol-indicator"] {
 	border-radius: var(--cui-radius-lg);
 }
 
@@ -437,7 +437,7 @@ html[data-cui-input="keyboard"] .ts-art *,
 }
 
 /* Label on the left, control on the right, as in a settings row (DESIGN.md §9.2). */
-.ts-section [data-cui="switch-root"] {
+.ts-section [data-cui="switch"] {
 	display: grid;
 	grid-template-columns: minmax(0, 1fr) auto;
 	column-gap: var(--cui-space-3);
@@ -453,8 +453,8 @@ html[data-cui-input="keyboard"] .ts-art *,
 }
 
 /* A slider's value sits on the line of its label, at the end. */
-.ts-section [data-cui="slider-root"],
-.ts-picker [data-cui="slider-root"] {
+.ts-section [data-cui="slider"],
+.ts-picker [data-cui="slider"] {
 	grid-template-columns: minmax(0, 1fr) auto;
 	row-gap: var(--cui-space-1);
 }
@@ -786,12 +786,12 @@ button.ts-swatch {
 		border-radius: var(--cui-radius-nav);
 	}
 	/* Cards stay three across, so they keep the desktop card: the preview over its name. */
-	.ts-cards [data-cui="option-card-item-label"] {
+	.ts-cards [data-cui="optioncard-item-label"] {
 		flex-direction: column;
 		align-items: stretch;
 		gap: var(--cui-space-1);
 	}
-	.ts-cards [data-cui="option-card-preview"] {
+	.ts-cards [data-cui="optioncard-preview"] {
 		width: auto;
 		margin-bottom: var(--cui-space-1);
 	}

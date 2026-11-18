@@ -52,7 +52,7 @@ export const WithTitleAndAction: Story = {
 				title="A new version is available"
 				description="Reload to use the latest editor."
 				action={
-					<Button size="xs" theme="secondary">
+					<Button size="xs" variant="secondary">
 						Reload
 					</Button>
 				}

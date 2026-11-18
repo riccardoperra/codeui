@@ -88,7 +88,7 @@ export default function ExportForm() {
 					errorMessage={errors().width}
 				/>
 				<Stack direction="row" gap="3" align="center">
-					<Button type="submit" theme="primary" loading={saving()}>
+					<Button type="submit" variant="primary" loading={saving()}>
 						Save settings
 					</Button>
 					<div role="status">

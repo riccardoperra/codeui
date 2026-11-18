@@ -7,7 +7,7 @@ export default function DialogOverflow() {
 	const [open, setOpen] = createSignal(false);
 	return (
 		<>
-			<Button theme="secondary" onClick={() => setOpen(true)}>
+			<Button variant="secondary" onClick={() => setOpen(true)}>
 				Show import log
 			</Button>
 			<Dialog open={open()} onOpenChange={setOpen} title="Import log" size="md">
@@ -18,7 +18,7 @@ export default function DialogOverflow() {
 				</DialogPanelContent>
 				<DialogPanelFooter>
 					<div style={{ display: "flex", "justify-content": "flex-end" }}>
-						<Button theme="primary" onClick={() => setOpen(false)}>
+						<Button variant="primary" onClick={() => setOpen(false)}>
 							Done
 						</Button>
 					</div>

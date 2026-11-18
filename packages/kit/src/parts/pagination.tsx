@@ -83,7 +83,7 @@ export function Item(props: ItemProps) {
 		<IconButton
 			data-cui="pagination-item"
 			pill={local.rounded}
-			theme={local.active ? "primary" : "secondary"}
+			variant={local.active ? "primary" : "secondary"}
 			aria-label={local["aria-label"] ?? defaultLabel()}
 			{...others}
 			class={mergeClasses(styles.paginationItem, local.class)}

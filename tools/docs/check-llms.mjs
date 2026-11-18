@@ -19,13 +19,13 @@ const get = async path => {
 	const res = await fetch(new URL(path, base));
 	return { status: res.status, type: res.headers.get('content-type') ?? '', body: await res.text() };
 };
-const leaks = body => (body.match(/<SolidDemo|<PropsTable|<TypeTable/g) ?? []).length;
+const leaks = body => (body.match(/<SolidDemo|<HtmlDemo|<CssPlayground|<PropsTable|<TypeTable/g) ?? []).length;
 
 async function checkPage(slug) {
 	const md = await get(`/docs/${slug}.md`);
 	check(md.status === 200 && md.type.startsWith('text/markdown'), `/docs/${slug}.md is ${md.status} ${md.type}`);
 	check(/^# .+\(\/docs\//.test(md.body), `/docs/${slug}.md starts with the page title`);
-	check(!/<SolidDemo|<PropsTable|<TypeTable/.test(md.body), `/docs/${slug}.md has no unexpanded demo or props tags`);
+	check(!/<SolidDemo|<HtmlDemo|<CssPlayground|<PropsTable|<TypeTable/.test(md.body), `/docs/${slug}.md has no unexpanded demo or props tags`);
 	const txt = await get(`/docs/${slug}.txt`);
 	check(txt.status === 200 && txt.type.startsWith('text/plain') && txt.body === md.body, `/docs/${slug}.txt matches the .md text`);
 }

@@ -55,7 +55,7 @@ Handles, in order of preference:
 
 1. Keyboard: `page.keyboard.press('Tab' | 'Enter' | 'Space' | 'Escape' | 'ArrowDown' …)`. Reach controls with Tab like a user; never `.click()` what a keyboard user would press.
 2. Roles and accessible names: `page.getByRole('dialog')`, `getByRole('button', { name: 'Open (sm)' })`, `getByRole('option')`, `getByRole('tab', { selected: true })`.
-3. Kit parts: `[data-cui=<part>]`, e.g. `dialog-panel`, `dialog-close-button`, `popover-content`, `select-trigger`, `select-value`, `listbox-item`, `text-field-input`, `segmentedControlItem`. Part names live in `packages/kit/src/parts/*.tsx` and component sources.
+3. Kit parts: `[data-cui=<part>]`, e.g. `dialog-panel`, `dialog-close-button`, `popover-content`, `select-trigger`, `select-value`, `listbox-item`, `textfield-input`, `segmentedcontrol-item`. Part names live in `packages/kit/src/parts/*.tsx` and component sources.
 4. Computed style for theming: `getComputedStyle(el).colorScheme`, `backgroundColor`, and `--cui-*` custom properties on `document.documentElement`.
 
 Overlays (Dialog, Popover, Select content, Tooltip) render in a portal outside `#storybook-root`: query from `page`, not from the root.

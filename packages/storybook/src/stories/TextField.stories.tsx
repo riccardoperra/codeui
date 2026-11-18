@@ -19,7 +19,7 @@ const meta = {
 			type: "string",
 			control: { type: "text" },
 		},
-		theme: {
+		variant: {
 			options: themes,
 			default: "filled",
 			control: { type: "radio" },
@@ -56,7 +56,7 @@ export const TextFieldStory: Story = {
 	args: {
 		placeholder: "Insert a value...",
 		label: "Input label",
-		theme: "filled",
+		variant: "filled",
 	},
 };
 
@@ -66,7 +66,7 @@ export const TextFieldFilledVariant: Story = {
 	args: {
 		placeholder: "Insert a value",
 		label: "Input label",
-		theme: "filled",
+		variant: "filled",
 		description: "Your username is description",
 	},
 };
@@ -77,7 +77,7 @@ export const TextFieldOutlineVariant: Story = {
 	args: {
 		placeholder: "Insert a value",
 		label: "Input label",
-		theme: "outline",
+		variant: "outline",
 		description: "Lorem ipsum dolor sit amet",
 	},
 };
@@ -88,7 +88,7 @@ export const TextFieldInlineVariant: Story = {
 	args: {
 		placeholder: "Insert a value",
 		label: "Input label",
-		theme: "inline",
+		variant: "inline",
 		description: "Lorem ipsum dolor sit amet",
 	},
 };
@@ -104,7 +104,7 @@ export const TextFieldDisabled: Story = {
 						description={"Lorem ipsum dolor sit amet."}
 						label={"Input"}
 						size={"md"}
-						theme={theme}
+						variant={theme}
 						disabled
 					/>
 				)}
@@ -124,7 +124,7 @@ export const TextFieldReadonly: Story = {
 						description={"Lorem ipsum dolor sit amet."}
 						label={"Input"}
 						size={"md"}
-						theme={theme}
+						variant={theme}
 						readOnly
 					/>
 				)}
@@ -145,13 +145,13 @@ export const TextFieldRequired: Story = {
 							description={"Lorem ipsum dolor sit amet."}
 							label={"Input"}
 							size={"md"}
-							theme={theme}
+							variant={theme}
 							required
 						/>
 					)}
 				</For>
 			</DocsItemsContainer>
-			<Button theme={"secondary"} type={"submit"}>
+			<Button variant={"secondary"} type={"submit"}>
 				Submit
 			</Button>
 		</form>
@@ -199,7 +199,7 @@ export const TextFieldCustomClasses: Story = {
 	args: {
 		placeholder: "Insert a value",
 		label: "TextField label",
-		theme: "inline",
+		variant: "inline",
 		description: "Lorem ipsum dolor sit amet",
 		slotClasses: {
 			input: "text-center",

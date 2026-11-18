@@ -1,22 +1,22 @@
 @import "./checkbox-tokens.generated.css";
 
 @layer cui.components {
-  .cui-check-box-checkboxTheme {
-    --cui-checkboxTheme-size: ;
-    --cui-checkboxTheme-fontSize: ;
-    --cui-checkboxTheme-borderColor: var(--cui-component-checkbox-check-box-checkbox-theme-border-color);
-    --cui-checkboxTheme-background: var(--cui-component-checkbox-check-box-checkbox-theme-background);
-    --cui-checkboxTheme-activeHoverBackground: var(--cui-component-checkbox-check-box-checkbox-theme-active-hover-background);
-    --cui-checkboxTheme-nonActiveHoverBackground: var(--cui-component-checkbox-check-box-checkbox-theme-non-active-hover-background);
-    --cui-checkboxTheme-color: var(--cui-component-checkbox-check-box-checkbox-theme-color);
-    --cui-checkboxTheme-radius: calc(var(--cui-radius-md) * .6);
-    --cui-checkboxTheme-fill: transparent;
+  .cui-checkbox {
+    --cui-checkbox-size: ;
+    --cui-checkbox-font-size: ;
+    --cui-checkbox-border-color: var(--cui-component-checkbox-check-box-checkbox-theme-border-color);
+    --cui-checkbox-background: var(--cui-component-checkbox-check-box-checkbox-theme-background);
+    --cui-checkbox-active-hover-background: var(--cui-component-checkbox-check-box-checkbox-theme-active-hover-background);
+    --cui-checkbox-non-active-hover-background: var(--cui-component-checkbox-check-box-checkbox-theme-non-active-hover-background);
+    --cui-checkbox-color: var(--cui-component-checkbox-check-box-checkbox-theme-color);
+    --cui-checkbox-radius: calc(var(--cui-radius-md) * .6);
+    --cui-checkbox-fill: transparent;
   }
-  .cui-check-box-container {
+  .cui-checkbox {
     display: inline-flex;
     align-items: flex-start;
   }
-  .cui-check-box-input {
+  .cui-checkbox-input {
     border: 0;
     clip: rect(0px, 0px, 0px, 0px);
     clip-path: inset(50%);
@@ -28,50 +28,50 @@
     width: 1px;
     white-space: nowrap;
   }
-  .cui-check-box-input:focus-visible {
+  .cui-checkbox-input:focus-visible {
     outline: var(--cui-focus-width) solid var(--cui-focus-color);
     outline-offset: var(--cui-focus-offset);
-    border-radius: var(--cui-checkboxTheme-radius);
+    border-radius: var(--cui-checkbox-radius);
   }
-  .cui-check-box-icon {
-    width: var(--cui-checkboxTheme-fontSize);
-    height: var(--cui-checkboxTheme-fontSize);
+  .cui-checkbox-icon {
+    width: var(--cui-checkbox-font-size);
+    height: var(--cui-checkbox-font-size);
   }
-  .cui-check-box-control {
+  .cui-checkbox-control {
     position: relative;
-    height: var(--cui-checkboxTheme-size);
-    width: var(--cui-checkboxTheme-size);
+    height: var(--cui-checkbox-size);
+    width: var(--cui-checkbox-size);
     overflow: hidden;
-    border-radius: var(--cui-checkboxTheme-radius);
+    border-radius: var(--cui-checkbox-radius);
   }
-  .cui-check-box-control:focus-visible {
+  .cui-checkbox-control:focus-visible {
     outline: var(--cui-focus-width) solid var(--cui-focus-color);
     outline-offset: var(--cui-focus-offset);
   }
-  .cui-check-box-control:hover::before {
-    background-color: var(--cui-checkboxTheme-nonActiveHoverBackground);
+  .cui-checkbox-control:hover::before {
+    background-color: var(--cui-checkbox-non-active-hover-background);
   }
-  .cui-check-box-input:focus-visible + .cui-check-box-control {
+  .cui-checkbox-input:focus-visible + .cui-checkbox-control {
     outline: var(--cui-focus-width) solid var(--cui-focus-color);
     outline-offset: var(--cui-focus-offset);
   }
-  .cui-check-box-control:before {
+  .cui-checkbox-control:before {
     content: "";
-    background: var(--cui-checkboxTheme-fill);
-    border: var(--cui-border-width-strong) solid var(--cui-checkboxTheme-borderColor);
-    border-radius: var(--cui-checkboxTheme-radius);
+    background: var(--cui-checkbox-fill);
+    border: var(--cui-border-width-strong) solid var(--cui-checkbox-border-color);
+    border-radius: var(--cui-checkbox-radius);
     position: absolute;
     width: 100%;
     height: 100%;
     top: 0;
     left: 0;
   }
-  .cui-check-box-control:after {
+  .cui-checkbox-control:after {
     content: "";
     position: absolute;
     opacity: 0;
-    background: var(--cui-checkboxTheme-background);
-    border-radius: var(--cui-checkboxTheme-radius);
+    background: var(--cui-checkbox-background);
+    border-radius: var(--cui-checkbox-radius);
     width: 100%;
     height: 100%;
     top: 0;
@@ -80,48 +80,48 @@
     transform: scale(0.5);
     transform-origin: center;
   }
-  .cui-check-box-control:hover::after {
-    background-color: var(--cui-checkboxTheme-activeHoverBackground);
+  .cui-checkbox-control:hover::after {
+    background-color: var(--cui-checkbox-active-hover-background);
   }
-  [data-checked] .cui-check-box-control:after {
+  [data-checked] .cui-checkbox-control:after {
     opacity: 1;
     transform: scale(1);
   }
-  :where(.cui-check-box-control) {
-    &[data-theme="filled"] {
-      --cui-checkboxTheme-borderColor: transparent;
-      --cui-checkboxTheme-fill: var(--cui-component-checkbox-check-box-control-theme-filled-fill);
+  :where(.cui-checkbox-control) {
+    &[data-variant="filled"] {
+      --cui-checkbox-border-color: transparent;
+      --cui-checkbox-fill: var(--cui-component-checkbox-check-box-control-theme-filled-fill);
     }
 
     &[data-size="xs"] {
-      --cui-checkboxTheme-size: 1rem;
-      --cui-checkboxTheme-fontSize: var(--cui-component-checkbox-check-box-control-size-xs-font-size);
-      --cui-checkboxTheme-radius: calc(var(--cui-radius-md) * .5);
+      --cui-checkbox-size: 1rem;
+      --cui-checkbox-font-size: var(--cui-component-checkbox-check-box-control-size-xs-font-size);
+      --cui-checkbox-radius: calc(var(--cui-radius-md) * .5);
     }
 
     &[data-size="sm"] {
-      --cui-checkboxTheme-size: 1.25rem;
-      --cui-checkboxTheme-fontSize: var(--cui-component-checkbox-check-box-control-size-sm-font-size);
+      --cui-checkbox-size: 1.25rem;
+      --cui-checkbox-font-size: var(--cui-component-checkbox-check-box-control-size-sm-font-size);
     }
 
     &:is(:not([data-size]), [data-size="md"]) {
-      --cui-checkboxTheme-size: 1.5rem;
-      --cui-checkboxTheme-fontSize: var(--cui-component-checkbox-check-box-control-size-md-font-size);
+      --cui-checkbox-size: 1.5rem;
+      --cui-checkbox-font-size: var(--cui-component-checkbox-check-box-control-size-md-font-size);
     }
 
     &[data-size="lg"] {
-      --cui-checkboxTheme-size: 1.75rem;
-      --cui-checkboxTheme-fontSize: var(--cui-component-checkbox-check-box-control-size-lg-font-size);
-      --cui-checkboxTheme-radius: calc(var(--cui-radius-md) * .7);
+      --cui-checkbox-size: 1.75rem;
+      --cui-checkbox-font-size: var(--cui-component-checkbox-check-box-control-size-lg-font-size);
+      --cui-checkbox-radius: calc(var(--cui-radius-md) * .7);
     }
 
     &[data-size="xl"] {
-      --cui-checkboxTheme-size: 2rem;
-      --cui-checkboxTheme-fontSize: var(--cui-component-checkbox-check-box-control-size-xl-font-size);
-      --cui-checkboxTheme-radius: calc(var(--cui-radius-md) * .8);
+      --cui-checkbox-size: 2rem;
+      --cui-checkbox-font-size: var(--cui-component-checkbox-check-box-control-size-xl-font-size);
+      --cui-checkbox-radius: calc(var(--cui-radius-md) * .8);
     }
   }
-  .cui-check-box-indicator {
+  .cui-checkbox-indicator {
     display: flex;
     position: relative;
     width: 100%;
@@ -129,44 +129,44 @@
     align-items: center;
     justify-content: center;
     z-index: 10;
-    color: var(--cui-checkboxTheme-color);
+    color: var(--cui-checkbox-color);
     opacity: 0;
     transition: transform var(--cui-motion-duration-fast) var(--cui-motion-ease-out), opacity var(--cui-motion-duration-fast) var(--cui-motion-ease-out);
   }
-  [data-checked] .cui-check-box-indicator {
+  [data-checked] .cui-checkbox-indicator {
     opacity: 1;
   }
-  .cui-check-box-label {
+  .cui-checkbox-label {
     user-select: none;
     display: flex;
     align-items: center;
   }
-  [data-field-size=xs] .cui-check-box-label {
+  [data-field-size=xs] .cui-checkbox-label {
     min-height: 1rem;
     line-height: var(--cui-font-line-height-xs);
     font-size: var(--cui-font-size-xs);
   }
-  [data-field-size=sm] .cui-check-box-label {
+  [data-field-size=sm] .cui-checkbox-label {
     min-height: 1.25rem;
     line-height: var(--cui-font-line-height-snug);
     font-size: var(--cui-font-size-sm);
   }
-  :where(.cui-check-box-container):is(:not([data-field-size]), [data-field-size="md"]) .cui-check-box-label {
+  :where(.cui-checkbox):is(:not([data-field-size]), [data-field-size="md"]) .cui-checkbox-label {
     min-height: 1.5rem;
     line-height: var(--cui-font-line-height-snug);
     font-size: var(--cui-font-size-sm);
   }
-  [data-field-size=lg] .cui-check-box-label {
+  [data-field-size=lg] .cui-checkbox-label {
     min-height: 1.75rem;
     line-height: var(--cui-font-line-height-md);
     font-size: var(--cui-font-size-md);
   }
-  [data-field-size=xl] .cui-check-box-label {
+  [data-field-size=xl] .cui-checkbox-label {
     min-height: 2rem;
     line-height: var(--cui-font-line-height-md);
     font-size: var(--cui-font-size-md);
   }
-  .cui-check-box-content {
+  .cui-checkbox-content {
     display: flex;
     flex-direction: column;
     align-items: flex-start;

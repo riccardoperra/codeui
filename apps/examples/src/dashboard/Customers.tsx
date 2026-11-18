@@ -124,7 +124,7 @@ export function Customers() {
 			<Text as="p" size="xs" tone="muted">
 				{query().trim() ? `Nothing in this list matches “${query().trim()}”.` : "Every customer is in another list."}
 			</Text>
-			<Button theme="secondary" size={size()} onClick={() => (query().trim() ? setQuery("") : setTab("all"))}>
+			<Button variant="secondary" size={size()} onClick={() => (query().trim() ? setQuery("") : setTab("all"))}>
 				{query().trim() ? "Clear search" : "Show all customers"}
 			</Button>
 		</div>
@@ -152,10 +152,10 @@ export function Customers() {
 							<Text size="sm" weight="medium" class="ex-tabular">
 								{selected().length} selected
 							</Text>
-							<Button theme="secondary" size="xs" onClick={archiveSelected}>
+							<Button variant="secondary" size="xs" onClick={archiveSelected}>
 								Archive
 							</Button>
-							<Button theme="secondary" variant="ghost" size="xs" onClick={() => setSelected([])}>
+							<Button variant="secondary" ghost size="xs" onClick={() => setSelected([])}>
 								Clear
 							</Button>
 						</div>
@@ -197,7 +197,7 @@ export function Customers() {
 					<TextField aria-label="Search customers" placeholder="Search company or owner" size={size()} value={query()} onChange={setQuery} />
 				</div>
 			</div>
-			<Tabs theme="inline" value={tab()} onChange={value => setTab(value as TabId)} class="dash-tabs">
+			<Tabs variant="inline" value={tab()} onChange={value => setTab(value as TabId)} class="dash-tabs">
 				<TabsList aria-label="Customer status" class="dash-tabs-list">
 					<For each={tabs}>
 						{item => (
@@ -272,8 +272,8 @@ function Row(props: { customer: Customer; selected: boolean; onSelect: (checked:
 			</td>
 			<td class="dash-actions">
 				<DropdownMenu placement="bottom-end">
-					<Tooltip content="Actions" placement="left" theme="secondary">
-						<DropdownMenuTrigger as={IconButton} size="xs" theme="secondary" variant="ghost" aria-label={`Actions for ${c().company}`}>
+					<Tooltip content="Actions" placement="left" variant="secondary">
+						<DropdownMenuTrigger as={IconButton} size="xs" variant="secondary" ghost aria-label={`Actions for ${c().company}`}>
 							<Ellipsis size={16} />
 						</DropdownMenuTrigger>
 					</Tooltip>

@@ -127,7 +127,7 @@ export function Content<T extends ValidComponent = "div">(
 	const [local, others] = splitProps(props as PolymorphicProps<"div", ContentProps>, [
 		"class",
 		"ref",
-		"theme",
+		"variant",
 	]);
 	const delay = useContext(TooltipMotionContext);
 	const contentRef = motionRef({
@@ -140,7 +140,7 @@ export function Content<T extends ValidComponent = "div">(
 			{...others}
 			ref={mergeRefs(contentRef, local.ref)}
 			data-cui="tooltip-content"
-			data-theme={local.theme ?? "primary"}
+			data-variant={local.variant ?? "primary"}
 			class={mergeClasses(local.class, styles.tooltipContent())}
 		/>
 	);

@@ -3,7 +3,7 @@ title: "From 0.1.x"
 description: "Upgrade an app from @codeui/kit 0.1.x."
 ---
 
-This guide covers the Solid peer update, Kobalte behavior changes, compiled CSS, and package imports. If your app already uses styled parts from a component subpath, move those imports to the new `/parts` entry points.
+This guide covers the Solid peer update, Kobalte behavior changes, compiled CSS, package imports, and the `theme` to `variant` rename. If your app already uses styled parts from a component subpath, move those imports to the new `/parts` entry points.
 
 Work through the sections in order.
 
@@ -141,6 +141,41 @@ import { Root as DialogRoot } from "@codeui/kit/dialog/parts";
 Apply the same change to existing parts imports for `accordion`, `alert`, `badge`, `command-menu`, `kbd`, `option-card`, `popover`, `progress`, `settings`, `sheet`, `skeleton`, `slider`, `spinner`, `stack`, `switch`, `text`, and `toast`.
 
 New parts entry points include Select, Tabs, DropdownMenu, the field and selection controls, Tooltip, Pagination, and SegmentedControl. Add the `/parts` import when you build a custom primitive from them. For token values in build-time stylesheets, keep using `@codeui/kit/tokens`. See [Ready or parts](/docs/ready-or-parts) for the import conventions.
+
+## Rename `theme` to `variant`
+
+The word theme now means light or dark only. The appearance prop that picks a color or a field style is `variant`.
+
+| Component | 0.1.x | Now |
+| --- | --- | --- |
+| `Button`, `IconButton` | `theme="secondary"` | `variant="secondary"` |
+| `Button`, `IconButton` | `theme="secondary" variant="ghost"` | `variant="secondary" ghost` |
+| `Checkbox`, `RadioList` | `theme="filled"` | `variant="filled"` |
+| `TextField`, `TextArea`, `NumberField`, `Select` | `theme="inline"` | `variant="inline"` |
+| `Listbox` | `theme="primary"` | `variant="primary"` |
+| `Tabs` | `theme="inline"` | `variant="inline"` |
+| `Tooltip` | `theme="secondary"` | `variant="secondary"` |
+| `SegmentedControl` | `theme="primary"` | `accent` |
+| `createBaseFieldProps` | `{ theme: "filled" }` | `{ variant: "filled" }` |
+
+Attributes follow the props. `data-theme` becomes `data-variant`, and Tabs drops `data-tabs-theme` for `data-variant`. A ghost button sets `data-ghost`, and an accent SegmentedControl sets `data-accent`. SegmentedControl's `data-autoWidth` becomes `data-auto-width`.
+
+Toast and `Toaster` keep their `theme` option, and `data-cui-theme` is unchanged. Both pick light or dark.
+
+### Update selectors that target kit markup
+
+A compound component name in a `data-cui` marker is now one lowercase word. If your CSS or tests select these 0.1.x markers, update them.
+
+| 0.1.x | Now |
+| --- | --- |
+| `text-field` | `textfield` |
+| `number-field` | `numberfield` |
+| `icon-button` | `iconbutton` |
+| `radio-group-field` | `radiolist` |
+| `dropdown-menu-content`, `dropdown-menu-item` | `dropdownmenu-content`, `dropdownmenu-item` |
+| `segmentedControl`, `segmentedControlList`, `segmentedControlItem`, `segmentedControlIndicator` | `segmentedcontrol`, `segmentedcontrol-list`, `segmentedcontrol-item`, `segmentedcontrol-indicator` |
+
+The other 0.1.x markers keep their names. Class names in 0.1.x were generated, so do not select them. The new classes follow `cui-<component>-<part>`, as described in [CSS markup](/docs/css/markup). Kit `/parts` subpaths, such as `@codeui/kit/text-field/parts`, keep their hyphens.
 
 ## New components
 

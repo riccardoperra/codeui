@@ -63,7 +63,7 @@ export default function ThemePicker() {
 				<span style={{ color: shown().accent }}>return</span> `Hello, ${"{"}name{"}"}`;{"\n"}
 				{"}"}
 			</pre>
-			<Button theme="secondary" onClick={() => setOpen(true)}>
+			<Button variant="secondary" onClick={() => setOpen(true)}>
 				Change theme
 			</Button>
 			<p aria-live="polite" style={{ margin: 0, color: "var(--cui-text-hint)" }}>

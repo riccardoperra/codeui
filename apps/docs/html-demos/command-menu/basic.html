@@ -1,0 +1,45 @@
+<div role="dialog" aria-labelledby="cm-title" tabindex="-1" class="cui-dialog-panel cui-commandmenu-content" data-cui="commandmenu-content" data-motion="none" data-expanded>
+  <h2 id="cm-title" class="cui-commandmenu-title" data-cui="commandmenu-title">Search themes</h2>
+  <div class="cui-commandmenu-search" data-cui="commandmenu-search">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+      <circle cx="7" cy="7" r="4.25" />
+      <path d="m10.25 10.25 3.25 3.25" />
+    </svg>
+    <input type="text" role="combobox" placeholder="Search themes" autocomplete="off" spellcheck="false" aria-labelledby="cm-title" aria-expanded="true" aria-controls="cm-listbox" aria-autocomplete="list" aria-activedescendant="theme-dracula" class="cui-commandmenu-search-input" data-cui="commandmenu-search-input" />
+    <span aria-hidden="true" class="cui-commandmenu-hint" data-cui="commandmenu-hint">↑↓ preview · ↵ apply · esc cancel</span>
+  </div>
+  <ul role="listbox" id="cm-listbox" aria-labelledby="cm-title" class="cui-commandmenu-listbox" data-cui="commandmenu-listbox">
+    <li role="presentation" class="cui-commandmenu-group" data-cui="commandmenu-group">
+      <span class="cui-commandmenu-group-label" data-cui="commandmenu-group-label">Themes</span>
+    </li>
+    <li role="option" id="theme-vercel" aria-selected="false" aria-disabled="false" aria-labelledby="theme-vercel-label" class="cui-commandmenu-item" data-cui="commandmenu-item">
+      <span aria-hidden="true" class="cui-commandmenu-leading" data-cui="commandmenu-leading">
+        <span style="width: 16px; height: 16px; border-radius: 50%; background: linear-gradient(135deg, #0a0a0a 50%, #52a8ff 50%); box-shadow: inset 0 0 0 1px rgb(127 127 127 / 35%)"></span>
+      </span>
+      <div id="theme-vercel-label" class="cui-commandmenu-item-label" data-cui="commandmenu-item-label">Vercel</div>
+      <div aria-hidden="true" class="cui-commandmenu-item-indicator" data-cui="commandmenu-item-indicator">
+        <svg class="cui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 6 9 17l-5-5" />
+        </svg>
+      </div>
+    </li>
+    <li role="option" id="theme-dracula" aria-selected="false" aria-disabled="false" aria-labelledby="theme-dracula-label" class="cui-commandmenu-item" data-cui="commandmenu-item" data-highlighted>
+      <span aria-hidden="true" class="cui-commandmenu-leading" data-cui="commandmenu-leading">
+        <span style="width: 16px; height: 16px; border-radius: 50%; background: linear-gradient(135deg, #282a36 50%, #ff79c6 50%); box-shadow: inset 0 0 0 1px rgb(127 127 127 / 35%)"></span>
+      </span>
+      <div id="theme-dracula-label" class="cui-commandmenu-item-label" data-cui="commandmenu-item-label">Dracula</div>
+    </li>
+    <li role="option" id="theme-nord" aria-selected="false" aria-disabled="false" aria-labelledby="theme-nord-label" class="cui-commandmenu-item" data-cui="commandmenu-item">
+      <span aria-hidden="true" class="cui-commandmenu-leading" data-cui="commandmenu-leading">
+        <span style="width: 16px; height: 16px; border-radius: 50%; background: linear-gradient(135deg, #2e3440 50%, #88c0d0 50%); box-shadow: inset 0 0 0 1px rgb(127 127 127 / 35%)"></span>
+      </span>
+      <div id="theme-nord-label" class="cui-commandmenu-item-label" data-cui="commandmenu-item-label">Nord</div>
+    </li>
+    <li role="option" id="theme-solarized" aria-selected="false" aria-disabled="false" aria-labelledby="theme-solarized-label" class="cui-commandmenu-item" data-cui="commandmenu-item">
+      <span aria-hidden="true" class="cui-commandmenu-leading" data-cui="commandmenu-leading">
+        <span style="width: 16px; height: 16px; border-radius: 50%; background: linear-gradient(135deg, #fdf6e3 50%, #b58900 50%); box-shadow: inset 0 0 0 1px rgb(127 127 127 / 35%)"></span>
+      </span>
+      <div id="theme-solarized-label" class="cui-commandmenu-item-label" data-cui="commandmenu-item-label">Solarized light</div>
+    </li>
+  </ul>
+</div>

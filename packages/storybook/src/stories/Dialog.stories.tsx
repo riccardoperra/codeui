@@ -37,7 +37,7 @@ export const Sizes: Story = {
 					const [open, setOpen] = createSignal(false);
 					return (
 						<>
-							<Button theme={"primary"} onClick={() => setOpen(true)}>
+							<Button variant={"primary"} onClick={() => setOpen(true)}>
 								Open ({size})
 							</Button>
 							<Dialog
@@ -66,7 +66,7 @@ export const OverflowContent: Story = {
 		const [open, setOpen] = createSignal(false);
 		return (
 			<DocsItemsContainer>
-				<Button theme={"secondary"} onClick={() => setOpen(true)}>
+				<Button variant={"secondary"} onClick={() => setOpen(true)}>
 					Open Dialog
 				</Button>
 				<Dialog open={open()} title={`Dialog title`} size={"md"} onOpenChange={setOpen}>
@@ -83,12 +83,12 @@ export const OverflowContent: Story = {
 						})}
 					</DialogPanelContent>
 					<DialogPanelFooter>
-						<Button theme={"secondary"}>Close</Button>
-						<Button theme={"primary"}>Confirm</Button>
+						<Button variant={"secondary"}>Close</Button>
+						<Button variant={"primary"}>Confirm</Button>
 					</DialogPanelFooter>
 				</Dialog>
 
-				<Button theme={"secondary"} onClick={() => setOpen(true)}>
+				<Button variant={"secondary"} onClick={() => setOpen(true)}>
 					Open Dialog (full)
 				</Button>
 				<Dialog open={open()} title={`Dialog title`} size={"full"} onOpenChange={setOpen}>
@@ -105,8 +105,8 @@ export const OverflowContent: Story = {
 						})}
 					</DialogPanelContent>
 					<DialogPanelFooter>
-						<Button theme={"secondary"}>Close</Button>
-						<Button theme={"primary"}>Confirm</Button>
+						<Button variant={"secondary"}>Close</Button>
+						<Button variant={"primary"}>Confirm</Button>
 					</DialogPanelFooter>
 				</Dialog>
 			</DocsItemsContainer>
@@ -119,7 +119,7 @@ export const Parts: Story = {
 	tags: ["!autodocs"],
 	render: () => (
 		<D.Root defaultOpen>
-			<D.Trigger as={Button} theme={"secondary"}>
+			<D.Trigger as={Button} variant={"secondary"}>
 				Export video
 			</D.Trigger>
 			<D.Portal>
@@ -135,7 +135,7 @@ export const Parts: Story = {
 						<D.Description>Pick a format and a frame rate.</D.Description>
 						<D.Body>The export runs in the background. You can keep editing.</D.Body>
 						<D.Footer>
-							<Button theme={"primary"}>Export</Button>
+							<Button variant={"primary"}>Export</Button>
 						</D.Footer>
 					</D.Content>
 				</D.Positioner>
@@ -181,7 +181,7 @@ export const SettingsLayout: Story = {
 		const [section, setSection] = createSignal("General");
 		return (
 			<D.Root defaultOpen>
-				<D.Trigger as={Button} theme={"secondary"}>
+				<D.Trigger as={Button} variant={"secondary"}>
 					Open settings
 				</D.Trigger>
 				<D.Portal>
@@ -232,7 +232,7 @@ export const ExportLayout: Story = {
 	tags: ["!autodocs"],
 	render: () => (
 		<D.Root defaultOpen>
-			<D.Trigger as={Button} theme={"secondary"}>
+			<D.Trigger as={Button} variant={"secondary"}>
 				Export…
 			</D.Trigger>
 			<D.Portal>
@@ -272,14 +272,14 @@ export const ExportLayout: Story = {
 							</div>
 						</D.Body>
 						<D.Footer>
-							<Button theme={"secondary"}>Copy image</Button>
-							<Button theme={"primary"}>Download PNG · 3x</Button>
+							<Button variant={"secondary"}>Copy image</Button>
+							<Button variant={"primary"}>Download PNG · 3x</Button>
 						</D.Footer>
 						<D.Section variant={"well"} title={"More"} columns={2}>
-							<Button theme={"secondary"} variant={"ghost"}>
+							<Button variant={"secondary"} ghost>
 								Copy alt text
 							</Button>
-							<Button theme={"secondary"} variant={"ghost"}>
+							<Button variant={"secondary"} ghost>
 								Export settings…
 							</Button>
 						</D.Section>

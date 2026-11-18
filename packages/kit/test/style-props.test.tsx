@@ -23,19 +23,19 @@ it("updates Button appearance on the same node and clears the previous class and
 	));
 
 	const button = screen.getByRole("button", { name: "Save" });
-	expect(button).toHaveClass("cui-button-button", "checkout-compact");
+	expect(button).toHaveClass("cui-button", "checkout-compact");
 	expect(button).toHaveAttribute("data-size", "sm");
 	expect(button).toHaveAttribute("data-block", "");
 	expect(button).toHaveAttribute("data-pill", "");
 	expect(screen.getByRole("button", { name: "Close" })).toHaveAttribute(
 		"data-cui",
-		"icon-button",
+		"iconbutton",
 	);
 
 	setCompact(false);
 
 	expect(screen.getByRole("button", { name: "Save" })).toBe(button);
-	expect(button).toHaveClass("cui-button-button", "checkout-wide");
+	expect(button).toHaveClass("cui-button", "checkout-wide");
 	expect(button).not.toHaveClass("checkout-compact");
 	expect(button).toHaveAttribute("data-size", "lg");
 	expect(button).not.toHaveAttribute("data-block");
@@ -45,8 +45,8 @@ it("updates Button appearance on the same node and clears the previous class and
 it("uses the same Button defaults for custom markup and the kit component", () => {
 	render(() => (
 		<>
-			<button {...buttonStyleProps({ theme: "primary", block: true })}>Custom</button>
-			<Button theme="primary" block>
+			<button {...buttonStyleProps({ variant: "primary", block: true })}>Custom</button>
+			<Button variant="primary" block>
 				Kit
 			</Button>
 		</>
@@ -57,7 +57,7 @@ it("uses the same Button defaults for custom markup and the kit component", () =
 		"class",
 		"data-cui",
 		"data-size",
-		"data-theme",
+		"data-variant",
 		"data-block",
 	]) {
 		expect(custom.getAttribute(attribute)).toBe(kit.getAttribute(attribute));
@@ -75,7 +75,7 @@ it("updates all styled Switch parts and keeps checked state under Kobalte", () =
 		/>
 	));
 
-	const root = container.querySelector('[data-cui="switch-root"]');
+	const root = container.querySelector('[data-cui="switch"]');
 	const control = container.querySelector<HTMLElement>('[data-cui="switch-control"]')!;
 	const thumb = container.querySelector('[data-cui="switch-thumb"]');
 	expect(root).toHaveAttribute("data-size", "sm");

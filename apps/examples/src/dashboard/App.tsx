@@ -149,7 +149,7 @@ export function App() {
 			<div class="ex-page">
 				<header class="ex-header">
 					<Show when={isPhone()}>
-						<IconButton theme="secondary" variant="ghost" size={size()} aria-label="Open navigation" onClick={() => setNavOpen(true)}>
+						<IconButton variant="secondary" ghost size={size()} aria-label="Open navigation" onClick={() => setNavOpen(true)}>
 							<Menu size={20} />
 						</IconButton>
 					</Show>
@@ -164,22 +164,22 @@ export function App() {
 						when={!isPhone()}
 						fallback={
 							<>
-								<IconButton theme="secondary" variant="ghost" size={size()} aria-label="Search commands" onClick={openCommands}>
+								<IconButton variant="secondary" ghost size={size()} aria-label="Search commands" onClick={openCommands}>
 									<Search size={16} />
 								</IconButton>
-								<IconButton theme="primary" size={size()} aria-label="Invite people" onClick={invite}>
+								<IconButton variant="primary" size={size()} aria-label="Invite people" onClick={invite}>
 									<UserPlus size={16} />
 								</IconButton>
 							</>
 						}
 					>
-						<Tooltip content="Search commands" placement="bottom" theme="secondary">
-							<Button theme="secondary" size={size()} leftIcon={<Search size={16} />} onClick={openCommands}>
+						<Tooltip content="Search commands" placement="bottom" variant="secondary">
+							<Button variant="secondary" size={size()} leftIcon={<Search size={16} />} onClick={openCommands}>
 								Search
 								<Kbd>{modKey()}K</Kbd>
 							</Button>
 						</Tooltip>
-						<Button theme="primary" size={size()} leftIcon={<UserPlus size={16} />} onClick={invite}>
+						<Button variant="primary" size={size()} leftIcon={<UserPlus size={16} />} onClick={invite}>
 							Invite
 						</Button>
 					</Show>

@@ -7,7 +7,7 @@ export default function DialogTitle() {
 	const [open, setOpen] = createSignal(false);
 	return (
 		<>
-			<Button theme="secondary" onClick={() => setOpen(true)}>
+			<Button variant="secondary" onClick={() => setOpen(true)}>
 				Export settings
 			</Button>
 			<Dialog

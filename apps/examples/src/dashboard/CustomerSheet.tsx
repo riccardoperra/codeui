@@ -36,7 +36,7 @@ export function CustomerSheet() {
 				},
 			}}
 			footer={
-				<Button theme="secondary" size={size()} onClick={() => pulse.archive([customer()!.id])}>
+				<Button variant="secondary" size={size()} onClick={() => pulse.archive([customer()!.id])}>
 					Archive customer
 				</Button>
 			}
@@ -81,7 +81,7 @@ function Details(props: { customer: Customer }) {
 							The card on file was declined.
 						</Text>
 					</div>
-					<Button theme="secondary" size="sm" onClick={() => pulse.retryPayment(c().id)}>
+					<Button variant="secondary" size="sm" onClick={() => pulse.retryPayment(c().id)}>
 						Retry payment
 					</Button>
 				</div>

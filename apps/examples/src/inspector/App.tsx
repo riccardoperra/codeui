@@ -71,16 +71,16 @@ export function App() {
 						when={!isPhone()}
 						fallback={
 							<>
-								<IconButton theme="secondary" variant="ghost" size={size()} aria-label="Open workbench panel" onClick={() => bench.setSheetOpen(true)}>
+								<IconButton variant="secondary" ghost size={size()} aria-label="Open workbench panel" onClick={() => bench.setSheetOpen(true)}>
 									<PanelLeft size={16} />
 								</IconButton>
-								<IconButton ref={inspectorButton} theme="primary" size={size()} aria-label={inspectorLabel()} aria-expanded={bench.inspectorOpen()} onClick={toggleInspector}>
+								<IconButton ref={inspectorButton} variant="primary" size={size()} aria-label={inspectorLabel()} aria-expanded={bench.inspectorOpen()} onClick={toggleInspector}>
 									<ScanSearch size={16} />
 								</IconButton>
 							</>
 						}
 					>
-						<Button ref={inspectorButton} theme="primary" size={size()} class="pmi-inspect" aria-expanded={bench.inspectorOpen()} onClick={toggleInspector}>
+						<Button ref={inspectorButton} variant="primary" size={size()} class="pmi-inspect" aria-expanded={bench.inspectorOpen()} onClick={toggleInspector}>
 							{inspectorLabel()}
 							<Kbd>{modKey()}⇧D</Kbd>
 						</Button>

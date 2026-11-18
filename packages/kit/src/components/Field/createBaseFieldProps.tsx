@@ -9,7 +9,7 @@ type BaseFieldStyling = {
 	baseStyle(): string;
 	attributes: {
 		"data-size": NonNullable<NonNullable<BaseFieldProps>["size"]>;
-		"data-theme": NonNullable<NonNullable<BaseFieldProps>["theme"]>;
+		"data-variant": NonNullable<NonNullable<BaseFieldProps>["variant"]>;
 	};
 };
 
@@ -31,8 +31,8 @@ export function createBaseFieldProps(
 			get "data-size"() {
 				return props?.size ?? "sm";
 			},
-			get "data-theme"() {
-				return props?.theme ?? "filled";
+			get "data-variant"() {
+				return props?.variant ?? "filled";
 			},
 		},
 	};

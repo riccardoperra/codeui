@@ -113,7 +113,7 @@
 }
 
 /* The hint sits on the card's fill, so it takes the next step up. */
-.pmi-scenario [data-cui="alert-root"] {
+.pmi-scenario [data-cui="alert"] {
 	background: var(--cui-surface-field-hover);
 }
 
@@ -140,9 +140,9 @@
 	justify-items: start;
 }
 
-.pmi-lab-group > [data-cui="slider-root"],
-.pmi-lab-group > [data-cui="segmentedControl"],
-.pmi-lab-group > [data-cui="switch-root"] {
+.pmi-lab-group > [data-cui="slider"],
+.pmi-lab-group > [data-cui="segmentedcontrol"],
+.pmi-lab-group > [data-cui="switch"] {
 	width: 100%;
 }
 

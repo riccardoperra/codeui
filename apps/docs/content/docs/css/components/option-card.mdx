@@ -1,0 +1,89 @@
+---
+title: OptionCard
+description: A group of selectable cards in plain HTML, each a native radio with a label, a preview, and a badge.
+---
+
+Load `@codeui/styles/optioncard.css`, or `all.css`. The badge also needs `badge.css`, which `all.css` includes. The Solid component is documented in [OptionCard](/docs/components/option-card).
+
+## Demo
+
+<HtmlDemo name="option-card/basic" />
+
+## Markup
+
+| Part | Element | Class | `data-cui` |
+| --- | --- | --- | --- |
+| Root | `div role="radiogroup"` | `cui-optioncard` | `optioncard` |
+| Group label | `span` | `cui-optioncard-label` | `optioncard-label` |
+| Group hint | `div` | `cui-optioncard-description` | `optioncard-description` |
+| Error | `div` | `cui-optioncard-error-message` | `optioncard-error-message` |
+| Item | `div` | `cui-optioncard-item` | `optioncard-item` |
+| Input | `input type="radio"` | `cui-optioncard-item-input` | `optioncard-item-input` |
+| Card | `label` | `cui-optioncard-item-label` | `optioncard-item-label` |
+| Preview | `span` | `cui-optioncard-preview` | `optioncard-preview` |
+| Text | `span` | `cui-optioncard-item-text` | None |
+| Title row | `span` | `cui-optioncard-item-name` | None |
+| Badge | `span` | `cui-badge cui-optioncard-badge` | `optioncard-badge` |
+| Card hint | `span` | `cui-optioncard-item-description` | `optioncard-item-description` |
+
+The card is the `label` of the native radio, so a click on the card checks the radio without a script. `cui-optioncard-item-input` has no rules, so hide the input visually with your own style, as the demos do inline. The preview, the badge, and the card hint are optional. Use a `span` for the preview, since a `label` holds only phrasing content.
+
+| Attribute | Element | Values | Default |
+| --- | --- | --- | --- |
+| `data-orientation` | Root | `vertical` | None |
+| `data-variant` | Card | `tile` | None |
+
+The badge takes the [Badge](/docs/css/components/badge) attributes `data-size`, `data-tone`, and `data-variant`. Its `data-cui` must stay `optioncard-badge`, because the card styles select on it.
+
+## Variants
+
+### Tile
+
+<HtmlDemo name="option-card/tile" />
+
+Without `data-variant`, the card has 12px padding. `data-variant="tile"` on the card reduces the padding to 8px and drops the gap under the preview. Previews are decorative wells above the title. Keep the choice clear from its title alone.
+
+### Vertical
+
+<HtmlDemo name="option-card/vertical" />
+
+Without `data-orientation`, the root lays the cards three across, each at least 128px wide. `data-orientation="vertical"` puts them in one column. At 768px and narrower the cards always stack in one column, and each card puts its preview beside its text. The rule reads the viewport width, so inside a narrow frame, such as these demos, the cards stack too.
+
+## States
+
+### Checked
+
+`data-checked` on the card raises the fill one step and draws a 2px `--cui-accent-focus` outline inset 2px from its edge. `data-checked` on the item or the card sets the title weight to 600. The first demo shows Dark checked.
+
+### Disabled
+
+<HtmlDemo name="option-card/disabled" />
+
+`data-disabled` on the card sets the hint text color and the `not-allowed` cursor, and turns off the hover fill and the press scale. Set the native `disabled` attribute on the input.
+
+### Invalid
+
+<HtmlDemo name="option-card/invalid" />
+
+`data-invalid` on the item draws a 2px danger outline on its card. It replaces the checked outline. Render the error only while the group is invalid, and set `aria-invalid="true"` on the root.
+
+## What you supply
+
+- `data-checked` on the item and the card whenever the checked radio changes. The radio itself changes without a script.
+- Arrow-key navigation. Native radios that share a `name` move the selection with the arrow keys.
+- `aria-labelledby` on the root for the group label, and `aria-describedby` for the hints and the error.
+- `data-disabled` on the card next to the native `disabled` attribute, and `data-invalid` on each item.
+
+## Helper
+
+```ts
+import "@codeui/styles/optioncard.css";
+import { applyStyleProps } from "@codeui/styles";
+import { optionCardStyleProps } from "@codeui/styles/optioncard";
+
+applyStyleProps(document.querySelector("[data-cui=optioncard]")!, optionCardStyleProps({ orientation: "vertical" }));
+for (const card of document.querySelectorAll<HTMLElement>("[data-cui=optioncard]")) {
+  applyStyleProps(card, optionCardStyleProps.itemLabel({ variant: "tile" }));
+}
+// class="cui-optioncard-item-label" data-cui="optioncard-item-label" data-variant="tile"
+```

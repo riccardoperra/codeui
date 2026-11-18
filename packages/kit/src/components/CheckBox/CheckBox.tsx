@@ -7,7 +7,7 @@ import type { FieldWithErrorMessageSupport } from "../Field/FieldError/createFie
 type CheckBoxSlot = "root" | "input" | "label" | "errorLabel" | "control";
 
 export type CheckBoxProps = CheckboxRootOptions &
-	Pick<P.RootProps, "size" | "theme"> &
+	Pick<P.RootProps, "size" | "variant"> &
 	FieldWithErrorMessageSupport &
 	SlotProp<CheckBoxSlot> & {
 		description?: string;
@@ -20,7 +20,7 @@ export function Checkbox(props: CheckBoxProps) {
 		"description",
 		"size",
 		"label",
-		"theme",
+		"variant",
 		"errorMessage",
 		"ref",
 		"slotClasses",
@@ -29,12 +29,12 @@ export function Checkbox(props: CheckBoxProps) {
 	return (
 		<P.Root
 			size={local.size}
-			theme={local.theme}
+			variant={local.variant}
 			class={local.slotClasses?.root}
 			{...others}
 		>
 			<P.Input class={local.slotClasses?.input} ref={local.ref} />
-			<P.Control size={local.size} theme={local.theme} class={local.slotClasses?.control}>
+			<P.Control size={local.size} variant={local.variant} class={local.slotClasses?.control}>
 				<P.Indicator />
 			</P.Control>
 

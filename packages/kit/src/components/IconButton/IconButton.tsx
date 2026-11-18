@@ -1,6 +1,6 @@
 import "@codeui/styles/theme.css";
 import "@codeui/styles/button.css";
-import "@codeui/styles/icon-button.css";
+import "@codeui/styles/iconbutton.css";
 import { mergeClasses } from "../../utils/css";
 import { Button } from "../Button/Button";
 import { splitProps, ValidComponent } from "solid-js";
@@ -21,7 +21,7 @@ export function IconButton<T extends ValidComponent = "button">(props: Polymorph
 
 	return (
 		<Button
-			data-cui="icon-button"
+			data-cui="iconbutton"
 			{...others as KButtonRootProps}
 			class={mergeClasses(styles.iconButton, local.class)}
 		/>

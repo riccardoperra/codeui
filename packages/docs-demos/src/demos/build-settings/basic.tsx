@@ -151,7 +151,7 @@ export default function Settings() {
 
 	return (
 		<Dialog.Root onOpenChange={open => !open && setQuery("")}>
-			<Dialog.Trigger as={Button} theme="secondary" leftIcon={<SlidersIcon />}>
+			<Dialog.Trigger as={Button} variant="secondary" leftIcon={<SlidersIcon />}>
 				Settings
 			</Dialog.Trigger>
 			<Dialog.Portal>
@@ -206,7 +206,7 @@ export default function Settings() {
 													<div class="settings-demo-intro">
 														<p>{intro()}</p>
 														<Show when={section().id === "experiments"}>
-															<Button size="sm" theme="secondary" variant="ghost" leftIcon={<ResetIcon />} onClick={restore}>
+															<Button size="sm" variant="secondary" ghost leftIcon={<ResetIcon />} onClick={restore}>
 																Restore defaults
 															</Button>
 														</Show>

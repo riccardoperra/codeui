@@ -1,7 +1,7 @@
 import type { SkeletonStyleOptions } from "../generated-appearance/skeleton";
 import * as styles from "../components/Skeleton/Skeleton.css";
 export const skeletonParts = {
-	root: "skeleton-root",
+	root: "skeleton",
 } as const;
 
 export type SkeletonPart = keyof typeof skeletonParts;

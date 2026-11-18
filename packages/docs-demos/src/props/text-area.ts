@@ -5,7 +5,7 @@ import type { PropNotes } from "./notes";
 /** Props that TextArea adds on top of Kobalte's text field root. */
 export type TextArea = Pick<
 	TextAreaProps,
-	"label" | "description" | "errorMessage" | "placeholder" | "size" | "theme" | "options" | "classes" | "ref"
+	"label" | "description" | "errorMessage" | "placeholder" | "size" | "variant" | "options" | "classes" | "ref"
 >;
 
 /** Kobalte text field root options that TextArea passes through. */
@@ -24,7 +24,7 @@ export const notes = {
 		errorMessage: { description: 'Message under the textarea. Renders only when validationState is "invalid".' },
 		placeholder: { description: "Placeholder of the textarea." },
 		size: { default: '"sm"', description: "Font size of every part. The textarea height follows its rows." },
-		theme: { default: '"filled"', description: "A filled box, or a bottom border only." },
+		variant: { default: '"filled"', description: "A filled box, or a bottom border only." },
 		options: { description: "Props for Kobalte's TextField.TextArea, such as autoResize and submitOnEnter." },
 		classes: { description: "Classes merged after the kit styles, one per part." },
 		ref: { description: "Ref to the textarea element, not the root." },

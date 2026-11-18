@@ -39,8 +39,8 @@ Only the root has a kit `data-cui` attribute. Kobalte supplies state and orienta
 
 <SolidDemo name="tabs/inline" />
 
-`theme="inline"` makes TabsList insert an indicator aligned with the selected header.
-The default theme has no indicator. The theme does not change panel behavior.
+`variant="inline"` makes TabsList insert an indicator aligned with the selected header.
+The default variant has no indicator. The variant does not change panel behavior.
 Import `Indicator` from `@codeui/kit/tabs/parts` to place it explicitly.
 
 ### Vertical orientation
@@ -70,7 +70,7 @@ Renders the root and shares selection with its children.
 
 ### `TabsList`
 
-Renders the tablist and the inline theme's indicator.
+Renders the tablist and the inline variant's indicator.
 
 <PropsTable name="TabsList" />
 
@@ -98,7 +98,7 @@ Import `Root`, `List`, `Trigger`, `Content`, and `Indicator` from `@codeui/kit/t
 ```tsx
 import * as T from "@codeui/kit/tabs/parts";
 
-<T.Root defaultValue="preview" theme="inline">
+<T.Root defaultValue="preview" variant="inline">
 	<T.List aria-label="Editor views">
 		<T.Trigger value="preview">Preview</T.Trigger>
 		<T.Trigger value="source">Source</T.Trigger>
@@ -109,7 +109,7 @@ import * as T from "@codeui/kit/tabs/parts";
 </T.Root>
 ```
 
-`List` uses the children you supply. The ready `TabsList` adds an indicator for the inline theme.
+`List` uses the children you supply. The ready `TabsList` adds an indicator for the inline variant.
 
 ## Accessibility
 

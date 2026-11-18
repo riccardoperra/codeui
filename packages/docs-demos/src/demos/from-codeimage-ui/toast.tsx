@@ -8,7 +8,7 @@ export default function SaveToast() {
 	return (
 		<>
 			<Button
-				theme="primary"
+				variant="primary"
 				onClick={() => notifications.show({ tone: "success", description: "Snippet saved" })}
 			>
 				Save

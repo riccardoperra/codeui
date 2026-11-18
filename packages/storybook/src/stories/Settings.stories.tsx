@@ -171,7 +171,7 @@ export const MarkersPictureDetails: Story = {
 					{control => (
 						<Button
 							aria-describedby={control["aria-labelledby"]}
-							theme="secondary"
+							variant="secondary"
 							size="sm"
 						>
 							Download

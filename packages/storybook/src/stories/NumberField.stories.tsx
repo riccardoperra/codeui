@@ -43,7 +43,7 @@ const meta = {
 			type: "string",
 			control: { type: "text" },
 		},
-		theme: {
+		variant: {
 			options: themes,
 			default: "filled",
 			control: { type: "radio" },
@@ -80,7 +80,7 @@ export const TextFieldStory: Story = {
 	args: {
 		placeholder: "Insert a value...",
 		label: "Input label",
-		theme: "filled",
+		variant: "filled",
 	},
 };
 
@@ -99,7 +99,7 @@ export const MinMax: Story = {
 		max: 500,
 		placeholder: "Insert a value...",
 		label: "Input label",
-		theme: "filled",
+		variant: "filled",
 	},
 };
 
@@ -109,7 +109,7 @@ export const Precision: Story = {
 		precision: 4,
 		placeholder: "Insert a value...",
 		label: "Input label",
-		theme: "filled",
+		variant: "filled",
 	},
 };
 
@@ -120,7 +120,7 @@ export const Step: Story = {
 		step: 0.01,
 		placeholder: "Insert a value...",
 		label: "Input label",
-		theme: "filled",
+		variant: "filled",
 	},
 };
 
@@ -131,7 +131,7 @@ export const Prefix: Story = {
 		prefix: "$",
 		placeholder: "Insert a value...",
 		label: "Input label",
-		theme: "filled",
+		variant: "filled",
 	},
 };
 
@@ -142,7 +142,7 @@ export const Postfix: Story = {
 		postfix: "$",
 		placeholder: "Insert a value...",
 		label: "Input label",
-		theme: "filled",
+		variant: "filled",
 	},
 };
 
@@ -152,7 +152,7 @@ export const NumberFieldFilledVariant: Story = {
 	args: {
 		placeholder: "Insert a value",
 		label: "Input label",
-		theme: "filled",
+		variant: "filled",
 		description: "Your username is description",
 	},
 };
@@ -163,7 +163,7 @@ export const NumberFieldOutlineVariant: Story = {
 	args: {
 		placeholder: "Insert a value",
 		label: "Input label",
-		theme: "outline",
+		variant: "outline",
 		description: "Lorem ipsum dolor sit amet",
 	},
 };
@@ -174,7 +174,7 @@ export const NumberFieldInlineVariant: Story = {
 	args: {
 		placeholder: "Insert a value",
 		label: "Input label",
-		theme: "inline",
+		variant: "inline",
 		description: "Lorem ipsum dolor sit amet",
 	},
 };
@@ -190,7 +190,7 @@ export const NumberFieldDisabled: Story = {
 						description={"Lorem ipsum dolor sit amet."}
 						label={"Input"}
 						size={"md"}
-						theme={theme}
+						variant={theme}
 						disabled
 					/>
 				)}
@@ -210,7 +210,7 @@ export const NumberFieldReadonly: Story = {
 						description={"Lorem ipsum dolor sit amet."}
 						label={"Input"}
 						size={"md"}
-						theme={theme}
+						variant={theme}
 						readOnly
 					/>
 				)}
@@ -231,13 +231,13 @@ export const NumberFieldRequired: Story = {
 							description={"Lorem ipsum dolor sit amet."}
 							label={"Input"}
 							size={"md"}
-							theme={theme}
+							variant={theme}
 							required
 						/>
 					)}
 				</For>
 			</DocsItemsContainer>
-			<Button theme={"secondary"} type={"submit"}>
+			<Button variant={"secondary"} type={"submit"}>
 				Submit
 			</Button>
 		</form>

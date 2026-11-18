@@ -24,7 +24,7 @@ const tabs = [
 export const TabsStory: Story = {
 	name: "Tabs",
 	render: () => (
-		<Tabs theme={"default"}>
+		<Tabs variant={"default"}>
 			<TabsList>
 				<For each={tabs}>
 					{tab => <TabsHeader value={tab.id}>{tab.title}</TabsHeader>}
@@ -40,7 +40,7 @@ export const TabsStory: Story = {
 export const TabsInlineHorizontalThemeStory: Story = {
 	name: "Tabs Inline (horizontal)",
 	render: () => (
-		<Tabs theme={"inline"} orientation={"horizontal"}>
+		<Tabs variant={"inline"} orientation={"horizontal"}>
 			<TabsList>
 				<For each={tabs}>
 					{tab => <TabsHeader value={tab.id}>{tab.title}</TabsHeader>}
@@ -57,7 +57,7 @@ export const TabsInlineThemeStory: Story = {
 	name: "Tabs Inline (vertical)",
 	render: () => (
 		<DocsItemsContainer>
-			<Tabs theme={"inline"} orientation={"vertical"}>
+			<Tabs variant={"inline"} orientation={"vertical"}>
 				<TabsList>
 					<For each={tabs}>
 						{tab => <TabsHeader value={tab.id}>{tab.title}</TabsHeader>}
@@ -94,15 +94,15 @@ export const DynamicTabsStory: Story = {
 			<DocsItemsContainer>
 				<DocsContainerFlex gap={"2rem"}>
 					<DocsContainerFlex direction={"row"} gap={"1rem"}>
-						<Button size={"sm"} theme={"secondary"} onClick={addTab}>
+						<Button size={"sm"} variant={"secondary"} onClick={addTab}>
 							Add tab
 						</Button>
-						<Button size={"sm"} theme={"secondary"} onClick={removeTab}>
+						<Button size={"sm"} variant={"secondary"} onClick={removeTab}>
 							Remove tab
 						</Button>
 					</DocsContainerFlex>
 
-					<Tabs theme={"inline"} orientation={"horizontal"}>
+					<Tabs variant={"inline"} orientation={"horizontal"}>
 						<TabsList>
 							<For each={value()}>
 								{tab => <TabsHeader value={tab.id}>{tab.title}</TabsHeader>}

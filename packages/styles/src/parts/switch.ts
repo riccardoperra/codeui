@@ -1,7 +1,7 @@
 import * as styles from "../components/Switch/Switch.css";
 import type { SwitchStyleOptions } from "../generated-appearance/switch";
 export const switchParts = {
-	root: "switch-root",
+	root: "switch",
 	input: "switch-input",
 	control: "switch-control",
 	thumb: "switch-thumb",

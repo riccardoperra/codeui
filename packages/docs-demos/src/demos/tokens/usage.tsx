@@ -14,7 +14,7 @@ export default function TokensUsage() {
 			}}
 		>
 			<Text size="caption">fibonacci.ts</Text>
-			<Button theme="primary" size="sm">
+			<Button variant="primary" size="sm">
 				Export PNG
 			</Button>
 		</div>

@@ -1,0 +1,74 @@
+---
+title: Tooltip
+description: A short label next to a control, in plain HTML.
+---
+
+Load `@codeui/styles/tooltip.css`, or `all.css`. The Solid component is documented in [Tooltip](/docs/components/tooltip).
+
+## Demo
+
+<HtmlDemo name="tooltip/basic" />
+
+The demos render the open tooltip in normal flow, under its trigger. On a page, the tooltip floats and your positioning code places it.
+
+## Markup
+
+| Part | Element | Class | `data-cui` |
+| --- | --- | --- | --- |
+| Trigger | `span` or `div` around the control | `cui-tooltip-trigger` | `tooltip-trigger` |
+| Content | `div` | `cui-tooltip-content` | `tooltip-content` |
+
+The trigger wrapper is an inline block, so it takes the size of the control inside it. You can also leave the wrapper out and point the tooltip at the control itself.
+
+| Attribute | Values | Default |
+| --- | --- | --- |
+| `data-variant` on the content | `primary`, `secondary` | None, the neutral fill |
+| `data-expanded` on the content | Presence | Off |
+| `data-motion` on the content | `none` | None |
+
+## Variants
+
+### Colors
+
+<HtmlDemo name="tooltip/themes" />
+
+`primary` fills the tooltip with the brand blue. `secondary` uses the neutral fill.
+Inkstone keeps the accent for focus, selection, and the one primary action, so prefer `secondary` in toolbars and panels.
+
+Without `data-variant`, the tooltip uses the neutral base fill. The Solid component sets `primary` by default, so set a variant to match it.
+
+### Icon button trigger
+
+<HtmlDemo name="tooltip/icon-button" />
+
+An icon button needs its own `aria-label`. The tooltip shows the same label to sighted users.
+
+## States
+
+### Open
+
+`data-expanded` plays the pop-in: a fade from `scale(0.96)`. The animation grows from `--cui-popper-content-transform-origin`, so set it to the side that faces the trigger.
+Without `data-expanded`, the content plays its exit animation and stays transparent. Set it on an open tooltip even without a script.
+
+### Closing
+
+Remove `data-expanded` while the tooltip is still in the page, and remove it when the animation ends. `data-motion="none"` turns off both animations. Use it when the tooltip opens from keyboard focus. With reduced motion, the tooltip only fades.
+
+## What you supply
+
+- Showing the tooltip on hover after a short delay, 200ms in the kit, and at once on keyboard focus. Hide it on pointer leave, blur, and Escape.
+- Placement next to the trigger, a flip when it does not fit, and `--cui-popper-content-transform-origin`.
+- `role="tooltip"` on the content and `aria-describedby` from the control to it. An icon-only control still needs an `aria-label`.
+- Text only. A tooltip cannot take focus, so put links or buttons in a [Popover](/docs/css/components/popover).
+
+## Helper
+
+```ts
+import "@codeui/styles/tooltip.css";
+import { applyStyleProps } from "@codeui/styles";
+import { tooltipStyleProps } from "@codeui/styles/tooltip";
+
+const tip = document.querySelector<HTMLElement>("[role=tooltip]")!;
+applyStyleProps(tip, tooltipStyleProps({ variant: "secondary" }));
+// class="cui-tooltip-content" data-cui="tooltip-content" data-variant="secondary"
+```

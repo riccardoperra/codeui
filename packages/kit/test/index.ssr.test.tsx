@@ -128,7 +128,7 @@ it("server renders a closed command menu as its trigger only", () => {
 			</CommandMenuParts.Portal>
 		</CommandMenuParts.Root>
 	));
-	expect(html).toContain('data-cui="command-menu-trigger"');
+	expect(html).toContain('data-cui="commandmenu-trigger"');
 	expect(html).toContain("Commands");
 	expect(html).not.toContain('role="dialog"');
 	expect(html).not.toContain('role="combobox"');

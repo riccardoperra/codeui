@@ -178,23 +178,23 @@ it("links a textarea label to an explicit options input ID", () => {
 it.each(["filled", "inline"] as const)("Checkbox and RadioList apply theme %s", theme => {
 	const { container } = render(() => (
 		<>
-			<Checkbox label="Wrap lines" theme={theme} />
-			<RadioList label="Mode" theme={theme}>
+			<Checkbox label="Wrap lines" variant={theme} />
+			<RadioList label="Mode" variant={theme}>
 				<RadioListItem value="dark" label="Dark" />
 			</RadioList>
 		</>
 	));
-	expect(container.querySelector('[data-cui="checkbox"]')).toHaveAttribute("data-field-theme", theme);
-	expect(container.querySelector('[data-cui="radio-group-field"]')).toHaveAttribute(
-		"data-field-theme",
+	expect(container.querySelector('[data-cui="checkbox"]')).toHaveAttribute("data-field-variant", theme);
+	expect(container.querySelector('[data-cui="radiolist"]')).toHaveAttribute(
+		"data-field-variant",
 		theme,
 	);
 });
 it("gives filled and inline checkboxes different control styles", () => {
 	const { container } = render(() => (
 		<>
-			<Checkbox label="Filled" theme="filled" />
-			<Checkbox label="Inline" theme="inline" />
+			<Checkbox label="Filled" variant="filled" />
+			<Checkbox label="Inline" variant="inline" />
 		</>
 	));
 	const [filled, inline] = container.querySelectorAll('[data-cui="checkbox"] > div');

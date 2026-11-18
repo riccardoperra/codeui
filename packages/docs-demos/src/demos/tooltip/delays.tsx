@@ -3,14 +3,14 @@ import { Button, Tooltip } from "@codeui/kit";
 export default function TooltipDelays() {
 	return (
 		<>
-			<Tooltip content="Opens after 200ms" theme="secondary">
-				<Button theme="secondary">Default delay</Button>
+			<Tooltip content="Opens after 200ms" variant="secondary">
+				<Button variant="secondary">Default delay</Button>
 			</Tooltip>
-			<Tooltip content="Opens at once" theme="secondary" openDelay={0}>
-				<Button theme="secondary">No delay</Button>
+			<Tooltip content="Opens at once" variant="secondary" openDelay={0}>
+				<Button variant="secondary">No delay</Button>
 			</Tooltip>
-			<Tooltip content="Stays 300ms after you leave" theme="secondary" closeDelay={300}>
-				<Button theme="secondary">Close delay</Button>
+			<Tooltip content="Stays 300ms after you leave" variant="secondary" closeDelay={300}>
+				<Button variant="secondary">Close delay</Button>
 			</Tooltip>
 		</>
 	);

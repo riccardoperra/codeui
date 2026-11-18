@@ -23,10 +23,8 @@ const meta = {
 		pill: {
 			type: "boolean",
 		},
-		theme: {
-			defaultValue: "neutral",
-			options: ["neutral", "primary"],
-			control: { type: "inline-radio" },
+		accent: {
+			type: "boolean",
 		},
 	},
 } satisfies Meta<typeof SegmentedControl>;
@@ -110,7 +108,7 @@ export const ThemePrimary: Story = {
 		</SegmentedControl>
 	),
 	args: {
-		theme: "primary",
+		accent: true,
 	},
 };
 
@@ -187,7 +185,7 @@ export const FluidWidth: Story = {
 						<li>Height: {height()}px</li>
 					</ul>
 					<div style={{ "margin-bottom": "1rem" }}>
-						<Button size={"xs"} theme={"secondary"} onClick={toggle}>
+						<Button size={"xs"} variant={"secondary"} onClick={toggle}>
 							Change sizes
 						</Button>
 					</div>

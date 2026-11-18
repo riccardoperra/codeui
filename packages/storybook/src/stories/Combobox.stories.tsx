@@ -145,7 +145,7 @@ export const Required: Story = {
 			}}
 		>
 			<Combobox label="Fruit" name="fruit" required options={fruits} />
-			<Button theme="secondary" type="submit">
+			<Button variant="secondary" type="submit">
 				Submit
 			</Button>
 		</form>

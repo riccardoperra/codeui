@@ -1,7 +1,7 @@
 import type { TableStyleOptions } from "../generated-appearance/table";
 import * as styles from "../components/Table/Table.css";
 export const tableParts = {
-	root: "table-root",
+	root: "table",
 	scrollArea: "table-scroll-area",
 } as const;
 

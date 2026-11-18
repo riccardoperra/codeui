@@ -1,5 +1,5 @@
 @layer cui.components {
-  .cui-table-root {
+  .cui-table {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
@@ -66,7 +66,7 @@
       border-end-end-radius: var(--cui-radius-nav);
     }
   }
-  :where(.cui-table-root) {
+  :where(.cui-table) {
     &[data-size="sm"] {
       font-size: var(--cui-font-size-xs);
       line-height: var(--cui-font-line-height-xs);
@@ -85,7 +85,7 @@
       background-color: color-mix(in srgb, var(--cui-surface-input) 50%, transparent);
     }
   }
-  .cui-table-scrollArea {
+  .cui-table-scroll-area {
     display: block;
     max-width: 100%;
     overflow-x: auto;

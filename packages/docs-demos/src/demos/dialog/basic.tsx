@@ -5,7 +5,7 @@ export default function DialogBasic() {
 	const [open, setOpen] = createSignal(false);
 	return (
 		<>
-			<Button theme="negative" onClick={() => setOpen(true)}>
+			<Button variant="negative" onClick={() => setOpen(true)}>
 				Delete snippet
 			</Button>
 			<Dialog open={open()} onOpenChange={setOpen} title="Delete snippet" size="sm">
@@ -14,10 +14,10 @@ export default function DialogBasic() {
 				</DialogPanelContent>
 				<DialogPanelFooter>
 					<div style={{ display: "flex", gap: "8px", "justify-content": "flex-end" }}>
-						<Button theme="secondary" onClick={() => setOpen(false)}>
+						<Button variant="secondary" onClick={() => setOpen(false)}>
 							Cancel
 						</Button>
-						<Button theme="negative" onClick={() => setOpen(false)}>
+						<Button variant="negative" onClick={() => setOpen(false)}>
 							Delete
 						</Button>
 					</div>

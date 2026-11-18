@@ -117,7 +117,7 @@ describe("Skeleton", () => {
 
 	it("takes CSS lengths for its size and radius", () => {
 		const { container } = render(() => <Skeleton width="12rem" height="1.25rem" radius="50%" />);
-		const block = container.querySelector<HTMLElement>('[data-cui="skeleton-root"]')!;
+		const block = container.querySelector<HTMLElement>('[data-cui="skeleton"]')!;
 		expect(block.style.width).toBe("12rem");
 		expect(block.style.height).toBe("1.25rem");
 		expect(block.style.borderRadius).toBe("50%");
@@ -125,14 +125,14 @@ describe("Skeleton", () => {
 
 	it("draws a circle as wide as it is high", () => {
 		const { container } = render(() => <Skeleton circle height="2rem" />);
-		const block = container.querySelector<HTMLElement>('[data-cui="skeleton-root"]')!;
+		const block = container.querySelector<HTMLElement>('[data-cui="skeleton"]')!;
 		expect(block.style.width).toBe("2rem");
 		expect(block.style.height).toBe("2rem");
 	});
 
 	it("keeps the engine's numeric px sizes on the styled part", () => {
 		const { container } = render(() => <S.Root width={40} height={8} />);
-		const block = container.querySelector<HTMLElement>('[data-cui="skeleton-root"]')!;
+		const block = container.querySelector<HTMLElement>('[data-cui="skeleton"]')!;
 		expect(block.style.width).toBe("40px");
 		expect(block.style.height).toBe("8px");
 	});

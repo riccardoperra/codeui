@@ -1,5 +1,5 @@
 import "@codeui/styles/theme.css";
-import "@codeui/styles/option-card.css";
+import "@codeui/styles/optioncard.css";
 import * as K from "@kobalte/core/radio-group";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import { type JSX, splitProps, type ValidComponent } from "solid-js";
@@ -10,8 +10,8 @@ import {
 import * as styles from "../components/OptionCard/OptionCard.css";
 import { mergeClasses } from "../utils/css";
 
-import { optionCardParts, type OptionCardPart, type OptionCardClasses, type OptionCardVariant, type OptionCardVariants, type OptionCardStyles, optionCardStyles } from "@codeui/styles/option-card";
-export { optionCardParts, type OptionCardPart, type OptionCardClasses, type OptionCardVariant, type OptionCardVariants, type OptionCardStyles, optionCardStyles } from "@codeui/styles/option-card";
+import { optionCardParts, type OptionCardPart, type OptionCardClasses, type OptionCardVariant, type OptionCardVariants, type OptionCardStyles, optionCardStyles } from "@codeui/styles/optioncard";
+export { optionCardParts, type OptionCardPart, type OptionCardClasses, type OptionCardVariant, type OptionCardVariants, type OptionCardStyles, optionCardStyles } from "@codeui/styles/optioncard";
 export type RootProps<T extends ValidComponent = "div"> = K.RadioGroupRootProps<T> &
 	OptionCardVariants & { class?: string };
 export function Root<T extends ValidComponent = "div">(

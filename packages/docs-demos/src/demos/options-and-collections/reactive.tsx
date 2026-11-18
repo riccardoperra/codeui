@@ -22,7 +22,7 @@ export default function ReactiveOptionsDemo() {
 				label="Preset"
 				placeholder="Search presets"
 			/>
-			<Button theme="secondary" onClick={addPreset}>
+			<Button variant="secondary" onClick={addPreset}>
 				Save current as preset
 			</Button>
 		</>

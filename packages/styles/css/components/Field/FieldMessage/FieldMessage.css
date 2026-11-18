@@ -1,22 +1,22 @@
 @layer cui.components {
-  .cui-field-message-description {
-    color: var(--cui-baseFieldTheme-descriptionColor);
+  .cui-field-description {
+    color: var(--cui-field-description-color);
     user-select: none;
     line-height: var(--cui-font-line-height-xs);
   }
-  [data-field-size=xs] .cui-field-message-description {
+  [data-field-size=xs] .cui-field-description {
     font-size: var(--cui-font-size-xs);
     line-height: var(--cui-font-line-height-xs);
   }
-  :where(.cui-field-baseFieldTheme):is(:not([data-field-size]), [data-field-size="sm"], [data-field-size="md"]) .cui-field-message-description {
+  :where(.cui-field):is(:not([data-field-size]), [data-field-size="sm"], [data-field-size="md"]) .cui-field-description {
     font-size: var(--cui-font-size-xs);
     line-height: var(--cui-font-line-height-xs);
   }
-  [data-field-size=lg] .cui-field-message-description {
+  [data-field-size=lg] .cui-field-description {
     font-size: var(--cui-font-size-sm);
     line-height: var(--cui-font-line-height-sm);
   }
-  [data-field-size=xl] .cui-field-message-description {
+  [data-field-size=xl] .cui-field-description {
     font-size: var(--cui-font-size-md);
     line-height: var(--cui-font-line-height-md);
   }

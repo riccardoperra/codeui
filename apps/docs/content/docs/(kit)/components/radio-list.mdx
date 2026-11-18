@@ -21,15 +21,15 @@ Use [SegmentedControl](/docs/components/segmented-control) for a compact row of 
 
 | Export          | Renders | `classes` key   | `data-cui`                  | Role         |
 | --------------- | ------- | --------------- | --------------------------- | ------------ |
-| `RadioList`     | `div`   | `root`          | `radio-group-field`         | `radiogroup` |
-| `RadioList`     | `span`  | `label`         | `radio-list-label`          | `none`       |
-| `RadioList`     | `div`   | `items`         | `radio-list-items`          | `none`       |
-| `RadioList`     | `div`   | `description`   | `radio-list-description`    | `none`       |
-| `RadioList`     | `div`   | `errorMessage`  | `radio-list-error-message`  | `none`       |
-| `RadioListItem` | `div`   | `item`          | `radio-list-item`           | `none`       |
-| `RadioListItem` | `div`   | `itemControl`   | `radio-list-item-control`   | `none`       |
-| `RadioListItem` | `div`   | `itemIndicator` | `radio-list-item-indicator` | `none`       |
-| `RadioListItem` | `label` | `itemLabel`     | `radio-list-item-label`     | `none`       |
+| `RadioList`     | `div`   | `root`          | `radiolist`         | `radiogroup` |
+| `RadioList`     | `span`  | `label`         | `radiolist-label`          | `none`       |
+| `RadioList`     | `div`   | `items`         | `radiolist-items`          | `none`       |
+| `RadioList`     | `div`   | `description`   | `radiolist-description`    | `none`       |
+| `RadioList`     | `div`   | `errorMessage`  | `radiolist-error-message`  | `none`       |
+| `RadioListItem` | `div`   | `item`          | `radiolist-item`           | `none`       |
+| `RadioListItem` | `div`   | `itemControl`   | `radiolist-item-control`   | `none`       |
+| `RadioListItem` | `div`   | `itemIndicator` | `radiolist-item-indicator` | `none`       |
+| `RadioListItem` | `label` | `itemLabel`     | `radiolist-item-label`     | `none`       |
 
 Each item also renders a native radio input without a `data-cui` name. Item classes merge with group classes.
 
@@ -41,7 +41,7 @@ Each item also renders a native radio input without a `data-cui` name. Item clas
 
 <SolidDemo name="radio-list/vertical" />
 
-`theme` accepts `filled` and `inline` through BaseFieldProps. `inline`, the default, draws each circle as an outline on the surface. `filled` gives the circle the field fill (`--cui-surface-input`) and no outline. The root carries `data-field-theme`.
+`variant` accepts `filled` and `inline` through BaseFieldProps. `inline`, the default, draws each circle as an outline on the surface. `filled` gives the circle the field fill (`--cui-surface-input`) and no outline. The root carries `data-field-variant`.
 
 ## States
 

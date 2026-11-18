@@ -101,23 +101,23 @@ export function App() {
 						when={!isPhone()}
 						fallback={
 							<>
-								<IconButton theme="secondary" variant="ghost" size={size()} aria-label="Search commands" onClick={openCommands}>
+								<IconButton variant="secondary" ghost size={size()} aria-label="Search commands" onClick={openCommands}>
 									<Search size={16} />
 								</IconButton>
-								<IconButton theme="secondary" variant="ghost" size={size()} aria-label="Open planning" onClick={() => setPlanningOpen(true)}>
+								<IconButton variant="secondary" ghost size={size()} aria-label="Open planning" onClick={() => setPlanningOpen(true)}>
 									<PanelRight size={16} />
 								</IconButton>
-								<IconButton theme="primary" size={size()} aria-label="Add transaction" onClick={() => ledger.setAdding(true)}>
+								<IconButton variant="primary" size={size()} aria-label="Add transaction" onClick={() => ledger.setAdding(true)}>
 									<Plus size={16} />
 								</IconButton>
 							</>
 						}
 					>
-						<Button theme="secondary" size={size()} leftIcon={<Search size={16} />} onClick={openCommands}>
+						<Button variant="secondary" size={size()} leftIcon={<Search size={16} />} onClick={openCommands}>
 							Search
 							<Kbd>{modKey()}K</Kbd>
 						</Button>
-						<Button theme="primary" size={size()} leftIcon={<Plus size={16} />} onClick={() => ledger.setAdding(true)}>
+						<Button variant="primary" size={size()} leftIcon={<Plus size={16} />} onClick={() => ledger.setAdding(true)}>
 							Add transaction
 						</Button>
 					</Show>

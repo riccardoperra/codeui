@@ -9,7 +9,7 @@ const CODEIMAGE = {
 
 export default async ({ page, step, check, focus, axe, theme }) => {
 	const expected = CODEIMAGE[theme];
-	const row = id => page.locator(`[data-cui=settings-row-root]#${id}`);
+	const row = id => page.locator(`[data-cui=settings-row]#${id}`);
 	const style = (locator, keys) =>
 		locator.evaluate((el, keys) => {
 			const cs = getComputedStyle(el);

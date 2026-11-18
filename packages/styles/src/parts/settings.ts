@@ -2,7 +2,7 @@ import type { SettingsStyleOptions } from "../generated-appearance/settings";
 import * as styles from "../components/Settings/Settings.css";
 import { mergeClasses } from "../utils/css";
 export const settingsRowParts = {
-	root: "settings-row-root",
+	root: "settings-row",
 	label: "settings-row-label",
 	description: "settings-row-description",
 	details: "settings-row-details",
@@ -31,7 +31,7 @@ export const settingsRowStyles: SettingsRowStyles = {
 };
 
 export const settingsGroupParts = {
-	root: "settings-group-root",
+	root: "settings-group",
 	title: "settings-group-title",
 	description: "settings-group-description",
 	content: "settings-group-content",

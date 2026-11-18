@@ -5,7 +5,7 @@ export type StackVariants = Omit<StackStyleOptions, "class" | "gap" | "wrap"> & 
 	gap?: Gap;
 	wrap?: boolean;
 };
-export const stackParts = { root: "stack-root" } as const;
+export const stackParts = { root: "stack" } as const;
 export type StackPart = keyof typeof stackParts;
 export type StackClasses = Partial<Record<StackPart, string>>;
 export type StackStyles = { root: () => string };

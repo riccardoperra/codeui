@@ -18,20 +18,20 @@ export type RootProps<
 	T extends ValidComponent = "ul",
 > = K.ListboxRootProps<Option, OptGroup, T> & {
 	bordered?: boolean;
-	theme?: "primary" | "neutral";
+	variant?: "primary" | "neutral";
 };
 export function Root<Option, OptGroup = never, T extends ValidComponent = "ul">(
 	props: PolymorphicProps<T, RootProps<Option, OptGroup, T>>,
 ) {
 	const [local, others] = splitProps(
 		props as PolymorphicProps<"ul", RootProps<Option, OptGroup>>,
-		["class", "bordered", "theme"],
+		["class", "bordered", "variant"],
 	);
 	return (
 		<K.Root<Option, OptGroup>
 			data-cui="listbox"
 			data-bordered={local.bordered ? "" : undefined}
-			data-theme={local.theme ?? "neutral"}
+			data-variant={local.variant ?? "neutral"}
 			shouldFocusOnHover
 			{...others}
 			class={mergeClasses(styles.list, local.class)}

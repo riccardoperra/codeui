@@ -27,7 +27,7 @@ export default function PartsDemo() {
 	const [open, setOpen] = createSignal(false);
 	return (
 		<M.Root open={open()} onOpenChange={setOpen}>
-			<M.Trigger as={Button} theme="secondary">
+			<M.Trigger as={Button} variant="secondary">
 				Open commands
 			</M.Trigger>
 			<M.Portal>

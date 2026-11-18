@@ -12,7 +12,7 @@ export interface ListboxProps<Option, OptGroup, T extends ValidComponent = "ul">
 	class?: string;
 	classes?: ListboxClasses;
 	size?: "xs" | "sm" | "md";
-	theme?: "primary" | "neutral";
+	variant?: "primary" | "neutral";
 	itemLabel?: (item: Option) => JSXElement;
 	bordered?: boolean;
 }

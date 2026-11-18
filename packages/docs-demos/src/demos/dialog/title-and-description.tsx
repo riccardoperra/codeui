@@ -5,7 +5,7 @@ export default function DialogTitleAndDescription() {
 	const [open, setOpen] = createSignal(false);
 	return (
 		<>
-			<Button theme="secondary" onClick={() => setOpen(true)}>
+			<Button variant="secondary" onClick={() => setOpen(true)}>
 				Export as video
 			</Button>
 			<Dialog

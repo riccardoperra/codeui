@@ -11,7 +11,7 @@ export default function EmptyDemo() {
 	const [open, setOpen] = createSignal(false);
 	return (
 		<>
-			<Button theme="secondary" onClick={() => setOpen(true)}>
+			<Button variant="secondary" onClick={() => setOpen(true)}>
 				Open snippet
 			</Button>
 			<CommandMenu

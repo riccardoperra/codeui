@@ -46,14 +46,14 @@ export default function InspectorDock(props: { onClose: () => void }) {
 				</Text>
 				<span class="ex-header-spacer" />
 				<Tooltip content={tall() ? "Restore height" : "Expand"} placement="top">
-					<IconButton theme="secondary" variant="ghost" size={size()} aria-label={tall() ? "Restore height" : "Expand"} onClick={() => setTall(value => !value)}>
+					<IconButton variant="secondary" ghost size={size()} aria-label={tall() ? "Restore height" : "Expand"} onClick={() => setTall(value => !value)}>
 						<Show when={tall()} fallback={<Maximize2 size={16} />}>
 							<Minimize2 size={16} />
 						</Show>
 					</IconButton>
 				</Tooltip>
 				<Tooltip content="Close · esc" placement="top">
-					<IconButton theme="secondary" variant="ghost" size={size()} aria-label="Close inspector" onClick={props.onClose}>
+					<IconButton variant="secondary" ghost size={size()} aria-label="Close inspector" onClick={props.onClose}>
 						<X size={16} />
 					</IconButton>
 				</Tooltip>

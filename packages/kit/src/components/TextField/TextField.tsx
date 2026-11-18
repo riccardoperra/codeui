@@ -27,7 +27,7 @@ export function TextField(props: TextFieldProps) {
 		"description",
 		"size",
 		"label",
-		"theme",
+		"variant",
 		"errorMessage",
 		"placeholder",
 		"ref",
@@ -39,7 +39,7 @@ export function TextField(props: TextFieldProps) {
 	return (
 		<P.Root
 			size={local.size}
-			theme={local.theme}
+			variant={local.variant}
 			class={mergeClasses(local.slotClasses?.root, local.classes?.root)}
 			{...rootProps}
 		>

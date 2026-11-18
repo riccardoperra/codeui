@@ -1,23 +1,20 @@
 @layer cui.components {
-  .cui-number-field-numberFieldTheme {
-    --cui-numberFieldTheme-controlSize: ;
-  }
-  .cui-number-field-baseFieldContainer {
+  .cui-numberfield {
     display: flex;
     flex-direction: column;
     gap: var(--cui-space-3);
   }
-  .cui-number-field-textField {
+  .cui-numberfield-input {
     padding-right: var(--cui-space-3);
     padding-left: var(--cui-space-3);
     padding-top: 0;
     padding-bottom: 0;
     outline: none;
   }
-  .cui-number-field-numberFieldContainer {
+  .cui-numberfield-group {
     position: relative;
   }
-  .cui-number-field-controlsContainer {
+  .cui-numberfield-controls {
     position: absolute;
     right: var(--cui-space-2);
     top: 50%;
@@ -31,41 +28,41 @@
     color: var(--cui-text-input);
     border-radius: var(--cui-radius-md);
   }
-  .cui-number-field-numberFieldContainer:hover .cui-number-field-controlsContainer {
+  .cui-numberfield-group:hover .cui-numberfield-controls {
     display: flex;
   }
-  .cui-number-field-numberFieldContainer:focus-within .cui-number-field-controlsContainer {
+  .cui-numberfield-group:focus-within .cui-numberfield-controls {
     display: flex;
   }
-  .cui-number-field-controlButton {
+  .cui-numberfield-control-button {
     appearance: none;
     border: 0;
     background: transparent;
     color: inherit;
     cursor: pointer;
-    width: var(--cui-numberFieldTheme-controlSize);
-    height: var(--cui-numberFieldTheme-controlSize);
+    width: var(--cui-numberfield-control-size);
+    height: var(--cui-numberfield-control-size);
     padding: 0;
   }
-  .cui-number-field-baseFieldContainer {
-    &[data-field-size=xs] .cui-number-field-controlButton {
-      --cui-numberFieldTheme-controlSize: 12px;
+  .cui-numberfield {
+    &[data-field-size=xs] .cui-numberfield-control-button {
+      --cui-numberfield-control-size: 12px;
     }
 
-    &:is(:not([data-field-size]), [data-field-size="sm"]) .cui-number-field-controlButton {
-      --cui-numberFieldTheme-controlSize: 14px;
+    &:is(:not([data-field-size]), [data-field-size="sm"]) .cui-numberfield-control-button {
+      --cui-numberfield-control-size: 14px;
     }
 
-    &[data-field-size=md] .cui-number-field-controlButton {
-      --cui-numberFieldTheme-controlSize: 16px;
+    &[data-field-size=md] .cui-numberfield-control-button {
+      --cui-numberfield-control-size: 16px;
     }
 
-    &[data-field-size=lg] .cui-number-field-controlButton {
-      --cui-numberFieldTheme-controlSize: 18px;
+    &[data-field-size=lg] .cui-numberfield-control-button {
+      --cui-numberfield-control-size: 18px;
     }
 
   }
-  .cui-number-field-control {
+  .cui-numberfield-control {
     width: inherit;
     height: inherit;
   }

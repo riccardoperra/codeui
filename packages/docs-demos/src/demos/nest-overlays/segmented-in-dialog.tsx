@@ -6,7 +6,7 @@ export default function SegmentedInDialog() {
 	const [format, setFormat] = createSignal("png");
 	return (
 		<>
-			<Button theme="secondary" onClick={() => setOpen(true)}>
+			<Button variant="secondary" onClick={() => setOpen(true)}>
 				Export settings
 			</Button>
 			<Dialog open={open()} onOpenChange={setOpen} size="sm" title="Export settings">

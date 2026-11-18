@@ -1,1 +1,1 @@
-export const description: string = "cui-field-message-description";
+export const description: string = "cui-field-description";

@@ -6,7 +6,7 @@ export default function SheetAnatomy() {
 	return (
 		<S.Root modal={false} open>
 			<div style={{ display: "grid", gap: "var(--cui-space-3)", "justify-items": "center", width: "100%" }}>
-				<S.Trigger as={Button} theme="secondary">
+				<S.Trigger as={Button} variant="secondary">
 					Open layers
 				</S.Trigger>
 				<div style={{ position: "relative", width: "100%", "max-width": "420px", padding: "24px 12px 0", "border-radius": "16px", overflow: "hidden" }}>
@@ -22,7 +22,7 @@ export default function SheetAnatomy() {
 							<p>Background, window, code, and watermark.</p>
 						</S.Body>
 						<S.Footer>
-							<Button theme="primary">Done</Button>
+							<Button variant="primary">Done</Button>
 						</S.Footer>
 					</S.Content>
 				</div>

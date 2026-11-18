@@ -1,0 +1,60 @@
+---
+title: Link
+description: An inline navigation link in plain HTML, with an optional hover underline.
+---
+
+Load `@codeui/styles/link.css`, or `all.css`. The Solid component is documented in [Link](/docs/components/link).
+
+## Demo
+
+<HtmlDemo name="link/basic" />
+
+## Markup
+
+| Part | Element | Class | `data-cui` |
+| --- | --- | --- | --- |
+| Root | `a` | `cui-link` | `link` |
+
+The root inherits its text color and line height from its parent.
+
+| Attribute | Values | Default |
+| --- | --- | --- |
+| `data-variant` | `default`, `underline` | `default` |
+
+## Variants
+
+<HtmlDemo name="link/variants" />
+
+`default` has no underline. `data-variant="underline"` adds an underline on hover only. There are no color or size attributes. Put decorative icons in the children.
+
+### In running text
+
+<HtmlDemo name="link/in-text" />
+
+The link takes the color of the text around it. Use `underline` when a link sits inside a sentence, so the hover shows it is a link. Say in the link text when it opens a new tab.
+
+## States
+
+### Disabled
+
+<HtmlDemo name="link/disabled" />
+
+The stylesheet has no disabled style. To disable a link, remove `href`, set `role="link"` and `aria-disabled="true"`, and add `data-disabled` for your own selectors. Without `href` the anchor leaves the tab order.
+
+## What you supply
+
+- A visible focus style. The class sets `outline: none` and draws no focus ring, so add a `:focus-visible` rule in your app.
+- Link text that names the destination, and `rel="noopener noreferrer"` with `target="_blank"`.
+- Routing, if a client router handles the click.
+
+## Helper
+
+```ts
+import "@codeui/styles/link.css";
+import { applyStyleProps } from "@codeui/styles";
+import { linkStyleProps } from "@codeui/styles/link";
+
+const source = document.querySelector("a")!;
+applyStyleProps(source, linkStyleProps({ variant: "underline" }));
+// class="cui-link" data-cui="link" data-variant="underline"
+```

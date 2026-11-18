@@ -17,7 +17,7 @@ it("server-renders a native table with its caption, headers and cells", () => {
 			</tbody>
 		</Table>
 	));
-	expect(html).toMatch(/<table[^>]*data-cui="table-root"[^>]*>/);
+	expect(html).toMatch(/<table[^>]*data-cui="table"[^>]*>/);
 	expect(html).toMatch(/<table[^>]*data-size="sm"/);
 	expect(html).toMatch(/<table[^>]*data-striped/);
 	expect(html).toMatch(/<caption[^>]*>Releases<\/caption>/);

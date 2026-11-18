@@ -4,7 +4,7 @@ import * as P from "@codeui/kit/popover/parts";
 export default function PopoverParts() {
 	return (
 		<P.Root placement="bottom-start" gutter={10}>
-			<P.Trigger as={Button} theme="secondary">
+			<P.Trigger as={Button} variant="secondary">
 				What's new
 			</P.Trigger>
 			<P.Portal>

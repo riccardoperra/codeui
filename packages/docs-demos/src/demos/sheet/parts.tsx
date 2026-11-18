@@ -2,7 +2,7 @@ import { Button } from "@codeui/kit";
 import * as S from "@codeui/kit/sheet/parts";
 export default function Demo() {
 	return <S.Root modal={false}>
-		<S.Trigger as={Button} theme="secondary">Open layers</S.Trigger>
+		<S.Trigger as={Button} variant="secondary">Open layers</S.Trigger>
 		<S.Portal>
 			<S.Content side="bottom">
 				<S.Handle aria-label="Close layers" />

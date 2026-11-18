@@ -59,7 +59,7 @@ function Tip(props: { label: string; keys?: string; placement?: "top" | "bottom"
 	return (
 		// The kit's default tooltip is filled with the accent. A name is not a signal, so these are neutral.
 		<Tooltip
-			theme="secondary"
+			variant="secondary"
 			placement={props.placement ?? "top"}
 			content={
 				<span class="ts-tip">
@@ -113,18 +113,18 @@ function ExportControl() {
 			<Show
 				when={!isPhone()}
 				fallback={
-					<IconButton id={exportButtonId} class="ts-split-start" theme="primary" size={size()} aria-label="Export" onClick={() => studio.setExportOpen(true)}>
+					<IconButton id={exportButtonId} class="ts-split-start" variant="primary" size={size()} aria-label="Export" onClick={() => studio.setExportOpen(true)}>
 						<Download size={16} />
 					</IconButton>
 				}
 			>
-				<Button id={exportButtonId} class="ts-split-start" theme="primary" size={size()} leftIcon={<Download size={16} />} onClick={() => studio.setExportOpen(true)}>
+				<Button id={exportButtonId} class="ts-split-start" variant="primary" size={size()} leftIcon={<Download size={16} />} onClick={() => studio.setExportOpen(true)}>
 					Export
 				</Button>
 			</Show>
 			<DropdownMenu placement="bottom-end">
 				<Tip label="Copy, import, start over" placement="bottom">
-					<DropdownMenuTrigger as={IconButton} class="ts-split-end" theme="primary" size={size()} aria-label="More ways to export and import">
+					<DropdownMenuTrigger as={IconButton} class="ts-split-end" variant="primary" size={size()} aria-label="More ways to export and import">
 						<ChevronDown size={16} />
 					</DropdownMenuTrigger>
 				</Tip>
@@ -203,7 +203,7 @@ function Toolbar(props: { hidden: boolean }) {
 				fallback={
 					// Seven segments do not fit a phone. The same choice is a menu there.
 					<DropdownMenu placement="top-start">
-						<DropdownMenuTrigger as={Button} {...button} variant="ghost" size={size()} aria-label={`Sample: ${findSample(studio.sample()).name}`}>
+						<DropdownMenuTrigger as={Button} {...button} ghost size={size()} aria-label={`Sample: ${findSample(studio.sample()).name}`}>
 							{findSample(studio.sample()).name}
 							<ChevronDown size={16} />
 						</DropdownMenuTrigger>
@@ -228,19 +228,19 @@ function Toolbar(props: { hidden: boolean }) {
 			</Show>
 			<span class="ts-toolbar-group">
 				<Tip label="Undo" keys={shortcut.undo}>
-					<IconButton {...button} variant="ghost" size={size()} aria-label="Undo" disabled={!studio.canUndo()} onClick={studio.undo}>
+					<IconButton {...button} ghost size={size()} aria-label="Undo" disabled={!studio.canUndo()} onClick={studio.undo}>
 						<Undo size={16} />
 					</IconButton>
 				</Tip>
 				<Tip label="Redo" keys={shortcut.redo}>
-					<IconButton {...button} variant="ghost" size={size()} aria-label="Redo" disabled={!studio.canRedo()} onClick={studio.redo}>
+					<IconButton {...button} ghost size={size()} aria-label="Redo" disabled={!studio.canRedo()} onClick={studio.redo}>
 						<Redo size={16} />
 					</IconButton>
 				</Tip>
 			</span>
 			<Tip label={card() ? "Show the frame" : "Show the theme card"}>
 				{/* "On" is a step of fill, not the accent: this is a view, not a signal (DESIGN.md §2.3). */}
-				<IconButton {...button} variant={card() ? undefined : "ghost"} size={size()} aria-label="Theme card" aria-pressed={card()} onClick={() => studio.setView(card() ? "frame" : "card")}>
+				<IconButton {...button} ghost={!(card())} size={size()} aria-label="Theme card" aria-pressed={card()} onClick={() => studio.setView(card() ? "frame" : "card")}>
 					<GalleryVertical size={16} />
 				</IconButton>
 			</Tip>
@@ -383,12 +383,12 @@ export function App() {
 					<Show
 						when={!isPhone()}
 						fallback={
-							<IconButton theme="secondary" variant="ghost" size={size()} aria-label="Open the colours" onClick={() => studio.setPanelOpen(true)}>
+							<IconButton variant="secondary" ghost size={size()} aria-label="Open the colours" onClick={() => studio.setPanelOpen(true)}>
 								<SlidersHorizontal size={16} />
 							</IconButton>
 						}
 					>
-						<Button theme="secondary" size={size()} leftIcon={<Search size={16} />} onClick={openCommands}>
+						<Button variant="secondary" size={size()} leftIcon={<Search size={16} />} onClick={openCommands}>
 							Search
 							<Kbd>{shortcut.commands}</Kbd>
 						</Button>

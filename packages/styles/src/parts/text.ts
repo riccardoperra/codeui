@@ -6,7 +6,7 @@ export type TextVariants = {
 	weight?: keyof typeof tokens.font.weight;
 	tone?: NonNullable<TextStyleOptions["tone"]>;
 };
-export const textParts = { root: "text-root" } as const;
+export const textParts = { root: "text" } as const;
 export type TextPart = keyof typeof textParts;
 export type TextClasses = Partial<Record<TextPart, string>>;
 export type TextStyles = { root: () => string };

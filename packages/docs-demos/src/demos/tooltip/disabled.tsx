@@ -7,7 +7,7 @@ export default function TooltipDisabled() {
 		<>
 			<Switch label="Show hints" checked={hints()} onChange={setHints} />
 			<Tooltip content="Format the code with Prettier" disabled={!hints()}>
-				<Button theme="secondary">Format</Button>
+				<Button variant="secondary">Format</Button>
 			</Tooltip>
 		</>
 	);

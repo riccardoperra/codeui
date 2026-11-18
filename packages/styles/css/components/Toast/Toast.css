@@ -12,17 +12,17 @@
     transform: translateY(-100%);
   }
 }
-@keyframes cui-toast-fadeIn {
+@keyframes cui-toast-fade-in {
   from {
     opacity: 0;
   }
 }
-@keyframes cui-toast-fadeOut {
+@keyframes cui-toast-fade-out {
   to {
     opacity: 0;
   }
 }
-@keyframes cui-toast-swipeOut {
+@keyframes cui-toast-swipe-out {
   from {
     transform: translateX(var(--cui-toast-swipe-end-x));
   }
@@ -90,7 +90,7 @@
   [data-position$=right] .cui-toast-list {
     align-items: flex-end;
   }
-  .cui-toast-root {
+  .cui-toast {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr) auto auto;
     align-items: center;
@@ -106,19 +106,19 @@
     line-height: var(--cui-font-line-height-snug);
     pointer-events: auto;
   }
-  .cui-toast-root:focus-visible {
+  .cui-toast:focus-visible {
     outline: var(--cui-focus-width) solid var(--cui-focus-color);
     outline-offset: var(--cui-focus-offset);
   }
-  .cui-toast-root[data-opened] {
+  .cui-toast[data-opened] {
     animation: cui-toast-rise var(--cui-motion-duration-rise) var(--cui-motion-ease-out);
   }
-  [data-position^=top] .cui-toast-root[data-opened] {
+  [data-position^=top] .cui-toast[data-opened] {
     animation-name: cui-toast-drop;
   }
-  .cui-toast-root {
+  .cui-toast {
     &[data-closed] {
-      animation: cui-toast-fadeOut var(--cui-motion-duration-panel) var(--cui-motion-ease-out) forwards;
+      animation: cui-toast-fade-out var(--cui-motion-duration-panel) var(--cui-motion-ease-out) forwards;
     }
 
     &[data-cui-replaced][data-opened] {
@@ -135,10 +135,10 @@
     }
 
     &[data-swipe=end] {
-      animation: cui-toast-swipeOut var(--cui-motion-duration-panel) var(--cui-motion-ease-out) forwards;
+      animation: cui-toast-swipe-out var(--cui-motion-duration-panel) var(--cui-motion-ease-out) forwards;
     }
   }
-  :where(.cui-toast-root) {
+  :where(.cui-toast) {
     &:is(:not([data-tone]), [data-tone="neutral"]) {
       --cui-toast-accent: var(--cui-component-toast-root-tone-neutral-accent);
     }
@@ -183,13 +183,13 @@
     align-self: center;
   }
   .cui-toast-action,
-  .cui-toast-closeButton {
-    --cui-toast-actionHitSize: var(--cui-control-height-xs);
+  .cui-toast-close-button {
+    --cui-toast-action-hit-size: var(--cui-control-height-xs);
   }
   .cui-toast-action {
     grid-row: 1 / span 2;
     box-sizing: border-box;
-    min-height: var(--cui-toast-actionHitSize);
+    min-height: var(--cui-toast-action-hit-size);
     margin-inline-start: var(--cui-space-2);
     border: 0;
     border-radius: var(--cui-radius-xs);
@@ -208,10 +208,10 @@
     outline: var(--cui-focus-width) solid var(--cui-focus-color);
     outline-offset: 0;
   }
-  .cui-toast-closeButton {
+  .cui-toast-close-button {
     grid-row: 1 / span 2;
     box-sizing: border-box;
-    min-height: var(--cui-toast-actionHitSize);
+    min-height: var(--cui-toast-action-hit-size);
     margin-inline-start: var(--cui-space-2);
     border: 0;
     border-radius: var(--cui-radius-xs);
@@ -224,19 +224,19 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: var(--cui-toast-actionHitSize);
+    min-width: var(--cui-toast-action-hit-size);
     padding: 0;
     color: var(--cui-text-muted);
   }
-  .cui-toast-closeButton:focus-visible {
+  .cui-toast-close-button:focus-visible {
     outline: var(--cui-focus-width) solid var(--cui-focus-color);
     outline-offset: 0;
   }
-  .cui-toast-closeButton > svg {
+  .cui-toast-close-button > svg {
     width: var(--cui-font-size-md);
     height: var(--cui-font-size-md);
   }
-  .cui-toast-progressTrack {
+  .cui-toast-progress-track {
     grid-column: 1 / -1;
     grid-row: 3;
     height: var(--cui-space-0-5);
@@ -245,31 +245,31 @@
     background-color: var(--cui-action-neutral-base);
     overflow: hidden;
   }
-  .cui-toast-progressFill {
+  .cui-toast-progress-fill {
     height: 100%;
     width: var(--cui-toast-progress-fill-width);
     background-color: var(--cui-toast-accent);
   }
   @media (--cui-reduced-motion) {
-    .cui-toast-root[data-opened], [data-position^=top] .cui-toast-root[data-opened] {
-      animation-name: cui-toast-fadeIn;
+    .cui-toast[data-opened], [data-position^=top] .cui-toast[data-opened] {
+      animation-name: cui-toast-fade-in;
     }
-    .cui-toast-root[data-swipe=end] {
-      animation-name: cui-toast-fadeOut;
+    .cui-toast[data-swipe=end] {
+      animation-name: cui-toast-fade-out;
     }
   }
   @media (hover: hover) {
     .cui-toast-action:hover {
       background-color: var(--cui-action-neutral-base);
     }
-    .cui-toast-closeButton:hover {
+    .cui-toast-close-button:hover {
       background-color: var(--cui-action-neutral-base);
     }
   }
   @media (--cui-coarse-pointer) {
     .cui-toast-action,
-    .cui-toast-closeButton {
-      --cui-toast-actionHitSize: 40px;
+    .cui-toast-close-button {
+      --cui-toast-action-hit-size: 40px;
     }
   }
 }

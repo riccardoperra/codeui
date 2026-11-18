@@ -14,7 +14,7 @@ export default function SelectFormDemo() {
 			}}
 		>
 			<Select label="Export format" name="format" options={formats} defaultValue="PNG" />
-			<Button theme="primary" type="submit">
+			<Button variant="primary" type="submit">
 				Export
 			</Button>
 			<p>{submitted() ? `Submitted format=${submitted()}` : "Not submitted yet."}</p>

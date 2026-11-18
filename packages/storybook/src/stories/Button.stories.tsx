@@ -14,7 +14,7 @@ const meta = {
 	title: "DesignSystem/Button",
 	component: Button,
 	argTypes: {
-		theme: {
+		variant: {
 			options: buttonThemes,
 			control: { type: "inline-radio" },
 		},
@@ -39,42 +39,42 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/7.0/solid/writing-stories/args
 export const Primary: Story = {
 	args: {
-		theme: "primary",
+		variant: "primary",
 		children: "Button",
 	},
 };
 
 export const Secondary: Story = {
 	args: {
-		theme: "secondary",
+		variant: "secondary",
 		children: "Button",
 	},
 };
 
 export const Tertiary: Story = {
 	args: {
-		theme: "tertiary",
+		variant: "tertiary",
 		children: "Button",
 	},
 };
 
 export const Caution: Story = {
 	args: {
-		theme: "caution",
+		variant: "caution",
 		children: "Button",
 	},
 };
 
 export const Negative: Story = {
 	args: {
-		theme: "negative",
+		variant: "negative",
 		children: "Button",
 	},
 };
 
 export const Disabled: Story = {
 	args: {
-		theme: "secondary",
+		variant: "secondary",
 		disabled: true,
 		children: "Button",
 	},
@@ -85,7 +85,7 @@ export const Sizes: Story = {
 		<div class="itemsContainer">
 			<For each={buttonSizes}>
 				{size => (
-					<Button size={size} theme={"primary"}>
+					<Button size={size} variant={"primary"}>
 						Button ({size})
 					</Button>
 				)}
@@ -99,7 +99,7 @@ export const WithLeftIcon: Story = {
 		<div class="itemsContainer">
 			<For each={buttonSizes}>
 				{size => (
-					<Button leftIcon={<ShareIcon />} size={size} theme={"secondary"} pill>
+					<Button leftIcon={<ShareIcon />} size={size} variant={"secondary"} pill>
 						Button
 					</Button>
 				)}
@@ -113,7 +113,7 @@ export const Pill: Story = {
 		<div class="itemsContainer">
 			<For each={buttonSizes}>
 				{size => (
-					<Button size={size} theme={"secondary"} pill>
+					<Button size={size} variant={"secondary"} pill>
 						Button
 					</Button>
 				)}
@@ -127,7 +127,7 @@ export const Ghost: Story = {
 		<div class="itemsContainer">
 			<For each={buttonThemes}>
 				{theme => (
-					<Button size={"md"} theme={theme} variant={"ghost"}>
+					<Button size={"md"} variant={theme} ghost>
 						Button
 					</Button>
 				)}
@@ -144,7 +144,7 @@ export const Loading: Story = {
 					<DocsItemsContainer>
 						<For each={buttonSizes}>
 							{size => (
-								<Button size={size} theme={theme} loading>
+								<Button size={size} variant={theme} loading>
 									Button
 								</Button>
 							)}

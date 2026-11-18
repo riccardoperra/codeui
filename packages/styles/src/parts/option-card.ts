@@ -1,18 +1,18 @@
-import type { OptionCardItemLabelStyleOptions } from "../generated-appearance/option-card";
+import type { OptionCardItemLabelStyleOptions } from "../generated-appearance/optioncard";
 import * as styles from "../components/OptionCard/OptionCard.css";
 export const optionCardParts = {
-	root: "option-card-root",
-	label: "option-card-label",
-	description: "option-card-description",
-	errorMessage: "option-card-error-message",
-	item: "option-card-item",
-	itemInput: "option-card-item-input",
-	itemControl: "option-card-item-control",
-	itemIndicator: "option-card-item-indicator",
-	itemLabel: "option-card-item-label",
-	itemDescription: "option-card-item-description",
-	preview: "option-card-preview",
-	badge: "option-card-badge",
+	root: "optioncard",
+	label: "optioncard-label",
+	description: "optioncard-description",
+	errorMessage: "optioncard-error-message",
+	item: "optioncard-item",
+	itemInput: "optioncard-item-input",
+	itemControl: "optioncard-item-control",
+	itemIndicator: "optioncard-item-indicator",
+	itemLabel: "optioncard-item-label",
+	itemDescription: "optioncard-item-description",
+	preview: "optioncard-preview",
+	badge: "optioncard-badge",
 } as const;
 export type OptionCardPart = keyof typeof optionCardParts;
 export type OptionCardClasses = Partial<Record<OptionCardPart, string>>;

@@ -14,7 +14,7 @@ export default function Dynamic() {
 		const next = remaining[0];
 		if (next) { setValue(next.id); setTabs(remaining); }
 	}
-	return <div><Button theme="secondary" onClick={add}>Add snippet</Button><Button theme="secondary" disabled={tabs().length === 1} onClick={remove}>Close selected</Button>
-		<Tabs theme="inline" value={value()} onChange={setValue} class="snippet-tabs"><TabsList aria-label="Open snippets"><For each={tabs()}>{tab => <TabsHeader value={tab.id}>{tab.title}</TabsHeader>}</For></TabsList><For each={tabs()}>{tab => <TabsContent value={tab.id}>Editing {tab.title}</TabsContent>}</For></Tabs>
+	return <div><Button variant="secondary" onClick={add}>Add snippet</Button><Button variant="secondary" disabled={tabs().length === 1} onClick={remove}>Close selected</Button>
+		<Tabs variant="inline" value={value()} onChange={setValue} class="snippet-tabs"><TabsList aria-label="Open snippets"><For each={tabs()}>{tab => <TabsHeader value={tab.id}>{tab.title}</TabsHeader>}</For></TabsList><For each={tabs()}>{tab => <TabsContent value={tab.id}>Editing {tab.title}</TabsContent>}</For></Tabs>
 	</div>;
 }

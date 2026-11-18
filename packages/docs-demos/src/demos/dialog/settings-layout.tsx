@@ -14,7 +14,7 @@ export default function DialogSettingsLayout() {
 	const [current, setCurrent] = createSignal(sections[0]);
 	return (
 		<D.Root>
-			<D.Trigger as={Button} theme="secondary">
+			<D.Trigger as={Button} variant="secondary">
 				Open settings
 			</D.Trigger>
 			<D.Portal>

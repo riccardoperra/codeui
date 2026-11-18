@@ -1,7 +1,7 @@
 @import "./alert-tokens.generated.css";
 
 @layer cui.components {
-  .cui-alert-root {
+  .cui-alert {
     display: inline-grid;
     grid-template-columns: auto minmax(0, 1fr) auto;
     align-items: start;
@@ -13,7 +13,7 @@
     font-size: var(--cui-font-size-caption);
     line-height: var(--cui-font-line-height-normal);
   }
-  :where(.cui-alert-root) {
+  :where(.cui-alert) {
     &:is(:not([data-tone]), [data-tone="neutral"]) {
       background: var(--cui-component-alert-root-tone-neutral-background);
       color: var(--cui-component-alert-root-tone-neutral-color);

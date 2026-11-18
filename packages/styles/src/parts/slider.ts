@@ -4,7 +4,7 @@ export type SliderVariants = {
 	orientation?: NonNullable<SliderStyleOptions["orientation"]> | "horizontal";
 };
 export const sliderParts = {
-	root: "slider-root",
+	root: "slider",
 	label: "slider-label",
 	description: "slider-description",
 	errorMessage: "slider-error-message",

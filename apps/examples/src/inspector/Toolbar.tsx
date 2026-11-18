@@ -28,8 +28,8 @@ function Tool(props: { label: string; hint?: string; on?: boolean; disabled?: bo
 		<Tooltip content={props.hint ? `${props.label} · ${props.hint}` : props.label} placement="bottom">
 			<IconButton
 				ref={props.ref}
-				theme="secondary"
-				variant="ghost"
+				variant="secondary"
+				ghost
 				size={size()}
 				class={props.on ? "pmi-on" : undefined}
 				aria-label={props.label}
@@ -86,12 +86,12 @@ export function Toolbar() {
 						<Show
 							when={!isPhone()}
 							fallback={
-								<DropdownMenuTrigger as={IconButton} theme="secondary" variant="ghost" size={size()} aria-label="Block type" disabled={!block()}>
+								<DropdownMenuTrigger as={IconButton} variant="secondary" ghost size={size()} aria-label="Block type" disabled={!block()}>
 									<Pilcrow size={16} />
 								</DropdownMenuTrigger>
 							}
 						>
-							<DropdownMenuTrigger as={Button} theme="secondary" variant="ghost" size={size()} class="pmi-block" aria-label="Block type" disabled={!block()}>
+							<DropdownMenuTrigger as={Button} variant="secondary" ghost size={size()} class="pmi-block" aria-label="Block type" disabled={!block()}>
 								<span class="pmi-block-label">{block() ? blockKinds[block()!] : "Text"}</span>
 								<ChevronDown size={16} />
 							</DropdownMenuTrigger>
@@ -122,7 +122,7 @@ export function Toolbar() {
 							</Tool>
 						}
 					>
-						<Button theme="secondary" variant="ghost" size={size()} leftIcon={<Plus size={16} />} onClick={() => addLineItem(bench.editor)}>
+						<Button variant="secondary" ghost size={size()} leftIcon={<Plus size={16} />} onClick={() => addLineItem(bench.editor)}>
 							Add row
 						</Button>
 					</Show>

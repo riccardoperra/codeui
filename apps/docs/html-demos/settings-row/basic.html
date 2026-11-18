@@ -1,0 +1,32 @@
+<div class="cui-stack" data-gap="6" style="max-width: 600px; margin-inline: auto; padding: 8px 24px 24px; border-radius: var(--cui-radius-card); background: var(--cui-surface-panel)">
+  <section class="cui-settings-group" data-cui="settings-group" aria-labelledby="sidebar-title">
+    <h3 id="sidebar-title" class="cui-settings-group-title" data-cui="settings-group-title">Sidebar</h3>
+    <div class="cui-settings-group-content" data-cui="settings-group-content">
+      <div class="cui-settings-row" data-cui="settings-row" data-compact-control role="group" aria-labelledby="sidebar-visible-label" aria-describedby="sidebar-visible-desc">
+        <span id="sidebar-visible-label" class="cui-settings-row-label" data-cui="settings-row-label">Visible</span>
+        <div id="sidebar-visible-desc" class="cui-settings-row-description" data-cui="settings-row-description">Show the sidebar next to the canvas.</div>
+        <div class="cui-settings-row-control" data-cui="settings-row-control">
+          <div class="cui-switch" data-cui="switch" data-size="md" data-checked>
+            <input id="sidebar-visible" type="checkbox" role="switch" checked aria-labelledby="sidebar-visible-label" aria-describedby="sidebar-visible-desc" class="cui-switch-input" data-cui="switch-input" data-size="md" data-checked style="position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap" />
+            <div class="cui-switch-control" data-cui="switch-control" data-size="md" data-checked aria-hidden="true">
+              <div class="cui-switch-thumb" data-cui="switch-thumb" data-size="md" data-checked></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cui-settings-row" data-cui="settings-row" data-compact-control role="group" aria-labelledby="panel-side-label" aria-describedby="panel-side-desc">
+        <span id="panel-side-label" class="cui-settings-row-label" data-cui="settings-row-label">Panel side</span>
+        <div id="panel-side-desc" class="cui-settings-row-description" data-cui="settings-row-description">The side of the canvas the sidebar sits on.</div>
+        <div class="cui-settings-row-control" data-cui="settings-row-control">
+          <div class="cui-segmentedcontrol" data-cui="segmentedcontrol" data-size="sm" data-variant="solid" style="width: 168px">
+            <div role="tablist" aria-labelledby="panel-side-label" aria-describedby="panel-side-desc" aria-orientation="horizontal" class="cui-segmentedcontrol-list" data-cui="segmentedcontrol-list">
+              <button type="button" role="tab" aria-selected="true" tabindex="0" data-selected class="cui-segmentedcontrol-segment" data-cui="segmentedcontrol-item">Left</button>
+              <button type="button" role="tab" aria-selected="false" tabindex="-1" class="cui-segmentedcontrol-segment" data-cui="segmentedcontrol-item">Right</button>
+              <div role="presentation" class="cui-segmentedcontrol-indicator" data-cui="segmentedcontrol-indicator" style="left: 0; width: calc((100% - 1 * var(--cui-space-1)) / 2)"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

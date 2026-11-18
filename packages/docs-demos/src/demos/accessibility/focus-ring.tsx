@@ -5,7 +5,7 @@ export default function FocusRing() {
 		<>
 			<TextField size="sm" label="Snippet name" placeholder="Untitled" />
 			<Switch label="Show line numbers" />
-			<Button theme="primary" size="sm">
+			<Button variant="primary" size="sm">
 				Export PNG
 			</Button>
 		</>

@@ -1,35 +1,35 @@
 @import "./tabs-tokens.generated.css";
 
 @layer cui.components {
-  .cui-tabs-tabsTheme {
-    --cui-tabsTheme-tabListIndicatorColor: var(--cui-component-tabs-tabs-theme-tab-list-indicator-color);
-    --cui-tabsTheme-tabHeaderHoverBackgroundColor: var(--cui-component-tabs-tabs-theme-tab-header-hover-background-color);
-    --cui-tabsTheme-tabHeaderColor: var(--cui-component-tabs-tabs-theme-tab-header-color);
-    --cui-tabsTheme-tabHeaderHoverColor: var(--cui-component-tabs-tabs-theme-tab-header-hover-color);
-    --cui-tabsTheme-tabHeaderSelectedColor: var(--cui-component-tabs-tabs-theme-tab-header-selected-color);
-    --cui-tabsTheme-tabIndicatorColor: var(--cui-component-tabs-tabs-theme-tab-indicator-color);
+  .cui-tabs {
+    --cui-tabs-tab-list-indicator-color: var(--cui-component-tabs-tabs-theme-tab-list-indicator-color);
+    --cui-tabs-tab-header-hover-background-color: var(--cui-component-tabs-tabs-theme-tab-header-hover-background-color);
+    --cui-tabs-tab-header-color: var(--cui-component-tabs-tabs-theme-tab-header-color);
+    --cui-tabs-tab-header-hover-color: var(--cui-component-tabs-tabs-theme-tab-header-hover-color);
+    --cui-tabs-tab-header-selected-color: var(--cui-component-tabs-tabs-theme-tab-header-selected-color);
+    --cui-tabs-tab-indicator-color: var(--cui-component-tabs-tabs-theme-tab-indicator-color);
   }
-  .cui-tabs-tabsRoot[data-orientation=vertical] {
+  .cui-tabs[data-orientation=vertical] {
     display: flex;
     flex: 1;
     flex-shrink: 0;
   }
-  .cui-tabs-tabsList {
+  .cui-tabs-list {
     display: flex;
     position: relative;
   }
-  .cui-tabs-tabsList {
+  .cui-tabs-list {
     &:is(:not([data-orientation]), [data-orientation="horizontal"]) {
-      border-bottom: var(--cui-border-width) solid var(--cui-tabsTheme-tabListIndicatorColor);
+      border-bottom: var(--cui-border-width) solid var(--cui-tabs-tab-list-indicator-color);
     }
 
     &[data-orientation=vertical] {
       align-items: stretch;
       flex-direction: column;
-      border-right: var(--cui-border-width) solid var(--cui-tabsTheme-tabListIndicatorColor);
+      border-right: var(--cui-border-width) solid var(--cui-tabs-tab-list-indicator-color);
     }
   }
-  .cui-tabs-tabsHeader {
+  .cui-tabs-header {
     display: inline-block;
     position: relative;
     outline: none;
@@ -37,27 +37,27 @@
     font-size: var(--cui-font-size-sm);
     font-weight: var(--cui-font-weight-semibold);
     line-height: var(--cui-font-line-height-sm);
-    color: var(--cui-tabsTheme-tabHeaderColor);
+    color: var(--cui-tabs-tab-header-color);
     transition: color var(--cui-motion-duration-fast) var(--cui-motion-ease-out);
   }
-  .cui-tabs-tabsHeader:hover {
-    color: var(--cui-tabsTheme-tabHeaderHoverColor);
+  .cui-tabs-header:hover {
+    color: var(--cui-tabs-tab-header-hover-color);
   }
-  .cui-tabs-tabsHeader:focus-visible {
+  .cui-tabs-header:focus-visible {
     outline: var(--cui-focus-width) solid var(--cui-focus-color);
     outline-offset: var(--cui-focus-offset);
     border-radius: var(--cui-radius-badge);
   }
-  .cui-tabs-tabsHeader[data-selected] {
-    color: var(--cui-tabsTheme-tabHeaderSelectedColor);
+  .cui-tabs-header[data-selected] {
+    color: var(--cui-tabs-tab-header-selected-color);
   }
-  .cui-tabs-tabsContent {
+  .cui-tabs-content {
     padding: var(--cui-space-2);
   }
   .cui-tabs-indicator {
     position: absolute;
     transition: width var(--cui-motion-duration-normal) var(--cui-motion-ease-out), height var(--cui-motion-duration-normal) var(--cui-motion-ease-out), transform var(--cui-motion-duration-normal) var(--cui-motion-ease-out), left var(--cui-motion-duration-normal) var(--cui-motion-ease-out), top var(--cui-motion-duration-normal) var(--cui-motion-ease-out);
-    background-color: var(--cui-tabsTheme-tabIndicatorColor);
+    background-color: var(--cui-tabs-tab-indicator-color);
   }
   :root[data-cui-input="keyboard"] .cui-tabs-indicator {
     transition: none;

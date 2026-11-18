@@ -1,5 +1,5 @@
 import "@codeui/styles/theme.css";
-import "@codeui/styles/dropdown.css";
+import "@codeui/styles/dropdownmenu.css";
 import { GetKobalteParams } from "../../utils/types";
 import {
 	DropdownMenu as KDropdownMenu,
@@ -23,7 +23,7 @@ export function DropdownMenuContent<T extends ValidComponent = "div">(props: Pol
 	const [local, others] = splitProps(props as PolymorphicProps<"div", KDropdownMenuContentProps>, ["ref", "class"]);
 	return <KDropdownMenu.Content
 		ref={mergeRefs(motionRef(), local.ref)}
-		data-cui={"dropdown-menu-content"}
+		data-cui={"dropdownmenu-content"}
 		{...others} class={mergeClasses(styles.content, local.class)} />;
 }
 
@@ -42,7 +42,7 @@ export function DropdownMenuItem<T extends ValidComponent = "div">(
 
 	return (
 		<KDropdownMenu.Item
-			data-cui={"dropdown-menu-item"}
+			data-cui={"dropdownmenu-item"}
 			{...others} class={mergeClasses(styles.item, props.class)}>
 			{local.children}
 			<Show when={props.rightSlot} keyed={false}>

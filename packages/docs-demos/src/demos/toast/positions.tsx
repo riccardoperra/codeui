@@ -19,7 +19,7 @@ export default function ToastPositions() {
 			{({ position, toaster }) => (
 				<>
 					<Button
-						theme="secondary"
+						variant="secondary"
 						onClick={() => toaster.show({ description: `Shown at ${position}.` })}
 					>
 						{position}

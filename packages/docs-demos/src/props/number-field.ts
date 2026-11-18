@@ -19,7 +19,7 @@ export type NumberField = Pick<
 	| "errorMessage"
 	| "placeholder"
 	| "size"
-	| "theme"
+	| "variant"
 	| "classes"
 	| "ref"
 >;
@@ -48,7 +48,7 @@ export const notes = {
 		description: { description: "Hint under the input. Accepts JSX." },
 		errorMessage: { description: 'Message under the input. Renders only when validationState is "invalid".' },
 		size: { default: '"sm"', description: "Height of the input, font size, and size of the step buttons." },
-		theme: { default: '"filled"', description: "A filled box, or a bottom border only." },
+		variant: { default: '"filled"', description: "A filled box, or a bottom border only." },
 		classes: { description: "Classes merged after the kit styles, one per part." },
 		ref: { description: "Ref to the input element." },
 	},

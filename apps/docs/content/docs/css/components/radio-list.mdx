@@ -1,0 +1,91 @@
+---
+title: RadioList
+description: A group of radio options in plain HTML, laid out in a row or a column.
+---
+
+Load `@codeui/styles/radiolist.css`, or `all.css`. The Solid component is documented in [RadioList](/docs/components/radio-list).
+
+## Demo
+
+<HtmlDemo name="radio-list/basic" />
+
+## Markup
+
+| Part | Element | Class | `data-cui` |
+| --- | --- | --- | --- |
+| Root | `div role="radiogroup"` | `cui-textfield cui-field` | `radiolist` |
+| Group label | `span` | `cui-field-label` | `radiolist-label` |
+| Items | `div` | `cui-radiolist` | `radiolist-items` |
+| Item | `div` | `cui-radiolist-item` | `radiolist-item` |
+| Input | `input type="radio"` | None | None |
+| Circle | `div` | `cui-radiolist-radio` | `radiolist-item-control` |
+| Dot | `div` | `cui-radiolist-indicator` | `radiolist-item-indicator` |
+| Item label | `label` | None | `radiolist-item-label` |
+| Hint | `div` | `cui-field-description` | `radiolist-description` |
+| Error | `div` | `cui-field-error` | `radiolist-error-message` |
+
+The radio list has no class for the native input. Hide it visually with your own style, as the demos do inline. The focus ring selects `[data-cui="radiolist-item"]:has(input:focus-visible)`, so the item keeps its `data-cui`.
+
+| Attribute | Element | Values | Default |
+| --- | --- | --- | --- |
+| `data-size` | Items | `xs`, `sm`, `md`, `lg`, `xl` | `md` |
+| `data-orientation` | Items | `horizontal`, `vertical` | `horizontal` |
+| `data-variant` | Items | `filled` | None |
+| `data-field-size` | Root | `xs`, `sm`, `md`, `lg`, `xl` | `md` |
+
+The items read `data-size`. The group label, the hint, and the error read `data-field-size` from the root. Set both to the same value.
+
+## Variants
+
+### Sizes
+
+<HtmlDemo name="radio-list/sizes" />
+
+The circle is 16px at `xs` and `sm`, 20px at `md`, and 24px at `lg` and `xl`. The item label grows with the size.
+
+### Vertical
+
+<HtmlDemo name="radio-list/vertical" />
+
+`data-orientation="vertical"` stacks the items in a column. Without it, or with `horizontal`, they sit in a row. Keep `aria-orientation` on the root in sync.
+
+### Filled
+
+<HtmlDemo name="radio-list/themes" />
+
+Without `data-variant`, each circle is an outline on the surface. `data-variant="filled"` gives the circle the field fill and no outline.
+
+## States
+
+### Checked
+
+`data-checked` on the circle fills it with the brand color. Render the dot inside the checked circle only: `cui-radiolist-indicator` has no hidden state, and it pops in with a 160ms scale when it mounts. The first demo shows PNG checked.
+
+### Invalid
+
+<HtmlDemo name="radio-list/invalid" />
+
+`data-invalid` with `data-checked` on the circle turns the fill to the danger color. An unchecked circle has no invalid style. Show the error with `cui-field-error` and set `aria-invalid="true"` on the root.
+
+### Disabled
+
+The radio list styles select no disabled attribute. Set the native `disabled` attribute on the input, and dim the item in your application if it needs a visible state.
+
+## What you supply
+
+- Arrow-key navigation inside the group and a single tab stop on the checked item. Native radios that share a `name` already do both.
+- `data-checked` on the circle, and the dot inside it, whenever the checked input changes.
+- `aria-labelledby` on the root for the group label, and `aria-describedby` for the hint and the error.
+- `aria-orientation` that matches `data-orientation`.
+
+## Helper
+
+```ts
+import "@codeui/styles/radiolist.css";
+import { applyStyleProps } from "@codeui/styles";
+import { radioListStyleProps } from "@codeui/styles/radiolist";
+
+applyStyleProps(document.querySelector("[role=radiogroup]")!, radioListStyleProps.root({ fieldSize: "lg" }));
+applyStyleProps(document.querySelector("[data-cui=radiolist]")!, radioListStyleProps({ size: "lg", orientation: "vertical" }));
+// class="cui-radiolist" data-cui="radiolist-items" data-size="lg" data-orientation="vertical"
+```

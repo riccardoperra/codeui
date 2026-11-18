@@ -1,7 +1,7 @@
 @layer cui.components {
   @media (pointer: coarse) {
     :where(:root) {
-      --cui-field-textMinimum: 16px;
+      --cui-field-text-minimum: 16px;
     }
   }
 
@@ -9,11 +9,11 @@
   @media not (pointer: coarse) {
     [data-cui-density="compact"],
     [data-cui-density="comfortable"] {
-      --cui-field-textMinimum: 0px;
+      --cui-field-text-minimum: 0px;
     }
   }
 
   [data-cui-density="touch"] {
-    --cui-field-textMinimum: 16px;
+    --cui-field-text-minimum: 16px;
   }
 }

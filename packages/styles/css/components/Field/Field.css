@@ -2,40 +2,40 @@
 @import "./text-minimum.css";
 
 @layer cui.components {
-  .cui-field-baseFieldTheme {
-    --cui-baseFieldTheme-borderColor: var(--cui-border-input);
-    --cui-baseFieldTheme-background: var(--cui-component-field-base-field-theme-background);
-    --cui-baseFieldTheme-color: var(--cui-component-field-base-field-theme-color);
-    --cui-baseFieldTheme-inputHeight: var(--cui-field-inputHeight);
-    --cui-baseFieldTheme-fontSize: var(--cui-field-fontSize);
-    --cui-baseFieldTheme-descriptionColor: var(--cui-component-field-base-field-theme-description-color);
-    --cui-baseFieldTheme-disabledBackground: var(--cui-component-field-base-field-theme-disabled-background);
+  .cui-field {
+    --cui-field-border-color: var(--cui-border-input);
+    --cui-field-background: var(--cui-component-field-base-field-theme-background);
+    --cui-field-color: var(--cui-component-field-base-field-theme-color);
+    --cui-field-input-height: var(--cui-field-base-input-height);
+    --cui-field-font-size: var(--cui-field-base-font-size);
+    --cui-field-description-color: var(--cui-component-field-base-field-theme-description-color);
+    --cui-field-disabled-background: var(--cui-component-field-base-field-theme-disabled-background);
   }
-  .cui-field-baseFieldVariants {
+  .cui-field-input {
     appearance: none;
-    border: var(--cui-border-width) solid var(--cui-baseFieldTheme-borderColor);
-    background-color: var(--cui-baseFieldTheme-background);
+    border: var(--cui-border-width) solid var(--cui-field-border-color);
+    background-color: var(--cui-field-background);
     border-radius: var(--cui-radius-md);
     width: 100%;
     min-width: 0px;
-    font-size: max(var(--cui-baseFieldTheme-fontSize), var(--cui-field-textMinimum, 0px));
-    height: var(--cui-baseFieldTheme-inputHeight, 100%);
-    color: var(--cui-baseFieldTheme-color);
+    font-size: max(var(--cui-field-font-size), var(--cui-field-text-minimum, 0px));
+    height: var(--cui-field-input-height, 100%);
+    color: var(--cui-field-color);
     transition: border-color var(--cui-motion-duration-fast) var(--cui-motion-ease-out);
     line-height: var(--cui-font-line-height-sm);
   }
-  .cui-field-baseFieldVariants::placeholder {
+  .cui-field-input::placeholder {
     color: var(--cui-text-hint);
     opacity: 1;
   }
-  .cui-field-baseFieldVariants:focus {
+  .cui-field-input:focus {
     border-color: var(--cui-focus-color);
   }
-  .cui-field-baseFieldVariants:focus-visible {
+  .cui-field-input:focus-visible {
     outline: var(--cui-focus-width) solid var(--cui-focus-color);
     outline-offset: var(--cui-focus-offset);
   }
-  .cui-field-baseFieldVariants {
+  .cui-field-input {
     &[data-invalid] {
       border-color: var(--cui-text-danger);
       color: var(--cui-text-danger);
@@ -46,45 +46,45 @@
       opacity: 0.4;
     }
   }
-  :where(.cui-field-baseFieldVariants) {
+  :where(.cui-field-input) {
     &[data-size="xs"] {
-      --cui-baseFieldTheme-inputHeight: var(--cui-component-field-base-field-variants-size-xs-input-height);
-      --cui-baseFieldTheme-fontSize: var(--cui-component-field-base-field-variants-size-xs-font-size);
+      --cui-field-input-height: var(--cui-component-field-base-field-variants-size-xs-input-height);
+      --cui-field-font-size: var(--cui-component-field-base-field-variants-size-xs-font-size);
       border-radius: var(--cui-component-field-base-field-variants-size-xs-border-radius);
     }
 
     &:is(:not([data-size]), [data-size="sm"]) {
-      --cui-baseFieldTheme-inputHeight: var(--cui-component-field-base-field-variants-size-sm-input-height);
-      --cui-baseFieldTheme-fontSize: var(--cui-component-field-base-field-variants-size-sm-font-size);
+      --cui-field-input-height: var(--cui-component-field-base-field-variants-size-sm-input-height);
+      --cui-field-font-size: var(--cui-component-field-base-field-variants-size-sm-font-size);
       border-radius: var(--cui-component-field-base-field-variants-size-sm-border-radius);
     }
 
     &[data-size="md"] {
-      --cui-baseFieldTheme-inputHeight: var(--cui-component-field-base-field-variants-size-md-input-height);
-      --cui-baseFieldTheme-fontSize: var(--cui-component-field-base-field-variants-size-md-font-size);
+      --cui-field-input-height: var(--cui-component-field-base-field-variants-size-md-input-height);
+      --cui-field-font-size: var(--cui-component-field-base-field-variants-size-md-font-size);
       border-radius: var(--cui-component-field-base-field-variants-size-md-border-radius);
     }
 
     &[data-size="lg"] {
-      --cui-baseFieldTheme-inputHeight: var(--cui-component-field-base-field-variants-size-lg-input-height);
-      --cui-baseFieldTheme-fontSize: var(--cui-component-field-base-field-variants-size-lg-font-size);
+      --cui-field-input-height: var(--cui-component-field-base-field-variants-size-lg-input-height);
+      --cui-field-font-size: var(--cui-component-field-base-field-variants-size-lg-font-size);
       border-radius: var(--cui-component-field-base-field-variants-size-lg-border-radius);
     }
 
-    &:is(:not([data-theme]), [data-theme="filled"]) {
-      --cui-baseFieldTheme-borderColor: transparent;
+    &:is(:not([data-variant]), [data-variant="filled"]) {
+      --cui-field-border-color: transparent;
     }
 
-    &[data-theme="inline"] {
+    &[data-variant="inline"] {
       background-color: transparent;
       border: none;
-      border-bottom: var(--cui-border-width-strong) solid var(--cui-baseFieldTheme-background);
+      border-bottom: var(--cui-border-width-strong) solid var(--cui-field-background);
       border-radius: 0;
       padding-left: 0;
       padding-right: 0;
     }
 
-    &[data-theme="inline"][data-disabled] {
+    &[data-variant="inline"][data-disabled] {
       background-color: transparent;
     }
   }

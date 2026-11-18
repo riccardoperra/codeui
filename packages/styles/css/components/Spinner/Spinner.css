@@ -6,13 +6,13 @@
   }
 }
 @layer cui.components {
-  .cui-spinner-root {
+  .cui-spinner {
     display: inline-block;
     flex-shrink: 0;
     color: currentColor;
     animation: cui-spinner-spin calc(var(--cui-motion-duration-slow) * 3) linear infinite;
   }
-  :where(.cui-spinner-root) {
+  :where(.cui-spinner) {
     &[data-size="sm"] {
       width: var(--cui-component-spinner-root-size-sm-width);
       height: var(--cui-component-spinner-root-size-sm-height);
@@ -39,7 +39,7 @@
     stroke-linecap: round;
   }
   @media (--cui-reduced-motion) {
-    .cui-spinner-root {
+    .cui-spinner {
       animation: none;
     }
   }

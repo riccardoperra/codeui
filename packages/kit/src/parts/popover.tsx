@@ -131,7 +131,7 @@ export function CloseButton(props: CloseButtonProps) {
 		<KPopover.CloseButton
 			as={IconButton}
 			size={"xs"}
-			theme={"secondary"}
+			variant={"secondary"}
 			{...others}
 			data-cui={popoverParts.closeButton}
 			aria-label={local["aria-label"] ?? "close"}

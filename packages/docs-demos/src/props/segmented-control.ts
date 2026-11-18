@@ -3,7 +3,7 @@ import type { PropNotes } from "./notes";
 export type SegmentedControl = Pick<
 	SegmentedControlProps,
 	| "size"
-	| "theme"
+	| "accent"
 	| "variant"
 	| "pill"
 	| "fluid"
@@ -30,9 +30,9 @@ export const notes = {
 			description: "Control size.",
 			default: '"sm"',
 		},
-		theme: {
-			description: "Field theme.",
-			default: '"neutral"',
+		accent: {
+			description: "Fills the selected segment with the brand color instead of the neutral fill.",
+			default: "false",
 		},
 		variant: {
 			description: "Solid fill or bordered track.",

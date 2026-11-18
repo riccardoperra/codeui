@@ -35,7 +35,7 @@ export function LoadLab() {
 				<Slider label="Stress invoice rows" minValue={300} maxValue={2000} step={100} value={stressRows()} onChange={setStressRows} showValue getValueLabel={({ values }) => formatNumber(values[0])} />
 				<Switch label="Plant invalid rows" description="Every 25th row fails validation." size={size()} checked={plantInvalid()} onChange={setPlantInvalid} />
 				<Button
-					theme="secondary"
+					variant="secondary"
 					size={size()}
 					loading={bench.busy() === "stress"}
 					disabled={bench.busy() !== null}
@@ -58,7 +58,7 @@ export function LoadLab() {
 				<NumberField label="Price increase (%)" postfix="%" min={1} max={50} size={size()} value={percent()} onChange={value => setPercent(value ?? 5)} />
 				<div class="pmi-lab-compare">
 					<Button
-						theme="secondary"
+						variant="secondary"
 						size={size()}
 						loading={bench.busy() === "single"}
 						disabled={bench.busy() !== null}
@@ -70,7 +70,7 @@ export function LoadLab() {
 						{result(single())}
 					</Text>
 					<Button
-						theme="secondary"
+						variant="secondary"
 						size={size()}
 						loading={bench.busy() === "per-row"}
 						disabled={bench.busy() !== null}
@@ -88,7 +88,7 @@ export function LoadLab() {
 			</div>
 
 			<div>
-				<Button theme="secondary" variant="ghost" size={size()} onClick={() => resetDocument(bench.editor)}>
+				<Button variant="secondary" ghost size={size()} onClick={() => resetDocument(bench.editor)}>
 					Reset document
 				</Button>
 			</div>

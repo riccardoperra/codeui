@@ -1,0 +1,96 @@
+---
+title: SegmentedControl
+description: A row of mutually exclusive segments in plain HTML, with a sliding indicator behind the selected one.
+---
+
+Load `@codeui/styles/segmentedcontrol.css`, or `all.css`. The Solid component is documented in [SegmentedControl](/docs/components/segmented-control).
+
+## Demo
+
+<HtmlDemo name="segmented-control/basic" />
+
+## Markup
+
+| Part | Element | Class | `data-cui` |
+| --- | --- | --- | --- |
+| Root | `div` | `cui-segmentedcontrol` | `segmentedcontrol` |
+| List | `div role="tablist"` | `cui-segmentedcontrol-list` | `segmentedcontrol-list` |
+| Segment | `button role="tab"` | `cui-segmentedcontrol-segment` | `segmentedcontrol-item` |
+| Indicator | `div role="presentation"` | `cui-segmentedcontrol-indicator` | `segmentedcontrol-indicator` |
+
+The indicator is the last child of the list. It is absolutely positioned, and the selected segment's text sits above it.
+
+| Attribute | Element | Values | Default |
+| --- | --- | --- | --- |
+| `data-size` | Root | `xs`, `sm`, `md`, `lg` | `sm` |
+| `data-variant` | Root | `solid`, `bordered` | `solid` |
+| `data-accent` | Root | Presence | Off |
+| `data-pill` | Root | Presence | Off |
+| `data-fluid` | Root | Presence | Off |
+| `data-auto-width` | Root | Presence | Off |
+
+## Indicator position
+
+The styles do not place the indicator. Measure the selected segment and set the indicator's `width` and `transform: translateX()` from its `offsetWidth` and `offsetLeft`, as the Solid component does. The demos write the measured values inline. Measure again when the selection, the font, or the control's width changes.
+
+## Variants
+
+### Sizes
+
+<HtmlDemo name="segmented-control/sizes" />
+
+`xs`, `sm`, `md`, and `lg` are 28px, 36px, 44px, and 52px at comfortable density. Omitting `data-size` renders `sm`.
+
+### Bordered
+
+<HtmlDemo name="segmented-control/bordered" />
+
+`solid` fills the track. `bordered` drops the fill and draws a 2px ring around the track.
+
+### Pill
+
+<HtmlDemo name="segmented-control/pill" />
+
+`data-pill` rounds the track and the indicator fully. It combines with either variant.
+
+### Accent
+
+<HtmlDemo name="segmented-control/primary" />
+
+`data-accent` gives the indicator the brand fill and the selected label the brand text color.
+
+### Fluid
+
+<HtmlDemo name="segmented-control/fluid" />
+
+`data-fluid` sets the width to 100%. `data-auto-width` sets each segment to a 1px base width with equal flex growth and removes horizontal padding, so the segments share the width equally. It does not measure text widths. With equal segments, the indicator can use percentages instead of measured pixels, as this demo does: `left: calc((100% + var(--cui-space-1)) / 3)` and `width: calc((100% - 2 * var(--cui-space-1)) / 3)` for the second of three segments.
+
+## States
+
+### Selected
+
+`data-selected` on a segment sets the selected text color. Set `aria-selected="true"` on it, and `"false"` on the others.
+
+### Disabled
+
+<HtmlDemo name="segmented-control/disabled" />
+
+`data-disabled` on a segment fades it to 20% opacity and sets the `not-allowed` cursor. `data-disabled` on the root fades the whole control to 50%. Set the native `disabled` attribute on each disabled segment too.
+
+## What you supply
+
+- Selection on click, and the `data-selected` and `aria-selected` attributes.
+- Arrow-key navigation between segments, with a roving `tabindex`: `0` on the selected segment and `-1` on the others.
+- The indicator's `width` and `transform`. With `html[data-cui-input="keyboard"]`, the indicator moves without a transition.
+- An `aria-label` on the list.
+
+## Helper
+
+```ts
+import "@codeui/styles/segmentedcontrol.css";
+import { applyStyleProps } from "@codeui/styles";
+import { segmentedControlStyleProps } from "@codeui/styles/segmentedcontrol";
+
+applyStyleProps(document.querySelector("[data-cui=segmentedcontrol]")!, segmentedControlStyleProps({ size: "md", variant: "bordered", pill: true }));
+// class="cui-segmentedcontrol" data-cui="segmentedcontrol" data-size="md" data-variant="bordered" data-pill=""
+```

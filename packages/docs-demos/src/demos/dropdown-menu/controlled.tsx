@@ -14,7 +14,7 @@ export default function DropdownMenuControlled() {
 	return (
 		<>
 			<DropdownMenu open={open()} onOpenChange={setOpen}>
-				<DropdownMenuTrigger as={Button} theme="secondary">
+				<DropdownMenuTrigger as={Button} variant="secondary">
 					Format: {format()}
 				</DropdownMenuTrigger>
 				<DropdownMenuPortal>

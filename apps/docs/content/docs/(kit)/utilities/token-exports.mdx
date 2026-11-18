@@ -140,7 +140,7 @@ layoutVars.layoutBackgroundColor; // "var(--…)"
 
 `layoutVars` is a namespace with one member, `layoutBackgroundColor`. It is a stable CSS custom-property reference, unset by default.
 
-Only one kit rule reads it. A `Button` with `variant="ghost"` and `loading` uses it as its background while the spinner shows, and falls back to the button's own background when it is unset. Set it on a container so that loading ghost buttons inside it match the surface they sit on:
+Only one kit rule reads it. A `Button` with `ghost` and `loading` uses it as its background while the spinner shows, and falls back to the button's own background when it is unset. Set it on a container so that loading ghost buttons inside it match the surface they sit on:
 
 ```ts
 vars: { [layoutVars.layoutBackgroundColor]: tokens.surface.canvas }

@@ -14,7 +14,7 @@ export default function Markers() {
 				details="Chrome 148 or later, on a computer."
 				picture={<svg width="104" height="64" viewBox="0 0 104 64" aria-hidden="true"><rect width="104" height="64" rx="10" fill="var(--cui-surface-input)" /><path d="M20 22h64M20 34h40M20 46h52" stroke="var(--cui-text-muted)" stroke-width="4" /></svg>}
 			>
-				{control => <Button aria-describedby={control["aria-labelledby"]} theme="secondary" size="sm">Download</Button>}
+				{control => <Button aria-describedby={control["aria-labelledby"]} variant="secondary" size="sm">Download</Button>}
 			</SettingsRow>
 		</SettingsGroup>
 	</div>;

@@ -1,5 +1,5 @@
 import "@codeui/styles/theme.css";
-import "@codeui/styles/number-field.css";
+import "@codeui/styles/numberfield.css";
 import * as styles from "./NumberField.css";
 import { Button } from "../Button/Button";
 import { ChevronDownIcon } from "../../icons/ChevronDownIcon";
@@ -23,8 +23,8 @@ export function NumberFieldControls(props: NumberFieldControlsProps) {
 				disabled={!props.canIncrement}
 				type={"button"}
 				tabIndex={-1}
-				variant={"ghost"}
-				theme={"secondary"}
+				ghost
+				variant={"secondary"}
 				aria-label={`Increment by ${props.step}`}
 				class={styles.controlButton}
 				onClick={props.increment}
@@ -35,8 +35,8 @@ export function NumberFieldControls(props: NumberFieldControlsProps) {
 				disabled={!props.canDecrement}
 				type={"button"}
 				tabIndex={-1}
-				variant={"ghost"}
-				theme={"secondary"}
+				ghost
+				variant={"secondary"}
 				aria-label={`Decrement by ${props.step}`}
 				class={styles.controlButton}
 				onClick={props.decrement}

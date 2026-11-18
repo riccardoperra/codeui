@@ -1,7 +1,7 @@
 import { createBaseFieldProps, fieldStyles, textFieldStyles } from "@codeui/kit";
 
 export default function BaseStyle() {
-	const field = createBaseFieldProps({ size: "sm", theme: "filled" });
+	const field = createBaseFieldProps({ size: "sm", variant: "filled" });
 	return (
 		<div class={fieldStyles.baseFieldTheme} style={{ width: "240px" }}>
 			<input

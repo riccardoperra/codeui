@@ -1,0 +1,96 @@
+---
+title: Select
+description: A field that opens a list of options, in plain HTML.
+---
+
+Load `@codeui/styles/select.css`, or `all.css`. The Solid component is documented in [Select](/docs/components/select).
+
+## Demo
+
+<HtmlDemo name="select/basic" />
+
+## Markup
+
+| Part | Element | Class | `data-cui` |
+| --- | --- | --- | --- |
+| Root | `div` | `cui-select cui-field` | `select` |
+| Label | `span` or `label` | `cui-field-label` | `select-label` |
+| Trigger | `button` | `cui-field-input cui-select-trigger` | `select-trigger` |
+| Value | `span` | None | `select-value` |
+| Icon | `span` with an `svg` | None | `select-icon` |
+| Description | `div` | `cui-field-description` | `select-description` |
+| Error message | `div` | `cui-field-error` | `select-error-message` |
+| Content | `div` | `cui-select-content` | `select-content` |
+| Listbox | `ul` | None | `select-listbox` |
+| Item | `li` | `cui-select-item` | `select-item` |
+| Item label | `div` | None | `select-item-label` |
+| Item indicator | `svg` | `cui-select-item-indicator` | `select-item-indicator` |
+
+The trigger shares the field box with [TextField](/docs/css/components/text-field). It lays out the value and the icon at both ends.
+The content is a sibling of the root, not a child. The listbox inside it has no class, so reset the `ul` padding, margin, and bullets.
+
+| Attribute | Values | Default |
+| --- | --- | --- |
+| `data-field-size` on the root | `xs`, `sm`, `md`, `lg` | `sm` |
+| `data-size` on the trigger | `xs`, `sm`, `md`, `lg` | `sm` |
+| `data-variant` on the trigger | `filled`, `inline` | `filled` |
+| `data-invalid` on the trigger | Presence | Off |
+| `data-disabled` on the trigger | Presence | Off |
+| `data-expanded` on the content | Presence | Off |
+| `data-selected`, `data-highlighted`, `data-disabled` on an item | Presence | Off |
+
+## Variants
+
+### Sizes
+
+<HtmlDemo name="select/sizes" />
+
+`xs`, `sm`, `md`, and `lg` are 28px, 36px, 44px, and 52px at comfortable density. Set the same size as `data-size` on the trigger and `data-field-size` on the root, so the label and the messages match.
+
+### Filled and inline
+
+<HtmlDemo name="select/themes" />
+
+`filled`, the default, draws the field box. `inline` drops the box and keeps a bottom border, for a select that sits inside a sentence or a toolbar.
+
+## States
+
+### Open
+
+<HtmlDemo name="select/open" />
+
+`data-expanded` on the content plays the pop-in from `--cui-popper-content-transform-origin`. Without it, the content plays its exit animation and stays transparent. `data-motion="none"` turns off both animations.
+The list is 270px tall at most, 400px from the `sm` breakpoint, and scrolls past that. It has no width of its own. Match the trigger width, as the demo does with the column around both.
+
+In the list, `data-selected` marks the chosen item. Render the check mark only in the selected item: an unselected item reserves its space with right padding, so the labels stay aligned. `data-highlighted` gives an item the hover fill, and `data-disabled` dims it. Fira Code is highlighted and Comic Mono is disabled in this demo.
+
+### Description, invalid, and disabled
+
+<HtmlDemo name="select/states" />
+
+A description goes under the trigger. Link it with `aria-describedby`.
+`data-invalid` on the trigger turns its border and text to the danger color. Show the error message under it and set `aria-invalid="true"`.
+`data-disabled` dims the trigger. Set the native `disabled` too, so it leaves the tab order.
+
+## What you supply
+
+- Opening and closing the content from the trigger, and `aria-expanded` and `aria-controls` on it.
+- `role="listbox"` on the list and `role="option"` with `aria-selected` on each item.
+- Arrow keys, Home, End, and type-ahead move `data-highlighted`. Enter and Space select. Escape closes the list and returns focus to the trigger.
+- The selected value text in the trigger, and a hidden native `select` or input if the value goes into a form.
+- Placement under the trigger, the content width, and `--cui-popper-content-transform-origin`.
+
+## Helper
+
+```ts
+import "@codeui/styles/select.css";
+import { applyStyleProps } from "@codeui/styles";
+import { selectStyleProps } from "@codeui/styles/select";
+
+const root = document.querySelector<HTMLElement>("[data-select]")!;
+const trigger = root.querySelector<HTMLElement>("button")!;
+
+applyStyleProps(root, selectStyleProps.root({ fieldSize: "md" }));
+applyStyleProps(trigger, selectStyleProps({ size: "md", variant: "inline" }));
+// trigger: class="cui-field-input cui-select-trigger" data-cui="select-trigger" data-size="md" data-variant="inline"
+```

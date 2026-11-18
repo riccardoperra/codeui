@@ -1,34 +1,34 @@
 @import "./switch-tokens.generated.css";
 
 @layer cui.components {
-  .cui-switch-root {
+  .cui-switch {
     display: inline-grid;
     grid-template-columns: auto 1fr;
     align-items: center;
     column-gap: var(--cui-space-2);
     /* Switch geometry keeps its own physical hit target. */
-    --cui-switch-hitHeight: 28px;
-    min-height: var(--cui-switch-hitHeight);
+    --cui-switch-hit-height: 28px;
+    min-height: var(--cui-switch-hit-height);
     position: relative;
     color: var(--cui-text-default);
     font-size: var(--cui-font-size-caption);
     line-height: var(--cui-font-line-height-caption);
   }
-  .cui-switch-root:is([data-disabled], :disabled) {
+  .cui-switch:is([data-disabled], :disabled) {
     opacity: 0.4;
   }
   .cui-switch-control {
-    --cui-switch-trackWidth: 36px;
-    --cui-switch-trackHeight: calc(var(--cui-space-5) + var(--cui-space-0-5));
-    --cui-switch-thumbSize: var(--cui-component-switch-control-thumb-size);
+    --cui-switch-track-width: 36px;
+    --cui-switch-track-height: calc(var(--cui-space-5) + var(--cui-space-0-5));
+    --cui-switch-thumb-size: var(--cui-component-switch-control-thumb-size);
     position: relative;
     display: inline-flex;
     align-items: center;
     flex-shrink: 0;
     box-sizing: border-box;
-    width: var(--cui-switch-trackWidth);
-    height: var(--cui-switch-trackHeight);
-    padding: calc((var(--cui-switch-trackHeight) - var(--cui-switch-thumbSize)) / 2);
+    width: var(--cui-switch-track-width);
+    height: var(--cui-switch-track-height);
+    padding: calc((var(--cui-switch-track-height) - var(--cui-switch-thumb-size)) / 2);
     border-radius: var(--cui-radius-full);
     background: var(--cui-surface-track);
     cursor: pointer;
@@ -37,7 +37,7 @@
   .cui-switch-control::before {
     content: "";
     position: absolute;
-    inset: calc((var(--cui-switch-trackHeight) - var(--cui-switch-hitHeight)) / 2) 0;
+    inset: calc((var(--cui-switch-track-height) - var(--cui-switch-hit-height)) / 2) 0;
   }
   .cui-switch-control {
     &[data-checked] {
@@ -60,15 +60,15 @@
   }
   .cui-switch-thumb {
     flex-shrink: 0;
-    width: var(--cui-switch-thumbSize);
-    height: var(--cui-switch-thumbSize);
+    width: var(--cui-switch-thumb-size);
+    height: var(--cui-switch-thumb-size);
     border-radius: var(--cui-radius-full);
     background: var(--cui-action-brand-text);
     box-shadow: var(--cui-shadow-thumb);
     transition: transform var(--cui-motion-duration-fast) var(--cui-motion-ease-out);
   }
   .cui-switch-thumb[data-checked] {
-    transform: translateX(calc(var(--cui-switch-trackWidth) - var(--cui-switch-trackHeight)));
+    transform: translateX(calc(var(--cui-switch-track-width) - var(--cui-switch-track-height)));
   }
   :root[data-cui-input="keyboard"] .cui-switch-thumb {
     transition: none;
@@ -84,29 +84,29 @@
     font-size: var(--cui-font-size-xs);
     line-height: var(--cui-font-line-height-xs);
   }
-  .cui-switch-errorMessage {
+  .cui-switch-error-message {
     grid-column: 2;
     color: var(--cui-text-danger);
     font-size: var(--cui-font-size-xs);
     line-height: var(--cui-font-line-height-xs);
   }
   @media (--cui-coarse-pointer) {
-    .cui-switch-root {
-      --cui-switch-hitHeight: 40px;
+    .cui-switch {
+      --cui-switch-hit-height: 40px;
     }
     .cui-switch-control {
-      --cui-switch-trackWidth: calc(var(--cui-space-10) + var(--cui-space-1));
-      --cui-switch-trackHeight: calc(var(--cui-space-6) + var(--cui-space-0-5));
-      --cui-switch-thumbSize: var(--cui-component-switch-control-pointer-coarse-thumb-size);
+      --cui-switch-track-width: calc(var(--cui-space-10) + var(--cui-space-1));
+      --cui-switch-track-height: calc(var(--cui-space-6) + var(--cui-space-0-5));
+      --cui-switch-thumb-size: var(--cui-component-switch-control-pointer-coarse-thumb-size);
     }
   }
   @media (pointer: fine), (pointer: none) {
     :where(.cui-switch-control)[data-size="sm"],
-    [data-cui="switch-root"][data-size="sm"] [data-cui="switch-control"] {
+    [data-cui="switch"][data-size="sm"] [data-cui="switch-control"] {
       /* The small track keeps the switch proportions. */
-      --cui-switch-trackWidth: 28px;
-      --cui-switch-trackHeight: var(--cui-component-switch-control-size-sm-track-height);
-      --cui-switch-thumbSize: var(--cui-component-switch-control-size-sm-thumb-size);
+      --cui-switch-track-width: 28px;
+      --cui-switch-track-height: var(--cui-component-switch-control-size-sm-track-height);
+      --cui-switch-thumb-size: var(--cui-component-switch-control-size-sm-thumb-size);
     }
   }
   @media (--cui-reduced-motion) {

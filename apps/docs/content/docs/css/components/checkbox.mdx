@@ -1,0 +1,85 @@
+---
+title: Checkbox
+description: A labeled checkbox in plain HTML, with a hidden native input and a drawn box.
+---
+
+Load `@codeui/styles/checkbox.css`, or `all.css`. The Solid component is documented in [Checkbox](/docs/components/checkbox).
+
+## Demo
+
+<HtmlDemo name="checkbox/basic" />
+
+## Markup
+
+| Part | Element | Class | `data-cui` |
+| --- | --- | --- | --- |
+| Root | `div` | `cui-checkbox cui-field` | `checkbox` |
+| Input | `input type="checkbox"` | `cui-checkbox-input` | None |
+| Box | `div` | `cui-checkbox-control` | `checkbox-control` |
+| Indicator | `div` | `cui-checkbox-indicator` | None |
+| Check icon | `svg` | `cui-icon cui-checkbox-icon` | None |
+| Text group | `div` | `cui-checkbox-content` | None |
+| Label | `label` | `cui-checkbox-label` | None |
+| Hint | `div` | `cui-field-description` | None |
+| Error | `div` | `cui-field-error` | None |
+
+`cui-checkbox-input` hides the native input visually and keeps it focusable. The box shows the focus ring when the input matches `:focus-visible`, so the input must come right before the box.
+
+| Attribute | Element | Values | Default |
+| --- | --- | --- | --- |
+| `data-field-size` | Root | `xs`, `sm`, `md`, `lg`, `xl` | `md` |
+| `data-size` | Box | `xs`, `sm`, `md`, `lg`, `xl` | `md` |
+| `data-variant` | Box | `filled` | None |
+
+The box reads `data-size`. The label reads `data-field-size` from the root. Set both to the same value.
+
+## Variants
+
+### Sizes
+
+<HtmlDemo name="checkbox/sizes" />
+
+The box is 16px, 20px, 24px, 28px, and 32px from `xs` to `xl`. The label is 12px at `xs`, 14px at `sm` and `md`, and 16px at `lg` and `xl`.
+
+### Filled
+
+<HtmlDemo name="checkbox/themes" />
+
+Without `data-variant`, the box is an outline on the surface. `data-variant="filled"` gives the box the field fill and no outline.
+
+## States
+
+### Checked
+
+<HtmlDemo name="checkbox/checked" />
+
+`data-checked` on the root fills the box and shows the check. The selector is `[data-checked] .cui-checkbox-control`, so the attribute must sit on an ancestor of the box, not on the box. Keep the native `checked` property in sync.
+
+### Invalid
+
+<HtmlDemo name="checkbox/invalid" />
+
+The checkbox styles select no invalid attribute. Show the error with `cui-field-error` inside the text group and set `aria-invalid="true"` on the input.
+
+### Disabled and indeterminate
+
+The checkbox styles select neither `data-disabled` nor `data-indeterminate`. A disabled checkbox looks like an enabled one, and an indeterminate checkbox looks unchecked. Set the native `disabled` attribute and the `indeterminate` property for assistive technology, and style the look in your application.
+
+## What you supply
+
+- A click handler on the box and the label that toggles the input. The input is hidden, so a click on the box does not reach it.
+- `data-checked` on the root whenever the input's `checked` changes.
+- Matching `id` and `for` on the input and the label, and `aria-describedby` for the hint and the error.
+- `aria-invalid`, `disabled`, and the `indeterminate` property on the input.
+
+## Helper
+
+```ts
+import "@codeui/styles/checkbox.css";
+import { applyStyleProps } from "@codeui/styles";
+import { checkboxStyleProps } from "@codeui/styles/checkbox";
+
+applyStyleProps(document.querySelector("[data-cui=checkbox]")!, checkboxStyleProps({ fieldSize: "lg" }));
+applyStyleProps(document.querySelector(".cui-checkbox-control")!, checkboxStyleProps.control({ size: "lg", variant: "filled" }));
+// class="cui-checkbox-control" data-cui="checkbox-control" data-size="lg" data-variant="filled"
+```

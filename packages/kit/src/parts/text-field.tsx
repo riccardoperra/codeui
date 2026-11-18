@@ -1,5 +1,5 @@
 import "@codeui/styles/theme.css";
-import "@codeui/styles/text-field.css";
+import "@codeui/styles/textfield.css";
 import * as styles from "../components/TextField/TextField.css";
 import {
 	FieldInput,
@@ -20,7 +20,7 @@ export {
 export type RootProps = FieldRootProps;
 export function Root(props: RootProps) {
 	return (
-		<FieldRoot marker="text-field" baseClass={styles.baseFieldContainer} {...props} />
+		<FieldRoot marker="textfield" baseClass={styles.baseFieldContainer} {...props} />
 	);
 }
 

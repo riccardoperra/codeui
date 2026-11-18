@@ -1,0 +1,75 @@
+---
+title: Alert
+description: An inline status message in plain HTML, styled by tone and width attributes.
+---
+
+Load `@codeui/styles/alert.css`, or `all.css`. The Solid component is documented in [Alert](/docs/components/alert).
+
+## Demo
+
+<HtmlDemo name="alert/basic" />
+
+## Markup
+
+| Part | Element | Class | `data-cui` |
+| --- | --- | --- | --- |
+| Root | `div` | `cui-alert` | `alert` |
+| Icon | `span` | `cui-alert-icon` | `alert-icon` |
+| Title | `div` | `cui-alert-title` | `alert-title` |
+| Description | `div` | `cui-alert-description` | `alert-description` |
+| Action | `div` | `cui-alert-action` | `alert-action` |
+
+The root is a three-column grid: icon, text, action. Every part is optional except the description. Without a title, the description centers against the icon and the action.
+
+| Attribute | Values | Default |
+| --- | --- | --- |
+| `data-tone` | `neutral`, `info`, `success`, `warning`, `danger` | `neutral` |
+| `data-fluid` | Presence | Off |
+
+## Variants
+
+### Tones
+
+<HtmlDemo name="alert/tones" />
+
+`neutral` uses the field fill and `info` the soft brand wash. `success`, `warning` and `danger` use the solid status fills with contrasting text. Omitting `data-tone` renders `neutral`. Use a status tone only for a state the user must notice, and pair it with an icon.
+
+### Icons
+
+<HtmlDemo name="alert/icons" />
+
+Wrap a 16px icon in the icon part and give it `aria-hidden="true"`. The icon takes the tone color and sits on the first text line. The styles do not draw an icon for you.
+
+### Actions
+
+<HtmlDemo name="alert/actions" />
+
+Put buttons in the action part. It sits in the last column, centered on the text, with 8px between buttons.
+
+### Width
+
+<HtmlDemo name="alert/fluid" />
+
+The root is inline by default, so it is as wide as its content. `data-fluid` makes it fill its container.
+
+## States
+
+The alert has no state attributes. Add or remove it from the page to show or hide it.
+
+## What you supply
+
+- A live region role. Use `role="status"` for most tones and `role="alert"` for urgent errors. The Solid component renders `role="alert"` on every tone.
+- The icon markup for each tone.
+- Focus management when an action removes the alert: move focus to the next useful control.
+
+## Helper
+
+```ts
+import "@codeui/styles/alert.css";
+import { applyStyleProps } from "@codeui/styles";
+import { alertStyleProps } from "@codeui/styles/alert";
+
+const alert = document.querySelector<HTMLElement>("[data-cui=alert]")!;
+applyStyleProps(alert, alertStyleProps({ tone: "danger", fluid: true }));
+// class="cui-alert" data-cui="alert" data-tone="danger" data-fluid=""
+```

@@ -10,7 +10,7 @@ export default function DialogSizes() {
 		<>
 			<For each={sizes}>
 				{value => (
-					<Button theme="secondary" onClick={() => setSize(value)}>
+					<Button variant="secondary" onClick={() => setSize(value)}>
 						{value}
 					</Button>
 				)}

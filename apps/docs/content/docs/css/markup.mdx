@@ -1,0 +1,79 @@
+---
+title: Markup
+description: Classes, part markers, and variant attributes that the stylesheets read.
+---
+
+Every styled element combines three things: a class, a `data-cui` part marker, and variant attributes.
+
+<HtmlDemo name="markup/anatomy" />
+
+| Piece | Example | Purpose |
+| --- | --- | --- |
+| Class | `cui-button` | Applies the component rules. Some parts need two classes. Copy the full list from the component page. |
+| Part marker | `data-cui="button"` | Names the part. Some rules select a part through its marker, for example the switch control after a focused input. |
+| Variants | `data-variant="primary"` `data-size="md"` | Pick appearance. Each component page lists the values and defaults. |
+
+## Variant attributes
+
+Enumerated variants take a value: `data-size="md"`. Boolean variants are presence attributes: `data-pill` turns pill corners on, and removing the attribute turns them off.
+
+When a variant has a named default, omitting the attribute renders the default. A button with no `data-size` renders as `sm`. Variants without a default, such as Button's `data-variant`, need a value.
+
+Some parts read a size from an ancestor. Field labels, descriptions, and errors follow `data-field-size` on the field root, so set the size once on the group.
+
+## Density
+
+Set `data-cui-density` to `compact`, `comfortable`, or `touch` on any container. Controls inside it change height. Font sizes stay the same. Comfortable is the default, and a coarse pointer selects touch automatically. See [Theming](/docs/css/theming#density).
+
+## Helpers
+
+Each component module exports a `StyleProps` helper that returns the class, the marker, and the variant attributes for one part. Defaults are filled in.
+
+```ts
+import { buttonStyleProps } from "@codeui/styles/button";
+
+buttonStyleProps({ variant: "primary", pill: true, class: "checkout" });
+// {
+//   class: "cui-button checkout",
+//   "data-cui": "button",
+//   "data-size": "sm",
+//   "data-variant": "primary",
+//   "data-pill": "",
+// }
+```
+
+Components with several styled parts expose one call per part, such as `switchStyleProps.control({ size: "sm" })`.
+
+### Plain DOM
+
+`applyStyleProps(element, props)` replaces the element's class, sets the marker, and removes variant attributes that are no longer set. Call it again when options change.
+
+```ts
+import { applyStyleProps } from "@codeui/styles";
+import { badgeStyleProps } from "@codeui/styles/badge";
+
+const badge = document.querySelector("#status")!;
+applyStyleProps(badge, badgeStyleProps({ tone: "success" }));
+```
+
+### Frameworks
+
+The result is a plain attribute object.
+
+```tsx
+// Solid and Svelte: spread it.
+<button {...buttonStyleProps({ variant: "primary" })}>Export</button>
+
+// React: rename class to className.
+const { class: className, ...attrs } = buttonStyleProps({ variant: "primary" });
+<button className={className} {...attrs}>Export</button>
+```
+
+```vue
+<!-- Vue -->
+<button v-bind="buttonStyleProps({ variant: 'primary' })">Export</button>
+```
+
+### Contract
+
+`@codeui/styles/contract.json` lists every public class, part marker, variable reference, and the `$appearance` schema with each option's values and default. Use it to generate bindings for another language or to check your templates.

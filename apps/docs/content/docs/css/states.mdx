@@ -1,0 +1,62 @@
+---
+title: States
+description: The state attributes a behavior layer sets, and what the CSS does with them.
+---
+
+The stylesheets style state but never change it. Native elements report some state through pseudo-classes such as `:disabled`, `:checked`, and `:focus-visible`. Everything else comes from attributes that your code sets.
+
+<HtmlDemo name="states/field" />
+
+The invalid field above is static markup: `data-invalid` on the input and an error message element. A real form toggles both when validation runs, and sets `aria-invalid` and `aria-describedby` to match.
+
+## State attributes
+
+| Attribute | Meaning |
+| --- | --- |
+| `data-checked` | A checkbox, switch, radio, or toggle is on. |
+| `data-indeterminate` | A checkbox is mixed. Progress has no known value. |
+| `data-selected` | An option or tab is selected. |
+| `data-highlighted` | An option has virtual focus in a list or menu. |
+| `data-disabled` | The element is disabled. Set it with native `disabled` on form controls. |
+| `data-invalid` | The value failed validation. |
+| `data-focus`, `data-hover` | Focus or hover reported by a behavior layer, for elements that cannot use the pseudo-classes. |
+| `data-expanded` | A trigger's popup or an accordion item is open. |
+| `data-open`, `data-opened`, `data-closed`, `data-visible` | Overlay lifecycle. They start and end enter and exit animations. |
+| `data-loading` | Work is pending. |
+| `data-motion="none"` | Suppresses overlay motion. |
+| `data-swipe` | Toast swipe phase: `move`, `cancel`, or `end`. |
+
+Presence is enough: `data-checked` and `data-checked=""` select the same rules. Remove the attribute to clear the state.
+
+Each component page lists the states its parts read.
+
+## Input modality
+
+Some focus and motion rules depend on the last input. Set `data-cui-input` on the root element to `keyboard` or `pointer`:
+
+```js
+const root = document.documentElement;
+addEventListener("keydown", () => root.setAttribute("data-cui-input", "keyboard"), true);
+addEventListener("pointerdown", () => root.setAttribute("data-cui-input", "pointer"), true);
+```
+
+With `keyboard`, tab and segmented-control indicators and accordion content change without animation. With `pointer`, the switch hides its focus ring after a click.
+
+## Geometry variables
+
+Overlays and progress bars read a few custom properties that only code can know.
+
+| Variable | Value |
+| --- | --- |
+| `--cui-popper-anchor-width` | Width of the trigger an overlay is attached to. |
+| `--cui-popper-content-available-height` | Height available to an overlay before it hits the viewport. |
+| `--cui-popper-content-transform-origin` | Origin for the overlay's scale animation. |
+| `--cui-progress-fill-width` | Progress value as a width, such as `50%`. |
+| `--cui-toast-progress-fill-width` | Remaining toast time as a width. |
+| `--cui-toast-swipe-move-x`, `--cui-toast-swipe-end-x` | Current and final horizontal swipe distance. |
+
+Static demos set these inline, for example `style="--cui-progress-fill-width: 40%"`.
+
+## Accessibility is yours
+
+CSS cannot add roles, names, or keyboard support. The markup on the component pages includes the ARIA attributes a working widget needs, but the attributes describe one frozen moment. Keep them in sync with the `data-*` state, move focus as the [WAI-ARIA patterns](https://www.w3.org/WAI/ARIA/apg/patterns/) describe, and return focus when an overlay closes.

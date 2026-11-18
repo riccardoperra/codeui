@@ -1,0 +1,91 @@
+---
+title: Accordion
+description: Collapsible settings sections in plain HTML, with the open state written as attributes.
+---
+
+Load `@codeui/styles/accordion.css`, or `all.css`. The Solid component is documented in [Accordion](/docs/components/accordion).
+
+## Demo
+
+<HtmlDemo name="accordion/basic" />
+
+## Markup
+
+| Part | Element | Class | `data-cui` |
+| --- | --- | --- | --- |
+| Root | `div` | `cui-accordion` | `accordion` |
+| Item | `div` | `cui-accordion-item` | `accordion-item` |
+| Header | `h3` | `cui-accordion-header` | `accordion-header` |
+| Trigger | `button` | `cui-accordion-trigger` | `accordion-trigger` |
+| Icon | `span` | `cui-accordion-icon` | `accordion-icon` |
+| Title | `span` | `cui-accordion-title` | `accordion-title` |
+| Summary | `span` | `cui-accordion-summary` | `accordion-summary` |
+| Chevron | `span` | `cui-accordion-chevron` | `accordion-chevron` |
+| Content | `div` | `cui-accordion-content` | `accordion-content` |
+| Content body | `div` | `cui-accordion-content-body` | None |
+
+Several rules select on `data-cui`, so keep the markers. The chevron turns only when the item, header and trigger are direct parent and child with their markers. The open icon color reads the item and icon markers.
+
+| Attribute | Values | Default |
+| --- | --- | --- |
+| `data-density` on the trigger | `default`, `compact`, `comfortable` | `default` |
+| `data-motion` on the root | `none` | Animated |
+
+## Variants
+
+### Density
+
+<HtmlDemo name="accordion/density" />
+
+`compact` adds 4px of block padding to the trigger and `comfortable` adds 12px. `default` adds none. Every trigger keeps the 36px minimum row height, so a one-line compact row looks like a default row.
+
+### Several open sections
+
+<HtmlDemo name="accordion/multiple" />
+
+The CSS allows any number of open items. Inkstone sidebars open one section at a time, so prefer single selection in your behavior.
+
+### Motion
+
+`data-motion="none"` on the root removes the content and chevron transitions. Otherwise the content changes height and opacity over 200ms, and the chevron turns 90°. Set `html[data-cui-input="keyboard"]` while the user toggles from the keyboard, and the change is instant. Reduced motion keeps only the fade.
+
+## States
+
+### Expanded
+
+Set `data-expanded` on the item, header and trigger, `aria-expanded="true"` on the trigger, and `data-open` on the content. The expanded item gets the inset fill, the chevron turns, and the icon takes the accent color.
+
+The open content height is `var(--cui-accordion-content-height, auto)`. Set the variable to the measured height in pixels to animate the change; without it the content opens at its natural height.
+
+### Collapsed
+
+Without `data-open` the content has a height of 0 and is transparent. Add `hidden` to remove it from layout, or `inert` to keep it mounted but unreachable. The demos use `data-closed` on collapsed parts to mirror the kit; the CSS does not select it.
+
+### Disabled
+
+A trigger with the native `disabled` attribute uses muted text and loses the hover fill. Disabled sections stay closed.
+
+### Hover and focus
+
+A trigger that is not expanded gets the field fill on hover, on devices with a hover pointer. It shows the 2px focus ring on `:focus-visible`.
+
+## What you supply
+
+- Toggling `data-expanded`, `data-open`, `aria-expanded` and `hidden` on click, Enter and Space.
+- `aria-controls` on the trigger and `role="region"` with `aria-labelledby` on the content.
+- Up and Down Arrow, Home and End between triggers, skipping disabled ones.
+- `--cui-accordion-content-height` while the content animates, then removing `hidden` only after the closing transition ends.
+
+## Helper
+
+```ts
+import "@codeui/styles/accordion.css";
+import { applyStyleProps } from "@codeui/styles";
+import { accordionStyleProps } from "@codeui/styles/accordion";
+
+const trigger = document.querySelector<HTMLElement>("#frame-trigger")!;
+applyStyleProps(trigger, accordionStyleProps({ density: "compact" }));
+// class="cui-accordion-trigger" data-cui="accordion-trigger" data-density="compact"
+```
+
+The helper covers the trigger. The other parts use their class names and markers from the table above.

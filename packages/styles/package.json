@@ -108,15 +108,15 @@
         "default": "./dist/cjs/button.cjs"
       }
     },
-    "./button-loading.css": "./dist/button-loading.css",
-    "./button-loading": {
+    "./loading.css": "./dist/loading.css",
+    "./loading": {
       "import": {
-        "types": "./dist/types/button-loading.d.ts",
-        "default": "./dist/esm/button-loading.js"
+        "types": "./dist/types/loading.d.ts",
+        "default": "./dist/esm/loading.js"
       },
       "require": {
-        "types": "./dist/types-cjs/button-loading.d.cts",
-        "default": "./dist/cjs/button-loading.cjs"
+        "types": "./dist/types-cjs/loading.d.cts",
+        "default": "./dist/cjs/loading.cjs"
       }
     },
     "./checkbox.css": "./dist/checkbox.css",
@@ -141,15 +141,15 @@
         "default": "./dist/cjs/combobox.cjs"
       }
     },
-    "./command-menu.css": "./dist/command-menu.css",
-    "./command-menu": {
+    "./commandmenu.css": "./dist/commandmenu.css",
+    "./commandmenu": {
       "import": {
-        "types": "./dist/types/command-menu.d.ts",
-        "default": "./dist/esm/command-menu.js"
+        "types": "./dist/types/commandmenu.d.ts",
+        "default": "./dist/esm/commandmenu.js"
       },
       "require": {
-        "types": "./dist/types-cjs/command-menu.d.cts",
-        "default": "./dist/cjs/command-menu.cjs"
+        "types": "./dist/types-cjs/commandmenu.d.cts",
+        "default": "./dist/cjs/commandmenu.cjs"
       }
     },
     "./dialog.css": "./dist/dialog.css",
@@ -163,15 +163,15 @@
         "default": "./dist/cjs/dialog.cjs"
       }
     },
-    "./dropdown.css": "./dist/dropdown.css",
-    "./dropdown": {
+    "./dropdownmenu.css": "./dist/dropdownmenu.css",
+    "./dropdownmenu": {
       "import": {
-        "types": "./dist/types/dropdown.d.ts",
-        "default": "./dist/esm/dropdown.js"
+        "types": "./dist/types/dropdownmenu.d.ts",
+        "default": "./dist/esm/dropdownmenu.js"
       },
       "require": {
-        "types": "./dist/types-cjs/dropdown.d.cts",
-        "default": "./dist/cjs/dropdown.cjs"
+        "types": "./dist/types-cjs/dropdownmenu.d.cts",
+        "default": "./dist/cjs/dropdownmenu.cjs"
       }
     },
     "./field.css": "./dist/field.css",
@@ -185,15 +185,15 @@
         "default": "./dist/cjs/field.cjs"
       }
     },
-    "./icon-button.css": "./dist/icon-button.css",
-    "./icon-button": {
+    "./iconbutton.css": "./dist/iconbutton.css",
+    "./iconbutton": {
       "import": {
-        "types": "./dist/types/icon-button.d.ts",
-        "default": "./dist/esm/icon-button.js"
+        "types": "./dist/types/iconbutton.d.ts",
+        "default": "./dist/esm/iconbutton.js"
       },
       "require": {
-        "types": "./dist/types-cjs/icon-button.d.cts",
-        "default": "./dist/cjs/icon-button.cjs"
+        "types": "./dist/types-cjs/iconbutton.d.cts",
+        "default": "./dist/cjs/iconbutton.cjs"
       }
     },
     "./kbd.css": "./dist/kbd.css",
@@ -229,26 +229,26 @@
         "default": "./dist/cjs/listbox.cjs"
       }
     },
-    "./number-field.css": "./dist/number-field.css",
-    "./number-field": {
+    "./numberfield.css": "./dist/numberfield.css",
+    "./numberfield": {
       "import": {
-        "types": "./dist/types/number-field.d.ts",
-        "default": "./dist/esm/number-field.js"
+        "types": "./dist/types/numberfield.d.ts",
+        "default": "./dist/esm/numberfield.js"
       },
       "require": {
-        "types": "./dist/types-cjs/number-field.d.cts",
-        "default": "./dist/cjs/number-field.cjs"
+        "types": "./dist/types-cjs/numberfield.d.cts",
+        "default": "./dist/cjs/numberfield.cjs"
       }
     },
-    "./option-card.css": "./dist/option-card.css",
-    "./option-card": {
+    "./optioncard.css": "./dist/optioncard.css",
+    "./optioncard": {
       "import": {
-        "types": "./dist/types/option-card.d.ts",
-        "default": "./dist/esm/option-card.js"
+        "types": "./dist/types/optioncard.d.ts",
+        "default": "./dist/esm/optioncard.js"
       },
       "require": {
-        "types": "./dist/types-cjs/option-card.d.cts",
-        "default": "./dist/cjs/option-card.cjs"
+        "types": "./dist/types-cjs/optioncard.d.cts",
+        "default": "./dist/cjs/optioncard.cjs"
       }
     },
     "./pagination.css": "./dist/pagination.css",
@@ -284,26 +284,26 @@
         "default": "./dist/cjs/progress.cjs"
       }
     },
-    "./radio-list.css": "./dist/radio-list.css",
-    "./radio-list": {
+    "./radiolist.css": "./dist/radiolist.css",
+    "./radiolist": {
       "import": {
-        "types": "./dist/types/radio-list.d.ts",
-        "default": "./dist/esm/radio-list.js"
+        "types": "./dist/types/radiolist.d.ts",
+        "default": "./dist/esm/radiolist.js"
       },
       "require": {
-        "types": "./dist/types-cjs/radio-list.d.cts",
-        "default": "./dist/cjs/radio-list.cjs"
+        "types": "./dist/types-cjs/radiolist.d.cts",
+        "default": "./dist/cjs/radiolist.cjs"
       }
     },
-    "./segmented-control.css": "./dist/segmented-control.css",
-    "./segmented-control": {
+    "./segmentedcontrol.css": "./dist/segmentedcontrol.css",
+    "./segmentedcontrol": {
       "import": {
-        "types": "./dist/types/segmented-control.d.ts",
-        "default": "./dist/esm/segmented-control.js"
+        "types": "./dist/types/segmentedcontrol.d.ts",
+        "default": "./dist/esm/segmentedcontrol.js"
       },
       "require": {
-        "types": "./dist/types-cjs/segmented-control.d.cts",
-        "default": "./dist/cjs/segmented-control.cjs"
+        "types": "./dist/types-cjs/segmentedcontrol.d.cts",
+        "default": "./dist/cjs/segmentedcontrol.cjs"
       }
     },
     "./select.css": "./dist/select.css",
@@ -427,26 +427,26 @@
         "default": "./dist/cjs/text.cjs"
       }
     },
-    "./text-area.css": "./dist/text-area.css",
-    "./text-area": {
+    "./textarea.css": "./dist/textarea.css",
+    "./textarea": {
       "import": {
-        "types": "./dist/types/text-area.d.ts",
-        "default": "./dist/esm/text-area.js"
+        "types": "./dist/types/textarea.d.ts",
+        "default": "./dist/esm/textarea.js"
       },
       "require": {
-        "types": "./dist/types-cjs/text-area.d.cts",
-        "default": "./dist/cjs/text-area.cjs"
+        "types": "./dist/types-cjs/textarea.d.cts",
+        "default": "./dist/cjs/textarea.cjs"
       }
     },
-    "./text-field.css": "./dist/text-field.css",
-    "./text-field": {
+    "./textfield.css": "./dist/textfield.css",
+    "./textfield": {
       "import": {
-        "types": "./dist/types/text-field.d.ts",
-        "default": "./dist/esm/text-field.js"
+        "types": "./dist/types/textfield.d.ts",
+        "default": "./dist/esm/textfield.js"
       },
       "require": {
-        "types": "./dist/types-cjs/text-field.d.cts",
-        "default": "./dist/cjs/text-field.cjs"
+        "types": "./dist/types-cjs/textfield.d.cts",
+        "default": "./dist/cjs/textfield.cjs"
       }
     },
     "./toast.css": "./dist/toast.css",
@@ -471,37 +471,37 @@
         "default": "./dist/cjs/tooltip.cjs"
       }
     },
-    "./field-label.css": "./dist/field-label.css",
-    "./field-label": {
+    "./fieldlabel.css": "./dist/fieldlabel.css",
+    "./fieldlabel": {
       "import": {
-        "types": "./dist/types/field-label.d.ts",
-        "default": "./dist/esm/field-label.js"
+        "types": "./dist/types/fieldlabel.d.ts",
+        "default": "./dist/esm/fieldlabel.js"
       },
       "require": {
-        "types": "./dist/types-cjs/field-label.d.cts",
-        "default": "./dist/cjs/field-label.cjs"
+        "types": "./dist/types-cjs/fieldlabel.d.cts",
+        "default": "./dist/cjs/fieldlabel.cjs"
       }
     },
-    "./field-message.css": "./dist/field-message.css",
-    "./field-message": {
+    "./fieldmessage.css": "./dist/fieldmessage.css",
+    "./fieldmessage": {
       "import": {
-        "types": "./dist/types/field-message.d.ts",
-        "default": "./dist/esm/field-message.js"
+        "types": "./dist/types/fieldmessage.d.ts",
+        "default": "./dist/esm/fieldmessage.js"
       },
       "require": {
-        "types": "./dist/types-cjs/field-message.d.cts",
-        "default": "./dist/cjs/field-message.cjs"
+        "types": "./dist/types-cjs/fieldmessage.d.cts",
+        "default": "./dist/cjs/fieldmessage.cjs"
       }
     },
-    "./field-error.css": "./dist/field-error.css",
-    "./field-error": {
+    "./fielderror.css": "./dist/fielderror.css",
+    "./fielderror": {
       "import": {
-        "types": "./dist/types/field-error.d.ts",
-        "default": "./dist/esm/field-error.js"
+        "types": "./dist/types/fielderror.d.ts",
+        "default": "./dist/esm/fielderror.js"
       },
       "require": {
-        "types": "./dist/types-cjs/field-error.d.cts",
-        "default": "./dist/cjs/field-error.cjs"
+        "types": "./dist/types-cjs/fielderror.d.cts",
+        "default": "./dist/cjs/fielderror.cjs"
       }
     },
     "./icon.css": "./dist/icon.css",
@@ -1117,8 +1117,8 @@
       "button": [
         "dist/types/button.d.ts"
       ],
-      "button-loading": [
-        "dist/types/button-loading.d.ts"
+      "loading": [
+        "dist/types/loading.d.ts"
       ],
       "checkbox": [
         "dist/types/checkbox.d.ts"
@@ -1126,20 +1126,20 @@
       "combobox": [
         "dist/types/combobox.d.ts"
       ],
-      "command-menu": [
-        "dist/types/command-menu.d.ts"
+      "commandmenu": [
+        "dist/types/commandmenu.d.ts"
       ],
       "dialog": [
         "dist/types/dialog.d.ts"
       ],
-      "dropdown": [
-        "dist/types/dropdown.d.ts"
+      "dropdownmenu": [
+        "dist/types/dropdownmenu.d.ts"
       ],
       "field": [
         "dist/types/field.d.ts"
       ],
-      "icon-button": [
-        "dist/types/icon-button.d.ts"
+      "iconbutton": [
+        "dist/types/iconbutton.d.ts"
       ],
       "kbd": [
         "dist/types/kbd.d.ts"
@@ -1150,11 +1150,11 @@
       "listbox": [
         "dist/types/listbox.d.ts"
       ],
-      "number-field": [
-        "dist/types/number-field.d.ts"
+      "numberfield": [
+        "dist/types/numberfield.d.ts"
       ],
-      "option-card": [
-        "dist/types/option-card.d.ts"
+      "optioncard": [
+        "dist/types/optioncard.d.ts"
       ],
       "pagination": [
         "dist/types/pagination.d.ts"
@@ -1165,11 +1165,11 @@
       "progress": [
         "dist/types/progress.d.ts"
       ],
-      "radio-list": [
-        "dist/types/radio-list.d.ts"
+      "radiolist": [
+        "dist/types/radiolist.d.ts"
       ],
-      "segmented-control": [
-        "dist/types/segmented-control.d.ts"
+      "segmentedcontrol": [
+        "dist/types/segmentedcontrol.d.ts"
       ],
       "select": [
         "dist/types/select.d.ts"
@@ -1204,11 +1204,11 @@
       "text": [
         "dist/types/text.d.ts"
       ],
-      "text-area": [
-        "dist/types/text-area.d.ts"
+      "textarea": [
+        "dist/types/textarea.d.ts"
       ],
-      "text-field": [
-        "dist/types/text-field.d.ts"
+      "textfield": [
+        "dist/types/textfield.d.ts"
       ],
       "toast": [
         "dist/types/toast.d.ts"
@@ -1216,14 +1216,14 @@
       "tooltip": [
         "dist/types/tooltip.d.ts"
       ],
-      "field-label": [
-        "dist/types/field-label.d.ts"
+      "fieldlabel": [
+        "dist/types/fieldlabel.d.ts"
       ],
-      "field-message": [
-        "dist/types/field-message.d.ts"
+      "fieldmessage": [
+        "dist/types/fieldmessage.d.ts"
       ],
-      "field-error": [
-        "dist/types/field-error.d.ts"
+      "fielderror": [
+        "dist/types/fielderror.d.ts"
       ],
       "icon": [
         "dist/types/icon.d.ts"

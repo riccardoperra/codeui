@@ -1,0 +1,81 @@
+---
+title: Pagination
+description: A row of page buttons in plain HTML, built from IconButton classes.
+---
+
+Load `@codeui/styles/pagination.css`, or `all.css`. The entry includes the Button and IconButton styles it builds on. The Solid component is documented in [Pagination](/docs/components/pagination).
+
+## Demo
+
+<HtmlDemo name="pagination/basic" />
+
+## Markup
+
+| Part | Element | Class | `data-cui` |
+| --- | --- | --- | --- |
+| Root | `nav` | `cui-pagination` | `pagination` |
+| Item | `button` | `cui-button cui-iconbutton cui-pagination-item` | `pagination-item` |
+| Arrow icon | `svg` | `cui-icon cui-pagination-icon` | None |
+
+Each item is an [IconButton](/docs/css/components/icon-button) with the pagination item class added. The root lays the items out in one row and spaces them with `--cui-pagination-item-margin`. Page numbers use tabular figures, so the row keeps its width as pages change.
+
+| Attribute | Values | Default |
+| --- | --- | --- |
+| `data-variant` on an item | `primary` for the current page, `secondary` for the others | None. Set one. |
+| `data-size` on an item | `xs`, `sm`, `md`, `lg` | `sm` |
+| `data-pill` on an item | Presence | Off |
+
+## Variants
+
+### Page window
+
+<HtmlDemo name="pagination/window" />
+
+Render only a window of page numbers around the current page. Five numbers give two siblings on each side, three give one. The arrows do not count toward the window. The styles have no ellipsis part.
+
+### Sizes
+
+<HtmlDemo name="pagination/sizes" />
+
+Items use the Button height scale: 28px, 36px, 44px and 52px at comfortable density. Set the same size on every item.
+
+### Pill
+
+<HtmlDemo name="pagination/pill" />
+
+`data-pill` on each item makes it fully round.
+
+## States
+
+### Current page
+
+The current page is the one `primary` item. Set `aria-current="page"` on it. Every other item uses `secondary`.
+
+### Boundaries
+
+<HtmlDemo name="pagination/boundaries" />
+
+Disable Previous on the first page and Next on the last. Set both `disabled` and `data-disabled`, as on [Button](/docs/css/components/button). With a single page, both arrows disable.
+
+## What you supply
+
+- `aria-label` on the `nav`, and an accessible name on each item, such as "Page 2" and "Next page".
+- `aria-current="page"` and the `primary` variant on the current page, and the page window.
+- Click handlers, and disabling the arrows at the boundaries.
+- An empty state instead of the pagination when there are no results.
+
+## Helper
+
+The pagination entry exports class names only. Build each item with the IconButton helper and pass the item class through `class`.
+
+```ts
+import "@codeui/styles/pagination.css";
+import { applyStyleProps } from "@codeui/styles";
+import { iconButtonStyleProps } from "@codeui/styles/iconbutton";
+import { paginationItem } from "@codeui/styles/pagination";
+
+const page = document.querySelector<HTMLButtonElement>("[aria-current=page]")!;
+applyStyleProps(page, iconButtonStyleProps({ variant: "primary", class: paginationItem }));
+page.dataset.cui = "pagination-item";
+// class="cui-button cui-iconbutton cui-pagination-item" data-size="sm" data-variant="primary"
+```
