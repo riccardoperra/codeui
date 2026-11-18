@@ -1,0 +1,34 @@
+---
+title: Build a form
+description: Submit React Aria fields through a native form.
+---
+
+Give each control a visible label and a `name`. A named control contributes its value to `FormData` when you submit the form. Set the button's `type` to `submit` so the form can submit from the keyboard.
+
+```tsx
+import { Button, Checkbox } from '@codeui/react';
+import { useState, type FormEvent } from 'react';
+
+export function ExportOptions() {
+	const [message, setMessage] = useState('');
+
+	function submit(event: FormEvent<HTMLFormElement>) {
+		event.preventDefault();
+		const values = new FormData(event.currentTarget);
+		const includeBackground = values.has('background');
+		setMessage(includeBackground ? 'Export with background' : 'Export without background');
+	}
+
+	return (
+		<form onSubmit={submit}>
+			<Checkbox name="background" defaultSelected>Include background</Checkbox>
+			<Button type="submit">Export</Button>
+			<output>{message}</output>
+		</form>
+	);
+}
+```
+
+Use `defaultSelected` for the initial value of an uncontrolled checkbox. When other controls need to read or change the same value, pass `isSelected` and `onChange` and store the value in React state.
+
+For a text input, use [Text field](/docs/react/components/text-field). For a number with optional step controls, use [Number field](/docs/react/components/number-field). Use [Field](/docs/react/components/field) for label, description, and error elements in a custom form layout.

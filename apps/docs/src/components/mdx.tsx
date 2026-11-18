@@ -1,6 +1,6 @@
 import defaultMdxComponents from 'fumadocs-ui/mdx';
 import { tableParts, tableStyles } from '@codeui/styles/table';
-import type { ComponentProps } from 'react';
+import { lazy, type ComponentProps } from 'react';
 import type { MDXComponents } from 'mdx/types';
 import { TypeTable } from 'fumadocs-ui/components/type-table';
 import { PropsTable } from './props-table';
@@ -14,6 +14,8 @@ import * as InkFigures from './inkstone/figures';
 import { PaletteComparison } from './inkstone/palette-comparison';
 import { ColourPalette, PaletteMatrix } from './inkstone/colour-palette';
 import { cn } from '@/lib/cn';
+
+const ReactDemo = lazy(() => import('./react-demo'));
 
 function MdxTable({ className, ...props }: ComponentProps<'table'>) {
   return (
@@ -38,6 +40,7 @@ export function getMDXComponents(components?: MDXComponents) {
     ...defaultMdxComponents,
     table: MdxTable,
     SolidDemo,
+    ReactDemo,
     HtmlDemo,
     CssPlayground,
     Anatomy,

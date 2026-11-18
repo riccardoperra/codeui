@@ -1,5 +1,6 @@
 import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
+import { reactDemoSource } from '../../../../tools/docs/react-demo-source.mjs';
 import { replaceSource } from 'fumadocs-core/mdx-plugins/stringifier';
 import type { PropRow } from '../components/props-table';
 import type { ColourPaletteData } from '../components/inkstone/colour-palette';
@@ -167,7 +168,7 @@ export function remarkKit() {
 				const node = children[i];
 				// MDX wraps a tag that shares a line with text in a <p>. Both render <div>s, and a <div>
 				// inside a <p> makes the server HTML and React's tree differ (hydration error #418).
-				if (node.type === 'mdxJsxTextElement' && ['SolidDemo', 'HtmlDemo', 'CssPlayground', 'PropsTable', 'Anatomy'].includes(node.name ?? '')) {
+				if (node.type === 'mdxJsxTextElement' && ['ReactDemo', 'SolidDemo', 'HtmlDemo', 'CssPlayground', 'PropsTable', 'Anatomy'].includes(node.name ?? '')) {
 					const line = (node.position as { start?: { line: number } } | undefined)?.start?.line;
 					throw new Error(`${where}:${line}: <${node.name}> sits inside a paragraph. Put it on its own line with a blank line around it.`);
 				}
@@ -224,6 +225,15 @@ export function remarkKit() {
 				if (node.type === 'mdxJsxFlowElement' && node.name === 'CssPlayground') {
 					replaceSource(file, node as never, 'The interactive playground runs in the browser. Every demo on the CSS pages is available in it as a preset.');
 					children[i] = { ...node, position: undefined };
+					continue;
+				}
+				if (node.type === 'mdxJsxFlowElement' && node.name === 'ReactDemo') {
+					const name = attribute(node, 'name');
+					if (!name) throw new Error(`${where}: <ReactDemo> needs a name.`);
+					const source = reactDemoSource(name);
+					replaceSource(file, node as never, fence(name, source));
+					children[i] = { ...node, position: undefined };
+					children.splice(++i, 0, { type: 'code', lang: 'tsx', meta: `title="${name}.tsx"`, value: source });
 					continue;
 				}
 				if (node.type === 'mdxJsxFlowElement' && node.name === 'SolidDemo') {

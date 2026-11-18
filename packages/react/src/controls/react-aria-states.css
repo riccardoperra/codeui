@@ -1,0 +1,17 @@
+@layer cui.overrides {
+	.cui-checkbox-control[data-focus-visible],
+	.cui-switch-control[data-focus-visible],
+	.cui-slider-thumb[data-focus-visible],
+	.cui-link[data-focus-visible] {
+		outline: var(--cui-focus-width) solid var(--cui-focus-color);
+		outline-offset: var(--cui-focus-offset);
+	}
+
+	.cui-field-input[data-rac] {
+		font-family: var(--cui-font-family-sans);
+	}
+
+	.cui-link[data-rac] {
+		color: var(--cui-action-brand-soft-text);
+	}
+}

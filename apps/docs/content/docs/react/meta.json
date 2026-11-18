@@ -1,0 +1,12 @@
+{
+  "title": "React",
+  "description": "Inkstone components for React",
+  "icon": "CodeXml",
+  "root": true,
+  "pages": [
+    "index",
+    "forms",
+    "---Components---",
+    "...components"
+  ]
+}
