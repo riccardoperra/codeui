@@ -71,10 +71,10 @@ export interface DropdownSubMenuTriggerProps<T> extends KDropdownMenuSubTriggerP
 export function DropdownSubMenuTrigger<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, DropdownSubMenuTriggerProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"button", DropdownSubMenuTriggerProps<T>>, ["rightSlot", "children"]);
+	const [local, others] = splitProps(props as PolymorphicProps<"button", DropdownSubMenuTriggerProps<T>>, ["rightSlot", "children", "class"]);
 
 	return (
-		<KDropdownMenu.SubTrigger {...others} class={styles.item}>
+		<KDropdownMenu.SubTrigger {...others} class={mergeClasses(styles.item, local.class)}>
 			{local.children}
 			<Show when={local.rightSlot} keyed={false}>
 				{rightSlot => (
@@ -86,13 +86,13 @@ export function DropdownSubMenuTrigger<T extends ValidComponent = "div">(
 }
 
 export function DropdownSubMenuContent<T extends ValidComponent = "div">(props: PolymorphicProps<T, KDropdownMenuSubContentProps<T>>) {
-	const [local, others] = splitProps(props as PolymorphicProps<"div", KDropdownMenuSubContentProps>, ["ref"]);
+	const [local, others] = splitProps(props as PolymorphicProps<"div", KDropdownMenuSubContentProps>, ["ref", "class"]);
 	// A submenu opens on hover, so a pointer that only moved counts.
-	return <KDropdownMenu.SubContent ref={mergeRefs(motionRef({ hover: true }), local.ref)} {...others} class={styles.subMenuContent} />;
+	return <KDropdownMenu.SubContent ref={mergeRefs(motionRef({ hover: true }), local.ref)} {...others} class={mergeClasses(styles.subMenuContent, local.class)} />;
 }
 
 export function DropdownMenuSeparator<T extends ValidComponent = "div">(props: PolymorphicProps<T, KDropdownMenuSeparatorProps<T>>) {
-	return <KDropdownMenu.Separator {...props} class={styles.separator} />;
+	return <KDropdownMenu.Separator {...props} class={mergeClasses(styles.separator, props.class)} />;
 }
 
 export function DropdownMenuTrigger<T extends ValidComponent = "div">(props: PolymorphicProps<T, KDropdownMenuTriggerProps<T>>) {

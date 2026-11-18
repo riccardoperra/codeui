@@ -8,7 +8,7 @@ import {
 	SettingsRow,
 	Stack,
 } from "@codeui/kit";
-import * as Dialog from "@codeui/kit/dialog";
+import * as Dialog from "@codeui/kit/dialog/parts";
 import { createSignal, For, type JSX } from "solid-js";
 import { CopyIcon, DownloadIcon, ExternalIcon, LayersIcon, SlidersIcon, TextIcon } from "../build-settings/icons";
 

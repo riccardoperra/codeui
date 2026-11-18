@@ -90,7 +90,7 @@ export function propose(exports) {
 
 	for (const e of exports.filter(x => x.entry !== '@codeui/kit')) {
 		const fromRoot = rootAssignment.get(e.symbol);
-		const subpath = e.entry.slice('@codeui/kit/'.length);
+		const subpath = e.entry.slice('@codeui/kit/'.length).replace(/\/parts$/, '');
 		const page = bySubpath.get(subpath);
 		if (fromRoot && !fromRoot.startsWith('utilities/styles-reference#') && (!page || fromRoot.startsWith(`${page.slug}#`) || fromRoot.startsWith('utilities/'))) {
 			assign(e, fromRoot);

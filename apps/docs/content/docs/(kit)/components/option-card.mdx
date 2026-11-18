@@ -103,7 +103,7 @@ Renders one radio item inside a styled `Root`. Its `variant` defaults to the rea
 
 ## Styled parts API
 
-Import the parts from `@codeui/kit/option-card`. These exports are direct named parts, with no namespace alias. The Kobalte parts retain their polymorphic `as` prop. Each styled radio part accepts `class` and `variant`; direct parts set their own variant rather than inheriting it from `Root`.
+Import the parts from `@codeui/kit/option-card/parts`. These exports are direct named parts, with no namespace alias. The Kobalte parts retain their polymorphic `as` prop. Each styled radio part accepts `class` and `variant`; direct parts set their own variant rather than inheriting it from `Root`.
 
 ### `Badge`
 
@@ -192,7 +192,7 @@ The inherited behavior follows the [Kobalte RadioGroup contract](https://kobalte
 
 ### `optionCardStyles`
 
-`optionCardStyles` is exported from `@codeui/kit` and `@codeui/kit/option-card`. Each anatomy key is a function that returns a class string. `OptionCardStyles` describes those functions. `OptionCardPart` is the key union, and `OptionCardClasses` is a partial map of keys to class names.
+`optionCardStyles` is exported from `@codeui/kit` and `@codeui/kit/option-card/parts`. Each anatomy key is a function that returns a class string. `OptionCardStyles` describes those functions. `OptionCardPart` is the key union, and `OptionCardClasses` is a partial map of keys to class names.
 
 Call `optionCardStyles.itemLabel()` and set `data-variant="tile"` on a custom label to select its tile padding. Kobalte sets `data-orientation="vertical"` on the root for the single-column layout.
 

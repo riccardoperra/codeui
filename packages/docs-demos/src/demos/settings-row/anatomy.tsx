@@ -1,5 +1,5 @@
 import { Badge, createSettingsRowProps, Switch } from "@codeui/kit";
-import * as Settings from "@codeui/kit/settings";
+import * as Settings from "@codeui/kit/settings/parts";
 
 export default function SettingsRowAnatomy() {
 	const row = createSettingsRowProps(() => ({ id: "anatomy-autosave", description: "Save every change as you type." }));

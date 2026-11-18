@@ -16,7 +16,7 @@ import {
 	Text,
 	TextField,
 } from "@codeui/kit";
-import * as D from "@codeui/kit/dialog";
+import * as D from "@codeui/kit/dialog/parts";
 import Bell from "lucide-solid/icons/bell";
 import ChevronDown from "lucide-solid/icons/chevron-down";
 import Palette from "lucide-solid/icons/palette";

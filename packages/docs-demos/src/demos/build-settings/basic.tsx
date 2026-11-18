@@ -10,7 +10,7 @@ import {
 	Switch,
 	TextField,
 } from "@codeui/kit";
-import * as Dialog from "@codeui/kit/dialog";
+import * as Dialog from "@codeui/kit/dialog/parts";
 import { createMemo, createSignal, For, type JSX, Show } from "solid-js";
 import { createStore } from "solid-js/store";
 import { DownloadIcon, FlaskIcon, InfoIcon, PaletteIcon, ResetIcon, SlidersIcon, SparkleIcon } from "./icons";

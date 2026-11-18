@@ -174,7 +174,7 @@ With `name`, the ready `Combobox` renders one hidden input for each selected val
 
 ## Styled parts API
 
-Import the parts from `@codeui/kit/combobox`. Each part wraps the Kobalte combobox part of the same name, adds the kit class and `data-cui`, and merges your `class` after the kit class. `ComboboxParts` groups all of them in one object and is also exported from `@codeui/kit`.
+Import the parts from `@codeui/kit/combobox/parts`. Each part wraps the Kobalte combobox part of the same name, adds the kit class and `data-cui`, and merges your `class` after the kit class. `ComboboxParts` groups all of them in one object and is also exported from `@codeui/kit`.
 
 <SolidDemo name="combobox/parts" />
 
@@ -188,7 +188,7 @@ Renders the root `div` and holds the state. It wraps Kobalte's `Combobox.Root`, 
 
 <PropsTable name="ComboboxRootPart" />
 
-`RootProps` is exported from `@codeui/kit/combobox`.
+`RootProps` is exported from `@codeui/kit/combobox/parts`.
 
 ### `Label`
 
@@ -270,7 +270,7 @@ Kobalte's `useComboboxContext`, re-exported. Call it inside `Root` to read the c
 
 <SolidDemo name="combobox/styles" />
 
-Call it when you render your own element and want the kit look without the combobox behavior. The demo shows a detected value with the combobox frame and no list. Prefer the part when one exists, because the part also sets `data-cui` and the ARIA wiring. `comboboxStyles` and the `ComboboxStyles` and `ComboboxVariants` types are exported from both `@codeui/kit` and `@codeui/kit/combobox`.
+Call it when you render your own element and want the kit look without the combobox behavior. The demo shows a detected value with the combobox frame and no list. Prefer the part when one exists, because the part also sets `data-cui` and the ARIA wiring. `comboboxStyles` and the `ComboboxStyles` and `ComboboxVariants` types are exported from both `@codeui/kit` and `@codeui/kit/combobox/parts`.
 
 ## Accessibility
 

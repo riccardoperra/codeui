@@ -5,7 +5,7 @@ import type {
 	TitleProps,
 	DescriptionProps,
 	ActionProps,
-} from "@codeui/kit/alert";
+} from "@codeui/kit/alert/parts";
 import type { PropNotes } from "./notes";
 
 export type Alert = Pick<

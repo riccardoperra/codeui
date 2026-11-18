@@ -1,5 +1,5 @@
 import type { PopoverContentProps, PopoverProps } from "@codeui/kit";
-import type { CloseButtonProps, ContentProps, RootProps } from "@codeui/kit/popover";
+import type { CloseButtonProps, ContentProps, RootProps } from "@codeui/kit/popover/parts";
 import type { PropNotes } from "./notes";
 
 /** Kobalte popover root options that change behavior. The kit only sets the gutter default. */

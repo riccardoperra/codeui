@@ -1,5 +1,5 @@
 import { OptionCard } from "@codeui/kit";
-import * as Cards from "@codeui/kit/option-card";
+import * as Cards from "@codeui/kit/option-card/parts";
 
 const Window = () => (
 	<svg viewBox="0 0 64 40" width="64" height="40" fill="none" stroke="currentColor" aria-hidden="true">

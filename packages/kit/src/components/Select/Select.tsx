@@ -1,47 +1,28 @@
-import "@codeui/styles/theme.css";
-import "@codeui/styles/select.css";
-import {
-	Select as KSelect,
+import type {
 	SelectItemProps as KSelectItemProps,
 	SelectRootProps as KSelectRootProps,
-	useSelectContext,
 } from "@kobalte/core/select";
-import { Accessor, For, JSX, JSXElement, ParentProps, Show, splitProps } from "solid-js";
+import {
+	type Accessor,
+	type JSX,
+	type JSXElement,
+	type ParentProps,
+	Show,
+	splitProps,
+} from "solid-js";
 import { CheckIcon } from "../../icons/CheckIcon";
 import { SelectorIcon } from "../../icons/SelectorIcon";
+import * as P from "../../parts/select";
 import { mergeClasses } from "../../utils/css";
-import { motionRef } from "../../utils/open-source";
 import type { BaseFieldProps } from "../Field/createBaseFieldProps";
-import { baseFieldVariants } from "../Field/Field.css";
-import {
-	createFieldErrorMessageProps,
-	FieldWithErrorMessageSupport,
-} from "../Field/FieldError/createFieldErrorMessageProps";
-import { createFieldLabelProps } from "../Field/FieldLabel/createFieldLabelProps";
-import { createFieldMessageProps } from "../Field/FieldMessage/createFieldMessageProps";
+import type { FieldWithErrorMessageSupport } from "../Field/FieldError/createFieldErrorMessageProps";
 import * as styles from "./Select.css";
+
+export { selectParts, type SelectClasses, type SelectPart } from "../../parts/select";
 
 type SelectSlot = "root" | "input" | "label" | "errorLabel" | "itemValue";
 
-export const selectParts = {
-	root: "select",
-	label: "select-label",
-	trigger: "select-trigger",
-	value: "select-value",
-	icon: "select-icon",
-	description: "select-description",
-	errorMessage: "select-error-message",
-	content: "select-content",
-	listbox: "select-listbox",
-	item: "select-item",
-	itemLabel: "select-item-label",
-	itemIndicator: "select-item-indicator",
-} as const;
-
-export type SelectPart = keyof typeof selectParts;
-export type SelectClasses = Partial<Record<SelectPart, string>>;
-
-const partToSlot: Partial<Record<SelectPart, SelectSlot>> = {
+const partToSlot: Partial<Record<P.SelectPart, SelectSlot>> = {
 	root: "root",
 	trigger: "input",
 	label: "label",
@@ -49,136 +30,98 @@ const partToSlot: Partial<Record<SelectPart, SelectSlot>> = {
 	value: "itemValue",
 };
 
-function partClass(props: SelectClassesProps, part: SelectPart): string | undefined {
+function partClass(props: SelectClassesProps, part: P.SelectPart): string | undefined {
 	const slot = partToSlot[part];
-	return mergeClasses(slot && props.slotClasses?.[slot], props.classes?.[part]) || undefined;
+	return (
+		mergeClasses(slot && props.slotClasses?.[slot], props.classes?.[part]) || undefined
+	);
 }
 
 type SelectClassesProps = {
 	/** Classes for each part, keyed by part name. `content` targets the portaled list. */
-	classes?: SelectClasses;
+	classes?: P.SelectClasses;
 	/** @deprecated Use `classes`. `input` maps to `trigger`, `errorLabel` to `errorMessage` and `itemValue` to `value`. */
 	slotClasses?: Partial<Record<SelectSlot, string>>;
 };
 
-export type SelectProps<Option, OptGroup = never> = KSelectRootProps<
-	Option,
-	OptGroup
-> &
+export type SelectProps<Option, OptGroup = never> = KSelectRootProps<Option, OptGroup> &
 	BaseFieldProps & {
-	/** Accessible name for the trigger. Optional when `label` is set. */
-	"aria-label"?: string;
-	placeholder?: string;
-	description?: string;
-	label?: JSX.Element;
-} & FieldWithErrorMessageSupport & {
-	itemLabel?: (item: Option) => JSXElement;
-	valueComponent?: (state: Accessor<Option>) => JSXElement;
-	valueComponentMultiple?: (state: Accessor<Option[]>) => JSXElement;
-	/** Portal target, such as a parent dialog, so the list stays inside it. */
-	mount?: Node;
-} & SelectClassesProps;
-
-/**
- * One hidden input per selected key, so `name` submits the value with a form.
- * Kobalte's `HiddenSelect` puts a focusable input inside `aria-hidden`, which axe reports.
- */
-function SelectFormValue(props: { name: string; disabled?: boolean }) {
-	const context = useSelectContext();
-	return (
-		<For each={[...context.listState().selectionManager().selectedKeys()]}>
-			{key => <input type="hidden" name={props.name} value={key} disabled={props.disabled} />}
-		</For>
-	);
-}
+		/** Accessible name for the trigger. Optional when `label` is set. */
+		"aria-label"?: string;
+		placeholder?: string;
+		description?: string;
+		label?: JSX.Element;
+	} & FieldWithErrorMessageSupport & {
+		itemLabel?: (item: Option) => JSXElement;
+		valueComponent?: (state: Accessor<Option>) => JSXElement;
+		valueComponentMultiple?: (state: Accessor<Option[]>) => JSXElement;
+		/** Portal target, such as a parent dialog, so the list stays inside it. */
+		mount?: Node;
+	} & SelectClassesProps;
 
 export function SelectItem<T>(
 	props: KSelectItemProps & {
 		itemLabel?: (item: T) => JSXElement;
-		classes?: Pick<SelectClasses, "item" | "itemLabel" | "itemIndicator">;
+		classes?: Pick<P.SelectClasses, "item" | "itemLabel" | "itemIndicator">;
 	},
 ) {
 	return (
-		<KSelect.Item
-			data-cui={selectParts.item}
-			class={mergeClasses(styles.item, props.classes?.item)}
-			item={props.item}
-		>
-			<KSelect.ItemLabel data-cui={selectParts.itemLabel} class={props.classes?.itemLabel}>
+		<P.Item class={props.classes?.item} item={props.item}>
+			<P.ItemLabel class={props.classes?.itemLabel}>
 				{props.itemLabel ? props.itemLabel(props.item.rawValue) : props.item.rawValue}
-			</KSelect.ItemLabel>
-			<KSelect.ItemIndicator data-cui={selectParts.itemIndicator} class={props.classes?.itemIndicator}>
+			</P.ItemLabel>
+			<P.ItemIndicator class={props.classes?.itemIndicator}>
 				<CheckIcon class={styles.itemIndicator} />
-			</KSelect.ItemIndicator>
-		</KSelect.Item>
+			</P.ItemIndicator>
+		</P.Item>
 	);
 }
 
-export function Select<Option, OptGroup = never>(props: ParentProps<SelectProps<Option, OptGroup>>) {
-	const [local, internal, others] = splitProps(
-		props,
-		[
-			"aria-label",
-			"children",
-			"size",
-			"theme",
-			"errorMessage",
-			"description",
-			"label",
-			"itemLabel",
-			"valueComponent",
-			"classes",
-			"slotClasses",
-			"mount",
-		],
-		["options", "value"],
-	);
-
-	const labelProps = createFieldLabelProps<"span">({
-		get class() {
-			return partClass(local, "label");
-		},
-	});
-
-	const descriptionProps = createFieldMessageProps({
-		get class() {
-			return partClass(local, "description");
-		},
-	});
-	const errorProps = createFieldErrorMessageProps(props);
+export function Select<Option, OptGroup = never>(
+	props: ParentProps<SelectProps<Option, OptGroup>>,
+) {
+	const [local, others] = splitProps(props, [
+		"aria-label",
+		"children",
+		"size",
+		"theme",
+		"errorMessage",
+		"description",
+		"label",
+		"itemLabel",
+		"valueComponent",
+		"classes",
+		"slotClasses",
+		"mount",
+	]);
 
 	return (
-		<KSelect
-			{...(others as Record<string, unknown>)}
-			options={internal.options}
-			value={internal.value}
-			data-cui={selectParts.root}
-			class={mergeClasses(styles.field, partClass(local, "root"))}
-			data-field-size={local.size}
+		<P.Root<Option, OptGroup>
+			{...others}
+			class={partClass(local, "root")}
+			size={local.size}
 			itemComponent={itemProps => (
-				<SelectItem item={itemProps.item} itemLabel={local.itemLabel} classes={local.classes} />
+				<SelectItem
+					item={itemProps.item}
+					itemLabel={local.itemLabel}
+					classes={local.classes}
+				/>
 			)}
 		>
 			<Show when={local.label} keyed={false}>
-				{label => (
-					<KSelect.Label data-cui={selectParts.label} {...labelProps}>
-						{label()}
-					</KSelect.Label>
-				)}
+				{label => <P.Label class={partClass(local, "label")}>{label()}</P.Label>}
 			</Show>
 			<Show when={props.name}>
-				{name => <SelectFormValue name={name()} disabled={props.disabled} />}
+				{name => <P.FormValue name={name()} disabled={props.disabled} />}
 			</Show>
-			<KSelect.Trigger
-				data-cui={selectParts.trigger}
-				data-size={local.size ?? "md"}
-				data-theme={local.theme ?? "filled"}
+			<P.Trigger
+				size={local.size}
+				theme={local.theme}
 				aria-label={local["aria-label"]}
-				class={mergeClasses(baseFieldVariants(), styles.selectField, partClass(local, "trigger"))}
+				class={partClass(local, "trigger")}
 			>
-				<KSelect.Value<Option> data-cui={selectParts.value} class={partClass(local, "value")}>
+				<P.Value<Option> class={partClass(local, "value")}>
 					{state => {
-
 						return (
 							<Show
 								fallback={(() => {
@@ -188,50 +131,44 @@ export function Select<Option, OptGroup = never>(props: ParentProps<SelectProps<
 										? local.valueComponent(state.selectedOption)
 										: (state.selectedOption() as string);
 								})()}
-								when={props.multiple}>
+								when={props.multiple}
+							>
 								<Show
 									fallback={state.selectedOptions().join(", ")}
-									when={props.valueComponentMultiple}>
-									{callback => (
-										<>
-											{callback()(state.selectedOptions)}
-										</>
-									)}
+									when={props.valueComponentMultiple}
+								>
+									{callback => <>{callback()(state.selectedOptions)}</>}
 								</Show>
 							</Show>
 						);
 					}}
-				</KSelect.Value>
-				<KSelect.Icon data-cui={selectParts.icon} class={partClass(local, "icon")}>
+				</P.Value>
+				<P.Icon class={partClass(local, "icon")}>
 					<SelectorIcon />
-				</KSelect.Icon>
-			</KSelect.Trigger>
+				</P.Icon>
+			</P.Trigger>
 			<Show when={local.description} keyed={false}>
 				{description => (
-					<KSelect.Description data-cui={selectParts.description} {...descriptionProps}>
+					<P.Description class={partClass(local, "description")}>
 						{description()}
-					</KSelect.Description>
+					</P.Description>
 				)}
 			</Show>
-			<Show when={props.validationState === "invalid" && local.errorMessage} keyed={false}>
+			<Show
+				when={props.validationState === "invalid" && local.errorMessage}
+				keyed={false}
+			>
 				{errorMessage => (
-					<KSelect.ErrorMessage
-						data-cui={selectParts.errorMessage}
-						class={mergeClasses(errorProps.class, partClass(local, "errorMessage"))}
-					>
+					<P.ErrorMessage class={partClass(local, "errorMessage")}>
 						{errorMessage()}
-					</KSelect.ErrorMessage>
+					</P.ErrorMessage>
 				)}
 			</Show>
-			<KSelect.Portal mount={local.mount}>
-				<KSelect.Content
-					ref={motionRef()}
-					data-cui={selectParts.content}
-					class={mergeClasses(styles.content, partClass(local, "content"))}
-				>
-					<KSelect.Listbox data-cui={selectParts.listbox} class={partClass(local, "listbox")} />
-				</KSelect.Content>
-			</KSelect.Portal>
-		</KSelect>
+			<P.Portal mount={local.mount}>
+				<P.Content class={partClass(local, "content")}>
+					<P.Listbox class={partClass(local, "listbox")} />
+				</P.Content>
+			</P.Portal>
+		</P.Root>
 	);
 }

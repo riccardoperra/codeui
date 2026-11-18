@@ -15,7 +15,7 @@ import {
 } from "@codeui/kit";
 import { createSignal, For, type JSX } from "solid-js";
 import { DocsItemsContainer } from "./components/Section.jsx";
-import * as D from "@codeui/kit/dialog";
+import * as D from "@codeui/kit/dialog/parts";
 
 // More on how to set up stories at: https://storybook.js.org/docs/7.0/solid/writing-stories/introduction
 const meta = {

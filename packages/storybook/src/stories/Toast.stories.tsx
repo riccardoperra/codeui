@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "storybook-solidjs-vite";
 import { icons } from "@codeui/kit";
-import * as T from "@codeui/kit/toast";
+import * as T from "@codeui/kit/toast/parts";
 import { toaster } from "@kobalte/core/toast";
 import { createUniqueId, For, onCleanup, onMount } from "solid-js";
 

@@ -1,5 +1,5 @@
 import { Button } from "@codeui/kit";
-import * as S from "@codeui/kit/sheet";
+import * as S from "@codeui/kit/sheet/parts";
 export default function Demo() {
 	return <S.Root modal={false}>
 		<S.Trigger as={Button} theme="secondary">Open layers</S.Trigger>

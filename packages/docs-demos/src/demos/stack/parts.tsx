@@ -1,5 +1,5 @@
 import { Badge } from "@codeui/kit";
-import * as S from "@codeui/kit/stack";
+import * as S from "@codeui/kit/stack/parts";
 
 export default function StackParts() {
 	return (

@@ -1,73 +1,30 @@
-import "@codeui/styles/theme.css";
-import "@codeui/styles/pagination.css";
-import { createPagination, PaginationOptions } from "@solid-primitives/pagination";
-import { createEffect, For, mergeProps, on } from "solid-js";
-import { NextIcon } from "../../icons/NextIcon";
-import { PreviousIcon } from "../../icons/PreviousIcon";
-import { IconButton } from "../IconButton/IconButton";
-import * as styles from "./Pagination.css";
+import { For, mergeProps } from "solid-js";
+import * as P from "../../parts/pagination";
 
 type PaginationItemSize = "xs" | "sm" | "md" | "lg" | "xl";
 
-export interface PaginationProps extends PaginationOptions {
+export interface PaginationProps extends P.PaginationOptions {
 	rounded?: boolean;
-	page?: number;
 	size?: PaginationItemSize;
-	onChange?: (page: number) => void;
 }
 
 export function Pagination(props: PaginationProps) {
-	props = mergeProps(
-		{
-			prevContent: <PreviousIcon class={styles.paginationIcon} />,
-			nextContent: <NextIcon class={styles.paginationIcon} />,
-			showLast: false,
-			showFirst: false,
-			maxPages: 5,
-			showNext: true,
-			showPrev: true,
-			initialPage: props.page || props.initialPage || 1,
-		} as Partial<PaginationOptions>,
-		{ size: "md" as const, rounded: false },
-		props,
-	);
-
-	const [paginationProps, page, setPage] = createPagination(props);
-
-	createEffect(
-		on(
-			() => props.page,
-			currentPage => currentPage && setPage(currentPage),
-			{ defer: true },
-		),
-	);
-
-	createEffect(on(page, page => props.onChange?.(page), { defer: true }));
-
-	const getAriaLabel = (currentPage: number | undefined) => {
-		if (!currentPage) return undefined;
-		const label = `Page ${currentPage}`;
-		if (currentPage === page()) {
-			return `${label} active`;
-		}
-		return label;
-	};
+	const options = mergeProps({ size: "md" as const, rounded: false }, props);
+	const { items, page } = P.createPaginationState(options);
 
 	return (
-		<nav data-cui={"pagination"} class={styles.pagination}>
-			<For each={paginationProps()}>
+		<P.Root>
+			<For each={items()}>
 				{itemProps => (
-					<IconButton
-						data-cui={"pagination-item"}
-						class={styles.paginationItem}
-						pill={props.rounded}
-						theme={itemProps.page === page() ? "primary" : "secondary"}
-						aria-label={getAriaLabel(itemProps.page) ?? ""}
-						size={props.size}
+					<P.Item
+						page={itemProps.page}
+						active={itemProps.page === page()}
+						rounded={options.rounded}
+						size={options.size}
 						{...itemProps}
 					/>
 				)}
 			</For>
-		</nav>
+		</P.Root>
 	);
 }

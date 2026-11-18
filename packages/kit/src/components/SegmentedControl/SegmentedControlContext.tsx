@@ -1,8 +1,10 @@
-import { Accessor, createContext, createSignal, useContext } from "solid-js";
+import { Accessor, createContext, createSignal, type Setter, useContext } from "solid-js";
 
 export interface SegmentedControlContextState {
 	items: Accessor<HTMLElement[]>;
 	itemClass?: Accessor<string | undefined>;
+	indicator: Accessor<HTMLElement | undefined>;
+	setIndicator: Setter<HTMLElement | undefined>;
 
 	mountItem(el: HTMLElement): void;
 
@@ -23,7 +25,10 @@ export function useSegmentedControlContext() {
 
 export function createSegmentedControlContextState() {
 	const [items, setItems] = createSignal<HTMLElement[]>([]);
+	const [indicator, setIndicator] = createSignal<HTMLElement>();
 	const context: SegmentedControlContextState = {
+		indicator,
+		setIndicator,
 		items,
 		mountItem(el) {
 			setItems(items => items.concat(el));

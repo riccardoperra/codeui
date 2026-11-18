@@ -23,15 +23,16 @@ The kit package also ships its design specification as `node_modules/@codeui/kit
 | Import from | What it holds | Use it for |
 | --- | --- | --- |
 | `@codeui/kit` | Every ready component, the option helpers, field helpers, `icons`, `SvgIcon`, `mergeClasses`, and the token objects | Almost everything |
-| `@codeui/kit/<name>` | The styled parts of one component, its part name map, and its style functions | A layout the ready component cannot give |
+| `@codeui/kit/<name>` | The ready component and its public types and helpers | Import a single component |
+| `@codeui/kit/<name>/parts` | The styled parts of one component, its part name map, and its style functions | A layout the ready component cannot give |
 | `@codeui/kit/tokens` | `tokens`, `themeVars`, `themeTokens`, `layoutVars`, `breakpoints`, `responsiveStyle`. No component. | vanilla-extract `.css.ts` files, which run in Node |
 
-These subpaths exist: `dialog`, `popover`, `stack`, `text`, `switch`, `slider`, `progress`, `combobox`, `command-menu`, `kbd`, `badge`, `spinner`, `skeleton`, `alert`, `toast`, `option-card`, `accordion`, `sheet`, and `tokens`. No other subpath exists. `@codeui/kit/button` and `@codeui/kit/select`, for example, fail to resolve.
+See [Ready or parts](/docs/ready-or-parts) for supported component entry points.
 
 Import parts as a namespace:
 
 ```tsx
-import * as D from "@codeui/kit/dialog";
+import * as D from "@codeui/kit/dialog/parts";
 ```
 
 The app needs `solid-js ^1.9.8` and the vanilla-extract Vite plugin. See [Installation](/docs/installation).
@@ -98,7 +99,7 @@ Portalled content renders only on the client. That covers the bodies of `Dialog`
 
 ## Components
 
-Every component below imports from `@codeui/kit`. The parts column names the subpath, when one exists.
+Import each component family below from its own entry point or from `@codeui/kit`. Append `/parts` to the component path in the parts column to import its styled parts.
 
 | Component | Parts | Main props |
 | --- | --- | --- |
@@ -106,35 +107,35 @@ Every component below imports from `@codeui/kit`. The parts column names the sub
 | [Alert](/docs/components/alert) | `alert` | `tone`, `title`, `description`, `icon`, `fluid` |
 | [Badge](/docs/components/badge) | `badge` | `tone`, `size`, `variant`, `icon`, `textValue` |
 | [Button](/docs/components/button) | none | `theme`, `size`, `variant`, `pill`, `block`, `loading`, `leftIcon` |
-| [Checkbox](/docs/components/checkbox) | none | `label`, `checked`, `defaultChecked`, `onChange`, `indeterminate`, `size` |
+| [Checkbox](/docs/components/checkbox) | `checkbox` | `label`, `checked`, `defaultChecked`, `onChange`, `indeterminate`, `size` |
 | [Combobox](/docs/components/combobox) | `combobox` | `label`, `options`, `value`, `onChange`, `inputValue`, `renderOption`, `emptyContent` |
 | [CommandMenu](/docs/components/command-menu) | `command-menu` | `open`, `onOpenChange`, `items`, `onSelect`, `onHighlightChange`, `placeholder` |
 | [Dialog](/docs/components/dialog) | `dialog` | `open`, `onOpenChange`, `title`, `description`, `size`, `closeLabel`. Body in `DialogPanelContent`, actions in `DialogPanelFooter`. |
-| [DropdownMenu](/docs/components/dropdown-menu) | none | `DropdownMenuTrigger`, `DropdownMenuContent`, `DropdownMenuItem` with `onSelect`, and `DropdownSubMenu` |
+| [DropdownMenu](/docs/components/dropdown-menu) | `dropdown-menu` | `DropdownMenuTrigger`, `DropdownMenuContent`, `DropdownMenuItem` with `onSelect`, and `DropdownSubMenu` |
 | [IconButton](/docs/components/icon-button) | none | `aria-label`, `theme`, `size`, `variant`, `pill` |
 | [Kbd](/docs/components/kbd) | `kbd` | `size`, `variant` |
 | [Link](/docs/components/link) | none | `href`, `variant` |
-| [Listbox](/docs/components/listbox) | none | `options`, `value`, `onChange`, `size`, `bordered` |
-| [NumberField](/docs/components/number-field) | none | `label`, `value`, `onChange`, `min`, `max`, `step`, `precision`, `prefix`, `postfix` |
+| [Listbox](/docs/components/listbox) | `listbox` | `options`, `value`, `onChange`, `size`, `bordered` |
+| [NumberField](/docs/components/number-field) | `number-field` | `label`, `value`, `onChange`, `min`, `max`, `step`, `precision`, `prefix`, `postfix` |
 | [OptionCard](/docs/components/option-card) | `option-card` | `OptionCardGroup` with `label`, `items`, `value`, `onChange`, `variant` |
-| [Pagination](/docs/components/pagination) | none | `page`, `onChange`, `size`, `rounded` |
+| [Pagination](/docs/components/pagination) | `pagination` | `page`, `onChange`, `size`, `rounded` |
 | [Popover](/docs/components/popover) | `popover` | `Popover` with `open`, `placement`, `gutter`. `PopoverTrigger`. `PopoverContent` with `title`, `description`, `mount`. |
 | [Progress](/docs/components/progress) | `progress` | `label`, `value`, `indeterminate`, `showValue`, `size` |
-| [RadioList](/docs/components/radio-list) | none | `label`, `value`, `onChange`, and `RadioListItem` with `value`, `label` |
-| [SegmentedControl](/docs/components/segmented-control) | none | `value`, `onChange`, `size`, and `SegmentedControlItem` with `value` |
-| [Select](/docs/components/select) | none | `aria-label`, `label`, `options`, `value`, `onChange`, `placeholder`, `multiple`, `classes` |
+| [RadioList](/docs/components/radio-list) | `radio-list` | `label`, `value`, `onChange`, and `RadioListItem` with `value`, `label` |
+| [SegmentedControl](/docs/components/segmented-control) | `segmented-control` | `value`, `onChange`, `size`, and `SegmentedControlItem` with `value` |
+| [Select](/docs/components/select) | `select` | `aria-label`, `label`, `options`, `value`, `onChange`, `placeholder`, `multiple`, `classes` |
 | [Sheet](/docs/components/sheet) | `sheet` | `open`, `onOpenChange`, `side`, `title`, `footer`, `draggable` |
 | [Skeleton](/docs/components/skeleton) | `skeleton` | `width`, `height`, `radius` |
 | [Slider](/docs/components/slider) | `slider` | `label`, `value`, `onChange`, `onChangeEnd`, `minValue`, `maxValue`, `step`, `showValue` |
 | [Spinner](/docs/components/spinner) | `spinner` | `label`, `size` |
 | [Stack](/docs/components/stack) | `stack` | `direction`, `gap`, `align`, `justify`, `wrap`, `as` |
 | [Switch](/docs/components/switch) | `switch` | `label`, `checked`, `onChange`, `description`, `size` |
-| [Tabs](/docs/components/tabs) | none | `Tabs` with `value`, `onChange`. `TabsList`, `TabsHeader` with `value`, `TabsContent` with `value`. |
+| [Tabs](/docs/components/tabs) | `tabs` | `Tabs` with `value`, `onChange`. `TabsList`, `TabsHeader` with `value`, `TabsContent` with `value`. |
 | [Text](/docs/components/text) | `text` | `as`, `size`, `weight`, `tone` |
-| [TextArea](/docs/components/text-area) | none | `label`, `value`, `onChange`, `placeholder`, `errorMessage` |
-| [TextField](/docs/components/text-field) | none | `label`, `value`, `onChange`, `placeholder`, `type`, `errorMessage` |
+| [TextArea](/docs/components/text-area) | `text-area` | `label`, `value`, `onChange`, `placeholder`, `errorMessage` |
+| [TextField](/docs/components/text-field) | `text-field` | `label`, `value`, `onChange`, `placeholder`, `type`, `errorMessage` |
 | [Toast](/docs/components/toast) | `toast` | `createToaster({ duration })`, then `show({ tone, title, description, action })`. `Toaster` with `toaster`, `position`, `closeLabel`. |
-| [Tooltip](/docs/components/tooltip) | none | `content`, `placement`. The trigger is the child. |
+| [Tooltip](/docs/components/tooltip) | `tooltip` | `content`, `placement`. The trigger is the child. |
 | [VirtualizedListbox](/docs/components/virtualized-listbox) | none | `options`, `virtualizerOptions`, `size` |
 
 Most ready components take `class` for the root and `classes` for inner parts, keyed by part name. `Checkbox` and `Tooltip` take `slotClasses` instead. `Button`, `IconButton`, `Link`, `Pagination`, `Tabs`, and the `DropdownMenu` exports have no `classes` prop.

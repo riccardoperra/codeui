@@ -1,5 +1,5 @@
 import type { ComboboxProps } from "@codeui/kit";
-import type { ControlProps, RootProps } from "@codeui/kit/combobox";
+import type { ControlProps, RootProps } from "@codeui/kit/combobox/parts";
 import type { PropNotes } from "./notes";
 
 /** Props that the ready Combobox adds on top of Kobalte's combobox root. */
@@ -45,7 +45,7 @@ export type ComboboxInherited = Pick<
 	| "validationState"
 >;
 
-/** The variant prop that every styled part from @codeui/kit/combobox accepts. */
+/** The variant prop that every styled part from @codeui/kit/combobox/parts accepts. */
 export type ComboboxPartVariants = Pick<ControlProps<unknown>, "size">;
 
 /** Root props that matter when you compose the parts yourself. */

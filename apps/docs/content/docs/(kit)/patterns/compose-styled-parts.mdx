@@ -1,34 +1,92 @@
 ---
 title: "Compose styled parts"
-description: "Build a custom layout from a component's styled parts."
+description: "Build reusable Solid components from styled parts."
 ---
 
-Each overlay in the kit comes in three layers. You can use the ready component, compose its styled parts, or render Kobalte yourself and take only the kit classes.
-This page builds the same Line height popover each way. Start from the top and step down only when the layer above cannot express your layout.
-[Choose ready components or parts](/docs/ready-or-parts) explains the layers in general.
+Build an app-level primitive from styled parts when you need a layout that you can reuse across screens. Keep the component's props focused on what each caller supplies. Assemble the parts once inside the component.
+[Choose ready components or parts](/docs/ready-or-parts) lists the available entry points.
 
-## Use the ready component
+## Build a reusable primitive from styled parts
+
+This `PickerPopover` sets a shared layout for compact pickers. Its close button sits beside the title. Callers supply the trigger label, panel title, and content.
+
+```tsx title="PickerPopover.tsx"
+import { Button } from "@codeui/kit/button";
+import * as P from "@codeui/kit/popover/parts";
+import { Stack } from "@codeui/kit/stack";
+import type { ParentProps } from "solid-js";
+
+type PickerPopoverProps = ParentProps<{
+	triggerLabel: string;
+	title: string;
+	closeLabel: string;
+}>;
+
+export function PickerPopover(props: PickerPopoverProps) {
+	return (
+		<P.Root placement="bottom-start">
+			<P.Trigger as={Button} theme="secondary">
+				{props.triggerLabel}
+			</P.Trigger>
+			<P.Portal>
+				<P.Content>
+					<Stack direction="row" align="center" justify="between" gap="2">
+						<P.Title>{props.title}</P.Title>
+						<P.CloseButton aria-label={props.closeLabel} />
+					</Stack>
+					{props.children}
+				</P.Content>
+			</P.Portal>
+		</P.Root>
+	);
+}
+```
+
+Use the primitive anywhere that needs this layout. Supply the picker itself as children.
+
+```tsx
+import { RadioList, RadioListItem } from "@codeui/kit/radio-list";
+import { PickerPopover } from "./PickerPopover";
+
+<PickerPopover triggerLabel="Typography" title="Typography" closeLabel="Close typography">
+	<RadioList label="Line height" defaultValue="1.5">
+		<RadioListItem value="1.2" label="1.2" />
+		<RadioListItem value="1.5" label="1.5" />
+		<RadioListItem value="1.8" label="1.8" />
+	</RadioList>
+</PickerPopover>
+```
+
+`PickerPopover` owns the layout and the parts that every instance needs. The picker owns its choices and value. Kit parts keep the accessible name, keyboard dismissal, and focus return through their shared `Root`. Add props for capabilities callers need, such as controlled open state.
+
+For a field primitive, keep the input, label, and validation message under one field root. For a navigation primitive, keep triggers and panels in the same tabs root and pair them by value. See [TextField parts](/docs/components/text-field#styled-parts-api), [Tabs parts](/docs/components/tabs#styled-parts-api), and [DropdownMenu parts](/docs/components/dropdown-menu#styled-parts-api) for complete compositions.
+
+## Build a custom control
+
+The examples below build a Line height popover. Start with the ready component and move to styled parts if you need to change the layout inside it.
+
+### Use the ready component
 
 <SolidDemo name="compose-styled-parts/ready" />
 
-`Popover`, `PopoverTrigger`, and `PopoverContent` come from `@codeui/kit`. `PopoverContent` portals the panel and renders the title and the description for you.
+Import `Popover`, `PopoverTrigger`, and `PopoverContent` from `@codeui/kit/popover` or the kit root. `PopoverContent` portals the panel and renders the title and the description for you.
 Pick this layer first. You own the content and the state. The kit owns the arrangement, the IDs, and the ARIA links.
 
-## Compose the styled parts
+### Compose the styled parts
 
 <SolidDemo name="compose-styled-parts/parts" />
 
-The parts come from `@codeui/kit/popover`, or `@codeui/kit/dialog` for a dialog. Each part wraps one Kobalte primitive, adds the kit class, and sets a `data-cui` attribute.
+The parts come from `@codeui/kit/popover/parts`, or `@codeui/kit/dialog/parts` for a dialog. Each part wraps one Kobalte primitive, adds the kit class, and sets a `data-cui` attribute.
 Pick this layer when the ready component fixes something you need to change. Here the close button sits next to the title, which `PopoverContent` does not render.
 
-You own the arrangement. Keep every part inside its `Root`, and keep `Title` inside `Content` so the panel still has an accessible name.
+You own the arrangement. Keep every part inside its `Root` in the Solid tree, including when you use `Portal`. Keep `Title` inside `Content` so the panel has an accessible name. Use `Trigger as={Button}` when the trigger should use the kit’s Button styling.
 [Dialog](/docs/components/dialog#build-a-custom-layout) shows a larger example, a settings dialog with a breadcrumb title and two panes.
 
-## Kobalte with kit classes
+### Kobalte with kit classes
 
 <SolidDemo name="compose-styled-parts/styles" />
 
-Here Kobalte's `Popover` renders every element, and `popoverStyles` from `@codeui/kit/popover` supplies the classes. The trigger takes its class from `buttonStyles.button`.
+Here Kobalte's `Popover` renders every element, and `popoverStyles` from `@codeui/kit/popover/parts` supplies the classes. The trigger takes its class from `buttonStyles.button`.
 Pick this layer when you need a Kobalte option or element that no kit part exposes, but still want the kit look.
 
 You own the composition and the `data-cui` attributes. Copy them from `popoverParts` or `dialogParts`, so CSS and tests that target a part still match.

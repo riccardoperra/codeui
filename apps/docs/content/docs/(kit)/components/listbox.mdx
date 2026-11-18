@@ -77,6 +77,10 @@ Renders a Kobalte collection node with a label and check indicator. The ready li
 `ListboxClasses` contains the four optional class names in the anatomy table.
 The remaining collection and keyboard props follow the [Kobalte Listbox contract](https://kobalte.dev/docs/core/components/listbox).
 
+## Styled parts API
+
+Use `@codeui/kit/listbox/parts` to control option markup. Pass `options` and `renderItem` to `Root`. The callback receives a collection node. Pass it to `Item` to keep selection and keyboard navigation. Use `ItemLabel`, `ItemDescription`, and `ItemIndicator` to compose the row. Use `Section` for grouped options.
+
 ## Accessibility
 
 ### Keyboard
@@ -122,7 +126,7 @@ Keep the neutral theme and borderless default for Inkstone. The primary highligh
 <SolidDemo name="listbox/sections" />
 
 `optionGroupChildren` identifies each group's options. `renderSection` renders a nonselectable heading before those options.
-The section heading is not an option and arrow navigation skips it. The ready kit does not export a styled section component.
+The section heading is not an option and arrow navigation skips it. The parts entry point exports `Section` for custom listboxes.
 
 ## Related
 

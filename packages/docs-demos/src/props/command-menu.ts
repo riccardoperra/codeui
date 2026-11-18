@@ -6,7 +6,7 @@ import type {
 	ListboxProps,
 	PortalProps,
 	RootProps,
-} from "@codeui/kit/command-menu";
+} from "@codeui/kit/command-menu/parts";
 import type { PropNotes } from "./notes";
 
 /** Example shapes for the generic Content props. */

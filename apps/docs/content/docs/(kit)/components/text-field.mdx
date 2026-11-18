@@ -109,6 +109,20 @@ Renders Kobalte's `TextField.Label` with the kit label style. Use it only inside
 
 <PropsTable name="TextFieldLabelProps" />
 
+## Styled parts API
+
+Use `@codeui/kit/text-field/parts` to place an input inside a custom field layout. Put `Label`, `Input`, `Description`, and `ErrorMessage` under `Root`. Put value, name, and validation state on `Root`. Put native input attributes such as autocomplete and placeholder on `Input`.
+
+```tsx
+import * as F from "@codeui/kit/text-field/parts";
+
+<F.Root name="fileName" defaultValue="untitled">
+	<F.Label>File name</F.Label>
+	<F.Description>Use the name without an extension.</F.Description>
+	<F.Input autocomplete="off" />
+</F.Root>
+```
+
 ## Accessibility
 
 ### Keyboard

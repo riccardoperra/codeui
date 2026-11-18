@@ -95,11 +95,11 @@ Renders a `section` named by its title and described by its description, with th
 
 ### `createSettingsRowProps`
 
-Takes an accessor to `{ id?, controlId?, description? }` and returns `root`, `label`, `description`, and `control` accessors. Spread them on the styled parts and the control. `control()` returns `aria-labelledby` and, when there is a description, `aria-describedby`. Join that value with the control's own description ids rather than replacing them. The helper is exported from `@codeui/kit` and `@codeui/kit/settings`.
+Takes an accessor to `{ id?, controlId?, description? }` and returns `root`, `label`, `description`, and `control` accessors. Spread them on the styled parts and the control. `control()` returns `aria-labelledby` and, when there is a description, `aria-describedby`. Join that value with the control's own description ids rather than replacing them. The helper is exported from `@codeui/kit` and `@codeui/kit/settings/parts`.
 
 ## Styled parts API
 
-Import the parts from `@codeui/kit/settings`. These exports are direct named parts with no namespace alias and no Kobalte engine. Each part accepts `class` and the attributes of the element it renders.
+Import the parts from `@codeui/kit/settings/parts`. These exports are direct named parts with no namespace alias and no Kobalte engine. Each part accepts `class` and the attributes of the element it renders.
 
 <SolidDemo name="settings-row/parts" />
 
@@ -165,7 +165,7 @@ Renders the island. Rows touch inside it.
 
 ### `settingsRowStyles`
 
-`settingsRowStyles` and `settingsGroupStyles` are exported from `@codeui/kit` and `@codeui/kit/settings`. Each anatomy key is a function that returns a class string. `SettingsRowStyles` and `SettingsGroupStyles` describe those functions. `SettingsRowPart` and `SettingsGroupPart` are the key unions, and `SettingsRowClasses` and `SettingsGroupClasses` are partial maps of keys to class names.
+`settingsRowStyles` and `settingsGroupStyles` are exported from `@codeui/kit` and `@codeui/kit/settings/parts`. Each anatomy key is a function that returns a class string. `SettingsRowStyles` and `SettingsGroupStyles` describe those functions. `SettingsRowPart` and `SettingsGroupPart` are the key unions, and `SettingsRowClasses` and `SettingsGroupClasses` are partial maps of keys to class names.
 
 Row functions accept `SettingsRowVariants`, but ignore that argument. The wide layout depends on `data-layout="wide"`, the compact control on `data-compact-control`, and the picture column on a direct `settings-row-picture` child. Use the styled parts to set those attributes.
 

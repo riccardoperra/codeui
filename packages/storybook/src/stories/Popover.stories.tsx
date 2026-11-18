@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "storybook-solidjs-vite";
 import { Button, Popover, PopoverContent, PopoverTrigger } from "@codeui/kit";
 import { DocsItemsContainer } from "./components/Section.jsx";
 import { For } from "solid-js";
-import * as P from "@codeui/kit/popover";
+import * as P from "@codeui/kit/popover/parts";
 
 const placements = [
 	"top-start",

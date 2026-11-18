@@ -1,5 +1,5 @@
 import { Badge, createSettingsRowProps, Switch } from "@codeui/kit";
-import * as Settings from "@codeui/kit/settings";
+import * as Settings from "@codeui/kit/settings/parts";
 import "./settings-row.css";
 
 export default function Parts() {

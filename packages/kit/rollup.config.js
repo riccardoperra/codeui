@@ -1,31 +1,12 @@
 import withSolid from "rollup-preset-solid";
 import ts from "typescript";
 import path from "node:path";
-import { mkdirSync, writeFileSync, rmSync } from "node:fs";
+import { mkdirSync, readFileSync, writeFileSync, rmSync } from "node:fs";
 
-const entries = [
-	"src/index.tsx",
-	"src/tokens.ts",
-	"src/parts/dialog.tsx",
-	"src/parts/popover.tsx",
-	"src/parts/stack.tsx",
-	"src/parts/text.tsx",
-	"src/parts/switch.tsx",
-	"src/parts/slider.tsx",
-	"src/parts/progress.tsx",
-	"src/parts/combobox.tsx",
-	"src/parts/command-menu.tsx",
-	"src/parts/kbd.tsx",
-	"src/parts/badge.tsx",
-	"src/parts/spinner.tsx",
-	"src/parts/skeleton.tsx",
-	"src/parts/alert.tsx",
-	"src/parts/toast.tsx",
-	"src/parts/option-card.tsx",
-	"src/parts/accordion.tsx",
-	"src/parts/sheet.tsx",
-	"src/parts/settings.tsx",
-];
+const manifest = JSON.parse(readFileSync(new URL("./package.json", import.meta.url), "utf8"));
+const entries = Object.values(manifest.exports)
+	.filter(entry => typeof entry === "object")
+	.map(entry => entry.solid.default.replace("./dist/source/", "src/").replace(/\.js(x?)$/, ".ts$1"));
 
 rmSync("dist", { recursive: true, force: true });
 

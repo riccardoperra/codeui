@@ -1,5 +1,5 @@
 import { Button, createToaster, Toaster } from "@codeui/kit";
-import type { ToastPosition } from "@codeui/kit/toast";
+import type { ToastPosition } from "@codeui/kit/toast/parts";
 import { For } from "solid-js";
 
 const positions: ToastPosition[] = [

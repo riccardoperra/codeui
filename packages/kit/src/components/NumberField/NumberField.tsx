@@ -1,47 +1,13 @@
-import "@codeui/styles/theme.css";
-import "@codeui/styles/number-field.css";
-import { createUniqueId } from "solid-js";
-import { INPUT_KEYS, FieldInputProps, FieldClasses } from "../Field/inputProps";
-import {
-	TextField as KTextField,
-	TextFieldRootOptions as KTextFieldRootOptions,
-} from "@kobalte/core/text-field";
-import { clamp, mergeRefs } from "@kobalte/utils";
-import {
-	maskitoCaretGuard,
-	maskitoNumberOptionsGenerator,
-	maskitoParseNumber,
-} from "@maskito/kit";
-import {
-	batch,
-	createSignal,
-	JSX,
-	mergeProps,
-	onMount,
-	Ref,
-	Show,
-	splitProps,
-} from "solid-js";
-import { SlotProp } from "../../utils/component";
+import type { TextFieldRootOptions as KTextFieldRootOptions } from "@kobalte/core/text-field";
+import { Show, splitProps, type JSX, type Ref } from "solid-js";
+import * as P from "../../parts/number-field";
+import type { SlotProp } from "../../utils/component";
 import { mergeClasses } from "../../utils/css";
-import { createMaskito } from "../../utils/maskito";
+import type { FieldWithErrorMessageSupport } from "../Field/FieldError/createFieldErrorMessageProps";
 import type { BaseFieldProps } from "../Field/createBaseFieldProps";
-import { baseFieldVariants } from "../Field/Field.css";
-import {
-	createFieldErrorMessageProps,
-	FieldWithErrorMessageSupport,
-} from "../Field/FieldError/createFieldErrorMessageProps";
-import { formatNumber } from "./formatNumber";
-import * as styles from "./NumberField.css";
-import { NumberFieldControls } from "./NumberFieldControls";
-import { NumberFieldLabel } from "./NumberFieldLabel";
-import { NumberFieldMessage } from "./NumberFieldMessage";
+import { INPUT_KEYS, type FieldInputProps, type FieldClasses } from "../Field/inputProps";
 import type { InputNumberOptions } from "./options";
-import { defaultNumberFormat, INPUT_NUMBER_OPTIONS as defaultOptions } from "./options";
-import { CHAR_HYPHEN, CHAR_MINUS } from "./unicodeCharacters";
-import { createControllableSignal } from "@kobalte/core/primitives/create-controllable-signal";
 
-// TODO: add to base field slot that respect the BaseFieldProps signature?
 type TextFieldSlot = "root" | "input" | "label" | "errorLabel";
 
 type NumberFieldRootOptions = Omit<
@@ -68,284 +34,64 @@ export type NumberFieldProps = NumberFieldRootOptions &
 	Partial<InputNumberOptions>;
 
 export function NumberField(props: NumberFieldProps) {
-	const [local, options, state, others] = splitProps(
-		mergeProps({ size: "md" }, props),
-		[
-			"description",
-			"size",
-			"label",
-			"theme",
-			"errorMessage",
-			"placeholder",
-			"ref",
-			"slotClasses",
-			"classes",
-		],
-		["min", "max", "step", "precision", "prefix", "postfix"],
-		["value", "onChange", "defaultValue"],
-	);
+	const [local, others] = splitProps(props, [
+		"description",
+		"label",
+		"errorMessage",
+		"placeholder",
+		"ref",
+		"slotClasses",
+		"classes",
+	]);
 
 	const [inputProps, rootProps] = splitProps(others, INPUT_KEYS);
-	const generatedId = createUniqueId();
-	const inputId = () => `${rootProps.id ?? generatedId}-input`;
-
-	const [focused, setFocused] = createSignal(false);
-	const [value, setValue] = createControllableSignal<number | undefined | null>({
-		value: () => state.value,
-		defaultValue: () => state.defaultValue,
-		onChange: value => {
-			state.onChange?.(value);
-		},
-	});
-
-	const initialValue = state.value ?? state.defaultValue ?? "";
-	const [unfinishedValue, setUnfinishedValue] = createSignal<string | null>(
-		String(initialValue),
-	);
-
-	let internalRef: HTMLInputElement;
-
-	const optionsWithDefault = mergeProps(defaultOptions, options);
-	const errorMessageProps = createFieldErrorMessageProps(props);
-
-	const inputClasses = () =>
-		mergeClasses(
-			baseFieldVariants(),
-			styles.textField,
-			local.slotClasses?.input,
-			local.classes?.input,
-		);
-
-	const mask = createMaskito({
-		options: () => {
-			const { plugins, ...options } = maskitoNumberOptionsGenerator({
-				decimalSeparator: defaultNumberFormat.decimalSeparator,
-				thousandSeparator: defaultNumberFormat.thousandSeparator,
-				min: optionsWithDefault.min,
-				max: optionsWithDefault.max,
-				precision: optionsWithDefault.precision,
-				prefix: optionsWithDefault.prefix,
-				postfix: optionsWithDefault.postfix,
-				decimalZeroPadding: true, // TODO: decimalMode === 'always'
-			});
-			return {
-				...options,
-				plugins: [
-					...plugins,
-					maskitoCaretGuard(value => ["".length, value.length - "".length]),
-				],
-			};
-		},
-	});
-
-	onMount(() => mask(internalRef));
-
-	const displayValue = () => {
-		const isFocused = focused();
-		const dirtyValue = unfinishedValue();
-		const sanitizedValue = value();
-		const newValue = isFocused ? dirtyValue : sanitizedValue;
-		return newValue == null || newValue === "" ? undefined : String(newValue);
-	};
-
-	const computeMin = () => {
-		return Math.min(optionsWithDefault.min, optionsWithDefault.max);
-	};
-
-	const computeMax = () => {
-		return Math.max(optionsWithDefault.min, optionsWithDefault.max);
-	};
-	const nativeValue = () => internalRef?.value || "";
-	const nativeNumberValue = () =>
-		maskitoParseNumber(nativeValue(), defaultNumberFormat.decimalSeparator);
-
-	const setNativeValue = (value: string) => (internalRef.value = value);
-
-	const isLocked = () => !!(props.disabled || props.readOnly);
-	const canIncrement = () => !isLocked() && (value() ?? 0) < computeMax();
-	const canDecrement = () => !isLocked() && (value() ?? 0) > computeMin();
-
-	const onKeyDown = (event: KeyboardEvent) => {
-		if (!(event.key === "ArrowDown" || event.key === "ArrowUp")) {
-			return;
-		}
-		event.preventDefault();
-		if (isLocked()) {
-			return;
-		}
-		if (event.key === "ArrowDown") {
-			decrement();
-		} else {
-			increment();
-		}
-	};
-
-	const increment = () => {
-		updateValue((value() || 0) + optionsWithDefault.step);
-	};
-
-	const decrement = () => {
-		updateValue((value() || 0) - optionsWithDefault.step);
-	};
-
-	const updateValue = (value: number, clampValue: boolean = true) => {
-		const newValue = clampValue ? clamp(value || 0, computeMin(), computeMax()) : value;
-		setValue(newValue);
-		setNativeValue(formattedValue());
-		setUnfinishedValue(String(newValue));
-	};
-
-	const onValueChange = (nativeValue: string) => {
-		batch(() => {
-			const parsedValue = maskitoParseNumber(
-				nativeValue,
-				defaultNumberFormat.decimalSeparator,
-			);
-
-			setUnfinishedValue(null);
-
-			if (Number.isNaN(parsedValue)) {
-				setUnfinishedValue("");
-				setValue(null);
-				return;
-			} else {
-				if (focused()) {
-					setUnfinishedValue(nativeValue);
-					updateValue(parsedValue, false);
-				} else {
-					updateValue(parsedValue);
-					setUnfinishedValue(nativeValue);
-				}
-			}
-		});
-	};
-
-	const formattedValue = (): string => {
-		if (value() === null) {
-			return "";
-		}
-		const currentValue = value() || 0;
-		const hasFraction = Math.abs(currentValue) % 1 > 0;
-		let decimalLimit = hasFraction ? optionsWithDefault.precision : 0;
-
-		return (
-			optionsWithDefault.prefix +
-			formatNumber(currentValue, {
-				...defaultNumberFormat,
-				decimalLimit,
-			}).replace(CHAR_HYPHEN, CHAR_MINUS) +
-			optionsWithDefault.postfix
-		);
-	};
-
-	const onFocused = (focused: boolean) => {
-		setFocused(focused);
-
-		batch(() => {
-			const nativeNumber = unfinishedValue()
-				? maskitoParseNumber(unfinishedValue()!, defaultNumberFormat.decimalSeparator)
-				: nativeNumberValue();
-
-			if (Number.isNaN(nativeNumber)) {
-				setNativeValue(
-					focused ? optionsWithDefault.prefix + optionsWithDefault.postfix : "",
-				);
-				setUnfinishedValue(null);
-				setValue(null);
-				return;
-			}
-
-			if (!focused) {
-				updateValue(nativeNumber);
-				setUnfinishedValue(String(nativeNumber));
-			}
-		});
-	};
 
 	return (
-		<KTextField
-			data-cui={"number-field"}
-			data-field-size={local.size ?? "md"}
-			class={mergeClasses(
-				styles.baseFieldContainer,
-				local?.slotClasses?.root,
-				local.classes?.root,
-			)}
-			value={displayValue()}
-			onChange={onValueChange}
+		<P.Root
+			class={mergeClasses(local.slotClasses?.root, local.classes?.root)}
 			{...rootProps}
 		>
 			<Show when={local.label} keyed={false}>
 				{label => (
-					<NumberFieldLabel
-						for={inputId()}
-						data-cui="text-field-label"
-						class={mergeClasses(local.slotClasses?.label, local.classes?.label)}
-					>
+					<P.Label class={mergeClasses(local.slotClasses?.label, local.classes?.label)}>
 						{label()}
-					</NumberFieldLabel>
+					</P.Label>
 				)}
 			</Show>
 
-			<div class={styles.numberFieldContainer}>
-				<KTextField.Input
+			<P.Field>
+				<P.Input
 					{...inputProps}
-					id={inputId()}
-					data-cui="text-field-input"
-					data-size={local.size ?? "md"}
-					data-theme={local.theme ?? "filled"}
-					class={inputClasses()}
+					class={mergeClasses(local.slotClasses?.input, local.classes?.input)}
 					placeholder={local.placeholder}
-					ref={mergeRefs(local.ref, el => (internalRef = el))}
-					type={"text"}
-					role="spinbutton"
-					aria-valuenow={value() ?? undefined}
-					aria-valuetext={value() == null ? undefined : formattedValue()}
-					aria-valuemin={options.min}
-					aria-valuemax={options.max}
-					onKeyDown={onKeyDown}
-					onBlur={() => onFocused(false)}
-					onFocus={() => onFocused(true)}
+					ref={local.ref}
 				/>
-
-				<NumberFieldControls
-					canIncrement={canIncrement()}
-					canDecrement={canDecrement()}
-					increment={increment}
-					decrement={decrement}
-					step={optionsWithDefault.step}
-				/>
-			</div>
+				<P.Controls />
+			</P.Field>
 
 			<Show when={local.description} keyed={false}>
 				{description => (
-					<NumberFieldMessage
-						data-cui="text-field-description"
-						class={local.classes?.description}
-					>
+					<P.Description class={local.classes?.description}>
 						{description()}
-					</NumberFieldMessage>
+					</P.Description>
 				)}
 			</Show>
-
 			<Show
 				when={props.validationState === "invalid" && local.errorMessage}
 				keyed={false}
 			>
 				{errorMessage => (
-					<KTextField.ErrorMessage
-						data-cui="text-field-error-message"
+					<P.ErrorMessage
 						class={mergeClasses(
-							errorMessageProps.class,
 							local.slotClasses?.errorLabel,
 							local.classes?.errorMessage,
 						)}
 					>
 						{errorMessage()}
-					</KTextField.ErrorMessage>
+					</P.ErrorMessage>
 				)}
 			</Show>
-		</KTextField>
+		</P.Root>
 	);
 }
 

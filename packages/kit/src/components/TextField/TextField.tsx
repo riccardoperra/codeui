@@ -1,26 +1,12 @@
-import "@codeui/styles/theme.css";
-import "@codeui/styles/text-field.css";
-import { createUniqueId } from "solid-js";
 import { INPUT_KEYS, FieldInputProps, FieldClasses } from "../Field/inputProps";
-import {
-	TextField as KTextField,
-	TextFieldRootOptions as KTextFieldRootOptions,
-} from "@kobalte/core/text-field";
+import type { TextFieldRootOptions as KTextFieldRootOptions } from "@kobalte/core/text-field";
 import { JSX, Ref, Show, splitProps } from "solid-js";
-import * as styles from "./TextField.css";
-import { baseFieldContainer } from "./TextField.css";
+import * as P from "../../parts/text-field";
 import { mergeClasses } from "../../utils/css";
-import { TextFieldLabel } from "./TextFieldLabel";
-import { TextFieldMessage } from "./TextFieldMessage";
-import {
-	createFieldErrorMessageProps,
-	FieldWithErrorMessageSupport,
-} from "../Field/FieldError/createFieldErrorMessageProps";
+import type { FieldWithErrorMessageSupport } from "../Field/FieldError/createFieldErrorMessageProps";
 import type { BaseFieldProps } from "../Field/createBaseFieldProps";
-import { baseFieldVariants } from "../Field/Field.css";
 import { SlotProp } from "../../utils/component";
 
-// TODO: add to base field slot that respect the BaseFieldProps signature?
 type TextFieldSlot = "root" | "input" | "label" | "errorLabel";
 
 export type TextFieldProps = KTextFieldRootOptions &
@@ -50,59 +36,31 @@ export function TextField(props: TextFieldProps) {
 	]);
 
 	const [inputProps, rootProps] = splitProps(others, INPUT_KEYS);
-	const generatedId = createUniqueId();
-	const inputId = () => `${rootProps.id ?? generatedId}-input`;
-
-	const errorMessageProps = createFieldErrorMessageProps(props);
-
-	const inputClasses = () =>
-		mergeClasses(
-			baseFieldVariants(),
-			styles.textField,
-			local.slotClasses?.input,
-			local.classes?.input,
-		);
-
 	return (
-		<KTextField
-			data-cui={"text-field"}
-			data-field-size={local.size}
-			class={mergeClasses(
-				baseFieldContainer,
-				local?.slotClasses?.root,
-				local.classes?.root,
-			)}
+		<P.Root
+			size={local.size}
+			theme={local.theme}
+			class={mergeClasses(local.slotClasses?.root, local.classes?.root)}
 			{...rootProps}
 		>
 			<Show when={local.label} keyed={false}>
 				{label => (
-					<TextFieldLabel
-						for={inputId()}
-						data-cui="text-field-label"
-						class={mergeClasses(local.slotClasses?.label, local.classes?.label)}
-					>
+					<P.Label class={mergeClasses(local.slotClasses?.label, local.classes?.label)}>
 						{label()}
-					</TextFieldLabel>
+					</P.Label>
 				)}
 			</Show>
-			<KTextField.Input
+			<P.Input
 				{...inputProps}
-				id={inputId()}
-				data-cui="text-field-input"
-				data-size={local.size ?? "md"}
-				data-theme={local.theme ?? "filled"}
-				class={inputClasses()}
+				class={mergeClasses(local.slotClasses?.input, local.classes?.input)}
 				placeholder={local.placeholder}
 				ref={local.ref}
 			/>
 			<Show when={local.description} keyed={false}>
 				{description => (
-					<TextFieldMessage
-						data-cui="text-field-description"
-						class={local.classes?.description}
-					>
+					<P.Description class={local.classes?.description}>
 						{description()}
-					</TextFieldMessage>
+					</P.Description>
 				)}
 			</Show>
 
@@ -111,19 +69,17 @@ export function TextField(props: TextFieldProps) {
 				keyed={false}
 			>
 				{errorMessage => (
-					<KTextField.ErrorMessage
-						data-cui="text-field-error-message"
+					<P.ErrorMessage
 						class={mergeClasses(
-							errorMessageProps.class,
 							local.slotClasses?.errorLabel,
 							local.classes?.errorMessage,
 						)}
 					>
 						{errorMessage()}
-					</KTextField.ErrorMessage>
+					</P.ErrorMessage>
 				)}
 			</Show>
-		</KTextField>
+		</P.Root>
 	);
 }
 

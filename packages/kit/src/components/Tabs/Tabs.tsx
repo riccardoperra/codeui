@@ -47,18 +47,25 @@ export function Tabs<T extends ValidComponent = "div">(props: PolymorphicProps<T
 
 export type TabsListProps<T extends ValidComponent = "div"> = KTabsListProps<T>;
 
-export function TabsList<T extends ValidComponent = "div">(props: PolymorphicProps<T, TabsListProps<T>>) {
-	const context = useContext(TabsContext);
-	const [local, others] = splitProps(props as PolymorphicProps<"div", TabsListProps>, ["class", "children"]);
-	const classes = () => mergeClasses(styles.tabsList, local.class);
+export function TabsListPart<T extends ValidComponent = "div">(
+	props: PolymorphicProps<T, TabsListProps<T>>,
+) {
+	const [local, others] = splitProps(props as PolymorphicProps<"div", TabsListProps>, ["class"]);
+	return <KTabs.List {...others} class={mergeClasses(styles.tabsList, local.class)} />;
+}
 
+export function TabsList<T extends ValidComponent = "div">(
+	props: PolymorphicProps<T, TabsListProps<T>>,
+) {
+	const context = useContext(TabsContext);
+	const [local, others] = splitProps(props as PolymorphicProps<"div", TabsListProps>, ["children"]);
 	return (
-		<KTabs.List {...others} class={classes()}>
+		<TabsListPart {...others}>
 			{local.children}
 			<Show when={context.theme === "inline"}>
 				<TabsIndicator />
 			</Show>
-		</KTabs.List>
+		</TabsListPart>
 	);
 }
 

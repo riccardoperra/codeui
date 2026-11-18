@@ -174,7 +174,7 @@ The `Footer` part. A `div` with the content padding. With `size="full"` it stick
 
 ## Styled parts API
 
-Import the parts from `@codeui/kit/dialog`. Each part carries the kit styles and a `data-cui` attribute, and wraps the matching Kobalte primitive.
+Import the parts from `@codeui/kit/dialog/parts`. Each part carries the kit styles and a `data-cui` attribute, and wraps the matching Kobalte primitive.
 
 <SolidDemo name="dialog/parts" />
 
@@ -282,7 +282,7 @@ A `section` with an optional `h3` title and a content `div`. `variant="group"`, 
 
 ### `dialogStyles`
 
-`dialogStyles` from `@codeui/kit/dialog` maps each part name to a function that returns its class string.
+`dialogStyles` from `@codeui/kit/dialog/parts` maps each part name to a function that returns its class string.
 Call `dialogStyles.panel()`, `body()`, and `section()` for the corresponding part classes.
 The styles read `data-size` and `data-chrome` on the panel, `data-layout` on the body, and `data-variant` and `data-columns` on a section. Set them when you apply the classes to your own elements.
 `trigger`, `title`, and `closeButton` return an empty string, because those parts take their look from other components.
@@ -353,7 +353,7 @@ IDs for the title and the description come from Solid's `createUniqueId`, so the
 | `--cui-font-size-lg`, `--cui-font-weight-medium` | Title type |
 | `--cui-motion-duration-panel`, `--cui-motion-duration-fast`, `--cui-motion-ease-out` | Open and close animation of the panel and the scrim |
 
-`dialogThemeVars` from `@codeui/kit/dialog` holds the dialog's local variables. Set them on the panel with a vanilla-extract class (`vars`) or `assignInlineVars` to tune one dialog:
+`dialogThemeVars` from `@codeui/kit/dialog/parts` holds the dialog's local variables. Set them on the panel with a vanilla-extract class (`vars`) or `assignInlineVars` to tune one dialog:
 
 | Variable | Default | Used for |
 | --- | --- | --- |

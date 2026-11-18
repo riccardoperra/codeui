@@ -1,5 +1,5 @@
 import type { KbdProps } from "@codeui/kit";
-import type { RootProps } from "@codeui/kit/kbd";
+import type { RootProps } from "@codeui/kit/kbd/parts";
 import type { PropNotes } from "./notes";
 
 /** Props that Kbd adds. Every other prop goes to the kbd element. */

@@ -7,7 +7,7 @@ import {
 	CommandMenuParts,
 	icons,
 } from "@codeui/kit";
-import * as M from "@codeui/kit/command-menu";
+import * as M from "@codeui/kit/command-menu/parts";
 import { createSignal, type JSX, Show } from "solid-js";
 
 const meta = {

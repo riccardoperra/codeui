@@ -110,7 +110,7 @@ Inherited from Kobalte's popover content:
 
 ## Styled parts API
 
-Import the parts from `@codeui/kit/popover`. Each part carries the kit styles and a `data-cui` attribute, and wraps the matching Kobalte primitive.
+Import the parts from `@codeui/kit/popover/parts`. Each part carries the kit styles and a `data-cui` attribute, and wraps the matching Kobalte primitive.
 
 <SolidDemo name="popover/parts" />
 
@@ -162,7 +162,7 @@ Kobalte's `Popover.CloseButton`, rendered as an extra-small secondary [IconButto
 
 ### `popoverStyles`
 
-`popoverStyles` from `@codeui/kit/popover` maps each part name to a function that returns its class string.
+`popoverStyles` from `@codeui/kit/popover/parts` maps each part name to a function that returns its class string.
 Call `popoverStyles.content()` for the class and set `data-variant="bordered"` on custom content. `trigger()`, `anchor()`, `arrow()`, and `closeButton()` return empty strings.
 
 Call a style function when you render the Kobalte primitive yourself and want the kit look. Add the matching `data-cui` value from `popoverParts` too.

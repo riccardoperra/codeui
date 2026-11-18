@@ -1,6 +1,6 @@
 import { createSignal } from "solid-js";
 import { Button } from "@codeui/kit";
-import * as D from "@codeui/kit/dialog";
+import * as D from "@codeui/kit/dialog/parts";
 
 export default function DialogParts() {
 	const [open, setOpen] = createSignal(false);

@@ -1,4 +1,4 @@
-import { Combobox } from "@codeui/kit";
+import { Combobox } from "@codeui/kit/combobox";
 
 const languages = ["TypeScript", "JavaScript", "Rust", "Python", "Go", "Kotlin", "Swift"];
 

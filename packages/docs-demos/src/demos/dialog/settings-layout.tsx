@@ -1,6 +1,6 @@
 import { createSignal, For, Show } from "solid-js";
 import { Button, SettingsGroup, SettingsRow, Switch } from "@codeui/kit";
-import * as D from "@codeui/kit/dialog";
+import * as D from "@codeui/kit/dialog/parts";
 import { DownloadIcon, FlaskIcon, PaletteIcon, SlidersIcon } from "../build-settings/icons";
 
 const sections = [

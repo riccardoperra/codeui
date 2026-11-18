@@ -2,9 +2,12 @@ import "@codeui/styles/theme.css";
 import "@codeui/styles/number-field.css";
 import * as styles from "./NumberField.css";
 import { Button } from "../Button/Button";
-import { ChevronDownIcon, ChevronUpIcon } from "../../icons";
+import { ChevronDownIcon } from "../../icons/ChevronDownIcon";
+import { ChevronUpIcon } from "../../icons/ChevronUpIcon";
+import { mergeClasses } from "../../utils/css";
 
 interface NumberFieldControlsProps {
+	class?: string;
 	canIncrement: boolean;
 	canDecrement: boolean;
 	increment: () => void;
@@ -15,7 +18,7 @@ interface NumberFieldControlsProps {
 /** Step buttons. They stay out of the tab order: the input steps with the arrow keys. */
 export function NumberFieldControls(props: NumberFieldControlsProps) {
 	return (
-		<div class={styles.controlsContainer}>
+		<div class={mergeClasses(styles.controlsContainer, props.class)}>
 			<Button
 				disabled={!props.canIncrement}
 				type={"button"}

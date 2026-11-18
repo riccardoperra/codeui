@@ -1,5 +1,5 @@
 import type { SkeletonProps } from "@codeui/kit";
-import type { RootProps } from "@codeui/kit/skeleton";
+import type { RootProps } from "@codeui/kit/skeleton/parts";
 import type { PropNotes } from "./notes";
 
 export type Skeleton = Pick<

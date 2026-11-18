@@ -5,7 +5,7 @@ import type {
 	TrackProps,
 	FillProps,
 	ValueLabelProps,
-} from "@codeui/kit/progress";
+} from "@codeui/kit/progress/parts";
 import type { PropNotes } from "./notes";
 
 export type Progress = Pick<

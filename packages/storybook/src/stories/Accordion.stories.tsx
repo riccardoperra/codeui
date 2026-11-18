@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "storybook-solidjs-vite";
 import { Accordion } from "@codeui/kit";
-import * as A from "@codeui/kit/accordion";
+import * as A from "@codeui/kit/accordion/parts";
 const items = [
 	{
 		value: "size",

@@ -16,7 +16,7 @@ export type SwitchInherited = Pick<
 	| "name"
 	| "value"
 >;
-import type * as P from "@codeui/kit/switch";
+import type * as P from "@codeui/kit/switch/parts";
 export type SwitchControl = Pick<P.ControlProps, "size">;
 export type SwitchDescription = Pick<P.DescriptionProps, "size">;
 export type SwitchErrorMessage = Pick<P.ErrorMessageProps, "size">;

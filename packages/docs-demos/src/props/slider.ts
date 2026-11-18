@@ -27,7 +27,7 @@ export type SliderInherited = Pick<
 	| "name"
 	| "getValueLabel"
 >;
-import type * as P from "@codeui/kit/slider";
+import type * as P from "@codeui/kit/slider/parts";
 export type SliderDescription = Pick<P.DescriptionProps, "orientation">;
 export type SliderErrorMessage = Pick<P.ErrorMessageProps, "orientation">;
 export type SliderFill = Pick<P.FillProps, "orientation">;
