@@ -1,0 +1,22 @@
+{
+  "component": {
+    "option-card": {
+      "item-label": {
+        "variant-tile": {
+          "padding": {
+            "$type": "dimension",
+            "$value": "{space.2}"
+          }
+        }
+      },
+      "badge": {
+        "checked-tone-neutral-variant-soft": {
+          "background-color": {
+            "$type": "color",
+            "$value": "{action.neutral.hover}"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,3 +1,5 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/text-area.css";
 import { createUniqueId } from "solid-js";
 import { INPUT_KEYS, FieldInputProps, FieldClasses } from "../Field/inputProps";
 import {
@@ -15,7 +17,8 @@ import {
 	createFieldErrorMessageProps,
 	FieldWithErrorMessageSupport,
 } from "../Field/FieldError/createFieldErrorMessageProps";
-import { BaseFieldProps, createBaseFieldProps } from "../Field/createBaseFieldProps";
+import type { BaseFieldProps } from "../Field/createBaseFieldProps";
+import { baseFieldVariants } from "../Field/Field.css";
 import { SlotProp } from "../../utils/component";
 
 // TODO: add to base field slot that respect the BaseFieldProps signature?
@@ -53,12 +56,11 @@ export function TextArea(props: TextAreaProps) {
 	const generatedId = createUniqueId();
 	const inputId = () => local.options?.id ?? `${rootProps.id ?? generatedId}-input`;
 
-	const baseFieldProps = createBaseFieldProps(props);
 	const errorMessageProps = createFieldErrorMessageProps(props);
 
 	const inputClasses = () =>
 		mergeClasses(
-			baseFieldProps.baseStyle(),
+			baseFieldVariants(),
 			styles.textArea,
 			local.slotClasses?.input,
 			local.classes?.input,
@@ -90,6 +92,8 @@ export function TextArea(props: TextAreaProps) {
 				{...inputProps}
 				id={inputId()}
 				data-cui="text-field-input"
+				data-size={local.size ?? "md"}
+				data-theme={local.theme ?? "filled"}
 				{...local.options}
 				class={inputClasses()}
 				placeholder={local.placeholder}

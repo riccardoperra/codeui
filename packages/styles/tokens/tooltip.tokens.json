@@ -1,0 +1,50 @@
+{
+  "component": {
+    "tooltip": {
+      "tooltip-theme": {
+        "fontSize": {
+          "$type": "dimension",
+          "$value": "{font.size.sm}"
+        },
+        "lineHeight": {
+          "$type": "number",
+          "$value": "{font.lineHeight.compact}"
+        },
+        "backgroundColor": {
+          "$type": "color",
+          "$value": "{action.neutral.base}"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{action.neutral.text}"
+        },
+        "borderRadius": {
+          "$type": "dimension",
+          "$value": "{radius.xl}"
+        }
+      },
+      "tooltip-content": {
+        "theme-primary": {
+          "color": {
+            "$type": "color",
+            "$value": "{action.brand.text}"
+          },
+          "backgroundColor": {
+            "$type": "color",
+            "$value": "{action.brand.base}"
+          }
+        },
+        "theme-secondary": {
+          "color": {
+            "$type": "color",
+            "$value": "{action.neutral.text}"
+          },
+          "backgroundColor": {
+            "$type": "color",
+            "$value": "{action.neutral.base}"
+          }
+        }
+      }
+    }
+  }
+}

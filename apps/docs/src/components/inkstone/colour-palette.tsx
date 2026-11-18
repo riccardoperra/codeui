@@ -1,14 +1,53 @@
 import type { CSSProperties } from 'react';
 
 type Swatch = { id: string; hex: string; oklch: string };
+type RampSwatch = Swatch & { aliases: { light: string[]; dark: string[] } };
 
 export type ColourPaletteData = {
-  ramps: { name: string; label: string; swatches: Swatch[] }[];
+  ramps: { name: string; label: string; swatches: RampSwatch[] }[];
   roles: { name: string; cssToken: string; light: Swatch; dark: Swatch }[];
 };
 
 function swatchStyle(swatch: Swatch): CSSProperties & Record<'--swatch-srgb' | '--swatch-oklch', string> {
   return { '--swatch-srgb': swatch.hex, '--swatch-oklch': swatch.oklch };
+}
+
+export function PaletteMatrix({ ramps }: Pick<ColourPaletteData, 'ramps'>) {
+  return (
+    <div className="not-prose colour-palette">
+      {ramps.map(({ name, label, swatches }) => (
+        <details className="colour-palette__matrix" key={name} open={name === 'blue'}>
+          <summary>{label}</summary>
+          <table className="colour-palette__roles" aria-label={`${label} token aliases`}>
+            <thead>
+              <tr>
+                <th scope="col">Ramp step</th>
+                <th scope="col">Light</th>
+                <th scope="col">Dark</th>
+              </tr>
+            </thead>
+            <tbody>
+              {swatches.map(swatch => (
+                <tr key={swatch.id}>
+                  <th scope="row">
+                    <span className="colour-palette__value">
+                      <span className="colour-palette__swatch" style={swatchStyle(swatch)} aria-hidden="true" />
+                      <span><code>{swatch.id}</code>{swatch.hex}</span>
+                    </span>
+                  </th>
+                  {Object.entries(swatch.aliases).map(([mode, aliases]) => (
+                    <td key={mode}>
+                      {aliases.length ? aliases.map(token => <code key={token}>{token}</code>) : '—'}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </details>
+      ))}
+    </div>
+  );
 }
 
 export function ColourPalette({ data }: { data: ColourPaletteData }) {

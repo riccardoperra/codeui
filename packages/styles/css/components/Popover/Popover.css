@@ -1,0 +1,67 @@
+@import "./popover-tokens.generated.css";
+
+@layer cui.components {
+  .cui-popover-popoverTheme {
+    --cui-popoverTheme-contentBackground: var(--cui-component-popover-popover-theme-content-background);
+    --cui-popoverTheme-contentBoxShadow: var(--cui-shadow-dialog);
+    --cui-popoverTheme-contentMaxWidth: min(360px, calc(100vw - 2 * var(--cui-space-4)));
+    --cui-popoverTheme-contentRadius: var(--cui-component-popover-popover-theme-content-radius);
+    --cui-popoverTheme-contentPadding: var(--cui-component-popover-popover-theme-content-padding);
+    --cui-popoverTheme-contentFontSize: var(--cui-component-popover-popover-theme-content-font-size);
+    --cui-popoverTheme-contentLineHeight: var(--cui-component-popover-popover-theme-content-line-height);
+    --cui-popoverTheme-titleColor: var(--cui-component-popover-popover-theme-title-color);
+    --cui-popoverTheme-titleFontSize: var(--cui-component-popover-popover-theme-title-font-size);
+    --cui-popoverTheme-descriptionColor: var(--cui-component-popover-popover-theme-description-color);
+    --cui-popoverTheme-contentBorderColor: var(--cui-component-popover-popover-theme-content-border-color);
+  }
+  .cui-popover-content {
+    box-shadow: var(--cui-popoverTheme-contentBoxShadow);
+    background-color: var(--cui-popoverTheme-contentBackground);
+    border-radius: var(--cui-popoverTheme-contentRadius);
+    padding: var(--cui-popoverTheme-contentPadding);
+    max-width: var(--cui-popoverTheme-contentMaxWidth);
+    color: var(--cui-popoverTheme-descriptionColor);
+    font-size: var(--cui-popoverTheme-contentFontSize);
+    line-height: var(--cui-popoverTheme-contentLineHeight);
+    overflow: hidden;
+    z-index: 50;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--cui-space-2);
+    outline: none;
+    transform-origin: var(--cui-popper-content-transform-origin);
+    animation: cui-motion-popOut var(--cui-motion-duration-fast) var(--cui-motion-ease-out) forwards;
+  }
+  .cui-popover-content[data-expanded] {
+    animation: cui-motion-popIn var(--cui-motion-duration-normal) var(--cui-motion-ease-out);
+  }
+  .cui-popover-content[data-motion=none], .cui-popover-content[data-motion=none][data-expanded] {
+    animation: none;
+  }
+  :where(.cui-popover-content)[data-variant="bordered"] {
+    border: var(--cui-border-width) solid var(--cui-popoverTheme-contentBorderColor);
+  }
+  .cui-popover-title {
+    color: var(--cui-popoverTheme-titleColor);
+    display: flex;
+    align-items: center;
+    font-size: var(--cui-popoverTheme-titleFontSize);
+    line-height: var(--cui-popoverTheme-contentLineHeight);
+    font-weight: var(--cui-font-weight-semibold);
+    justify-content: space-between;
+  }
+  .cui-popover-description {
+    color: var(--cui-popoverTheme-descriptionColor);
+    font-size: var(--cui-popoverTheme-contentFontSize);
+    line-height: var(--cui-popoverTheme-contentLineHeight);
+  }
+  @media (--cui-reduced-motion) {
+    .cui-popover-content {
+      animation-name: cui-motion-fadeOut;
+    }
+    .cui-popover-content[data-expanded] {
+      animation-name: cui-motion-fadeIn;
+    }
+  }
+}

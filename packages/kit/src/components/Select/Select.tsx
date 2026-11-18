@@ -1,3 +1,5 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/select.css";
 import {
 	Select as KSelect,
 	SelectItemProps as KSelectItemProps,
@@ -9,7 +11,8 @@ import { CheckIcon } from "../../icons/CheckIcon";
 import { SelectorIcon } from "../../icons/SelectorIcon";
 import { mergeClasses } from "../../utils/css";
 import { motionRef } from "../../utils/open-source";
-import { BaseFieldProps, createBaseFieldProps } from "../Field/createBaseFieldProps";
+import type { BaseFieldProps } from "../Field/createBaseFieldProps";
+import { baseFieldVariants } from "../Field/Field.css";
 import {
 	createFieldErrorMessageProps,
 	FieldWithErrorMessageSupport,
@@ -130,7 +133,6 @@ export function Select<Option, OptGroup = never>(props: ParentProps<SelectProps<
 		],
 		["options", "value"],
 	);
-	const baseFieldProps = createBaseFieldProps(props);
 
 	const labelProps = createFieldLabelProps<"span">({
 		get class() {
@@ -169,8 +171,10 @@ export function Select<Option, OptGroup = never>(props: ParentProps<SelectProps<
 			</Show>
 			<KSelect.Trigger
 				data-cui={selectParts.trigger}
+				data-size={local.size ?? "md"}
+				data-theme={local.theme ?? "filled"}
 				aria-label={local["aria-label"]}
-				class={mergeClasses(baseFieldProps.baseStyle(), styles.selectField, partClass(local, "trigger"))}
+				class={mergeClasses(baseFieldVariants(), styles.selectField, partClass(local, "trigger"))}
 			>
 				<KSelect.Value<Option> data-cui={selectParts.value} class={partClass(local, "value")}>
 					{state => {

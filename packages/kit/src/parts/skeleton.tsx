@@ -1,23 +1,13 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/skeleton.css";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import { Skeleton as KSkeleton, type SkeletonRootProps as KSkeletonRootProps } from "@kobalte/core/skeleton";
 import { splitProps, type ValidComponent } from "solid-js";
 import * as styles from "../components/Skeleton/Skeleton.css";
 import { mergeClasses } from "../utils/css";
 
-export const skeletonParts = {
-	root: "skeleton-root",
-} as const;
-
-export type SkeletonPart = keyof typeof skeletonParts;
-export type SkeletonClasses = Partial<Record<SkeletonPart, string>>;
-export type SkeletonVariants = { circle?: boolean; animate?: boolean };
-
-export type SkeletonStyles = { [P in SkeletonPart]: (variants?: SkeletonVariants) => string };
-
-export const skeletonStyles: SkeletonStyles = {
-	root: variants => styles.root({ circle: variants?.circle, animate: variants?.animate ?? true }),
-};
-
+import { skeletonParts, type SkeletonPart, type SkeletonClasses, type SkeletonVariants, type SkeletonStyles } from "@codeui/styles/skeleton";
+export { skeletonParts, type SkeletonPart, type SkeletonClasses, type SkeletonVariants, type SkeletonStyles, skeletonStyles } from "@codeui/styles/skeleton";
 export type RootProps<T extends ValidComponent = "div"> = KSkeletonRootProps<T> & { class?: string };
 
 /**
@@ -29,9 +19,10 @@ export function Root<T extends ValidComponent = "div">(props: PolymorphicProps<T
 	return (
 		<KSkeleton
 			data-cui={skeletonParts.root}
+			data-circle={others.circle || undefined}
 			aria-hidden={others.visible === false ? undefined : true}
 			class={mergeClasses(
-				skeletonStyles.root({ circle: others.circle, animate: others.animate }),
+				styles.root(),
 				local.class,
 			)}
 			{...others}

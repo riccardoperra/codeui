@@ -7,28 +7,20 @@ The field helpers give your own control the look of [TextField](/docs/components
 
 <SolidDemo name="field-helpers/custom-field" />
 
-The demo builds an export format field from a native `select`. It uses all three helpers and the field style exports. The helpers return classes and ids only. Your component renders the elements, links them with `for` and `aria-describedby`, and decides when the field is invalid.
+The demo builds an export format field from a native `select`. It uses all three helpers and the field style exports. The helpers provide styling attributes, classes, and IDs. Your component renders the elements, links them with `for` and `aria-describedby`, and decides when the field is invalid.
 
 ## `createBaseFieldProps`
 
-```ts
-import { createBaseFieldProps, type BaseFieldProps } from "@codeui/kit";
-
-function createBaseFieldProps(
-	props: BaseFieldProps,
-	field: Accessor<FieldContent & { inputId?: string; id?: string }>,
-): {
-	ids: { input: () => string; label: () => string; description: () => string; errorMessage: () => string };
-	baseStyle: () => string;
-};
-function createBaseFieldProps(props: BaseFieldProps): { ids: undefined; baseStyle(): string };
+```tsx
+const field = createBaseFieldProps({ size: "sm", theme: "filled" });
+return <input {...field.attributes} class={field.baseStyle()} />;
 ```
 
-`BaseFieldProps` holds the two field variants. `FieldContent` holds `label`, `description`, and `errorMessage`. `baseStyle()` reads `size` and `theme` each time you call it, so pass your component props as they are, without destructuring.
+`BaseFieldProps` supplies size and theme. Pass the component props directly to keep the attributes reactive.
 
 <PropsTable name="BaseField" />
 
-`baseStyle()` returns the class of the field box for the current `size` and `theme`. Call it in JSX so the class follows prop changes.
+`baseStyle()` returns the base class. Spread `field.attributes` to set the current `data-size` and `data-theme`.
 
 Pass the `field` accessor to also get `ids`. The helper reads only `id` and `inputId` from it. `ids` holds four accessors that return linked ids:
 
@@ -128,7 +120,7 @@ These namespaces hold the classes and variables that the helpers and the ready f
 | ------------------------------------- | ----------------------------------------------------------------------------------- |
 | `fieldStyles.baseFieldTheme`          | Class that defines the field variables. Put it on the field root.                   |
 | `fieldStyles.baseFieldVars`           | The field variables: `background`, `borderColor`, `color`, `descriptionColor`, `inputHeight`, `fontSize`, `disabledBackground`. |
-| `fieldStyles.baseFieldVariants`       | The recipe behind `baseStyle()`. Takes `size` and `theme`.                          |
+| `fieldStyles.baseFieldVariants`       | The base class helper behind `baseStyle()`.                          |
 | `fieldStyles.FieldSizes`              | The five size names, `xs` to `xl`.                                                  |
 | `fieldStyles.inputHeight`, `fieldStyles.fontSize` | Raw variables for the control height and font size.                    |
 | `fieldLabelStyles.label`              | The label class that `createFieldLabelProps` adds.                                  |

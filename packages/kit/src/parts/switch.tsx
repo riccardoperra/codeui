@@ -1,40 +1,37 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/switch.css";
 import * as K from "@kobalte/core/switch";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
-import { onMount, splitProps, type ValidComponent } from "solid-js";
-import { mergeClasses } from "../utils/css";
-import * as styles from "../components/Switch/Switch.css";
-import { createFieldLabelProps } from "../components/Field/FieldLabel/createFieldLabelProps";
+import { createMemo, onMount, splitProps, type ValidComponent } from "solid-js";
 import { trackInputModality } from "../utils/modality";
 export { useSwitchContext } from "@kobalte/core/switch";
-export const switchParts = {
-	root: "switch-root",
-	input: "switch-input",
-	control: "switch-control",
-	thumb: "switch-thumb",
-	label: "switch-label",
-	description: "switch-description",
-	errorMessage: "switch-error-message",
-} as const;
-export type SwitchVariants = { size?: "sm" | "md" };
-export type SwitchPart =
-	| "root"
-	| "input"
-	| "control"
-	| "thumb"
-	| "label"
-	| "description"
-	| "errorMessage";
-export type SwitchClasses = Partial<Record<SwitchPart, string>>;
-export type SwitchStyles = Record<SwitchPart, (variants?: SwitchVariants) => string>;
-export const switchStyles: SwitchStyles = {
-	root: () => styles.root,
-	input: () => styles.input,
-	control: variants => styles.control({ size: variants?.size ?? "md" }),
-	thumb: variants => styles.thumb({ size: variants?.size ?? "md" }),
-	label: () => styles.label,
-	description: () => styles.description,
-	errorMessage: () => styles.errorMessage,
-};
+import { type SwitchVariants, switchStyleProps } from "@codeui/styles/switch";
+export {
+	switchParts,
+	type SwitchVariants,
+	type SwitchPart,
+	type SwitchClasses,
+	type SwitchStyles,
+	switchStyles,
+} from "@codeui/styles/switch";
+type SwitchAppearance = ReturnType<(typeof switchStyleProps)[keyof typeof switchStyleProps]>;
+
+function bindAppearance(read: () => SwitchAppearance) {
+	const props = createMemo(read);
+	// Keep the spread source stable so Kobalte can track its polymorphic element separately.
+	return {
+		get class() {
+			return props().class;
+		},
+		get "data-cui"() {
+			return props()["data-cui"];
+		},
+		get "data-size"() {
+			return props()["data-size"];
+		},
+	};
+}
+
 export type RootProps<T extends ValidComponent = "div"> = K.SwitchRootProps<T> &
 	SwitchVariants;
 export function Root<T extends ValidComponent = "div">(
@@ -45,14 +42,8 @@ export function Root<T extends ValidComponent = "div">(
 		"size",
 	]);
 	onMount(trackInputModality);
-	return (
-		<K.Root
-			{...others}
-			data-cui="switch-root"
-			data-size={local.size}
-			class={mergeClasses(switchStyles.root(local), local.class)}
-		/>
-	);
+	const appearance = bindAppearance(() => switchStyleProps.root(local));
+	return <K.Root {...others} {...appearance} />;
 }
 export type InputProps<T extends ValidComponent = "input"> = K.SwitchInputProps<T> &
 	SwitchVariants;
@@ -63,14 +54,8 @@ export function Input<T extends ValidComponent = "input">(
 		"class",
 		"size",
 	]);
-	return (
-		<K.Input
-			{...others}
-			data-cui="switch-input"
-			data-size={local.size}
-			class={mergeClasses(switchStyles.input(local), local.class)}
-		/>
-	);
+	const appearance = bindAppearance(() => switchStyleProps.input(local));
+	return <K.Input {...others} {...appearance} />;
 }
 export type ControlProps<T extends ValidComponent = "div"> = K.SwitchControlProps<T> &
 	SwitchVariants;
@@ -81,14 +66,8 @@ export function Control<T extends ValidComponent = "div">(
 		"class",
 		"size",
 	]);
-	return (
-		<K.Control
-			{...others}
-			data-cui="switch-control"
-			data-size={local.size}
-			class={mergeClasses(switchStyles.control(local), local.class)}
-		/>
-	);
+	const appearance = bindAppearance(() => switchStyleProps.control(local));
+	return <K.Control {...others} {...appearance} />;
 }
 export type ThumbProps<T extends ValidComponent = "div"> = K.SwitchThumbProps<T> &
 	SwitchVariants;
@@ -99,14 +78,8 @@ export function Thumb<T extends ValidComponent = "div">(
 		"class",
 		"size",
 	]);
-	return (
-		<K.Thumb
-			{...others}
-			data-cui="switch-thumb"
-			data-size={local.size}
-			class={mergeClasses(switchStyles.thumb(local), local.class)}
-		/>
-	);
+	const appearance = bindAppearance(() => switchStyleProps.thumb(local));
+	return <K.Thumb {...others} {...appearance} />;
 }
 export type LabelProps<T extends ValidComponent = "label"> = K.SwitchLabelProps<T> &
 	SwitchVariants;
@@ -117,17 +90,8 @@ export function Label<T extends ValidComponent = "label">(
 		"class",
 		"size",
 	]);
-	return (
-		<K.Label
-			{...others}
-			data-cui="switch-label"
-			data-size={local.size}
-			class={mergeClasses(
-				switchStyles.label(local),
-				createFieldLabelProps({ class: local.class }).class,
-			)}
-		/>
-	);
+	const appearance = bindAppearance(() => switchStyleProps.label(local));
+	return <K.Label {...others} {...appearance} />;
 }
 export type DescriptionProps<T extends ValidComponent = "div"> =
 	K.SwitchDescriptionProps<T> & SwitchVariants;
@@ -138,14 +102,8 @@ export function Description<T extends ValidComponent = "div">(
 		"class",
 		"size",
 	]);
-	return (
-		<K.Description
-			{...others}
-			data-cui="switch-description"
-			data-size={local.size}
-			class={mergeClasses(switchStyles.description(local), local.class)}
-		/>
-	);
+	const appearance = bindAppearance(() => switchStyleProps.description(local));
+	return <K.Description {...others} {...appearance} />;
 }
 export type ErrorMessageProps<T extends ValidComponent = "div"> =
 	K.SwitchErrorMessageProps<T> & SwitchVariants;
@@ -156,14 +114,8 @@ export function ErrorMessage<T extends ValidComponent = "div">(
 		props as PolymorphicProps<"div", ErrorMessageProps>,
 		["class", "size"],
 	);
-	return (
-		<K.ErrorMessage
-			{...others}
-			data-cui="switch-error-message"
-			data-size={local.size}
-			class={mergeClasses(switchStyles.errorMessage(local), local.class)}
-		/>
-	);
+	const appearance = bindAppearance(() => switchStyleProps.errorMessage(local));
+	return <K.ErrorMessage {...others} {...appearance} />;
 }
 export const SwitchParts = {
 	Root,

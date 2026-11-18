@@ -1,0 +1,27 @@
+@layer cui.components {
+  .cui-field-error-errorMessage {
+    user-select: none;
+    line-height: var(--cui-font-line-height-xs);
+    color: var(--cui-text-danger);
+  }
+  [data-field-size=xs] .cui-field-error-errorMessage {
+    font-size: var(--cui-font-size-xs);
+    line-height: var(--cui-font-line-height-xs);
+  }
+  [data-field-size=sm] .cui-field-error-errorMessage {
+    font-size: var(--cui-font-size-xs);
+    line-height: var(--cui-font-line-height-xs);
+  }
+  [data-field-size=md] .cui-field-error-errorMessage {
+    font-size: var(--cui-font-size-xs);
+    line-height: var(--cui-font-line-height-xs);
+  }
+  [data-field-size=lg] .cui-field-error-errorMessage {
+    font-size: var(--cui-font-size-sm);
+    line-height: var(--cui-font-line-height-sm);
+  }
+  [data-field-size=xl] .cui-field-error-errorMessage {
+    font-size: var(--cui-font-size-sm);
+    line-height: var(--cui-font-line-height-sm);
+  }
+}

@@ -11,6 +11,7 @@
     "ready-or-parts",
     "---Foundations---",
     "foundations/tokens",
+    "foundations/token-generation",
     "foundations/theming",
     "foundations/cascade-layers",
     "foundations/typography-and-spacing",

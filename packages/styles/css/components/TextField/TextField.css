@@ -1,0 +1,14 @@
+@layer cui.components {
+  .cui-text-field-baseFieldContainer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--cui-space-3);
+  }
+  .cui-text-field-textField {
+    padding-right: var(--cui-space-3);
+    padding-left: var(--cui-space-3);
+    padding-top: 0;
+    padding-bottom: 0;
+    outline: none;
+  }
+}

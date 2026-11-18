@@ -1,0 +1,46 @@
+@import "./spinner-tokens.generated.css";
+
+@keyframes cui-spinner-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@layer cui.components {
+  .cui-spinner-root {
+    display: inline-block;
+    flex-shrink: 0;
+    color: currentColor;
+    animation: cui-spinner-spin calc(var(--cui-motion-duration-slow) * 3) linear infinite;
+  }
+  :where(.cui-spinner-root) {
+    &[data-size="sm"] {
+      width: var(--cui-component-spinner-root-size-sm-width);
+      height: var(--cui-component-spinner-root-size-sm-height);
+    }
+
+    &[data-size="md"] {
+      width: var(--cui-component-spinner-root-size-md-width);
+      height: var(--cui-component-spinner-root-size-md-height);
+    }
+
+    &[data-size="lg"] {
+      width: var(--cui-component-spinner-root-size-lg-width);
+      height: var(--cui-component-spinner-root-size-lg-height);
+    }
+  }
+  .cui-spinner-track {
+    fill: none;
+    stroke: currentColor;
+    opacity: 0.25;
+  }
+  .cui-spinner-indicator {
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+  }
+  @media (--cui-reduced-motion) {
+    .cui-spinner-root {
+      animation: none;
+    }
+  }
+}

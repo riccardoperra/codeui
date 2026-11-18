@@ -1,0 +1,28 @@
+{
+  "shadow": {
+    "dialog": {
+      "dark": "0 10px 30px 0 #00000026, inset 0 0 0 1px #232323",
+      "light": "0 10px 15px -3px #0000001a, 0 4px 6px -2px #0000000d"
+    },
+    "menu": {
+      "dark": "0 1px #0000000d, 0 4px 10px #0000004d",
+      "light": "0 1px #0000000d, 0 4px 10px #0000001a"
+    },
+    "none": "none",
+    "sm": "0 1px 3px 0 #0000001a, 0 1px 2px 0 #0000000f",
+    "md": "0 4px 6px -1px #0000001a, 0 2px 4px -1px #0000000f",
+    "thumb": "0 1px 2px #0000004d",
+    "lg": "0 10px 15px -3px #0000001a, 0 4px 6px -2px #0000000d"
+  },
+  "border": {
+    "input": "transparent"
+  },
+  "space": {
+    "auto": "auto"
+  },
+  "font": {
+    "tracking": {
+      "normal": "normal"
+    }
+  }
+}

@@ -1,5 +1,6 @@
 import {
 	Button,
+	Switch,
 	TextField,
 	Select,
 	Dialog,
@@ -16,6 +17,7 @@ export default function App() {
 				Consumer button
 			</Button>
 			<TextField label="Consumer text" value="Hello consumer" />
+			<Switch label="Consumer switch" />
 			<Select aria-label="Consumer select" options={["One", "Two"]} value="One" />
 			<Dialog open modal={false} title="Consumer dialog">
 				Dialog body

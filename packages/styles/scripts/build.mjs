@@ -1,0 +1,273 @@
+import assert from "node:assert/strict";
+import { readFile, writeFile, mkdir, rm, readdir } from "node:fs/promises";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import ts from "typescript";
+import { build } from "tsdown";
+import { compileStylesheet } from "./component-tokens.mjs";
+import { readInkstoneTheme } from "./tokens.mjs";
+import { collectContracts } from "./contracts.mjs";
+
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const src = path.join(root, "src");
+const compatibility = JSON.parse(
+	await readFile(path.join(root, "compatibility.json"), "utf8"),
+);
+const registry = JSON.parse(await readFile(path.join(root, "entries.json"), "utf8"));
+const out = path.join(root, "dist");
+const normalize = value => value.split(path.sep).join("/");
+const files = async dir =>
+	(
+		await Promise.all(
+			(await readdir(dir, { withFileTypes: true })).map(async item =>
+				item.isDirectory() ? files(path.join(dir, item.name)) : path.join(dir, item.name),
+			),
+		)
+	)
+		.flat()
+		.sort();
+const { css: theme, layerOrder, media, componentAliases } = await readInkstoneTheme(root);
+const sourceFiles = (await files(src)).filter(file => file.endsWith(".ts"));
+const sources = JSON.parse(await readFile(path.join(root, "style-sources.json"), "utf8"));
+const scopesByModule = new Map(Object.entries(sources));
+const helperExports = async (entry, prefix) => {
+	if (!entry.helpers) return "";
+	const code = await readFile(path.join(src, entry.helpers), "utf8");
+	const names = [...code.matchAll(/^export (const|type|interface) (\w+)/gm)].map(
+		([, kind, name]) => `${kind === "const" ? "" : "type "}${name}`,
+	);
+	return `\nexport { ${names.join(", ")} } from "${prefix}${entry.helpers.replace(/\.ts$/, ".js")}";`;
+};
+const generated = path.join(out, ".entries");
+await mkdir(generated, { recursive: true });
+for (const [name, entry] of Object.entries(registry)) {
+	const helper = await helperExports(entry, "../../src/");
+	const exports =
+		name === "theme"
+			? 'export * from "../../src/foundation/index.ts";\n'
+			: entry.modules.map(id => `export * from "../../src/${id}";`).join("\n") +
+				helper.replace(/\.js"/g, '.ts"');
+	await writeFile(path.join(generated, `${name}.ts`), exports);
+}
+await writeFile(
+	path.join(generated, "tokens.ts"),
+	'export * from "../../src/foundation/index.ts";\n',
+);
+await writeFile(
+	path.join(generated, "index.ts"),
+	Object.keys(registry)
+		.filter(name => name !== "theme")
+		.map(
+			name =>
+				`export * as ${name.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase())} from "./${name}.ts";`,
+		)
+		.join("\n") + '\nexport * from "./tokens.ts";\n',
+);
+const entryPoints = Object.fromEntries([
+	...compatibility.map(id => [`internal/${id}`, path.join(src, `${id}.ts`)]),
+	...(await files(generated)).map(file => [path.basename(file, ".ts"), file]),
+]);
+for (const format of ["esm", "cjs"])
+	await build({
+		cwd: root,
+		config: false,
+		entry: entryPoints,
+		outDir: path.join(out, format),
+		format,
+		platform: "neutral",
+		deps: {
+			neverBundle: [/^@codeui\/inkstone(?:\/|$)/],
+			onlyBundle: ["@radix-ui/colors"],
+		},
+		target: "es2020",
+		define: { "process.env.NODE_ENV": '"production"' },
+		dts: false,
+		clean: false,
+		minify: true,
+		report: false,
+		outExtensions: () => ({ js: format === "esm" ? ".js" : ".cjs" }),
+		outputOptions:
+			format === "cjs" ? { esModule: true, generatedCode: { symbols: false } } : undefined,
+	});
+const publicContract = await collectContracts(out);
+const cssByScope = new Map();
+const emittedAliases = new Set();
+const sharedMedia = await readFile(path.join(root, "css/media.css"), "utf8");
+for (const scope of new Set(Object.values(sources).flat())) {
+	const filename = scope.replace(/\.ts$/, "");
+	const sourcePath = path.join(root, "css", filename);
+	const source =
+		scope === "foundation/cui.css.ts" ? theme : await readFile(sourcePath, "utf8");
+	const css = await compileStylesheet({
+		source,
+		sourcePath,
+		media: `${sharedMedia}\n${media}`,
+		componentAliases,
+		emittedAliases,
+	});
+	cssByScope.set(scope, css);
+}
+for (const name of componentAliases.keys())
+	assert(emittedAliases.has(name), `Component token has no CSS consumer: ${name}`);
+const themeScopes = new Set(
+	registry.theme.modules.flatMap(id => [...scopesByModule.get(id)]),
+);
+const stylesheet = scopes =>
+	layerOrder + scopes.map(scope => cssByScope.get(scope)).join("\n");
+const componentClosure = (name, seen = new Set()) => {
+	if (!registry[name]) throw new Error(`Unknown component dependency ${name}`);
+	if (seen.has(name)) return seen;
+	seen.add(name);
+	for (const dependency of registry[name].dependencies)
+		componentClosure(dependency, seen);
+	return seen;
+};
+const manifest = { version: 1, layer: "cui", entries: {}, modules: {} };
+for (const [id, scopes] of scopesByModule) manifest.modules[id] = [...scopes].sort();
+for (const [name, entry] of Object.entries(registry)) {
+	const components = [...componentClosure(name)];
+	const scopes = new Set(
+		components.flatMap(component =>
+			registry[component].modules.flatMap(id => [...scopesByModule.get(id)]),
+		),
+	);
+	if (name !== "theme") for (const scope of themeScopes) scopes.delete(scope);
+	const orderedScopes = [...scopes].sort();
+	await writeFile(path.join(out, `${name}.css`), stylesheet(orderedScopes));
+	manifest.entries[name] = {
+		css: `${name}.css`,
+		dependencies: entry.dependencies,
+		components,
+		scopes: orderedScopes,
+	};
+}
+await writeFile(
+	path.join(out, "all.css"),
+	stylesheet([...cssByScope.keys()].sort((a, b) => a.localeCompare(b))),
+);
+const program = ts.createProgram(sourceFiles, {
+	target: ts.ScriptTarget.ESNext,
+	module: ts.ModuleKind.ESNext,
+	moduleResolution: ts.ModuleResolutionKind.NodeJs,
+	strict: true,
+	skipLibCheck: true,
+	esModuleInterop: true,
+	declaration: true,
+	emitDeclarationOnly: true,
+	rootDir: src,
+	outDir: path.join(out, "types/internal"),
+});
+const diagnostics = ts.getPreEmitDiagnostics(program);
+if (diagnostics.length)
+	throw new Error(
+		ts.formatDiagnosticsWithColorAndContext(diagnostics, {
+			getCurrentDirectory: () => root,
+			getCanonicalFileName: value => value,
+			getNewLine: () => "\n",
+		}),
+	);
+program.emit(undefined, undefined, undefined, undefined, {
+	afterDeclarations: [
+		context => source => {
+			const visit = node => {
+				if (ts.isStringLiteral(node) && node.text.startsWith(".")) {
+					const resolved = ts.resolveModuleName(
+						node.text,
+						source.fileName,
+						program.getCompilerOptions(),
+						ts.sys,
+					).resolvedModule;
+					if (resolved) {
+						let relative = normalize(
+							path.relative(path.dirname(source.fileName), resolved.resolvedFileName),
+						).replace(/\.tsx?$/, ".js");
+						if (!relative.startsWith(".")) relative = `./${relative}`;
+						return context.factory.createStringLiteral(relative);
+					}
+				}
+				return ts.visitEachChild(node, visit, context);
+			};
+			return ts.visitNode(source, visit);
+		},
+	],
+});
+for (const [name, entry] of Object.entries(registry))
+	await writeFile(
+		path.join(out, "types", `${name}.d.ts`),
+		name === "theme"
+			? 'export * from "./internal/foundation/index.js";\n'
+			: entry.modules
+					.map(id => `export * from "./internal/${id.replace(/\.ts$/, ".js")}";`)
+					.join("\n") + (await helperExports(entry, "./internal/")),
+	);
+await writeFile(
+	path.join(out, "types/tokens.d.ts"),
+	'export * from "./internal/foundation/index.js";\n',
+);
+await writeFile(
+	path.join(out, "types/index.d.ts"),
+	Object.keys(registry)
+		.filter(name => name !== "theme")
+		.map(
+			name =>
+				`export * as ${name.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase())} from "./${name}.js";`,
+		)
+		.join("\n") + '\nexport * from "./tokens.js";\n',
+);
+for (const file of await files(path.join(out, "types"))) {
+	const target = file
+		.replace(`${path.sep}types${path.sep}`, `${path.sep}types-cjs${path.sep}`)
+		.replace(/\.d\.ts$/, ".d.cts");
+	await mkdir(path.dirname(target), { recursive: true });
+	await writeFile(
+		target,
+		(await readFile(file, "utf8")).replace(/(["'])(\.[^"']*)\.js\1/g, "$1$2.cjs$1"),
+	);
+}
+const pkg = JSON.parse(await readFile(path.join(root, "package.json"), "utf8"));
+const jsExport = name => ({
+	import: { types: `./dist/types/${name}.d.ts`, default: `./dist/esm/${name}.js` },
+	require: { types: `./dist/types-cjs/${name}.d.cts`, default: `./dist/cjs/${name}.cjs` },
+});
+pkg.exports = {
+	".": jsExport("index"),
+	"./tokens": jsExport("tokens"),
+	"./manifest.json": "./dist/manifest.json",
+	"./contract.json": "./dist/contract.json",
+	"./package.json": "./package.json",
+};
+for (const name of [...Object.keys(registry), "all"]) {
+	pkg.exports[`./${name}.css`] = `./dist/${name}.css`;
+	if (name !== "all") pkg.exports[`./${name}`] = jsExport(name);
+}
+for (const name of Object.keys(entryPoints).filter(name => name.startsWith("internal/")))
+	pkg.exports[`./${name}`] = jsExport(name);
+pkg.typesVersions = {
+	"*": Object.fromEntries(
+		Object.keys(pkg.exports)
+			.filter(key => typeof pkg.exports[key] !== "string" && key !== ".")
+			.map(key => [key.slice(2), [pkg.exports[key].import.types.slice(2)]]),
+	),
+};
+pkg.main = "./dist/cjs/index.cjs";
+pkg.module = "./dist/esm/index.js";
+pkg.types = "./dist/types/index.d.ts";
+await writeFile(path.join(root, "package.json"), JSON.stringify(pkg, null, 2) + "\n");
+await writeFile(
+	path.join(out, "manifest.json"),
+	JSON.stringify(manifest, null, 2) + "\n",
+);
+const contract = JSON.stringify(publicContract, null, 2) + "\n";
+if (process.argv.includes("--update-contract"))
+	await writeFile(path.join(root, "contract.json"), contract);
+else
+	assert.deepEqual(
+		publicContract,
+		JSON.parse(await readFile(path.join(root, "contract.json"), "utf8")),
+		"Public CSS contract changed. Review the diff and rebuild with --update-contract.",
+	);
+await writeFile(path.join(out, "contract.json"), contract);
+await rm(generated, { recursive: true });
+console.log(
+	`Built ${Object.keys(registry).length - 1} component styles and framework-neutral ESM/CJS helpers.`,
+);

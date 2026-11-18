@@ -1,3 +1,1 @@
-import { createVar } from "@vanilla-extract/css";
-
-export const layoutBackgroundColor = createVar();
+export * from "@codeui/styles/internal/foundation/layout.css";

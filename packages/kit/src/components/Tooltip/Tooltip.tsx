@@ -1,3 +1,5 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/tooltip.css";
 import { Tooltip as KTooltip, TooltipRootProps as KTooltipRootProps } from "@kobalte/core/tooltip";
 import { createEffect, createSignal, JSX, mergeProps, onCleanup, splitProps } from "solid-js";
 import { SlotProp } from "../../utils/component";
@@ -85,21 +87,18 @@ export function Tooltip(props: TooltipProps) {
 		still: () => performance.now() - lastClosed < (others.skipDelayDuration ?? skipDelayDuration),
 	});
 
-	const contentClasses = () =>
-		mergeClasses(
-			local.slotClasses?.content,
-			styles.tooltipContent({
-				theme: local.theme,
-			}),
-		);
-
 	return (
 		<KTooltip open={open()} onOpenChange={onOpenChange} {...others}>
 			<KTooltip.Trigger as={TriggerElement} data-cui="tooltip-trigger" class={mergeClasses(local.slotClasses?.trigger, styles.trigger)}>
 				{internal.children}
 			</KTooltip.Trigger>
 			<KTooltip.Portal mount={local.mount}>
-				<KTooltip.Content ref={contentRef} data-cui="tooltip-content" class={contentClasses()}>
+				<KTooltip.Content
+					ref={contentRef}
+					data-cui="tooltip-content"
+					data-theme={local.theme ?? "primary"}
+					class={mergeClasses(local.slotClasses?.content, styles.tooltipContent())}
+				>
 					{internal.content}
 				</KTooltip.Content>
 			</KTooltip.Portal>

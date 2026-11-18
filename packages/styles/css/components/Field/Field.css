@@ -1,0 +1,102 @@
+@import "./field-tokens.generated.css";
+
+@layer cui.components {
+  .cui-field-baseFieldTheme {
+    --cui-baseFieldTheme-borderColor: var(--cui-border-input);
+    --cui-baseFieldTheme-background: var(--cui-component-field-base-field-theme-background);
+    --cui-baseFieldTheme-color: var(--cui-component-field-base-field-theme-color);
+    --cui-baseFieldTheme-inputHeight: var(--cui-field-inputHeight);
+    --cui-baseFieldTheme-fontSize: var(--cui-field-fontSize);
+    --cui-baseFieldTheme-descriptionColor: var(--cui-component-field-base-field-theme-description-color);
+    --cui-baseFieldTheme-disabledBackground: var(--cui-component-field-base-field-theme-disabled-background);
+  }
+  .cui-field-baseFieldVariants {
+    appearance: none;
+    border: var(--cui-border-width) solid var(--cui-baseFieldTheme-borderColor);
+    background-color: var(--cui-baseFieldTheme-background);
+    border-radius: var(--cui-radius-md);
+    width: 100%;
+    min-width: 0px;
+    font-size: var(--cui-baseFieldTheme-fontSize);
+    height: var(--cui-baseFieldTheme-inputHeight, 100%);
+    color: var(--cui-baseFieldTheme-color);
+    transition: border-color var(--cui-motion-duration-fast) var(--cui-motion-ease-out);
+    line-height: var(--cui-font-line-height-sm);
+  }
+  .cui-field-baseFieldVariants::placeholder {
+    color: var(--cui-text-hint);
+    opacity: 1;
+  }
+  .cui-field-baseFieldVariants:focus {
+    border-color: var(--cui-focus-color);
+  }
+  .cui-field-baseFieldVariants:focus-visible {
+    outline: var(--cui-focus-width) solid var(--cui-focus-color);
+    outline-offset: var(--cui-focus-offset);
+  }
+  .cui-field-baseFieldVariants {
+    &[data-invalid] {
+      border-color: var(--cui-text-danger);
+      color: var(--cui-text-danger);
+    }
+
+    &[data-disabled] {
+      cursor: not-allowed;
+      opacity: 0.4;
+    }
+  }
+  :where(.cui-field-baseFieldVariants) {
+    &[data-size="xs"] {
+      --cui-baseFieldTheme-inputHeight: var(--cui-component-field-base-field-variants-size-xs-input-height);
+      --cui-baseFieldTheme-fontSize: var(--cui-component-field-base-field-variants-size-xs-font-size);
+      border-radius: var(--cui-component-field-base-field-variants-size-xs-border-radius);
+    }
+
+    &[data-size="sm"] {
+      --cui-baseFieldTheme-inputHeight: var(--cui-component-field-base-field-variants-size-sm-input-height);
+      --cui-baseFieldTheme-fontSize: var(--cui-component-field-base-field-variants-size-sm-font-size);
+      border-radius: var(--cui-component-field-base-field-variants-size-sm-border-radius);
+    }
+
+    &[data-size="md"] {
+      --cui-baseFieldTheme-inputHeight: var(--cui-component-field-base-field-variants-size-md-input-height);
+      --cui-baseFieldTheme-fontSize: var(--cui-component-field-base-field-variants-size-md-font-size);
+      border-radius: var(--cui-component-field-base-field-variants-size-md-border-radius);
+    }
+
+    &[data-size="lg"] {
+      --cui-baseFieldTheme-inputHeight: var(--cui-component-field-base-field-variants-size-lg-input-height);
+      --cui-baseFieldTheme-fontSize: var(--cui-component-field-base-field-variants-size-lg-font-size);
+      border-radius: var(--cui-component-field-base-field-variants-size-lg-border-radius);
+    }
+
+    &[data-size="xl"] {
+      --cui-baseFieldTheme-inputHeight: var(--cui-component-field-base-field-variants-size-xl-input-height);
+      --cui-baseFieldTheme-fontSize: var(--cui-component-field-base-field-variants-size-xl-font-size);
+      border-radius: var(--cui-component-field-base-field-variants-size-xl-border-radius);
+    }
+
+    &[data-theme="filled"] {
+      --cui-baseFieldTheme-borderColor: transparent;
+    }
+
+    &[data-theme="inline"] {
+      background-color: transparent;
+      border: none;
+      border-bottom: var(--cui-border-width-strong) solid var(--cui-baseFieldTheme-background);
+      border-radius: 0;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    &[data-theme="inline"][data-disabled] {
+      background-color: transparent;
+    }
+  }
+  @media (max-width: 768px) {
+    :where(.cui-field-baseFieldVariants)[data-size="md"] {
+      --cui-baseFieldTheme-inputHeight: var(--cui-component-field-base-field-variants-size-md-max-width-768px-input-height);
+      --cui-baseFieldTheme-fontSize: var(--cui-component-field-base-field-variants-size-md-max-width-768px-font-size);
+    }
+  }
+}

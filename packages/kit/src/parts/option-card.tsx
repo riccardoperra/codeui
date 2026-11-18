@@ -1,3 +1,5 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/option-card.css";
 import * as K from "@kobalte/core/radio-group";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import { type JSX, splitProps, type ValidComponent } from "solid-js";
@@ -8,42 +10,8 @@ import {
 import * as styles from "../components/OptionCard/OptionCard.css";
 import { mergeClasses } from "../utils/css";
 
-export const optionCardParts = {
-	root: "option-card-root",
-	label: "option-card-label",
-	description: "option-card-description",
-	errorMessage: "option-card-error-message",
-	item: "option-card-item",
-	itemInput: "option-card-item-input",
-	itemControl: "option-card-item-control",
-	itemIndicator: "option-card-item-indicator",
-	itemLabel: "option-card-item-label",
-	itemDescription: "option-card-item-description",
-	preview: "option-card-preview",
-	badge: "option-card-badge",
-} as const;
-export type OptionCardPart = keyof typeof optionCardParts;
-export type OptionCardClasses = Partial<Record<OptionCardPart, string>>;
-export type OptionCardVariant = "card" | "tile";
-export type OptionCardVariants = { variant?: OptionCardVariant };
-export type OptionCardStyles = {
-	[P in OptionCardPart]: (variants?: OptionCardVariants) => string;
-};
-export const optionCardStyles: OptionCardStyles = {
-	root: () => styles.root,
-	label: () => styles.label,
-	description: () => styles.description,
-	errorMessage: () => styles.errorMessage,
-	item: () => styles.item,
-	itemInput: () => styles.itemInput,
-	itemControl: () => styles.itemControl,
-	itemIndicator: () => styles.itemIndicator,
-	itemLabel: variants => styles.itemLabel({ variant: variants?.variant ?? "card" }),
-	itemDescription: () => styles.itemDescription,
-	preview: () => styles.preview,
-	badge: () => styles.badge,
-};
-
+import { optionCardParts, type OptionCardPart, type OptionCardClasses, type OptionCardVariant, type OptionCardVariants, type OptionCardStyles, optionCardStyles } from "@codeui/styles/option-card";
+export { optionCardParts, type OptionCardPart, type OptionCardClasses, type OptionCardVariant, type OptionCardVariants, type OptionCardStyles, optionCardStyles } from "@codeui/styles/option-card";
 export type RootProps<T extends ValidComponent = "div"> = K.RadioGroupRootProps<T> &
 	OptionCardVariants & { class?: string };
 export function Root<T extends ValidComponent = "div">(
@@ -62,7 +30,7 @@ export function Root<T extends ValidComponent = "div">(
 			data-orientation={local.orientation ?? "horizontal"}
 			data-cui={optionCardParts.root}
 			data-variant={local.variant ?? "card"}
-			class={mergeClasses(optionCardStyles.root({ variant: local.variant }), local.class)}
+			class={mergeClasses(optionCardStyles.root(), local.class)}
 		/>
 	);
 }
@@ -82,7 +50,7 @@ export function Label<T extends ValidComponent = "span">(
 			data-cui={optionCardParts.label}
 			data-variant={local.variant ?? "card"}
 			class={mergeClasses(
-				optionCardStyles.label({ variant: local.variant }),
+				optionCardStyles.label(),
 				local.class,
 			)}
 		/>
@@ -104,7 +72,7 @@ export function Description<T extends ValidComponent = "div">(
 			data-cui={optionCardParts.description}
 			data-variant={local.variant ?? "card"}
 			class={mergeClasses(
-				optionCardStyles.description({ variant: local.variant }),
+				optionCardStyles.description(),
 				local.class,
 			)}
 		/>
@@ -126,7 +94,7 @@ export function ErrorMessage<T extends ValidComponent = "div">(
 			data-cui={optionCardParts.errorMessage}
 			data-variant={local.variant ?? "card"}
 			class={mergeClasses(
-				optionCardStyles.errorMessage({ variant: local.variant }),
+				optionCardStyles.errorMessage(),
 				local.class,
 			)}
 		/>
@@ -147,7 +115,7 @@ export function Item<T extends ValidComponent = "div">(
 			{...others}
 			data-cui={optionCardParts.item}
 			data-variant={local.variant ?? "card"}
-			class={mergeClasses(optionCardStyles.item({ variant: local.variant }), local.class)}
+			class={mergeClasses(optionCardStyles.item(), local.class)}
 		/>
 	);
 }
@@ -167,7 +135,7 @@ export function ItemInput<T extends ValidComponent = "input">(
 			data-cui={optionCardParts.itemInput}
 			data-variant={local.variant ?? "card"}
 			class={mergeClasses(
-				optionCardStyles.itemInput({ variant: local.variant }),
+				optionCardStyles.itemInput(),
 				local.class,
 			)}
 		/>
@@ -189,7 +157,7 @@ export function ItemControl<T extends ValidComponent = "div">(
 			data-cui={optionCardParts.itemControl}
 			data-variant={local.variant ?? "card"}
 			class={mergeClasses(
-				optionCardStyles.itemControl({ variant: local.variant }),
+				optionCardStyles.itemControl(),
 				local.class,
 			)}
 		/>
@@ -211,7 +179,7 @@ export function ItemIndicator<T extends ValidComponent = "div">(
 			data-cui={optionCardParts.itemIndicator}
 			data-variant={local.variant ?? "card"}
 			class={mergeClasses(
-				optionCardStyles.itemIndicator({ variant: local.variant }),
+				optionCardStyles.itemIndicator(),
 				local.class,
 			)}
 		/>
@@ -233,7 +201,7 @@ export function ItemLabel<T extends ValidComponent = "label">(
 			data-cui={optionCardParts.itemLabel}
 			data-variant={local.variant ?? "card"}
 			class={mergeClasses(
-				optionCardStyles.itemLabel({ variant: local.variant }),
+				styles.itemLabel(),
 				local.class,
 			)}
 		/>
@@ -255,7 +223,7 @@ export function ItemDescription<T extends ValidComponent = "div">(
 			data-cui={optionCardParts.itemDescription}
 			data-variant={local.variant ?? "card"}
 			class={mergeClasses(
-				optionCardStyles.itemDescription({ variant: local.variant }),
+				optionCardStyles.itemDescription(),
 				local.class,
 			)}
 		/>

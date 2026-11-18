@@ -1,0 +1,456 @@
+@import "./dialog-tokens.generated.css";
+
+@keyframes cui-dialog-fadeIn {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes cui-dialog-fadeOut {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes cui-dialog-contentShow {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+@keyframes cui-dialog-contentHide {
+  to {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+}
+@layer cui.components {
+  .cui-dialog-dialogTheme {
+    --cui-dialogTheme-contentBackground: var(--cui-component-dialog-dialog-theme-content-background);
+    --cui-dialogTheme-contentBoxShadow: var(--cui-shadow-dialog);
+    --cui-dialogTheme-contentTextColor: var(--cui-component-dialog-dialog-theme-content-text-color);
+    --cui-dialogTheme-contentPadding: var(--cui-component-dialog-dialog-theme-content-padding);
+    --cui-dialogTheme-titleHeight: var(--cui-component-dialog-dialog-theme-title-height);
+    --cui-dialogTheme-panelRadius: var(--cui-component-dialog-dialog-theme-panel-radius);
+    --cui-dialogTheme-dividerColor: var(--cui-component-dialog-dialog-theme-divider-color);
+    --cui-dialogTheme-titleFontSize: var(--cui-component-dialog-dialog-theme-title-font-size);
+    --cui-dialogTheme-overlayBackground: var(--cui-component-dialog-dialog-theme-overlay-background);
+    --cui-dialogTheme-gutter: var(--cui-component-dialog-dialog-theme-gutter);
+    --cui-dialogTheme-width: auto;
+    --cui-dialogTheme-height: auto;
+    --cui-dialogTheme-sidebarBackground: var(--cui-component-dialog-dialog-theme-sidebar-background);
+    --cui-dialogTheme-navCurrentBackground: var(--cui-component-dialog-dialog-theme-nav-current-background);
+    --cui-dialogTheme-mainBackground: var(--cui-component-dialog-dialog-theme-main-background);
+    --cui-dialogTheme-islandBackground: var(--cui-component-dialog-dialog-theme-island-background);
+    --cui-dialogTheme-splitColumns: minmax(0, 1.1fr) minmax(0, 1fr);
+  }
+  .cui-dialog-overlay {
+    position: fixed;
+    z-index: 40;
+    top: 0;
+    inset: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  .cui-dialog-main {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+    background-color: var(--cui-dialogTheme-mainBackground);
+  }
+  .cui-dialog-panelContent {
+    padding: var(--cui-dialogTheme-contentPadding);
+    overflow: auto;
+  }
+  [data-panel-size=full] .cui-dialog-panelContent {
+    flex: 1;
+  }
+  [data-chrome=inset] .cui-dialog-panelContent {
+    padding: 0;
+    overflow: visible;
+  }
+  .cui-dialog-main > .cui-dialog-panelContent {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: var(--cui-space-6);
+    min-height: 0;
+    padding: var(--cui-space-2) var(--cui-space-6) var(--cui-space-6);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+  }
+  .cui-dialog-panelContent[data-layout=split] {
+    display: grid;
+    grid-template-columns: var(--cui-dialogTheme-splitColumns);
+    gap: var(--cui-space-5);
+    align-items: start;
+  }
+  .cui-dialog-panelFooter {
+    padding: var(--cui-dialogTheme-contentPadding);
+  }
+  [data-panel-size=full] .cui-dialog-panelFooter {
+    margin-top: auto;
+    margin-bottom: env(safe-area-inset-bottom, 20px);
+  }
+  [data-chrome=inset] .cui-dialog-panelFooter {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--cui-space-2);
+    padding: 0;
+  }
+  .cui-dialog-positioner {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--cui-dialogTheme-gutter);
+  }
+  .cui-dialog-positioner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-color: var(--cui-dialogTheme-overlayBackground);
+    animation: cui-dialog-fadeOut var(--cui-motion-duration-fast) var(--cui-motion-ease-out) forwards;
+  }
+  .cui-dialog-positioner {
+    &[data-panel-size=full] {
+      padding: 0;
+    }
+
+    &[data-panel-size=export] {
+      --cui-dialogTheme-gutter: var(--cui-component-dialog-positioner-panel-size-export-gutter);
+    }
+  }
+  .cui-dialog-positioner:has(> [data-expanded])::before {
+    animation: cui-dialog-fadeIn var(--cui-motion-duration-panel) var(--cui-motion-ease-out);
+  }
+  .cui-dialog-positioner[data-motion=none]::before, .cui-dialog-positioner[data-motion=none]:has(> [data-expanded])::before {
+    animation: none;
+  }
+  .cui-dialog-title {
+    color: var(--cui-text-dialog-title);
+    height: var(--cui-dialogTheme-titleHeight);
+    border-bottom: var(--cui-border-width) solid var(--cui-dialogTheme-dividerColor);
+    padding: 0 var(--cui-dialogTheme-contentPadding);
+    display: flex;
+    align-items: center;
+    font-size: var(--cui-dialogTheme-titleFontSize);
+    font-weight: var(--cui-font-weight-medium);
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+  [data-chrome=inset] .cui-dialog-title {
+    height: auto;
+    min-height: var(--cui-control-height-sm);
+    gap: var(--cui-space-3);
+    padding: 0;
+    border-bottom: none;
+    font-weight: var(--cui-font-weight-semibold);
+  }
+  .cui-dialog-main > .cui-dialog-title {
+    padding: var(--cui-space-3) var(--cui-space-3) var(--cui-space-2) var(--cui-space-6);
+    font-size: var(--cui-font-size-md);
+  }
+  .cui-dialog-panel:where([data-chrome="inset"][data-size="settings"]) {
+    --cui-dialogTheme-panelRadius: var(--cui-component-dialog-panel-compound-chrome-inset-size-settings-panel-radius);
+  }
+  .cui-dialog-panel {
+    display: inline-flex;
+    flex-direction: column;
+    width: 100%;
+    max-height: 100%;
+    padding: 0;
+    overflow: hidden;
+    text-align: left;
+    align-items: stretch;
+    color: var(--cui-dialogTheme-contentTextColor);
+    box-shadow: var(--cui-dialogTheme-contentBoxShadow);
+    border-radius: var(--cui-dialogTheme-panelRadius);
+    background-color: var(--cui-dialogTheme-contentBackground);
+    transform: translate(0, 0);
+    transform-origin: center;
+    animation: cui-dialog-contentHide var(--cui-motion-duration-fast) var(--cui-motion-ease-out);
+  }
+  .cui-dialog-panel:focus-visible {
+    outline: none;
+  }
+  [data-cui-theme=light] .cui-dialog-panel {
+    --cui-dialogTheme-sidebarBackground: var(--cui-component-dialog-panel-sidebar-background);
+    --cui-dialogTheme-navCurrentBackground: var(--cui-component-dialog-panel-nav-current-background);
+  }
+  .cui-dialog-panel[data-expanded] {
+    animation: cui-dialog-contentShow var(--cui-motion-duration-panel) var(--cui-motion-ease-out);
+  }
+  .cui-dialog-panel[data-motion=none], .cui-dialog-panel[data-motion=none][data-expanded] {
+    animation: none;
+  }
+  :where(.cui-dialog-panel) {
+    &[data-size="xs"] {
+      width: 24rem;
+    }
+
+    &[data-size="sm"] {
+      width: 28rem;
+    }
+
+    &[data-size="md"] {
+      width: 32rem;
+    }
+
+    &[data-size="full"] {
+      padding: 0;
+      margin: 0;
+      min-height: 100%;
+      width: 100%;
+      border-radius: 0;
+      height: 100%;
+    }
+
+    &[data-size="full"]:focus-visible {
+      box-shadow: none;
+      outline: none;
+    }
+
+    &[data-size="settings"] {
+      --cui-dialogTheme-width: 62.5rem;
+      --cui-dialogTheme-height: 42.5rem;
+      width: min(var(--cui-dialogTheme-width), 100%);
+      height: min(var(--cui-dialogTheme-height), 100%);
+    }
+
+    &[data-size="export"] {
+      --cui-dialogTheme-width: 50rem;
+      width: min(var(--cui-dialogTheme-width), 100%);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+    }
+
+    &[data-chrome="inset"] {
+      --cui-dialogTheme-panelRadius: var(--cui-component-dialog-panel-chrome-inset-panel-radius);
+      gap: var(--cui-space-5);
+      padding: var(--cui-space-5);
+    }
+
+    &[data-chrome="inset"]:has(> [data-cui=dialog-sidebar]) {
+      flex-direction: row;
+      gap: 0;
+      padding: 0;
+    }
+  }
+  .cui-dialog-description {
+    color: var(--cui-dialogTheme-contentTextColor);
+    padding: var(--cui-dialogTheme-contentPadding) var(--cui-dialogTheme-contentPadding) 0;
+  }
+  [data-chrome=inset] .cui-dialog-description {
+    padding: 0;
+  }
+  .cui-dialog-sidebar {
+    display: flex;
+    flex: none;
+    flex-direction: column;
+    width: 232px;
+    min-height: 0;
+    background-color: var(--cui-dialogTheme-sidebarBackground);
+  }
+  .cui-dialog-sidebarSearch {
+    padding: var(--cui-space-3) var(--cui-space-3) var(--cui-space-2);
+  }
+  .cui-dialog-nav {
+    min-height: 0;
+    overflow-y: auto;
+    padding: var(--cui-space-1) var(--cui-space-3) var(--cui-space-3);
+  }
+  .cui-dialog-navList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--cui-space-0-5);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .cui-dialog-navItem {
+    display: flex;
+    align-items: center;
+    gap: var(--cui-space-2-5);
+    width: 100%;
+    height: var(--cui-control-height-sm);
+    padding: 0 var(--cui-space-2-5);
+    border: 0;
+    border-radius: var(--cui-radius-nav);
+    background: transparent;
+    color: var(--cui-text-muted);
+    font: inherit;
+    font-size: var(--cui-font-size-sm);
+    font-weight: var(--cui-font-weight-medium);
+    text-align: left;
+    cursor: pointer;
+    transition: background-color var(--cui-motion-duration-fast) var(--cui-motion-ease-out), color var(--cui-motion-duration-fast) var(--cui-motion-ease-out), transform var(--cui-motion-duration-fast) var(--cui-motion-ease-out);
+  }
+  .cui-dialog-navItem:active {
+    transform: scale(0.98);
+  }
+  .cui-dialog-navItem:focus-visible {
+    outline: var(--cui-focus-width) solid var(--cui-focus-color);
+    outline-offset: var(--cui-focus-offset);
+  }
+  .cui-dialog-navItem[aria-current] {
+    background-color: var(--cui-dialogTheme-navCurrentBackground);
+    color: var(--cui-text-default);
+  }
+  .cui-dialog-navItem:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+  .cui-dialog-navIcon {
+    display: flex;
+    flex: none;
+  }
+  .cui-dialog-section {
+    display: flex;
+    flex: none;
+    flex-direction: column;
+    gap: var(--cui-space-2);
+    min-width: 0;
+    margin: 0;
+  }
+  :where(.cui-dialog-section)[data-variant="well"] {
+    padding: var(--cui-component-dialog-section-variant-well-padding);
+    border-radius: var(--cui-component-dialog-section-variant-well-border-radius);
+    background-color: var(--cui-dialogTheme-islandBackground);
+  }
+  .cui-dialog-sectionTitle {
+    margin: 0;
+    padding: 0 var(--cui-space-1);
+    color: var(--cui-text-dialog-title);
+    font-size: var(--cui-font-size-md);
+    font-weight: var(--cui-font-weight-semibold);
+    line-height: 1.3;
+  }
+  [data-variant=well] > .cui-dialog-sectionTitle {
+    padding: 0 var(--cui-space-2);
+    color: var(--cui-component-dialog-section-title-variant-well-color);
+    font-size: var(--cui-component-dialog-section-title-variant-well-font-size);
+    font-weight: var(--cui-component-dialog-section-title-variant-well-font-weight);
+  }
+  .cui-dialog-sectionContent {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+  [data-variant=group] > .cui-dialog-sectionContent {
+    padding: var(--cui-space-1-5) 0;
+    border-radius: var(--cui-component-dialog-section-content-variant-group-border-radius);
+    background-color: var(--cui-dialogTheme-islandBackground);
+  }
+  [data-columns='2'] > .cui-dialog-sectionContent {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--cui-space-0-5);
+  }
+  @media (--cui-hover-pointer) {
+    .cui-dialog-navItem:hover:not([aria-current]):not(:disabled) {
+      color: var(--cui-text-default);
+    }
+  }
+  @media (--cui-reduced-motion) {
+    .cui-dialog-panel {
+      animation-name: cui-dialog-fadeOut;
+    }
+    .cui-dialog-panel[data-expanded] {
+      animation-name: cui-dialog-fadeIn;
+    }
+    .cui-dialog-panel[data-motion=none], .cui-dialog-panel[data-motion=none][data-expanded] {
+      animation: none;
+    }
+    .cui-dialog-navItem {
+      transition: none;
+    }
+    .cui-dialog-navItem:active {
+      transform: none;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .cui-dialog-main {
+      display: contents;
+    }
+    .cui-dialog-panelContent[data-layout=split] {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .cui-dialog-main > .cui-dialog-panelContent {
+      gap: var(--cui-space-5);
+      padding: var(--cui-space-4) var(--cui-space-3) calc(var(--cui-space-4) + env(safe-area-inset-bottom, 0px));
+      background-color: var(--cui-dialogTheme-mainBackground);
+    }
+    [data-chrome=inset] .cui-dialog-panelFooter {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .cui-dialog-main > .cui-dialog-title {
+      order: -1;
+      padding: var(--cui-space-2) var(--cui-space-2) 0 var(--cui-space-4);
+    }
+    :where(.cui-dialog-panel) {
+      &[data-size="settings"] {
+        height: 100%;
+      }
+
+      &[data-chrome="inset"] {
+        gap: var(--cui-space-4);
+        padding: var(--cui-space-4);
+      }
+
+      &[data-chrome="inset"]:has(> [data-cui=dialog-sidebar]) {
+        flex-direction: column;
+      }
+    }
+    .cui-dialog-sidebar {
+      width: auto;
+    }
+    .cui-dialog-sidebarSearch {
+      padding: var(--cui-space-2) var(--cui-space-2) var(--cui-space-2);
+    }
+    .cui-dialog-nav {
+      padding: 0 var(--cui-space-2) var(--cui-space-2);
+    }
+    .cui-dialog-navList {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--cui-space-1);
+    }
+    .cui-dialog-navItem {
+      justify-content: center;
+      height: var(--cui-control-height-md);
+      padding: 0 var(--cui-space-1);
+      white-space: nowrap;
+    }
+    .cui-dialog-navIcon {
+      display: none;
+    }
+    [data-columns='2'] > .cui-dialog-sectionContent {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+  @media screen and (--cui-md) {
+    :where(.cui-dialog-panel) {
+      &[data-size="lg"] {
+        width: 48rem;
+      }
+
+      &[data-size="xl"] {
+        width: 48rem;
+      }
+    }
+  }
+  @media screen and (--cui-lg) {
+    :where(.cui-dialog-panel)[data-size="xl"] {
+      width: 64rem;
+    }
+  }
+}

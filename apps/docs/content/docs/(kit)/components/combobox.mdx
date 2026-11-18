@@ -266,7 +266,7 @@ Kobalte's `useComboboxContext`, re-exported. Call it inside `Root` to read the c
 
 ### `comboboxStyles`
 
-`comboboxStyles` maps each part name to a function that returns the kit class for that part. Only `control` reads a variant, `{ size: "sm" | "md" }`. The other functions ignore their argument.
+`comboboxStyles` maps each part name to a function that returns its base class. Set `data-size="sm"` on the control for the compact variant.
 
 <SolidDemo name="combobox/styles" />
 

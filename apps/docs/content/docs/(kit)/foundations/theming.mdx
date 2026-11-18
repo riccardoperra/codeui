@@ -112,9 +112,9 @@ A token with a dark and a light value, such as `--cui-surface-canvas` or `--cui-
 
 Set a token on a class, as `.delete-snippet` does above. The component resolves `var(--cui-…)` on its own element, so the new value applies to that instance and its children. A plain property such as `border-radius` on the same class also wins, for the same cascade layer reason.
 
-### What still needs vanilla-extract
+### Compiled styles
 
-Your overrides are plain CSS. The kit's own styles ship as vanilla-extract `.css.js` modules, so your bundler still needs the vanilla-extract plugin to compile them. See [Installation](/docs/installation).
+Solid components automatically load the theme and their styles. CSS-only consumers load `@codeui/styles/theme.css` and the component styles described in [Installation](/docs/installation). The library generates the theme from DTCG token JSON before publishing. Neither its styles nor your plain CSS overrides require a vanilla-extract plugin in your app.
 
 ## Change the shape and the brand with two tokens
 
@@ -136,7 +136,7 @@ Pick a preset or move the controls, then copy the CSS into your app. Both tokens
 | Soft | `--cui-radius-scale: 1.5` |
 | Forest | `--cui-action-brand-base: #15803d` |
 
-The computed colors keep the lightness steps of the Inkstone blue. A brand much lighter or darker than `#0083e5` can give weak contrast on hover or on soft text. Check the result in both modes, and override the computed token when one falls short. Your override wins, because it sits outside the `cui` layer.
+The computed colors keep the lightness steps of the Inkstone blue. A brand much lighter or darker than `#0076cf` can give weak contrast on hover or on soft text. Check the result in both modes, and override the computed token when one falls short. Your override wins, because it sits outside the `cui` layer.
 
 Browsers without relative colors (Safari before 18, Firefox before 128) keep the Inkstone values for the computed tokens. In those browsers, override each brand token you need, as before.
 

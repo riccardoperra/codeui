@@ -283,8 +283,8 @@ A `section` with an optional `h3` title and a content `div`. `variant="group"`, 
 ### `dialogStyles`
 
 `dialogStyles` from `@codeui/kit/dialog` maps each part name to a function that returns its class string.
-`dialogStyles.panel({ size, chrome })` takes the size and the chrome. `dialogStyles.body({ layout })` takes the layout, and `dialogStyles.section({ variant })` the variant. The other functions take no arguments.
-The styles read `data-chrome` on the panel, `data-layout` on the body, and `data-variant` and `data-columns` on a section. Set them when you apply the classes to your own elements.
+Call `dialogStyles.panel()`, `body()`, and `section()` for the corresponding part classes.
+The styles read `data-size` and `data-chrome` on the panel, `data-layout` on the body, and `data-variant` and `data-columns` on a section. Set them when you apply the classes to your own elements.
 `trigger`, `title`, and `closeButton` return an empty string, because those parts take their look from other components.
 
 Call a style function when you render the Kobalte primitive yourself and want the kit look. Add the matching `data-cui` value from `dialogParts` too, so selectors that target the part still match.
@@ -322,7 +322,7 @@ The settings demos focus the current `NavItem` this way, not the search field.
 
 ## SSR notes
 
-The portal renders nothing on the server. The overlay and the panel render on the client after hydration, and only while the dialog is open.
+An open or force-mounted dialog includes its overlay and panel in server HTML at the Portal declaration. Hydration adopts those nodes and moves them to `mount`, or `document.body` by default. Closed dialogs omit their content unless force-mounted. Place Portal in a flow-content context that can contain the dialog markup.
 `Positioner` and the `size` classes are plain class strings, so they are the same on the server and the client.
 IDs for the title and the description come from Solid's `createUniqueId`, so they match between server and client.
 

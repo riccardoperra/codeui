@@ -36,7 +36,6 @@
 		"@testing-library/jest-dom": "6.5.0",
 		"@types/node": "^22.5.4",
 		"@vitest/browser": "3.2.7",
-		"gosfuig": "0.2.1",
 		"jsdom": "20.0.3",
 		"playwright": "1.56.1",
 		"prettier": "3.3.3",
@@ -50,11 +49,11 @@
 		"vite-plugin-solid": "2.11.8",
 		"vitest": "3.2.7"
 	},
-	"packageManager": "pnpm@9.5.0",
+	"packageManager": "pnpm@10.34.9",
 	"dependencies": {
 		"@changesets/changelog-git": "^0.2.0"
 	},
 	"engines": {
-		"node": "^20.19.0 || >=22.12.0"
+		"node": "^24.11.0 || >=26.0.0"
 	}
 }

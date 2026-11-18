@@ -1,0 +1,89 @@
+---
+title: "How the build generates tokens"
+description: "Follow Inkstone design tokens from DTCG JSON to the theme and component stylesheets."
+---
+
+Inkstone stores shared design values in DTCG JSON. Toghen resolves the token files and their references during the library build. CSS custom properties carry the resolved design to the browser and let an application change the theme at runtime.
+
+## The resolver combines token sources
+
+Gosfuig reads `packages/inkstone/tokens/inkstone.palette.json` and writes the five ramps to `palette.tokens.json`. The ramp tokens carry OKLCH components and sRGB hex values. Foundation and dark tokens reference those steps by their DTCG names, such as `{palette.blue.500}` for the brand base and `{palette.red.500}` for the danger base.
+
+`packages/inkstone/tokens/inkstone.resolver.json` lists the foundation files and a `theme` modifier. The light context uses the foundation values. The dark context applies `dark.tokens.json` afterwards, so a dark value can replace its foundation value.
+
+A resolver's `version` identifies its DTCG format. CodeUI stores `2025.10` and adapts the loaded document in memory for Toghen 0.1.1. The JSON files on disk keep the [DTCG resolver format](https://www.designtokens.org/tr/2025.10/resolver/).
+
+## The theme stylesheet defines shared values
+
+`@codeui/inkstone/theme.css` is the standalone theme. The styles build includes it in the existing `@codeui/styles/theme.css` entry alongside its shared styles. Shared values live at `:root`. Mode-specific values are set again inside each light or dark theme scope. The stylesheet also uses `prefers-color-scheme` for the default theme and retains the CSS formulas for brand colors and radius scaling.
+
+Inkstone also publishes `light.json` and `dark.json` with the resolved DTCG values for design tools. The package entry exports the TypeScript token references, web theme values, and breakpoint values. A TypeScript reference such as `tokens.control.height.md` is a string containing `var(--cui-control-height-md)`. Breakpoints also feed the build-time aliases used in custom media queries.
+
+## Components define local aliases
+
+A component token says which design value the component uses. Give a value a component token when the design system needs to name or change that choice independently. A declaration that always follows the shared design system can read the shared variable directly. Button's medium height is an alias for the shared medium control height. This is the token at `component.button.size.md.buttonHeight` in `packages/styles/tokens/button.tokens.json`.
+
+```json
+{
+  "$type": "dimension",
+  "$value": "{control.height.md}"
+}
+```
+
+Toghen verifies that the referenced token resolves. The CSS emitter keeps the reference live in the browser. This excerpt shows the selector for the `data-size="md"` branch.
+
+```css
+:where(.cui-button-button)[data-size="md"] {
+  --cui-component-button-size-md-button-height: var(--cui-control-height-md);
+}
+```
+
+An application override of `--cui-control-height-md` therefore reaches a medium Button in that scope. The build emits the alias on the element selected by the rule that reads it. CSS can then read the closest theme value, including an override on the element itself.
+
+## The stylesheet chooses when to apply an alias
+
+The resolver at `packages/styles/tokens/components.resolver.json` composes the component token files with the Inkstone foundation. Each component that owns design aliases has a token file and a stylesheet import. For Button, `@import "./button-tokens.generated.css"` identifies the component token set and loads the shared media aliases during the build. The build inserts each custom property into the rule that reads it. Lightning CSS compiles the resulting sheet, including nested selectors and custom media queries.
+
+Button's stylesheet still owns the selector and the property. Its medium-size rule assigns the alias to `--cui-buttonTheme-buttonHeight`, which the base rule uses for `height`. In plain HTML, set the size and theme with attributes.
+
+```html
+<button class="cui-button-button" data-size="md" data-theme="primary">
+  Save changes
+</button>
+```
+
+Author single variants as `:where(.cui-button-button)[data-size="md"]`. Write compound variants as a base class followed by a group of attributes, such as `.cui-button-button:where([data-variant="ghost"][data-loading])`. Style helpers return the class for the part. Set the variant attributes on the same element.
+
+Nest adjacent variants that share a selector. Keep `:where()` on the parent when the attribute alone determines the specificity.
+
+```css
+:where(.cui-accordion-trigger) {
+  &[data-density="compact"] {
+    padding-block: var(--cui-space-1);
+  }
+
+  &[data-density="comfortable"] {
+    padding-block: var(--cui-space-3);
+  }
+}
+```
+
+Use CSS pseudo-classes for browser states such as `:focus-visible` and the component's documented attributes for state supplied by its adapter. For boolean variants with two styled values, such as Stack's `data-wrap`, use `"true"` or `"false"`. Use a presence attribute for flags such as `data-loading`.
+
+Other components use the same pipeline for size, tone, theme, and component-specific custom property assignments. A layout or calculation can still use CSS directly. For example, Switch uses `calc()` to combine shared spacing values for its track height.
+
+## Media queries share names at build time
+
+Use `@media (--cui-md)` for the `md` breakpoint and `@media (--cui-coarse-pointer)` when the interaction depends on pointer precision. The breakpoint comes from the DTCG tokens. Shared capability conditions live in `packages/styles/css/media.css`, alongside `--cui-hover-pointer` and `--cui-reduced-motion`.
+
+You can nest a media query inside a selector and use range syntax for component-specific thresholds. Lightning CSS lowers both and expands the draft `@custom-media` syntax in every published CSS entry.
+
+## Toghen's styling extensions
+
+A DTCG token reference such as `{control.height.md}` identifies another token. Extension data can also tell a tool how to interpret a group. The [Toghen PostCSS adapter](https://codeberg.org/Toghen/postcss) can read component parts and selector spellings from `$extensions["com.toghen"]` and emit mixins for `@apply`. Toghen's resolver and that stylesheet adapter serve different roles.
+
+CodeUI uses Toghen for token resolution. Selectors, attributes, pseudo-classes, and cascade stay in the authored CSS. Keep interaction logic in the component adapter. A token file can name the value for a state while the corresponding CSS rule decides which DOM state activates it.
+
+The older `--cui-buttonTheme-*` variables remain the local styling hooks. Empty declarations in the base rule reset those local values before variant rules apply. Generated component aliases stay in `button.css`, so loading the global theme or an unrelated component does not load Button's aliases.
+
+[Tokens](/docs/foundations/tokens) lists the shared variables. [Theming](/docs/foundations/theming) explains how to override them. [Installation](/docs/installation) covers loading CSS with HTML and Solid.

@@ -1,0 +1,38 @@
+{
+  "component": {
+    "toast": {
+      "root": {
+        "tone-neutral": {
+          "accent": {
+            "$type": "color",
+            "$value": "{text.toast}"
+          }
+        },
+        "tone-info": {
+          "accent": {
+            "$type": "color",
+            "$value": "{action.brand.base}"
+          }
+        },
+        "tone-success": {
+          "accent": {
+            "$type": "color",
+            "$value": "{action.success.base}"
+          }
+        },
+        "tone-warning": {
+          "accent": {
+            "$type": "color",
+            "$value": "{action.caution.base}"
+          }
+        },
+        "tone-danger": {
+          "accent": {
+            "$type": "color",
+            "$value": "{action.danger.base}"
+          }
+        }
+      }
+    }
+  }
+}

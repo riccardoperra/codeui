@@ -1,0 +1,127 @@
+@import "./listbox-tokens.generated.css";
+
+@layer cui.components {
+  .cui-listbox-listTheme {
+    --cui-listTheme-contentBackground: var(--cui-component-listbox-list-theme-content-background);
+    --cui-listTheme-contentRadius: var(--cui-component-listbox-list-theme-content-radius);
+    --cui-listTheme-contentBoxShadow: var(--cui-shadow-menu);
+    --cui-listTheme-contentPadding: var(--cui-component-listbox-list-theme-content-padding);
+    --cui-listTheme-contentBorderColor: var(--cui-component-listbox-list-theme-content-border-color);
+    --cui-listTheme-contentMaxHeight: 400px;
+    --cui-listTheme-contentMaxHeightXs: 270px;
+    --cui-listTheme-separator: var(--cui-component-listbox-list-theme-separator);
+    --cui-listTheme-itemMinHeight: var(--cui-component-listbox-list-theme-item-min-height);
+    --cui-listTheme-itemTextColor: var(--cui-component-listbox-list-theme-item-text-color);
+    --cui-listTheme-itemHoverBackground: var(--cui-component-listbox-list-theme-item-hover-background);
+    --cui-listTheme-itemHoverTextColor: var(--cui-component-listbox-list-theme-item-hover-text-color);
+    --cui-listTheme-itemDisabledOpacity: .4;
+    --cui-listTheme-indicatorSize: 20px;
+  }
+  .cui-listbox-list {
+    border-radius: var(--cui-radius-sm);
+  }
+  .cui-listbox-list:focus-visible {
+    outline: none;
+  }
+  .cui-listbox-list {
+    &[data-bordered] {
+      outline: none;
+      padding: var(--cui-space-2);
+      border: var(--cui-border-width) solid var(--cui-border-divider);
+    }
+
+    &[data-bordered]:focus-visible {
+      border-color: var(--cui-focus-color);
+    }
+  }
+  .cui-listbox-list:is([data-theme=primary], [data-theme=neutral]) {
+    --cui-listTheme-itemTextColor: var(--cui-component-listbox-list-theme-primary-theme-neutral-item-text-color);
+    --cui-listTheme-itemHoverBackground: var(--cui-component-listbox-list-theme-primary-theme-neutral-item-hover-background);
+    --cui-listTheme-itemHoverTextColor: var(--cui-component-listbox-list-theme-primary-theme-neutral-item-hover-text-color);
+  }
+  .cui-listbox-item {
+    text-align: left;
+    justify-content: space-between;
+    border: 0;
+    padding: var(--cui-space-2) var(--cui-space-3);
+    border-radius: var(--cui-radius-sm);
+    background: transparent;
+    color: var(--cui-listTheme-itemTextColor);
+    user-select: none;
+    display: flex;
+    align-items: center;
+    outline: none;
+    font-weight: var(--cui-font-weight-normal);
+    gap: var(--cui-space-2);
+    margin: var(--cui-space-1) 0;
+    min-height: var(--cui-listTheme-itemMinHeight);
+  }
+  .cui-listbox-item:disabled {
+    opacity: var(--cui-listTheme-itemDisabledOpacity);
+  }
+  .cui-listbox-item:focus {
+    box-shadow: none;
+    outline: none;
+    background-color: var(--cui-listTheme-itemHoverBackground);
+    color: var(--cui-listTheme-itemHoverTextColor);
+  }
+  .cui-listbox-item:focus-visible {
+    background-color: var(--cui-listTheme-itemHoverBackground);
+    color: var(--cui-listTheme-itemHoverTextColor);
+  }
+  .cui-listbox-item:first-child,.cui-listbox-item:last-child {
+    margin: 0;
+  }
+  .cui-listbox-item {
+    &[data-size=xs] {
+      height: 30px;
+      font-size: var(--cui-component-listbox-item-size-xs-font-size);
+      border-radius: var(--cui-component-listbox-item-size-xs-border-radius);
+      min-height: 0;
+    }
+
+    &[data-size=sm] {
+      height: 36px;
+      font-size: var(--cui-component-listbox-item-size-sm-font-size);
+      min-height: 0;
+    }
+
+    &[data-size=md] {
+      height: 40px;
+      font-size: var(--cui-component-listbox-item-size-md-font-size);
+    }
+
+    &[data-highlighted] {
+      box-shadow: none;
+      outline: none;
+      background-color: var(--cui-listTheme-itemHoverBackground);
+      color: var(--cui-listTheme-itemHoverTextColor);
+    }
+
+    &[data-disabled] {
+      opacity: var(--cui-listTheme-itemDisabledOpacity);
+    }
+  }
+  .cui-listbox-itemIndicator {
+    margin-left: auto;
+    height: var(--cui-listTheme-indicatorSize);
+    width: var(--cui-listTheme-indicatorSize);
+    stroke-dashoffset: 32;
+  }
+  .cui-listbox-item[data-selected] .cui-listbox-itemIndicator {
+    stroke-dashoffset: 0;
+  }
+  .cui-listbox-itemIndicator {
+    &[data-size=xs] {
+      --cui-listTheme-indicatorSize: 14px;
+    }
+
+    &[data-size=sm] {
+      --cui-listTheme-indicatorSize: 18px;
+    }
+
+    &[data-size=md] {
+      --cui-listTheme-indicatorSize: 20px;
+    }
+  }
+}

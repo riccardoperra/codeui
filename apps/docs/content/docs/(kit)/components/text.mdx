@@ -111,7 +111,7 @@ Import the parts from `@codeui/kit/text`.
 
 ### `textStyles`
 
-`textStyles.root(variants)` returns the classes `Text` renders for the same props: a base class plus one class each for size, weight and tone. Omitted variants fall back to `sm`, `normal` and the `default` color. An element that uses the returned string needs no data attribute.
+Call `textStyles.root()` for the base class and set `data-size`, `data-weight`, and `data-tone` on custom markup. The Solid component defaults to `sm`, `normal`, and `default`.
 
 `@codeui/kit` and `@codeui/kit/text` both export `textStyles`, `TextStyles` and `textParts`. Prefer `<Text as="…">`. Call `textStyles` only on markup you cannot render through the component.
 

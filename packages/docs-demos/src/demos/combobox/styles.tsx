@@ -4,7 +4,7 @@ export default function ComboboxStylesDemo() {
 	return (
 		<div class={comboboxStyles.root()}>
 			<span class={comboboxStyles.label()}>Detected language</span>
-			<div class={comboboxStyles.control({ size: "sm" })}>
+			<div class={comboboxStyles.control()} data-size="sm">
 				<output class={comboboxStyles.input()}>TypeScript</output>
 			</div>
 		</div>

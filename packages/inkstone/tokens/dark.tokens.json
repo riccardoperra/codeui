@@ -1,0 +1,180 @@
+{
+  "surface": {
+    "canvas": {
+      "$type": "color",
+      "$value": "{palette.gray.950}"
+    },
+    "toolbar": {
+      "$type": "color",
+      "$value": "{palette.gray.750}"
+    },
+    "scrim": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0,
+          0,
+          0
+        ],
+        "alpha": 0.7019607843137254
+      }
+    },
+    "dialog": {
+      "$type": "color",
+      "$value": "{palette.gray.850}"
+    },
+    "inputAccent": {
+      "$type": "color",
+      "$value": "{palette.gray.650}"
+    },
+    "input": {
+      "$type": "color",
+      "$value": "{palette.gray.750}"
+    },
+    "fieldHover": {
+      "$type": "color",
+      "$value": "{palette.gray.700}"
+    },
+    "menuHover": {
+      "$type": "color",
+      "$value": "{palette.gray.700}"
+    },
+    "menu": {
+      "$type": "color",
+      "$value": "{palette.gray.850}"
+    },
+    "panel": {
+      "$type": "color",
+      "$value": "{palette.gray.900}"
+    },
+    "scrollThumb": {
+      "$type": "color",
+      "$value": "{palette.gray.650}"
+    },
+    "scrollThumbHover": {
+      "$type": "color",
+      "$value": "{palette.gray.600}"
+    },
+    "secondary": {
+      "$type": "color",
+      "$value": "{palette.gray.700}"
+    },
+    "toast": {
+      "$type": "color",
+      "$value": "{palette.gray.850}"
+    },
+    "track": {
+      "$type": "color",
+      "$value": "{palette.gray.650}"
+    }
+  },
+  "text": {
+    "default": {
+      "$type": "color",
+      "$value": "{palette.gray.150}"
+    },
+    "toolbar": {
+      "$type": "color",
+      "$value": "{palette.gray.450}"
+    },
+    "muted": {
+      "$type": "color",
+      "$value": "{palette.gray.450}"
+    },
+    "dialog": {
+      "$type": "color",
+      "$value": "{palette.gray.150}"
+    },
+    "dialogTitle": {
+      "$type": "color",
+      "$value": "{palette.gray.150}"
+    },
+    "label": {
+      "$type": "color",
+      "$value": "{palette.gray.150}"
+    },
+    "hint": {
+      "$type": "color",
+      "$value": "{palette.gray.450}"
+    },
+    "tertiary": {
+      "$type": "color",
+      "$value": "{palette.gray.550}"
+    },
+    "disabled": {
+      "$type": "color",
+      "$value": "{palette.gray.600}"
+    },
+    "input": {
+      "$type": "color",
+      "$value": "{palette.gray.150}"
+    },
+    "menu": {
+      "$type": "color",
+      "$value": "{palette.gray.150}"
+    },
+    "panelMuted": {
+      "$type": "color",
+      "$value": "{palette.gray.450}"
+    },
+    "panel": {
+      "$type": "color",
+      "$value": "{palette.gray.150}"
+    },
+    "toast": {
+      "$type": "color",
+      "$value": "{palette.gray.150}"
+    },
+    "danger": {
+      "$type": "color",
+      "$value": "{palette.red.300}"
+    }
+  },
+  "action": {
+    "neutral": {
+      "active": {
+        "$type": "color",
+        "$value": "{palette.gray.650}"
+      },
+      "base": {
+        "$type": "color",
+        "$value": "{palette.gray.750}"
+      },
+      "hover": {
+        "$type": "color",
+        "$value": "{palette.gray.700}"
+      },
+      "text": {
+        "$type": "color",
+        "$value": "{palette.gray.150}"
+      }
+    },
+    "brandSoft": {
+      "text": {
+        "$type": "color",
+        "$value": "{palette.blue.300}"
+      }
+    }
+  },
+  "border": {
+    "dialogTitle": {
+      "$type": "color",
+      "$value": "{palette.gray.750}"
+    },
+    "divider": {
+      "$type": "color",
+      "$value": "{palette.gray.850}"
+    },
+    "menu": {
+      "$type": "color",
+      "$value": "{palette.gray.700}"
+    }
+  },
+  "accent": {
+    "focus": {
+      "$type": "color",
+      "$value": "{palette.blue.300}"
+    }
+  }
+}

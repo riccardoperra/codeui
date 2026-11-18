@@ -1,35 +1,13 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/slider.css";
 import * as K from "@kobalte/core/slider";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import { splitProps, type ValidComponent } from "solid-js";
 import { mergeClasses } from "../utils/css";
 import * as styles from "../components/Slider/Slider.css";
 export { useSliderContext } from "@kobalte/core/slider";
-export type SliderVariants = { orientation?: "horizontal" | "vertical" };
-export const sliderParts = {
-	root: "slider-root",
-	label: "slider-label",
-	description: "slider-description",
-	errorMessage: "slider-error-message",
-	track: "slider-track",
-	fill: "slider-fill",
-	thumb: "slider-thumb",
-	input: "slider-input",
-	valueLabel: "slider-value-label",
-} as const;
-export type SliderPart = keyof typeof sliderParts;
-export type SliderClasses = Partial<Record<SliderPart, string>>;
-export type SliderStyles = Record<SliderPart, (variants?: SliderVariants) => string>;
-export const sliderStyles: SliderStyles = {
-	root: () => styles.root,
-	label: () => styles.label,
-	description: () => styles.description,
-	errorMessage: () => styles.errorMessage,
-	track: variants => styles.track({ orientation: variants?.orientation }),
-	fill: variants => styles.fill({ orientation: variants?.orientation }),
-	thumb: () => styles.thumb,
-	input: () => styles.input,
-	valueLabel: () => styles.valueLabel,
-};
+import { type SliderVariants, sliderParts, type SliderPart, type SliderClasses, type SliderStyles, sliderStyles } from "@codeui/styles/slider";
+export { type SliderVariants, sliderParts, type SliderPart, type SliderClasses, type SliderStyles, sliderStyles } from "@codeui/styles/slider";
 export type RootProps<T extends ValidComponent = "div"> = K.SliderRootProps<T> &
 	SliderVariants;
 export function Root<T extends ValidComponent = "div">(
@@ -45,7 +23,7 @@ export function Root<T extends ValidComponent = "div">(
 			orientation={local.orientation}
 			data-cui={sliderParts.root}
 			data-orientation={local.orientation}
-			class={mergeClasses(sliderStyles.root(local), local.class)}
+			class={mergeClasses(sliderStyles.root(), local.class)}
 		/>
 	);
 }
@@ -63,7 +41,7 @@ export function Label<T extends ValidComponent = "label">(
 			{...others}
 			data-cui={sliderParts.label}
 			data-orientation={local.orientation}
-			class={mergeClasses(sliderStyles.label(local), local.class)}
+			class={mergeClasses(sliderStyles.label(), local.class)}
 		/>
 	);
 }
@@ -81,7 +59,7 @@ export function Description<T extends ValidComponent = "div">(
 			{...others}
 			data-cui={sliderParts.description}
 			data-orientation={local.orientation}
-			class={mergeClasses(sliderStyles.description(local), local.class)}
+			class={mergeClasses(sliderStyles.description(), local.class)}
 		/>
 	);
 }
@@ -99,7 +77,7 @@ export function ErrorMessage<T extends ValidComponent = "div">(
 			{...others}
 			data-cui={sliderParts.errorMessage}
 			data-orientation={local.orientation}
-			class={mergeClasses(sliderStyles.errorMessage(local), local.class)}
+			class={mergeClasses(sliderStyles.errorMessage(), local.class)}
 		/>
 	);
 }
@@ -117,7 +95,7 @@ export function Track<T extends ValidComponent = "div">(
 			{...others}
 			data-cui={sliderParts.track}
 			data-orientation={local.orientation}
-			class={mergeClasses(sliderStyles.track(local), local.class)}
+			class={mergeClasses(styles.track(), local.class)}
 		/>
 	);
 }
@@ -135,7 +113,7 @@ export function Fill<T extends ValidComponent = "div">(
 			{...others}
 			data-cui={sliderParts.fill}
 			data-orientation={local.orientation}
-			class={mergeClasses(sliderStyles.fill(local), local.class)}
+			class={mergeClasses(styles.fill(), local.class)}
 		/>
 	);
 }
@@ -153,7 +131,7 @@ export function Thumb<T extends ValidComponent = "span">(
 			{...others}
 			data-cui={sliderParts.thumb}
 			data-orientation={local.orientation}
-			class={mergeClasses(sliderStyles.thumb(local), local.class)}
+			class={mergeClasses(sliderStyles.thumb(), local.class)}
 		/>
 	);
 }
@@ -182,7 +160,7 @@ export function ValueLabel<T extends ValidComponent = "div">(
 			{...others}
 			data-cui={sliderParts.valueLabel}
 			data-orientation={local.orientation}
-			class={mergeClasses(sliderStyles.valueLabel(local), local.class)}
+			class={mergeClasses(sliderStyles.valueLabel(), local.class)}
 		/>
 	);
 }

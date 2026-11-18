@@ -1,0 +1,1383 @@
+{
+  "name": "@codeui/styles",
+  "version": "0.1.0",
+  "description": "Static Inkstone CSS and framework-neutral class helpers",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc --noEmit",
+    "check": "node scripts/check.mjs",
+    "test": "node scripts/check.mjs"
+  },
+  "dependencies": {
+    "@codeui/inkstone": "workspace:^",
+    "csstype": "^3.1.3"
+  },
+  "devDependencies": {
+    "@radix-ui/colors": "^3.0.0",
+    "@toghen/lib": "0.1.1",
+    "lightningcss": "1.33.0",
+    "postcss": "^8.5.33",
+    "tsdown": "0.23.7",
+    "typescript": "^5.6.2"
+  },
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/index.d.cts",
+        "default": "./dist/cjs/index.cjs"
+      }
+    },
+    "./tokens": {
+      "import": {
+        "types": "./dist/types/tokens.d.ts",
+        "default": "./dist/esm/tokens.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/tokens.d.cts",
+        "default": "./dist/cjs/tokens.cjs"
+      }
+    },
+    "./manifest.json": "./dist/manifest.json",
+    "./contract.json": "./dist/contract.json",
+    "./package.json": "./package.json",
+    "./theme.css": "./dist/theme.css",
+    "./theme": {
+      "import": {
+        "types": "./dist/types/theme.d.ts",
+        "default": "./dist/esm/theme.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/theme.d.cts",
+        "default": "./dist/cjs/theme.cjs"
+      }
+    },
+    "./accordion.css": "./dist/accordion.css",
+    "./accordion": {
+      "import": {
+        "types": "./dist/types/accordion.d.ts",
+        "default": "./dist/esm/accordion.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/accordion.d.cts",
+        "default": "./dist/cjs/accordion.cjs"
+      }
+    },
+    "./alert.css": "./dist/alert.css",
+    "./alert": {
+      "import": {
+        "types": "./dist/types/alert.d.ts",
+        "default": "./dist/esm/alert.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/alert.d.cts",
+        "default": "./dist/cjs/alert.cjs"
+      }
+    },
+    "./badge.css": "./dist/badge.css",
+    "./badge": {
+      "import": {
+        "types": "./dist/types/badge.d.ts",
+        "default": "./dist/esm/badge.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/badge.d.cts",
+        "default": "./dist/cjs/badge.cjs"
+      }
+    },
+    "./button.css": "./dist/button.css",
+    "./button": {
+      "import": {
+        "types": "./dist/types/button.d.ts",
+        "default": "./dist/esm/button.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/button.d.cts",
+        "default": "./dist/cjs/button.cjs"
+      }
+    },
+    "./button-loading.css": "./dist/button-loading.css",
+    "./button-loading": {
+      "import": {
+        "types": "./dist/types/button-loading.d.ts",
+        "default": "./dist/esm/button-loading.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/button-loading.d.cts",
+        "default": "./dist/cjs/button-loading.cjs"
+      }
+    },
+    "./checkbox.css": "./dist/checkbox.css",
+    "./checkbox": {
+      "import": {
+        "types": "./dist/types/checkbox.d.ts",
+        "default": "./dist/esm/checkbox.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/checkbox.d.cts",
+        "default": "./dist/cjs/checkbox.cjs"
+      }
+    },
+    "./combobox.css": "./dist/combobox.css",
+    "./combobox": {
+      "import": {
+        "types": "./dist/types/combobox.d.ts",
+        "default": "./dist/esm/combobox.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/combobox.d.cts",
+        "default": "./dist/cjs/combobox.cjs"
+      }
+    },
+    "./command-menu.css": "./dist/command-menu.css",
+    "./command-menu": {
+      "import": {
+        "types": "./dist/types/command-menu.d.ts",
+        "default": "./dist/esm/command-menu.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/command-menu.d.cts",
+        "default": "./dist/cjs/command-menu.cjs"
+      }
+    },
+    "./dialog.css": "./dist/dialog.css",
+    "./dialog": {
+      "import": {
+        "types": "./dist/types/dialog.d.ts",
+        "default": "./dist/esm/dialog.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/dialog.d.cts",
+        "default": "./dist/cjs/dialog.cjs"
+      }
+    },
+    "./dropdown.css": "./dist/dropdown.css",
+    "./dropdown": {
+      "import": {
+        "types": "./dist/types/dropdown.d.ts",
+        "default": "./dist/esm/dropdown.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/dropdown.d.cts",
+        "default": "./dist/cjs/dropdown.cjs"
+      }
+    },
+    "./field.css": "./dist/field.css",
+    "./field": {
+      "import": {
+        "types": "./dist/types/field.d.ts",
+        "default": "./dist/esm/field.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/field.d.cts",
+        "default": "./dist/cjs/field.cjs"
+      }
+    },
+    "./icon-button.css": "./dist/icon-button.css",
+    "./icon-button": {
+      "import": {
+        "types": "./dist/types/icon-button.d.ts",
+        "default": "./dist/esm/icon-button.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/icon-button.d.cts",
+        "default": "./dist/cjs/icon-button.cjs"
+      }
+    },
+    "./kbd.css": "./dist/kbd.css",
+    "./kbd": {
+      "import": {
+        "types": "./dist/types/kbd.d.ts",
+        "default": "./dist/esm/kbd.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/kbd.d.cts",
+        "default": "./dist/cjs/kbd.cjs"
+      }
+    },
+    "./link.css": "./dist/link.css",
+    "./link": {
+      "import": {
+        "types": "./dist/types/link.d.ts",
+        "default": "./dist/esm/link.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/link.d.cts",
+        "default": "./dist/cjs/link.cjs"
+      }
+    },
+    "./listbox.css": "./dist/listbox.css",
+    "./listbox": {
+      "import": {
+        "types": "./dist/types/listbox.d.ts",
+        "default": "./dist/esm/listbox.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/listbox.d.cts",
+        "default": "./dist/cjs/listbox.cjs"
+      }
+    },
+    "./number-field.css": "./dist/number-field.css",
+    "./number-field": {
+      "import": {
+        "types": "./dist/types/number-field.d.ts",
+        "default": "./dist/esm/number-field.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/number-field.d.cts",
+        "default": "./dist/cjs/number-field.cjs"
+      }
+    },
+    "./option-card.css": "./dist/option-card.css",
+    "./option-card": {
+      "import": {
+        "types": "./dist/types/option-card.d.ts",
+        "default": "./dist/esm/option-card.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/option-card.d.cts",
+        "default": "./dist/cjs/option-card.cjs"
+      }
+    },
+    "./pagination.css": "./dist/pagination.css",
+    "./pagination": {
+      "import": {
+        "types": "./dist/types/pagination.d.ts",
+        "default": "./dist/esm/pagination.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/pagination.d.cts",
+        "default": "./dist/cjs/pagination.cjs"
+      }
+    },
+    "./popover.css": "./dist/popover.css",
+    "./popover": {
+      "import": {
+        "types": "./dist/types/popover.d.ts",
+        "default": "./dist/esm/popover.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/popover.d.cts",
+        "default": "./dist/cjs/popover.cjs"
+      }
+    },
+    "./progress.css": "./dist/progress.css",
+    "./progress": {
+      "import": {
+        "types": "./dist/types/progress.d.ts",
+        "default": "./dist/esm/progress.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/progress.d.cts",
+        "default": "./dist/cjs/progress.cjs"
+      }
+    },
+    "./radio-list.css": "./dist/radio-list.css",
+    "./radio-list": {
+      "import": {
+        "types": "./dist/types/radio-list.d.ts",
+        "default": "./dist/esm/radio-list.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/radio-list.d.cts",
+        "default": "./dist/cjs/radio-list.cjs"
+      }
+    },
+    "./segmented-control.css": "./dist/segmented-control.css",
+    "./segmented-control": {
+      "import": {
+        "types": "./dist/types/segmented-control.d.ts",
+        "default": "./dist/esm/segmented-control.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/segmented-control.d.cts",
+        "default": "./dist/cjs/segmented-control.cjs"
+      }
+    },
+    "./select.css": "./dist/select.css",
+    "./select": {
+      "import": {
+        "types": "./dist/types/select.d.ts",
+        "default": "./dist/esm/select.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/select.d.cts",
+        "default": "./dist/cjs/select.cjs"
+      }
+    },
+    "./settings.css": "./dist/settings.css",
+    "./settings": {
+      "import": {
+        "types": "./dist/types/settings.d.ts",
+        "default": "./dist/esm/settings.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/settings.d.cts",
+        "default": "./dist/cjs/settings.cjs"
+      }
+    },
+    "./sheet.css": "./dist/sheet.css",
+    "./sheet": {
+      "import": {
+        "types": "./dist/types/sheet.d.ts",
+        "default": "./dist/esm/sheet.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/sheet.d.cts",
+        "default": "./dist/cjs/sheet.cjs"
+      }
+    },
+    "./skeleton.css": "./dist/skeleton.css",
+    "./skeleton": {
+      "import": {
+        "types": "./dist/types/skeleton.d.ts",
+        "default": "./dist/esm/skeleton.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/skeleton.d.cts",
+        "default": "./dist/cjs/skeleton.cjs"
+      }
+    },
+    "./slider.css": "./dist/slider.css",
+    "./slider": {
+      "import": {
+        "types": "./dist/types/slider.d.ts",
+        "default": "./dist/esm/slider.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/slider.d.cts",
+        "default": "./dist/cjs/slider.cjs"
+      }
+    },
+    "./spinner.css": "./dist/spinner.css",
+    "./spinner": {
+      "import": {
+        "types": "./dist/types/spinner.d.ts",
+        "default": "./dist/esm/spinner.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/spinner.d.cts",
+        "default": "./dist/cjs/spinner.cjs"
+      }
+    },
+    "./stack.css": "./dist/stack.css",
+    "./stack": {
+      "import": {
+        "types": "./dist/types/stack.d.ts",
+        "default": "./dist/esm/stack.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/stack.d.cts",
+        "default": "./dist/cjs/stack.cjs"
+      }
+    },
+    "./switch.css": "./dist/switch.css",
+    "./switch": {
+      "import": {
+        "types": "./dist/types/switch.d.ts",
+        "default": "./dist/esm/switch.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/switch.d.cts",
+        "default": "./dist/cjs/switch.cjs"
+      }
+    },
+    "./tabs.css": "./dist/tabs.css",
+    "./tabs": {
+      "import": {
+        "types": "./dist/types/tabs.d.ts",
+        "default": "./dist/esm/tabs.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/tabs.d.cts",
+        "default": "./dist/cjs/tabs.cjs"
+      }
+    },
+    "./text.css": "./dist/text.css",
+    "./text": {
+      "import": {
+        "types": "./dist/types/text.d.ts",
+        "default": "./dist/esm/text.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/text.d.cts",
+        "default": "./dist/cjs/text.cjs"
+      }
+    },
+    "./text-area.css": "./dist/text-area.css",
+    "./text-area": {
+      "import": {
+        "types": "./dist/types/text-area.d.ts",
+        "default": "./dist/esm/text-area.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/text-area.d.cts",
+        "default": "./dist/cjs/text-area.cjs"
+      }
+    },
+    "./text-field.css": "./dist/text-field.css",
+    "./text-field": {
+      "import": {
+        "types": "./dist/types/text-field.d.ts",
+        "default": "./dist/esm/text-field.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/text-field.d.cts",
+        "default": "./dist/cjs/text-field.cjs"
+      }
+    },
+    "./toast.css": "./dist/toast.css",
+    "./toast": {
+      "import": {
+        "types": "./dist/types/toast.d.ts",
+        "default": "./dist/esm/toast.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/toast.d.cts",
+        "default": "./dist/cjs/toast.cjs"
+      }
+    },
+    "./tooltip.css": "./dist/tooltip.css",
+    "./tooltip": {
+      "import": {
+        "types": "./dist/types/tooltip.d.ts",
+        "default": "./dist/esm/tooltip.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/tooltip.d.cts",
+        "default": "./dist/cjs/tooltip.cjs"
+      }
+    },
+    "./field-label.css": "./dist/field-label.css",
+    "./field-label": {
+      "import": {
+        "types": "./dist/types/field-label.d.ts",
+        "default": "./dist/esm/field-label.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/field-label.d.cts",
+        "default": "./dist/cjs/field-label.cjs"
+      }
+    },
+    "./field-message.css": "./dist/field-message.css",
+    "./field-message": {
+      "import": {
+        "types": "./dist/types/field-message.d.ts",
+        "default": "./dist/esm/field-message.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/field-message.d.cts",
+        "default": "./dist/cjs/field-message.cjs"
+      }
+    },
+    "./field-error.css": "./dist/field-error.css",
+    "./field-error": {
+      "import": {
+        "types": "./dist/types/field-error.d.ts",
+        "default": "./dist/esm/field-error.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/field-error.d.cts",
+        "default": "./dist/cjs/field-error.cjs"
+      }
+    },
+    "./icon.css": "./dist/icon.css",
+    "./icon": {
+      "import": {
+        "types": "./dist/types/icon.d.ts",
+        "default": "./dist/esm/icon.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/icon.d.cts",
+        "default": "./dist/cjs/icon.cjs"
+      }
+    },
+    "./all.css": "./dist/all.css",
+    "./internal/components/Accordion/Accordion.css": {
+      "import": {
+        "types": "./dist/types/internal/components/Accordion/Accordion.css.d.ts",
+        "default": "./dist/esm/internal/components/Accordion/Accordion.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/Accordion/Accordion.css.d.cts",
+        "default": "./dist/cjs/internal/components/Accordion/Accordion.css.cjs"
+      }
+    },
+    "./internal/components/Alert/Alert.css": {
+      "import": {
+        "types": "./dist/types/internal/components/Alert/Alert.css.d.ts",
+        "default": "./dist/esm/internal/components/Alert/Alert.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/Alert/Alert.css.d.cts",
+        "default": "./dist/cjs/internal/components/Alert/Alert.css.cjs"
+      }
+    },
+    "./internal/components/Badge/Badge.css": {
+      "import": {
+        "types": "./dist/types/internal/components/Badge/Badge.css.d.ts",
+        "default": "./dist/esm/internal/components/Badge/Badge.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/Badge/Badge.css.d.cts",
+        "default": "./dist/cjs/internal/components/Badge/Badge.css.cjs"
+      }
+    },
+    "./internal/components/Button/Button.css": {
+      "import": {
+        "types": "./dist/types/internal/components/Button/Button.css.d.ts",
+        "default": "./dist/esm/internal/components/Button/Button.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/Button/Button.css.d.cts",
+        "default": "./dist/cjs/internal/components/Button/Button.css.cjs"
+      }
+    },
+    "./internal/components/Button/Loading.css": {
+      "import": {
+        "types": "./dist/types/internal/components/Button/Loading.css.d.ts",
+        "default": "./dist/esm/internal/components/Button/Loading.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/Button/Loading.css.d.cts",
+        "default": "./dist/cjs/internal/components/Button/Loading.css.cjs"
+      }
+    },
+    "./internal/components/CheckBox/CheckBox.css": {
+      "import": {
+        "types": "./dist/types/internal/components/CheckBox/CheckBox.css.d.ts",
+        "default": "./dist/esm/internal/components/CheckBox/CheckBox.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/CheckBox/CheckBox.css.d.cts",
+        "default": "./dist/cjs/internal/components/CheckBox/CheckBox.css.cjs"
+      }
+    },
+    "./internal/components/Combobox/Combobox.css": {
+      "import": {
+        "types": "./dist/types/internal/components/Combobox/Combobox.css.d.ts",
+        "default": "./dist/esm/internal/components/Combobox/Combobox.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/Combobox/Combobox.css.d.cts",
+        "default": "./dist/cjs/internal/components/Combobox/Combobox.css.cjs"
+      }
+    },
+    "./internal/components/CommandMenu/CommandMenu.css": {
+      "import": {
+        "types": "./dist/types/internal/components/CommandMenu/CommandMenu.css.d.ts",
+        "default": "./dist/esm/internal/components/CommandMenu/CommandMenu.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/CommandMenu/CommandMenu.css.d.cts",
+        "default": "./dist/cjs/internal/components/CommandMenu/CommandMenu.css.cjs"
+      }
+    },
+    "./internal/components/Dialog/Dialog.css": {
+      "import": {
+        "types": "./dist/types/internal/components/Dialog/Dialog.css.d.ts",
+        "default": "./dist/esm/internal/components/Dialog/Dialog.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/Dialog/Dialog.css.d.cts",
+        "default": "./dist/cjs/internal/components/Dialog/Dialog.css.cjs"
+      }
+    },
+    "./internal/components/Dropdown/Dropdown.css": {
+      "import": {
+        "types": "./dist/types/internal/components/Dropdown/Dropdown.css.d.ts",
+        "default": "./dist/esm/internal/components/Dropdown/Dropdown.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/Dropdown/Dropdown.css.d.cts",
+        "default": "./dist/cjs/internal/components/Dropdown/Dropdown.css.cjs"
+      }
+    },
+    "./internal/components/Field/Field.css": {
+      "import": {
+        "types": "./dist/types/internal/components/Field/Field.css.d.ts",
+        "default": "./dist/esm/internal/components/Field/Field.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/Field/Field.css.d.cts",
+        "default": "./dist/cjs/internal/components/Field/Field.css.cjs"
+      }
+    },
+    "./internal/components/Field/FieldError/FieldError.css": {
+      "import": {
+        "types": "./dist/types/internal/components/Field/FieldError/FieldError.css.d.ts",
+        "default": "./dist/esm/internal/components/Field/FieldError/FieldError.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/Field/FieldError/FieldError.css.d.cts",
+        "default": "./dist/cjs/internal/components/Field/FieldError/FieldError.css.cjs"
+      }
+    },
+    "./internal/components/Field/FieldLabel/FieldLabel.css": {
+      "import": {
+        "types": "./dist/types/internal/components/Field/FieldLabel/FieldLabel.css.d.ts",
+        "default": "./dist/esm/internal/components/Field/FieldLabel/FieldLabel.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/Field/FieldLabel/FieldLabel.css.d.cts",
+        "default": "./dist/cjs/internal/components/Field/FieldLabel/FieldLabel.css.cjs"
+      }
+    },
+    "./internal/components/Field/FieldMessage/FieldMessage.css": {
+      "import": {
+        "types": "./dist/types/internal/components/Field/FieldMessage/FieldMessage.css.d.ts",
+        "default": "./dist/esm/internal/components/Field/FieldMessage/FieldMessage.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/Field/FieldMessage/FieldMessage.css.d.cts",
+        "default": "./dist/cjs/internal/components/Field/FieldMessage/FieldMessage.css.cjs"
+      }
+    },
+    "./internal/components/Field/fieldStyle": {
+      "import": {
+        "types": "./dist/types/internal/components/Field/fieldStyle.d.ts",
+        "default": "./dist/esm/internal/components/Field/fieldStyle.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/Field/fieldStyle.d.cts",
+        "default": "./dist/cjs/internal/components/Field/fieldStyle.cjs"
+      }
+    },
+    "./internal/components/IconButton/IconButton.css": {
+      "import": {
+        "types": "./dist/types/internal/components/IconButton/IconButton.css.d.ts",
+        "default": "./dist/esm/internal/components/IconButton/IconButton.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/IconButton/IconButton.css.d.cts",
+        "default": "./dist/cjs/internal/components/IconButton/IconButton.css.cjs"
+      }
+    },
+    "./internal/components/Kbd/Kbd.css": {
+      "import": {
+        "types": "./dist/types/internal/components/Kbd/Kbd.css.d.ts",
+        "default": "./dist/esm/internal/components/Kbd/Kbd.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/Kbd/Kbd.css.d.cts",
+        "default": "./dist/cjs/internal/components/Kbd/Kbd.css.cjs"
+      }
+    },
+    "./internal/components/Link/Link.css": {
+      "import": {
+        "types": "./dist/types/internal/components/Link/Link.css.d.ts",
+        "default": "./dist/esm/internal/components/Link/Link.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/Link/Link.css.d.cts",
+        "default": "./dist/cjs/internal/components/Link/Link.css.cjs"
+      }
+    },
+    "./internal/components/Listbox/Listbox.css": {
+      "import": {
+        "types": "./dist/types/internal/components/Listbox/Listbox.css.d.ts",
+        "default": "./dist/esm/internal/components/Listbox/Listbox.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/Listbox/Listbox.css.d.cts",
+        "default": "./dist/cjs/internal/components/Listbox/Listbox.css.cjs"
+      }
+    },
+    "./internal/components/Listbox/sizes": {
+      "import": {
+        "types": "./dist/types/internal/components/Listbox/sizes.d.ts",
+        "default": "./dist/esm/internal/components/Listbox/sizes.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/Listbox/sizes.d.cts",
+        "default": "./dist/cjs/internal/components/Listbox/sizes.cjs"
+      }
+    },
+    "./internal/components/NumberField/NumberField.css": {
+      "import": {
+        "types": "./dist/types/internal/components/NumberField/NumberField.css.d.ts",
+        "default": "./dist/esm/internal/components/NumberField/NumberField.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/NumberField/NumberField.css.d.cts",
+        "default": "./dist/cjs/internal/components/NumberField/NumberField.css.cjs"
+      }
+    },
+    "./internal/components/OptionCard/OptionCard.css": {
+      "import": {
+        "types": "./dist/types/internal/components/OptionCard/OptionCard.css.d.ts",
+        "default": "./dist/esm/internal/components/OptionCard/OptionCard.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/OptionCard/OptionCard.css.d.cts",
+        "default": "./dist/cjs/internal/components/OptionCard/OptionCard.css.cjs"
+      }
+    },
+    "./internal/components/Pagination/Pagination.css": {
+      "import": {
+        "types": "./dist/types/internal/components/Pagination/Pagination.css.d.ts",
+        "default": "./dist/esm/internal/components/Pagination/Pagination.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/Pagination/Pagination.css.d.cts",
+        "default": "./dist/cjs/internal/components/Pagination/Pagination.css.cjs"
+      }
+    },
+    "./internal/components/Popover/Popover.css": {
+      "import": {
+        "types": "./dist/types/internal/components/Popover/Popover.css.d.ts",
+        "default": "./dist/esm/internal/components/Popover/Popover.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/Popover/Popover.css.d.cts",
+        "default": "./dist/cjs/internal/components/Popover/Popover.css.cjs"
+      }
+    },
+    "./internal/components/Progress/Progress.css": {
+      "import": {
+        "types": "./dist/types/internal/components/Progress/Progress.css.d.ts",
+        "default": "./dist/esm/internal/components/Progress/Progress.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/Progress/Progress.css.d.cts",
+        "default": "./dist/cjs/internal/components/Progress/Progress.css.cjs"
+      }
+    },
+    "./internal/components/RadioList/Radio.css": {
+      "import": {
+        "types": "./dist/types/internal/components/RadioList/Radio.css.d.ts",
+        "default": "./dist/esm/internal/components/RadioList/Radio.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/RadioList/Radio.css.d.cts",
+        "default": "./dist/cjs/internal/components/RadioList/Radio.css.cjs"
+      }
+    },
+    "./internal/components/SegmentedControl/SegmentedControl.css": {
+      "import": {
+        "types": "./dist/types/internal/components/SegmentedControl/SegmentedControl.css.d.ts",
+        "default": "./dist/esm/internal/components/SegmentedControl/SegmentedControl.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/SegmentedControl/SegmentedControl.css.d.cts",
+        "default": "./dist/cjs/internal/components/SegmentedControl/SegmentedControl.css.cjs"
+      }
+    },
+    "./internal/components/Select/Select.css": {
+      "import": {
+        "types": "./dist/types/internal/components/Select/Select.css.d.ts",
+        "default": "./dist/esm/internal/components/Select/Select.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/Select/Select.css.d.cts",
+        "default": "./dist/cjs/internal/components/Select/Select.css.cjs"
+      }
+    },
+    "./internal/components/Settings/Settings.css": {
+      "import": {
+        "types": "./dist/types/internal/components/Settings/Settings.css.d.ts",
+        "default": "./dist/esm/internal/components/Settings/Settings.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/Settings/Settings.css.d.cts",
+        "default": "./dist/cjs/internal/components/Settings/Settings.css.cjs"
+      }
+    },
+    "./internal/components/Sheet/Sheet.css": {
+      "import": {
+        "types": "./dist/types/internal/components/Sheet/Sheet.css.d.ts",
+        "default": "./dist/esm/internal/components/Sheet/Sheet.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/Sheet/Sheet.css.d.cts",
+        "default": "./dist/cjs/internal/components/Sheet/Sheet.css.cjs"
+      }
+    },
+    "./internal/components/Skeleton/Skeleton.css": {
+      "import": {
+        "types": "./dist/types/internal/components/Skeleton/Skeleton.css.d.ts",
+        "default": "./dist/esm/internal/components/Skeleton/Skeleton.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/Skeleton/Skeleton.css.d.cts",
+        "default": "./dist/cjs/internal/components/Skeleton/Skeleton.css.cjs"
+      }
+    },
+    "./internal/components/Slider/Slider.css": {
+      "import": {
+        "types": "./dist/types/internal/components/Slider/Slider.css.d.ts",
+        "default": "./dist/esm/internal/components/Slider/Slider.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/Slider/Slider.css.d.cts",
+        "default": "./dist/cjs/internal/components/Slider/Slider.css.cjs"
+      }
+    },
+    "./internal/components/Spinner/Spinner.css": {
+      "import": {
+        "types": "./dist/types/internal/components/Spinner/Spinner.css.d.ts",
+        "default": "./dist/esm/internal/components/Spinner/Spinner.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/Spinner/Spinner.css.d.cts",
+        "default": "./dist/cjs/internal/components/Spinner/Spinner.css.cjs"
+      }
+    },
+    "./internal/components/Stack/Stack.css": {
+      "import": {
+        "types": "./dist/types/internal/components/Stack/Stack.css.d.ts",
+        "default": "./dist/esm/internal/components/Stack/Stack.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/Stack/Stack.css.d.cts",
+        "default": "./dist/cjs/internal/components/Stack/Stack.css.cjs"
+      }
+    },
+    "./internal/components/Switch/Switch.css": {
+      "import": {
+        "types": "./dist/types/internal/components/Switch/Switch.css.d.ts",
+        "default": "./dist/esm/internal/components/Switch/Switch.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/Switch/Switch.css.d.cts",
+        "default": "./dist/cjs/internal/components/Switch/Switch.css.cjs"
+      }
+    },
+    "./internal/components/Tabs/Tabs.css": {
+      "import": {
+        "types": "./dist/types/internal/components/Tabs/Tabs.css.d.ts",
+        "default": "./dist/esm/internal/components/Tabs/Tabs.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/Tabs/Tabs.css.d.cts",
+        "default": "./dist/cjs/internal/components/Tabs/Tabs.css.cjs"
+      }
+    },
+    "./internal/components/Text/Text.css": {
+      "import": {
+        "types": "./dist/types/internal/components/Text/Text.css.d.ts",
+        "default": "./dist/esm/internal/components/Text/Text.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/Text/Text.css.d.cts",
+        "default": "./dist/cjs/internal/components/Text/Text.css.cjs"
+      }
+    },
+    "./internal/components/TextArea/TextArea.css": {
+      "import": {
+        "types": "./dist/types/internal/components/TextArea/TextArea.css.d.ts",
+        "default": "./dist/esm/internal/components/TextArea/TextArea.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/TextArea/TextArea.css.d.cts",
+        "default": "./dist/cjs/internal/components/TextArea/TextArea.css.cjs"
+      }
+    },
+    "./internal/components/TextField/TextField.css": {
+      "import": {
+        "types": "./dist/types/internal/components/TextField/TextField.css.d.ts",
+        "default": "./dist/esm/internal/components/TextField/TextField.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/TextField/TextField.css.d.cts",
+        "default": "./dist/cjs/internal/components/TextField/TextField.css.cjs"
+      }
+    },
+    "./internal/components/Toast/Toast.css": {
+      "import": {
+        "types": "./dist/types/internal/components/Toast/Toast.css.d.ts",
+        "default": "./dist/esm/internal/components/Toast/Toast.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/Toast/Toast.css.d.cts",
+        "default": "./dist/cjs/internal/components/Toast/Toast.css.cjs"
+      }
+    },
+    "./internal/components/Tooltip/Tooltip.css": {
+      "import": {
+        "types": "./dist/types/internal/components/Tooltip/Tooltip.css.d.ts",
+        "default": "./dist/esm/internal/components/Tooltip/Tooltip.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/Tooltip/Tooltip.css.d.cts",
+        "default": "./dist/cjs/internal/components/Tooltip/Tooltip.css.cjs"
+      }
+    },
+    "./internal/foundation/breakpoints": {
+      "import": {
+        "types": "./dist/types/internal/foundation/breakpoints.d.ts",
+        "default": "./dist/esm/internal/foundation/breakpoints.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/foundation/breakpoints.d.cts",
+        "default": "./dist/cjs/internal/foundation/breakpoints.cjs"
+      }
+    },
+    "./internal/foundation/contract.css": {
+      "import": {
+        "types": "./dist/types/internal/foundation/contract.css.d.ts",
+        "default": "./dist/esm/internal/foundation/contract.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/foundation/contract.css.d.cts",
+        "default": "./dist/cjs/internal/foundation/contract.css.cjs"
+      }
+    },
+    "./internal/foundation/cui.css": {
+      "import": {
+        "types": "./dist/types/internal/foundation/cui.css.d.ts",
+        "default": "./dist/esm/internal/foundation/cui.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/foundation/cui.css.d.cts",
+        "default": "./dist/cjs/internal/foundation/cui.css.cjs"
+      }
+    },
+    "./internal/foundation/derived": {
+      "import": {
+        "types": "./dist/types/internal/foundation/derived.d.ts",
+        "default": "./dist/esm/internal/foundation/derived.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/foundation/derived.d.cts",
+        "default": "./dist/cjs/internal/foundation/derived.cjs"
+      }
+    },
+    "./internal/foundation/index": {
+      "import": {
+        "types": "./dist/types/internal/foundation/index.d.ts",
+        "default": "./dist/esm/internal/foundation/index.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/foundation/index.d.cts",
+        "default": "./dist/cjs/internal/foundation/index.cjs"
+      }
+    },
+    "./internal/foundation/layout.css": {
+      "import": {
+        "types": "./dist/types/internal/foundation/layout.css.d.ts",
+        "default": "./dist/esm/internal/foundation/layout.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/foundation/layout.css.d.cts",
+        "default": "./dist/cjs/internal/foundation/layout.css.cjs"
+      }
+    },
+    "./internal/foundation/mapToProperty": {
+      "import": {
+        "types": "./dist/types/internal/foundation/mapToProperty.d.ts",
+        "default": "./dist/esm/internal/foundation/mapToProperty.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/foundation/mapToProperty.d.cts",
+        "default": "./dist/cjs/internal/foundation/mapToProperty.cjs"
+      }
+    },
+    "./internal/foundation/responsive": {
+      "import": {
+        "types": "./dist/types/internal/foundation/responsive.d.ts",
+        "default": "./dist/esm/internal/foundation/responsive.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/foundation/responsive.d.cts",
+        "default": "./dist/cjs/internal/foundation/responsive.cjs"
+      }
+    },
+    "./internal/foundation/sizes": {
+      "import": {
+        "types": "./dist/types/internal/foundation/sizes.d.ts",
+        "default": "./dist/esm/internal/foundation/sizes.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/foundation/sizes.d.cts",
+        "default": "./dist/cjs/internal/foundation/sizes.cjs"
+      }
+    },
+    "./internal/foundation/text.css": {
+      "import": {
+        "types": "./dist/types/internal/foundation/text.css.d.ts",
+        "default": "./dist/esm/internal/foundation/text.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/foundation/text.css.d.cts",
+        "default": "./dist/cjs/internal/foundation/text.css.cjs"
+      }
+    },
+    "./internal/foundation/theme-values": {
+      "import": {
+        "types": "./dist/types/internal/foundation/theme-values.d.ts",
+        "default": "./dist/esm/internal/foundation/theme-values.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/foundation/theme-values.d.cts",
+        "default": "./dist/cjs/internal/foundation/theme-values.cjs"
+      }
+    },
+    "./internal/foundation/themes.css": {
+      "import": {
+        "types": "./dist/types/internal/foundation/themes.css.d.ts",
+        "default": "./dist/esm/internal/foundation/themes.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/foundation/themes.css.d.cts",
+        "default": "./dist/cjs/internal/foundation/themes.css.cjs"
+      }
+    },
+    "./internal/foundation/tokens": {
+      "import": {
+        "types": "./dist/types/internal/foundation/tokens.d.ts",
+        "default": "./dist/esm/internal/foundation/tokens.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/foundation/tokens.d.cts",
+        "default": "./dist/cjs/internal/foundation/tokens.cjs"
+      }
+    },
+    "./internal/icons/icon.css": {
+      "import": {
+        "types": "./dist/types/internal/icons/icon.css.d.ts",
+        "default": "./dist/esm/internal/icons/icon.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/icons/icon.css.d.cts",
+        "default": "./dist/cjs/internal/icons/icon.css.cjs"
+      }
+    },
+    "./internal/utils/css": {
+      "import": {
+        "types": "./dist/types/internal/utils/css.d.ts",
+        "default": "./dist/esm/internal/utils/css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/utils/css.d.cts",
+        "default": "./dist/cjs/internal/utils/css.cjs"
+      }
+    },
+    "./internal/utils/object": {
+      "import": {
+        "types": "./dist/types/internal/utils/object.d.ts",
+        "default": "./dist/esm/internal/utils/object.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/utils/object.d.cts",
+        "default": "./dist/cjs/internal/utils/object.cjs"
+      }
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "tokens": [
+        "dist/types/tokens.d.ts"
+      ],
+      "theme": [
+        "dist/types/theme.d.ts"
+      ],
+      "accordion": [
+        "dist/types/accordion.d.ts"
+      ],
+      "alert": [
+        "dist/types/alert.d.ts"
+      ],
+      "badge": [
+        "dist/types/badge.d.ts"
+      ],
+      "button": [
+        "dist/types/button.d.ts"
+      ],
+      "button-loading": [
+        "dist/types/button-loading.d.ts"
+      ],
+      "checkbox": [
+        "dist/types/checkbox.d.ts"
+      ],
+      "combobox": [
+        "dist/types/combobox.d.ts"
+      ],
+      "command-menu": [
+        "dist/types/command-menu.d.ts"
+      ],
+      "dialog": [
+        "dist/types/dialog.d.ts"
+      ],
+      "dropdown": [
+        "dist/types/dropdown.d.ts"
+      ],
+      "field": [
+        "dist/types/field.d.ts"
+      ],
+      "icon-button": [
+        "dist/types/icon-button.d.ts"
+      ],
+      "kbd": [
+        "dist/types/kbd.d.ts"
+      ],
+      "link": [
+        "dist/types/link.d.ts"
+      ],
+      "listbox": [
+        "dist/types/listbox.d.ts"
+      ],
+      "number-field": [
+        "dist/types/number-field.d.ts"
+      ],
+      "option-card": [
+        "dist/types/option-card.d.ts"
+      ],
+      "pagination": [
+        "dist/types/pagination.d.ts"
+      ],
+      "popover": [
+        "dist/types/popover.d.ts"
+      ],
+      "progress": [
+        "dist/types/progress.d.ts"
+      ],
+      "radio-list": [
+        "dist/types/radio-list.d.ts"
+      ],
+      "segmented-control": [
+        "dist/types/segmented-control.d.ts"
+      ],
+      "select": [
+        "dist/types/select.d.ts"
+      ],
+      "settings": [
+        "dist/types/settings.d.ts"
+      ],
+      "sheet": [
+        "dist/types/sheet.d.ts"
+      ],
+      "skeleton": [
+        "dist/types/skeleton.d.ts"
+      ],
+      "slider": [
+        "dist/types/slider.d.ts"
+      ],
+      "spinner": [
+        "dist/types/spinner.d.ts"
+      ],
+      "stack": [
+        "dist/types/stack.d.ts"
+      ],
+      "switch": [
+        "dist/types/switch.d.ts"
+      ],
+      "tabs": [
+        "dist/types/tabs.d.ts"
+      ],
+      "text": [
+        "dist/types/text.d.ts"
+      ],
+      "text-area": [
+        "dist/types/text-area.d.ts"
+      ],
+      "text-field": [
+        "dist/types/text-field.d.ts"
+      ],
+      "toast": [
+        "dist/types/toast.d.ts"
+      ],
+      "tooltip": [
+        "dist/types/tooltip.d.ts"
+      ],
+      "field-label": [
+        "dist/types/field-label.d.ts"
+      ],
+      "field-message": [
+        "dist/types/field-message.d.ts"
+      ],
+      "field-error": [
+        "dist/types/field-error.d.ts"
+      ],
+      "icon": [
+        "dist/types/icon.d.ts"
+      ],
+      "internal/components/Accordion/Accordion.css": [
+        "dist/types/internal/components/Accordion/Accordion.css.d.ts"
+      ],
+      "internal/components/Alert/Alert.css": [
+        "dist/types/internal/components/Alert/Alert.css.d.ts"
+      ],
+      "internal/components/Badge/Badge.css": [
+        "dist/types/internal/components/Badge/Badge.css.d.ts"
+      ],
+      "internal/components/Button/Button.css": [
+        "dist/types/internal/components/Button/Button.css.d.ts"
+      ],
+      "internal/components/Button/Loading.css": [
+        "dist/types/internal/components/Button/Loading.css.d.ts"
+      ],
+      "internal/components/CheckBox/CheckBox.css": [
+        "dist/types/internal/components/CheckBox/CheckBox.css.d.ts"
+      ],
+      "internal/components/Combobox/Combobox.css": [
+        "dist/types/internal/components/Combobox/Combobox.css.d.ts"
+      ],
+      "internal/components/CommandMenu/CommandMenu.css": [
+        "dist/types/internal/components/CommandMenu/CommandMenu.css.d.ts"
+      ],
+      "internal/components/Dialog/Dialog.css": [
+        "dist/types/internal/components/Dialog/Dialog.css.d.ts"
+      ],
+      "internal/components/Dropdown/Dropdown.css": [
+        "dist/types/internal/components/Dropdown/Dropdown.css.d.ts"
+      ],
+      "internal/components/Field/Field.css": [
+        "dist/types/internal/components/Field/Field.css.d.ts"
+      ],
+      "internal/components/Field/FieldError/FieldError.css": [
+        "dist/types/internal/components/Field/FieldError/FieldError.css.d.ts"
+      ],
+      "internal/components/Field/FieldLabel/FieldLabel.css": [
+        "dist/types/internal/components/Field/FieldLabel/FieldLabel.css.d.ts"
+      ],
+      "internal/components/Field/FieldMessage/FieldMessage.css": [
+        "dist/types/internal/components/Field/FieldMessage/FieldMessage.css.d.ts"
+      ],
+      "internal/components/Field/fieldStyle": [
+        "dist/types/internal/components/Field/fieldStyle.d.ts"
+      ],
+      "internal/components/IconButton/IconButton.css": [
+        "dist/types/internal/components/IconButton/IconButton.css.d.ts"
+      ],
+      "internal/components/Kbd/Kbd.css": [
+        "dist/types/internal/components/Kbd/Kbd.css.d.ts"
+      ],
+      "internal/components/Link/Link.css": [
+        "dist/types/internal/components/Link/Link.css.d.ts"
+      ],
+      "internal/components/Listbox/Listbox.css": [
+        "dist/types/internal/components/Listbox/Listbox.css.d.ts"
+      ],
+      "internal/components/Listbox/sizes": [
+        "dist/types/internal/components/Listbox/sizes.d.ts"
+      ],
+      "internal/components/NumberField/NumberField.css": [
+        "dist/types/internal/components/NumberField/NumberField.css.d.ts"
+      ],
+      "internal/components/OptionCard/OptionCard.css": [
+        "dist/types/internal/components/OptionCard/OptionCard.css.d.ts"
+      ],
+      "internal/components/Pagination/Pagination.css": [
+        "dist/types/internal/components/Pagination/Pagination.css.d.ts"
+      ],
+      "internal/components/Popover/Popover.css": [
+        "dist/types/internal/components/Popover/Popover.css.d.ts"
+      ],
+      "internal/components/Progress/Progress.css": [
+        "dist/types/internal/components/Progress/Progress.css.d.ts"
+      ],
+      "internal/components/RadioList/Radio.css": [
+        "dist/types/internal/components/RadioList/Radio.css.d.ts"
+      ],
+      "internal/components/SegmentedControl/SegmentedControl.css": [
+        "dist/types/internal/components/SegmentedControl/SegmentedControl.css.d.ts"
+      ],
+      "internal/components/Select/Select.css": [
+        "dist/types/internal/components/Select/Select.css.d.ts"
+      ],
+      "internal/components/Settings/Settings.css": [
+        "dist/types/internal/components/Settings/Settings.css.d.ts"
+      ],
+      "internal/components/Sheet/Sheet.css": [
+        "dist/types/internal/components/Sheet/Sheet.css.d.ts"
+      ],
+      "internal/components/Skeleton/Skeleton.css": [
+        "dist/types/internal/components/Skeleton/Skeleton.css.d.ts"
+      ],
+      "internal/components/Slider/Slider.css": [
+        "dist/types/internal/components/Slider/Slider.css.d.ts"
+      ],
+      "internal/components/Spinner/Spinner.css": [
+        "dist/types/internal/components/Spinner/Spinner.css.d.ts"
+      ],
+      "internal/components/Stack/Stack.css": [
+        "dist/types/internal/components/Stack/Stack.css.d.ts"
+      ],
+      "internal/components/Switch/Switch.css": [
+        "dist/types/internal/components/Switch/Switch.css.d.ts"
+      ],
+      "internal/components/Tabs/Tabs.css": [
+        "dist/types/internal/components/Tabs/Tabs.css.d.ts"
+      ],
+      "internal/components/Text/Text.css": [
+        "dist/types/internal/components/Text/Text.css.d.ts"
+      ],
+      "internal/components/TextArea/TextArea.css": [
+        "dist/types/internal/components/TextArea/TextArea.css.d.ts"
+      ],
+      "internal/components/TextField/TextField.css": [
+        "dist/types/internal/components/TextField/TextField.css.d.ts"
+      ],
+      "internal/components/Toast/Toast.css": [
+        "dist/types/internal/components/Toast/Toast.css.d.ts"
+      ],
+      "internal/components/Tooltip/Tooltip.css": [
+        "dist/types/internal/components/Tooltip/Tooltip.css.d.ts"
+      ],
+      "internal/foundation/breakpoints": [
+        "dist/types/internal/foundation/breakpoints.d.ts"
+      ],
+      "internal/foundation/contract.css": [
+        "dist/types/internal/foundation/contract.css.d.ts"
+      ],
+      "internal/foundation/cui.css": [
+        "dist/types/internal/foundation/cui.css.d.ts"
+      ],
+      "internal/foundation/derived": [
+        "dist/types/internal/foundation/derived.d.ts"
+      ],
+      "internal/foundation/index": [
+        "dist/types/internal/foundation/index.d.ts"
+      ],
+      "internal/foundation/layout.css": [
+        "dist/types/internal/foundation/layout.css.d.ts"
+      ],
+      "internal/foundation/mapToProperty": [
+        "dist/types/internal/foundation/mapToProperty.d.ts"
+      ],
+      "internal/foundation/responsive": [
+        "dist/types/internal/foundation/responsive.d.ts"
+      ],
+      "internal/foundation/sizes": [
+        "dist/types/internal/foundation/sizes.d.ts"
+      ],
+      "internal/foundation/text.css": [
+        "dist/types/internal/foundation/text.css.d.ts"
+      ],
+      "internal/foundation/theme-values": [
+        "dist/types/internal/foundation/theme-values.d.ts"
+      ],
+      "internal/foundation/themes.css": [
+        "dist/types/internal/foundation/themes.css.d.ts"
+      ],
+      "internal/foundation/tokens": [
+        "dist/types/internal/foundation/tokens.d.ts"
+      ],
+      "internal/icons/icon.css": [
+        "dist/types/internal/icons/icon.css.d.ts"
+      ],
+      "internal/utils/css": [
+        "dist/types/internal/utils/css.d.ts"
+      ],
+      "internal/utils/object": [
+        "dist/types/internal/utils/object.d.ts"
+      ]
+    }
+  },
+  "main": "./dist/cjs/index.cjs",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/types/index.d.ts"
+}

@@ -20,8 +20,8 @@ import { TextField } from "../../src/components/TextField/TextField";
 // Every content prop gets an element. A component that builds such an element
 // without rendering it (a prop read twice, or read for a part that stays hidden)
 // makes the client ask for a hydration key the server never wrote. Dialog, Sheet,
-// Popover, DropdownMenu and CommandMenu render their content in a portal, which
-// the server leaves out, so they are not here. Dialog's layout parts need no
+// Popover and CommandMenu have lifecycle checks in portal-fixtures.tsx. DropdownMenu
+// still omits its portal content on the server. Dialog's layout parts need no
 // dialog around them, and a docs figure renders them open and inline.
 const el = (name: string) => <em data-prop={name}>{name}</em>;
 

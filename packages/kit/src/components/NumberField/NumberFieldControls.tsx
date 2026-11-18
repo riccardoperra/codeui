@@ -1,3 +1,5 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/number-field.css";
 import * as styles from "./NumberField.css";
 import { Button } from "../Button/Button";
 import { ChevronDownIcon, ChevronUpIcon } from "../../icons";

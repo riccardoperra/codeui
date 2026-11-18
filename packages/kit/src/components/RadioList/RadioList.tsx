@@ -1,3 +1,6 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/radio-list.css";
+import "@codeui/styles/text-field.css";
 import {
 	RadioGroup,
 	RadioGroupDescriptionProps as KRadioGroupDescriptionProps,
@@ -150,13 +153,12 @@ export function RadioList<T extends ValidComponent = "div">(
 			</Show>
 			<div
 				data-cui="radio-list-items"
+				data-size={size()}
+				data-orientation={props.orientation}
+				data-theme={local.theme ?? "inline"}
 				class={mergeClasses(
 					local.classes?.items,
-					styles.radioList({
-						size: size(),
-						orientation: props.orientation,
-						theme: local.theme ?? "inline",
-					}),
+					styles.radioList(),
 				)}
 			>
 				<RadioClassesContext.Provider value={() => local.classes}>

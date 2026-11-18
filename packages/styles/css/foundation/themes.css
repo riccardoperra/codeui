@@ -1,0 +1,35 @@
+@layer cui.components {
+  :root {
+    --cui-themes-colors-gray1: #111111;
+    --cui-themes-colors-gray2: #191919;
+    --cui-themes-colors-gray3: #222222;
+    --cui-themes-colors-gray4: #2a2a2a;
+    --cui-themes-colors-gray5: #313131;
+    --cui-themes-colors-gray6: #3a3a3a;
+    --cui-themes-colors-gray7: #484848;
+    --cui-themes-colors-gray8: #606060;
+    --cui-themes-colors-gray9: #6e6e6e;
+    --cui-themes-colors-gray10: #7b7b7b;
+    --cui-themes-colors-gray11: #b4b4b4;
+    --cui-themes-colors-gray12: #eeeeee;
+    --cui-themes-fontWeight-hairline: 100;
+    --cui-themes-fontWeight-thin: 200;
+    --cui-themes-fontWeight-light: 300;
+    --cui-themes-fontWeight-bold: 700;
+    --cui-themes-fontWeight-extrabold: 800;
+    --cui-themes-fontWeight-black: 900;
+    --cui-themes-boxShadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --cui-themes-boxShadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --cui-themes-boxShadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    --cui-themes-boxShadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+    --cui-themes-boxShadow-outline: 0 0 0 3px rgba(66, 153, 225, 0.5);
+    --cui-themes-zIndex-0: 0;
+    --cui-themes-zIndex-10: 10;
+    --cui-themes-zIndex-20: 20;
+    --cui-themes-zIndex-30: 30;
+    --cui-themes-zIndex-40: 40;
+    --cui-themes-zIndex-50: 50;
+    --cui-themes-zIndex--1: -1;
+    --cui-themes-zIndex-auto: auto;
+  }
+}

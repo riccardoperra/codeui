@@ -52,7 +52,7 @@ export const Densities: Story = {
 			<A.Root defaultValue={["compact"]}>
 				<A.Item value="compact">
 					<A.Header>
-						<A.Trigger class={A.accordionStyles.trigger({ density: "compact" })}>
+						<A.Trigger density="compact">
 							<A.Title>Compact</A.Title>
 							<A.Chevron />
 						</A.Trigger>
@@ -63,7 +63,7 @@ export const Densities: Story = {
 			<A.Root defaultValue={["comfortable"]}>
 				<A.Item value="comfortable">
 					<A.Header>
-						<A.Trigger class={A.accordionStyles.trigger({ density: "comfortable" })}>
+						<A.Trigger density="comfortable">
 							<A.Title>Comfortable</A.Title>
 							<A.Chevron />
 						</A.Trigger>

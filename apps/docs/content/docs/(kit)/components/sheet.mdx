@@ -164,7 +164,7 @@ The remaining inherited props follow the [Kobalte Sheet contract](https://kobalt
 
 ### `sheetStyles`
 
-`SheetStyles` maps each anatomy part key to a function that returns a class string. Only `content({ side })` uses the optional side variant. `trigger()` returns an empty string. Styles are exported from `@codeui/kit/sheet`. Use these functions with custom markup when you provide the required semantics and behavior. Styles alone do not manage focus or state.
+`SheetStyles` maps each anatomy part key to a function that returns its class string. Set `data-side` on custom content, for example `data-side="bottom"`. `trigger()` returns an empty string. Import these functions from `@codeui/kit/sheet`.
 
 ## Accessibility
 
@@ -187,7 +187,7 @@ Opening moves focus into the sheet. Modal sheets trap focus. Closing returns foc
 
 ## SSR notes
 
-Root state can render on the server. Portalled overlay and content render only on the client. Input tracking starts on mount. Supply `mount` only after its element exists in the browser.
+Open or force-mounted sheets include their overlay and content in server HTML at the Portal declaration. Hydration adopts those nodes and moves them to the portal target. Closed content stays absent unless force-mounted. Input tracking starts on mount. Supply `mount` only after its element exists in the browser.
 
 ## Theming hooks
 

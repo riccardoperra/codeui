@@ -22,7 +22,11 @@
 		"headless"
 	],
 	"private": false,
-	"sideEffects": false,
+	"sideEffects": [
+		"./dist/esm/utils/open-source.js",
+		"./dist/cjs/utils/open-source.cjs",
+		"./dist/source/utils/open-source.js"
+	],
 	"publishConfig": {
 		"access": "public"
 	},
@@ -406,9 +410,10 @@
 		"test:tokens-consumer": "node fixtures/tokens-consumer/check.mjs && node fixtures/tokens-consumer/check.mjs --solid"
 	},
 	"devDependencies": {
-		"@codeui/vanilla-extract": "workspace:*",
 		"@testing-library/jest-dom": "^6.5.0",
+		"@vanilla-extract/css": "^1.15.5",
 		"@vanilla-extract/vite-plugin": "^4.0.15",
+
 		"@vitest/browser": "3.2.7",
 		"motion": "^10.18.0",
 		"playwright": "1.56.1",
@@ -426,21 +431,17 @@
 	"peerDependencies": {
 		"solid-js": "^1.9.8"
 	},
-	"packageManager": "pnpm@7.33.7",
+	"packageManager": "pnpm@10.34.9",
 	"dependencies": {
 		"@kobalte/core": "^0.13.14",
 		"@kobalte/utils": "^0.9.2",
-		"@kobalte/vanilla-extract": "^0.5.0",
 		"@maskito/core": "^3.0.1",
 		"@maskito/kit": "^3.0.1",
-		"@radix-ui/colors": "^3.0.0",
 		"@solid-primitives/pagination": "^0.3.0",
 		"@solid-primitives/scheduled": "^1.4.3",
 		"@tanstack/solid-virtual": "^3.10.7",
-		"@vanilla-extract/css": "^1.15.5",
-		"@vanilla-extract/dynamic": "^2.1.2",
-		"@vanilla-extract/recipes": "^0.5.5",
-		"polished": "^4.3.1"
+		"polished": "^4.3.1",
+		"@codeui/styles": "workspace:^"
 	},
 	"main": "dist/cjs/index.cjs"
 }

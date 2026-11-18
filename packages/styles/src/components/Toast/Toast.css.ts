@@ -1,0 +1,10 @@
+export const action: string = "cui-toast-action";
+export const closeButton: string = "cui-toast-closeButton";
+export const description: string = "cui-toast-description";
+export const icon: string = "cui-toast-icon";
+export const list: string = "cui-toast-list";
+export const progressFill: string = "cui-toast-progressFill";
+export const progressTrack: string = "cui-toast-progressTrack";
+export const region = (): string => "cui-toast-region";
+export const root = (): string => "cui-toast-root";
+export const title: string = "cui-toast-title";

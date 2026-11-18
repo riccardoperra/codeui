@@ -54,6 +54,10 @@ if (page) {
 	check(/\| `surface\.island` \| `--cui-surface-canvas` \| `gray\.\d+` `#[\da-f]+` \| `gray\.\d+` `#[\da-f]+` \|/i.test(colour.body), 'Colour Markdown resolves generated palette roles');
 	check(colour.body.includes('Use colours by role') && colour.body.includes('background-color: var(--cui-surface-field-hover)'), 'Colour Markdown contains rules and a CSS example');
 	check(!/<ColourPalette|<PaletteComparison/.test(colour.body), 'Colour Markdown expands visual palette components');
+	const tokens = await get('/docs/foundations/tokens.md');
+	check(/^\| `blue\.500` \| `#[\da-f]+` \|[^|]*`--cui-action-brand-base`[^|]*\|[^|]*`--cui-action-brand-base`[^|]*\|$/im.test(tokens.body), 'Tokens Markdown maps the brand base to the same ramp step in both modes');
+	check(/^\| `red\.300` \| `#[\da-f]+` \| — \| `--cui-text-danger` \|$/im.test(tokens.body), 'Tokens Markdown maps dark error text to red.300');
+	check(!tokens.body.includes('<PaletteMatrix'), 'Tokens Markdown expands the palette matrix');
 	// Draft pages may still hold authored TypeTables. Each lane's --page run fails on them.
 	console.log(`info ${leaks(full.body)} unexpanded tags left in /llms-full.txt, from draft pages`);
 

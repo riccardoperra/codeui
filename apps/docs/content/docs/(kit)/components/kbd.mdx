@@ -92,7 +92,7 @@ Import the parts from `@codeui/kit/kbd`.
 
 ### `kbdStyles`
 
-`kbdStyles.root({ size, variant })` returns the class for a keycap with those variants. Missing variants fall back to `sm` and `keycap`. Unlike the `Stack` and `Text` styles, the class carries the variants, so you need no data attributes. Call it to style a key that another library renders, such as a shortcut cell in a third-party table. `kbdStyles` and `KbdStyles` are exported only from `@codeui/kit/kbd`.
+Call `kbdStyles.root()` for the base class. On custom markup, set `data-size` and `data-variant`, such as `data-size="sm" data-variant="keycap"`. `kbdStyles` and `KbdStyles` are exported from `@codeui/kit/kbd`.
 
 ## Accessibility
 

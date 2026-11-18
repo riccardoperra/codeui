@@ -1,0 +1,345 @@
+{
+	"theme": {
+		"modules": [
+			"foundation/cui.css.ts",
+			"foundation/themes.css.ts",
+			"foundation/layout.css.ts"
+		],
+		"dependencies": []
+	},
+	"accordion": {
+		"modules": [
+			"components/Accordion/Accordion.css.ts"
+		],
+		"dependencies": [
+			"icon"
+		],
+		"helpers": "parts/accordion.ts"
+	},
+	"alert": {
+		"modules": [
+			"components/Alert/Alert.css.ts"
+		],
+		"dependencies": [
+			"icon"
+		],
+		"helpers": "parts/alert.ts"
+	},
+	"badge": {
+		"modules": [
+			"components/Badge/Badge.css.ts"
+		],
+		"dependencies": [],
+		"helpers": "parts/badge.ts"
+	},
+	"button": {
+		"modules": [
+			"components/Button/Button.css.ts"
+		],
+		"dependencies": [
+			"button-loading",
+			"icon"
+		]
+	},
+	"button-loading": {
+		"modules": [
+			"components/Button/Loading.css.ts"
+		],
+		"dependencies": []
+	},
+	"checkbox": {
+		"modules": [
+			"components/CheckBox/CheckBox.css.ts"
+		],
+		"dependencies": [
+			"field",
+			"field-label",
+			"field-message",
+			"field-error",
+			"icon"
+		]
+	},
+	"combobox": {
+		"modules": [
+			"components/Combobox/Combobox.css.ts"
+		],
+		"dependencies": [
+			"icon"
+		],
+		"helpers": "parts/combobox.ts"
+	},
+	"command-menu": {
+		"modules": [
+			"components/CommandMenu/CommandMenu.css.ts"
+		],
+		"dependencies": [
+			"dialog",
+			"combobox"
+		],
+		"helpers": "parts/command-menu.ts"
+	},
+	"dialog": {
+		"modules": [
+			"components/Dialog/Dialog.css.ts"
+		],
+		"dependencies": [
+			"icon-button"
+		],
+		"helpers": "parts/dialog.ts"
+	},
+	"dropdown": {
+		"modules": [
+			"components/Dropdown/Dropdown.css.ts"
+		],
+		"dependencies": [
+			"icon"
+		]
+	},
+	"field": {
+		"modules": [
+			"components/Field/Field.css.ts"
+		],
+		"dependencies": []
+	},
+	"icon-button": {
+		"modules": [
+			"components/IconButton/IconButton.css.ts"
+		],
+		"dependencies": [
+			"button"
+		]
+	},
+	"kbd": {
+		"modules": [
+			"components/Kbd/Kbd.css.ts"
+		],
+		"dependencies": [],
+		"helpers": "parts/kbd.ts"
+	},
+	"link": {
+		"modules": [
+			"components/Link/Link.css.ts"
+		],
+		"dependencies": []
+	},
+	"listbox": {
+		"modules": [
+			"components/Listbox/Listbox.css.ts"
+		],
+		"dependencies": [
+			"icon"
+		]
+	},
+	"number-field": {
+		"modules": [
+			"components/NumberField/NumberField.css.ts"
+		],
+		"dependencies": [
+			"field",
+			"field-label",
+			"field-message",
+			"field-error",
+			"button",
+			"icon-button"
+		]
+	},
+	"option-card": {
+		"modules": [
+			"components/OptionCard/OptionCard.css.ts"
+		],
+		"dependencies": [
+			"icon",
+			"badge"
+		],
+		"helpers": "parts/option-card.ts"
+	},
+	"pagination": {
+		"modules": [
+			"components/Pagination/Pagination.css.ts"
+		],
+		"dependencies": [
+			"button",
+			"icon-button"
+		]
+	},
+	"popover": {
+		"modules": [
+			"components/Popover/Popover.css.ts"
+		],
+		"dependencies": [
+			"icon-button"
+		],
+		"helpers": "parts/popover.ts"
+	},
+	"progress": {
+		"modules": [
+			"components/Progress/Progress.css.ts"
+		],
+		"dependencies": [],
+		"helpers": "parts/progress.ts"
+	},
+	"radio-list": {
+		"modules": [
+			"components/RadioList/Radio.css.ts"
+		],
+		"dependencies": [
+			"field",
+			"text-field",
+			"field-label",
+			"field-message",
+			"field-error"
+		]
+	},
+	"segmented-control": {
+		"modules": [
+			"components/SegmentedControl/SegmentedControl.css.ts"
+		],
+		"dependencies": [
+			"field"
+		]
+	},
+	"select": {
+		"modules": [
+			"components/Select/Select.css.ts"
+		],
+		"dependencies": [
+			"field",
+			"listbox",
+			"icon",
+			"field-label",
+			"field-message",
+			"field-error"
+		]
+	},
+	"settings": {
+		"modules": [
+			"components/Settings/Settings.css.ts"
+		],
+		"dependencies": [],
+		"helpers": "parts/settings.ts"
+	},
+	"sheet": {
+		"modules": [
+			"components/Sheet/Sheet.css.ts"
+		],
+		"dependencies": [
+			"icon-button"
+		],
+		"helpers": "parts/sheet.ts"
+	},
+	"skeleton": {
+		"modules": [
+			"components/Skeleton/Skeleton.css.ts"
+		],
+		"dependencies": [],
+		"helpers": "parts/skeleton.ts"
+	},
+	"slider": {
+		"modules": [
+			"components/Slider/Slider.css.ts"
+		],
+		"dependencies": [
+			"field"
+		],
+		"helpers": "parts/slider.ts"
+	},
+	"spinner": {
+		"modules": [
+			"components/Spinner/Spinner.css.ts"
+		],
+		"dependencies": [],
+		"helpers": "parts/spinner.ts"
+	},
+	"stack": {
+		"modules": [
+			"components/Stack/Stack.css.ts"
+		],
+		"dependencies": [],
+		"helpers": "parts/stack.ts"
+	},
+	"switch": {
+		"modules": [
+			"components/Switch/Switch.css.ts"
+		],
+		"dependencies": [
+			"field-label",
+			"field"
+		],
+		"helpers": "parts/switch.ts"
+	},
+	"tabs": {
+		"modules": [
+			"components/Tabs/Tabs.css.ts"
+		],
+		"dependencies": []
+	},
+	"text": {
+		"modules": [
+			"components/Text/Text.css.ts"
+		],
+		"dependencies": [],
+		"helpers": "parts/text.ts"
+	},
+	"text-area": {
+		"modules": [
+			"components/TextArea/TextArea.css.ts"
+		],
+		"dependencies": [
+			"field",
+			"field-label",
+			"field-message",
+			"field-error"
+		]
+	},
+	"text-field": {
+		"modules": [
+			"components/TextField/TextField.css.ts"
+		],
+		"dependencies": [
+			"field",
+			"field-label",
+			"field-message",
+			"field-error"
+		]
+	},
+	"toast": {
+		"modules": [
+			"components/Toast/Toast.css.ts"
+		],
+		"dependencies": [
+			"icon-button",
+			"spinner"
+		],
+		"helpers": "parts/toast.ts"
+	},
+	"tooltip": {
+		"modules": [
+			"components/Tooltip/Tooltip.css.ts"
+		],
+		"dependencies": []
+	},
+	"field-label": {
+		"modules": [
+			"components/Field/FieldLabel/FieldLabel.css.ts"
+		],
+		"dependencies": []
+	},
+	"field-message": {
+		"modules": [
+			"components/Field/FieldMessage/FieldMessage.css.ts"
+		],
+		"dependencies": []
+	},
+	"field-error": {
+		"modules": [
+			"components/Field/FieldError/FieldError.css.ts"
+		],
+		"dependencies": []
+	},
+	"icon": {
+		"modules": [
+			"icons/icon.css.ts"
+		],
+		"dependencies": []
+	}
+}

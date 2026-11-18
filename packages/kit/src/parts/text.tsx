@@ -1,22 +1,13 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/text.css";
 import { type ComponentProps, type JSX, type ValidComponent, splitProps } from "solid-js";
 import { Dynamic } from "solid-js/web";
 import { tokens } from "../foundation/cui.css";
 import { root } from "../components/Text/Text.css";
 import { mergeClasses } from "../utils/css";
 
-export type TextVariants = {
-	size?: keyof typeof tokens.font.size;
-	weight?: keyof typeof tokens.font.weight;
-	tone?: "default" | "muted" | "hint" | "label" | "danger" | "success";
-};
-export const textParts = { root: "text-root" } as const;
-export type TextPart = keyof typeof textParts;
-export type TextClasses = Partial<Record<TextPart, string>>;
-export type TextStyles = { root: (variants?: TextVariants) => string };
-export const textStyles: TextStyles = {
-	root: variants =>
-		root({ size: variants?.size, weight: variants?.weight, tone: variants?.tone }),
-};
+import { type TextVariants, textParts, type TextPart, type TextClasses, type TextStyles } from "@codeui/styles/text";
+export { type TextVariants, textParts, type TextPart, type TextClasses, type TextStyles, textStyles } from "@codeui/styles/text";
 export type TextProps<T extends ValidComponent = "span"> = TextVariants & {
 	as?: T;
 	children?: JSX.Element;
@@ -39,7 +30,7 @@ export function Root<T extends ValidComponent = "span">(props: TextProps<T>) {
 			{...others}
 			component={local.as ?? "span"}
 			data-cui={textParts.root}
-			class={mergeClasses(textStyles.root(local), local.classes?.root, local.class)}
+			class={mergeClasses(root(), local.classes?.root, local.class)}
 			data-size={local.size ?? "sm"}
 			data-weight={local.weight ?? "normal"}
 			data-tone={local.tone ?? "default"}

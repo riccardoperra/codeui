@@ -1,24 +1,12 @@
 import { useState } from 'react';
 import { Btn, Field, Float, Island, Page, Row } from './mocks';
-import '../../../.generated/inkstone-palette.css';
 
 export function PaletteComparison() {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
-  const [palette, setPalette] = useState<'compatible' | 'shared-gray'>('compatible');
 
   return (
     <div className="not-prose palette-comparison">
       <div className="palette-comparison__controls">
-        <label>
-          Palette
-          <select
-            value={palette}
-            onChange={(event) => setPalette(event.target.value === 'shared-gray' ? 'shared-gray' : 'compatible')}
-          >
-            <option value="compatible">Compatible</option>
-            <option value="shared-gray">Shared grey ramp</option>
-          </select>
-        </label>
         <label>
           Theme
           <select
@@ -33,7 +21,6 @@ export function PaletteComparison() {
       <div
         className="ink palette-comparison__stage"
         data-cui-theme={theme}
-        data-cui-palette={palette}
       >
         <Page>
           <span className="m-title">Export</span>

@@ -1,9 +1,33 @@
 import withSolid from "rollup-preset-solid";
 import ts from "typescript";
 import path from "node:path";
-import { mkdirSync, writeFileSync } from "node:fs";
+import { mkdirSync, writeFileSync, rmSync } from "node:fs";
 
-const entries = ["src/index.tsx", "src/tokens.ts", "src/parts/dialog.tsx", "src/parts/popover.tsx", "src/parts/stack.tsx", "src/parts/text.tsx", "src/parts/switch.tsx", "src/parts/slider.tsx", "src/parts/progress.tsx", "src/parts/combobox.tsx", "src/parts/command-menu.tsx", "src/parts/kbd.tsx", "src/parts/badge.tsx", "src/parts/spinner.tsx", "src/parts/skeleton.tsx", "src/parts/alert.tsx", "src/parts/toast.tsx", "src/parts/option-card.tsx", "src/parts/accordion.tsx", "src/parts/sheet.tsx", "src/parts/settings.tsx"];
+const entries = [
+	"src/index.tsx",
+	"src/tokens.ts",
+	"src/parts/dialog.tsx",
+	"src/parts/popover.tsx",
+	"src/parts/stack.tsx",
+	"src/parts/text.tsx",
+	"src/parts/switch.tsx",
+	"src/parts/slider.tsx",
+	"src/parts/progress.tsx",
+	"src/parts/combobox.tsx",
+	"src/parts/command-menu.tsx",
+	"src/parts/kbd.tsx",
+	"src/parts/badge.tsx",
+	"src/parts/spinner.tsx",
+	"src/parts/skeleton.tsx",
+	"src/parts/alert.tsx",
+	"src/parts/toast.tsx",
+	"src/parts/option-card.tsx",
+	"src/parts/accordion.tsx",
+	"src/parts/sheet.tsx",
+	"src/parts/settings.tsx",
+];
+
+rmSync("dist", { recursive: true, force: true });
 
 function tsTypes() {
 	return {
@@ -43,6 +67,13 @@ function tsTypes() {
 						afterDeclarations: [
 							context => source => {
 								const visit = node => {
+									if (
+										ts.isImportDeclaration(node) &&
+										!node.importClause &&
+										ts.isStringLiteral(node.moduleSpecifier) &&
+										node.moduleSpecifier.text.endsWith(".css")
+									)
+										return undefined;
 									if (ts.isStringLiteral(node) && node.text.startsWith(".")) {
 										const resolved = ts.resolveModuleName(
 											node.text,
@@ -97,6 +128,7 @@ config.input = entries;
 
 config.external = [
 	...config.external,
+	/^@codeui\/styles(?:\/|$)/,
 	"solid-presence",
 	"solid-prevent-scroll",
 	/node_modules\/@kobalte/,
@@ -104,8 +136,6 @@ config.external = [
 	/node_modules\/@solid-primitives/,
 	/node_modules\/@corvu/,
 ];
-
-console.log(config);
 
 if (Array.isArray(config.plugins)) {
 	config.plugins = config.plugins.map(plugin => {

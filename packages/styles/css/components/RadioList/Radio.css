@@ -1,0 +1,133 @@
+@import "./radio-list-tokens.generated.css";
+
+@keyframes cui-radio-contentShow {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@layer cui.components {
+  .cui-radio-radioTheme {
+    --cui-radioTheme-inputColor: var(--cui-component-radio-list-radio-radio-theme-input-color);
+    --cui-radioTheme-inputBackground: var(--cui-component-radio-list-radio-radio-theme-input-background);
+    --cui-radioTheme-inputInvalidBackground: var(--cui-component-radio-list-radio-radio-theme-input-invalid-background);
+    --cui-radioTheme-inputText: var(--cui-component-radio-list-radio-radio-theme-input-text);
+    --cui-radioTheme-inputSize: ;
+    --cui-radioTheme-labelSize: ;
+    --cui-radioTheme-inputFill: transparent;
+  }
+  .cui-radio-radioList {
+    display: flex;
+    gap: var(--cui-space-4);
+    line-height: var(--cui-font-line-height-sm);
+    margin-top: var(--cui-space-1);
+  }
+  :where(.cui-radio-radioList) {
+    &[data-theme="filled"] {
+      --cui-radioTheme-inputColor: transparent;
+      --cui-radioTheme-inputFill: var(--cui-component-radio-list-radio-radio-list-theme-filled-input-fill);
+    }
+
+    &[data-orientation="horizontal"] {
+      flex-direction: row;
+    }
+
+    &[data-orientation="vertical"] {
+      flex-direction: column;
+    }
+
+    &[data-size="xs"] {
+      --cui-radioTheme-inputSize: 1rem;
+      --cui-radioTheme-labelSize: var(--cui-component-radio-list-radio-radio-list-size-xs-label-size);
+    }
+
+    &[data-size="sm"] {
+      --cui-radioTheme-inputSize: 1rem;
+      --cui-radioTheme-labelSize: var(--cui-component-radio-list-radio-radio-list-size-sm-label-size);
+    }
+
+    &[data-size="md"] {
+      --cui-radioTheme-inputSize: 1.25rem;
+      --cui-radioTheme-labelSize: var(--cui-component-radio-list-radio-radio-list-size-md-label-size);
+    }
+
+    &[data-size="lg"] {
+      --cui-radioTheme-inputSize: 1.5rem;
+      --cui-radioTheme-labelSize: var(--cui-component-radio-list-radio-radio-list-size-lg-label-size);
+    }
+
+    &[data-size="xl"] {
+      --cui-radioTheme-inputSize: 1.5rem;
+      --cui-radioTheme-labelSize: var(--cui-component-radio-list-radio-radio-list-size-xl-label-size);
+    }
+  }
+  .cui-radio-radioItem {
+    display: flex;
+    align-items: center;
+    gap: var(--cui-space-3);
+    font-size: var(--cui-radioTheme-labelSize);
+    line-height: var(--cui-font-line-height-sm);
+  }
+  .cui-radio-radio {
+    width: var(--cui-radioTheme-inputSize);
+    height: var(--cui-radioTheme-inputSize);
+    position: relative;
+    display: block;
+    flex-shrink: 0;
+    border-radius: var(--cui-radius-full);
+    transition: background-color var(--cui-motion-duration-fast) var(--cui-motion-ease-out);
+    background: var(--cui-radioTheme-inputFill);
+    color: var(--cui-radioTheme-inputText);
+  }
+  .cui-radio-radio:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    border: var(--cui-border-width) solid var(--cui-radioTheme-inputColor);
+    pointer-events: none;
+    color: transparent;
+  }
+  .cui-radio-radio:hover {
+    background: var(--cui-surface-input);
+  }
+  .cui-radio-radio {
+    &[data-checked]:after {
+      transform: scale(1);
+      border-color: var(--cui-radioTheme-inputBackground);
+    }
+
+    &[data-checked][data-invalid] {
+      --cui-radioTheme-inputBackground: var(--cui-radioTheme-inputInvalidBackground);
+    }
+
+    &[data-checked] {
+      background: var(--cui-radioTheme-inputBackground);
+    }
+  }
+  .cui-radio-indicator {
+    margin: 25%;
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    background-color: currentColor;
+    border-radius: var(--cui-radius-full);
+    animation: cui-radio-contentShow var(--cui-motion-duration-normal) var(--cui-motion-ease-out);
+  }
+  [data-cui="radio-list-item"]:has(input:focus-visible) .cui-radio-radio {
+    outline: var(--cui-focus-width) solid var(--cui-focus-color);
+    outline-offset: var(--cui-focus-offset);
+  }
+  @media (--cui-reduced-motion) {
+    .cui-radio-indicator {
+      animation: none;
+    }
+  }
+}

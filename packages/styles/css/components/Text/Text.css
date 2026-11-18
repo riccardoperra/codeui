@@ -1,0 +1,77 @@
+@import "./text-tokens.generated.css";
+
+@layer cui.components {
+  .cui-text-root {
+    font-family: var(--cui-font-family-sans);
+    line-height: var(--cui-font-line-height-normal);
+  }
+  :where(.cui-text-root) {
+    &[data-size="badge"] {
+      font-size: var(--cui-component-text-root-size-badge-font-size);
+    }
+
+    &[data-size="xs"] {
+      font-size: var(--cui-component-text-root-size-xs-font-size);
+    }
+
+    &[data-size="caption"] {
+      font-size: var(--cui-component-text-root-size-caption-font-size);
+    }
+
+    &[data-size="sm"] {
+      font-size: var(--cui-component-text-root-size-sm-font-size);
+    }
+
+    &[data-size="md"] {
+      font-size: var(--cui-component-text-root-size-md-font-size);
+    }
+
+    &[data-size="lg"] {
+      font-size: var(--cui-component-text-root-size-lg-font-size);
+    }
+
+    &[data-size="xl"] {
+      font-size: var(--cui-component-text-root-size-xl-font-size);
+    }
+
+    &[data-size="2xl"] {
+      font-size: var(--cui-component-text-root-size-2xl-font-size);
+    }
+
+    &[data-weight="normal"] {
+      font-weight: var(--cui-font-weight-normal);
+    }
+
+    &[data-weight="medium"] {
+      font-weight: var(--cui-font-weight-medium);
+    }
+
+    &[data-weight="semibold"] {
+      font-weight: var(--cui-font-weight-semibold);
+    }
+
+    &[data-tone="default"] {
+      color: var(--cui-component-text-root-tone-default-color);
+    }
+
+    &[data-tone="muted"] {
+      color: var(--cui-component-text-root-tone-muted-color);
+    }
+
+    &[data-tone="hint"] {
+      color: var(--cui-component-text-root-tone-hint-color);
+    }
+
+    &[data-tone="label"] {
+      color: var(--cui-component-text-root-tone-label-color);
+    }
+
+    &[data-tone="danger"] {
+      color: var(--cui-component-text-root-tone-danger-color);
+    }
+
+    &[data-tone="success"] {
+      color: color-mix(in srgb, var(--cui-action-success-active) 85%, var(--cui-text-panel));
+    }
+  }
+}

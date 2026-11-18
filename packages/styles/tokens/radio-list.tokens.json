@@ -1,0 +1,62 @@
+{
+  "component": {
+    "radio-list": {
+      "radio-radio-theme": {
+        "inputColor": {
+          "$type": "color",
+          "$value": "{text.hint}"
+        },
+        "inputBackground": {
+          "$type": "color",
+          "$value": "{action.brand.base}"
+        },
+        "inputInvalidBackground": {
+          "$type": "color",
+          "$value": "{action.danger.base}"
+        },
+        "inputText": {
+          "$type": "color",
+          "$value": "{action.brand.text}"
+        }
+      },
+      "radio-radio-list": {
+        "theme-filled": {
+          "inputFill": {
+            "$type": "color",
+            "$value": "{surface.input}"
+          }
+        },
+        "size-xs": {
+          "labelSize": {
+            "$type": "dimension",
+            "$value": "{font.size.xs}"
+          }
+        },
+        "size-sm": {
+          "labelSize": {
+            "$type": "dimension",
+            "$value": "{font.size.sm}"
+          }
+        },
+        "size-md": {
+          "labelSize": {
+            "$type": "dimension",
+            "$value": "{font.size.md}"
+          }
+        },
+        "size-lg": {
+          "labelSize": {
+            "$type": "dimension",
+            "$value": "{font.size.md}"
+          }
+        },
+        "size-xl": {
+          "labelSize": {
+            "$type": "dimension",
+            "$value": "{font.size.md}"
+          }
+        }
+      }
+    }
+  }
+}

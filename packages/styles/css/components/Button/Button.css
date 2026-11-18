@@ -1,0 +1,169 @@
+@import "./button-tokens.generated.css";
+
+@layer cui.components {
+  .cui-button-buttonTheme, .cui-button-button {
+    --cui-buttonTheme-buttonHeight: ;
+    --cui-buttonTheme-fontSize: ;
+    --cui-buttonTheme-background: ;
+    --cui-buttonTheme-hoverBackground: ;
+    --cui-buttonTheme-activeBackground: ;
+    --cui-buttonTheme-color: var(--cui-component-button-button-theme-color);
+    --cui-buttonTheme-borderColor: ;
+    --cui-buttonTheme-padding: ;
+    --cui-buttonTheme-borderRadius: var(--cui-component-button-button-theme-border-radius);
+  }
+  .cui-button-button:where([data-variant="ghost"][data-loading]) {
+    background: var(--cui-layout-layoutBackgroundColor, var(--cui-buttonTheme-background));
+
+    &:not(:hover) {
+      border-color: var(--cui-buttonTheme-borderColor);
+    }
+  }
+  .cui-button-button {
+    --cui-buttonTheme-borderColor: var(--cui-buttonTheme-background);
+    appearance: none;
+    font-family: inherit;
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    white-space: nowrap;
+    vertical-align: middle;
+    height: var(--cui-buttonTheme-buttonHeight);
+    color: var(--cui-buttonTheme-color);
+    background: var(--cui-buttonTheme-background);
+    border-radius: var(--cui-buttonTheme-borderRadius);
+    padding: 0 var(--cui-buttonTheme-padding);
+    font-weight: var(--cui-font-weight-medium);
+    font-size: var(--cui-buttonTheme-fontSize);
+    border: var(--cui-border-width) solid var(--cui-buttonTheme-borderColor);
+    transition: opacity var(--cui-motion-duration-fast) var(--cui-motion-ease-out), background-color var(--cui-motion-duration-fast) var(--cui-motion-ease-out), transform var(--cui-motion-duration-fast) var(--cui-motion-ease-out);
+    gap: var(--cui-space-2);
+
+    &:focus-visible {
+      outline: var(--cui-focus-width) solid var(--cui-focus-color);
+      outline-offset: var(--cui-focus-offset);
+    }
+  }
+  .cui-button-button:not(:is([data-disabled], :disabled)):hover {
+    background: var(--cui-buttonTheme-hoverBackground);
+  }
+  .cui-button-button:not(:is([data-disabled], :disabled)):active {
+    background: var(--cui-buttonTheme-activeBackground);
+    animation: none;
+    transform: scale(0.97);
+  }
+  .cui-button-button[data-disabled] {
+    --cui-buttonTheme-background: var(--cui-component-button-button-disabled-background);
+    --cui-buttonTheme-color: var(--cui-component-button-button-disabled-color);
+    opacity: 0.5;
+  }
+  :where(.cui-button-button) {
+    &[data-size="xl"] {
+      --cui-buttonTheme-buttonHeight: var(--cui-component-button-size-xl-button-height);
+      --cui-buttonTheme-fontSize: var(--cui-component-button-size-xl-font-size);
+      --cui-buttonTheme-padding: var(--cui-component-button-size-xl-padding);
+      --cui-buttonTheme-borderRadius: var(--cui-component-button-size-xl-border-radius);
+    }
+
+    &[data-size="lg"] {
+      --cui-buttonTheme-buttonHeight: var(--cui-component-button-size-lg-button-height);
+      --cui-buttonTheme-fontSize: var(--cui-component-button-size-lg-font-size);
+      --cui-buttonTheme-padding: var(--cui-component-button-size-lg-padding);
+      --cui-buttonTheme-borderRadius: var(--cui-component-button-size-lg-border-radius);
+    }
+
+    &[data-size="md"] {
+      --cui-buttonTheme-buttonHeight: var(--cui-component-button-size-md-button-height);
+      --cui-buttonTheme-fontSize: var(--cui-component-button-size-md-font-size);
+      --cui-buttonTheme-padding: var(--cui-component-button-size-md-padding);
+      --cui-buttonTheme-borderRadius: var(--cui-component-button-size-md-border-radius);
+    }
+
+    &[data-size="sm"] {
+      --cui-buttonTheme-buttonHeight: var(--cui-component-button-size-sm-button-height);
+      --cui-buttonTheme-fontSize: var(--cui-component-button-size-sm-font-size);
+      --cui-buttonTheme-padding: var(--cui-component-button-size-sm-padding);
+      --cui-buttonTheme-borderRadius: var(--cui-component-button-size-sm-border-radius);
+    }
+
+    &[data-size="xs"] {
+      --cui-buttonTheme-buttonHeight: var(--cui-component-button-size-xs-button-height);
+      --cui-buttonTheme-fontSize: var(--cui-component-button-size-xs-font-size);
+      --cui-buttonTheme-padding: var(--cui-component-button-size-xs-padding);
+      --cui-buttonTheme-borderRadius: var(--cui-component-button-size-xs-border-radius);
+    }
+
+    &[data-theme="primary"] {
+      --cui-buttonTheme-background: var(--cui-component-button-theme-primary-background);
+      --cui-buttonTheme-hoverBackground: var(--cui-component-button-theme-primary-hover-background);
+      --cui-buttonTheme-activeBackground: var(--cui-component-button-theme-primary-active-background);
+      --cui-buttonTheme-color: var(--cui-component-button-theme-primary-color);
+    }
+
+    &[data-theme="tertiary"] {
+      --cui-buttonTheme-background: var(--cui-component-button-theme-tertiary-background);
+      --cui-buttonTheme-hoverBackground: var(--cui-component-button-theme-tertiary-hover-background);
+      --cui-buttonTheme-activeBackground: var(--cui-component-button-theme-tertiary-active-background);
+      --cui-buttonTheme-color: var(--cui-component-button-theme-tertiary-color);
+    }
+
+    &[data-theme="secondary"] {
+      --cui-buttonTheme-background: var(--cui-component-button-theme-secondary-background);
+      --cui-buttonTheme-hoverBackground: var(--cui-component-button-theme-secondary-hover-background);
+      --cui-buttonTheme-activeBackground: var(--cui-component-button-theme-secondary-active-background);
+      --cui-buttonTheme-color: var(--cui-component-button-theme-secondary-color);
+      --cui-buttonTheme-borderColor: var(--cui-component-button-theme-secondary-border-color);
+    }
+
+    &[data-theme="negative"] {
+      --cui-buttonTheme-background: var(--cui-component-button-theme-negative-background);
+      --cui-buttonTheme-hoverBackground: var(--cui-component-button-theme-negative-hover-background);
+      --cui-buttonTheme-activeBackground: var(--cui-component-button-theme-negative-active-background);
+      --cui-buttonTheme-color: var(--cui-component-button-theme-negative-color);
+    }
+
+    &[data-theme="caution"] {
+      --cui-buttonTheme-background: var(--cui-component-button-theme-caution-background);
+      --cui-buttonTheme-hoverBackground: var(--cui-component-button-theme-caution-hover-background);
+      --cui-buttonTheme-activeBackground: var(--cui-component-button-theme-caution-active-background);
+      --cui-buttonTheme-color: var(--cui-component-button-theme-caution-color);
+    }
+
+    &[data-variant="ghost"] {
+      background: transparent;
+    }
+
+    &[data-variant="ghost"]:not(:hover) {
+      border-color: transparent;
+      color: var(--cui-component-button-button-variant-ghost-hover-color);
+    }
+
+    &[data-block] {
+      width: 100%;
+      flex: 1;
+    }
+
+    &[data-pill] {
+      --cui-buttonTheme-borderRadius: var(--cui-component-button-button-pill-true-border-radius);
+    }
+
+    &[data-loading] {
+      pointer-events: none;
+      overflow: hidden;
+    }
+  }
+  .cui-button-buttonIcon {
+    display: inline-flex;
+    align-self: center;
+    flex-shrink: 0;
+  }
+  .cui-button-buttonText {
+    transition: opacity var(--cui-motion-duration-fast) var(--cui-motion-ease-out);
+    display: contents;
+  }
+  [data-loading] .cui-button-buttonText {
+    opacity: 0;
+  }
+}

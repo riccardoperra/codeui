@@ -1,0 +1,79 @@
+@import "./alert-tokens.generated.css";
+
+@layer cui.components {
+  .cui-alert-root {
+    display: inline-grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: start;
+    box-sizing: border-box;
+    max-width: 100%;
+    padding: var(--cui-space-3);
+    border-radius: var(--cui-radius-sm);
+    font-family: var(--cui-font-family-sans);
+    font-size: var(--cui-font-size-caption);
+    line-height: var(--cui-font-line-height-normal);
+  }
+  :where(.cui-alert-root) {
+    &[data-tone="neutral"] {
+      background: var(--cui-component-alert-root-tone-neutral-background);
+      color: var(--cui-component-alert-root-tone-neutral-color);
+    }
+
+    &[data-tone="info"] {
+      background: var(--cui-component-alert-root-tone-info-background);
+      color: var(--cui-component-alert-root-tone-info-color);
+    }
+
+    &[data-tone="success"] {
+      background: var(--cui-component-alert-root-tone-success-background);
+      color: var(--cui-component-alert-root-tone-success-color);
+    }
+
+    &[data-tone="warning"] {
+      background: var(--cui-component-alert-root-tone-warning-background);
+      color: var(--cui-component-alert-root-tone-warning-color);
+    }
+
+    &[data-tone="danger"] {
+      background: var(--cui-component-alert-root-tone-danger-background);
+      color: var(--cui-component-alert-root-tone-danger-color);
+    }
+
+    &[data-fluid] {
+      display: grid;
+      width: 100%;
+    }
+  }
+  .cui-alert-icon {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    display: inline-flex;
+    height: calc(var(--cui-font-size-caption) * var(--cui-font-line-height-normal));
+    align-items: center;
+    margin-inline-end: var(--cui-space-2);
+  }
+  .cui-alert-icon > svg {
+    width: var(--cui-font-size-md);
+    height: var(--cui-font-size-md);
+  }
+  .cui-alert-title {
+    grid-column: 2;
+    font-weight: var(--cui-font-weight-semibold);
+  }
+  .cui-alert-description {
+    grid-column: 2;
+    min-width: 0;
+  }
+  :not(:has(> .cui-alert-title)) > .cui-alert-description {
+    grid-row: 1 / span 2;
+    align-self: center;
+  }
+  .cui-alert-action {
+    grid-column: 3;
+    grid-row: 1 / span 2;
+    align-self: center;
+    display: flex;
+    gap: var(--cui-space-2);
+    margin-inline-start: var(--cui-space-2);
+  }
+}

@@ -1,5 +1,3 @@
-# repository root netlify.toml
 [build]
-base = "/"
-publish = "packages/storybook/storybook-static"
-command = "pnpm --filter=@codeui/storybook-playground build"
+# Skip Git-triggered builds while the legacy Netlify project is linked.
+ignore = "exit 0"

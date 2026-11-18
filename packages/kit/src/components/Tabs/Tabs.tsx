@@ -1,3 +1,5 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/tabs.css";
 import {
 	Tabs as KTabs,
 	TabsContentProps as KTabsContentProps,

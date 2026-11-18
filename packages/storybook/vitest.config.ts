@@ -24,16 +24,10 @@ export default defineConfig({
 				optimizeDeps: {
 					include: [
 						"@codeui/kit > @tanstack/solid-virtual",
-						"@vanilla-extract/css/fileScope",
-						"@vanilla-extract/css",
-						"@codeui/kit > @vanilla-extract/dynamic",
-						"@codeui/kit > @kobalte/vanilla-extract",
 						"@codeui/kit > @maskito/kit",
 						"@codeui/kit > @solid-primitives/pagination",
 						"@codeui/kit > @solid-primitives/scheduled",
-						"@codeui/kit > @vanilla-extract/recipes",
 						"@codeui/kit > @maskito/core",
-						"@codeui/kit > @radix-ui/colors",
 					],
 				},
 				plugins: [

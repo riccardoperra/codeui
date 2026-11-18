@@ -1,3 +1,3 @@
-import { renderToString } from "solid-js/web";
+import { generateHydrationScript, renderToString } from "solid-js/web";
 import App from "./App";
-console.log(renderToString(() => <App />));
+console.log(generateHydrationScript() + renderToString(() => <App />));

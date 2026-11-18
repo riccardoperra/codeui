@@ -39,6 +39,7 @@ function ExportFormatField(props: ExportFormatFieldProps) {
 			<label {...labelProps}>{props.label}</label>
 			<select
 				id={field.ids.input()}
+				{...field.attributes}
 				class={`${field.baseStyle()} ${textFieldStyles.textField}`}
 				value={props.value}
 				data-invalid={props.errorMessage ? "" : undefined}

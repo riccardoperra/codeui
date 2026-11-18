@@ -1,3 +1,5 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/option-card.css";
 import {
 	type Accessor,
 	createContext,

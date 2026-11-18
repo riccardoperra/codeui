@@ -1,11 +1,7 @@
 import { defineConfig } from "vitest/config";
 import solid from "vite-plugin-solid";
-import { vanillaExtractPlugin } from "@vanilla-extract/vite-plugin";
 
-const plugins = () => [
-	solid({ solid: { hydratable: true } }),
-	vanillaExtractPlugin({ unstable_mode: "transform" }),
-];
+const plugins = () => [solid({ solid: { hydratable: true } })];
 
 export default defineConfig({
 	test: {
@@ -13,14 +9,7 @@ export default defineConfig({
 			{
 				plugins: plugins(),
 				optimizeDeps: {
-					include: [
-						"solid-testing-library",
-						"@vanilla-extract/css/fileScope",
-						"@kobalte/vanilla-extract",
-						"@vanilla-extract/css",
-						"@vanilla-extract/recipes",
-						"@radix-ui/colors",
-					],
+					include: ["solid-testing-library"],
 				},
 				test: {
 					name: "browser",
@@ -37,10 +26,7 @@ export default defineConfig({
 				},
 			},
 			{
-				plugins: [
-					solid({ ssr: true, solid: { hydratable: true } }),
-					vanillaExtractPlugin({ unstable_mode: "transform" }),
-				],
+				plugins: [solid({ ssr: true, solid: { hydratable: true } })],
 				resolve: { conditions: ["solid", "node"] },
 				ssr: {
 					resolve: { conditions: ["solid", "node"] },
@@ -62,14 +48,7 @@ export default defineConfig({
 			{
 				plugins: plugins(),
 				optimizeDeps: {
-					include: [
-						"solid-testing-library",
-						"@vanilla-extract/css/fileScope",
-						"@kobalte/vanilla-extract",
-						"@vanilla-extract/css",
-						"@vanilla-extract/recipes",
-						"@radix-ui/colors",
-					],
+					include: ["solid-testing-library"],
 				},
 				test: {
 					name: "hydration",

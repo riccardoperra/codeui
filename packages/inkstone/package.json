@@ -1,0 +1,65 @@
+{
+	"name": "@codeui/inkstone",
+	"version": "0.1.0",
+	"description": "Inkstone design tokens and standalone CSS theme",
+	"license": "MIT",
+	"type": "module",
+	"sideEffects": [
+		"**/*.css"
+	],
+	"files": [
+		"dist",
+		"tokens",
+		"README.md"
+	],
+	"main": "./dist/cjs/index.cjs",
+	"module": "./dist/esm/index.js",
+	"types": "./dist/types/index.d.ts",
+	"exports": {
+		".": {
+			"import": {
+				"types": "./dist/types/index.d.ts",
+				"default": "./dist/esm/index.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/index.d.cts",
+				"default": "./dist/cjs/index.cjs"
+			}
+		},
+		"./derived": {
+			"import": {
+				"types": "./dist/types/derived.d.ts",
+				"default": "./dist/esm/derived.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/derived.d.cts",
+				"default": "./dist/cjs/derived.cjs"
+			}
+		},
+		"./theme.css": "./dist/theme.css",
+		"./layers.css": "./dist/layers.css",
+		"./custom-media.css": "./dist/custom-media.css",
+		"./light.json": "./dist/light.json",
+		"./dark.json": "./dist/dark.json",
+		"./resolver.json": "./tokens/inkstone.resolver.json",
+		"./package.json": "./package.json"
+	},
+	"typesVersions": {
+		"*": {
+			"derived": [
+				"./dist/types/derived.d.ts"
+			]
+		}
+	},
+	"scripts": {
+		"build": "node scripts/build.mjs",
+		"typecheck": "tsc --noEmit",
+		"test": "node scripts/check.mjs"
+	},
+	"devDependencies": {
+		"@toghen/lib": "0.1.1",
+		"gosfuig": "0.2.1",
+		"tsdown": "0.23.7",
+		"typescript": "^5.6.2"
+	}
+}

@@ -92,7 +92,11 @@ It also sets `aria-busy="true"` and `aria-disabled="true"`, and it ignores click
 
 <PropsTable name="Button" />
 
-`ButtonProps` is exported from `@codeui/kit`. The root also exports `buttonStyles`, whose `button` recipe accepts the same visual variants. `buttonIcon` and `buttonText` are class names. `buttonTheme` and `buttonVars` expose the local theme contract. These styles alone add no semantics or event behavior.
+`ButtonProps` and `buttonStyles` are exported from `@codeui/kit`. `buttonStyles.button()` returns the base classes. `buttonIcon` and `buttonText` are class names. `buttonTheme` and `buttonVars` expose the local theme contract.
+
+In CSS-only markup, combine the `cui-button-button` class with attributes such as `data-size="md"`, `data-theme="primary"`, and `data-variant="ghost"`. Use `data-loading`, `data-pill`, and `data-block` as presence attributes.
+
+For custom JSX, import `buttonStyleProps` from `@codeui/styles/button`. Call `buttonStyleProps({ theme: "primary", class: "checkout" })` to get the base and custom classes, the part marker, and the variant attributes. It supplies `data-size="md"` by default. The caller manages loading and activation behavior.
 
 Inherited from Kobalte's [button contract](https://kobalte.dev/docs/core/components/button):
 

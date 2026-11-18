@@ -55,15 +55,16 @@ export function Switch(props: SwitchProps) {
 		},
 	});
 	const field = createSwitchProps(() => resolved);
+	const size = () => props.size ?? "md";
 	return (
 		<P.Root
 			{...field.root()}
 			class={mergeClasses(props.class, props.classes?.root)}
-			size={props.size ?? "md"}
+			size={size()}
 		>
 			<P.Input {...field.input()} />
-			<P.Control class={props.classes?.control} size={props.size ?? "md"}>
-				<P.Thumb class={props.classes?.thumb} size={props.size ?? "md"} />
+			<P.Control class={props.classes?.control} size={size()}>
+				<P.Thumb class={props.classes?.thumb} size={size()} />
 			</P.Control>
 			<Show when={label()}>
 				<P.Label {...field.label()}>{label()}</P.Label>

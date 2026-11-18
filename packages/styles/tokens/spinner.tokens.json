@@ -1,0 +1,38 @@
+{
+  "component": {
+    "spinner": {
+      "root": {
+        "size-sm": {
+          "width": {
+            "$type": "dimension",
+            "$value": "{space.3}"
+          },
+          "height": {
+            "$type": "dimension",
+            "$value": "{space.3}"
+          }
+        },
+        "size-md": {
+          "width": {
+            "$type": "dimension",
+            "$value": "{space.4}"
+          },
+          "height": {
+            "$type": "dimension",
+            "$value": "{space.4}"
+          }
+        },
+        "size-lg": {
+          "width": {
+            "$type": "dimension",
+            "$value": "{space.6}"
+          },
+          "height": {
+            "$type": "dimension",
+            "$value": "{space.6}"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "component": {
+    "combobox": {
+      "control": {
+        "size-sm": {
+          "height": {
+            "$type": "dimension",
+            "$value": "{control.height.compact}"
+          },
+          "font-size": {
+            "$type": "dimension",
+            "$value": "{font.size.caption}"
+          }
+        }
+      }
+    }
+  }
+}

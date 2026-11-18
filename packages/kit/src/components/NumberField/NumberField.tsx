@@ -1,3 +1,5 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/number-field.css";
 import { createUniqueId } from "solid-js";
 import { INPUT_KEYS, FieldInputProps, FieldClasses } from "../Field/inputProps";
 import {
@@ -23,7 +25,8 @@ import {
 import { SlotProp } from "../../utils/component";
 import { mergeClasses } from "../../utils/css";
 import { createMaskito } from "../../utils/maskito";
-import { BaseFieldProps, createBaseFieldProps } from "../Field/createBaseFieldProps";
+import type { BaseFieldProps } from "../Field/createBaseFieldProps";
+import { baseFieldVariants } from "../Field/Field.css";
 import {
 	createFieldErrorMessageProps,
 	FieldWithErrorMessageSupport,
@@ -103,12 +106,11 @@ export function NumberField(props: NumberFieldProps) {
 	let internalRef: HTMLInputElement;
 
 	const optionsWithDefault = mergeProps(defaultOptions, options);
-	const baseFieldProps = createBaseFieldProps(props);
 	const errorMessageProps = createFieldErrorMessageProps(props);
 
 	const inputClasses = () =>
 		mergeClasses(
-			baseFieldProps.baseStyle(),
+			baseFieldVariants(),
 			styles.textField,
 			local.slotClasses?.input,
 			local.classes?.input,
@@ -290,6 +292,8 @@ export function NumberField(props: NumberFieldProps) {
 					{...inputProps}
 					id={inputId()}
 					data-cui="text-field-input"
+					data-size={local.size ?? "md"}
+					data-theme={local.theme ?? "filled"}
 					class={inputClasses()}
 					placeholder={local.placeholder}
 					ref={mergeRefs(local.ref, el => (internalRef = el))}

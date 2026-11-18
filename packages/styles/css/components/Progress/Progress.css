@@ -1,0 +1,52 @@
+@import "./progress-tokens.generated.css";
+
+@keyframes cui-progress-pulse {
+  from {
+    opacity: 0.45;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@layer cui.components {
+  .cui-progress-root {
+    display: grid;
+    gap: var(--cui-space-2);
+    color: var(--cui-text-default);
+    font-size: var(--cui-font-size-caption);
+  }
+  .cui-progress-label {
+    color: var(--cui-text-label);
+  }
+  .cui-progress-valueLabel {
+    color: var(--cui-text-hint);
+    font-variant-numeric: tabular-nums;
+  }
+  .cui-progress-track {
+    height: var(--cui-space-1);
+    border-radius: var(--cui-radius-full);
+    background: var(--cui-surface-input-accent);
+    overflow: hidden;
+  }
+  [data-size="md"] .cui-progress-track {
+    height: var(--cui-component-progress-track-size-md-height);
+  }
+  :where(.cui-progress-track)[data-size="md"] {
+    height: var(--cui-component-progress-track-size-md-height);
+  }
+  .cui-progress-fill {
+    height: 100%;
+    width: var(--cui-progress-fill-width);
+    background: var(--cui-action-brand-base);
+    border-radius: var(--cui-radius-full);
+  }
+  .cui-progress-fill[data-indeterminate] {
+    width: 100%;
+    animation: cui-progress-pulse calc(var(--cui-motion-duration-slow) * 4) var(--cui-motion-ease-out) infinite alternate;
+  }
+  @media (--cui-reduced-motion) {
+    .cui-progress-fill[data-indeterminate] {
+      animation: none;
+    }
+  }
+}

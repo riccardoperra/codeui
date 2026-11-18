@@ -1,7 +1,10 @@
-export function mergeClasses(...classNames: Array<string | null | undefined>) {
-	return classNames.filter(Boolean).join(" ");
-}
+export { mergeClasses, toPx } from "@codeui/styles/internal/utils/css";
 
-export function toPx(value: number) {
-	return `${value}px`;
+export function assignInlineVars(vars: Record<string, string>) {
+	return Object.fromEntries(
+		Object.entries(vars).map(([variable, value]) => [
+			variable.replace(/^var\((--[^)]+)\)$/, "$1"),
+			value,
+		]),
+	);
 }

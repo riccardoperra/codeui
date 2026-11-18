@@ -1,3 +1,5 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/segmented-control.css";
 import { onCleanup, onMount, splitProps, ValidComponent } from "solid-js";
 import { mergeClasses } from "../../utils/css";
 import * as styles from "./SegmentedControl.css";

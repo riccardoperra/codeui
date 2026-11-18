@@ -1,26 +1,11 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/spinner.css";
 import { type JSX, splitProps } from "solid-js";
 import * as styles from "../components/Spinner/Spinner.css";
 import { mergeClasses } from "../utils/css";
 
-export const spinnerParts = {
-	root: "spinner-root",
-	track: "spinner-track",
-	indicator: "spinner-indicator",
-} as const;
-
-export type SpinnerPart = keyof typeof spinnerParts;
-export type SpinnerClasses = Partial<Record<SpinnerPart, string>>;
-export type SpinnerSize = "sm" | "md" | "lg";
-export type SpinnerVariants = { size?: SpinnerSize };
-
-export type SpinnerStyles = { [P in SpinnerPart]: (variants?: SpinnerVariants) => string };
-
-export const spinnerStyles: SpinnerStyles = {
-	root: variants => styles.root({ size: variants?.size }),
-	track: () => styles.track,
-	indicator: () => styles.indicator,
-};
-
+import { spinnerParts, type SpinnerPart, type SpinnerClasses, type SpinnerSize, type SpinnerVariants, type SpinnerStyles, spinnerStyles } from "@codeui/styles/spinner";
+export { spinnerParts, type SpinnerPart, type SpinnerClasses, type SpinnerSize, type SpinnerVariants, type SpinnerStyles, spinnerStyles } from "@codeui/styles/spinner";
 export type RootProps = JSX.SvgSVGAttributes<SVGSVGElement> & SpinnerVariants;
 
 /** The 24×24 viewBox that Track and Indicator draw in. */
@@ -32,7 +17,7 @@ export function Root(props: RootProps) {
 			fill="none"
 			data-cui={spinnerParts.root}
 			data-size={local.size ?? "md"}
-			class={mergeClasses(spinnerStyles.root({ size: local.size }), local.class)}
+			class={mergeClasses(styles.root(), local.class)}
 			{...others}
 		/>
 	);

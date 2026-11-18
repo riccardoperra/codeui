@@ -1,0 +1,228 @@
+{
+  "component": {
+    "button": {
+      "size": {
+        "xl": {
+          "buttonHeight": {
+            "$type": "dimension",
+            "$value": "{control.height.xl}"
+          },
+          "fontSize": {
+            "$type": "dimension",
+            "$value": "{font.size.xl}"
+          },
+          "padding": {
+            "$type": "dimension",
+            "$value": "{space.6}"
+          },
+          "borderRadius": {
+            "$type": "dimension",
+            "$value": "{radius.xl}"
+          }
+        },
+        "lg": {
+          "buttonHeight": {
+            "$type": "dimension",
+            "$value": "{control.height.lg}"
+          },
+          "fontSize": {
+            "$type": "dimension",
+            "$value": "{font.size.lg}"
+          },
+          "padding": {
+            "$type": "dimension",
+            "$value": "{space.5}"
+          },
+          "borderRadius": {
+            "$type": "dimension",
+            "$value": "{radius.lg}"
+          }
+        },
+        "md": {
+          "buttonHeight": {
+            "$type": "dimension",
+            "$value": "{control.height.md}"
+          },
+          "fontSize": {
+            "$type": "dimension",
+            "$value": "{font.size.md}"
+          },
+          "padding": {
+            "$type": "dimension",
+            "$value": "{space.5}"
+          },
+          "borderRadius": {
+            "$type": "dimension",
+            "$value": "{radius.md}"
+          }
+        },
+        "sm": {
+          "buttonHeight": {
+            "$type": "dimension",
+            "$value": "{control.height.sm}"
+          },
+          "fontSize": {
+            "$type": "dimension",
+            "$value": "{font.size.sm}"
+          },
+          "padding": {
+            "$type": "dimension",
+            "$value": "{space.4}"
+          },
+          "borderRadius": {
+            "$type": "dimension",
+            "$value": "{radius.sm}"
+          }
+        },
+        "xs": {
+          "buttonHeight": {
+            "$type": "dimension",
+            "$value": "{control.height.xs}"
+          },
+          "fontSize": {
+            "$type": "dimension",
+            "$value": "{font.size.xs}"
+          },
+          "padding": {
+            "$type": "dimension",
+            "$value": "{space.2}"
+          },
+          "borderRadius": {
+            "$type": "dimension",
+            "$value": "{radius.xs}"
+          }
+        }
+      },
+      "theme": {
+        "primary": {
+          "background": {
+            "$type": "color",
+            "$value": "{action.brand.base}"
+          },
+          "hoverBackground": {
+            "$type": "color",
+            "$value": "{action.brand.hover}"
+          },
+          "activeBackground": {
+            "$type": "color",
+            "$value": "{action.brand.active}"
+          },
+          "color": {
+            "$type": "color",
+            "$value": "{action.brand.text}"
+          }
+        },
+        "tertiary": {
+          "background": {
+            "$type": "color",
+            "$value": "{action.brandSoft.base}"
+          },
+          "hoverBackground": {
+            "$type": "color",
+            "$value": "{action.brandSoft.hover}"
+          },
+          "activeBackground": {
+            "$type": "color",
+            "$value": "{action.brandSoft.active}"
+          },
+          "color": {
+            "$type": "color",
+            "$value": "{action.brandSoft.text}"
+          }
+        },
+        "secondary": {
+          "background": {
+            "$type": "color",
+            "$value": "{action.neutral.base}"
+          },
+          "hoverBackground": {
+            "$type": "color",
+            "$value": "{action.neutral.hover}"
+          },
+          "activeBackground": {
+            "$type": "color",
+            "$value": "{action.neutral.active}"
+          },
+          "color": {
+            "$type": "color",
+            "$value": "{action.neutral.text}"
+          },
+          "borderColor": {
+            "$type": "color",
+            "$value": "{action.neutral.base}"
+          }
+        },
+        "negative": {
+          "background": {
+            "$type": "color",
+            "$value": "{action.danger.base}"
+          },
+          "hoverBackground": {
+            "$type": "color",
+            "$value": "{action.danger.hover}"
+          },
+          "activeBackground": {
+            "$type": "color",
+            "$value": "{action.danger.active}"
+          },
+          "color": {
+            "$type": "color",
+            "$value": "{action.danger.text}"
+          }
+        },
+        "caution": {
+          "background": {
+            "$type": "color",
+            "$value": "{action.caution.base}"
+          },
+          "hoverBackground": {
+            "$type": "color",
+            "$value": "{action.caution.hover}"
+          },
+          "activeBackground": {
+            "$type": "color",
+            "$value": "{action.caution.active}"
+          },
+          "color": {
+            "$type": "color",
+            "$value": "{action.caution.text}"
+          }
+        }
+      },
+      "button-theme": {
+        "color": {
+          "$type": "color",
+          "$value": "{action.neutral.text}"
+        },
+        "borderRadius": {
+          "$type": "dimension",
+          "$value": "{radius.md}"
+        }
+      },
+      "button": {
+        "disabled": {
+          "background": {
+            "$type": "color",
+            "$value": "{action.neutral.base}"
+          },
+          "color": {
+            "$type": "color",
+            "$value": "{action.neutral.text}"
+          }
+        },
+        "variant-ghost-hover": {
+          "color": {
+            "$type": "color",
+            "$value": "{text.default}"
+          }
+        },
+        "pill-true": {
+          "borderRadius": {
+            "$type": "dimension",
+            "$value": "{radius.full}"
+          }
+        }
+      }
+    }
+  }
+}

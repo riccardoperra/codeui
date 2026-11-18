@@ -1,3 +1,5 @@
+import "@codeui/styles/theme.css";
+import "@codeui/styles/segmented-control.css";
 import { mergeRefs } from "@kobalte/utils";
 import { releaseEscape } from "../../utils/escape";
 import { Tabs, TabsRootProps } from "@kobalte/core/tabs";
@@ -71,13 +73,7 @@ export function SegmentedControl(props: PolymorphicProps<"div", SegmentedControl
 			local.slotClasses?.root,
 			local.classes?.root,
 			local.class,
-			styles.segmentedControlWrapper({
-				theme: local.theme ?? "neutral",
-				size: local.size ?? "md",
-				variant: local.variant ?? "solid",
-				fluid: local.fluid,
-				pill: local.pill,
-			}),
+			styles.segmentedControlWrapper(),
 		);
 
 	const contextState = {
@@ -111,7 +107,12 @@ export function SegmentedControl(props: PolymorphicProps<"div", SegmentedControl
 		<SegmentedControlContext.Provider value={contextState}>
 			<Tabs
 				ref={mergeRefs(local.ref, el => (rootRef = el))}
-				data-cui={"segmentedControl"}
+				data-cui="segmentedControl"
+				data-theme={local.theme ?? "neutral"}
+				data-size={local.size ?? "md"}
+				data-variant={local.variant ?? "solid"}
+				data-fluid={local.fluid || undefined}
+				data-pill={local.pill || undefined}
 				data-disabled={disabled()}
 				data-autoWidth={autoWidth()}
 				activationMode={"manual"}

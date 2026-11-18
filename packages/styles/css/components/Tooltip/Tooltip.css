@@ -1,0 +1,56 @@
+@import "./tooltip-tokens.generated.css";
+
+@layer cui.components {
+  .cui-tooltip-tooltipTheme {
+    --cui-tooltipTheme-fontSize: var(--cui-component-tooltip-tooltip-theme-font-size);
+    --cui-tooltipTheme-lineHeight: var(--cui-component-tooltip-tooltip-theme-line-height);
+    --cui-tooltipTheme-backgroundColor: var(--cui-component-tooltip-tooltip-theme-background-color);
+    --cui-tooltipTheme-color: var(--cui-component-tooltip-tooltip-theme-color);
+    --cui-tooltipTheme-padding: var(--cui-space-2) var(--cui-space-4);
+    --cui-tooltipTheme-borderRadius: var(--cui-component-tooltip-tooltip-theme-border-radius);
+    --cui-tooltipTheme-zIndex: 50;
+  }
+  .cui-tooltip-tooltipContent {
+    margin: 0;
+    width: auto;
+    z-index: var(--cui-tooltipTheme-zIndex);
+    font-size: var(--cui-tooltipTheme-fontSize);
+    line-height: var(--cui-tooltipTheme-lineHeight);
+    padding: var(--cui-tooltipTheme-padding);
+    border-radius: var(--cui-tooltipTheme-borderRadius);
+    color: var(--cui-tooltipTheme-color);
+    background-color: var(--cui-tooltipTheme-backgroundColor);
+    box-shadow: var(--cui-shadow-md);
+    transform-origin: var(--cui-popper-content-transform-origin);
+    animation: cui-motion-popOut var(--cui-motion-duration-fast) var(--cui-motion-ease-out) forwards;
+  }
+  .cui-tooltip-tooltipContent[data-expanded] {
+    animation: cui-motion-popIn var(--cui-motion-duration-normal) var(--cui-motion-ease-out);
+  }
+  .cui-tooltip-tooltipContent[data-motion=none], .cui-tooltip-tooltipContent[data-motion=none][data-expanded] {
+    animation: none;
+  }
+  :where(.cui-tooltip-tooltipContent) {
+    &[data-theme="primary"] {
+      --cui-tooltipTheme-color: var(--cui-component-tooltip-tooltip-content-theme-primary-color);
+      --cui-tooltipTheme-backgroundColor: var(--cui-component-tooltip-tooltip-content-theme-primary-background-color);
+    }
+
+    &[data-theme="secondary"] {
+      --cui-tooltipTheme-color: var(--cui-component-tooltip-tooltip-content-theme-secondary-color);
+      --cui-tooltipTheme-backgroundColor: var(--cui-component-tooltip-tooltip-content-theme-secondary-background-color);
+    }
+  }
+  .cui-tooltip-trigger {
+    display: inline-block;
+    appearance: none;
+  }
+  @media (--cui-reduced-motion) {
+    .cui-tooltip-tooltipContent {
+      animation-name: cui-motion-fadeOut;
+    }
+    .cui-tooltip-tooltipContent[data-expanded] {
+      animation-name: cui-motion-fadeIn;
+    }
+  }
+}

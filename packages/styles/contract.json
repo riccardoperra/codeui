@@ -1,0 +1,1596 @@
+{
+  "theme": {
+    "breakpoints": {
+      "xs": 0,
+      "sm": 640,
+      "md": 768,
+      "lg": 1024,
+      "xl": 1280,
+      "2xl": 1536
+    },
+    "layoutVars": {
+      "layoutBackgroundColor": "var(--cui-layout-layoutBackgroundColor)"
+    },
+    "responsiveStyle": {
+      "function": true
+    },
+    "themeTokens": {
+      "colors": {
+        "gray1": "var(--cui-themes-colors-gray1)",
+        "gray2": "var(--cui-themes-colors-gray2)",
+        "gray3": "var(--cui-themes-colors-gray3)",
+        "gray4": "var(--cui-themes-colors-gray4)",
+        "gray5": "var(--cui-themes-colors-gray5)",
+        "gray6": "var(--cui-themes-colors-gray6)",
+        "gray7": "var(--cui-themes-colors-gray7)",
+        "gray8": "var(--cui-themes-colors-gray8)",
+        "gray9": "var(--cui-themes-colors-gray9)",
+        "gray10": "var(--cui-themes-colors-gray10)",
+        "gray11": "var(--cui-themes-colors-gray11)",
+        "gray12": "var(--cui-themes-colors-gray12)"
+      },
+      "fontSize": {
+        "xs": "var(--cui-font-size-xs)",
+        "sm": "var(--cui-font-size-sm)",
+        "md": "var(--cui-font-size-md)",
+        "lg": "var(--cui-font-size-lg)",
+        "xl": "var(--cui-font-size-xl)"
+      },
+      "fontWeight": {
+        "hairline": "var(--cui-themes-fontWeight-hairline)",
+        "thin": "var(--cui-themes-fontWeight-thin)",
+        "light": "var(--cui-themes-fontWeight-light)",
+        "normal": "var(--cui-font-weight-normal)",
+        "medium": "var(--cui-font-weight-medium)",
+        "semibold": "var(--cui-font-weight-semibold)",
+        "bold": "var(--cui-themes-fontWeight-bold)",
+        "extrabold": "var(--cui-themes-fontWeight-extrabold)",
+        "black": "var(--cui-themes-fontWeight-black)"
+      },
+      "spacing": {
+        "0": "var(--cui-space-0)",
+        "1": "var(--cui-space-1)",
+        "2": "var(--cui-space-2)",
+        "3": "var(--cui-space-3)",
+        "4": "var(--cui-space-4)",
+        "5": "var(--cui-space-5)",
+        "6": "var(--cui-space-6)",
+        "8": "var(--cui-space-8)",
+        "10": "var(--cui-space-10)",
+        "12": "var(--cui-space-12)",
+        "16": "var(--cui-space-16)",
+        "20": "var(--cui-space-20)",
+        "24": "var(--cui-space-24)",
+        "32": "var(--cui-space-32)",
+        "40": "var(--cui-space-40)",
+        "48": "var(--cui-space-48)",
+        "56": "var(--cui-space-56)",
+        "64": "var(--cui-space-64)",
+        "auto": "var(--cui-space-auto)",
+        "px": "var(--cui-space-px)"
+      },
+      "radii": {
+        "none": "var(--cui-radius-none)",
+        "xs": "var(--cui-radius-xs)",
+        "sm": "var(--cui-radius-sm)",
+        "default": "var(--cui-radius-lg)",
+        "md": "var(--cui-radius-md)",
+        "lg": "var(--cui-radius-lg)",
+        "xl": "var(--cui-radius-xl)",
+        "full": "var(--cui-radius-full)"
+      },
+      "boxShadow": {
+        "default": "var(--cui-shadow-sm)",
+        "md": "var(--cui-shadow-md)",
+        "lg": "var(--cui-themes-boxShadow-lg)",
+        "xl": "var(--cui-themes-boxShadow-xl)",
+        "2xl": "var(--cui-themes-boxShadow-2xl)",
+        "inner": "var(--cui-themes-boxShadow-inner)",
+        "outline": "var(--cui-themes-boxShadow-outline)",
+        "none": "var(--cui-shadow-none)"
+      },
+      "zIndex": {
+        "0": "var(--cui-themes-zIndex-0)",
+        "10": "var(--cui-themes-zIndex-10)",
+        "20": "var(--cui-themes-zIndex-20)",
+        "30": "var(--cui-themes-zIndex-30)",
+        "40": "var(--cui-themes-zIndex-40)",
+        "50": "var(--cui-themes-zIndex-50)",
+        "-1": "var(--cui-themes-zIndex--1)",
+        "auto": "var(--cui-themes-zIndex-auto)"
+      }
+    },
+    "themeVars": {
+      "background": "var(--cui-surface-canvas)",
+      "foreground": "var(--cui-text-default)",
+      "accent1": "var(--cui-surface-panel)",
+      "accent2": "var(--cui-surface-dialog)",
+      "accent3": "var(--cui-surface-input)",
+      "accent4": "var(--cui-surface-menu)",
+      "accent5": "var(--cui-surface-toolbar)",
+      "accent6": "var(--cui-action-neutral-hover)",
+      "accent7": "var(--cui-surface-input-accent)",
+      "accent8": "var(--cui-text-muted)",
+      "accent9": "var(--cui-text-muted)",
+      "accent10": "var(--cui-text-hint)",
+      "brand": "var(--cui-action-brand-base)",
+      "brandAccentHover": "var(--cui-action-brand-hover)",
+      "brandAccentActive": "var(--cui-action-brand-active)",
+      "brandSecondary": "var(--cui-action-neutral-base)",
+      "brandSecondaryAccentHover": "var(--cui-action-neutral-hover)",
+      "brandSecondaryAccentActive": "var(--cui-action-neutral-active)",
+      "brandSoft": "var(--cui-action-brand-soft-base)",
+      "brandLink": "var(--cui-accent-focus)",
+      "brandSoftAccentHover": "var(--cui-action-brand-soft-hover)",
+      "brandSoftAccentActive": "var(--cui-action-brand-soft-active)",
+      "critical": "var(--cui-action-danger-base)",
+      "criticalAccentHover": "var(--cui-action-danger-hover)",
+      "criticalAccentActive": "var(--cui-action-danger-active)",
+      "caution": "var(--cui-action-caution-base)",
+      "cautionAccentHover": "var(--cui-action-caution-hover)",
+      "cautionAccentActive": "var(--cui-action-caution-active)",
+      "neutral": "var(--cui-action-neutral-base)",
+      "neutralSoft": "var(--cui-surface-secondary)",
+      "formAccent": "var(--cui-surface-input)",
+      "formAccentBorder": "var(--cui-border-menu)",
+      "separator": "var(--cui-border-divider)",
+      "dropdownBackground": "var(--cui-surface-menu)",
+      "dropdownBoxShadow": "var(--cui-shadow-menu)",
+      "dropdownBorder": "var(--cui-border-menu)",
+      "dropdownItemTextColor": "var(--cui-text-menu)",
+      "dropdownItemHoverBackground": "var(--cui-surface-menu-hover)",
+      "dropdownItemHoverTextColor": "var(--cui-text-menu)",
+      "dialogBackground": "var(--cui-surface-dialog)",
+      "dialogBoxShadow": "var(--cui-shadow-dialog)",
+      "dialogTextColor": "var(--cui-text-dialog)",
+      "dialogOverlayBackground": "var(--cui-surface-scrim)"
+    },
+    "tokens": {
+      "shadow": {
+        "dialog": "var(--cui-shadow-dialog)",
+        "menu": "var(--cui-shadow-menu)",
+        "none": "var(--cui-shadow-none)",
+        "sm": "var(--cui-shadow-sm)",
+        "md": "var(--cui-shadow-md)",
+        "thumb": "var(--cui-shadow-thumb)",
+        "lg": "var(--cui-shadow-lg)"
+      },
+      "border": {
+        "input": "var(--cui-border-input)",
+        "dialogTitle": "var(--cui-border-dialog-title)",
+        "divider": "var(--cui-border-divider)",
+        "menu": "var(--cui-border-menu)",
+        "width": "var(--cui-border-width)",
+        "widthStrong": "var(--cui-border-width-strong)"
+      },
+      "space": {
+        "0": "var(--cui-space-0)",
+        "1": "var(--cui-space-1)",
+        "2": "var(--cui-space-2)",
+        "3": "var(--cui-space-3)",
+        "4": "var(--cui-space-4)",
+        "5": "var(--cui-space-5)",
+        "6": "var(--cui-space-6)",
+        "8": "var(--cui-space-8)",
+        "10": "var(--cui-space-10)",
+        "12": "var(--cui-space-12)",
+        "16": "var(--cui-space-16)",
+        "20": "var(--cui-space-20)",
+        "24": "var(--cui-space-24)",
+        "32": "var(--cui-space-32)",
+        "40": "var(--cui-space-40)",
+        "48": "var(--cui-space-48)",
+        "56": "var(--cui-space-56)",
+        "64": "var(--cui-space-64)",
+        "auto": "var(--cui-space-auto)",
+        "px": "var(--cui-space-px)",
+        "0.5": "var(--cui-space-0-5)",
+        "1.5": "var(--cui-space-1-5)",
+        "2.5": "var(--cui-space-2-5)"
+      },
+      "font": {
+        "tracking": {
+          "normal": "var(--cui-font-tracking-normal)"
+        },
+        "size": {
+          "badge": "var(--cui-font-size-badge)",
+          "xs": "var(--cui-font-size-xs)",
+          "caption": "var(--cui-font-size-caption)",
+          "sm": "var(--cui-font-size-sm)",
+          "md": "var(--cui-font-size-md)",
+          "lg": "var(--cui-font-size-lg)",
+          "xl": "var(--cui-font-size-xl)",
+          "2xl": "var(--cui-font-size-2xl)"
+        },
+        "weight": {
+          "normal": "var(--cui-font-weight-normal)",
+          "medium": "var(--cui-font-weight-medium)",
+          "semibold": "var(--cui-font-weight-semibold)"
+        },
+        "lineHeight": {
+          "compact": "var(--cui-font-line-height-compact)",
+          "snug": "var(--cui-font-line-height-snug)",
+          "normal": "var(--cui-font-line-height-normal)",
+          "badge": "var(--cui-font-line-height-badge)",
+          "xs": "var(--cui-font-line-height-xs)",
+          "caption": "var(--cui-font-line-height-caption)",
+          "sm": "var(--cui-font-line-height-sm)",
+          "md": "var(--cui-font-line-height-md)"
+        },
+        "family": {
+          "sans": "var(--cui-font-family-sans)",
+          "mono": "var(--cui-font-family-mono)"
+        }
+      },
+      "surface": {
+        "canvas": "var(--cui-surface-canvas)",
+        "toolbar": "var(--cui-surface-toolbar)",
+        "scrim": "var(--cui-surface-scrim)",
+        "dialog": "var(--cui-surface-dialog)",
+        "inputAccent": "var(--cui-surface-input-accent)",
+        "input": "var(--cui-surface-input)",
+        "fieldHover": "var(--cui-surface-field-hover)",
+        "menuHover": "var(--cui-surface-menu-hover)",
+        "menu": "var(--cui-surface-menu)",
+        "panel": "var(--cui-surface-panel)",
+        "scrollThumb": "var(--cui-surface-scroll-thumb)",
+        "scrollThumbHover": "var(--cui-surface-scroll-thumb-hover)",
+        "secondary": "var(--cui-surface-secondary)",
+        "toast": "var(--cui-surface-toast)",
+        "track": "var(--cui-surface-track)"
+      },
+      "text": {
+        "default": "var(--cui-text-default)",
+        "toolbar": "var(--cui-text-toolbar)",
+        "muted": "var(--cui-text-muted)",
+        "dialog": "var(--cui-text-dialog)",
+        "dialogTitle": "var(--cui-text-dialog-title)",
+        "label": "var(--cui-text-label)",
+        "hint": "var(--cui-text-hint)",
+        "tertiary": "var(--cui-text-tertiary)",
+        "disabled": "var(--cui-text-disabled)",
+        "input": "var(--cui-text-input)",
+        "selected": "var(--cui-text-selected)",
+        "menu": "var(--cui-text-menu)",
+        "panelMuted": "var(--cui-text-panel-muted)",
+        "panel": "var(--cui-text-panel)",
+        "toast": "var(--cui-text-toast)",
+        "danger": "var(--cui-text-danger)"
+      },
+      "action": {
+        "neutral": {
+          "active": "var(--cui-action-neutral-active)",
+          "base": "var(--cui-action-neutral-base)",
+          "hover": "var(--cui-action-neutral-hover)",
+          "text": "var(--cui-action-neutral-text)"
+        },
+        "danger": {
+          "active": "var(--cui-action-danger-active)",
+          "base": "var(--cui-action-danger-base)",
+          "hover": "var(--cui-action-danger-hover)",
+          "text": "var(--cui-action-danger-text)"
+        },
+        "brand": {
+          "active": "var(--cui-action-brand-active)",
+          "base": "var(--cui-action-brand-base)",
+          "hover": "var(--cui-action-brand-hover)",
+          "text": "var(--cui-action-brand-text)"
+        },
+        "brandSoft": {
+          "base": "var(--cui-action-brand-soft-base)",
+          "hover": "var(--cui-action-brand-soft-hover)",
+          "text": "var(--cui-action-brand-soft-text)",
+          "active": "var(--cui-action-brand-soft-active)"
+        },
+        "caution": {
+          "base": "var(--cui-action-caution-base)",
+          "hover": "var(--cui-action-caution-hover)",
+          "active": "var(--cui-action-caution-active)",
+          "text": "var(--cui-action-caution-text)"
+        },
+        "success": {
+          "base": "var(--cui-action-success-base)",
+          "hover": "var(--cui-action-success-hover)",
+          "active": "var(--cui-action-success-active)",
+          "text": "var(--cui-action-success-text)"
+        }
+      },
+      "accent": {
+        "selection": "var(--cui-accent-selection)",
+        "focus": "var(--cui-accent-focus)"
+      },
+      "focus": {
+        "width": "var(--cui-focus-width)",
+        "offset": "var(--cui-focus-offset)",
+        "color": "var(--cui-focus-color)"
+      },
+      "radius": {
+        "scale": "var(--cui-radius-scale)",
+        "none": "var(--cui-radius-none)",
+        "badge": "var(--cui-radius-badge)",
+        "xs": "var(--cui-radius-xs)",
+        "sm": "var(--cui-radius-sm)",
+        "nav": "var(--cui-radius-nav)",
+        "md": "var(--cui-radius-md)",
+        "lg": "var(--cui-radius-lg)",
+        "card": "var(--cui-radius-card)",
+        "xl": "var(--cui-radius-xl)",
+        "command": "var(--cui-radius-command)",
+        "dialog": "var(--cui-radius-dialog)",
+        "full": "var(--cui-radius-full)"
+      },
+      "control": {
+        "height": {
+          "compact": "var(--cui-control-height-compact)",
+          "xs": "var(--cui-control-height-xs)",
+          "sm": "var(--cui-control-height-sm)",
+          "md": "var(--cui-control-height-md)",
+          "lg": "var(--cui-control-height-lg)",
+          "xl": "var(--cui-control-height-xl)"
+        }
+      },
+      "motion": {
+        "duration": {
+          "none": "var(--cui-motion-duration-none)",
+          "fast": "var(--cui-motion-duration-fast)",
+          "normal": "var(--cui-motion-duration-normal)",
+          "panel": "var(--cui-motion-duration-panel)",
+          "slow": "var(--cui-motion-duration-slow)",
+          "rise": "var(--cui-motion-duration-rise)"
+        },
+        "ease": {
+          "out": "var(--cui-motion-ease-out)"
+        }
+      }
+    }
+  },
+  "accordion": {
+    "accordionParts": {
+      "root": "accordion-root",
+      "item": "accordion-item",
+      "header": "accordion-header",
+      "trigger": "accordion-trigger",
+      "content": "accordion-content",
+      "icon": "accordion-icon",
+      "title": "accordion-title",
+      "summary": "accordion-summary",
+      "chevron": "accordion-chevron"
+    },
+    "accordionStyles": {
+      "root": {
+        "default": "cui-accordion-root"
+      },
+      "item": {
+        "default": "cui-accordion-item"
+      },
+      "header": {
+        "default": "cui-accordion-header"
+      },
+      "trigger": {
+        "default": "cui-accordion-trigger"
+      },
+      "content": {
+        "default": "cui-accordion-content"
+      },
+      "icon": {
+        "default": "cui-accordion-icon"
+      },
+      "title": {
+        "default": "cui-accordion-title"
+      },
+      "summary": {
+        "default": "cui-accordion-summary"
+      },
+      "chevron": {
+        "default": "cui-accordion-chevron"
+      }
+    },
+    "chevron": "cui-accordion-chevron",
+    "content": "cui-accordion-content",
+    "contentBody": "cui-accordion-contentBody",
+    "header": "cui-accordion-header",
+    "icon": "cui-accordion-icon",
+    "item": "cui-accordion-item",
+    "root": "cui-accordion-root",
+    "summary": "cui-accordion-summary",
+    "title": "cui-accordion-title",
+    "trigger": {
+      "default": "cui-accordion-trigger"
+    }
+  },
+  "alert": {
+    "action": "cui-alert-action",
+    "alertParts": {
+      "root": "alert-root",
+      "icon": "alert-icon",
+      "title": "alert-title",
+      "description": "alert-description",
+      "action": "alert-action"
+    },
+    "alertStyles": {
+      "root": {
+        "default": "cui-alert-root"
+      },
+      "icon": {
+        "default": "cui-alert-icon"
+      },
+      "title": {
+        "default": "cui-alert-title"
+      },
+      "description": {
+        "default": "cui-alert-description"
+      },
+      "action": {
+        "default": "cui-alert-action"
+      }
+    },
+    "description": "cui-alert-description",
+    "icon": "cui-alert-icon",
+    "root": {
+      "default": "cui-alert-root"
+    },
+    "title": "cui-alert-title"
+  },
+  "badge": {
+    "badgeParts": {
+      "root": "badge-root",
+      "icon": "badge-icon",
+      "label": "badge-label"
+    },
+    "badgeStyles": {
+      "root": {
+        "default": "cui-badge-root"
+      },
+      "icon": {
+        "default": "cui-badge-icon"
+      },
+      "label": {
+        "default": "cui-badge-label"
+      }
+    },
+    "icon": "cui-badge-icon",
+    "label": "cui-badge-label",
+    "root": {
+      "default": "cui-badge-root"
+    }
+  },
+  "button": {
+    "button": {
+      "default": "cui-button-button cui-button-buttonTheme"
+    },
+    "buttonIcon": "cui-button-buttonIcon",
+    "buttonStyleProps": {
+      "default": {
+        "class": "cui-button-button cui-button-buttonTheme",
+        "data-cui": "button",
+        "data-size": "md"
+      }
+    },
+    "buttonText": "cui-button-buttonText",
+    "buttonTheme": "cui-button-buttonTheme",
+    "buttonVars": {
+      "buttonHeight": "var(--cui-buttonTheme-buttonHeight)",
+      "fontSize": "var(--cui-buttonTheme-fontSize)",
+      "background": "var(--cui-buttonTheme-background)",
+      "hoverBackground": "var(--cui-buttonTheme-hoverBackground)",
+      "activeBackground": "var(--cui-buttonTheme-activeBackground)",
+      "color": "var(--cui-buttonTheme-color)",
+      "borderColor": "var(--cui-buttonTheme-borderColor)",
+      "padding": "var(--cui-buttonTheme-padding)",
+      "borderRadius": "var(--cui-buttonTheme-borderRadius)"
+    }
+  },
+  "button-loading": {
+    "pointer": "cui-loading-pointer",
+    "pointerAnimationDelay": "var(--cui-loading-pointerAnimationDelay)",
+    "pointerGroup": "cui-loading-pointerGroup",
+    "wrapper": "cui-loading-wrapper"
+  },
+  "checkbox": {
+    "checkboxTheme": "cui-check-box-checkboxTheme",
+    "checkboxVars": {
+      "size": "var(--cui-checkboxTheme-size)",
+      "fontSize": "var(--cui-checkboxTheme-fontSize)",
+      "borderColor": "var(--cui-checkboxTheme-borderColor)",
+      "background": "var(--cui-checkboxTheme-background)",
+      "activeHoverBackground": "var(--cui-checkboxTheme-activeHoverBackground)",
+      "nonActiveHoverBackground": "var(--cui-checkboxTheme-nonActiveHoverBackground)",
+      "color": "var(--cui-checkboxTheme-color)",
+      "radius": "var(--cui-checkboxTheme-radius)",
+      "fill": "var(--cui-checkboxTheme-fill)"
+    },
+    "container": "cui-check-box-container cui-field-baseFieldTheme cui-check-box-checkboxTheme",
+    "content": "cui-check-box-content",
+    "control": {
+      "default": "cui-check-box-control"
+    },
+    "icon": "cui-check-box-icon",
+    "indicator": "cui-check-box-indicator",
+    "input": "cui-check-box-input",
+    "label": "cui-check-box-label"
+  },
+  "combobox": {
+    "arrow": "cui-combobox-arrow",
+    "comboboxParts": {
+      "root": "combobox-root",
+      "control": "combobox-control",
+      "input": "combobox-input",
+      "trigger": "combobox-trigger",
+      "icon": "combobox-icon",
+      "content": "combobox-content",
+      "arrow": "combobox-arrow",
+      "listbox": "combobox-listbox",
+      "item": "combobox-item",
+      "itemLabel": "combobox-item-label",
+      "itemDescription": "combobox-item-description",
+      "itemIndicator": "combobox-item-indicator",
+      "section": "combobox-section",
+      "hiddenSelect": "combobox-hidden-select",
+      "label": "combobox-label",
+      "description": "combobox-description",
+      "errorMessage": "combobox-error-message"
+    },
+    "comboboxStyles": {
+      "root": {
+        "default": "cui-combobox-root"
+      },
+      "control": {
+        "default": "cui-combobox-control"
+      },
+      "input": {
+        "default": "cui-combobox-input"
+      },
+      "trigger": {
+        "default": "cui-combobox-trigger"
+      },
+      "icon": {
+        "default": "cui-combobox-icon"
+      },
+      "content": {
+        "default": "cui-combobox-content"
+      },
+      "arrow": {
+        "default": "cui-combobox-arrow"
+      },
+      "listbox": {
+        "default": "cui-combobox-listbox"
+      },
+      "item": {
+        "default": "cui-combobox-item"
+      },
+      "itemLabel": {
+        "default": "cui-combobox-itemLabel"
+      },
+      "itemDescription": {
+        "default": "cui-combobox-itemDescription"
+      },
+      "itemIndicator": {
+        "default": "cui-combobox-itemIndicator"
+      },
+      "section": {
+        "default": "cui-combobox-section"
+      },
+      "hiddenSelect": {
+        "default": "cui-combobox-hiddenSelect"
+      },
+      "label": {
+        "default": "cui-combobox-label"
+      },
+      "description": {
+        "default": "cui-combobox-description"
+      },
+      "errorMessage": {
+        "default": "cui-combobox-errorMessage"
+      }
+    },
+    "content": "cui-combobox-content",
+    "control": {
+      "default": "cui-combobox-control"
+    },
+    "description": "cui-combobox-description",
+    "empty": "cui-combobox-empty",
+    "errorMessage": "cui-combobox-errorMessage",
+    "hiddenSelect": "cui-combobox-hiddenSelect",
+    "icon": "cui-combobox-icon",
+    "input": "cui-combobox-input",
+    "item": "cui-combobox-item",
+    "itemDescription": "cui-combobox-itemDescription",
+    "itemIndicator": "cui-combobox-itemIndicator",
+    "itemLabel": "cui-combobox-itemLabel",
+    "label": "cui-combobox-label",
+    "listbox": "cui-combobox-listbox",
+    "root": "cui-combobox-root",
+    "section": "cui-combobox-section",
+    "trigger": "cui-combobox-trigger"
+  },
+  "command-menu": {
+    "commandMenuParts": {
+      "trigger": "command-menu-trigger",
+      "overlay": "command-menu-overlay",
+      "content": "command-menu-content",
+      "title": "command-menu-title",
+      "search": "command-menu-search",
+      "searchInput": "command-menu-search-input",
+      "hint": "command-menu-hint",
+      "listbox": "command-menu-listbox",
+      "group": "command-menu-group",
+      "groupLabel": "command-menu-group-label",
+      "item": "command-menu-item",
+      "leading": "command-menu-leading",
+      "itemLabel": "command-menu-item-label",
+      "itemDescription": "command-menu-item-description",
+      "itemIndicator": "command-menu-item-indicator",
+      "shortcut": "command-menu-shortcut",
+      "empty": "command-menu-empty"
+    },
+    "commandMenuStyles": {
+      "trigger": {
+        "default": "cui-command-menu-trigger"
+      },
+      "overlay": {
+        "default": "cui-command-menu-overlay"
+      },
+      "content": {
+        "default": "cui-command-menu-content"
+      },
+      "title": {
+        "default": "cui-command-menu-title"
+      },
+      "search": {
+        "default": "cui-command-menu-search"
+      },
+      "searchInput": {
+        "default": "cui-command-menu-searchInput"
+      },
+      "hint": {
+        "default": "cui-command-menu-hint"
+      },
+      "listbox": {
+        "default": "cui-command-menu-listbox"
+      },
+      "group": {
+        "default": "cui-command-menu-group"
+      },
+      "groupLabel": {
+        "default": "cui-command-menu-groupLabel"
+      },
+      "item": {
+        "default": "cui-command-menu-item"
+      },
+      "leading": {
+        "default": "cui-command-menu-leading"
+      },
+      "itemLabel": {
+        "default": "cui-command-menu-itemLabel"
+      },
+      "itemDescription": {
+        "default": "cui-command-menu-itemDescription"
+      },
+      "itemIndicator": {
+        "default": "cui-command-menu-itemIndicator"
+      },
+      "shortcut": {
+        "default": "cui-command-menu-shortcut"
+      },
+      "empty": {
+        "default": "cui-command-menu-empty"
+      }
+    },
+    "content": "cui-command-menu-content",
+    "empty": "cui-command-menu-empty",
+    "group": "cui-command-menu-group",
+    "groupLabel": "cui-command-menu-groupLabel",
+    "hint": "cui-command-menu-hint",
+    "item": "cui-command-menu-item",
+    "itemDescription": "cui-command-menu-itemDescription",
+    "itemIndicator": "cui-command-menu-itemIndicator",
+    "itemLabel": "cui-command-menu-itemLabel",
+    "leading": "cui-command-menu-leading",
+    "listbox": "cui-command-menu-listbox",
+    "overlay": "cui-command-menu-overlay",
+    "search": "cui-command-menu-search",
+    "searchInput": "cui-command-menu-searchInput",
+    "shortcut": "cui-command-menu-shortcut",
+    "title": "cui-command-menu-title",
+    "trigger": "cui-command-menu-trigger"
+  },
+  "dialog": {
+    "description": "cui-dialog-description",
+    "dialogParts": {
+      "trigger": "dialog-trigger",
+      "overlay": "dialog-overlay",
+      "positioner": "dialog-positioner",
+      "panel": "dialog-panel",
+      "header": "dialog-panel-title",
+      "title": "dialog-title",
+      "description": "dialog-description",
+      "closeButton": "dialog-close-button",
+      "body": "dialog-panel-content",
+      "footer": "dialog-panel-footer",
+      "sidebar": "dialog-sidebar",
+      "sidebarSearch": "dialog-sidebar-search",
+      "nav": "dialog-nav",
+      "navItem": "dialog-nav-item",
+      "navIcon": "dialog-nav-icon",
+      "main": "dialog-main",
+      "section": "dialog-section",
+      "sectionTitle": "dialog-section-title",
+      "sectionContent": "dialog-section-content"
+    },
+    "dialogStyles": {
+      "trigger": {
+        "default": ""
+      },
+      "overlay": {
+        "default": "cui-dialog-overlay cui-dialog-dialogTheme"
+      },
+      "positioner": {
+        "default": "cui-dialog-dialogTheme cui-dialog-positioner"
+      },
+      "panel": {
+        "default": "cui-dialog-dialogTheme cui-dialog-panel"
+      },
+      "header": {
+        "default": "cui-dialog-title"
+      },
+      "title": {
+        "default": ""
+      },
+      "description": {
+        "default": "cui-dialog-description"
+      },
+      "closeButton": {
+        "default": ""
+      },
+      "body": {
+        "default": "cui-dialog-panelContent"
+      },
+      "footer": {
+        "default": "cui-dialog-panelFooter"
+      },
+      "sidebar": {
+        "default": "cui-dialog-sidebar"
+      },
+      "sidebarSearch": {
+        "default": "cui-dialog-sidebarSearch"
+      },
+      "nav": {
+        "default": "cui-dialog-nav"
+      },
+      "navItem": {
+        "default": "cui-dialog-navItem"
+      },
+      "navIcon": {
+        "default": "cui-dialog-navIcon"
+      },
+      "main": {
+        "default": "cui-dialog-main"
+      },
+      "section": {
+        "default": "cui-dialog-section"
+      },
+      "sectionTitle": {
+        "default": "cui-dialog-sectionTitle"
+      },
+      "sectionContent": {
+        "default": "cui-dialog-sectionContent"
+      }
+    },
+    "dialogTheme": "cui-dialog-dialogTheme",
+    "dialogThemeVars": {
+      "contentBackground": "var(--cui-dialogTheme-contentBackground)",
+      "contentBoxShadow": "var(--cui-dialogTheme-contentBoxShadow)",
+      "contentTextColor": "var(--cui-dialogTheme-contentTextColor)",
+      "contentPadding": "var(--cui-dialogTheme-contentPadding)",
+      "titleHeight": "var(--cui-dialogTheme-titleHeight)",
+      "panelRadius": "var(--cui-dialogTheme-panelRadius)",
+      "dividerColor": "var(--cui-dialogTheme-dividerColor)",
+      "titleFontSize": "var(--cui-dialogTheme-titleFontSize)",
+      "overlayBackground": "var(--cui-dialogTheme-overlayBackground)",
+      "gutter": "var(--cui-dialogTheme-gutter)",
+      "width": "var(--cui-dialogTheme-width)",
+      "height": "var(--cui-dialogTheme-height)",
+      "sidebarBackground": "var(--cui-dialogTheme-sidebarBackground)",
+      "navCurrentBackground": "var(--cui-dialogTheme-navCurrentBackground)",
+      "mainBackground": "var(--cui-dialogTheme-mainBackground)",
+      "islandBackground": "var(--cui-dialogTheme-islandBackground)",
+      "splitColumns": "var(--cui-dialogTheme-splitColumns)"
+    },
+    "main": "cui-dialog-main",
+    "nav": "cui-dialog-nav",
+    "navIcon": "cui-dialog-navIcon",
+    "navItem": "cui-dialog-navItem",
+    "navList": "cui-dialog-navList",
+    "overlay": "cui-dialog-overlay cui-dialog-dialogTheme",
+    "panel": {
+      "default": "cui-dialog-panel"
+    },
+    "panelContent": "cui-dialog-panelContent",
+    "panelFooter": "cui-dialog-panelFooter",
+    "positioner": "cui-dialog-positioner",
+    "section": {
+      "default": "cui-dialog-section"
+    },
+    "sectionContent": "cui-dialog-sectionContent",
+    "sectionTitle": "cui-dialog-sectionTitle",
+    "sidebar": "cui-dialog-sidebar",
+    "sidebarSearch": "cui-dialog-sidebarSearch",
+    "title": "cui-dialog-title"
+  },
+  "dropdown": {
+    "content": "cui-dropdown-content cui-dropdown-dropdownMenuTheme",
+    "dropdownMenuTheme": "cui-dropdown-dropdownMenuTheme",
+    "dropdownMenuThemeVars": {
+      "contentBackground": "var(--cui-dropdownMenuTheme-contentBackground)",
+      "contentRadius": "var(--cui-dropdownMenuTheme-contentRadius)",
+      "contentBoxShadow": "var(--cui-dropdownMenuTheme-contentBoxShadow)",
+      "contentPadding": "var(--cui-dropdownMenuTheme-contentPadding)",
+      "contentMinWidth": "var(--cui-dropdownMenuTheme-contentMinWidth)",
+      "contentBorderColor": "var(--cui-dropdownMenuTheme-contentBorderColor)",
+      "separator": "var(--cui-dropdownMenuTheme-separator)",
+      "itemTextColor": "var(--cui-dropdownMenuTheme-itemTextColor)",
+      "itemHoverBackground": "var(--cui-dropdownMenuTheme-itemHoverBackground)",
+      "itemHoverTextColor": "var(--cui-dropdownMenuTheme-itemHoverTextColor)",
+      "itemDisabledOpacity": "var(--cui-dropdownMenuTheme-itemDisabledOpacity)",
+      "itemMinHeight": "var(--cui-dropdownMenuTheme-itemMinHeight)",
+      "itemPadding": "var(--cui-dropdownMenuTheme-itemPadding)",
+      "itemRadius": "var(--cui-dropdownMenuTheme-itemRadius)",
+      "itemFontSize": "var(--cui-dropdownMenuTheme-itemFontSize)",
+      "itemLineHeight": "var(--cui-dropdownMenuTheme-itemLineHeight)"
+    },
+    "item": "cui-dropdown-item",
+    "rightSlot": "cui-dropdown-rightSlot",
+    "separator": "cui-dropdown-separator",
+    "subMenuContent": "cui-dropdown-subMenuContent cui-dropdown-content cui-dropdown-dropdownMenuTheme"
+  },
+  "field": {
+    "FieldSizes": {
+      "xs": "xs",
+      "sm": "sm",
+      "md": "md",
+      "lg": "lg",
+      "xl": "xl"
+    },
+    "baseFieldTheme": "cui-field-baseFieldTheme",
+    "baseFieldVariants": {
+      "default": "cui-field-baseFieldVariants"
+    },
+    "baseFieldVars": {
+      "borderColor": "var(--cui-baseFieldTheme-borderColor)",
+      "background": "var(--cui-baseFieldTheme-background)",
+      "color": "var(--cui-baseFieldTheme-color)",
+      "inputHeight": "var(--cui-baseFieldTheme-inputHeight)",
+      "fontSize": "var(--cui-baseFieldTheme-fontSize)",
+      "descriptionColor": "var(--cui-baseFieldTheme-descriptionColor)",
+      "disabledBackground": "var(--cui-baseFieldTheme-disabledBackground)"
+    },
+    "fontSize": "var(--cui-field-fontSize)",
+    "inputHeight": "var(--cui-field-inputHeight)"
+  },
+  "icon-button": {
+    "iconButton": "cui-icon-button-iconButton"
+  },
+  "kbd": {
+    "kbdParts": {
+      "root": "kbd-root"
+    },
+    "kbdStyles": {
+      "root": {
+        "default": "cui-kbd-root"
+      }
+    },
+    "root": {
+      "default": "cui-kbd-root"
+    }
+  },
+  "link": {
+    "link": {
+      "default": "cui-link-link cui-link-linkTheme"
+    }
+  },
+  "listbox": {
+    "item": "cui-listbox-item",
+    "itemIndicator": "cui-listbox-itemIndicator",
+    "list": "cui-listbox-list cui-listbox-listTheme",
+    "listTheme": "cui-listbox-listTheme",
+    "listThemeVars": {
+      "contentBackground": "var(--cui-listTheme-contentBackground)",
+      "contentRadius": "var(--cui-listTheme-contentRadius)",
+      "contentBoxShadow": "var(--cui-listTheme-contentBoxShadow)",
+      "contentPadding": "var(--cui-listTheme-contentPadding)",
+      "contentBorderColor": "var(--cui-listTheme-contentBorderColor)",
+      "contentMaxHeight": "var(--cui-listTheme-contentMaxHeight)",
+      "contentMaxHeightXs": "var(--cui-listTheme-contentMaxHeightXs)",
+      "separator": "var(--cui-listTheme-separator)",
+      "itemMinHeight": "var(--cui-listTheme-itemMinHeight)",
+      "itemTextColor": "var(--cui-listTheme-itemTextColor)",
+      "itemHoverBackground": "var(--cui-listTheme-itemHoverBackground)",
+      "itemHoverTextColor": "var(--cui-listTheme-itemHoverTextColor)",
+      "itemDisabledOpacity": "var(--cui-listTheme-itemDisabledOpacity)",
+      "indicatorSize": "var(--cui-listTheme-indicatorSize)"
+    }
+  },
+  "number-field": {
+    "baseFieldContainer": "cui-number-field-baseFieldContainer cui-field-baseFieldTheme",
+    "control": "cui-number-field-control",
+    "controlButton": "cui-number-field-controlButton",
+    "controlsContainer": "cui-number-field-controlsContainer",
+    "numberFieldContainer": "cui-number-field-numberFieldContainer",
+    "numberFieldTheme": "cui-number-field-numberFieldTheme",
+    "numberFieldVars": {
+      "controlSize": "var(--cui-numberFieldTheme-controlSize)"
+    },
+    "textField": "cui-number-field-textField"
+  },
+  "option-card": {
+    "badge": "cui-option-card-badge",
+    "description": "cui-option-card-description",
+    "errorMessage": "cui-option-card-errorMessage",
+    "item": "cui-option-card-item",
+    "itemControl": "cui-option-card-itemControl",
+    "itemDescription": "cui-option-card-itemDescription",
+    "itemIndicator": "cui-option-card-itemIndicator",
+    "itemInput": "cui-option-card-itemInput",
+    "itemLabel": {
+      "default": "cui-option-card-itemLabel"
+    },
+    "itemName": "cui-option-card-itemName",
+    "itemText": "cui-option-card-itemText",
+    "label": "cui-option-card-label",
+    "optionCardParts": {
+      "root": "option-card-root",
+      "label": "option-card-label",
+      "description": "option-card-description",
+      "errorMessage": "option-card-error-message",
+      "item": "option-card-item",
+      "itemInput": "option-card-item-input",
+      "itemControl": "option-card-item-control",
+      "itemIndicator": "option-card-item-indicator",
+      "itemLabel": "option-card-item-label",
+      "itemDescription": "option-card-item-description",
+      "preview": "option-card-preview",
+      "badge": "option-card-badge"
+    },
+    "optionCardStyles": {
+      "root": {
+        "default": "cui-option-card-root"
+      },
+      "label": {
+        "default": "cui-option-card-label"
+      },
+      "description": {
+        "default": "cui-option-card-description"
+      },
+      "errorMessage": {
+        "default": "cui-option-card-errorMessage"
+      },
+      "item": {
+        "default": "cui-option-card-item"
+      },
+      "itemInput": {
+        "default": "cui-option-card-itemInput"
+      },
+      "itemControl": {
+        "default": "cui-option-card-itemControl"
+      },
+      "itemIndicator": {
+        "default": "cui-option-card-itemIndicator"
+      },
+      "itemLabel": {
+        "default": "cui-option-card-itemLabel"
+      },
+      "itemDescription": {
+        "default": "cui-option-card-itemDescription"
+      },
+      "preview": {
+        "default": "cui-option-card-preview"
+      },
+      "badge": {
+        "default": "cui-option-card-badge"
+      }
+    },
+    "preview": "cui-option-card-preview",
+    "root": "cui-option-card-root"
+  },
+  "pagination": {
+    "pagination": "cui-pagination-pagination cui-pagination-paginationTheme",
+    "paginationIcon": "cui-pagination-paginationIcon",
+    "paginationItem": "cui-pagination-paginationItem",
+    "paginationTheme": "cui-pagination-paginationTheme",
+    "paginationVars": {
+      "paginationItemMargin": "var(--cui-paginationTheme-paginationItemMargin)"
+    }
+  },
+  "popover": {
+    "content": {
+      "default": "cui-popover-content cui-popover-popoverTheme"
+    },
+    "description": "cui-popover-description",
+    "popoverParts": {
+      "trigger": "popover-trigger",
+      "anchor": "popover-anchor",
+      "content": "popover-content",
+      "arrow": "popover-arrow",
+      "title": "popover-title",
+      "description": "popover-description",
+      "closeButton": "popover-close-button"
+    },
+    "popoverStyles": {
+      "trigger": {
+        "default": ""
+      },
+      "anchor": {
+        "default": ""
+      },
+      "content": {
+        "default": "cui-popover-content cui-popover-popoverTheme"
+      },
+      "arrow": {
+        "default": ""
+      },
+      "title": {
+        "default": "cui-popover-title"
+      },
+      "description": {
+        "default": "cui-popover-description"
+      },
+      "closeButton": {
+        "default": ""
+      }
+    },
+    "popoverTheme": "cui-popover-popoverTheme",
+    "popoverThemeVars": {
+      "contentBackground": "var(--cui-popoverTheme-contentBackground)",
+      "contentBoxShadow": "var(--cui-popoverTheme-contentBoxShadow)",
+      "contentMaxWidth": "var(--cui-popoverTheme-contentMaxWidth)",
+      "contentRadius": "var(--cui-popoverTheme-contentRadius)",
+      "contentPadding": "var(--cui-popoverTheme-contentPadding)",
+      "contentFontSize": "var(--cui-popoverTheme-contentFontSize)",
+      "contentLineHeight": "var(--cui-popoverTheme-contentLineHeight)",
+      "titleColor": "var(--cui-popoverTheme-titleColor)",
+      "titleFontSize": "var(--cui-popoverTheme-titleFontSize)",
+      "descriptionColor": "var(--cui-popoverTheme-descriptionColor)",
+      "contentBorderColor": "var(--cui-popoverTheme-contentBorderColor)"
+    },
+    "title": "cui-popover-title"
+  },
+  "progress": {
+    "fill": "cui-progress-fill",
+    "label": "cui-progress-label",
+    "progressParts": {
+      "root": "progress-root",
+      "label": "progress-label",
+      "track": "progress-track",
+      "fill": "progress-fill",
+      "valueLabel": "progress-value-label"
+    },
+    "progressStyles": {
+      "root": {
+        "default": "cui-progress-root"
+      },
+      "label": {
+        "default": "cui-progress-label"
+      },
+      "track": {
+        "default": "cui-progress-track"
+      },
+      "fill": {
+        "default": "cui-progress-fill"
+      },
+      "valueLabel": {
+        "default": "cui-progress-valueLabel"
+      }
+    },
+    "root": "cui-progress-root",
+    "track": {
+      "default": "cui-progress-track"
+    },
+    "valueLabel": "cui-progress-valueLabel"
+  },
+  "radio-list": {
+    "indicator": "cui-radio-indicator",
+    "radio": "cui-radio-radio",
+    "radioItem": "cui-radio-radioItem",
+    "radioList": {
+      "default": "cui-radio-radioList cui-radio-radioTheme"
+    },
+    "radioTheme": "cui-radio-radioTheme",
+    "radioVars": {
+      "inputColor": "var(--cui-radioTheme-inputColor)",
+      "inputBackground": "var(--cui-radioTheme-inputBackground)",
+      "inputInvalidBackground": "var(--cui-radioTheme-inputInvalidBackground)",
+      "inputText": "var(--cui-radioTheme-inputText)",
+      "inputSize": "var(--cui-radioTheme-inputSize)",
+      "labelSize": "var(--cui-radioTheme-labelSize)",
+      "inputFill": "var(--cui-radioTheme-inputFill)"
+    }
+  },
+  "segmented-control": {
+    "indicator": "cui-segmented-control-indicator",
+    "list": "cui-segmented-control-list",
+    "segment": "cui-segmented-control-segment",
+    "segmentedControlWrapper": {
+      "default": "cui-segmented-control-segmentedControlWrapper cui-segmented-control-segmentedFieldTheme"
+    },
+    "segmentedFieldTheme": "cui-segmented-control-segmentedFieldTheme",
+    "segmentedFieldVars": {
+      "activeSegmentedBackgroundColor": "var(--cui-segmentedFieldTheme-activeSegmentedBackgroundColor)",
+      "segmentedTextColor": "var(--cui-segmentedFieldTheme-segmentedTextColor)",
+      "activeSegmentedTextColor": "var(--cui-segmentedFieldTheme-activeSegmentedTextColor)",
+      "segmentWrapperSolidBackground": "var(--cui-segmentedFieldTheme-segmentWrapperSolidBackground)",
+      "segmentWrapperBorderedColor": "var(--cui-segmentedFieldTheme-segmentWrapperBorderedColor)",
+      "segmentWrapperRadius": "var(--cui-segmentedFieldTheme-segmentWrapperRadius)",
+      "segmentWrapperPadding": "var(--cui-segmentedFieldTheme-segmentWrapperPadding)",
+      "segmentHeight": "var(--cui-segmentedFieldTheme-segmentHeight)",
+      "segmentPadding": "var(--cui-segmentedFieldTheme-segmentPadding)",
+      "segmentRadius": "var(--cui-segmentedFieldTheme-segmentRadius)",
+      "segmentFontSize": "var(--cui-segmentedFieldTheme-segmentFontSize)"
+    }
+  },
+  "select": {
+    "content": "cui-select-content cui-select-selectTheme",
+    "field": "cui-select-field cui-field-baseFieldTheme",
+    "input": "cui-select-input",
+    "item": "cui-select-item",
+    "itemIndicator": "cui-select-itemIndicator",
+    "selectField": "cui-select-selectField",
+    "selectTheme": "cui-select-selectTheme",
+    "selectThemeVars": {
+      "contentBackground": "var(--cui-selectTheme-contentBackground)",
+      "contentRadius": "var(--cui-selectTheme-contentRadius)",
+      "contentBoxShadow": "var(--cui-selectTheme-contentBoxShadow)",
+      "contentPadding": "var(--cui-selectTheme-contentPadding)",
+      "contentBorderColor": "var(--cui-selectTheme-contentBorderColor)",
+      "contentMaxHeight": "var(--cui-selectTheme-contentMaxHeight)",
+      "contentMaxHeightXs": "var(--cui-selectTheme-contentMaxHeightXs)",
+      "separator": "var(--cui-selectTheme-separator)",
+      "itemMinHeight": "var(--cui-selectTheme-itemMinHeight)",
+      "itemTextColor": "var(--cui-selectTheme-itemTextColor)",
+      "itemHoverBackground": "var(--cui-selectTheme-itemHoverBackground)",
+      "itemHoverTextColor": "var(--cui-selectTheme-itemHoverTextColor)",
+      "itemDisabledOpacity": "var(--cui-selectTheme-itemDisabledOpacity)",
+      "indicatorSize": "var(--cui-selectTheme-indicatorSize)"
+    }
+  },
+  "settings": {
+    "control": "cui-settings-control",
+    "description": "cui-settings-description",
+    "details": "cui-settings-details",
+    "group": "cui-settings-group",
+    "groupContent": "cui-settings-groupContent",
+    "groupDescription": "cui-settings-groupDescription",
+    "groupTitle": "cui-settings-groupTitle",
+    "label": "cui-settings-label",
+    "marker": "cui-settings-marker",
+    "picture": "cui-settings-picture",
+    "row": "cui-settings-row",
+    "settingsGroupParts": {
+      "root": "settings-group-root",
+      "title": "settings-group-title",
+      "description": "settings-group-description",
+      "content": "settings-group-content"
+    },
+    "settingsGroupStyles": {
+      "root": {
+        "default": "cui-settings-group"
+      },
+      "title": {
+        "default": "cui-settings-groupTitle"
+      },
+      "description": {
+        "default": "cui-settings-groupDescription"
+      },
+      "content": {
+        "default": "cui-settings-groupContent"
+      }
+    },
+    "settingsRowParts": {
+      "root": "settings-row-root",
+      "label": "settings-row-label",
+      "description": "settings-row-description",
+      "details": "settings-row-details",
+      "control": "settings-row-control",
+      "picture": "settings-row-picture",
+      "marker": "settings-row-marker"
+    },
+    "settingsRowStyles": {
+      "root": {
+        "default": "cui-settings-row"
+      },
+      "label": {
+        "default": "cui-settings-label"
+      },
+      "description": {
+        "default": "cui-settings-description"
+      },
+      "details": {
+        "default": "cui-settings-details"
+      },
+      "control": {
+        "default": "cui-settings-control"
+      },
+      "picture": {
+        "default": "cui-settings-picture"
+      },
+      "marker": {
+        "default": "cui-settings-marker"
+      }
+    }
+  },
+  "sheet": {
+    "body": "cui-sheet-body",
+    "closeButton": "cui-sheet-closeButton",
+    "content": {
+      "default": "cui-sheet-content"
+    },
+    "description": "cui-sheet-description",
+    "footer": "cui-sheet-footer",
+    "handle": "cui-sheet-handle",
+    "header": "cui-sheet-header",
+    "overlay": "cui-sheet-overlay",
+    "sheetParts": {
+      "trigger": "sheet-trigger",
+      "overlay": "sheet-overlay",
+      "content": "sheet-content",
+      "header": "sheet-header",
+      "title": "sheet-title",
+      "description": "sheet-description",
+      "closeButton": "sheet-close-button",
+      "handle": "sheet-handle",
+      "body": "sheet-body",
+      "footer": "sheet-footer"
+    },
+    "sheetStyles": {
+      "trigger": {
+        "default": ""
+      },
+      "overlay": {
+        "default": "cui-sheet-overlay"
+      },
+      "content": {
+        "default": "cui-sheet-content"
+      },
+      "header": {
+        "default": "cui-sheet-header"
+      },
+      "title": {
+        "default": "cui-sheet-title"
+      },
+      "description": {
+        "default": "cui-sheet-description"
+      },
+      "closeButton": {
+        "default": "cui-sheet-closeButton"
+      },
+      "handle": {
+        "default": "cui-sheet-handle"
+      },
+      "body": {
+        "default": "cui-sheet-body"
+      },
+      "footer": {
+        "default": "cui-sheet-footer"
+      }
+    },
+    "title": "cui-sheet-title"
+  },
+  "skeleton": {
+    "root": {
+      "default": "cui-skeleton-base"
+    },
+    "skeletonParts": {
+      "root": "skeleton-root"
+    },
+    "skeletonStyles": {
+      "root": {
+        "default": "cui-skeleton-base"
+      }
+    }
+  },
+  "slider": {
+    "description": "cui-slider-description",
+    "errorMessage": "cui-slider-errorMessage",
+    "fill": {
+      "default": "cui-slider-fill"
+    },
+    "input": "cui-slider-input",
+    "label": "cui-slider-label",
+    "root": "cui-slider-root",
+    "sliderParts": {
+      "root": "slider-root",
+      "label": "slider-label",
+      "description": "slider-description",
+      "errorMessage": "slider-error-message",
+      "track": "slider-track",
+      "fill": "slider-fill",
+      "thumb": "slider-thumb",
+      "input": "slider-input",
+      "valueLabel": "slider-value-label"
+    },
+    "sliderStyles": {
+      "root": {
+        "default": "cui-slider-root"
+      },
+      "label": {
+        "default": "cui-slider-label"
+      },
+      "description": {
+        "default": "cui-slider-description"
+      },
+      "errorMessage": {
+        "default": "cui-slider-errorMessage"
+      },
+      "track": {
+        "default": "cui-slider-track"
+      },
+      "fill": {
+        "default": "cui-slider-fill"
+      },
+      "thumb": {
+        "default": "cui-slider-thumb"
+      },
+      "input": {
+        "default": "cui-slider-input"
+      },
+      "valueLabel": {
+        "default": "cui-slider-valueLabel"
+      }
+    },
+    "thumb": "cui-slider-thumb",
+    "track": {
+      "default": "cui-slider-track"
+    },
+    "valueLabel": "cui-slider-valueLabel"
+  },
+  "spinner": {
+    "indicator": "cui-spinner-indicator",
+    "root": {
+      "default": "cui-spinner-root"
+    },
+    "spinnerParts": {
+      "root": "spinner-root",
+      "track": "spinner-track",
+      "indicator": "spinner-indicator"
+    },
+    "spinnerStyles": {
+      "root": {
+        "default": "cui-spinner-root"
+      },
+      "track": {
+        "default": "cui-spinner-track"
+      },
+      "indicator": {
+        "default": "cui-spinner-indicator"
+      }
+    },
+    "track": "cui-spinner-track"
+  },
+  "stack": {
+    "root": {
+      "default": "cui-stack-root"
+    },
+    "stackParts": {
+      "root": "stack-root"
+    },
+    "stackStyles": {
+      "root": {
+        "default": "cui-stack-root"
+      }
+    }
+  },
+  "switch": {
+    "control": {
+      "default": "cui-switch-control"
+    },
+    "description": "cui-switch-description",
+    "errorMessage": "cui-switch-errorMessage",
+    "input": "cui-switch-input",
+    "label": "cui-switch-label",
+    "root": "cui-switch-root",
+    "switchParts": {
+      "root": "switch-root",
+      "input": "switch-input",
+      "control": "switch-control",
+      "thumb": "switch-thumb",
+      "label": "switch-label",
+      "description": "switch-description",
+      "errorMessage": "switch-error-message"
+    },
+    "switchStyleProps": {
+      "root": {
+        "default": {
+          "class": "cui-switch-root",
+          "data-cui": "switch-root"
+        }
+      },
+      "input": {
+        "default": {
+          "class": "cui-switch-input",
+          "data-cui": "switch-input"
+        }
+      },
+      "control": {
+        "default": {
+          "class": "cui-switch-control",
+          "data-cui": "switch-control"
+        }
+      },
+      "thumb": {
+        "default": {
+          "class": "cui-switch-thumb",
+          "data-cui": "switch-thumb"
+        }
+      },
+      "label": {
+        "default": {
+          "class": "cui-switch-label cui-field-label-label",
+          "data-cui": "switch-label"
+        }
+      },
+      "description": {
+        "default": {
+          "class": "cui-switch-description",
+          "data-cui": "switch-description"
+        }
+      },
+      "errorMessage": {
+        "default": {
+          "class": "cui-switch-errorMessage",
+          "data-cui": "switch-error-message"
+        }
+      }
+    },
+    "switchStyles": {
+      "root": {
+        "default": "cui-switch-root"
+      },
+      "input": {
+        "default": "cui-switch-input"
+      },
+      "control": {
+        "default": "cui-switch-control"
+      },
+      "thumb": {
+        "default": "cui-switch-thumb"
+      },
+      "label": {
+        "default": "cui-switch-label"
+      },
+      "description": {
+        "default": "cui-switch-description"
+      },
+      "errorMessage": {
+        "default": "cui-switch-errorMessage"
+      }
+    },
+    "thumb": {
+      "default": "cui-switch-thumb"
+    }
+  },
+  "tabs": {
+    "indicator": "cui-tabs-indicator",
+    "tabsContent": "cui-tabs-tabsContent",
+    "tabsHeader": "cui-tabs-tabsHeader",
+    "tabsList": "cui-tabs-tabsList",
+    "tabsRoot": "cui-tabs-tabsRoot cui-tabs-tabsTheme",
+    "tabsTheme": "cui-tabs-tabsTheme",
+    "tabsVars": {
+      "tabListIndicatorColor": "var(--cui-tabsTheme-tabListIndicatorColor)",
+      "tabHeaderHoverBackgroundColor": "var(--cui-tabsTheme-tabHeaderHoverBackgroundColor)",
+      "tabHeaderColor": "var(--cui-tabsTheme-tabHeaderColor)",
+      "tabHeaderHoverColor": "var(--cui-tabsTheme-tabHeaderHoverColor)",
+      "tabHeaderSelectedColor": "var(--cui-tabsTheme-tabHeaderSelectedColor)",
+      "tabIndicatorColor": "var(--cui-tabsTheme-tabIndicatorColor)"
+    }
+  },
+  "text": {
+    "root": {
+      "default": "cui-text-root"
+    },
+    "textParts": {
+      "root": "text-root"
+    },
+    "textStyles": {
+      "root": {
+        "default": "cui-text-root"
+      }
+    }
+  },
+  "text-area": {
+    "baseFieldContainer": "cui-text-area-baseFieldContainer cui-field-baseFieldTheme",
+    "textArea": "cui-text-area-textArea"
+  },
+  "text-field": {
+    "baseFieldContainer": "cui-text-field-baseFieldContainer cui-field-baseFieldTheme",
+    "textField": "cui-text-field-textField"
+  },
+  "toast": {
+    "action": "cui-toast-action",
+    "closeButton": "cui-toast-closeButton",
+    "description": "cui-toast-description",
+    "icon": "cui-toast-icon",
+    "list": "cui-toast-list",
+    "progressFill": "cui-toast-progressFill",
+    "progressTrack": "cui-toast-progressTrack",
+    "region": {
+      "default": "cui-toast-region"
+    },
+    "root": {
+      "default": "cui-toast-root"
+    },
+    "title": "cui-toast-title",
+    "toastParts": {
+      "region": "toast-region",
+      "list": "toast-list",
+      "root": "toast-root",
+      "title": "toast-title",
+      "description": "toast-description",
+      "closeButton": "toast-close-button",
+      "progressTrack": "toast-progress-track",
+      "progressFill": "toast-progress-fill",
+      "icon": "toast-icon",
+      "action": "toast-action"
+    },
+    "toastStyles": {
+      "region": {
+        "default": "cui-toast-region"
+      },
+      "list": {
+        "default": "cui-toast-list"
+      },
+      "root": {
+        "default": "cui-toast-root"
+      },
+      "title": {
+        "default": "cui-toast-title"
+      },
+      "description": {
+        "default": "cui-toast-description"
+      },
+      "closeButton": {
+        "default": "cui-toast-closeButton"
+      },
+      "progressTrack": {
+        "default": "cui-toast-progressTrack"
+      },
+      "progressFill": {
+        "default": "cui-toast-progressFill"
+      },
+      "icon": {
+        "default": "cui-toast-icon"
+      },
+      "action": {
+        "default": "cui-toast-action"
+      }
+    }
+  },
+  "tooltip": {
+    "tooltipContent": {
+      "default": "cui-tooltip-tooltipContent cui-tooltip-tooltipTheme"
+    },
+    "tooltipTheme": "cui-tooltip-tooltipTheme",
+    "tooltipVars": {
+      "fontSize": "var(--cui-tooltipTheme-fontSize)",
+      "lineHeight": "var(--cui-tooltipTheme-lineHeight)",
+      "backgroundColor": "var(--cui-tooltipTheme-backgroundColor)",
+      "color": "var(--cui-tooltipTheme-color)",
+      "padding": "var(--cui-tooltipTheme-padding)",
+      "borderRadius": "var(--cui-tooltipTheme-borderRadius)",
+      "zIndex": "var(--cui-tooltipTheme-zIndex)"
+    },
+    "trigger": "cui-tooltip-trigger"
+  },
+  "field-label": {
+    "label": "cui-field-label-label"
+  },
+  "field-message": {
+    "description": "cui-field-message-description"
+  },
+  "field-error": {
+    "errorMessage": "cui-field-error-errorMessage"
+  },
+  "icon": {
+    "icon": "cui-icon-icon",
+    "iconSize": "var(--cui-icon-iconSize)"
+  }
+}

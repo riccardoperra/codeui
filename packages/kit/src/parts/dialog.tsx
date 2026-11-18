@@ -1,3 +1,6 @@
+import { HydratablePortal } from "../utils/hydratable-portal";
+import "@codeui/styles/theme.css";
+import "@codeui/styles/dialog.css";
 import {
 	Dialog as KDialog,
 	type DialogCloseButtonProps as KDialogCloseButtonProps,
@@ -32,113 +35,8 @@ import { createFocusReturn } from "./dialog-focus";
 import { pointerInitiated, trackInput } from "../utils/open-source";
 
 
-export const dialogParts = {
-	trigger: "dialog-trigger",
-	overlay: "dialog-overlay",
-	positioner: "dialog-positioner",
-	panel: "dialog-panel",
-	header: "dialog-panel-title",
-	title: "dialog-title",
-	description: "dialog-description",
-	closeButton: "dialog-close-button",
-	body: "dialog-panel-content",
-	footer: "dialog-panel-footer",
-	sidebar: "dialog-sidebar",
-	sidebarSearch: "dialog-sidebar-search",
-	nav: "dialog-nav",
-	navItem: "dialog-nav-item",
-	navIcon: "dialog-nav-icon",
-	main: "dialog-main",
-	section: "dialog-section",
-	sectionTitle: "dialog-section-title",
-	sectionContent: "dialog-section-content",
-} as const;
-
-export type DialogPart = keyof typeof dialogParts;
-
-export type DialogThemeVar =
-	| "contentBackground"
-	| "contentBoxShadow"
-	| "contentTextColor"
-	| "contentPadding"
-	| "titleHeight"
-	| "panelRadius"
-	| "dividerColor"
-	| "titleFontSize"
-	| "overlayBackground"
-	| "gutter"
-	| "width"
-	| "height"
-	| "sidebarBackground"
-	| "navCurrentBackground"
-	| "mainBackground"
-	| "islandBackground"
-	| "splitColumns";
-
-/**
- * The dialog's local variables, such as `width`, `height` and `gutter`, as
- * `var(--…)` strings. Set them on the panel with vanilla-extract `vars` or
- * `assignInlineVars`.
- */
-export const dialogThemeVars: Readonly<Record<DialogThemeVar, string>> = styles.dialogThemeVars;
-export type DialogClasses = Partial<Record<DialogPart, string>>;
-/**
- * Width of the panel. `settings` is 1000×680 for a sidebar and a pane;
- * `export` is 800 wide for a preview beside its options. Both shrink to fit
- * the viewport.
- */
-export type DialogSize = "xs" | "sm" | "md" | "lg" | "xl" | "full" | "settings" | "export";
-/**
- * `bar` puts the title in a bar with a divider. `inset` puts it in the panel
- * padding with no divider, a ghost close button and 24px corners.
- */
-export type DialogChrome = "bar" | "inset";
-/** `auto` animates pointer opens and closes. `none` never animates. */
-export type DialogMotion = "auto" | "none";
-/** `split` puts the first child, a preview, beside the second, its options. */
-export type DialogBodyLayout = "split";
-export type DialogSectionVariant = "group" | "well";
-
-type DialogPanelStyleVariants = { size?: DialogSize; chrome?: DialogChrome };
-type DialogBodyStyleVariants = { layout?: DialogBodyLayout };
-type DialogSectionStyleVariants = { variant?: DialogSectionVariant };
-
-export type DialogStyles = {
-	[P in DialogPart]: P extends "panel"
-		? (variants?: DialogPanelStyleVariants) => string
-		: P extends "body"
-			? (variants?: DialogBodyStyleVariants) => string
-			: P extends "section"
-				? (variants?: DialogSectionStyleVariants) => string
-				: () => string;
-};
-
-export const dialogStyles: DialogStyles = {
-	trigger: () => "",
-	overlay: () => styles.overlay,
-	positioner: () => mergeClasses(styles.dialogTheme, styles.positioner),
-	panel: variants =>
-		mergeClasses(
-			styles.dialogTheme,
-			styles.panel({ size: variants?.size, chrome: variants?.chrome }),
-		),
-	header: () => styles.title,
-	title: () => "",
-	description: () => styles.description,
-	closeButton: () => "",
-	body: () => styles.panelContent,
-	footer: () => styles.panelFooter,
-	sidebar: () => styles.sidebar,
-	sidebarSearch: () => styles.sidebarSearch,
-	nav: () => styles.nav,
-	navItem: () => styles.navItem,
-	navIcon: () => styles.navIcon,
-	main: () => styles.main,
-	section: variants => styles.section({ variant: variants?.variant }),
-	sectionTitle: () => styles.sectionTitle,
-	sectionContent: () => styles.sectionContent,
-};
-
+import { dialogParts, type DialogPart, type DialogThemeVar, dialogThemeVars, type DialogClasses, type DialogSize, type DialogChrome, type DialogMotion, type DialogBodyLayout, type DialogSectionVariant, type DialogStyles, dialogStyles } from "@codeui/styles/dialog";
+export { dialogParts, type DialogPart, type DialogThemeVar, dialogThemeVars, type DialogClasses, type DialogSize, type DialogChrome, type DialogMotion, type DialogBodyLayout, type DialogSectionVariant, type DialogStyles, dialogStyles } from "@codeui/styles/dialog";
 type MotionContextValue = { moves: Accessor<boolean> };
 const MotionContext = createContext<MotionContextValue>();
 
@@ -179,7 +77,8 @@ export function Root(props: RootProps) {
 }
 
 export function Portal(props: KDialogPortalProps) {
-	return <KDialog.Portal {...props} />;
+	const context = useDialogContext();
+	return <Show when={context.contentPresent() || context.overlayPresent()}><HydratablePortal {...props} /></Show>;
 }
 
 export function Trigger<T extends ValidComponent = "button">(
@@ -253,8 +152,9 @@ export function Content<T extends ValidComponent = "div">(props: PolymorphicProp
 			<KDialog.Content
 				data-cui={dialogParts.panel}
 				data-chrome={chrome()}
+				data-size={local.size}
 				data-motion={motion()}
-				class={mergeClasses(dialogStyles.panel({ size: local.size, chrome: chrome() }), local.class)}
+				class={mergeClasses(dialogStyles.panel(), local.class)}
 				{...focus}
 				{...others}
 			/>
@@ -329,7 +229,7 @@ export function Body(props: BodyProps) {
 		<div
 			data-cui={dialogParts.body}
 			data-layout={local.layout}
-			class={mergeClasses(dialogStyles.body({ layout: local.layout }), local.class)}
+			class={mergeClasses(dialogStyles.body(), local.class)}
 			{...others}
 		/>
 	);
@@ -485,7 +385,7 @@ export function Section(props: SectionProps) {
 			data-cui={dialogParts.section}
 			data-variant={variant()}
 			data-columns={local.columns === 2 ? "2" : undefined}
-			class={mergeClasses(dialogStyles.section({ variant: variant() }), local.class)}
+			class={mergeClasses(styles.section(), local.class)}
 			{...others}
 		>
 			<Show when={local.title}>

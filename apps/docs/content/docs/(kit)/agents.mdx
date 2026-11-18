@@ -143,7 +143,7 @@ Most ready components take `class` for the root and `classes` for inner parts, k
 
 Do not generate code that uses these. Each one fails to compile or to resolve.
 
-- `@codeui/kit/theme.css`. Kit styles load with the components. DESIGN.md mentions this file, but the package does not export it.
+- `@codeui/kit/theme.css`. Solid components import their CSS and theme automatically. CSS-only consumers import `@codeui/styles/theme.css` and component CSS files, or `@codeui/styles/all.css`.
 - A theme provider, or `data-cui-theme="system"`.
 - `Box`, `HStack`, `VStack`, or sprinkles props such as `padding` or `marginTop`. Use `Stack` and a class.
 - `asChild`. Kobalte and the kit use `as` for polymorphism.

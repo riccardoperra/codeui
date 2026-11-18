@@ -269,7 +269,7 @@ A click on an item works like Enter. A click outside works like Escape.
 
 ## SSR notes
 
-The menu renders in a portal, so nothing renders on the server, open or closed. The panel, the list, and the hidden title appear on the client after hydration. `Trigger` renders on the server as a normal button. IDs come from Solid's `createUniqueId`, so they match between the server and the client. Bind the open shortcut in `onMount`, which runs only on the client.
+An open or force-mounted menu includes the panel, list and hidden title in server HTML at the Portal declaration. Hydration adopts those nodes and moves them to the portal target. Closed content stays absent unless force-mounted. `Trigger` renders on the server as a normal button. IDs come from Solid's `createUniqueId`, so they match between the server and the client. Bind the open shortcut in `onMount`, which runs only on the client.
 
 ## Theming hooks
 

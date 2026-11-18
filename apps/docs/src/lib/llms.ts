@@ -44,7 +44,7 @@ export function kitIndex() {
 		'',
 		'> Accessible Solid components with the CodeImage look, built on Kobalte. Every color, radius, and spacing value is a --cui-* CSS custom property.',
 		'',
-		`- Install: \`pnpm add @codeui/kit solid-js\`. Peer dependency: solid-js ${kit.peerDependencies['solid-js']}. Styles are vanilla-extract modules, so the app build needs @vanilla-extract/vite-plugin. See Installation.`,
+		`- Install: \`pnpm add @codeui/kit solid-js\`. Peer dependency: solid-js ${kit.peerDependencies['solid-js']}. Solid components automatically import their CSS and theme. CSS-only consumers load theme.css and component files, or all.css. No vanilla-extract plugin is required. See Installation.`,
 		'- Ready components import from `@codeui/kit`. Use them first.',
 		`- Styled parts import from a component subpath, for custom layouts: ${subpaths.map(s => `\`${s}\``).join(', ')}. No other subpath exists.`,
 		'- Token objects import from `@codeui/kit` or `@codeui/kit/tokens`.',

@@ -1,0 +1,163 @@
+@import "./option-card-tokens.generated.css";
+
+@layer cui.components {
+  .cui-option-card-root {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, max(var(--cui-space-32), (100% - 2 * var(--cui-space-2)) / 3)), 1fr));
+    gap: var(--cui-space-2);
+    font-family: var(--cui-font-family-sans);
+    line-height: var(--cui-font-line-height-sm);
+    color: var(--cui-text-default);
+  }
+  .cui-option-card-root[data-orientation=vertical] {
+    grid-template-columns: 1fr;
+  }
+  .cui-option-card-label {
+    grid-column: 1 / -1;
+    font-size: var(--cui-font-size-sm);
+    font-weight: var(--cui-font-weight-medium);
+    line-height: var(--cui-font-line-height-sm);
+  }
+  .cui-option-card-description {
+    grid-column: 1 / -1;
+    font-size: var(--cui-font-size-xs);
+    line-height: var(--cui-font-line-height-xs);
+    color: var(--cui-text-muted);
+  }
+  .cui-option-card-errorMessage {
+    grid-column: 1 / -1;
+    font-size: var(--cui-font-size-xs);
+    line-height: var(--cui-font-line-height-xs);
+    color: var(--cui-text-danger);
+  }
+  .cui-option-card-item {
+    position: relative;
+    min-width: 0;
+    display: flex;
+  }
+  .cui-option-card-itemLabel {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--cui-space-1);
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    min-height: var(--cui-space-8);
+    padding: var(--cui-space-3);
+    border-radius: var(--cui-radius-md);
+    background: var(--cui-surface-input);
+    color: var(--cui-text-default);
+    font-size: var(--cui-font-size-sm);
+    line-height: var(--cui-font-line-height-sm);
+    cursor: pointer;
+    user-select: none;
+    overflow-wrap: anywhere;
+    transition: transform var(--cui-motion-duration-fast) var(--cui-motion-ease-out), background-color var(--cui-motion-duration-fast) var(--cui-motion-ease-out);
+  }
+  .cui-option-card-itemLabel[data-checked] {
+    background: var(--cui-surface-field-hover);
+    outline: var(--cui-focus-width) solid var(--cui-accent-focus);
+    outline-offset: calc(-1 * var(--cui-focus-width));
+  }
+  .cui-option-card-itemLabel:active:not(:is([data-disabled], :disabled)) {
+    transform: scale(0.98);
+  }
+  .cui-option-card-itemLabel:is([data-disabled], :disabled) {
+    cursor: not-allowed;
+    color: var(--cui-text-hint);
+  }
+  :where(.cui-option-card-itemLabel)[data-variant="tile"] {
+    padding: var(--cui-component-option-card-item-label-variant-tile-padding);
+  }
+  .cui-option-card-item:has(input:focus-visible) .cui-option-card-itemLabel {
+    outline: var(--cui-focus-width) solid var(--cui-focus-color);
+    outline-offset: var(--cui-focus-offset);
+  }
+  .cui-option-card-item[data-invalid] .cui-option-card-itemLabel {
+    outline: var(--cui-focus-width) solid var(--cui-action-danger-base);
+    outline-offset: calc(-1 * var(--cui-focus-width));
+  }
+  .cui-option-card-itemText {
+    display: flex;
+    flex-direction: column;
+    gap: var(--cui-space-0-5);
+    min-width: 0;
+  }
+  .cui-option-card-itemName {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--cui-space-2);
+    min-height: var(--cui-space-5);
+    font-size: var(--cui-font-size-sm);
+    font-weight: var(--cui-font-weight-medium);
+    line-height: var(--cui-font-line-height-sm);
+  }
+  [data-checked] .cui-option-card-itemName {
+    font-weight: var(--cui-font-weight-semibold);
+  }
+  .cui-option-card-itemDescription {
+    font-size: var(--cui-font-size-xs);
+    line-height: var(--cui-font-line-height-xs);
+    color: var(--cui-text-muted);
+  }
+  .cui-option-card-preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    height: calc(var(--cui-space-16) + var(--cui-space-1));
+    margin-bottom: var(--cui-space-1);
+    border-radius: calc(var(--cui-radius-md) - var(--cui-space-1));
+    background: var(--cui-surface-panel);
+    color: var(--cui-text-default);
+    overflow: hidden;
+    pointer-events: none;
+  }
+  [data-variant=tile] > .cui-option-card-preview {
+    margin-bottom: 0;
+  }
+  .cui-option-card-badge[data-cui="option-card-badge"] {
+    border: 0;
+    font-weight: var(--cui-font-weight-medium);
+    line-height: var(--cui-font-line-height-badge);
+  }
+  [data-checked] .cui-option-card-badge[data-cui="option-card-badge"][data-tone=neutral][data-variant=soft] {
+    background-color: var(--cui-component-option-card-badge-checked-tone-neutral-variant-soft-background-color);
+  }
+  @media (--cui-coarse-pointer) {
+    .cui-option-card-itemLabel {
+      min-height: var(--cui-space-10);
+    }
+  }
+  @media (--cui-hover-pointer) {
+    .cui-option-card-itemLabel:hover:not(:is([data-disabled], :disabled)) {
+      background: var(--cui-surface-field-hover);
+    }
+  }
+  @media (--cui-reduced-motion) {
+    .cui-option-card-itemLabel {
+      transition: background-color var(--cui-motion-duration-fast) var(--cui-motion-ease-out);
+    }
+    .cui-option-card-itemLabel:active:not(:is([data-disabled], :disabled)) {
+      transform: none;
+    }
+  }
+  @media (max-width: 768px) {
+    .cui-option-card-root {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .cui-option-card-itemLabel {
+      flex-direction: row;
+      align-items: center;
+      gap: var(--cui-space-3);
+    }
+    .cui-option-card-preview {
+      width: calc(var(--cui-space-24) + var(--cui-space-4));
+      margin-bottom: 0;
+    }
+  }
+}

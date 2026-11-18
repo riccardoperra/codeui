@@ -1,0 +1,121 @@
+@import "./switch-tokens.generated.css";
+
+@layer cui.components {
+  .cui-switch-root {
+    display: inline-grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    column-gap: var(--cui-space-2);
+    min-height: var(--cui-control-height-compact);
+    position: relative;
+    color: var(--cui-text-default);
+    font-size: var(--cui-font-size-caption);
+    line-height: var(--cui-font-line-height-caption);
+  }
+  .cui-switch-root:is([data-disabled], :disabled) {
+    opacity: 0.4;
+  }
+  .cui-switch-control {
+    --cui-switch-trackWidth: var(--cui-component-switch-control-track-width);
+    --cui-switch-trackHeight: calc(var(--cui-space-5) + var(--cui-space-0-5));
+    --cui-switch-thumbSize: var(--cui-component-switch-control-thumb-size);
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    width: var(--cui-switch-trackWidth);
+    height: var(--cui-switch-trackHeight);
+    padding: calc((var(--cui-switch-trackHeight) - var(--cui-switch-thumbSize)) / 2);
+    border-radius: var(--cui-radius-full);
+    background: var(--cui-surface-track);
+    cursor: pointer;
+    transition: background-color var(--cui-motion-duration-fast) ease;
+  }
+  .cui-switch-control::before {
+    content: "";
+    position: absolute;
+    inset: calc((var(--cui-switch-trackHeight) - var(--cui-control-height-compact)) / 2) 0;
+  }
+  .cui-switch-control {
+    &[data-checked] {
+      background: var(--cui-action-brand-base);
+    }
+
+    &[data-invalid] {
+      outline: var(--cui-focus-width) solid var(--cui-text-danger);
+    }
+  }
+  :root:not([data-cui-input="pointer"]) [data-cui="switch-input"]:focus-visible ~ .cui-switch-control {
+    outline: var(--cui-focus-width) solid var(--cui-focus-color);
+    outline-offset: var(--cui-focus-offset);
+  }
+  .cui-switch-control:is([data-disabled], :disabled) {
+    cursor: not-allowed;
+  }
+  :root[data-cui-input="keyboard"] .cui-switch-control {
+    transition: none;
+  }
+  .cui-switch-thumb {
+    flex-shrink: 0;
+    width: var(--cui-switch-thumbSize);
+    height: var(--cui-switch-thumbSize);
+    border-radius: var(--cui-radius-full);
+    background: var(--cui-action-brand-text);
+    box-shadow: var(--cui-shadow-thumb);
+    transition: transform var(--cui-motion-duration-fast) var(--cui-motion-ease-out);
+  }
+  .cui-switch-thumb[data-checked] {
+    transform: translateX(calc(var(--cui-switch-trackWidth) - var(--cui-switch-trackHeight)));
+  }
+  :root[data-cui-input="keyboard"] .cui-switch-thumb {
+    transition: none;
+  }
+  .cui-switch-label {
+    color: var(--cui-text-label);
+    line-height: var(--cui-font-line-height-caption);
+    cursor: pointer;
+  }
+  .cui-switch-description {
+    grid-column: 2;
+    color: var(--cui-text-hint);
+    font-size: var(--cui-font-size-xs);
+    line-height: var(--cui-font-line-height-xs);
+  }
+  .cui-switch-errorMessage {
+    grid-column: 2;
+    color: var(--cui-text-danger);
+    font-size: var(--cui-font-size-xs);
+    line-height: var(--cui-font-line-height-xs);
+  }
+  @media (--cui-coarse-pointer) {
+    .cui-switch-root {
+      min-height: var(--cui-control-height-md);
+    }
+    .cui-switch-control {
+      --cui-switch-trackWidth: calc(var(--cui-space-10) + var(--cui-space-1));
+      --cui-switch-trackHeight: calc(var(--cui-space-6) + var(--cui-space-0-5));
+      --cui-switch-thumbSize: var(--cui-component-switch-control-pointer-coarse-thumb-size);
+    }
+    .cui-switch-control::before {
+      inset: calc((var(--cui-switch-trackHeight) - var(--cui-control-height-md)) / 2) 0;
+    }
+  }
+  @media (pointer: fine), (pointer: none) {
+    :where(.cui-switch-control)[data-size="sm"] {
+      --cui-switch-trackWidth: var(--cui-component-switch-control-size-sm-track-width);
+      --cui-switch-trackHeight: var(--cui-component-switch-control-size-sm-track-height);
+      --cui-switch-thumbSize: var(--cui-component-switch-control-size-sm-thumb-size);
+    }
+    [data-cui="switch-root"][data-size="sm"] [data-cui="switch-control"] {
+      --cui-switch-trackWidth: var(--cui-component-switch-control-size-sm-track-width);
+      --cui-switch-trackHeight: var(--cui-component-switch-control-size-sm-track-height);
+      --cui-switch-thumbSize: var(--cui-component-switch-control-size-sm-thumb-size);
+    }
+  }
+  @media (--cui-reduced-motion) {
+    .cui-switch-thumb {
+      transition: none;
+    }
+  }
+}

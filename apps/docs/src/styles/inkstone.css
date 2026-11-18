@@ -101,7 +101,7 @@
       grid-template-columns: repeat(8, minmax(0, 1fr));
     }
 
-    .colour-palette__grid[data-family="blue"] {
+    .colour-palette__grid:not([data-family="gray"]) {
       grid-template-columns: repeat(6, minmax(0, 1fr));
     }
   }
@@ -164,6 +164,24 @@
 
   .colour-palette__roles th:first-child {
     width: 46%;
+  }
+
+  .colour-palette__matrix summary {
+    cursor: pointer;
+    font-size: var(--cui-font-size-sm);
+    font-weight: 600;
+  }
+
+  .colour-palette__matrix table {
+    margin-block-start: var(--cui-space-2);
+  }
+
+  .colour-palette__matrix .colour-palette__roles th:first-child {
+    width: 27%;
+  }
+
+  .colour-palette__matrix .colour-palette__value {
+    flex-wrap: wrap;
   }
 
   .colour-palette__roles tbody th {

@@ -85,7 +85,9 @@ Styled Kobalte Badge root. It accepts `tone`, `size`, and `variant`.
 
 ### `badgeStyles`
 
-`badgeStyles` is typed as `BadgeStyles`. Each part function returns a class string. Use it when you own the markup and semantics. `root({ size, tone, variant })` selects the recipe. `icon()` and `label()` return fixed classes.
+Call `badgeStyles.root()`, `icon()`, and `label()` for the part classes. `BadgeStyles` types these helpers.
+
+In CSS-only markup, use `cui-badge-root` with `data-size`, `data-tone`, and `data-variant`. For example, `data-size="sm" data-tone="info" data-variant="outline"` selects the small info badge with an outline.
 
 ## Accessibility
 

@@ -1,18 +1,17 @@
 ---
 title: "Installation"
-description: "Set up the kit in a Vite and Solid app."
+description: "Install static styles and the Solid components."
 ---
 
 ## Requirements
 
-Use Solid `^1.9.8`, Vite, and `vite-plugin-solid`. The current package ships vanilla-extract `.css.js` modules. The vanilla-extract Vite plugin is required to process them.
-Without the plugin, style evaluation can throw “Styles were unable to be assigned to a file” before any component renders.
+The component package supports Solid `^1.9.8`. Its styles are plain CSS. The library builds the Inkstone theme from DTCG tokens before publishing.
 
 ## Install
 
 ```sh
 pnpm add @codeui/kit solid-js@^1.9.8
-pnpm add -D vite vite-plugin-solid @vanilla-extract/vite-plugin@4.0.15
+pnpm add -D vite vite-plugin-solid
 ```
 
 ## Configure Vite
@@ -20,17 +19,21 @@ pnpm add -D vite vite-plugin-solid @vanilla-extract/vite-plugin@4.0.15
 ```ts title="vite.config.ts"
 import { defineConfig } from "vite";
 import solid from "vite-plugin-solid";
-import { vanillaExtractPlugin } from "@vanilla-extract/vite-plugin";
 
 export default defineConfig({
-	plugins: [vanillaExtractPlugin(), solid()],
+	plugins: [solid()],
 });
 ```
 
-This is the verified browser workaround from `examples/run-consumer-check.mjs --with-vanilla-extract`.
-For SSR, the fixture uses `solid({ ssr: true })`, `ssr.noExternal: ["@codeui/kit"]`, and `ssr.resolve.conditions: ["solid", "node"]`.
-The plugin fixes SSR style evaluation, but the consumer check still fails because portalled Dialog and Popover bodies are absent from server markup. Do not rely on those bodies for server content.
-The reproducible setup and results live in `docs/kit-2026/consumer.md` and `examples/` in the repository.
+## Automatic styles
+
+Import a Solid component normally. Its module imports the compiled component stylesheet, shared styles and theme.
+
+```ts title="App.tsx"
+import { Button } from "@codeui/kit";
+```
+
+No manual CSS import is required. With production tree shaking, unused component modules and their CSS can be removed. All variants and runtime states of an included component remain available. The library does not purge individual selectors.
 
 ## Use a component
 
@@ -40,7 +43,22 @@ Import ready components from `@codeui/kit`. Import styled parts as a namespace f
 
 ## Pick a theme
 
-Set `data-cui-theme="dark"` or `data-cui-theme="light"` on the document's `html` element. This lets content portalled to the document body inherit the theme too.
-Without an explicit theme attribute, the theme follows the system color scheme.
-No separate `@codeui/kit/theme.css` import is exported by the current package. Component imports include the style modules that the plugin processes.
-See [Theming](/docs/foundations/theming) for token overrides.
+Set `data-cui-theme="dark"` or `data-cui-theme="light"` on the document's `html` element. Portalled content then inherits the page theme too. Without an explicit attribute, the theme follows the system color scheme.
+
+See [Theming](/docs/foundations/theming) for plain CSS overrides. Applications that author their own vanilla-extract styles still configure their own plugin for those files. The kit does not require it.
+
+## CSS without Solid
+
+Install only `@codeui/styles` to use the compiled CSS in HTML or another rendering system. It does not require a framework runtime. Load `theme.css` and the component files through your bundler or ordinary stylesheet links.
+
+The CSS provides appearance and state styling. The caller supplies markup, accessible names and behavior. Focus management, positioning, keyboard navigation, gestures and virtualized lists belong to the Solid components.
+
+## Inkstone tokens
+
+Install `@codeui/inkstone` to use the theme in your own UI. Load `@codeui/inkstone/theme.css` for the CSS custom properties. Import `tokens`, `themeValues`, and `breakpoints` from the package entry, or use the resolved light and dark JSON in other tools. [Token generation](/docs/foundations/token-generation) describes the outputs.
+
+## Server rendering
+
+Use the package's `solid` condition with Solid's server compiler, as the fixture does through `solid({ ssr: true })`. Dialog, Popover, Sheet and CommandMenu include their open content in server HTML. Hydration adopts those nodes and moves them to the portal target. Closed content stays absent unless force-mounted.
+
+The packed-consumer SSR and hydration checks are documented in `docs/kit-2026/consumer.md` and `examples/` in the repository.

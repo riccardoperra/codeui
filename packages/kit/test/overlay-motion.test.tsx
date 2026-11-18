@@ -32,8 +32,7 @@ describe("Popover", () => {
 		trigger.focus();
 		press("Enter");
 		fireEvent.click(trigger);
-		await tick();
-		expect(screen.getByRole("dialog")).toHaveAttribute("data-motion", "none");
+		expect(await screen.findByRole("dialog")).toHaveAttribute("data-motion", "none");
 	});
 
 	it("pops when a pointer opens it, even if the pointer moved before the click", async () => {
@@ -43,16 +42,14 @@ describe("Popover", () => {
 		fireEvent.pointerDown(trigger);
 		fireEvent.pointerMove(trigger);
 		fireEvent.click(trigger);
-		await tick();
-		expect(screen.getByRole("dialog")).not.toHaveAttribute("data-motion");
+		expect(await screen.findByRole("dialog")).not.toHaveAttribute("data-motion");
 	});
 
 	it("keeps its motion while open, whatever input follows", async () => {
 		const trigger = renderPopover();
 		fireEvent.pointerDown(trigger);
 		fireEvent.click(trigger);
-		await tick();
-		const dialog = screen.getByRole("dialog");
+		const dialog = await screen.findByRole("dialog");
 		press("Shift");
 		await tick();
 		expect(dialog).not.toHaveAttribute("data-motion");
@@ -73,33 +70,31 @@ describe("DropdownMenu", () => {
 				</DropdownMenuPortal>
 			</DropdownMenu>
 		));
-		return screen.getByRole("button", { name: "Actions" });
+		return screen.findByRole("button", { name: "Actions" });
 	}
 
 	it("opens in place from the keyboard", async () => {
-		const trigger = renderMenu();
+		const trigger = await renderMenu();
 		trigger.focus();
 		fireEvent.keyDown(trigger, { key: "ArrowDown" });
-		await tick();
-		expect(screen.getByRole("menu")).toHaveAttribute("data-motion", "none");
+		expect(await screen.findByRole("menu")).toHaveAttribute("data-motion", "none");
 	});
 
 	it("pops when a pointer opens it", async () => {
-		const trigger = renderMenu();
+		const trigger = await renderMenu();
 		fireEvent(trigger, new PointerEvent("pointerdown", { bubbles: true, button: 0, pointerType: "mouse" }));
-		await tick();
-		expect(screen.getByRole("menu")).not.toHaveAttribute("data-motion");
+		expect(await screen.findByRole("menu")).not.toHaveAttribute("data-motion");
 	});
 });
 
 describe("Select", () => {
 	it("opens its list in place from the keyboard", async () => {
 		render(() => <Select aria-label="Font" options={["Inter", "Mono"]} />);
-		const trigger = screen.getByRole("button", { name: /Font/ });
+		const trigger = await screen.findByRole("button", { name: /Font/ });
 		trigger.focus();
 		fireEvent.keyDown(trigger, { key: "ArrowDown" });
-		await tick();
-		expect(screen.getByRole("listbox").parentElement).toHaveAttribute("data-motion", "none");
+		const listbox = await screen.findByRole("listbox");
+		expect(listbox.parentElement).toHaveAttribute("data-motion", "none");
 	});
 });
 
@@ -117,8 +112,7 @@ describe("Tooltip", () => {
 		const button = renderTooltip();
 		press("Tab");
 		button.focus();
-		await tick();
-		const tooltip = screen.getByRole("tooltip");
+		const tooltip = await screen.findByRole("tooltip");
 		expect(tooltip).toHaveAttribute("data-motion", "none");
 		expect(button).toHaveAccessibleDescription("Copy to clipboard");
 	});

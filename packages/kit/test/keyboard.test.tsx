@@ -1,4 +1,4 @@
-import { cleanup, fireEvent, render, screen } from "solid-testing-library";
+import { cleanup, fireEvent, render, screen, waitFor, within } from "solid-testing-library";
 import { createSignal } from "solid-js";
 import { Select } from "../src/components/Select/Select";
 import { Dialog } from "../src/components/Dialog/Dialog";
@@ -18,7 +18,7 @@ afterEach(cleanup);
 
 
 describe("Select", () => {
-	function renderSelect(onChange = vi.fn()) {
+	async function renderSelect(onChange = vi.fn()) {
 		render(() => (
 			<Select
 				aria-label="Fruit"
@@ -27,28 +27,27 @@ describe("Select", () => {
 				onChange={onChange}
 			/>
 		));
-		const trigger = screen.getByRole("button", { name: /Fruit/ });
+		const trigger = await screen.findByRole("button", { name: /Fruit/ });
 		trigger.focus();
 		return trigger;
 	}
 
 	it.each(["Enter", "ArrowDown"])("opens the list with %s", async key => {
-		const trigger = renderSelect();
+		const trigger = await renderSelect();
 		press(key);
-		await tick();
-		expect(screen.getByRole("listbox")).toBeInTheDocument();
+		expect(await screen.findByRole("listbox")).toBeInTheDocument();
 		expect(trigger).toHaveAttribute("aria-expanded", "true");
 	});
 
 	it("moves with the arrows and selects with Enter", async () => {
 		const onChange = vi.fn();
-		const trigger = renderSelect(onChange);
+		const trigger = await renderSelect(onChange);
 		press("ArrowDown");
-		await tick();
-		expect(document.activeElement).toHaveTextContent("Apple");
+		const listbox = await screen.findByRole("listbox");
+		const firstOption = within(listbox).getByRole("option", { name: "Apple" });
+		await waitFor(() => expect(firstOption).toHaveFocus());
 		press("ArrowDown");
 		expect(document.activeElement).toHaveTextContent("Banana");
-		const listbox = screen.getByRole("listbox");
 		press("Enter");
 		await tick();
 		expect(onChange).toHaveBeenCalledWith("Banana");
@@ -58,10 +57,11 @@ describe("Select", () => {
 
 	it("closes with Escape and returns focus to the trigger", async () => {
 		const onChange = vi.fn();
-		const trigger = renderSelect(onChange);
+		const trigger = await renderSelect(onChange);
 		press("ArrowDown");
-		await tick();
-		const listbox = screen.getByRole("listbox");
+		const listbox = await screen.findByRole("listbox");
+		const firstOption = within(listbox).getByRole("option", { name: "Apple" });
+		await waitFor(() => expect(firstOption).toHaveFocus());
 		press("Escape");
 		await tick();
 		await expectDismissed(listbox);
@@ -86,9 +86,8 @@ describe("Dialog", () => {
 		const opener = screen.getByRole("button", { name: "Open settings" });
 		opener.focus();
 		fireEvent.click(opener);
-		await tick();
-		const dialog = screen.getByRole("dialog");
-		expect(dialog).toContainElement(document.activeElement as HTMLElement);
+		const dialog = await screen.findByRole("dialog");
+		await waitFor(() => expect(dialog).toContainElement(document.activeElement as HTMLElement));
 		return { opener, dialog };
 	}
 
@@ -122,10 +121,8 @@ describe("Popover", () => {
 		const trigger = screen.getByRole("button", { name: "Share" });
 		trigger.focus();
 		fireEvent.click(trigger);
-		await tick();
-		expect(screen.getByRole("dialog")).toHaveTextContent("Copy the link");
-
-		const dialog = screen.getByRole("dialog");
+		const dialog = await screen.findByRole("dialog");
+		expect(dialog).toHaveTextContent("Copy the link");
 		press("Escape");
 		await tick();
 		await expectDismissed(dialog);
@@ -134,7 +131,7 @@ describe("Popover", () => {
 });
 
 describe("DropdownMenu", () => {
-	function renderMenu(onSelect = vi.fn()) {
+	async function renderMenu(onSelect = vi.fn()) {
 		render(() => (
 			<DropdownMenu>
 				<DropdownMenuTrigger>Actions</DropdownMenuTrigger>
@@ -147,25 +144,24 @@ describe("DropdownMenu", () => {
 				</DropdownMenuPortal>
 			</DropdownMenu>
 		));
-		const trigger = screen.getByRole("button", { name: "Actions" });
+		const trigger = await screen.findByRole("button", { name: "Actions" });
 		trigger.focus();
 		return trigger;
 	}
 
 	it("opens with ArrowDown, moves with the arrows and runs the item on Enter", async () => {
 		const onSelect = vi.fn();
-		renderMenu(onSelect);
+		await renderMenu(onSelect);
 		press("ArrowDown");
-		await tick();
-		expect(screen.getByRole("menu")).toBeInTheDocument();
-		expect(document.activeElement).toHaveTextContent("Copy");
+		const menu = await screen.findByRole("menu");
+		const firstItem = within(menu).getByRole("menuitem", { name: "Copy" });
+		await waitFor(() => expect(firstItem).toHaveFocus());
 		press("ArrowDown");
 		expect(document.activeElement).toHaveTextContent("Rename");
 		press("ArrowDown");
 		expect(document.activeElement).toHaveTextContent("Delete");
 		press("ArrowUp");
 		expect(document.activeElement).toHaveTextContent("Rename");
-		const menu = screen.getByRole("menu");
 		press("Enter");
 		await tick();
 		expect(onSelect).toHaveBeenCalledWith("Rename");
@@ -174,10 +170,11 @@ describe("DropdownMenu", () => {
 
 	it("closes with Escape and returns focus to the trigger", async () => {
 		const onSelect = vi.fn();
-		const trigger = renderMenu(onSelect);
+		const trigger = await renderMenu(onSelect);
 		press("ArrowDown");
-		await tick();
-		const menu = screen.getByRole("menu");
+		const menu = await screen.findByRole("menu");
+		const firstItem = within(menu).getByRole("menuitem", { name: "Copy" });
+		await waitFor(() => expect(firstItem).toHaveFocus());
 		press("Escape");
 		await tick();
 		await expectDismissed(menu);

@@ -1,0 +1,32 @@
+{
+  "component": {
+    "tabs": {
+      "tabs-theme": {
+        "tabListIndicatorColor": {
+          "$type": "color",
+          "$value": "{border.divider}"
+        },
+        "tabHeaderHoverBackgroundColor": {
+          "$type": "color",
+          "$value": "{action.neutral.hover}"
+        },
+        "tabHeaderColor": {
+          "$type": "color",
+          "$value": "{text.muted}"
+        },
+        "tabHeaderHoverColor": {
+          "$type": "color",
+          "$value": "{text.default}"
+        },
+        "tabHeaderSelectedColor": {
+          "$type": "color",
+          "$value": "{text.default}"
+        },
+        "tabIndicatorColor": {
+          "$type": "color",
+          "$value": "{action.brand.base}"
+        }
+      }
+    }
+  }
+}

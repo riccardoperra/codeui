@@ -17,7 +17,7 @@ Each trait describes something CodeImage already does, and each one rules out a 
 
 ### Carved, not stacked
 
-Most dark interfaces build depth by stacking lighter cards with shadows on a dark page. In Inkstone the page is the lighter surface (`#151516`) and the islands are darker (`#0f0f10`). The islands read as recessed into the page, and they have no border and no shadow. Depth comes from a few small steps of fill.
+Most dark interfaces build depth by stacking lighter cards with shadows on a dark page. In Inkstone the page is the lighter surface (`#1c1c1c`) and the islands are darker (`#111111`). The islands read as recessed into the page, and they have no border and no shadow. Depth comes from a few small steps of fill.
 
 ### Matte, not glossy
 
@@ -69,3 +69,5 @@ Every rule in the specification applies one of these principles to a specific ca
 7. **Preview, then commit.** Hovering shows the result. A click saves it, and Escape puts the old value back.
 8. **One component per pattern, one place per thing.** There is one settings dialog and one command menu. Different layouts place them, but none keeps its own copy.
 9. **Keyboard first, keyboard instant.** Everything works from the keyboard, and nothing opened from the keyboard animates.
+
+The compiled token stylesheet is `@codeui/styles/theme.css`. Solid components import it automatically with their component styles. CSS-only consumers load it explicitly. The library generates token styles from DTCG JSON and publishes them alongside the component CSS.

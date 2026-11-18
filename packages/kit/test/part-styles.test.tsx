@@ -1,4 +1,7 @@
+import { createSignal } from "solid-js";
+import { cleanup, render, screen } from "solid-testing-library";
 import {
+	createBaseFieldProps,
 	optionCardStyles,
 	progressStyles,
 	sliderStyles,
@@ -7,47 +10,35 @@ import {
 	textStyles,
 } from "../src";
 
-// A style function is how custom markup gets a part's look. Each variant that
-// changes the CSS must change the class it returns, or custom markup silently
-// renders the default.
 it.each([
-	["stack root gap", () => stackStyles.root({ gap: "6" }), () => stackStyles.root()],
-	[
-		"stack root direction",
-		() => stackStyles.root({ direction: "row" }),
-		() => stackStyles.root(),
-	],
-	["text root size", () => textStyles.root({ size: "lg" }), () => textStyles.root()],
-	["text root tone", () => textStyles.root({ tone: "muted" }), () => textStyles.root()],
-	[
-		"option card label tile",
-		() => optionCardStyles.itemLabel({ variant: "tile" }),
-		() => optionCardStyles.itemLabel({ variant: "card" }),
-	],
-	[
-		"switch control sm",
-		() => switchStyles.control({ size: "sm" }),
-		() => switchStyles.control({ size: "md" }),
-	],
-	[
-		"progress track md",
-		() => progressStyles.track({ size: "md" }),
-		() => progressStyles.track({ size: "sm" }),
-	],
-	[
-		"slider track vertical",
-		() => sliderStyles.track({ orientation: "vertical" }),
-		() => sliderStyles.track({ orientation: "horizontal" }),
-	],
-	[
-		"slider fill vertical",
-		() => sliderStyles.fill({ orientation: "vertical" }),
-		() => sliderStyles.fill({ orientation: "horizontal" }),
-	],
-])("%s returns its own class", (_, variant, fallback) => {
-	expect(variant()).not.toBe(fallback());
-	// The variant adds to the base class; it does not replace it.
-	expect(variant().split(" ")).toEqual(
-		expect.arrayContaining(fallback().split(" ").slice(0, 1)),
-	);
+	[stackStyles.root, "cui-stack-root"],
+	[textStyles.root, "cui-text-root"],
+	[optionCardStyles.itemLabel, "cui-option-card-itemLabel"],
+	[switchStyles.control, "cui-switch-control"],
+	[progressStyles.track, "cui-progress-track"],
+	[sliderStyles.track, "cui-slider-track"],
+	[sliderStyles.fill, "cui-slider-fill"],
+] as const)("returns the class for custom markup", (style, base) => {
+	expect(style()).toBe(base);
+});
+
+afterEach(cleanup);
+
+it("keeps custom field attributes in sync with its props", () => {
+	const [size, setSize] = createSignal<"sm" | "lg">("sm");
+	render(() => {
+		const field = createBaseFieldProps({
+			get size() {
+				return size();
+			},
+			theme: "inline",
+		});
+		return <input {...field.attributes} class={field.baseStyle()} />;
+	});
+	const input = screen.getByRole("textbox");
+	expect(input).toHaveClass("cui-field-baseFieldVariants");
+	expect(input).toHaveAttribute("data-size", "sm");
+	expect(input).toHaveAttribute("data-theme", "inline");
+	setSize("lg");
+	expect(input).toHaveAttribute("data-size", "lg");
 });

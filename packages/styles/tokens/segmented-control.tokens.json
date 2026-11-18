@@ -1,0 +1,184 @@
+{
+  "component": {
+    "segmented-control": {
+      "segmented-field-theme": {
+        "activeSegmentedBackgroundColor": {
+          "$type": "color",
+          "$value": "{surface.inputAccent}"
+        },
+        "segmentedTextColor": {
+          "$type": "color",
+          "$value": "{text.default}"
+        },
+        "activeSegmentedTextColor": {
+          "$type": "color",
+          "$value": "{action.neutral.text}"
+        },
+        "segmentWrapperSolidBackground": {
+          "$type": "color",
+          "$value": "{surface.input}"
+        },
+        "segmentWrapperBorderedColor": {
+          "$type": "color",
+          "$value": "{border.menu}"
+        },
+        "segmentWrapperRadius": {
+          "$type": "dimension",
+          "$value": "{radius.md}"
+        },
+        "segmentWrapperPadding": {
+          "$type": "dimension",
+          "$value": "{space.1}"
+        },
+        "segmentRadius": {
+          "$type": "dimension",
+          "$value": "{radius.sm}"
+        },
+        "segmentFontSize": {
+          "$type": "dimension",
+          "$value": "{font.size.sm}"
+        }
+      },
+      "segmented-control-wrapper": {
+        "theme-primary": {
+          "activeSegmentedBackgroundColor": {
+            "$type": "color",
+            "$value": "{action.brand.base}"
+          },
+          "activeSegmentedTextColor": {
+            "$type": "color",
+            "$value": "{action.brand.text}"
+          }
+        },
+        "size-xl": {
+          "segmentHeight": {
+            "$type": "dimension",
+            "$value": "{control.height.xl}"
+          },
+          "segmentFontSize": {
+            "$type": "dimension",
+            "$value": "{font.size.lg}"
+          },
+          "segmentPadding": {
+            "$type": "dimension",
+            "$value": "{space.6}"
+          },
+          "segmentRadius": {
+            "$type": "dimension",
+            "$value": "{radius.lg}"
+          },
+          "segmentWrapperRadius": {
+            "$type": "dimension",
+            "$value": "{radius.xl}"
+          }
+        },
+        "size-lg": {
+          "segmentWrapperPadding": {
+            "$type": "dimension",
+            "$value": "{space.1}"
+          },
+          "segmentHeight": {
+            "$type": "dimension",
+            "$value": "{control.height.lg}"
+          },
+          "segmentFontSize": {
+            "$type": "dimension",
+            "$value": "{font.size.md}"
+          },
+          "segmentPadding": {
+            "$type": "dimension",
+            "$value": "{space.5}"
+          },
+          "segmentRadius": {
+            "$type": "dimension",
+            "$value": "{radius.sm}"
+          },
+          "segmentWrapperRadius": {
+            "$type": "dimension",
+            "$value": "{radius.md}"
+          }
+        },
+        "size-md": {
+          "segmentWrapperPadding": {
+            "$type": "dimension",
+            "$value": "{space.1}"
+          },
+          "segmentHeight": {
+            "$type": "dimension",
+            "$value": "{control.height.sm}"
+          },
+          "segmentFontSize": {
+            "$type": "dimension",
+            "$value": "{font.size.sm}"
+          },
+          "segmentPadding": {
+            "$type": "dimension",
+            "$value": "{space.4}"
+          },
+          "segmentRadius": {
+            "$type": "dimension",
+            "$value": "{radius.sm}"
+          },
+          "segmentWrapperRadius": {
+            "$type": "dimension",
+            "$value": "{radius.md}"
+          }
+        },
+        "size-sm": {
+          "segmentWrapperPadding": {
+            "$type": "dimension",
+            "$value": "{space.1}"
+          },
+          "segmentHeight": {
+            "$type": "dimension",
+            "$value": "{control.height.sm}"
+          },
+          "segmentFontSize": {
+            "$type": "dimension",
+            "$value": "{font.size.sm}"
+          },
+          "segmentPadding": {
+            "$type": "dimension",
+            "$value": "{space.3}"
+          },
+          "segmentRadius": {
+            "$type": "dimension",
+            "$value": "{radius.xs}"
+          },
+          "segmentWrapperRadius": {
+            "$type": "dimension",
+            "$value": "{radius.sm}"
+          }
+        },
+        "size-xs": {
+          "segmentHeight": {
+            "$type": "dimension",
+            "$value": "{control.height.xs}"
+          },
+          "segmentPadding": {
+            "$type": "dimension",
+            "$value": "{space.2}"
+          },
+          "segmentRadius": {
+            "$type": "dimension",
+            "$value": "{radius.xs}"
+          },
+          "segmentWrapperRadius": {
+            "$type": "dimension",
+            "$value": "{radius.sm}"
+          }
+        },
+        "pill-true": {
+          "segmentRadius": {
+            "$type": "dimension",
+            "$value": "{radius.full}"
+          },
+          "segmentWrapperRadius": {
+            "$type": "dimension",
+            "$value": "{radius.full}"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,75 @@
+@layer cui.components {
+  .cui-number-field-numberFieldTheme {
+    --cui-numberFieldTheme-controlSize: ;
+  }
+  .cui-number-field-baseFieldContainer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--cui-space-3);
+  }
+  .cui-number-field-textField {
+    padding-right: var(--cui-space-3);
+    padding-left: var(--cui-space-3);
+    padding-top: 0;
+    padding-bottom: 0;
+    outline: none;
+  }
+  .cui-number-field-numberFieldContainer {
+    position: relative;
+  }
+  .cui-number-field-controlsContainer {
+    position: absolute;
+    right: var(--cui-space-2);
+    top: 50%;
+    transform: translateY(-50%);
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 0px;
+    z-index: 10;
+    display: none;
+    background-color: var(--cui-surface-input-accent);
+    color: var(--cui-text-input);
+    border-radius: var(--cui-radius-md);
+  }
+  .cui-number-field-numberFieldContainer:hover .cui-number-field-controlsContainer {
+    display: flex;
+  }
+  .cui-number-field-numberFieldContainer:focus-within .cui-number-field-controlsContainer {
+    display: flex;
+  }
+  .cui-number-field-controlButton {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    width: var(--cui-numberFieldTheme-controlSize);
+    height: var(--cui-numberFieldTheme-controlSize);
+    padding: 0;
+  }
+  .cui-number-field-baseFieldContainer {
+    &[data-field-size=xs] .cui-number-field-controlButton {
+      --cui-numberFieldTheme-controlSize: 12px;
+    }
+
+    &[data-field-size=sm] .cui-number-field-controlButton {
+      --cui-numberFieldTheme-controlSize: 14px;
+    }
+
+    &[data-field-size=md] .cui-number-field-controlButton {
+      --cui-numberFieldTheme-controlSize: 16px;
+    }
+
+    &[data-field-size=lg] .cui-number-field-controlButton {
+      --cui-numberFieldTheme-controlSize: 18px;
+    }
+
+    &[data-field-size=xl] .cui-number-field-controlButton {
+      --cui-numberFieldTheme-controlSize: 20px;
+    }
+  }
+  .cui-number-field-control {
+    width: inherit;
+    height: inherit;
+  }
+}

@@ -1,0 +1,11 @@
+export const control: string = "cui-settings-control";
+export const description: string = "cui-settings-description";
+export const details: string = "cui-settings-details";
+export const group: string = "cui-settings-group";
+export const groupContent: string = "cui-settings-groupContent";
+export const groupDescription: string = "cui-settings-groupDescription";
+export const groupTitle: string = "cui-settings-groupTitle";
+export const label: string = "cui-settings-label";
+export const marker: string = "cui-settings-marker";
+export const picture: string = "cui-settings-picture";
+export const row: string = "cui-settings-row";

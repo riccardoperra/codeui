@@ -1,3 +1,4 @@
+import { themeValues } from "@codeui/inkstone";
 import {
 	Badge,
 	Button,
@@ -15,7 +16,10 @@ interface Theme {
 	readonly brand: string;
 }
 
-const inkstone: Theme = { radiusScale: 1, brand: "#0083e5" };
+const inkstone: Theme = {
+	radiusScale: Number(themeValues.radius.scale),
+	brand: themeValues.action.brand.base,
+};
 
 const presets = {
 	inkstone: { label: "Inkstone", theme: inkstone },

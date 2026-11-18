@@ -1,0 +1,44 @@
+{
+  "component": {
+    "popover": {
+      "popover-theme": {
+        "contentBackground": {
+          "$type": "color",
+          "$value": "{surface.dialog}"
+        },
+        "contentRadius": {
+          "$type": "dimension",
+          "$value": "{radius.xl}"
+        },
+        "contentPadding": {
+          "$type": "dimension",
+          "$value": "{space.4}"
+        },
+        "contentFontSize": {
+          "$type": "dimension",
+          "$value": "{font.size.sm}"
+        },
+        "contentLineHeight": {
+          "$type": "number",
+          "$value": "{font.lineHeight.snug}"
+        },
+        "titleColor": {
+          "$type": "color",
+          "$value": "{text.dialogTitle}"
+        },
+        "titleFontSize": {
+          "$type": "dimension",
+          "$value": "{font.size.md}"
+        },
+        "descriptionColor": {
+          "$type": "color",
+          "$value": "{text.dialog}"
+        },
+        "contentBorderColor": {
+          "$type": "color",
+          "$value": "{border.menu}"
+        }
+      }
+    }
+  }
+}

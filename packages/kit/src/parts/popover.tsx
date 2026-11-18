@@ -1,6 +1,10 @@
+import { HydratablePortal } from "../utils/hydratable-portal";
+import "@codeui/styles/theme.css";
+import "@codeui/styles/popover.css";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import {
 	Popover as KPopover,
+	usePopoverContext,
 	type PopoverAnchorProps as KPopoverAnchorProps,
 	type PopoverArrowProps as KPopoverArrowProps,
 	type PopoverCloseButtonProps as KPopoverCloseButtonProps,
@@ -12,41 +16,15 @@ import {
 	type PopoverTriggerProps as KPopoverTriggerProps,
 } from "@kobalte/core/popover";
 import { mergeRefs } from "@kobalte/utils";
-import { mergeProps, splitProps, type ValidComponent } from "solid-js";
+import { mergeProps, Show, splitProps, type ValidComponent } from "solid-js";
 import * as styles from "../components/Popover/Popover.css";
 import { IconButton, type IconButtonProps } from "../components/IconButton/IconButton";
 import { CloseIcon } from "../icons";
 import { mergeClasses } from "../utils/css";
 import { motionRef } from "../utils/open-source";
 
-export const popoverParts = {
-	trigger: "popover-trigger",
-	anchor: "popover-anchor",
-	content: "popover-content",
-	arrow: "popover-arrow",
-	title: "popover-title",
-	description: "popover-description",
-	closeButton: "popover-close-button",
-} as const;
-
-export type PopoverPart = keyof typeof popoverParts;
-export type PopoverClasses = Partial<Record<PopoverPart, string>>;
-export type PopoverVariant = "bordered";
-
-export type PopoverStyles = {
-	[P in PopoverPart]: P extends "content" ? (variants?: { variant?: PopoverVariant }) => string : () => string;
-};
-
-export const popoverStyles: PopoverStyles = {
-	trigger: () => "",
-	anchor: () => "",
-	content: variants => styles.content({ variant: variants?.variant }),
-	arrow: () => "",
-	title: () => styles.title,
-	description: () => styles.description,
-	closeButton: () => "",
-};
-
+import { popoverParts, type PopoverPart, type PopoverClasses, type PopoverVariant, type PopoverStyles, popoverStyles } from "@codeui/styles/popover";
+export { popoverParts, type PopoverPart, type PopoverClasses, type PopoverVariant, type PopoverStyles, popoverStyles } from "@codeui/styles/popover";
 export type RootProps = KPopoverRootProps;
 
 /** Kobalte's Popover root with a default `gutter` of 6. */
@@ -55,7 +33,8 @@ export function Root(props: RootProps) {
 }
 
 export function Portal(props: KPopoverPortalProps) {
-	return <KPopover.Portal {...props} />;
+	const context = usePopoverContext();
+	return <Show when={context.contentPresent()}><HydratablePortal {...props} /></Show>;
 }
 
 export function Trigger<T extends ValidComponent = "button">(
@@ -97,7 +76,8 @@ export function Content<T extends ValidComponent = "div">(props: PolymorphicProp
 		<KPopover.Content
 			ref={mergeRefs(motionRef(), local.ref)}
 			data-cui={popoverParts.content}
-			class={mergeClasses(popoverStyles.content({ variant: local.variant }), local.class)}
+			data-variant={local.variant}
+			class={mergeClasses(styles.content(), local.class)}
 			{...others}
 		/>
 	);
