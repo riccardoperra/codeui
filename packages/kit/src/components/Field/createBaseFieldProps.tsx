@@ -17,7 +17,9 @@ export function createBaseFieldProps(
 	props: BaseFieldProps,
 	field: Accessor<FieldContent & { inputId?: string; id?: string }>,
 ): BaseFieldStyling & { ids: ReturnType<typeof createFieldIds> };
-export function createBaseFieldProps(props: BaseFieldProps): BaseFieldStyling & { ids: undefined };
+export function createBaseFieldProps(
+	props: BaseFieldProps,
+): BaseFieldStyling & { ids: undefined };
 export function createBaseFieldProps(
 	props: BaseFieldProps,
 	field?: Accessor<FieldContent & { inputId?: string; id?: string }>,
@@ -27,7 +29,7 @@ export function createBaseFieldProps(
 		baseStyle: styles.baseFieldVariants,
 		attributes: {
 			get "data-size"() {
-				return props?.size ?? "md";
+				return props?.size ?? "sm";
 			},
 			get "data-theme"() {
 				return props?.theme ?? "filled";

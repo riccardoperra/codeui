@@ -1,3 +1,5 @@
+import { type BaseComponentSize } from "../../foundation/sizes";
+
 import { mergeClasses } from "../../utils/css";
 
 export const button = (): string => "cui-button-button cui-button-buttonTheme";
@@ -17,7 +19,7 @@ export const buttonVars = {
 };
 
 type ButtonAppearance = {
-	size?: "xl" | "lg" | "md" | "sm" | "xs";
+	size?: BaseComponentSize;
 	theme?: "primary" | "tertiary" | "secondary" | "negative" | "caution";
 	variant?: "ghost";
 	block?: boolean;
@@ -28,7 +30,7 @@ export type ButtonVariants = (ButtonAppearance & { loading?: boolean }) | undefi
 export type ButtonStyleOptions = ButtonAppearance & { class?: string };
 
 export function buttonStyleProps({
-	size = "md",
+	size = "sm",
 	theme,
 	variant,
 	block,

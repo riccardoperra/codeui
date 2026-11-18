@@ -52,7 +52,7 @@
       border-radius: var(--cui-component-field-base-field-variants-size-xs-border-radius);
     }
 
-    &[data-size="sm"] {
+    &:is(:not([data-size]), [data-size="sm"]) {
       --cui-baseFieldTheme-inputHeight: var(--cui-component-field-base-field-variants-size-sm-input-height);
       --cui-baseFieldTheme-fontSize: var(--cui-component-field-base-field-variants-size-sm-font-size);
       border-radius: var(--cui-component-field-base-field-variants-size-sm-border-radius);
@@ -70,12 +70,6 @@
       border-radius: var(--cui-component-field-base-field-variants-size-lg-border-radius);
     }
 
-    &[data-size="xl"] {
-      --cui-baseFieldTheme-inputHeight: var(--cui-component-field-base-field-variants-size-xl-input-height);
-      --cui-baseFieldTheme-fontSize: var(--cui-component-field-base-field-variants-size-xl-font-size);
-      border-radius: var(--cui-component-field-base-field-variants-size-xl-border-radius);
-    }
-
     &[data-theme="filled"] {
       --cui-baseFieldTheme-borderColor: transparent;
     }
@@ -91,12 +85,6 @@
 
     &[data-theme="inline"][data-disabled] {
       background-color: transparent;
-    }
-  }
-  @media (max-width: 768px) {
-    :where(.cui-field-baseFieldVariants)[data-size="md"] {
-      --cui-baseFieldTheme-inputHeight: var(--cui-component-field-base-field-variants-size-md-max-width-768px-input-height);
-      --cui-baseFieldTheme-fontSize: var(--cui-component-field-base-field-variants-size-md-max-width-768px-font-size);
     }
   }
 }

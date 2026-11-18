@@ -6,7 +6,7 @@ import {
 import { StyleRule } from "../../types";
 
 function makeFieldMessageSize(
-	sizesMap: Record<BaseComponentSize, BaseComponentSize>,
+	sizesMap: Record<BaseComponentSize, Parameters<typeof mapFontSizeValue>[0]>,
 	size: BaseComponentSize,
 ): StyleRule["selectors"] {
 	return {
@@ -18,7 +18,7 @@ function makeFieldMessageSize(
 }
 
 export function styleFieldMessage(
-	sizesMap: Record<BaseComponentSize, BaseComponentSize>,
+	sizesMap: Record<BaseComponentSize, Parameters<typeof mapFontSizeValue>[0]>,
 ): { selectors: StyleRule["selectors"] } {
 	return {
 		selectors: {
@@ -26,7 +26,6 @@ export function styleFieldMessage(
 			...makeFieldMessageSize(sizesMap, "sm"),
 			...makeFieldMessageSize(sizesMap, "md"),
 			...makeFieldMessageSize(sizesMap, "lg"),
-			...makeFieldMessageSize(sizesMap, "xl"),
 		},
 	};
 }

@@ -50,28 +50,6 @@
             "$value": "{action.brand.text}"
           }
         },
-        "size-xl": {
-          "segmentHeight": {
-            "$type": "dimension",
-            "$value": "{control.height.xl}"
-          },
-          "segmentFontSize": {
-            "$type": "dimension",
-            "$value": "{font.size.lg}"
-          },
-          "segmentPadding": {
-            "$type": "dimension",
-            "$value": "{space.6}"
-          },
-          "segmentRadius": {
-            "$type": "dimension",
-            "$value": "{radius.lg}"
-          },
-          "segmentWrapperRadius": {
-            "$type": "dimension",
-            "$value": "{radius.xl}"
-          }
-        },
         "size-lg": {
           "segmentWrapperPadding": {
             "$type": "dimension",
@@ -105,7 +83,7 @@
           },
           "segmentHeight": {
             "$type": "dimension",
-            "$value": "{control.height.sm}"
+            "$value": "{control.height.md}"
           },
           "segmentFontSize": {
             "$type": "dimension",

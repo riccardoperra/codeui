@@ -14,15 +14,29 @@ export {
 	type CreateComboboxOptionsReturn,
 } from "../components/Combobox/createComboboxOptions";
 
-import { type ComboboxVariants, comboboxParts, type ComboboxPart, type ComboboxClasses, type ComboboxStyles, comboboxStyles } from "@codeui/styles/combobox";
-export { type ComboboxVariants, comboboxParts, type ComboboxPart, type ComboboxClasses, type ComboboxStyles, comboboxStyles } from "@codeui/styles/combobox";
+import {
+	type ComboboxVariants,
+	comboboxParts,
+	type ComboboxPart,
+	type ComboboxClasses,
+	type ComboboxStyles,
+	comboboxStyles,
+} from "@codeui/styles/combobox";
+export {
+	type ComboboxVariants,
+	comboboxParts,
+	type ComboboxPart,
+	type ComboboxClasses,
+	type ComboboxStyles,
+	comboboxStyles,
+} from "@codeui/styles/combobox";
 type Local = ComboboxVariants & { class?: string };
 const variantKeys = ["class", "size"] as const;
 function partAttributes(part: ComboboxPart, local: Local) {
 	return {
 		"data-cui": comboboxParts[part],
 		get "data-size"() {
-			return local.size;
+			return part === "control" ? (local.size ?? "sm") : local.size;
 		},
 		get class() {
 			return mergeClasses(comboboxStyles[part](), local.class);

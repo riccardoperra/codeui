@@ -198,16 +198,21 @@ Every radius except `none` and `full` is its value times `--cui-radius-scale` (d
 
 ## 6. Size
 
-| Control                                                | Desktop  | Phone   |
-| ------------------------------------------------------ | -------- | ------- |
-| Button, field, select, segmented, menu row, nav item   | 36px     | 40–44px |
-| Segment inside a segmented track                       | 28px     | 32px    |
-| Command menu input                                     | 44px     | 44px    |
-| Settings row                                           | min 56px | min 56px |
-| Switch                                                 | 36×22    | 44×26   |
+Buttons, icon buttons, fields, select triggers and segmented tracks share one height scale.
 
-- Hit targets: 28px desktop, 40px phone. A small mark keeps a 24px hit box.
-- A segmented control has a fixed height in any container, 84px per option in settings.
+| Size | Compact | Comfortable | Touch |
+| ---- | ------- | ----------- | ----- |
+| `xs` | 24px | 28px | 32px |
+| `sm` (default) | 32px | 36px | 40px |
+| `md` | 38px | 44px | 50px |
+| `lg` | 46px | 52px | 58px |
+
+Comfortable is the default density. Compact multiplies heights by 0.875, and touch multiplies them by 1.125. Heights round to the nearest 2px. A coarse pointer selects touch density automatically. Set `data-cui-density="compact|comfortable|touch"` on an element to set density for its subtree. Font sizes stay tied to the control size.
+
+Checkbox, Radio and Switch use their own geometry. Menu and navigation rows are specified at 36px. A segment fills the space inside the track padding. Settings rows have a 56px minimum.
+
+- Use targets of at least 28px on desktop and 40px on a phone. Choose `sm` or larger for standalone controls at touch density. A small mark keeps a 24px hit box.
+- In settings, allow 84px per segmented option.
 - Icons: one outline set; 16px in controls and rows, 14px in segments, 20px in a rail or phone tab bar; 6–8px from their label.
 - A row has a fixed 20px leading slot, so text aligns with or without an icon.
 - An icon-only button has an accessible name and a kit Tooltip covering its whole hit area.
@@ -405,7 +410,7 @@ Do not propose these again without a new reason.
 - [ ] Accent only for focus, selection, on, new and one primary action; selected rows are neutral.
 - [ ] Text from §3, at least 11px, weights 400/500/600, mostly secondary.
 - [ ] Radii follow nesting.
-- [ ] Controls 36px (phone 40–44px); targets ≥28px desktop, ≥40px phone.
+- [ ] Controls align on the shared size and density scale. Standalone targets ≥28px desktop, ≥40px phone.
 - [ ] Tabular numbers; truncated text reachable.
 - [ ] Motion named in §7.3; ease-out; ≤260ms for controls; nothing from the keyboard; reduced motion handled.
 - [ ] Keyboard works, focus visible and returned, Escape closes one layer.

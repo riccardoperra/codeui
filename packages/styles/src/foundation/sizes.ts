@@ -1,14 +1,13 @@
 import { tokens } from "./cui.css";
 
-export type BaseComponentSize = "xs" | "sm" | "md" | "lg" | "xl";
+export type BaseComponentSize = keyof typeof tokens.control.height;
 
 export const ComponentSizes = {
 	xs: "xs",
 	sm: "sm",
 	md: "md",
 	lg: "lg",
-	xl: "xl",
-} as const;
+} as const satisfies { [Size in BaseComponentSize]: Size };
 
 const sizesCss: Record<string, string> = tokens.control.height;
 
@@ -36,10 +35,10 @@ const lineHeightsCss = {
 };
 
 /** The line height that pairs with `mapFontSizeValue(size)`. */
-export const mapLineHeightValue = (size: BaseComponentSize) => {
+export const mapLineHeightValue = (size: keyof typeof fontSizesCss) => {
 	return lineHeightsCss[size];
 };
 
-export const mapFontSizeValue = (size: BaseComponentSize) => {
+export const mapFontSizeValue = (size: keyof typeof fontSizesCss) => {
 	return fontSizesCss[size];
 };

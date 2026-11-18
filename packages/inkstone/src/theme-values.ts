@@ -298,12 +298,10 @@ export const themeValues = {
 	},
 	"control": {
 		"height": {
-			"compact": "28px",
-			"xs": "30px",
+			"xs": "28px",
 			"sm": "36px",
-			"md": "40px",
-			"lg": "48px",
-			"xl": "56px"
+			"md": "44px",
+			"lg": "52px"
 		}
 	},
 	"motion": {

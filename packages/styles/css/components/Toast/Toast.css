@@ -185,7 +185,7 @@
   .cui-toast-action {
     grid-row: 1 / span 2;
     box-sizing: border-box;
-    min-height: var(--cui-control-height-compact);
+    min-height: 28px;
     margin-inline-start: var(--cui-space-2);
     border: 0;
     border-radius: var(--cui-radius-xs);
@@ -207,7 +207,7 @@
   .cui-toast-closeButton {
     grid-row: 1 / span 2;
     box-sizing: border-box;
-    min-height: var(--cui-control-height-compact);
+    min-height: 28px;
     margin-inline-start: var(--cui-space-2);
     border: 0;
     border-radius: var(--cui-radius-xs);
@@ -220,7 +220,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: var(--cui-control-height-compact);
+    min-width: 28px;
     padding: 0;
     color: var(--cui-text-muted);
   }
@@ -264,11 +264,11 @@
   }
   @media (--cui-coarse-pointer) {
     .cui-toast-action {
-      min-height: var(--cui-control-height-md);
+      min-height: 40px;
     }
     .cui-toast-closeButton {
-      min-height: var(--cui-control-height-md);
-      min-width: var(--cui-control-height-md);
+      min-height: 40px;
+      min-width: 40px;
     }
   }
 }

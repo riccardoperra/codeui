@@ -124,11 +124,6 @@
   .cui-accordion-contentBody {
     padding-bottom: var(--cui-space-2);
   }
-  @media (--cui-coarse-pointer) {
-    .cui-accordion-trigger {
-      min-height: var(--cui-control-height-md);
-    }
-  }
   @media (--cui-hover-pointer) {
     .cui-accordion-trigger:hover:not(:disabled):not([data-expanded]) {
       background: var(--cui-surface-input);

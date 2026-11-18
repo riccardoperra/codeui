@@ -176,12 +176,10 @@ const values = {
 	},
 	"control": {
 		"height": {
-			"compact": "var(--cui-control-height-compact)",
 			"xs": "var(--cui-control-height-xs)",
 			"sm": "var(--cui-control-height-sm)",
 			"md": "var(--cui-control-height-md)",
-			"lg": "var(--cui-control-height-lg)",
-			"xl": "var(--cui-control-height-xl)"
+			"lg": "var(--cui-control-height-lg)"
 		}
 	},
 	"motion": {

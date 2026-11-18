@@ -10,7 +10,7 @@
     --cui-listTheme-contentMaxHeight: 400px;
     --cui-listTheme-contentMaxHeightXs: 270px;
     --cui-listTheme-separator: var(--cui-component-listbox-list-theme-separator);
-    --cui-listTheme-itemMinHeight: var(--cui-component-listbox-list-theme-item-min-height);
+    --cui-listTheme-itemMinHeight: 40px;
     --cui-listTheme-itemTextColor: var(--cui-component-listbox-list-theme-item-text-color);
     --cui-listTheme-itemHoverBackground: var(--cui-component-listbox-list-theme-item-hover-background);
     --cui-listTheme-itemHoverTextColor: var(--cui-component-listbox-list-theme-item-hover-text-color);

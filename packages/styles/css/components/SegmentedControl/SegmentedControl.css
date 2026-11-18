@@ -44,15 +44,6 @@
       box-shadow: 0 0 0 var(--cui-border-width-strong) var(--cui-segmentedFieldTheme-segmentWrapperBorderedColor);
     }
 
-    &[data-size="xl"] {
-      --cui-segmentedFieldTheme-segmentWrapperPadding: calc(var(--cui-space-1) * 1.5);
-      --cui-segmentedFieldTheme-segmentHeight: var(--cui-component-segmented-control-segmented-control-wrapper-size-xl-segment-height);
-      --cui-segmentedFieldTheme-segmentFontSize: var(--cui-component-segmented-control-segmented-control-wrapper-size-xl-segment-font-size);
-      --cui-segmentedFieldTheme-segmentPadding: var(--cui-component-segmented-control-segmented-control-wrapper-size-xl-segment-padding);
-      --cui-segmentedFieldTheme-segmentRadius: var(--cui-component-segmented-control-segmented-control-wrapper-size-xl-segment-radius);
-      --cui-segmentedFieldTheme-segmentWrapperRadius: var(--cui-component-segmented-control-segmented-control-wrapper-size-xl-segment-wrapper-radius);
-    }
-
     &[data-size="lg"] {
       --cui-segmentedFieldTheme-segmentWrapperPadding: var(--cui-component-segmented-control-segmented-control-wrapper-size-lg-segment-wrapper-padding);
       --cui-segmentedFieldTheme-segmentHeight: var(--cui-component-segmented-control-segmented-control-wrapper-size-lg-segment-height);
@@ -71,7 +62,7 @@
       --cui-segmentedFieldTheme-segmentWrapperRadius: var(--cui-component-segmented-control-segmented-control-wrapper-size-md-segment-wrapper-radius);
     }
 
-    &[data-size="sm"] {
+    &:is(:not([data-size]), [data-size="sm"]) {
       --cui-segmentedFieldTheme-segmentWrapperPadding: var(--cui-component-segmented-control-segmented-control-wrapper-size-sm-segment-wrapper-padding);
       --cui-segmentedFieldTheme-segmentHeight: var(--cui-component-segmented-control-segmented-control-wrapper-size-sm-segment-height);
       --cui-segmentedFieldTheme-segmentFontSize: var(--cui-component-segmented-control-segmented-control-wrapper-size-sm-segment-font-size);

@@ -22,10 +22,6 @@
           "$type": "color",
           "$value": "{border.menu}"
         },
-        "itemMinHeight": {
-          "$type": "dimension",
-          "$value": "{control.height.md}"
-        },
         "itemTextColor": {
           "$type": "color",
           "$value": "{text.menu}"

@@ -38,10 +38,6 @@
           "$type": "color",
           "$value": "{text.menu}"
         },
-        "itemMinHeight": {
-          "$type": "dimension",
-          "$value": "{control.height.sm}"
-        },
         "itemRadius": {
           "$type": "dimension",
           "$value": "{radius.nav}"

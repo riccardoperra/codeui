@@ -15,8 +15,12 @@ import { description } from "../components/Field/FieldMessage/FieldMessage.css";
 import { CheckIcon } from "../icons/CheckIcon";
 import { mergeClasses } from "../utils/css";
 
+type ChoiceAppearance = Omit<NonNullable<BaseFieldProps>, "size"> & {
+	size?: NonNullable<BaseFieldProps>["size"] | "xl";
+};
+
 export type RootProps<T extends ValidComponent = "div"> = K.CheckboxRootProps<T> &
-	BaseFieldProps;
+	ChoiceAppearance;
 export function Root<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, RootProps<T>>,
 ) {
@@ -44,7 +48,7 @@ export function Input<T extends ValidComponent = "input">(
 }
 
 export type ControlProps<T extends ValidComponent = "div"> = K.CheckboxControlProps<T> &
-	BaseFieldProps;
+	ChoiceAppearance;
 export function Control<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, ControlProps<T>>,
 ) {

@@ -1,7 +1,7 @@
 import { For, mergeProps } from "solid-js";
 import * as P from "../../parts/pagination";
 
-type PaginationItemSize = "xs" | "sm" | "md" | "lg" | "xl";
+type PaginationItemSize = NonNullable<P.ItemProps["size"]>;
 
 export interface PaginationProps extends P.PaginationOptions {
 	rounded?: boolean;
@@ -9,7 +9,7 @@ export interface PaginationProps extends P.PaginationOptions {
 }
 
 export function Pagination(props: PaginationProps) {
-	const options = mergeProps({ size: "md" as const, rounded: false }, props);
+	const options = mergeProps({ size: "sm" as const, rounded: false }, props);
 	const { items, page } = P.createPaginationState(options);
 
 	return (

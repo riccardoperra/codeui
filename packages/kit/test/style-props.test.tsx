@@ -62,7 +62,7 @@ it("uses the same Button defaults for custom markup and the kit component", () =
 	]) {
 		expect(custom.getAttribute(attribute)).toBe(kit.getAttribute(attribute));
 	}
-	expect(custom).toHaveAttribute("data-size", "md");
+	expect(custom).toHaveAttribute("data-size", "sm");
 });
 
 it("updates all styled Switch parts and keeps checked state under Kobalte", () => {
