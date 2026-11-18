@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "storybook-solidjs-vite";
 import { Button, Combobox, createComboboxOptions, icons, Stack } from "@codeui/kit";
-import * as C from "@codeui/kit/combobox";
+import * as C from "@codeui/kit/combobox/parts";
 import { createSignal, type JSX } from "solid-js";
 
 const meta = { title: "DesignSystem/Combobox", component: Combobox } satisfies Meta<

@@ -16,7 +16,7 @@ export default defineConfig({
 							),
 						},
 						{
-							find: /^@codeui\/kit\/(.+)$/,
+							find: /^@codeui\/kit\/([^/]+)\/parts$/,
 							replacement: fileURLToPath(new URL("../kit/src/parts/$1", import.meta.url)),
 						},
 					],

@@ -1,5 +1,5 @@
 import { icons } from "@codeui/kit";
-import * as T from "@codeui/kit/toast";
+import * as T from "@codeui/kit/toast/parts";
 import { toaster } from "@kobalte/core/toast";
 import { createUniqueId, onCleanup, onMount } from "solid-js";
 

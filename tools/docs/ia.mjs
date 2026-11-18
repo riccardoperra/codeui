@@ -9,7 +9,7 @@
  * - `lane`: the unit from the docs plan that writes the page. See LANES.md.
  * - `owns` (components and utilities): the root `@codeui/kit` value exports documented on the page.
  *   Types attach to their owner by name. Subpath exports attach through `subpath`.
- * - `subpath`: the `@codeui/kit/<subpath>` styled-parts entry documented on a component page.
+ * - `subpath`: the `@codeui/kit/<subpath>/parts` styled-parts entry documented on a component page.
  * - `todo`: what the page must cover, copied into the stub.
  */
 
@@ -52,27 +52,27 @@ export const families = [
 	{
 		title: 'Fields and selection',
 		pages: [
-			component('checkbox', 'Checkbox', 'A box that toggles one option on or off.', '07', ['Checkbox'], null,
+			component('checkbox', 'Checkbox', 'A box that toggles one option on or off.', '07', ['Checkbox'], 'checkbox',
 				'Five field sizes, checked, unchecked, indeterminate where inherited, required, disabled, invalid.'),
 			component('combobox', 'Combobox', 'A text input that filters a list of options as the user types.', '08', ['Combobox'], 'combobox',
 				'sm and md, open and closed, empty, required, disabled, readOnly, invalid, string and object options, helper, parts focus.'),
-			component('number-field', 'NumberField', 'A text field for numbers, with steppers, limits, and formatting.', '06', ['NumberField', 'NumberFieldLabel'], null,
+			component('number-field', 'NumberField', 'A text field for numbers, with steppers, limits, and formatting.', '06', ['NumberField', 'NumberFieldLabel'], 'number-field',
 				'Three field themes, five sizes, min and max, precision, step, prefix and postfix, disabled, readOnly, required, invalid.'),
 			component('option-card', 'OptionCard', 'A group of large selectable cards, each with a label, a description, and an optional preview.', '14', ['OptionCardGroup', 'OptionCard'], 'option-card',
 				'card and tile, previews, badges, disabled group and item, invalid, long labels, controlled union values. OptionCard is the item and OptionCardGroup is the ready group.'),
-			component('radio-list', 'RadioList', 'A list of radio buttons for choosing one option.', '07', ['RadioList', 'RadioListItem'], null,
+			component('radio-list', 'RadioList', 'A list of radio buttons for choosing one option.', '07', ['RadioList', 'RadioListItem'], 'radio-list',
 				'Five field sizes, horizontal and vertical, disabled entries, validation, field content.'),
-			component('segmented-control', 'SegmentedControl', 'A row of mutually exclusive segments for switching between a few options.', '07', ['SegmentedControl', 'SegmentedControlItem'], null,
+			component('segmented-control', 'SegmentedControl', 'A row of mutually exclusive segments for switching between a few options.', '07', ['SegmentedControl', 'SegmentedControlItem'], 'segmented-control',
 				'Five field sizes, neutral and primary, solid and bordered, pill, fluid, autoWidth, disabled group and item, field content, Escape in an overlay.'),
-			component('select', 'Select', 'A button that opens a list of options and shows the chosen one.', '08', ['Select'], null,
+			component('select', 'Select', 'A button that opens a list of options and shows the chosen one.', '08', ['Select'], 'select',
 				'Three field themes, five sizes, disabled, readOnly, required, invalid, object options, the createSelectOptions helper, listbox classes.'),
 			component('slider', 'Slider', 'A thumb on a track for choosing a number in a range.', '07', ['Slider'], 'slider',
 				'Horizontal and vertical, value display, scalar controlled and uncontrolled, min, max, and step, disabled, readOnly, required, invalid, focus.'),
 			component('switch', 'Switch', 'A toggle that turns a setting on or off immediately.', '07', ['Switch'], 'switch',
 				'sm and md, checked and unchecked, disabled, readOnly, required, invalid, focus.'),
-			component('text-area', 'TextArea', 'A multi-line text field.', '06', ['TextArea', 'TextAreaLabel'], null,
+			component('text-area', 'TextArea', 'A multi-line text field.', '06', ['TextArea', 'TextAreaLabel'], 'text-area',
 				'Three field themes, five sizes, autoResize, disabled, readOnly, required, invalid, custom classes. TextArea intentionally shares the text-field data-cui names.'),
-			component('text-field', 'TextField', 'A single-line text input with a label, a description, and an error message.', '06', ['TextField', 'TextFieldLabel'], null,
+			component('text-field', 'TextField', 'A single-line text input with a label, a description, and an error message.', '06', ['TextField', 'TextFieldLabel'], 'text-field',
 				'Three field themes, five sizes, disabled, readOnly, required, invalid, descriptions, input ARIA, custom classes.'),
 		],
 	},
@@ -81,11 +81,11 @@ export const families = [
 		pages: [
 			component('accordion', 'Accordion', 'Stacked sections that expand one at a time to show their content.', '11', ['Accordion'], 'accordion',
 				'Ready single-open and collapsible, retained content, disabled entries. Parts compact and comfortable density, multiple selection, motion auto and none. Density and multiple selection belong to parts only.'),
-			component('listbox', 'Listbox', 'A list of selectable options that stays visible on the page.', '09', ['Listbox', 'ListboxItem'], null,
+			component('listbox', 'Listbox', 'A list of selectable options that stays visible on the page.', '09', ['Listbox', 'ListboxItem'], 'listbox',
 				'xs, sm, and md, primary and neutral, bordered, single and multiple selection, custom item labels, field content.'),
-			component('pagination', 'Pagination', 'Buttons for moving between pages of a long result set.', '09', ['Pagination'], null,
+			component('pagination', 'Pagination', 'Buttons for moving between pages of a long result set.', '09', ['Pagination'], 'pagination',
 				'Supported Button sizes, rounded, first, previous, next, and last boundaries, count changes.'),
-			component('tabs', 'Tabs', 'A row of tabs that switches between panels of content.', '09', ['Tabs', 'TabsHeader', 'TabsList', 'TabsContent'], null,
+			component('tabs', 'Tabs', 'A row of tabs that switches between panels of content.', '09', ['Tabs', 'TabsHeader', 'TabsList', 'TabsContent'], 'tabs',
 				'default and inline, horizontal and vertical where supported, controlled state, dynamic tabs, keyboard focus.'),
 			component('virtualized-listbox', 'VirtualizedListbox', 'A Listbox that renders only the visible rows of a long collection.', '09', ['VirtualizedListbox'], null,
 				'Virtualized collection, size-dependent row heights, scroll to selection, empty and long collections, selection contract inherited from Listbox.'),
@@ -116,13 +116,13 @@ export const families = [
 			component('dialog', 'Dialog', 'A modal window over the page, for a decision that blocks the user.', '10', ['Dialog', 'DialogPanel', 'DialogPanelContent', 'DialogPanelFooter'], 'dialog',
 				'xs, sm, md, lg, xl, and full, overflow, controlled and uncontrolled, titles and descriptions, parts composition, focus restoration.'),
 			component('dropdown-menu', 'DropdownMenu', 'A menu of actions opened from a trigger.', '10',
-				['DropdownMenu', 'DropdownMenuContent', 'DropdownMenuPortal', 'DropdownMenuItem', 'DropdownMenuTrigger', 'DropdownSubMenu', 'DropdownSubMenuTrigger', 'DropdownSubMenuContent', 'DropdownMenuSeparator'], null,
+				['DropdownMenu', 'DropdownMenuContent', 'DropdownMenuPortal', 'DropdownMenuItem', 'DropdownMenuTrigger', 'DropdownSubMenu', 'DropdownSubMenuTrigger', 'DropdownSubMenuContent', 'DropdownMenuSeparator'], 'dropdown-menu',
 				'Flat and nested menus, disabled items, separators, custom trigger, nested Escape and focus return.'),
 			component('popover', 'Popover', 'A floating panel anchored to a trigger, for content the user opens on demand.', '10', ['Popover', 'PopoverTrigger', 'PopoverContent'], 'popover',
 				'Default and bordered, supported placements, custom position and gutter, block children, parts composition.'),
 			component('sheet', 'Sheet', 'A panel that slides in from an edge of the screen.', '11', ['Sheet'], 'sheet',
 				'bottom, left, and right, motion auto and none, drag handle and cancellation, docked parts, modal and focus behavior.'),
-			component('tooltip', 'Tooltip', 'A short label that appears on hover or focus.', '10', ['Tooltip'], null,
+			component('tooltip', 'Tooltip', 'A short label that appears on hover or focus.', '10', ['Tooltip'], 'tooltip',
 				'primary and secondary, supported placements, disabled, custom JSX trigger, keyboard and pointer activation.'),
 		],
 	},
@@ -141,7 +141,7 @@ export const groups = [
 			guide('first-component', 'First component', 'Render a kit component in a Solid app and customize it.', '02',
 				'Tutorial. The reader builds one screen with a ready component, sees it render on the server and hydrate, then changes one token.'),
 			guide('ready-or-parts', 'Choose ready components or parts', 'When to use a ready component, and when to compose the styled parts.', '02',
-				'Explanation. The three layers, what each one owns, the 18 styled-part subpaths, and the cost of stepping down a layer.'),
+				'Explanation. The three layers, what each one owns, the styled-part subpaths, and the cost of stepping down a layer.'),
 		],
 	},
 	{
@@ -165,8 +165,8 @@ export const groups = [
 	{
 		title: 'Patterns',
 		pages: [
-			guide('patterns/compose-styled-parts', 'Compose styled parts', 'Build a custom layout from a component\'s styled parts.', '16',
-				'How-to. Start from a ready component, step down to its parts, keep data-cui and classes stable.'),
+			guide('patterns/compose-styled-parts', 'Compose styled parts', 'Build reusable Solid components from styled parts.', '16',
+				'How-to. Turn styled parts into an app-level primitive with a reusable layout.'),
 			guide('patterns/build-forms', 'Build forms', 'Combine fields into a form with labels, descriptions, and validation.', '06',
 				'How-to. A real form submission with TextField, TextArea, NumberField, and the field helpers.'),
 			guide('patterns/nest-overlays', 'Nest overlays', 'Open a popover, menu, or tooltip inside a dialog.', '10',

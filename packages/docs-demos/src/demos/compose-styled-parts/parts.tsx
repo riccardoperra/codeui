@@ -1,5 +1,5 @@
 import { Button } from "@codeui/kit";
-import * as P from "@codeui/kit/popover";
+import * as P from "@codeui/kit/popover/parts";
 
 export default function ComposeParts() {
 	return (

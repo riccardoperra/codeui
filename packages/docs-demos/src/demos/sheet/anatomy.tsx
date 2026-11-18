@@ -1,5 +1,5 @@
 import { Button } from "@codeui/kit";
-import * as S from "@codeui/kit/sheet";
+import * as S from "@codeui/kit/sheet/parts";
 
 /** Open and non-modal, with the overlay and panel drawn inside the figure instead of over the page. */
 export default function SheetAnatomy() {

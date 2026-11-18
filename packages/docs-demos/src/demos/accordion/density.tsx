@@ -1,4 +1,4 @@
-import * as A from "@codeui/kit/accordion";
+import * as A from "@codeui/kit/accordion/parts";
 import { For } from "solid-js";
 export default function Demo() {
 	return <A.Root defaultValue={["frame"]} aria-label="Snippet settings">

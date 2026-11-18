@@ -1,17 +1,9 @@
-import "@codeui/styles/theme.css";
-import "@codeui/styles/checkbox.css";
-import { Checkbox as KCheckbox, CheckboxRootOptions } from "@kobalte/core/checkbox";
-import { JSX, Ref, Show, splitProps } from "solid-js";
-import * as styles from "./CheckBox.css";
-import { BaseFieldProps } from "../Field/createBaseFieldProps";
-import {
-	createFieldErrorMessageProps,
-	FieldWithErrorMessageSupport,
-} from "../Field/FieldError/createFieldErrorMessageProps";
-import { SlotProp } from "../../utils/component";
-import { mergeClasses } from "../../utils/css";
-import { CheckIcon } from "../../icons/CheckIcon";
-import { createFieldMessageProps } from "../Field/FieldMessage/createFieldMessageProps";
+import type { CheckboxRootOptions } from "@kobalte/core/checkbox";
+import { Show, splitProps, type JSX, type Ref } from "solid-js";
+import * as P from "../../parts/checkbox";
+import type { SlotProp } from "../../utils/component";
+import type { BaseFieldProps } from "../Field/createBaseFieldProps";
+import type { FieldWithErrorMessageSupport } from "../Field/FieldError/createFieldErrorMessageProps";
 
 type CheckBoxSlot = "root" | "input" | "label" | "errorLabel" | "control";
 
@@ -35,43 +27,25 @@ export function Checkbox(props: CheckBoxProps) {
 		"slotClasses",
 	]);
 
-	const errorMessageProps = createFieldErrorMessageProps(props);
-	const fieldLabelProps = createFieldMessageProps({});
-
-	const inputClasses = () => mergeClasses(styles.input, local.slotClasses?.input);
-
-	const labelClasses = () => mergeClasses(styles.label, local.slotClasses?.label);
-
 	return (
-		<KCheckbox
-			data-cui={"checkbox"}
-			data-field-size={local.size}
-			data-field-theme={local.theme ?? "inline"}
-			class={mergeClasses(styles.container, local?.slotClasses?.root)}
+		<P.Root
+			size={local.size}
+			theme={local.theme}
+			class={local.slotClasses?.root}
 			{...others}
 		>
-			<KCheckbox.Input class={inputClasses()} ref={local.ref} />
-			<KCheckbox.Control
-				data-size={local.size ?? "md"}
-				data-theme={local.theme ?? "inline"}
-				class={mergeClasses(styles.control(), local.slotClasses?.control)}
-			>
-				<KCheckbox.Indicator forceMount={true} class={styles.indicator}>
-					<CheckIcon class={styles.icon} />
-				</KCheckbox.Indicator>
-			</KCheckbox.Control>
+			<P.Input class={local.slotClasses?.input} ref={local.ref} />
+			<P.Control size={local.size} theme={local.theme} class={local.slotClasses?.control}>
+				<P.Indicator />
+			</P.Control>
 
-			<div class={styles.content}>
+			<P.Content>
 				<Show when={local.label} keyed={false}>
-					{label => <KCheckbox.Label class={labelClasses()}>{label()}</KCheckbox.Label>}
+					{label => <P.Label class={local.slotClasses?.label}>{label()}</P.Label>}
 				</Show>
 
 				<Show when={local.description} keyed={false}>
-					{description => (
-						<KCheckbox.Description {...fieldLabelProps}>
-							{description()}
-						</KCheckbox.Description>
-					)}
+					{description => <P.Description>{description()}</P.Description>}
 				</Show>
 
 				<Show
@@ -79,14 +53,12 @@ export function Checkbox(props: CheckBoxProps) {
 					keyed={false}
 				>
 					{errorMessage => (
-						<KCheckbox.ErrorMessage
-							class={mergeClasses(errorMessageProps.class, local.slotClasses?.errorLabel)}
-						>
+						<P.ErrorMessage class={local.slotClasses?.errorLabel}>
 							{errorMessage()}
-						</KCheckbox.ErrorMessage>
+						</P.ErrorMessage>
 					)}
 				</Show>
-			</div>
-		</KCheckbox>
+			</P.Content>
+		</P.Root>
 	);
 }

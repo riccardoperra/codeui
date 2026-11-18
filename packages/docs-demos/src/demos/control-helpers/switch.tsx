@@ -1,5 +1,5 @@
 import { createSwitchProps, type SwitchProps } from "@codeui/kit";
-import * as S from "@codeui/kit/switch";
+import * as S from "@codeui/kit/switch/parts";
 import { createSignal } from "solid-js";
 export default function Demo() {
 	const [checked, setChecked] = createSignal(true);

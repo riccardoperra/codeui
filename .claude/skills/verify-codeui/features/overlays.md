@@ -9,7 +9,7 @@ Dialog and Popover open from a trigger, move focus inside, trap Tab while modal,
 - `dialog-dismiss` closes on Escape and on `dialog-close-button`, and returns focus to the trigger.
 - `dialog-sizes` renders `xs`, `sm`, `md`, `lg`, `xl`, `full` panels.
 - `dialog-overflow` scrolls long content inside the panel with a footer.
-- `dialog-parts` composes `@codeui/kit/dialog` parts (`Root`, `Trigger`, `Overlay`, `Positioner`, `Content`, `Header`, `Title`, `CloseButton`, `Description`, `Body`, `Footer`).
+- `dialog-parts` composes `@codeui/kit/dialog/parts` parts (`Root`, `Trigger`, `Overlay`, `Positioner`, `Content`, `Header`, `Title`, `CloseButton`, `Description`, `Body`, `Footer`).
 - `dialog-settings-layout` composes `size="settings"`, `chrome="inset"`, `Sidebar`, `Nav`, `NavItem`, `Main` and `Section`: arrow keys, Home and End move focus in the nav, Enter selects, `aria-current="page"` marks the current section.
 - `dialog-export-layout` composes `size="export"`, `chrome="inset"`, a `layout="split"` body, an actions `Footer` and a two-column `Section` well; both stack at 768px and below.
 - `dialog-motion` sets `data-motion="none"` on the panel and positioner after a keyboard open or close. A journey cannot prove the animation itself (the harness disables animations).
@@ -17,7 +17,7 @@ Dialog and Popover open from a trigger, move focus inside, trap Tab while modal,
 - `popover-dismiss` closes on Escape and returns focus to the trigger.
 - `popover-pop` opens with `data-motion="none"` from the keyboard and pops from the trigger side with a pointer; surface `--cui-surface-dialog`, radius 18, 14px / 1.3 text. Journey: `journeys/popover-pop.mjs` on `designsystem-popover--popover-story`.
 - `menu-pop` the same for DropdownMenu, with 36px rows at 14px. Journey: `journeys/menu-pop.mjs` on `designsystem-dropdownmenu--dropdown-menu-story`.
-- `popover-parts` composes `@codeui/kit/popover` parts with title, description, arrow and close button.
+- `popover-parts` composes `@codeui/kit/popover/parts` parts with title, description, arrow and close button.
 
 ## How to get to it (user POV)
 

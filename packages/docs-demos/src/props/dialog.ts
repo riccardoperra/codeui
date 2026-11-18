@@ -9,7 +9,7 @@ import type {
 	RootProps,
 	SectionProps,
 	SidebarProps,
-} from "@codeui/kit/dialog";
+} from "@codeui/kit/dialog/parts";
 import type { PropNotes } from "./notes";
 
 /** Props that Dialog adds on top of Kobalte's dialog root. */

@@ -1,5 +1,5 @@
 import { icons } from "@codeui/kit";
-import * as C from "@codeui/kit/combobox";
+import * as C from "@codeui/kit/combobox/parts";
 
 type Language = { extension: string; name: string; description: string; legacy?: boolean };
 

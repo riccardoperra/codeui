@@ -1,5 +1,5 @@
 import type { AccordionProps } from "@codeui/kit";
-import type * as Parts from "@codeui/kit/accordion";
+import type * as Parts from "@codeui/kit/accordion/parts";
 import type { ComponentProps } from "solid-js";
 import type { PropNotes } from "./notes";
 

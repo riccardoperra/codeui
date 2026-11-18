@@ -1,5 +1,5 @@
 import type { BadgeProps } from "@codeui/kit";
-import type { RootProps, IconProps, LabelProps } from "@codeui/kit/badge";
+import type { RootProps, IconProps, LabelProps } from "@codeui/kit/badge/parts";
 import type { PropNotes } from "./notes";
 
 export type Badge = Pick<

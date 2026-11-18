@@ -41,7 +41,7 @@ Only the root has a kit `data-cui` attribute. Kobalte supplies state and orienta
 
 `theme="inline"` makes TabsList insert an indicator aligned with the selected header.
 The default theme has no indicator. The theme does not change panel behavior.
-`TabsIndicator` exists in the implementation but is not exported from the package root.
+Import `Indicator` from `@codeui/kit/tabs/parts` to place it explicitly.
 
 ### Vertical orientation
 
@@ -90,6 +90,26 @@ Renders the selected panel. `forceMount` keeps inactive content mounted when you
 
 Other behavior follows the [Kobalte Tabs contract](https://kobalte.dev/docs/core/components/tabs).
 The package root exports the four components, but does not re-export their props types.
+
+## Styled parts API
+
+Import `Root`, `List`, `Trigger`, `Content`, and `Indicator` from `@codeui/kit/tabs/parts`. Put each trigger in `List` and match its `value` to a panel. Add `Indicator` inside `List` when you want the inline treatment.
+
+```tsx
+import * as T from "@codeui/kit/tabs/parts";
+
+<T.Root defaultValue="preview" theme="inline">
+	<T.List aria-label="Editor views">
+		<T.Trigger value="preview">Preview</T.Trigger>
+		<T.Trigger value="source">Source</T.Trigger>
+		<T.Indicator />
+	</T.List>
+	<T.Content value="preview">Preview content</T.Content>
+	<T.Content value="source">Source content</T.Content>
+</T.Root>
+```
+
+`List` uses the children you supply. The ready `TabsList` adds an indicator for the inline theme.
 
 ## Accessibility
 

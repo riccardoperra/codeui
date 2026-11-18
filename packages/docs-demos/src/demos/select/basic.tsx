@@ -1,5 +1,5 @@
 import { createSignal } from "solid-js";
-import { Select } from "@codeui/kit";
+import { Select } from "@codeui/kit/select";
 
 const fonts = ["JetBrains Mono", "Fira Code", "Source Code Pro", "Cascadia Code"];
 

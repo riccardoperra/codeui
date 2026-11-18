@@ -1,5 +1,5 @@
 import type { SettingsGroupProps, SettingsRowProps } from "@codeui/kit";
-import type * as P from "@codeui/kit/settings";
+import type * as P from "@codeui/kit/settings/parts";
 import type { PropNotes } from "./notes";
 
 export type SettingsRow = Pick<SettingsRowProps, "label" | "description" | "details" | "picture" | "marker" | "children" | "controlId" | "layout" | "compactControl" | "id" | "classes" | "class">;

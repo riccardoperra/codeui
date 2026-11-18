@@ -30,28 +30,28 @@
 			"@codeui/kit": [
 				"../kit/src/index.tsx"
 			],
-			"@codeui/kit/dialog": [
+			"@codeui/kit/dialog/parts": [
 				"../kit/src/parts/dialog.tsx"
 			],
-			"@codeui/kit/accordion": [
+			"@codeui/kit/accordion/parts": [
 				"../kit/src/parts/accordion.tsx"
 			],
-			"@codeui/kit/popover": [
+			"@codeui/kit/popover/parts": [
 				"../kit/src/parts/popover.tsx"
 			],
-			"@codeui/kit/combobox": [
+			"@codeui/kit/combobox/parts": [
 				"../kit/src/parts/combobox.tsx"
 			],
-			"@codeui/kit/command-menu": [
+			"@codeui/kit/command-menu/parts": [
 				"../kit/src/parts/command-menu.tsx"
 			],
-			"@codeui/kit/alert": [
+			"@codeui/kit/alert/parts": [
 				"../kit/src/parts/alert.tsx"
 			],
-			"@codeui/kit/toast": [
+			"@codeui/kit/toast/parts": [
 				"../kit/src/parts/toast.tsx"
 			],
-			"@codeui/kit/sheet": [
+			"@codeui/kit/sheet/parts": [
 				"../kit/src/parts/sheet.tsx"
 			]
 		}

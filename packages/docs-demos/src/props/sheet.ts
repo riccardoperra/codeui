@@ -1,5 +1,5 @@
 import type { SheetProps } from "@codeui/kit";
-import type * as Parts from "@codeui/kit/sheet";
+import type * as Parts from "@codeui/kit/sheet/parts";
 import type { ComponentProps } from "solid-js";
 import type { PropNotes } from "./notes";
 

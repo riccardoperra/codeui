@@ -29,20 +29,20 @@ Inkstone puts Select after segmented controls, switches, and option cards. Insid
 
 | Export | Renders | `classes` key | `data-cui` | Role |
 | --- | --- | --- | --- | --- |
-| `Select` | `div` | `root` | `select` | None |
-| Internal | `span` | `label` | `select-label` | None |
-| Internal | `button` | `trigger` | `select-trigger` | Button with `aria-haspopup="listbox"` |
-| Internal | `span` | `value` | `select-value` | None |
-| Internal | `span` | `icon` | `select-icon` | None, hidden from assistive technology |
-| Internal | `div` | `description` | `select-description` | None |
-| Internal | `div` | `errorMessage` | `select-error-message` | None |
-| Internal | `div`, portalled | `content` | `select-content` | None |
-| Internal | `ul` | `listbox` | `select-listbox` | Listbox |
-| Internal | `li` | `item` | `select-item` | Option |
-| Internal | `div` | `itemLabel` | `select-item-label` | None |
-| Internal | `div` | `itemIndicator` | `select-item-indicator` | None |
+| `Root` | `div` | `root` | `select` | None |
+| `Label` | `span` | `label` | `select-label` | None |
+| `Trigger` | `button` | `trigger` | `select-trigger` | Button with `aria-haspopup="listbox"` |
+| `Value` | `span` | `value` | `select-value` | None |
+| `Icon` | `span` | `icon` | `select-icon` | None, hidden from assistive technology |
+| `Description` | `div` | `description` | `select-description` | None |
+| `ErrorMessage` | `div` | `errorMessage` | `select-error-message` | None |
+| `Content` | `div`, portalled | `content` | `select-content` | None |
+| `Listbox` | `ul` | `listbox` | `select-listbox` | Listbox |
+| `Item` | `li` | `item` | `select-item` | Option |
+| `ItemLabel` | `div` | `itemLabel` | `select-item-label` | None |
+| `ItemIndicator` | `div` | `itemIndicator` | `select-item-indicator` | None |
 
-`Select` is the only export. There is no styled parts entry point such as `@codeui/kit/select`. The label, description, and error message render only when you pass them. The list renders in a portal on `document.body` while it is open. With `name`, `Select` also renders one `input type="hidden"` for each selected value, with no `data-cui` marker and no `classes` key. See [Submit with a form](#submit-with-a-form).
+The label, description, and error message render only when you pass them. The list renders in a portal on `document.body` while it is open. With `name`, `Select` also renders one `input type="hidden"` for each selected value, with no `data-cui` marker and no `classes` key. See [Submit with a form](#submit-with-a-form).
 
 ## Variants
 
@@ -132,7 +132,7 @@ Pass `value` and `onChange` to own the value, as the [live demo](#live-demo) doe
 
 <PropsTable name="Select" />
 
-`SelectClasses` is exported from `@codeui/kit`. The `SelectProps` type is not exported. Use `ComponentProps<typeof Select>` from `solid-js` to read it.
+Import `SelectProps` and `SelectClasses` from `@codeui/kit/select` or `@codeui/kit`.
 
 Inherited from Kobalte's [select root](https://kobalte.dev/docs/core/components/select):
 
@@ -149,6 +149,35 @@ Inherited from Kobalte's [select root](https://kobalte.dev/docs/core/components/
 <SolidDemo name="select/form" />
 
 With `name`, `Select` renders one `input type="hidden"` for each selected value, so the form submits the value under that name. The submitted value is the option key, which is `optionValue` converted to a string. For string options, that is the string. With `multiple`, each selected value submits under the same name. With nothing selected, or when the select is disabled, the form submits nothing for that name. Hidden inputs take no part in native validation, so check `required` before you submit.
+
+## Styled parts API
+
+Import the ready `Select` and `createSelectOptions` from `@codeui/kit/select`. To change the structure, import the parts from `@codeui/kit/select/parts`.
+
+```tsx
+import * as S from "@codeui/kit/select/parts";
+
+<S.Root
+	options={["PNG", "JPEG"]}
+	itemComponent={props => (
+		<S.Item item={props.item}>
+			<S.ItemLabel>{props.item.rawValue}</S.ItemLabel>
+		</S.Item>
+	)}
+>
+	<S.Label>Format</S.Label>
+	<S.Trigger>
+		<S.Value<string>>{state => state.selectedOption()}</S.Value>
+	</S.Trigger>
+	<S.Portal>
+		<S.Content>
+			<S.Listbox />
+		</S.Content>
+	</S.Portal>
+</S.Root>
+```
+
+The anatomy table lists the styled elements. Set `size` and `theme` on `Trigger`. Set the same `size` on `Root` to size the label and messages. Use `Portal` to mount the list and `Section` to render option groups. To submit selected keys with a form, put `FormValue` inside `Root` with the field `name` and the same `disabled` state.
 
 ## Accessibility
 

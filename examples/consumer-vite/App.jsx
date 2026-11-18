@@ -1,8 +1,8 @@
+import { Button } from "@codeui/kit/button";
+import { Select } from "@codeui/kit/select";
+import { TextField } from "@codeui/kit/text-field";
 import {
-	Button,
 	Switch,
-	TextField,
-	Select,
 	Dialog,
 	Popover,
 	PopoverTrigger,

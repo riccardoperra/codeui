@@ -101,11 +101,11 @@ Most interface text in Inkstone is secondary, so `muted` is the common tone for 
 
 ## Styled parts API
 
-Import the parts from `@codeui/kit/text`.
+Import the parts from `@codeui/kit/text/parts`.
 
 ### `Root`
 
-`Root` is the same component as `Text`. `@codeui/kit` exports it as `Text`, and `@codeui/kit/text` exports it as `Root`, with `RootProps` equal to `TextProps`. It wraps no Kobalte primitive.
+`Root` is the same component as `Text`. `@codeui/kit` exports it as `Text`, and `@codeui/kit/text/parts` exports it as `Root`, with `RootProps` equal to `TextProps`. It wraps no Kobalte primitive.
 
 ## Styles export
 
@@ -113,7 +113,7 @@ Import the parts from `@codeui/kit/text`.
 
 Call `textStyles.root()` for the base class and set `data-size`, `data-weight`, and `data-tone` on custom markup. The Solid component defaults to `sm`, `normal`, and `default`.
 
-`@codeui/kit` and `@codeui/kit/text` both export `textStyles`, `TextStyles` and `textParts`. Prefer `<Text as="…">`. Call `textStyles` only on markup you cannot render through the component.
+`@codeui/kit` and `@codeui/kit/text/parts` both export `textStyles`, `TextStyles` and `textParts`. Prefer `<Text as="…">`. Call `textStyles` only on markup you cannot render through the component.
 
 ## Accessibility
 

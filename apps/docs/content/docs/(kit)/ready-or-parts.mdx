@@ -7,7 +7,7 @@ description: "Choose how much composition and styling you own."
 
 <SolidDemo name="ready-or-parts/ready" />
 
-Use the root exports for standard controls. The ready Switch composes the input, control, thumb, and label for you.
+Use a ready component for standard controls. Every component family has a direct entry point alongside the root, such as `import { Switch } from "@codeui/kit/switch"`. The ready Switch composes the input, control, thumb, and label for you.
 You own the label and state. The kit owns the arrangement.
 
 ## Styled parts
@@ -17,9 +17,15 @@ You own the label and state. The kit owns the arrangement.
 Use parts when the ready component cannot express your layout. Each part keeps its Kobalte behavior and kit styling.
 You own the composition, including the hidden input and accessible label. Keep all required parts inside the root.
 
-The package exports these 18 component subpaths:
+Append `/parts` to the component path to import its styled parts.
 
-`@codeui/kit/dialog`, `@codeui/kit/popover`, `@codeui/kit/stack`, `@codeui/kit/text`, `@codeui/kit/switch`, `@codeui/kit/slider`, `@codeui/kit/progress`, `@codeui/kit/combobox`, `@codeui/kit/command-menu`, `@codeui/kit/kbd`, `@codeui/kit/badge`, `@codeui/kit/spinner`, `@codeui/kit/skeleton`, `@codeui/kit/alert`, `@codeui/kit/toast`, `@codeui/kit/option-card`, `@codeui/kit/accordion`, `@codeui/kit/sheet`.
+```tsx
+import * as S from "@codeui/kit/switch/parts";
+```
+
+These component entry points have a `/parts` subpath.
+
+`accordion`, `alert`, `badge`, `checkbox`, `combobox`, `command-menu`, `dialog`, `dropdown-menu`, `kbd`, `listbox`, `number-field`, `option-card`, `pagination`, `popover`, `progress`, `radio-list`, `segmented-control`, `select`, `settings`, `sheet`, `skeleton`, `slider`, `spinner`, `stack`, `switch`, `tabs`, `text`, `text-area`, `text-field`, `toast`, `tooltip`.
 
 ## Kobalte engine
 
@@ -41,4 +47,4 @@ You own both composition and CSS. Kobalte still manages state, keyboard input, a
 All three switch examples toggle with Space and participate in Tab navigation. Their labels name the switch inputs.
 Switch markup renders on the server. Browser event handlers become active after hydration.
 
-[Style components inside a toolbar](/docs/patterns/compose-styled-parts#style-components-inside-a-toolbar) shows how to apply styles to one control or one part inside a larger component.
+[Build a reusable component](/docs/patterns/compose-styled-parts#build-a-reusable-primitive-from-styled-parts) shows how to assemble an app-level primitive and reuse it with different content.

@@ -1,5 +1,5 @@
 import type { SpinnerProps } from "@codeui/kit";
-import type { RootProps, TrackProps, IndicatorProps } from "@codeui/kit/spinner";
+import type { RootProps, TrackProps, IndicatorProps } from "@codeui/kit/spinner/parts";
 import type { PropNotes } from "./notes";
 
 export type Spinner = Pick<SpinnerProps, "size" | "label" | "classes" | "class">;

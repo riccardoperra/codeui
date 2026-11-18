@@ -1,4 +1,4 @@
-import { comboboxStyles } from "@codeui/kit/combobox";
+import { comboboxStyles } from "@codeui/kit/combobox/parts";
 
 export default function ComboboxStylesDemo() {
 	return (

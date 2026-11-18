@@ -1,7 +1,7 @@
 import "./anatomy.css";
 import { For } from "solid-js";
 import { Button, icons } from "@codeui/kit";
-import * as M from "@codeui/kit/command-menu";
+import * as M from "@codeui/kit/command-menu/parts";
 
 type Command = { id: string; label: string; description?: string; shortcut?: string; current?: boolean };
 type Group = { name: string; commands: Command[] };

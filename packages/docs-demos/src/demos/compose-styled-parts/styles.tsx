@@ -1,6 +1,6 @@
 import { Popover } from "@kobalte/core/popover";
 import { buttonStyles } from "@codeui/kit";
-import { popoverParts, popoverStyles } from "@codeui/kit/popover";
+import { popoverParts, popoverStyles } from "@codeui/kit/popover/parts";
 
 export default function ComposeStyles() {
 	return (

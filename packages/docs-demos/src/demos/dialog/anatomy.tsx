@@ -1,5 +1,5 @@
 import { Button, SettingsRow, Switch, TextField } from "@codeui/kit";
-import * as D from "@codeui/kit/dialog";
+import * as D from "@codeui/kit/dialog/parts";
 import { DownloadIcon, SlidersIcon } from "../build-settings/icons";
 
 /**

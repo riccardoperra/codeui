@@ -1,5 +1,5 @@
 import { Progress, Stack } from "@codeui/kit";
-import * as P from "@codeui/kit/progress";
+import * as P from "@codeui/kit/progress/parts";
 
 export default function Demo() {
 	return (

@@ -59,7 +59,7 @@ The value type follows `valueKey`. With `{ valueKey: "id" }` on `Theme[]`, the v
 
 ```ts
 import { createComboboxOptions } from "@codeui/kit";
-// also exported from "@codeui/kit/combobox"
+// also exported from "@codeui/kit/combobox/parts"
 
 function createComboboxOptions<T extends string | number>(
 	values: readonly T[] | Accessor<readonly T[]>,
@@ -91,12 +91,12 @@ TypeScript checks each key against the field types, so a `labelKey` that points 
 | Member | Description |
 | --- | --- |
 | `options()` | The normalized options. |
-| `props()` | `options`, plus `optionValue: "value"`, `optionTextValue: "label"`, `optionLabel: "label"`, and `optionDisabled: "disabled"`. Spread it on `Combobox` or on `Root` from `@codeui/kit/combobox`. |
+| `props()` | `options`, plus `optionValue: "value"`, `optionTextValue: "label"`, `optionLabel: "label"`, and `optionDisabled: "disabled"`. Spread it on `Combobox` or on `Root` from `@codeui/kit/combobox/parts`. |
 | `optionFromValue(value)` | The option whose `value` equals `value` with `===`. It returns `undefined` for `null`, `undefined`, or no match. |
 | `optionToValue(option)` | The `value` of the option, or `undefined`. |
 | `controlled(value, onChange)` | `{ value, onChange }` to spread on `Combobox`. `value` is the matching option or `null`. `onChange` receives the plain value and the option. |
 
-`ComboboxOption`, `ComboboxOptionsConfig`, and `CreateComboboxOptionsReturn` are exported from `@codeui/kit` and `@codeui/kit/combobox`.
+`ComboboxOption`, `ComboboxOptionsConfig`, and `CreateComboboxOptionsReturn` are exported from `@codeui/kit` and `@codeui/kit/combobox/parts`.
 
 ### Edge cases
 

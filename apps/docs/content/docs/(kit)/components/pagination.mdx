@@ -64,6 +64,10 @@ Renders numbered buttons and optional navigation controls inside a navigation la
 The component uses `createPagination` from `@solid-primitives/pagination`, rather than Kobalte.
 `showFirst`, `showPrev`, `showNext`, and `showLast` accept booleans or functions of the current page and page count.
 
+## Styled parts API
+
+Use `@codeui/kit/pagination/parts` to control the navigation layout. Call `createPaginationState` with the page count and any controlled page props. Use its `items()` to render `Item` buttons in `Root`. The state also exposes `page()` and `setPage` for other controls in the same component. Set an accessible label on the navigation and give any icon-only navigation button a label.
+
 ## Accessibility
 
 ### Keyboard

@@ -1,5 +1,5 @@
 import { OptionCard } from "@codeui/kit";
-import * as Cards from "@codeui/kit/option-card";
+import * as Cards from "@codeui/kit/option-card/parts";
 export default function Parts() {
 	return <Cards.Root defaultValue="window"><Cards.Label>Snippet frame</Cards.Label>
 		<OptionCard value="window" label="Window" description="Include window controls" badge="Default" />

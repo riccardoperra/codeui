@@ -1,5 +1,5 @@
 import { createSliderProps, type SliderProps } from "@codeui/kit";
-import * as S from "@codeui/kit/slider";
+import * as S from "@codeui/kit/slider/parts";
 import { createSignal } from "solid-js";
 export default function Demo() {
 	const [value, setValue] = createSignal(75);

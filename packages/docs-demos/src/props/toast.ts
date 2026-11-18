@@ -1,5 +1,5 @@
 import type { CreateToasterOptions, ToasterProps, ToastOptions } from "@codeui/kit";
-import type { RegionProps, RootProps } from "@codeui/kit/toast";
+import type { RegionProps, RootProps } from "@codeui/kit/toast/parts";
 import type { PropNotes } from "./notes";
 
 /** Props that Toaster adds on top of the styled toast region. */

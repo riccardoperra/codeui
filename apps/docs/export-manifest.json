@@ -4,15 +4,15 @@
 		"@codeui/kit/package.json": "Package metadata, not a user utility."
 	},
 	"review": {
-		"@codeui/kit/accordion:useAccordionContext": "Exported through the public accordion entry. Document its provider scope or hide it in a breaking release.",
-		"@codeui/kit/combobox:useComboboxContext": "Context hook on a public entry. Document its provider scope or hide it in a breaking release.",
-		"@codeui/kit/command-menu:useCommandMenuContext": "Context hook on a public entry. Document its provider scope or hide it in a breaking release.",
-		"@codeui/kit/option-card:useRadioGroupContext": "Kobalte radio group context re-exported under a generic name. Document its provider scope or hide it in a breaking release.",
-		"@codeui/kit/progress:useProgressContext": "Context hook on a public entry. Document its provider scope or hide it in a breaking release.",
-		"@codeui/kit/slider:useSliderContext": "Context hook on a public entry. Document its provider scope or hide it in a breaking release.",
-		"@codeui/kit/switch:useSwitchContext": "Context hook on a public entry. Document its provider scope or hide it in a breaking release.",
+		"@codeui/kit/accordion/parts:useAccordionContext": "Exported through the public accordion entry. Document its provider scope or hide it in a breaking release.",
+		"@codeui/kit/combobox/parts:useComboboxContext": "Context hook on a public entry. Document its provider scope or hide it in a breaking release.",
+		"@codeui/kit/command-menu/parts:useCommandMenuContext": "Context hook on a public entry. Document its provider scope or hide it in a breaking release.",
+		"@codeui/kit/option-card/parts:useRadioGroupContext": "Kobalte radio group context re-exported under a generic name. Document its provider scope or hide it in a breaking release.",
+		"@codeui/kit/progress/parts:useProgressContext": "Context hook on a public entry. Document its provider scope or hide it in a breaking release.",
+		"@codeui/kit/slider/parts:useSliderContext": "Context hook on a public entry. Document its provider scope or hide it in a breaking release.",
+		"@codeui/kit/switch/parts:useSwitchContext": "Context hook on a public entry. Document its provider scope or hide it in a breaking release.",
 		"@codeui/kit:styleFieldMessage": "Requires vanilla-extract at build time. Document the requirement. Candidate for deprecation in a breaking release.",
-		"@codeui/kit/command-menu:EngineProps": "Exposes engine internals. Confirm it is meant to be public."
+		"@codeui/kit/command-menu/parts:EngineProps": "Exposes engine internals. Confirm it is meant to be public."
 	},
 	"exports": {
 		"@codeui/kit": {
@@ -231,7 +231,7 @@
 			"SettingsRowVariants": "components/settings-row#inline-and-wide",
 			"SelectProps": "components/select#select"
 		},
-		"@codeui/kit/accordion": {
+		"@codeui/kit/accordion/parts": {
 			"AccordionClasses": "components/accordion#anatomy",
 			"AccordionPart": "components/accordion#anatomy",
 			"accordionParts": "components/accordion#anatomy",
@@ -258,7 +258,7 @@
 			"TriggerProps": "components/accordion#trigger",
 			"useAccordionContext": "components/accordion#useaccordioncontext"
 		},
-		"@codeui/kit/alert": {
+		"@codeui/kit/alert/parts": {
 			"Action": "components/alert#action",
 			"ActionProps": "components/alert#action",
 			"AlertClasses": "components/alert#anatomy",
@@ -277,7 +277,7 @@
 			"Title": "components/alert#title",
 			"TitleProps": "components/alert#title"
 		},
-		"@codeui/kit/badge": {
+		"@codeui/kit/badge/parts": {
 			"BadgeClasses": "components/badge#anatomy",
 			"BadgePart": "components/badge#anatomy",
 			"badgeParts": "components/badge#anatomy",
@@ -294,7 +294,7 @@
 			"Root": "components/badge#root",
 			"RootProps": "components/badge#root"
 		},
-		"@codeui/kit/combobox": {
+		"@codeui/kit/combobox/parts": {
 			"Arrow": "components/combobox#arrow",
 			"ArrowProps": "components/combobox#arrow",
 			"ComboboxClasses": "components/combobox#anatomy",
@@ -344,7 +344,7 @@
 			"TriggerProps": "components/combobox#trigger",
 			"useComboboxContext": "components/combobox#usecomboboxcontext"
 		},
-		"@codeui/kit/command-menu": {
+		"@codeui/kit/command-menu/parts": {
 			"CommandMenuClasses": "components/command-menu#anatomy",
 			"CommandMenuPart": "components/command-menu#anatomy",
 			"commandMenuParts": "components/command-menu#anatomy",
@@ -392,7 +392,7 @@
 			"TriggerProps": "components/command-menu#trigger",
 			"useCommandMenuContext": "components/command-menu#usecommandmenucontext"
 		},
-		"@codeui/kit/dialog": {
+		"@codeui/kit/dialog/parts": {
 			"Body": "components/dialog#body",
 			"CloseButton": "components/dialog#closebutton",
 			"CloseButtonProps": "components/dialog#closebutton",
@@ -432,7 +432,7 @@
 			"Sidebar": "components/dialog#sidebar",
 			"SidebarProps": "components/dialog#sidebar"
 		},
-		"@codeui/kit/kbd": {
+		"@codeui/kit/kbd/parts": {
 			"KbdClasses": "components/kbd#anatomy",
 			"KbdPart": "components/kbd#anatomy",
 			"kbdParts": "components/kbd#anatomy",
@@ -444,7 +444,7 @@
 			"Root": "components/kbd#root",
 			"RootProps": "components/kbd#root"
 		},
-		"@codeui/kit/option-card": {
+		"@codeui/kit/option-card/parts": {
 			"Badge": "components/option-card#badge",
 			"BadgeProps": "components/option-card#badge",
 			"Description": "components/option-card#description",
@@ -478,7 +478,7 @@
 			"RootProps": "components/option-card#root",
 			"useRadioGroupContext": "components/option-card#useradiogroupcontext"
 		},
-		"@codeui/kit/popover": {
+		"@codeui/kit/popover/parts": {
 			"Anchor": "components/popover#anchor",
 			"Arrow": "components/popover#arrow",
 			"CloseButton": "components/popover#closebutton",
@@ -498,7 +498,7 @@
 			"Title": "components/popover#title",
 			"Trigger": "components/popover#trigger"
 		},
-		"@codeui/kit/progress": {
+		"@codeui/kit/progress/parts": {
 			"Fill": "components/progress#fill",
 			"FillProps": "components/progress#fill",
 			"Label": "components/progress#label",
@@ -518,7 +518,7 @@
 			"ValueLabel": "components/progress#valuelabel",
 			"ValueLabelProps": "components/progress#valuelabel"
 		},
-		"@codeui/kit/sheet": {
+		"@codeui/kit/sheet/parts": {
 			"Body": "components/sheet#body",
 			"CloseButton": "components/sheet#closebutton",
 			"CloseButtonProps": "components/sheet#closebutton",
@@ -543,7 +543,7 @@
 			"Title": "components/sheet#title",
 			"Trigger": "components/sheet#trigger"
 		},
-		"@codeui/kit/skeleton": {
+		"@codeui/kit/skeleton/parts": {
 			"Root": "components/skeleton#root",
 			"RootProps": "components/skeleton#root",
 			"SkeletonClasses": "components/skeleton#anatomy",
@@ -553,7 +553,7 @@
 			"SkeletonStyles": "components/skeleton#skeletonstyles",
 			"SkeletonVariants": "components/skeleton#variants"
 		},
-		"@codeui/kit/slider": {
+		"@codeui/kit/slider/parts": {
 			"Description": "components/slider#description",
 			"DescriptionProps": "components/slider#description",
 			"ErrorMessage": "components/slider#errormessage",
@@ -581,7 +581,7 @@
 			"ValueLabel": "components/slider#valuelabel",
 			"ValueLabelProps": "components/slider#valuelabel"
 		},
-		"@codeui/kit/spinner": {
+		"@codeui/kit/spinner/parts": {
 			"Indicator": "components/spinner#indicator",
 			"IndicatorProps": "components/spinner#indicator",
 			"Root": "components/spinner#root",
@@ -596,7 +596,7 @@
 			"Track": "components/spinner#track",
 			"TrackProps": "components/spinner#track"
 		},
-		"@codeui/kit/stack": {
+		"@codeui/kit/stack/parts": {
 			"Gap": "components/stack#stack",
 			"Root": "components/stack#root",
 			"RootProps": "components/stack#root",
@@ -608,7 +608,7 @@
 			"StackStyles": "components/stack#stackstyles",
 			"StackVariants": "components/stack#variants"
 		},
-		"@codeui/kit/switch": {
+		"@codeui/kit/switch/parts": {
 			"Control": "components/switch#control",
 			"ControlProps": "components/switch#control",
 			"Description": "components/switch#description",
@@ -632,7 +632,7 @@
 			"ThumbProps": "components/switch#thumb",
 			"useSwitchContext": "components/switch#useswitchcontext"
 		},
-		"@codeui/kit/text": {
+		"@codeui/kit/text/parts": {
 			"Root": "components/text#root",
 			"RootProps": "components/text#root",
 			"TextClasses": "components/text#anatomy",
@@ -643,7 +643,7 @@
 			"TextStyles": "components/text#textstyles",
 			"TextVariants": "components/text#variants"
 		},
-		"@codeui/kit/toast": {
+		"@codeui/kit/toast/parts": {
 			"Action": "components/toast#action",
 			"ActionProps": "components/toast#action",
 			"CloseButton": "components/toast#closebutton",
@@ -675,7 +675,7 @@
 			"themeVars": "utilities/token-exports#themevars",
 			"tokens": "utilities/token-exports#tokens"
 		},
-		"@codeui/kit/settings": {
+		"@codeui/kit/settings/parts": {
 			"Control": "components/settings-row#control",
 			"ControlProps": "components/settings-row#control",
 			"createSettingsRowProps": "components/settings-row#createsettingsrowprops",
@@ -713,6 +713,473 @@
 			"settingsRowStyles": "components/settings-row#settingsrowstyles",
 			"SettingsRowStyles": "components/settings-row#settingsrowstyles",
 			"SettingsRowVariants": "components/settings-row#inline-and-wide"
+		},
+		"@codeui/kit/accordion": {
+			"Accordion": "components/accordion#accordion",
+			"AccordionClasses": "components/accordion#anatomy",
+			"AccordionEntry": "utilities/control-helpers#createaccordionitems",
+			"AccordionPart": "components/accordion#anatomy",
+			"accordionParts": "components/accordion#anatomy",
+			"AccordionProps": "components/accordion#accordion",
+			"accordionStyles": "components/accordion#accordionstyles",
+			"AccordionStyles": "components/accordion#accordionstyles",
+			"AccordionVariants": "components/accordion#variants",
+			"createAccordionItems": "utilities/control-helpers#createaccordionitems"
+		},
+		"@codeui/kit/alert": {
+			"Alert": "components/alert#alert",
+			"AlertProps": "components/alert#alert"
+		},
+		"@codeui/kit/badge": {
+			"Badge": "components/badge#badge",
+			"BadgeProps": "components/badge#badge"
+		},
+		"@codeui/kit/button": {
+			"Button": "components/button#button",
+			"ButtonProps": "components/button#button",
+			"buttonStyles": "utilities/styles-reference#buttonstyles"
+		},
+		"@codeui/kit/combobox": {
+			"Combobox": "components/combobox#combobox",
+			"ComboboxClasses": "components/combobox#anatomy",
+			"ComboboxOption": "utilities/options-and-collections#createcomboboxoptions",
+			"ComboboxOptionsConfig": "utilities/options-and-collections#createcomboboxoptions",
+			"ComboboxPart": "components/combobox#anatomy",
+			"ComboboxParts": "components/combobox#styled-parts-api",
+			"ComboboxProps": "components/combobox#combobox",
+			"comboboxStyles": "components/combobox#comboboxstyles",
+			"ComboboxStyles": "components/combobox#comboboxstyles",
+			"ComboboxVariants": "components/combobox#variants",
+			"createComboboxOptions": "utilities/options-and-collections#createcomboboxoptions",
+			"CreateComboboxOptionsReturn": "utilities/options-and-collections#createcomboboxoptions"
+		},
+		"@codeui/kit/command-menu": {
+			"CommandItem": "utilities/options-and-collections#filtercommanditems",
+			"CommandMenu": "components/command-menu#commandmenu",
+			"CommandMenuClasses": "components/command-menu#anatomy",
+			"CommandMenuPart": "components/command-menu#anatomy",
+			"CommandMenuParts": "components/command-menu#styled-parts-api",
+			"CommandMenuProps": "components/command-menu#commandmenu",
+			"commandMenuStyles": "components/command-menu#commandmenustyles",
+			"CommandMenuStyles": "components/command-menu#commandmenustyles",
+			"filterCommandItems": "utilities/options-and-collections#filtercommanditems"
+		},
+		"@codeui/kit/dialog": {
+			"Dialog": "components/dialog#dialog",
+			"DialogPanel": "components/dialog#dialogpanel",
+			"DialogPanelContent": "components/dialog#dialogpanelcontent",
+			"DialogPanelFooter": "components/dialog#dialogpanelfooter",
+			"DialogProps": "components/dialog#dialog"
+		},
+		"@codeui/kit/kbd": {
+			"Kbd": "components/kbd#kbd",
+			"KbdProps": "components/kbd#kbd"
+		},
+		"@codeui/kit/option-card": {
+			"createOptionCardItems": "utilities/control-helpers#createoptioncarditems",
+			"OptionCard": "components/option-card#optioncard",
+			"OptionCardClasses": "components/option-card#anatomy",
+			"OptionCardEntry": "utilities/control-helpers#createoptioncarditems",
+			"OptionCardGroup": "components/option-card#optioncardgroup",
+			"OptionCardGroupProps": "components/option-card#optioncardgroup",
+			"OptionCardPart": "components/option-card#anatomy",
+			"optionCardParts": "components/option-card#anatomy",
+			"OptionCardProps": "components/option-card#optioncard",
+			"optionCardStyles": "components/option-card#optioncardstyles",
+			"OptionCardStyles": "components/option-card#optioncardstyles",
+			"OptionCardVariant": "components/option-card#variants",
+			"OptionCardVariants": "components/option-card#variants"
+		},
+		"@codeui/kit/popover": {
+			"Popover": "components/popover#popover",
+			"PopoverContent": "components/popover#popovercontent",
+			"PopoverContentProps": "components/popover#popovercontent",
+			"PopoverProps": "components/popover#popover",
+			"popoverStyles": "components/popover#popoverstyles",
+			"PopoverTrigger": "components/popover#popovertrigger"
+		},
+		"@codeui/kit/progress": {
+			"Progress": "components/progress#progress",
+			"ProgressClasses": "components/progress#anatomy",
+			"ProgressPart": "components/progress#anatomy",
+			"ProgressParts": "components/progress#styled-parts-api",
+			"ProgressProps": "components/progress#progress",
+			"progressStyles": "components/progress#progressstyles",
+			"ProgressStyles": "components/progress#progressstyles",
+			"ProgressVariants": "components/progress#variants"
+		},
+		"@codeui/kit/select": {
+			"createSelectOptions": "utilities/options-and-collections#createselectoptions",
+			"Select": "components/select#select",
+			"SelectClasses": "components/select#anatomy",
+			"SelectProps": "components/select#select"
+		},
+		"@codeui/kit/select/parts": {
+			"Content": "components/select#styled-parts-api",
+			"ContentProps": "components/select#styled-parts-api",
+			"Description": "components/select#styled-parts-api",
+			"DescriptionProps": "components/select#styled-parts-api",
+			"ErrorMessage": "components/select#styled-parts-api",
+			"ErrorMessageProps": "components/select#styled-parts-api",
+			"FormValue": "components/select#styled-parts-api",
+			"FormValueProps": "components/select#styled-parts-api",
+			"Icon": "components/select#styled-parts-api",
+			"IconProps": "components/select#styled-parts-api",
+			"Item": "components/select#styled-parts-api",
+			"ItemIndicator": "components/select#styled-parts-api",
+			"ItemIndicatorProps": "components/select#styled-parts-api",
+			"ItemLabel": "components/select#styled-parts-api",
+			"ItemLabelProps": "components/select#styled-parts-api",
+			"ItemProps": "components/select#styled-parts-api",
+			"Label": "components/select#styled-parts-api",
+			"LabelProps": "components/select#styled-parts-api",
+			"Listbox": "components/select#styled-parts-api",
+			"ListboxProps": "components/select#styled-parts-api",
+			"Portal": "components/select#styled-parts-api",
+			"PortalProps": "components/select#styled-parts-api",
+			"Root": "components/select#styled-parts-api",
+			"RootProps": "components/select#styled-parts-api",
+			"Section": "components/select#styled-parts-api",
+			"SectionProps": "components/select#styled-parts-api",
+			"SelectClasses": "components/select#anatomy",
+			"SelectPart": "components/select#anatomy",
+			"selectParts": "components/select#anatomy",
+			"Trigger": "components/select#styled-parts-api",
+			"TriggerProps": "components/select#styled-parts-api",
+			"Value": "components/select#styled-parts-api",
+			"ValueProps": "components/select#styled-parts-api"
+		},
+		"@codeui/kit/settings": {
+			"createSettingsRowProps": "components/settings-row#createsettingsrowprops",
+			"SettingsGroup": "components/settings-row#settingsgroup",
+			"SettingsGroupClasses": "components/settings-row#anatomy",
+			"SettingsGroupPart": "components/settings-row#anatomy",
+			"settingsGroupParts": "components/settings-row#settingsgroup",
+			"SettingsGroupProps": "components/settings-row#settingsgroup",
+			"settingsGroupStyles": "components/settings-row#settingsgroup",
+			"SettingsGroupStyles": "components/settings-row#settingsgroup",
+			"SettingsRow": "components/settings-row#settingsrow",
+			"SettingsRowClasses": "components/settings-row#anatomy",
+			"SettingsRowControlProps": "components/settings-row#settingsrow",
+			"SettingsRowFieldProps": "components/settings-row#settingsrow",
+			"SettingsRowLayout": "components/settings-row#settingsrow",
+			"SettingsRowPart": "components/settings-row#anatomy",
+			"settingsRowParts": "components/settings-row#settingsrow",
+			"SettingsRowProps": "components/settings-row#settingsrow",
+			"settingsRowStyles": "components/settings-row#settingsrow",
+			"SettingsRowStyles": "components/settings-row#settingsrow",
+			"SettingsRowVariants": "components/settings-row#variants"
+		},
+		"@codeui/kit/sheet": {
+			"Sheet": "components/sheet#sheet",
+			"SheetProps": "components/sheet#sheet"
+		},
+		"@codeui/kit/skeleton": {
+			"Skeleton": "components/skeleton#skeleton",
+			"SkeletonProps": "components/skeleton#skeleton"
+		},
+		"@codeui/kit/slider": {
+			"createSliderProps": "utilities/control-helpers#createsliderprops",
+			"Slider": "components/slider#slider",
+			"SliderClasses": "components/slider#anatomy",
+			"SliderPart": "components/slider#anatomy",
+			"SliderParts": "components/slider#styled-parts-api",
+			"SliderProps": "components/slider#slider",
+			"sliderStyles": "components/slider#sliderstyles",
+			"SliderStyles": "components/slider#sliderstyles",
+			"SliderVariants": "components/slider#variants"
+		},
+		"@codeui/kit/spinner": {
+			"Spinner": "components/spinner#spinner",
+			"SpinnerProps": "components/spinner#spinner"
+		},
+		"@codeui/kit/stack": {
+			"Gap": "components/stack#stack",
+			"Stack": "components/stack#stack",
+			"StackClasses": "components/stack#anatomy",
+			"StackPart": "components/stack#anatomy",
+			"stackParts": "components/stack#anatomy",
+			"StackProps": "components/stack#stack",
+			"stackStyles": "components/stack#stackstyles",
+			"StackStyles": "components/stack#stackstyles",
+			"StackVariants": "components/stack#variants"
+		},
+		"@codeui/kit/switch": {
+			"createSwitchProps": "utilities/control-helpers#createswitchprops",
+			"Switch": "components/switch#switch",
+			"SwitchClasses": "components/switch#anatomy",
+			"SwitchPart": "components/switch#anatomy",
+			"SwitchParts": "components/switch#styled-parts-api",
+			"SwitchProps": "components/switch#switch",
+			"switchStyles": "components/switch#switchstyles",
+			"SwitchStyles": "components/switch#switchstyles",
+			"SwitchVariants": "components/switch#variants"
+		},
+		"@codeui/kit/text": {
+			"Text": "components/text#text",
+			"TextClasses": "components/text#anatomy",
+			"TextPart": "components/text#anatomy",
+			"textParts": "components/text#anatomy",
+			"TextProps": "components/text#text",
+			"textStyles": "components/text#textstyles",
+			"TextStyles": "components/text#textstyles",
+			"TextVariants": "components/text#variants"
+		},
+		"@codeui/kit/toast": {
+			"createToaster": "components/toast#createtoaster",
+			"CreateToasterOptions": "components/toast#createtoaster",
+			"ToastAction": "components/toast#createtoaster",
+			"ToastContent": "components/toast#createtoaster",
+			"ToastContext": "components/toast#createtoaster",
+			"ToastController": "components/toast#createtoaster",
+			"Toaster": "components/toast#toaster",
+			"ToasterProps": "components/toast#toaster",
+			"ToastId": "components/toast#createtoaster",
+			"ToastOptions": "components/toast#createtoaster",
+			"ToastPromiseOptions": "components/toast#createtoaster"
+		},
+		"@codeui/kit/checkbox": {
+			"Checkbox": "components/checkbox#checkbox",
+			"CheckBoxProps": "components/checkbox#checkbox"
+		},
+		"@codeui/kit/dropdown-menu": {
+			"DropdownMenu": "components/dropdown-menu#dropdownmenu",
+			"DropdownMenuContent": "components/dropdown-menu#dropdownmenucontent",
+			"DropdownMenuItem": "components/dropdown-menu#dropdownmenuitem",
+			"DropdownMenuPortal": "components/dropdown-menu#dropdownmenuportal",
+			"DropdownMenuSeparator": "components/dropdown-menu#dropdownmenuseparator",
+			"dropdownMenuStyles": "utilities/styles-reference#dropdownmenustyles",
+			"DropdownMenuTrigger": "components/dropdown-menu#dropdownmenutrigger",
+			"DropdownSubMenu": "components/dropdown-menu#dropdownsubmenu",
+			"DropdownSubMenuContent": "components/dropdown-menu#dropdownsubmenucontent",
+			"DropdownSubMenuTrigger": "components/dropdown-menu#dropdownsubmenutrigger"
+		},
+		"@codeui/kit/icon-button": {
+			"IconButton": "components/icon-button#iconbutton"
+		},
+		"@codeui/kit/link": {
+			"Link": "components/link#link"
+		},
+		"@codeui/kit/listbox": {
+			"Listbox": "components/listbox#listbox",
+			"ListboxClasses": "components/listbox#listbox",
+			"ListboxItem": "components/listbox#listboxitem",
+			"ListboxProps": "components/listbox#listbox"
+		},
+		"@codeui/kit/number-field": {
+			"NumberField": "components/number-field#numberfield",
+			"NumberFieldLabel": "components/number-field#numberfieldlabel",
+			"NumberFieldProps": "components/number-field#numberfield"
+		},
+		"@codeui/kit/pagination": {
+			"Pagination": "components/pagination#pagination",
+			"PaginationProps": "components/pagination#pagination"
+		},
+		"@codeui/kit/radio-list": {
+			"RadioList": "components/radio-list#radiolist",
+			"RadioListClasses": "components/radio-list#radiolist",
+			"RadioListItem": "components/radio-list#radiolistitem",
+			"RadioListItemProps": "components/radio-list#radiolistitem",
+			"RadioListProps": "components/radio-list#radiolist"
+		},
+		"@codeui/kit/segmented-control": {
+			"SegmentedControl": "components/segmented-control#segmentedcontrol",
+			"SegmentedControlClasses": "components/segmented-control#segmentedcontrol",
+			"SegmentedControlItem": "components/segmented-control#segmentedcontrolitem",
+			"SegmentedControlItemProps": "components/segmented-control#segmentedcontrolitem",
+			"SegmentedControlProps": "components/segmented-control#segmentedcontrol"
+		},
+		"@codeui/kit/svg-icon": {
+			"SvgIcon": "utilities/icons#svgicon"
+		},
+		"@codeui/kit/tabs": {
+			"Tabs": "components/tabs#tabs",
+			"TabsContent": "components/tabs#tabscontent",
+			"TabsHeader": "components/tabs#tabsheader",
+			"TabsList": "components/tabs#tabslist"
+		},
+		"@codeui/kit/text-area": {
+			"TextArea": "components/text-area#textarea",
+			"TextAreaLabel": "components/text-area#textarealabel",
+			"TextAreaProps": "components/text-area#textarea"
+		},
+		"@codeui/kit/text-field": {
+			"TextField": "components/text-field#textfield",
+			"TextFieldLabel": "components/text-field#textfieldlabel",
+			"TextFieldProps": "components/text-field#textfield",
+			"textFieldStyles": "utilities/styles-reference#textfieldstyles"
+		},
+		"@codeui/kit/tooltip": {
+			"Tooltip": "components/tooltip#tooltip",
+			"TooltipProps": "components/tooltip#tooltip"
+		},
+		"@codeui/kit/virtualized-listbox": {
+			"VirtualizedListbox": "components/virtualized-listbox#virtualizedlistbox",
+			"VirtualizedListboxProps": "components/virtualized-listbox#virtualizedlistbox"
+		},
+		"@codeui/kit/checkbox/parts": {
+			"Content": "components/checkbox#styled-parts-api",
+			"ContentProps": "components/checkbox#styled-parts-api",
+			"Control": "components/checkbox#styled-parts-api",
+			"ControlProps": "components/checkbox#styled-parts-api",
+			"Description": "components/checkbox#styled-parts-api",
+			"DescriptionProps": "components/checkbox#styled-parts-api",
+			"ErrorMessage": "components/checkbox#styled-parts-api",
+			"ErrorMessageProps": "components/checkbox#styled-parts-api",
+			"Indicator": "components/checkbox#styled-parts-api",
+			"IndicatorProps": "components/checkbox#styled-parts-api",
+			"Input": "components/checkbox#styled-parts-api",
+			"InputProps": "components/checkbox#styled-parts-api",
+			"Label": "components/checkbox#styled-parts-api",
+			"LabelProps": "components/checkbox#styled-parts-api",
+			"Root": "components/checkbox#styled-parts-api",
+			"RootProps": "components/checkbox#styled-parts-api"
+		},
+		"@codeui/kit/dropdown-menu/parts": {
+			"Content": "components/dropdown-menu#styled-parts-api",
+			"ContentProps": "components/dropdown-menu#styled-parts-api",
+			"Group": "components/dropdown-menu#styled-parts-api",
+			"GroupLabel": "components/dropdown-menu#styled-parts-api",
+			"GroupLabelProps": "components/dropdown-menu#styled-parts-api",
+			"GroupProps": "components/dropdown-menu#styled-parts-api",
+			"Item": "components/dropdown-menu#styled-parts-api",
+			"ItemDescription": "components/dropdown-menu#styled-parts-api",
+			"ItemDescriptionProps": "components/dropdown-menu#styled-parts-api",
+			"ItemLabel": "components/dropdown-menu#styled-parts-api",
+			"ItemLabelProps": "components/dropdown-menu#styled-parts-api",
+			"ItemProps": "components/dropdown-menu#styled-parts-api",
+			"Portal": "components/dropdown-menu#styled-parts-api",
+			"PortalProps": "components/dropdown-menu#styled-parts-api",
+			"Root": "components/dropdown-menu#styled-parts-api",
+			"RootProps": "components/dropdown-menu#styled-parts-api",
+			"Separator": "components/dropdown-menu#styled-parts-api",
+			"SeparatorProps": "components/dropdown-menu#styled-parts-api",
+			"Sub": "components/dropdown-menu#styled-parts-api",
+			"SubContent": "components/dropdown-menu#styled-parts-api",
+			"SubContentProps": "components/dropdown-menu#styled-parts-api",
+			"SubProps": "components/dropdown-menu#styled-parts-api",
+			"SubTrigger": "components/dropdown-menu#styled-parts-api",
+			"SubTriggerProps": "components/dropdown-menu#styled-parts-api",
+			"Trigger": "components/dropdown-menu#styled-parts-api",
+			"TriggerProps": "components/dropdown-menu#styled-parts-api"
+		},
+		"@codeui/kit/listbox/parts": {
+			"Item": "components/listbox#styled-parts-api",
+			"ItemDescription": "components/listbox#styled-parts-api",
+			"ItemDescriptionProps": "components/listbox#styled-parts-api",
+			"ItemIndicator": "components/listbox#styled-parts-api",
+			"ItemIndicatorProps": "components/listbox#styled-parts-api",
+			"ItemLabel": "components/listbox#styled-parts-api",
+			"ItemLabelProps": "components/listbox#styled-parts-api",
+			"ItemProps": "components/listbox#styled-parts-api",
+			"Root": "components/listbox#styled-parts-api",
+			"RootProps": "components/listbox#styled-parts-api",
+			"Section": "components/listbox#styled-parts-api",
+			"SectionProps": "components/listbox#styled-parts-api"
+		},
+		"@codeui/kit/number-field/parts": {
+			"Controls": "components/number-field#styled-parts-api",
+			"ControlsProps": "components/number-field#styled-parts-api",
+			"Description": "components/number-field#styled-parts-api",
+			"DescriptionProps": "components/number-field#styled-parts-api",
+			"ErrorMessage": "components/number-field#styled-parts-api",
+			"ErrorMessageProps": "components/number-field#styled-parts-api",
+			"Field": "components/number-field#styled-parts-api",
+			"FieldProps": "components/number-field#styled-parts-api",
+			"Input": "components/number-field#styled-parts-api",
+			"InputProps": "components/number-field#styled-parts-api",
+			"Label": "components/number-field#styled-parts-api",
+			"LabelProps": "components/number-field#styled-parts-api",
+			"Root": "components/number-field#styled-parts-api",
+			"RootProps": "components/number-field#styled-parts-api"
+		},
+		"@codeui/kit/pagination/parts": {
+			"createPaginationState": "components/pagination#styled-parts-api",
+			"Item": "components/pagination#styled-parts-api",
+			"ItemProps": "components/pagination#styled-parts-api",
+			"PaginationOptions": "components/pagination#styled-parts-api",
+			"Root": "components/pagination#styled-parts-api",
+			"RootProps": "components/pagination#styled-parts-api"
+		},
+		"@codeui/kit/radio-list/parts": {
+			"Description": "components/radio-list#styled-parts-api",
+			"DescriptionProps": "components/radio-list#styled-parts-api",
+			"ErrorMessage": "components/radio-list#styled-parts-api",
+			"ErrorMessageProps": "components/radio-list#styled-parts-api",
+			"Item": "components/radio-list#styled-parts-api",
+			"ItemControl": "components/radio-list#styled-parts-api",
+			"ItemControlProps": "components/radio-list#styled-parts-api",
+			"ItemDescription": "components/radio-list#styled-parts-api",
+			"ItemDescriptionProps": "components/radio-list#styled-parts-api",
+			"ItemIndicator": "components/radio-list#styled-parts-api",
+			"ItemIndicatorProps": "components/radio-list#styled-parts-api",
+			"ItemInput": "components/radio-list#styled-parts-api",
+			"ItemInputProps": "components/radio-list#styled-parts-api",
+			"ItemLabel": "components/radio-list#styled-parts-api",
+			"ItemLabelProps": "components/radio-list#styled-parts-api",
+			"ItemProps": "components/radio-list#styled-parts-api",
+			"Items": "components/radio-list#styled-parts-api",
+			"ItemsProps": "components/radio-list#styled-parts-api",
+			"Label": "components/radio-list#styled-parts-api",
+			"LabelProps": "components/radio-list#styled-parts-api",
+			"Root": "components/radio-list#styled-parts-api",
+			"RootProps": "components/radio-list#styled-parts-api"
+		},
+		"@codeui/kit/segmented-control/parts": {
+			"Indicator": "components/segmented-control#styled-parts-api",
+			"IndicatorProps": "components/segmented-control#styled-parts-api",
+			"Item": "components/segmented-control#styled-parts-api",
+			"ItemProps": "components/segmented-control#styled-parts-api",
+			"List": "components/segmented-control#styled-parts-api",
+			"ListProps": "components/segmented-control#styled-parts-api",
+			"Root": "components/segmented-control#styled-parts-api",
+			"RootProps": "components/segmented-control#styled-parts-api"
+		},
+		"@codeui/kit/tabs/parts": {
+			"Content": "components/tabs#styled-parts-api",
+			"ContentProps": "components/tabs#styled-parts-api",
+			"Indicator": "components/tabs#styled-parts-api",
+			"IndicatorProps": "components/tabs#styled-parts-api",
+			"List": "components/tabs#styled-parts-api",
+			"ListProps": "components/tabs#styled-parts-api",
+			"Root": "components/tabs#styled-parts-api",
+			"RootProps": "components/tabs#styled-parts-api",
+			"Trigger": "components/tabs#styled-parts-api",
+			"TriggerProps": "components/tabs#styled-parts-api"
+		},
+		"@codeui/kit/text-area/parts": {
+			"Description": "components/text-area#styled-parts-api",
+			"DescriptionProps": "components/text-area#styled-parts-api",
+			"ErrorMessage": "components/text-area#styled-parts-api",
+			"ErrorMessageProps": "components/text-area#styled-parts-api",
+			"Input": "components/text-area#styled-parts-api",
+			"InputProps": "components/text-area#styled-parts-api",
+			"Label": "components/text-area#styled-parts-api",
+			"LabelProps": "components/text-area#styled-parts-api",
+			"Root": "components/text-area#styled-parts-api",
+			"RootProps": "components/text-area#styled-parts-api"
+		},
+		"@codeui/kit/text-field/parts": {
+			"Description": "components/text-field#styled-parts-api",
+			"DescriptionProps": "components/text-field#styled-parts-api",
+			"ErrorMessage": "components/text-field#styled-parts-api",
+			"ErrorMessageProps": "components/text-field#styled-parts-api",
+			"Input": "components/text-field#styled-parts-api",
+			"InputProps": "components/text-field#styled-parts-api",
+			"Label": "components/text-field#styled-parts-api",
+			"LabelProps": "components/text-field#styled-parts-api",
+			"Root": "components/text-field#styled-parts-api",
+			"RootProps": "components/text-field#styled-parts-api"
+		},
+		"@codeui/kit/tooltip/parts": {
+			"Content": "components/tooltip#styled-parts-api",
+			"ContentProps": "components/tooltip#styled-parts-api",
+			"Portal": "components/tooltip#styled-parts-api",
+			"PortalProps": "components/tooltip#styled-parts-api",
+			"Root": "components/tooltip#styled-parts-api",
+			"RootProps": "components/tooltip#styled-parts-api",
+			"Trigger": "components/tooltip#styled-parts-api",
+			"TriggerProps": "components/tooltip#styled-parts-api"
 		}
 	}
 }

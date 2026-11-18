@@ -1,22 +1,14 @@
-import "@codeui/styles/theme.css";
-import "@codeui/styles/listbox.css";
-import { JSXElement, splitProps, ValidComponent } from "solid-js";
-import {
-	Listbox as KListbox,
-	ListboxItemProps as KListboxItemProps,
-	ListboxRootProps as KListboxRootProps,
-} from "@kobalte/core/listbox";
-import { CheckIcon } from "../../icons";
+import type { PolymorphicProps } from "@kobalte/core/polymorphic";
+import { splitProps, type JSXElement, type ValidComponent } from "solid-js";
+import * as P from "../../parts/listbox";
 import { mergeClasses } from "../../utils/css";
-import * as styles from "./Listbox.css";
-import { PolymorphicProps } from "@kobalte/core/polymorphic";
 
 export type ListboxClasses = Partial<
 	Record<"root" | "item" | "itemLabel" | "itemIndicator", string>
 >;
 
 export interface ListboxProps<Option, OptGroup, T extends ValidComponent = "ul">
-	extends Omit<KListboxRootProps<Option, OptGroup, T>, "renderItem"> {
+	extends Omit<P.RootProps<Option, OptGroup, T>, "renderItem"> {
 	class?: string;
 	classes?: ListboxClasses;
 	size?: "xs" | "sm" | "md";
@@ -30,16 +22,12 @@ export function Listbox<Option, OptGroup = never, T extends ValidComponent = "ul
 ) {
 	const [local, others] = splitProps(
 		props as PolymorphicProps<"ul", ListboxProps<Option, OptGroup>>,
-		["class", "size", "itemLabel", "bordered", "theme", "classes"],
+		["class", "size", "itemLabel", "classes"],
 	);
 
 	return (
-		<KListbox
-			data-cui="listbox"
-			data-bordered={local.bordered ? "" : undefined}
-			data-theme={local.theme ?? "neutral"}
-			class={mergeClasses(styles.list, local.class, local.classes?.root)}
-			shouldFocusOnHover
+		<P.Root<Option, OptGroup>
+			class={mergeClasses(local.class, local.classes?.root)}
 			renderItem={node => (
 				<ListboxItem
 					classes={local.classes}
@@ -54,7 +42,7 @@ export function Listbox<Option, OptGroup = never, T extends ValidComponent = "ul
 }
 
 export interface ListboxItemProps<Item, T extends ValidComponent = "li">
-	extends KListboxItemProps<T> {
+	extends P.ItemProps<T> {
 	class?: string;
 	classes?: ListboxClasses;
 	size?: "xs" | "sm" | "md";
@@ -69,22 +57,15 @@ export function ListboxItem<Item, T extends ValidComponent = "li">(
 		["size", "itemLabel", "class", "classes"],
 	);
 	return (
-		<KListbox.Item
-			data-size={props.size ?? undefined}
-			data-cui="listbox-item"
-			class={mergeClasses(styles.item, local.class, local.classes?.item)}
+		<P.Item
+			size={local.size}
+			class={mergeClasses(local.class, local.classes?.item)}
 			{...others}
 		>
-			<KListbox.ItemLabel data-cui="listbox-item-label" class={local.classes?.itemLabel}>
+			<P.ItemLabel class={local.classes?.itemLabel}>
 				{local.itemLabel ? local.itemLabel(others.item.rawValue) : others.item.rawValue}
-			</KListbox.ItemLabel>
-			<KListbox.ItemIndicator
-				data-cui="listbox-item-indicator"
-				class={local.classes?.itemIndicator}
-				forceMount
-			>
-				<CheckIcon data-size={props.size ?? undefined} class={styles.itemIndicator} />
-			</KListbox.ItemIndicator>
-		</KListbox.Item>
+			</P.ItemLabel>
+			<P.ItemIndicator size={local.size} class={local.classes?.itemIndicator} />
+		</P.Item>
 	);
 }

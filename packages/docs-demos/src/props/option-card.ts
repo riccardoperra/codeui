@@ -1,5 +1,5 @@
 import type { OptionCardGroupProps, OptionCardProps } from "@codeui/kit";
-import type * as P from "@codeui/kit/option-card";
+import type * as P from "@codeui/kit/option-card/parts";
 import type { PropNotes } from "./notes";
 
 export type OptionCardGroup = Pick<OptionCardGroupProps, "items" | "value" | "defaultValue" | "onChange" | "label" | "description" | "errorMessage" | "classes" | "variant" | "class">;

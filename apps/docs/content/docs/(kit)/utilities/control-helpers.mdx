@@ -9,7 +9,7 @@ description: "Reactive mappings for custom control compositions and entry metada
 
 Import `createSwitchProps` from `@codeui/kit`. Its signature is `createSwitchProps(props: Accessor<SwitchProps>)`. Call it once in your component and pass an accessor so later signal changes remain visible.
 
-The result contains `root`, `input`, `label`, `description`, and `errorMessage` accessors. Spread each accessor result onto its matching styled part from `@codeui/kit/switch`. Root retains checked state, callbacks, and form props. Input receives the derived ID, accessible name, and input class. Label receives its ID and `for` association. Message accessors supply IDs and classes.
+The result contains `root`, `input`, `label`, `description`, and `errorMessage` accessors. Spread each accessor result onto its matching styled part from `@codeui/kit/switch/parts`. Root retains checked state, callbacks, and form props. Input receives the derived ID, accessible name, and input class. Label receives its ID and `for` association. Message accessors supply IDs and classes.
 
 <PropsTable name="SwitchHelperInput" />
 

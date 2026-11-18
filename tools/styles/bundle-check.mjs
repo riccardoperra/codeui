@@ -36,7 +36,7 @@ try {
 			path.join(scratch, "dialog.js"),
 			kind === "css"
 				? 'import "@codeui/styles/dialog.css"; export const open = () => "dialog";'
-				: 'import {Root} from "@codeui/kit/dialog"; export const open = () => Root;',
+				: 'import {Root} from "@codeui/kit/dialog/parts"; export const open = () => Root;',
 		);
 		const scenarios =
 			kind === "solid"

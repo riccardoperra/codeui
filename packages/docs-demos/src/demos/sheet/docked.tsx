@@ -1,5 +1,5 @@
 import { Button } from "@codeui/kit";
-import * as S from "@codeui/kit/sheet";
+import * as S from "@codeui/kit/sheet/parts";
 import { createSignal, Show } from "solid-js";
 export default function Demo() {
 	const [mount, setMount] = createSignal<HTMLDivElement>();

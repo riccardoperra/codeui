@@ -1,5 +1,5 @@
 import { Button } from "@codeui/kit";
-import * as P from "@codeui/kit/popover";
+import * as P from "@codeui/kit/popover/parts";
 
 /** Open, with the panel rendered inline instead of in a portal. */
 export default function PopoverAnatomy() {

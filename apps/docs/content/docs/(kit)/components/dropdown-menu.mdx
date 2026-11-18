@@ -47,7 +47,7 @@ The `rightSlot` of an item and of a submenu trigger renders in a `div` without a
 <SolidDemo name="dropdown-menu/groups" />
 
 Split related actions with `DropdownMenuSeparator`. Keep a destructive action, such as Delete, in its own group at the end.
-The kit does not export a group with a label. Kobalte's `DropdownMenu.Group` and `DropdownMenu.GroupLabel` work inside `DropdownMenuContent`, but they have no kit styles.
+Use `Group` and `GroupLabel` from `@codeui/kit/dropdown-menu/parts` to label a set of actions. Add your own styles to the group label or render it as a kit `Text`.
 
 ### Submenu
 
@@ -132,6 +132,31 @@ Kobalte's `DropdownMenu.SubContent`, styled like the menu panel. It also replace
 ### `DropdownMenuSeparator`
 
 Kobalte's `DropdownMenu.Separator`. A line between groups. It also replaces any `class` you pass.
+
+## Styled parts API
+
+Import from `@codeui/kit/dropdown-menu/parts` to build a menu with a reusable structure. Keep `Trigger` and `Portal` under the same `Root`. Use `GroupLabel` inside `Group` to name a set of related items.
+
+```tsx
+import { Button } from "@codeui/kit/button";
+import * as M from "@codeui/kit/dropdown-menu/parts";
+import { Text } from "@codeui/kit/text";
+
+<M.Root>
+	<M.Trigger as={Button} theme="secondary">Export</M.Trigger>
+	<M.Portal>
+		<M.Content>
+			<M.Group>
+				<M.GroupLabel as={Text} tone="label">Image formats</M.GroupLabel>
+				<M.Item>PNG</M.Item>
+				<M.Item>JPEG</M.Item>
+			</M.Group>
+		</M.Content>
+	</M.Portal>
+</M.Root>
+```
+
+Use `ItemLabel` and `ItemDescription` inside an `Item` to link a name and supporting text. For a submenu, put `SubTrigger` and `SubContent` under the same `Sub`. `Separator` divides groups of actions.
 
 ## Accessibility
 

@@ -6,7 +6,7 @@ import {
 	type ToastController,
 	type ToastOptions,
 } from "@codeui/kit";
-import type { ToastPosition } from "@codeui/kit/toast";
+import type { ToastPosition } from "@codeui/kit/toast/parts";
 import { type JSX, onMount } from "solid-js";
 
 /**

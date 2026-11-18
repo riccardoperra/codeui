@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "storybook-solidjs-vite";
 
 import { Button, Sheet, TextField } from "@codeui/kit";
-import * as S from "@codeui/kit/sheet";
+import * as S from "@codeui/kit/sheet/parts";
 import { createSignal, For, Show } from "solid-js";
 import { DocsItemsContainer } from "./components/Section.jsx";
 
