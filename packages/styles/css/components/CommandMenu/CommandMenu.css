@@ -110,7 +110,7 @@
     user-select: none;
     outline: none;
   }
-  .cui-commandmenu-item[data-highlighted] {
+  .cui-commandmenu-item:is([data-highlighted], :where([data-rac])[data-focused]) {
     background: var(--cui-surface-input);
   }
   .cui-commandmenu-item:is([data-disabled], :disabled) {
@@ -125,7 +125,7 @@
     height: var(--cui-space-5);
     color: var(--cui-text-hint);
   }
-  .cui-commandmenu-item[data-highlighted] .cui-commandmenu-leading {
+  .cui-commandmenu-item:is([data-highlighted], :where([data-rac])[data-focused]) .cui-commandmenu-leading {
     color: var(--cui-text-dialog);
   }
   .cui-commandmenu-item-label {

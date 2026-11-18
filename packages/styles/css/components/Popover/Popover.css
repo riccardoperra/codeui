@@ -30,13 +30,13 @@
     flex-direction: column;
     row-gap: var(--cui-space-2);
     outline: none;
-    transform-origin: var(--cui-popper-content-transform-origin);
+    transform-origin: var(--cui-popper-content-transform-origin, var(--trigger-anchor-point));
     animation: cui-motion-pop-out var(--cui-motion-duration-fast) var(--cui-motion-ease-out) forwards;
   }
-  .cui-popover-content[data-expanded] {
+  .cui-popover-content:is([data-expanded], :where([data-rac]):not([data-exiting])) {
     animation: cui-motion-pop-in var(--cui-motion-duration-normal) var(--cui-motion-ease-out);
   }
-  .cui-popover-content[data-motion=none], .cui-popover-content[data-motion=none][data-expanded] {
+  .cui-popover-content[data-motion=none], .cui-popover-content[data-motion=none]:is([data-expanded], :where([data-rac]):not([data-exiting])) {
     animation: none;
   }
   :where(.cui-popover-content)[data-variant="bordered"] {
@@ -60,7 +60,7 @@
     .cui-popover-content {
       animation-name: cui-motion-fade-out;
     }
-    .cui-popover-content[data-expanded] {
+    .cui-popover-content:is([data-expanded], :where([data-rac]):not([data-exiting])) {
       animation-name: cui-motion-fade-in;
     }
   }
