@@ -137,6 +137,7 @@ When CSS supports a named default, the helper emits that value and bare markup r
 | `@codeui/styles/toast` | `toastStyleProps.region()` | `position` `top-left`, `top-center`, `top-right`, `bottom-left`, `bottom-center`, `bottom-right` (default `bottom-center`) |
 | `@codeui/styles/tooltip` | `tooltipStyleProps()` | `theme` `primary`, `secondary` |
 | `@codeui/styles/accordion` | `accordionStyleProps()` | `density` `default`, `compact`, `comfortable` (default `default`) |
+| `@codeui/styles/table` | `tableStyleProps()` | `size` `sm`, `md` (default `md`) · `striped` boolean |
 
 <!-- appearance:end -->
 

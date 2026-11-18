@@ -1826,6 +1826,13 @@
       "root": "table-root",
       "scrollArea": "table-scroll-area"
     },
+    "tableStyleProps": {
+      "default": {
+        "class": "cui-table-root",
+        "data-cui": "table-root",
+        "data-size": "md"
+      }
+    },
     "tableStyles": {
       "root": {
         "default": "cui-table-root"
@@ -3462,6 +3469,37 @@
             "density"
           ],
           "marker": "accordionParts.trigger"
+        }
+      }
+    },
+    "table": {
+      "variants": {
+        "size": {
+          "kind": "enum",
+          "values": [
+            "sm",
+            "md"
+          ],
+          "base": {
+            "value": "md",
+            "class": "cui-table-root"
+          },
+          "default": "md"
+        },
+        "striped": {
+          "kind": "boolean"
+        }
+      },
+      "parts": {
+        "root": {
+          "classes": [
+            "tableStyles.root()"
+          ],
+          "options": [
+            "size",
+            "striped"
+          ],
+          "marker": "tableParts.root"
         }
       }
     }

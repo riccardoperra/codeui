@@ -2453,6 +2453,22 @@ export declare const switchStyleProps: ((options?: Parameters<typeof root>[0]) =
 export {};
 ```
 
+## @codeui/styles/internal/generated-appearance/table.d.ts
+
+```ts
+export type TableStyleOptions = {
+    class?: string;
+    size?: "sm" | "md";
+    striped?: boolean;
+};
+export declare const tableStyleProps: (options?: TableStyleOptions) => {
+    class: string;
+    "data-cui": "table-root";
+    "data-size": "sm" | "md";
+    "data-striped": string | undefined;
+};
+```
+
 ## @codeui/styles/internal/generated-appearance/tabs.d.ts
 
 ```ts
@@ -3096,17 +3112,15 @@ export declare const switchStyles: SwitchStyles;
 ## @codeui/styles/internal/parts/table.d.ts
 
 ```ts
+import type { TableStyleOptions } from "../generated-appearance/table.js";
 export declare const tableParts: {
     readonly root: "table-root";
     readonly scrollArea: "table-scroll-area";
 };
 export type TablePart = keyof typeof tableParts;
 export type TableClasses = Partial<Record<TablePart, string>>;
-export type TableSize = "sm" | "md";
-export type TableVariants = {
-    size?: TableSize;
-    striped?: boolean;
-};
+export type TableVariants = Omit<TableStyleOptions, "class">;
+export type TableSize = NonNullable<TableVariants["size"]>;
 export type TableStyles = {
     [P in TablePart]: () => string;
 };
@@ -3358,7 +3372,8 @@ export * from "./internal/generated-appearance/switch.js";
 
 ```ts
 export * from "./internal/components/Table/Table.css.js";
-export { tableParts, type TablePart, type TableClasses, type TableSize, type TableVariants, type TableStyles, tableStyles } from "./internal/parts/table.js";
+export { tableParts, type TablePart, type TableClasses, type TableVariants, type TableSize, type TableStyles, tableStyles } from "./internal/parts/table.js";
+export * from "./internal/generated-appearance/table.js";
 ```
 
 ## @codeui/styles/tabs.d.ts

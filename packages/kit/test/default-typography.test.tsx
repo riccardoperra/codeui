@@ -30,9 +30,9 @@ it.each(["light", "dark"])("uses the default size's typography in %s mode", them
 		["Full name", "Full name (sm)", "12px"],
 		["Format", "Format (sm)", "14px"],
 		["File format", "File format (sm)", "12px"],
-		["Preview", "Preview (md)", "12px"],
+		["Preview", "Preview (md)", "14px"],
 		["Show the preview", "Show the preview (md)", "12px"],
-		["PNG", "PNG (sm)", "16px"],
+		["PNG", "PNG (sm)", "14px"],
 	]) {
 		const explicitSize = getComputedStyle(getByText(explicit)).fontSize;
 		expect(explicitSize, explicit).toBe(expected);

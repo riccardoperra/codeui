@@ -1,9 +1,16 @@
 import "@codeui/styles/theme.css";
 import "@codeui/styles/table.css";
 import { type ComponentProps, splitProps } from "solid-js";
-import { tableParts, type TableClasses, type TableVariants } from "@codeui/styles/table";
+import {
+	tableParts,
+	tableStyleProps,
+	type TableClasses,
+	type TableVariants,
+} from "@codeui/styles/table";
 import { mergeClasses } from "../../utils/css";
 import * as styles from "./Table.css";
+
+const defaultTableSize = tableStyleProps()["data-size"];
 
 export {
 	tableParts,
@@ -31,7 +38,7 @@ export function Table(props: TableProps) {
 		<table
 			{...others}
 			data-cui={tableParts.root}
-			data-size={local.size ?? "md"}
+			data-size={local.size ?? defaultTableSize}
 			data-striped={local.striped || undefined}
 			class={mergeClasses(styles.root(), local.classes?.root, local.class)}
 		/>
