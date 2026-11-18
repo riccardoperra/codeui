@@ -9,7 +9,7 @@ export type FieldErrorMessageSupport = Pick<FieldWithErrorMessageSupport, "error
 
 export const notes = {
 	BaseField: {
-		size: { default: '"md"', description: "Height, font size, and corner radius of the control." },
+		size: { default: '"sm"', description: "Height, font size, and corner radius of the control." },
 		theme: { default: '"filled"', description: "A filled box, or a bottom border only." },
 	},
 	FieldErrorMessageSupport: {

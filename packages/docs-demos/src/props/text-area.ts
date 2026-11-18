@@ -23,7 +23,7 @@ export const notes = {
 		description: { description: "Hint under the textarea. Accepts JSX. Linked with aria-describedby." },
 		errorMessage: { description: 'Message under the textarea. Renders only when validationState is "invalid".' },
 		placeholder: { description: "Placeholder of the textarea." },
-		size: { default: '"md"', description: "Font size of every part. The textarea height follows its rows." },
+		size: { default: '"sm"', description: "Font size of every part. The textarea height follows its rows." },
 		theme: { default: '"filled"', description: "A filled box, or a bottom border only." },
 		options: { description: "Props for Kobalte's TextField.TextArea, such as autoResize and submitOnEnter." },
 		classes: { description: "Classes merged after the kit styles, one per part." },

@@ -83,10 +83,9 @@ Fields, buttons and other controls with a `size` prop take their height from `--
 
 | `size` | Token | Value |
 | --- | --- | --- |
-| `xs` | `--cui-control-height-xs` | `30px` |
+| `xs` | `--cui-control-height-xs` | `28px` |
 | `sm` | `--cui-control-height-sm` | `36px` |
-| `md` | `--cui-control-height-md` | `40px` |
-| `lg` | `--cui-control-height-lg` | `48px` |
-| `xl` | `--cui-control-height-xl` | `56px` |
+| `md` | `--cui-control-height-md` | `44px` |
+| `lg` | `--cui-control-height-lg` | `52px` |
 
-`--cui-control-height-compact` is `28px`, the height of an item inside a segmented control. Inkstone sizes buttons, fields and menu rows at 36px on desktop and 40 to 44px on a phone.
+The table shows comfortable density. Controls default to `sm`. Comfortable is the default density. Compact multiplies heights by 0.875, and touch multiplies them by 1.125. Heights round to the nearest 2px. A coarse pointer selects touch density automatically. Set `data-cui-density="compact|comfortable|touch"` on an element to set density for its subtree. Font sizes stay tied to the control size.

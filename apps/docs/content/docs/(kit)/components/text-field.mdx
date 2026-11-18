@@ -41,13 +41,12 @@ The root, the label, the input, the hint, and the error carry Kobalte's state at
 
 | `size` | Input height | Input font size |
 | ------ | ------------ | --------------- |
-| `xs`   | 30px         | 12px            |
+| `xs`   | 28px         | 12px            |
 | `sm`   | 36px         | 14px            |
-| `md`   | 36px (40px on a phone) | 14px (16px on a phone) |
-| `lg`   | 48px         | 16px            |
-| `xl`   | 56px         | 18px            |
+| `md`   | 44px         | 14px |
+| `lg`   | 52px         | 16px            |
 
-Inkstone sets desktop controls at 36px. The default `md` is 36px with 14px text on desktop and 40px with 16px text at 768px and narrower, so iOS does not zoom into the field. `sm` stays 36px everywhere with a 9px radius, the size CodeImage's sidebar fields use.
+The default is `sm` with a 9px radius, the size CodeImage’s sidebar fields use. Density adjusts the heights in the table. Font sizes are the same at every density.
 
 ### Theme
 
@@ -161,7 +160,7 @@ TextField reads these variables, through the shared field style:
 - Hint and placeholder: `--cui-text-hint`.
 - Label: `--cui-text-label` and `--cui-font-weight-medium`.
 - Focus and errors: `--cui-focus-color` and `--cui-text-danger`.
-- Size: `--cui-control-height-xs` to `--cui-control-height-xl`, `--cui-font-size-xs` to `--cui-font-size-lg`, and `--cui-radius-xs` to `--cui-radius-xl`.
+- Size: `--cui-control-height-xs` to `--cui-control-height-lg`, `--cui-font-size-xs` to `--cui-font-size-lg`, and `--cui-radius-xs` to `--cui-radius-xl`.
 - Spacing and motion: `--cui-space-3`, `--cui-motion-duration-fast`, and `--cui-motion-ease-out`.
 
 See [Tokens](/docs/foundations/tokens) for the defaults.

@@ -62,7 +62,7 @@ export const notes = {
 		renderOption: { description: "Renders each option in the list. Filtering still uses the text value." },
 		emptyContent: { description: "Shown in the list when no option matches the text. Setting it keeps the list open." },
 		mount: { default: "document.body", description: "Portal target, such as a parent dialog, so the list stays inside it." },
-		size: { default: "undefined", description: '"sm" makes the control compact. "md" and undefined render the same height.' },
+		size: { default: '"sm"', description: "Control height on the shared size and density scale." },
 		inputId: { description: "Id of the input element." },
 		inputRef: { description: "Receives the input element." },
 		class: { description: "Class merged after the kit styles on the root." },
@@ -90,7 +90,7 @@ export const notes = {
 		validationState: { description: 'Set to "invalid" to show errorMessage and mark the input invalid.' },
 	},
 	ComboboxPartVariants: {
-		size: { default: "undefined", description: 'Sets data-size on the part. Control uses it for its height: "sm" is compact.' },
+		size: { default: "undefined", description: 'Sets data-size on the part. Control uses the shared height scale and defaults to "sm".' },
 	},
 	ComboboxRootPart: {
 		size: { description: "Sets data-size on the root." },

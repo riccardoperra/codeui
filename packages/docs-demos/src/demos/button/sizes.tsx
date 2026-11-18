@@ -7,7 +7,6 @@ export default function Demo() {
 			<Button theme="secondary" size="sm">Copy snippet (sm)</Button>
 			<Button theme="secondary" size="md">Copy snippet (md)</Button>
 			<Button theme="secondary" size="lg">Copy snippet (lg)</Button>
-			<Button theme="secondary" size="xl">Copy snippet (xl)</Button>
 		</div>
 	);
 }

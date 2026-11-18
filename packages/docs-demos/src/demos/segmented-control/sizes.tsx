@@ -30,13 +30,6 @@ export default function Demo() {
 					System
 				</SegmentedControlItem>
 			</SegmentedControl>
-			<SegmentedControl aria-label="Editor theme (xl)" size="xl" defaultValue="dark">
-				<SegmentedControlItem value="light">Light</SegmentedControlItem>
-				<SegmentedControlItem value="dark">Dark</SegmentedControlItem>
-				<SegmentedControlItem value="system" disabled>
-					System
-				</SegmentedControlItem>
-			</SegmentedControl>
 		</div>
 	);
 }

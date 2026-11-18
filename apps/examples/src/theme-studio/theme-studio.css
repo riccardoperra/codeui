@@ -660,8 +660,8 @@ button.ts-swatch:focus-visible {
 }
 
 button.ts-swatch {
-	width: var(--cui-control-height-compact);
-	height: var(--cui-control-height-compact);
+	width: 28px;
+	height: 28px;
 	padding: 0;
 	border: 0;
 	border-radius: var(--cui-radius-badge);

@@ -7,7 +7,7 @@ import { DocsItemsContainer, DocsMultipleItemsContainer } from "./components/Sec
 
 const buttonThemes = ["primary", "secondary", "tertiary", "negative", "caution"] as const;
 
-const buttonSizes = ["xs", "sm", "md", "lg", "xl"] as const;
+const buttonSizes = ["xs", "sm", "md", "lg"] as const;
 
 // More on how to set up stories at: https://storybook.js.org/docs/7.0/solid/writing-stories/introduction
 const meta = {

@@ -4,7 +4,7 @@ import { DocsItemsContainer, DocsMultipleItemsContainer } from "./components/Sec
 import { createSignal, For } from "solid-js";
 
 // TODO: fix
-const sizes = ["xs", "sm", "md", "lg", "xl"] as NumberFieldProps["size"][];
+const sizes = ["xs", "sm", "md", "lg"] as NumberFieldProps["size"][];
 
 // TODO: why outline not exist in type?
 const themes = ["inline", "outline", "filled"] as NumberFieldProps["theme"][];

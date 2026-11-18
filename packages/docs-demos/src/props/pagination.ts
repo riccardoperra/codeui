@@ -6,7 +6,7 @@ export const notes = {
  Pagination: {
   page: { description: "Controlled current page, starting at 1." },
   onChange: { description: "Runs when the page changes, after initialization." },
-  size: { default: '"md"', description: "Size of every page button." },
+  size: { default: '"sm"', description: "Size of every page button." },
   rounded: { default: "false", description: "Uses pill buttons." },
  },
  PaginationInherited: {

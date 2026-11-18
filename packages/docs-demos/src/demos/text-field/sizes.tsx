@@ -1,7 +1,7 @@
 import { Stack, TextField } from "@codeui/kit";
 import { For } from "solid-js";
 
-const sizes = ["xs", "sm", "md", "lg", "xl"] as const;
+const sizes = ["xs", "sm", "md", "lg"] as const;
 
 export default function TextFieldSizes() {
 	return (
