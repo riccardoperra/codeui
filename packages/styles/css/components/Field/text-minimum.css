@@ -5,9 +5,12 @@
     }
   }
 
-  [data-cui-density="compact"],
-  [data-cui-density="comfortable"] {
-    --cui-field-textMinimum: 0px;
+  /* iOS zooms into inputs under 16px, so a denser layout on a touch device keeps the minimum. */
+  @media not (pointer: coarse) {
+    [data-cui-density="compact"],
+    [data-cui-density="comfortable"] {
+      --cui-field-textMinimum: 0px;
+    }
   }
 
   [data-cui-density="touch"] {

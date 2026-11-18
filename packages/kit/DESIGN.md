@@ -149,7 +149,7 @@ Gosfuig generates one achromatic OKLCH ramp for both modes from `packages/inksto
 - Truncate values, never labels, to one line with an ellipsis, and keep the full text reachable (tooltip, accessible name).
 - **Proposed:** `text-wrap: balance` on titles and short descriptions, `text-wrap: pretty` on paragraphs.
 - Use `…`, `→`, `×`, `⌘` and curly quotes in rendered text.
-- Fields use at least 16px text at touch density to avoid focus zoom on iOS. Medium fields and buttons use 16px text.
+- Fields use at least 16px text at touch density and on any touch device, whatever its density, to avoid focus zoom on iOS. Medium fields and buttons use 16px text.
 
 ## 4. Space
 
@@ -207,7 +207,7 @@ Buttons, icon buttons, fields, select triggers and segmented tracks share one he
 | `md` | 38px | 44px | 50px |
 | `lg` | 46px | 52px | 58px |
 
-Comfortable is the default density. Compact multiplies heights by 0.875, and touch multiplies them by 1.125. Heights round to the nearest 2px. A coarse pointer selects touch density automatically. Set `data-cui-density="compact|comfortable|touch"` on an element to set density for its subtree. Font sizes follow the control size, with a 16px minimum for fields at touch density.
+Comfortable is the default density. Compact multiplies heights by 0.875, and touch multiplies them by 1.125. Heights round to the nearest 2px. A coarse pointer selects touch density automatically. Set `data-cui-density="compact|comfortable|touch"` on an element to set density for its subtree. Font sizes follow the control size, with a 16px minimum for fields at touch density and on touch devices.
 
 Checkbox, Radio and Switch use their own geometry. Menu, listbox, select, combobox, command menu and navigation rows use `--cui-control-height-sm` (32px compact, 36px comfortable, 40px touch). A segment fills the space inside the track padding. Settings rows have a 56px minimum.
 
