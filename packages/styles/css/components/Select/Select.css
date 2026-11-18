@@ -58,6 +58,8 @@
     display: flex;
     align-items: center;
     outline: none;
+    font-size: var(--cui-font-size-sm);
+    line-height: var(--cui-font-line-height-snug);
     font-weight: var(--cui-font-weight-normal);
     gap: var(--cui-space-2);
     margin: var(--cui-space-1) 0;
