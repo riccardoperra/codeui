@@ -1,5 +1,4 @@
-import { type BaseComponentSize } from "../../foundation/sizes";
-
+import type { SegmentedControlStyleOptions } from "../../generated-appearance/segmented-control";
 export const indicator: string = "cui-segmented-control-indicator";
 export const list: string = "cui-segmented-control-list";
 export const segment: string = "cui-segmented-control-segment";
@@ -28,11 +27,7 @@ export const segmentedFieldVars = {
 };
 
 export type SegmentedControlVariants =
-	| {
-			theme?: "neutral" | "primary";
-			variant?: "solid" | "bordered";
-			size?: BaseComponentSize;
-			fluid?: boolean;
-			pill?: boolean;
-	  }
+	| (Omit<SegmentedControlStyleOptions, "class" | "theme" | "autoWidth"> & {
+			theme?: NonNullable<SegmentedControlStyleOptions["theme"]> | "neutral";
+	  })
 	| undefined;

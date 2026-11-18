@@ -1,3 +1,4 @@
+import type { AlertStyleOptions } from "../generated-appearance/alert";
 import * as styles from "../components/Alert/Alert.css";
 export const alertParts = {
 	root: "alert-root",
@@ -9,7 +10,7 @@ export const alertParts = {
 
 export type AlertPart = keyof typeof alertParts;
 export type AlertClasses = Partial<Record<AlertPart, string>>;
-export type AlertTone = "neutral" | "info" | "success" | "warning" | "danger";
+export type AlertTone = NonNullable<AlertStyleOptions["tone"]>;
 export type AlertVariants = { tone?: AlertTone; fluid?: boolean };
 
 export type AlertStyles = { [P in AlertPart]: () => string };

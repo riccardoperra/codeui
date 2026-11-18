@@ -1,3 +1,4 @@
+import { popoverStyleProps } from "@codeui/styles/popover";
 import { HydratablePortal } from "../utils/hydratable-portal";
 import "@codeui/styles/theme.css";
 import "@codeui/styles/popover.css";
@@ -76,7 +77,7 @@ export function Content<T extends ValidComponent = "div">(props: PolymorphicProp
 		<KPopover.Content
 			ref={mergeRefs(motionRef(), local.ref)}
 			data-cui={popoverParts.content}
-			data-variant={local.variant}
+			data-variant={popoverStyleProps({ variant: local.variant })["data-variant"]}
 			class={mergeClasses(styles.content(), local.class)}
 			{...others}
 		/>

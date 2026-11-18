@@ -35,7 +35,7 @@
       --cui-segmentedFieldTheme-activeSegmentedTextColor: var(--cui-component-segmented-control-segmented-control-wrapper-theme-primary-active-segmented-text-color);
     }
 
-    &[data-variant="solid"] {
+    &:is(:not([data-variant]), [data-variant="solid"]) {
       background-color: var(--cui-segmentedFieldTheme-segmentWrapperSolidBackground);
     }
 

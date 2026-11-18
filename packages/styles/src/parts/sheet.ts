@@ -1,3 +1,4 @@
+import type { SheetStyleOptions } from "../generated-appearance/sheet";
 import * as styles from "../components/Sheet/Sheet.css";
 export const sheetParts = {
 	trigger: "sheet-trigger",
@@ -14,7 +15,7 @@ export const sheetParts = {
 
 export type SheetPart = keyof typeof sheetParts;
 export type SheetClasses = Partial<Record<SheetPart, string>>;
-export type SheetSide = "bottom" | "left" | "right";
+export type SheetSide = NonNullable<SheetStyleOptions["side"]>;
 /** `auto` slides on pointer opens and closes. `none` never moves. */
 export type SheetMotion = "auto" | "none";
 

@@ -1,5 +1,8 @@
+import type { SliderStyleOptions } from "../generated-appearance/slider";
 import * as styles from "../components/Slider/Slider.css";
-export type SliderVariants = { orientation?: "horizontal" | "vertical" };
+export type SliderVariants = {
+	orientation?: NonNullable<SliderStyleOptions["orientation"]> | "horizontal";
+};
 export const sliderParts = {
 	root: "slider-root",
 	label: "slider-label",

@@ -104,7 +104,7 @@
       --cui-checkboxTheme-fontSize: var(--cui-component-checkbox-check-box-control-size-sm-font-size);
     }
 
-    &[data-size="md"] {
+    &:is(:not([data-size]), [data-size="md"]) {
       --cui-checkboxTheme-size: 1.5rem;
       --cui-checkboxTheme-fontSize: var(--cui-component-checkbox-check-box-control-size-md-font-size);
     }
@@ -149,7 +149,7 @@
     line-height: var(--cui-font-line-height-snug);
     font-size: var(--cui-font-size-sm);
   }
-  [data-field-size=md] .cui-check-box-label {
+  :where(.cui-check-box-container):is(:not([data-field-size]), [data-field-size="md"]) .cui-check-box-label {
     height: 1.5rem;
     line-height: var(--cui-font-line-height-snug);
     font-size: var(--cui-font-size-sm);

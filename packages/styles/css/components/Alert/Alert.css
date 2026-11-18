@@ -14,7 +14,7 @@
     line-height: var(--cui-font-line-height-normal);
   }
   :where(.cui-alert-root) {
-    &[data-tone="neutral"] {
+    &:is(:not([data-tone]), [data-tone="neutral"]) {
       background: var(--cui-component-alert-root-tone-neutral-background);
       color: var(--cui-component-alert-root-tone-neutral-color);
     }

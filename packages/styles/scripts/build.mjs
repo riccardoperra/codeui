@@ -7,6 +7,12 @@ import { build } from "tsdown";
 import { compileStylesheet } from "./component-tokens.mjs";
 import { readInkstoneTheme } from "./tokens.mjs";
 import { collectContracts } from "./contracts.mjs";
+import {
+	appearance,
+	checkAppearance,
+	checkAppearanceDocs,
+	generateAppearance,
+} from "./appearance.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const src = path.join(root, "src");
@@ -27,6 +33,9 @@ const files = async dir =>
 		.flat()
 		.sort();
 const { css: theme, layerOrder, media, componentAliases } = await readInkstoneTheme(root);
+await checkAppearance();
+await checkAppearanceDocs();
+await generateAppearance();
 const sourceFiles = (await files(src)).filter(file => file.endsWith(".ts"));
 const sources = JSON.parse(await readFile(path.join(root, "style-sources.json"), "utf8"));
 const scopesByModule = new Map(Object.entries(sources));
@@ -38,6 +47,10 @@ const helperExports = async (entry, prefix) => {
 	);
 	return `\nexport { ${names.join(", ")} } from "${prefix}${entry.helpers.replace(/\.ts$/, ".js")}";`;
 };
+const appearanceExport = (name, prefix, extension) =>
+	appearance[name] && !appearance[name].selectorOnly && name !== "button"
+		? `\nexport * from "${prefix}generated-appearance/${name}.${extension}";`
+		: "";
 const generated = path.join(out, ".entries");
 await mkdir(generated, { recursive: true });
 for (const [name, entry] of Object.entries(registry)) {
@@ -47,7 +60,10 @@ for (const [name, entry] of Object.entries(registry)) {
 			? 'export * from "../../src/foundation/index.ts";\n'
 			: entry.modules.map(id => `export * from "../../src/${id}";`).join("\n") +
 				helper.replace(/\.js"/g, '.ts"');
-	await writeFile(path.join(generated, `${name}.ts`), exports);
+	await writeFile(
+		path.join(generated, `${name}.ts`),
+		exports + appearanceExport(name, "../../src/", "ts"),
+	);
 }
 await writeFile(
 	path.join(generated, "tokens.ts"),
@@ -61,7 +77,8 @@ await writeFile(
 			name =>
 				`export * as ${name.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase())} from "./${name}.ts";`,
 		)
-		.join("\n") + '\nexport * from "./tokens.ts";\n',
+		.join("\n") +
+		'\nexport * from "./tokens.ts";\nexport { applyStyleProps, type StyleProps } from "../../src/utils/applyStyleProps.ts";\n',
 );
 const entryPoints = Object.fromEntries([
 	...compatibility.map(id => [`internal/${id}`, path.join(src, `${id}.ts`)]),
@@ -87,7 +104,9 @@ for (const format of ["esm", "cjs"])
 		report: false,
 		outExtensions: () => ({ js: format === "esm" ? ".js" : ".cjs" }),
 		outputOptions:
-			format === "cjs" ? { esModule: true, generatedCode: { symbols: false } } : undefined,
+			format === "cjs"
+				? { esModule: true, generatedCode: { symbols: false } }
+				: undefined,
 	});
 const publicContract = await collectContracts(out);
 const cssByScope = new Map();
@@ -198,7 +217,9 @@ for (const [name, entry] of Object.entries(registry))
 			? 'export * from "./internal/foundation/index.js";\n'
 			: entry.modules
 					.map(id => `export * from "./internal/${id.replace(/\.ts$/, ".js")}";`)
-					.join("\n") + (await helperExports(entry, "./internal/")),
+					.join("\n") +
+					(await helperExports(entry, "./internal/")) +
+					appearanceExport(name, "./internal/", "js"),
 	);
 await writeFile(
 	path.join(out, "types/tokens.d.ts"),
@@ -212,7 +233,8 @@ await writeFile(
 			name =>
 				`export * as ${name.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase())} from "./${name}.js";`,
 		)
-		.join("\n") + '\nexport * from "./tokens.js";\n',
+		.join("\n") +
+		'\nexport * from "./tokens.js";\nexport { applyStyleProps, type StyleProps } from "./internal/utils/applyStyleProps.js";\n',
 );
 for (const file of await files(path.join(out, "types"))) {
 	const target = file

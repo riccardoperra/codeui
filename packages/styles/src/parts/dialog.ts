@@ -1,3 +1,8 @@
+import type {
+	DialogStyleOptions,
+	DialogBodyStyleOptions,
+	DialogSectionStyleOptions,
+} from "../generated-appearance/dialog";
 import * as styles from "../components/Dialog/Dialog.css";
 import { mergeClasses } from "../utils/css";
 export const dialogParts = {
@@ -56,25 +61,17 @@ export type DialogClasses = Partial<Record<DialogPart, string>>;
  * `export` is 800 wide for a preview beside its options. Both shrink to fit
  * the viewport.
  */
-export type DialogSize =
-	| "xs"
-	| "sm"
-	| "md"
-	| "lg"
-	| "xl"
-	| "full"
-	| "settings"
-	| "export";
+export type DialogSize = NonNullable<DialogStyleOptions["size"]>;
 /**
  * `bar` puts the title in a bar with a divider. `inset` puts it in the panel
  * padding with no divider, a ghost close button and 24px corners.
  */
-export type DialogChrome = "bar" | "inset";
+export type DialogChrome = NonNullable<DialogStyleOptions["chrome"]> | "bar";
 /** `auto` animates pointer opens and closes. `none` never animates. */
 export type DialogMotion = "auto" | "none";
 /** `split` puts the first child, a preview, beside the second, its options. */
-export type DialogBodyLayout = "split";
-export type DialogSectionVariant = "group" | "well";
+export type DialogBodyLayout = NonNullable<DialogBodyStyleOptions["layout"]>;
+export type DialogSectionVariant = NonNullable<DialogSectionStyleOptions["variant"]>;
 
 export type DialogStyles = Record<DialogPart, () => string>;
 

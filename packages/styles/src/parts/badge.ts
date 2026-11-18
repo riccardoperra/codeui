@@ -1,3 +1,4 @@
+import type { BadgeStyleOptions } from "../generated-appearance/badge";
 import * as styles from "../components/Badge/Badge.css";
 export const badgeParts = {
 	root: "badge-root",
@@ -7,9 +8,9 @@ export const badgeParts = {
 
 export type BadgePart = keyof typeof badgeParts;
 export type BadgeClasses = Partial<Record<BadgePart, string>>;
-export type BadgeSize = "sm" | "md";
-export type BadgeTone = "neutral" | "info" | "success" | "warning" | "danger";
-export type BadgeVariant = "soft" | "outline";
+export type BadgeSize = NonNullable<BadgeStyleOptions["size"]>;
+export type BadgeTone = NonNullable<BadgeStyleOptions["tone"]>;
+export type BadgeVariant = NonNullable<BadgeStyleOptions["variant"]>;
 export type BadgeVariants = {
 	size?: BadgeSize;
 	tone?: BadgeTone;

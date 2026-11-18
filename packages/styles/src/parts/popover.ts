@@ -1,3 +1,4 @@
+import type { PopoverStyleOptions } from "../generated-appearance/popover";
 import * as styles from "../components/Popover/Popover.css";
 export const popoverParts = {
 	trigger: "popover-trigger",
@@ -11,7 +12,7 @@ export const popoverParts = {
 
 export type PopoverPart = keyof typeof popoverParts;
 export type PopoverClasses = Partial<Record<PopoverPart, string>>;
-export type PopoverVariant = "bordered";
+export type PopoverVariant = NonNullable<PopoverStyleOptions["variant"]>;
 
 export type PopoverStyles = {
 	[P in PopoverPart]: () => string;

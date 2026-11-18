@@ -1,3 +1,4 @@
+import { comboboxStyleProps } from "@codeui/styles/combobox";
 import "@codeui/styles/theme.css";
 import "@codeui/styles/combobox.css";
 import * as K from "@kobalte/core/combobox";
@@ -30,13 +31,15 @@ export {
 	type ComboboxStyles,
 	comboboxStyles,
 } from "@codeui/styles/combobox";
+const defaultComboboxSize = comboboxStyleProps()["data-size"];
+
 type Local = ComboboxVariants & { class?: string };
 const variantKeys = ["class", "size"] as const;
 function partAttributes(part: ComboboxPart, local: Local) {
 	return {
 		"data-cui": comboboxParts[part],
 		get "data-size"() {
-			return part === "control" ? (local.size ?? "sm") : local.size;
+			return local.size ?? defaultComboboxSize;
 		},
 		get class() {
 			return mergeClasses(comboboxStyles[part](), local.class);

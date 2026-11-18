@@ -65,7 +65,7 @@
     outline: none;
   }
   :where(.cui-sheet-content) {
-    &[data-side="bottom"] {
+    &:is(:not([data-side]), [data-side="bottom"]) {
       left: 0;
       right: 0;
       bottom: 0;
@@ -205,11 +205,11 @@
       animation-name: cui-sheet-fadeIn;
     }
     :where(.cui-sheet-content) {
-      &[data-side="bottom"] {
+      &:is(:not([data-side]), [data-side="bottom"]) {
         animation-name: cui-sheet-fadeOut;
       }
 
-      &[data-side="bottom"][data-expanded] {
+      &:is(:not([data-side]), [data-side="bottom"])[data-expanded] {
         animation-name: cui-sheet-fadeIn;
       }
 

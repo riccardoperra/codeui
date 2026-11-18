@@ -63,7 +63,7 @@
       left: 0;
     }
 
-    &[data-position="bottom-center"] {
+    &:is(:not([data-position]), [data-position="bottom-center"]) {
       bottom: var(--cui-space-16);
       left: 50%;
       transform: translateX(-50%);
@@ -139,7 +139,7 @@
     }
   }
   :where(.cui-toast-root) {
-    &[data-tone="neutral"] {
+    &:is(:not([data-tone]), [data-tone="neutral"]) {
       --cui-toast-accent: var(--cui-component-toast-root-tone-neutral-accent);
     }
 

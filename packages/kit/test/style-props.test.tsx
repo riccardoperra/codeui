@@ -110,9 +110,9 @@ it("matches the class and sizing of standalone Switch parts", () => {
 	));
 	const expected = switchStyleProps.label({ class: "preview-label" });
 	const label = container.querySelector('[data-cui="switch-label"]');
+	const control = container.querySelector('[data-cui="switch-control"]');
 	expect(label).toHaveAttribute("class", expected.class);
-	expect(label).not.toHaveAttribute("data-size");
-	expect(container.querySelector('[data-cui="switch-control"]')).not.toHaveAttribute(
-		"data-size",
-	);
+	expect(expected["data-size"]).toBe("md");
+	expect(label).toHaveAttribute("data-size", "md");
+	expect(control).toHaveAttribute("data-size", "md");
 });

@@ -1,3 +1,4 @@
+import type { TableStyleOptions } from "../generated-appearance/table";
 import * as styles from "../components/Table/Table.css";
 export const tableParts = {
 	root: "table-root",
@@ -6,8 +7,8 @@ export const tableParts = {
 
 export type TablePart = keyof typeof tableParts;
 export type TableClasses = Partial<Record<TablePart, string>>;
-export type TableSize = "sm" | "md";
-export type TableVariants = { size?: TableSize; striped?: boolean };
+export type TableVariants = Omit<TableStyleOptions, "class">;
+export type TableSize = NonNullable<TableVariants["size"]>;
 
 export type TableStyles = { [P in TablePart]: () => string };
 

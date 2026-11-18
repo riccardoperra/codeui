@@ -34,7 +34,7 @@
       border-color: var(--cui-focus-color);
     }
   }
-  .cui-listbox-list:is([data-theme=primary], [data-theme=neutral]) {
+  .cui-listbox-list:is(:not([data-theme]), [data-theme=primary], [data-theme=neutral]) {
     --cui-listTheme-itemTextColor: var(--cui-component-listbox-list-theme-primary-theme-neutral-item-text-color);
     --cui-listTheme-itemHoverBackground: var(--cui-component-listbox-list-theme-primary-theme-neutral-item-hover-background);
     --cui-listTheme-itemHoverTextColor: var(--cui-component-listbox-list-theme-primary-theme-neutral-item-hover-text-color);
@@ -78,7 +78,7 @@
       border-radius: var(--cui-component-listbox-item-size-xs-border-radius);
     }
 
-    &[data-size=sm] {
+    &:is(:not([data-size]), [data-size="sm"]) {
       font-size: var(--cui-component-listbox-item-size-sm-font-size);
     }
 
@@ -111,7 +111,7 @@
       --cui-listTheme-indicatorSize: 14px;
     }
 
-    &[data-size=sm] {
+    &:is(:not([data-size]), [data-size="sm"]) {
       --cui-listTheme-indicatorSize: 18px;
     }
 

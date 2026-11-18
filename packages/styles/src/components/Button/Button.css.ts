@@ -1,6 +1,4 @@
-import { type BaseComponentSize } from "../../foundation/sizes";
-
-import { mergeClasses } from "../../utils/css";
+import type { ButtonStyleOptions } from "../../generated-appearance/button";
 
 export const button = (): string => "cui-button-button cui-button-buttonTheme";
 export const buttonIcon: string = "cui-button-buttonIcon";
@@ -18,32 +16,10 @@ export const buttonVars = {
 	borderRadius: "var(--cui-buttonTheme-borderRadius)" as `var(--${string})`,
 };
 
-type ButtonAppearance = {
-	size?: BaseComponentSize;
-	theme?: "primary" | "tertiary" | "secondary" | "negative" | "caution";
-	variant?: "ghost";
-	block?: boolean;
-	pill?: boolean;
-};
+export {
+	buttonStyleProps,
+	type ButtonStyleOptions,
+} from "../../generated-appearance/button";
 
+type ButtonAppearance = Omit<ButtonStyleOptions, "class">;
 export type ButtonVariants = (ButtonAppearance & { loading?: boolean }) | undefined;
-export type ButtonStyleOptions = ButtonAppearance & { class?: string };
-
-export function buttonStyleProps({
-	size = "sm",
-	theme,
-	variant,
-	block,
-	pill,
-	class: className,
-}: ButtonStyleOptions = {}) {
-	return {
-		class: mergeClasses(button(), className),
-		"data-cui": "button" as const,
-		"data-size": size,
-		"data-theme": theme,
-		"data-variant": variant,
-		"data-block": block ? "" : undefined,
-		"data-pill": pill ? "" : undefined,
-	};
-}

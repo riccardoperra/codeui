@@ -1,32 +1,8 @@
+import type { StackStyleOptions } from "../generated-appearance/stack";
 import { root } from "../components/Stack/Stack.css";
-export type Gap =
-	| "0"
-	| "0.5"
-	| "1"
-	| "1.5"
-	| "2"
-	| "2.5"
-	| "3"
-	| "4"
-	| "5"
-	| "6"
-	| "8"
-	| "10"
-	| "12"
-	| "16"
-	| "20"
-	| "24"
-	| "32"
-	| "40"
-	| "48"
-	| "56"
-	| "64"
-	| "px";
-export type StackVariants = {
+export type Gap = Exclude<NonNullable<StackStyleOptions["gap"]>, "auto">;
+export type StackVariants = Omit<StackStyleOptions, "class" | "gap" | "wrap"> & {
 	gap?: Gap;
-	align?: "start" | "center" | "end" | "stretch" | "baseline";
-	justify?: "start" | "center" | "end" | "between" | "around" | "evenly";
-	direction?: "row" | "column";
 	wrap?: boolean;
 };
 export const stackParts = { root: "stack-root" } as const;

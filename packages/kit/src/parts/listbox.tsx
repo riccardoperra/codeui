@@ -1,3 +1,4 @@
+import { listboxStyleProps } from "@codeui/styles/listbox";
 import "@codeui/styles/theme.css";
 import "@codeui/styles/listbox.css";
 import * as K from "@kobalte/core/listbox";
@@ -6,6 +7,8 @@ import { mergeProps, splitProps, type ValidComponent } from "solid-js";
 import * as styles from "../components/Listbox/Listbox.css";
 import { CheckIcon } from "../icons/CheckIcon";
 import { mergeClasses } from "../utils/css";
+
+const defaultItemSize = listboxStyleProps.item()["data-size"];
 
 type ItemSize = "xs" | "sm" | "md";
 
@@ -48,7 +51,7 @@ export function Item<T extends ValidComponent = "li">(
 	]);
 	return (
 		<K.Item
-			data-size={local.size}
+			data-size={local.size ?? defaultItemSize}
 			data-cui="listbox-item"
 			{...others}
 			class={mergeClasses(styles.item, local.class)}
@@ -78,7 +81,7 @@ export function ItemIndicator<T extends ValidComponent = "div">(
 		{
 			forceMount: true,
 			get children() {
-				return <CheckIcon data-size={local.size} class={styles.itemIndicator} />;
+				return <CheckIcon data-size={local.size ?? defaultItemSize} class={styles.itemIndicator} />;
 			},
 		},
 		others,

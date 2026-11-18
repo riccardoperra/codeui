@@ -1,3 +1,4 @@
+import { accordionStyleProps } from "@codeui/styles/accordion";
 import "@codeui/styles/theme.css";
 import "@codeui/styles/accordion.css";
 import { callHandler, mergeRefs } from "@kobalte/utils";
@@ -125,7 +126,7 @@ export function Trigger<T extends ValidComponent = "button">(
 			}}
 			{...others}
 			data-cui={accordionParts.trigger}
-			data-density={local.density}
+			data-density={accordionStyleProps({ density: local.density })["data-density"]}
 			class={mergeClasses(accordionStyles.trigger(), local.class)}
 		/>
 	);

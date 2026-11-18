@@ -1,3 +1,4 @@
+import type { DialogStyleOptions } from "../../generated-appearance/dialog";
 export const description: string = "cui-dialog-description";
 export const dialogTheme: string = "cui-dialog-dialogTheme";
 export const dialogThemeVars = {
@@ -37,7 +38,8 @@ export const sidebar: string = "cui-dialog-sidebar";
 export const sidebarSearch: string = "cui-dialog-sidebarSearch";
 export const title: string = "cui-dialog-title";
 
-export type DialogPanelVariants = {
-	size?: "xs" | "sm" | "md" | "lg" | "xl" | "full" | "settings" | "export";
-	chrome?: "bar" | "inset";
-} | undefined;
+export type DialogPanelVariants =
+	| (Omit<DialogStyleOptions, "class" | "chrome"> & {
+			chrome?: NonNullable<DialogStyleOptions["chrome"]> | "bar";
+	  })
+	| undefined;

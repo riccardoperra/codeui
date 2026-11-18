@@ -54,19 +54,105 @@ element.dataset.theme = "primary";
 
 Parts contracts retain existing `data-cui` values. For example, `switchParts.control` is `switch-control`. Non-native state uses the documented `data-*` attributes. Use the class helpers with variant attributes such as `data-size="md"` and `data-theme="primary"`.
 
-Button and Switch also expose attribute helpers for custom markup. Pass `class` to include an application class. The helpers return the base class, `data-cui`, and the selected variant attributes.
+## Apply appearance props
+
+Each entry with appearance variants exports a `<component>StyleProps(options)` helper. It returns `class`, a `data-cui` part marker, and the variant attributes for one element. For components with variants on multiple elements, call the named part helpers as well.
 
 ```ts
+import { applyStyleProps } from "@codeui/styles";
 import { buttonStyleProps } from "@codeui/styles/button";
 import { switchStyleProps } from "@codeui/styles/switch";
 
 const save = buttonStyleProps({ theme: "primary", block: true, class: "checkout" });
 const track = switchStyleProps.control({ size: "sm", class: "preview-track" });
+
+applyStyleProps(document.querySelector("button")!, save);
 ```
 
-Button defaults to `size="md"`. Standalone Switch parts emit `data-size` when supplied. The ready Solid Switch supplies `md` to its root, control, and thumb. On native Solid elements, call the helper inside the JSX spread or a memo. The kit binds the helper output through stable reactive properties for polymorphic Switch parts. For React, map `class` to `className` and spread the remaining attributes. The behavior adapter supplies events, ARIA, and states such as `data-loading` and `data-checked`.
+Spread these props in Solid JSX or Svelte and use `v-bind` in Vue. In React, destructure `class` as `className` and spread the remaining attributes. For plain DOM or an Angular directive, call `applyStyleProps(element, props)` again when options change. It replaces the element's class with the returned class string, sets the marker and removes unset variant attributes. Pass any extra classes through `options.class`.
 
-`@codeui/styles/contract.json` lists public classes, part names, base part classes, and variable references. `@codeui/styles/manifest.json` lists each CSS entry's component and module dependency closure. The `internal/` exports support `@codeui/kit` and are not application API.
+Set `data-cui-density="compact|comfortable|touch"` on a container to set the density of its subtree. Comfortable is the default, and a coarse pointer selects touch density automatically.
+
+When CSS supports a named default, the helper emits that value and bare markup renders the same default with the attribute omitted. For example, Button emits `data-size="sm"`, Switch emits `data-size="md"`, and Sheet emits `data-side="bottom"`. Options without a named default omit the attribute. Boolean options emit an empty attribute when true and omit it otherwise. Stack's `wrap` accepts the strings `"true"` and `"false"` that CSS selects.
+
+<!-- appearance:start -->
+
+<!-- prettier-ignore -->
+| Entry | Helper calls | Options |
+| --- | --- | --- |
+| `@codeui/styles/alert` | `alertStyleProps()` | `tone` `neutral`, `info`, `success`, `warning`, `danger` (default `neutral`) · `fluid` boolean |
+| `@codeui/styles/badge` | `badgeStyleProps()` | `size` `sm`, `md` (default `sm`) · `tone` `neutral`, `info`, `success`, `warning`, `danger` (default `neutral`) · `variant` `soft`, `outline` (default `soft`) |
+| `@codeui/styles/button` | `buttonStyleProps()` | `size` `xs`, `sm`, `md`, `lg` (default `sm`) · `theme` `primary`, `secondary`, `tertiary`, `negative`, `caution` · `variant` `ghost` · `block` boolean · `pill` boolean |
+| `@codeui/styles/checkbox` | `checkboxStyleProps()` (root) | `fieldSize` `xs`, `sm`, `md`, `lg`, `xl` (default `md`) |
+| `@codeui/styles/checkbox` | `checkboxStyleProps.control()` | `size` `xs`, `sm`, `md`, `lg`, `xl` (default `md`) · `theme` `filled` |
+| `@codeui/styles/combobox` | `comboboxStyleProps()` | `size` `sm`, `md` (default `sm`) |
+| `@codeui/styles/dialog` | `dialogStyleProps()` (panel) | `size` `auto`, `xs`, `sm`, `md`, `lg`, `xl`, `full`, `settings`, `export` (default `auto`) · `chrome` `inset` |
+| `@codeui/styles/dialog` | `dialogStyleProps.positioner()` | `panelSize` `auto`, `export`, `full` (default `auto`) · `chrome` `inset` |
+| `@codeui/styles/dialog` | `dialogStyleProps.body()` | `layout` `default`, `split` (default `default`) |
+| `@codeui/styles/dialog` | `dialogStyleProps.section()` | `variant` `group`, `well` (default `group`) · `columns` `2` |
+| `@codeui/styles/field` | `fieldStyleProps()` | `size` `xs`, `sm`, `md`, `lg` (default `sm`) · `theme` `filled`, `inline` (default `filled`) |
+| `@codeui/styles/icon-button` | `iconButtonStyleProps()` | `size` `xs`, `sm`, `md`, `lg` (default `sm`) · `theme` `primary`, `secondary`, `tertiary`, `negative`, `caution` · `variant` `ghost` · `block` boolean · `pill` boolean |
+| `@codeui/styles/kbd` | `kbdStyleProps()` | `size` `sm`, `md` (default `sm`) · `variant` `keycap`, `hint` (default `keycap`) |
+| `@codeui/styles/link` | `linkStyleProps()` | `variant` `default`, `underline` (default `default`) |
+| `@codeui/styles/listbox` | `listboxStyleProps()` (list) | `theme` `primary`, `neutral` (default `neutral`) · `bordered` boolean |
+| `@codeui/styles/listbox` | `listboxStyleProps.item()` | `size` `xs`, `sm`, `md` (default `sm`) |
+| `@codeui/styles/listbox` | `listboxStyleProps.itemIndicator()` | `size` `xs`, `sm`, `md` (default `sm`) |
+| `@codeui/styles/number-field` | `numberFieldStyleProps()` (root) | `fieldSize` `xs`, `sm`, `md`, `lg` (default `sm`) |
+| `@codeui/styles/number-field` | `numberFieldStyleProps.input()` | `size` `xs`, `sm`, `md`, `lg` (default `sm`) · `theme` `filled`, `inline` (default `filled`) |
+| `@codeui/styles/option-card` | `optionCardStyleProps()` (root) | `orientation` `vertical` |
+| `@codeui/styles/option-card` | `optionCardStyleProps.itemLabel()` | `variant` `tile` |
+| `@codeui/styles/option-card` | `optionCardStyleProps.badge()` | `size` `sm`, `md` (default `sm`) · `tone` `neutral`, `info`, `success`, `warning`, `danger` (default `neutral`) · `variant` `soft`, `outline` (default `soft`) |
+| `@codeui/styles/option-card` | `optionCardStyleProps.item()` | `variant` `tile` |
+| `@codeui/styles/popover` | `popoverStyleProps()` | `variant` `default`, `bordered` (default `default`) |
+| `@codeui/styles/progress` | `progressStyleProps()` (root) | `size` `sm`, `md` (default `sm`) |
+| `@codeui/styles/progress` | `progressStyleProps.track()` | `size` `sm`, `md` (default `sm`) |
+| `@codeui/styles/radio-list` | `radioListStyleProps()` (items) | `size` `xs`, `sm`, `md`, `lg`, `xl` (default `md`) · `theme` `filled` · `orientation` `horizontal`, `vertical` (default `horizontal`) |
+| `@codeui/styles/radio-list` | `radioListStyleProps.root()` | `fieldSize` `xs`, `sm`, `md`, `lg`, `xl` (default `md`) |
+| `@codeui/styles/segmented-control` | `segmentedControlStyleProps()` | `size` `xs`, `sm`, `md`, `lg` (default `sm`) · `theme` `primary` · `variant` `solid`, `bordered` (default `solid`) · `fluid` boolean · `pill` boolean · `autoWidth` boolean |
+| `@codeui/styles/select` | `selectStyleProps()` (trigger) | `size` `xs`, `sm`, `md`, `lg` (default `sm`) · `theme` `filled`, `inline` (default `filled`) |
+| `@codeui/styles/select` | `selectStyleProps.root()` | `fieldSize` `xs`, `sm`, `md`, `lg` (default `sm`) |
+| `@codeui/styles/settings` | `settingsStyleProps()` | `layout` `wide` · `compactControl` boolean |
+| `@codeui/styles/sheet` | `sheetStyleProps()` | `side` `bottom`, `left`, `right` (default `bottom`) |
+| `@codeui/styles/skeleton` | `skeletonStyleProps()` | `circle` boolean · `animate` boolean |
+| `@codeui/styles/slider` | `sliderStyleProps()` (track) | `orientation` `horizontal`, `vertical` (default `horizontal`) |
+| `@codeui/styles/slider` | `sliderStyleProps.fill()` | `orientation` `horizontal`, `vertical` (default `horizontal`) |
+| `@codeui/styles/spinner` | `spinnerStyleProps()` | `size` `sm`, `md`, `lg` (default `md`) |
+| `@codeui/styles/stack` | `stackStyleProps()` | `gap` `0`, `0.5`, `1`, `1.5`, `2`, `2.5`, `3`, `4`, `5`, `6`, `8`, `10`, `12`, `16`, `20`, `24`, `32`, `40`, `48`, `56`, `64`, `auto`, `px` (default `2`) · `align` `start`, `center`, `end`, `stretch`, `baseline` (default `stretch`) · `justify` `start`, `center`, `end`, `between`, `around`, `evenly` (default `start`) · `direction` `row`, `column` (default `column`) · `wrap` `true`, `false` (default `false`) |
+| `@codeui/styles/switch` | `switchStyleProps()` (root) | `size` `sm`, `md` (default `md`) |
+| `@codeui/styles/switch` | `switchStyleProps.input()` | `size` `sm`, `md` (default `md`) |
+| `@codeui/styles/switch` | `switchStyleProps.control()` | `size` `sm`, `md` (default `md`) |
+| `@codeui/styles/switch` | `switchStyleProps.thumb()` | `size` `sm`, `md` (default `md`) |
+| `@codeui/styles/switch` | `switchStyleProps.label()` | `size` `sm`, `md` (default `md`) |
+| `@codeui/styles/switch` | `switchStyleProps.description()` | `size` `sm`, `md` (default `md`) |
+| `@codeui/styles/switch` | `switchStyleProps.errorMessage()` | `size` `sm`, `md` (default `md`) |
+| `@codeui/styles/tabs` | `tabsStyleProps()` (root) | `orientation` `horizontal`, `vertical` (default `horizontal`) · `theme` `default`, `inline` (default `default`) |
+| `@codeui/styles/tabs` | `tabsStyleProps.list()` | `orientation` `horizontal`, `vertical` (default `horizontal`) |
+| `@codeui/styles/tabs` | `tabsStyleProps.indicator()` | `orientation` `horizontal`, `vertical` (default `horizontal`) |
+| `@codeui/styles/text` | `textStyleProps()` | `size` `badge`, `caption`, `xs`, `sm`, `md`, `lg`, `xl`, `2xl` (default `sm`) · `tone` `default`, `muted`, `hint`, `label`, `danger`, `success` (default `default`) · `weight` `normal`, `medium`, `semibold` (default `normal`) |
+| `@codeui/styles/text-area` | `textAreaStyleProps()` (input) | `size` `xs`, `sm`, `md`, `lg` (default `sm`) · `theme` `filled`, `inline` (default `filled`) |
+| `@codeui/styles/text-area` | `textAreaStyleProps.root()` | `fieldSize` `xs`, `sm`, `md`, `lg` (default `sm`) |
+| `@codeui/styles/text-field` | `textFieldStyleProps()` (input) | `size` `xs`, `sm`, `md`, `lg` (default `sm`) · `theme` `filled`, `inline` (default `filled`) |
+| `@codeui/styles/text-field` | `textFieldStyleProps.root()` | `fieldSize` `xs`, `sm`, `md`, `lg` (default `sm`) |
+| `@codeui/styles/toast` | `toastStyleProps()` (root) | `tone` `neutral`, `info`, `success`, `warning`, `danger` (default `neutral`) |
+| `@codeui/styles/toast` | `toastStyleProps.region()` | `position` `top-left`, `top-center`, `top-right`, `bottom-left`, `bottom-center`, `bottom-right` (default `bottom-center`) |
+| `@codeui/styles/tooltip` | `tooltipStyleProps()` | `theme` `primary`, `secondary` |
+| `@codeui/styles/accordion` | `accordionStyleProps()` | `density` `default`, `compact`, `comfortable` (default `default`) |
+| `@codeui/styles/table` | `tableStyleProps()` | `size` `sm`, `md` (default `md`) · `striped` boolean |
+
+<!-- appearance:end -->
+
+For field labels, descriptions and errors, put `fieldSize` on the enclosing field's root. The field subparts read `data-field-size` from that ancestor.
+
+## Adapter contract
+
+A behavior adapter supplies accessibility, event handlers, keyboard and focus management, and state attributes on the parts that use them. Native controls use `disabled` where applicable. The adapter also supplies the following selectors as needed by the component.
+
+- `data-checked`, `data-selected`, `data-disabled`, `data-invalid`, `data-highlighted`, `data-focus`, and `data-hover` reflect interaction and form state.
+- `data-expanded`, `data-open`, `data-opened`, `data-closed`, and `data-visible` reflect visibility and lifecycle. `data-loading` and `data-indeterminate` reflect pending work.
+- `data-motion="none"` suppresses overlay motion. `data-cui-replaced` and `data-swipe` (`move`, `cancel`, `end`) reflect toast lifecycle and gesture state.
+- Set `html[data-cui-input]` to `keyboard` or `pointer` based on the last input modality so keyboard focus and motion rules apply. When orientation also drives keyboard navigation or ARIA, keep the adapter's orientation in sync with the appearance options.
+
+`@codeui/styles/contract.json` lists public classes, part names, base part classes, variable references, and the `$appearance` schema. `@codeui/styles/manifest.json` lists each CSS entry's component and module dependency closure. The `internal/` exports support `@codeui/kit` and are not application API.
 
 ## Customize tokens and geometry
 
@@ -113,4 +199,6 @@ Build with Node 24 or later and the workspace pnpm version. Run `pnpm --filter @
 
 `entries.json` declares component entries and dependencies. `style-sources.json` maps helper modules to their stylesheet sources. `compatibility.json` lists the private paths used by the Solid adapter.
 
-A build fails if the public CSS contract changes. To accept an intentional contract change, review the names and run `pnpm --filter @codeui/styles... build --update-contract`. Commit the updated `contract.json` with the source change.
+The `$appearance` section of `contract.json` defines the options for each entry and part. `enum` lists the CSS attribute values and can specify an emitted `default`. `boolean` selects attribute presence. `use` refers to a canonical option in another entry. A CSS-only base value can name the rule that provides its styling. The build generates the helpers and their TypeScript declarations. Both build and check parse component selectors with Lightning CSS, checking attributes and values in both directions. After editing the schema, regenerate the README table with `node packages/styles/scripts/appearance.mjs --update-docs`.
+
+A build fails if the public CSS contract changes. To accept an intentional contract change, review the names and run `pnpm --filter @codeui/styles build --update-contract`. Commit the updated `contract.json` with the source change.

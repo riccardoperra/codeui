@@ -1,3 +1,4 @@
+import type { AccordionStyleOptions } from "../generated-appearance/accordion";
 import * as styles from "../components/Accordion/Accordion.css";
 export const accordionParts = {
 	root: "accordion-root",
@@ -12,7 +13,7 @@ export const accordionParts = {
 } as const;
 export type AccordionPart = keyof typeof accordionParts;
 export type AccordionClasses = Partial<Record<AccordionPart, string>>;
-export type AccordionVariants = { density?: "compact" | "comfortable" };
+export type AccordionVariants = Omit<AccordionStyleOptions, "class">;
 export type AccordionStyles = Record<
 	AccordionPart,
 	() => string

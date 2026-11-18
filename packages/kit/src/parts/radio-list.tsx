@@ -1,3 +1,4 @@
+import { radioListStyleProps } from "@codeui/styles/radio-list";
 import "@codeui/styles/theme.css";
 import "@codeui/styles/radio-list.css";
 import "@codeui/styles/text-field.css";
@@ -61,7 +62,7 @@ export function Items(props: ItemsProps) {
 			{...others}
 			data-cui="radio-list-items"
 			data-size={local.size ?? "md"}
-			data-orientation={local.orientation}
+			data-orientation={radioListStyleProps({ orientation: local.orientation })["data-orientation"]}
 			data-theme={local.theme ?? "inline"}
 			class={mergeClasses(local.class, styles.radioList())}
 		/>

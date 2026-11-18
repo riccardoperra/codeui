@@ -10,6 +10,14 @@ The styled parts already apply these functions. Use the functions directly only 
 
 The reference below follows the exports in `packages/kit/src/index.tsx` and `packages/kit/src/parts/`.
 
+## Framework-neutral appearance helpers
+
+Use `@codeui/styles` when you own the markup. A component entry exports an appearance helper for each part with variants. For example, `badgeStyleProps({ tone: "info" })` returns the badge class, part marker, and variant attributes. Use `dialogStyleProps.section({ variant: "well" })` for a dialog section, or call `dialogStyleProps({ size: "settings", chrome: "inset" })` for its panel.
+
+Spread the result in Solid or Svelte, or pass it to Vue's `v-bind`. In React, map `class` to `className`. For DOM elements, import `applyStyleProps(element, props)` from `@codeui/styles`. The behavior adapter owns interaction state and sets `html[data-cui-input]` to `keyboard` or `pointer`.
+
+The published `@codeui/styles/contract.json` includes the options, allowed values, and emitted defaults in `$appearance`. Each declared default renders the same with its attribute omitted. Set `data-cui-density` on a container to set the density of its subtree. See the [generated appearance reference](https://github.com/riccardoperra/codeui/tree/main/packages/styles#apply-appearance-props) for imports and part calls.
+
 ## `buttonStyles`
 
 Advanced raw namespace from `@codeui/kit`. These exports expose class names, variant helpers and CSS variable references.
@@ -80,7 +88,7 @@ Import from `@codeui/kit/accordion/parts`. Also exported from `@codeui/kit`.
 | `summary()` | `styles.summary` |
 | `chevron()` | `styles.chevron` |
 
-Variant types: `AccordionVariants = { density?: "compact" | "comfortable" }`.
+Variant types: `AccordionVariants = { density?: "default" | "compact" | "comfortable" }`.
 
 Set `data-density` on a custom trigger.
 
@@ -193,7 +201,7 @@ Import from `@codeui/kit/dialog/parts`.
 | `body()` | `styles.panelContent` |
 | `footer()` | `styles.panelFooter` |
 
-Variant types: `DialogSize = "xs" | "sm" | "md" | "lg" | "xl" | "full"`.
+Variant types: `DialogSize = "auto" | "xs" | "sm" | "md" | "lg" | "xl" | "full" | "settings" | "export"`.
 
 Set `data-size` and `data-chrome` on a custom panel.
 
@@ -252,7 +260,7 @@ Import from `@codeui/kit/popover/parts`.
 | `description()` | `styles.description` |
 | `closeButton()` | `""` |
 
-Variant types: `PopoverVariant = "bordered"`.
+Variant types: `PopoverVariant = "default" | "bordered"`.
 
 Set `data-variant="bordered"` on custom content.
 
