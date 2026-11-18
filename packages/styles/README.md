@@ -37,6 +37,8 @@ The CSS exports work without a bundler. Serve the package's `dist` files as stat
 
 Add the native `disabled` attribute to disable the button. Native controls also accept the existing `data-disabled` state. CSS styles state and appearance. Your application supplies events, focus management, accessible names, and behavior for custom controls and overlays.
 
+`theme.css` sizes every element with a `cui-` class, and its `::before` and `::after`, with `box-sizing: border-box`. A control's height then includes its padding and border without a page reset, so controls of the same size line up. The rule sits in `@layer cui.base` at zero specificity, so any application style overrides it.
+
 ## Use class helpers
 
 Each component has a JavaScript entry with its class helpers. Set the variant attributes on the element that receives the class.

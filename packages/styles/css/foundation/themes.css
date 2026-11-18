@@ -1,3 +1,12 @@
+/* Kit elements size with border-box, so a control's height includes its padding and border
+   without a page reset. :where() keeps the rule at zero specificity in the lowest layer. */
+@layer cui.base {
+  :where([class^="cui-"], [class*=" cui-"]),
+  :where([class^="cui-"], [class*=" cui-"])::before,
+  :where([class^="cui-"], [class*=" cui-"])::after {
+    box-sizing: border-box;
+  }
+}
 @layer cui.components {
   :root {
     --cui-themes-colors-gray1: #111111;
