@@ -26,6 +26,11 @@
     &[data-expanded] {
       animation: none;
     }
+
+    @media (max-width: 767px) {
+      top: var(--cui-space-2);
+      bottom: auto;
+    }
   }
   .cui-command-menu-title {
     position: absolute;
@@ -167,10 +172,6 @@
     }
   }
   @media (max-width: 767px) {
-    .cui-command-menu-content {
-      top: var(--cui-space-2);
-      bottom: auto;
-    }
     .cui-command-menu-searchInput {
       font-size: var(--cui-font-size-md);
     }
