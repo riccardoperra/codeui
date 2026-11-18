@@ -1,4 +1,5 @@
 @import "./combobox-tokens.generated.css";
+@import "../Field/text-minimum.css";
 
 @layer cui.components {
   .cui-combobox-root {
@@ -61,6 +62,7 @@
     background: transparent;
     color: inherit;
     font: inherit;
+    font-size: max(1em, var(--cui-field-textMinimum, 0px));
   }
   .cui-combobox-input::placeholder {
     color: var(--cui-text-hint);
@@ -74,8 +76,8 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    width: 28px;
-    height: 28px;
+    width: var(--cui-control-height-xs);
+    height: var(--cui-control-height-xs);
     padding: 0;
     border: 0;
     border-radius: var(--cui-radius-xs);
@@ -135,7 +137,7 @@
     display: flex;
     align-items: center;
     gap: var(--cui-space-2);
-    min-height: 28px;
+    min-height: var(--cui-control-height-sm);
     padding: var(--cui-space-1) var(--cui-space-2);
     border-radius: var(--cui-radius-sm);
     color: var(--cui-text-menu);
@@ -184,14 +186,14 @@
   }
   :where(.cui-combobox-control)[data-size="md"] {
     height: var(--cui-control-height-md);
+    font-size: var(--cui-font-size-md);
   }
   @media (--cui-coarse-pointer) {
     .cui-combobox-trigger {
-      width: 40px;
-      height: 40px;
-    }
-    .cui-combobox-item {
-      min-height: 40px;
+      /* The nested trigger keeps a 40px hit target on coarse pointers. */
+      --cui-combobox-triggerTouchTarget: 40px;
+      width: var(--cui-combobox-triggerTouchTarget);
+      height: var(--cui-combobox-triggerTouchTarget);
     }
   }
   @media (--cui-reduced-motion) {

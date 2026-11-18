@@ -77,7 +77,7 @@ Buttons, icon buttons, fields, select triggers and segmented tracks share one he
 
 Comfortable is the default density. Compact multiplies heights by 0.875, and touch multiplies them by 1.125. Heights round to the nearest 2px. A coarse pointer selects touch density automatically. Set `data-cui-density="compact|comfortable|touch"` on an element to set density for its subtree. Font sizes stay tied to the control size.
 
-Checkbox, Radio and Switch use their own geometry. Menu and navigation rows are specified at 36px. A segment fills the space inside the track padding.
+Checkbox, Radio and Switch use their own geometry. Menu, listbox, select, combobox, command menu and navigation rows use `--cui-control-height-sm` (32px compact, 36px comfortable, 40px touch). A segment fills the space inside the track padding.
 
 - Choose a size and density that give standalone targets at least 28px on desktop and 40px on a phone. A tiny mark keeps a 24px hit box.
 - A row has a fixed 20px slot for its leading icon, so the text of every row lines up even when some rows have no icon.

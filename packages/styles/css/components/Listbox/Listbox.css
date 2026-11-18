@@ -10,7 +10,7 @@
     --cui-listTheme-contentMaxHeight: 400px;
     --cui-listTheme-contentMaxHeightXs: 270px;
     --cui-listTheme-separator: var(--cui-component-listbox-list-theme-separator);
-    --cui-listTheme-itemMinHeight: 40px;
+    --cui-listTheme-itemMinHeight: var(--cui-control-height-sm);
     --cui-listTheme-itemTextColor: var(--cui-component-listbox-list-theme-item-text-color);
     --cui-listTheme-itemHoverBackground: var(--cui-component-listbox-list-theme-item-hover-background);
     --cui-listTheme-itemHoverTextColor: var(--cui-component-listbox-list-theme-item-hover-text-color);
@@ -43,7 +43,7 @@
     text-align: left;
     justify-content: space-between;
     border: 0;
-    padding: var(--cui-space-2) var(--cui-space-3);
+    padding: var(--cui-space-1) var(--cui-space-3);
     border-radius: var(--cui-radius-sm);
     background: transparent;
     color: var(--cui-listTheme-itemTextColor);
@@ -74,20 +74,15 @@
   }
   .cui-listbox-item {
     &[data-size=xs] {
-      height: 30px;
       font-size: var(--cui-component-listbox-item-size-xs-font-size);
       border-radius: var(--cui-component-listbox-item-size-xs-border-radius);
-      min-height: 0;
     }
 
     &[data-size=sm] {
-      height: 36px;
       font-size: var(--cui-component-listbox-item-size-sm-font-size);
-      min-height: 0;
     }
 
     &[data-size=md] {
-      height: 40px;
       font-size: var(--cui-component-listbox-item-size-md-font-size);
     }
 

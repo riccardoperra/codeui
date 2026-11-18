@@ -149,7 +149,7 @@ Gosfuig generates one achromatic OKLCH ramp for both modes from `packages/inksto
 - Truncate values, never labels, to one line with an ellipsis, and keep the full text reachable (tooltip, accessible name).
 - **Proposed:** `text-wrap: balance` on titles and short descriptions, `text-wrap: pretty` on paragraphs.
 - Use `…`, `→`, `×`, `⌘` and curly quotes in rendered text.
-- Phone inputs use 16px text, so iOS does not zoom.
+- Fields use at least 16px text at touch density to avoid focus zoom on iOS. Medium fields and buttons use 16px text.
 
 ## 4. Space
 
@@ -207,9 +207,9 @@ Buttons, icon buttons, fields, select triggers and segmented tracks share one he
 | `md` | 38px | 44px | 50px |
 | `lg` | 46px | 52px | 58px |
 
-Comfortable is the default density. Compact multiplies heights by 0.875, and touch multiplies them by 1.125. Heights round to the nearest 2px. A coarse pointer selects touch density automatically. Set `data-cui-density="compact|comfortable|touch"` on an element to set density for its subtree. Font sizes stay tied to the control size.
+Comfortable is the default density. Compact multiplies heights by 0.875, and touch multiplies them by 1.125. Heights round to the nearest 2px. A coarse pointer selects touch density automatically. Set `data-cui-density="compact|comfortable|touch"` on an element to set density for its subtree. Font sizes follow the control size, with a 16px minimum for fields at touch density.
 
-Checkbox, Radio and Switch use their own geometry. Menu and navigation rows are specified at 36px. A segment fills the space inside the track padding. Settings rows have a 56px minimum.
+Checkbox, Radio and Switch use their own geometry. Menu, listbox, select, combobox, command menu and navigation rows use `--cui-control-height-sm` (32px compact, 36px comfortable, 40px touch). A segment fills the space inside the track padding. Settings rows have a 56px minimum.
 
 - Use targets of at least 28px on desktop and 40px on a phone. Choose `sm` or larger for standalone controls at touch density. A small mark keeps a 24px hit box.
 - In settings, allow 84px per segmented option.
@@ -326,7 +326,7 @@ Title (Label 500, primary) and one-line description (Meta, secondary) on the lef
 
 ### 9.3 Settings dialog
 
-Two panes: a 232px left pane with search and 36px nav items (radius 10, Label 500; current item gets field fill, not accent), and the rows. Breadcrumb title, close button, no footer. 1000×680, capped by the viewport; on a phone it fills the screen less an 8px gutter and the sections wrap three to a row. The kit builds it with `Dialog` `size="settings"`, `chrome="inset"` and the `Sidebar`, `Nav`, `NavItem`, `Main` and `Section` parts. Every section reachable from the command menu. Choices not yet default live in Experiments with a `Default` tag and one "Restore defaults".
+Two panes: a 232px left pane with search and nav items at the shared sm height (radius 10, Label 500; current item gets field fill, not accent), and the rows. Breadcrumb title, close button, no footer. 1000×680, capped by the viewport; on a phone it fills the screen less an 8px gutter and the sections wrap three to a row. The kit builds it with `Dialog` `size="settings"`, `chrome="inset"` and the `Sidebar`, `Nav`, `NavItem`, `Main` and `Section` parts. Every section reachable from the command menu. Choices not yet default live in Experiments with a `Default` tag and one "Restore defaults".
 
 ### 9.4 Option card
 
@@ -350,7 +350,7 @@ No border; field fill, radius 12, padding 12; a 68px preview well (radius 8) ove
 
 ### 9.6 Command menu
 
-`Mod+K` everywhere. Bottom centre, 16px from the edge, `min(640px, …)`, radius 22, padding 8, six 36px rows, no scrim. Grouped under Meta 600 labels. The highlighted row has field fill, previews on the content, Enter applies, Escape restores. A one-line hint in the input row: `↑↓ preview · ↵ apply · esc cancel`. It lists every visible option, action and setting, read from the same data as the controls.
+`Mod+K` everywhere. Bottom centre, 16px from the edge, `min(640px, …)`, radius 22, padding 8, six rows at the shared sm height, no scrim. Grouped under Meta 600 labels. The highlighted row has field fill, previews on the content, Enter applies, Escape restores. A one-line hint in the input row: `↑↓ preview · ↵ apply · esc cancel`. It lists every visible option, action and setting, read from the same data as the controls.
 
 ### 9.7 Actions in dialogs and toasts
 

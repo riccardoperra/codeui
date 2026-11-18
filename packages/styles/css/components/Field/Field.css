@@ -1,4 +1,5 @@
 @import "./field-tokens.generated.css";
+@import "./text-minimum.css";
 
 @layer cui.components {
   .cui-field-baseFieldTheme {
@@ -17,7 +18,7 @@
     border-radius: var(--cui-radius-md);
     width: 100%;
     min-width: 0px;
-    font-size: var(--cui-baseFieldTheme-fontSize);
+    font-size: max(var(--cui-baseFieldTheme-fontSize), var(--cui-field-textMinimum, 0px));
     height: var(--cui-baseFieldTheme-inputHeight, 100%);
     color: var(--cui-baseFieldTheme-color);
     transition: border-color var(--cui-motion-duration-fast) var(--cui-motion-ease-out);

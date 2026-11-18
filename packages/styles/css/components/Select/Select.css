@@ -10,7 +10,7 @@
     --cui-selectTheme-contentMaxHeight: 400px;
     --cui-selectTheme-contentMaxHeightXs: 270px;
     --cui-selectTheme-separator: var(--cui-component-select-select-theme-separator);
-    --cui-selectTheme-itemMinHeight: 40px;
+    --cui-selectTheme-itemMinHeight: var(--cui-control-height-sm);
     --cui-selectTheme-itemTextColor: var(--cui-component-select-select-theme-item-text-color);
     --cui-selectTheme-itemHoverBackground: var(--cui-component-select-select-theme-item-hover-background);
     --cui-selectTheme-itemHoverTextColor: var(--cui-component-select-select-theme-item-hover-text-color);
@@ -50,7 +50,7 @@
     text-align: left;
     justify-content: space-between;
     border: 0;
-    padding: var(--cui-space-2) var(--cui-space-3);
+    padding: var(--cui-space-1-5) var(--cui-space-3);
     border-radius: var(--cui-radius-sm);
     background: transparent;
     color: var(--cui-selectTheme-itemTextColor);
@@ -108,7 +108,6 @@
     padding-bottom: 0;
     outline: none;
     width: 100%;
-    font-size: var(--cui-baseFieldTheme-fontSize);
   }
   .cui-select-itemIndicator {
     margin-left: auto;

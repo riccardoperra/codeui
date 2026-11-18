@@ -55,7 +55,7 @@
           },
           "fontSize": {
             "$type": "dimension",
-            "$value": "{font.size.sm}"
+            "$value": "{font.size.md}"
           },
           "border-radius": {
             "$type": "dimension",

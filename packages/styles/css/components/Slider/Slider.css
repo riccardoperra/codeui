@@ -1,5 +1,6 @@
 @layer cui.components {
   .cui-slider-root {
+    --cui-slider-hitSize: 28px;
     display: grid;
     gap: var(--cui-space-2);
     color: var(--cui-text-default);
@@ -26,7 +27,7 @@
   }
   .cui-slider-track {
     position: relative;
-    height: 28px;
+    height: var(--cui-slider-hitSize);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -45,21 +46,10 @@
   .cui-slider-track {
     &[data-orientation=vertical] {
       height: var(--cui-space-32);
-      width: 28px;
+      width: var(--cui-slider-hitSize);
     }
 
     &[data-orientation=vertical]::before {
-      height: 100%;
-      width: var(--cui-space-0-5);
-    }
-  }
-  :where(.cui-slider-track) {
-    &[data-orientation="vertical"] {
-      height: var(--cui-space-32);
-      width: 28px;
-    }
-
-    &[data-orientation="vertical"]::before {
       height: 100%;
       width: var(--cui-space-0-5);
     }
@@ -82,8 +72,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 28px;
-    height: 28px;
+    width: var(--cui-slider-hitSize);
+    height: var(--cui-slider-hitSize);
     border-radius: var(--cui-radius-full);
     cursor: pointer;
   }
@@ -108,13 +98,12 @@
     cursor: not-allowed;
   }
   @media (--cui-coarse-pointer) {
-    .cui-slider-track {
-      min-height: 40px;
-      min-width: 40px;
+    .cui-slider-root {
+      --cui-slider-hitSize: 40px;
     }
-    .cui-slider-thumb {
-      width: 40px;
-      height: 40px;
+    .cui-slider-track {
+      min-height: var(--cui-slider-hitSize);
+      min-width: var(--cui-slider-hitSize);
     }
   }
 }

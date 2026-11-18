@@ -148,7 +148,7 @@
   }
   [data-chrome=inset] .cui-dialog-title {
     height: auto;
-    min-height: 36px;
+    min-height: var(--cui-control-height-sm);
     gap: var(--cui-space-3);
     padding: 0;
     border-bottom: none;
@@ -281,7 +281,7 @@
     align-items: center;
     gap: var(--cui-space-2-5);
     width: 100%;
-    height: 36px;
+    height: var(--cui-control-height-sm);
     padding: 0 var(--cui-space-2-5);
     border: 0;
     border-radius: var(--cui-radius-nav);
@@ -427,7 +427,6 @@
     }
     .cui-dialog-navItem {
       justify-content: center;
-      height: 40px;
       padding: 0 var(--cui-space-1);
       white-space: nowrap;
     }
