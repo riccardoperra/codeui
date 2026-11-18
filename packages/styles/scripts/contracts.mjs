@@ -3,14 +3,19 @@ import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
+import { appearance } from "./appearance.mjs";
+
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
 function contract(value, callFunctions = false) {
 	if (typeof value === "string") return value;
-	if (typeof value === "function")
-		return callFunctions || value.length === 0
-			? { default: contract(value()) }
-			: { function: true };
+	if (typeof value === "function") {
+		const signature =
+			callFunctions || value.length === 0
+				? { default: contract(value()) }
+				: { function: true };
+		return { ...signature, ...contract(Object.fromEntries(Object.entries(value))) };
+	}
 	if (value && typeof value === "object")
 		return Object.fromEntries(
 			Object.entries(value)
@@ -34,7 +39,7 @@ export async function collectContracts(directory) {
 			Object.entries(module).map(([key, value]) => [key, contract(value)]),
 		);
 	}
-	return result;
+	return { ...result, $appearance: appearance };
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {

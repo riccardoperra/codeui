@@ -1,9 +1,10 @@
+import type { TextStyleOptions } from "../generated-appearance/text";
 import { tokens } from "../foundation/cui.css";
 import { root } from "../components/Text/Text.css";
 export type TextVariants = {
 	size?: keyof typeof tokens.font.size;
 	weight?: keyof typeof tokens.font.weight;
-	tone?: "default" | "muted" | "hint" | "label" | "danger" | "success";
+	tone?: NonNullable<TextStyleOptions["tone"]>;
 };
 export const textParts = { root: "text-root" } as const;
 export type TextPart = keyof typeof textParts;

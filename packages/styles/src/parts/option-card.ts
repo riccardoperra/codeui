@@ -1,3 +1,4 @@
+import type { OptionCardItemLabelStyleOptions } from "../generated-appearance/option-card";
 import * as styles from "../components/OptionCard/OptionCard.css";
 export const optionCardParts = {
 	root: "option-card-root",
@@ -15,7 +16,9 @@ export const optionCardParts = {
 } as const;
 export type OptionCardPart = keyof typeof optionCardParts;
 export type OptionCardClasses = Partial<Record<OptionCardPart, string>>;
-export type OptionCardVariant = "card" | "tile";
+export type OptionCardVariant =
+	| NonNullable<OptionCardItemLabelStyleOptions["variant"]>
+	| "card";
 export type OptionCardVariants = { variant?: OptionCardVariant };
 export type OptionCardStyles = {
 	[P in OptionCardPart]: () => string;

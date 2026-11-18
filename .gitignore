@@ -42,3 +42,5 @@ storybook-static
 apps/docs/public/examples
 # Vitest browser failure screenshots
 __screenshots__
+
+/packages/styles/src/generated-appearance/

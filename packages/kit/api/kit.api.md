@@ -579,6 +579,7 @@ export { accordionParts, type AccordionPart, type AccordionClasses, type Accordi
 ```ts
 export * from "./internal/components/Alert/Alert.css.js";
 export { alertParts, type AlertPart, type AlertClasses, type AlertTone, type AlertVariants, type AlertStyles, alertStyles } from "./internal/parts/alert.js";
+export * from "./internal/generated-appearance/alert.js";
 ```
 
 ## @codeui/styles/badge.d.ts
@@ -586,6 +587,7 @@ export { alertParts, type AlertPart, type AlertClasses, type AlertTone, type Ale
 ```ts
 export * from "./internal/components/Badge/Badge.css.js";
 export { badgeParts, type BadgePart, type BadgeClasses, type BadgeSize, type BadgeTone, type BadgeVariant, type BadgeVariants, type BadgeStyles, badgeStyles } from "./internal/parts/badge.js";
+export * from "./internal/generated-appearance/badge.js";
 ```
 
 ## @codeui/styles/button-loading.d.ts
@@ -604,6 +606,7 @@ export * from "./internal/components/Button/Button.css.js";
 
 ```ts
 export * from "./internal/components/CheckBox/CheckBox.css.js";
+export * from "./internal/generated-appearance/checkbox.js";
 ```
 
 ## @codeui/styles/combobox.d.ts
@@ -611,6 +614,7 @@ export * from "./internal/components/CheckBox/CheckBox.css.js";
 ```ts
 export * from "./internal/components/Combobox/Combobox.css.js";
 export { type ComboboxVariants, comboboxParts, type ComboboxPart, type ComboboxClasses, type ComboboxStyles, comboboxStyles } from "./internal/parts/combobox.js";
+export * from "./internal/generated-appearance/combobox.js";
 ```
 
 ## @codeui/styles/command-menu.d.ts
@@ -625,6 +629,7 @@ export { commandMenuParts, type CommandMenuPart, type CommandMenuClasses, type C
 ```ts
 export * from "./internal/components/Dialog/Dialog.css.js";
 export { dialogParts, type DialogPart, type DialogThemeVar, dialogThemeVars, type DialogClasses, type DialogSize, type DialogChrome, type DialogMotion, type DialogBodyLayout, type DialogSectionVariant, type DialogStyles, dialogStyles } from "./internal/parts/dialog.js";
+export * from "./internal/generated-appearance/dialog.js";
 ```
 
 ## @codeui/styles/dropdown.d.ts
@@ -655,12 +660,14 @@ export * from "./internal/components/Field/FieldMessage/FieldMessage.css.js";
 
 ```ts
 export * from "./internal/components/Field/Field.css.js";
+export * from "./internal/generated-appearance/field.js";
 ```
 
 ## @codeui/styles/icon-button.d.ts
 
 ```ts
 export * from "./internal/components/IconButton/IconButton.css.js";
+export * from "./internal/generated-appearance/icon-button.js";
 ```
 
 ## @codeui/styles/icon.d.ts
@@ -713,6 +720,7 @@ export * as fieldMessage from "./field-message.js";
 export * as fieldError from "./field-error.js";
 export * as icon from "./icon.js";
 export * from "./tokens.js";
+export { applyStyleProps, type StyleProps } from "./internal/utils/applyStyleProps.js";
 ```
 
 ## @codeui/styles/internal/components/Accordion/Accordion.css.d.ts
@@ -751,7 +759,7 @@ export declare const root: () => string;
 ## @codeui/styles/internal/components/Button/Button.css.d.ts
 
 ```ts
-import { type BaseComponentSize } from "../../foundation/sizes.js";
+import type { ButtonStyleOptions } from "../../generated-appearance/button.js";
 export declare const button: () => string;
 export declare const buttonIcon: string;
 export declare const buttonText: string;
@@ -767,29 +775,11 @@ export declare const buttonVars: {
     padding: `var(--${string})`;
     borderRadius: `var(--${string})`;
 };
-type ButtonAppearance = {
-    size?: BaseComponentSize;
-    theme?: "primary" | "tertiary" | "secondary" | "negative" | "caution";
-    variant?: "ghost";
-    block?: boolean;
-    pill?: boolean;
-};
+export { buttonStyleProps, type ButtonStyleOptions, } from "../../generated-appearance/button.js";
+type ButtonAppearance = Omit<ButtonStyleOptions, "class">;
 export type ButtonVariants = (ButtonAppearance & {
     loading?: boolean;
 }) | undefined;
-export type ButtonStyleOptions = ButtonAppearance & {
-    class?: string;
-};
-export declare function buttonStyleProps({ size, theme, variant, block, pill, class: className, }?: ButtonStyleOptions): {
-    class: string;
-    "data-cui": "button";
-    "data-size": "xs" | "sm" | "md" | "lg";
-    "data-theme": "primary" | "tertiary" | "secondary" | "negative" | "caution" | undefined;
-    "data-variant": "ghost" | undefined;
-    "data-block": string | undefined;
-    "data-pill": string | undefined;
-};
-export {};
 ```
 
 ## @codeui/styles/internal/components/Button/Loading.css.d.ts
@@ -873,6 +863,7 @@ export declare const trigger: string;
 ## @codeui/styles/internal/components/Dialog/Dialog.css.d.ts
 
 ```ts
+import type { DialogStyleOptions } from "../../generated-appearance/dialog.js";
 export declare const description: string;
 export declare const dialogTheme: string;
 export declare const dialogThemeVars: {
@@ -910,10 +901,9 @@ export declare const sectionTitle: string;
 export declare const sidebar: string;
 export declare const sidebarSearch: string;
 export declare const title: string;
-export type DialogPanelVariants = {
-    size?: "xs" | "sm" | "md" | "lg" | "xl" | "full" | "settings" | "export";
-    chrome?: "bar" | "inset";
-} | undefined;
+export type DialogPanelVariants = (Omit<DialogStyleOptions, "class" | "chrome"> & {
+    chrome?: NonNullable<DialogStyleOptions["chrome"]> | "bar";
+}) | undefined;
 ```
 
 ## @codeui/styles/internal/components/Dropdown/Dropdown.css.d.ts
@@ -948,7 +938,7 @@ export declare const subMenuContent: string;
 ## @codeui/styles/internal/components/Field/Field.css.d.ts
 
 ```ts
-import { type BaseComponentSize } from "../../foundation/sizes.js";
+import type { FieldStyleOptions } from "../../generated-appearance/field.js";
 export declare const FieldSizes: {
     readonly xs: "xs";
     readonly sm: "sm";
@@ -968,10 +958,7 @@ export declare const baseFieldVars: {
 };
 export declare const fontSize: `var(--${string})`;
 export declare const inputHeight: `var(--${string})`;
-export type BaseFieldVariants = {
-    size?: BaseComponentSize;
-    theme?: "filled" | "inline";
-} | undefined;
+export type BaseFieldVariants = Omit<FieldStyleOptions, "class"> | undefined;
 ```
 
 ## @codeui/styles/internal/components/Field/FieldError/FieldError.css.d.ts
@@ -1017,10 +1004,9 @@ export declare const root: () => string;
 ## @codeui/styles/internal/components/Link/Link.css.d.ts
 
 ```ts
+import type { LinkStyleOptions } from "../../generated-appearance/link.js";
 export declare const link: () => string;
-export type LinkVariants = {
-    variant?: "underline";
-} | undefined;
+export type LinkVariants = Omit<LinkStyleOptions, "class"> | undefined;
 ```
 
 ## @codeui/styles/internal/components/Listbox/Listbox.css.d.ts
@@ -1051,8 +1037,9 @@ export declare const listThemeVars: {
 ## @codeui/styles/internal/components/Listbox/sizes.d.ts
 
 ```ts
+import type { ListboxItemStyleOptions } from "../../generated-appearance/listbox.js";
 export declare const LISTBOX_ITEM_SIZE: Record<ListboxItemSizeKey, number>;
-export type ListboxItemSizeKey = "xs" | "sm" | "md";
+export type ListboxItemSizeKey = NonNullable<ListboxItemStyleOptions["size"]>;
 ```
 
 ## @codeui/styles/internal/components/NumberField/NumberField.css.d.ts
@@ -1104,6 +1091,7 @@ export declare const paginationVars: {
 ## @codeui/styles/internal/components/Popover/Popover.css.d.ts
 
 ```ts
+import type { PopoverStyleOptions } from "../../generated-appearance/popover.js";
 export declare const content: () => string;
 export declare const description: string;
 export declare const popoverTheme: string;
@@ -1121,9 +1109,7 @@ export declare const popoverThemeVars: {
     contentBorderColor: `var(--${string})`;
 };
 export declare const title: string;
-export type PopoverVariants = {
-    variant?: "bordered";
-} | undefined;
+export type PopoverVariants = Omit<PopoverStyleOptions, "class"> | undefined;
 ```
 
 ## @codeui/styles/internal/components/Progress/Progress.css.d.ts
@@ -1158,7 +1144,7 @@ export declare const radioVars: {
 ## @codeui/styles/internal/components/SegmentedControl/SegmentedControl.css.d.ts
 
 ```ts
-import { type BaseComponentSize } from "../../foundation/sizes.js";
+import type { SegmentedControlStyleOptions } from "../../generated-appearance/segmented-control.js";
 export declare const indicator: string;
 export declare const list: string;
 export declare const segment: string;
@@ -1177,13 +1163,9 @@ export declare const segmentedFieldVars: {
     segmentRadius: `var(--${string})`;
     segmentFontSize: `var(--${string})`;
 };
-export type SegmentedControlVariants = {
-    theme?: "neutral" | "primary";
-    variant?: "solid" | "bordered";
-    size?: BaseComponentSize;
-    fluid?: boolean;
-    pill?: boolean;
-} | undefined;
+export type SegmentedControlVariants = (Omit<SegmentedControlStyleOptions, "class" | "theme" | "autoWidth"> & {
+    theme?: NonNullable<SegmentedControlStyleOptions["theme"]> | "neutral";
+}) | undefined;
 ```
 
 ## @codeui/styles/internal/components/Select/Select.css.d.ts
@@ -1347,6 +1329,7 @@ export declare const title: string;
 ## @codeui/styles/internal/components/Tooltip/Tooltip.css.d.ts
 
 ```ts
+import type { TooltipStyleOptions } from "../../generated-appearance/tooltip.js";
 export declare const tooltipContent: () => string;
 export declare const tooltipTheme: string;
 export declare const tooltipVars: {
@@ -1359,9 +1342,7 @@ export declare const tooltipVars: {
     zIndex: `var(--${string})`;
 };
 export declare const trigger: string;
-export type TooltipVariants = {
-    theme?: "primary" | "secondary";
-} | undefined;
+export type TooltipVariants = Omit<TooltipStyleOptions, "class"> | undefined;
 ```
 
 ## @codeui/styles/internal/foundation/breakpoints.d.ts
@@ -1718,6 +1699,926 @@ export declare const tokens: {
 };
 ```
 
+## @codeui/styles/internal/generated-appearance/alert.d.ts
+
+```ts
+export type AlertStyleOptions = {
+    class?: string;
+    tone?: "neutral" | "info" | "success" | "warning" | "danger";
+    fluid?: boolean;
+};
+export declare const alertStyleProps: (options?: AlertStyleOptions) => {
+    class: string;
+    "data-cui": "alert-root";
+    "data-tone": "neutral" | "danger" | "success" | "info" | "warning";
+    "data-fluid": string | undefined;
+};
+```
+
+## @codeui/styles/internal/generated-appearance/badge.d.ts
+
+```ts
+export type BadgeStyleOptions = {
+    class?: string;
+    size?: "sm" | "md";
+    tone?: "neutral" | "info" | "success" | "warning" | "danger";
+    variant?: "soft" | "outline";
+};
+export declare const badgeStyleProps: (options?: BadgeStyleOptions) => {
+    class: string;
+    "data-cui": "badge-root";
+    "data-size": "sm" | "md";
+    "data-tone": "neutral" | "danger" | "success" | "info" | "warning";
+    "data-variant": "outline" | "soft";
+};
+```
+
+## @codeui/styles/internal/generated-appearance/button.d.ts
+
+```ts
+import * as source0 from "../components/Button/Button.css.js";
+export type ButtonStyleOptions = {
+    class?: string;
+    size?: "xs" | "sm" | "md" | "lg";
+    theme?: "primary" | "secondary" | "tertiary" | "negative" | "caution";
+    variant?: "ghost";
+    block?: boolean;
+    pill?: boolean;
+};
+export declare const buttonStyleProps: (options?: ButtonStyleOptions) => {
+    class: string;
+    "data-cui": "button";
+    "data-size": "xs" | "sm" | "md" | "lg";
+    "data-theme": "primary" | "secondary" | "tertiary" | "negative" | "caution" | undefined;
+    "data-variant": "ghost" | undefined;
+    "data-block": string | undefined;
+    "data-pill": string | undefined;
+};
+```
+
+## @codeui/styles/internal/generated-appearance/checkbox.d.ts
+
+```ts
+export type CheckboxStyleOptions = {
+    class?: string;
+    fieldSize?: "xs" | "sm" | "md" | "lg" | "xl";
+};
+declare const root: (options?: CheckboxStyleOptions) => {
+    class: string;
+    "data-cui": "checkbox";
+    "data-field-size": "xs" | "sm" | "md" | "lg" | "xl";
+};
+export type CheckboxControlStyleOptions = {
+    class?: string;
+    size?: "xs" | "sm" | "md" | "lg" | "xl";
+    theme?: "filled";
+};
+export declare const checkboxStyleProps: ((options?: Parameters<typeof root>[0]) => {
+    class: string;
+    "data-cui": "checkbox";
+    "data-field-size": "xs" | "sm" | "md" | "lg" | "xl";
+}) & {
+    root: (options?: CheckboxStyleOptions) => {
+        class: string;
+        "data-cui": "checkbox";
+        "data-field-size": "xs" | "sm" | "md" | "lg" | "xl";
+    };
+    control: (options?: CheckboxControlStyleOptions) => {
+        class: string;
+        "data-cui": "checkbox-control";
+        "data-size": "xs" | "sm" | "md" | "lg" | "xl";
+        "data-theme": "filled" | undefined;
+    };
+};
+export {};
+```
+
+## @codeui/styles/internal/generated-appearance/combobox.d.ts
+
+```ts
+export type ComboboxStyleOptions = {
+    class?: string;
+    size?: "sm" | "md";
+};
+export declare const comboboxStyleProps: (options?: ComboboxStyleOptions) => {
+    class: string;
+    "data-cui": "combobox-control";
+    "data-size": "sm" | "md";
+};
+```
+
+## @codeui/styles/internal/generated-appearance/dialog.d.ts
+
+```ts
+export type DialogStyleOptions = {
+    class?: string;
+    size?: "xs" | "sm" | "md" | "lg" | "xl" | "full" | "settings" | "export";
+    chrome?: "inset";
+};
+declare const panel: (options?: DialogStyleOptions) => {
+    class: string;
+    "data-cui": "dialog-panel";
+    "data-size": "xs" | "sm" | "md" | "lg" | "xl" | "full" | "settings" | "export" | undefined;
+    "data-chrome": "inset" | undefined;
+};
+export type DialogPositionerStyleOptions = {
+    class?: string;
+    panelSize?: "export" | "full";
+    chrome?: "inset";
+};
+export type DialogBodyStyleOptions = {
+    class?: string;
+    layout?: "split";
+};
+export type DialogSectionStyleOptions = {
+    class?: string;
+    variant?: "group" | "well";
+    columns?: "2";
+};
+export declare const dialogStyleProps: ((options?: Parameters<typeof panel>[0]) => {
+    class: string;
+    "data-cui": "dialog-panel";
+    "data-size": "xs" | "sm" | "md" | "lg" | "xl" | "full" | "settings" | "export" | undefined;
+    "data-chrome": "inset" | undefined;
+}) & {
+    panel: (options?: DialogStyleOptions) => {
+        class: string;
+        "data-cui": "dialog-panel";
+        "data-size": "xs" | "sm" | "md" | "lg" | "xl" | "full" | "settings" | "export" | undefined;
+        "data-chrome": "inset" | undefined;
+    };
+    positioner: (options?: DialogPositionerStyleOptions) => {
+        class: string;
+        "data-cui": "dialog-positioner";
+        "data-panel-size": "full" | "export" | undefined;
+        "data-chrome": "inset" | undefined;
+    };
+    body: (options?: DialogBodyStyleOptions) => {
+        class: string;
+        "data-cui": "dialog-panel-content";
+        "data-layout": "split" | undefined;
+    };
+    section: (options?: DialogSectionStyleOptions) => {
+        class: string;
+        "data-cui": "dialog-section";
+        "data-variant": "group" | "well";
+        "data-columns": "2" | undefined;
+    };
+};
+export {};
+```
+
+## @codeui/styles/internal/generated-appearance/field.d.ts
+
+```ts
+export type FieldStyleOptions = {
+    class?: string;
+    size?: "xs" | "sm" | "md" | "lg";
+    theme?: "filled" | "inline";
+};
+export declare const fieldStyleProps: (options?: FieldStyleOptions) => {
+    class: string;
+    "data-cui": "field";
+    "data-size": "xs" | "sm" | "md" | "lg";
+    "data-theme": "filled" | "inline";
+};
+```
+
+## @codeui/styles/internal/generated-appearance/icon-button.d.ts
+
+```ts
+export type IconButtonStyleOptions = {
+    class?: string;
+    size?: "xs" | "sm" | "md" | "lg";
+    theme?: "primary" | "secondary" | "tertiary" | "negative" | "caution";
+    variant?: "ghost";
+    block?: boolean;
+    pill?: boolean;
+};
+export declare const iconButtonStyleProps: (options?: IconButtonStyleOptions) => {
+    class: string;
+    "data-cui": "icon-button";
+    "data-size": "xs" | "sm" | "md" | "lg";
+    "data-theme": "primary" | "secondary" | "tertiary" | "negative" | "caution" | undefined;
+    "data-variant": "ghost" | undefined;
+    "data-block": string | undefined;
+    "data-pill": string | undefined;
+};
+```
+
+## @codeui/styles/internal/generated-appearance/kbd.d.ts
+
+```ts
+export type KbdStyleOptions = {
+    class?: string;
+    size?: "sm" | "md";
+    variant?: "keycap" | "hint";
+};
+export declare const kbdStyleProps: (options?: KbdStyleOptions) => {
+    class: string;
+    "data-cui": "kbd-root";
+    "data-size": "sm" | "md";
+    "data-variant": "hint" | "keycap";
+};
+```
+
+## @codeui/styles/internal/generated-appearance/link.d.ts
+
+```ts
+export type LinkStyleOptions = {
+    class?: string;
+    variant?: "underline";
+};
+export declare const linkStyleProps: (options?: LinkStyleOptions) => {
+    class: string;
+    "data-cui": "link";
+    "data-variant": "underline" | undefined;
+};
+```
+
+## @codeui/styles/internal/generated-appearance/listbox.d.ts
+
+```ts
+export type ListboxStyleOptions = {
+    class?: string;
+    theme?: "primary" | "neutral";
+    bordered?: boolean;
+};
+declare const list: (options?: ListboxStyleOptions) => {
+    class: string;
+    "data-cui": "listbox";
+    "data-theme": "primary" | "neutral";
+    "data-bordered": string | undefined;
+};
+export type ListboxItemStyleOptions = {
+    class?: string;
+    size?: "xs" | "sm" | "md";
+};
+export type ListboxItemIndicatorStyleOptions = {
+    class?: string;
+    size?: "xs" | "sm" | "md";
+};
+export declare const listboxStyleProps: ((options?: Parameters<typeof list>[0]) => {
+    class: string;
+    "data-cui": "listbox";
+    "data-theme": "primary" | "neutral";
+    "data-bordered": string | undefined;
+}) & {
+    list: (options?: ListboxStyleOptions) => {
+        class: string;
+        "data-cui": "listbox";
+        "data-theme": "primary" | "neutral";
+        "data-bordered": string | undefined;
+    };
+    item: (options?: ListboxItemStyleOptions) => {
+        class: string;
+        "data-cui": "listbox-item";
+        "data-size": "xs" | "sm" | "md";
+    };
+    itemIndicator: (options?: ListboxItemIndicatorStyleOptions) => {
+        class: string;
+        "data-cui": "listbox-item-indicator";
+        "data-size": "xs" | "sm" | "md";
+    };
+};
+export {};
+```
+
+## @codeui/styles/internal/generated-appearance/number-field.d.ts
+
+```ts
+export type NumberFieldStyleOptions = {
+    class?: string;
+    fieldSize?: "xs" | "sm" | "md" | "lg";
+};
+declare const root: (options?: NumberFieldStyleOptions) => {
+    class: string;
+    "data-cui": "number-field";
+    "data-field-size": "xs" | "sm" | "md" | "lg";
+};
+export type NumberFieldInputStyleOptions = {
+    class?: string;
+    size?: "xs" | "sm" | "md" | "lg";
+    theme?: "filled" | "inline";
+};
+export declare const numberFieldStyleProps: ((options?: Parameters<typeof root>[0]) => {
+    class: string;
+    "data-cui": "number-field";
+    "data-field-size": "xs" | "sm" | "md" | "lg";
+}) & {
+    root: (options?: NumberFieldStyleOptions) => {
+        class: string;
+        "data-cui": "number-field";
+        "data-field-size": "xs" | "sm" | "md" | "lg";
+    };
+    input: (options?: NumberFieldInputStyleOptions) => {
+        class: string;
+        "data-cui": "text-field-input";
+        "data-size": "xs" | "sm" | "md" | "lg";
+        "data-theme": "filled" | "inline";
+    };
+};
+export {};
+```
+
+## @codeui/styles/internal/generated-appearance/option-card.d.ts
+
+```ts
+export type OptionCardStyleOptions = {
+    class?: string;
+    orientation?: "vertical";
+};
+declare const root: (options?: OptionCardStyleOptions) => {
+    class: string;
+    "data-cui": "option-card-root";
+    "data-orientation": "vertical" | undefined;
+};
+export type OptionCardItemLabelStyleOptions = {
+    class?: string;
+    variant?: "tile";
+};
+export type OptionCardBadgeStyleOptions = {
+    class?: string;
+    size?: "sm" | "md";
+    tone?: "neutral" | "info" | "success" | "warning" | "danger";
+    variant?: "soft" | "outline";
+};
+export type OptionCardItemStyleOptions = {
+    class?: string;
+    variant?: "tile";
+};
+export declare const optionCardStyleProps: ((options?: Parameters<typeof root>[0]) => {
+    class: string;
+    "data-cui": "option-card-root";
+    "data-orientation": "vertical" | undefined;
+}) & {
+    root: (options?: OptionCardStyleOptions) => {
+        class: string;
+        "data-cui": "option-card-root";
+        "data-orientation": "vertical" | undefined;
+    };
+    itemLabel: (options?: OptionCardItemLabelStyleOptions) => {
+        class: string;
+        "data-cui": "option-card-item-label";
+        "data-variant": "tile" | undefined;
+    };
+    badge: (options?: OptionCardBadgeStyleOptions) => {
+        class: string;
+        "data-cui": "option-card-badge";
+        "data-size": "sm" | "md";
+        "data-tone": "neutral" | "danger" | "success" | "info" | "warning";
+        "data-variant": "outline" | "soft";
+    };
+    item: (options?: OptionCardItemStyleOptions) => {
+        class: string;
+        "data-cui": "option-card-item";
+        "data-variant": "tile" | undefined;
+    };
+};
+export {};
+```
+
+## @codeui/styles/internal/generated-appearance/popover.d.ts
+
+```ts
+export type PopoverStyleOptions = {
+    class?: string;
+    variant?: "bordered";
+};
+export declare const popoverStyleProps: (options?: PopoverStyleOptions) => {
+    class: string;
+    "data-cui": "popover-content";
+    "data-variant": "bordered" | undefined;
+};
+```
+
+## @codeui/styles/internal/generated-appearance/progress.d.ts
+
+```ts
+export type ProgressStyleOptions = {
+    class?: string;
+    size?: "sm" | "md";
+};
+declare const root: (options?: ProgressStyleOptions) => {
+    class: string;
+    "data-cui": "progress-root";
+    "data-size": "sm" | "md";
+};
+export type ProgressTrackStyleOptions = {
+    class?: string;
+    size?: "sm" | "md";
+};
+export declare const progressStyleProps: ((options?: Parameters<typeof root>[0]) => {
+    class: string;
+    "data-cui": "progress-root";
+    "data-size": "sm" | "md";
+}) & {
+    root: (options?: ProgressStyleOptions) => {
+        class: string;
+        "data-cui": "progress-root";
+        "data-size": "sm" | "md";
+    };
+    track: (options?: ProgressTrackStyleOptions) => {
+        class: string;
+        "data-cui": "progress-track";
+        "data-size": "sm" | "md";
+    };
+};
+export {};
+```
+
+## @codeui/styles/internal/generated-appearance/radio-list.d.ts
+
+```ts
+export type RadioListStyleOptions = {
+    class?: string;
+    size?: "xs" | "sm" | "md" | "lg" | "xl";
+    theme?: "filled";
+    orientation?: "horizontal" | "vertical";
+};
+declare const items: (options?: RadioListStyleOptions) => {
+    class: string;
+    "data-cui": "radio-list-items";
+    "data-size": "xs" | "sm" | "md" | "lg" | "xl";
+    "data-theme": "filled" | undefined;
+    "data-orientation": "horizontal" | "vertical";
+};
+export type RadioListRootStyleOptions = {
+    class?: string;
+    fieldSize?: "xs" | "sm" | "md" | "lg" | "xl";
+};
+export declare const radioListStyleProps: ((options?: Parameters<typeof items>[0]) => {
+    class: string;
+    "data-cui": "radio-list-items";
+    "data-size": "xs" | "sm" | "md" | "lg" | "xl";
+    "data-theme": "filled" | undefined;
+    "data-orientation": "horizontal" | "vertical";
+}) & {
+    items: (options?: RadioListStyleOptions) => {
+        class: string;
+        "data-cui": "radio-list-items";
+        "data-size": "xs" | "sm" | "md" | "lg" | "xl";
+        "data-theme": "filled" | undefined;
+        "data-orientation": "horizontal" | "vertical";
+    };
+    root: (options?: RadioListRootStyleOptions) => {
+        class: string;
+        "data-cui": "radio-group-field";
+        "data-field-size": "xs" | "sm" | "md" | "lg" | "xl";
+    };
+};
+export {};
+```
+
+## @codeui/styles/internal/generated-appearance/segmented-control.d.ts
+
+```ts
+export type SegmentedControlStyleOptions = {
+    class?: string;
+    size?: "xs" | "sm" | "md" | "lg";
+    theme?: "primary";
+    variant?: "solid" | "bordered";
+    fluid?: boolean;
+    pill?: boolean;
+    autoWidth?: boolean;
+};
+export declare const segmentedControlStyleProps: (options?: SegmentedControlStyleOptions) => {
+    class: string;
+    "data-cui": "segmentedControl";
+    "data-size": "xs" | "sm" | "md" | "lg";
+    "data-theme": "primary" | undefined;
+    "data-variant": "bordered" | "solid";
+    "data-fluid": string | undefined;
+    "data-pill": string | undefined;
+    "data-autoWidth": string | undefined;
+};
+```
+
+## @codeui/styles/internal/generated-appearance/select.d.ts
+
+```ts
+export type SelectStyleOptions = {
+    class?: string;
+    size?: "xs" | "sm" | "md" | "lg";
+    theme?: "filled" | "inline";
+};
+declare const trigger: (options?: SelectStyleOptions) => {
+    class: string;
+    "data-cui": "select-trigger";
+    "data-size": "xs" | "sm" | "md" | "lg";
+    "data-theme": "filled" | "inline";
+};
+export type SelectRootStyleOptions = {
+    class?: string;
+    fieldSize?: "xs" | "sm" | "md" | "lg";
+};
+export declare const selectStyleProps: ((options?: Parameters<typeof trigger>[0]) => {
+    class: string;
+    "data-cui": "select-trigger";
+    "data-size": "xs" | "sm" | "md" | "lg";
+    "data-theme": "filled" | "inline";
+}) & {
+    trigger: (options?: SelectStyleOptions) => {
+        class: string;
+        "data-cui": "select-trigger";
+        "data-size": "xs" | "sm" | "md" | "lg";
+        "data-theme": "filled" | "inline";
+    };
+    root: (options?: SelectRootStyleOptions) => {
+        class: string;
+        "data-cui": "select-root";
+        "data-field-size": "xs" | "sm" | "md" | "lg";
+    };
+};
+export {};
+```
+
+## @codeui/styles/internal/generated-appearance/settings.d.ts
+
+```ts
+export type SettingsStyleOptions = {
+    class?: string;
+    layout?: "wide";
+    compactControl?: boolean;
+};
+export declare const settingsStyleProps: (options?: SettingsStyleOptions) => {
+    class: string;
+    "data-cui": "settings-row-root";
+    "data-layout": "wide" | undefined;
+    "data-compact-control": string | undefined;
+};
+```
+
+## @codeui/styles/internal/generated-appearance/sheet.d.ts
+
+```ts
+export type SheetStyleOptions = {
+    class?: string;
+    side?: "bottom" | "left" | "right";
+};
+export declare const sheetStyleProps: (options?: SheetStyleOptions) => {
+    class: string;
+    "data-cui": "sheet-content";
+    "data-side": "bottom" | "left" | "right";
+};
+```
+
+## @codeui/styles/internal/generated-appearance/skeleton.d.ts
+
+```ts
+export type SkeletonStyleOptions = {
+    class?: string;
+    circle?: boolean;
+    animate?: boolean;
+};
+export declare const skeletonStyleProps: (options?: SkeletonStyleOptions) => {
+    class: string;
+    "data-cui": "skeleton-root";
+    "data-circle": string | undefined;
+    "data-animate": string | undefined;
+};
+```
+
+## @codeui/styles/internal/generated-appearance/slider.d.ts
+
+```ts
+export type SliderStyleOptions = {
+    class?: string;
+    orientation?: "vertical";
+};
+declare const track: (options?: SliderStyleOptions) => {
+    class: string;
+    "data-cui": "slider-track";
+    "data-orientation": "vertical" | undefined;
+};
+export type SliderFillStyleOptions = {
+    class?: string;
+    orientation?: "vertical";
+};
+export declare const sliderStyleProps: ((options?: Parameters<typeof track>[0]) => {
+    class: string;
+    "data-cui": "slider-track";
+    "data-orientation": "vertical" | undefined;
+}) & {
+    track: (options?: SliderStyleOptions) => {
+        class: string;
+        "data-cui": "slider-track";
+        "data-orientation": "vertical" | undefined;
+    };
+    fill: (options?: SliderFillStyleOptions) => {
+        class: string;
+        "data-cui": "slider-fill";
+        "data-orientation": "vertical" | undefined;
+    };
+};
+export {};
+```
+
+## @codeui/styles/internal/generated-appearance/spinner.d.ts
+
+```ts
+export type SpinnerStyleOptions = {
+    class?: string;
+    size?: "sm" | "md" | "lg";
+};
+export declare const spinnerStyleProps: (options?: SpinnerStyleOptions) => {
+    class: string;
+    "data-cui": "spinner-root";
+    "data-size": "sm" | "md" | "lg";
+};
+```
+
+## @codeui/styles/internal/generated-appearance/stack.d.ts
+
+```ts
+export type StackStyleOptions = {
+    class?: string;
+    gap?: "0" | "0.5" | "1" | "1.5" | "2" | "2.5" | "3" | "4" | "5" | "6" | "8" | "10" | "12" | "16" | "20" | "24" | "32" | "40" | "48" | "56" | "64" | "auto" | "px";
+    align?: "start" | "center" | "end" | "stretch" | "baseline";
+    justify?: "start" | "center" | "end" | "between" | "around" | "evenly";
+    direction?: "row" | "column";
+    wrap?: "true" | "false";
+};
+export declare const stackStyleProps: (options?: StackStyleOptions) => {
+    class: string;
+    "data-cui": "stack-root";
+    "data-gap": "auto" | "2" | "0" | "10" | "20" | "40" | "0.5" | "1" | "1.5" | "2.5" | "3" | "4" | "5" | "6" | "8" | "12" | "16" | "24" | "32" | "48" | "56" | "64" | "px";
+    "data-align": "center" | "stretch" | "end" | "start" | "baseline";
+    "data-justify": "center" | "end" | "start" | "between" | "around" | "evenly";
+    "data-direction": "column" | "row";
+    "data-wrap": "false" | "true";
+};
+```
+
+## @codeui/styles/internal/generated-appearance/switch.d.ts
+
+```ts
+export type SwitchStyleOptions = {
+    class?: string;
+    size?: "sm" | "md";
+};
+declare const root: (options?: SwitchStyleOptions) => {
+    class: string;
+    "data-cui": "switch-root";
+    "data-size": "sm" | "md";
+};
+export type SwitchInputStyleOptions = {
+    class?: string;
+    size?: "sm" | "md";
+};
+export type SwitchControlStyleOptions = {
+    class?: string;
+    size?: "sm" | "md";
+};
+export type SwitchThumbStyleOptions = {
+    class?: string;
+    size?: "sm" | "md";
+};
+export type SwitchLabelStyleOptions = {
+    class?: string;
+    size?: "sm" | "md";
+};
+export type SwitchDescriptionStyleOptions = {
+    class?: string;
+    size?: "sm" | "md";
+};
+export type SwitchErrorMessageStyleOptions = {
+    class?: string;
+    size?: "sm" | "md";
+};
+export declare const switchStyleProps: ((options?: Parameters<typeof root>[0]) => {
+    class: string;
+    "data-cui": "switch-root";
+    "data-size": "sm" | "md";
+}) & {
+    root: (options?: SwitchStyleOptions) => {
+        class: string;
+        "data-cui": "switch-root";
+        "data-size": "sm" | "md";
+    };
+    input: (options?: SwitchInputStyleOptions) => {
+        class: string;
+        "data-cui": "switch-input";
+        "data-size": "sm" | "md";
+    };
+    control: (options?: SwitchControlStyleOptions) => {
+        class: string;
+        "data-cui": "switch-control";
+        "data-size": "sm" | "md";
+    };
+    thumb: (options?: SwitchThumbStyleOptions) => {
+        class: string;
+        "data-cui": "switch-thumb";
+        "data-size": "sm" | "md";
+    };
+    label: (options?: SwitchLabelStyleOptions) => {
+        class: string;
+        "data-cui": "switch-label";
+        "data-size": "sm" | "md";
+    };
+    description: (options?: SwitchDescriptionStyleOptions) => {
+        class: string;
+        "data-cui": "switch-description";
+        "data-size": "sm" | "md";
+    };
+    errorMessage: (options?: SwitchErrorMessageStyleOptions) => {
+        class: string;
+        "data-cui": "switch-error-message";
+        "data-size": "sm" | "md";
+    };
+};
+export {};
+```
+
+## @codeui/styles/internal/generated-appearance/tabs.d.ts
+
+```ts
+export type TabsStyleOptions = {
+    class?: string;
+    orientation?: "horizontal" | "vertical";
+};
+declare const root: (options?: TabsStyleOptions) => {
+    class: string;
+    "data-cui": "tabs";
+    "data-orientation": "horizontal" | "vertical";
+};
+export type TabsListStyleOptions = {
+    class?: string;
+    orientation?: "horizontal" | "vertical";
+};
+export type TabsIndicatorStyleOptions = {
+    class?: string;
+    orientation?: "horizontal" | "vertical";
+};
+export declare const tabsStyleProps: ((options?: Parameters<typeof root>[0]) => {
+    class: string;
+    "data-cui": "tabs";
+    "data-orientation": "horizontal" | "vertical";
+}) & {
+    root: (options?: TabsStyleOptions) => {
+        class: string;
+        "data-cui": "tabs";
+        "data-orientation": "horizontal" | "vertical";
+    };
+    list: (options?: TabsListStyleOptions) => {
+        class: string;
+        "data-cui": "tabs-list";
+        "data-orientation": "horizontal" | "vertical";
+    };
+    indicator: (options?: TabsIndicatorStyleOptions) => {
+        class: string;
+        "data-cui": "tabs-indicator";
+        "data-orientation": "horizontal" | "vertical";
+    };
+};
+export {};
+```
+
+## @codeui/styles/internal/generated-appearance/text-area.d.ts
+
+```ts
+export type TextAreaStyleOptions = {
+    class?: string;
+    size?: "xs" | "sm" | "md" | "lg";
+    theme?: "filled" | "inline";
+};
+declare const input: (options?: TextAreaStyleOptions) => {
+    class: string;
+    "data-cui": "text-field-input";
+    "data-size": "xs" | "sm" | "md" | "lg";
+    "data-theme": "filled" | "inline";
+};
+export type TextAreaRootStyleOptions = {
+    class?: string;
+    fieldSize?: "xs" | "sm" | "md" | "lg";
+};
+export declare const textAreaStyleProps: ((options?: Parameters<typeof input>[0]) => {
+    class: string;
+    "data-cui": "text-field-input";
+    "data-size": "xs" | "sm" | "md" | "lg";
+    "data-theme": "filled" | "inline";
+}) & {
+    input: (options?: TextAreaStyleOptions) => {
+        class: string;
+        "data-cui": "text-field-input";
+        "data-size": "xs" | "sm" | "md" | "lg";
+        "data-theme": "filled" | "inline";
+    };
+    root: (options?: TextAreaRootStyleOptions) => {
+        class: string;
+        "data-cui": "text-field";
+        "data-field-size": "xs" | "sm" | "md" | "lg";
+    };
+};
+export {};
+```
+
+## @codeui/styles/internal/generated-appearance/text-field.d.ts
+
+```ts
+export type TextFieldStyleOptions = {
+    class?: string;
+    size?: "xs" | "sm" | "md" | "lg";
+    theme?: "filled" | "inline";
+};
+declare const input: (options?: TextFieldStyleOptions) => {
+    class: string;
+    "data-cui": "text-field-input";
+    "data-size": "xs" | "sm" | "md" | "lg";
+    "data-theme": "filled" | "inline";
+};
+export type TextFieldRootStyleOptions = {
+    class?: string;
+    fieldSize?: "xs" | "sm" | "md" | "lg";
+};
+export declare const textFieldStyleProps: ((options?: Parameters<typeof input>[0]) => {
+    class: string;
+    "data-cui": "text-field-input";
+    "data-size": "xs" | "sm" | "md" | "lg";
+    "data-theme": "filled" | "inline";
+}) & {
+    input: (options?: TextFieldStyleOptions) => {
+        class: string;
+        "data-cui": "text-field-input";
+        "data-size": "xs" | "sm" | "md" | "lg";
+        "data-theme": "filled" | "inline";
+    };
+    root: (options?: TextFieldRootStyleOptions) => {
+        class: string;
+        "data-cui": "text-field";
+        "data-field-size": "xs" | "sm" | "md" | "lg";
+    };
+};
+export {};
+```
+
+## @codeui/styles/internal/generated-appearance/text.d.ts
+
+```ts
+export type TextStyleOptions = {
+    class?: string;
+    size?: "badge" | "caption" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
+    tone?: "default" | "muted" | "hint" | "label" | "danger" | "success";
+    weight?: "normal" | "medium" | "semibold";
+};
+export declare const textStyleProps: (options?: TextStyleOptions) => {
+    class: string;
+    "data-cui": "text-root";
+    "data-size": "xs" | "sm" | "md" | "lg" | "xl" | "badge" | "caption" | "2xl";
+    "data-tone": "default" | "muted" | "label" | "hint" | "danger" | "success";
+    "data-weight": "normal" | "medium" | "semibold";
+};
+```
+
+## @codeui/styles/internal/generated-appearance/toast.d.ts
+
+```ts
+export type ToastStyleOptions = {
+    class?: string;
+    tone?: "neutral" | "info" | "success" | "warning" | "danger";
+};
+declare const root: (options?: ToastStyleOptions) => {
+    class: string;
+    "data-cui": "toast-root";
+    "data-tone": "neutral" | "danger" | "success" | "info" | "warning";
+};
+export type ToastRegionStyleOptions = {
+    class?: string;
+    position?: "top-left" | "top-center" | "top-right" | "bottom-left" | "bottom-center" | "bottom-right";
+};
+export declare const toastStyleProps: ((options?: Parameters<typeof root>[0]) => {
+    class: string;
+    "data-cui": "toast-root";
+    "data-tone": "neutral" | "danger" | "success" | "info" | "warning";
+}) & {
+    root: (options?: ToastStyleOptions) => {
+        class: string;
+        "data-cui": "toast-root";
+        "data-tone": "neutral" | "danger" | "success" | "info" | "warning";
+    };
+    region: (options?: ToastRegionStyleOptions) => {
+        class: string;
+        "data-cui": "toast-region";
+        "data-position": "top-left" | "top-center" | "top-right" | "bottom-left" | "bottom-center" | "bottom-right";
+    };
+};
+export {};
+```
+
+## @codeui/styles/internal/generated-appearance/tooltip.d.ts
+
+```ts
+export type TooltipStyleOptions = {
+    class?: string;
+    theme?: "primary" | "secondary";
+};
+export declare const tooltipStyleProps: (options?: TooltipStyleOptions) => {
+    class: string;
+    "data-cui": "tooltip-content";
+    "data-theme": "primary" | "secondary" | undefined;
+};
+```
+
 ## @codeui/styles/internal/icons/icon.css.d.ts
 
 ```ts
@@ -1751,6 +2652,7 @@ export declare const accordionStyles: AccordionStyles;
 ## @codeui/styles/internal/parts/alert.d.ts
 
 ```ts
+import type { AlertStyleOptions } from "../generated-appearance/alert.js";
 export declare const alertParts: {
     readonly root: "alert-root";
     readonly icon: "alert-icon";
@@ -1760,7 +2662,7 @@ export declare const alertParts: {
 };
 export type AlertPart = keyof typeof alertParts;
 export type AlertClasses = Partial<Record<AlertPart, string>>;
-export type AlertTone = "neutral" | "info" | "success" | "warning" | "danger";
+export type AlertTone = NonNullable<AlertStyleOptions["tone"]>;
 export type AlertVariants = {
     tone?: AlertTone;
     fluid?: boolean;
@@ -1774,6 +2676,7 @@ export declare const alertStyles: AlertStyles;
 ## @codeui/styles/internal/parts/badge.d.ts
 
 ```ts
+import type { BadgeStyleOptions } from "../generated-appearance/badge.js";
 export declare const badgeParts: {
     readonly root: "badge-root";
     readonly icon: "badge-icon";
@@ -1781,9 +2684,9 @@ export declare const badgeParts: {
 };
 export type BadgePart = keyof typeof badgeParts;
 export type BadgeClasses = Partial<Record<BadgePart, string>>;
-export type BadgeSize = "sm" | "md";
-export type BadgeTone = "neutral" | "info" | "success" | "warning" | "danger";
-export type BadgeVariant = "soft" | "outline";
+export type BadgeSize = NonNullable<BadgeStyleOptions["size"]>;
+export type BadgeTone = NonNullable<BadgeStyleOptions["tone"]>;
+export type BadgeVariant = NonNullable<BadgeStyleOptions["variant"]>;
 export type BadgeVariants = {
     size?: BadgeSize;
     tone?: BadgeTone;
@@ -1798,9 +2701,8 @@ export declare const badgeStyles: BadgeStyles;
 ## @codeui/styles/internal/parts/combobox.d.ts
 
 ```ts
-export type ComboboxVariants = {
-    size?: "sm" | "md";
-};
+import type { ComboboxStyleOptions } from "../generated-appearance/combobox.js";
+export type ComboboxVariants = Omit<ComboboxStyleOptions, "class">;
 export declare const comboboxParts: {
     readonly root: "combobox-root";
     readonly control: "combobox-control";
@@ -1857,6 +2759,7 @@ export declare const commandMenuStyles: CommandMenuStyles;
 ## @codeui/styles/internal/parts/dialog.d.ts
 
 ```ts
+import type { DialogStyleOptions, DialogBodyStyleOptions, DialogSectionStyleOptions } from "../generated-appearance/dialog.js";
 export declare const dialogParts: {
     readonly trigger: "dialog-trigger";
     readonly overlay: "dialog-overlay";
@@ -1892,17 +2795,17 @@ export type DialogClasses = Partial<Record<DialogPart, string>>;
  * `export` is 800 wide for a preview beside its options. Both shrink to fit
  * the viewport.
  */
-export type DialogSize = "xs" | "sm" | "md" | "lg" | "xl" | "full" | "settings" | "export";
+export type DialogSize = NonNullable<DialogStyleOptions["size"]>;
 /**
  * `bar` puts the title in a bar with a divider. `inset` puts it in the panel
  * padding with no divider, a ghost close button and 24px corners.
  */
-export type DialogChrome = "bar" | "inset";
+export type DialogChrome = NonNullable<DialogStyleOptions["chrome"]> | "bar";
 /** `auto` animates pointer opens and closes. `none` never animates. */
 export type DialogMotion = "auto" | "none";
 /** `split` puts the first child, a preview, beside the second, its options. */
-export type DialogBodyLayout = "split";
-export type DialogSectionVariant = "group" | "well";
+export type DialogBodyLayout = NonNullable<DialogBodyStyleOptions["layout"]>;
+export type DialogSectionVariant = NonNullable<DialogSectionStyleOptions["variant"]>;
 export type DialogStyles = Record<DialogPart, () => string>;
 export declare const dialogStyles: DialogStyles;
 ```
@@ -1910,13 +2813,14 @@ export declare const dialogStyles: DialogStyles;
 ## @codeui/styles/internal/parts/kbd.d.ts
 
 ```ts
+import type { KbdStyleOptions } from "../generated-appearance/kbd.js";
 export declare const kbdParts: {
     readonly root: "kbd-root";
 };
 export type KbdPart = keyof typeof kbdParts;
 export type KbdClasses = Partial<Record<KbdPart, string>>;
-export type KbdSize = "sm" | "md";
-export type KbdVariant = "keycap" | "hint";
+export type KbdSize = NonNullable<KbdStyleOptions["size"]>;
+export type KbdVariant = NonNullable<KbdStyleOptions["variant"]>;
 export type KbdVariants = {
     size?: KbdSize;
     variant?: KbdVariant;
@@ -1930,6 +2834,7 @@ export declare const kbdStyles: KbdStyles;
 ## @codeui/styles/internal/parts/option-card.d.ts
 
 ```ts
+import type { OptionCardItemLabelStyleOptions } from "../generated-appearance/option-card.js";
 export declare const optionCardParts: {
     readonly root: "option-card-root";
     readonly label: "option-card-label";
@@ -1946,7 +2851,7 @@ export declare const optionCardParts: {
 };
 export type OptionCardPart = keyof typeof optionCardParts;
 export type OptionCardClasses = Partial<Record<OptionCardPart, string>>;
-export type OptionCardVariant = "card" | "tile";
+export type OptionCardVariant = NonNullable<OptionCardItemLabelStyleOptions["variant"]> | "card";
 export type OptionCardVariants = {
     variant?: OptionCardVariant;
 };
@@ -1959,6 +2864,7 @@ export declare const optionCardStyles: OptionCardStyles;
 ## @codeui/styles/internal/parts/popover.d.ts
 
 ```ts
+import type { PopoverStyleOptions } from "../generated-appearance/popover.js";
 export declare const popoverParts: {
     readonly trigger: "popover-trigger";
     readonly anchor: "popover-anchor";
@@ -1970,7 +2876,7 @@ export declare const popoverParts: {
 };
 export type PopoverPart = keyof typeof popoverParts;
 export type PopoverClasses = Partial<Record<PopoverPart, string>>;
-export type PopoverVariant = "bordered";
+export type PopoverVariant = NonNullable<PopoverStyleOptions["variant"]>;
 export type PopoverStyles = {
     [P in PopoverPart]: () => string;
 };
@@ -1980,9 +2886,8 @@ export declare const popoverStyles: PopoverStyles;
 ## @codeui/styles/internal/parts/progress.d.ts
 
 ```ts
-export type ProgressVariants = {
-    size?: "sm" | "md";
-};
+import type { ProgressStyleOptions } from "../generated-appearance/progress.js";
+export type ProgressVariants = Omit<ProgressStyleOptions, "class">;
 export declare const progressParts: {
     readonly root: "progress-root";
     readonly label: "progress-label";
@@ -1999,6 +2904,7 @@ export declare const progressStyles: ProgressStyles;
 ## @codeui/styles/internal/parts/settings.d.ts
 
 ```ts
+import type { SettingsStyleOptions } from "../generated-appearance/settings.js";
 export declare const settingsRowParts: {
     readonly root: "settings-row-root";
     readonly label: "settings-row-label";
@@ -2010,7 +2916,7 @@ export declare const settingsRowParts: {
 };
 export type SettingsRowPart = keyof typeof settingsRowParts;
 export type SettingsRowClasses = Partial<Record<SettingsRowPart, string>>;
-export type SettingsRowLayout = "inline" | "wide";
+export type SettingsRowLayout = NonNullable<SettingsStyleOptions["layout"]> | "inline";
 export type SettingsRowVariants = {
     layout?: SettingsRowLayout;
     compactControl?: boolean;
@@ -2036,6 +2942,7 @@ export declare const settingsGroupStyles: SettingsGroupStyles;
 ## @codeui/styles/internal/parts/sheet.d.ts
 
 ```ts
+import type { SheetStyleOptions } from "../generated-appearance/sheet.js";
 export declare const sheetParts: {
     readonly trigger: "sheet-trigger";
     readonly overlay: "sheet-overlay";
@@ -2050,7 +2957,7 @@ export declare const sheetParts: {
 };
 export type SheetPart = keyof typeof sheetParts;
 export type SheetClasses = Partial<Record<SheetPart, string>>;
-export type SheetSide = "bottom" | "left" | "right";
+export type SheetSide = NonNullable<SheetStyleOptions["side"]>;
 /** `auto` slides on pointer opens and closes. `none` never moves. */
 export type SheetMotion = "auto" | "none";
 export type SheetStyles = {
@@ -2062,15 +2969,13 @@ export declare const sheetStyles: SheetStyles;
 ## @codeui/styles/internal/parts/skeleton.d.ts
 
 ```ts
+import type { SkeletonStyleOptions } from "../generated-appearance/skeleton.js";
 export declare const skeletonParts: {
     readonly root: "skeleton-root";
 };
 export type SkeletonPart = keyof typeof skeletonParts;
 export type SkeletonClasses = Partial<Record<SkeletonPart, string>>;
-export type SkeletonVariants = {
-    circle?: boolean;
-    animate?: boolean;
-};
+export type SkeletonVariants = Omit<SkeletonStyleOptions, "class">;
 export type SkeletonStyles = {
     [P in SkeletonPart]: () => string;
 };
@@ -2080,8 +2985,9 @@ export declare const skeletonStyles: SkeletonStyles;
 ## @codeui/styles/internal/parts/slider.d.ts
 
 ```ts
+import type { SliderStyleOptions } from "../generated-appearance/slider.js";
 export type SliderVariants = {
-    orientation?: "horizontal" | "vertical";
+    orientation?: NonNullable<SliderStyleOptions["orientation"]> | "horizontal";
 };
 export declare const sliderParts: {
     readonly root: "slider-root";
@@ -2103,6 +3009,7 @@ export declare const sliderStyles: SliderStyles;
 ## @codeui/styles/internal/parts/spinner.d.ts
 
 ```ts
+import type { SpinnerStyleOptions } from "../generated-appearance/spinner.js";
 export declare const spinnerParts: {
     readonly root: "spinner-root";
     readonly track: "spinner-track";
@@ -2110,7 +3017,7 @@ export declare const spinnerParts: {
 };
 export type SpinnerPart = keyof typeof spinnerParts;
 export type SpinnerClasses = Partial<Record<SpinnerPart, string>>;
-export type SpinnerSize = "sm" | "md" | "lg";
+export type SpinnerSize = NonNullable<SpinnerStyleOptions["size"]>;
 export type SpinnerVariants = {
     size?: SpinnerSize;
 };
@@ -2123,12 +3030,10 @@ export declare const spinnerStyles: SpinnerStyles;
 ## @codeui/styles/internal/parts/stack.d.ts
 
 ```ts
-export type Gap = "0" | "0.5" | "1" | "1.5" | "2" | "2.5" | "3" | "4" | "5" | "6" | "8" | "10" | "12" | "16" | "20" | "24" | "32" | "40" | "48" | "56" | "64" | "px";
-export type StackVariants = {
+import type { StackStyleOptions } from "../generated-appearance/stack.js";
+export type Gap = Exclude<NonNullable<StackStyleOptions["gap"]>, "auto">;
+export type StackVariants = Omit<StackStyleOptions, "class" | "gap" | "wrap"> & {
     gap?: Gap;
-    align?: "start" | "center" | "end" | "stretch" | "baseline";
-    justify?: "start" | "center" | "end" | "between" | "around" | "evenly";
-    direction?: "row" | "column";
     wrap?: boolean;
 };
 export declare const stackParts: {
@@ -2145,6 +3050,7 @@ export declare const stackStyles: StackStyles;
 ## @codeui/styles/internal/parts/switch.d.ts
 
 ```ts
+import type { SwitchStyleOptions } from "../generated-appearance/switch.js";
 export declare const switchParts: {
     readonly root: "switch-root";
     readonly input: "switch-input";
@@ -2154,63 +3060,22 @@ export declare const switchParts: {
     readonly description: "switch-description";
     readonly errorMessage: "switch-error-message";
 };
-export type SwitchVariants = {
-    size?: "sm" | "md";
-};
+export type SwitchVariants = Omit<SwitchStyleOptions, "class">;
 export type SwitchPart = "root" | "input" | "control" | "thumb" | "label" | "description" | "errorMessage";
 export type SwitchClasses = Partial<Record<SwitchPart, string>>;
 export type SwitchStyles = Record<SwitchPart, () => string>;
 export declare const switchStyles: SwitchStyles;
-export type SwitchStyleOptions = SwitchVariants & {
-    class?: string;
-};
-export declare const switchStyleProps: {
-    root: ({ size, class: className }?: SwitchStyleOptions) => {
-        class: string;
-        "data-cui": "switch-root";
-        "data-size": "sm" | "md" | undefined;
-    };
-    input: ({ size, class: className }?: SwitchStyleOptions) => {
-        class: string;
-        "data-cui": "switch-input";
-        "data-size": "sm" | "md" | undefined;
-    };
-    control: ({ size, class: className }?: SwitchStyleOptions) => {
-        class: string;
-        "data-cui": "switch-control";
-        "data-size": "sm" | "md" | undefined;
-    };
-    thumb: ({ size, class: className }?: SwitchStyleOptions) => {
-        class: string;
-        "data-cui": "switch-thumb";
-        "data-size": "sm" | "md" | undefined;
-    };
-    label: ({ size, class: className }?: SwitchStyleOptions) => {
-        class: string;
-        "data-cui": "switch-label";
-        "data-size": "sm" | "md" | undefined;
-    };
-    description: ({ size, class: className }?: SwitchStyleOptions) => {
-        class: string;
-        "data-cui": "switch-description";
-        "data-size": "sm" | "md" | undefined;
-    };
-    errorMessage: ({ size, class: className }?: SwitchStyleOptions) => {
-        class: string;
-        "data-cui": "switch-error-message";
-        "data-size": "sm" | "md" | undefined;
-    };
-};
 ```
 
 ## @codeui/styles/internal/parts/text.d.ts
 
 ```ts
+import type { TextStyleOptions } from "../generated-appearance/text.js";
 import { tokens } from "../foundation/cui.css.js";
 export type TextVariants = {
     size?: keyof typeof tokens.font.size;
     weight?: keyof typeof tokens.font.weight;
-    tone?: "default" | "muted" | "hint" | "label" | "danger" | "success";
+    tone?: NonNullable<TextStyleOptions["tone"]>;
 };
 export declare const textParts: {
     readonly root: "text-root";
@@ -2226,6 +3091,7 @@ export declare const textStyles: TextStyles;
 ## @codeui/styles/internal/parts/toast.d.ts
 
 ```ts
+import type { ToastStyleOptions, ToastRegionStyleOptions } from "../generated-appearance/toast.js";
 export declare const toastParts: {
     readonly region: "toast-region";
     readonly list: "toast-list";
@@ -2240,8 +3106,8 @@ export declare const toastParts: {
 };
 export type ToastPart = keyof typeof toastParts;
 export type ToastClasses = Partial<Record<ToastPart, string>>;
-export type ToastTone = "neutral" | "info" | "success" | "warning" | "danger";
-export type ToastPosition = "top-left" | "top-center" | "top-right" | "bottom-left" | "bottom-center" | "bottom-right";
+export type ToastTone = NonNullable<ToastStyleOptions["tone"]>;
+export type ToastPosition = NonNullable<ToastRegionStyleOptions["position"]>;
 export type ToastVariants = {
     tone?: ToastTone;
     position?: ToastPosition;
@@ -2280,6 +3146,18 @@ export type StyleRule = WithQueries<PropertiesWithVars & {
 export {};
 ```
 
+## @codeui/styles/internal/utils/applyStyleProps.d.ts
+
+```ts
+export type StyleProps = {
+    class: string;
+    "data-cui": string;
+    [attribute: `data-${string}`]: string | undefined;
+};
+/** Apply a helper result to an element, including removal of unset variant attributes. */
+export declare function applyStyleProps(element: Element, props: StyleProps): void;
+```
+
 ## @codeui/styles/internal/utils/css.d.ts
 
 ```ts
@@ -2299,24 +3177,28 @@ export declare function mapValues<T extends Record<string, any>, R>(obj: T, cb: 
 ```ts
 export * from "./internal/components/Kbd/Kbd.css.js";
 export { kbdParts, type KbdPart, type KbdClasses, type KbdSize, type KbdVariant, type KbdVariants, type KbdStyles, kbdStyles } from "./internal/parts/kbd.js";
+export * from "./internal/generated-appearance/kbd.js";
 ```
 
 ## @codeui/styles/link.d.ts
 
 ```ts
 export * from "./internal/components/Link/Link.css.js";
+export * from "./internal/generated-appearance/link.js";
 ```
 
 ## @codeui/styles/listbox.d.ts
 
 ```ts
 export * from "./internal/components/Listbox/Listbox.css.js";
+export * from "./internal/generated-appearance/listbox.js";
 ```
 
 ## @codeui/styles/number-field.d.ts
 
 ```ts
 export * from "./internal/components/NumberField/NumberField.css.js";
+export * from "./internal/generated-appearance/number-field.js";
 ```
 
 ## @codeui/styles/option-card.d.ts
@@ -2324,6 +3206,7 @@ export * from "./internal/components/NumberField/NumberField.css.js";
 ```ts
 export * from "./internal/components/OptionCard/OptionCard.css.js";
 export { optionCardParts, type OptionCardPart, type OptionCardClasses, type OptionCardVariant, type OptionCardVariants, type OptionCardStyles, optionCardStyles } from "./internal/parts/option-card.js";
+export * from "./internal/generated-appearance/option-card.js";
 ```
 
 ## @codeui/styles/pagination.d.ts
@@ -2337,6 +3220,7 @@ export * from "./internal/components/Pagination/Pagination.css.js";
 ```ts
 export * from "./internal/components/Popover/Popover.css.js";
 export { popoverParts, type PopoverPart, type PopoverClasses, type PopoverVariant, type PopoverStyles, popoverStyles } from "./internal/parts/popover.js";
+export * from "./internal/generated-appearance/popover.js";
 ```
 
 ## @codeui/styles/progress.d.ts
@@ -2344,24 +3228,28 @@ export { popoverParts, type PopoverPart, type PopoverClasses, type PopoverVarian
 ```ts
 export * from "./internal/components/Progress/Progress.css.js";
 export { type ProgressVariants, progressParts, type ProgressPart, type ProgressClasses, type ProgressStyles, progressStyles } from "./internal/parts/progress.js";
+export * from "./internal/generated-appearance/progress.js";
 ```
 
 ## @codeui/styles/radio-list.d.ts
 
 ```ts
 export * from "./internal/components/RadioList/Radio.css.js";
+export * from "./internal/generated-appearance/radio-list.js";
 ```
 
 ## @codeui/styles/segmented-control.d.ts
 
 ```ts
 export * from "./internal/components/SegmentedControl/SegmentedControl.css.js";
+export * from "./internal/generated-appearance/segmented-control.js";
 ```
 
 ## @codeui/styles/select.d.ts
 
 ```ts
 export * from "./internal/components/Select/Select.css.js";
+export * from "./internal/generated-appearance/select.js";
 ```
 
 ## @codeui/styles/settings.d.ts
@@ -2369,6 +3257,7 @@ export * from "./internal/components/Select/Select.css.js";
 ```ts
 export * from "./internal/components/Settings/Settings.css.js";
 export { settingsRowParts, type SettingsRowPart, type SettingsRowClasses, type SettingsRowLayout, type SettingsRowVariants, type SettingsRowStyles, settingsRowStyles, settingsGroupParts, type SettingsGroupPart, type SettingsGroupClasses, type SettingsGroupStyles, settingsGroupStyles } from "./internal/parts/settings.js";
+export * from "./internal/generated-appearance/settings.js";
 ```
 
 ## @codeui/styles/sheet.d.ts
@@ -2376,6 +3265,7 @@ export { settingsRowParts, type SettingsRowPart, type SettingsRowClasses, type S
 ```ts
 export * from "./internal/components/Sheet/Sheet.css.js";
 export { sheetParts, type SheetPart, type SheetClasses, type SheetSide, type SheetMotion, type SheetStyles, sheetStyles } from "./internal/parts/sheet.js";
+export * from "./internal/generated-appearance/sheet.js";
 ```
 
 ## @codeui/styles/skeleton.d.ts
@@ -2383,6 +3273,7 @@ export { sheetParts, type SheetPart, type SheetClasses, type SheetSide, type She
 ```ts
 export * from "./internal/components/Skeleton/Skeleton.css.js";
 export { skeletonParts, type SkeletonPart, type SkeletonClasses, type SkeletonVariants, type SkeletonStyles, skeletonStyles } from "./internal/parts/skeleton.js";
+export * from "./internal/generated-appearance/skeleton.js";
 ```
 
 ## @codeui/styles/slider.d.ts
@@ -2390,6 +3281,7 @@ export { skeletonParts, type SkeletonPart, type SkeletonClasses, type SkeletonVa
 ```ts
 export * from "./internal/components/Slider/Slider.css.js";
 export { type SliderVariants, sliderParts, type SliderPart, type SliderClasses, type SliderStyles, sliderStyles } from "./internal/parts/slider.js";
+export * from "./internal/generated-appearance/slider.js";
 ```
 
 ## @codeui/styles/spinner.d.ts
@@ -2397,6 +3289,7 @@ export { type SliderVariants, sliderParts, type SliderPart, type SliderClasses, 
 ```ts
 export * from "./internal/components/Spinner/Spinner.css.js";
 export { spinnerParts, type SpinnerPart, type SpinnerClasses, type SpinnerSize, type SpinnerVariants, type SpinnerStyles, spinnerStyles } from "./internal/parts/spinner.js";
+export * from "./internal/generated-appearance/spinner.js";
 ```
 
 ## @codeui/styles/stack.d.ts
@@ -2404,31 +3297,36 @@ export { spinnerParts, type SpinnerPart, type SpinnerClasses, type SpinnerSize, 
 ```ts
 export * from "./internal/components/Stack/Stack.css.js";
 export { type Gap, type StackVariants, stackParts, type StackPart, type StackClasses, type StackStyles, stackStyles } from "./internal/parts/stack.js";
+export * from "./internal/generated-appearance/stack.js";
 ```
 
 ## @codeui/styles/switch.d.ts
 
 ```ts
 export * from "./internal/components/Switch/Switch.css.js";
-export { switchParts, type SwitchVariants, type SwitchPart, type SwitchClasses, type SwitchStyles, switchStyles, type SwitchStyleOptions, switchStyleProps } from "./internal/parts/switch.js";
+export { switchParts, type SwitchVariants, type SwitchPart, type SwitchClasses, type SwitchStyles, switchStyles } from "./internal/parts/switch.js";
+export * from "./internal/generated-appearance/switch.js";
 ```
 
 ## @codeui/styles/tabs.d.ts
 
 ```ts
 export * from "./internal/components/Tabs/Tabs.css.js";
+export * from "./internal/generated-appearance/tabs.js";
 ```
 
 ## @codeui/styles/text-area.d.ts
 
 ```ts
 export * from "./internal/components/TextArea/TextArea.css.js";
+export * from "./internal/generated-appearance/text-area.js";
 ```
 
 ## @codeui/styles/text-field.d.ts
 
 ```ts
 export * from "./internal/components/TextField/TextField.css.js";
+export * from "./internal/generated-appearance/text-field.js";
 ```
 
 ## @codeui/styles/text.d.ts
@@ -2436,6 +3334,7 @@ export * from "./internal/components/TextField/TextField.css.js";
 ```ts
 export * from "./internal/components/Text/Text.css.js";
 export { type TextVariants, textParts, type TextPart, type TextClasses, type TextStyles, textStyles } from "./internal/parts/text.js";
+export * from "./internal/generated-appearance/text.js";
 ```
 
 ## @codeui/styles/theme.d.ts
@@ -2449,6 +3348,7 @@ export * from "./internal/foundation/index.js";
 ```ts
 export * from "./internal/components/Toast/Toast.css.js";
 export { toastParts, type ToastPart, type ToastClasses, type ToastTone, type ToastPosition, type ToastVariants, type ToastStyles, toastStyles } from "./internal/parts/toast.js";
+export * from "./internal/generated-appearance/toast.js";
 ```
 
 ## @codeui/styles/tokens.d.ts
@@ -2461,6 +3361,7 @@ export * from "./internal/foundation/index.js";
 
 ```ts
 export * from "./internal/components/Tooltip/Tooltip.css.js";
+export * from "./internal/generated-appearance/tooltip.js";
 ```
 
 ## components/Accordion/Accordion.d.ts

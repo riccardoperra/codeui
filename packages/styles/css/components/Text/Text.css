@@ -18,7 +18,7 @@
       font-size: var(--cui-component-text-root-size-caption-font-size);
     }
 
-    &[data-size="sm"] {
+    &:is(:not([data-size]), [data-size="sm"]) {
       font-size: var(--cui-component-text-root-size-sm-font-size);
     }
 
@@ -38,7 +38,7 @@
       font-size: var(--cui-component-text-root-size-2xl-font-size);
     }
 
-    &[data-weight="normal"] {
+    &:is(:not([data-weight]), [data-weight="normal"]) {
       font-weight: var(--cui-font-weight-normal);
     }
 
@@ -50,7 +50,7 @@
       font-weight: var(--cui-font-weight-semibold);
     }
 
-    &[data-tone="default"] {
+    &:is(:not([data-tone]), [data-tone="default"]) {
       color: var(--cui-component-text-root-tone-default-color);
     }
 

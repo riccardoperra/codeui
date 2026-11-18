@@ -32,7 +32,7 @@
       --cui-radioTheme-inputFill: var(--cui-component-radio-list-radio-radio-list-theme-filled-input-fill);
     }
 
-    &[data-orientation="horizontal"] {
+    &:is(:not([data-orientation]), [data-orientation="horizontal"]) {
       flex-direction: row;
     }
 
@@ -50,7 +50,7 @@
       --cui-radioTheme-labelSize: var(--cui-component-radio-list-radio-radio-list-size-sm-label-size);
     }
 
-    &[data-size="md"] {
+    &:is(:not([data-size]), [data-size="md"]) {
       --cui-radioTheme-inputSize: 1.25rem;
       --cui-radioTheme-labelSize: var(--cui-component-radio-list-radio-radio-list-size-md-label-size);
     }

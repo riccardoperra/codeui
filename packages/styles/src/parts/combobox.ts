@@ -1,5 +1,6 @@
+import type { ComboboxStyleOptions } from "../generated-appearance/combobox";
 import * as styles from "../components/Combobox/Combobox.css";
-export type ComboboxVariants = { size?: "sm" | "md" };
+export type ComboboxVariants = Omit<ComboboxStyleOptions, "class">;
 export const comboboxParts = {
 	root: "combobox-root",
 	control: "combobox-control",
@@ -21,10 +22,7 @@ export const comboboxParts = {
 } as const;
 export type ComboboxPart = keyof typeof comboboxParts;
 export type ComboboxClasses = Partial<Record<ComboboxPart, string>>;
-export type ComboboxStyles = Record<
-	ComboboxPart,
-	() => string
->;
+export type ComboboxStyles = Record<ComboboxPart, () => string>;
 export const comboboxStyles: ComboboxStyles = {
 	root: () => styles.root,
 	control: styles.control,

@@ -1,3 +1,4 @@
+import type { SpinnerStyleOptions } from "../generated-appearance/spinner";
 import * as styles from "../components/Spinner/Spinner.css";
 export const spinnerParts = {
 	root: "spinner-root",
@@ -7,7 +8,7 @@ export const spinnerParts = {
 
 export type SpinnerPart = keyof typeof spinnerParts;
 export type SpinnerClasses = Partial<Record<SpinnerPart, string>>;
-export type SpinnerSize = "sm" | "md" | "lg";
+export type SpinnerSize = NonNullable<SpinnerStyleOptions["size"]>;
 export type SpinnerVariants = { size?: SpinnerSize };
 
 export type SpinnerStyles = {

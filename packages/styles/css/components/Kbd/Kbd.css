@@ -15,7 +15,7 @@
     border: var(--cui-border-width) solid transparent;
   }
   :where(.cui-kbd-root) {
-    &[data-size="sm"] {
+    &:is(:not([data-size]), [data-size="sm"]) {
       min-width: var(--cui-component-kbd-root-size-sm-min-width);
       min-height: var(--cui-component-kbd-root-size-sm-min-height);
       padding-inline: var(--cui-component-kbd-root-size-sm-padding-inline);
@@ -29,7 +29,7 @@
       font-size: var(--cui-component-kbd-root-size-md-font-size);
     }
 
-    &[data-variant="keycap"] {
+    &:is(:not([data-variant]), [data-variant="keycap"]) {
       color: var(--cui-component-kbd-root-variant-keycap-color);
       border-color: var(--cui-component-kbd-root-variant-keycap-border-color);
     }

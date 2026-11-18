@@ -1,5 +1,6 @@
+import type { ProgressStyleOptions } from "../generated-appearance/progress";
 import * as styles from "../components/Progress/Progress.css";
-export type ProgressVariants = { size?: "sm" | "md" };
+export type ProgressVariants = Omit<ProgressStyleOptions, "class">;
 export const progressParts = {
 	root: "progress-root",
 	label: "progress-label",
@@ -9,10 +10,7 @@ export const progressParts = {
 } as const;
 export type ProgressPart = keyof typeof progressParts;
 export type ProgressClasses = Partial<Record<ProgressPart, string>>;
-export type ProgressStyles = Record<
-	ProgressPart,
-	() => string
->;
+export type ProgressStyles = Record<ProgressPart, () => string>;
 export const progressStyles: ProgressStyles = {
 	root: () => styles.root,
 	label: () => styles.label,

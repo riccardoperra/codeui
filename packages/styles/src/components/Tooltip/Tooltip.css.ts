@@ -1,4 +1,6 @@
-export const tooltipContent = (): string => "cui-tooltip-tooltipContent cui-tooltip-tooltipTheme";
+import type { TooltipStyleOptions } from "../../generated-appearance/tooltip";
+export const tooltipContent = (): string =>
+	"cui-tooltip-tooltipContent cui-tooltip-tooltipTheme";
 export const tooltipTheme: string = "cui-tooltip-tooltipTheme";
 export const tooltipVars = {
 	fontSize: "var(--cui-tooltipTheme-fontSize)" as `var(--${string})`,
@@ -11,6 +13,4 @@ export const tooltipVars = {
 };
 export const trigger: string = "cui-tooltip-trigger";
 
-export type TooltipVariants = {
-	theme?: "primary" | "secondary";
-} | undefined;
+export type TooltipVariants = Omit<TooltipStyleOptions, "class"> | undefined;

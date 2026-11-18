@@ -9,11 +9,7 @@
     font-size: var(--cui-font-size-xs);
     line-height: var(--cui-font-line-height-xs);
   }
-  [data-field-size=sm] .cui-field-label-label {
-    font-size: var(--cui-font-size-sm);
-    line-height: var(--cui-font-line-height-sm);
-  }
-  [data-field-size=md] .cui-field-label-label {
+  :where(.cui-field-baseFieldTheme):is(:not([data-field-size]), [data-field-size="sm"], [data-field-size="md"]) .cui-field-label-label {
     font-size: var(--cui-font-size-sm);
     line-height: var(--cui-font-line-height-sm);
   }

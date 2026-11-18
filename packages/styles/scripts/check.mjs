@@ -5,6 +5,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import { createRequire } from "node:module";
 import ts from "typescript";
 import { collectContracts } from "./contracts.mjs";
+import { checkAppearance, checkAppearanceDocs } from "./appearance.mjs";
 import { checkRenderers } from "./renderers.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -13,6 +14,8 @@ const require = createRequire(import.meta.url);
 const registry = JSON.parse(await readFile(path.join(root, "entries.json"), "utf8"));
 const manifest = JSON.parse(await readFile(path.join(out, "manifest.json"), "utf8"));
 const pkg = JSON.parse(await readFile(path.join(root, "package.json"), "utf8"));
+await checkAppearance();
+await checkAppearanceDocs();
 checkRenderers(root, registry, manifest);
 const walk = async dir =>
 	(
@@ -144,9 +147,17 @@ for (const [name, entry] of Object.entries(registry)) {
 assert(!manifest.entries.button.components.includes("switch"));
 assert(!manifest.entries.button.components.includes("dialog"));
 assert(!manifest.entries.theme.scopes.some(scope => scope.startsWith("components/")));
+const expectedContract = JSON.parse(
+	await readFile(path.join(root, "contract.json"), "utf8"),
+);
+assert.deepEqual(
+	JSON.parse(await readFile(path.join(out, "contract.json"), "utf8")),
+	expectedContract,
+	"Built CSS contract is out of date. Rebuild @codeui/styles.",
+);
 assert.deepEqual(
 	await collectContracts(out),
-	JSON.parse(await readFile(path.join(root, "contract.json"), "utf8")),
+	expectedContract,
 	"Public CSS contract drifted.",
 );
 assert.doesNotMatch(
@@ -208,6 +219,16 @@ try {
 			`
 import { button, buttonStyleProps } from '@codeui/styles/button';
 import { switchStyleProps } from '@codeui/styles/switch';
+import { stackStyleProps } from '@codeui/styles/stack';
+import { dialogStyleProps } from '@codeui/styles/dialog';
+import { applyStyleProps } from '@codeui/styles';
+applyStyleProps(document.createElement('button'), buttonStyleProps());
+dialogStyleProps.section({ variant: 'well', columns: '2' });
+stackStyleProps({ gap: '2.5', wrap: 'false' });
+// @ts-expect-error Each part accepts only its own appearance options.
+dialogStyleProps.section({ size: 'xl' });
+// @ts-expect-error Stack wrap matches explicit CSS enum values.
+stackStyleProps({ wrap: false });
 import { breakpoints, type Breakpoint } from '@codeui/inkstone';
 const breakpoint: Breakpoint = 'md';
 const width: number = breakpoints[breakpoint];

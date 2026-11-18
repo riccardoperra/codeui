@@ -1,4 +1,5 @@
-import { ComponentSizes, type BaseComponentSize } from "../../foundation/sizes";
+import type { FieldStyleOptions } from "../../generated-appearance/field";
+import { ComponentSizes } from "../../foundation/sizes";
 
 export const FieldSizes = ComponentSizes;
 export const baseFieldTheme: string = "cui-field-baseFieldTheme";
@@ -16,9 +17,4 @@ export const baseFieldVars = {
 export const fontSize: `var(--${string})` = "var(--cui-field-fontSize)";
 export const inputHeight: `var(--${string})` = "var(--cui-field-inputHeight)";
 
-export type BaseFieldVariants =
-	| {
-			size?: BaseComponentSize;
-			theme?: "filled" | "inline";
-	  }
-	| undefined;
+export type BaseFieldVariants = Omit<FieldStyleOptions, "class"> | undefined;

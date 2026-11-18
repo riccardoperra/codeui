@@ -14,17 +14,17 @@
     white-space: nowrap;
     vertical-align: middle;
 
-    &:where([data-tone="neutral"][data-variant="soft"]) {
+    &:where(:is(:not([data-tone]), [data-tone="neutral"]):is(:not([data-variant]), [data-variant="soft"])) {
       background-color: var(--cui-component-badge-root-compound-tone-neutral-variant-soft-background-color);
       color: var(--cui-component-badge-root-compound-tone-neutral-variant-soft-color);
     }
 
-    &:where([data-tone="neutral"][data-variant="outline"]) {
+    &:where(:is(:not([data-tone]), [data-tone="neutral"])[data-variant="outline"]) {
       border-color: var(--cui-component-badge-root-compound-tone-neutral-variant-outline-border-color);
       color: var(--cui-component-badge-root-compound-tone-neutral-variant-outline-color);
     }
 
-    &:where([data-tone="info"][data-variant="soft"]) {
+    &:where([data-tone="info"]:is(:not([data-variant]), [data-variant="soft"])) {
       background-color: var(--cui-component-badge-root-compound-tone-info-variant-soft-background-color);
       color: var(--cui-component-badge-root-compound-tone-info-variant-soft-color);
     }
@@ -34,7 +34,7 @@
       color: var(--cui-component-badge-root-compound-tone-info-variant-outline-color);
     }
 
-    &:where([data-tone="success"][data-variant="soft"]) {
+    &:where([data-tone="success"]:is(:not([data-variant]), [data-variant="soft"])) {
       background-color: var(--cui-component-badge-root-compound-tone-success-variant-soft-background-color);
       color: var(--cui-component-badge-root-compound-tone-success-variant-soft-color);
     }
@@ -44,7 +44,7 @@
       color: var(--cui-component-badge-root-compound-tone-success-variant-outline-color);
     }
 
-    &:where([data-tone="warning"][data-variant="soft"]) {
+    &:where([data-tone="warning"]:is(:not([data-variant]), [data-variant="soft"])) {
       background-color: var(--cui-component-badge-root-compound-tone-warning-variant-soft-background-color);
       color: var(--cui-component-badge-root-compound-tone-warning-variant-soft-color);
     }
@@ -54,7 +54,7 @@
       color: var(--cui-component-badge-root-compound-tone-warning-variant-outline-color);
     }
 
-    &:where([data-tone="danger"][data-variant="soft"]) {
+    &:where([data-tone="danger"]:is(:not([data-variant]), [data-variant="soft"])) {
       background-color: var(--cui-component-badge-root-compound-tone-danger-variant-soft-background-color);
       color: var(--cui-component-badge-root-compound-tone-danger-variant-soft-color);
     }
@@ -65,7 +65,7 @@
     }
   }
   :where(.cui-badge-root) {
-    &[data-size="sm"] {
+    &:is(:not([data-size]), [data-size="sm"]) {
       min-height: var(--cui-component-badge-root-size-sm-min-height);
       padding: var(--cui-space-px) var(--cui-space-1-5);
       font-size: var(--cui-component-badge-root-size-sm-font-size);

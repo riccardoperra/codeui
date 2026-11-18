@@ -19,7 +19,7 @@
     position: relative;
   }
   .cui-tabs-tabsList {
-    &[data-orientation=horizontal] {
+    &:is(:not([data-orientation]), [data-orientation="horizontal"]) {
       border-bottom: var(--cui-border-width) solid var(--cui-tabsTheme-tabListIndicatorColor);
     }
 
@@ -63,7 +63,7 @@
     transition: none;
   }
   .cui-tabs-indicator {
-    &[data-orientation=horizontal] {
+    &:is(:not([data-orientation]), [data-orientation="horizontal"]) {
       bottom: -2px;
       height: 3px;
     }

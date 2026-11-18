@@ -1,3 +1,7 @@
+import type {
+	ToastStyleOptions,
+	ToastRegionStyleOptions,
+} from "../generated-appearance/toast";
 import * as styles from "../components/Toast/Toast.css";
 export const toastParts = {
 	region: "toast-region",
@@ -14,14 +18,8 @@ export const toastParts = {
 
 export type ToastPart = keyof typeof toastParts;
 export type ToastClasses = Partial<Record<ToastPart, string>>;
-export type ToastTone = "neutral" | "info" | "success" | "warning" | "danger";
-export type ToastPosition =
-	| "top-left"
-	| "top-center"
-	| "top-right"
-	| "bottom-left"
-	| "bottom-center"
-	| "bottom-right";
+export type ToastTone = NonNullable<ToastStyleOptions["tone"]>;
+export type ToastPosition = NonNullable<ToastRegionStyleOptions["position"]>;
 export type ToastVariants = { tone?: ToastTone; position?: ToastPosition };
 
 export type ToastStyles = { [P in ToastPart]: () => string };

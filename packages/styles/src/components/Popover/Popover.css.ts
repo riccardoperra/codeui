@@ -1,3 +1,4 @@
+import type { PopoverStyleOptions } from "../../generated-appearance/popover";
 export const content = (): string => "cui-popover-content cui-popover-popoverTheme";
 export const description: string = "cui-popover-description";
 export const popoverTheme: string = "cui-popover-popoverTheme";
@@ -16,6 +17,4 @@ export const popoverThemeVars = {
 };
 export const title: string = "cui-popover-title";
 
-export type PopoverVariants = {
-	variant?: "bordered";
-} | undefined;
+export type PopoverVariants = Omit<PopoverStyleOptions, "class"> | undefined;

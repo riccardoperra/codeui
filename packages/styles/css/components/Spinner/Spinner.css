@@ -18,7 +18,7 @@
       height: var(--cui-component-spinner-root-size-sm-height);
     }
 
-    &[data-size="md"] {
+    &:is(:not([data-size]), [data-size="md"]) {
       width: var(--cui-component-spinner-root-size-md-width);
       height: var(--cui-component-spinner-root-size-md-height);
     }

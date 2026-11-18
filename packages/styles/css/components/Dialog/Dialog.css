@@ -345,7 +345,7 @@
     flex-direction: column;
     min-width: 0;
   }
-  [data-variant=group] > .cui-dialog-sectionContent {
+  :where(.cui-dialog-section):is(:not([data-variant]), [data-variant="group"]) > .cui-dialog-sectionContent {
     padding: var(--cui-space-1-5) 0;
     border-radius: var(--cui-component-dialog-section-content-variant-group-border-radius);
     background-color: var(--cui-dialogTheme-islandBackground);

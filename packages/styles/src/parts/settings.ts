@@ -1,3 +1,4 @@
+import type { SettingsStyleOptions } from "../generated-appearance/settings";
 import * as styles from "../components/Settings/Settings.css";
 import { mergeClasses } from "../utils/css";
 export const settingsRowParts = {
@@ -11,7 +12,7 @@ export const settingsRowParts = {
 } as const;
 export type SettingsRowPart = keyof typeof settingsRowParts;
 export type SettingsRowClasses = Partial<Record<SettingsRowPart, string>>;
-export type SettingsRowLayout = "inline" | "wide";
+export type SettingsRowLayout = NonNullable<SettingsStyleOptions["layout"]> | "inline";
 export type SettingsRowVariants = {
 	layout?: SettingsRowLayout;
 	compactControl?: boolean;
