@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "storybook-solidjs-vite";
+import { expect, within } from "storybook/test";
 
 import {
 	Button,
@@ -172,6 +173,10 @@ const settingsSections = ["General", "Appearance", "Export", "Experiments", "Wha
 /** The settings layout: a sidebar with search and sections, and the section on screen. Opened on load. */
 export const SettingsLayout: Story = {
 	tags: ["!autodocs"],
+	play: async () => {
+		const panel = await within(document.body).findByRole("dialog", { name: "Settings / General" });
+		await expect(getComputedStyle(panel).borderTopLeftRadius).toBe("14px");
+	},
 	render: () => {
 		const [section, setSection] = createSignal("General");
 		return (

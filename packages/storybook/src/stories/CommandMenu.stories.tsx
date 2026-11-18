@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "storybook-solidjs-vite";
+import { expect, within } from "storybook/test";
 import {
 	Button,
 	type CommandItem,
@@ -202,6 +203,14 @@ export const Default: Story = {
 export const Open: Story = {
 	tags: ["!autodocs"],
 	render: () => <Ready defaultOpen />,
+	play: async () => {
+		const panel = await within(document.body).findByRole("dialog");
+		const { left, right, width } = panel.getBoundingClientRect();
+		const viewportWidth = window.innerWidth;
+		await expect(width).toBeCloseTo(Math.min(640, viewportWidth - 32));
+		await expect(left).toBeCloseTo(viewportWidth - right);
+		await expect(getComputedStyle(panel).animationName).toBe("none");
+	},
 };
 
 export const Empty: Story = {
