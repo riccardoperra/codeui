@@ -13,7 +13,8 @@ import type { ColourPaletteData } from '../components/inkstone/colour-palette';
 //   repeats on the page, or the tag sits inside a paragraph, and gets the demo source printed under it as a code block.
 //   In the Markdown route the demo tag is replaced by that code block.
 // - <HtmlDemo name="button/themes" /> renders apps/docs/html-demos/button/themes.html in a frame that
-//   loads only @codeui/styles, and gets the HTML printed under it the same way.
+//   loads only @codeui/styles. The component prints the HTML under it, and the Markdown route gets it as
+//   a code block.
 // - <Anatomy demo="select/anatomy" /> gets its parts from the Anatomy table that follows it in the
 //   same section (rows with a `data-cui`). Its Markdown route drops the tag and keeps the table.
 //
@@ -216,9 +217,8 @@ export function remarkKit() {
 					demos.add(name);
 					const source = readFileSync(demo, 'utf8').trim();
 					children[i] = { ...node, position: undefined };
+					// HtmlDemo prints the source itself. A Shiki code block per demo made the server bundle too large.
 					replaceSource(file, node as never, fence(name, source, 'html'));
-					children.splice(i + 1, 0, { type: 'code', lang: 'html', meta: `title="${name}.html"`, value: source });
-					i++;
 					continue;
 				}
 				if (node.type === 'mdxJsxFlowElement' && node.name === 'CssPlayground') {

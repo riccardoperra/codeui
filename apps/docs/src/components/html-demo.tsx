@@ -7,6 +7,7 @@ import {
   type FrameDensity,
   type FrameTheme,
 } from '@/lib/html-demos';
+import { HtmlSource } from './html-source';
 
 type CssFrameProps = {
   html: string;
@@ -79,15 +80,18 @@ export function CssFrame({ html, theme, density, minHeight = 96, title, classNam
 }
 
 /**
- * A CSS-only demo from `apps/docs/html-demos/<name>.html`. The build prints the HTML source under it
- * (see `remark-kit.ts`).
+ * A CSS-only demo from `apps/docs/html-demos/<name>.html`, followed by its HTML source. The Markdown
+ * route gets the same source as a code block (see `remark-kit.ts`).
  */
 export function HtmlDemo({ name, minHeight }: { name: string; minHeight?: number }) {
   const html = htmlDemos[name];
   if (html === undefined) throw new Error(`Unknown HTML demo: ${name}`);
   return (
-    <div className="not-prose my-6 overflow-hidden rounded-2xl bg-fd-card">
-      <CssFrame html={html} minHeight={minHeight} title={`${name} demo`} />
-    </div>
+    <>
+      <div className="not-prose my-6 overflow-hidden rounded-2xl bg-fd-card">
+        <CssFrame html={html} minHeight={minHeight} title={`${name} demo`} />
+      </div>
+      <HtmlSource name={name} source={html} />
+    </>
   );
 }
