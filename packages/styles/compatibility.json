@@ -34,6 +34,7 @@
 	"components/Spinner/Spinner.css",
 	"components/Stack/Stack.css",
 	"components/Switch/Switch.css",
+	"components/Table/Table.css",
 	"components/Tabs/Tabs.css",
 	"components/Text/Text.css",
 	"components/TextArea/TextArea.css",

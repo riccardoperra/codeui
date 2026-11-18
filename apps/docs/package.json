@@ -14,6 +14,7 @@
 	"dependencies": {
 		"@codeui/docs-demos": "workspace:*",
 		"@codeui/examples": "workspace:*",
+		"@codeui/styles": "workspace:*",
 		"@tanstack/react-router": "1.170.46",
 		"@tanstack/react-router-devtools": "1.167.3",
 		"@tanstack/react-start": "1.169.5",

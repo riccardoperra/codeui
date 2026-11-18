@@ -394,6 +394,17 @@
         "default": "./dist/cjs/switch.cjs"
       }
     },
+    "./table.css": "./dist/table.css",
+    "./table": {
+      "import": {
+        "types": "./dist/types/table.d.ts",
+        "default": "./dist/esm/table.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/table.d.cts",
+        "default": "./dist/cjs/table.cjs"
+      }
+    },
     "./tabs.css": "./dist/tabs.css",
     "./tabs": {
       "import": {
@@ -855,6 +866,16 @@
         "default": "./dist/cjs/internal/components/Switch/Switch.css.cjs"
       }
     },
+    "./internal/components/Table/Table.css": {
+      "import": {
+        "types": "./dist/types/internal/components/Table/Table.css.d.ts",
+        "default": "./dist/esm/internal/components/Table/Table.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/Table/Table.css.d.cts",
+        "default": "./dist/cjs/internal/components/Table/Table.css.cjs"
+      }
+    },
     "./internal/components/Tabs/Tabs.css": {
       "import": {
         "types": "./dist/types/internal/components/Tabs/Tabs.css.d.ts",
@@ -1174,6 +1195,9 @@
       "switch": [
         "dist/types/switch.d.ts"
       ],
+      "table": [
+        "dist/types/table.d.ts"
+      ],
       "tabs": [
         "dist/types/tabs.d.ts"
       ],
@@ -1308,6 +1332,9 @@
       ],
       "internal/components/Switch/Switch.css": [
         "dist/types/internal/components/Switch/Switch.css.d.ts"
+      ],
+      "internal/components/Table/Table.css": [
+        "dist/types/internal/components/Table/Table.css.d.ts"
       ],
       "internal/components/Tabs/Tabs.css": [
         "dist/types/internal/components/Tabs/Tabs.css.d.ts"
