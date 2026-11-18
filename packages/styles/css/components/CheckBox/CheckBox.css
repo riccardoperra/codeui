@@ -138,29 +138,31 @@
   }
   .cui-check-box-label {
     user-select: none;
+    display: flex;
+    align-items: center;
   }
   [data-field-size=xs] .cui-check-box-label {
-    height: 1rem;
+    min-height: 1rem;
     line-height: var(--cui-font-line-height-xs);
     font-size: var(--cui-font-size-xs);
   }
   [data-field-size=sm] .cui-check-box-label {
-    height: 1.25rem;
+    min-height: 1.25rem;
     line-height: var(--cui-font-line-height-snug);
     font-size: var(--cui-font-size-sm);
   }
   :where(.cui-check-box-container):is(:not([data-field-size]), [data-field-size="md"]) .cui-check-box-label {
-    height: 1.5rem;
+    min-height: 1.5rem;
     line-height: var(--cui-font-line-height-snug);
     font-size: var(--cui-font-size-sm);
   }
   [data-field-size=lg] .cui-check-box-label {
-    height: 1.75rem;
+    min-height: 1.75rem;
     line-height: var(--cui-font-line-height-md);
     font-size: var(--cui-font-size-md);
   }
   [data-field-size=xl] .cui-check-box-label {
-    height: 2rem;
+    min-height: 2rem;
     line-height: var(--cui-font-line-height-md);
     font-size: var(--cui-font-size-md);
   }
