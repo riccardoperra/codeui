@@ -1815,6 +1815,26 @@
       "default": "cui-switch-thumb"
     }
   },
+  "table": {
+    "root": {
+      "default": "cui-table-root"
+    },
+    "scrollArea": {
+      "default": "cui-table-scrollArea"
+    },
+    "tableParts": {
+      "root": "table-root",
+      "scrollArea": "table-scroll-area"
+    },
+    "tableStyles": {
+      "root": {
+        "default": "cui-table-root"
+      },
+      "scrollArea": {
+        "default": "cui-table-scrollArea"
+      }
+    }
+  },
   "tabs": {
     "indicator": "cui-tabs-indicator",
     "tabsContent": "cui-tabs-tabsContent",

@@ -65,7 +65,7 @@
         "size-sm": {
           "font-size": {
             "$type": "dimension",
-            "$value": "{font.size.md}"
+            "$value": "{font.size.sm}"
           }
         },
         "size-md": {

@@ -42,6 +42,7 @@ export * from "./ready/pagination";
 export * from "./ready/tooltip";
 
 export * from "./ready/tabs";
+export * from "./ready/table";
 
 export * from "./ready/segmented-control";
 

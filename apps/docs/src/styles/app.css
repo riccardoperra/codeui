@@ -3,6 +3,7 @@
 @import 'fumadocs-ui/css/neutral.css';
 @import 'fumadocs-ui/css/preset.css';
 @import '@codeui/docs-demos/style.css';
+@import '@codeui/styles/table.css';
 @import '../../.generated/inkstone-docs.css';
 @import './inkstone.css';
 @import './anatomy.css';
@@ -46,4 +47,16 @@ html > body[data-scroll-locked] {
 /* A heading that is one long API name, such as `createFieldErrorMessageProps`, wraps at phone width. */
 .prose :is(h1, h2, h3, h4) {
   overflow-wrap: anywhere;
+}
+
+/* The MDX table opts out of Fumadocs prose styles, including its inline styles. */
+@layer components {
+  .mdx-table :where(a) {
+    color: var(--color-fd-primary);
+    text-decoration: underline;
+  }
+
+  .mdx-table :where(code) {
+    font-family: var(--cui-font-family-mono);
+  }
 }

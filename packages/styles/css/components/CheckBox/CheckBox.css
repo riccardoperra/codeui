@@ -146,13 +146,13 @@
   }
   [data-field-size=sm] .cui-check-box-label {
     height: 1.25rem;
-    line-height: var(--cui-font-line-height-xs);
-    font-size: var(--cui-font-size-xs);
+    line-height: var(--cui-font-line-height-snug);
+    font-size: var(--cui-font-size-sm);
   }
   :where(.cui-check-box-container):is(:not([data-field-size]), [data-field-size="md"]) .cui-check-box-label {
     height: 1.5rem;
-    line-height: var(--cui-font-line-height-xs);
-    font-size: var(--cui-font-size-xs);
+    line-height: var(--cui-font-line-height-snug);
+    font-size: var(--cui-font-size-sm);
   }
   [data-field-size=lg] .cui-check-box-label {
     height: 1.75rem;

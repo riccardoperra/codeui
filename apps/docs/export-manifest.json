@@ -229,7 +229,18 @@
 			"settingsRowStyles": "components/settings-row#settingsrowstyles",
 			"SettingsRowStyles": "components/settings-row#settingsrowstyles",
 			"SettingsRowVariants": "components/settings-row#inline-and-wide",
-			"SelectProps": "components/select#select"
+			"SelectProps": "components/select#select",
+			"Table": "components/table#table",
+			"TableClasses": "components/table#anatomy",
+			"TablePart": "components/table#anatomy",
+			"tableParts": "components/table#anatomy",
+			"TableProps": "components/table#table",
+			"TableScrollArea": "components/table#tablescrollarea",
+			"TableScrollAreaProps": "components/table#tablescrollarea",
+			"TableSize": "components/table#variants",
+			"tableStyles": "components/table#tablestyles",
+			"TableStyles": "components/table#tablestyles",
+			"TableVariants": "components/table#variants"
 		},
 		"@codeui/kit/accordion/parts": {
 			"AccordionClasses": "components/accordion#anatomy",
@@ -1180,6 +1191,19 @@
 			"RootProps": "components/tooltip#styled-parts-api",
 			"Trigger": "components/tooltip#styled-parts-api",
 			"TriggerProps": "components/tooltip#styled-parts-api"
+		},
+		"@codeui/kit/table": {
+			"Table": "components/table#table",
+			"TableClasses": "components/table#anatomy",
+			"TablePart": "components/table#anatomy",
+			"tableParts": "components/table#anatomy",
+			"TableProps": "components/table#table",
+			"TableScrollArea": "components/table#tablescrollarea",
+			"TableScrollAreaProps": "components/table#tablescrollarea",
+			"TableSize": "components/table#variants",
+			"tableStyles": "components/table#tablestyles",
+			"TableStyles": "components/table#tablestyles",
+			"TableVariants": "components/table#variants"
 		}
 	}
 }
