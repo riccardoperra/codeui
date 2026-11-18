@@ -158,9 +158,6 @@
     padding: var(--cui-space-3) var(--cui-space-3) var(--cui-space-2) var(--cui-space-6);
     font-size: var(--cui-font-size-md);
   }
-  .cui-dialog-panel:where([data-chrome="inset"][data-size="settings"]) {
-    --cui-dialogTheme-panelRadius: var(--cui-component-dialog-panel-compound-chrome-inset-size-settings-panel-radius);
-  }
   .cui-dialog-panel {
     display: inline-flex;
     flex-direction: column;
@@ -236,6 +233,10 @@
       --cui-dialogTheme-panelRadius: var(--cui-component-dialog-panel-chrome-inset-panel-radius);
       gap: var(--cui-space-5);
       padding: var(--cui-space-5);
+
+      &[data-size="settings"] {
+        --cui-dialogTheme-panelRadius: var(--cui-component-dialog-panel-compound-chrome-inset-size-settings-panel-radius);
+      }
     }
 
     &[data-chrome="inset"]:has(> [data-cui=dialog-sidebar]) {

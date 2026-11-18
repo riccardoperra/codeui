@@ -6,7 +6,9 @@
     inset: 0;
     z-index: 50;
   }
-  .cui-command-menu-content {
+  /* The Solid panel also carries Dialog's base class. */
+  .cui-command-menu-content,
+  .cui-dialog-panel.cui-command-menu-content {
     --cui-dialogTheme-panelRadius: var(--cui-component-command-menu-content-panel-radius);
     position: fixed;
     left: 50%;
@@ -20,9 +22,10 @@
     transform: translateX(-50%);
     font-size: var(--cui-font-size-sm);
     animation: none;
-  }
-  .cui-command-menu-content[data-expanded] {
-    animation: none;
+
+    &[data-expanded] {
+      animation: none;
+    }
   }
   .cui-command-menu-title {
     position: absolute;
@@ -173,14 +176,6 @@
     }
     .cui-command-menu-hint {
       display: none;
-    }
-  }
-  @media (--cui-reduced-motion) {
-    .cui-command-menu-content {
-      animation-name: none;
-    }
-    .cui-command-menu-content[data-expanded] {
-      animation-name: none;
     }
   }
 }
