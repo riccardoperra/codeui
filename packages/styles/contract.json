@@ -354,6 +354,13 @@
       "summary": "accordion-summary",
       "chevron": "accordion-chevron"
     },
+    "accordionStyleProps": {
+      "default": {
+        "class": "cui-accordion-trigger",
+        "data-cui": "accordion-trigger",
+        "data-density": "default"
+      }
+    },
     "accordionStyles": {
       "root": {
         "default": "cui-accordion-root"
@@ -762,24 +769,28 @@
     "dialogStyleProps": {
       "default": {
         "class": "cui-dialog-dialogTheme cui-dialog-panel",
-        "data-cui": "dialog-panel"
+        "data-cui": "dialog-panel",
+        "data-size": "auto"
       },
       "panel": {
         "default": {
           "class": "cui-dialog-dialogTheme cui-dialog-panel",
-          "data-cui": "dialog-panel"
+          "data-cui": "dialog-panel",
+          "data-size": "auto"
         }
       },
       "positioner": {
         "default": {
           "class": "cui-dialog-dialogTheme cui-dialog-positioner",
-          "data-cui": "dialog-positioner"
+          "data-cui": "dialog-positioner",
+          "data-panel-size": "auto"
         }
       },
       "body": {
         "default": {
           "class": "cui-dialog-panelContent",
-          "data-cui": "dialog-panel-content"
+          "data-cui": "dialog-panel-content",
+          "data-layout": "default"
         }
       },
       "section": {
@@ -985,7 +996,8 @@
     "linkStyleProps": {
       "default": {
         "class": "cui-link-link cui-link-linkTheme",
-        "data-cui": "link"
+        "data-cui": "link",
+        "data-variant": "default"
       }
     }
   },
@@ -1202,7 +1214,8 @@
     "popoverStyleProps": {
       "default": {
         "class": "cui-popover-content cui-popover-popoverTheme",
-        "data-cui": "popover-content"
+        "data-cui": "popover-content",
+        "data-variant": "default"
       }
     },
     "popoverStyles": {
@@ -1594,18 +1607,21 @@
     "sliderStyleProps": {
       "default": {
         "class": "cui-slider-track",
-        "data-cui": "slider-track"
+        "data-cui": "slider-track",
+        "data-orientation": "horizontal"
       },
       "track": {
         "default": {
           "class": "cui-slider-track",
-          "data-cui": "slider-track"
+          "data-cui": "slider-track",
+          "data-orientation": "horizontal"
         }
       },
       "fill": {
         "default": {
           "class": "cui-slider-fill",
-          "data-cui": "slider-fill"
+          "data-cui": "slider-fill",
+          "data-orientation": "horizontal"
         }
       }
     },
@@ -1809,13 +1825,15 @@
       "default": {
         "class": "cui-tabs-tabsRoot cui-tabs-tabsTheme",
         "data-cui": "tabs",
-        "data-orientation": "horizontal"
+        "data-orientation": "horizontal",
+        "data-tabs-theme": "default"
       },
       "root": {
         "default": {
           "class": "cui-tabs-tabsRoot cui-tabs-tabsTheme",
           "data-cui": "tabs",
-          "data-orientation": "horizontal"
+          "data-orientation": "horizontal",
+          "data-tabs-theme": "default"
         }
       },
       "list": {
@@ -2235,6 +2253,7 @@
         "size": {
           "kind": "enum",
           "values": [
+            "auto",
             "xs",
             "sm",
             "md",
@@ -2243,7 +2262,12 @@
             "full",
             "settings",
             "export"
-          ]
+          ],
+          "base": {
+            "value": "auto",
+            "class": "cui-dialog-panel"
+          },
+          "default": "auto"
         },
         "chrome": {
           "kind": "enum",
@@ -2254,15 +2278,27 @@
         "panelSize": {
           "kind": "enum",
           "values": [
+            "auto",
             "export",
             "full"
-          ]
+          ],
+          "base": {
+            "value": "auto",
+            "class": "cui-dialog-positioner"
+          },
+          "default": "auto"
         },
         "layout": {
           "kind": "enum",
           "values": [
+            "default",
             "split"
-          ]
+          ],
+          "base": {
+            "value": "default",
+            "class": "cui-dialog-panelContent"
+          },
+          "default": "default"
         },
         "variant": {
           "kind": "enum",
@@ -2426,8 +2462,14 @@
         "variant": {
           "kind": "enum",
           "values": [
+            "default",
             "underline"
-          ]
+          ],
+          "base": {
+            "value": "default",
+            "class": "cui-link-link"
+          },
+          "default": "default"
         }
       },
       "parts": {
@@ -2606,8 +2648,14 @@
         "variant": {
           "kind": "enum",
           "values": [
+            "default",
             "bordered"
-          ]
+          ],
+          "base": {
+            "value": "default",
+            "class": "cui-popover-content"
+          },
+          "default": "default"
         }
       },
       "parts": {
@@ -2865,8 +2913,14 @@
         "orientation": {
           "kind": "enum",
           "values": [
+            "horizontal",
             "vertical"
-          ]
+          ],
+          "base": {
+            "value": "horizontal",
+            "class": "cui-slider-track"
+          },
+          "default": "horizontal"
         }
       },
       "parts": {
@@ -3092,6 +3146,16 @@
             "vertical"
           ],
           "default": "horizontal"
+        },
+        "theme": {
+          "kind": "enum",
+          "values": [
+            "default",
+            "inline"
+          ],
+          "default": "default",
+          "attribute": "data-tabs-theme",
+          "adapterOnly": true
         }
       },
       "parts": {
@@ -3100,7 +3164,8 @@
             "tabsRoot"
           ],
           "options": [
-            "orientation"
+            "orientation",
+            "theme"
           ],
           "marker": "tabs"
         },
@@ -3351,6 +3416,34 @@
       },
       "parts": {},
       "selectorOnly": true
+    },
+    "accordion": {
+      "variants": {
+        "density": {
+          "kind": "enum",
+          "values": [
+            "default",
+            "compact",
+            "comfortable"
+          ],
+          "base": {
+            "value": "default",
+            "class": "cui-accordion-trigger"
+          },
+          "default": "default"
+        }
+      },
+      "parts": {
+        "trigger": {
+          "classes": [
+            "accordionStyles.trigger()"
+          ],
+          "options": [
+            "density"
+          ],
+          "marker": "accordionParts.trigger"
+        }
+      }
     }
   }
 }

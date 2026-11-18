@@ -1,3 +1,4 @@
+import { linkStyleProps } from "@codeui/styles/link";
 import "@codeui/styles/theme.css";
 import "@codeui/styles/link.css";
 import { Link as KLink, LinkRootProps as KLinkRootProps } from "@kobalte/core/link";
@@ -14,7 +15,7 @@ export function Link<T extends ValidComponent = "a">(props: PolymorphicProps<T, 
 	return (
 		<KLink
 			data-cui="link"
-			data-variant={local.variant}
+			data-variant={linkStyleProps({ variant: local.variant })["data-variant"]}
 			{...others}
 			class={mergeClasses(styles.link(), local.class)}
 		/>

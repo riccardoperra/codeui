@@ -200,17 +200,8 @@ export async function checkAppearance() {
 					for (const node of data) {
 						const { name, operation } = node;
 						if (adapterAttributes.has(name) || sharedAttributes.has(name)) continue;
-						if (entry === "accordion" && name === "data-density") {
-							assert(
-								["compact", "comfortable"].some(value =>
-									selectorMatches(operation, value),
-								),
-								`${scope}: unsupported Accordion trigger density`,
-							);
-							continue;
-						}
 						const values = variants
-							.filter(variant => variant.attribute === name)
+							.filter(variant => variant.attribute === name && !variant.adapterOnly)
 							.flatMap(allowedValues);
 						assert(
 							values.length > 0 &&
@@ -261,6 +252,13 @@ export async function checkAppearance() {
 					),
 				`${entry}: invalid ${attribute} values`,
 			);
+			if (variant.adapterOnly) {
+				assert(
+					values.includes(variant.default),
+					`${entry}: invalid ${attribute} default`,
+				);
+				continue;
+			}
 			if (variant.default !== undefined) {
 				assert(
 					variant.kind === "enum" && values.includes(variant.default),

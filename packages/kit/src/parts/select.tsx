@@ -1,3 +1,4 @@
+import { selectStyleProps } from "@codeui/styles/select";
 import "@codeui/styles/theme.css";
 import "@codeui/styles/select.css";
 import * as K from "@kobalte/core/select";
@@ -49,7 +50,7 @@ export function Root<Option, OptGroup = never, T extends ValidComponent = "div">
 			{...others}
 			data-cui={selectParts.root}
 			class={mergeClasses(styles.field, local.class)}
-			data-field-size={local.size}
+			data-field-size={selectStyleProps.root({ fieldSize: local.size })["data-field-size"]}
 		/>
 	);
 }
@@ -69,7 +70,7 @@ export function Trigger<T extends ValidComponent = "button">(
 		<K.Trigger
 			{...others}
 			data-cui={selectParts.trigger}
-			data-size={local.size ?? "sm"}
+			data-size={selectStyleProps({ size: local.size })["data-size"]}
 			data-theme={local.theme ?? "filled"}
 			class={mergeClasses(baseFieldVariants(), styles.selectField, local.class)}
 		/>

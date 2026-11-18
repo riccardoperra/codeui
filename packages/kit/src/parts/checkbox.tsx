@@ -1,3 +1,4 @@
+import { checkboxStyleProps } from "@codeui/styles/checkbox";
 import "@codeui/styles/theme.css";
 import "@codeui/styles/checkbox.css";
 import * as K from "@kobalte/core/checkbox";
@@ -33,7 +34,7 @@ export function Root<T extends ValidComponent = "div">(
 		<K.Root
 			{...others}
 			data-cui="checkbox"
-			data-field-size={local.size}
+			data-field-size={checkboxStyleProps({ fieldSize: local.size })["data-field-size"]}
 			data-field-theme={local.theme ?? "inline"}
 			class={mergeClasses(styles.container, local.class)}
 		/>
@@ -60,7 +61,7 @@ export function Control<T extends ValidComponent = "div">(
 	return (
 		<K.Control
 			{...others}
-			data-size={local.size ?? "md"}
+			data-size={checkboxStyleProps.control({ size: local.size })["data-size"]}
 			data-theme={local.theme ?? "inline"}
 			class={mergeClasses(styles.control(), local.class)}
 		/>

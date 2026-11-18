@@ -1,3 +1,4 @@
+import { progressStyleProps } from "@codeui/styles/progress";
 import "@codeui/styles/theme.css";
 import "@codeui/styles/progress.css";
 import { kobalteStyle } from "../utils/kobalte-style";
@@ -9,6 +10,8 @@ import * as styles from "../components/Progress/Progress.css";
 export { useProgressContext } from "@kobalte/core/progress";
 import { type ProgressVariants, progressParts, type ProgressPart, type ProgressClasses, type ProgressStyles, progressStyles } from "@codeui/styles/progress";
 export { type ProgressVariants, progressParts, type ProgressPart, type ProgressClasses, type ProgressStyles, progressStyles } from "@codeui/styles/progress";
+const defaultProgressSize = progressStyleProps()["data-size"];
+
 export type RootProps<T extends ValidComponent = "div"> = K.ProgressRootProps<T> &
 	ProgressVariants;
 export function Root<T extends ValidComponent = "div">(
@@ -22,7 +25,7 @@ export function Root<T extends ValidComponent = "div">(
 		<K.Root
 			{...others}
 			data-cui={progressParts.root}
-			data-size={local.size}
+			data-size={local.size ?? defaultProgressSize}
 			class={mergeClasses(progressStyles.root(), local.class)}
 		/>
 	);
@@ -40,7 +43,7 @@ export function Label<T extends ValidComponent = "span">(
 		<K.Label
 			{...others}
 			data-cui={progressParts.label}
-			data-size={local.size}
+			data-size={local.size ?? defaultProgressSize}
 			class={mergeClasses(progressStyles.label(), local.class)}
 		/>
 	);
@@ -58,7 +61,7 @@ export function Track<T extends ValidComponent = "div">(
 		<K.Track
 			{...others}
 			data-cui={progressParts.track}
-			data-size={local.size}
+			data-size={local.size ?? defaultProgressSize}
 			class={mergeClasses(styles.track(), local.class)}
 		/>
 	);
@@ -78,7 +81,7 @@ export function Fill<T extends ValidComponent = "div">(
 			style={kobalteStyle(local.style)}
 			{...others}
 			data-cui={progressParts.fill}
-			data-size={local.size}
+			data-size={local.size ?? defaultProgressSize}
 			class={mergeClasses(progressStyles.fill(), local.class)}
 		/>
 	);
@@ -96,7 +99,7 @@ export function ValueLabel<T extends ValidComponent = "div">(
 		<K.ValueLabel
 			{...others}
 			data-cui={progressParts.valueLabel}
-			data-size={local.size}
+			data-size={local.size ?? defaultProgressSize}
 			class={mergeClasses(progressStyles.valueLabel(), local.class)}
 		/>
 	);

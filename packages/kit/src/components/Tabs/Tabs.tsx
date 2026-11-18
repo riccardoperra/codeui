@@ -1,3 +1,4 @@
+import { tabsStyleProps } from "@codeui/styles/tabs";
 import "@codeui/styles/theme.css";
 import "@codeui/styles/tabs.css";
 import {
@@ -21,23 +22,26 @@ export type TabsProps<T extends ValidComponent = "div"> = KTabsRootProps<T> & {
 const TabsContext = createContext<{
 	theme: TabsProps["theme"];
 }>({
-	theme: "default",
+	theme: tabsStyleProps()["data-tabs-theme"],
 });
 
 export function Tabs<T extends ValidComponent = "div">(props: PolymorphicProps<T, TabsProps<T>>) {
 	const [local, others] = splitProps(props as PolymorphicProps<"div", TabsProps<T>>, ["class", "theme"]);
+	const theme = () => tabsStyleProps({ theme: local.theme })["data-tabs-theme"];
 	const classes = () => mergeClasses(styles.tabsRoot, local.class);
 	onMount(trackInputModality);
 
 	return (
 		<TabsContext.Provider
 			value={{
-				theme: local.theme,
+				get theme() {
+					return theme();
+				},
 			}}
 		>
 			<KTabs
 				data-cui={"tabs"}
-				data-tabs-theme={local.theme}
+				data-tabs-theme={theme()}
 				{...others}
 				class={classes()}
 			/>

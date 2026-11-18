@@ -572,6 +572,7 @@ export declare const themeValues: {
 ```ts
 export * from "./internal/components/Accordion/Accordion.css.js";
 export { accordionParts, type AccordionPart, type AccordionClasses, type AccordionVariants, type AccordionStyles, accordionStyles } from "./internal/parts/accordion.js";
+export * from "./internal/generated-appearance/accordion.js";
 ```
 
 ## @codeui/styles/alert.d.ts
@@ -1699,6 +1700,20 @@ export declare const tokens: {
 };
 ```
 
+## @codeui/styles/internal/generated-appearance/accordion.d.ts
+
+```ts
+export type AccordionStyleOptions = {
+    class?: string;
+    density?: "default" | "compact" | "comfortable";
+};
+export declare const accordionStyleProps: (options?: AccordionStyleOptions) => {
+    class: string;
+    "data-cui": "accordion-trigger";
+    "data-density": "default" | "compact" | "comfortable";
+};
+```
+
 ## @codeui/styles/internal/generated-appearance/alert.d.ts
 
 ```ts
@@ -1812,23 +1827,23 @@ export declare const comboboxStyleProps: (options?: ComboboxStyleOptions) => {
 ```ts
 export type DialogStyleOptions = {
     class?: string;
-    size?: "xs" | "sm" | "md" | "lg" | "xl" | "full" | "settings" | "export";
+    size?: "auto" | "xs" | "sm" | "md" | "lg" | "xl" | "full" | "settings" | "export";
     chrome?: "inset";
 };
 declare const panel: (options?: DialogStyleOptions) => {
     class: string;
     "data-cui": "dialog-panel";
-    "data-size": "xs" | "sm" | "md" | "lg" | "xl" | "full" | "settings" | "export" | undefined;
+    "data-size": "xs" | "sm" | "md" | "lg" | "auto" | "xl" | "full" | "settings" | "export";
     "data-chrome": "inset" | undefined;
 };
 export type DialogPositionerStyleOptions = {
     class?: string;
-    panelSize?: "export" | "full";
+    panelSize?: "auto" | "export" | "full";
     chrome?: "inset";
 };
 export type DialogBodyStyleOptions = {
     class?: string;
-    layout?: "split";
+    layout?: "default" | "split";
 };
 export type DialogSectionStyleOptions = {
     class?: string;
@@ -1838,25 +1853,25 @@ export type DialogSectionStyleOptions = {
 export declare const dialogStyleProps: ((options?: Parameters<typeof panel>[0]) => {
     class: string;
     "data-cui": "dialog-panel";
-    "data-size": "xs" | "sm" | "md" | "lg" | "xl" | "full" | "settings" | "export" | undefined;
+    "data-size": "xs" | "sm" | "md" | "lg" | "auto" | "xl" | "full" | "settings" | "export";
     "data-chrome": "inset" | undefined;
 }) & {
     panel: (options?: DialogStyleOptions) => {
         class: string;
         "data-cui": "dialog-panel";
-        "data-size": "xs" | "sm" | "md" | "lg" | "xl" | "full" | "settings" | "export" | undefined;
+        "data-size": "xs" | "sm" | "md" | "lg" | "auto" | "xl" | "full" | "settings" | "export";
         "data-chrome": "inset" | undefined;
     };
     positioner: (options?: DialogPositionerStyleOptions) => {
         class: string;
         "data-cui": "dialog-positioner";
-        "data-panel-size": "full" | "export" | undefined;
+        "data-panel-size": "auto" | "full" | "export";
         "data-chrome": "inset" | undefined;
     };
     body: (options?: DialogBodyStyleOptions) => {
         class: string;
         "data-cui": "dialog-panel-content";
-        "data-layout": "split" | undefined;
+        "data-layout": "default" | "split";
     };
     section: (options?: DialogSectionStyleOptions) => {
         class: string;
@@ -1927,12 +1942,12 @@ export declare const kbdStyleProps: (options?: KbdStyleOptions) => {
 ```ts
 export type LinkStyleOptions = {
     class?: string;
-    variant?: "underline";
+    variant?: "default" | "underline";
 };
 export declare const linkStyleProps: (options?: LinkStyleOptions) => {
     class: string;
     "data-cui": "link";
-    "data-variant": "underline" | undefined;
+    "data-variant": "default" | "underline";
 };
 ```
 
@@ -2083,12 +2098,12 @@ export {};
 ```ts
 export type PopoverStyleOptions = {
     class?: string;
-    variant?: "bordered";
+    variant?: "default" | "bordered";
 };
 export declare const popoverStyleProps: (options?: PopoverStyleOptions) => {
     class: string;
     "data-cui": "popover-content";
-    "data-variant": "bordered" | undefined;
+    "data-variant": "default" | "bordered";
 };
 ```
 
@@ -2284,31 +2299,31 @@ export declare const skeletonStyleProps: (options?: SkeletonStyleOptions) => {
 ```ts
 export type SliderStyleOptions = {
     class?: string;
-    orientation?: "vertical";
+    orientation?: "horizontal" | "vertical";
 };
 declare const track: (options?: SliderStyleOptions) => {
     class: string;
     "data-cui": "slider-track";
-    "data-orientation": "vertical" | undefined;
+    "data-orientation": "horizontal" | "vertical";
 };
 export type SliderFillStyleOptions = {
     class?: string;
-    orientation?: "vertical";
+    orientation?: "horizontal" | "vertical";
 };
 export declare const sliderStyleProps: ((options?: Parameters<typeof track>[0]) => {
     class: string;
     "data-cui": "slider-track";
-    "data-orientation": "vertical" | undefined;
+    "data-orientation": "horizontal" | "vertical";
 }) & {
     track: (options?: SliderStyleOptions) => {
         class: string;
         "data-cui": "slider-track";
-        "data-orientation": "vertical" | undefined;
+        "data-orientation": "horizontal" | "vertical";
     };
     fill: (options?: SliderFillStyleOptions) => {
         class: string;
         "data-cui": "slider-fill";
-        "data-orientation": "vertical" | undefined;
+        "data-orientation": "horizontal" | "vertical";
     };
 };
 export {};
@@ -2436,11 +2451,13 @@ export {};
 export type TabsStyleOptions = {
     class?: string;
     orientation?: "horizontal" | "vertical";
+    theme?: "default" | "inline";
 };
 declare const root: (options?: TabsStyleOptions) => {
     class: string;
     "data-cui": "tabs";
     "data-orientation": "horizontal" | "vertical";
+    "data-tabs-theme": "default" | "inline";
 };
 export type TabsListStyleOptions = {
     class?: string;
@@ -2454,11 +2471,13 @@ export declare const tabsStyleProps: ((options?: Parameters<typeof root>[0]) => 
     class: string;
     "data-cui": "tabs";
     "data-orientation": "horizontal" | "vertical";
+    "data-tabs-theme": "default" | "inline";
 }) & {
     root: (options?: TabsStyleOptions) => {
         class: string;
         "data-cui": "tabs";
         "data-orientation": "horizontal" | "vertical";
+        "data-tabs-theme": "default" | "inline";
     };
     list: (options?: TabsListStyleOptions) => {
         class: string;
@@ -2629,6 +2648,7 @@ export declare const iconSize: `var(--${string})`;
 ## @codeui/styles/internal/parts/accordion.d.ts
 
 ```ts
+import type { AccordionStyleOptions } from "../generated-appearance/accordion.js";
 export declare const accordionParts: {
     readonly root: "accordion-root";
     readonly item: "accordion-item";
@@ -2642,9 +2662,7 @@ export declare const accordionParts: {
 };
 export type AccordionPart = keyof typeof accordionParts;
 export type AccordionClasses = Partial<Record<AccordionPart, string>>;
-export type AccordionVariants = {
-    density?: "compact" | "comfortable";
-};
+export type AccordionVariants = Omit<AccordionStyleOptions, "class">;
 export type AccordionStyles = Record<AccordionPart, () => string>;
 export declare const accordionStyles: AccordionStyles;
 ```

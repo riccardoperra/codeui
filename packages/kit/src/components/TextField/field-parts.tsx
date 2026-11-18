@@ -1,3 +1,4 @@
+import { fieldStyleProps } from "@codeui/styles/field";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import * as K from "@kobalte/core/text-field";
 import {
@@ -13,6 +14,8 @@ import { baseFieldVariants } from "../Field/Field.css";
 import { errorMessage } from "../Field/FieldError/FieldError.css";
 import { createFieldLabelProps } from "../Field/FieldLabel/createFieldLabelProps";
 import { createFieldMessageProps } from "../Field/FieldMessage/createFieldMessageProps";
+
+const defaultFieldSize = fieldStyleProps()["data-size"];
 
 type Appearance = NonNullable<BaseFieldProps>;
 export type FieldRootProps = PolymorphicProps<"div", K.TextFieldRootProps<"div">> &
@@ -47,13 +50,13 @@ export function FieldRoot(props: FieldRootProps & { marker: string; baseClass: s
 		<FieldContext.Provider
 			value={{
 				inputId: () => local.inputId ?? `${others.id ?? generatedId}-input`,
-				size: () => local.size,
+				size: () => local.size ?? defaultFieldSize,
 				theme: () => local.theme,
 			}}
 		>
 			<K.Root
 				data-cui={local.marker}
-				data-field-size={local.size}
+				data-field-size={local.size ?? defaultFieldSize}
 				class={mergeClasses(local.baseClass, local.class)}
 				{...others}
 			/>
@@ -80,7 +83,7 @@ export function FieldInput(props: FieldInputProps & { baseClass: string }) {
 			{...others}
 			id={field.inputId()}
 			data-cui="text-field-input"
-			data-size={local.size ?? field.size() ?? "sm"}
+			data-size={local.size ?? field.size() ?? defaultFieldSize}
 			data-theme={local.theme ?? field.theme() ?? "filled"}
 			class={mergeClasses(baseFieldVariants(), local.baseClass, local.class)}
 		/>
@@ -95,7 +98,7 @@ export function FieldTextArea(props: FieldTextAreaProps & { baseClass: string })
 			{...others}
 			id={field.inputId()}
 			data-cui="text-field-input"
-			data-size={local.size ?? field.size() ?? "sm"}
+			data-size={local.size ?? field.size() ?? defaultFieldSize}
 			data-theme={local.theme ?? field.theme() ?? "filled"}
 			class={mergeClasses(baseFieldVariants(), local.baseClass, local.class)}
 		/>

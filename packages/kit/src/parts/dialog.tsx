@@ -1,3 +1,4 @@
+import { dialogStyleProps } from "@codeui/styles/dialog";
 import { HydratablePortal } from "../utils/hydratable-portal";
 import "@codeui/styles/theme.css";
 import "@codeui/styles/dialog.css";
@@ -115,7 +116,7 @@ export function Positioner(props: PositionerProps) {
 	return (
 		<div
 			data-cui={dialogParts.positioner}
-			data-panel-size={local.size}
+			data-panel-size={local.size ?? dialogStyleProps.positioner()["data-panel-size"]}
 			data-motion={motion()}
 			class={mergeClasses(dialogStyles.positioner(), local.class)}
 			{...others}
@@ -152,7 +153,7 @@ export function Content<T extends ValidComponent = "div">(props: PolymorphicProp
 			<KDialog.Content
 				data-cui={dialogParts.panel}
 				data-chrome={chrome()}
-				data-size={local.size}
+				data-size={dialogStyleProps({ size: local.size })["data-size"]}
 				data-motion={motion()}
 				class={mergeClasses(dialogStyles.panel(), local.class)}
 				{...focus}
@@ -228,7 +229,7 @@ export function Body(props: BodyProps) {
 	return (
 		<div
 			data-cui={dialogParts.body}
-			data-layout={local.layout}
+			data-layout={dialogStyleProps.body({ layout: local.layout })["data-layout"]}
 			class={mergeClasses(dialogStyles.body(), local.class)}
 			{...others}
 		/>

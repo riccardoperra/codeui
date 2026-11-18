@@ -86,14 +86,14 @@ When CSS supports a named default, the helper emits that value and bare markup r
 | `@codeui/styles/checkbox` | `checkboxStyleProps()` (root) | `fieldSize` `xs`, `sm`, `md`, `lg`, `xl` (default `md`) |
 | `@codeui/styles/checkbox` | `checkboxStyleProps.control()` | `size` `xs`, `sm`, `md`, `lg`, `xl` (default `md`) · `theme` `filled` |
 | `@codeui/styles/combobox` | `comboboxStyleProps()` | `size` `sm`, `md` (default `sm`) |
-| `@codeui/styles/dialog` | `dialogStyleProps()` (panel) | `size` `xs`, `sm`, `md`, `lg`, `xl`, `full`, `settings`, `export` · `chrome` `inset` |
-| `@codeui/styles/dialog` | `dialogStyleProps.positioner()` | `panelSize` `export`, `full` · `chrome` `inset` |
-| `@codeui/styles/dialog` | `dialogStyleProps.body()` | `layout` `split` |
+| `@codeui/styles/dialog` | `dialogStyleProps()` (panel) | `size` `auto`, `xs`, `sm`, `md`, `lg`, `xl`, `full`, `settings`, `export` (default `auto`) · `chrome` `inset` |
+| `@codeui/styles/dialog` | `dialogStyleProps.positioner()` | `panelSize` `auto`, `export`, `full` (default `auto`) · `chrome` `inset` |
+| `@codeui/styles/dialog` | `dialogStyleProps.body()` | `layout` `default`, `split` (default `default`) |
 | `@codeui/styles/dialog` | `dialogStyleProps.section()` | `variant` `group`, `well` (default `group`) · `columns` `2` |
 | `@codeui/styles/field` | `fieldStyleProps()` | `size` `xs`, `sm`, `md`, `lg` (default `sm`) · `theme` `filled`, `inline` (default `filled`) |
 | `@codeui/styles/icon-button` | `iconButtonStyleProps()` | `size` `xs`, `sm`, `md`, `lg` (default `sm`) · `theme` `primary`, `secondary`, `tertiary`, `negative`, `caution` · `variant` `ghost` · `block` boolean · `pill` boolean |
 | `@codeui/styles/kbd` | `kbdStyleProps()` | `size` `sm`, `md` (default `sm`) · `variant` `keycap`, `hint` (default `keycap`) |
-| `@codeui/styles/link` | `linkStyleProps()` | `variant` `underline` |
+| `@codeui/styles/link` | `linkStyleProps()` | `variant` `default`, `underline` (default `default`) |
 | `@codeui/styles/listbox` | `listboxStyleProps()` (list) | `theme` `primary`, `neutral` (default `neutral`) · `bordered` boolean |
 | `@codeui/styles/listbox` | `listboxStyleProps.item()` | `size` `xs`, `sm`, `md` (default `sm`) |
 | `@codeui/styles/listbox` | `listboxStyleProps.itemIndicator()` | `size` `xs`, `sm`, `md` (default `sm`) |
@@ -103,7 +103,7 @@ When CSS supports a named default, the helper emits that value and bare markup r
 | `@codeui/styles/option-card` | `optionCardStyleProps.itemLabel()` | `variant` `tile` |
 | `@codeui/styles/option-card` | `optionCardStyleProps.badge()` | `size` `sm`, `md` (default `sm`) · `tone` `neutral`, `info`, `success`, `warning`, `danger` (default `neutral`) · `variant` `soft`, `outline` (default `soft`) |
 | `@codeui/styles/option-card` | `optionCardStyleProps.item()` | `variant` `tile` |
-| `@codeui/styles/popover` | `popoverStyleProps()` | `variant` `bordered` |
+| `@codeui/styles/popover` | `popoverStyleProps()` | `variant` `default`, `bordered` (default `default`) |
 | `@codeui/styles/progress` | `progressStyleProps()` (root) | `size` `sm`, `md` (default `sm`) |
 | `@codeui/styles/progress` | `progressStyleProps.track()` | `size` `sm`, `md` (default `sm`) |
 | `@codeui/styles/radio-list` | `radioListStyleProps()` (items) | `size` `xs`, `sm`, `md`, `lg`, `xl` (default `md`) · `theme` `filled` · `orientation` `horizontal`, `vertical` (default `horizontal`) |
@@ -114,8 +114,8 @@ When CSS supports a named default, the helper emits that value and bare markup r
 | `@codeui/styles/settings` | `settingsStyleProps()` | `layout` `wide` · `compactControl` boolean |
 | `@codeui/styles/sheet` | `sheetStyleProps()` | `side` `bottom`, `left`, `right` (default `bottom`) |
 | `@codeui/styles/skeleton` | `skeletonStyleProps()` | `circle` boolean · `animate` boolean |
-| `@codeui/styles/slider` | `sliderStyleProps()` (track) | `orientation` `vertical` |
-| `@codeui/styles/slider` | `sliderStyleProps.fill()` | `orientation` `vertical` |
+| `@codeui/styles/slider` | `sliderStyleProps()` (track) | `orientation` `horizontal`, `vertical` (default `horizontal`) |
+| `@codeui/styles/slider` | `sliderStyleProps.fill()` | `orientation` `horizontal`, `vertical` (default `horizontal`) |
 | `@codeui/styles/spinner` | `spinnerStyleProps()` | `size` `sm`, `md`, `lg` (default `md`) |
 | `@codeui/styles/stack` | `stackStyleProps()` | `gap` `0`, `0.5`, `1`, `1.5`, `2`, `2.5`, `3`, `4`, `5`, `6`, `8`, `10`, `12`, `16`, `20`, `24`, `32`, `40`, `48`, `56`, `64`, `auto`, `px` (default `2`) · `align` `start`, `center`, `end`, `stretch`, `baseline` (default `stretch`) · `justify` `start`, `center`, `end`, `between`, `around`, `evenly` (default `start`) · `direction` `row`, `column` (default `column`) · `wrap` `true`, `false` (default `false`) |
 | `@codeui/styles/switch` | `switchStyleProps()` (root) | `size` `sm`, `md` (default `md`) |
@@ -125,7 +125,7 @@ When CSS supports a named default, the helper emits that value and bare markup r
 | `@codeui/styles/switch` | `switchStyleProps.label()` | `size` `sm`, `md` (default `md`) |
 | `@codeui/styles/switch` | `switchStyleProps.description()` | `size` `sm`, `md` (default `md`) |
 | `@codeui/styles/switch` | `switchStyleProps.errorMessage()` | `size` `sm`, `md` (default `md`) |
-| `@codeui/styles/tabs` | `tabsStyleProps()` (root) | `orientation` `horizontal`, `vertical` (default `horizontal`) |
+| `@codeui/styles/tabs` | `tabsStyleProps()` (root) | `orientation` `horizontal`, `vertical` (default `horizontal`) · `theme` `default`, `inline` (default `default`) |
 | `@codeui/styles/tabs` | `tabsStyleProps.list()` | `orientation` `horizontal`, `vertical` (default `horizontal`) |
 | `@codeui/styles/tabs` | `tabsStyleProps.indicator()` | `orientation` `horizontal`, `vertical` (default `horizontal`) |
 | `@codeui/styles/text` | `textStyleProps()` | `size` `badge`, `caption`, `xs`, `sm`, `md`, `lg`, `xl`, `2xl` (default `sm`) · `tone` `default`, `muted`, `hint`, `label`, `danger`, `success` (default `default`) · `weight` `normal`, `medium`, `semibold` (default `normal`) |
@@ -136,6 +136,7 @@ When CSS supports a named default, the helper emits that value and bare markup r
 | `@codeui/styles/toast` | `toastStyleProps()` (root) | `tone` `neutral`, `info`, `success`, `warning`, `danger` (default `neutral`) |
 | `@codeui/styles/toast` | `toastStyleProps.region()` | `position` `top-left`, `top-center`, `top-right`, `bottom-left`, `bottom-center`, `bottom-right` (default `bottom-center`) |
 | `@codeui/styles/tooltip` | `tooltipStyleProps()` | `theme` `primary`, `secondary` |
+| `@codeui/styles/accordion` | `accordionStyleProps()` | `density` `default`, `compact`, `comfortable` (default `default`) |
 
 <!-- appearance:end -->
 
