@@ -1,5 +1,5 @@
 import type { NumberFieldLabel, NumberFieldProps } from "@codeui/kit";
-import type { ComponentProps } from "solid-js";
+import type { ComponentProps } from "@solidjs/web";
 import type { PropNotes } from "./notes";
 
 /** Props that NumberField adds or changes on top of Kobalte's text field root. */

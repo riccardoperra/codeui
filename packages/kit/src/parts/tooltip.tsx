@@ -1,3 +1,4 @@
+import { pickProps } from "../utils/pick-props";
 import "@codeui/styles/theme.css";
 import "@codeui/styles/tooltip.css";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
@@ -7,18 +8,8 @@ import {
 	type TooltipRootProps,
 	type TooltipTriggerProps,
 } from "@kobalte/core/tooltip";
-import { mergeRefs } from "@kobalte/utils";
-import {
-	createContext,
-	createEffect,
-	createSignal,
-	mergeProps,
-	onCleanup,
-	splitProps,
-	useContext,
-	type JSX,
-	type ValidComponent,
-} from "solid-js";
+import { createContext, createEffect, createSignal, useContext, omit } from "solid-js";
+import { type JSX, type ValidComponent } from "@solidjs/web";
 import * as styles from "../components/Tooltip/Tooltip.css";
 import { mergeClasses } from "../utils/css";
 import { motionRef } from "../utils/open-source";
@@ -26,7 +17,7 @@ import { motionRef } from "../utils/open-source";
 const focusable =
 	"a[href], button, input, select, textarea, summary, [tabindex]:not([tabindex='-1']), [contenteditable=true]";
 
-// Kobalte 0.13.13+ sets type="button" on the trigger. On a div it means nothing, and CSS resets that target [type="button"] would restyle it.
+// Kobalte sets type="button" on the trigger. On a div it means nothing, and CSS resets that target [type="button"] would restyle it.
 // Kobalte also puts `aria-describedby` on the trigger. The wrapper div is not what gets focus, so it goes on
 // the first focusable child, where a screen reader reads it.
 function TriggerElement(
@@ -35,34 +26,33 @@ function TriggerElement(
 		"aria-describedby"?: string;
 	},
 ) {
-	const [local, others] = splitProps(props, [
-		"type",
-		"onFocus",
-		"onBlur",
-		"aria-describedby",
-		"ref",
-	]);
+	const local = pickProps(props, "type", "onFocus", "onBlur", "aria-describedby", "ref");
+	const others = omit(props, "type", "onFocus", "onBlur", "aria-describedby", "ref");
 	let wrapper!: HTMLDivElement;
-	createEffect(() => {
-		const description = local["aria-describedby"];
-		const target = wrapper.querySelector<HTMLElement>(focusable) ?? wrapper;
-		if (!description) return;
-		const previous = target.getAttribute("aria-describedby");
-		target.setAttribute(
-			"aria-describedby",
-			previous ? `${previous} ${description}` : description,
-		);
-		onCleanup(() => {
-			if (previous) target.setAttribute("aria-describedby", previous);
-			else target.removeAttribute("aria-describedby");
-		});
-	});
+	createEffect(
+		() => local["aria-describedby"],
+		description => {
+			const target = wrapper.querySelector<HTMLElement>(focusable) ?? wrapper;
+			if (!description) return;
+			const previous = target.getAttribute("aria-describedby");
+			target.setAttribute(
+				"aria-describedby",
+				previous ? `${previous} ${description}` : description,
+			);
+			return () => {
+				if (previous) target.setAttribute("aria-describedby", previous);
+				else target.removeAttribute("aria-describedby");
+			};
+		},
+	);
 	return (
 		<div
-			ref={element => {
-				wrapper = element;
-				(local.ref as ((element: HTMLDivElement) => void) | undefined)?.(element);
-			}}
+			ref={[
+				local.ref,
+				(element: HTMLDivElement) => {
+					wrapper = element;
+				},
+			]}
 			onFocusIn={local.onFocus}
 			onFocusOut={local.onBlur}
 			{...others}
@@ -78,25 +68,27 @@ const TooltipMotionContext = createContext<() => number>(() => skipDelayDuration
 export type RootProps = TooltipRootProps;
 
 export function Root(props: RootProps) {
-	const [local, others] = splitProps(props, ["onOpenChange"]);
-	const options = mergeProps(
-		{ gutter: 4, shift: 0, openDelay: 200, closeDelay: 0 },
-		others,
-	);
+	const others = omit(props, "onOpenChange");
 	const [open, setOpen] = createSignal(false);
 
 	const onOpenChange = (next: boolean) => {
-		if (!next && open()) lastClosed = performance.now();
+		if (!next && (props.open ?? open())) lastClosed = performance.now();
 		setOpen(next);
-		local.onOpenChange?.(next);
+		props.onOpenChange?.(next);
 	};
 
 	return (
-		<TooltipMotionContext.Provider
-			value={() => options.skipDelayDuration ?? skipDelayDuration}
-		>
-			<KTooltip open={open()} onOpenChange={onOpenChange} {...options} />
-		</TooltipMotionContext.Provider>
+		<TooltipMotionContext value={() => props.skipDelayDuration ?? skipDelayDuration}>
+			<KTooltip
+				{...others}
+				open={props.open ?? open()}
+				onOpenChange={onOpenChange}
+				gutter={props.gutter ?? 4}
+				shift={props.shift ?? 0}
+				openDelay={props.openDelay ?? 200}
+				closeDelay={props.closeDelay ?? 0}
+			/>
+		</TooltipMotionContext>
 	);
 }
 
@@ -105,9 +97,8 @@ export type TriggerProps<T extends ValidComponent = "div"> = TooltipTriggerProps
 export function Trigger<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, TriggerProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"div", TriggerProps>, [
-		"class",
-	]);
+	const local = props as PolymorphicProps<"div", TriggerProps>;
+	const others = omit(local, "class");
 	return (
 		<KTooltip.Trigger
 			as={TriggerElement}
@@ -124,11 +115,8 @@ export type ContentProps<T extends ValidComponent = "div"> = TooltipContentProps
 export function Content<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, ContentProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"div", ContentProps>, [
-		"class",
-		"ref",
-		"variant",
-	]);
+	const local = props as PolymorphicProps<"div", ContentProps>;
+	const others = omit(local, "class", "ref", "variant");
 	const delay = useContext(TooltipMotionContext);
 	const contentRef = motionRef({
 		hover: true,
@@ -138,7 +126,7 @@ export function Content<T extends ValidComponent = "div">(
 	return (
 		<KTooltip.Content
 			{...others}
-			ref={mergeRefs(contentRef, local.ref)}
+			ref={[contentRef, local.ref]}
 			data-cui="tooltip-content"
 			data-variant={local.variant ?? "primary"}
 			class={mergeClasses(local.class, styles.tooltipContent())}

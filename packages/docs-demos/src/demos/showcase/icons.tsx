@@ -1,4 +1,4 @@
-import type { JSX } from "solid-js";
+import type { JSX } from "@solidjs/web";
 
 // 16px outline icons for the homepage vignettes. An app brings its own icon set.
 function Icon(props: { children: JSX.Element }) {

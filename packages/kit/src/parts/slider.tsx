@@ -3,12 +3,27 @@ import "@codeui/styles/theme.css";
 import "@codeui/styles/slider.css";
 import * as K from "@kobalte/core/slider";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
-import { splitProps, type ValidComponent } from "solid-js";
+import { createEffect, omit } from "solid-js";
+import { type ValidComponent } from "@solidjs/web";
 import { mergeClasses } from "../utils/css";
 import * as styles from "../components/Slider/Slider.css";
 export { useSliderContext } from "@kobalte/core/slider";
-import { type SliderVariants, sliderParts, type SliderPart, type SliderClasses, type SliderStyles, sliderStyles } from "@codeui/styles/slider";
-export { type SliderVariants, sliderParts, type SliderPart, type SliderClasses, type SliderStyles, sliderStyles } from "@codeui/styles/slider";
+import {
+	type SliderVariants,
+	sliderParts,
+	type SliderPart,
+	type SliderClasses,
+	type SliderStyles,
+	sliderStyles,
+} from "@codeui/styles/slider";
+export {
+	type SliderVariants,
+	sliderParts,
+	type SliderPart,
+	type SliderClasses,
+	type SliderStyles,
+	sliderStyles,
+} from "@codeui/styles/slider";
 const defaultOrientation = sliderStyleProps()["data-orientation"];
 
 export type RootProps<T extends ValidComponent = "div"> = K.SliderRootProps<T> &
@@ -16,10 +31,8 @@ export type RootProps<T extends ValidComponent = "div"> = K.SliderRootProps<T> &
 export function Root<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, RootProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"div", RootProps>, [
-		"class",
-		"orientation",
-	]);
+	const local = props as PolymorphicProps<"div", RootProps>;
+	const others = omit(local, "class", "orientation");
 	return (
 		<K.Root
 			{...others}
@@ -35,10 +48,8 @@ export type LabelProps<T extends ValidComponent = "label"> = K.SliderLabelProps<
 export function Label<T extends ValidComponent = "label">(
 	props: PolymorphicProps<T, LabelProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"label", LabelProps>, [
-		"class",
-		"orientation",
-	]);
+	const local = props as PolymorphicProps<"label", LabelProps>;
+	const others = omit(local, "class", "orientation");
 	const context = K.useSliderContext();
 	return (
 		<K.Label
@@ -50,14 +61,12 @@ export function Label<T extends ValidComponent = "label">(
 	);
 }
 export type DescriptionProps<T extends ValidComponent = "div"> =
-	K.SliderDescriptionProps<T> & SliderVariants;
+	K.SliderDescriptionProps & SliderVariants;
 export function Description<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, DescriptionProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"div", DescriptionProps>, [
-		"class",
-		"orientation",
-	]);
+	const local = props as PolymorphicProps<"div", DescriptionProps>;
+	const others = omit(local, "class", "orientation");
 	const context = K.useSliderContext();
 	return (
 		<K.Description
@@ -73,10 +82,8 @@ export type ErrorMessageProps<T extends ValidComponent = "div"> =
 export function ErrorMessage<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, ErrorMessageProps<T>>,
 ) {
-	const [local, others] = splitProps(
-		props as PolymorphicProps<"div", ErrorMessageProps>,
-		["class", "orientation"],
-	);
+	const local = props as PolymorphicProps<"div", ErrorMessageProps>;
+	const others = omit(local, "class", "orientation");
 	const context = K.useSliderContext();
 	return (
 		<K.ErrorMessage
@@ -92,10 +99,8 @@ export type TrackProps<T extends ValidComponent = "div"> = K.SliderTrackProps<T>
 export function Track<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, TrackProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"div", TrackProps>, [
-		"class",
-		"orientation",
-	]);
+	const local = props as PolymorphicProps<"div", TrackProps>;
+	const others = omit(local, "class", "orientation");
 	const context = K.useSliderContext();
 	return (
 		<K.Track
@@ -111,10 +116,8 @@ export type FillProps<T extends ValidComponent = "div"> = K.SliderFillProps<T> &
 export function Fill<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, FillProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"div", FillProps>, [
-		"class",
-		"orientation",
-	]);
+	const local = props as PolymorphicProps<"div", FillProps>;
+	const others = omit(local, "class", "orientation");
 	const context = K.useSliderContext();
 	return (
 		<K.Fill
@@ -130,14 +133,23 @@ export type ThumbProps<T extends ValidComponent = "span"> = K.SliderThumbProps<T
 export function Thumb<T extends ValidComponent = "span">(
 	props: PolymorphicProps<T, ThumbProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"span", ThumbProps>, [
-		"class",
-		"orientation",
-	]);
+	const local = props as PolymorphicProps<"span", ThumbProps>;
+	const others = omit(local, "class", "orientation", "ref");
 	const context = K.useSliderContext();
+	// Kobalte marks a thumb editable in onSettled, before Solid 2 registers it
+	// in the thumb collection, so it marks index -1 and the thumb ignores keys
+	// and drags. Mark it once the collection knows its index.
+	let thumb: HTMLElement | undefined;
+	createEffect(
+		() => context.thumbs().findIndex(item => item.ref() === thumb),
+		index => {
+			if (index >= 0) context.state.setThumbEditable(index, true);
+		},
+	);
 	return (
 		<K.Thumb
 			{...others}
+			ref={[(el: HTMLElement) => (thumb = el), local.ref]}
 			data-cui={sliderParts.thumb}
 			data-orientation={local.orientation ?? context.state.orientation()}
 			class={mergeClasses(sliderStyles.thumb(), local.class)}
@@ -146,7 +158,8 @@ export function Thumb<T extends ValidComponent = "span">(
 }
 export type InputProps = K.SliderInputProps;
 export function Input(props: InputProps) {
-	const [local, others] = splitProps(props, ["class"]);
+	const local = props;
+	const others = omit(props, "class");
 	return (
 		<K.Input
 			{...others}
@@ -160,10 +173,8 @@ export type ValueLabelProps<T extends ValidComponent = "div"> =
 export function ValueLabel<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, ValueLabelProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"div", ValueLabelProps>, [
-		"class",
-		"orientation",
-	]);
+	const local = props as PolymorphicProps<"div", ValueLabelProps>;
+	const others = omit(local, "class", "orientation");
 	const context = K.useSliderContext();
 	return (
 		<K.ValueLabel

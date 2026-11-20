@@ -37,7 +37,7 @@ export function createBench(notifications: ToastController) {
 	const doc = createMemo(() => editor.state().doc);
 	const status = createMemo(() => readMeta(doc()).status);
 	const rows = createMemo(() => lineItemRows(doc()).length);
-	const validation = createMemo(() => validationKey.getState(editor.state()), undefined, { equals: (a, b) => a === b });
+	const validation = createMemo(() => validationKey.getState(editor.state()), { equals: (a, b) => a === b });
 
 	/** Counts the dispatches and the main-thread time of one synchronous run. */
 	const measure = (run: () => boolean): Outcome => {

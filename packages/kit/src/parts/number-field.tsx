@@ -1,23 +1,22 @@
+import { pickProps } from "../utils/pick-props";
 import "@codeui/styles/theme.css";
 import "@codeui/styles/numberfield.css";
-import { createControllableSignal } from "@kobalte/core/primitives/create-controllable-signal";
-import { callHandler, clamp, mergeRefs } from "@kobalte/utils";
+import { createControllableSignal } from "@solid-primitives/controlled-signal";
+import { callHandler, clamp } from "@kobalte/utils";
 import {
 	maskitoCaretGuard,
 	maskitoNumberOptionsGenerator,
 	maskitoParseNumber,
 } from "@maskito/kit";
 import {
-	batch,
 	createContext,
 	createSignal,
-	mergeProps,
 	onCleanup,
-	onMount,
-	splitProps,
+	untrack,
 	useContext,
-	type JSX,
+	omit,
 } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import { NumberFieldControls } from "../components/NumberField/NumberFieldControls";
 import { formatNumber } from "../components/NumberField/formatNumber";
 import {
@@ -76,14 +75,33 @@ function createNumberFieldState(
 		},
 	});
 
-	const initialValue = state.value ?? state.defaultValue ?? "";
+	const initialValue = untrack(() => state.value ?? state.defaultValue ?? "");
 	const [unfinishedValue, setUnfinishedValue] = createSignal<string | null>(
 		String(initialValue),
 	);
 
 	let internalRef: HTMLInputElement | undefined;
 
-	const optionsWithDefault = mergeProps(defaultOptions, options);
+	const optionsWithDefault: InputNumberOptions = {
+		get min() {
+			return options.min ?? defaultOptions.min;
+		},
+		get max() {
+			return options.max ?? defaultOptions.max;
+		},
+		get step() {
+			return options.step ?? defaultOptions.step;
+		},
+		get precision() {
+			return options.precision ?? defaultOptions.precision;
+		},
+		get prefix() {
+			return options.prefix ?? defaultOptions.prefix;
+		},
+		get postfix() {
+			return options.postfix ?? defaultOptions.postfix;
+		},
+	};
 	const mask = createMaskito({
 		options: () => {
 			const { plugins, ...options } = maskitoNumberOptionsGenerator({
@@ -108,13 +126,13 @@ function createNumberFieldState(
 
 	function attachInput(element: HTMLInputElement) {
 		internalRef = element;
-		onMount(() => mask(element));
-		onCleanup(() => {
-			if (internalRef === element) {
-				internalRef = undefined;
-				mask(null);
-			}
-		});
+		mask(element);
+	}
+
+	function detachInput(element: HTMLInputElement) {
+		if (internalRef !== element) return;
+		internalRef = undefined;
+		mask(null);
 	}
 
 	const displayValue = () => {
@@ -170,40 +188,38 @@ function createNumberFieldState(
 	const updateValue = (value: number, clampValue: boolean = true) => {
 		const newValue = clampValue ? clamp(value || 0, computeMin(), computeMax()) : value;
 		setValue(newValue);
-		setNativeValue(formattedValue());
+		setNativeValue(formatValue(newValue));
 		setUnfinishedValue(String(newValue));
 	};
 
 	const onValueChange = (nativeValue: string) => {
-		batch(() => {
-			const parsedValue = maskitoParseNumber(
-				nativeValue,
-				defaultNumberFormat.decimalSeparator,
-			);
+		const parsedValue = maskitoParseNumber(
+			nativeValue,
+			defaultNumberFormat.decimalSeparator,
+		);
 
-			setUnfinishedValue(null);
+		setUnfinishedValue(null);
 
-			if (Number.isNaN(parsedValue)) {
-				setUnfinishedValue("");
-				setValue(null);
-				return;
+		if (Number.isNaN(parsedValue)) {
+			setUnfinishedValue("");
+			setValue(null);
+			return;
+		} else {
+			if (focused()) {
+				setUnfinishedValue(nativeValue);
+				updateValue(parsedValue, false);
 			} else {
-				if (focused()) {
-					setUnfinishedValue(nativeValue);
-					updateValue(parsedValue, false);
-				} else {
-					updateValue(parsedValue);
-					setUnfinishedValue(nativeValue);
-				}
+				updateValue(parsedValue);
+				setUnfinishedValue(nativeValue);
 			}
-		});
+		}
 	};
 
-	const formattedValue = (): string => {
-		if (value() === null) {
-			return "";
-		}
-		const currentValue = value() || 0;
+	const formattedValue = () => formatValue(value());
+
+	const formatValue = (value: number | null | undefined): string => {
+		if (value === null) return "";
+		const currentValue = value || 0;
 		const hasFraction = Math.abs(currentValue) % 1 > 0;
 		const decimalLimit = hasFraction ? optionsWithDefault.precision : 0;
 
@@ -220,30 +236,29 @@ function createNumberFieldState(
 	const onFocused = (focused: boolean) => {
 		setFocused(focused);
 
-		batch(() => {
-			const pendingValue = unfinishedValue();
-			const nativeNumber = pendingValue
-				? maskitoParseNumber(pendingValue, defaultNumberFormat.decimalSeparator)
-				: nativeNumberValue();
+		const pendingValue = unfinishedValue();
+		const nativeNumber = pendingValue
+			? maskitoParseNumber(pendingValue, defaultNumberFormat.decimalSeparator)
+			: nativeNumberValue();
 
-			if (Number.isNaN(nativeNumber)) {
-				setNativeValue(
-					focused ? optionsWithDefault.prefix + optionsWithDefault.postfix : "",
-				);
-				setUnfinishedValue(null);
-				setValue(null);
-				return;
-			}
+		if (Number.isNaN(nativeNumber)) {
+			setNativeValue(
+				focused ? optionsWithDefault.prefix + optionsWithDefault.postfix : "",
+			);
+			setUnfinishedValue(null);
+			setValue(null);
+			return;
+		}
 
-			if (!focused) {
-				updateValue(nativeNumber);
-				setUnfinishedValue(String(nativeNumber));
-			}
-		});
+		if (!focused) {
+			updateValue(nativeNumber);
+			setUnfinishedValue(String(nativeNumber));
+		}
 	};
 
 	return {
 		attachInput,
+		detachInput,
 		canDecrement,
 		canIncrement,
 		decrement,
@@ -260,14 +275,31 @@ function createNumberFieldState(
 }
 
 export function Root(props: RootProps) {
-	const [options, state, others] = splitProps(
+	const options = pickProps(
 		props,
-		["min", "max", "step", "precision", "prefix", "postfix"],
-		["value", "onChange", "defaultValue"],
+		"min",
+		"max",
+		"step",
+		"precision",
+		"prefix",
+		"postfix",
+	);
+	const state = pickProps(props, "value", "onChange", "defaultValue");
+	const others = omit(
+		props,
+		"min",
+		"max",
+		"step",
+		"precision",
+		"prefix",
+		"postfix",
+		"value",
+		"onChange",
+		"defaultValue",
 	);
 	const control = createNumberFieldState(props, options, state);
 	return (
-		<NumberFieldContext.Provider value={control}>
+		<NumberFieldContext value={control}>
 			<FieldRoot
 				{...others}
 				marker="numberfield"
@@ -276,7 +308,7 @@ export function Root(props: RootProps) {
 				value={control.displayValue()}
 				onChange={control.onValueChange}
 			/>
-		</NumberFieldContext.Provider>
+		</NumberFieldContext>
 	);
 }
 
@@ -294,12 +326,22 @@ function callFocusHandler(
 
 export function Input(props: InputProps) {
 	const control = useNumberFieldParts();
-	const [local, others] = splitProps(props, ["ref", "onKeyDown", "onBlur", "onFocus"]);
+	const others = omit(props, "ref", "onKeyDown", "onBlur", "onFocus");
+	let input: HTMLInputElement | undefined;
+	onCleanup(() => {
+		if (input) control.detachInput(input);
+	});
 	return (
 		<FieldInput
 			{...others}
 			baseClass={styles.textField}
-			ref={mergeRefs(local.ref, control.attachInput)}
+			ref={[
+				props.ref,
+				(element: HTMLInputElement) => {
+					input = element;
+					control.attachInput(element);
+				},
+			]}
 			type="text"
 			role="spinbutton"
 			aria-valuenow={control.value() ?? undefined}
@@ -307,15 +349,15 @@ export function Input(props: InputProps) {
 			aria-valuemin={control.options.min}
 			aria-valuemax={control.options.max}
 			onKeyDown={event => {
-				callHandler(event, local.onKeyDown);
+				callHandler(event, props.onKeyDown);
 				if (!event.defaultPrevented) control.onKeyDown(event);
 			}}
 			onBlur={event => {
-				callFocusHandler(event, local.onBlur);
+				callFocusHandler(event, props.onBlur);
 				control.onFocused(false);
 			}}
 			onFocus={event => {
-				callFocusHandler(event, local.onFocus);
+				callFocusHandler(event, props.onFocus);
 				control.onFocused(true);
 			}}
 		/>
@@ -324,9 +366,9 @@ export function Input(props: InputProps) {
 
 export type FieldProps = JSX.HTMLAttributes<HTMLDivElement>;
 export function Field(props: FieldProps) {
-	const [local, others] = splitProps(props, ["class"]);
+	const others = omit(props, "class");
 	return (
-		<div {...others} class={mergeClasses(styles.numberFieldContainer, local.class)} />
+		<div {...others} class={mergeClasses(styles.numberFieldContainer, props.class)} />
 	);
 }
 

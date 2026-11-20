@@ -1,4 +1,4 @@
-import { renderToString } from "solid-js/web";
+import { renderToString } from "@solidjs/web";
 import { Dialog } from "../src/components/Dialog/Dialog";
 import {
 	Popover,

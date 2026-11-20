@@ -1,5 +1,7 @@
+import { pickProps } from "../../utils/pick-props";
 import type { TextFieldRootOptions as KTextFieldRootOptions } from "@kobalte/core/text-field";
-import { Show, splitProps, type JSX, type Ref } from "solid-js";
+import { Show, type Ref, omit } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import * as P from "../../parts/number-field";
 import type { SlotProp } from "../../utils/component";
 import { mergeClasses } from "../../utils/css";
@@ -34,7 +36,8 @@ export type NumberFieldProps = NumberFieldRootOptions &
 	Partial<InputNumberOptions>;
 
 export function NumberField(props: NumberFieldProps) {
-	const [local, others] = splitProps(props, [
+	const others = omit(
+		props,
 		"description",
 		"label",
 		"errorMessage",
@@ -42,18 +45,19 @@ export function NumberField(props: NumberFieldProps) {
 		"ref",
 		"slotClasses",
 		"classes",
-	]);
+	);
 
-	const [inputProps, rootProps] = splitProps(others, INPUT_KEYS);
+	const inputProps = pickProps(others, ...INPUT_KEYS);
+	const rootProps = omit(others, ...INPUT_KEYS);
 
 	return (
 		<P.Root
-			class={mergeClasses(local.slotClasses?.root, local.classes?.root)}
+			class={mergeClasses(props.slotClasses?.root, props.classes?.root)}
 			{...rootProps}
 		>
-			<Show when={local.label} keyed={false}>
+			<Show when={props.label} keyed={false}>
 				{label => (
-					<P.Label class={mergeClasses(local.slotClasses?.label, local.classes?.label)}>
+					<P.Label class={mergeClasses(props.slotClasses?.label, props.classes?.label)}>
 						{label()}
 					</P.Label>
 				)}
@@ -62,29 +66,29 @@ export function NumberField(props: NumberFieldProps) {
 			<P.Field>
 				<P.Input
 					{...inputProps}
-					class={mergeClasses(local.slotClasses?.input, local.classes?.input)}
-					placeholder={local.placeholder}
-					ref={local.ref}
+					class={mergeClasses(props.slotClasses?.input, props.classes?.input)}
+					placeholder={props.placeholder}
+					ref={props.ref}
 				/>
 				<P.Controls />
 			</P.Field>
 
-			<Show when={local.description} keyed={false}>
+			<Show when={props.description} keyed={false}>
 				{description => (
-					<P.Description class={local.classes?.description}>
+					<P.Description class={props.classes?.description}>
 						{description()}
 					</P.Description>
 				)}
 			</Show>
 			<Show
-				when={props.validationState === "invalid" && local.errorMessage}
+				when={props.validationState === "invalid" && props.errorMessage}
 				keyed={false}
 			>
 				{errorMessage => (
 					<P.ErrorMessage
 						class={mergeClasses(
-							local.slotClasses?.errorLabel,
-							local.classes?.errorMessage,
+							props.slotClasses?.errorLabel,
+							props.classes?.errorMessage,
 						)}
 					>
 						{errorMessage()}

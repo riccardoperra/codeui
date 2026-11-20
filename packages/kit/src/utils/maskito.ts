@@ -1,4 +1,4 @@
-import { access, MaybeAccessor } from "@kobalte/utils";
+import { access, MaybeAccessor } from "@solid-primitives/utils";
 import {
 	Maskito,
 	MASKITO_DEFAULT_ELEMENT_PREDICATE,
@@ -6,7 +6,7 @@ import {
 	MaskitoElementPredicate,
 	MaskitoOptions,
 } from "@maskito/core";
-import { createEffect, createSignal, onCleanup, Setter } from "solid-js";
+import { createEffect, createSignal, Setter } from "solid-js";
 
 export const createMaskito = ({
 	options = MASKITO_DEFAULT_OPTIONS,
@@ -17,28 +17,32 @@ export const createMaskito = ({
 } = {}): Setter<HTMLElement | null> => {
 	const [ref, setRef] = createSignal<HTMLElement | null>(null);
 
-	createEffect(() => {
-		const refValue = ref();
-		const maskitoOptions = access(options);
-		const elementPredicateValue = access(elementPredicate);
-		if (!refValue) {
-			return;
-		}
-		let disposed = false;
-		let maskedElement: Maskito | undefined;
-		onCleanup(() => {
-			disposed = true;
-			maskedElement?.destroy();
-		});
-		const element = elementPredicateValue(refValue);
-		if (element instanceof Promise) {
-			void element.then(value => {
-				if (!disposed) maskedElement = new Maskito(value, maskitoOptions);
-			});
-		} else {
-			maskedElement = new Maskito(element, maskitoOptions);
-		}
-	});
+	createEffect(
+		() => ({
+			refValue: ref(),
+			maskitoOptions: access(options),
+			elementPredicateValue: access(elementPredicate),
+		}),
+		({ refValue, maskitoOptions, elementPredicateValue }) => {
+			if (!refValue) {
+				return;
+			}
+			let disposed = false;
+			let maskedElement: Maskito | undefined;
+			const element = elementPredicateValue(refValue);
+			if (element instanceof Promise) {
+				void element.then(value => {
+					if (!disposed) maskedElement = new Maskito(value, maskitoOptions);
+				});
+			} else {
+				maskedElement = new Maskito(element, maskitoOptions);
+			}
+			return () => {
+				disposed = true;
+				maskedElement?.destroy();
+			};
+		},
+	);
 
 	return setRef;
 };

@@ -1,18 +1,19 @@
 import { Button, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuPortal, DropdownMenuTrigger, IconButton, Text, TextField, Tooltip } from "@codeui/kit";
-import Bold from "lucide-solid/icons/letter-b";
-import Check from "lucide-solid/icons/check";
-import ChevronDown from "lucide-solid/icons/chevron-down";
-import ChevronUp from "lucide-solid/icons/chevron-up";
-import Italic from "lucide-solid/icons/italic";
-import Lock from "lucide-solid/icons/lock";
-import Pilcrow from "lucide-solid/icons/pilcrow";
-import Plus from "lucide-solid/icons/plus";
-import Redo2 from "lucide-solid/icons/redo-2";
-import Search from "lucide-solid/icons/search";
-import Undo2 from "lucide-solid/icons/undo-2";
-import X from "lucide-solid/icons/x";
+import Bold from "@lucide/solid/icons/letter-b";
+import Check from "@lucide/solid/icons/check";
+import ChevronDown from "@lucide/solid/icons/chevron-down";
+import ChevronUp from "@lucide/solid/icons/chevron-up";
+import Italic from "@lucide/solid/icons/italic";
+import Lock from "@lucide/solid/icons/lock";
+import Pilcrow from "@lucide/solid/icons/pilcrow";
+import Plus from "@lucide/solid/icons/plus";
+import Redo2 from "@lucide/solid/icons/redo-2";
+import Search from "@lucide/solid/icons/search";
+import Undo2 from "@lucide/solid/icons/undo-2";
+import X from "@lucide/solid/icons/x";
 import { redoDepth, undoDepth } from "prosemirror-history";
-import { createEffect, createSignal, For, type JSX, on, Show } from "solid-js";
+import { createEffect, createSignal, For, Show } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import { modKey } from "../shared/hotkey";
 import { createIsPhone } from "../shared/media";
 import { createControlSize } from "../shared/size";
@@ -33,7 +34,7 @@ function Tool(props: { label: string; hint?: string; on?: boolean; disabled?: bo
 				size={size()}
 				class={props.on ? "pmi-on" : undefined}
 				aria-label={props.label}
-				aria-pressed={props.on === undefined ? undefined : props.on}
+				aria-pressed={props.on == null ? undefined : props.on ? "true" : "false"}
 				disabled={props.disabled}
 				// The caret stays in the document, so a command applies to the selection it was aimed at.
 				onMouseDown={(event: MouseEvent) => event.preventDefault()}
@@ -141,7 +142,7 @@ function FindBar(props: { onClose: () => void }) {
 	const [query, setQuery] = createSignal(getFindState(bench.editor.view.state).query);
 	let input: HTMLInputElement | undefined;
 
-	createEffect(on(query, value => findQuery(bench.editor, value), { defer: true }));
+	createEffect(query, value => { findQuery(bench.editor, value); }, { defer: true });
 	// Opened by its button or by Mod+F in the document: either way the next key belongs to the field.
 	queueMicrotask(() => input?.select());
 

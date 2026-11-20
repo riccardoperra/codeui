@@ -1,4 +1,4 @@
-import { cleanup, fireEvent, render, screen, within } from "solid-testing-library";
+import { cleanup, fireEvent, render, screen, within } from "@solidjs/testing-library";
 import { createSignal, For } from "solid-js";
 import { Dialog } from "../src/components/Dialog/Dialog";
 import * as D from "../src/parts/dialog";

@@ -1,3 +1,4 @@
+import { pickProps } from "../utils/pick-props";
 import { HydratablePortal } from "../utils/hydratable-portal";
 import "@codeui/styles/theme.css";
 import "@codeui/styles/sheet.css";
@@ -14,26 +15,15 @@ import {
 	useDialogContext,
 } from "@kobalte/core/dialog";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
-import { callHandler, mergeRefs } from "@kobalte/utils";
-import {
-	type Accessor,
-	type ComponentProps,
-	createContext,
-	createMemo,
-	createSignal,
-	type JSX,
-	onCleanup,
-	onMount,
-	Show,
-	splitProps,
-	useContext,
-	type ValidComponent,
-} from "solid-js";
+import { callHandler } from "@kobalte/utils";
+import { type Accessor, createContext, createMemo, createSignal, onCleanup, onSettled, Show, useContext, omit } from "solid-js";
+import { type ComponentProps, type JSX, type ValidComponent } from "@solidjs/web";
 import * as styles from "../components/Sheet/Sheet.css";
 import { IconButton, type IconButtonProps } from "../components/IconButton/IconButton";
 import { CloseIcon } from "../icons";
 import { mergeClasses } from "../utils/css";
-import { createFocusReturn } from "./dialog-focus";
+import { LayerScope } from "../utils/layer-scope";
+import { createDialogFocus } from "./dialog-focus";
 import { createSheetDrag } from "./sheet-drag";
 import { pointerInitiated, trackInput } from "../utils/open-source";
 
@@ -47,7 +37,7 @@ type SheetContextValue = {
 	closeInPlace: () => void;
 };
 
-const SheetContext = createContext<SheetContextValue>();
+const SheetContext = createContext<SheetContextValue | null>(null);
 
 function MotionScope(props: { motion?: SheetMotion; children?: JSX.Element }) {
 	const dialog = useDialogContext();
@@ -64,9 +54,9 @@ function MotionScope(props: { motion?: SheetMotion; children?: JSX.Element }) {
 		dialog.close();
 	};
 	return (
-		<SheetContext.Provider value={{ moves, overlay, setOverlay, closeInPlace }}>
+		<SheetContext value={{ moves, overlay, setOverlay, closeInPlace }}>
 			{props.children}
-		</SheetContext.Provider>
+		</SheetContext>
 	);
 }
 
@@ -78,8 +68,9 @@ const motionAttribute = () => {
 export type RootProps = KDialogRootProps & { motion?: SheetMotion };
 
 export function Root(props: RootProps) {
-	const [local, others] = splitProps(props, ["motion", "children"]);
-	onMount(trackInput);
+	const local = props;
+	const others = omit(props, "motion", "children");
+	onSettled(trackInput);
 	return (
 		<KDialog {...others}>
 			<MotionScope motion={local.motion}>{local.children}</MotionScope>
@@ -95,7 +86,8 @@ export function Portal(props: KDialogPortalProps) {
 export function Trigger<T extends ValidComponent = "button">(
 	props: PolymorphicProps<T, KDialogTriggerProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"button", KDialogTriggerProps>, ["class"]);
+	const local = props as PolymorphicProps<"button", KDialogTriggerProps>;
+	const others = omit(local, "class");
 	return (
 		<KDialog.Trigger
 			data-cui={sheetParts.trigger}
@@ -108,16 +100,14 @@ export function Trigger<T extends ValidComponent = "button">(
 export function Overlay<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, KDialogOverlayProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"div", KDialogOverlayProps>, [
-		"class",
-		"ref",
-	]);
+	const local = props as PolymorphicProps<"div", KDialogOverlayProps>;
+	const others = omit(local, "class", "ref");
 	const motion = motionAttribute();
 	const context = useContext(SheetContext);
 	onCleanup(() => context?.setOverlay(undefined));
 	return (
 		<KDialog.Overlay
-			ref={mergeRefs(local.ref, (element: HTMLElement) => context?.setOverlay(element))}
+			ref={[local.ref, (element: HTMLElement) => context?.setOverlay(element)]}
 			data-cui={sheetParts.overlay}
 			data-motion={motion()}
 			class={mergeClasses(sheetStyles.overlay(), local.class)}
@@ -136,29 +126,28 @@ export type ContentProps<T extends ValidComponent = "div"> = KDialogContentProps
  * the sheet opened.
  */
 export function Content<T extends ValidComponent = "div">(props: PolymorphicProps<T, ContentProps<T>>) {
-	const [local, others] = splitProps(props as PolymorphicProps<"div", ContentProps>, [
-		"class",
-		"side",
-		"onOpenAutoFocus",
-		"onCloseAutoFocus",
-		"onInteractOutside",
-	]);
-	const focus = createFocusReturn(local);
+	const allProps = props as PolymorphicProps<"div", ContentProps>;
+	const local = pickProps(allProps, "class", "side");
+	const others = omit(allProps, "class", "side", "onOpenAutoFocus", "onCloseAutoFocus", "onInteractOutside", "onFocusOutside", "onPointerDownOutside");
+	const { layer, props: focus } = createDialogFocus(allProps);
 	const motion = motionAttribute();
 	return (
-		<KDialog.Content
-			data-cui={sheetParts.content}
-			data-side={local.side ?? "bottom"}
-			data-motion={motion()}
-			class={mergeClasses(styles.content(), local.class)}
-			{...focus}
-			{...others}
-		/>
+		<LayerScope layer={layer}>
+			<KDialog.Content
+				data-cui={sheetParts.content}
+				data-side={local.side ?? "bottom"}
+				data-motion={motion()}
+				class={mergeClasses(styles.content(), local.class)}
+				{...focus}
+				{...others}
+			/>
+		</LayerScope>
 	);
 }
 
 export function Header(props: ComponentProps<"div">) {
-	const [local, others] = splitProps(props, ["class"]);
+	const local = props;
+	const others = omit(props, "class");
 	return (
 		<div
 			data-cui={sheetParts.header}
@@ -169,7 +158,8 @@ export function Header(props: ComponentProps<"div">) {
 }
 
 export function Title<T extends ValidComponent = "h2">(props: PolymorphicProps<T, KDialogTitleProps<T>>) {
-	const [local, others] = splitProps(props as PolymorphicProps<"h2", KDialogTitleProps>, ["class"]);
+	const local = props as PolymorphicProps<"h2", KDialogTitleProps>;
+	const others = omit(local, "class");
 	return (
 		<KDialog.Title
 			data-cui={sheetParts.title}
@@ -182,7 +172,8 @@ export function Title<T extends ValidComponent = "h2">(props: PolymorphicProps<T
 export function Description<T extends ValidComponent = "p">(
 	props: PolymorphicProps<T, KDialogDescriptionProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"p", KDialogDescriptionProps>, ["class"]);
+	const local = props as PolymorphicProps<"p", KDialogDescriptionProps>;
+	const others = omit(local, "class");
 	return (
 		<KDialog.Description
 			data-cui={sheetParts.description}
@@ -199,7 +190,8 @@ export type CloseButtonProps = Omit<PolymorphicProps<"button", IconButtonProps>,
 	};
 
 export function CloseButton(props: CloseButtonProps) {
-	const [local, others] = splitProps(props, ["class", "children", "aria-label"]);
+	const local = pickProps(props, "class", "children", "aria-label");
+	const others = omit(props, "class", "children", "aria-label");
 	return (
 		<KDialog.CloseButton
 			as={IconButton}
@@ -226,15 +218,8 @@ export type HandleProps = Omit<ComponentProps<"button">, "aria-label"> & {
  * A drag that is cancelled or does not go far enough settles back open.
  */
 export function Handle(props: HandleProps) {
-	const [local, others] = splitProps(props, [
-		"class",
-		"aria-label",
-		"onClick",
-		"onPointerDown",
-		"onPointerMove",
-		"onPointerUp",
-		"onPointerCancel",
-	]);
+	const local = pickProps(props, "class", "aria-label", "onClick", "onPointerDown", "onPointerMove", "onPointerUp", "onPointerCancel");
+	const others = omit(props, "class", "aria-label", "onClick", "onPointerDown", "onPointerMove", "onPointerUp", "onPointerCancel");
 	const dialog = useDialogContext();
 	const context = useContext(SheetContext);
 	let handle: HTMLButtonElement | undefined;
@@ -247,7 +232,7 @@ export function Handle(props: HandleProps) {
 		<button
 			type="button"
 			{...others}
-			ref={mergeRefs(others.ref, (element: HTMLButtonElement) => (handle = element))}
+			ref={[others.ref, (element: HTMLButtonElement) => (handle = element)]}
 			data-cui={sheetParts.handle}
 			aria-label={local["aria-label"] ?? "close"}
 			class={mergeClasses(sheetStyles.handle(), local.class)}
@@ -277,14 +262,16 @@ export function Handle(props: HandleProps) {
 }
 
 export function Body(props: ComponentProps<"div">) {
-	const [local, others] = splitProps(props, ["class"]);
+	const local = props;
+	const others = omit(props, "class");
 	return (
 		<div data-cui={sheetParts.body} class={mergeClasses(sheetStyles.body(), local.class)} {...others} />
 	);
 }
 
 export function Footer(props: ComponentProps<"div">) {
-	const [local, others] = splitProps(props, ["class"]);
+	const local = props;
+	const others = omit(props, "class");
 	return (
 		<div
 			data-cui={sheetParts.footer}

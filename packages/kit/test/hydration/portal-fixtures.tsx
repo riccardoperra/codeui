@@ -1,5 +1,6 @@
-import { createSignal, type JSX } from "solid-js";
-import { isServer } from "solid-js/web";
+import { createSignal } from "solid-js";
+import { type JSX } from "@solidjs/web";
+import { isServer } from "@solidjs/web";
 import * as D from "../../src/parts/dialog";
 import * as P from "../../src/parts/popover";
 import * as S from "../../src/parts/sheet";

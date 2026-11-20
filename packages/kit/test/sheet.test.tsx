@@ -1,8 +1,8 @@
-import { cleanup, fireEvent, render, screen } from "solid-testing-library";
+import { cleanup, fireEvent, render, screen } from "@solidjs/testing-library";
 import { createSignal } from "solid-js";
 import { Sheet } from "../src/components/Sheet/Sheet";
 import * as S from "../src/parts/sheet";
-import { expectDismissed, press, tick } from "./helpers";
+import { expectDismissed, expectFocus, expectFocusWithin, press, tick } from "./helpers";
 
 afterEach(cleanup);
 
@@ -110,9 +110,8 @@ describe("Sheet", () => {
 	it("moves focus in, keeps it inside while modal, and returns it to the opener", async () => {
 		const opener = renderOpener();
 		fireEvent.click(opener);
-		await tick();
 		const sheet = screen.getByRole("dialog", { name: "Layers" });
-		expect(sheet).toContainElement(document.activeElement as HTMLElement);
+		await expectFocusWithin(sheet);
 
 		screen.getByRole("button", { name: "Outside", hidden: true }).focus();
 		await tick();
@@ -120,7 +119,7 @@ describe("Sheet", () => {
 
 		press("Escape");
 		await expectSheetDismissed(sheet);
-		expect(document.activeElement).toBe(opener);
+		await expectFocus(opener);
 	});
 
 	it("lets contentProps keep focus elsewhere on close", async () => {
@@ -133,11 +132,11 @@ describe("Sheet", () => {
 			},
 		});
 		fireEvent.click(opener);
-		await tick();
 		const sheet = screen.getByRole("dialog");
+		await expectFocusWithin(sheet);
 		press("Escape");
 		await expectDismissed(sheet);
-		expect(document.activeElement).toHaveTextContent("Outside");
+		await expectFocus(screen.getByRole("button", { name: "Outside" }));
 	});
 
 	it("does not move when opened from the keyboard", async () => {
@@ -203,7 +202,7 @@ describe("Sheet parts", () => {
 		const sheet = screen.getByRole("dialog");
 		fireEvent.click(screen.getByRole("button", { name: "Close layers" }));
 		await expectSheetDismissed(sheet);
-		expect(document.activeElement).toBe(trigger);
+		await expectFocus(trigger);
 	});
 
 	it("give every style function a class for each part", () => {

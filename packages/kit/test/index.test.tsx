@@ -1,4 +1,4 @@
-import { render, fireEvent, cleanup } from "solid-testing-library";
+import { render, fireEvent, cleanup } from "@solidjs/testing-library";
 import { TextField } from "../src/components/TextField/TextField";
 import { Button } from "../src/components/Button/Button";
 

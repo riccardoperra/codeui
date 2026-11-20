@@ -1,5 +1,5 @@
 import type { Link } from "@codeui/kit";
-import type { ComponentProps } from "solid-js";
+import type { ComponentProps } from "@solidjs/web";
 import type { PropNotes } from "./notes";
 
 export type Link = Pick<ComponentProps<typeof Link>, "variant" | "class">;

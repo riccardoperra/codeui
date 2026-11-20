@@ -1,5 +1,5 @@
 import { OptionCardGroup } from "@codeui/kit";
-import type { JSX } from "solid-js";
+import type { JSX } from "@solidjs/web";
 
 // Schematic previews in each option's own colours (Inkstone §9.4).
 function Window(props: { controls?: JSX.Element }) {

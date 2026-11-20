@@ -11,8 +11,9 @@ import {
 	TextField,
 } from "@codeui/kit";
 import * as Dialog from "@codeui/kit/dialog/parts";
-import { createMemo, createSignal, For, type JSX, Show } from "solid-js";
-import { createStore } from "solid-js/store";
+import { createMemo, createSignal, For, Show } from "solid-js";
+import { type JSX } from "@solidjs/web";
+import { createStore } from "solid-js";
 import { DownloadIcon, FlaskIcon, InfoIcon, PaletteIcon, ResetIcon, SlidersIcon, SparkleIcon } from "./icons";
 import "./settings.css";
 
@@ -51,17 +52,17 @@ export default function Settings() {
 	// A segmented control is 84px per option in settings (Inkstone §6).
 	const segmented = (key: Choice, options: [value: string, label: string][]) => (control: SettingsRowControlProps) => (
 		<div style={{ width: `min(100%, ${options.length * 84}px)` }}>
-			<SegmentedControl {...control} size="sm" fluid value={values[key]} onChange={value => setValues(key, value)}>
+			<SegmentedControl {...control} size="sm" fluid value={values[key]} onChange={value => setValues(draft => { draft[key] = value; })}>
 				<For each={options}>{([value, label]) => <SegmentedControlItem value={value}>{label}</SegmentedControlItem>}</For>
 			</SegmentedControl>
 		</div>
 	);
 	// Items are built per render, so a preview's DOM node is never shared between two rows.
 	const cards = (key: Choice, items: () => OptionCardEntry[]) => (control: SettingsRowControlProps) => (
-		<OptionCardGroup {...control} items={items()} value={values[key]} onChange={value => setValues(key, value)} />
+		<OptionCardGroup {...control} items={items()} value={values[key]} onChange={value => setValues(draft => { draft[key] = value; })} />
 	);
 	const toggle = (key: Toggle) => (control: SettingsRowControlProps) => (
-		<Switch {...control} checked={values[key]} onChange={checked => setValues(key, checked)} />
+		<Switch {...control} checked={values[key]} onChange={checked => setValues(draft => { draft[key] = checked; })} />
 	);
 
 	const sections: Section[] = [
@@ -146,7 +147,12 @@ export default function Settings() {
 			}))
 			.filter(group => group.rows.length > 0);
 	});
-	const restore = () => experiments.forEach(key => setValues(key, defaults[key]));
+	const restore = () => setValues(draft => {
+		function reset<Key extends keyof Values>(key: Key) {
+			draft[key] = defaults[key];
+		}
+		experiments.forEach(reset);
+	});
 	let content: HTMLDivElement | undefined;
 
 	return (

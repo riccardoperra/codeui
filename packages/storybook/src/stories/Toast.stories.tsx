@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "storybook-solidjs-vite";
 import { icons } from "@codeui/kit";
 import * as T from "@codeui/kit/toast/parts";
 import { toaster } from "@kobalte/core/toast";
-import { createUniqueId, For, onCleanup, onMount } from "solid-js";
+import { createUniqueId, For, onSettled } from "solid-js";
 
 const tones = ["neutral", "info", "success", "warning", "danger"] as const;
 
@@ -27,7 +27,7 @@ function ToastFrame(props: {
 	height: string;
 }) {
 	const regionId = createUniqueId();
-	onMount(() => {
+	onSettled(() => {
 		const ids = props.toasts.map(spec =>
 			toaster.show(
 				toast => (
@@ -57,7 +57,7 @@ function ToastFrame(props: {
 				{ region: regionId },
 			),
 		);
-		onCleanup(() => ids.forEach(id => toaster.dismiss(id)));
+		return () => ids.forEach(id => toaster.dismiss(id));
 	});
 	return (
 		<div

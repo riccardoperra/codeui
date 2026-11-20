@@ -1,4 +1,4 @@
-import { renderToString } from "solid-js/web";
+import { renderToString } from "@solidjs/web";
 import { Table, TableScrollArea } from "../src/components/Table/Table";
 
 it("server-renders a native table with its caption, headers and cells", () => {

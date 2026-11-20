@@ -1,4 +1,4 @@
-import { createSignal, onCleanup, onMount } from "solid-js";
+import { createSignal, onSettled } from "solid-js";
 import { type CommandItem, CommandMenu, Kbd } from "@codeui/kit";
 
 const commands: CommandItem[] = [
@@ -15,7 +15,7 @@ export default function ShortcutDemo() {
 	// the demo acts only while the menu is open or focus is in the demo, and listens in the capture
 	// phase to stop the event before the search sees it.
 	let root!: HTMLDivElement;
-	onMount(() => {
+	onSettled(() => {
 		const onKeyDown = (event: KeyboardEvent) => {
 			if (event.isComposing || event.repeat) return;
 			if (!(event.metaKey || event.ctrlKey) || event.key.toLowerCase() !== "k") return;
@@ -25,13 +25,13 @@ export default function ShortcutDemo() {
 			setOpen(value => !value);
 		};
 		window.addEventListener("keydown", onKeyDown, true);
-		onCleanup(() => window.removeEventListener("keydown", onKeyDown, true));
+		return () => window.removeEventListener("keydown", onKeyDown, true);
 	});
 
 	return (
 		<div
 			ref={root}
-			tabIndex={-1}
+			tabindex={-1}
 			style={{ display: "grid", gap: "var(--cui-space-3)", "justify-items": "start" }}
 		>
 			<p style={{ margin: 0 }}>

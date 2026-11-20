@@ -7,7 +7,8 @@ import {
 	fieldStyles,
 	textFieldStyles,
 } from "@codeui/kit";
-import { createSignal, For, type JSX, Show } from "solid-js";
+import { createSignal, For, Show } from "solid-js";
+import { type JSX } from "@solidjs/web";
 
 type ExportFormatFieldProps = BaseFieldProps &
 	FieldWithErrorMessageSupport & {
@@ -43,7 +44,7 @@ function ExportFormatField(props: ExportFormatFieldProps) {
 				class={`${field.baseStyle()} ${textFieldStyles.textField}`}
 				value={props.value}
 				data-invalid={props.errorMessage ? "" : undefined}
-				aria-invalid={props.errorMessage ? true : undefined}
+				aria-invalid={props.errorMessage ? "true" : undefined}
 				aria-describedby={describedBy()}
 				onChange={event => props.onChange(event.currentTarget.value)}
 			>

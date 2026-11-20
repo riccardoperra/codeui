@@ -1,4 +1,4 @@
-import type { JSX } from "solid-js";
+import type { JSX } from "@solidjs/web";
 
 // 16px outline icons for the demos. An app uses its own icon set.
 function Icon(props: { children: JSX.Element; size?: number }) {

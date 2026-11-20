@@ -1,12 +1,5 @@
-import {
-	children,
-	createMemo,
-	createUniqueId,
-	type JSX,
-	Show,
-	splitProps,
-	untrack,
-} from "solid-js";
+import { children, createMemo, createUniqueId, Show, untrack, omit } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import * as P from "../../parts/settings";
 import { mergeClasses } from "../../utils/css";
 import {
@@ -39,7 +32,8 @@ export type SettingsRowProps = Omit<JSX.HTMLAttributes<HTMLDivElement>, "childre
 
 /** One setting: label and description on the left, the control on the right. */
 export function SettingsRow(props: SettingsRowProps) {
-	const [local, others] = splitProps(props, [
+	const others = omit(
+		props,
 		"id",
 		"label",
 		"description",
@@ -52,17 +46,17 @@ export function SettingsRow(props: SettingsRowProps) {
 		"compactControl",
 		"class",
 		"classes",
-	]);
+	);
 	// Each content prop resolves once: reading a JSX prop twice creates its
 	// components twice, which breaks hydration and repeats their side effects.
-	const label = children(() => local.label);
-	const description = children(() => local.description);
-	const details = children(() => local.details);
-	const picture = children(() => local.picture);
-	const marker = children(() => local.marker);
+	const label = children(() => props.label);
+	const description = children(() => props.description);
+	const details = children(() => props.details);
+	const picture = children(() => props.picture);
+	const marker = children(() => props.marker);
 	const row = createSettingsRowProps(() => ({
-		id: local.id,
-		controlId: local.controlId,
+		id: props.id,
+		controlId: props.controlId,
 		description: description(),
 	}));
 	const controlProps: SettingsRowControlProps = {
@@ -74,7 +68,7 @@ export function SettingsRow(props: SettingsRowProps) {
 		},
 	};
 	const control = createMemo((): JSX.Element => {
-		const content = local.children;
+		const content = props.children;
 		return typeof content === "function" && content.length > 0
 			? untrack(() =>
 					(content as (control: SettingsRowControlProps) => JSX.Element)(controlProps),
@@ -85,28 +79,28 @@ export function SettingsRow(props: SettingsRowProps) {
 		<P.Row
 			{...others}
 			{...row.root()}
-			layout={local.layout}
-			compactControl={local.compactControl}
-			class={mergeClasses(local.classes?.root, local.class)}
+			layout={props.layout}
+			compactControl={props.compactControl}
+			class={mergeClasses(props.classes?.root, props.class)}
 		>
 			<Show when={picture()}>
-				<P.Picture class={local.classes?.picture}>{picture()}</P.Picture>
+				<P.Picture class={props.classes?.picture}>{picture()}</P.Picture>
 			</Show>
-			<P.Label {...row.label()} class={local.classes?.label}>
+			<P.Label {...row.label()} class={props.classes?.label}>
 				{label()}
 				<Show when={marker()}>
-					<P.Marker class={local.classes?.marker}>{marker()}</P.Marker>
+					<P.Marker class={props.classes?.marker}>{marker()}</P.Marker>
 				</Show>
 			</P.Label>
 			<Show when={description()}>
-				<P.Description {...row.description()} class={local.classes?.description}>
+				<P.Description {...row.description()} class={props.classes?.description}>
 					{description()}
 				</P.Description>
 			</Show>
 			<Show when={details()}>
-				<P.Details class={local.classes?.details}>{details()}</P.Details>
+				<P.Details class={props.classes?.details}>{details()}</P.Details>
 			</Show>
-			<P.Control class={local.classes?.control}>{control()}</P.Control>
+			<P.Control class={props.classes?.control}>{control()}</P.Control>
 		</P.Row>
 	);
 }
@@ -122,40 +116,41 @@ export type SettingsGroupProps = Omit<JSX.HTMLAttributes<HTMLElement>, "title"> 
 
 /** Rows that belong together: a heading and one island. */
 export function SettingsGroup(props: SettingsGroupProps) {
-	const [local, others] = splitProps(props, [
+	const others = omit(
+		props,
 		"id",
 		"title",
 		"description",
 		"children",
 		"class",
 		"classes",
-	]);
-	const title = children(() => local.title);
-	const description = children(() => local.description);
+	);
+	const title = children(() => props.title);
+	const description = children(() => props.description);
 	const fallback = createUniqueId();
-	const base = () => local.id ?? `settings-group-${fallback}`;
+	const base = () => props.id ?? `settings-group-${fallback}`;
 	return (
 		<P.Group
 			{...others}
-			id={local.id}
+			id={props.id}
 			aria-labelledby={title() ? `${base()}-title` : undefined}
 			aria-describedby={description() ? `${base()}-description` : undefined}
-			class={mergeClasses(local.classes?.root, local.class)}
+			class={mergeClasses(props.classes?.root, props.class)}
 		>
 			<Show when={title()}>
-				<P.GroupTitle id={`${base()}-title`} class={local.classes?.title}>
+				<P.GroupTitle id={`${base()}-title`} class={props.classes?.title}>
 					{title()}
 				</P.GroupTitle>
 			</Show>
 			<Show when={description()}>
 				<P.GroupDescription
 					id={`${base()}-description`}
-					class={local.classes?.description}
+					class={props.classes?.description}
 				>
 					{description()}
 				</P.GroupDescription>
 			</Show>
-			<P.GroupContent class={local.classes?.content}>{local.children}</P.GroupContent>
+			<P.GroupContent class={props.classes?.content}>{props.children}</P.GroupContent>
 		</P.Group>
 	);
 }

@@ -3,10 +3,13 @@ import "@codeui/styles/theme.css";
 import "@codeui/styles/listbox.css";
 import * as K from "@kobalte/core/listbox";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
-import { mergeProps, splitProps, type ValidComponent } from "solid-js";
+import { callHandler } from "@kobalte/utils";
+import { merge, omit } from "solid-js";
+import { type ValidComponent } from "@solidjs/web";
 import * as styles from "../components/Listbox/Listbox.css";
 import { CheckIcon } from "../icons/CheckIcon";
 import { mergeClasses } from "../utils/css";
+import { allowEscapeToBubble } from "../utils/escape";
 
 const defaultItemSize = listboxStyleProps.item()["data-size"];
 
@@ -23,10 +26,8 @@ export type RootProps<
 export function Root<Option, OptGroup = never, T extends ValidComponent = "ul">(
 	props: PolymorphicProps<T, RootProps<Option, OptGroup, T>>,
 ) {
-	const [local, others] = splitProps(
-		props as PolymorphicProps<"ul", RootProps<Option, OptGroup>>,
-		["class", "bordered", "variant"],
-	);
+	const local = props as PolymorphicProps<"ul", RootProps<Option, OptGroup>>;
+	const others = omit(local, "class", "bordered", "variant", "onKeyDown");
 	return (
 		<K.Root<Option, OptGroup>
 			data-cui="listbox"
@@ -34,6 +35,10 @@ export function Root<Option, OptGroup = never, T extends ValidComponent = "ul">(
 			data-variant={local.variant ?? "neutral"}
 			shouldFocusOnHover
 			{...others}
+			onKeyDown={event => {
+				callHandler(event, local.onKeyDown);
+				if (local.disallowEmptySelection) allowEscapeToBubble(event);
+			}}
 			class={mergeClasses(styles.list, local.class)}
 		/>
 	);
@@ -45,10 +50,8 @@ export type ItemProps<T extends ValidComponent = "li"> = K.ListboxItemProps<T> &
 export function Item<T extends ValidComponent = "li">(
 	props: PolymorphicProps<T, ItemProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"li", ItemProps>, [
-		"class",
-		"size",
-	]);
+	const local = props as PolymorphicProps<"li", ItemProps>;
+	const others = omit(local, "class", "size");
 	return (
 		<K.Item
 			data-size={local.size ?? defaultItemSize}
@@ -73,11 +76,9 @@ export type ItemIndicatorProps<T extends ValidComponent = "div"> =
 export function ItemIndicator<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, ItemIndicatorProps<T>>,
 ) {
-	const [local, others] = splitProps(
-		props as PolymorphicProps<"div", ItemIndicatorProps>,
-		["size"],
-	);
-	const resolved = mergeProps(
+	const local = props as PolymorphicProps<"div", ItemIndicatorProps>;
+	const others = omit(local, "size");
+	const resolved = merge(
 		{
 			forceMount: true,
 			get children() {

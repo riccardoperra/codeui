@@ -1,5 +1,5 @@
 import type { TextFieldLabel, TextFieldProps } from "@codeui/kit";
-import type { ComponentProps } from "solid-js";
+import type { ComponentProps } from "@solidjs/web";
 import type { PropNotes } from "./notes";
 
 /** Props that TextField adds on top of Kobalte's text field root. */
@@ -22,8 +22,8 @@ export type TextFieldInputAttributes = Pick<
 	| "inputmode"
 	| "enterkeyhint"
 	| "spellcheck"
-	| "maxLength"
-	| "minLength"
+	| "maxlength"
+	| "minlength"
 	| "pattern"
 	| "autofocus"
 	| "aria-label"
@@ -57,5 +57,6 @@ export const notes = {
 	},
 	TextFieldInputAttributes: {
 		type: { type: '"text" | "email" | "password" | "search" | "url" | … | string', default: '"text"', description: "Input type, such as email, url, or password." },
+		inputmode: { type: '"text" | "email" | "numeric" | …', description: "Keyboard layout requested on touch devices." },
 	},
 } satisfies PropNotes;

@@ -1,4 +1,4 @@
-import { cleanup, render, waitFor } from "solid-testing-library";
+import { cleanup, render, waitFor } from "@solidjs/testing-library";
 import { Checkbox } from "../src/components/CheckBox/CheckBox";
 import { Listbox } from "../src/components/Listbox/Listbox";
 import { Select } from "../src/components/Select/Select";
@@ -14,7 +14,13 @@ it("uses the 14px Label style for sm Listbox and Select options", async () => {
 		return (
 			<div ref={scope}>
 				<Listbox aria-label="File format" size="sm" options={options} />
-				<Select aria-label="Export format" size="sm" options={options} open mount={scope} />
+				<Select
+					aria-label="Export format"
+					size="sm"
+					options={options}
+					open
+					mount={scope}
+				/>
 			</div>
 		);
 	});
@@ -25,9 +31,14 @@ it("uses the 14px Label style for sm Listbox and Select options", async () => {
 	});
 });
 
-it.each(["sm", "md"] as const)("uses the 14px Label style for %s Checkbox labels", size => {
-	const { getByText } = render(() => <Checkbox size={size} label="Show line numbers" />);
-	const label = getComputedStyle(getByText("Show line numbers"));
-	expect(label.fontSize).toBe("14px");
-	expect(label.lineHeight).toBe("18.2px");
-});
+it.each(["sm", "md"] as const)(
+	"uses the 14px Label style for %s Checkbox labels",
+	size => {
+		const { getByText } = render(() => (
+			<Checkbox size={size} label="Show line numbers" />
+		));
+		const label = getComputedStyle(getByText("Show line numbers"));
+		expect(label.fontSize).toBe("14px");
+		expect(label.lineHeight).toBe("18.2px");
+	},
+);

@@ -1,8 +1,10 @@
+import { pickProps } from "../../utils/pick-props";
 import type {
 	DialogContentOptions as KDialogContentOptions,
 	DialogRootOptions as KDialogRootOptions,
 } from "@kobalte/core/dialog";
-import { type JSX, type ParentProps, Show, splitProps } from "solid-js";
+import { type ParentProps, Show, omit } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import * as D from "../../parts/dialog";
 
 export type DialogProps = KDialogRootOptions &
@@ -25,7 +27,7 @@ export type DialogProps = KDialogRootOptions &
 		/** Accessible name of the close button. Defaults to "close". */
 		closeLabel?: string;
 		/** Node the dialog is portaled into. Defaults to `document.body`. */
-		mount?: Node;
+		mount?: globalThis.Element;
 		/** Classes for the parts this component renders, keyed by part name. */
 		classes?: Pick<
 			D.DialogClasses,
@@ -39,19 +41,9 @@ export const DialogPanelContent = D.Body;
 export const DialogPanelFooter = D.Footer;
 
 export function Dialog(props: ParentProps<DialogProps>) {
-	const [local, content, others] = splitProps(
-		props,
-		["size", "chrome", "children", "title", "description", "closeLabel", "mount", "classes"],
-		[
-			"aria-label",
-			"onOpenAutoFocus",
-			"onCloseAutoFocus",
-			"onEscapeKeyDown",
-			"onPointerDownOutside",
-			"onFocusOutside",
-			"onInteractOutside",
-		],
-	);
+	const local = props;
+	const content = pickProps(props, "aria-label", "onOpenAutoFocus", "onCloseAutoFocus", "onEscapeKeyDown", "onPointerDownOutside", "onFocusOutside", "onInteractOutside");
+	const others = omit(props, "size", "chrome", "children", "title", "description", "closeLabel", "mount", "classes", "aria-label", "onOpenAutoFocus", "onCloseAutoFocus", "onEscapeKeyDown", "onPointerDownOutside", "onFocusOutside", "onInteractOutside");
 	return (
 		<D.Root {...others}>
 			<D.Portal mount={local.mount}>

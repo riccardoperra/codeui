@@ -1,5 +1,5 @@
 import type { TextAreaLabel, TextAreaProps } from "@codeui/kit";
-import type { ComponentProps } from "solid-js";
+import type { ComponentProps } from "@solidjs/web";
 import type { PropNotes } from "./notes";
 
 /** Props that TextArea adds on top of Kobalte's text field root. */

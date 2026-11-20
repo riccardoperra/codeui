@@ -1,3 +1,4 @@
+import { pickProps } from "../utils/pick-props";
 import { dialogStyleProps } from "@codeui/styles/dialog";
 import { HydratablePortal } from "../utils/hydratable-portal";
 import "@codeui/styles/theme.css";
@@ -16,30 +17,21 @@ import {
 } from "@kobalte/core/dialog";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import { callHandler } from "@kobalte/utils";
-import {
-	type Accessor,
-	type ComponentProps,
-	createContext,
-	createMemo,
-	type JSX,
-	onMount,
-	Show,
-	splitProps,
-	useContext,
-	type ValidComponent,
-} from "solid-js";
+import { type Accessor, createContext, createMemo, onSettled, Show, useContext, omit } from "solid-js";
+import { type ComponentProps, type JSX, type ValidComponent } from "@solidjs/web";
 import * as styles from "../components/Dialog/Dialog.css";
 import { IconButton, type IconButtonProps } from "../components/IconButton/IconButton";
 import { CloseIcon } from "../icons";
 import { mergeClasses } from "../utils/css";
-import { createFocusReturn } from "./dialog-focus";
+import { LayerScope } from "../utils/layer-scope";
+import { createDialogFocus } from "./dialog-focus";
 import { pointerInitiated, trackInput } from "../utils/open-source";
 
 
 import { dialogParts, type DialogPart, type DialogThemeVar, dialogThemeVars, type DialogClasses, type DialogSize, type DialogChrome, type DialogMotion, type DialogBodyLayout, type DialogSectionVariant, type DialogStyles, dialogStyles } from "@codeui/styles/dialog";
 export { dialogParts, type DialogPart, type DialogThemeVar, dialogThemeVars, type DialogClasses, type DialogSize, type DialogChrome, type DialogMotion, type DialogBodyLayout, type DialogSectionVariant, type DialogStyles, dialogStyles } from "@codeui/styles/dialog";
 type MotionContextValue = { moves: Accessor<boolean> };
-const MotionContext = createContext<MotionContextValue>();
+const MotionContext = createContext<MotionContextValue | null>(null);
 
 type ChromeContextValue = { chrome: Accessor<DialogChrome> };
 const ChromeContext = createContext<ChromeContextValue>({ chrome: (): DialogChrome => "bar" });
@@ -50,7 +42,7 @@ function MotionScope(props: { motion?: DialogMotion; children?: JSX.Element }) {
 		dialog.isOpen();
 		return props.motion !== "none" && pointerInitiated();
 	});
-	return <MotionContext.Provider value={{ moves }}>{props.children}</MotionContext.Provider>;
+	return <MotionContext value={{ moves }}>{props.children}</MotionContext>;
 }
 
 /** `none` while the dialog opened or closed from the keyboard or from code. */
@@ -68,8 +60,9 @@ export type RootProps = KDialogRootProps & {
 };
 
 export function Root(props: RootProps) {
-	const [local, others] = splitProps(props, ["motion", "children"]);
-	onMount(trackInput);
+	const local = props;
+	const others = omit(props, "motion", "children");
+	onSettled(trackInput);
 	return (
 		<KDialog {...others}>
 			<MotionScope motion={local.motion}>{local.children}</MotionScope>
@@ -85,7 +78,8 @@ export function Portal(props: KDialogPortalProps) {
 export function Trigger<T extends ValidComponent = "button">(
 	props: PolymorphicProps<T, KDialogTriggerProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"button", KDialogTriggerProps>, ["class"]);
+	const local = props as PolymorphicProps<"button", KDialogTriggerProps>;
+	const others = omit(local, "class");
 	return (
 		<KDialog.Trigger
 			data-cui={dialogParts.trigger}
@@ -98,7 +92,8 @@ export function Trigger<T extends ValidComponent = "button">(
 export function Overlay<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, KDialogOverlayProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"div", KDialogOverlayProps>, ["class"]);
+	const local = props as PolymorphicProps<"div", KDialogOverlayProps>;
+	const others = omit(local, "class");
 	return (
 		<KDialog.Overlay
 			data-cui={dialogParts.overlay}
@@ -111,7 +106,8 @@ export function Overlay<T extends ValidComponent = "div">(
 export type PositionerProps = ComponentProps<"div"> & { size?: DialogSize };
 
 export function Positioner(props: PositionerProps) {
-	const [local, others] = splitProps(props, ["class", "size"]);
+	const local = props;
+	const others = omit(props, "class", "size");
 	const motion = motionAttribute();
 	return (
 		<div
@@ -136,42 +132,41 @@ export type ContentProps<T extends ValidComponent = "div"> = KDialogContentProps
  * returns focus to the element that had it when the dialog opened.
  */
 export function Content<T extends ValidComponent = "div">(props: PolymorphicProps<T, ContentProps<T>>) {
-	const [local, others] = splitProps(props as PolymorphicProps<"div", ContentProps>, [
-		"class",
-		"size",
-		"chrome",
-		"onOpenAutoFocus",
-		"onCloseAutoFocus",
-		"onInteractOutside",
-	]);
-	const focus = createFocusReturn(local);
+	const allProps = props as PolymorphicProps<"div", ContentProps>;
+	const local = pickProps(allProps, "class", "size", "chrome");
+	const others = omit(allProps, "class", "size", "chrome", "onOpenAutoFocus", "onCloseAutoFocus", "onInteractOutside", "onFocusOutside", "onPointerDownOutside");
+	const { layer, props: focus } = createDialogFocus(allProps);
 	const motion = motionAttribute();
 	const chrome = () => local.chrome ?? "bar";
 
 	return (
-		<ChromeContext.Provider value={{ chrome }}>
-			<KDialog.Content
-				data-cui={dialogParts.panel}
-				data-chrome={chrome()}
-				data-size={dialogStyleProps({ size: local.size })["data-size"]}
-				data-motion={motion()}
-				class={mergeClasses(dialogStyles.panel(), local.class)}
-				{...focus}
-				{...others}
-			/>
-		</ChromeContext.Provider>
+		<ChromeContext value={{ chrome }}>
+			<LayerScope layer={layer}>
+				<KDialog.Content
+					data-cui={dialogParts.panel}
+					data-chrome={chrome()}
+					data-size={dialogStyleProps({ size: local.size })["data-size"]}
+					data-motion={motion()}
+					class={mergeClasses(dialogStyles.panel(), local.class)}
+					{...focus}
+					{...others}
+				/>
+			</LayerScope>
+		</ChromeContext>
 	);
 }
 
 export function Header(props: ComponentProps<"div">) {
-	const [local, others] = splitProps(props, ["class"]);
+	const local = props;
+	const others = omit(props, "class");
 	return (
 		<div data-cui={dialogParts.header} class={mergeClasses(dialogStyles.header(), local.class)} {...others} />
 	);
 }
 
 export function Title<T extends ValidComponent = "h2">(props: PolymorphicProps<T, KDialogTitleProps<T>>) {
-	const [local, others] = splitProps(props as PolymorphicProps<"h2", KDialogTitleProps>, ["class"]);
+	const local = props as PolymorphicProps<"h2", KDialogTitleProps>;
+	const others = omit(local, "class");
 	return (
 		<KDialog.Title
 			data-cui={dialogParts.title}
@@ -184,7 +179,8 @@ export function Title<T extends ValidComponent = "h2">(props: PolymorphicProps<T
 export function Description<T extends ValidComponent = "p">(
 	props: PolymorphicProps<T, KDialogDescriptionProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"p", KDialogDescriptionProps>, ["class"]);
+	const local = props as PolymorphicProps<"p", KDialogDescriptionProps>;
+	const others = omit(local, "class");
 	return (
 		<KDialog.Description
 			data-cui={dialogParts.description}
@@ -201,7 +197,8 @@ export type CloseButtonProps = Omit<PolymorphicProps<"button", IconButtonProps>,
 	};
 
 export function CloseButton(props: CloseButtonProps) {
-	const [local, others] = splitProps(props, ["class", "children", "aria-label"]);
+	const local = pickProps(props, "class", "children", "aria-label");
+	const others = omit(props, "class", "children", "aria-label");
 	const { chrome } = useContext(ChromeContext);
 	return (
 		<KDialog.CloseButton
@@ -225,7 +222,8 @@ export type BodyProps = ComponentProps<"div"> & {
 };
 
 export function Body(props: BodyProps) {
-	const [local, others] = splitProps(props, ["class", "layout"]);
+	const local = props;
+	const others = omit(props, "class", "layout");
 	return (
 		<div
 			data-cui={dialogParts.body}
@@ -237,7 +235,8 @@ export function Body(props: BodyProps) {
 }
 
 export function Footer(props: ComponentProps<"div">) {
-	const [local, others] = splitProps(props, ["class"]);
+	const local = props;
+	const others = omit(props, "class");
 	return (
 		<div data-cui={dialogParts.footer} class={mergeClasses(dialogStyles.footer(), local.class)} {...others} />
 	);
@@ -254,7 +253,8 @@ export type SidebarProps = ComponentProps<"div"> & {
  * phone it becomes rows above the body.
  */
 export function Sidebar(props: SidebarProps) {
-	const [local, others] = splitProps(props, ["class", "classes", "search", "children"]);
+	const local = props;
+	const others = omit(props, "class", "classes", "search", "children");
 	return (
 		<div data-cui={dialogParts.sidebar} class={mergeClasses(dialogStyles.sidebar(), local.class)} {...others}>
 			<Show when={local.search}>
@@ -293,7 +293,8 @@ export type NavProps = Omit<ComponentProps<"nav">, "aria-label"> & {
  * jump to the ends, and Enter or Space selects the focused item.
  */
 export function Nav(props: NavProps) {
-	const [local, others] = splitProps(props, ["class", "children", "onKeyDown"]);
+	const local = props;
+	const others = omit(props, "class", "children", "onKeyDown");
 	const onKeyDown: JSX.EventHandler<HTMLElement, KeyboardEvent> = event => {
 		callHandler(event, local.onKeyDown);
 		const step = navStep[event.key];
@@ -331,7 +332,8 @@ export type NavItemProps = ComponentProps<"button"> & {
 };
 
 export function NavItem(props: NavItemProps) {
-	const [local, others] = splitProps(props, ["class", "classes", "current", "icon", "children"]);
+	const local = props;
+	const others = omit(props, "class", "classes", "current", "icon", "children");
 	return (
 		<li>
 			<button
@@ -360,7 +362,8 @@ export function NavItem(props: NavItemProps) {
 
 /** The pane next to the sidebar. Put the `Header` and the `Body` in it. */
 export function Main(props: ComponentProps<"div">) {
-	const [local, others] = splitProps(props, ["class"]);
+	const local = props;
+	const others = omit(props, "class");
 	return <div data-cui={dialogParts.main} class={mergeClasses(dialogStyles.main(), local.class)} {...others} />;
 }
 
@@ -379,7 +382,8 @@ export type SectionProps = Omit<ComponentProps<"section">, "title"> & {
 };
 
 export function Section(props: SectionProps) {
-	const [local, others] = splitProps(props, ["class", "classes", "title", "variant", "columns", "children"]);
+	const local = props;
+	const others = omit(props, "class", "classes", "title", "variant", "columns", "children");
 	const variant = () => local.variant ?? "group";
 	return (
 		<section

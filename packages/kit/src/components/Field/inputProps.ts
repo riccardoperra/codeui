@@ -1,4 +1,4 @@
-import { JSX } from "solid-js";
+import { JSX } from "@solidjs/web";
 
 export const INPUT_KEYS = [
 	"aria-label",
@@ -54,16 +54,20 @@ export const INPUT_KEYS = [
 	"enterkeyhint",
 	"spellcheck",
 	"type",
-	"maxLength",
-	"minLength",
+	"maxlength",
+	"minlength",
 	"pattern",
 	"autofocus",
 ] as const;
 
-export type FieldInputProps = Pick<
-	JSX.InputHTMLAttributes<HTMLInputElement>,
-	(typeof INPUT_KEYS)[number]
->;
+export type FieldInputProps = {
+	[Key in (typeof INPUT_KEYS)[number]]?: Key extends
+		| "aria-describedby"
+		| "aria-label"
+		| "aria-labelledby"
+		? string
+		: JSX.InputHTMLAttributes<HTMLInputElement>[Key];
+};
 export type FieldClasses = Partial<
 	Record<"root" | "input" | "label" | "description" | "errorMessage", string>
 >;

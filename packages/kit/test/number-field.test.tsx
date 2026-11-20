@@ -1,4 +1,4 @@
-import { cleanup, fireEvent, render, screen } from "solid-testing-library";
+import { cleanup, fireEvent, render, screen } from "@solidjs/testing-library";
 import { NumberField } from "../src";
 import { press, tick } from "./helpers";
 
@@ -43,7 +43,14 @@ describe("NumberField", () => {
 	it("steps up to max by step, then disables increment", async () => {
 		const onChange = vi.fn();
 		render(() => (
-			<NumberField label="Opacity" defaultValue={9.5} max={10} step={0.5} precision={1} onChange={onChange} />
+			<NumberField
+				label="Opacity"
+				defaultValue={9.5}
+				max={10}
+				step={0.5}
+				precision={1}
+				onChange={onChange}
+			/>
 		));
 		expect(increment()).toBeEnabled();
 		fireEvent.click(increment());
@@ -55,7 +62,14 @@ describe("NumberField", () => {
 	it("steps down to min by step, then disables decrement", async () => {
 		const onChange = vi.fn();
 		render(() => (
-			<NumberField label="Opacity" defaultValue={0.5} min={0} step={0.5} precision={1} onChange={onChange} />
+			<NumberField
+				label="Opacity"
+				defaultValue={0.5}
+				min={0}
+				step={0.5}
+				precision={1}
+				onChange={onChange}
+			/>
 		));
 		expect(decrement()).toBeEnabled();
 		fireEvent.click(decrement());

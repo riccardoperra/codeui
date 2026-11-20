@@ -13,18 +13,25 @@ import {
 	DropdownMenuTriggerProps as KDropdownMenuTriggerProps,
 } from "@kobalte/core/dropdown-menu";
 import * as styles from "./Dropdown.css";
-import { JSXElement, Show, splitProps, ValidComponent } from "solid-js";
+import { Element, Show, omit } from "solid-js";
+import { ValidComponent } from "@solidjs/web";
 import { PolymorphicProps } from "@kobalte/core/polymorphic";
-import { mergeRefs } from "@kobalte/utils";
 import { mergeClasses } from "../../utils/css";
 import { motionRef } from "../../utils/open-source";
 
-export function DropdownMenuContent<T extends ValidComponent = "div">(props: PolymorphicProps<T, KDropdownMenuContentProps<T>>) {
-	const [local, others] = splitProps(props as PolymorphicProps<"div", KDropdownMenuContentProps>, ["ref", "class"]);
-	return <KDropdownMenu.Content
-		ref={mergeRefs(motionRef(), local.ref)}
-		data-cui={"dropdownmenu-content"}
-		{...others} class={mergeClasses(styles.content, local.class)} />;
+export function DropdownMenuContent<T extends ValidComponent = "div">(
+	props: PolymorphicProps<T, KDropdownMenuContentProps<T>>,
+) {
+	const local = props as PolymorphicProps<"div", KDropdownMenuContentProps>;
+	const others = omit(local, "ref", "class");
+	return (
+		<KDropdownMenu.Content
+			ref={[motionRef(), local.ref]}
+			data-cui={"dropdownmenu-content"}
+			{...others}
+			class={mergeClasses(styles.content, local.class)}
+		/>
+	);
 }
 
 export function DropdownMenuPortal(props: GetKobalteParams<typeof KDropdownMenu.Portal>) {
@@ -32,30 +39,31 @@ export function DropdownMenuPortal(props: GetKobalteParams<typeof KDropdownMenu.
 }
 
 export interface DropdownMenuItemProps<T> extends KDropdownMenuItemProps {
-	rightSlot?: JSXElement;
+	rightSlot?: Element;
 }
 
 export function DropdownMenuItem<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, DropdownMenuItemProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"div", DropdownMenuItemProps<T>>, ["rightSlot", "children"]);
+	const local = props as PolymorphicProps<"div", DropdownMenuItemProps<T>>;
+	const others = omit(local, "rightSlot", "children");
 
 	return (
 		<KDropdownMenu.Item
 			data-cui={"dropdownmenu-item"}
-			{...others} class={mergeClasses(styles.item, props.class)}>
+			{...others}
+			class={mergeClasses(styles.item, props.class)}
+		>
 			{local.children}
 			<Show when={props.rightSlot} keyed={false}>
-				{rightSlot => (
-					<div class={styles.rightSlot}>{rightSlot()}</div>
-				)}
+				{rightSlot => <div class={styles.rightSlot}>{rightSlot()}</div>}
 			</Show>
 		</KDropdownMenu.Item>
 	);
 }
 
 export interface DropdownSubMenuProps<T> extends KDropdownMenuSubProps {
-	rightSlot?: JSXElement;
+	rightSlot?: Element;
 }
 
 export function DropdownSubMenu<T extends ValidComponent = "div">(
@@ -65,40 +73,59 @@ export function DropdownSubMenu<T extends ValidComponent = "div">(
 }
 
 export interface DropdownSubMenuTriggerProps<T> extends KDropdownMenuSubTriggerProps {
-	rightSlot?: JSXElement;
+	rightSlot?: Element;
 }
 
 export function DropdownSubMenuTrigger<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, DropdownSubMenuTriggerProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"button", DropdownSubMenuTriggerProps<T>>, ["rightSlot", "children", "class"]);
+	const local = props as PolymorphicProps<"button", DropdownSubMenuTriggerProps<T>>;
+	const others = omit(local, "rightSlot", "children", "class");
 
 	return (
 		<KDropdownMenu.SubTrigger {...others} class={mergeClasses(styles.item, local.class)}>
 			{local.children}
 			<Show when={local.rightSlot} keyed={false}>
-				{rightSlot => (
-					<div class={styles.rightSlot}>{rightSlot()}</div>
-				)}
+				{rightSlot => <div class={styles.rightSlot}>{rightSlot()}</div>}
 			</Show>
 		</KDropdownMenu.SubTrigger>
 	);
 }
 
-export function DropdownSubMenuContent<T extends ValidComponent = "div">(props: PolymorphicProps<T, KDropdownMenuSubContentProps<T>>) {
-	const [local, others] = splitProps(props as PolymorphicProps<"div", KDropdownMenuSubContentProps>, ["ref", "class"]);
+export function DropdownSubMenuContent<T extends ValidComponent = "div">(
+	props: PolymorphicProps<T, KDropdownMenuSubContentProps<T>>,
+) {
+	const local = props as PolymorphicProps<"div", KDropdownMenuSubContentProps>;
+	const others = omit(local, "ref", "class");
 	// A submenu opens on hover, so a pointer that only moved counts.
-	return <KDropdownMenu.SubContent ref={mergeRefs(motionRef({ hover: true }), local.ref)} {...others} class={mergeClasses(styles.subMenuContent, local.class)} />;
+	return (
+		<KDropdownMenu.SubContent
+			ref={[motionRef({ hover: true }), local.ref]}
+			{...others}
+			class={mergeClasses(styles.subMenuContent, local.class)}
+		/>
+	);
 }
 
-export function DropdownMenuSeparator<T extends ValidComponent = "div">(props: PolymorphicProps<T, KDropdownMenuSeparatorProps<T>>) {
-	return <KDropdownMenu.Separator {...props} class={mergeClasses(styles.separator, props.class)} />;
+export function DropdownMenuSeparator<T extends ValidComponent = "div">(
+	props: PolymorphicProps<T, KDropdownMenuSeparatorProps<T>>,
+) {
+	return (
+		<KDropdownMenu.Separator
+			{...props}
+			class={mergeClasses(styles.separator, props.class)}
+		/>
+	);
 }
 
-export function DropdownMenuTrigger<T extends ValidComponent = "div">(props: PolymorphicProps<T, KDropdownMenuTriggerProps<T>>) {
+export function DropdownMenuTrigger<T extends ValidComponent = "div">(
+	props: PolymorphicProps<T, KDropdownMenuTriggerProps<T>>,
+) {
 	return <KDropdownMenu.Trigger {...props} />;
 }
 
-export function DropdownMenu<T extends ValidComponent = "div">(props: PolymorphicProps<T, KDropdownMenuRootProps>) {
+export function DropdownMenu<T extends ValidComponent = "div">(
+	props: PolymorphicProps<T, KDropdownMenuRootProps>,
+) {
 	return <KDropdownMenu gutter={6} {...props} />;
 }

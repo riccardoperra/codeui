@@ -1,10 +1,10 @@
-import { cleanup, fireEvent, render, screen } from "solid-testing-library";
+import { cleanup, fireEvent, render, screen } from "@solidjs/testing-library";
 import { createSignal } from "solid-js";
 import { Dialog, DialogPanelContent } from "../src/components/Dialog/Dialog";
 import { Popover, PopoverContent, PopoverTrigger } from "../src/components/Popover/Popover";
 import * as D from "../src/parts/dialog";
 import * as P from "../src/parts/popover";
-import { expectDismissed, press, tick } from "./helpers";
+import { expectDismissed, expectFocus, expectFocusWithin, press, tick } from "./helpers";
 
 afterEach(cleanup);
 
@@ -86,9 +86,10 @@ describe("Dialog", () => {
 		const opener = screen.getByRole("button", { name: "Open" });
 		opener.focus();
 		fireEvent.click(opener);
-		await tick();
-		await closeDialog(screen.getByRole("dialog"));
-		expect(document.activeElement).toHaveTextContent("Elsewhere");
+		const dialog = screen.getByRole("dialog");
+		await expectFocusWithin(dialog);
+		await closeDialog(dialog);
+		await expectFocus(screen.getByRole("button", { name: "Elsewhere" }));
 	});
 });
 
@@ -145,9 +146,10 @@ describe("Dialog parts", () => {
 		["a plain button", false],
 	])("return focus to %s on close", async (_, withTrigger) => {
 		const opener = renderParts(withTrigger);
-		await tick();
-		await closeDialog(screen.getByRole("dialog"));
-		expect(document.activeElement).toBe(opener);
+		const dialog = screen.getByRole("dialog");
+		await expectFocusWithin(dialog);
+		await closeDialog(dialog);
+		await expectFocus(opener);
 	});
 });
 

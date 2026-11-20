@@ -1,8 +1,10 @@
+import { pickProps } from "../../utils/pick-props";
 import "@codeui/styles/theme.css";
 import "@codeui/styles/combobox.css";
 import type { ComboboxRootOptions } from "@kobalte/core/combobox";
-import { createComputed, For, type JSX, Show, splitProps } from "solid-js";
-import { isServer } from "solid-js/web";
+import { createEffect, For, Show, omit } from "solid-js";
+import { type JSX } from "@solidjs/web";
+import { isServer } from "@solidjs/web";
 import { CheckIcon } from "../../icons/CheckIcon";
 import { SelectorIcon } from "../../icons/SelectorIcon";
 import * as P from "../../parts/combobox";
@@ -38,9 +40,8 @@ function ControlledInputValue(props: {
 	sync: (write: () => void) => void;
 }) {
 	const context = P.useComboboxContext();
-	createComputed(() => {
-		const value = props.value;
-		if (value !== undefined && value !== context.inputValue()) {
+	createEffect(() => ({ value: props.value, engineValue: context.inputValue() }), ({ value, engineValue }) => {
+		if (value !== undefined && value !== engineValue) {
 			props.sync(() => context.setInputValue(value));
 		}
 	});
@@ -72,23 +73,9 @@ function EmptyContent(props: { children: JSX.Element }) {
 export function Combobox<Option, OptGroup = never>(
 	props: ComboboxProps<Option, OptGroup>,
 ) {
-	const [local, others] = splitProps(props as ComboboxProps<Option, OptGroup>, [
-		"class",
-		"classes",
-		"label",
-		"description",
-		"errorMessage",
-		"aria-label",
-		"aria-labelledby",
-		"inputRef",
-		"inputId",
-		"inputValue",
-		"onInputChange",
-		"renderOption",
-		"emptyContent",
-		"mount",
-		"size",
-	]);
+	const allProps = props as ComboboxProps<Option, OptGroup>;
+	const local = pickProps(allProps, "class", "classes", "label", "description", "errorMessage", "aria-label", "aria-labelledby", "inputRef", "inputId", "inputValue", "onInputChange", "renderOption", "emptyContent", "mount", "size");
+	const others = omit(allProps, "class", "classes", "label", "description", "errorMessage", "aria-label", "aria-labelledby", "inputRef", "inputId", "inputValue", "onInputChange", "renderOption", "emptyContent", "mount", "size");
 	const classes = (part: P.ComboboxPart) => local.classes?.[part];
 	let syncing = false;
 	return (

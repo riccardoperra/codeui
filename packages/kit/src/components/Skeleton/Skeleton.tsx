@@ -1,4 +1,5 @@
-import { type JSX, splitProps } from "solid-js";
+import { omit } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import * as S from "../../parts/skeleton";
 import { mergeClasses } from "../../utils/css";
 
@@ -20,12 +21,18 @@ export type SkeletonProps = Omit<S.RootProps, "width" | "height" | "radius" | "s
  * the placeholder itself is hidden from assistive technology while visible.
  */
 export function Skeleton(props: SkeletonProps) {
-	const [local, others] = splitProps(props, ["width", "height", "radius", "style", "classes", "class"]);
+	const others = omit(props, "width", "height", "radius", "style", "classes", "class");
 	const style = (): JSX.CSSProperties => ({
-		width: others.circle ? (local.height ?? local.width) : (local.width ?? "100%"),
-		height: local.height ?? "auto",
-		...(local.radius !== undefined && { "border-radius": local.radius }),
-		...local.style,
+		width: others.circle ? (props.height ?? props.width) : (props.width ?? "100%"),
+		height: props.height ?? "auto",
+		...(props.radius !== undefined && { "border-radius": props.radius }),
+		...props.style,
 	});
-	return <S.Root {...others} style={style()} class={mergeClasses(local.classes?.root, local.class)} />;
+	return (
+		<S.Root
+			{...others}
+			style={style()}
+			class={mergeClasses(props.classes?.root, props.class)}
+		/>
+	);
 }

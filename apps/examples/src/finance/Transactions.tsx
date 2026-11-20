@@ -16,8 +16,8 @@ import {
 	Text,
 	TextField,
 } from "@codeui/kit";
-import Ellipsis from "lucide-solid/icons/ellipsis";
-import { createEffect, createMemo, createSignal, For, on, Show } from "solid-js";
+import Ellipsis from "@lucide/solid/icons/ellipsis";
+import { createEffect, createMemo, createSignal, For, Show } from "solid-js";
 import { formatDay, formatMoney } from "../shared/format";
 import { createControlSize } from "../shared/size";
 import { accounts, categories, type Category, type Transaction } from "./data";
@@ -47,8 +47,8 @@ export function Transactions() {
 	const pages = () => Math.max(1, Math.ceil(filtered().length / pageSize));
 	const rows = () => filtered().slice((page() - 1) * pageSize, page() * pageSize);
 	// A new filter or scope starts from the first page. A deletion only steps back when its page empties.
-	createEffect(on([query, category, ledger.account, ledger.period], () => setPage(1), { defer: true }));
-	createEffect(() => page() > pages() && setPage(pages()));
+	createEffect(() => [query(), category(), ledger.account(), ledger.period()], () => { setPage(1); }, { defer: true });
+	createEffect(() => ({ page: page(), pages: pages() }), state => { if (state.page > state.pages) setPage(state.pages); });
 
 	const clear = () => {
 		setQuery("");

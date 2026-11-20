@@ -1,5 +1,5 @@
 import { Badge, Text } from "@codeui/kit";
-import TriangleAlert from "lucide-solid/icons/triangle-exclamation-point";
+import TriangleAlert from "@lucide/solid/icons/triangle-exclamation-point";
 import { createMemo, For, Show } from "solid-js";
 import { useBench } from "./bench";
 import { revealOutlineEntry } from "./invoice/commands";
@@ -9,7 +9,7 @@ import { findOutlineEntry, type OutlineEntry, outlineEntryById, outlineSignature
 export function Outline(props: { onJump?: () => void }) {
 	const bench = useBench();
 	// Positions move on every keystroke. The list only changes when a label or a count does.
-	const outline = createMemo(() => readOutline(bench.doc()), undefined, { equals: (a, b) => outlineSignature(a) === outlineSignature(b) });
+	const outline = createMemo(() => readOutline(bench.doc()), { equals: (a, b) => outlineSignature(a) === outlineSignature(b) });
 	const current = createMemo(() => findOutlineEntry(readOutline(bench.doc()), bench.editor.state().selection.from)?.id);
 
 	const jump = (id: string) => {
@@ -26,8 +26,7 @@ export function Outline(props: { onJump?: () => void }) {
 			<li>
 				<button
 					type="button"
-					class="pmi-nav-row"
-					classList={{ "pmi-nav-child": row.child }}
+					class={["pmi-nav-row", { "pmi-nav-child": row.child }]}
 					aria-current={current() === row.entry.id ? "location" : undefined}
 					onClick={() => jump(row.entry.id)}
 				>

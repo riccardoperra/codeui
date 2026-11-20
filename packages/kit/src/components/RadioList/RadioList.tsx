@@ -7,11 +7,11 @@ import {
 	createContext,
 	useContext,
 	type Accessor,
-	type JSXElement,
+	type Element,
 	Show,
-	splitProps,
-	type ValidComponent,
+	omit,
 } from "solid-js";
+import { type ValidComponent } from "@solidjs/web";
 import * as P from "../../parts/radio-list";
 import { mergeClasses } from "../../utils/css";
 import type { FieldWithErrorMessageSupport } from "../Field/FieldError/createFieldErrorMessageProps";
@@ -19,8 +19,8 @@ import type { FieldWithErrorMessageSupport } from "../Field/FieldError/createFie
 export type RadioListProps<T extends ValidComponent = "div"> = KRadioGroupRootProps<T> &
 	Pick<P.RootProps, "size" | "variant"> &
 	FieldWithErrorMessageSupport & {
-		label?: JSXElement;
-		description?: JSXElement;
+		label?: Element;
+		description?: Element;
 		classes?: RadioListClasses;
 	};
 
@@ -38,21 +38,21 @@ export type RadioListClasses = Partial<
 		string
 	>
 >;
-const RadioClassesContext = createContext<Accessor<RadioListClasses | undefined>>();
+const RadioClassesContext = createContext<Accessor<RadioListClasses | undefined> | null>(
+	null,
+);
 
 export type RadioListItemProps<T extends ValidComponent = "div"> =
 	KRadioGroupItemProps<T> & {
-		label?: JSXElement;
+		label?: Element;
 		classes?: RadioListClasses;
 	};
 
 export function RadioListItem<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, RadioListItemProps<T>>,
 ) {
-	const [local, others] = splitProps(
-		props as PolymorphicProps<"div", RadioListItemProps>,
-		["label", "class", "classes"],
-	);
+	const local = props as PolymorphicProps<"div", RadioListItemProps>;
+	const others = omit(local, "label", "class", "classes");
 	const parentClasses = useContext(RadioClassesContext);
 	return (
 		<P.Item
@@ -86,7 +86,9 @@ export function RadioListItem<T extends ValidComponent = "div">(
 export function RadioList<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, RadioListProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"div", RadioListProps>, [
+	const local = props as PolymorphicProps<"div", RadioListProps>;
+	const others = omit(
+		local,
 		"description",
 		"size",
 		"label",
@@ -94,7 +96,7 @@ export function RadioList<T extends ValidComponent = "div">(
 		"errorMessage",
 		"class",
 		"classes",
-	]);
+	);
 
 	return (
 		<P.Root
@@ -112,9 +114,9 @@ export function RadioList<T extends ValidComponent = "div">(
 				orientation={props.orientation}
 				class={local.classes?.items}
 			>
-				<RadioClassesContext.Provider value={() => local.classes}>
+				<RadioClassesContext value={() => local.classes}>
 					{props.children}
-				</RadioClassesContext.Provider>
+				</RadioClassesContext>
 			</P.Items>
 			<Show when={local.description} keyed={false}>
 				{description => (

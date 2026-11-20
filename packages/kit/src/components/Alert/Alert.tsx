@@ -1,5 +1,6 @@
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
-import { type JSX, Show, splitProps, type ValidComponent } from "solid-js";
+import { Show, omit } from "solid-js";
+import { type JSX, type ValidComponent } from "@solidjs/web";
 import { ToneIcon } from "../../icons/ToneIcon";
 import * as A from "../../parts/alert";
 import { mergeClasses } from "../../utils/css";
@@ -22,7 +23,9 @@ export type AlertProps<T extends ValidComponent = "div"> = A.RootProps<T> & {
 export function Alert<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, AlertProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"div", AlertProps>, [
+	const local = props as PolymorphicProps<"div", AlertProps>;
+	const others = omit(
+		local,
 		"children",
 		"title",
 		"description",
@@ -31,7 +34,7 @@ export function Alert<T extends ValidComponent = "div">(
 		"action",
 		"classes",
 		"class",
-	]);
+	);
 	// The custom icon, else the tone icon. Neutral has no tone icon.
 	const icon = () =>
 		local.icon ??

@@ -1,15 +1,10 @@
+import { pickProps } from "../../utils/pick-props";
 import type {
 	SelectItemProps as KSelectItemProps,
 	SelectRootProps as KSelectRootProps,
 } from "@kobalte/core/select";
-import {
-	type Accessor,
-	type JSX,
-	type JSXElement,
-	type ParentProps,
-	Show,
-	splitProps,
-} from "solid-js";
+import { type Accessor, type Element, type ParentProps, Show, omit } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import { CheckIcon } from "../../icons/CheckIcon";
 import { SelectorIcon } from "../../icons/SelectorIcon";
 import * as P from "../../parts/select";
@@ -52,16 +47,16 @@ export type SelectProps<Option, OptGroup = never> = KSelectRootProps<Option, Opt
 		description?: string;
 		label?: JSX.Element;
 	} & FieldWithErrorMessageSupport & {
-		itemLabel?: (item: Option) => JSXElement;
-		valueComponent?: (state: Accessor<Option>) => JSXElement;
-		valueComponentMultiple?: (state: Accessor<Option[]>) => JSXElement;
+		itemLabel?: (item: Option) => Element;
+		valueComponent?: (state: Accessor<Option>) => Element;
+		valueComponentMultiple?: (state: Accessor<Option[]>) => Element;
 		/** Portal target, such as a parent dialog, so the list stays inside it. */
-		mount?: Node;
+		mount?: globalThis.Element;
 	} & SelectClassesProps;
 
 export function SelectItem<T>(
 	props: KSelectItemProps & {
-		itemLabel?: (item: T) => JSXElement;
+		itemLabel?: (item: T) => Element;
 		classes?: Pick<P.SelectClasses, "item" | "itemLabel" | "itemIndicator">;
 	},
 ) {
@@ -80,7 +75,8 @@ export function SelectItem<T>(
 export function Select<Option, OptGroup = never>(
 	props: ParentProps<SelectProps<Option, OptGroup>>,
 ) {
-	const [local, others] = splitProps(props, [
+	const local = pickProps(
+		props,
 		"aria-label",
 		"children",
 		"size",
@@ -93,7 +89,22 @@ export function Select<Option, OptGroup = never>(
 		"classes",
 		"slotClasses",
 		"mount",
-	]);
+	);
+	const others = omit(
+		props,
+		"aria-label",
+		"children",
+		"size",
+		"variant",
+		"errorMessage",
+		"description",
+		"label",
+		"itemLabel",
+		"valueComponent",
+		"classes",
+		"slotClasses",
+		"mount",
+	);
 
 	return (
 		<P.Root<Option, OptGroup>

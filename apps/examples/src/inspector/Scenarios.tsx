@@ -1,5 +1,5 @@
 import { Alert, Button, Listbox, Text } from "@codeui/kit";
-import Play from "lucide-solid/icons/play";
+import Play from "@lucide/solid/icons/play";
 import { createSignal } from "solid-js";
 import { createControlSize } from "../shared/size";
 import { formatOutcome, type Outcome, useBench } from "./bench";

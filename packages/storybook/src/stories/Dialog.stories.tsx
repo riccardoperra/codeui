@@ -13,7 +13,8 @@ import {
 	Switch,
 	TextField,
 } from "@codeui/kit";
-import { createSignal, For, type JSX } from "solid-js";
+import { createSignal, For } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import { DocsItemsContainer } from "./components/Section.jsx";
 import * as D from "@codeui/kit/dialog/parts";
 

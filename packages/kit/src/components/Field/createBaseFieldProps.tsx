@@ -1,6 +1,7 @@
 import "@codeui/styles/theme.css";
 import "@codeui/styles/field.css";
-import { createUniqueId, type Accessor, type JSX } from "solid-js";
+import { createUniqueId, type Accessor } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import * as styles from "./Field.css";
 
 export type BaseFieldProps = styles.BaseFieldVariants;

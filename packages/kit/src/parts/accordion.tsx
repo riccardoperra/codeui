@@ -1,7 +1,7 @@
 import { accordionStyleProps } from "@codeui/styles/accordion";
 import "@codeui/styles/theme.css";
 import "@codeui/styles/accordion.css";
-import { callHandler, mergeRefs } from "@kobalte/utils";
+import { callHandler } from "@kobalte/utils";
 import * as K from "@kobalte/core/accordion";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import {
@@ -9,20 +9,32 @@ import {
 	createSignal,
 	createUniqueId,
 	createEffect,
-	on,
-	onCleanup,
-	onMount,
+	untrack,
+	onSettled,
 	useContext,
-	splitProps,
-	type JSX,
-	type ValidComponent,
+	omit,
 } from "solid-js";
+import { type JSX, type ValidComponent } from "@solidjs/web";
 import { mergeClasses } from "../utils/css";
 import * as styles from "../components/Accordion/Accordion.css";
 import { trackInputModality } from "../utils/modality";
 
-import { accordionParts, type AccordionPart, type AccordionClasses, type AccordionVariants, type AccordionStyles, accordionStyles } from "@codeui/styles/accordion";
-export { accordionParts, type AccordionPart, type AccordionClasses, type AccordionVariants, type AccordionStyles, accordionStyles } from "@codeui/styles/accordion";
+import {
+	accordionParts,
+	type AccordionPart,
+	type AccordionClasses,
+	type AccordionVariants,
+	type AccordionStyles,
+	accordionStyles,
+} from "@codeui/styles/accordion";
+export {
+	accordionParts,
+	type AccordionPart,
+	type AccordionClasses,
+	type AccordionVariants,
+	type AccordionStyles,
+	accordionStyles,
+} from "@codeui/styles/accordion";
 export const useAccordionContext = K.useAccordionContext;
 const ItemContext = createContext<{
 	expanded: () => boolean;
@@ -42,13 +54,11 @@ export type RootProps<T extends ValidComponent = "div"> = K.AccordionRootProps<T
 export function Root<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, RootProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"div", RootProps>, [
-		"class",
-		"motion",
-	]);
+	const local = props as PolymorphicProps<"div", RootProps>;
+	const others = omit(local, "class", "motion");
 	// Keyboard toggles stay instant through `<html data-cui-input>`, which
 	// only changes a transition and never restarts one.
-	onMount(trackInputModality);
+	onSettled(trackInputModality);
 	return (
 		<K.Root
 			{...others}
@@ -58,19 +68,16 @@ export function Root<T extends ValidComponent = "div">(
 		/>
 	);
 }
-export type ItemProps<T extends ValidComponent = "div"> = K.AccordionItemProps<T>;
+export type ItemProps<T extends ValidComponent = "div"> = K.AccordionItemProps;
 export function Item<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, ItemProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"div", ItemProps>, [
-		"class",
-		"children",
-		"forceMount",
-	]);
+	const local = props as PolymorphicProps<"div", ItemProps>;
+	const others = omit(local, "class", "children", "forceMount");
 	const context = K.useAccordionContext();
 	const expanded = () => context.listState().selectionManager().isSelected(props.value);
 	const id = createUniqueId();
-	const [closing, setClosing] = createSignal(expanded());
+	const [closing, setClosing] = createSignal(untrack(expanded));
 	const item = {
 		expanded,
 		triggerId: () => `cui-accordion-${id}-trigger`,
@@ -84,7 +91,7 @@ export function Item<T extends ValidComponent = "div">(
 			data-cui={accordionParts.item}
 			class={mergeClasses(accordionStyles.item(), local.class)}
 		>
-			<ItemContext.Provider value={item}>{local.children}</ItemContext.Provider>
+			<ItemContext value={item}>{local.children}</ItemContext>
 		</K.Item>
 	);
 }
@@ -92,9 +99,8 @@ export type HeaderProps<T extends ValidComponent = "h3"> = K.AccordionHeaderProp
 export function Header<T extends ValidComponent = "h3">(
 	props: PolymorphicProps<T, HeaderProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"h3", HeaderProps>, [
-		"class",
-	]);
+	const local = props as PolymorphicProps<"h3", HeaderProps>;
+	const others = omit(local, "class");
 	return (
 		<K.Header
 			{...others}
@@ -108,11 +114,8 @@ export type TriggerProps<T extends ValidComponent = "button"> =
 export function Trigger<T extends ValidComponent = "button">(
 	props: PolymorphicProps<T, TriggerProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"button", TriggerProps>, [
-		"class",
-		"density",
-		"onFocus",
-	]);
+	const local = props as PolymorphicProps<"button", TriggerProps>;
+	const others = omit(local, "class", "density", "onFocus");
 	const context = K.useAccordionContext();
 	const item = useItem();
 	const defaultTriggerId = item.triggerId;
@@ -135,12 +138,8 @@ export type ContentProps<T extends ValidComponent = "div"> = K.AccordionContentP
 export function Content<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, ContentProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"div", ContentProps>, [
-		"class",
-		"children",
-		"style",
-		"ref",
-	]);
+	const local = props as PolymorphicProps<"div", ContentProps>;
+	const others = omit(local, "class", "children", "style", "ref");
 	const item = useItem();
 	const [element, setElement] = createSignal<HTMLElement>();
 	const [body, setBody] = createSignal<HTMLDivElement>();
@@ -148,50 +147,47 @@ export function Content<T extends ValidComponent = "div">(
 	// `open` drives the transition. It trails `expanded` by one style flush on
 	// open, so the body starts from 0, and it keeps a closing body mounted
 	// until its transition ends.
-	const [open, setOpen] = createSignal(item.expanded());
+	let expandedNow = untrack(item.expanded);
+	const [open, setOpen] = createSignal(expandedNow);
 	const setClosing = item.setClosing;
-	const measure = () => {
-		const inner = body();
-		if (inner) setHeight(inner.scrollHeight);
-	};
-	createEffect(() => {
-		const inner = body();
+	const measure = (inner: HTMLDivElement) => setHeight(inner.scrollHeight);
+	createEffect(body, inner => {
 		if (!inner) return;
-		measure();
+		measure(inner);
 		if (typeof ResizeObserver === "undefined") return;
-		const observer = new ResizeObserver(measure);
+		const observer = new ResizeObserver(() => measure(inner));
 		observer.observe(inner);
-		onCleanup(() => observer.disconnect());
+		return () => observer.disconnect();
 	});
-	createEffect(
-		on(
-			item.expanded,
-			expanded => {
-				setClosing(true);
-				// Kobalte writes an inline `transition-duration: 0s` while it
-				// measures a body it has just mounted; run after its effects.
-				queueMicrotask(() => {
-					const content = element();
-					if (item.expanded() !== expanded) return;
-					if (!content) {
-						setOpen(expanded);
-						setClosing(false);
-						return;
-					}
-					content.style.transitionDuration = "";
-					if (expanded) {
-						measure();
-						void content.offsetHeight;
-						setOpen(true);
-						return;
-					}
-					setOpen(false);
-					if (!hasTransition(content)) setClosing(false);
-				});
-			},
-			{ defer: true },
-		),
-	);
+	// Solid replays the first value of an effect that reads staged state, so
+	// `defer` would still run this on mount and mount every closed body. Act
+	// only when `expanded` really changes.
+	createEffect(item.expanded, expanded => {
+		if (expanded === expandedNow) return;
+		expandedNow = expanded;
+		setClosing(true);
+		// Kobalte writes an inline `transition-duration: 0s` while it
+		// measures a body it has just mounted; run after its effects.
+		queueMicrotask(() => {
+			const content = element();
+			if (item.expanded() !== expanded) return;
+			if (!content) {
+				setOpen(expanded);
+				setClosing(false);
+				return;
+			}
+			content.style.transitionDuration = "";
+			if (expanded) {
+				const inner = body();
+				if (inner) measure(inner);
+				void content.offsetHeight;
+				setOpen(true);
+				return;
+			}
+			setOpen(false);
+			if (!hasTransition(content)) setClosing(false);
+		});
+	});
 	const finish = (event: TransitionEvent) => {
 		if (event.target === event.currentTarget && !item.expanded()) setClosing(false);
 	};
@@ -200,7 +196,7 @@ export function Content<T extends ValidComponent = "div">(
 			id={item.contentId}
 			aria-labelledby={item.triggerId()}
 			{...others}
-			ref={mergeRefs(setElement, local.ref)}
+			ref={[setElement, local.ref]}
 			style={
 				typeof local.style === "string"
 					? `${local.style}${height() ? `;--cui-accordion-content-height:${height()}px` : ""}`
@@ -213,7 +209,7 @@ export function Content<T extends ValidComponent = "div">(
 			data-open={open() ? "" : undefined}
 			class={mergeClasses(accordionStyles.content(), local.class)}
 			inert={!item.expanded()}
-			aria-hidden={!item.expanded()}
+			aria-hidden={item.expanded() ? "false" : "true"}
 			onTransitionEnd={finish}
 			onTransitionCancel={finish}
 		>
@@ -230,7 +226,8 @@ function hasTransition(element: HTMLElement) {
 }
 export type IconProps = JSX.HTMLAttributes<HTMLSpanElement>;
 export function Icon(props: IconProps) {
-	const [local, others] = splitProps(props, ["class", "children"]);
+	const local = props;
+	const others = omit(props, "class", "children");
 	return (
 		<span
 			{...others}
@@ -244,7 +241,8 @@ export function Icon(props: IconProps) {
 }
 export type TitleProps = JSX.HTMLAttributes<HTMLSpanElement>;
 export function Title(props: TitleProps) {
-	const [local, others] = splitProps(props, ["class", "children"]);
+	const local = props;
+	const others = omit(props, "class", "children");
 	return (
 		<span
 			{...others}
@@ -257,7 +255,8 @@ export function Title(props: TitleProps) {
 }
 export type SummaryProps = JSX.HTMLAttributes<HTMLSpanElement>;
 export function Summary(props: SummaryProps) {
-	const [local, others] = splitProps(props, ["class", "children"]);
+	const local = props;
+	const others = omit(props, "class", "children");
 	return (
 		<span
 			{...others}
@@ -270,7 +269,8 @@ export function Summary(props: SummaryProps) {
 }
 export type ChevronProps = JSX.HTMLAttributes<HTMLSpanElement>;
 export function Chevron(props: ChevronProps) {
-	const [local, others] = splitProps(props, ["class", "children"]);
+	const local = props;
+	const others = omit(props, "class", "children");
 	return (
 		<span
 			{...others}

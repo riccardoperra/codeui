@@ -7,7 +7,7 @@ import { Skeleton } from "../src/components/Skeleton/Skeleton";
 import { Spinner } from "../src/components/Spinner/Spinner";
 import { TextArea } from "../src/components/TextArea/TextArea";
 import { NumberField } from "../src/components/NumberField/NumberField";
-import { renderToString } from "solid-js/web";
+import { renderToString } from "@solidjs/web";
 import { Button } from "../src/components/Button/Button";
 import { TextField } from "../src/components/TextField/TextField";
 import * as S from "../src/parts/sheet";
@@ -239,7 +239,11 @@ import { SettingsGroup, SettingsRow } from "../src/components/Settings/Settings"
 it("server-renders a settings group with rows wired to their controls", () => {
 	const html = renderToString(() => (
 		<SettingsGroup id="interface" title="Interface">
-			<SettingsRow id="language" label="Language" description="The language of the menus.">
+			<SettingsRow
+				id="language"
+				label="Language"
+				description="The language of the menus."
+			>
 				{control => <select {...control} />}
 			</SettingsRow>
 		</SettingsGroup>
@@ -247,6 +251,8 @@ it("server-renders a settings group with rows wired to their controls", () => {
 	expect(html).toMatch(/<section[^>]*aria-labelledby="interface-title"/);
 	expect(html).toMatch(/<h3[^>]*id="interface-title"[^>]*>Interface<\/h3>/);
 	expect(html).toMatch(/role="group"[^>]*aria-labelledby="language-label"/);
-	expect(html).toMatch(/<select[^>]*aria-labelledby="language-label"[^>]*aria-describedby="language-description"/);
+	expect(html).toMatch(
+		/<select[^>]*aria-labelledby="language-label"[^>]*aria-describedby="language-description"/,
+	);
 	expect(html).toContain("The language of the menus.");
 });

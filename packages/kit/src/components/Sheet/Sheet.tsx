@@ -1,5 +1,7 @@
+import { pickProps } from "../../utils/pick-props";
 import type { DialogContentProps as KDialogContentProps } from "@kobalte/core/dialog";
-import { type JSX, Show, splitProps } from "solid-js";
+import { Show, omit } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import * as S from "../../parts/sheet";
 import { mergeClasses } from "../../utils/css";
 
@@ -47,21 +49,8 @@ type SheetOptions = Omit<S.RootProps, "children"> & {
  * scrim. A nonmodal sheet has no scrim and leaves the page usable.
  */
 export function Sheet(props: SheetProps) {
-	const [local, root] = splitProps(props, [
-		"children",
-		"title",
-		"description",
-		"footer",
-		"side",
-		"draggable",
-		"mount",
-		"showCloseButton",
-		"closeLabel",
-		"class",
-		"classes",
-		"aria-label",
-		"contentProps",
-	]);
+	const local = pickProps(props, "children", "title", "description", "footer", "side", "draggable", "mount", "showCloseButton", "closeLabel", "class", "classes", "aria-label", "contentProps");
+	const root = omit(props, "children", "title", "description", "footer", "side", "draggable", "mount", "showCloseButton", "closeLabel", "class", "classes", "aria-label", "contentProps");
 	const showCloseButton = () => local.showCloseButton !== false;
 	return (
 		<S.Root {...root}>

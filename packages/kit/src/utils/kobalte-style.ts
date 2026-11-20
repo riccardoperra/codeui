@@ -1,4 +1,4 @@
-import type { JSX } from "solid-js";
+import type { JSX } from "@solidjs/web";
 
 const variables = {
 	"--cui-popper-anchor-width": "var(--kb-popper-anchor-width)",

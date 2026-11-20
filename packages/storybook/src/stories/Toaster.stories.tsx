@@ -7,7 +7,8 @@ import {
 	type ToastOptions,
 } from "@codeui/kit";
 import type { ToastPosition } from "@codeui/kit/toast/parts";
-import { type JSX, onMount } from "solid-js";
+import { onSettled } from "solid-js";
+import { type JSX } from "@solidjs/web";
 
 /**
  * Each story owns a controller and a Toaster. The transformed frame contains
@@ -21,7 +22,7 @@ function Frame(props: {
 	children?: (toaster: ToastController) => JSX.Element;
 }) {
 	const toaster = createToaster({ duration: Infinity });
-	onMount(() => props.toasts?.forEach(toast => toaster.show(toast)));
+	onSettled(() => props.toasts?.forEach(toast => toaster.show(toast)));
 	return (
 		<div
 			style={{ position: "relative", height: props.height, transform: "translateZ(0)" }}
@@ -107,13 +108,13 @@ export const Loading: Story = {
 	render: () => (
 		<Frame label="Loading" height="184px">
 			{toaster => {
-				onMount(() =>
+				onSettled(() => {
 					toaster.promise(new Promise(() => {}), {
 						loading: { description: "Exporting snippet…" },
 						success: { description: "Exported" },
 						error: { description: "Failed" },
-					}),
-				);
+					});
+				});
 				return null;
 			}}
 		</Frame>

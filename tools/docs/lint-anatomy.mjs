@@ -61,6 +61,7 @@ if (!existsSync(client)) {
   const own = Object.getOwnPropertyNames(window).filter((key) => /Event(Target)?$/.test(key));
   for (const key of ['navigator', 'document', 'window', ...own]) Object.defineProperty(globalThis, key, { configurable: true, value: key === 'window' ? window : window[key] });
   // jsdom has no layout. Give every element a size, so virtualized lists render rows.
+  window.Element.prototype.scrollIntoView ??= () => {};
   window.Element.prototype.getBoundingClientRect = () => ({ x: 0, y: 0, top: 0, left: 0, right: 300, bottom: 300, width: 300, height: 300, toJSON() {} });
   for (const key of ['offsetWidth', 'offsetHeight', 'clientWidth', 'clientHeight']) Object.defineProperty(window.HTMLElement.prototype, key, { configurable: true, get: () => 300 });
   window.matchMedia ??= () => ({ matches: false, addEventListener() {}, removeEventListener() {}, addListener() {}, removeListener() {} });

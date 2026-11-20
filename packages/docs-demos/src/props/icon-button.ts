@@ -1,5 +1,5 @@
 import type { IconButton } from "@codeui/kit";
-import type { ComponentProps } from "solid-js";
+import type { ComponentProps } from "@solidjs/web";
 import type { PropNotes } from "./notes";
 
 export type IconButton = Pick<ComponentProps<typeof IconButton>, "variant" | "size" | "ghost" | "pill" | "block" | "loading" | "class" | "aria-label">;

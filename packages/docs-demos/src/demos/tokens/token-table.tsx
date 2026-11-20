@@ -1,4 +1,5 @@
-import { For, Show, createSignal, onMount, type JSX } from "solid-js";
+import { For, Show, createSignal, onSettled } from "solid-js";
+import { type JSX } from "@solidjs/web";
 
 /** How a row previews its token. */
 export type SwatchKind = "color" | "shadow" | "radius" | "length" | "font-size" | "value";
@@ -129,7 +130,7 @@ export function TokenTable(props: {
 	let dark!: HTMLDivElement;
 	let light!: HTMLDivElement;
 	let plain!: HTMLDivElement;
-	onMount(() => {
+	onSettled(() => {
 		const read = (el: HTMLElement, mode: string) => {
 			const style = getComputedStyle(el);
 			return Object.fromEntries(

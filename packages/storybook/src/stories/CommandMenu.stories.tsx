@@ -8,7 +8,8 @@ import {
 	icons,
 } from "@codeui/kit";
 import * as M from "@codeui/kit/command-menu/parts";
-import { createSignal, type JSX, Show } from "solid-js";
+import { createSignal, Show } from "solid-js";
+import { type JSX } from "@solidjs/web";
 
 const meta = {
 	title: "DesignSystem/CommandMenu",

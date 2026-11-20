@@ -16,8 +16,8 @@
 		"@codeui/kit": "workspace:*",
 		"@fontsource-variable/inter": "^5.2.8",
 		"@fontsource-variable/jetbrains-mono": "^5.2.8",
-		"@kobalte/core": "^0.13.14",
-		"lucide-solid": "^1.74.0",
+		"@kobalte/core": "2.0.0-alpha.5",
+		"@lucide/solid": "1.77.0",
 		"prosemirror-commands": "^1.7.2",
 		"prosemirror-history": "^1.5.1",
 		"prosemirror-inspector": "^0.3.0",
@@ -27,11 +27,12 @@
 		"prosemirror-state": "^1.4.4",
 		"prosemirror-transform": "^1.12.6",
 		"prosemirror-view": "^1.42.9",
-		"solid-js": "^1.9.8"
+		"solid-js": "2.0.3",
+		"@solidjs/web": "2.0.3"
 	},
 	"devDependencies": {
 		"typescript": "^5.6.2",
-		"vite": "^8.0.0",
-		"vite-plugin-solid": "^2.11.12"
+		"vite": "8.3.8",
+		"@solidjs/vite-plugin": "3.0.1"
 	}
 }

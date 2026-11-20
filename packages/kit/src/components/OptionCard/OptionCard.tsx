@@ -1,14 +1,7 @@
 import "@codeui/styles/theme.css";
 import "@codeui/styles/optioncard.css";
-import {
-	type Accessor,
-	createContext,
-	For,
-	type JSX,
-	Show,
-	splitProps,
-	useContext,
-} from "solid-js";
+import { type Accessor, createContext, For, Show, useContext, omit } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import * as P from "../../parts/option-card";
 import { mergeClasses } from "../../utils/css";
 import * as styles from "./OptionCard.css";
@@ -89,7 +82,8 @@ export function createOptionCardItems<T extends string>(
 }
 
 export function OptionCardGroup<T extends string>(props: OptionCardGroupProps<T>) {
-	const [local, others] = splitProps(props, [
+	const others = omit(
+		props,
 		"items",
 		"onChange",
 		"label",
@@ -98,36 +92,36 @@ export function OptionCardGroup<T extends string>(props: OptionCardGroupProps<T>
 		"classes",
 		"class",
 		"variant",
-	]);
+	);
 	const change = (value: string) => {
-		const entry = local.items?.find(item => item.value === value);
-		if (entry) local.onChange?.(entry.value);
+		const entry = props.items?.find(item => item.value === value);
+		if (entry) props.onChange?.(entry.value);
 	};
 	return (
 		<P.Root
 			{...others}
-			variant={local.variant}
+			variant={props.variant}
 			onChange={change}
-			class={mergeClasses(local.classes?.root, local.class)}
+			class={mergeClasses(props.classes?.root, props.class)}
 		>
-			<Show when={local.label}>
-				{label => <P.Label class={local.classes?.label}>{label()}</P.Label>}
+			<Show when={props.label}>
+				{label => <P.Label class={props.classes?.label}>{label()}</P.Label>}
 			</Show>
-			<Show when={local.description}>
+			<Show when={props.description}>
 				{description => (
-					<P.Description class={local.classes?.description}>
+					<P.Description class={props.classes?.description}>
 						{description()}
 					</P.Description>
 				)}
 			</Show>
-			<AppearanceContext.Provider
-				value={() => ({ classes: local.classes, variant: local.variant })}
+			<AppearanceContext
+				value={() => ({ classes: props.classes, variant: props.variant })}
 			>
-				<For each={local.items}>{item => <OptionCard {...item} />}</For>
-			</AppearanceContext.Provider>
-			<Show when={props.validationState === "invalid" && local.errorMessage}>
+				<For each={props.items}>{item => <OptionCard {...item} />}</For>
+			</AppearanceContext>
+			<Show when={props.validationState === "invalid" && props.errorMessage}>
 				{errorMessage => (
-					<P.ErrorMessage class={local.classes?.errorMessage}>
+					<P.ErrorMessage class={props.classes?.errorMessage}>
 						{errorMessage()}
 					</P.ErrorMessage>
 				)}

@@ -1,6 +1,6 @@
 import type { ToastController } from "@codeui/kit";
 import { createContext, createMemo, createSignal, useContext } from "solid-js";
-import { createStore } from "solid-js/store";
+import { createStore } from "solid-js";
 import {
 	bucketSeries,
 	createBuckets,

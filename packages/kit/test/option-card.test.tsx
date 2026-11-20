@@ -1,5 +1,6 @@
-import { cleanup, fireEvent, render, screen } from "solid-testing-library";
-import { createSignal } from "solid-js";
+import { cleanup, fireEvent, render, screen } from "@solidjs/testing-library";
+import { createSignal, flush } from "solid-js";
+
 import { OptionCardGroup } from "../src/components/OptionCard/OptionCard";
 import { tick } from "./helpers";
 
@@ -46,7 +47,7 @@ it("reflects controlled changes and reports card clicks", async () => {
 	render(() => (
 		<OptionCardGroup label="Mode" items={items} value={value()} onChange={setValue} />
 	));
-	setValue("light");
+	flush(() => setValue("light"));
 	expect(screen.getByRole("radio", { name: "Light" })).toBeChecked();
 	fireEvent.click(screen.getByRole("radio", { name: /Dark/ }));
 	await tick();

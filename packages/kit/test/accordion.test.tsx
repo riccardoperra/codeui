@@ -1,4 +1,4 @@
-import { cleanup, fireEvent, render, screen, waitFor } from "solid-testing-library";
+import { cleanup, fireEvent, render, screen, waitFor } from "@solidjs/testing-library";
 import { createSignal } from "solid-js";
 import { Accordion } from "../src/components/Accordion/Accordion";
 import { expectDismissed, tick } from "./helpers";

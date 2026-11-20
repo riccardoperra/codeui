@@ -1,5 +1,6 @@
-import { cleanup, fireEvent, render, screen } from "solid-testing-library";
+import { cleanup, fireEvent, render, screen } from "@solidjs/testing-library";
 import { createSignal } from "solid-js";
+import { flush } from "solid-js";
 import { ComboboxParts as C, createComboboxOptions } from "../src/parts/combobox";
 import type { ComboboxOption } from "../src/parts/combobox";
 import { press, tick } from "./helpers";
@@ -164,7 +165,7 @@ it("normalizes primitive options and maps object keys", () => {
 	const [list, setList] = createSignal<Language[]>(languages.slice(0, 1));
 	const reactive = createComboboxOptions(list, { valueKey: "id", labelKey: "name" });
 	expect(reactive.optionFromValue("ts")?.label).toBe("TypeScript");
-	setList(languages.slice(3));
+	flush(() => setList(languages.slice(3)));
 	expect(reactive.options().map(option => option.label)).toEqual(["Rust"]);
 	expect(reactive.optionFromValue("ts")).toBeUndefined();
 });

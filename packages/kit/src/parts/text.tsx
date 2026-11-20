@@ -1,13 +1,32 @@
 import "@codeui/styles/theme.css";
 import "@codeui/styles/text.css";
-import { type ComponentProps, type JSX, type ValidComponent, splitProps } from "solid-js";
-import { Dynamic } from "solid-js/web";
+import { omit } from "solid-js";
+import {
+	type ComponentProps,
+	type JSX,
+	type ValidComponent,
+	dynamic,
+} from "@solidjs/web";
+
 import { tokens } from "../foundation/cui.css";
 import { root } from "../components/Text/Text.css";
 import { mergeClasses } from "../utils/css";
 
-import { type TextVariants, textParts, type TextPart, type TextClasses, type TextStyles } from "@codeui/styles/text";
-export { type TextVariants, textParts, type TextPart, type TextClasses, type TextStyles, textStyles } from "@codeui/styles/text";
+import {
+	type TextVariants,
+	textParts,
+	type TextPart,
+	type TextClasses,
+	type TextStyles,
+} from "@codeui/styles/text";
+export {
+	type TextVariants,
+	textParts,
+	type TextPart,
+	type TextClasses,
+	type TextStyles,
+	textStyles,
+} from "@codeui/styles/text";
 export type TextProps<T extends ValidComponent = "span"> = TextVariants & {
 	as?: T;
 	children?: JSX.Element;
@@ -17,23 +36,16 @@ export type TextProps<T extends ValidComponent = "span"> = TextVariants & {
 export type RootProps<T extends ValidComponent = "span"> = TextProps<T>;
 
 export function Root<T extends ValidComponent = "span">(props: TextProps<T>) {
-	const [local, others] = splitProps(props, [
-		"as",
-		"class",
-		"classes",
-		"size",
-		"weight",
-		"tone",
-	]);
+	const others = omit(props, "as", "class", "classes", "size", "weight", "tone");
+	const Element = dynamic(() => props.as ?? "span");
 	return (
-		<Dynamic
+		<Element
 			{...others}
-			component={local.as ?? "span"}
 			data-cui={textParts.root}
-			class={mergeClasses(root(), local.classes?.root, local.class)}
-			data-size={local.size ?? "sm"}
-			data-weight={local.weight ?? "normal"}
-			data-tone={local.tone ?? "default"}
+			class={mergeClasses(root(), props.classes?.root, props.class)}
+			data-size={props.size ?? "sm"}
+			data-weight={props.weight ?? "normal"}
+			data-tone={props.tone ?? "default"}
 		/>
 	);
 }

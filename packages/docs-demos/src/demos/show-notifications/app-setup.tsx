@@ -1,5 +1,6 @@
 import { Button, createToaster, Toaster, type ToastController } from "@codeui/kit";
-import { createContext, type JSX, useContext } from "solid-js";
+import { createContext, useContext } from "solid-js";
+import { type JSX } from "@solidjs/web";
 
 const NotificationsContext = createContext<ToastController>();
 
@@ -13,10 +14,10 @@ export function useNotifications() {
 function NotificationsProvider(props: { children: JSX.Element }) {
 	const notifications = createToaster();
 	return (
-		<NotificationsContext.Provider value={notifications}>
+		<NotificationsContext value={notifications}>
 			{props.children}
 			<Toaster toaster={notifications} closeLabel="Dismiss" />
-		</NotificationsContext.Provider>
+		</NotificationsContext>
 	);
 }
 

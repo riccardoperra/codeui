@@ -1,4 +1,4 @@
-import { JSX } from "solid-js";
+import { JSX } from "@solidjs/web";
 
 export function DocsItemsContainer(props: JSX.IntrinsicElements["div"]) {
 	return <div class={"itemsContainer"} {...props} />;

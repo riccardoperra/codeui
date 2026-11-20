@@ -1,5 +1,5 @@
-import { cleanup, render, waitFor } from "solid-testing-library";
-import { createSignal } from "solid-js";
+import { cleanup, render, waitFor } from "@solidjs/testing-library";
+import { createSignal, createStore } from "solid-js";
 import { Listbox } from "../src/components/Listbox/Listbox";
 import { VirtualizedListbox } from "../src/components/Listbox/VirtualizedListbox";
 import { Select } from "../src/components/Select/Select";
@@ -90,4 +90,27 @@ it("repositions virtualized rows when density changes", async () => {
 	await expectSpacing(32);
 	setDensity("touch");
 	await expectSpacing(40);
+});
+
+it("renders new virtualized options when the row count stays the same", async () => {
+	const [formats, setFormats] = createStore(
+		options.map(value => ({ value, label: value })),
+	);
+	const { findByRole, queryByRole } = render(() => (
+		<>
+			<style>{".virtualized-row-test { height: 120px; overflow: auto; }"}</style>
+			<VirtualizedListbox
+				aria-label="File format"
+				options={formats}
+				class="virtualized-row-test"
+			/>
+		</>
+	));
+
+	await findByRole("option", { name: "PNG" });
+	setFormats(draft => {
+		draft[0] = { value: "WebP", label: "WebP" };
+	});
+	await findByRole("option", { name: "WebP" });
+	expect(queryByRole("option", { name: "PNG" })).toBeNull();
 });

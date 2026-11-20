@@ -22,7 +22,7 @@ export function NumberFieldControls(props: NumberFieldControlsProps) {
 			<Button
 				disabled={!props.canIncrement}
 				type={"button"}
-				tabIndex={-1}
+				tabindex={-1}
 				ghost
 				variant={"secondary"}
 				aria-label={`Increment by ${props.step}`}
@@ -34,7 +34,7 @@ export function NumberFieldControls(props: NumberFieldControlsProps) {
 			<Button
 				disabled={!props.canDecrement}
 				type={"button"}
-				tabIndex={-1}
+				tabindex={-1}
 				ghost
 				variant={"secondary"}
 				aria-label={`Decrement by ${props.step}`}

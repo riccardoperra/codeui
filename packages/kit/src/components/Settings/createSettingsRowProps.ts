@@ -1,4 +1,5 @@
-import { type Accessor, createUniqueId, type JSX } from "solid-js";
+import { type Accessor, createUniqueId } from "solid-js";
+import { type JSX } from "@solidjs/web";
 
 export type SettingsRowFieldProps = {
 	/** Base for the row ids: `<id>-label` and `<id>-description`. */

@@ -1,9 +1,9 @@
 import { Button, createToaster, DropdownMenuItem, IconButton, Kbd, SegmentedControl, SegmentedControlItem, Sheet, Text, Toaster } from "@codeui/kit";
-import FileCheck from "lucide-solid/icons/file-check";
-import PanelLeft from "lucide-solid/icons/panel-left";
-import RotateCcw from "lucide-solid/icons/rotate-ccw";
-import ScanSearch from "lucide-solid/icons/scan-search";
-import { For, lazy, onCleanup, onMount, Show } from "solid-js";
+import FileCheck from "@lucide/solid/icons/file-check";
+import PanelLeft from "@lucide/solid/icons/panel-left";
+import RotateCcw from "@lucide/solid/icons/rotate-ccw";
+import ScanSearch from "@lucide/solid/icons/scan-search";
+import { For, lazy, onSettled, Show } from "solid-js";
 import { ExampleMenu } from "../shared/ExampleMenu";
 import { modKey } from "../shared/hotkey";
 import { createIsPhone } from "../shared/media";
@@ -33,7 +33,7 @@ export function App() {
 	};
 
 	// ⌘⇧D or Ctrl+Shift+D, the shortcut the inspector's own playground uses.
-	onMount(() => {
+	onSettled(() => {
 		const listener = (event: KeyboardEvent) => {
 			if (event.key.toLowerCase() !== "d" || !event.shiftKey || !(event.metaKey || event.ctrlKey) || event.altKey) return;
 			event.preventDefault();
@@ -41,7 +41,7 @@ export function App() {
 			else bench.openInspector(false);
 		};
 		window.addEventListener("keydown", listener, true);
-		onCleanup(() => window.removeEventListener("keydown", listener, true));
+		return () => window.removeEventListener("keydown", listener, true);
 	});
 
 	const number = () => readMeta(bench.doc()).number;
@@ -49,7 +49,7 @@ export function App() {
 	const toggleInspector = () => (bench.inspectorOpen() ? closeInspector() : bench.openInspector(true));
 
 	return (
-		<BenchContext.Provider value={bench}>
+		<BenchContext value={bench}>
 			<div class="ex-page">
 				<header class="ex-header">
 					<span class="ex-brand">
@@ -74,13 +74,13 @@ export function App() {
 								<IconButton variant="secondary" ghost size={size()} aria-label="Open workbench panel" onClick={() => bench.setSheetOpen(true)}>
 									<PanelLeft size={16} />
 								</IconButton>
-								<IconButton ref={inspectorButton} variant="primary" size={size()} aria-label={inspectorLabel()} aria-expanded={bench.inspectorOpen()} onClick={toggleInspector}>
+								<IconButton ref={inspectorButton} variant="primary" size={size()} aria-label={inspectorLabel()} aria-expanded={bench.inspectorOpen() ? "true" : "false"} onClick={toggleInspector}>
 									<ScanSearch size={16} />
 								</IconButton>
 							</>
 						}
 					>
-						<Button ref={inspectorButton} variant="primary" size={size()} class="pmi-inspect" aria-expanded={bench.inspectorOpen()} onClick={toggleInspector}>
+						<Button ref={inspectorButton} variant="primary" size={size()} class="pmi-inspect" aria-expanded={bench.inspectorOpen() ? "true" : "false"} onClick={toggleInspector}>
 							{inspectorLabel()}
 							<Kbd>{modKey()}⇧D</Kbd>
 						</Button>
@@ -128,6 +128,6 @@ export function App() {
 				</Sheet>
 			</Show>
 			<Toaster toaster={notifications} position={isPhone() ? "bottom-center" : "bottom-left"} closeLabel="Dismiss" />
-		</BenchContext.Provider>
+		</BenchContext>
 	);
 }
