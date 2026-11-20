@@ -15,6 +15,8 @@ import { createContext, onSettled, Show, useContext, omit } from "solid-js";
 import { ValidComponent } from "@solidjs/web";
 import { trackInputModality } from "../../utils/modality";
 import { PolymorphicProps } from "@kobalte/core/polymorphic";
+import { callHandler } from "@kobalte/utils";
+import { allowEscapeToBubble } from "../../utils/escape";
 
 export type TabsProps<T extends ValidComponent = "div"> = KTabsRootProps<T> & {
 	variant?: "inline" | "default";
@@ -54,8 +56,18 @@ export function TabsListPart<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, TabsListProps<T>>,
 ) {
 	const local = props as PolymorphicProps<"div", TabsListProps>;
-	const others = omit(local, "class");
-	return <KTabs.List {...others} class={mergeClasses(styles.tabsList, local.class)} />;
+	const others = omit(local, "class", "onKeyDown");
+	return (
+		<KTabs.List
+			{...others}
+			class={mergeClasses(styles.tabsList, local.class)}
+			onKeyDown={event => {
+				callHandler(event, local.onKeyDown);
+				// Tabs always keep an active selection, so Escape belongs to the enclosing layer.
+				allowEscapeToBubble(event);
+			}}
+		/>
+	);
 }
 
 export function TabsList<T extends ValidComponent = "div">(

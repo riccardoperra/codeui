@@ -12,6 +12,7 @@ import { label } from "../components/Field/FieldLabel/FieldLabel.css";
 import { description } from "../components/Field/FieldMessage/FieldMessage.css";
 import * as styles from "../components/Select/Select.css";
 import { mergeClasses } from "../utils/css";
+import { useNestedLayerMarker } from "../utils/layer-scope";
 import { motionRef } from "../utils/open-source";
 
 export const selectParts = {
@@ -90,11 +91,13 @@ export function Content<T extends ValidComponent = "div">(
 ) {
 	const local = props as PolymorphicProps<"div", ContentProps>;
 	const others = omit(local, "class", "ref");
+	const nestedLayerMarker = useNestedLayerMarker();
 	return (
 		<K.Content
 			{...others}
 			ref={[motionRef(), local.ref]}
 			data-cui={selectParts.content}
+			data-kb-top-layer={nestedLayerMarker()}
 			class={mergeClasses(styles.content, local.class)}
 		/>
 	);

@@ -1,5 +1,5 @@
 import { hydrate } from "@solidjs/web";
-import { fireEvent, waitFor } from "@solidjs/testing-library";
+import { fireEvent, screen, waitFor } from "@solidjs/testing-library";
 import { expectDismissed, tick } from "./helpers";
 import { portalFixtures } from "./hydration/portal-fixtures";
 import portalHtmlJson from "../.hydration/portals.json?raw";
@@ -58,13 +58,19 @@ it.each(Object.keys(portalFixtures))(
 				await expectDismissed(reopened);
 				await waitFor(() => expect(document.activeElement).toBe(trigger));
 			}
-			if (name === "Nested") {
-				const inner = before.find(node => node.dataset.portalNode === "inner")!;
+			if (name.startsWith("Nested")) {
 				const outer = before.find(node => node.dataset.portalNode === "outer")!;
+				const trigger = screen.getByRole("button", { name: "Open inner" });
+				if (name === "Nested opens after hydration") {
+					await tick();
+					fireEvent.click(trigger);
+				}
+				const inner = await screen.findByRole("button", { name: "Inner content" });
 				fireEvent.keyDown(inner, { key: "Escape" });
 				fireEvent.keyUp(inner, { key: "Escape" });
 				await expectDismissed(inner);
 				expect(outer).toBeInTheDocument();
+				await waitFor(() => expect(trigger).toHaveFocus());
 			}
 			if (name === "Sheet") {
 				await tick();

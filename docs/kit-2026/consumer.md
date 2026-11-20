@@ -25,7 +25,7 @@ Add `--keep` to retain the installed fixtures and production builds. The runner 
 
 ## Server portals and hydration
 
-The command checks that Dialog and Popover bodies exist in server HTML. It also writes a server-rendered page with Solid's hydration script and the browser build. The browser check delays module loading to capture the server nodes, then starts hydration. The same two nodes must survive, appear exactly once and move outside the app container into their portal targets. Browser errors fail this check.
+The command checks that Dialog and Popover bodies exist in server HTML. It also writes a server-rendered page with Solid's hydration script and the browser build. The browser check delays module loading to capture the server nodes, then starts hydration. The same two nodes must survive, appear exactly once, and move into their portal targets. Escape must close the nested popover and return focus to its trigger. A second Escape must close the dialog. Browser errors and hydration mismatch warnings fail the check.
 
 Open or force-mounted Dialog, Popover, Sheet and CommandMenu portals render inline at their declaration on the server. Hydration adopts the server nodes and moves them into the portal target. Closed content stays absent unless force-mounted. Place these portals in a valid flow-content context. The native client-only path still handles portals opened after hydration.
 

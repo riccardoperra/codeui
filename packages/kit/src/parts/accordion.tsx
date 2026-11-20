@@ -115,7 +115,7 @@ export function Trigger<T extends ValidComponent = "button">(
 	props: PolymorphicProps<T, TriggerProps<T>>,
 ) {
 	const local = props as PolymorphicProps<"button", TriggerProps>;
-	const others = omit(local, "class", "density", "onFocus");
+	const others = omit(local, "class", "density", "id", "onFocus");
 	const context = K.useAccordionContext();
 	const item = useItem();
 	const defaultTriggerId = item.triggerId;

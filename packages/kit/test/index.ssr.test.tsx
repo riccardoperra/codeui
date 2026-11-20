@@ -11,6 +11,7 @@ import { renderToString } from "@solidjs/web";
 import { Button } from "../src/components/Button/Button";
 import { TextField } from "../src/components/TextField/TextField";
 import * as S from "../src/parts/sheet";
+import * as Tabs from "../src/parts/tabs";
 
 it("server-renders the button text", () => {
 	const html = renderToString(() => <Button>Save</Button>);
@@ -21,6 +22,22 @@ it("server-renders the button text", () => {
 it("server-renders the text field label", () => {
 	const html = renderToString(() => <TextField label="Email address" />);
 	expect(html).toContain("Email address");
+});
+
+it("server-renders the selected tab panel labelled by its trigger", () => {
+	const html = renderToString(() => (
+		<Tabs.Root defaultValue="general">
+			<Tabs.List>
+				<Tabs.Trigger value="general">General</Tabs.Trigger>
+			</Tabs.List>
+			<Tabs.Content value="general">General settings</Tabs.Content>
+		</Tabs.Root>
+	));
+	const trigger = html.match(/<button[^>]*\brole="tab"[^>]*>/)?.[0] ?? "";
+	const panel = html.match(/<div[^>]*\brole="tabpanel"[^>]*>/)?.[0] ?? "";
+	const triggerId = trigger.match(/\sid="([^"]+)"/)?.[1];
+	expect(triggerId).toBeTruthy();
+	expect(panel.match(/\saria-labelledby="([^"]+)"/)?.[1]).toBe(triggerId);
 });
 
 it.each([TextField, TextArea, NumberField])(

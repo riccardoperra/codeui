@@ -1,8 +1,12 @@
+import assert from "node:assert/strict";
+
 export async function checkHydration(page, url) {
 	const errors = [];
 	page.on("pageerror", error => errors.push(error.message));
 	page.on("console", message => {
-		if (message.type() === "error") errors.push(message.text());
+		const text = message.text();
+		if (message.type() === "error" || /hydration key miss|hydration.*mismatch/i.test(text))
+			errors.push(text);
 	});
 	let release;
 	const scripts = new Promise(resolve => {
@@ -17,6 +21,7 @@ export async function checkHydration(page, url) {
 			waitUntil: "commit",
 		});
 		await page.locator('[data-cui="dialog-panel"]').waitFor();
+		await page.locator('[data-cui="popover-content"]').waitFor();
 		await page.evaluate(() => {
 			window.__KIT_SERVER_NODES__ = [
 				...document.querySelectorAll(
@@ -42,5 +47,19 @@ export async function checkHydration(page, url) {
 			)
 		);
 	});
+	const dialog = page.getByRole("dialog", { name: "Consumer dialog" });
+	const popover = page.getByRole("dialog", { name: "Consumer popover" });
+	const trigger = dialog.getByRole("button", { name: "Consumer popover trigger" });
+	await popover.getByRole("button", { name: "Popover body" }).press("Escape");
+	await popover.waitFor({ state: "detached", timeout: 5000 });
+	assert.equal(await dialog.isVisible(), true, "Escape closes only the nested popover");
+	await page.waitForFunction(
+		button => document.activeElement === button,
+		await trigger.elementHandle({ timeout: 5000 }),
+		{ timeout: 5000 },
+	);
+	await trigger.press("Escape");
+	await dialog.waitFor({ state: "detached", timeout: 5000 });
+
 	return { adoption, errors };
 }

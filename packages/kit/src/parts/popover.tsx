@@ -23,7 +23,7 @@ import * as styles from "../components/Popover/Popover.css";
 import { IconButton, type IconButtonProps } from "../components/IconButton/IconButton";
 import { CloseIcon } from "../icons";
 import { mergeClasses } from "../utils/css";
-import { createLayer, LayerScope } from "../utils/layer-scope";
+import { createLayer, LayerScope, useNestedLayerMarker } from "../utils/layer-scope";
 import { motionRef } from "../utils/open-source";
 
 import { popoverParts, type PopoverPart, type PopoverClasses, type PopoverVariant, type PopoverStyles, popoverStyles } from "@codeui/styles/popover";
@@ -76,6 +76,7 @@ export function Content<T extends ValidComponent = "div">(props: PolymorphicProp
 	const others = omit(local, "class", "variant", "ref", "onInteractOutside", "onPointerDownOutside", "onFocusOutside");
 	const context = usePopoverContext();
 	const [element, setElement] = createSignal<HTMLElement>();
+	const nestedLayerMarker = useNestedLayerMarker();
 	const layer = createLayer({
 		open: context.isOpen,
 		modal: context.isModal,
@@ -134,6 +135,7 @@ export function Content<T extends ValidComponent = "div">(props: PolymorphicProp
 					}
 				}}
 				data-cui={popoverParts.content}
+				data-kb-top-layer={nestedLayerMarker()}
 				data-variant={popoverStyleProps({ variant: local.variant })["data-variant"]}
 				class={mergeClasses(styles.content(), local.class)}
 				{...others}
