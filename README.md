@@ -13,6 +13,18 @@
 
 </div>
 
+## Try packages from a pull request
+
+Use the install command in the `pkg.pr.new` comment on the pull request. It points to a specific commit. The kit preview includes matching previews of `@codeui/styles` and `@codeui/inkstone` as dependencies. The Solid 2 kit requires both `solid-js@^2` and `@solidjs/web@^2`.
+
+You can also download the `codeui-preview` artifact from the **Package preview** run on the pull request. Extract the ZIP in your consumer project and install all three tarballs together.
+
+```sh
+pnpm add ./.codeui-preview/*.tgz
+```
+
+The run summary includes a GitHub CLI command that downloads the tarballs to that directory. The artifact expires after 14 days. Repository maintainers can enable direct install URLs by installing the [pkg.pr.new GitHub App](https://github.com/apps/pkg-pr-new) for CodeUI.
+
 ## Project Commands
 
 List of cli commands available from a project root.

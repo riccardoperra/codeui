@@ -1,0 +1,72 @@
+name: Package preview
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.34.9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.x
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build:kit
+
+      - name: Pack the preview packages
+        run: pnpm --filter '@codeui/kit...' pack --recursive --pack-destination "$RUNNER_TEMP/codeui-preview"
+
+      - name: Upload installable packages
+        id: artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: codeui-preview
+          path: ${{ runner.temp }}/codeui-preview/*.tgz
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Publish package preview URLs
+        id: publish
+        # The GitHub artifact can still be installed if pkg.pr.new is unavailable.
+        continue-on-error: true
+        run: >-
+          pnpm exec pkg-pr-new publish --pnpm --no-compact --no-template
+          --previewVersion --commentWithSha --packageManager=pnpm,npm
+          ./packages/inkstone ./packages/styles ./packages/kit
+
+      - name: Show download instructions
+        env:
+          ARTIFACT_URL: ${{ steps.artifact.outputs.artifact-url }}
+          PUBLISH_OUTCOME: ${{ steps.publish.outcome }}
+        run: |
+          {
+            echo "### CodeUI preview packages"
+            if [ "$PUBLISH_OUTCOME" != success ]; then
+              echo "pkg.pr.new could not publish preview URLs. Check the publish step for details."
+              echo
+            fi
+            echo "[Download the three package tarballs]($ARTIFACT_URL)"
+            echo
+            echo '```sh'
+            echo "gh run download $GITHUB_RUN_ID --repo $GITHUB_REPOSITORY -n codeui-preview -D .codeui-preview"
+            echo 'pnpm add ./.codeui-preview/*.tgz'
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
