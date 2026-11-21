@@ -15,6 +15,7 @@ import { gitConfig } from '@/lib/shared';
 import { useFumadocsLoader } from 'fumadocs-core/source/client';
 import { Suspense, use } from 'react';
 import { useMDXComponents } from '@/components/mdx';
+import { getDocumentedPackage } from '@/lib/package-versions';
 
 export const Route = createFileRoute('/docs/$')({
   component: Page,
@@ -47,10 +48,18 @@ function Content({ path, markdownUrl }: { path: string; markdownUrl: string }) {
 
   const { toc } = use(page.load());
   const MDX = page.body;
+  const pkg = getDocumentedPackage(path);
 
   return (
     <DocsPage toc={toc} full={page.full}>
-      <DocsTitle>{page.title}</DocsTitle>
+      <header>
+        <DocsTitle>{page.title}</DocsTitle>
+        {pkg && (
+          <p className="package-version docs-package-version">
+            {pkg.name} v{pkg.version}
+          </p>
+        )}
+      </header>
       <DocsDescription>{page.description}</DocsDescription>
       <div className="flex flex-row gap-2 items-center -mt-4 pb-2">
         <MarkdownCopyButton markdownUrl={markdownUrl} />
