@@ -20,7 +20,7 @@ Use the install command in the `pkg.pr.new` comment on the pull request. It poin
 You can also download the `codeui-preview` artifact from the **Package preview** run on the pull request. Extract the ZIP in your consumer project and install all three tarballs together.
 
 ```sh
-pnpm add ./.codeui-preview/*.tgz
+npm install ./.codeui-preview/*.tgz
 ```
 
 The run summary includes a GitHub CLI command that downloads the tarballs to that directory. The artifact expires after 14 days. Repository maintainers can enable direct install URLs by installing the [pkg.pr.new GitHub App](https://github.com/apps/pkg-pr-new) for CodeUI.

@@ -67,6 +67,6 @@ jobs:
             echo
             echo '```sh'
             echo "gh run download $GITHUB_RUN_ID --repo $GITHUB_REPOSITORY -n codeui-preview -D .codeui-preview"
-            echo 'pnpm add ./.codeui-preview/*.tgz'
+            echo 'npm install ./.codeui-preview/*.tgz'
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
