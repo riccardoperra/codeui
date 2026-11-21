@@ -12,6 +12,7 @@ import { createContext, createEffect, createSignal, useContext, omit } from "sol
 import { type JSX, type ValidComponent } from "@solidjs/web";
 import * as styles from "../components/Tooltip/Tooltip.css";
 import { mergeClasses } from "../utils/css";
+import { LayerScope } from "../utils/layer-scope";
 import { motionRef } from "../utils/open-source";
 
 const focusable =
@@ -124,13 +125,15 @@ export function Content<T extends ValidComponent = "div">(
 	});
 
 	return (
-		<KTooltip.Content
-			{...others}
-			ref={[contentRef, local.ref]}
-			data-cui="tooltip-content"
-			data-variant={local.variant ?? "primary"}
-			class={mergeClasses(local.class, styles.tooltipContent())}
-		/>
+		<LayerScope>
+			<KTooltip.Content
+				{...others}
+				ref={[contentRef, local.ref]}
+				data-cui="tooltip-content"
+				data-variant={local.variant ?? "primary"}
+				class={mergeClasses(local.class, styles.tooltipContent())}
+			/>
+		</LayerScope>
 	);
 }
 
