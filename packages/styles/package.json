@@ -1,6 +1,6 @@
 {
   "name": "@codeui/styles",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Static Inkstone CSS and framework-neutral class helpers",
   "license": "MIT",
   "type": "module",
