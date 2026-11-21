@@ -1,4 +1,5 @@
-import { For, Show, createMemo, type Accessor, type JSX } from "solid-js";
+import { For, Show, createMemo, type Accessor } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import * as A from "../../parts/accordion";
 export type AccordionEntry = {
 	value: string;

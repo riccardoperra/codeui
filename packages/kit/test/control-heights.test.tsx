@@ -1,4 +1,4 @@
-import { cleanup, render } from "solid-testing-library";
+import { cleanup, render } from "@solidjs/testing-library";
 import { Combobox } from "../src/components/Combobox/Combobox";
 import { Button } from "../src/components/Button/Button";
 import { IconButton } from "../src/components/IconButton/IconButton";

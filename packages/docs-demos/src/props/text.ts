@@ -1,5 +1,5 @@
 import type { TextProps } from "@codeui/kit";
-import type { ValidComponent } from "solid-js";
+import type { ValidComponent } from "@solidjs/web";
 import type { PropNotes } from "./notes";
 
 /** Props that Text adds. Every other prop goes to the element that `as` names. */

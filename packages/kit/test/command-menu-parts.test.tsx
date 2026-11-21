@@ -1,5 +1,6 @@
-import { cleanup, fireEvent, render, screen } from "solid-testing-library";
+import { cleanup, fireEvent, render, screen } from "@solidjs/testing-library";
 import { createSignal } from "solid-js";
+import { flush } from "solid-js";
 import { CommandMenuParts as M } from "../src/parts/command-menu";
 import { expectDismissed, press, tick } from "./helpers";
 
@@ -142,7 +143,7 @@ it("reports pointer hover through the same highlight", () => {
 	const { input, highlights } = renderMenu();
 	const nord = screen.getByRole("option", { name: "Nord" });
 	const move = new PointerEvent("pointermove", { bubbles: true, pointerType: "mouse" });
-	nord.dispatchEvent(move);
+	flush(() => nord.dispatchEvent(move));
 	expect(highlighted(input)).toBe("Nord");
 	expect(highlights.at(-1)).toBe("nord");
 });

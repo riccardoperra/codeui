@@ -1,7 +1,7 @@
 import "../shared/base.css";
 import { Badge, Link, Text } from "@codeui/kit";
 import { For } from "solid-js";
-import { render } from "solid-js/web";
+import { render } from "@solidjs/web";
 import { docsUrl, examples } from "../shared/examples";
 import "./gallery.css";
 

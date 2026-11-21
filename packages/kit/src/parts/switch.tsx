@@ -1,8 +1,11 @@
+import { mergeClasses } from "../utils/css";
+import { pickProps } from "../utils/pick-props";
 import "@codeui/styles/theme.css";
 import "@codeui/styles/switch.css";
 import * as K from "@kobalte/core/switch";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
-import { createMemo, onMount, splitProps, type ValidComponent } from "solid-js";
+import { createMemo, onSettled, omit } from "solid-js";
+import { type ValidComponent } from "@solidjs/web";
 import { trackInputModality } from "../utils/modality";
 export { useSwitchContext } from "@kobalte/core/switch";
 import { type SwitchVariants, switchStyleProps } from "@codeui/styles/switch";
@@ -14,7 +17,9 @@ export {
 	type SwitchStyles,
 	switchStyles,
 } from "@codeui/styles/switch";
-type SwitchAppearance = ReturnType<(typeof switchStyleProps)[keyof typeof switchStyleProps]>;
+type SwitchAppearance = ReturnType<
+	(typeof switchStyleProps)[keyof typeof switchStyleProps]
+>;
 
 function bindAppearance(read: () => SwitchAppearance) {
 	const props = createMemo(read);
@@ -37,12 +42,13 @@ export type RootProps<T extends ValidComponent = "div"> = K.SwitchRootProps<T> &
 export function Root<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, RootProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"div", RootProps>, [
-		"class",
-		"size",
-	]);
-	onMount(trackInputModality);
-	const appearance = bindAppearance(() => switchStyleProps.root(local));
+	const allProps = props as PolymorphicProps<"div", RootProps>;
+	const local = pickProps(allProps, "class", "size");
+	const others = omit(allProps, "class", "size");
+	onSettled(trackInputModality);
+	const appearance = bindAppearance(() =>
+		switchStyleProps.root({ size: local.size, class: mergeClasses(local.class) }),
+	);
 	return <K.Root {...others} {...appearance} />;
 }
 export type InputProps<T extends ValidComponent = "input"> = K.SwitchInputProps<T> &
@@ -50,11 +56,12 @@ export type InputProps<T extends ValidComponent = "input"> = K.SwitchInputProps<
 export function Input<T extends ValidComponent = "input">(
 	props: PolymorphicProps<T, InputProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"input", InputProps>, [
-		"class",
-		"size",
-	]);
-	const appearance = bindAppearance(() => switchStyleProps.input(local));
+	const allProps = props as PolymorphicProps<"input", InputProps>;
+	const local = pickProps(allProps, "class", "size");
+	const others = omit(allProps, "class", "size");
+	const appearance = bindAppearance(() =>
+		switchStyleProps.input({ size: local.size, class: mergeClasses(local.class) }),
+	);
 	return <K.Input {...others} {...appearance} />;
 }
 export type ControlProps<T extends ValidComponent = "div"> = K.SwitchControlProps<T> &
@@ -62,11 +69,12 @@ export type ControlProps<T extends ValidComponent = "div"> = K.SwitchControlProp
 export function Control<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, ControlProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"div", ControlProps>, [
-		"class",
-		"size",
-	]);
-	const appearance = bindAppearance(() => switchStyleProps.control(local));
+	const allProps = props as PolymorphicProps<"div", ControlProps>;
+	const local = pickProps(allProps, "class", "size");
+	const others = omit(allProps, "class", "size");
+	const appearance = bindAppearance(() =>
+		switchStyleProps.control({ size: local.size, class: mergeClasses(local.class) }),
+	);
 	return <K.Control {...others} {...appearance} />;
 }
 export type ThumbProps<T extends ValidComponent = "div"> = K.SwitchThumbProps<T> &
@@ -74,11 +82,12 @@ export type ThumbProps<T extends ValidComponent = "div"> = K.SwitchThumbProps<T>
 export function Thumb<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, ThumbProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"div", ThumbProps>, [
-		"class",
-		"size",
-	]);
-	const appearance = bindAppearance(() => switchStyleProps.thumb(local));
+	const allProps = props as PolymorphicProps<"div", ThumbProps>;
+	const local = pickProps(allProps, "class", "size");
+	const others = omit(allProps, "class", "size");
+	const appearance = bindAppearance(() =>
+		switchStyleProps.thumb({ size: local.size, class: mergeClasses(local.class) }),
+	);
 	return <K.Thumb {...others} {...appearance} />;
 }
 export type LabelProps<T extends ValidComponent = "label"> = K.SwitchLabelProps<T> &
@@ -86,11 +95,12 @@ export type LabelProps<T extends ValidComponent = "label"> = K.SwitchLabelProps<
 export function Label<T extends ValidComponent = "label">(
 	props: PolymorphicProps<T, LabelProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"label", LabelProps>, [
-		"class",
-		"size",
-	]);
-	const appearance = bindAppearance(() => switchStyleProps.label(local));
+	const allProps = props as PolymorphicProps<"label", LabelProps>;
+	const local = pickProps(allProps, "class", "size");
+	const others = omit(allProps, "class", "size");
+	const appearance = bindAppearance(() =>
+		switchStyleProps.label({ size: local.size, class: mergeClasses(local.class) }),
+	);
 	return <K.Label {...others} {...appearance} />;
 }
 export type DescriptionProps<T extends ValidComponent = "div"> =
@@ -98,11 +108,12 @@ export type DescriptionProps<T extends ValidComponent = "div"> =
 export function Description<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, DescriptionProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"div", DescriptionProps>, [
-		"class",
-		"size",
-	]);
-	const appearance = bindAppearance(() => switchStyleProps.description(local));
+	const allProps = props as PolymorphicProps<"div", DescriptionProps>;
+	const local = pickProps(allProps, "class", "size");
+	const others = omit(allProps, "class", "size");
+	const appearance = bindAppearance(() =>
+		switchStyleProps.description({ size: local.size, class: mergeClasses(local.class) }),
+	);
 	return <K.Description {...others} {...appearance} />;
 }
 export type ErrorMessageProps<T extends ValidComponent = "div"> =
@@ -110,11 +121,12 @@ export type ErrorMessageProps<T extends ValidComponent = "div"> =
 export function ErrorMessage<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, ErrorMessageProps<T>>,
 ) {
-	const [local, others] = splitProps(
-		props as PolymorphicProps<"div", ErrorMessageProps>,
-		["class", "size"],
+	const allProps = props as PolymorphicProps<"div", ErrorMessageProps>;
+	const local = pickProps(allProps, "class", "size");
+	const others = omit(allProps, "class", "size");
+	const appearance = bindAppearance(() =>
+		switchStyleProps.errorMessage({ size: local.size, class: mergeClasses(local.class) }),
 	);
-	const appearance = bindAppearance(() => switchStyleProps.errorMessage(local));
 	return <K.ErrorMessage {...others} {...appearance} />;
 }
 export const SwitchParts = {

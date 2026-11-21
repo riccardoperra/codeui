@@ -1,9 +1,8 @@
-import { cleanup, render, screen } from "solid-testing-library";
+import { cleanup, render, screen } from "@solidjs/testing-library";
 import { Select, type SelectProps } from "../src";
 import { press, tick } from "./helpers";
 
 afterEach(cleanup);
-
 
 function submittedValues(form: HTMLFormElement, name: string) {
 	return new FormData(form).getAll(name);
@@ -13,7 +12,12 @@ describe("Select in a form", () => {
 	it("submits the selected value under its name", () => {
 		render(() => (
 			<form data-testid="form">
-				<Select aria-label="Font" name="font" options={["Inter", "Mono"]} defaultValue="Mono" />
+				<Select
+					aria-label="Font"
+					name="font"
+					options={["Inter", "Mono"]}
+					defaultValue="Mono"
+				/>
 			</form>
 		));
 		const form = screen.getByTestId("form") as HTMLFormElement;
@@ -57,10 +61,18 @@ describe("Select in a form", () => {
 	it("submits nothing when disabled", () => {
 		render(() => (
 			<form data-testid="form">
-				<Select aria-label="Font" name="font" options={["Inter"]} defaultValue="Inter" disabled />
+				<Select
+					aria-label="Font"
+					name="font"
+					options={["Inter"]}
+					defaultValue="Inter"
+					disabled
+				/>
 			</form>
 		));
-		expect(submittedValues(screen.getByTestId("form") as HTMLFormElement, "font")).toEqual([]);
+		expect(
+			submittedValues(screen.getByTestId("form") as HTMLFormElement, "font"),
+		).toEqual([]);
 	});
 
 	it("takes its accessible name from label without aria-label", () => {

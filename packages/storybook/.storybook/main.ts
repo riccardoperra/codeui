@@ -34,12 +34,19 @@ const config: StorybookConfig = {
 		return mergeConfig(config, {
 			// Add dependencies to pre-optimization
 			optimizeDeps: {
+				// @codeui/kit resolves to JSX source under the "solid" condition, so
+				// pre-bundle its plain JS dependencies instead of the kit itself.
 				include: [
 					"storybook-dark-mode",
-					"@codeui/kit",
-					"@kobalte/core",
 					"@kobalte/utils",
-					"@tanstack/solid-virtual",
+					"@codeui/kit > clsx",
+					"@codeui/kit > @maskito/core",
+					"@codeui/kit > @maskito/kit",
+					"@codeui/kit > @solid-primitives/controlled-signal",
+					"@codeui/kit > @solid-primitives/pagination",
+					"@codeui/kit > @solid-primitives/scheduled",
+					"@codeui/kit > @solid-primitives/utils",
+					"@codeui/kit > @tanstack/virtual-core",
 				],
 			},
 		});

@@ -1,4 +1,4 @@
-import type { ComponentProps } from "solid-js";
+import type { ComponentProps } from "@solidjs/web";
 import type { DropdownMenu as Root, DropdownMenuItem as Item, DropdownSubMenu as Sub, DropdownSubMenuTrigger as SubTrigger } from "@codeui/kit";
 import type { PropNotes } from "./notes";
 

@@ -1,6 +1,11 @@
-import { createVirtualizer } from "@tanstack/solid-virtual";
+import {
+	elementScroll,
+	observeElementOffset,
+	observeElementRect,
+	Virtualizer,
+} from "@tanstack/virtual-core";
 import { Listbox, ListboxItem, ListboxProps } from "./Listbox";
-import { For, onCleanup, splitProps } from "solid-js";
+import { createEffect, createSignal, For, onSettled, omit, Show } from "solid-js";
 
 export type VirtualizedListboxProps<OptGroup> = Omit<
 	ListboxProps<Item, OptGroup>,
@@ -33,27 +38,65 @@ export function VirtualizedListbox<OptGroup = never>(
 	let listboxRef: HTMLUListElement | undefined;
 	let rowHeight = 36;
 
-	const virtualizer = createVirtualizer<HTMLUListElement, HTMLLIElement>({
-		get count() {
-			return props.options.length;
-		},
-		get overscan() {
-			return props.virtualizerOptions?.overscan ?? 5;
-		},
+	const [viewport, setViewport] = createSignal<{
+		rows: ReturnType<Virtualizer<HTMLUListElement, HTMLLIElement>["getVirtualItems"]>;
+		height: number;
+	}>({ rows: [], height: 0 });
+	let heightProbe: HTMLDivElement | undefined;
+	const coreOptions = {
 		getScrollElement: () => listboxRef ?? null,
-		estimateSize: (index: number) =>
-			props.virtualizerOptions?.estimateSize?.(index) ?? rowHeight,
-		getItemKey: (index: number) => {
-			return props.options[index].value;
-		},
+		estimateSize: () => rowHeight,
+		observeElementRect,
+		observeElementOffset,
+		scrollToFn: elementScroll,
+		onChange: updateWindow,
+	};
+	function updateWindow(instance: Virtualizer<HTMLUListElement, HTMLLIElement>) {
+		setViewport({ rows: instance.getVirtualItems(), height: instance.getTotalSize() });
+	}
+	const virtualizer = new Virtualizer<HTMLUListElement, HTMLLIElement>({
+		...coreOptions,
+		count: 0,
 	});
+	onSettled(() => {
+		const dispose = virtualizer._didMount();
+		const observer = new ResizeObserver(([entry]) => {
+			const height = entry.contentRect.height;
+			if (height > 0 && height !== rowHeight) {
+				rowHeight = height;
+				virtualizer.measure();
+			}
+		});
+		if (heightProbe) observer.observe(heightProbe);
+		return () => {
+			observer.disconnect();
+			dispose();
+		};
+	});
+	createEffect(
+		() => ({
+			keys: props.options.map(option => option.value),
+			overscan: props.virtualizerOptions?.overscan ?? 5,
+			estimateSize: props.virtualizerOptions?.estimateSize,
+		}),
+		({ keys, overscan, estimateSize }) => {
+			virtualizer.setOptions({
+				...coreOptions,
+				count: keys.length,
+				overscan,
+				getItemKey: index => keys[index],
+				estimateSize: index => estimateSize?.(index) ?? rowHeight,
+			});
+			virtualizer._willUpdate();
+			virtualizer.measure();
+		},
+	);
 
-	const [local, others] = splitProps(props, ["options", "itemLabel"]);
+	const others = omit(props, "options", "itemLabel", "virtualizerOptions");
 
 	return (
-		// TODO fix type
-		<Listbox<any>
-			options={local.options}
+		<Listbox<Item, OptGroup>
+			options={props.options}
 			optionValue="value"
 			optionTextValue="label"
 			optionDisabled="disabled"
@@ -67,7 +110,7 @@ export function VirtualizedListbox<OptGroup = never>(
 			{items => (
 				<div
 					style={{
-						height: `${virtualizer.getTotalSize()}px`,
+						height: `${viewport().height}px`,
 						width: "100%",
 						position: "relative",
 					}}
@@ -79,30 +122,18 @@ export function VirtualizedListbox<OptGroup = never>(
 							visibility: "hidden",
 							height: "var(--cui-control-height-sm)",
 						}}
-						ref={element => {
-							const observer = new ResizeObserver(([entry]) => {
-								const height = entry.contentRect.height;
-								if (height > 0 && height !== rowHeight) {
-									rowHeight = height;
-									virtualizer.measure();
-								}
-							});
-							observer.observe(element);
-							onCleanup(() => observer.disconnect());
-						}}
+						ref={heightProbe}
 					/>
-					<For each={virtualizer.getVirtualItems()}>
-						{virtualRow => {
-							// TODO what if key is not string?
-							const item = items().getItem(virtualRow.key as string);
-							if (item) {
-								return (
+					<For each={viewport().rows} keyed={row => row.key}>
+						{row => (
+							<Show when={items().getItem(String(row().key))}>
+								{item => (
 									<ListboxItem<Item>
 										classes={props.classes}
 										size={props.size}
-										item={item}
+										item={item()}
 										itemLabel={item => {
-											return local.itemLabel ? local.itemLabel(item) : item.label;
+											return props.itemLabel ? props.itemLabel(item) : item.label;
 										}}
 										style={{
 											position: "absolute",
@@ -110,12 +141,12 @@ export function VirtualizedListbox<OptGroup = never>(
 											left: 0,
 											margin: 0,
 											width: "100%",
-											transform: `translateY(${virtualRow.start}px)`,
+											transform: `translateY(${row().start}px)`,
 										}}
 									/>
-								);
-							}
-						}}
+								)}
+							</Show>
+						)}
 					</For>
 				</div>
 			)}

@@ -1,4 +1,4 @@
-import { cleanup, fireEvent, render, screen } from "solid-testing-library";
+import { cleanup, fireEvent, render, screen } from "@solidjs/testing-library";
 import { createSignal } from "solid-js";
 import { Combobox } from "../src/components/Combobox/Combobox";
 import { Dialog } from "../src/components/Dialog/Dialog";

@@ -9,7 +9,7 @@ export default function TextFieldInputAttributes() {
 				autocomplete="email"
 				inputmode="email"
 				spellcheck={false}
-				maxLength={120}
+				maxlength={120}
 				placeholder="you@example.com"
 			/>
 		</div>

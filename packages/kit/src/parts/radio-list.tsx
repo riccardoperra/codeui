@@ -4,7 +4,8 @@ import "@codeui/styles/radiolist.css";
 import "@codeui/styles/textfield.css";
 import * as K from "@kobalte/core/radio-group";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
-import { splitProps, type ComponentProps, type ValidComponent } from "solid-js";
+import { omit } from "solid-js";
+import { type ComponentProps, type ValidComponent } from "@solidjs/web";
 import type { BaseFieldProps } from "../components/Field/createBaseFieldProps";
 import { errorMessage } from "../components/Field/FieldError/FieldError.css";
 import { label } from "../components/Field/FieldLabel/FieldLabel.css";
@@ -22,11 +23,8 @@ export type RootProps<T extends ValidComponent = "div"> = K.RadioGroupRootProps<
 export function Root<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, RootProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"div", RootProps>, [
-		"class",
-		"size",
-		"variant",
-	]);
+	const local = props as PolymorphicProps<"div", RootProps>;
+	const others = omit(local, "class", "size", "variant");
 	return (
 		<K.Root
 			data-cui="radiolist"
@@ -56,21 +54,23 @@ export type ItemsProps = ComponentProps<"div"> &
 		orientation?: K.RadioGroupRootOptions["orientation"];
 	};
 export function Items(props: ItemsProps) {
-	const [local, others] = splitProps(props, ["class", "size", "variant", "orientation"]);
+	const others = omit(props, "class", "size", "variant", "orientation");
 	return (
 		<div
 			{...others}
 			data-cui="radiolist-items"
-			data-size={local.size ?? "md"}
-			data-orientation={radioListStyleProps({ orientation: local.orientation })["data-orientation"]}
-			data-variant={local.variant ?? "inline"}
-			class={mergeClasses(local.class, styles.radioList())}
+			data-size={props.size ?? "md"}
+			data-orientation={
+				radioListStyleProps({ orientation: props.orientation })["data-orientation"]
+			}
+			data-variant={props.variant ?? "inline"}
+			class={mergeClasses(props.class, styles.radioList())}
 		/>
 	);
 }
 
 export type DescriptionProps<T extends ValidComponent = "div"> =
-	K.RadioGroupDescriptionProps<T>;
+	K.RadioGroupDescriptionProps;
 export function Description<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, DescriptionProps<T>>,
 ) {

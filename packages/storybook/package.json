@@ -19,8 +19,8 @@
 		"@testing-library/jest-dom": "6.5.0",
 		"@types/node": "22.5.4",
 
-		"@vitest/browser": "3.2.7",
-		"@vitest/runner": "3.2.7",
+		"@vitest/browser-playwright": "4.1.12",
+		"@vitest/runner": "4.1.12",
 		"playwright": "1.56.1",
 		"react": "^18.3.1",
 		"react-dom": "18.3.1",
@@ -28,17 +28,18 @@
 		"storybook-dark-mode": "^5.0.0",
 		"storybook-solidjs-vite": "10.7.4",
 		"typescript": "^5.6.2",
-		"vite": "^5.4.4",
-		"vite-plugin-solid": "2.11.8",
+		"vite": "8.3.8",
+		"@solidjs/vite-plugin": "3.0.1",
 		"vite-tsconfig-paths": "^5.0.1",
-		"vitest": "3.2.7"
+		"vitest": "4.1.12"
 	},
 	"dependencies": {
 		"@codeui/kit": "workspace:^",
-		"@kobalte/core": "^0.13.14",
-		"@kobalte/utils": "^0.9.2",
+		"@kobalte/core": "2.0.0-alpha.5",
+		"@kobalte/utils": "2.0.0-alpha.2",
 
-		"solid-js": "^1.9.8",
+		"solid-js": "2.0.3",
+		"@solidjs/web": "2.0.3",
 		"@codeui/styles": "workspace:*"
 	}
 }

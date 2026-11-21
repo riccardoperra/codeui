@@ -229,7 +229,7 @@ export const FieldApi: Story = {
 	render: () => (
 		<TextArea
 			aria-label="Notes"
-			maxLength={200}
+			maxlength={200}
 			description={<strong>Up to 200 characters</strong>}
 			classes={{ input: "notes-input" }}
 		/>

@@ -1,3 +1,4 @@
+import { pickProps } from "../utils/pick-props";
 import "@codeui/styles/theme.css";
 import "@codeui/styles/pagination.css";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
@@ -5,7 +6,8 @@ import {
 	createPagination,
 	type PaginationOptions as CorePaginationOptions,
 } from "@solid-primitives/pagination";
-import { createEffect, mergeProps, on, splitProps, type JSX } from "solid-js";
+import { createEffect, merge, omit } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import { IconButton, type IconButtonProps } from "../components/IconButton/IconButton";
 import * as styles from "../components/Pagination/Pagination.css";
 import { NextIcon } from "../icons/NextIcon";
@@ -18,7 +20,7 @@ export interface PaginationOptions extends CorePaginationOptions {
 }
 
 export function createPaginationState(props: PaginationOptions) {
-	const options = mergeProps(
+	const options = merge(
 		{
 			prevContent: <PreviousIcon class={styles.paginationIcon} />,
 			nextContent: <NextIcon class={styles.paginationIcon} />,
@@ -27,20 +29,24 @@ export function createPaginationState(props: PaginationOptions) {
 			maxPages: 5,
 			showNext: true,
 			showPrev: true,
-			initialPage: props.page || props.initialPage || 1,
 		},
 		props,
+		{
+			get initialPage() {
+				return props.page ?? props.initialPage ?? 1;
+			},
+		},
 	);
 	const [items, page, setPage] = createPagination(options);
 
 	createEffect(
-		on(
-			() => props.page,
-			currentPage => currentPage && setPage(currentPage),
-			{ defer: true },
-		),
+		() => props.page,
+		currentPage => {
+			if (currentPage) setPage(currentPage);
+		},
+		{ defer: true },
 	);
-	createEffect(on(page, currentPage => props.onChange?.(currentPage), { defer: true }));
+	createEffect(page, currentPage => props.onChange?.(currentPage), { defer: true });
 
 	return { items, page, setPage };
 }
@@ -48,12 +54,12 @@ export function createPaginationState(props: PaginationOptions) {
 export type RootProps = JSX.HTMLAttributes<HTMLElement>;
 
 export function Root(props: RootProps) {
-	const [local, others] = splitProps(props, ["class"]);
+	const others = omit(props, "class");
 	return (
 		<nav
 			{...others}
 			data-cui="pagination"
-			class={mergeClasses(styles.pagination, local.class)}
+			class={mergeClasses(styles.pagination, props.class)}
 		/>
 	);
 }
@@ -69,13 +75,8 @@ export type ItemProps = Omit<
 };
 
 export function Item(props: ItemProps) {
-	const [local, others] = splitProps(props, [
-		"active",
-		"class",
-		"page",
-		"rounded",
-		"aria-label",
-	]);
+	const local = pickProps(props, "active", "class", "page", "rounded", "aria-label");
+	const others = omit(props, "active", "class", "page", "rounded", "aria-label");
 	const defaultLabel = () =>
 		local.page ? (local.active ? `Page ${local.page} active` : `Page ${local.page}`) : "";
 

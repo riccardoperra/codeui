@@ -1,5 +1,6 @@
-import { cleanup, fireEvent, render, screen } from "solid-testing-library";
-import { createSignal } from "solid-js";
+import { cleanup, fireEvent, render, screen } from "@solidjs/testing-library";
+import { createSignal, flush } from "solid-js";
+
 import { TextField } from "../src/components/TextField/TextField";
 import { TextArea } from "../src/components/TextArea/TextArea";
 import { NumberField } from "../src/components/NumberField/NumberField";
@@ -39,7 +40,7 @@ it.each([TextField, TextArea, NumberField])(
 		expect(container.firstElementChild).not.toHaveAttribute("aria-label");
 		expect(screen.getByText("Required")).toHaveProperty("tagName", "STRONG");
 		expect(container.querySelector("label")).toHaveAttribute("for", input.id);
-		setName("Updated");
+		flush(() => setName("Updated"));
 		expect(input).toHaveAttribute("aria-label", "Updated");
 	},
 );
@@ -184,7 +185,10 @@ it.each(["filled", "inline"] as const)("Checkbox and RadioList apply theme %s", 
 			</RadioList>
 		</>
 	));
-	expect(container.querySelector('[data-cui="checkbox"]')).toHaveAttribute("data-field-variant", theme);
+	expect(container.querySelector('[data-cui="checkbox"]')).toHaveAttribute(
+		"data-field-variant",
+		theme,
+	);
 	expect(container.querySelector('[data-cui="radiolist"]')).toHaveAttribute(
 		"data-field-variant",
 		theme,

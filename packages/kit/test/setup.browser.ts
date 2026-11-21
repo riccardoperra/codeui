@@ -1,5 +1,11 @@
 import "@testing-library/jest-dom/vitest";
-import { vi } from "vitest";
+import { configure } from "@solidjs/testing-library";
+import { flush } from "solid-js";
 
-// The legacy testing library reads this Node environment flag on import.
-vi.stubGlobal("process", { env: {} });
+// A dispatched DOM event completes its reactive update before an assertion.
+configure({
+	eventWrapper: callback => {
+		flush();
+		return flush(callback);
+	},
+});

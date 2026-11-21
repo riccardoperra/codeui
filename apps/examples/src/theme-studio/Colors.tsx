@@ -1,9 +1,10 @@
 import { Badge, Button, IconButton, Popover, PopoverContent, PopoverTrigger, Slider, Text, TextField, Tooltip } from "@codeui/kit";
-import Check from "lucide-solid/icons/check";
-import ChevronLeft from "lucide-solid/icons/chevron-left";
-import TriangleAlert from "lucide-solid/icons/triangle-exclamation-point";
-import X from "lucide-solid/icons/x";
-import { createMemo, createSignal, For, type JSX, Show } from "solid-js";
+import Check from "@lucide/solid/icons/check";
+import ChevronLeft from "@lucide/solid/icons/chevron-left";
+import TriangleAlert from "@lucide/solid/icons/triangle-exclamation-point";
+import X from "@lucide/solid/icons/x";
+import { createMemo, createSignal, For, Show } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import { createIsPhone } from "../shared/media";
 import { createControlSize } from "../shared/size";
 import { fromOklch, isHex, type Oklch, parseColor, toHex, toOklch } from "./color";

@@ -1,9 +1,9 @@
-import { Accessor, JSXElement } from "solid-js";
+import { Accessor, Element } from "solid-js";
 
 type Value = any;
 
 export interface Option<T = any> {
-	label: JSXElement;
+	label: Element;
 	value: T;
 }
 
@@ -20,8 +20,8 @@ type MapOptionToValue<
 type SelectOptionsProps<V> = {
 	optionValue: "value";
 	optionTextValue: (option: Option<V>) => string;
-	itemLabel: (option: Option<V>) => JSXElement;
-	valueComponent: (value: Accessor<Option<V>>) => JSXElement;
+	itemLabel: (option: Option<V>) => Element;
+	valueComponent: (value: Accessor<Option<V>>) => Element;
 };
 
 interface CreateSelectOptionsReturn<T, C extends ConfigFor<T>> {

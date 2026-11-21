@@ -1,5 +1,5 @@
 import { Badge, Button, SegmentedControl, SegmentedControlItem, Sheet, type SheetProps, Text } from "@codeui/kit";
-import { createEffect, createSignal, For, Show } from "solid-js";
+import { createMemo, For, Show } from "solid-js";
 import { formatMoneyWhole, formatNumber } from "../shared/format";
 import { createIsPhone } from "../shared/media";
 import { createControlSize } from "../shared/size";
@@ -12,11 +12,9 @@ export function CustomerSheet() {
 	const isPhone = createIsPhone();
 	const size = createControlSize();
 	// The last customer stays on screen while the sheet slides out.
-	const [customer, setCustomer] = createSignal<Customer>();
-	createEffect(() => {
-		const open = pulse.customers().find(c => c.id === pulse.openCustomer());
-		if (open) setCustomer(open);
-	});
+	const customer = createMemo<Customer | undefined>(previous =>
+		pulse.customers().find(c => c.id === pulse.openCustomer()) ?? previous,
+	);
 	const placement = (): Pick<SheetProps, "side" | "draggable"> => (isPhone() ? { side: "bottom", draggable: true } : { side: "right" });
 
 	return (

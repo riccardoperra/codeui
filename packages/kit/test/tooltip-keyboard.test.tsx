@@ -1,4 +1,4 @@
-import { cleanup, render, screen } from "solid-testing-library";
+import { cleanup, render, screen } from "@solidjs/testing-library";
 import { Tooltip } from "../src/components/Tooltip/Tooltip";
 import { expectDismissed, press, tick } from "./helpers";
 

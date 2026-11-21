@@ -1,6 +1,6 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname } from "node:path";
-import { renderToString } from "solid-js/web";
+import { renderToString } from "@solidjs/web";
 import { hydrationFixtures } from "./hydration/fixtures";
 import { serverHtmlFile } from "./hydration/paths";
 

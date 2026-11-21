@@ -1,4 +1,4 @@
-import { splitProps } from "solid-js";
+import { omit } from "solid-js";
 import * as S from "../../parts/spinner";
 import { mergeClasses } from "../../utils/css";
 
@@ -13,17 +13,17 @@ export type SpinnerProps = Omit<S.RootProps, "children"> & {
 };
 
 export function Spinner(props: SpinnerProps) {
-	const [local, others] = splitProps(props, ["label", "classes", "class"]);
+	const others = omit(props, "label", "classes", "class");
 	return (
 		<S.Root
-			role={local.label ? "status" : undefined}
-			aria-label={local.label}
-			aria-hidden={local.label ? undefined : true}
+			role={props.label ? "status" : undefined}
+			aria-label={props.label}
+			aria-hidden={props.label ? undefined : "true"}
 			{...others}
-			class={mergeClasses(local.classes?.root, local.class)}
+			class={mergeClasses(props.classes?.root, props.class)}
 		>
-			<S.Track class={local.classes?.track} />
-			<S.Indicator class={local.classes?.indicator} />
+			<S.Track class={props.classes?.track} />
+			<S.Indicator class={props.classes?.indicator} />
 		</S.Root>
 	);
 }

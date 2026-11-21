@@ -228,7 +228,9 @@ assert.equal(require("@codeui/inkstone/package.json").dependencies, undefined);
 				);
 				report(
 					"CSS-only dependency boundary",
-					!existsSync(join(cssRoot, "node_modules/solid-js")) && !scripts.length,
+					!existsSync(join(cssRoot, "node_modules/solid-js")) &&
+						!existsSync(join(cssRoot, "node_modules/@solidjs/web")) &&
+						!scripts.length,
 					"styles installed without Solid and no scripts requested",
 				);
 				const classes = JSON.parse(

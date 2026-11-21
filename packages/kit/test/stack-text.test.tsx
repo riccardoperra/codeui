@@ -1,4 +1,4 @@
-import { cleanup, render, screen, fireEvent } from "solid-testing-library";
+import { cleanup, render, screen, fireEvent } from "@solidjs/testing-library";
 import { createSignal } from "solid-js";
 import { Stack } from "../src/components/Stack/Stack";
 import { Text } from "../src/components/Text/Text";

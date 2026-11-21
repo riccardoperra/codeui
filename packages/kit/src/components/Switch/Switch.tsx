@@ -1,4 +1,4 @@
-import { type Accessor, children, mergeProps, Show, splitProps } from "solid-js";
+import { type Accessor, children, merge, Show, omit } from "solid-js";
 import * as P from "../../parts/switch";
 import { createBaseFieldProps, type FieldContent } from "../Field/createBaseFieldProps";
 import { mergeClasses } from "../../utils/css";
@@ -15,7 +15,9 @@ export type SwitchProps = Omit<P.RootProps, "children"> &
 export function createSwitchProps(props: Accessor<SwitchProps>) {
 	const ids = createBaseFieldProps({}, props).ids;
 	const root = () => {
-		const [, rest] = splitProps(props(), [
+		const allProps = props();
+		const rest = omit(
+			allProps,
 			"label",
 			"description",
 			"errorMessage",
@@ -24,7 +26,7 @@ export function createSwitchProps(props: Accessor<SwitchProps>) {
 			"aria-labelledby",
 			"aria-describedby",
 			"classes",
-		]);
+		);
 		return rest;
 	};
 	return {
@@ -49,7 +51,7 @@ export function Switch(props: SwitchProps) {
 	// createSwitchProps reads the label to set aria-labelledby. Resolve it once and
 	// pass the result, so the label element is built once.
 	const label = children(() => props.label);
-	const resolved = mergeProps(props, {
+	const resolved = merge(props, {
 		get label() {
 			return label();
 		},

@@ -1,5 +1,5 @@
 import type { ToastController } from "@codeui/kit";
-import { batch, createContext, createEffect, createMemo, createSignal, useContext } from "solid-js";
+import { createContext, createEffect, createMemo, createSignal, useContext } from "solid-js";
 import type { LanguageId } from "./highlight";
 import { findPreset, presets, startPreset } from "./presets";
 import { findSample } from "./samples";
@@ -60,13 +60,13 @@ export function createStudio(notifications: ToastController) {
 	const commit = (next: Theme, key?: string, origin = committed().origin) => {
 		const changed = !sameTheme(next, saved()) || origin !== committed().origin;
 		const folded = key !== undefined && key === lastKey && performance.now() - lastTime < coalesceMs;
-		batch(() => {
-			setPreview(null);
-			if (!changed) return;
-			if (!folded) setPast(list => [...list.slice(-99), committed()]);
+		setPreview(null);
+		if (changed) {
+			const previous = committed();
+			if (!folded) setPast(list => [...list.slice(-99), previous]);
 			setFuture([]);
 			setCommitted({ theme: next, origin });
-		});
+		}
 		lastKey = key;
 		lastTime = performance.now();
 	};
@@ -74,19 +74,19 @@ export function createStudio(notifications: ToastController) {
 		const target = from().at(-1);
 		if (!target) return;
 		lastKey = undefined;
-		batch(() => {
-			setFrom(from().slice(0, -1));
-			setTo(list => [...list, committed()]);
-			setCommitted(target);
-			setPreview(null);
-			setPicker(null);
-		});
+		const previous = committed();
+		setFrom(from().slice(0, -1));
+		setTo(list => [...list, previous]);
+		setCommitted(target);
+		setPreview(null);
+		setPicker(null);
 	};
 	const undo = () => step(past, setPast, setFuture);
 	const redo = () => step(future, setFuture, setPast);
 
-	createEffect(() => {
-		const state = { theme: toObject(saved()), origin: committed().origin, sample: sample(), view: view() };
+	createEffect(
+		() => ({ theme: toObject(saved()), origin: committed().origin, sample: sample(), view: view() }),
+		state => {
 		try {
 			localStorage.setItem(storageKey, JSON.stringify(state));
 		} catch {
@@ -115,11 +115,10 @@ export function createStudio(notifications: ToastController) {
 	};
 
 	/** Brings the row of a colour on screen: its section, and on a phone the sheet that holds it. */
-	const reveal = (key: SlotKey) =>
-		batch(() => {
-			setSection(sectionOf(key));
-			setPanelOpen(true);
-		});
+	const reveal = (key: SlotKey) => {
+		setSection(sectionOf(key));
+		setPanelOpen(true);
+	};
 
 	/** Ends a picker: its preview becomes one history step, or is dropped. */
 	const closePicker = (keep: boolean) => {

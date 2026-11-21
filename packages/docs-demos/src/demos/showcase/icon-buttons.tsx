@@ -1,5 +1,6 @@
 import { IconButton, Tooltip } from "@codeui/kit";
-import { For, type JSX } from "solid-js";
+import { For } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import { ArchiveIcon, CopyIcon, DownloadIcon, MoreIcon, PinIcon, ShareIcon, TrashIcon } from "./icons";
 import "./showcase.css";
 

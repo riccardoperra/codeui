@@ -1,8 +1,8 @@
-import { cleanup, fireEvent, render, screen } from "solid-testing-library";
+import { cleanup, fireEvent, render, screen } from "@solidjs/testing-library";
 import { createSignal } from "solid-js";
 import { Sheet } from "../src/components/Sheet/Sheet";
 import * as S from "../src/parts/sheet";
-import { expectDismissed, press, tick } from "./helpers";
+import { expectDismissed, expectFocus, expectFocusWithin, press, tick } from "./helpers";
 
 // Give the real browser sheet a fixed height; drive velocity samples with a test clock.
 const SHEET_HEIGHT = 400;
@@ -76,7 +76,7 @@ describe("Sheet drag to dismiss", () => {
 		const sheet = screen.getByRole("dialog");
 		drag(handle(), [60, 120, 180], 100);
 		await expectClosed(sheet);
-		expect(document.activeElement).toBe(opener);
+		await expectFocus(opener);
 	});
 
 	it("closes after a short, fast flick", async () => {
@@ -102,8 +102,7 @@ describe("Sheet drag to dismiss", () => {
 		await tick();
 		drag(handle(), [-100, -200], 16);
 		await tick();
-		const sheet = screen.getByRole("dialog");
-		expect(sheet).toContainElement(document.activeElement as HTMLElement);
+		await expectFocusWithin(screen.getByRole("dialog"));
 	});
 
 	it("stays open when the pointer is cancelled, however far it went", async () => {
@@ -140,7 +139,7 @@ describe("Sheet drag to dismiss", () => {
 		press("Enter");
 		fireEvent.click(handle(), { detail: 0 });
 		await expectClosed(sheet);
-		expect(document.activeElement).toBe(opener);
+		await expectFocus(opener);
 	});
 
 	it("shows the handle only on a draggable bottom sheet", () => {
@@ -151,10 +150,10 @@ describe("Sheet drag to dismiss", () => {
 			</>
 		));
 		expect(screen.getByRole("dialog", { name: "Plain" })).not.toContainElement(
-			document.querySelector(`[data-cui="${S.sheetParts.handle}"]`),
+			document.querySelector<HTMLElement>(`[data-cui="${S.sheetParts.handle}"]`),
 		);
 		expect(screen.getByRole("dialog", { name: "Docked" })).toContainElement(
-			document.querySelector(`[data-cui="${S.sheetParts.handle}"]`),
+			document.querySelector<HTMLElement>(`[data-cui="${S.sheetParts.handle}"]`),
 		);
 		// @ts-expect-error a side sheet cannot be dragged
 		void (() => <Sheet side="right" draggable />);

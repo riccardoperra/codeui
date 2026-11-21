@@ -1,4 +1,4 @@
-import { cleanup, fireEvent, render, screen } from "solid-testing-library";
+import { cleanup, fireEvent, render, screen } from "@solidjs/testing-library";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuPortal, DropdownMenuTrigger } from "../src";
 import { Select } from "../src/components/Select/Select";
 import { Tooltip } from "../src/components/Tooltip/Tooltip";

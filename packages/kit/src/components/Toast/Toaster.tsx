@@ -5,15 +5,15 @@ import {
 	createMemo,
 	createSignal,
 	getOwner,
-	type JSX,
 	onCleanup,
-	onMount,
+	onSettled,
 	type Setter,
 	Show,
-	splitProps,
 	useContext,
+	omit,
 } from "solid-js";
-import { isServer } from "solid-js/web";
+import { type JSX, isServer } from "@solidjs/web";
+
 import { ToneIcon } from "../../icons/ToneIcon";
 import * as T from "../../parts/toast";
 import { mergeClasses } from "../../utils/css";
@@ -120,7 +120,7 @@ export function createToaster(options: CreateToasterOptions = {}): ToastControll
 		if (isServer) return id;
 		const [options, setOptions] = createSignal(toast);
 		const [timer, setTimer] = createSignal(0);
-		const entry = { options, setOptions, timer, setTimer } as Entry;
+		const entry: Entry = { options, setOptions, timer, setTimer, engineId: 0 };
 		const context: ToastContext = { id, dismiss: () => dismiss(id) };
 		entries.set(id, entry);
 		entry.engineId = engine.show(
@@ -215,7 +215,7 @@ function ReadyToast(props: {
 
 	let element: HTMLElement | undefined;
 	const [pageScheme, setPageScheme] = createSignal<"light" | "dark">();
-	onMount(() => {
+	onSettled(() => {
 		const read = () => {
 			const parent = element?.parentElement;
 			if (!parent) return;
@@ -243,10 +243,10 @@ function ReadyToast(props: {
 		}
 		const media = window.matchMedia?.("(prefers-color-scheme: dark)");
 		media?.addEventListener?.("change", read);
-		onCleanup(() => {
+		return () => {
 			observer.disconnect();
 			media?.removeEventListener?.("change", read);
-		});
+		};
 	});
 	const theme = () => {
 		const theme = options().theme ?? "inverted";
@@ -329,21 +329,16 @@ export type ToasterProps = Omit<
  * providers: toast content renders here and can read their context.
  */
 export function Toaster(props: ToasterProps) {
-	const [local, others] = splitProps(props, [
-		"toaster",
-		"closeLabel",
-		"classes",
-		"class",
-	]);
+	const others = omit(props, "toaster", "closeLabel", "classes", "class");
 	return (
-		<ToasterContext.Provider value={{ closeLabel: () => local.closeLabel }}>
+		<ToasterContext value={{ closeLabel: () => props.closeLabel }}>
 			<T.Region
 				{...others}
-				regionId={local.toaster.regionId}
-				class={mergeClasses(local.classes?.region, local.class)}
+				regionId={props.toaster.regionId}
+				class={mergeClasses(props.classes?.region, props.class)}
 			>
-				<T.List class={local.classes?.list} />
+				<T.List class={props.classes?.list} />
 			</T.Region>
-		</ToasterContext.Provider>
+		</ToasterContext>
 	);
 }

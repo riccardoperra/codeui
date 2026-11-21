@@ -1,4 +1,4 @@
-import { cleanup, fireEvent, render, screen, waitFor } from "solid-testing-library";
+import { cleanup, fireEvent, render, screen, waitFor } from "@solidjs/testing-library";
 import { createSignal } from "solid-js";
 import { Accordion } from "../src/components/Accordion/Accordion";
 import { expectDismissed, tick } from "./helpers";
@@ -43,10 +43,22 @@ it("supports controlled null state and keeps closed children inaccessible", () =
 	fireEvent.click(screen.getByRole("button", { name: "Size 64" }));
 	expect(screen.getByRole("textbox")).toHaveValue("128");
 });
-it("moves header focus with arrows, Home and End, skipping disabled items", async () => {
-	render(() => <Accordion items={items} />);
-	const first = screen.getByRole("button", { name: "Size 64" });
-	const last = screen.getByRole("button", { name: "Theme macOS" });
+it("moves and wraps header focus when shouldFocusWrap is undefined", async () => {
+	render(() => (
+		<A.Root defaultValue={["size"]} shouldFocusWrap={undefined}>
+			{items.map(item => (
+				<A.Item id={undefined} value={item.value} disabled={item.disabled}>
+					<A.Header>
+						<A.Trigger id={undefined}>{item.title}</A.Trigger>
+					</A.Header>
+					<A.Content>{item.content}</A.Content>
+				</A.Item>
+			))}
+		</A.Root>
+	));
+	const first = screen.getByRole("button", { name: "Size" });
+	const last = screen.getByRole("button", { name: "Theme" });
+	expect(screen.getByRole("region", { name: "Size" })).toBeInTheDocument();
 	await tick();
 	first.focus();
 	await tick();
@@ -59,6 +71,8 @@ it("moves header focus with arrows, Home and End, skipping disabled items", asyn
 	fireEvent.keyDown(first, { key: "End" });
 	await tick();
 	expect(last).toHaveFocus();
+	fireEvent.keyDown(last, { key: "ArrowDown" });
+	await waitFor(() => expect(first).toHaveFocus());
 });
 it("preserves multiple-open parts and class overrides", () => {
 	render(() => (

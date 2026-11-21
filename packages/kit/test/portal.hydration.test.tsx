@@ -1,7 +1,6 @@
-import { sharedConfig } from "solid-js";
-import { hydrate } from "solid-js/web";
-import { fireEvent, waitFor } from "solid-testing-library";
-import { expectDismissed } from "./helpers";
+import { hydrate } from "@solidjs/web";
+import { fireEvent, screen, waitFor } from "@solidjs/testing-library";
+import { expectDismissed, tick } from "./helpers";
 import { portalFixtures } from "./hydration/portal-fixtures";
 import portalHtmlJson from "../.hydration/portals.json?raw";
 
@@ -10,12 +9,6 @@ const serverHtml: Record<string, string> = JSON.parse(portalHtmlJson);
 it.each(Object.keys(portalFixtures))(
 	"%s hydrates, relocates and cleans up the server nodes",
 	async name => {
-		Object.assign(sharedConfig, {
-			context: undefined,
-			registry: undefined,
-			effects: undefined,
-			done: false,
-		});
 		Object.assign(globalThis, { _$HY: { events: [], completed: new WeakSet(), r: {} } });
 		const host = document.createElement("div");
 		host.id = "portal-test-host";
@@ -26,7 +19,7 @@ it.each(Object.keys(portalFixtures))(
 		document.body.append(host, secondHost, container);
 		const before = [...container.querySelectorAll<HTMLElement>("[data-portal-node]")];
 		expect(before.length).toBeGreaterThan(0);
-		const input = container.querySelector<HTMLInputElement>("input");
+		const input = container.querySelector<HTMLInputElement>('[data-portal-node="input"]');
 		if (input) input.value = "Typed before hydration";
 		let dispose: (() => void) | undefined;
 		try {
@@ -37,7 +30,7 @@ it.each(Object.keys(portalFixtures))(
 			expect(container.querySelector("[data-portal-node]")).toBeNull();
 			if (name.includes("custom mount")) expect(host.contains(before[0])).toBe(true);
 			if (input) expect(input.value).toBe("Typed before hydration");
-			if (name.includes("autofocus")) expect(document.activeElement).toBe(input);
+			if (name.includes("autofocus")) await waitFor(() => expect(document.activeElement).toBe(input));
 			const action = document.querySelector<HTMLElement>('[data-portal-node="action"]');
 			if (action) {
 				fireEvent.click(action);
@@ -61,15 +54,31 @@ it.each(Object.keys(portalFixtures))(
 				);
 				const reopened = document.querySelector<HTMLElement>("[data-portal-node]")!;
 				fireEvent.keyDown(reopened, { key: "Escape" });
+				fireEvent.keyUp(reopened, { key: "Escape" });
 				await expectDismissed(reopened);
 				await waitFor(() => expect(document.activeElement).toBe(trigger));
 			}
-			if (name === "Nested") {
-				const inner = before.find(node => node.dataset.portalNode === "inner")!;
+			if (name.startsWith("Nested")) {
 				const outer = before.find(node => node.dataset.portalNode === "outer")!;
+				const trigger = screen.getByRole("button", { name: "Open inner" });
+				if (name === "Nested opens after hydration") {
+					await tick();
+					fireEvent.click(trigger);
+				}
+				const inner = await screen.findByRole("button", { name: "Inner content" });
 				fireEvent.keyDown(inner, { key: "Escape" });
+				fireEvent.keyUp(inner, { key: "Escape" });
 				await expectDismissed(inner);
 				expect(outer).toBeInTheDocument();
+				await waitFor(() => expect(trigger).toHaveFocus());
+			}
+			if (name === "Sheet") {
+				await tick();
+				expect(getComputedStyle(document.body).pointerEvents).toBe("none");
+				expect(getComputedStyle(before[0]).pointerEvents).toBe("auto");
+				fireEvent.pointerDown(container, { pointerType: "mouse" });
+				await expectDismissed(before[0]);
+				expect(getComputedStyle(document.body).pointerEvents).toBe("auto");
 			}
 			dispose();
 			dispose = undefined;

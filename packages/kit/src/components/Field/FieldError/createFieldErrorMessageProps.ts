@@ -1,5 +1,7 @@
+import { pickProps } from "../../../utils/pick-props";
 import { errorMessage } from "./FieldError.css";
-import { JSX, mergeProps, splitProps } from "solid-js";
+import { merge } from "solid-js";
+import { JSX } from "@solidjs/web";
 
 export type FieldWithErrorMessageSupport = {
 	errorMessage?: JSX.Element;
@@ -8,9 +10,9 @@ export type FieldWithErrorMessageSupport = {
 export function createFieldErrorMessageProps<T extends FieldWithErrorMessageSupport>(
 	props: T,
 ) {
-	const [local] = splitProps(props, ["errorMessage"]);
+	const local = pickProps(props, "errorMessage");
 
-	return mergeProps(local, {
+	return merge(local, {
 		get class() {
 			return errorMessage;
 		},

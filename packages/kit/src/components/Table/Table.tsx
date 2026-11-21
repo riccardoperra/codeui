@@ -1,6 +1,7 @@
 import "@codeui/styles/theme.css";
 import "@codeui/styles/table.css";
-import { type ComponentProps, splitProps } from "solid-js";
+import { omit } from "solid-js";
+import { type ComponentProps } from "@solidjs/web";
 import {
 	tableParts,
 	tableStyleProps,
@@ -33,14 +34,14 @@ export type TableProps = ComponentProps<"table"> &
  * as children; the styles reach them without wrappers and stop at nested tables.
  */
 export function Table(props: TableProps) {
-	const [local, others] = splitProps(props, ["class", "classes", "size", "striped"]);
+	const others = omit(props, "class", "classes", "size", "striped");
 	return (
 		<table
 			{...others}
 			data-cui={tableParts.root}
-			data-size={local.size ?? defaultTableSize}
-			data-striped={local.striped || undefined}
-			class={mergeClasses(styles.root(), local.classes?.root, local.class)}
+			data-size={props.size ?? defaultTableSize}
+			data-striped={props.striped || undefined}
+			class={mergeClasses(styles.root(), props.classes?.root, props.class)}
 		/>
 	);
 }
@@ -55,15 +56,15 @@ export type TableScrollAreaProps = ComponentProps<"div"> & {
  * `aria-labelledby` to make it a focusable region the keyboard can scroll.
  */
 export function TableScrollArea(props: TableScrollAreaProps) {
-	const [local, others] = splitProps(props, ["class", "classes"]);
+	const others = omit(props, "class", "classes");
 	const named = () => Boolean(others["aria-label"] || others["aria-labelledby"]);
 	return (
 		<div
 			role={named() ? "region" : undefined}
-			tabIndex={named() ? 0 : undefined}
+			tabindex={named() ? 0 : undefined}
 			{...others}
 			data-cui={tableParts.scrollArea}
-			class={mergeClasses(styles.scrollArea(), local.classes?.scrollArea, local.class)}
+			class={mergeClasses(styles.scrollArea(), props.classes?.scrollArea, props.class)}
 		/>
 	);
 }

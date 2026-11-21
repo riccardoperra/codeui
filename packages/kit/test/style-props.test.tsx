@@ -1,5 +1,6 @@
-import { createSignal } from "solid-js";
-import { cleanup, fireEvent, render, screen } from "solid-testing-library";
+import { createSignal, flush } from "solid-js";
+
+import { cleanup, fireEvent, render, screen } from "@solidjs/testing-library";
 import { buttonStyleProps } from "@codeui/styles/button";
 import { switchStyleProps } from "@codeui/styles/switch";
 import { Button, IconButton, Switch, SwitchParts } from "../src";
@@ -32,7 +33,7 @@ it("updates Button appearance on the same node and clears the previous class and
 		"iconbutton",
 	);
 
-	setCompact(false);
+	flush(() => setCompact(false));
 
 	expect(screen.getByRole("button", { name: "Save" })).toBe(button);
 	expect(button).toHaveClass("cui-button", "checkout-wide");
@@ -86,7 +87,7 @@ it("updates all styled Switch parts and keeps checked state under Kobalte", () =
 	fireEvent.click(control);
 	expect(screen.getByRole("switch", { name: "Preview" })).toBeChecked();
 
-	setCompact(false);
+	flush(() => setCompact(false));
 
 	expect(container.querySelector('[data-cui="switch-control"]')).toBe(control);
 	expect(root).toHaveAttribute("data-size", "md");

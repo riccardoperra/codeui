@@ -10,10 +10,12 @@ Work through the sections in order.
 ## Raise the Solid version
 
 ```sh
-pnpm add @codeui/kit solid-js@^1.9.8
+pnpm add @codeui/kit solid-js@^2 @solidjs/web@^2
 ```
 
-The kit depends on `@kobalte/core` 0.13.14 and `@kobalte/utils` 0.9.2. Kobalte 0.13.13 raised its own peer to `solid-js ^1.9.8`, so the kit's peer moved from `^1.7.0` to `^1.9.8`. An app on Solid 1.8 gets a peer dependency warning and can resolve two Solid copies.
+Upgrade the app to Solid 2 before installing the current kit. Follow the [Solid 2 migration guide](https://docs.solidjs.com/migration/from-solid-1/).
+
+For Vite, replace `vite-plugin-solid` with `@solidjs/vite-plugin` and set `jsxImportSource` to `@solidjs/web`. See the [Vite setup](/docs/installation#configure-vite).
 
 ## Load the compiled CSS
 
@@ -23,7 +25,7 @@ The library publishes plain CSS with its generated Inkstone theme. Remove a vani
 
 ## Check the Kobalte behavior changes
 
-No Kobalte release between 0.13.6 and 0.13.14 is marked breaking. These changes are visible in kit components:
+The kit now uses [Kobalte 2.0.0-alpha.5](https://github.com/kobaltedev/kobalte/releases/tag/@kobalte%2Fcore@2.0.0-alpha.5). If your app also imports Kobalte directly, upgrade that dependency to the same release. These behavior changes also apply when upgrading from a kit version built on Kobalte 0.13.
 
 | Change | Where you see it | What to do |
 | --- | --- | --- |

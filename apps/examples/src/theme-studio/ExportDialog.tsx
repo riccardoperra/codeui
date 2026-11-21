@@ -1,7 +1,7 @@
 import { Button, Dialog, DialogPanelContent, DialogPanelFooter, SegmentedControl, SegmentedControlItem, SettingsGroup, SettingsRow, Stack, TextArea } from "@codeui/kit";
 import * as D from "@codeui/kit/dialog/parts";
-import Copy from "lucide-solid/icons/copy";
-import Download from "lucide-solid/icons/download";
+import Copy from "@lucide/solid/icons/copy";
+import Download from "@lucide/solid/icons/download";
 import { createMemo, createSignal, For, Show } from "solid-js";
 import { tokenize } from "./highlight";
 import { createArtStyle, Line } from "./Preview";

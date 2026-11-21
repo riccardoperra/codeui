@@ -1,4 +1,5 @@
-import { splitProps, type JSX } from "solid-js";
+import { omit } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import * as P from "../../parts/tooltip";
 import type { SlotProp } from "../../utils/component";
 import type { TooltipVariants } from "./Tooltip.css";
@@ -10,24 +11,18 @@ export type TooltipProps = P.RootProps &
 	SlotProp<TooltipSlot> & {
 		content: JSX.Element;
 		/** Portal target for the content. Defaults to `document.body`. */
-		mount?: Node;
+		mount?: globalThis.Element;
 	};
 
 export function Tooltip(props: TooltipProps) {
-	const [local, others] = splitProps(props, [
-		"variant",
-		"slotClasses",
-		"mount",
-		"children",
-		"content",
-	]);
+	const others = omit(props, "variant", "slotClasses", "mount", "children", "content");
 
 	return (
 		<P.Root {...others}>
-			<P.Trigger class={local.slotClasses?.trigger}>{local.children}</P.Trigger>
-			<P.Portal mount={local.mount}>
-				<P.Content variant={local.variant} class={local.slotClasses?.content}>
-					{local.content}
+			<P.Trigger class={props.slotClasses?.trigger}>{props.children}</P.Trigger>
+			<P.Portal mount={props.mount}>
+				<P.Content variant={props.variant} class={props.slotClasses?.content}>
+					{props.content}
 				</P.Content>
 			</P.Portal>
 		</P.Root>

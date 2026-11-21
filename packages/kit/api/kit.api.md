@@ -3420,7 +3420,8 @@ export * from "./internal/generated-appearance/tooltip.js";
 ## components/Accordion/Accordion.d.ts
 
 ```ts
-import { type Accessor, type JSX } from "solid-js";
+import { type Accessor } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import * as A from "../../parts/accordion.js";
 export type AccordionEntry = {
     value: string;
@@ -3442,7 +3443,7 @@ export type AccordionProps = {
     classes?: A.AccordionClasses;
     "aria-label"?: string;
 };
-export declare function createAccordionItems(accessor: Accessor<readonly AccordionEntry[]>): Accessor<{
+export declare function createAccordionItems(accessor: Accessor<readonly AccordionEntry[]>): import("solid-js").SourceAccessor<{
     value: string;
     title: JSX.Element;
     icon?: JSX.Element;
@@ -3456,7 +3457,7 @@ export declare function Accordion(props: AccordionProps): JSX.Element;
 
 ```ts
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
-import { type JSX, type ValidComponent } from "solid-js";
+import { type JSX, type ValidComponent } from "@solidjs/web";
 import * as A from "../../parts/alert.js";
 export type AlertProps<T extends ValidComponent = "div"> = A.RootProps<T> & {
     children?: JSX.Element;
@@ -3479,7 +3480,7 @@ export declare function Alert<T extends ValidComponent = "div">(props: Polymorph
 
 ```ts
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
-import { type JSX, type ValidComponent } from "solid-js";
+import { type JSX, type ValidComponent } from "@solidjs/web";
 import * as B from "../../parts/badge.js";
 export type BadgeProps<T extends ValidComponent = "span"> = B.RootProps<T> & {
     children?: JSX.Element;
@@ -3502,7 +3503,7 @@ export * from "@codeui/styles/internal/components/Button/Button.css";
 
 ```ts
 import { ButtonRootProps as KButtonRootProps } from "@kobalte/core/button";
-import { JSX, ValidComponent } from "solid-js";
+import { JSX, ValidComponent } from "@solidjs/web";
 import * as styles from "./Button.css.js";
 import { PolymorphicProps } from "@kobalte/core/polymorphic";
 export type ButtonProps<T extends ValidComponent = "button"> = KButtonRootProps<T> & styles.ButtonVariants & {
@@ -3517,7 +3518,8 @@ export declare function Button<T extends ValidComponent = "button">(props: Polym
 
 ```ts
 import type { CheckboxRootOptions } from "@kobalte/core/checkbox";
-import { type JSX, type Ref } from "solid-js";
+import { type Ref } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import * as P from "../../parts/checkbox.js";
 import type { SlotProp } from "../../utils/component.js";
 import type { FieldWithErrorMessageSupport } from "../Field/FieldError/createFieldErrorMessageProps.js";
@@ -3535,7 +3537,7 @@ export {};
 
 ```ts
 import type { ComboboxRootOptions } from "@kobalte/core/combobox";
-import { type JSX } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import * as P from "../../parts/combobox.js";
 import type { FieldContent } from "../Field/createBaseFieldProps.js";
 type DistributiveOmit<T, K extends PropertyKey> = T extends unknown ? Omit<T, K> : never;
@@ -3606,7 +3608,7 @@ export {};
 
 ```ts
 import type { DialogContentProps } from "@kobalte/core/dialog";
-import { type JSX } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import * as P from "../../parts/command-menu.js";
 export type CommandItem = {
     /** Unique across the items. */
@@ -3671,7 +3673,8 @@ export type { CommandMenuClasses, CommandMenuPart, CommandMenuStyles, } from "..
 
 ```ts
 import type { DialogContentOptions as KDialogContentOptions, DialogRootOptions as KDialogRootOptions } from "@kobalte/core/dialog";
-import { type JSX, type ParentProps } from "solid-js";
+import { type ParentProps } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import * as D from "../../parts/dialog.js";
 export type DialogProps = KDialogRootOptions & Pick<KDialogContentOptions, "onOpenAutoFocus" | "onCloseAutoFocus" | "onEscapeKeyDown" | "onPointerDownOutside" | "onFocusOutside" | "onInteractOutside"> & {
     size?: D.DialogSize;
@@ -3684,7 +3687,7 @@ export type DialogProps = KDialogRootOptions & Pick<KDialogContentOptions, "onOp
     /** Accessible name of the close button. Defaults to "close". */
     closeLabel?: string;
     /** Node the dialog is portaled into. Defaults to `document.body`. */
-    mount?: Node;
+    mount?: globalThis.Element;
     /** Classes for the parts this component renders, keyed by part name. */
     classes?: Pick<D.DialogClasses, "overlay" | "positioner" | "panel" | "header" | "title" | "description" | "closeButton">;
     "aria-label"?: string;
@@ -3706,26 +3709,27 @@ export * from "@codeui/styles/internal/components/Dropdown/Dropdown.css";
 ```ts
 import { GetKobalteParams } from "../../utils/types.js";
 import { DropdownMenu as KDropdownMenu, DropdownMenuContentProps as KDropdownMenuContentProps, DropdownMenuItemProps as KDropdownMenuItemProps, DropdownMenuRootProps as KDropdownMenuRootProps, DropdownMenuSeparatorProps as KDropdownMenuSeparatorProps, DropdownMenuSubContentProps as KDropdownMenuSubContentProps, DropdownMenuSubProps as KDropdownMenuSubProps, DropdownMenuSubTriggerProps as KDropdownMenuSubTriggerProps, DropdownMenuTriggerProps as KDropdownMenuTriggerProps } from "@kobalte/core/dropdown-menu";
-import { JSXElement, ValidComponent } from "solid-js";
+import { Element } from "solid-js";
+import { ValidComponent } from "@solidjs/web";
 import { PolymorphicProps } from "@kobalte/core/polymorphic";
-export declare function DropdownMenuContent<T extends ValidComponent = "div">(props: PolymorphicProps<T, KDropdownMenuContentProps<T>>): import("solid-js").JSX.Element;
-export declare function DropdownMenuPortal(props: GetKobalteParams<typeof KDropdownMenu.Portal>): import("solid-js").JSX.Element;
+export declare function DropdownMenuContent<T extends ValidComponent = "div">(props: PolymorphicProps<T, KDropdownMenuContentProps<T>>): import("@solidjs/web").JSX.Element;
+export declare function DropdownMenuPortal(props: GetKobalteParams<typeof KDropdownMenu.Portal>): import("@solidjs/web").JSX.Element;
 export interface DropdownMenuItemProps<T> extends KDropdownMenuItemProps {
-    rightSlot?: JSXElement;
+    rightSlot?: Element;
 }
-export declare function DropdownMenuItem<T extends ValidComponent = "div">(props: PolymorphicProps<T, DropdownMenuItemProps<T>>): import("solid-js").JSX.Element;
+export declare function DropdownMenuItem<T extends ValidComponent = "div">(props: PolymorphicProps<T, DropdownMenuItemProps<T>>): import("@solidjs/web").JSX.Element;
 export interface DropdownSubMenuProps<T> extends KDropdownMenuSubProps {
-    rightSlot?: JSXElement;
+    rightSlot?: Element;
 }
-export declare function DropdownSubMenu<T extends ValidComponent = "div">(props: PolymorphicProps<T, DropdownSubMenuProps<T>>): import("solid-js").JSX.Element;
+export declare function DropdownSubMenu<T extends ValidComponent = "div">(props: PolymorphicProps<T, DropdownSubMenuProps<T>>): import("@solidjs/web").JSX.Element;
 export interface DropdownSubMenuTriggerProps<T> extends KDropdownMenuSubTriggerProps {
-    rightSlot?: JSXElement;
+    rightSlot?: Element;
 }
-export declare function DropdownSubMenuTrigger<T extends ValidComponent = "div">(props: PolymorphicProps<T, DropdownSubMenuTriggerProps<T>>): import("solid-js").JSX.Element;
-export declare function DropdownSubMenuContent<T extends ValidComponent = "div">(props: PolymorphicProps<T, KDropdownMenuSubContentProps<T>>): import("solid-js").JSX.Element;
-export declare function DropdownMenuSeparator<T extends ValidComponent = "div">(props: PolymorphicProps<T, KDropdownMenuSeparatorProps<T>>): import("solid-js").JSX.Element;
-export declare function DropdownMenuTrigger<T extends ValidComponent = "div">(props: PolymorphicProps<T, KDropdownMenuTriggerProps<T>>): import("solid-js").JSX.Element;
-export declare function DropdownMenu<T extends ValidComponent = "div">(props: PolymorphicProps<T, KDropdownMenuRootProps>): import("solid-js").JSX.Element;
+export declare function DropdownSubMenuTrigger<T extends ValidComponent = "div">(props: PolymorphicProps<T, DropdownSubMenuTriggerProps<T>>): import("@solidjs/web").JSX.Element;
+export declare function DropdownSubMenuContent<T extends ValidComponent = "div">(props: PolymorphicProps<T, KDropdownMenuSubContentProps<T>>): import("@solidjs/web").JSX.Element;
+export declare function DropdownMenuSeparator<T extends ValidComponent = "div">(props: PolymorphicProps<T, KDropdownMenuSeparatorProps<T>>): import("@solidjs/web").JSX.Element;
+export declare function DropdownMenuTrigger<T extends ValidComponent = "div">(props: PolymorphicProps<T, KDropdownMenuTriggerProps<T>>): import("@solidjs/web").JSX.Element;
+export declare function DropdownMenu<T extends ValidComponent = "div">(props: PolymorphicProps<T, KDropdownMenuRootProps>): import("@solidjs/web").JSX.Element;
 ```
 
 ## components/Field/Field.css.d.ts
@@ -3743,39 +3747,14 @@ export * from "@codeui/styles/internal/components/Field/FieldError/FieldError.cs
 ## components/Field/FieldError/createFieldErrorMessageProps.d.ts
 
 ```ts
-import { JSX } from "solid-js";
+import { JSX } from "@solidjs/web";
 export type FieldWithErrorMessageSupport = {
     errorMessage?: JSX.Element;
 };
-export declare function createFieldErrorMessageProps<T extends FieldWithErrorMessageSupport>(props: T): ((Pick<T, Extract<"errorMessage"[], readonly (keyof T)[]>[number]> extends infer T_1 ? T_1 extends Pick<T, Extract<"errorMessage"[], readonly (keyof T)[]>[number]> ? T_1 extends any ? {} & { [K in keyof T_1]: K extends never ? T_1[K] extends infer T_2 ? T_2 extends T_1[K] ? T_2 extends undefined ? {}[K] : T_2 : never : never : T_1[K]; } : {} & T_1 : never : never) extends infer T_3 ? T_3 extends (Pick<T, Extract<"errorMessage"[], readonly (keyof T)[]>[number]> extends infer T_1 ? T_1 extends Pick<T, Extract<"errorMessage"[], readonly (keyof T)[]>[number]> ? T_1 extends any ? {} & { [K in keyof T_1]: K extends never ? T_1[K] extends infer T_2 ? T_2 extends T_1[K] ? T_2 extends undefined ? {}[K] : T_2 : never : never : T_1[K]; } : {} & T_1 : never : never) ? T_3 extends any ? { [K_1 in keyof T_3]: K_1 extends "class" ? {
+export declare function createFieldErrorMessageProps<T extends FieldWithErrorMessageSupport>(props: T): {
+    errorMessage?: T["errorMessage"] | undefined;
     readonly class: string;
-}[K_1] extends infer T_4 ? T_4 extends {
-    readonly class: string;
-}[K_1] ? T_4 extends undefined ? T_3[K_1] : T_4 : never : never : T_3[K_1]; } & {
-    readonly class: "class" extends infer T_5 ? T_5 extends "class" ? T_5 extends keyof T_3 ? {
-        readonly class: string;
-    }[T_5] extends infer T_6 ? T_6 extends {
-        readonly class: string;
-    }[T_5] ? T_6 extends undefined ? T_3[T_5] : T_6 : never : never : {
-        readonly class: string;
-    }[T_5] : never : never;
-} : T_3 & {
-    readonly class: string;
-} : never : never) extends infer T_7 ? T_7 extends ((Pick<T, Extract<"errorMessage"[], readonly (keyof T)[]>[number]> extends infer T_1 ? T_1 extends Pick<T, Extract<"errorMessage"[], readonly (keyof T)[]>[number]> ? T_1 extends any ? {} & { [K in keyof T_1]: K extends never ? T_1[K] extends infer T_2 ? T_2 extends T_1[K] ? T_2 extends undefined ? {}[K] : T_2 : never : never : T_1[K]; } : {} & T_1 : never : never) extends infer T_3 ? T_3 extends (Pick<T, Extract<"errorMessage"[], readonly (keyof T)[]>[number]> extends infer T_1 ? T_1 extends Pick<T, Extract<"errorMessage"[], readonly (keyof T)[]>[number]> ? T_1 extends any ? {} & { [K in keyof T_1]: K extends never ? T_1[K] extends infer T_2 ? T_2 extends T_1[K] ? T_2 extends undefined ? {}[K] : T_2 : never : never : T_1[K]; } : {} & T_1 : never : never) ? T_3 extends any ? { [K_1 in keyof T_3]: K_1 extends "class" ? {
-    readonly class: string;
-}[K_1] extends infer T_4 ? T_4 extends {
-    readonly class: string;
-}[K_1] ? T_4 extends undefined ? T_3[K_1] : T_4 : never : never : T_3[K_1]; } & {
-    readonly class: "class" extends infer T_5 ? T_5 extends "class" ? T_5 extends keyof T_3 ? {
-        readonly class: string;
-    }[T_5] extends infer T_6 ? T_6 extends {
-        readonly class: string;
-    }[T_5] ? T_6 extends undefined ? T_3[T_5] : T_6 : never : never : {
-        readonly class: string;
-    }[T_5] : never : never;
-} : T_3 & {
-    readonly class: string;
-} : never : never) ? T_7 extends any ? { [K_2 in keyof T_7]: T_7[K_2]; } : T_7 : never : never;
+};
 ```
 
 ## components/Field/FieldLabel/FieldLabel.css.d.ts
@@ -3787,7 +3766,7 @@ export * from "@codeui/styles/internal/components/Field/FieldLabel/FieldLabel.cs
 ## components/Field/FieldLabel/createFieldLabelProps.d.ts
 
 ```ts
-import { ValidComponent } from "solid-js";
+import { ValidComponent } from "@solidjs/web";
 import { PolymorphicProps } from "@kobalte/core/polymorphic";
 export declare function createFieldLabelProps<TValidComponent extends ValidComponent = "label">(props: PolymorphicProps<TValidComponent>): ((PolymorphicProps<TValidComponent> extends infer T ? T extends PolymorphicProps<TValidComponent> ? T extends any ? {} & { [K in keyof T]: K extends never ? T[K] extends infer T_1 ? T_1 extends T[K] ? T_1 extends undefined ? {}[K] : T_1 : never : never : T[K]; } : {} & T : never : never) extends infer T_2 ? T_2 extends (PolymorphicProps<TValidComponent> extends infer T ? T extends PolymorphicProps<TValidComponent> ? T extends any ? {} & { [K in keyof T]: K extends never ? T[K] extends infer T_1 ? T_1 extends T[K] ? T_1 extends undefined ? {}[K] : T_1 : never : never : T[K]; } : {} & T : never : never) ? T_2 extends any ? { [K_1 in keyof T_2]: K_1 extends "class" ? {
     readonly class: string;
@@ -3823,7 +3802,8 @@ export declare function createFieldLabelProps<TValidComponent extends ValidCompo
 ## components/Field/createBaseFieldProps.d.ts
 
 ```ts
-import { type Accessor, type JSX } from "solid-js";
+import { type Accessor } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import * as styles from "./Field.css.js";
 export type BaseFieldProps = styles.BaseFieldVariants;
 type BaseFieldStyling = {
@@ -3868,16 +3848,18 @@ export * from "@codeui/styles/internal/components/Field/fieldStyle";
 ## components/Field/inputProps.d.ts
 
 ```ts
-import { JSX } from "solid-js";
-export declare const INPUT_KEYS: readonly ["aria-label", "aria-labelledby", "aria-describedby", "aria-details", "aria-autocomplete", "aria-controls", "aria-activedescendant", "aria-expanded", "aria-haspopup", "aria-keyshortcuts", "aria-invalid", "aria-required", "aria-busy", "aria-disabled", "aria-hidden", "aria-errormessage", "aria-live", "aria-atomic", "aria-relevant", "aria-roledescription", "aria-description", "aria-owns", "aria-flowto", "aria-current", "aria-pressed", "aria-checked", "aria-selected", "aria-multiline", "aria-multiselectable", "aria-orientation", "aria-readonly", "aria-placeholder", "aria-valuemin", "aria-valuemax", "aria-valuenow", "aria-valuetext", "aria-posinset", "aria-setsize", "aria-level", "aria-modal", "aria-sort", "aria-rowcount", "aria-rowindex", "aria-rowspan", "aria-colcount", "aria-colindex", "aria-colspan", "autocomplete", "inputmode", "enterkeyhint", "spellcheck", "type", "maxLength", "minLength", "pattern", "autofocus"];
-export type FieldInputProps = Pick<JSX.InputHTMLAttributes<HTMLInputElement>, (typeof INPUT_KEYS)[number]>;
+import { JSX } from "@solidjs/web";
+export declare const INPUT_KEYS: readonly ["aria-label", "aria-labelledby", "aria-describedby", "aria-details", "aria-autocomplete", "aria-controls", "aria-activedescendant", "aria-expanded", "aria-haspopup", "aria-keyshortcuts", "aria-invalid", "aria-required", "aria-busy", "aria-disabled", "aria-hidden", "aria-errormessage", "aria-live", "aria-atomic", "aria-relevant", "aria-roledescription", "aria-description", "aria-owns", "aria-flowto", "aria-current", "aria-pressed", "aria-checked", "aria-selected", "aria-multiline", "aria-multiselectable", "aria-orientation", "aria-readonly", "aria-placeholder", "aria-valuemin", "aria-valuemax", "aria-valuenow", "aria-valuetext", "aria-posinset", "aria-setsize", "aria-level", "aria-modal", "aria-sort", "aria-rowcount", "aria-rowindex", "aria-rowspan", "aria-colcount", "aria-colindex", "aria-colspan", "autocomplete", "inputmode", "enterkeyhint", "spellcheck", "type", "maxlength", "minlength", "pattern", "autofocus"];
+export type FieldInputProps = {
+    [Key in (typeof INPUT_KEYS)[number]]?: Key extends "aria-describedby" | "aria-label" | "aria-labelledby" ? string : JSX.InputHTMLAttributes<HTMLInputElement>[Key];
+};
 export type FieldClasses = Partial<Record<"root" | "input" | "label" | "description" | "errorMessage", string>>;
 ```
 
 ## components/IconButton/IconButton.d.ts
 
 ```ts
-import { ValidComponent } from "solid-js";
+import { ValidComponent } from "@solidjs/web";
 import { PolymorphicProps } from "@kobalte/core/polymorphic";
 import { ButtonRootProps as KButtonRootProps } from "@kobalte/core/button";
 import { type ButtonVariants } from "../Button/Button.css.js";
@@ -3886,7 +3868,7 @@ export type IconButtonProps<T extends ValidComponent = "button"> = KButtonRootPr
     loading?: boolean;
     "aria-label": string;
 };
-export declare function IconButton<T extends ValidComponent = "button">(props: PolymorphicProps<T, IconButtonProps<T>>): import("solid-js").JSX.Element;
+export declare function IconButton<T extends ValidComponent = "button">(props: PolymorphicProps<T, IconButtonProps<T>>): import("@solidjs/web").JSX.Element;
 ```
 
 ## components/Kbd/Kbd.d.ts
@@ -3898,7 +3880,7 @@ export type KbdProps = K.RootProps & {
     classes?: K.KbdClasses;
 };
 /** One key or key label. Render a sequence as several Kbd elements. */
-export declare function Kbd(props: KbdProps): import("solid-js").JSX.Element;
+export declare function Kbd(props: KbdProps): import("@solidjs/web").JSX.Element;
 ```
 
 ## components/Link/Link.css.d.ts
@@ -3911,11 +3893,11 @@ export * from "@codeui/styles/internal/components/Link/Link.css";
 
 ```ts
 import { LinkRootProps as KLinkRootProps } from "@kobalte/core/link";
-import { ValidComponent } from "solid-js";
+import { ValidComponent } from "@solidjs/web";
 import * as styles from "./Link.css.js";
 import { PolymorphicProps } from "@kobalte/core/polymorphic";
 type LinkProps<T extends ValidComponent | HTMLElement = HTMLElement> = KLinkRootProps<T> & styles.LinkVariants;
-export declare function Link<T extends ValidComponent = "a">(props: PolymorphicProps<T, LinkProps<T>>): import("solid-js").JSX.Element;
+export declare function Link<T extends ValidComponent = "a">(props: PolymorphicProps<T, LinkProps<T>>): import("@solidjs/web").JSX.Element;
 export {};
 ```
 
@@ -3923,7 +3905,8 @@ export {};
 
 ```ts
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
-import { type JSXElement, type ValidComponent } from "solid-js";
+import { type Element } from "solid-js";
+import { type ValidComponent } from "@solidjs/web";
 import * as P from "../../parts/listbox.js";
 export type ListboxClasses = Partial<Record<"root" | "item" | "itemLabel" | "itemIndicator", string>>;
 export interface ListboxProps<Option, OptGroup, T extends ValidComponent = "ul"> extends Omit<P.RootProps<Option, OptGroup, T>, "renderItem"> {
@@ -3931,17 +3914,17 @@ export interface ListboxProps<Option, OptGroup, T extends ValidComponent = "ul">
     classes?: ListboxClasses;
     size?: "xs" | "sm" | "md";
     variant?: "primary" | "neutral";
-    itemLabel?: (item: Option) => JSXElement;
+    itemLabel?: (item: Option) => Element;
     bordered?: boolean;
 }
-export declare function Listbox<Option, OptGroup = never, T extends ValidComponent = "ul">(props: PolymorphicProps<T, ListboxProps<Option, OptGroup, T>>): import("solid-js").JSX.Element;
+export declare function Listbox<Option, OptGroup = never, T extends ValidComponent = "ul">(props: PolymorphicProps<T, ListboxProps<Option, OptGroup, T>>): import("@solidjs/web").JSX.Element;
 export interface ListboxItemProps<Item, T extends ValidComponent = "li"> extends P.ItemProps<T> {
     class?: string;
     classes?: ListboxClasses;
     size?: "xs" | "sm" | "md";
-    itemLabel?: (item: Item) => JSXElement;
+    itemLabel?: (item: Item) => Element;
 }
-export declare function ListboxItem<Item, T extends ValidComponent = "li">(props: PolymorphicProps<T, ListboxItemProps<Item, T>>): import("solid-js").JSX.Element;
+export declare function ListboxItem<Item, T extends ValidComponent = "li">(props: PolymorphicProps<T, ListboxItemProps<Item, T>>): import("@solidjs/web").JSX.Element;
 ```
 
 ## components/Listbox/VirtualizedListbox.d.ts
@@ -3961,7 +3944,7 @@ interface Item {
     label: string;
     disabled?: boolean;
 }
-export declare function VirtualizedListbox<OptGroup = never>(props: VirtualizedListboxProps<OptGroup>): import("solid-js").JSX.Element;
+export declare function VirtualizedListbox<OptGroup = never>(props: VirtualizedListboxProps<OptGroup>): import("@solidjs/web").JSX.Element;
 export {};
 ```
 
@@ -3969,7 +3952,8 @@ export {};
 
 ```ts
 import type { TextFieldRootOptions as KTextFieldRootOptions } from "@kobalte/core/text-field";
-import { type JSX, type Ref } from "solid-js";
+import { type Ref } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import type { SlotProp } from "../../utils/component.js";
 import type { FieldWithErrorMessageSupport } from "../Field/FieldError/createFieldErrorMessageProps.js";
 import type { BaseFieldProps } from "../Field/createBaseFieldProps.js";
@@ -3999,7 +3983,7 @@ export { NumberFieldLabel } from "./NumberFieldLabel.js";
 ```ts
 import { TextField as KTextField } from "@kobalte/core/text-field";
 type TextFieldLabelProps = Parameters<(typeof KTextField)["Label"]>[0] & {};
-export declare function NumberFieldLabel(props: TextFieldLabelProps): import("solid-js").JSX.Element;
+export declare function NumberFieldLabel(props: TextFieldLabelProps): import("@solidjs/web").JSX.Element;
 export {};
 ```
 
@@ -4050,7 +4034,8 @@ export declare const defaultNumberFormat: NumberFormatSettings;
 ## components/OptionCard/OptionCard.d.ts
 
 ```ts
-import { type Accessor, type JSX } from "solid-js";
+import { type Accessor } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import * as P from "../../parts/option-card.js";
 export type OptionCardEntry<T extends string = string> = {
     value: T;
@@ -4092,7 +4077,7 @@ export interface PaginationProps extends P.PaginationOptions {
     rounded?: boolean;
     size?: PaginationItemSize;
 }
-export declare function Pagination(props: PaginationProps): import("solid-js").JSX.Element;
+export declare function Pagination(props: PaginationProps): import("@solidjs/web").JSX.Element;
 export {};
 ```
 
@@ -4107,7 +4092,8 @@ export * from "@codeui/styles/internal/components/Popover/Popover.css";
 ```ts
 import type { PopoverRootOptions as KPopoverRootOptions } from "@kobalte/core/popover";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
-import { type JSX, type ParentProps, type ValidComponent } from "solid-js";
+import { type ParentProps } from "solid-js";
+import { type JSX, type ValidComponent } from "@solidjs/web";
 import * as P from "../../parts/popover.js";
 export declare const PopoverTrigger: typeof P.Trigger;
 export type PopoverProps = KPopoverRootOptions;
@@ -4117,7 +4103,7 @@ export type PopoverContentProps<T extends ValidComponent = "div"> = P.ContentPro
     /** Short text that describes the popover. It is linked with `aria-describedby`. */
     description?: JSX.Element;
     /** Node the popover is portaled into. Defaults to `document.body`. */
-    mount?: Node;
+    mount?: globalThis.Element;
     /** Classes for the parts this component renders, keyed by part name. */
     classes?: Pick<P.PopoverClasses, "content" | "title" | "description">;
 };
@@ -4127,7 +4113,7 @@ export declare function PopoverContent<T extends ValidComponent = "div">(props: 
 ## components/Progress/Progress.d.ts
 
 ```ts
-import { type JSX } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import * as P from "../../parts/progress.js";
 export type ProgressProps = Omit<P.RootProps, "children"> & {
     class?: string;
@@ -4148,21 +4134,22 @@ export type { ProgressClasses, ProgressPart, ProgressVariants, ProgressStyles, }
 ```ts
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import type { RadioGroupItemProps as KRadioGroupItemProps, RadioGroupRootProps as KRadioGroupRootProps } from "@kobalte/core/radio-group";
-import { type JSXElement, type ValidComponent } from "solid-js";
+import { type Element } from "solid-js";
+import { type ValidComponent } from "@solidjs/web";
 import * as P from "../../parts/radio-list.js";
 import type { FieldWithErrorMessageSupport } from "../Field/FieldError/createFieldErrorMessageProps.js";
 export type RadioListProps<T extends ValidComponent = "div"> = KRadioGroupRootProps<T> & Pick<P.RootProps, "size" | "variant"> & FieldWithErrorMessageSupport & {
-    label?: JSXElement;
-    description?: JSXElement;
+    label?: Element;
+    description?: Element;
     classes?: RadioListClasses;
 };
 export type RadioListClasses = Partial<Record<"root" | "label" | "items" | "description" | "errorMessage" | "item" | "itemControl" | "itemIndicator" | "itemLabel", string>>;
 export type RadioListItemProps<T extends ValidComponent = "div"> = KRadioGroupItemProps<T> & {
-    label?: JSXElement;
+    label?: Element;
     classes?: RadioListClasses;
 };
-export declare function RadioListItem<T extends ValidComponent = "div">(props: PolymorphicProps<T, RadioListItemProps<T>>): import("solid-js").JSX.Element;
-export declare function RadioList<T extends ValidComponent = "div">(props: PolymorphicProps<T, RadioListProps<T>>): import("solid-js").JSX.Element;
+export declare function RadioListItem<T extends ValidComponent = "div">(props: PolymorphicProps<T, RadioListItemProps<T>>): import("@solidjs/web").JSX.Element;
+export declare function RadioList<T extends ValidComponent = "div">(props: PolymorphicProps<T, RadioListProps<T>>): import("@solidjs/web").JSX.Element;
 ```
 
 ## components/SegmentedControl/SegmentedControl.css.d.ts
@@ -4184,25 +4171,26 @@ export type SegmentedControlProps = Omit<P.RootProps, "itemClass"> & {
 } & SlotProp<SegmentedControlSlot>;
 export type SegmentedControlClasses = Partial<Record<"root" | "list" | "indicator" | "item", string>>;
 type SegmentedControlSlot = "root" | "list" | "indicator";
-export declare function SegmentedControl(props: PolymorphicProps<"div", SegmentedControlProps>): import("solid-js").JSX.Element;
+export declare function SegmentedControl(props: PolymorphicProps<"div", SegmentedControlProps>): import("@solidjs/web").JSX.Element;
 export {};
 ```
 
 ## components/SegmentedControl/SegmentedControlItem.d.ts
 
 ```ts
-import { ValidComponent } from "solid-js";
+import { ValidComponent } from "@solidjs/web";
 import { TabsTriggerProps } from "@kobalte/core/tabs";
 import { PolymorphicProps } from "@kobalte/core/polymorphic";
 export type SegmentedControlItemProps<T extends ValidComponent = "button"> = TabsTriggerProps<T>;
-export declare function SegmentedControlItem<T extends ValidComponent = "button">(props: PolymorphicProps<T, SegmentedControlItemProps<T>>): import("solid-js").JSX.Element;
+export declare function SegmentedControlItem<T extends ValidComponent = "button">(props: PolymorphicProps<T, SegmentedControlItemProps<T>>): import("@solidjs/web").JSX.Element;
 ```
 
 ## components/Select/Select.d.ts
 
 ```ts
 import type { SelectItemProps as KSelectItemProps, SelectRootProps as KSelectRootProps } from "@kobalte/core/select";
-import { type Accessor, type JSX, type JSXElement, type ParentProps } from "solid-js";
+import { type Accessor, type Element, type ParentProps } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import * as P from "../../parts/select.js";
 import type { BaseFieldProps } from "../Field/createBaseFieldProps.js";
 import type { FieldWithErrorMessageSupport } from "../Field/FieldError/createFieldErrorMessageProps.js";
@@ -4221,14 +4209,14 @@ export type SelectProps<Option, OptGroup = never> = KSelectRootProps<Option, Opt
     description?: string;
     label?: JSX.Element;
 } & FieldWithErrorMessageSupport & {
-    itemLabel?: (item: Option) => JSXElement;
-    valueComponent?: (state: Accessor<Option>) => JSXElement;
-    valueComponentMultiple?: (state: Accessor<Option[]>) => JSXElement;
+    itemLabel?: (item: Option) => Element;
+    valueComponent?: (state: Accessor<Option>) => Element;
+    valueComponentMultiple?: (state: Accessor<Option[]>) => Element;
     /** Portal target, such as a parent dialog, so the list stays inside it. */
-    mount?: Node;
+    mount?: globalThis.Element;
 } & SelectClassesProps;
 export declare function SelectItem<T>(props: KSelectItemProps & {
-    itemLabel?: (item: T) => JSXElement;
+    itemLabel?: (item: T) => Element;
     classes?: Pick<P.SelectClasses, "item" | "itemLabel" | "itemIndicator">;
 }): JSX.Element;
 export declare function Select<Option, OptGroup = never>(props: ParentProps<SelectProps<Option, OptGroup>>): JSX.Element;
@@ -4237,9 +4225,9 @@ export declare function Select<Option, OptGroup = never>(props: ParentProps<Sele
 ## components/Select/createSelectValue.d.ts
 
 ```ts
-import { Accessor, JSXElement } from "solid-js";
+import { Accessor, Element } from "solid-js";
 export interface Option<T = any> {
-    label: JSXElement;
+    label: Element;
     value: T;
 }
 interface ConfigFor<T> {
@@ -4250,8 +4238,8 @@ type MapOptionToValue<T, Key extends (keyof T & string) | string | undefined> = 
 type SelectOptionsProps<V> = {
     optionValue: "value";
     optionTextValue: (option: Option<V>) => string;
-    itemLabel: (option: Option<V>) => JSXElement;
-    valueComponent: (value: Accessor<Option<V>>) => JSXElement;
+    itemLabel: (option: Option<V>) => Element;
+    valueComponent: (value: Accessor<Option<V>>) => Element;
 };
 interface CreateSelectOptionsReturn<T, C extends ConfigFor<T>> {
     options: Accessor<Array<Option<MapOptionToValue<T, C["valueKey"]>>>>;
@@ -4270,7 +4258,7 @@ export {};
 ## components/Settings/Settings.d.ts
 
 ```ts
-import { type JSX } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import * as P from "../../parts/settings.js";
 import { createSettingsRowProps, type SettingsRowControlProps } from "./createSettingsRowProps.js";
 export type SettingsRowProps = Omit<JSX.HTMLAttributes<HTMLDivElement>, "children"> & P.SettingsRowVariants & {
@@ -4314,7 +4302,8 @@ export type { SettingsRowFieldProps } from "./createSettingsRowProps.js";
 ## components/Settings/createSettingsRowProps.d.ts
 
 ```ts
-import { type Accessor, type JSX } from "solid-js";
+import { type Accessor } from "solid-js";
+import { type JSX } from "@solidjs/web";
 export type SettingsRowFieldProps = {
     /** Base for the row ids: `<id>-label` and `<id>-description`. */
     id?: string;
@@ -4356,7 +4345,7 @@ export declare function createSettingsRowProps(props: Accessor<SettingsRowFieldP
 
 ```ts
 import type { DialogContentProps as KDialogContentProps } from "@kobalte/core/dialog";
-import { type JSX } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import * as S from "../../parts/sheet.js";
 /** Only a bottom sheet can be dragged to dismiss. */
 export type SheetPlacement = {
@@ -4398,7 +4387,7 @@ export {};
 ## components/Skeleton/Skeleton.d.ts
 
 ```ts
-import { type JSX } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import * as S from "../../parts/skeleton.js";
 export type SkeletonProps = Omit<S.RootProps, "width" | "height" | "radius" | "style"> & {
     /** Any CSS width. Defaults to the full width. */
@@ -4448,8 +4437,8 @@ export declare function createSliderProps(props: Accessor<SliderProps>): {
         id?: string | undefined;
         disabled?: boolean | undefined;
         orientation?: ("horizontal" | "vertical") | undefined;
-        ref?: HTMLDivElement | ((el: HTMLDivElement) => void) | undefined;
         step?: number | undefined;
+        ref?: import("solid-js").Ref<HTMLDivElement>;
         readOnly?: boolean | undefined;
         validationState?: import("@kobalte/utils").ValidationState | undefined;
         inverted?: boolean | undefined;
@@ -4477,7 +4466,7 @@ export declare function createSliderProps(props: Accessor<SliderProps>): {
         class: string | undefined;
     };
 };
-export declare function Slider(props: SliderProps): import("solid-js").JSX.Element;
+export declare function Slider(props: SliderProps): import("@solidjs/web").JSX.Element;
 export { sliderStyles, SliderParts } from "../../parts/slider.js";
 export type { SliderClasses, SliderPart, SliderVariants, SliderStyles, } from "../../parts/slider.js";
 ```
@@ -4495,7 +4484,7 @@ export type SpinnerProps = Omit<S.RootProps, "children"> & {
     /** Classes for the parts this component renders, keyed by part name. */
     classes?: S.SpinnerClasses;
 };
-export declare function Spinner(props: SpinnerProps): import("solid-js").JSX.Element;
+export declare function Spinner(props: SpinnerProps): import("@solidjs/web").JSX.Element;
 ```
 
 ## components/Stack/Stack.d.ts
@@ -4522,22 +4511,7 @@ export type SwitchProps = Omit<P.RootProps, "children"> & FieldContent & {
     classes?: P.SwitchClasses;
 };
 export declare function createSwitchProps(props: Accessor<SwitchProps>): {
-    root: () => {
-        name?: string | undefined;
-        required?: boolean | undefined;
-        id?: string | undefined;
-        value?: string | undefined;
-        disabled?: boolean | undefined;
-        size?: ("sm" | "md") | undefined;
-        ref?: HTMLDivElement | ((el: HTMLDivElement) => void) | undefined;
-        onChange?: ((isChecked: boolean) => void) | undefined;
-        onPointerDown?: import("solid-js").JSX.EventHandlerUnion<HTMLDivElement, PointerEvent, import("solid-js").JSX.EventHandler<HTMLDivElement, PointerEvent>> | undefined;
-        checked?: boolean | undefined;
-        readOnly?: boolean | undefined;
-        validationState?: import("@kobalte/utils").ValidationState | undefined;
-        defaultChecked?: boolean | undefined;
-        class?: string | undefined;
-    };
+    root: () => import("solid-js").Omit<SwitchProps, ["label", "description", "errorMessage", "inputId", "aria-label", "aria-labelledby", "aria-describedby", "classes"]>;
     input: () => {
         id: string;
         "aria-label": string | undefined;
@@ -4559,7 +4533,7 @@ export declare function createSwitchProps(props: Accessor<SwitchProps>): {
         class: string | undefined;
     };
 };
-export declare function Switch(props: SwitchProps): import("solid-js").JSX.Element;
+export declare function Switch(props: SwitchProps): import("@solidjs/web").JSX.Element;
 export { switchStyles, SwitchParts } from "../../parts/switch.js";
 export type { SwitchClasses, SwitchPart, SwitchVariants, SwitchStyles, } from "../../parts/switch.js";
 ```
@@ -4567,7 +4541,7 @@ export type { SwitchClasses, SwitchPart, SwitchVariants, SwitchStyles, } from ".
 ## components/Table/Table.d.ts
 
 ```ts
-import { type ComponentProps } from "solid-js";
+import { type ComponentProps } from "@solidjs/web";
 import { type TableClasses, type TableVariants } from "@codeui/styles/table";
 export { tableParts, tableStyles, type TablePart, type TableClasses, type TableSize, type TableVariants, type TableStyles, } from "@codeui/styles/table";
 export type TableProps = ComponentProps<"table"> & TableVariants & {
@@ -4578,7 +4552,7 @@ export type TableProps = ComponentProps<"table"> & TableVariants & {
  * A native `table`. Write `caption`, `thead`, `tbody`, `tfoot`, `tr`, `th` and `td`
  * as children; the styles reach them without wrappers and stop at nested tables.
  */
-export declare function Table(props: TableProps): import("solid-js").JSX.Element;
+export declare function Table(props: TableProps): import("@solidjs/web").JSX.Element;
 export type TableScrollAreaProps = ComponentProps<"div"> & {
     /** Classes for the parts this component renders, keyed by part name. */
     classes?: Pick<TableClasses, "scrollArea">;
@@ -4587,28 +4561,28 @@ export type TableScrollAreaProps = ComponentProps<"div"> & {
  * Scrolls a wide table sideways inside its own box. Name it with `aria-label` or
  * `aria-labelledby` to make it a focusable region the keyboard can scroll.
  */
-export declare function TableScrollArea(props: TableScrollAreaProps): import("solid-js").JSX.Element;
+export declare function TableScrollArea(props: TableScrollAreaProps): import("@solidjs/web").JSX.Element;
 ```
 
 ## components/Tabs/Tabs.d.ts
 
 ```ts
 import { TabsContentProps as KTabsContentProps, TabsIndicatorProps as KTabsIndicatorProps, TabsListProps as KTabsListProps, TabsRootProps as KTabsRootProps, TabsTriggerProps as KTabsTriggerProps } from "@kobalte/core/tabs";
-import { ValidComponent } from "solid-js";
+import { ValidComponent } from "@solidjs/web";
 import { PolymorphicProps } from "@kobalte/core/polymorphic";
 export type TabsProps<T extends ValidComponent = "div"> = KTabsRootProps<T> & {
     variant?: "inline" | "default";
 };
-export declare function Tabs<T extends ValidComponent = "div">(props: PolymorphicProps<T, TabsProps<T>>): import("solid-js").JSX.Element;
+export declare function Tabs<T extends ValidComponent = "div">(props: PolymorphicProps<T, TabsProps<T>>): import("@solidjs/web").JSX.Element;
 export type TabsListProps<T extends ValidComponent = "div"> = KTabsListProps<T>;
-export declare function TabsListPart<T extends ValidComponent = "div">(props: PolymorphicProps<T, TabsListProps<T>>): import("solid-js").JSX.Element;
-export declare function TabsList<T extends ValidComponent = "div">(props: PolymorphicProps<T, TabsListProps<T>>): import("solid-js").JSX.Element;
+export declare function TabsListPart<T extends ValidComponent = "div">(props: PolymorphicProps<T, TabsListProps<T>>): import("@solidjs/web").JSX.Element;
+export declare function TabsList<T extends ValidComponent = "div">(props: PolymorphicProps<T, TabsListProps<T>>): import("@solidjs/web").JSX.Element;
 export type TabsTriggerProps<T extends ValidComponent = "button"> = KTabsTriggerProps<T>;
-export declare function TabsHeader<T extends ValidComponent = "button">(props: PolymorphicProps<T, TabsTriggerProps<T>>): import("solid-js").JSX.Element;
+export declare function TabsHeader<T extends ValidComponent = "button">(props: PolymorphicProps<T, TabsTriggerProps<T>>): import("@solidjs/web").JSX.Element;
 export type TabsContentProps<T extends ValidComponent = "div"> = KTabsContentProps<T>;
-export declare function TabsContent<T extends ValidComponent = "div">(props: PolymorphicProps<T, TabsContentProps<T>>): import("solid-js").JSX.Element;
+export declare function TabsContent<T extends ValidComponent = "div">(props: PolymorphicProps<T, TabsContentProps<T>>): import("@solidjs/web").JSX.Element;
 export type TabsIndicatorProps<T extends ValidComponent = "div"> = KTabsIndicatorProps<T>;
-export declare function TabsIndicator<T extends ValidComponent = "div">(props: PolymorphicProps<T, TabsIndicatorProps<T>>): import("solid-js").JSX.Element;
+export declare function TabsIndicator<T extends ValidComponent = "div">(props: PolymorphicProps<T, TabsIndicatorProps<T>>): import("@solidjs/web").JSX.Element;
 ```
 
 ## components/Text/Text.d.ts
@@ -4624,7 +4598,8 @@ export { textParts, textStyles } from "../../parts/text.js";
 ```ts
 import { FieldInputProps, FieldClasses } from "../Field/inputProps.js";
 import type { TextFieldRootOptions as KTextFieldRootOptions, TextFieldTextAreaProps as KTextFieldTextAreaProps } from "@kobalte/core/text-field";
-import { JSX, Ref } from "solid-js";
+import { Ref } from "solid-js";
+import { JSX } from "@solidjs/web";
 import type { FieldWithErrorMessageSupport } from "../Field/FieldError/createFieldErrorMessageProps.js";
 import type { BaseFieldProps } from "../Field/createBaseFieldProps.js";
 import { SlotProp } from "../../utils/component.js";
@@ -4648,7 +4623,7 @@ export { TextAreaLabel } from "./TextAreaLabel.js";
 ```ts
 import { TextField as KTextField } from "@kobalte/core/text-field";
 type TextFieldLabelProps = Parameters<(typeof KTextField)["Label"]>[0] & {};
-export declare function TextAreaLabel(props: TextFieldLabelProps): import("solid-js").JSX.Element;
+export declare function TextAreaLabel(props: TextFieldLabelProps): import("@solidjs/web").JSX.Element;
 export {};
 ```
 
@@ -4663,7 +4638,8 @@ export * from "@codeui/styles/internal/components/TextField/TextField.css";
 ```ts
 import { FieldInputProps, FieldClasses } from "../Field/inputProps.js";
 import type { TextFieldRootOptions as KTextFieldRootOptions } from "@kobalte/core/text-field";
-import { JSX, Ref } from "solid-js";
+import { Ref } from "solid-js";
+import { JSX } from "@solidjs/web";
 import type { FieldWithErrorMessageSupport } from "../Field/FieldError/createFieldErrorMessageProps.js";
 import type { BaseFieldProps } from "../Field/createBaseFieldProps.js";
 import { SlotProp } from "../../utils/component.js";
@@ -4686,7 +4662,7 @@ export { TextFieldLabel } from "./TextFieldLabel.js";
 ```ts
 import { TextField as KTextField } from "@kobalte/core/text-field";
 type TextFieldLabelProps = Parameters<(typeof KTextField)["Label"]>[0] & {};
-export declare function TextFieldLabel(props: TextFieldLabelProps): import("solid-js").JSX.Element;
+export declare function TextFieldLabel(props: TextFieldLabelProps): import("@solidjs/web").JSX.Element;
 export {};
 ```
 
@@ -4709,28 +4685,28 @@ export declare function useFieldParts(): {
 export declare function FieldRoot(props: FieldRootProps & {
     marker: string;
     baseClass: string;
-}): import("solid-js").JSX.Element;
+}): import("@solidjs/web").JSX.Element;
 export type FieldInputProps = Omit<PolymorphicProps<"input", K.TextFieldInputProps<"input">>, "id" | "size"> & Appearance;
 export type FieldTextAreaProps = Omit<PolymorphicProps<"textarea", K.TextFieldTextAreaProps<"textarea">>, "id"> & Appearance;
 export declare function FieldInput(props: FieldInputProps & {
     baseClass: string;
-}): import("solid-js").JSX.Element;
+}): import("@solidjs/web").JSX.Element;
 export declare function FieldTextArea(props: FieldTextAreaProps & {
     baseClass: string;
-}): import("solid-js").JSX.Element;
+}): import("@solidjs/web").JSX.Element;
 export type LabelProps = Parameters<typeof K.Label>[0];
-export declare function Label(props: LabelProps): import("solid-js").JSX.Element;
+export declare function Label(props: LabelProps): import("@solidjs/web").JSX.Element;
 export type DescriptionProps = Parameters<typeof K.Description>[0];
-export declare function Description(props: DescriptionProps): import("solid-js").JSX.Element;
+export declare function Description(props: DescriptionProps): import("@solidjs/web").JSX.Element;
 export type ErrorMessageProps = Parameters<typeof K.ErrorMessage>[0];
-export declare function ErrorMessage(props: ErrorMessageProps): import("solid-js").JSX.Element;
+export declare function ErrorMessage(props: ErrorMessageProps): import("@solidjs/web").JSX.Element;
 export {};
 ```
 
 ## components/Toast/Toaster.d.ts
 
 ```ts
-import { type JSX } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import * as T from "../../parts/toast.js";
 /** Scoped to the controller that returned it. Two controllers can return the same id. */
 export type ToastId = number;
@@ -4822,7 +4798,7 @@ export * from "@codeui/styles/internal/components/Tooltip/Tooltip.css";
 ## components/Tooltip/Tooltip.d.ts
 
 ```ts
-import { type JSX } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import * as P from "../../parts/tooltip.js";
 import type { SlotProp } from "../../utils/component.js";
 import type { TooltipVariants } from "./Tooltip.css.js";
@@ -4830,7 +4806,7 @@ type TooltipSlot = "trigger" | "content";
 export type TooltipProps = P.RootProps & TooltipVariants & SlotProp<TooltipSlot> & {
     content: JSX.Element;
     /** Portal target for the content. Defaults to `document.body`. */
-    mount?: Node;
+    mount?: globalThis.Element;
 };
 export declare function Tooltip(props: TooltipProps): JSX.Element;
 export {};
@@ -4846,55 +4822,56 @@ export * from "@codeui/styles/internal/foundation/index";
 
 ```ts
 import { SvgIconProps } from "./SvgIcon.js";
-export declare function CheckIcon(props: SvgIconProps): import("solid-js").JSX.Element;
+export declare function CheckIcon(props: SvgIconProps): import("@solidjs/web").JSX.Element;
 ```
 
 ## icons/ChevronDownIcon.d.ts
 
 ```ts
 import { SvgIconProps } from "./SvgIcon.js";
-export declare function ChevronDownIcon(props: SvgIconProps): import("solid-js").JSX.Element;
+export declare function ChevronDownIcon(props: SvgIconProps): import("@solidjs/web").JSX.Element;
 ```
 
 ## icons/ChevronUpIcon.d.ts
 
 ```ts
 import { SvgIconProps } from "./SvgIcon.js";
-export declare function ChevronUpIcon(props: SvgIconProps): import("solid-js").JSX.Element;
+export declare function ChevronUpIcon(props: SvgIconProps): import("@solidjs/web").JSX.Element;
 ```
 
 ## icons/CloseIcon.d.ts
 
 ```ts
 import { SvgIconProps } from "./SvgIcon.js";
-export declare function CloseIcon(props: SvgIconProps): import("solid-js").JSX.Element;
+export declare function CloseIcon(props: SvgIconProps): import("@solidjs/web").JSX.Element;
 ```
 
 ## icons/NextIcon.d.ts
 
 ```ts
 import { SvgIconProps } from "./SvgIcon.js";
-export declare function NextIcon(props: SvgIconProps): import("solid-js").JSX.Element;
+export declare function NextIcon(props: SvgIconProps): import("@solidjs/web").JSX.Element;
 ```
 
 ## icons/PreviousIcon.d.ts
 
 ```ts
 import { SvgIconProps } from "./SvgIcon.js";
-export declare function PreviousIcon(props: SvgIconProps): import("solid-js").JSX.Element;
+export declare function PreviousIcon(props: SvgIconProps): import("@solidjs/web").JSX.Element;
 ```
 
 ## icons/SelectorIcon.d.ts
 
 ```ts
 import { SvgIconProps } from "./SvgIcon.js";
-export declare function SelectorIcon(props: SvgIconProps): import("solid-js").JSX.Element;
+export declare function SelectorIcon(props: SvgIconProps): import("@solidjs/web").JSX.Element;
 ```
 
 ## icons/SvgIcon.d.ts
 
 ```ts
-import { FlowProps, JSX } from "solid-js";
+import { FlowProps } from "solid-js";
+import { JSX } from "@solidjs/web";
 export type SvgIconProps = JSX.IntrinsicElements["svg"] & {
     size?: string;
 };
@@ -4971,15 +4948,15 @@ export * from "./ready/settings.js";
 ```ts
 import * as K from "@kobalte/core/accordion";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
-import { type JSX, type ValidComponent } from "solid-js";
+import { type JSX, type ValidComponent } from "@solidjs/web";
 import { type AccordionVariants } from "@codeui/styles/accordion";
-export { accordionParts, type AccordionPart, type AccordionClasses, type AccordionVariants, type AccordionStyles, accordionStyles } from "@codeui/styles/accordion";
+export { accordionParts, type AccordionPart, type AccordionClasses, type AccordionVariants, type AccordionStyles, accordionStyles, } from "@codeui/styles/accordion";
 export declare const useAccordionContext: typeof K.useAccordionContext;
 export type RootProps<T extends ValidComponent = "div"> = K.AccordionRootProps<T> & {
     motion?: "auto" | "none";
 };
 export declare function Root<T extends ValidComponent = "div">(props: PolymorphicProps<T, RootProps<T>>): JSX.Element;
-export type ItemProps<T extends ValidComponent = "div"> = K.AccordionItemProps<T>;
+export type ItemProps<T extends ValidComponent = "div"> = K.AccordionItemProps;
 export declare function Item<T extends ValidComponent = "div">(props: PolymorphicProps<T, ItemProps<T>>): JSX.Element;
 export type HeaderProps<T extends ValidComponent = "h3"> = K.AccordionHeaderProps<T>;
 export declare function Header<T extends ValidComponent = "h3">(props: PolymorphicProps<T, HeaderProps<T>>): JSX.Element;
@@ -5002,9 +4979,9 @@ export declare function Chevron(props: ChevronProps): JSX.Element;
 ```ts
 import { type AlertRootProps as KAlertRootProps } from "@kobalte/core/alert";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
-import { type JSX, type ValidComponent } from "solid-js";
+import { type JSX, type ValidComponent } from "@solidjs/web";
 import { type AlertVariants } from "@codeui/styles/alert";
-export { alertParts, type AlertPart, type AlertClasses, type AlertTone, type AlertVariants, type AlertStyles, alertStyles } from "@codeui/styles/alert";
+export { alertParts, type AlertPart, type AlertClasses, type AlertTone, type AlertVariants, type AlertStyles, alertStyles, } from "@codeui/styles/alert";
 export type RootProps<T extends ValidComponent = "div"> = KAlertRootProps<T> & AlertVariants & {
     class?: string;
 };
@@ -5027,9 +5004,9 @@ export declare function Action(props: ActionProps): JSX.Element;
 ```ts
 import { type BadgeRootProps as KBadgeRootProps } from "@kobalte/core/badge";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
-import { type JSX, type ValidComponent } from "solid-js";
+import { type JSX, type ValidComponent } from "@solidjs/web";
 import { type BadgeVariants } from "@codeui/styles/badge";
-export { badgeParts, type BadgePart, type BadgeClasses, type BadgeSize, type BadgeTone, type BadgeVariant, type BadgeVariants, type BadgeStyles, badgeStyles } from "@codeui/styles/badge";
+export { badgeParts, type BadgePart, type BadgeClasses, type BadgeSize, type BadgeTone, type BadgeVariant, type BadgeVariants, type BadgeStyles, badgeStyles, } from "@codeui/styles/badge";
 export type RootProps<T extends ValidComponent = "span"> = KBadgeRootProps<T> & BadgeVariants & {
     class?: string;
 };
@@ -5046,27 +5023,27 @@ export declare function Label(props: LabelProps): JSX.Element;
 ```ts
 import * as K from "@kobalte/core/checkbox";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
-import { type ComponentProps, type ValidComponent } from "solid-js";
+import { type ComponentProps, type ValidComponent } from "@solidjs/web";
 import type { BaseFieldProps } from "../components/Field/createBaseFieldProps.js";
 type ChoiceAppearance = Omit<NonNullable<BaseFieldProps>, "size"> & {
     size?: NonNullable<BaseFieldProps>["size"] | "xl";
 };
 export type RootProps<T extends ValidComponent = "div"> = K.CheckboxRootProps<T> & ChoiceAppearance;
-export declare function Root<T extends ValidComponent = "div">(props: PolymorphicProps<T, RootProps<T>>): import("solid-js").JSX.Element;
+export declare function Root<T extends ValidComponent = "div">(props: PolymorphicProps<T, RootProps<T>>): import("@solidjs/web").JSX.Element;
 export type InputProps<T extends ValidComponent = "input"> = K.CheckboxInputProps<T>;
-export declare function Input<T extends ValidComponent = "input">(props: PolymorphicProps<T, InputProps<T>>): import("solid-js").JSX.Element;
+export declare function Input<T extends ValidComponent = "input">(props: PolymorphicProps<T, InputProps<T>>): import("@solidjs/web").JSX.Element;
 export type ControlProps<T extends ValidComponent = "div"> = K.CheckboxControlProps<T> & ChoiceAppearance;
-export declare function Control<T extends ValidComponent = "div">(props: PolymorphicProps<T, ControlProps<T>>): import("solid-js").JSX.Element;
+export declare function Control<T extends ValidComponent = "div">(props: PolymorphicProps<T, ControlProps<T>>): import("@solidjs/web").JSX.Element;
 export type IndicatorProps<T extends ValidComponent = "div"> = K.CheckboxIndicatorProps<T>;
-export declare function Indicator<T extends ValidComponent = "div">(props: PolymorphicProps<T, IndicatorProps<T>>): import("solid-js").JSX.Element;
+export declare function Indicator<T extends ValidComponent = "div">(props: PolymorphicProps<T, IndicatorProps<T>>): import("@solidjs/web").JSX.Element;
 export type ContentProps = ComponentProps<"div">;
-export declare function Content(props: ContentProps): import("solid-js").JSX.Element;
+export declare function Content(props: ContentProps): import("@solidjs/web").JSX.Element;
 export type LabelProps<T extends ValidComponent = "label"> = K.CheckboxLabelProps<T>;
-export declare function Label<T extends ValidComponent = "label">(props: PolymorphicProps<T, LabelProps<T>>): import("solid-js").JSX.Element;
+export declare function Label<T extends ValidComponent = "label">(props: PolymorphicProps<T, LabelProps<T>>): import("@solidjs/web").JSX.Element;
 export type DescriptionProps<T extends ValidComponent = "div"> = K.CheckboxDescriptionProps<T>;
-export declare function Description<T extends ValidComponent = "div">(props: PolymorphicProps<T, DescriptionProps<T>>): import("solid-js").JSX.Element;
+export declare function Description<T extends ValidComponent = "div">(props: PolymorphicProps<T, DescriptionProps<T>>): import("@solidjs/web").JSX.Element;
 export type ErrorMessageProps<T extends ValidComponent = "div"> = K.CheckboxErrorMessageProps<T>;
-export declare function ErrorMessage<T extends ValidComponent = "div">(props: PolymorphicProps<T, ErrorMessageProps<T>>): import("solid-js").JSX.Element;
+export declare function ErrorMessage<T extends ValidComponent = "div">(props: PolymorphicProps<T, ErrorMessageProps<T>>): import("@solidjs/web").JSX.Element;
 export {};
 ```
 
@@ -5075,47 +5052,47 @@ export {};
 ```ts
 import * as K from "@kobalte/core/combobox";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
-import { type ValidComponent } from "solid-js";
+import { type ValidComponent, type JSX } from "@solidjs/web";
 export { useComboboxContext } from "@kobalte/core/combobox";
 export { createComboboxOptions, type ComboboxOption, type ComboboxOptionsConfig, type CreateComboboxOptionsReturn, } from "../components/Combobox/createComboboxOptions.js";
 import { type ComboboxVariants } from "@codeui/styles/combobox";
 export { type ComboboxVariants, comboboxParts, type ComboboxPart, type ComboboxClasses, type ComboboxStyles, comboboxStyles, } from "@codeui/styles/combobox";
 export type RootProps<Option, OptGroup = never, T extends ValidComponent = "div"> = K.ComboboxRootProps<Option, OptGroup, T> & ComboboxVariants;
-export declare function Root<Option, OptGroup = never, T extends ValidComponent = "div">(props: PolymorphicProps<T, RootProps<Option, OptGroup, T>>): import("solid-js").JSX.Element;
+export declare function Root<Option, OptGroup = never, T extends ValidComponent = "div">(props: PolymorphicProps<T, RootProps<Option, OptGroup, T>>): JSX.Element;
 export type ControlProps<Option, T extends ValidComponent = "div"> = K.ComboboxControlProps<Option, T> & ComboboxVariants;
-export declare function Control<Option, T extends ValidComponent = "div">(props: PolymorphicProps<T, ControlProps<Option, T>>): import("solid-js").JSX.Element;
+export declare function Control<Option, T extends ValidComponent = "div">(props: PolymorphicProps<T, ControlProps<Option, T>>): JSX.Element;
 export type InputProps<T extends ValidComponent = "input"> = K.ComboboxInputProps<T> & ComboboxVariants;
-export declare function Input<T extends ValidComponent = "input">(props: PolymorphicProps<T, InputProps<T>>): import("solid-js").JSX.Element;
+export declare function Input<T extends ValidComponent = "input">(props: PolymorphicProps<T, InputProps<T>>): JSX.Element;
 export type TriggerProps<T extends ValidComponent = "button"> = K.ComboboxTriggerProps<T> & ComboboxVariants;
-export declare function Trigger<T extends ValidComponent = "button">(props: PolymorphicProps<T, TriggerProps<T>>): import("solid-js").JSX.Element;
+export declare function Trigger<T extends ValidComponent = "button">(props: PolymorphicProps<T, TriggerProps<T>>): JSX.Element;
 export type IconProps<T extends ValidComponent = "span"> = K.ComboboxIconProps<T> & ComboboxVariants;
-export declare function Icon<T extends ValidComponent = "span">(props: PolymorphicProps<T, IconProps<T>>): import("solid-js").JSX.Element;
+export declare function Icon<T extends ValidComponent = "span">(props: PolymorphicProps<T, IconProps<T>>): JSX.Element;
 export type PortalProps = K.ComboboxPortalProps;
-export declare function Portal(props: PortalProps): import("solid-js").JSX.Element;
+export declare function Portal(props: PortalProps): JSX.Element;
 export type ContentProps<T extends ValidComponent = "div"> = K.ComboboxContentProps<T> & ComboboxVariants;
-export declare function Content<T extends ValidComponent = "div">(props: PolymorphicProps<T, ContentProps<T>>): import("solid-js").JSX.Element;
+export declare function Content<T extends ValidComponent = "div">(props: PolymorphicProps<T, ContentProps<T>>): JSX.Element;
 export type ArrowProps<T extends ValidComponent = "div"> = K.ComboboxArrowProps<T> & ComboboxVariants;
-export declare function Arrow<T extends ValidComponent = "div">(props: PolymorphicProps<T, ArrowProps<T>>): import("solid-js").JSX.Element;
+export declare function Arrow<T extends ValidComponent = "div">(props: PolymorphicProps<T, ArrowProps<T>>): JSX.Element;
 export type ListboxProps<Option = unknown, OptGroup = never, T extends ValidComponent = "ul"> = K.ComboboxListboxProps<Option, OptGroup, T> & ComboboxVariants;
-export declare function Listbox<Option = unknown, OptGroup = never, T extends ValidComponent = "ul">(props: PolymorphicProps<T, ListboxProps<Option, OptGroup, T>>): import("solid-js").JSX.Element;
+export declare function Listbox<Option = unknown, OptGroup = never, T extends ValidComponent = "ul">(props: PolymorphicProps<T, ListboxProps<Option, OptGroup, T>>): JSX.Element;
 export type ItemProps<T extends ValidComponent = "li"> = K.ComboboxItemProps<T> & ComboboxVariants;
-export declare function Item<T extends ValidComponent = "li">(props: PolymorphicProps<T, ItemProps<T>>): import("solid-js").JSX.Element;
+export declare function Item<T extends ValidComponent = "li">(props: PolymorphicProps<T, ItemProps<T>>): JSX.Element;
 export type ItemLabelProps<T extends ValidComponent = "div"> = K.ComboboxItemLabelProps<T> & ComboboxVariants;
-export declare function ItemLabel<T extends ValidComponent = "div">(props: PolymorphicProps<T, ItemLabelProps<T>>): import("solid-js").JSX.Element;
-export type ItemDescriptionProps<T extends ValidComponent = "div"> = K.ComboboxItemDescriptionProps<T> & ComboboxVariants;
-export declare function ItemDescription<T extends ValidComponent = "div">(props: PolymorphicProps<T, ItemDescriptionProps<T>>): import("solid-js").JSX.Element;
+export declare function ItemLabel<T extends ValidComponent = "div">(props: PolymorphicProps<T, ItemLabelProps<T>>): JSX.Element;
+export type ItemDescriptionProps<T extends ValidComponent = "div"> = K.ComboboxItemDescriptionProps & ComboboxVariants;
+export declare function ItemDescription<T extends ValidComponent = "div">(props: PolymorphicProps<T, ItemDescriptionProps<T>>): JSX.Element;
 export type ItemIndicatorProps<T extends ValidComponent = "div"> = K.ComboboxItemIndicatorProps<T> & ComboboxVariants;
-export declare function ItemIndicator<T extends ValidComponent = "div">(props: PolymorphicProps<T, ItemIndicatorProps<T>>): import("solid-js").JSX.Element;
+export declare function ItemIndicator<T extends ValidComponent = "div">(props: PolymorphicProps<T, ItemIndicatorProps<T>>): JSX.Element;
 export type SectionProps<T extends ValidComponent = "li"> = K.ComboboxSectionProps<T> & ComboboxVariants;
-export declare function Section<T extends ValidComponent = "li">(props: PolymorphicProps<T, SectionProps<T>>): import("solid-js").JSX.Element;
+export declare function Section<T extends ValidComponent = "li">(props: PolymorphicProps<T, SectionProps<T>>): JSX.Element;
 export type HiddenSelectProps = K.ComboboxHiddenSelectProps & ComboboxVariants;
-export declare function HiddenSelect(props: HiddenSelectProps): import("solid-js").JSX.Element;
+export declare function HiddenSelect(props: HiddenSelectProps): JSX.Element;
 export type LabelProps<T extends ValidComponent = "span"> = K.ComboboxLabelProps<T> & ComboboxVariants;
-export declare function Label<T extends ValidComponent = "span">(props: PolymorphicProps<T, LabelProps<T>>): import("solid-js").JSX.Element;
-export type DescriptionProps<T extends ValidComponent = "div"> = K.ComboboxDescriptionProps<T> & ComboboxVariants;
-export declare function Description<T extends ValidComponent = "div">(props: PolymorphicProps<T, DescriptionProps<T>>): import("solid-js").JSX.Element;
+export declare function Label<T extends ValidComponent = "span">(props: PolymorphicProps<T, LabelProps<T>>): JSX.Element;
+export type DescriptionProps<T extends ValidComponent = "div"> = K.ComboboxDescriptionProps & ComboboxVariants;
+export declare function Description<T extends ValidComponent = "div">(props: PolymorphicProps<T, DescriptionProps<T>>): JSX.Element;
 export type ErrorMessageProps<T extends ValidComponent = "div"> = K.ComboboxErrorMessageProps<T> & ComboboxVariants;
-export declare function ErrorMessage<T extends ValidComponent = "div">(props: PolymorphicProps<T, ErrorMessageProps<T>>): import("solid-js").JSX.Element;
+export declare function ErrorMessage<T extends ValidComponent = "div">(props: PolymorphicProps<T, ErrorMessageProps<T>>): JSX.Element;
 export declare const ComboboxParts: {
     Root: typeof Root;
     Control: typeof Control;
@@ -5144,7 +5121,7 @@ export declare const ComboboxParts: {
 import * as K from "@kobalte/core/combobox";
 import { type DialogContentProps as KDialogContentProps, type DialogOverlayProps as KDialogOverlayProps, type DialogPortalProps as KDialogPortalProps, type DialogRootProps as KDialogRootProps, type DialogTitleProps as KDialogTitleProps, type DialogTriggerProps as KDialogTriggerProps } from "@kobalte/core/dialog";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
-import { type ComponentProps, type JSX, type ValidComponent } from "solid-js";
+import { type ComponentProps, type JSX, type ValidComponent } from "@solidjs/web";
 export { commandMenuParts, type CommandMenuPart, type CommandMenuClasses, type CommandMenuStyles, commandMenuStyles } from "@codeui/styles/commandmenu";
 export type RootProps = KDialogRootProps;
 export declare function Root(props: RootProps): JSX.Element;
@@ -5241,7 +5218,7 @@ export declare const CommandMenuParts: {
 ```ts
 import { type DialogCloseButtonProps as KDialogCloseButtonProps, type DialogContentProps as KDialogContentProps, type DialogDescriptionProps as KDialogDescriptionProps, type DialogOverlayProps as KDialogOverlayProps, type DialogPortalProps as KDialogPortalProps, type DialogRootProps as KDialogRootProps, type DialogTitleProps as KDialogTitleProps, type DialogTriggerProps as KDialogTriggerProps } from "@kobalte/core/dialog";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
-import { type ComponentProps, type JSX, type ValidComponent } from "solid-js";
+import { type ComponentProps, type JSX, type ValidComponent } from "@solidjs/web";
 import { type IconButtonProps } from "../components/IconButton/IconButton.js";
 import { type DialogClasses, type DialogSize, type DialogChrome, type DialogMotion, type DialogBodyLayout, type DialogSectionVariant } from "@codeui/styles/dialog";
 export { dialogParts, type DialogPart, type DialogThemeVar, dialogThemeVars, type DialogClasses, type DialogSize, type DialogChrome, type DialogMotion, type DialogBodyLayout, type DialogSectionVariant, type DialogStyles, dialogStyles } from "@codeui/styles/dialog";
@@ -5340,9 +5317,9 @@ export { Group, GroupLabel, ItemLabel, ItemDescription, type DropdownMenuGroupPr
 ## parts/kbd.d.ts
 
 ```ts
-import { type JSX } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import { type KbdVariants } from "@codeui/styles/kbd";
-export { kbdParts, type KbdPart, type KbdClasses, type KbdSize, type KbdVariant, type KbdVariants, type KbdStyles, kbdStyles } from "@codeui/styles/kbd";
+export { kbdParts, type KbdPart, type KbdClasses, type KbdSize, type KbdVariant, type KbdVariants, type KbdStyles, kbdStyles, } from "@codeui/styles/kbd";
 export type RootProps = JSX.IntrinsicElements["kbd"] & KbdVariants;
 export declare function Root(props: RootProps): JSX.Element;
 ```
@@ -5352,30 +5329,30 @@ export declare function Root(props: RootProps): JSX.Element;
 ```ts
 import * as K from "@kobalte/core/listbox";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
-import { type ValidComponent } from "solid-js";
+import { type ValidComponent } from "@solidjs/web";
 type ItemSize = "xs" | "sm" | "md";
 export type RootProps<Option, OptGroup = never, T extends ValidComponent = "ul"> = K.ListboxRootProps<Option, OptGroup, T> & {
     bordered?: boolean;
     variant?: "primary" | "neutral";
 };
-export declare function Root<Option, OptGroup = never, T extends ValidComponent = "ul">(props: PolymorphicProps<T, RootProps<Option, OptGroup, T>>): import("solid-js").JSX.Element;
+export declare function Root<Option, OptGroup = never, T extends ValidComponent = "ul">(props: PolymorphicProps<T, RootProps<Option, OptGroup, T>>): import("@solidjs/web").JSX.Element;
 export type ItemProps<T extends ValidComponent = "li"> = K.ListboxItemProps<T> & {
     size?: ItemSize;
 };
-export declare function Item<T extends ValidComponent = "li">(props: PolymorphicProps<T, ItemProps<T>>): import("solid-js").JSX.Element;
+export declare function Item<T extends ValidComponent = "li">(props: PolymorphicProps<T, ItemProps<T>>): import("@solidjs/web").JSX.Element;
 export type ItemLabelProps<T extends ValidComponent = "div"> = K.ListboxItemLabelProps<T>;
-export declare function ItemLabel<T extends ValidComponent = "div">(props: PolymorphicProps<T, ItemLabelProps<T>>): import("solid-js").JSX.Element;
+export declare function ItemLabel<T extends ValidComponent = "div">(props: PolymorphicProps<T, ItemLabelProps<T>>): import("@solidjs/web").JSX.Element;
 export type ItemIndicatorProps<T extends ValidComponent = "div"> = K.ListboxItemIndicatorProps<T> & {
     size?: ItemSize;
 };
-export declare function ItemIndicator<T extends ValidComponent = "div">(props: PolymorphicProps<T, ItemIndicatorProps<T>>): import("solid-js").JSX.Element;
+export declare function ItemIndicator<T extends ValidComponent = "div">(props: PolymorphicProps<T, ItemIndicatorProps<T>>): import("@solidjs/web").JSX.Element;
 export { ItemDescription, Section, type ListboxItemDescriptionProps as ItemDescriptionProps, type ListboxSectionProps as SectionProps, } from "@kobalte/core/listbox";
 ```
 
 ## parts/number-field.d.ts
 
 ```ts
-import { type JSX } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import { type InputNumberOptions } from "../components/NumberField/options.js";
 import { type FieldInputProps, type FieldRootProps } from "../components/TextField/field-parts.js";
 export { Description, ErrorMessage, Label, type DescriptionProps, type ErrorMessageProps, type LabelProps, } from "../components/TextField/field-parts.js";
@@ -5400,10 +5377,10 @@ export declare function Controls(props: ControlsProps): JSX.Element;
 ```ts
 import * as K from "@kobalte/core/radio-group";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
-import { type JSX, type ValidComponent } from "solid-js";
+import { type JSX, type ValidComponent } from "@solidjs/web";
 import { type BadgeProps as KitBadgeProps } from "../components/Badge/Badge.js";
 import { type OptionCardVariants } from "@codeui/styles/optioncard";
-export { optionCardParts, type OptionCardPart, type OptionCardClasses, type OptionCardVariant, type OptionCardVariants, type OptionCardStyles, optionCardStyles } from "@codeui/styles/optioncard";
+export { optionCardParts, type OptionCardPart, type OptionCardClasses, type OptionCardVariant, type OptionCardVariants, type OptionCardStyles, optionCardStyles, } from "@codeui/styles/optioncard";
 export type RootProps<T extends ValidComponent = "div"> = K.RadioGroupRootProps<T> & OptionCardVariants & {
     class?: string;
 };
@@ -5412,7 +5389,7 @@ export type LabelProps<T extends ValidComponent = "span"> = K.RadioGroupLabelPro
     class?: string;
 };
 export declare function Label<T extends ValidComponent = "span">(props: PolymorphicProps<T, LabelProps<T>>): JSX.Element;
-export type DescriptionProps<T extends ValidComponent = "div"> = K.RadioGroupDescriptionProps<T> & OptionCardVariants & {
+export type DescriptionProps<T extends ValidComponent = "div"> = K.RadioGroupDescriptionProps & OptionCardVariants & {
     class?: string;
 };
 export declare function Description<T extends ValidComponent = "div">(props: PolymorphicProps<T, DescriptionProps<T>>): JSX.Element;
@@ -5440,7 +5417,7 @@ export type ItemLabelProps<T extends ValidComponent = "label"> = K.RadioGroupIte
     class?: string;
 };
 export declare function ItemLabel<T extends ValidComponent = "label">(props: PolymorphicProps<T, ItemLabelProps<T>>): JSX.Element;
-export type ItemDescriptionProps<T extends ValidComponent = "div"> = K.RadioGroupItemDescriptionProps<T> & OptionCardVariants & {
+export type ItemDescriptionProps<T extends ValidComponent = "div"> = K.RadioGroupItemDescriptionProps & OptionCardVariants & {
     class?: string;
 };
 export declare function ItemDescription<T extends ValidComponent = "div">(props: PolymorphicProps<T, ItemDescriptionProps<T>>): JSX.Element;
@@ -5456,7 +5433,7 @@ export { useRadioGroupContext } from "@kobalte/core/radio-group";
 ```ts
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import { type PaginationOptions as CorePaginationOptions } from "@solid-primitives/pagination";
-import { type JSX } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import { type IconButtonProps } from "../components/IconButton/IconButton.js";
 export interface PaginationOptions extends CorePaginationOptions {
     page?: number;
@@ -5483,29 +5460,29 @@ export declare function Item(props: ItemProps): JSX.Element;
 ```ts
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import { type PopoverAnchorProps as KPopoverAnchorProps, type PopoverArrowProps as KPopoverArrowProps, type PopoverCloseButtonProps as KPopoverCloseButtonProps, type PopoverContentProps as KPopoverContentProps, type PopoverDescriptionProps as KPopoverDescriptionProps, type PopoverPortalProps as KPopoverPortalProps, type PopoverRootProps as KPopoverRootProps, type PopoverTitleProps as KPopoverTitleProps, type PopoverTriggerProps as KPopoverTriggerProps } from "@kobalte/core/popover";
-import { type ValidComponent } from "solid-js";
+import { type ValidComponent } from "@solidjs/web";
 import { type IconButtonProps } from "../components/IconButton/IconButton.js";
 import { type PopoverVariant } from "@codeui/styles/popover";
 export { popoverParts, type PopoverPart, type PopoverClasses, type PopoverVariant, type PopoverStyles, popoverStyles } from "@codeui/styles/popover";
 export type RootProps = KPopoverRootProps;
 /** Kobalte's Popover root with a default `gutter` of 6. */
-export declare function Root(props: RootProps): import("solid-js").JSX.Element;
-export declare function Portal(props: KPopoverPortalProps): import("solid-js").JSX.Element;
-export declare function Trigger<T extends ValidComponent = "button">(props: PolymorphicProps<T, KPopoverTriggerProps<T>>): import("solid-js").JSX.Element;
-export declare function Anchor<T extends ValidComponent = "div">(props: PolymorphicProps<T, KPopoverAnchorProps<T>>): import("solid-js").JSX.Element;
+export declare function Root(props: RootProps): import("@solidjs/web").JSX.Element;
+export declare function Portal(props: KPopoverPortalProps): import("@solidjs/web").JSX.Element;
+export declare function Trigger<T extends ValidComponent = "button">(props: PolymorphicProps<T, KPopoverTriggerProps<T>>): import("@solidjs/web").JSX.Element;
+export declare function Anchor<T extends ValidComponent = "div">(props: PolymorphicProps<T, KPopoverAnchorProps<T>>): import("@solidjs/web").JSX.Element;
 export type ContentProps<T extends ValidComponent = "div"> = KPopoverContentProps<T> & {
     variant?: PopoverVariant;
     class?: string;
 };
-export declare function Content<T extends ValidComponent = "div">(props: PolymorphicProps<T, ContentProps<T>>): import("solid-js").JSX.Element;
-export declare function Arrow<T extends ValidComponent = "div">(props: PolymorphicProps<T, KPopoverArrowProps<T>>): import("solid-js").JSX.Element;
-export declare function Title<T extends ValidComponent = "h2">(props: PolymorphicProps<T, KPopoverTitleProps<T>>): import("solid-js").JSX.Element;
-export declare function Description<T extends ValidComponent = "p">(props: PolymorphicProps<T, KPopoverDescriptionProps<T>>): import("solid-js").JSX.Element;
+export declare function Content<T extends ValidComponent = "div">(props: PolymorphicProps<T, ContentProps<T>>): import("@solidjs/web").JSX.Element;
+export declare function Arrow<T extends ValidComponent = "div">(props: PolymorphicProps<T, KPopoverArrowProps<T>>): import("@solidjs/web").JSX.Element;
+export declare function Title<T extends ValidComponent = "h2">(props: PolymorphicProps<T, KPopoverTitleProps<T>>): import("@solidjs/web").JSX.Element;
+export declare function Description<T extends ValidComponent = "p">(props: PolymorphicProps<T, KPopoverDescriptionProps<T>>): import("@solidjs/web").JSX.Element;
 export type CloseButtonProps = Omit<PolymorphicProps<"button", IconButtonProps>, "aria-label"> & KPopoverCloseButtonProps & {
     /** Accessible name of the button. Defaults to "close". */
     "aria-label"?: string;
 };
-export declare function CloseButton(props: CloseButtonProps): import("solid-js").JSX.Element;
+export declare function CloseButton(props: CloseButtonProps): import("@solidjs/web").JSX.Element;
 ```
 
 ## parts/progress.d.ts
@@ -5513,20 +5490,20 @@ export declare function CloseButton(props: CloseButtonProps): import("solid-js")
 ```ts
 import * as K from "@kobalte/core/progress";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
-import { type ValidComponent } from "solid-js";
+import { type ValidComponent } from "@solidjs/web";
 export { useProgressContext } from "@kobalte/core/progress";
 import { type ProgressVariants } from "@codeui/styles/progress";
-export { type ProgressVariants, progressParts, type ProgressPart, type ProgressClasses, type ProgressStyles, progressStyles } from "@codeui/styles/progress";
+export { type ProgressVariants, progressParts, type ProgressPart, type ProgressClasses, type ProgressStyles, progressStyles, } from "@codeui/styles/progress";
 export type RootProps<T extends ValidComponent = "div"> = K.ProgressRootProps<T> & ProgressVariants;
-export declare function Root<T extends ValidComponent = "div">(props: PolymorphicProps<T, RootProps<T>>): import("solid-js").JSX.Element;
+export declare function Root<T extends ValidComponent = "div">(props: PolymorphicProps<T, RootProps<T>>): import("@solidjs/web").JSX.Element;
 export type LabelProps<T extends ValidComponent = "span"> = K.ProgressLabelProps<T> & ProgressVariants;
-export declare function Label<T extends ValidComponent = "span">(props: PolymorphicProps<T, LabelProps<T>>): import("solid-js").JSX.Element;
+export declare function Label<T extends ValidComponent = "span">(props: PolymorphicProps<T, LabelProps<T>>): import("@solidjs/web").JSX.Element;
 export type TrackProps<T extends ValidComponent = "div"> = K.ProgressTrackProps<T> & ProgressVariants;
-export declare function Track<T extends ValidComponent = "div">(props: PolymorphicProps<T, TrackProps<T>>): import("solid-js").JSX.Element;
+export declare function Track<T extends ValidComponent = "div">(props: PolymorphicProps<T, TrackProps<T>>): import("@solidjs/web").JSX.Element;
 export type FillProps<T extends ValidComponent = "div"> = K.ProgressFillProps<T> & ProgressVariants;
-export declare function Fill<T extends ValidComponent = "div">(props: PolymorphicProps<T, FillProps<T>>): import("solid-js").JSX.Element;
+export declare function Fill<T extends ValidComponent = "div">(props: PolymorphicProps<T, FillProps<T>>): import("@solidjs/web").JSX.Element;
 export type ValueLabelProps<T extends ValidComponent = "div"> = K.ProgressValueLabelProps<T> & ProgressVariants;
-export declare function ValueLabel<T extends ValidComponent = "div">(props: PolymorphicProps<T, ValueLabelProps<T>>): import("solid-js").JSX.Element;
+export declare function ValueLabel<T extends ValidComponent = "div">(props: PolymorphicProps<T, ValueLabelProps<T>>): import("@solidjs/web").JSX.Element;
 export declare const ProgressParts: {
     Root: typeof Root;
     Label: typeof Label;
@@ -5541,31 +5518,31 @@ export declare const ProgressParts: {
 ```ts
 import * as K from "@kobalte/core/radio-group";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
-import { type ComponentProps, type ValidComponent } from "solid-js";
+import { type ComponentProps, type ValidComponent } from "@solidjs/web";
 import type { BaseFieldProps } from "../components/Field/createBaseFieldProps.js";
 type ChoiceAppearance = Omit<NonNullable<BaseFieldProps>, "size"> & {
     size?: NonNullable<BaseFieldProps>["size"] | "xl";
 };
 export type RootProps<T extends ValidComponent = "div"> = K.RadioGroupRootProps<T> & ChoiceAppearance;
-export declare function Root<T extends ValidComponent = "div">(props: PolymorphicProps<T, RootProps<T>>): import("solid-js").JSX.Element;
+export declare function Root<T extends ValidComponent = "div">(props: PolymorphicProps<T, RootProps<T>>): import("@solidjs/web").JSX.Element;
 export type LabelProps<T extends ValidComponent = "span"> = K.RadioGroupLabelProps<T>;
-export declare function Label<T extends ValidComponent = "span">(props: PolymorphicProps<T, LabelProps<T>>): import("solid-js").JSX.Element;
+export declare function Label<T extends ValidComponent = "span">(props: PolymorphicProps<T, LabelProps<T>>): import("@solidjs/web").JSX.Element;
 export type ItemsProps = ComponentProps<"div"> & ChoiceAppearance & {
     orientation?: K.RadioGroupRootOptions["orientation"];
 };
-export declare function Items(props: ItemsProps): import("solid-js").JSX.Element;
-export type DescriptionProps<T extends ValidComponent = "div"> = K.RadioGroupDescriptionProps<T>;
-export declare function Description<T extends ValidComponent = "div">(props: PolymorphicProps<T, DescriptionProps<T>>): import("solid-js").JSX.Element;
+export declare function Items(props: ItemsProps): import("@solidjs/web").JSX.Element;
+export type DescriptionProps<T extends ValidComponent = "div"> = K.RadioGroupDescriptionProps;
+export declare function Description<T extends ValidComponent = "div">(props: PolymorphicProps<T, DescriptionProps<T>>): import("@solidjs/web").JSX.Element;
 export type ErrorMessageProps<T extends ValidComponent = "div"> = K.RadioGroupErrorMessageProps<T>;
-export declare function ErrorMessage<T extends ValidComponent = "div">(props: PolymorphicProps<T, ErrorMessageProps<T>>): import("solid-js").JSX.Element;
+export declare function ErrorMessage<T extends ValidComponent = "div">(props: PolymorphicProps<T, ErrorMessageProps<T>>): import("@solidjs/web").JSX.Element;
 export type ItemProps<T extends ValidComponent = "div"> = K.RadioGroupItemProps<T>;
-export declare function Item<T extends ValidComponent = "div">(props: PolymorphicProps<T, ItemProps<T>>): import("solid-js").JSX.Element;
+export declare function Item<T extends ValidComponent = "div">(props: PolymorphicProps<T, ItemProps<T>>): import("@solidjs/web").JSX.Element;
 export type ItemControlProps<T extends ValidComponent = "div"> = K.RadioGroupItemControlProps<T>;
-export declare function ItemControl<T extends ValidComponent = "div">(props: PolymorphicProps<T, ItemControlProps<T>>): import("solid-js").JSX.Element;
+export declare function ItemControl<T extends ValidComponent = "div">(props: PolymorphicProps<T, ItemControlProps<T>>): import("@solidjs/web").JSX.Element;
 export type ItemIndicatorProps<T extends ValidComponent = "div"> = K.RadioGroupItemIndicatorProps<T>;
-export declare function ItemIndicator<T extends ValidComponent = "div">(props: PolymorphicProps<T, ItemIndicatorProps<T>>): import("solid-js").JSX.Element;
+export declare function ItemIndicator<T extends ValidComponent = "div">(props: PolymorphicProps<T, ItemIndicatorProps<T>>): import("@solidjs/web").JSX.Element;
 export type ItemLabelProps<T extends ValidComponent = "label"> = K.RadioGroupItemLabelProps<T>;
-export declare function ItemLabel<T extends ValidComponent = "label">(props: PolymorphicProps<T, ItemLabelProps<T>>): import("solid-js").JSX.Element;
+export declare function ItemLabel<T extends ValidComponent = "label">(props: PolymorphicProps<T, ItemLabelProps<T>>): import("@solidjs/web").JSX.Element;
 export { ItemInput, ItemDescription, type RadioGroupItemInputProps as ItemInputProps, type RadioGroupItemDescriptionProps as ItemDescriptionProps, } from "@kobalte/core/radio-group";
 ```
 
@@ -5574,7 +5551,7 @@ export { ItemInput, ItemDescription, type RadioGroupItemInputProps as ItemInputP
 ```ts
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import { type TabsIndicatorProps, type TabsListProps, type TabsRootProps } from "@kobalte/core/tabs";
-import { type ValidComponent } from "solid-js";
+import { type ValidComponent } from "@solidjs/web";
 import * as styles from "../components/SegmentedControl/SegmentedControl.css.js";
 export { SegmentedControlItem as Item, type SegmentedControlItemProps as ItemProps, } from "../components/SegmentedControl/SegmentedControlItem.js";
 export type RootProps = Omit<TabsRootProps, "orientation"> & styles.SegmentedControlVariants & {
@@ -5582,11 +5559,11 @@ export type RootProps = Omit<TabsRootProps, "orientation"> & styles.SegmentedCon
     onEscapeKeyDown?: (event: KeyboardEvent) => void;
     itemClass?: string;
 };
-export declare function Root(props: PolymorphicProps<"div", RootProps>): import("solid-js").JSX.Element;
+export declare function Root(props: PolymorphicProps<"div", RootProps>): import("@solidjs/web").JSX.Element;
 export type ListProps<T extends ValidComponent = "div"> = TabsListProps<T>;
-export declare function List<T extends ValidComponent = "div">(props: PolymorphicProps<T, ListProps<T>>): import("solid-js").JSX.Element;
+export declare function List<T extends ValidComponent = "div">(props: PolymorphicProps<T, ListProps<T>>): import("@solidjs/web").JSX.Element;
 export type IndicatorProps<T extends ValidComponent = "div"> = TabsIndicatorProps<T>;
-export declare function Indicator<T extends ValidComponent = "div">(props: PolymorphicProps<T, IndicatorProps<T>>): import("solid-js").JSX.Element;
+export declare function Indicator<T extends ValidComponent = "div">(props: PolymorphicProps<T, IndicatorProps<T>>): import("@solidjs/web").JSX.Element;
 ```
 
 ## parts/select.d.ts
@@ -5594,7 +5571,7 @@ export declare function Indicator<T extends ValidComponent = "div">(props: Polym
 ```ts
 import * as K from "@kobalte/core/select";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
-import { type ValidComponent } from "solid-js";
+import { type ValidComponent } from "@solidjs/web";
 import type { BaseFieldProps } from "../components/Field/createBaseFieldProps.js";
 export declare const selectParts: {
     readonly root: "select";
@@ -5613,29 +5590,29 @@ export declare const selectParts: {
 export type SelectPart = keyof typeof selectParts;
 export type SelectClasses = Partial<Record<SelectPart, string>>;
 export type RootProps<Option, OptGroup = never, T extends ValidComponent = "div"> = K.SelectRootProps<Option, OptGroup, T> & Pick<NonNullable<BaseFieldProps>, "size">;
-export declare function Root<Option, OptGroup = never, T extends ValidComponent = "div">(props: PolymorphicProps<T, RootProps<Option, OptGroup, T>>): import("solid-js").JSX.Element;
+export declare function Root<Option, OptGroup = never, T extends ValidComponent = "div">(props: PolymorphicProps<T, RootProps<Option, OptGroup, T>>): import("@solidjs/web").JSX.Element;
 export type TriggerProps<T extends ValidComponent = "button"> = K.SelectTriggerProps<T> & BaseFieldProps;
-export declare function Trigger<T extends ValidComponent = "button">(props: PolymorphicProps<T, TriggerProps<T>>): import("solid-js").JSX.Element;
+export declare function Trigger<T extends ValidComponent = "button">(props: PolymorphicProps<T, TriggerProps<T>>): import("@solidjs/web").JSX.Element;
 export type ValueProps<Option, T extends ValidComponent = "span"> = K.SelectValueProps<Option, T>;
-export declare function Value<Option, T extends ValidComponent = "span">(props: PolymorphicProps<T, ValueProps<Option, T>>): import("solid-js").JSX.Element;
+export declare function Value<Option, T extends ValidComponent = "span">(props: PolymorphicProps<T, ValueProps<Option, T>>): import("@solidjs/web").JSX.Element;
 export type ContentProps<T extends ValidComponent = "div"> = K.SelectContentProps<T>;
-export declare function Content<T extends ValidComponent = "div">(props: PolymorphicProps<T, ContentProps<T>>): import("solid-js").JSX.Element;
+export declare function Content<T extends ValidComponent = "div">(props: PolymorphicProps<T, ContentProps<T>>): import("@solidjs/web").JSX.Element;
 export type ListboxProps<Option = unknown, OptGroup = never, T extends ValidComponent = "ul"> = K.SelectListboxProps<Option, OptGroup, T>;
-export declare function Listbox<Option = unknown, OptGroup = never, T extends ValidComponent = "ul">(props: PolymorphicProps<T, ListboxProps<Option, OptGroup, T>>): import("solid-js").JSX.Element;
+export declare function Listbox<Option = unknown, OptGroup = never, T extends ValidComponent = "ul">(props: PolymorphicProps<T, ListboxProps<Option, OptGroup, T>>): import("@solidjs/web").JSX.Element;
 export type LabelProps<T extends ValidComponent = "span"> = K.SelectLabelProps<T>;
-export declare function Label<T extends ValidComponent = "span">(props: PolymorphicProps<T, LabelProps<T>>): import("solid-js").JSX.Element;
-export type DescriptionProps<T extends ValidComponent = "div"> = K.SelectDescriptionProps<T>;
-export declare function Description<T extends ValidComponent = "div">(props: PolymorphicProps<T, DescriptionProps<T>>): import("solid-js").JSX.Element;
+export declare function Label<T extends ValidComponent = "span">(props: PolymorphicProps<T, LabelProps<T>>): import("@solidjs/web").JSX.Element;
+export type DescriptionProps<T extends ValidComponent = "div"> = K.SelectDescriptionProps;
+export declare function Description<T extends ValidComponent = "div">(props: PolymorphicProps<T, DescriptionProps<T>>): import("@solidjs/web").JSX.Element;
 export type ErrorMessageProps<T extends ValidComponent = "div"> = K.SelectErrorMessageProps<T>;
-export declare function ErrorMessage<T extends ValidComponent = "div">(props: PolymorphicProps<T, ErrorMessageProps<T>>): import("solid-js").JSX.Element;
+export declare function ErrorMessage<T extends ValidComponent = "div">(props: PolymorphicProps<T, ErrorMessageProps<T>>): import("@solidjs/web").JSX.Element;
 export type IconProps<T extends ValidComponent = "span"> = K.SelectIconProps<T>;
-export declare function Icon<T extends ValidComponent = "span">(props: PolymorphicProps<T, IconProps<T>>): import("solid-js").JSX.Element;
+export declare function Icon<T extends ValidComponent = "span">(props: PolymorphicProps<T, IconProps<T>>): import("@solidjs/web").JSX.Element;
 export type ItemProps<T extends ValidComponent = "li"> = K.SelectItemProps<T>;
-export declare function Item<T extends ValidComponent = "li">(props: PolymorphicProps<T, ItemProps<T>>): import("solid-js").JSX.Element;
+export declare function Item<T extends ValidComponent = "li">(props: PolymorphicProps<T, ItemProps<T>>): import("@solidjs/web").JSX.Element;
 export type ItemLabelProps<T extends ValidComponent = "div"> = K.SelectItemLabelProps<T>;
-export declare function ItemLabel<T extends ValidComponent = "div">(props: PolymorphicProps<T, ItemLabelProps<T>>): import("solid-js").JSX.Element;
+export declare function ItemLabel<T extends ValidComponent = "div">(props: PolymorphicProps<T, ItemLabelProps<T>>): import("@solidjs/web").JSX.Element;
 export type ItemIndicatorProps<T extends ValidComponent = "div"> = K.SelectItemIndicatorProps<T>;
-export declare function ItemIndicator<T extends ValidComponent = "div">(props: PolymorphicProps<T, ItemIndicatorProps<T>>): import("solid-js").JSX.Element;
+export declare function ItemIndicator<T extends ValidComponent = "div">(props: PolymorphicProps<T, ItemIndicatorProps<T>>): import("@solidjs/web").JSX.Element;
 export { Portal, Section, type SelectPortalProps as PortalProps, type SelectSectionProps as SectionProps, } from "@kobalte/core/select";
 export type FormValueProps = {
     name: string;
@@ -5645,15 +5622,15 @@ export type FormValueProps = {
  * One hidden input per selected key, so `name` submits the value with a form.
  * Kobalte's `HiddenSelect` puts a focusable input inside `aria-hidden`, which axe reports.
  */
-export declare function FormValue(props: FormValueProps): import("solid-js").JSX.Element;
+export declare function FormValue(props: FormValueProps): import("@solidjs/web").JSX.Element;
 ```
 
 ## parts/settings.d.ts
 
 ```ts
-import { type JSX, type ValidComponent } from "solid-js";
+import { type JSX, type ValidComponent } from "@solidjs/web";
 import { type SettingsRowVariants } from "@codeui/styles/settings";
-export { settingsRowParts, type SettingsRowPart, type SettingsRowClasses, type SettingsRowLayout, type SettingsRowVariants, type SettingsRowStyles, settingsRowStyles, settingsGroupParts, type SettingsGroupPart, type SettingsGroupClasses, type SettingsGroupStyles, settingsGroupStyles } from "@codeui/styles/settings";
+export { settingsRowParts, type SettingsRowPart, type SettingsRowClasses, type SettingsRowLayout, type SettingsRowVariants, type SettingsRowStyles, settingsRowStyles, settingsGroupParts, type SettingsGroupPart, type SettingsGroupClasses, type SettingsGroupStyles, settingsGroupStyles, } from "@codeui/styles/settings";
 export type RowProps = JSX.HTMLAttributes<HTMLDivElement> & SettingsRowVariants;
 /** The row. `layout` and `compactControl` set `data-layout` and `data-compact-control`. */
 export declare function Row(props: RowProps): JSX.Element;
@@ -5694,7 +5671,7 @@ export { createSettingsRowProps, type SettingsRowControlProps, type SettingsRowF
 ```ts
 import { type DialogCloseButtonProps as KDialogCloseButtonProps, type DialogContentProps as KDialogContentProps, type DialogDescriptionProps as KDialogDescriptionProps, type DialogOverlayProps as KDialogOverlayProps, type DialogPortalProps as KDialogPortalProps, type DialogRootProps as KDialogRootProps, type DialogTitleProps as KDialogTitleProps, type DialogTriggerProps as KDialogTriggerProps } from "@kobalte/core/dialog";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
-import { type ComponentProps, type JSX, type ValidComponent } from "solid-js";
+import { type ComponentProps, type JSX, type ValidComponent } from "@solidjs/web";
 import { type IconButtonProps } from "../components/IconButton/IconButton.js";
 import { type SheetSide, type SheetMotion } from "@codeui/styles/sheet";
 export { sheetParts, type SheetPart, type SheetClasses, type SheetSide, type SheetMotion, type SheetStyles, sheetStyles } from "@codeui/styles/sheet";
@@ -5741,8 +5718,8 @@ export declare function Footer(props: ComponentProps<"div">): JSX.Element;
 ```ts
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import { type SkeletonRootProps as KSkeletonRootProps } from "@kobalte/core/skeleton";
-import { type ValidComponent } from "solid-js";
-export { skeletonParts, type SkeletonPart, type SkeletonClasses, type SkeletonVariants, type SkeletonStyles, skeletonStyles } from "@codeui/styles/skeleton";
+import { type ValidComponent } from "@solidjs/web";
+export { skeletonParts, type SkeletonPart, type SkeletonClasses, type SkeletonVariants, type SkeletonStyles, skeletonStyles, } from "@codeui/styles/skeleton";
 export type RootProps<T extends ValidComponent = "div"> = KSkeletonRootProps<T> & {
     class?: string;
 };
@@ -5750,7 +5727,7 @@ export type RootProps<T extends ValidComponent = "div"> = KSkeletonRootProps<T> 
  * Kobalte's Skeleton. While `visible` it is a placeholder hidden from
  * assistive technology; the loading region around it owns `aria-busy`.
  */
-export declare function Root<T extends ValidComponent = "div">(props: PolymorphicProps<T, RootProps<T>>): import("solid-js").JSX.Element;
+export declare function Root<T extends ValidComponent = "div">(props: PolymorphicProps<T, RootProps<T>>): import("@solidjs/web").JSX.Element;
 ```
 
 ## parts/slider.d.ts
@@ -5758,28 +5735,28 @@ export declare function Root<T extends ValidComponent = "div">(props: Polymorphi
 ```ts
 import * as K from "@kobalte/core/slider";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
-import { type ValidComponent } from "solid-js";
+import { type ValidComponent } from "@solidjs/web";
 export { useSliderContext } from "@kobalte/core/slider";
 import { type SliderVariants } from "@codeui/styles/slider";
-export { type SliderVariants, sliderParts, type SliderPart, type SliderClasses, type SliderStyles, sliderStyles } from "@codeui/styles/slider";
+export { type SliderVariants, sliderParts, type SliderPart, type SliderClasses, type SliderStyles, sliderStyles, } from "@codeui/styles/slider";
 export type RootProps<T extends ValidComponent = "div"> = K.SliderRootProps<T> & SliderVariants;
-export declare function Root<T extends ValidComponent = "div">(props: PolymorphicProps<T, RootProps<T>>): import("solid-js").JSX.Element;
+export declare function Root<T extends ValidComponent = "div">(props: PolymorphicProps<T, RootProps<T>>): import("@solidjs/web").JSX.Element;
 export type LabelProps<T extends ValidComponent = "label"> = K.SliderLabelProps<T> & SliderVariants;
-export declare function Label<T extends ValidComponent = "label">(props: PolymorphicProps<T, LabelProps<T>>): import("solid-js").JSX.Element;
-export type DescriptionProps<T extends ValidComponent = "div"> = K.SliderDescriptionProps<T> & SliderVariants;
-export declare function Description<T extends ValidComponent = "div">(props: PolymorphicProps<T, DescriptionProps<T>>): import("solid-js").JSX.Element;
+export declare function Label<T extends ValidComponent = "label">(props: PolymorphicProps<T, LabelProps<T>>): import("@solidjs/web").JSX.Element;
+export type DescriptionProps<T extends ValidComponent = "div"> = K.SliderDescriptionProps & SliderVariants;
+export declare function Description<T extends ValidComponent = "div">(props: PolymorphicProps<T, DescriptionProps<T>>): import("@solidjs/web").JSX.Element;
 export type ErrorMessageProps<T extends ValidComponent = "div"> = K.SliderErrorMessageProps<T> & SliderVariants;
-export declare function ErrorMessage<T extends ValidComponent = "div">(props: PolymorphicProps<T, ErrorMessageProps<T>>): import("solid-js").JSX.Element;
+export declare function ErrorMessage<T extends ValidComponent = "div">(props: PolymorphicProps<T, ErrorMessageProps<T>>): import("@solidjs/web").JSX.Element;
 export type TrackProps<T extends ValidComponent = "div"> = K.SliderTrackProps<T> & SliderVariants;
-export declare function Track<T extends ValidComponent = "div">(props: PolymorphicProps<T, TrackProps<T>>): import("solid-js").JSX.Element;
+export declare function Track<T extends ValidComponent = "div">(props: PolymorphicProps<T, TrackProps<T>>): import("@solidjs/web").JSX.Element;
 export type FillProps<T extends ValidComponent = "div"> = K.SliderFillProps<T> & SliderVariants;
-export declare function Fill<T extends ValidComponent = "div">(props: PolymorphicProps<T, FillProps<T>>): import("solid-js").JSX.Element;
+export declare function Fill<T extends ValidComponent = "div">(props: PolymorphicProps<T, FillProps<T>>): import("@solidjs/web").JSX.Element;
 export type ThumbProps<T extends ValidComponent = "span"> = K.SliderThumbProps<T> & SliderVariants;
-export declare function Thumb<T extends ValidComponent = "span">(props: PolymorphicProps<T, ThumbProps<T>>): import("solid-js").JSX.Element;
+export declare function Thumb<T extends ValidComponent = "span">(props: PolymorphicProps<T, ThumbProps<T>>): import("@solidjs/web").JSX.Element;
 export type InputProps = K.SliderInputProps;
-export declare function Input(props: InputProps): import("solid-js").JSX.Element;
+export declare function Input(props: InputProps): import("@solidjs/web").JSX.Element;
 export type ValueLabelProps<T extends ValidComponent = "div"> = K.SliderValueLabelProps<T> & SliderVariants;
-export declare function ValueLabel<T extends ValidComponent = "div">(props: PolymorphicProps<T, ValueLabelProps<T>>): import("solid-js").JSX.Element;
+export declare function ValueLabel<T extends ValidComponent = "div">(props: PolymorphicProps<T, ValueLabelProps<T>>): import("@solidjs/web").JSX.Element;
 export declare const SliderParts: {
     Root: typeof Root;
     Label: typeof Label;
@@ -5796,9 +5773,9 @@ export declare const SliderParts: {
 ## parts/spinner.d.ts
 
 ```ts
-import { type JSX } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import { type SpinnerVariants } from "@codeui/styles/spinner";
-export { spinnerParts, type SpinnerPart, type SpinnerClasses, type SpinnerSize, type SpinnerVariants, type SpinnerStyles, spinnerStyles } from "@codeui/styles/spinner";
+export { spinnerParts, type SpinnerPart, type SpinnerClasses, type SpinnerSize, type SpinnerVariants, type SpinnerStyles, spinnerStyles, } from "@codeui/styles/spinner";
 export type RootProps = JSX.SvgSVGAttributes<SVGSVGElement> & SpinnerVariants;
 /** The 24×24 viewBox that Track and Indicator draw in. */
 export declare function Root(props: RootProps): JSX.Element;
@@ -5811,9 +5788,9 @@ export declare function Indicator(props: IndicatorProps): JSX.Element;
 ## parts/stack.d.ts
 
 ```ts
-import { type ComponentProps, type JSX, type ValidComponent } from "solid-js";
+import { type ComponentProps, type JSX, type ValidComponent } from "@solidjs/web";
 import { type StackVariants, type StackClasses } from "@codeui/styles/stack";
-export { type Gap, type StackVariants, stackParts, type StackPart, type StackClasses, type StackStyles, stackStyles } from "@codeui/styles/stack";
+export { type Gap, type StackVariants, stackParts, type StackPart, type StackClasses, type StackStyles, stackStyles, } from "@codeui/styles/stack";
 export type StackProps<T extends ValidComponent = "div"> = StackVariants & {
     as?: T;
     children?: JSX.Element;
@@ -5830,24 +5807,24 @@ export declare function Root<T extends ValidComponent = "div">(props: StackProps
 ```ts
 import * as K from "@kobalte/core/switch";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
-import { type ValidComponent } from "solid-js";
+import { type ValidComponent } from "@solidjs/web";
 export { useSwitchContext } from "@kobalte/core/switch";
 import { type SwitchVariants } from "@codeui/styles/switch";
 export { switchParts, type SwitchVariants, type SwitchPart, type SwitchClasses, type SwitchStyles, switchStyles, } from "@codeui/styles/switch";
 export type RootProps<T extends ValidComponent = "div"> = K.SwitchRootProps<T> & SwitchVariants;
-export declare function Root<T extends ValidComponent = "div">(props: PolymorphicProps<T, RootProps<T>>): import("solid-js").JSX.Element;
+export declare function Root<T extends ValidComponent = "div">(props: PolymorphicProps<T, RootProps<T>>): import("@solidjs/web").JSX.Element;
 export type InputProps<T extends ValidComponent = "input"> = K.SwitchInputProps<T> & SwitchVariants;
-export declare function Input<T extends ValidComponent = "input">(props: PolymorphicProps<T, InputProps<T>>): import("solid-js").JSX.Element;
+export declare function Input<T extends ValidComponent = "input">(props: PolymorphicProps<T, InputProps<T>>): import("@solidjs/web").JSX.Element;
 export type ControlProps<T extends ValidComponent = "div"> = K.SwitchControlProps<T> & SwitchVariants;
-export declare function Control<T extends ValidComponent = "div">(props: PolymorphicProps<T, ControlProps<T>>): import("solid-js").JSX.Element;
+export declare function Control<T extends ValidComponent = "div">(props: PolymorphicProps<T, ControlProps<T>>): import("@solidjs/web").JSX.Element;
 export type ThumbProps<T extends ValidComponent = "div"> = K.SwitchThumbProps<T> & SwitchVariants;
-export declare function Thumb<T extends ValidComponent = "div">(props: PolymorphicProps<T, ThumbProps<T>>): import("solid-js").JSX.Element;
+export declare function Thumb<T extends ValidComponent = "div">(props: PolymorphicProps<T, ThumbProps<T>>): import("@solidjs/web").JSX.Element;
 export type LabelProps<T extends ValidComponent = "label"> = K.SwitchLabelProps<T> & SwitchVariants;
-export declare function Label<T extends ValidComponent = "label">(props: PolymorphicProps<T, LabelProps<T>>): import("solid-js").JSX.Element;
+export declare function Label<T extends ValidComponent = "label">(props: PolymorphicProps<T, LabelProps<T>>): import("@solidjs/web").JSX.Element;
 export type DescriptionProps<T extends ValidComponent = "div"> = K.SwitchDescriptionProps<T> & SwitchVariants;
-export declare function Description<T extends ValidComponent = "div">(props: PolymorphicProps<T, DescriptionProps<T>>): import("solid-js").JSX.Element;
+export declare function Description<T extends ValidComponent = "div">(props: PolymorphicProps<T, DescriptionProps<T>>): import("@solidjs/web").JSX.Element;
 export type ErrorMessageProps<T extends ValidComponent = "div"> = K.SwitchErrorMessageProps<T> & SwitchVariants;
-export declare function ErrorMessage<T extends ValidComponent = "div">(props: PolymorphicProps<T, ErrorMessageProps<T>>): import("solid-js").JSX.Element;
+export declare function ErrorMessage<T extends ValidComponent = "div">(props: PolymorphicProps<T, ErrorMessageProps<T>>): import("@solidjs/web").JSX.Element;
 export declare const SwitchParts: {
     Root: typeof Root;
     Input: typeof Input;
@@ -5871,9 +5848,9 @@ export { Tabs as Root, TabsListPart as List, TabsHeader as Trigger, TabsContent 
 import { type FieldRootProps, type FieldTextAreaProps } from "../components/TextField/field-parts.js";
 export { Description, ErrorMessage, Label, type DescriptionProps, type ErrorMessageProps, type LabelProps, } from "../components/TextField/field-parts.js";
 export type RootProps = FieldRootProps;
-export declare function Root(props: RootProps): import("solid-js").JSX.Element;
+export declare function Root(props: RootProps): import("@solidjs/web").JSX.Element;
 export type InputProps = FieldTextAreaProps;
-export declare function Input(props: InputProps): import("solid-js").JSX.Element;
+export declare function Input(props: InputProps): import("@solidjs/web").JSX.Element;
 ```
 
 ## parts/text-field.d.ts
@@ -5882,17 +5859,17 @@ export declare function Input(props: InputProps): import("solid-js").JSX.Element
 import { type FieldInputProps, type FieldRootProps } from "../components/TextField/field-parts.js";
 export { Description, ErrorMessage, Label, type DescriptionProps, type ErrorMessageProps, type LabelProps, } from "../components/TextField/field-parts.js";
 export type RootProps = FieldRootProps;
-export declare function Root(props: RootProps): import("solid-js").JSX.Element;
+export declare function Root(props: RootProps): import("@solidjs/web").JSX.Element;
 export type InputProps = FieldInputProps;
-export declare function Input(props: InputProps): import("solid-js").JSX.Element;
+export declare function Input(props: InputProps): import("@solidjs/web").JSX.Element;
 ```
 
 ## parts/text.d.ts
 
 ```ts
-import { type ComponentProps, type JSX, type ValidComponent } from "solid-js";
+import { type ComponentProps, type JSX, type ValidComponent } from "@solidjs/web";
 import { type TextVariants, type TextClasses } from "@codeui/styles/text";
-export { type TextVariants, textParts, type TextPart, type TextClasses, type TextStyles, textStyles } from "@codeui/styles/text";
+export { type TextVariants, textParts, type TextPart, type TextClasses, type TextStyles, textStyles, } from "@codeui/styles/text";
 export type TextProps<T extends ValidComponent = "span"> = TextVariants & {
     as?: T;
     children?: JSX.Element;
@@ -5908,9 +5885,9 @@ export declare function Root<T extends ValidComponent = "span">(props: TextProps
 ```ts
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import { type ToastCloseButtonProps as KToastCloseButtonProps, type ToastDescriptionProps as KToastDescriptionProps, type ToastListProps as KToastListProps, type ToastProgressFillProps as KToastProgressFillProps, type ToastProgressTrackProps as KToastProgressTrackProps, type ToastRegionProps as KToastRegionProps, type ToastRootProps as KToastRootProps, type ToastTitleProps as KToastTitleProps } from "@kobalte/core/toast";
-import { type JSX, type ValidComponent } from "solid-js";
+import { type JSX, type ValidComponent } from "@solidjs/web";
 import { type ToastTone, type ToastPosition } from "@codeui/styles/toast";
-export { toastParts, type ToastPart, type ToastClasses, type ToastTone, type ToastPosition, type ToastVariants, type ToastStyles, toastStyles } from "@codeui/styles/toast";
+export { toastParts, type ToastPart, type ToastClasses, type ToastTone, type ToastPosition, type ToastVariants, type ToastStyles, toastStyles, } from "@codeui/styles/toast";
 export type RegionProps<T extends ValidComponent = "div"> = KToastRegionProps<T> & {
     position?: ToastPosition;
     class?: string;
@@ -5963,7 +5940,7 @@ export declare function Action(props: ActionProps): JSX.Element;
 ```ts
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import { type TooltipContentProps, type TooltipRootProps, type TooltipTriggerProps } from "@kobalte/core/tooltip";
-import { type JSX, type ValidComponent } from "solid-js";
+import { type JSX, type ValidComponent } from "@solidjs/web";
 import * as styles from "../components/Tooltip/Tooltip.css.js";
 export type RootProps = TooltipRootProps;
 export declare function Root(props: RootProps): JSX.Element;
@@ -6253,7 +6230,9 @@ export interface SlotProp<T extends string> {
 ## utils/css.d.ts
 
 ```ts
-export { mergeClasses, toPx } from "@codeui/styles/internal/utils/css";
+import type { JSX } from "@solidjs/web";
+export declare function mergeClasses(...classes: JSX.ClassValue[]): string;
+export { toPx } from "@codeui/styles/internal/utils/css";
 export declare function assignInlineVars(vars: Record<string, string>): {
     [k: string]: string;
 };

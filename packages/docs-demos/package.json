@@ -20,13 +20,14 @@
 	"dependencies": {
 		"@codeui/inkstone": "workspace:*",
 		"@codeui/kit": "workspace:*",
-		"@kobalte/core": "^0.13.14",
-		"solid-js": "^1.9.8",
+		"@kobalte/core": "2.0.0-alpha.5",
+		"solid-js": "2.0.3",
+		"@solidjs/web": "2.0.3",
 		"@codeui/styles": "workspace:*"
 	},
 	"devDependencies": {
 		"typescript": "^5.6.2",
-		"vite": "^8.0.0",
-		"vite-plugin-solid": "^2.11.12"
+		"vite": "8.3.8",
+		"@solidjs/vite-plugin": "3.0.1"
 	}
 }

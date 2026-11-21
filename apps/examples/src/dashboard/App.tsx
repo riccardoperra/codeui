@@ -1,12 +1,13 @@
 import { Button, type CommandItem, CommandMenu, createToaster, DropdownMenuItem, IconButton, Kbd, Sheet, Text, Toaster, Tooltip } from "@codeui/kit";
-import Activity from "lucide-solid/icons/activity";
-import ChartNoAxesColumn from "lucide-solid/icons/chart-no-axes-column";
-import Menu from "lucide-solid/icons/menu";
-import Search from "lucide-solid/icons/search";
-import SettingsIcon from "lucide-solid/icons/settings";
-import UserPlus from "lucide-solid/icons/user-plus";
-import Users from "lucide-solid/icons/users";
-import { createSignal, For, type JSX, Match, Show, Switch } from "solid-js";
+import Activity from "@lucide/solid/icons/activity";
+import ChartNoAxesColumn from "@lucide/solid/icons/chart-no-axes-column";
+import Menu from "@lucide/solid/icons/menu";
+import Search from "@lucide/solid/icons/search";
+import SettingsIcon from "@lucide/solid/icons/settings";
+import UserPlus from "@lucide/solid/icons/user-plus";
+import Users from "@lucide/solid/icons/users";
+import { createSignal, For, Match, Show, Switch } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import { ExampleMenu, MadeWith } from "../shared/ExampleMenu";
 import { modKey, onModK } from "../shared/hotkey";
 import { createIsPhone } from "../shared/media";
@@ -145,7 +146,7 @@ export function App() {
 	onModK(openCommands);
 
 	return (
-		<PulseContext.Provider value={pulse}>
+		<PulseContext value={pulse}>
 			<div class="ex-page">
 				<header class="ex-header">
 					<Show when={isPhone()}>
@@ -234,6 +235,6 @@ export function App() {
 				}}
 			/>
 			<Toaster toaster={notifications} closeLabel="Dismiss" />
-		</PulseContext.Provider>
+		</PulseContext>
 	);
 }

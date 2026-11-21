@@ -3,12 +3,8 @@ import "@codeui/styles/theme.css";
 import "@codeui/styles/checkbox.css";
 import * as K from "@kobalte/core/checkbox";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
-import {
-	mergeProps,
-	splitProps,
-	type ComponentProps,
-	type ValidComponent,
-} from "solid-js";
+import { omit } from "solid-js";
+import { type ComponentProps, type ValidComponent } from "@solidjs/web";
 import * as styles from "../components/CheckBox/CheckBox.css";
 import type { BaseFieldProps } from "../components/Field/createBaseFieldProps";
 import { errorMessage } from "../components/Field/FieldError/FieldError.css";
@@ -25,11 +21,8 @@ export type RootProps<T extends ValidComponent = "div"> = K.CheckboxRootProps<T>
 export function Root<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, RootProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"div", RootProps>, [
-		"class",
-		"size",
-		"variant",
-	]);
+	const local = props as PolymorphicProps<"div", RootProps>;
+	const others = omit(local, "class", "size", "variant");
 	return (
 		<K.Root
 			{...others}
@@ -53,11 +46,8 @@ export type ControlProps<T extends ValidComponent = "div"> = K.CheckboxControlPr
 export function Control<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, ControlProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"div", ControlProps>, [
-		"class",
-		"size",
-		"variant",
-	]);
+	const local = props as PolymorphicProps<"div", ControlProps>;
+	const others = omit(local, "class", "size", "variant");
 	return (
 		<K.Control
 			{...others}
@@ -73,17 +63,14 @@ export type IndicatorProps<T extends ValidComponent = "div"> =
 export function Indicator<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, IndicatorProps<T>>,
 ) {
-	const resolved = mergeProps(
-		{
-			forceMount: true,
-			get children() {
-				return <CheckIcon class={styles.icon} />;
-			},
-		},
-		props,
-	);
 	return (
-		<K.Indicator<T> {...resolved} class={mergeClasses(styles.indicator, props.class)} />
+		<K.Indicator<T>
+			{...props}
+			forceMount={props.forceMount ?? true}
+			class={mergeClasses(styles.indicator, props.class)}
+		>
+			{props.children === undefined ? <CheckIcon class={styles.icon} /> : props.children}
+		</K.Indicator>
 	);
 }
 

@@ -9,13 +9,14 @@ import {
 	Link,
 	Tooltip,
 } from "@codeui/kit";
-import BookOpen from "lucide-solid/icons/book-open";
-import Code from "lucide-solid/icons/code";
-import Ellipsis from "lucide-solid/icons/ellipsis";
-import LayoutGrid from "lucide-solid/icons/layout-grid";
-import Moon from "lucide-solid/icons/moon";
-import Sun from "lucide-solid/icons/sun";
-import { type JSX, Show } from "solid-js";
+import BookOpen from "@lucide/solid/icons/book-open";
+import Code from "@lucide/solid/icons/code";
+import Ellipsis from "@lucide/solid/icons/ellipsis";
+import LayoutGrid from "@lucide/solid/icons/layout-grid";
+import Moon from "@lucide/solid/icons/moon";
+import Sun from "@lucide/solid/icons/sun";
+import { Show } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import { docsUrl, sourceUrl } from "./examples";
 import { createControlSize } from "./size";
 import { theme, toggleTheme } from "./theme";

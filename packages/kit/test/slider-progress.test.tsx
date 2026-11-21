@@ -1,4 +1,5 @@
-import { cleanup, fireEvent, render, screen } from "solid-testing-library";
+import { flush } from "solid-js";
+import { cleanup, fireEvent, render, screen } from "@solidjs/testing-library";
 import { createSignal } from "solid-js";
 import { Slider } from "../src/components/Slider/Slider";
 import { Progress } from "../src/components/Progress/Progress";
@@ -68,7 +69,7 @@ it("preserves fractional values, keyboard steps and controlled updates", () => {
 	}
 	fireEvent.blur(thumb);
 	expect(ended).toHaveBeenCalledWith(1);
-	setValue(0.25);
+	flush(() => setValue(0.25));
 	expect(thumb).toHaveAttribute("aria-valuetext", "25% opacity");
 });
 it.each([{ disabled: true }, { readOnly: true }])(
@@ -91,7 +92,7 @@ it("exposes progress bounds and formatted value and responds to updates", () => 
 	expect(bar).toHaveAttribute("aria-valuenow", "5");
 	expect(bar).toHaveAttribute("aria-valuemax", "20");
 	expect(screen.getByText("25%")).toBeTruthy();
-	setValue(20);
+	flush(() => setValue(20));
 	expect(bar).toHaveAttribute("aria-valuenow", "20");
 });
 it("omits current value for indeterminate progress", () => {

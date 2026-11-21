@@ -9,7 +9,7 @@ Solid apps made with `@codeui/kit`. The docs site lists them at `/examples` and 
 | `theme-studio` | Theme Studio | A theme builder for CodeImage that exports a `createTheme` module |
 | `inspector` | Inspector playground | The [prosemirror-inspector](https://github.com/riccardoperra/prosemirror-devtools) invoice workbench, with plain ProseMirror |
 
-Each app is a real consumer of the kit: Vite and `vite-plugin-solid`, as [Installation](../docs/content/docs/(kit)/installation.mdx) describes. The interface uses kit components and `--cui-*` tokens only, and follows [`packages/kit/DESIGN.md`](../../packages/kit/DESIGN.md).
+Each app is a real consumer of the kit: Vite and `@solidjs/vite-plugin`, as [Installation](../docs/content/docs/(kit)/installation.mdx) describes. The interface uses kit components and `--cui-*` tokens only, and follows [`packages/kit/DESIGN.md`](../../packages/kit/DESIGN.md).
 
 ## Develop
 

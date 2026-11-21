@@ -18,7 +18,7 @@ for (const format of ["source", "esm"]) {
 		for (const { fileName: specifier } of ts.preProcessFile(source).importedFiles) {
 			assert.doesNotMatch(
 				specifier,
-				/solid-js|@kobalte/,
+				/solid-js|@solidjs\/web|@kobalte/,
 				`${file} imports component code`,
 			);
 			if (specifier.startsWith(".")) {
@@ -39,6 +39,8 @@ for (const format of ["source", "esm"]) {
 }
 const solid = process.argv.includes("--solid");
 const rootEntry = process.argv.includes("--root");
+// Vanilla Extract evaluates styles in Node, including under the Solid condition.
+const conditions = solid ? ["solid", "module", "node"] : ["module", "node"];
 const directory = await mkdtemp(path.join(kit, ".tokens-consumer-"));
 try {
 	const fixture = await readFile(new URL("./consumer.css.ts", import.meta.url), "utf8");
@@ -50,7 +52,8 @@ try {
 		configFile: false,
 		root: directory,
 		logLevel: "silent",
-		resolve: { conditions: solid ? ["solid"] : [] },
+		resolve: { conditions },
+		ssr: { resolve: { conditions } },
 		plugins: [vanillaExtractPlugin()],
 		build: {
 			write: false,

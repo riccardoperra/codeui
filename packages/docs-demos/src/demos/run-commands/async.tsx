@@ -1,4 +1,4 @@
-import { createEffect, createSignal, onCleanup } from "solid-js";
+import { createEffect, createSignal } from "solid-js";
 import { Button, type CommandItem, CommandMenu } from "@codeui/kit";
 
 const library = [
@@ -38,9 +38,8 @@ export default function AsyncDemo() {
 	const [loading, setLoading] = createSignal(false);
 	const [opened, setOpened] = createSignal("");
 
-	createEffect(() => {
-		if (!open()) return;
-		const current = query();
+	createEffect(() => open() ? query() : undefined, current => {
+		if (current === undefined) return;
 		let stale = false;
 		setLoading(true);
 		// Wait for a pause in typing before the request.
@@ -51,10 +50,10 @@ export default function AsyncDemo() {
 				setLoading(false);
 			});
 		}, 150);
-		onCleanup(() => {
+		return () => {
 			stale = true;
 			clearTimeout(timer);
-		});
+		};
 	});
 
 	return (

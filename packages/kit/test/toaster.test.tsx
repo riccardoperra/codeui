@@ -7,7 +7,7 @@ import {
 	screen,
 	waitFor,
 	within,
-} from "solid-testing-library";
+} from "@solidjs/testing-library";
 import {
 	createToaster,
 	Toaster,
@@ -217,7 +217,9 @@ describe("createToaster", () => {
 		const copied = await screen.findByRole("status");
 		expect(copied).toHaveAttribute("data-cui-theme", "light");
 		// The page switches theme while the toast is open.
-		copied.closest("[data-cui-theme=dark]:not([role=status])")!.setAttribute("data-cui-theme", "light");
+		copied
+			.closest("[data-cui-theme=dark]:not([role=status])")!
+			.setAttribute("data-cui-theme", "light");
 		await waitFor(() => expect(copied).toHaveAttribute("data-cui-theme", "dark"));
 		notifications.clear();
 		notifications.show({ description: "Saved", theme: "page" });
@@ -229,9 +231,9 @@ describe("createToaster", () => {
 		const Locale = createContext("en");
 		const notifications = createToaster();
 		render(() => (
-			<Locale.Provider value="it">
+			<Locale value="it">
 				<Toaster toaster={notifications} closeLabel="Chiudi" />
-			</Locale.Provider>
+			</Locale>
 		));
 		notifications.show({ description: () => `Lingua: ${useContext(Locale)}` });
 		expect(await screen.findByText("Lingua: it")).toBeInTheDocument();

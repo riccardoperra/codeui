@@ -1,4 +1,4 @@
-import { renderToString } from "solid-js/web";
+import { renderToString } from "@solidjs/web";
 import { Accordion } from "../src/components/Accordion/Accordion";
 it("server renders labelled headers and expanded content without DOM measurement", () => {
 	const html = renderToString(() => (

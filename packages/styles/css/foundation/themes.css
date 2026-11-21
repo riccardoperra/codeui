@@ -6,6 +6,14 @@
   :where([class^="cui-"], [class*=" cui-"])::after {
     box-sizing: border-box;
   }
+
+  /* Adopted overlays cannot use Kobalte alpha.5's inline pointer lock. */
+  :where(body:has([data-cui-adopted-layer="modal"])) {
+    pointer-events: none;
+  }
+  :where([data-cui-adopted-layer]) {
+    pointer-events: auto;
+  }
 }
 @layer cui.components {
   :root {

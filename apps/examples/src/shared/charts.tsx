@@ -1,4 +1,5 @@
-import { createMemo, createSignal, For, Index, type JSX, onCleanup, onMount, Show } from "solid-js";
+import { createMemo, createSignal, For, onSettled, Show } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import "./charts.css";
 
 /** `primary` is the series the chart is about. `comparison` is the period or target it is read against. */
@@ -27,10 +28,10 @@ function ticks(max: number, count = 4) {
 function createWidth() {
 	const [width, setWidth] = createSignal(0);
 	let element!: HTMLDivElement;
-	onMount(() => {
+	onSettled(() => {
 		const observer = new ResizeObserver(([entry]) => setWidth(entry.contentRect.width));
 		observer.observe(element);
-		onCleanup(() => observer.disconnect());
+		return () => observer.disconnect();
 	});
 	return { width, ref: (el: HTMLDivElement) => (element = el) };
 }
@@ -135,7 +136,7 @@ export function LineChart(props: ChartProps) {
 		<div
 			ref={ref}
 			class="chart"
-			tabIndex={0}
+			tabindex={0}
 			role="group"
 			aria-label={`${props["aria-label"]}. Use the arrow keys to read values.`}
 			onPointerMove={onPointerMove}
@@ -155,7 +156,7 @@ export function LineChart(props: ChartProps) {
 						</>
 					)}
 				</For>
-				<Index each={props.labels}>
+				<For keyed={false} each={props.labels}>
 					{(label, i) => (
 						<Show when={(props.labels.length - 1 - i) % every() === 0}>
 							<text class="chart-axis" x={x(i)} y={height() - 4} text-anchor={i === 0 ? "start" : i === props.labels.length - 1 ? "end" : "middle"}>
@@ -163,7 +164,7 @@ export function LineChart(props: ChartProps) {
 							</text>
 						</Show>
 					)}
-				</Index>
+				</For>
 				<Show when={area()}>
 					{series => (
 						<path
@@ -221,7 +222,7 @@ export function BarChart(props: ChartProps) {
 		<div
 			ref={ref}
 			class="chart"
-			tabIndex={0}
+			tabindex={0}
 			role="group"
 			aria-label={`${props["aria-label"]}. Use the arrow keys to read values.`}
 			onPointerMove={onPointerMove}
@@ -241,7 +242,7 @@ export function BarChart(props: ChartProps) {
 						</>
 					)}
 				</For>
-				<Index each={props.labels}>
+				<For keyed={false} each={props.labels}>
 					{(label, i) => (
 						<>
 							<Show when={i % every() === 0}>
@@ -261,7 +262,7 @@ export function BarChart(props: ChartProps) {
 							</For>
 						</>
 					)}
-				</Index>
+				</For>
 			</svg>
 			<Show when={index.active() !== undefined}>
 				<Tooltip title={props.labels[index.active()!]} series={props.series} index={index.active()!} format={props.format} x={center(index.active()!)} width={width()} />
