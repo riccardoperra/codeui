@@ -4,6 +4,7 @@ import Link from 'fumadocs-core/link';
 import { useEffect, useState, type CSSProperties } from 'react';
 import { useSolidDemo } from '@/components/solid-demo';
 import { homeOptions } from '@/lib/layout.shared';
+import { documentedPackages } from '@/lib/package-versions';
 import { showcase, type ShowcaseTile } from '@/lib/showcase';
 
 export const Route = createFileRoute('/')({
@@ -33,6 +34,14 @@ function Home() {
               Examples
             </Link>
             <InstallCommand />
+          </div>
+          <div className="home-package-versions package-version">
+            <div>Package versions in this build</div>
+            <ul role="list">
+              {documentedPackages.map(({ name, version }) => (
+                <li key={name}>{name} v{version}</li>
+              ))}
+            </ul>
           </div>
         </section>
         <section className="home-grid" aria-label="Live components">
