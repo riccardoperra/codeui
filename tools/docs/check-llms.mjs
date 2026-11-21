@@ -19,13 +19,13 @@ const get = async path => {
 	const res = await fetch(new URL(path, base));
 	return { status: res.status, type: res.headers.get('content-type') ?? '', body: await res.text() };
 };
-const leaks = body => (body.match(/<SolidDemo|<HtmlDemo|<CssPlayground|<PropsTable|<TypeTable/g) ?? []).length;
+const leaks = body => (body.match(/<ReactDemo|<SolidDemo|<HtmlDemo|<CssPlayground|<PropsTable|<TypeTable/g) ?? []).length;
 
 async function checkPage(slug) {
 	const md = await get(`/docs/${slug}.md`);
 	check(md.status === 200 && md.type.startsWith('text/markdown'), `/docs/${slug}.md is ${md.status} ${md.type}`);
 	check(/^# .+\(\/docs\//.test(md.body), `/docs/${slug}.md starts with the page title`);
-	check(!/<SolidDemo|<HtmlDemo|<CssPlayground|<PropsTable|<TypeTable/.test(md.body), `/docs/${slug}.md has no unexpanded demo or props tags`);
+	check(!/<ReactDemo|<SolidDemo|<HtmlDemo|<CssPlayground|<PropsTable|<TypeTable/.test(md.body), `/docs/${slug}.md has no unexpanded demo or props tags`);
 	const txt = await get(`/docs/${slug}.txt`);
 	check(txt.status === 200 && txt.type.startsWith('text/plain') && txt.body === md.body, `/docs/${slug}.txt matches the .md text`);
 }
@@ -40,7 +40,15 @@ if (page) {
 	const links = [...index.body.matchAll(/\]\((\/[^)]+)\)/g)].map(m => m[1]);
 	check(links.length > 60, `/llms.txt links ${links.length} files`);
 	const broken = [];
-	for (const link of links) if ((await get(link)).status !== 200) broken.push(link);
+	const missingReactExamples = [];
+	for (const link of links) {
+		const markdown = await get(link);
+		if (markdown.status !== 200) broken.push(link);
+		if (link.startsWith('/docs/react/components/') && (!markdown.body.includes('```tsx') || !markdown.body.includes('@codeui/react') || leaks(markdown.body)))
+			missingReactExamples.push(link);
+	}
+	check(links.some(link => link.startsWith('/docs/react/components/')) && missingReactExamples.length === 0,
+		`React component Markdown includes runnable examples${missingReactExamples.length ? `: ${missingReactExamples.join(', ')}` : ''}`);
 	check(broken.length === 0, `every /llms.txt link answers 200${broken.length ? `: ${broken.join(', ')}` : ''}`);
 
 	const full = await get('/llms-full.txt');
@@ -61,6 +69,8 @@ if (page) {
 	// Draft pages may still hold authored TypeTables. Each lane's --page run fails on them.
 	console.log(`info ${leaks(full.body)} unexpanded tags left in /llms-full.txt, from draft pages`);
 
+	check(titles.includes('# React (/docs/react)'), '/llms-full.txt includes the React installation guide');
+	await checkPage('react/components/button');
 	await checkPage('components/badge');
 	await checkPage('components/dialog');
 	await checkPage('design/color');

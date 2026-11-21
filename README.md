@@ -60,3 +60,9 @@ pnpm run update-deps
 # Updates all dependencies in the repository
 # taze -w -r && pnpm i
 ```
+
+## Packages
+
+- [`@codeui/kit`](packages/kit) provides Inkstone components for Solid.
+- [`@codeui/react`](packages/react) provides Inkstone components for React.
+- [`@codeui/styles`](packages/styles) provides Inkstone CSS and class helpers.

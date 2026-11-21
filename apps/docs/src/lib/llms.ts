@@ -2,8 +2,7 @@ import type { Item, Node, Root } from 'fumadocs-core/page-tree';
 import kit from '../../../../packages/kit/package.json';
 import { docsLlms, source } from './source';
 
-// The curated /llms.txt index and the /llms-full.txt bundle for @codeui/kit.
-// Both walk the kit sidebar. The full bundle also includes the Inkstone colour rules.
+// The curated /llms.txt index and the /llms-full.txt bundle for the Solid and React packages.
 
 const subpaths = Object.keys(kit.exports)
 	.filter(key => key !== '.' && key !== './package.json' && key !== './tokens')
@@ -34,11 +33,12 @@ function section(nodes: Node[], depth: number): string[] {
 function roots(tree: Root) {
 	const folders = tree.children.filter(n => n.type === 'folder');
 	const isDesign = (n: Node) => n.type === 'folder' && n.$id?.includes('design');
-	return { kitRoot: folders.find(n => !isDesign(n)), designRoot: folders.find(isDesign) };
+	const reactRoot = folders.find(n => n.$id === 'react' || n.index?.url === '/docs/react');
+	return { kitRoot: folders.find(n => n !== reactRoot && !isDesign(n)), reactRoot, designRoot: folders.find(isDesign) };
 }
 
 export function kitIndex() {
-	const { kitRoot, designRoot } = roots(source.getPageTree());
+	const { kitRoot, reactRoot, designRoot } = roots(source.getPageTree());
 	return [
 		`# CodeUI kit (@codeui/kit ${kit.version})`,
 		'',
@@ -49,9 +49,16 @@ export function kitIndex() {
 		`- Styled parts for custom layouts: ${subpaths.filter(s => s.endsWith('/parts')).map(s => `\`${s}\``).join(', ')}.`,
 		'- Token objects import from `@codeui/kit` or `@codeui/kit/tokens`.',
 		...(colourGuide ? [`- Use the [Inkstone colour rules](${markdownUrl(colourGuide.url)}) when styling an interface.`] : []),
-		'- Each link below is the Markdown of one page. [All kit pages in one file](/llms-full.txt).',
+		'- Each link below is the Markdown of one page. [All Solid and React pages in one file](/llms-full.txt).',
 		...(kitRoot?.type === 'folder' ? section(kitRoot.children, 2) : []),
 		'',
+		...(reactRoot ? [
+			'## React',
+			'',
+			...(reactRoot.index ? pageLine(reactRoot.index) : []),
+			...section(reactRoot.children, 3),
+			'',
+		] : []),
 		'## Optional',
 		'',
 		'The Inkstone design language behind the kit. Read it before changing a visual rule.',
@@ -65,7 +72,7 @@ export function kitIndex() {
 }
 
 export async function kitFull() {
-	const { kitRoot } = roots(source.getPageTree());
+	const { kitRoot, reactRoot } = roots(source.getPageTree());
 	const pages: Item[] = [];
 	const visit = (node: Node) => {
 		if (node.type === 'page') pages.push(node);
@@ -75,6 +82,7 @@ export async function kitFull() {
 		}
 	};
 	if (kitRoot) visit(kitRoot);
+	if (reactRoot) visit(reactRoot);
 	const content = [...pages.map(node => source.getNodePage(node)), colourGuide];
 	const rendered = await Promise.all(content.filter(page => page !== undefined).map(page => docsLlms.page(page)));
 	return rendered.join('\n\n');

@@ -10,7 +10,7 @@ export const Route = createRootRoute({
       { charSet: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { title: 'CodeUI' },
-      { name: 'description', content: 'Documentation for @codeui/kit, the Solid UI kit behind CodeImage.' },
+      { name: 'description', content: 'Documentation for Inkstone components for Solid and React.' },
     ],
     links: [{ rel: 'stylesheet', href: appCss }],
   }),

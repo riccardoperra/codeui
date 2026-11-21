@@ -5,7 +5,7 @@ export function baseOptions(): BaseLayoutProps {
   return {
     nav: { title: appName },
     // On every layout, so the examples are one click from the home page and from any docs page.
-    links: [{ text: 'Examples', url: '/examples', active: 'nested-url' }],
+    links: [{ text: 'React', url: '/docs/react', active: 'nested-url' }, { text: 'Examples', url: '/examples', active: 'nested-url' }],
     githubUrl: `https://github.com/${gitConfig.user}/${gitConfig.repo}`,
   };
 }

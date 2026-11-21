@@ -40,7 +40,7 @@
     inset: calc((var(--cui-switch-track-height) - var(--cui-switch-hit-height)) / 2) 0;
   }
   .cui-switch-control {
-    &[data-checked] {
+    &:is([data-checked], :where([data-rac])[data-selected]) {
       background: var(--cui-action-brand-base);
     }
 
@@ -67,7 +67,8 @@
     box-shadow: var(--cui-shadow-thumb);
     transition: transform var(--cui-motion-duration-fast) var(--cui-motion-ease-out);
   }
-  .cui-switch-thumb[data-checked] {
+  .cui-switch-thumb[data-checked],
+  .cui-switch-control:where([data-rac])[data-selected] .cui-switch-thumb {
     transform: translateX(calc(var(--cui-switch-track-width) - var(--cui-switch-track-height)));
   }
   :root[data-cui-input="keyboard"] .cui-switch-thumb {

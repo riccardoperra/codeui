@@ -86,7 +86,7 @@
       font-size: var(--cui-component-listbox-item-size-md-font-size);
     }
 
-    &[data-highlighted] {
+    &:is([data-highlighted], :where([data-rac])[data-focused]) {
       box-shadow: none;
       outline: none;
       background-color: var(--cui-listbox-item-hover-background);

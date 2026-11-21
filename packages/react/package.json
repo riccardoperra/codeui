@@ -1,0 +1,45 @@
+{
+	"name": "@codeui/react",
+	"version": "0.0.0",
+	"description": "Inkstone components for React",
+	"license": "MIT",
+	"type": "module",
+	"files": [
+		"dist",
+		"README.md"
+	],
+	"sideEffects": [
+		"**/*.css"
+	],
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
+		},
+		"./style.css": "./dist/style.css",
+		"./package.json": "./package.json"
+	},
+	"scripts": {
+		"build": "tsdown",
+		"typecheck": "tsc --noEmit",
+		"test": "node --test test/*.test.mjs"
+	},
+	"dependencies": {
+		"@codeui/styles": "workspace:^",
+		"react-aria": "^3.53.1",
+		"react-aria-components": "^1.22.1"
+	},
+	"peerDependencies": {
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0"
+	},
+	"devDependencies": {
+		"@tsdown/css": "^0.23.7",
+		"@types/react": "^19.3.0",
+		"@types/react-dom": "^19.3.0",
+		"react": "^19.3.1",
+		"react-dom": "^19.3.1",
+		"tsdown": "0.23.7",
+		"typescript": "^5.6.2"
+	}
+}
