@@ -13,7 +13,8 @@ import { description } from "../components/Field/FieldMessage/FieldMessage.css";
 import * as styles from "../components/Select/Select.css";
 import { mergeClasses } from "../utils/css";
 import { useNestedLayerMarker } from "../utils/layer-scope";
-import { motionRef } from "../utils/open-source";
+import { createPopMotion, motionRef, PopMotionContext } from "../utils/pop-motion";
+import { keepCollectionScrollLocal } from "../utils/collection-scroll";
 
 export const selectParts = {
 	root: "select",
@@ -43,16 +44,21 @@ export function Root<Option, OptGroup = never, T extends ValidComponent = "div">
 	props: PolymorphicProps<T, RootProps<Option, OptGroup, T>>,
 ) {
 	const local = props as PolymorphicProps<"div", RootProps<Option, OptGroup>>;
-	const others = omit(local, "class", "size");
+	const others = omit(local, "class", "size", "forceMount", "onOpenChange");
+	const motion = createPopMotion(local);
 	return (
-		<K.Root<Option, OptGroup>
-			{...others}
-			data-cui={selectParts.root}
-			class={mergeClasses(styles.field, local.class)}
-			data-field-size={
-				selectStyleProps.root({ fieldSize: local.size })["data-field-size"]
-			}
-		/>
+		<PopMotionContext value={motion.setTarget}>
+			<K.Root<Option, OptGroup>
+				{...others}
+				forceMount={motion.forceMount()}
+				onOpenChange={motion.onOpenChange}
+				data-cui={selectParts.root}
+				class={mergeClasses(styles.field, local.class)}
+				data-field-size={
+					selectStyleProps.root({ fieldSize: local.size })["data-field-size"]
+				}
+			/>
+		</PopMotionContext>
 	);
 }
 
@@ -174,10 +180,11 @@ export function Item<T extends ValidComponent = "li">(
 	props: PolymorphicProps<T, ItemProps<T>>,
 ) {
 	const local = props as PolymorphicProps<"li", ItemProps>;
-	const others = omit(local, "class");
+	const others = omit(local, "class", "ref");
 	return (
 		<K.Item
 			{...others}
+			ref={[keepCollectionScrollLocal, local.ref]}
 			data-cui={selectParts.item}
 			class={mergeClasses(styles.item, local.class)}
 		/>

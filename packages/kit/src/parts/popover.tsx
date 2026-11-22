@@ -24,7 +24,7 @@ import { IconButton, type IconButtonProps } from "../components/IconButton/IconB
 import { CloseIcon } from "../icons";
 import { mergeClasses } from "../utils/css";
 import { createLayer, LayerScope, useNestedLayerMarker } from "../utils/layer-scope";
-import { motionRef } from "../utils/open-source";
+import { createPopMotion, motionRef, PopMotionContext } from "../utils/pop-motion";
 
 import { popoverParts, type PopoverPart, type PopoverClasses, type PopoverVariant, type PopoverStyles, popoverStyles } from "@codeui/styles/popover";
 export { popoverParts, type PopoverPart, type PopoverClasses, type PopoverVariant, type PopoverStyles, popoverStyles } from "@codeui/styles/popover";
@@ -32,7 +32,18 @@ export type RootProps = KPopoverRootProps;
 
 /** Kobalte's Popover root with a default `gutter` of 6. */
 export function Root(props: RootProps) {
-	return <KPopover {...props} gutter={props.gutter ?? 6} />;
+	const others = omit(props, "forceMount", "onOpenChange");
+	const motion = createPopMotion(props);
+	return (
+		<PopMotionContext value={motion.setTarget}>
+			<KPopover
+				{...others}
+				gutter={props.gutter ?? 6}
+				forceMount={motion.forceMount()}
+				onOpenChange={motion.onOpenChange}
+			/>
+		</PopMotionContext>
+	);
 }
 
 export function Portal(props: KPopoverPortalProps) {

@@ -13,29 +13,51 @@ import {
 	DropdownMenuTriggerProps as KDropdownMenuTriggerProps,
 } from "@kobalte/core/dropdown-menu";
 import * as styles from "./Dropdown.css";
-import { Element, Show, omit } from "solid-js";
+import { createContext, createSignal, Element, onCleanup, Show, omit, useContext } from "solid-js";
 import { ValidComponent } from "@solidjs/web";
 import { PolymorphicProps } from "@kobalte/core/polymorphic";
 import { mergeClasses } from "../../utils/css";
-import { motionRef } from "../../utils/open-source";
+import { createPopMotion, motionRef, PopMotionContext } from "../../utils/pop-motion";
+import { keepCollectionScrollLocal } from "../../utils/collection-scroll";
+
+type MenuMotion = {
+	present: () => boolean | undefined;
+	forced: () => boolean | undefined;
+	registerSubmenu: (closing: () => boolean) => void;
+};
+
+const MenuMotionContext = createContext<MenuMotion | null>(null);
 
 export function DropdownMenuContent<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, KDropdownMenuContentProps<T>>,
 ) {
 	const local = props as PolymorphicProps<"div", KDropdownMenuContentProps>;
-	const others = omit(local, "ref", "class");
+	const others = omit(local, "ref", "class", "onOpenAutoFocus");
+	const motion = useContext(MenuMotionContext);
 	return (
-		<KDropdownMenu.Content
-			ref={[motionRef(), local.ref]}
-			data-cui={"dropdownmenu-content"}
-			{...others}
-			class={mergeClasses(styles.content, local.class)}
-		/>
+		<Show when={!motion || motion.present()}>
+			<KDropdownMenu.Content
+				ref={[motionRef(), local.ref]}
+				data-cui={"dropdownmenu-content"}
+				{...others}
+				class={mergeClasses(styles.content, local.class)}
+				onOpenAutoFocus={event => {
+					local.onOpenAutoFocus?.(event);
+					// The collection already focuses its menu or starting item with preventScroll.
+					event.preventDefault();
+				}}
+			/>
+		</Show>
 	);
 }
 
 export function DropdownMenuPortal(props: GetKobalteParams<typeof KDropdownMenu.Portal>) {
-	return <KDropdownMenu.Portal {...props} />;
+	const motion = useContext(MenuMotionContext);
+	return (
+		<Show when={!motion || motion.present()}>
+			<KDropdownMenu.Portal {...props} />
+		</Show>
+	);
 }
 
 export interface DropdownMenuItemProps<T> extends KDropdownMenuItemProps {
@@ -46,12 +68,13 @@ export function DropdownMenuItem<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, DropdownMenuItemProps<T>>,
 ) {
 	const local = props as PolymorphicProps<"div", DropdownMenuItemProps<T>>;
-	const others = omit(local, "rightSlot", "children");
+	const others = omit(local, "rightSlot", "children", "ref");
 
 	return (
 		<KDropdownMenu.Item
 			data-cui={"dropdownmenu-item"}
 			{...others}
+			ref={[keepCollectionScrollLocal, local.ref]}
 			class={mergeClasses(styles.item, props.class)}
 		>
 			{local.children}
@@ -69,7 +92,21 @@ export interface DropdownSubMenuProps<T> extends KDropdownMenuSubProps {
 export function DropdownSubMenu<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, DropdownSubMenuProps<T>>,
 ) {
-	return <KDropdownMenu.Sub {...props} gutter={props.gutter ?? -4} />;
+	const parent = useContext(MenuMotionContext);
+	const motion = createPopMotion(props);
+	parent?.registerSubmenu(motion.closing);
+	const others = omit(props, "onOpenChange");
+	const scope = parent && {
+		...parent,
+		present: () => parent.forced() || motion.present(),
+	};
+	return (
+		<MenuMotionContext value={scope}>
+			<PopMotionContext value={motion.setTarget}>
+				<KDropdownMenu.Sub {...others} gutter={props.gutter ?? -4} onOpenChange={motion.onOpenChange} />
+			</PopMotionContext>
+		</MenuMotionContext>
+	);
 }
 
 export interface DropdownSubMenuTriggerProps<T> extends KDropdownMenuSubTriggerProps {
@@ -80,10 +117,14 @@ export function DropdownSubMenuTrigger<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, DropdownSubMenuTriggerProps<T>>,
 ) {
 	const local = props as PolymorphicProps<"button", DropdownSubMenuTriggerProps<T>>;
-	const others = omit(local, "rightSlot", "children", "class");
+	const others = omit(local, "rightSlot", "children", "class", "ref");
 
 	return (
-		<KDropdownMenu.SubTrigger {...others} class={mergeClasses(styles.item, local.class)}>
+		<KDropdownMenu.SubTrigger
+			{...others}
+			ref={[keepCollectionScrollLocal, local.ref]}
+			class={mergeClasses(styles.item, local.class)}
+		>
 			{local.children}
 			<Show when={local.rightSlot} keyed={false}>
 				{rightSlot => <div class={styles.rightSlot}>{rightSlot()}</div>}
@@ -97,13 +138,16 @@ export function DropdownSubMenuContent<T extends ValidComponent = "div">(
 ) {
 	const local = props as PolymorphicProps<"div", KDropdownMenuSubContentProps>;
 	const others = omit(local, "ref", "class");
+	const motion = useContext(MenuMotionContext);
 	// A submenu opens on hover, so a pointer that only moved counts.
 	return (
-		<KDropdownMenu.SubContent
-			ref={[motionRef({ hover: true }), local.ref]}
-			{...others}
-			class={mergeClasses(styles.subMenuContent, local.class)}
-		/>
+		<Show when={!motion || motion.present()}>
+			<KDropdownMenu.SubContent
+				ref={[motionRef({ hover: true }), local.ref]}
+				{...others}
+				class={mergeClasses(styles.subMenuContent, local.class)}
+			/>
+		</Show>
 	);
 }
 
@@ -127,5 +171,27 @@ export function DropdownMenuTrigger<T extends ValidComponent = "div">(
 export function DropdownMenu<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, KDropdownMenuRootProps>,
 ) {
-	return <KDropdownMenu gutter={6} {...props} />;
+	const motion = createPopMotion(props);
+	const [submenus, setSubmenus] = createSignal<(() => boolean)[]>([], { ownedWrite: true });
+	const scope = {
+		present: motion.present,
+		forced: () => props.forceMount,
+		registerSubmenu(closing: () => boolean) {
+			setSubmenus(previous => [...previous, closing]);
+			onCleanup(() => setSubmenus(previous => previous.filter(submenu => submenu !== closing)));
+		},
+	};
+	const others = omit(props, "forceMount", "onOpenChange");
+	return (
+		<MenuMotionContext value={scope}>
+			<PopMotionContext value={motion.setTarget}>
+				<KDropdownMenu
+					gutter={6}
+					{...others}
+					forceMount={motion.forceMount() || submenus().some(closing => closing())}
+					onOpenChange={motion.onOpenChange}
+				/>
+			</PopMotionContext>
+		</MenuMotionContext>
+	);
 }

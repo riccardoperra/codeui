@@ -8,12 +8,12 @@ import {
 	type TooltipRootProps,
 	type TooltipTriggerProps,
 } from "@kobalte/core/tooltip";
-import { createContext, createEffect, createSignal, useContext, omit } from "solid-js";
+import { createContext, createEffect, useContext, omit } from "solid-js";
 import { type JSX, type ValidComponent } from "@solidjs/web";
 import * as styles from "../components/Tooltip/Tooltip.css";
 import { mergeClasses } from "../utils/css";
 import { LayerScope } from "../utils/layer-scope";
-import { motionRef } from "../utils/open-source";
+import { createPopMotion, motionRef, PopMotionContext } from "../utils/pop-motion";
 
 const focusable =
 	"a[href], button, input, select, textarea, summary, [tabindex]:not([tabindex='-1']), [contenteditable=true]";
@@ -69,26 +69,30 @@ const TooltipMotionContext = createContext<() => number>(() => skipDelayDuration
 export type RootProps = TooltipRootProps;
 
 export function Root(props: RootProps) {
-	const others = omit(props, "onOpenChange");
-	const [open, setOpen] = createSignal(false);
-
-	const onOpenChange = (next: boolean) => {
-		if (!next && (props.open ?? open())) lastClosed = performance.now();
-		setOpen(next);
-		props.onOpenChange?.(next);
-	};
+	const others = omit(props, "forceMount", "onOpenChange");
+	const motion = createPopMotion({
+		get open() { return props.open; },
+		get defaultOpen() { return props.defaultOpen; },
+		get forceMount() { return props.forceMount; },
+		onOpenChange(next) {
+			if (!next) lastClosed = performance.now();
+			props.onOpenChange?.(next);
+		},
+	});
 
 	return (
 		<TooltipMotionContext value={() => props.skipDelayDuration ?? skipDelayDuration}>
-			<KTooltip
-				{...others}
-				open={props.open ?? open()}
-				onOpenChange={onOpenChange}
-				gutter={props.gutter ?? 4}
-				shift={props.shift ?? 0}
-				openDelay={props.openDelay ?? 200}
-				closeDelay={props.closeDelay ?? 0}
-			/>
+			<PopMotionContext value={motion.setTarget}>
+				<KTooltip
+					{...others}
+					forceMount={motion.forceMount()}
+					onOpenChange={motion.onOpenChange}
+					gutter={props.gutter ?? 4}
+					shift={props.shift ?? 0}
+					openDelay={props.openDelay ?? 200}
+					closeDelay={props.closeDelay ?? 0}
+				/>
+			</PopMotionContext>
 		</TooltipMotionContext>
 	);
 }

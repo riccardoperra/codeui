@@ -9,7 +9,8 @@ import { type ValidComponent, type JSX } from "@solidjs/web";
 import { callHandler } from "@kobalte/utils";
 import { mergeClasses } from "../utils/css";
 import { LayerScope } from "../utils/layer-scope";
-import { motionRef } from "../utils/open-source";
+import { createPopMotion, motionRef, PopMotionContext } from "../utils/pop-motion";
+import { keepCollectionScrollLocal } from "../utils/collection-scroll";
 export { useComboboxContext } from "@kobalte/core/combobox";
 export {
 	createComboboxOptions,
@@ -61,7 +62,8 @@ export function Root<Option, OptGroup = never, T extends ValidComponent = "div">
 	const allProps = props as PolymorphicProps<"div", RootProps<Option, OptGroup>> & Local;
 	const local = pickProps(allProps, ...variantKeys);
 	const input = allProps;
-	const others = omit(allProps, ...variantKeys, "onInputChange");
+	const others = omit(allProps, ...variantKeys, "onInputChange", "forceMount", "onOpenChange");
+	const motion = createPopMotion(allProps);
 	// Kobalte clears a single selection on empty text only when `value` is undefined.
 	// Report the clear for a controlled value too, so the parent can drop it.
 	const onInputChange = (text: string) => {
@@ -71,11 +73,15 @@ export function Root<Option, OptGroup = never, T extends ValidComponent = "div">
 		}
 	};
 	return (
-		<K.Root<Option, OptGroup>
-			{...others}
-			onInputChange={onInputChange}
-			{...partAttributes("root", local)}
-		/>
+		<PopMotionContext value={motion.setTarget}>
+			<K.Root<Option, OptGroup>
+				{...others}
+				forceMount={motion.forceMount()}
+				onOpenChange={motion.onOpenChange}
+				onInputChange={onInputChange}
+				{...partAttributes("root", local)}
+			/>
+		</PopMotionContext>
 	);
 }
 
@@ -200,8 +206,14 @@ export function Item<T extends ValidComponent = "li">(
 ) {
 	const allProps = props as PolymorphicProps<"li", ItemProps> & Local;
 	const local = pickProps(allProps, ...variantKeys);
-	const others = omit(allProps, ...variantKeys);
-	return <K.Item {...others} {...partAttributes("item", local)} />;
+	const others = omit(allProps, ...variantKeys, "ref");
+	return (
+		<K.Item
+			{...others}
+			{...partAttributes("item", local)}
+			ref={[keepCollectionScrollLocal, allProps.ref]}
+		/>
+	);
 }
 
 export type ItemLabelProps<T extends ValidComponent = "div"> =

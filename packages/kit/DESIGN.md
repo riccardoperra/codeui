@@ -276,7 +276,7 @@ Rules for every movement:
 - Hover styles only under `@media (hover: hover) and (pointer: fine)`.
 - **No materials.** Unlike Apple's design language, Inkstone has no translucency or `backdrop-filter` on the interface. Matte is a trait.
 
-The kit's popover, menu, list popovers and tooltip follow Pop, and its toast follows Rise. They still use keyframes, because Kobalte unmounts the content when its exit animation ends. The rest of the kit's motion is slower than these rules today: buttons press in 200ms `ease`, and the focus ring transitions with `ease-in`. **Proposed:** move them to Press and a 120ms colour change.
+The kit's popover, menu, list popovers and tooltip follow Pop, and its toast follows Rise. Pop uses CSS keyframes. The kit keeps each closing surface mounted until its exit finishes. The rest of the kit's motion is slower than these rules today: buttons press in 200ms `ease`, and the focus ring transitions with `ease-in`. **Proposed:** move them to Press and a 120ms colour change.
 
 The kit dialog follows Pop with keyframes: in from `scale(0.96)` over 200ms, out toward `scale(0.98)` over 120ms, and its scrim fades with it. Opened or closed from the keyboard, it does not move. Moving it to transitions is still proposed.
 

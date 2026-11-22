@@ -1,4 +1,3 @@
-import { mapKobalteVariables } from "./kobalte-style";
 import { isServer } from "@solidjs/web";
 
 /**
@@ -34,19 +33,4 @@ trackInput();
 export function pointerInitiated(options?: { hover?: boolean }): boolean {
 	const pointer = options?.hover ? Math.max(last.press, last.hover) : last.press;
 	return pointer > last.key && performance.now() - pointer < recent;
-}
-
-/**
- * A ref for an overlay content. It runs once, when the content mounts on
- * open: after a pointer the content plays its Pop; otherwise it gets
- * `data-motion="none"` and shows and hides in place. The value stays fixed
- * while the content is mounted, so a later input cannot restart the entrance.
- */
-export function motionRef(options?: { hover?: boolean; still?: () => boolean }) {
-	return (element: HTMLElement) => {
-		mapKobalteVariables(element);
-		if (!options?.still?.() && pointerInitiated(options))
-			element.removeAttribute("data-motion");
-		else element.setAttribute("data-motion", "none");
-	};
 }
