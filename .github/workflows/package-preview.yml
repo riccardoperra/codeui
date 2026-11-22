@@ -70,7 +70,7 @@ jobs:
               `Built from \`${context.payload.pull_request.head.sha.slice(0, 7)}\`.`,
               '',
               '\`\`\`sh',
-              `pnpm add ${kit.url}`,
+              `npm install ${kit.url}`,
               '\`\`\`',
               '',
               'The kit installs matching previews of \`@codeui/styles\` and \`@codeui/inkstone\`.',
