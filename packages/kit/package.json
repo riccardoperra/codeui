@@ -781,6 +781,34 @@
 				"default": "./dist/cjs/ready/tooltip.cjs"
 			}
 		},
+		"./hover-card": {
+			"solid": {
+				"types": "./dist/types/ready/hover-card.d.ts",
+				"default": "./dist/source/ready/hover-card.js"
+			},
+			"import": {
+				"types": "./dist/types/ready/hover-card.d.ts",
+				"default": "./dist/esm/ready/hover-card.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/ready/hover-card.d.cts",
+				"default": "./dist/cjs/ready/hover-card.cjs"
+			}
+		},
+		"./resizable": {
+			"solid": {
+				"types": "./dist/types/ready/resizable.d.ts",
+				"default": "./dist/source/ready/resizable.js"
+			},
+			"import": {
+				"types": "./dist/types/ready/resizable.d.ts",
+				"default": "./dist/esm/ready/resizable.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/ready/resizable.d.cts",
+				"default": "./dist/cjs/ready/resizable.cjs"
+			}
+		},
 		"./tabs": {
 			"solid": {
 				"types": "./dist/types/ready/tabs.d.ts",
@@ -1177,6 +1205,12 @@
 			],
 			"tooltip": [
 				"dist/types/ready/tooltip.d.ts"
+			],
+			"hover-card": [
+				"dist/types/ready/hover-card.d.ts"
+			],
+			"resizable": [
+				"dist/types/ready/resizable.d.ts"
 			],
 			"tabs": [
 				"dist/types/ready/tabs.d.ts"
