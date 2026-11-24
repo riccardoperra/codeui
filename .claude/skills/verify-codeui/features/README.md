@@ -31,9 +31,9 @@ Each feature file has an H1, one paragraph of user-visible behavior, and exactly
 
 ## Features
 
-- [Overlays](./overlays.md): Dialog and Popover open, focus, dismiss and focus return. Proven journey: `journeys/dialog-keyboard.mjs`.
+- [Overlays](./overlays.md): Dialog, Popover and HoverCard open, focus, dismiss and focus return. Proven journey: `journeys/dialog-keyboard.mjs`.
 - [Form fields](./form-fields.md): TextField, Select, Listbox, NumberField, SegmentedControl, RadioList, Checkbox input by keyboard, validation states.
 - [Theming](./theming.md): `data-cui-theme` modes, `--cui-*` tokens, and the `@layer cui` override contract.
 - [Settings rows](./settings.md): SettingsRow and SettingsGroup labelling, CodeImage parity and phone stacking. Journey: `journeys/settings-row.mjs`.
 - [Feedback](./feedback.md): Tooltip on hover and focus. Keyboard journey: `journeys/tooltip-keyboard.mjs`.
-- [Sidebar and settings controls](./controls.md): Accordion first click, Switch pointer vs keyboard focus, OptionCard keyboard. Journeys: `journeys/accordion-first-click.mjs`, `journeys/switch-focus.mjs`, `journeys/option-card-keyboard.mjs`.
+- [Sidebar and settings controls](./controls.md): Accordion first click, Switch pointer vs keyboard focus, OptionCard keyboard. Resizable handle keyboard. Journeys: `journeys/accordion-first-click.mjs`, `journeys/resizable-keyboard.mjs`, `journeys/switch-focus.mjs`, `journeys/option-card-keyboard.mjs`.
