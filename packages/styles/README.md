@@ -138,6 +138,7 @@ When CSS supports a named default, the helper emits that value and bare markup r
 | `@codeui/styles/tooltip` | `tooltipStyleProps()` | `variant` `primary`, `secondary` |
 | `@codeui/styles/accordion` | `accordionStyleProps()` | `density` `default`, `compact`, `comfortable` (default `default`) |
 | `@codeui/styles/table` | `tableStyleProps()` | `size` `sm`, `md` (default `md`) · `striped` boolean |
+| `@codeui/styles/resizable` | `resizableStyleProps()` | `orientation` `horizontal`, `vertical` (default `horizontal`) |
 
 <!-- appearance:end -->
 

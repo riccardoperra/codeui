@@ -1,0 +1,63 @@
+@layer cui.components {
+  .cui-resizable-handle {
+    --cui-resizable-handle-size: var(--cui-space-2);
+    --cui-resizable-handle-line-color: var(--cui-border-divider);
+    --cui-resizable-handle-line-active-color: var(--cui-surface-scroll-thumb);
+    --cui-resizable-handle-line-dragging-color: var(--cui-surface-scroll-thumb-hover);
+    --cui-resizable-handle-line-width: var(--cui-border-width);
+    --cui-resizable-handle-line-color-current: var(--cui-resizable-handle-line-color);
+    position: relative;
+    box-sizing: border-box;
+    flex: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    appearance: none;
+    outline: none;
+    color: inherit;
+    inline-size: var(--cui-resizable-handle-size);
+    align-self: stretch;
+    cursor: col-resize;
+  }
+  .cui-resizable-handle::before {
+    content: "";
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: calc(50% - var(--cui-resizable-handle-line-width) / 2);
+    inline-size: var(--cui-resizable-handle-line-width);
+    background-color: var(--cui-resizable-handle-line-color-current);
+    transition: background-color var(--cui-motion-duration-fast) var(--cui-motion-ease-out);
+  }
+  :where(.cui-resizable-handle)[data-orientation="vertical"] {
+    inline-size: auto;
+    block-size: var(--cui-resizable-handle-size);
+    cursor: row-resize;
+  }
+  :where(.cui-resizable-handle)[data-orientation="vertical"]::before {
+    inset-block: calc(50% - var(--cui-resizable-handle-line-width) / 2) auto;
+    inset-inline: 0;
+    inline-size: auto;
+    block-size: var(--cui-resizable-handle-line-width);
+  }
+  @media (--cui-hover-pointer) {
+    .cui-resizable-handle:hover, .cui-resizable-handle[data-active] {
+      --cui-resizable-handle-line-color-current: var(--cui-resizable-handle-line-active-color);
+    }
+  }
+  .cui-resizable-handle[data-dragging] {
+    --cui-resizable-handle-line-color-current: var(--cui-resizable-handle-line-dragging-color);
+  }
+  .cui-resizable-handle:focus-visible {
+    --cui-resizable-handle-line-color-current: var(--cui-focus-color);
+    --cui-resizable-handle-line-width: var(--cui-border-width-strong);
+  }
+  .cui-resizable-handle:disabled, .cui-resizable-handle[data-disabled] {
+    cursor: default;
+  }
+  @media (--cui-reduced-motion) {
+    .cui-resizable-handle::before {
+      transition: none;
+    }
+  }
+}
