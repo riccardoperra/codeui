@@ -55,6 +55,10 @@
     --cui-resizable-handle-line-color-current: var(--cui-focus-color);
     --cui-resizable-handle-line-width: var(--cui-border-width-strong);
   }
+  /* Keyboard focus is instant. */
+  .cui-resizable-handle:focus-visible::before {
+    transition: none;
+  }
   .cui-resizable-handle:disabled, .cui-resizable-handle[data-disabled] {
     cursor: default;
   }
