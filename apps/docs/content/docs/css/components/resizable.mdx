@@ -1,0 +1,55 @@
+---
+title: Resizable
+description: The handle between two resizable panels, in plain HTML.
+---
+
+Load `@codeui/styles/resizable.css`, or `all.css`. The Solid component is documented in [Resizable](/docs/components/resizable).
+
+## Demo
+
+<HtmlDemo name="resizable/basic" />
+
+## Markup
+
+| Part | Element | Class | `data-cui` |
+| --- | --- | --- | --- |
+| Root | `div` | none | `resizable` |
+| Panel | `div` | none | `resizable-panel` |
+| Handle | `button type="button"` with `role="separator"` | `cui-resizable-handle` | `resizable-handle` |
+
+Only the handle has styles. Give the root `display: flex` (`flex-direction: column` when vertical) and a size, and give each panel `flex: none`, `overflow: hidden` and a `flex-basis`.
+
+| Attribute | Values | Default |
+| --- | --- | --- |
+| `data-orientation` on the handle | `horizontal`, `vertical` | `horizontal` |
+| `data-active` on the handle | Presence: hovered, focused or dragged | Off |
+| `data-dragging` on the handle | Presence | Off |
+
+## Variants
+
+### Vertical
+
+<HtmlDemo name="resizable/vertical" />
+
+`data-orientation="vertical"` draws a horizontal line and a row-resize cursor.
+
+## States
+
+The line is `--cui-border-divider` at rest, `--cui-surface-scroll-thumb` on hover and with `data-active`, `--cui-surface-scroll-thumb-hover` with `data-dragging`, and 2px of `--cui-focus-color` on `:focus-visible`. The colour changes over 120ms, except on keyboard focus. In an island layout, set `--cui-resizable-handle-line-color: transparent`: the gap between islands already separates them.
+
+## What you supply
+
+- Dragging and keyboard resizing: arrow keys by a step, Home and End to the limits, Enter to collapse.
+- `aria-orientation`, `aria-controls`, `aria-valuenow`, `aria-valuemin` and `aria-valuemax` on the handle, and an `aria-label`.
+
+## Helper
+
+```ts
+import "@codeui/styles/resizable.css";
+import { applyStyleProps } from "@codeui/styles";
+import { resizableStyleProps } from "@codeui/styles/resizable";
+
+const handle = document.querySelector<HTMLElement>("[role=separator]")!;
+applyStyleProps(handle, resizableStyleProps({ orientation: "vertical" }));
+// class="cui-resizable-handle" data-cui="resizable-handle" data-orientation="vertical"
+```

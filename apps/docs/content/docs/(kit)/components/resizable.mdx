@@ -1,0 +1,130 @@
+---
+title: Resizable
+description: Panels in a row or a column, split by handles the user drags to resize them.
+---
+
+## When to use
+
+Use Resizable when the user decides how much room two areas get: a sidebar next to a conversation, an editor over a console.
+The user drags a handle, or focuses it and uses the arrow keys.
+
+## When to choose another component
+
+- [Stack](/docs/components/stack) lays out fixed areas. Use it when the sizes are yours to choose, not the user's.
+- [Sheet](/docs/components/sheet) is the side panel on a phone. Resizing needs a fine pointer or a keyboard, so swap to a sheet at 768px and below.
+
+## Live demo
+
+<SolidDemo name="resizable/basic" />
+
+Put `ResizablePanel`s in `Resizable`, with a `ResizableHandle` between each pair. Give the root a size: a height for a row, and both a width and a height for a column.
+
+## Anatomy
+
+<Anatomy demo="resizable/anatomy" />
+
+| Export | Renders | `classes` key | `data-cui` | Role |
+| --- | --- | --- | --- | --- |
+| `Resizable` | `div` with `display: flex` | `root` | `resizable` | none |
+| `ResizablePanel` | `div` with `flex-basis` set to its size | `panel` | `resizable-panel` | none |
+| `ResizableHandle` | `button` | `handle` | `resizable-handle` | `separator` |
+
+Only the handle has kit styles. Style the panels yourself. Put padding on a child of the panel: on the panel it adds to the size Kobalte sets.
+
+## Variants
+
+### Vertical
+
+<SolidDemo name="resizable/vertical" />
+
+`orientation="vertical"` stacks the panels. The handle draws a horizontal line and the arrow keys become Up and Down.
+
+### Sidebar with a minimum and a maximum width
+
+<SolidDemo name="resizable/sidebar" />
+
+Sizes take a fraction of the root (`0.25`) or a pixel string (`"240px"`). Here the sidebar starts at 240px and stays between 200px and 360px. The panel without `initialSize` takes the space the others leave.
+
+### Islands
+
+<SolidDemo name="resizable/islands" />
+
+The handle draws a 1px line in `--cui-border-divider`. In an Inkstone layout of islands, the 8px gap already separates them, and Inkstone allows no line between islands. Set `--cui-resizable-handle-line-color: transparent` on the handle there. The line still shows on hover, while dragging, and on keyboard focus.
+
+## States
+
+### Collapsible
+
+<SolidDemo name="resizable/collapsible" />
+
+`collapsible` lets a panel collapse to `collapsedSize` (0 by default) when the user drags past its `minSize`, or presses Enter on the handle. `onCollapse` and `onExpand` report the change.
+
+### Controlled
+
+Without `sizes`, the root manages the sizes. To control them, pass `sizes` as fractions that add up to 1, with `onSizesChange`. Save them to restore the layout on the next visit.
+
+## Ready API
+
+Import from `@codeui/kit/resizable` or from `@codeui/kit`. Everything not listed here passes through to Kobalte's [resizable](https://kobalte.dev/docs/core/components/resizable).
+
+### `Resizable`
+
+<PropsTable name="Resizable" />
+
+### `ResizablePanel`
+
+<PropsTable name="ResizablePanel" />
+
+### `ResizableHandle`
+
+Give every handle an `aria-label` that names what it resizes.
+
+<PropsTable name="ResizableHandle" />
+
+### `resizableStyles`
+
+`resizableStyles.handle()` returns the handle class, `cui-resizable-handle`. `root()` and `panel()` return an empty string. `resizableParts` maps each part to its `data-cui` value. `ResizableSize` is a fraction or a `` `${number}px` `` string. `ResizeStrategy` (`"preceding"`, `"following"`, `"both"`) picks which neighbours give up space when a panel resizes from code.
+
+## Accessibility
+
+### Keyboard
+
+| Key | Action |
+| --- | --- |
+| <kbd>Tab</kbd> | Focuses the handle. |
+| <kbd>←</kbd> <kbd>→</kbd> | Move a horizontal handle by `keyboardDelta` (0.1 of the root by default). |
+| <kbd>↑</kbd> <kbd>↓</kbd> | Move a vertical handle by `keyboardDelta`. |
+| <kbd>Shift</kbd> + arrow | Moves the handle as far as the panels allow. |
+| <kbd>Home</kbd> <kbd>End</kbd> | Move the handle to the minimum or the maximum size. |
+| <kbd>Enter</kbd> | Collapses or expands the nearest collapsible panel. |
+
+### ARIA
+
+- The handle has `role="separator"`, `aria-orientation`, and `aria-controls` pointing at the panel before it.
+- `aria-valuenow`, `aria-valuemin` and `aria-valuemax` are fractions from 0 to 1.
+
+### Focus
+
+Keyboard focus draws the handle line 2px wide in `--cui-focus-color`, with no transition.
+
+## SSR notes
+
+Panels with fractional sizes render at their size on the server. A pixel `initialSize` needs the measured root, so prefer fractions when the first server paint matters.
+
+## Theming hooks
+
+Set these on the handle. See [Tokens](/docs/foundations/tokens) for the defaults.
+
+| Variable | Default | Used for |
+| --- | --- | --- |
+| `--cui-resizable-handle-size` | `--cui-space-2` (8px) | Hit area. It overlaps both panels, so the panels still fill the root |
+| `--cui-resizable-handle-line-color` | `--cui-border-divider` | Line at rest |
+| `--cui-resizable-handle-line-active-color` | `--cui-surface-scroll-thumb` | Line on hover and focus (`data-active`) |
+| `--cui-resizable-handle-line-dragging-color` | `--cui-surface-scroll-thumb-hover` | Line while dragging (`data-dragging`) |
+| `--cui-resizable-handle-line-width` | `--cui-border-width` (1px) | Line width; 2px on keyboard focus |
+| `--cui-motion-duration-fast`, `--cui-motion-ease-out` | | Line colour change, 120ms |
+
+## Related
+
+- [Sheet](/docs/components/sheet) holds the same panel on a phone.
+- [Stack](/docs/components/stack) lays out areas the user does not resize.

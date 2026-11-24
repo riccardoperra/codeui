@@ -9,10 +9,12 @@ const readJson = async file => JSON.parse(await readFile(path.join(root, file), 
 export const appearance = (await readJson("contract.json")).$appearance;
 const registry = await readJson("entries.json");
 const adapterAttributes = new Set([
+	"data-active",
 	"data-checked",
 	"data-closed",
 	"data-cui-replaced",
 	"data-disabled",
+	"data-dragging",
 	"data-expanded",
 	"data-focus",
 	"data-highlighted",

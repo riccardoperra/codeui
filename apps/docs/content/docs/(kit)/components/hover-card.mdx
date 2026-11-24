@@ -1,0 +1,128 @@
+---
+title: HoverCard
+description: A card of extra detail that opens when the user hovers or focuses a link.
+---
+
+## When to use
+
+Use a hover card to preview what sits behind a link: a file, a person, a thread.
+It opens when the pointer rests on the trigger or when the trigger gets keyboard focus, and it closes when both leave.
+
+A hover card is supplementary. Never put the only path to an action or to information inside it. Touch users cannot hover, and the card never takes focus, so a keyboard user cannot reach a button inside it. Keep the same details reachable from the page the link opens.
+
+## When to choose another component
+
+- [Tooltip](/docs/components/tooltip) names a control in a few words. A hover card holds a few lines of rich content.
+- [Popover](/docs/components/popover) opens on click, takes focus, and can hold buttons and fields. Use it when the user has to act on the content.
+
+## Live demo
+
+<SolidDemo name="hover-card/basic" />
+
+Put `HoverCardTrigger` and `HoverCardContent` in `HoverCard`. Hover the link, or move focus to it with Tab.
+
+## Anatomy
+
+<Anatomy demo="hover-card/anatomy" />
+
+| Export | Renders | `classes` key | `data-cui` | Role |
+| --- | --- | --- | --- | --- |
+| `HoverCard` | Nothing. Holds the open state and the timers | none | none | none |
+| `HoverCardTrigger` | `a`, or the element passed to `as` | none | `hovercard-trigger` | Link |
+| `HoverCardContent` | `div` in a portal on `mount`, or `document.body` | `content` | `hovercard-content` | none |
+
+## Variants
+
+### Placement
+
+<SolidDemo name="hover-card/placements" />
+
+`placement` sets the side and the alignment. The default is `bottom`. When the card does not fit, Kobalte flips it to the opposite side.
+`gutter` sets the distance from the trigger. The kit sets it to 6px.
+
+### Delays
+
+<SolidDemo name="hover-card/delays" />
+
+The card opens 500ms after the pointer enters or the trigger gets focus, and closes 150ms after the pointer leaves the trigger and the card. Change this with `openDelay` and `closeDelay`.
+On its way from the trigger to the card, the pointer may cross the gap between them without closing the card. `ignoreSafeArea` turns that off.
+
+## States
+
+### Controlled
+
+Without `open`, the card manages its own state. To control it, pass `open` and `onOpenChange`.
+
+## Ready API
+
+Import from `@codeui/kit/hover-card` or from `@codeui/kit`.
+
+### `HoverCard`
+
+Holds the open state, the hover and focus timers, and the position.
+
+<PropsTable name="HoverCard" />
+
+Inherited from Kobalte's [popover](https://kobalte.dev/docs/core/components/popover) root:
+
+<PropsTable name="HoverCardInherited" />
+
+### `HoverCardTrigger`
+
+Renders an `a`. Give it an `href`, or render another focusable element with `as`, so keyboard users can reach it. An `a` without `href` cannot take focus.
+
+### `HoverCardContent`
+
+Portals the card to `document.body` and places it next to the trigger.
+
+<PropsTable name="HoverCardContent" />
+
+<PropsTable name="HoverCardContentInherited" />
+
+### `hoverCardStyles`
+
+`hoverCardStyles.content()` returns the card class, `cui-hovercard-content`. `hoverCardParts` maps each part to its `data-cui` value.
+
+## Accessibility
+
+### Keyboard
+
+| Key | Action |
+| --- | --- |
+| <kbd>Tab</kbd> | Moving focus to the trigger opens the card after `openDelay`. Moving focus away closes it. |
+| <kbd>Escape</kbd> | Closes the card. Focus stays on the trigger. |
+
+### ARIA
+
+- The card has no role and is not linked to the trigger. Screen readers announce the link only, which is why the card must not hold anything the user needs.
+- Escape closes the innermost layer only, so a hover card inside a dialog closes before the dialog.
+
+### Focus
+
+The card never takes focus. Focus stays on the trigger while it is open.
+
+## SSR notes
+
+The trigger renders on the server. The card renders on the client, and only while it is open.
+
+## Theming hooks
+
+`HoverCardContent` reads these variables. Set the `--cui-hovercard-content-*` ones on the card to change a single card. See [Tokens](/docs/foundations/tokens) for the defaults.
+
+| Variable | Default | Used for |
+| --- | --- | --- |
+| `--cui-hovercard-content-background` | `--cui-surface-dialog` | Fill |
+| `--cui-hovercard-content-box-shadow` | `--cui-shadow-dialog` | Shadow, and the 1px ring in dark mode |
+| `--cui-hovercard-content-radius` | `--cui-radius-card` | Radius (16px) |
+| `--cui-hovercard-content-padding` | `--cui-space-4` | Padding |
+| `--cui-hovercard-content-max-width` | `min(320px, 100vw - 32px)` | Width limit |
+| `--cui-hovercard-content-font-size`, `--cui-hovercard-content-line-height` | `--cui-font-size-sm`, `--cui-font-line-height-snug` | Text (14px / 1.3) |
+| `--cui-hovercard-content-color` | `--cui-text-dialog` | Text colour |
+| `--cui-motion-duration-normal`, `--cui-motion-duration-fast`, `--cui-motion-ease-out` | | Pop: in from `scale(0.96)` over 160ms, out to `scale(0.98)` over 120ms |
+
+A card opened by hover pops from the trigger side, with `transform-origin` from `--cui-popper-content-transform-origin`. A card opened by keyboard focus appears with no animation (`data-motion="none"`). With reduced motion, the card only fades.
+
+## Related
+
+- [Tooltip](/docs/components/tooltip) names a control in a few words.
+- [Popover](/docs/components/popover) holds interactive content and takes focus.

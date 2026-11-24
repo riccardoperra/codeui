@@ -2067,6 +2067,68 @@
     "icon": "cui-icon",
     "iconSize": "var(--cui-icon-size)"
   },
+  "hovercard": {
+    "content": {
+      "default": "cui-hovercard-content"
+    },
+    "hoverCardParts": {
+      "trigger": "hovercard-trigger",
+      "content": "hovercard-content"
+    },
+    "hoverCardStyles": {
+      "trigger": {
+        "default": ""
+      },
+      "content": {
+        "default": "cui-hovercard-content"
+      }
+    },
+    "hoverCardVars": {
+      "contentBackground": "var(--cui-hovercard-content-background)",
+      "contentBoxShadow": "var(--cui-hovercard-content-box-shadow)",
+      "contentMaxWidth": "var(--cui-hovercard-content-max-width)",
+      "contentRadius": "var(--cui-hovercard-content-radius)",
+      "contentPadding": "var(--cui-hovercard-content-padding)",
+      "contentFontSize": "var(--cui-hovercard-content-font-size)",
+      "contentLineHeight": "var(--cui-hovercard-content-line-height)",
+      "contentColor": "var(--cui-hovercard-content-color)"
+    }
+  },
+  "resizable": {
+    "handle": {
+      "default": "cui-resizable-handle"
+    },
+    "resizableParts": {
+      "root": "resizable",
+      "panel": "resizable-panel",
+      "handle": "resizable-handle"
+    },
+    "resizableStyleProps": {
+      "default": {
+        "class": "cui-resizable-handle",
+        "data-cui": "resizable-handle",
+        "data-orientation": "horizontal"
+      }
+    },
+    "resizableStyles": {
+      "root": {
+        "default": ""
+      },
+      "panel": {
+        "default": ""
+      },
+      "handle": {
+        "default": "cui-resizable-handle"
+      }
+    },
+    "resizableVars": {
+      "handleSize": "var(--cui-resizable-handle-size)",
+      "handleLineColor": "var(--cui-resizable-handle-line-color)",
+      "handleLineActiveColor": "var(--cui-resizable-handle-line-active-color)",
+      "handleLineDraggingColor": "var(--cui-resizable-handle-line-dragging-color)",
+      "handleLineWidth": "var(--cui-resizable-handle-line-width)"
+    }
+  },
   "$appearance": {
     "alert": {
       "variants": {
@@ -3479,6 +3541,33 @@
             "striped"
           ],
           "marker": "tableParts.root"
+        }
+      }
+    },
+    "resizable": {
+      "variants": {
+        "orientation": {
+          "kind": "enum",
+          "values": [
+            "horizontal",
+            "vertical"
+          ],
+          "base": {
+            "value": "horizontal",
+            "class": "cui-resizable-handle"
+          },
+          "default": "horizontal"
+        }
+      },
+      "parts": {
+        "handle": {
+          "classes": [
+            "resizableStyles.handle()"
+          ],
+          "options": [
+            "orientation"
+          ],
+          "marker": "resizableParts.handle"
         }
       }
     }

@@ -658,6 +658,13 @@ export * from "./internal/components/Field/FieldLabel/FieldLabel.css.js";
 export * from "./internal/components/Field/FieldMessage/FieldMessage.css.js";
 ```
 
+## @codeui/styles/hovercard.d.ts
+
+```ts
+export * from "./internal/components/HoverCard/HoverCard.css.js";
+export { hoverCardParts, type HoverCardPart, type HoverCardClasses, type HoverCardStyles, hoverCardStyles } from "./internal/parts/hover-card.js";
+```
+
 ## @codeui/styles/icon.d.ts
 
 ```ts
@@ -715,6 +722,8 @@ export * as fieldlabel from "./fieldlabel.js";
 export * as fieldmessage from "./fieldmessage.js";
 export * as fielderror from "./fielderror.js";
 export * as icon from "./icon.js";
+export * as hovercard from "./hovercard.js";
+export * as resizable from "./resizable.js";
 export * from "./tokens.js";
 export { applyStyleProps, type StyleProps } from "./internal/utils/applyStyleProps.js";
 ```
@@ -981,6 +990,22 @@ export declare function styleFieldMessage(sizesMap: Record<BaseComponentSize, Pa
 };
 ```
 
+## @codeui/styles/internal/components/HoverCard/HoverCard.css.d.ts
+
+```ts
+export declare const content: () => string;
+export declare const hoverCardVars: {
+    contentBackground: `var(--${string})`;
+    contentBoxShadow: `var(--${string})`;
+    contentMaxWidth: `var(--${string})`;
+    contentRadius: `var(--${string})`;
+    contentPadding: `var(--${string})`;
+    contentFontSize: `var(--${string})`;
+    contentLineHeight: `var(--${string})`;
+    contentColor: `var(--${string})`;
+};
+```
+
 ## @codeui/styles/internal/components/IconButton/IconButton.css.d.ts
 
 ```ts
@@ -1125,6 +1150,19 @@ export declare const radioVars: {
     inputSize: `var(--${string})`;
     labelSize: `var(--${string})`;
     inputFill: `var(--${string})`;
+};
+```
+
+## @codeui/styles/internal/components/Resizable/Resizable.css.d.ts
+
+```ts
+export declare const handle: () => string;
+export declare const resizableVars: {
+    handleSize: `var(--${string})`;
+    handleLineColor: `var(--${string})`;
+    handleLineActiveColor: `var(--${string})`;
+    handleLineDraggingColor: `var(--${string})`;
+    handleLineWidth: `var(--${string})`;
 };
 ```
 
@@ -2172,6 +2210,20 @@ export declare const radioListStyleProps: ((options?: Parameters<typeof items>[0
 export {};
 ```
 
+## @codeui/styles/internal/generated-appearance/resizable.d.ts
+
+```ts
+export type ResizableStyleOptions = {
+    class?: string;
+    orientation?: "horizontal" | "vertical";
+};
+export declare const resizableStyleProps: (options?: ResizableStyleOptions) => {
+    class: string;
+    "data-cui": "resizable-handle";
+    "data-orientation": "horizontal" | "vertical";
+};
+```
+
 ## @codeui/styles/internal/generated-appearance/segmentedcontrol.d.ts
 
 ```ts
@@ -2831,6 +2883,21 @@ export type DialogStyles = Record<DialogPart, () => string>;
 export declare const dialogStyles: DialogStyles;
 ```
 
+## @codeui/styles/internal/parts/hover-card.d.ts
+
+```ts
+export declare const hoverCardParts: {
+    readonly trigger: "hovercard-trigger";
+    readonly content: "hovercard-content";
+};
+export type HoverCardPart = keyof typeof hoverCardParts;
+export type HoverCardClasses = Partial<Record<HoverCardPart, string>>;
+export type HoverCardStyles = {
+    [P in HoverCardPart]: () => string;
+};
+export declare const hoverCardStyles: HoverCardStyles;
+```
+
 ## @codeui/styles/internal/parts/kbd.d.ts
 
 ```ts
@@ -2920,6 +2987,24 @@ export type ProgressPart = keyof typeof progressParts;
 export type ProgressClasses = Partial<Record<ProgressPart, string>>;
 export type ProgressStyles = Record<ProgressPart, () => string>;
 export declare const progressStyles: ProgressStyles;
+```
+
+## @codeui/styles/internal/parts/resizable.d.ts
+
+```ts
+import type { ResizableStyleOptions } from "../generated-appearance/resizable.js";
+export declare const resizableParts: {
+    readonly root: "resizable";
+    readonly panel: "resizable-panel";
+    readonly handle: "resizable-handle";
+};
+export type ResizablePart = keyof typeof resizableParts;
+export type ResizableClasses = Partial<Record<ResizablePart, string>>;
+export type ResizableOrientation = NonNullable<ResizableStyleOptions["orientation"]>;
+export type ResizableStyles = {
+    [P in ResizablePart]: () => string;
+};
+export declare const resizableStyles: ResizableStyles;
 ```
 
 ## @codeui/styles/internal/parts/settings.d.ts
@@ -3281,6 +3366,14 @@ export * from "./internal/generated-appearance/progress.js";
 ```ts
 export * from "./internal/components/RadioList/Radio.css.js";
 export * from "./internal/generated-appearance/radiolist.js";
+```
+
+## @codeui/styles/resizable.d.ts
+
+```ts
+export * from "./internal/components/Resizable/Resizable.css.js";
+export { resizableParts, type ResizablePart, type ResizableClasses, type ResizableOrientation, type ResizableStyles, resizableStyles } from "./internal/parts/resizable.js";
+export * from "./internal/generated-appearance/resizable.js";
 ```
 
 ## @codeui/styles/segmentedcontrol.d.ts
@@ -3856,6 +3949,55 @@ export type FieldInputProps = {
 export type FieldClasses = Partial<Record<"root" | "input" | "label" | "description" | "errorMessage", string>>;
 ```
 
+## components/HoverCard/HoverCard.d.ts
+
+```ts
+import { type HoverCardClasses } from "@codeui/styles/hovercard";
+import type { PolymorphicProps } from "@kobalte/core/polymorphic";
+import { type PopoverAnchorProps as KPopoverAnchorProps, type PopoverContentProps as KPopoverContentProps, type PopoverRootOptions as KPopoverRootOptions } from "@kobalte/core/popover";
+import { type ParentProps } from "solid-js";
+import { type JSX, type ValidComponent } from "@solidjs/web";
+export { hoverCardParts, hoverCardStyles, type HoverCardPart, type HoverCardClasses, type HoverCardStyles, } from "@codeui/styles/hovercard";
+export type HoverCardProps = Omit<KPopoverRootOptions, "modal" | "preventScroll" | "anchorRef" | "translations"> & {
+    /** Time in ms from when the pointer enters or the trigger gets focus until the card opens. Defaults to 500. */
+    openDelay?: number;
+    /** Time in ms from when the pointer leaves the trigger and the card until it closes. Defaults to 150. */
+    closeDelay?: number;
+    /** Close as soon as the pointer leaves, even on its way from the trigger to the card. */
+    ignoreSafeArea?: boolean;
+};
+/**
+ * Kobalte alpha.5's HoverCard root adds its pointer listener inside an effect
+ * callback, which Solid 2 rejects as soon as the card opens. The card is built
+ * on Kobalte's Popover instead: Popper places it and its dismissable layer
+ * handles Escape and outside presses. The hover and focus timers below follow
+ * Kobalte's HoverCard. Return to `@kobalte/core/hover-card` once it registers
+ * the listener from an effect cleanup.
+ */
+export declare function HoverCard(props: ParentProps<HoverCardProps>): JSX.Element;
+export type HoverCardTriggerProps<T extends ValidComponent = "a"> = KPopoverAnchorProps<T> & {
+    class?: string;
+    onPointerEnter?: JSX.EventHandlerUnion<HTMLElement, PointerEvent>;
+    onPointerLeave?: JSX.EventHandlerUnion<HTMLElement, PointerEvent>;
+    onFocus?: JSX.EventHandlerUnion<HTMLElement, FocusEvent>;
+    onBlur?: JSX.EventHandlerUnion<HTMLElement, FocusEvent>;
+};
+/**
+ * The element that opens the card on hover and on keyboard focus. Renders an `a`:
+ * give it an `href`, or render another focusable element with `as`.
+ */
+export declare function HoverCardTrigger<T extends ValidComponent = "a">(props: PolymorphicProps<T, HoverCardTriggerProps<T>>): JSX.Element;
+export type HoverCardContentProps<T extends ValidComponent = "div"> = Omit<KPopoverContentProps<T>, "onOpenAutoFocus" | "onCloseAutoFocus"> & {
+    class?: string;
+    /** Node the card is portaled into. Defaults to `document.body`. */
+    mount?: globalThis.Element;
+    /** Classes for the parts this component renders, keyed by part name. */
+    classes?: Pick<HoverCardClasses, "content">;
+};
+/** The card. Portaled, positioned next to the trigger, and never takes focus. */
+export declare function HoverCardContent<T extends ValidComponent = "div">(props: PolymorphicProps<T, HoverCardContentProps<T>>): JSX.Element;
+```
+
 ## components/IconButton/IconButton.d.ts
 
 ```ts
@@ -4150,6 +4292,38 @@ export type RadioListItemProps<T extends ValidComponent = "div"> = KRadioGroupIt
 };
 export declare function RadioListItem<T extends ValidComponent = "div">(props: PolymorphicProps<T, RadioListItemProps<T>>): import("@solidjs/web").JSX.Element;
 export declare function RadioList<T extends ValidComponent = "div">(props: PolymorphicProps<T, RadioListProps<T>>): import("@solidjs/web").JSX.Element;
+```
+
+## components/Resizable/Resizable.d.ts
+
+```ts
+import { type ResizableClasses } from "@codeui/styles/resizable";
+import type { PolymorphicProps } from "@kobalte/core/polymorphic";
+import { type HandleProps as KHandleProps, type PanelProps as KPanelProps, type RootProps as KRootProps } from "@kobalte/core/resizable";
+import { type ValidComponent } from "@solidjs/web";
+export { resizableParts, resizableStyles, type ResizablePart, type ResizableClasses, type ResizableOrientation, type ResizableStyles, } from "@codeui/styles/resizable";
+export type { ResizableSize, ResizeStrategy } from "@kobalte/core/resizable";
+export type ResizableProps<T extends ValidComponent = "div"> = KRootProps<T> & {
+    class?: string;
+    /** Classes for the parts this component renders, keyed by part name. */
+    classes?: Pick<ResizableClasses, "root">;
+};
+/** Lays out `ResizablePanel`s in a row or a column, split by `ResizableHandle`s. */
+export declare function Resizable<T extends ValidComponent = "div">(props: PolymorphicProps<T, ResizableProps<T>>): import("@solidjs/web").JSX.Element;
+export type ResizablePanelProps<T extends ValidComponent = "div"> = KPanelProps<T> & {
+    class?: string;
+    /** Classes for the parts this component renders, keyed by part name. */
+    classes?: Pick<ResizableClasses, "panel">;
+};
+/** A pane whose size is a fraction of the root or a `"240px"` string. */
+export declare function ResizablePanel<T extends ValidComponent = "div">(props: PolymorphicProps<T, ResizablePanelProps<T>>): import("@solidjs/web").JSX.Element;
+export type ResizableHandleProps<T extends ValidComponent = "button"> = KHandleProps<T> & {
+    class?: string;
+    /** Classes for the parts this component renders, keyed by part name. */
+    classes?: Pick<ResizableClasses, "handle">;
+};
+/** The separator between two panels. Drag it, or focus it and use the arrow keys. */
+export declare function ResizableHandle<T extends ValidComponent = "button">(props: PolymorphicProps<T, ResizableHandleProps<T>>): import("@solidjs/web").JSX.Element;
 ```
 
 ## components/SegmentedControl/SegmentedControl.css.d.ts
@@ -4915,6 +5089,8 @@ export * from "./ready/radio-list.js";
 export * from "./ready/link.js";
 export * from "./ready/pagination.js";
 export * from "./ready/tooltip.js";
+export * from "./ready/hover-card.js";
+export * from "./ready/resizable.js";
 export * from "./ready/tabs.js";
 export * from "./ready/table.js";
 export * from "./ready/segmented-control.js";
@@ -6015,6 +6191,12 @@ export { DropdownMenu, DropdownMenuContent, DropdownMenuPortal, DropdownMenuItem
 export * as dropdownMenuStyles from "../components/Dropdown/Dropdown.css.js";
 ```
 
+## ready/hover-card.d.ts
+
+```ts
+export * from "../components/HoverCard/HoverCard.js";
+```
+
 ## ready/icon-button.d.ts
 
 ```ts
@@ -6083,6 +6265,12 @@ export type { ProgressProps, ProgressClasses, ProgressPart, ProgressVariants, Pr
 ```ts
 export { RadioList, RadioListItem } from "../components/RadioList/RadioList.js";
 export type { RadioListProps, RadioListItemProps, RadioListClasses, } from "../components/RadioList/RadioList.js";
+```
+
+## ready/resizable.d.ts
+
+```ts
+export * from "../components/Resizable/Resizable.js";
 ```
 
 ## ready/segmented-control.d.ts

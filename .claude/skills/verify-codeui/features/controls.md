@@ -9,6 +9,7 @@ The controls CodeImage's sidebar and Settings dialog are built from: the accordi
 - `switch-pointer` toggles on click with no focus ring.
 - `switch-keyboard` toggles with Space and shows the 2px ring; Tab focus shows it too.
 - `option-card-keyboard` enters the group with Tab, selects with arrows, draws one ring outside the focused card and the inset accent ring on the selected one.
+- `resizable-keyboard` focuses the `separator` handle with Tab, moves it with the arrow keys and stops at the panel's `minSize`/`maxSize` (Home 200px, End 360px). Journey: `journeys/resizable-keyboard.mjs` on `designsystem-resizable--sidebar`; `--vertical` and `--collapsible` render-only.
 
 ## How to get to it (user POV)
 

@@ -41,6 +41,8 @@ export const families = [
 		pages: [
 			component('kbd', 'Kbd', 'A keycap that shows a key or a keyboard shortcut.', '05', ['Kbd'], 'kbd',
 				'sm and md, keycap and hint, shortcut chords.'),
+			component('resizable', 'Resizable', 'Panels in a row or a column, split by handles the user drags to resize them.', '05', ['Resizable', 'ResizablePanel', 'ResizableHandle'], 'resizable',
+				'Horizontal and vertical, a sidebar with px limits, collapsible panels, keyboard resizing, handle line in island layouts.'),
 			component('settings-row', 'SettingsRow', 'Settings rows with a label, a description, and a control, grouped on islands.', '14', ['SettingsRow', 'SettingsGroup', 'createSettingsRowProps'], 'settings',
 				'inline and wide, compactControl stacking below 900px, markers, pictures, details, controlId labels, disabled controls, long labels, styled parts and createSettingsRowProps.'),
 			component('stack', 'Stack', 'A flex container that spaces its children with token gaps.', '05', ['Stack'], 'stack',
@@ -120,6 +122,8 @@ export const families = [
 			component('dropdown-menu', 'DropdownMenu', 'A menu of actions opened from a trigger.', '10',
 				['DropdownMenu', 'DropdownMenuContent', 'DropdownMenuPortal', 'DropdownMenuItem', 'DropdownMenuTrigger', 'DropdownSubMenu', 'DropdownSubMenuTrigger', 'DropdownSubMenuContent', 'DropdownMenuSeparator'], 'dropdown-menu',
 				'Flat and nested menus, disabled items, separators, custom trigger, nested Escape and focus return.'),
+			component('hover-card', 'HoverCard', 'A card of extra detail that opens when the user hovers or focuses a link.', '10', ['HoverCard', 'HoverCardTrigger', 'HoverCardContent'], 'hover-card',
+				'Basic profile card, placement, custom delays, keyboard focus without motion, supplementary content only.'),
 			component('popover', 'Popover', 'A floating panel anchored to a trigger, for content the user opens on demand.', '10', ['Popover', 'PopoverTrigger', 'PopoverContent'], 'popover',
 				'Default and bordered, supported placements, custom position and gutter, block children, parts composition.'),
 			component('sheet', 'Sheet', 'A panel that slides in from an edge of the screen.', '11', ['Sheet'], 'sheet',
