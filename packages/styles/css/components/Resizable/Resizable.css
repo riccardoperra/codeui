@@ -9,7 +9,9 @@
     position: relative;
     box-sizing: border-box;
     flex: none;
-    margin: 0;
+    z-index: 1;
+    /* The hit area overlaps both panels, so the panels still fill the root. */
+    margin: 0 calc(var(--cui-resizable-handle-size) / -2);
     padding: 0;
     border: 0;
     background: none;
@@ -30,6 +32,7 @@
     transition: background-color var(--cui-motion-duration-fast) var(--cui-motion-ease-out);
   }
   :where(.cui-resizable-handle)[data-orientation="vertical"] {
+    margin: calc(var(--cui-resizable-handle-size) / -2) 0;
     inline-size: auto;
     block-size: var(--cui-resizable-handle-size);
     cursor: row-resize;
