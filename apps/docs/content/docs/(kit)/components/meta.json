@@ -8,6 +8,7 @@
     "link",
     "---Layout and text---",
     "kbd",
+    "resizable",
     "settings-row",
     "stack",
     "table",
@@ -41,6 +42,7 @@
     "command-menu",
     "dialog",
     "dropdown-menu",
+    "hover-card",
     "popover",
     "sheet",
     "tooltip"

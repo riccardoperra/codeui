@@ -1,0 +1,53 @@
+---
+title: HoverCard
+description: A card of extra detail next to a link, in plain HTML.
+---
+
+Load `@codeui/styles/hovercard.css`, or `all.css`. The Solid component is documented in [HoverCard](/docs/components/hover-card).
+
+## Demo
+
+<HtmlDemo name="hover-card/basic" />
+
+The demo renders the open card in normal flow, under its trigger. On a page, the card floats and your positioning code places it.
+
+## Markup
+
+| Part | Element | Class | `data-cui` |
+| --- | --- | --- | --- |
+| Trigger | `a` with an `href` | none | `hovercard-trigger` |
+| Content | `div` | `cui-hovercard-content` | `hovercard-content` |
+
+| Attribute | Values | Default |
+| --- | --- | --- |
+| `data-expanded` on the content | Presence | Off |
+| `data-motion` on the content | `none` | None |
+
+## States
+
+### Open
+
+`data-expanded` plays the pop-in: a fade from `scale(0.96)`. The animation grows from `--cui-popper-content-transform-origin`, so set it to the side that faces the trigger.
+Without `data-expanded`, the content plays its exit animation and stays transparent. Set it on an open card even without a script.
+
+### Closing
+
+Remove `data-expanded` while the card is still in the page, and remove the card when the animation ends. `data-motion="none"` turns off both animations. Use it when the card opens from keyboard focus. With reduced motion, the card only fades.
+
+## What you supply
+
+- Showing the card 500ms after the pointer rests on the trigger or the trigger gets focus, and hiding it 150ms after the pointer leaves the trigger and the card, on blur, and on Escape.
+- Placement next to the trigger, a flip when it does not fit, and `--cui-popper-content-transform-origin`.
+- A focusable trigger. Nothing in the card may be the only way to reach an action: touch users cannot hover, and the card never takes focus.
+
+## Helper
+
+```ts
+import "@codeui/styles/hovercard.css";
+import { hoverCardParts, hoverCardStyles } from "@codeui/styles/hovercard";
+
+const card = document.querySelector<HTMLElement>("#thread-card")!;
+card.className = hoverCardStyles.content();
+card.dataset.cui = hoverCardParts.content;
+// class="cui-hovercard-content" data-cui="hovercard-content"
+```
