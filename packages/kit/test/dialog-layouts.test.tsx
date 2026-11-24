@@ -9,6 +9,20 @@ afterEach(cleanup);
 
 const sections = ["General", "Appearance", "Export", "About"] as const;
 
+it.each(["bar", "inset"] as const)("uses the header typography for a %s dialog title without a reset", chrome => {
+	render(() => <Dialog open size="sm" chrome={chrome} title="Rename project" />);
+
+	const dialog = screen.getByRole("dialog", { name: "Rename project" });
+	const title = within(dialog).getByRole("heading", { name: "Rename project" });
+	const headerStyle = getComputedStyle(title.parentElement!);
+	const titleStyle = getComputedStyle(title);
+
+	expect(titleStyle.fontSize).toBe(headerStyle.fontSize);
+	expect(titleStyle.fontWeight).toBe(headerStyle.fontWeight);
+	expect(titleStyle.marginBlockStart).toBe("0px");
+	expect(titleStyle.marginBlockEnd).toBe("0px");
+});
+
 function SettingsDialog() {
 	const [section, setSection] = createSignal<(typeof sections)[number]>("General");
 	return (
