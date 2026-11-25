@@ -1160,6 +1160,7 @@ export declare const field: string;
 export declare const input: string;
 export declare const item: string;
 export declare const itemIndicator: string;
+export declare const listbox: string;
 export declare const selectField: string;
 export declare const selectThemeVars: {
     contentBackground: `var(--${string})`;

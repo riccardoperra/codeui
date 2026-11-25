@@ -3,6 +3,7 @@ export const field: string = "cui-select cui-field";
 export const input: string = "cui-select-input";
 export const item: string = "cui-select-item";
 export const itemIndicator: string = "cui-select-item-indicator";
+export const listbox: string = "cui-select-listbox";
 export const selectField: string = "cui-select-trigger";
 export const selectThemeVars = {
 	contentBackground: "var(--cui-select-content-background)" as `var(--${string})`,

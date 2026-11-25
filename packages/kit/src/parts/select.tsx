@@ -115,7 +115,17 @@ export function Listbox<
 	OptGroup = never,
 	T extends ValidComponent = "ul",
 >(props: PolymorphicProps<T, ListboxProps<Option, OptGroup, T>>) {
-	return <K.Listbox<Option, OptGroup, T> {...props} data-cui={selectParts.listbox} />;
+	const [local, others] = splitProps(
+		props as PolymorphicProps<"ul", ListboxProps<Option, OptGroup>>,
+		["class"],
+	);
+	return (
+		<K.Listbox<Option, OptGroup>
+			{...others}
+			data-cui={selectParts.listbox}
+			class={mergeClasses(styles.listbox, local.class)}
+		/>
+	);
 }
 
 export type LabelProps<T extends ValidComponent = "span"> = K.SelectLabelProps<T>;
