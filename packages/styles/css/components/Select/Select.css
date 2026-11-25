@@ -41,6 +41,14 @@
   .cui-select-content[data-motion=none], .cui-select-content[data-motion=none][data-expanded] {
     animation: none;
   }
+  .cui-select-listbox {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    outline: none;
+  }
   .cui-select-input {
     display: flex;
     align-items: center;

@@ -1378,6 +1378,7 @@
     "input": "cui-select-input",
     "item": "cui-select-item",
     "itemIndicator": "cui-select-item-indicator",
+    "listbox": "cui-select-listbox",
     "selectField": "cui-select-trigger",
     "selectStyleProps": {
       "default": {
