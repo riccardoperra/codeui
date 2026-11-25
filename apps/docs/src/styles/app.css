@@ -49,6 +49,18 @@ html > body[data-scroll-locked] {
   overflow-wrap: anywhere;
 }
 
+.package-version {
+  color: var(--cui-text-muted);
+  font-size: var(--cui-font-size-xs);
+  line-height: var(--cui-font-line-height-normal);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.docs-package-version {
+  margin-block-start: var(--cui-space-1);
+}
+
 /* The MDX table opts out of Fumadocs prose styles, including its inline styles. */
 @layer components {
   .mdx-table :where(a) {

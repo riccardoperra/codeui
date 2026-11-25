@@ -50,6 +50,18 @@ body:has(#nd-home-layout) {
   margin-top: var(--cui-space-8);
 }
 
+.home-package-versions {
+  margin-top: var(--cui-space-4);
+}
+
+.home-package-versions ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--cui-space-1) var(--cui-space-4);
+  margin-block-start: var(--cui-space-1);
+  list-style: none;
+}
+
 .home-button {
   display: inline-flex;
   align-items: center;

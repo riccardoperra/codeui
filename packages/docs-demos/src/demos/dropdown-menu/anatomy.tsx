@@ -1,10 +1,10 @@
 import { Button, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@codeui/kit";
 
-/** Open, with the menu rendered inline instead of in a portal. */
+/** An open, non-modal menu drawn inline so the figure leaves the page interactive. */
 export default function DropdownMenuAnatomy() {
 	return (
 		<div style={{ display: "grid", gap: "var(--cui-space-2)", "justify-items": "start" }}>
-			<DropdownMenu open>
+			<DropdownMenu open modal={false}>
 				<DropdownMenuTrigger as={Button} variant="secondary">
 					Export
 				</DropdownMenuTrigger>
