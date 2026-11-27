@@ -1,6 +1,7 @@
 [
 	"components/Accordion/Accordion.css",
 	"components/Alert/Alert.css",
+	"components/Avatar/Avatar.css",
 	"components/Badge/Badge.css",
 	"components/Button/Button.css",
 	"components/Button/Loading.css",

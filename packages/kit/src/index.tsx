@@ -55,6 +55,7 @@ export * from "./ready/virtualized-listbox";
 
 export * from "./ready/kbd";
 
+export * from "./ready/avatar";
 export * from "./ready/badge";
 
 export * from "./ready/spinner";

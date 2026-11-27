@@ -50,6 +50,8 @@ export type HoverCardProps = Omit<
 
 type HoverCardController = {
 	open: () => void;
+	openNow: () => void;
+	isOpen: () => boolean;
 	close: () => void;
 	cancelOpen: () => void;
 	cancelClose: () => void;
@@ -127,6 +129,11 @@ export function HoverCard(props: ParentProps<HoverCardProps>) {
 			if (isOpen() || openTimer) return;
 			openTimer = setTimeout(() => setOpen(true), props.openDelay ?? 500);
 		},
+		openNow() {
+			if (!isOpen()) setOpen(true);
+			else cancelClose();
+		},
+		isOpen,
 		close() {
 			cancelOpen();
 			if (!isOpen() || closeTimer) return;
@@ -173,6 +180,7 @@ export function HoverCard(props: ParentProps<HoverCardProps>) {
 					open={isOpen()}
 					onOpenChange={setOpen}
 					forceMount={motion.forceMount()}
+					placement={props.placement ?? "right-start"}
 					gutter={props.gutter ?? 6}
 				/>
 			</PopMotionContext>
@@ -186,20 +194,34 @@ export type HoverCardTriggerProps<T extends ValidComponent = "a"> = KPopoverAnch
 	onPointerLeave?: JSX.EventHandlerUnion<HTMLElement, PointerEvent>;
 	onFocus?: JSX.EventHandlerUnion<HTMLElement, FocusEvent>;
 	onBlur?: JSX.EventHandlerUnion<HTMLElement, FocusEvent>;
+	onPointerDown?: JSX.EventHandlerUnion<HTMLElement, PointerEvent>;
+	onClick?: JSX.EventHandlerUnion<HTMLElement, MouseEvent>;
 };
 
 type TriggerEvent<E extends Event> = E & { currentTarget: HTMLElement; target: Element };
 
 /**
- * The element that opens the card on hover and on keyboard focus. Renders an `a`:
- * give it an `href`, or render another focusable element with `as`.
+ * The element that opens the card on hover, on keyboard focus and on click. Renders an `a`:
+ * give it an `href`, or render another focusable element with `as`. On a touch screen the
+ * first tap on a closed card opens it instead of following the link; the next tap follows it.
  */
 export function HoverCardTrigger<T extends ValidComponent = "a">(
 	props: PolymorphicProps<T, HoverCardTriggerProps<T>>,
 ) {
 	const local = props as PolymorphicProps<"a", HoverCardTriggerProps>;
-	const others = omit(local, "class", "ref", "onPointerEnter", "onPointerLeave", "onFocus", "onBlur");
+	const others = omit(
+		local,
+		"class",
+		"ref",
+		"onPointerEnter",
+		"onPointerLeave",
+		"onFocus",
+		"onBlur",
+		"onPointerDown",
+		"onClick",
+	);
 	const card = useHoverCard();
+	let pointerType = "";
 	return (
 		<KPopover.Anchor
 			as="a"
@@ -212,6 +234,19 @@ export function HoverCardTrigger<T extends ValidComponent = "a">(
 			onPointerLeave={(event: TriggerEvent<PointerEvent>) => {
 				callHandler(event, local.onPointerLeave);
 				if (event.pointerType !== "touch") card.cancelOpen();
+			}}
+			onPointerDown={(event: TriggerEvent<PointerEvent>) => {
+				callHandler(event, local.onPointerDown);
+				pointerType = event.pointerType;
+			}}
+			onClick={(event: TriggerEvent<MouseEvent>) => {
+				callHandler(event, local.onClick);
+				const touch = pointerType === "touch" || pointerType === "pen";
+				pointerType = "";
+				if (event.defaultPrevented) return;
+				if (touch && !card.isOpen() && event.currentTarget.hasAttribute("href"))
+					event.preventDefault();
+				card.openNow();
 			}}
 			onFocus={(event: TriggerEvent<FocusEvent>) => {
 				callHandler(event, local.onFocus);
@@ -238,12 +273,12 @@ export type HoverCardContentProps<T extends ValidComponent = "div"> = Omit<
 	classes?: Pick<HoverCardClasses, "content">;
 };
 
-/** The card. Portaled, positioned next to the trigger, and never takes focus. */
+/** The card. Portaled, placed beside the trigger (on the right unless there is no room), and never takes focus. */
 export function HoverCardContent<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, HoverCardContentProps<T>>,
 ) {
 	const local = props as PolymorphicProps<"div", HoverCardContentProps>;
-	const others = omit(local, "class", "classes", "mount", "ref");
+	const others = omit(local, "class", "classes", "mount", "ref", "onPointerDownOutside");
 	const popover = usePopoverContext();
 	const card = useHoverCard();
 	return (
@@ -254,6 +289,11 @@ export function HoverCardContent<T extends ValidComponent = "div">(
 						role={undefined}
 						{...others}
 						ref={[motionRef({ hover: true }), card.setContent, local.ref]}
+						onPointerDownOutside={(event: Parameters<NonNullable<KPopoverContentProps["onPointerDownOutside"]>>[0]) => {
+							local.onPointerDownOutside?.(event);
+							// A press on the trigger is a click that keeps the card open.
+							if (card.contains(event.target)) event.preventDefault();
+						}}
 						data-cui={hoverCardParts.content}
 						class={mergeClasses(styles.content(), local.classes?.content, local.class)}
 					/>
@@ -276,4 +316,78 @@ function safeArea(trigger: HTMLElement, content: HTMLElement): Polygon {
 	if (f.top >= a.bottom)
 		return [[a.left, centerY], [f.left, f.top], [f.left, f.bottom], [f.right, f.bottom], [f.right, f.top], [a.right, centerY]];
 	return [[a.left, centerY], [f.left, f.bottom], [f.left, f.top], [f.right, f.top], [f.right, f.bottom], [a.right, centerY]];
+}
+
+export type HoverCardListProps = JSX.HTMLAttributes<HTMLUListElement> & {
+	/** Names the list for assistive technology, for example "Subtasks". */
+	"aria-label"?: string;
+};
+
+/**
+ * A list of entries inside a hover card. It caps near 24rem and scrolls on its own,
+ * so the card keeps its size however many entries it holds.
+ */
+export function HoverCardList(props: HoverCardListProps) {
+	const others = omit(props, "class");
+	return (
+		<ul
+			tabindex={0}
+			{...others}
+			data-cui={hoverCardParts.list}
+			class={mergeClasses(styles.list(), props.class)}
+		/>
+	);
+}
+
+export type HoverCardItemProps = Omit<JSX.HTMLAttributes<HTMLLIElement>, "children"> & {
+	/** State icon, 16px. Pair it with a visible or accessible state name. */
+	icon?: JSX.Element;
+	/** Short identifier, such as `#142` or `T-3`. Shown before the title in secondary text. */
+	identifier?: JSX.Element;
+	/** Nesting level, from 0. Each level indents the entry by `--cui-hovercard-item-indent`. */
+	depth?: number;
+	/** The title. It stays on one line and truncates. */
+	children?: JSX.Element;
+	/** Classes for the parts this component renders, keyed by part name. */
+	classes?: Pick<HoverCardClasses, "item" | "itemIcon" | "itemId" | "itemTitle">;
+};
+
+/** One line in a `HoverCardList`: state icon, identifier, then the title truncated. */
+export function HoverCardItem(props: HoverCardItemProps) {
+	const others = omit(props, "class", "classes", "icon", "identifier", "depth", "children", "style");
+	return (
+		<li
+			{...others}
+			data-cui={hoverCardParts.item}
+			class={mergeClasses(styles.item(), props.classes?.item, props.class)}
+			style={{
+				...(typeof props.style === "object" ? props.style : {}),
+				...(props.depth ? { "--cui-hovercard-item-depth": String(props.depth) } : {}),
+			}}
+		>
+			<Show when={props.icon}>
+				<span
+					aria-hidden="true"
+					data-cui={hoverCardParts.itemIcon}
+					class={mergeClasses(styles.itemIcon(), props.classes?.itemIcon)}
+				>
+					{props.icon}
+				</span>
+			</Show>
+			<Show when={props.identifier}>
+				<span
+					data-cui={hoverCardParts.itemId}
+					class={mergeClasses(styles.itemId(), props.classes?.itemId)}
+				>
+					{props.identifier}
+				</span>
+			</Show>
+			<span
+				data-cui={hoverCardParts.itemTitle}
+				class={mergeClasses(styles.itemTitle(), props.classes?.itemTitle)}
+			>
+				{props.children}
+			</span>
+		</li>
+	);
 }

@@ -8,6 +8,10 @@
     "foundation/cui.css.ts",
     "components/Alert/Alert.css.ts"
   ],
+  "components/Avatar/Avatar.css.ts": [
+    "foundation/cui.css.ts",
+    "components/Avatar/Avatar.css.ts"
+  ],
   "components/Badge/Badge.css.ts": [
     "foundation/cui.css.ts",
     "components/Badge/Badge.css.ts"

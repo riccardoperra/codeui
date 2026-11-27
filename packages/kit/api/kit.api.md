@@ -583,6 +583,14 @@ export { alertParts, type AlertPart, type AlertClasses, type AlertTone, type Ale
 export * from "./internal/generated-appearance/alert.js";
 ```
 
+## @codeui/styles/avatar.d.ts
+
+```ts
+export * from "./internal/components/Avatar/Avatar.css.js";
+export { avatarParts, type AvatarPart, type AvatarClasses, type AvatarSize, type AvatarVariants, type AvatarStyles, avatarStyles, avatarHue, avatarInitials } from "./internal/parts/avatar.js";
+export * from "./internal/generated-appearance/avatar.js";
+```
+
 ## @codeui/styles/badge.d.ts
 
 ```ts
@@ -724,6 +732,7 @@ export * as fielderror from "./fielderror.js";
 export * as icon from "./icon.js";
 export * as hovercard from "./hovercard.js";
 export * as resizable from "./resizable.js";
+export * as avatar from "./avatar.js";
 export * from "./tokens.js";
 export { applyStyleProps, type StyleProps } from "./internal/utils/applyStyleProps.js";
 ```
@@ -751,6 +760,25 @@ export declare const description: string;
 export declare const icon: string;
 export declare const root: () => string;
 export declare const title: string;
+```
+
+## @codeui/styles/internal/components/Avatar/Avatar.css.d.ts
+
+```ts
+export declare const root: () => string;
+export declare const image: () => string;
+export declare const fallback: () => string;
+export declare const avatarVars: {
+    size: `var(--${string})`;
+    fontSize: `var(--${string})`;
+    hue: `var(--${string})`;
+    lightness: `var(--${string})`;
+    chroma: `var(--${string})`;
+    background: `var(--${string})`;
+    color: `var(--${string})`;
+    ring: `var(--${string})`;
+    unassignedColor: `var(--${string})`;
+};
 ```
 
 ## @codeui/styles/internal/components/Badge/Badge.css.d.ts
@@ -994,6 +1022,11 @@ export declare function styleFieldMessage(sizesMap: Record<BaseComponentSize, Pa
 
 ```ts
 export declare const content: () => string;
+export declare const list: () => string;
+export declare const item: () => string;
+export declare const itemIcon: () => string;
+export declare const itemId: () => string;
+export declare const itemTitle: () => string;
 export declare const hoverCardVars: {
     contentBackground: `var(--${string})`;
     contentBoxShadow: `var(--${string})`;
@@ -1003,6 +1036,9 @@ export declare const hoverCardVars: {
     contentFontSize: `var(--${string})`;
     contentLineHeight: `var(--${string})`;
     contentColor: `var(--${string})`;
+    listMaxHeight: `var(--${string})`;
+    itemIndent: `var(--${string})`;
+    itemDepth: `var(--${string})`;
 };
 ```
 
@@ -1753,6 +1789,22 @@ export declare const alertStyleProps: (options?: AlertStyleOptions) => {
     "data-cui": "alert";
     "data-tone": "neutral" | "danger" | "success" | "info" | "warning";
     "data-fluid": string | undefined;
+};
+```
+
+## @codeui/styles/internal/generated-appearance/avatar.d.ts
+
+```ts
+export type AvatarStyleOptions = {
+    class?: string;
+    size?: "xs" | "sm" | "md" | "lg";
+    unassigned?: boolean;
+};
+export declare const avatarStyleProps: (options?: AvatarStyleOptions) => {
+    class: string;
+    "data-cui": "avatar";
+    "data-size": "xs" | "sm" | "md" | "lg";
+    "data-unassigned": string | undefined;
 };
 ```
 
@@ -2747,6 +2799,32 @@ export type AlertStyles = {
 export declare const alertStyles: AlertStyles;
 ```
 
+## @codeui/styles/internal/parts/avatar.d.ts
+
+```ts
+import type { AvatarStyleOptions } from "../generated-appearance/avatar.js";
+export declare const avatarParts: {
+    readonly root: "avatar";
+    readonly image: "avatar-image";
+    readonly fallback: "avatar-fallback";
+};
+export type AvatarPart = keyof typeof avatarParts;
+export type AvatarClasses = Partial<Record<AvatarPart, string>>;
+export type AvatarSize = NonNullable<AvatarStyleOptions["size"]>;
+export type AvatarVariants = {
+    size?: AvatarSize;
+    unassigned?: boolean;
+};
+export type AvatarStyles = {
+    [P in AvatarPart]: () => string;
+};
+export declare const avatarStyles: AvatarStyles;
+/** FNV-1a hash of a stable id, folded to a hue in degrees. Never pass a display name. */
+export declare const avatarHue: (identifier: string) => number;
+/** One or two initials from a name: the first letter of the first and last words. */
+export declare const avatarInitials: (name: string) => string;
+```
+
 ## @codeui/styles/internal/parts/badge.d.ts
 
 ```ts
@@ -2890,6 +2968,11 @@ export declare const dialogStyles: DialogStyles;
 export declare const hoverCardParts: {
     readonly trigger: "hovercard-trigger";
     readonly content: "hovercard-content";
+    readonly list: "hovercard-list";
+    readonly item: "hovercard-item";
+    readonly itemIcon: "hovercard-item-icon";
+    readonly itemId: "hovercard-item-id";
+    readonly itemTitle: "hovercard-item-title";
 };
 export type HoverCardPart = keyof typeof hoverCardParts;
 export type HoverCardClasses = Partial<Record<HoverCardPart, string>>;
@@ -3570,6 +3653,32 @@ export type AlertProps<T extends ValidComponent = "div"> = A.RootProps<T> & {
 export declare function Alert<T extends ValidComponent = "div">(props: PolymorphicProps<T, AlertProps<T>>): JSX.Element;
 ```
 
+## components/Avatar/Avatar.d.ts
+
+```ts
+import { type JSX } from "@solidjs/web";
+import * as A from "../../parts/avatar.js";
+export type AvatarProps = Omit<A.RootProps, "hue" | "children"> & {
+    /** The person's name. It is the accessible name and the tooltip. Defaults to "Unassigned" when `unassigned`. */
+    name?: string;
+    /** A stable id, such as a user id. The fill hue comes from it, never from the name. Without it the fill is neutral. */
+    identifier?: string;
+    /** URL of the picture. The initials show while it is missing or when it fails to load. */
+    src?: string;
+    /** Override the initials. Defaults to the first letter of the first and last words of `name`. */
+    initials?: string;
+    /** Show the name in the kit Tooltip on hover. Defaults to `true`. */
+    tooltip?: boolean;
+    /** Classes for the parts this component renders, keyed by part name. */
+    classes?: A.AvatarClasses;
+};
+/**
+ * A person: their picture, or one or two initials on a hue derived from their id.
+ * An unassigned avatar is an empty dashed circle.
+ */
+export declare function Avatar(props: AvatarProps): JSX.Element;
+```
+
 ## components/Badge/Badge.d.ts
 
 ```ts
@@ -3982,10 +4091,13 @@ export type HoverCardTriggerProps<T extends ValidComponent = "a"> = KPopoverAnch
     onPointerLeave?: JSX.EventHandlerUnion<HTMLElement, PointerEvent>;
     onFocus?: JSX.EventHandlerUnion<HTMLElement, FocusEvent>;
     onBlur?: JSX.EventHandlerUnion<HTMLElement, FocusEvent>;
+    onPointerDown?: JSX.EventHandlerUnion<HTMLElement, PointerEvent>;
+    onClick?: JSX.EventHandlerUnion<HTMLElement, MouseEvent>;
 };
 /**
- * The element that opens the card on hover and on keyboard focus. Renders an `a`:
- * give it an `href`, or render another focusable element with `as`.
+ * The element that opens the card on hover, on keyboard focus and on click. Renders an `a`:
+ * give it an `href`, or render another focusable element with `as`. On a touch screen the
+ * first tap on a closed card opens it instead of following the link; the next tap follows it.
  */
 export declare function HoverCardTrigger<T extends ValidComponent = "a">(props: PolymorphicProps<T, HoverCardTriggerProps<T>>): JSX.Element;
 export type HoverCardContentProps<T extends ValidComponent = "div"> = Omit<KPopoverContentProps<T>, "onOpenAutoFocus" | "onCloseAutoFocus"> & {
@@ -3995,8 +4107,31 @@ export type HoverCardContentProps<T extends ValidComponent = "div"> = Omit<KPopo
     /** Classes for the parts this component renders, keyed by part name. */
     classes?: Pick<HoverCardClasses, "content">;
 };
-/** The card. Portaled, positioned next to the trigger, and never takes focus. */
+/** The card. Portaled, placed beside the trigger (on the right unless there is no room), and never takes focus. */
 export declare function HoverCardContent<T extends ValidComponent = "div">(props: PolymorphicProps<T, HoverCardContentProps<T>>): JSX.Element;
+export type HoverCardListProps = JSX.HTMLAttributes<HTMLUListElement> & {
+    /** Names the list for assistive technology, for example "Subtasks". */
+    "aria-label"?: string;
+};
+/**
+ * A list of entries inside a hover card. It caps near 24rem and scrolls on its own,
+ * so the card keeps its size however many entries it holds.
+ */
+export declare function HoverCardList(props: HoverCardListProps): JSX.Element;
+export type HoverCardItemProps = Omit<JSX.HTMLAttributes<HTMLLIElement>, "children"> & {
+    /** State icon, 16px. Pair it with a visible or accessible state name. */
+    icon?: JSX.Element;
+    /** Short identifier, such as `#142` or `T-3`. Shown before the title in secondary text. */
+    identifier?: JSX.Element;
+    /** Nesting level, from 0. Each level indents the entry by `--cui-hovercard-item-indent`. */
+    depth?: number;
+    /** The title. It stays on one line and truncates. */
+    children?: JSX.Element;
+    /** Classes for the parts this component renders, keyed by part name. */
+    classes?: Pick<HoverCardClasses, "item" | "itemIcon" | "itemId" | "itemTitle">;
+};
+/** One line in a `HoverCardList`: state icon, identifier, then the title truncated. */
+export declare function HoverCardItem(props: HoverCardItemProps): JSX.Element;
 ```
 
 ## components/IconButton/IconButton.d.ts
@@ -5098,6 +5233,7 @@ export * from "./ready/segmented-control.js";
 export * from "./ready/listbox.js";
 export * from "./ready/virtualized-listbox.js";
 export * from "./ready/kbd.js";
+export * from "./ready/avatar.js";
 export * from "./ready/badge.js";
 export * from "./ready/spinner.js";
 export * from "./ready/skeleton.js";
@@ -5174,6 +5310,29 @@ export declare function Description(props: DescriptionProps): JSX.Element;
 export type ActionProps = JSX.HTMLAttributes<HTMLDivElement>;
 /** Holds the alert's controls, such as a button or a link. */
 export declare function Action(props: ActionProps): JSX.Element;
+```
+
+## parts/avatar.d.ts
+
+```ts
+import { type JSX } from "@solidjs/web";
+import { type AvatarVariants } from "@codeui/styles/avatar";
+export { avatarParts, avatarHue, avatarInitials, avatarStyles, type AvatarPart, type AvatarClasses, type AvatarSize, type AvatarVariants, type AvatarStyles, } from "@codeui/styles/avatar";
+export type RootProps = JSX.HTMLAttributes<HTMLSpanElement> & AvatarVariants & {
+    /** Hue of the fill in degrees. Derive it from a stable id with `avatarHue`, never from the name. */
+    hue?: number;
+};
+/** The circle. Give it `role="img"` and the person's name as `aria-label`. */
+export declare function Root(props: RootProps): JSX.Element;
+export type ImageProps = JSX.ImgHTMLAttributes<HTMLImageElement>;
+/**
+ * The picture. It covers the fallback while it loads and removes itself when it fails,
+ * so the initials show instead.
+ */
+export declare function Image(props: ImageProps): JSX.Element;
+export type FallbackProps = JSX.HTMLAttributes<HTMLSpanElement>;
+/** The initials. Hidden from assistive technology: the root carries the name. */
+export declare function Fallback(props: FallbackProps): JSX.Element;
 ```
 
 ## parts/badge.d.ts
@@ -6140,6 +6299,15 @@ export { accordionParts, accordionStyles, type AccordionPart, type AccordionClas
 ```ts
 export { Alert } from "../components/Alert/Alert.js";
 export type { AlertProps } from "../components/Alert/Alert.js";
+```
+
+## ready/avatar.d.ts
+
+```ts
+export * from "@codeui/styles/internal/components/Avatar/Avatar.css";
+export { Avatar } from "../components/Avatar/Avatar.js";
+export { avatarHue, avatarInitials } from "../parts/avatar.js";
+export type { AvatarProps } from "../components/Avatar/Avatar.js";
 ```
 
 ## ready/badge.d.ts

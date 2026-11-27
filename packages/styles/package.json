@@ -537,6 +537,17 @@
         "default": "./dist/cjs/resizable.cjs"
       }
     },
+    "./avatar.css": "./dist/avatar.css",
+    "./avatar": {
+      "import": {
+        "types": "./dist/types/avatar.d.ts",
+        "default": "./dist/esm/avatar.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/avatar.d.cts",
+        "default": "./dist/cjs/avatar.cjs"
+      }
+    },
     "./all.css": "./dist/all.css",
     "./internal/components/Accordion/Accordion.css": {
       "import": {
@@ -556,6 +567,16 @@
       "require": {
         "types": "./dist/types-cjs/internal/components/Alert/Alert.css.d.cts",
         "default": "./dist/cjs/internal/components/Alert/Alert.css.cjs"
+      }
+    },
+    "./internal/components/Avatar/Avatar.css": {
+      "import": {
+        "types": "./dist/types/internal/components/Avatar/Avatar.css.d.ts",
+        "default": "./dist/esm/internal/components/Avatar/Avatar.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/Avatar/Avatar.css.d.cts",
+        "default": "./dist/cjs/internal/components/Avatar/Avatar.css.cjs"
       }
     },
     "./internal/components/Badge/Badge.css": {
@@ -1276,11 +1297,17 @@
       "resizable": [
         "dist/types/resizable.d.ts"
       ],
+      "avatar": [
+        "dist/types/avatar.d.ts"
+      ],
       "internal/components/Accordion/Accordion.css": [
         "dist/types/internal/components/Accordion/Accordion.css.d.ts"
       ],
       "internal/components/Alert/Alert.css": [
         "dist/types/internal/components/Alert/Alert.css.d.ts"
+      ],
+      "internal/components/Avatar/Avatar.css": [
+        "dist/types/internal/components/Avatar/Avatar.css.d.ts"
       ],
       "internal/components/Badge/Badge.css": [
         "dist/types/internal/components/Badge/Badge.css.d.ts"
