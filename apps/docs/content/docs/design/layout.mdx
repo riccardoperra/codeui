@@ -17,9 +17,15 @@ description: A still content island, a 360px side panel, floating bars, and one 
 └──────────────────────────────────────────────────────────────┘
 ```
 
-The interface has fixed sizes and the content takes all the remaining space. The side panel is 360px. The header row is 36px. Everything sits 8px from the window edge and 8px from its neighbours.
+The interface has fixed sizes and the content takes all the remaining space. The side panel is 360px. The header row is 36px. Everything sits 6px from the window edge and 6px from its neighbours.
 
-When the content is read-only, the layout leaves out the containers of the controls it does not show. The content gets that space, instead of empty frames where the controls would be.
+The space of an island layout goes inside the islands. The page between them is a thin seam. CodeLoom started with wider gaps, and they spent room on background instead of content: "questo permette di risparmiare spazio".
+
+A side panel may be resizable with the kit `Resizable`, always between a minimum and a maximum width, so it can make room for long titles without swallowing the content.
+
+A view opens as a tab in an island, beside the content. It never replaces the content with a full screen and a "Back to …" button.
+
+When the content is read-only, the layout leaves out the containers of the controls it does not show. The content gets that space, instead of empty frames where the controls would be. The same goes for lists: an item with nothing in it gets no row. CodeLoom once showed an empty "checkpoint" row: "non ha molto senso".
 
 ## Side panel
 
@@ -28,6 +34,7 @@ CodeImage's side panel is an accordion. Its rules came from several review round
 - **One section open at a time.** With several sections open, the panel scrolled further every time a section was opened.
 - **Everything visible inside the open section.** An early build had "More / Less" toggles inside sections, which hid options without making the panel easier to scan. They were removed.
 - **The header carries the current value.** Each section header shows an icon, a title, the current value as a short grey summary (for example "64" or "macOS"), and a chevron. The user can read the whole configuration with every section closed.
+- **The whole header is the trigger.** The chevron is an icon inside the row, not a separate button, and row actions sit over the end of the row inside its fill. A separate chevron button left the rest of the row dead and made the two hit areas collide.
 - **The open section sits on an inset**, a quieter island inside the panel, so it is clear which header the controls belong to.
 
 The panel can also be shown as a rail of icons, one panel per section. That is a preference in Settings, not a separate layout. Both forms render the same sections from the same code, so they cannot drift apart. A hybrid of rail and accordion was tried and rejected.

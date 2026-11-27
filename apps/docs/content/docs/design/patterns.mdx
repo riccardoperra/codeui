@@ -51,6 +51,7 @@ The preview is a schematic drawn in the option's own colours, not a miniature of
 | Overlay | When | Backdrop |
 | --- | --- | --- |
 | Tooltip | Name an icon, explain a value | None |
+| Hover card | Show several facts or a description | None |
 | Popover | Pick a value for one row | None |
 | Menu | Choose an action | None |
 | Command menu | Find anything by name | None |
@@ -70,13 +71,19 @@ A picker opens over the panel that holds it, anchored to its row. It does not pu
 
 A dialog is for settings and for decisions the user must make before continuing, such as reviewing detected secrets before an export. It is not for asking "are you sure?" about something that can be undone.
 
+A tooltip is one line that names one thing. A description, or several facts about a row, goes in a hover card beside its trigger, on the right unless there is no room, wrapped at about 20rem. It opens on click too, so touch works, and everything in it is reachable another way. The `title` attribute is never used: it is slow, unstyled, and invisible to touch and keyboard. Use the kit [`HoverCard`](/docs/components/hover-card): it opens on hover, focus and click, sits on the right by default, and follows Pop.
+
+A list inside a menu or a hover card has one line per entry: state icon, identifier, title truncated. Nesting shows by indent, and a prefix that every entry shares is dropped. Two or more entries for the same action go in a submenu labelled with the count, so the menu does not fill up with "Open …" rows. A long list caps at about 24rem and scrolls on its own. In a hover card, build it with `HoverCardList` and `HoverCardItem`.
+
 Escape closes only the innermost layer. In CodeImage, pressing Escape on a segmented control inside Settings once closed the whole dialog.
 
 ## Command menu
 
 `⌘K`, or `Ctrl+K` outside Apple platforms, opens the command menu in every layout. It floats at the bottom centre, six rows tall, with no scrim, so the content stays in view while you browse.
 
-It lists every option of every visible control, every action and every setting. It reads the same data as the controls, so a new setting appears in it without extra work. Moving through the rows previews each option on the content. Enter applies it and Escape puts the old value back. A short hint in the search row says so: `↑↓ preview · ↵ apply · esc cancel`.
+It lists every option of every visible control, every action and every setting. It reads the same data as the controls, so a new setting appears in it without extra work. Moving through the rows previews each option on the content. Enter applies it and Escape puts the old value back. A footer row of keycaps says so: `↑↓ Navigate · ↵ Apply · esc Close`.
+
+Rows are an icon, the name, and the description on the right. The highlighted row's full description opens in a hover card that follows the arrow keys. A group label has about `--cui-space-2` above it and `--cui-space-1` below, and the first label adds nothing above.
 
 ## Actions in dialogs and toasts
 
@@ -90,6 +97,42 @@ Close and Confirm go on the right of the footer. A third, minor action is a smal
     <ArtActionsDont />
   </Dont>
 </DoDont>
+
+An action at the end of a sentence or a notice, such as **Sign in** after a message that asks for it, is a text link after `--cui-space-2`, underlined on hover. A button box pressed against the text looked "orrendo".
+
+## Rows in a list
+
+- **The leading slot tells the item apart.** It holds the item's type, source or owner, never a generic icon repeated on every row. A label that is the same on every row moves to the accessible description.
+- **The trailing slot has one meaning.** It shows the time, and an icon only for live work, a failure, a stop or a request for the user. A list where some finished rows showed a check and others showed "2h" raised the question: "what's the difference between completed and 1h?"
+- **Ownership is nesting.** An item sits under its owner, not under a separate heading that changes with the selection. Organising groups, such as pinned or archived, stay outside that tree.
+- **One row per thing.** A summary and its members are one row: the live member first, then the count that opens the rest. A fact every member shares goes once on the group row.
+- **A large flat group gets a second level** by the owner the user recognises, with an avatar and a count, instead of long paths on every row.
+
+## Background work
+
+Work that runs while the user does something else stays visible as one control near where the user acts. It shows a count and how many are still active, for example "3 tasks · 1 running", opens the list, where each item shows what it runs and for how long, and goes away when nothing is left.
+
+## Data and technical values
+
+- **Show data as what it is.** A file read shows the lines, a change shows a diff, anything else shows name and value rows. Raw JSON is only for data with no known shape.
+- **Show the value, not a verb about it.** A command, path or query shows itself. The part that identifies it is primary text, the rest is tertiary mono and truncates. Opened, the full value is highlighted in the code font with a Copy button. "Running pnpm" said nothing about what ran.
+- **Running work shows its time** at the end of its row, in tabular figures with a reserved width, and the time stays once the work ends.
+- **An author line** is the author's mark in a rounded tile, the name in primary text, then facts in secondary text joined by " · ".
+
+## Avatar
+
+A person is an avatar: their picture when there is one, otherwise one or two initials on a hue derived from their id, never from their name, so the colour does not change when the name does. Full radius with a neutral ring, so it never vanishes into its background. The name is in the tooltip and the accessible name. Sizes come from the shared control scale, and an unassigned owner is an empty dashed circle. Use the kit [`Avatar`](/docs/components/avatar); three CodeLoom features had each built their own.
+
+## Forms and inputs
+
+- **A setup form asks the main choice first** and puts advanced methods behind a disclosure. Each method has a one-line hint on where to find its value. An error sits under the field that caused it, and clears when the method changes.
+- **A suggested value is the placeholder**, with a Tab keycap to accept it, not a separate chip with ×.
+- **Attached context is a chip above the input**: the source's mark, the key at 600, the title truncated, on the brand wash, with a remove button. Attaching never sends.
+- **A text input has no formatting toolbar.** Formatting comes from shortcuts and renders as you type: "bold italic etc non servono a niente".
+
+## Loading
+
+Loading never shows the empty state, not even for one frame. While the next content loads, keep the previous content or show a skeleton, and keep recently viewed content cached so going back is instant. In CodeLoom, switching threads once flashed "nothing here" before the thread appeared.
 
 ## Announcing new things
 
@@ -108,7 +151,7 @@ A new feature gets a small blue dot on its control, at most three at a time acro
 
 - Text contrast is at least 4.5:1 below 18px. Icons, rings and control edges are at least 3:1. Both themes are checked.
 - Every control works from the keyboard. Pickers and cards open with Enter and Space. A list previews on focus just as it does on hover.
-- There is one focus ring: 2px, offset 2px, shown on `:focus-visible`.
+- There is one focus ring: 2px, offset 2px, shown on `:focus-visible`. In packed lists, trees and toolbars the ring sits inside the row and shows only for keyboard input, because an outer ring covers the row next to it.
 - Closing an overlay returns focus to whatever opened it.
 - On a phone, opening a dialog does not focus a text field, so the keyboard does not cover the dialog.
 - Every icon button and field has an accessible name. Colour is never the only signal.

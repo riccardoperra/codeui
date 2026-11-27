@@ -207,6 +207,20 @@
 				"default": "./dist/cjs/ready/kbd.cjs"
 			}
 		},
+		"./avatar": {
+			"solid": {
+				"types": "./dist/types/ready/avatar.d.ts",
+				"default": "./dist/source/ready/avatar.js"
+			},
+			"import": {
+				"types": "./dist/types/ready/avatar.d.ts",
+				"default": "./dist/esm/ready/avatar.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/ready/avatar.d.cts",
+				"default": "./dist/cjs/ready/avatar.cjs"
+			}
+		},
 		"./badge": {
 			"solid": {
 				"types": "./dist/types/ready/badge.d.ts",
@@ -471,6 +485,20 @@
 			"require": {
 				"types": "./dist/types-cjs/parts/kbd.d.cts",
 				"default": "./dist/cjs/parts/kbd.cjs"
+			}
+		},
+		"./avatar/parts": {
+			"solid": {
+				"types": "./dist/types/parts/avatar.d.ts",
+				"default": "./dist/source/parts/avatar.jsx"
+			},
+			"import": {
+				"types": "./dist/types/parts/avatar.d.ts",
+				"default": "./dist/esm/parts/avatar.js"
+			},
+			"require": {
+				"types": "./dist/types-cjs/parts/avatar.d.cts",
+				"default": "./dist/cjs/parts/avatar.cjs"
 			}
 		},
 		"./badge/parts": {
@@ -1083,6 +1111,9 @@
 			"kbd": [
 				"dist/types/ready/kbd.d.ts"
 			],
+			"avatar": [
+				"dist/types/ready/avatar.d.ts"
+			],
 			"badge": [
 				"dist/types/ready/badge.d.ts"
 			],
@@ -1139,6 +1170,9 @@
 			],
 			"kbd/parts": [
 				"dist/types/parts/kbd.d.ts"
+			],
+			"avatar/parts": [
+				"dist/types/parts/avatar.d.ts"
 			],
 			"badge/parts": [
 				"dist/types/parts/badge.d.ts"

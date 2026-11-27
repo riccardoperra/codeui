@@ -362,5 +362,14 @@
 		],
 		"dependencies": [],
 		"helpers": "parts/resizable.ts"
+	},
+	"avatar": {
+		"modules": [
+			"components/Avatar/Avatar.css.ts"
+		],
+		"dependencies": [
+			"tooltip"
+		],
+		"helpers": "parts/avatar.ts"
 	}
 }

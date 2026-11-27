@@ -1,3 +1,4 @@
+import { Avatar } from "../src/components/Avatar/Avatar";
 import { Alert } from "../src/components/Alert/Alert";
 import { createToaster, Toaster } from "../src/components/Toast/Toaster";
 import * as T from "../src/parts/toast";
@@ -272,4 +273,14 @@ it("server-renders a settings group with rows wired to their controls", () => {
 		/<select[^>]*aria-labelledby="language-label"[^>]*aria-describedby="language-description"/,
 	);
 	expect(html).toContain("The language of the menus.");
+});
+
+it("server-renders an avatar with its name, initials and picture", () => {
+	const html = renderToString(() => (
+		<Avatar name="Ada Lovelace" identifier="user_42" src="/ada.png" />
+	));
+	expect(html).toMatch(/role="img"/);
+	expect(html).toMatch(/aria-label="Ada Lovelace"/);
+	expect(html).toContain(">AL<");
+	expect(html).toMatch(/<img[^>]*src="\/ada.png"/);
 });

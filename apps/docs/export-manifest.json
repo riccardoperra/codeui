@@ -265,7 +265,16 @@
 			"ResizableSize": "components/resizable#resizablestyles",
 			"resizableStyles": "components/resizable#resizablestyles",
 			"ResizableStyles": "components/resizable#resizablestyles",
-			"ResizeStrategy": "components/resizable#resizablestyles"
+			"ResizeStrategy": "components/resizable#resizablestyles",
+			"Avatar": "components/avatar#avatar",
+			"avatarHue": "components/avatar#avatarhue",
+			"avatarInitials": "components/avatar#avatarinitials",
+			"AvatarProps": "components/avatar#avatar",
+			"avatarVars": "components/avatar#avatar",
+			"HoverCardItem": "components/hover-card#hovercarditem",
+			"HoverCardItemProps": "components/hover-card#hovercarditem",
+			"HoverCardList": "components/hover-card#hovercardlist",
+			"HoverCardListProps": "components/hover-card#hovercardlist"
 		},
 		"@codeui/kit/accordion/parts": {
 			"AccordionClasses": "components/accordion#anatomy",
@@ -1241,7 +1250,11 @@
 			"hoverCardStyles": "components/hover-card#hovercardstyles",
 			"HoverCardStyles": "components/hover-card#hovercardstyles",
 			"HoverCardTrigger": "components/hover-card#hovercardtrigger",
-			"HoverCardTriggerProps": "components/hover-card#hovercardtrigger"
+			"HoverCardTriggerProps": "components/hover-card#hovercardtrigger",
+			"HoverCardItem": "components/hover-card#hovercarditem",
+			"HoverCardItemProps": "components/hover-card#hovercarditem",
+			"HoverCardList": "components/hover-card#hovercardlist",
+			"HoverCardListProps": "components/hover-card#hovercardlist"
 		},
 		"@codeui/kit/resizable": {
 			"Resizable": "components/resizable#resizable",
@@ -1258,6 +1271,30 @@
 			"resizableStyles": "components/resizable#resizablestyles",
 			"ResizableStyles": "components/resizable#resizablestyles",
 			"ResizeStrategy": "components/resizable#resizablestyles"
+		},
+		"@codeui/kit/avatar": {
+			"Avatar": "components/avatar#avatar",
+			"avatarHue": "components/avatar#avatarhue",
+			"avatarInitials": "components/avatar#avatarinitials",
+			"AvatarProps": "components/avatar#avatar",
+			"avatarVars": "components/avatar#avatar"
+		},
+		"@codeui/kit/avatar/parts": {
+			"AvatarClasses": "components/avatar#anatomy",
+			"avatarHue": "components/avatar#avatarhue",
+			"avatarInitials": "components/avatar#avatarinitials",
+			"AvatarPart": "components/avatar#anatomy",
+			"avatarParts": "components/avatar#anatomy",
+			"AvatarSize": "components/avatar#variants",
+			"avatarStyles": "components/avatar#avatarstyles",
+			"AvatarStyles": "components/avatar#avatarstyles",
+			"AvatarVariants": "components/avatar#variants",
+			"Fallback": "components/avatar#fallback",
+			"FallbackProps": "components/avatar#fallback",
+			"Image": "components/avatar#image",
+			"ImageProps": "components/avatar#image",
+			"Root": "components/avatar#root",
+			"RootProps": "components/avatar#root"
 		}
 	}
 }

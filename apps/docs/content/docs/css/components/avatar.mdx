@@ -1,0 +1,69 @@
+---
+title: Avatar
+description: "A person in plain HTML: their picture, or their initials on a colour from their id."
+---
+
+Load `@codeui/styles/avatar.css`, or `all.css`. The Solid component is documented in [Avatar](/docs/components/avatar).
+
+## Demo
+
+<HtmlDemo name="avatar/basic" />
+
+## Markup
+
+| Part | Element | Class | `data-cui` |
+| --- | --- | --- | --- |
+| Root | `span` with `role="img"` and the name as `aria-label` | `cui-avatar` | `avatar` |
+| Initials | `span` with `aria-hidden="true"` | `cui-avatar-fallback` | `avatar-fallback` |
+| Picture | `img` with `alt=""`, after the initials | `cui-avatar-image` | `avatar-image` |
+
+| Attribute | Values | Default |
+| --- | --- | --- |
+| `data-size` | `xs`, `sm`, `md`, `lg` | `xs` |
+| `data-unassigned` | Presence | Off |
+| `--cui-avatar-hue` (inline style) | A hue in degrees | `0` |
+| `--cui-avatar-chroma` (inline style) | `0` for a neutral fill | Set per theme |
+
+## Variants
+
+### Size
+
+<HtmlDemo name="avatar/sizes" />
+
+The sizes are the shared control heights, `--cui-control-height-xs` to `--cui-control-height-lg`, so they follow `data-cui-density`. Comfortable density gives 28, 36, 44 and 52px.
+
+### Hue
+
+Set `--cui-avatar-hue` from a stable id, never from the name. `avatarHue(id)` from `@codeui/styles/avatar` returns the hue the Solid component uses. Without an id, set `--cui-avatar-chroma: 0` for a neutral fill.
+
+## States
+
+### Picture
+
+Put the `img` after the initials. It covers them while it loads. When it fails, remove it and the initials show.
+
+### Unassigned
+
+Set `data-unassigned` and leave the root empty. It draws a dashed circle with no fill. Name it "Unassigned".
+
+## What you supply
+
+- The hue from a stable id, and the initials from the name. `avatarHue` and `avatarInitials` from `@codeui/styles/avatar` do both.
+- Removing the picture when it fails to load.
+- A tooltip with the name, such as the [Tooltip](/docs/css/components/tooltip) markup.
+
+## Helper
+
+```ts
+import "@codeui/styles/avatar.css";
+import { applyStyleProps } from "@codeui/styles";
+import { avatarHue, avatarInitials, avatarStyleProps } from "@codeui/styles/avatar";
+
+const avatar = document.createElement("span");
+applyStyleProps(avatar, avatarStyleProps({ size: "sm" }));
+avatar.role = "img";
+avatar.ariaLabel = "Grace Hopper";
+avatar.style.setProperty("--cui-avatar-hue", String(avatarHue("user_grace")));
+avatar.innerHTML = `<span class="cui-avatar-fallback" aria-hidden="true">${avatarInitials("Grace Hopper")}</span>`;
+// class="cui-avatar" data-cui="avatar" data-size="sm"
+```
