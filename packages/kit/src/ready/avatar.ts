@@ -1,4 +1,4 @@
-export * from "@codeui/styles/internal/components/Avatar/Avatar.css";
+export { avatarVars } from "@codeui/styles/internal/components/Avatar/Avatar.css";
 export { Avatar } from "../components/Avatar/Avatar";
 export { avatarHue, avatarInitials } from "../parts/avatar";
 

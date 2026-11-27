@@ -102,5 +102,7 @@ it("lists entries one per line with indent for nesting", async () => {
 	expect(items[1].style.getPropertyValue("--cui-hovercard-item-depth")).toBe("1");
 	expect(items[0].style.getPropertyValue("--cui-hovercard-item-depth")).toBe("");
 	expect(items[1].querySelector("[data-cui=hovercard-item-id]")).toHaveTextContent("T-2");
-	expect(items[1].querySelector("[data-cui=hovercard-item-title]")).toHaveTextContent("Child");
+	expect(items[1].querySelector("[data-cui=hovercard-item-title]")).toHaveTextContent(
+		"Child",
+	);
 });

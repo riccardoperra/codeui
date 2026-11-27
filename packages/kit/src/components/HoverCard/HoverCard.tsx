@@ -273,6 +273,10 @@ export type HoverCardContentProps<T extends ValidComponent = "div"> = Omit<
 	classes?: Pick<HoverCardClasses, "content">;
 };
 
+type PointerDownOutsideEvent = Parameters<
+	NonNullable<KPopoverContentProps["onPointerDownOutside"]>
+>[0];
+
 /** The card. Portaled, placed beside the trigger (on the right unless there is no room), and never takes focus. */
 export function HoverCardContent<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, HoverCardContentProps<T>>,
@@ -289,7 +293,7 @@ export function HoverCardContent<T extends ValidComponent = "div">(
 						role={undefined}
 						{...others}
 						ref={[motionRef({ hover: true }), card.setContent, local.ref]}
-						onPointerDownOutside={(event: Parameters<NonNullable<KPopoverContentProps["onPointerDownOutside"]>>[0]) => {
+						onPointerDownOutside={(event: PointerDownOutsideEvent) => {
 							local.onPointerDownOutside?.(event);
 							// A press on the trigger is a click that keeps the card open.
 							if (card.contains(event.target)) event.preventDefault();
@@ -340,8 +344,10 @@ export function HoverCardList(props: HoverCardListProps) {
 }
 
 export type HoverCardItemProps = Omit<JSX.HTMLAttributes<HTMLLIElement>, "children"> & {
-	/** State icon, 16px. Pair it with a visible or accessible state name. */
+	/** State icon, 16px. The slot stays empty without it, so entries align. A finished entry shows no icon. */
 	icon?: JSX.Element;
+	/** Names the state the icon shows, such as "Running". Without it the icon is decorative. */
+	iconLabel?: string;
 	/** Short identifier, such as `#142` or `T-3`. Shown before the title in secondary text. */
 	identifier?: JSX.Element;
 	/** Nesting level, from 0. Each level indents the entry by `--cui-hovercard-item-indent`. */
@@ -354,7 +360,17 @@ export type HoverCardItemProps = Omit<JSX.HTMLAttributes<HTMLLIElement>, "childr
 
 /** One line in a `HoverCardList`: state icon, identifier, then the title truncated. */
 export function HoverCardItem(props: HoverCardItemProps) {
-	const others = omit(props, "class", "classes", "icon", "identifier", "depth", "children", "style");
+	const others = omit(
+		props,
+		"class",
+		"classes",
+		"icon",
+		"iconLabel",
+		"identifier",
+		"depth",
+		"children",
+		"style",
+	);
 	return (
 		<li
 			{...others}
@@ -365,15 +381,15 @@ export function HoverCardItem(props: HoverCardItemProps) {
 				...(props.depth ? { "--cui-hovercard-item-depth": String(props.depth) } : {}),
 			}}
 		>
-			<Show when={props.icon}>
-				<span
-					aria-hidden="true"
-					data-cui={hoverCardParts.itemIcon}
-					class={mergeClasses(styles.itemIcon(), props.classes?.itemIcon)}
-				>
-					{props.icon}
-				</span>
-			</Show>
+			<span
+				role={props.iconLabel ? "img" : undefined}
+				aria-label={props.iconLabel}
+				aria-hidden={props.iconLabel ? undefined : "true"}
+				data-cui={hoverCardParts.itemIcon}
+				class={mergeClasses(styles.itemIcon(), props.classes?.itemIcon)}
+			>
+				{props.icon}
+			</span>
 			<Show when={props.identifier}>
 				<span
 					data-cui={hoverCardParts.itemId}

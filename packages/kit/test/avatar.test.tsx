@@ -11,7 +11,10 @@ describe("Avatar", () => {
 		expect(avatar).toHaveAttribute("data-cui", "avatar");
 		expect(avatar).toHaveAttribute("data-size", "xs");
 		expect(avatar).toHaveTextContent("AL");
-		expect(avatar.querySelector("[data-cui=avatar-fallback]")).toHaveAttribute("aria-hidden", "true");
+		expect(avatar.querySelector("[data-cui=avatar-fallback]")).toHaveAttribute(
+			"aria-hidden",
+			"true",
+		);
 	});
 
 	it("derives the hue from the id, not the name", () => {
@@ -22,7 +25,8 @@ describe("Avatar", () => {
 				<Avatar name="Ada Lovelace" identifier="user_7" data-testid="c" />
 			</>
 		));
-		const hue = (id: string) => screen.getByTestId(id).style.getPropertyValue("--cui-avatar-hue");
+		const hue = (id: string) =>
+			screen.getByTestId(id).style.getPropertyValue("--cui-avatar-hue");
 		expect(hue("a")).toBe(String(avatarHue("user_42")));
 		expect(hue("b")).toBe(hue("a"));
 		expect(hue("c")).not.toBe(hue("a"));
@@ -58,14 +62,12 @@ describe("Avatar", () => {
 				<Avatar name="Grace Hopper" tooltip={false} />
 			</>
 		));
-		expect(screen.getByRole("img", { name: "Ada Lovelace" }).parentElement).toHaveAttribute(
-			"data-cui",
-			"tooltip-trigger",
-		);
-		expect(screen.getByRole("img", { name: "Grace Hopper" }).parentElement).not.toHaveAttribute(
-			"data-cui",
-			"tooltip-trigger",
-		);
+		expect(
+			screen.getByRole("img", { name: "Ada Lovelace" }).parentElement,
+		).toHaveAttribute("data-cui", "tooltip-trigger");
+		expect(
+			screen.getByRole("img", { name: "Grace Hopper" }).parentElement,
+		).not.toHaveAttribute("data-cui", "tooltip-trigger");
 	});
 });
 

@@ -4119,8 +4119,10 @@ export type HoverCardListProps = JSX.HTMLAttributes<HTMLUListElement> & {
  */
 export declare function HoverCardList(props: HoverCardListProps): JSX.Element;
 export type HoverCardItemProps = Omit<JSX.HTMLAttributes<HTMLLIElement>, "children"> & {
-    /** State icon, 16px. Pair it with a visible or accessible state name. */
+    /** State icon, 16px. The slot stays empty without it, so entries align. A finished entry shows no icon. */
     icon?: JSX.Element;
+    /** Names the state the icon shows, such as "Running". Without it the icon is decorative. */
+    iconLabel?: string;
     /** Short identifier, such as `#142` or `T-3`. Shown before the title in secondary text. */
     identifier?: JSX.Element;
     /** Nesting level, from 0. Each level indents the entry by `--cui-hovercard-item-indent`. */
@@ -6304,7 +6306,7 @@ export type { AlertProps } from "../components/Alert/Alert.js";
 ## ready/avatar.d.ts
 
 ```ts
-export * from "@codeui/styles/internal/components/Avatar/Avatar.css";
+export { avatarVars } from "@codeui/styles/internal/components/Avatar/Avatar.css";
 export { Avatar } from "../components/Avatar/Avatar.js";
 export { avatarHue, avatarInitials } from "../parts/avatar.js";
 export type { AvatarProps } from "../components/Avatar/Avatar.js";

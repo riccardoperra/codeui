@@ -71,9 +71,9 @@ A picker opens over the panel that holds it, anchored to its row. It does not pu
 
 A dialog is for settings and for decisions the user must make before continuing, such as reviewing detected secrets before an export. It is not for asking "are you sure?" about something that can be undone.
 
-A tooltip is one line that names one thing. A description, or several facts about a row, goes in a hover card beside its trigger, on the right unless there is no room, wrapped at about 20rem. It opens on click too, so touch works, and everything in it is reachable another way. The `title` attribute is never used: it is slow, unstyled, and invisible to touch and keyboard. **Proposed:** a kit `HoverCard`.
+A tooltip is one line that names one thing. A description, or several facts about a row, goes in a hover card beside its trigger, on the right unless there is no room, wrapped at about 20rem. It opens on click too, so touch works, and everything in it is reachable another way. The `title` attribute is never used: it is slow, unstyled, and invisible to touch and keyboard. Use the kit [`HoverCard`](/docs/components/hover-card): it opens on hover, focus and click, sits on the right by default, and follows Pop.
 
-A list inside a menu or a hover card has one line per entry: state icon, identifier, title truncated. Nesting shows by indent, and a prefix that every entry shares is dropped. Two or more entries for the same action go in a submenu labelled with the count, so the menu does not fill up with "Open …" rows. A long list caps at about 24rem and scrolls on its own.
+A list inside a menu or a hover card has one line per entry: state icon, identifier, title truncated. Nesting shows by indent, and a prefix that every entry shares is dropped. Two or more entries for the same action go in a submenu labelled with the count, so the menu does not fill up with "Open …" rows. A long list caps at about 24rem and scrolls on its own. In a hover card, build it with `HoverCardList` and `HoverCardItem`.
 
 Escape closes only the innermost layer. In CodeImage, pressing Escape on a segmented control inside Settings once closed the whole dialog.
 
@@ -121,7 +121,7 @@ Work that runs while the user does something else stays visible as one control n
 
 ## Avatar
 
-A person is an avatar: their picture when there is one, otherwise one or two initials on a hue derived from their id, never from their name, so the colour does not change when the name does. Full radius with a neutral ring, so it never vanishes into its background. The name is in the tooltip and the accessible name. **Proposed:** a kit `Avatar`, because three CodeLoom features each built their own.
+A person is an avatar: their picture when there is one, otherwise one or two initials on a hue derived from their id, never from their name, so the colour does not change when the name does. Full radius with a neutral ring, so it never vanishes into its background. The name is in the tooltip and the accessible name. Sizes come from the shared control scale, and an unassigned owner is an empty dashed circle. Use the kit [`Avatar`](/docs/components/avatar); three CodeLoom features had each built their own.
 
 ## Forms and inputs
 

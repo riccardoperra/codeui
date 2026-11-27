@@ -1,0 +1,153 @@
+---
+title: "Avatar"
+description: "A person: their picture, or their initials on a colour from their id."
+---
+
+## When to use
+
+Use `Avatar` wherever the interface shows a person: the owner of a task, the author of a comment, the members of a group. It shows the person's picture when there is one. Otherwise it shows one or two initials on a fill whose hue comes from a stable id, so the same person keeps the same colour on every screen and two people with the same name do not share one.
+
+Use one `Avatar` for every person in the app. Do not build a separate badge or initials chip per feature.
+
+## When to choose another component
+
+- Use [`Badge`](/docs/components/badge) for a status or a category. An avatar always stands for a person or an owner.
+- Use the item's own mark, such as a provider or repository logo in a rounded tile, for something that is not a person.
+
+## Live demo
+
+<SolidDemo name="avatar/basic" />
+
+Hover an avatar to see the name in the kit [`Tooltip`](/docs/components/tooltip).
+
+## Anatomy
+
+<Anatomy demo="avatar/anatomy" />
+
+| Export | Renders | `classes` key | `data-cui` | Role |
+| --- | --- | --- | --- | --- |
+| `Avatar` | `span` | `root` | `avatar` | `img`, named by `name` |
+| Initials | `span`, hidden from assistive technology | `fallback` | `avatar-fallback` | None |
+| Picture | `img` with an empty `alt`, only when `src` is set | `image` | `avatar-image` | None |
+
+The root also renders `data-size` (`xs`, `sm`, `md` or `lg`, default `xs`) and `data-unassigned` when the avatar is unassigned. The picture covers the initials while it loads, so a slow or failed picture never leaves an empty circle.
+
+## Variants
+
+### Hue from the id
+
+<SolidDemo name="avatar/hue" />
+
+`identifier` takes a stable id, such as a user id. `avatarHue(identifier)` hashes it to a hue between 0 and 359, and the fill uses that hue at a fixed lightness and chroma per theme. Never pass the name: a name changes and two people can share it. Without `identifier` the fill is neutral grey.
+
+### Size
+
+<SolidDemo name="avatar/sizes" />
+
+`size` takes a step of the shared control scale, so an avatar lines up with the buttons and fields next to it, and it follows `data-cui-density`.
+
+| `size` | Compact | Comfortable | Touch | Initials |
+| --- | --- | --- | --- | --- |
+| `xs` (default) | 24px | 28px | 32px | 11px (`--cui-font-size-badge`) |
+| `sm` | 32px | 36px | 40px | 13px (`--cui-font-size-caption`) |
+| `md` | 38px | 44px | 50px | 14px (`--cui-font-size-sm`) |
+| `lg` | 46px | 52px | 58px | 16px (`--cui-font-size-md`) |
+
+### Initials
+
+`avatarInitials(name)` takes the first letter of the first and of the last word: "Ada King Lovelace" becomes AL, and "Linus" becomes L. It counts code points, so accented and non-Latin letters stay whole. Pass `initials` when your data has better ones.
+
+## States
+
+<SolidDemo name="avatar/states" />
+
+### Picture
+
+Set `src`. The picture fills the circle with `object-fit: cover`, under the same ring as the initials.
+
+### Picture failed
+
+When the picture fails to load, `Avatar` removes it and the initials show.
+
+### Unassigned
+
+`unassigned` draws an empty circle with a dashed edge in secondary text colour. It has no fill and no initials. Its accessible name and tooltip are "Unassigned" unless you pass `name`.
+
+## Ready API
+
+### `Avatar`
+
+<PropsTable name="Avatar" />
+
+Every other prop goes to the root `span`. `Avatar` wraps no Kobalte primitive. With `tooltip`, the root sits inside the kit `Tooltip` trigger.
+
+### `avatarHue`
+
+`avatarHue(identifier: string): number` returns the hue `Avatar` uses for an id, an FNV-1a hash folded to 0–359. Use it to colour something else that belongs to the same person.
+
+### `avatarInitials`
+
+`avatarInitials(name: string): string` returns the one or two initials `Avatar` shows for a name, in upper case.
+
+## Styled parts API
+
+Import the parts from `@codeui/kit/avatar/parts`. The entry also exports `avatarParts`, `avatarHue`, `avatarInitials` and the types `AvatarPart`, `AvatarClasses`, `AvatarSize` and `AvatarVariants`.
+
+### `Root`
+
+The circle. It takes `size`, `unassigned`, `hue` and every `span` attribute. Give it `role="img"` and the name as `aria-label`.
+
+<PropsTable name="AvatarRoot" />
+
+### `Image`
+
+The picture. It renders while `src` is set and removes itself on error. Its `alt` defaults to empty, because the root carries the name.
+
+### `Fallback`
+
+The initials. It sets `aria-hidden="true"`.
+
+## Styles export
+
+### `avatarStyles`
+
+`avatarStyles.root()`, `avatarStyles.image()` and `avatarStyles.fallback()` return `cui-avatar`, `cui-avatar-image` and `cui-avatar-fallback`. On custom markup, set `data-size` and `--cui-avatar-hue`.
+
+## Accessibility
+
+The root has `role="img"` and the name as its accessible name, so a screen reader reads "Ada Lovelace, image". The initials are hidden, so they are not read letter by letter, and the picture has an empty `alt`.
+
+The name also shows in the kit Tooltip on hover. The avatar is not focusable, so put it next to text or inside a control that names the person for keyboard users, such as a row title or a button label.
+
+The initials reach 4.5:1 against their fill on every hue in both themes: at least 5.5:1 in dark and 10:1 in light. The fill itself can sit close to the surface, which is why the circle has the neutral ring.
+
+## SSR notes
+
+`Avatar` renders completely on the server, with the picture and the initials. The hue is computed from the id, so the server and the client agree. The tooltip content renders on the client when it opens.
+
+## Theming hooks
+
+| Variable | Default | Used for |
+| --- | --- | --- |
+| `--cui-avatar-hue` | Set from `identifier` | Fill hue |
+| `--cui-avatar-lightness` | `light-dark(0.86, 0.48)` | Fill lightness in OKLCH |
+| `--cui-avatar-chroma` | `light-dark(0.06, 0.07)`; `0` without an id | Fill chroma in OKLCH |
+| `--cui-avatar-color` | `--cui-text-default` | Initials |
+| `--cui-avatar-ring` | `--cui-text-default` at 20% | The 1px inner ring |
+| `--cui-avatar-unassigned-color` | `--cui-text-muted` | Dashed edge of an unassigned avatar |
+| `--cui-avatar-size`, `--cui-avatar-font-size` | From `data-size` | Diameter and initials size |
+| `--cui-radius-full` | | Full radius |
+
+## Composition examples
+
+### In a row
+
+<SolidDemo name="avatar/in-row" />
+
+In a list row the avatar sits in the leading slot and tells the rows apart by owner. An item with no owner shows the unassigned circle, so every row keeps the same shape.
+
+## Related
+
+- [`Tooltip`](/docs/components/tooltip) shows the name on hover.
+- [`HoverCard`](/docs/components/hover-card) holds more about the person than a name.
+- [Patterns](/docs/design/patterns) explains where avatars go.

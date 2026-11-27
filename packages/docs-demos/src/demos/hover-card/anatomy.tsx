@@ -1,11 +1,21 @@
 import { createSignal } from "solid-js";
-import { HoverCard, HoverCardContent, HoverCardTrigger, Link, Text } from "@codeui/kit";
+import {
+	HoverCard,
+	HoverCardContent,
+	HoverCardItem,
+	HoverCardList,
+	HoverCardTrigger,
+	Link,
+	Text,
+} from "@codeui/kit";
 
 /** Open, with the card rendered under the trigger instead of on document.body. */
 export default function HoverCardAnatomy() {
 	const [content, setContent] = createSignal<HTMLElement>();
 	return (
-		<div style={{ display: "grid", gap: "var(--cui-space-2)", "justify-items": "center" }}>
+		<div
+			style={{ display: "grid", gap: "var(--cui-space-2)", "justify-items": "center" }}
+		>
 			<HoverCard open>
 				<HoverCardTrigger as={Link} href="#fetch-retry">
 					fetch-retry.ts
@@ -13,6 +23,14 @@ export default function HoverCardAnatomy() {
 				<HoverCardContent mount={content()}>
 					<Text weight="semibold">fetch-retry.ts</Text>
 					<Text tone="muted">TypeScript, edited 2 hours ago</Text>
+					<HoverCardList aria-label="Recent changes">
+						<HoverCardItem identifier="#142">
+							Retry failed requests with backoff
+						</HoverCardItem>
+						<HoverCardItem identifier="#143" depth={1}>
+							Cap the delay at 8 seconds
+						</HoverCardItem>
+					</HoverCardList>
 				</HoverCardContent>
 			</HoverCard>
 			<div ref={setContent} />

@@ -31,7 +31,8 @@ Each feature file has an H1, one paragraph of user-visible behavior, and exactly
 
 ## Features
 
-- [Overlays](./overlays.md): Dialog, Popover and HoverCard open, focus, dismiss and focus return. Proven journey: `journeys/dialog-keyboard.mjs`.
+- [Overlays](./overlays.md): Dialog, Popover and HoverCard open, focus, dismiss and focus return; HoverCard tap, placement and list. Proven journeys: `journeys/dialog-keyboard.mjs`, `journeys/hovercard-touch.mjs`, `journeys/hovercard-list.mjs`, `journeys/hovercard-edge.mjs`.
+- [Avatar](./avatar.md): initials contrast on every hue, hue from the id, ring, sizes per density, unassigned, tooltip. Journeys: `journeys/avatar.mjs`, `journeys/avatar-sizes.mjs`.
 - [Form fields](./form-fields.md): TextField, Select, Listbox, NumberField, SegmentedControl, RadioList, Checkbox input by keyboard, validation states.
 - [Theming](./theming.md): `data-cui-theme` modes, `--cui-*` tokens, and the `@layer cui` override contract.
 - [Settings rows](./settings.md): SettingsRow and SettingsGroup labelling, CodeImage parity and phone stacking. Journey: `journeys/settings-row.mjs`.

@@ -1,14 +1,14 @@
 ---
 title: HoverCard
-description: A card of extra detail that opens when the user hovers or focuses a link.
+description: A card of extra detail beside a link, opened by hover, focus or click.
 ---
 
 ## When to use
 
-Use a hover card to preview what sits behind a link: a file, a person, a thread.
-It opens when the pointer rests on the trigger or when the trigger gets keyboard focus, and it closes when both leave.
+Use a hover card to preview what sits behind a link: a file, a person, a thread. Use it for a description or for more than one fact. A single name belongs in a [Tooltip](/docs/components/tooltip), and the `title` attribute is never the answer.
+It opens when the pointer rests on the trigger, when the trigger gets keyboard focus, and on click, so it works on touch screens. It closes when the pointer leaves both, on blur, on Escape and on a press outside.
 
-A hover card is supplementary. Never put the only path to an action or to information inside it. Touch users cannot hover, and the card never takes focus, so a keyboard user cannot reach a button inside it. Keep the same details reachable from the page the link opens.
+A hover card is supplementary. Never put the only path to an action or to information inside it. The card never takes focus, so a keyboard user cannot reach a button inside it. Keep the same details reachable from the page the link opens.
 
 ## When to choose another component
 
@@ -30,6 +30,8 @@ Put `HoverCardTrigger` and `HoverCardContent` in `HoverCard`. Hover the link, or
 | `HoverCard` | Nothing. Holds the open state and the timers | none | none | none |
 | `HoverCardTrigger` | `a`, or the element passed to `as` | none | `hovercard-trigger` | Link |
 | `HoverCardContent` | `div` in a portal on `mount`, or `document.body` | `content` | `hovercard-content` | none |
+| `HoverCardList` | `ul`, optional | none | `hovercard-list` | List |
+| `HoverCardItem` | `li`, with an icon slot, an identifier and a title | `item`, `itemIcon`, `itemId`, `itemTitle` | `hovercard-item`, `hovercard-item-icon`, `hovercard-item-id`, `hovercard-item-title` | List item |
 
 ## Variants
 
@@ -37,7 +39,7 @@ Put `HoverCardTrigger` and `HoverCardContent` in `HoverCard`. Hover the link, or
 
 <SolidDemo name="hover-card/placements" />
 
-`placement` sets the side and the alignment. The default is `bottom`. When the card does not fit, Kobalte flips it to the opposite side.
+`placement` sets the side and the alignment. The default is `right-start`: the card sits beside its trigger, top edges aligned, so it does not cover the lines below. When there is no room on the right, Kobalte flips it to the left. The card wraps its text at 20rem (320px).
 `gutter` sets the distance from the trigger. The kit sets it to 6px.
 
 ### Delays
@@ -47,7 +49,21 @@ Put `HoverCardTrigger` and `HoverCardContent` in `HoverCard`. Hover the link, or
 The card opens 500ms after the pointer enters or the trigger gets focus, and closes 150ms after the pointer leaves the trigger and the card. Change this with `openDelay` and `closeDelay`.
 On its way from the trigger to the card, the pointer may cross the gap between them without closing the card. `ignoreSafeArea` turns that off.
 
+### List of entries
+
+<SolidDemo name="hover-card/list" />
+
+Use `HoverCardList` and `HoverCardItem` to list tasks, files or members. Each entry is one line: a state icon, a short identifier, then the title, truncated. Show nesting with `depth`, which indents the entry 16px per level, not with tree lines. Drop a prefix every entry shares. A finished entry shows no icon, and the icon slot stays so the identifiers line up.
+
+The list caps at 24rem (`--cui-hovercard-list-max-height`) and scrolls on its own, so the card keeps its size. The list takes focus with Tab once the card is open, so a keyboard user can scroll it.
+
+Give each state icon a name with `iconLabel`, such as "Running", and make each state differ in shape, not only colour.
+
 ## States
+
+### Opened by click or tap
+
+A click opens the card at once, without `openDelay`. On a touch screen, the first tap on a closed card opens it and does not follow the link; the next tap follows it. A press outside closes the card.
 
 ### Controlled
 
@@ -79,9 +95,19 @@ Portals the card to `document.body` and places it next to the trigger.
 
 <PropsTable name="HoverCardContentInherited" />
 
+### `HoverCardList`
+
+A `ul` that caps at 24rem and scrolls. Give it an `aria-label`. Every other prop goes to the `ul`.
+
+### `HoverCardItem`
+
+One line in a `HoverCardList`.
+
+<PropsTable name="HoverCardItem" />
+
 ### `hoverCardStyles`
 
-`hoverCardStyles.content()` returns the card class, `cui-hovercard-content`. `hoverCardParts` maps each part to its `data-cui` value.
+`hoverCardStyles.content()` returns the card class, `cui-hovercard-content`. `hoverCardStyles.list()`, `item()`, `itemIcon()`, `itemId()` and `itemTitle()` return the list classes. `hoverCardParts` maps each part to its `data-cui` value.
 
 ## Accessibility
 
@@ -90,10 +116,12 @@ Portals the card to `document.body` and places it next to the trigger.
 | Key | Action |
 | --- | --- |
 | <kbd>Tab</kbd> | Moving focus to the trigger opens the card after `openDelay`. Moving focus away closes it. |
+| <kbd>Enter</kbd> | Follows the link. A trigger rendered as a button opens the card. |
 | <kbd>Escape</kbd> | Closes the card. Focus stays on the trigger. |
 
 ### ARIA
 
+- A `HoverCardList` is a list with its `aria-label`; a named state icon is an image with its state name.
 - The card has no role and is not linked to the trigger. Screen readers announce the link only, which is why the card must not hold anything the user needs.
 - Escape closes the innermost layer only, so a hover card inside a dialog closes before the dialog.
 
@@ -118,9 +146,12 @@ The trigger renders on the server. The card renders on the client, and only whil
 | `--cui-hovercard-content-max-width` | `min(320px, 100vw - 32px)` | Width limit |
 | `--cui-hovercard-content-font-size`, `--cui-hovercard-content-line-height` | `--cui-font-size-sm`, `--cui-font-line-height-snug` | Text (14px / 1.3) |
 | `--cui-hovercard-content-color` | `--cui-text-dialog` | Text colour |
+| `--cui-hovercard-list-max-height` | `24rem` | Height of a list before it scrolls |
+| `--cui-hovercard-item-indent` | `16px` | Indent per `depth` level |
+| `--cui-hovercard-item-depth` | Set from `depth` | Nesting level of one entry |
 | `--cui-motion-duration-normal`, `--cui-motion-duration-fast`, `--cui-motion-ease-out` | | Pop: in from `scale(0.96)` over 160ms, out to `scale(0.98)` over 120ms |
 
-A card opened by hover pops from the trigger side, with `transform-origin` from `--cui-popper-content-transform-origin`. A card opened by keyboard focus appears with no animation (`data-motion="none"`). With reduced motion, the card only fades.
+A card opened by hover or click pops from the trigger side, with `transform-origin` from `--cui-popper-content-transform-origin`. A card opened by keyboard focus appears with no animation (`data-motion="none"`). With reduced motion, the card only fades.
 
 ## Related
 

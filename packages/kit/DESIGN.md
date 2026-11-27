@@ -290,7 +290,7 @@ Rules for every movement:
 - Hover styles only under `@media (hover: hover) and (pointer: fine)`.
 - **No materials.** Unlike Apple's design language, Inkstone has no translucency or `backdrop-filter` on the interface. Matte is a trait.
 
-The kit's popover, menu, list popovers and tooltip follow Pop, and its toast follows Rise. Pop uses CSS keyframes. The kit keeps each closing surface mounted until its exit finishes. The rest of the kit's motion is slower than these rules today: buttons press in 200ms `ease`, and the focus ring transitions with `ease-in`. **Proposed:** move them to Press and a 120ms colour change.
+The kit's popover, hover card, menu, list popovers and tooltip follow Pop, and its toast follows Rise. Pop uses CSS keyframes. The kit keeps each closing surface mounted until its exit finishes. The rest of the kit's motion is slower than these rules today: buttons press in 200ms `ease`, and the focus ring transitions with `ease-in`. **Proposed:** move them to Press and a 120ms colour change.
 
 The kit dialog follows Pop with keyframes: in from `scale(0.96)` over 200ms, out toward `scale(0.98)` over 120ms, and its scrim fades with it. Opened or closed from the keyboard, it does not move. Moving it to transitions is still proposed.
 
@@ -365,9 +365,9 @@ No border; field fill, radius 12, padding 12; a 68px preview well (radius 8) ove
 
 - A picker opens anchored to its row, over the panel that holds it: 360px, radius 16, padding 16.
 - A dialog is for settings and for blocking decisions, not for confirming something undoable.
-- A tooltip is one line that names one thing. A description, or more than one fact, goes in a hover card beside its trigger, on the right unless there is no room, wrapped at about 20rem. It opens on click too, so touch works. Never use the `title` attribute. Everything in a hover card is reachable another way. **Proposed:** a kit `HoverCard`.
+- A tooltip is one line that names one thing. A description, or more than one fact, goes in a hover card beside its trigger, on the right unless there is no room, wrapped at about 20rem. It opens on click too, so touch works. Never use the `title` attribute. Everything in a hover card is reachable another way. Use the kit `HoverCard`: `right-start` by default, a click or tap opens it at once, Pop motion, and the floating surface.
   <!-- 2026-11-26: "anziché usare title dovevamo usare hovercard laterale a destra" -->
-- A list in a menu or hover card has one line per entry: state icon, identifier, title truncated. Show nesting by indent, and drop a prefix every entry shares. Two or more entries for one action go in a submenu labelled with the count. A long list caps at about 24rem and scrolls on its own.
+- A list in a menu or hover card has one line per entry: state icon, identifier, title truncated. Show nesting by indent, and drop a prefix every entry shares. Two or more entries for one action go in a submenu labelled with the count. A long list caps at about 24rem and scrolls on its own. In a hover card, use `HoverCardList` and `HoverCardItem`; the icon slot stays when an entry has no icon.
   <!-- 2026-11-25: "quando ci sono molti task annidati la UI é incomprensibile su questa hover card" -->
   <!-- 2026-11-26: "il menù è pieno di 'Open NomePr'. E sbagliatissimo" -->
 - Escape closes the innermost layer only.
@@ -438,7 +438,7 @@ Work that runs while the user does something else stays visible as one control n
 
 ### 9.14 Avatar
 
-A person is an avatar: their picture when there is one, otherwise one or two initials on a hue derived from their id, never from their name. Full radius with the §2.5 ring. The name is in the tooltip and the accessible name. **Proposed:** a kit `Avatar`.
+A person is an avatar: their picture when there is one, otherwise one or two initials on a hue derived from their id, never from their name. Full radius with the §2.5 ring. The name is in the tooltip and the accessible name. Sizes come from the shared control scale (`xs` by default) and follow density. An unassigned owner is an empty dashed circle in secondary text colour. The fill is OKLCH at lightness 0.48 in dark and 0.86 in light, so the initials reach 5.5:1 and 10:1 on every hue. Use the kit `Avatar`.
 <!-- 2026-11-25: "il badge dell'utente sia piu comprensibile magari usando l'avatar [...] con le iniziali" -->
 
 ### 9.15 Forms and inputs
