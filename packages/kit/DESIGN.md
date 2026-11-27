@@ -104,6 +104,11 @@ The accent is never a surface or a large fill. It has five uses:
 
 Danger, caution and success mark states the user must notice. They never decorate or label a category. Danger fills only the confirm button of a destructive dialog. Errors pair colour with an icon.
 
+- A workflow state that needs nothing from the user (to do, in review, done) is neutral or uses the brand wash, never a status colour. Every state has a visible name, in a label or a tooltip, and its glyph changes shape as well as colour.
+- A real warning always shows in the caution tone with an alert icon, and never folds into ordinary content or a collapsed group.
+- A finished item shows no status icon and never decorates success in green. Its row keeps its time. See §9.11.
+  <!-- 2026-11-25: "alcuni sembrano warning anche se sono in to test" / "questi messaggi su t3 sono warning ma da noi appaiono come messaggi normali" -->
+
 Gosfuig generates the red, orange, and green ramps for danger, caution, and success. Each status fill uses step `500` for base, `600` for hover, and `700` for active. Error text uses `red.500` in Light and `red.300` in Dark.
 
 The hover and active colours follow a theme override of the base through CSS relative colours. `test/derived-palette.test.ts` checks the computed colours against `theme-values.ts`.
@@ -145,6 +150,8 @@ Gosfuig generates one achromatic OKLCH ramp for both modes from `packages/inksto
 - A selected option may go from 500 to 600 only if its box reserves the 600 width.
 - Tracking `normal` up to 16px; `-0.01em` to `-0.02em` on display type. No uppercase labels.
 - Sentence case everywhere. A label is a noun or short verb phrase. A hint is one line. A badge is one word.
+- A section heading is text, not a row. It has no fill, no row height and no capitals: Label or Meta at 600 in secondary text, with a count in tertiary text at 400. Every section heading in one list has the same height.
+  <!-- 2026-11-25: "pinned thread e settled non si capisce tantissimo, forse la height é diversa dagli altri?" -->
 - Changing numbers use `font-variant-numeric: tabular-nums`.
 - Truncate values, never labels, to one line with an ellipsis, and keep the full text reachable (tooltip, accessible name).
 - **Proposed:** `text-wrap: balance` on titles and short descriptions, `text-wrap: pretty` on paragraphs.
@@ -159,11 +166,14 @@ Gosfuig generates one achromatic OKLCH ramp for both modes from `packages/inksto
 
 | Measure                                  | Value                          |
 | ---------------------------------------- | ------------------------------ |
-| Page inset and gap between islands       | 8px                            |
+| Page inset and gap between islands       | 6px (`--cui-space-1-5`)        |
 | Island padding                           | 12–16px                        |
 | Header row                               | 36px; 40px at ≤768px           |
 | Side panel                               | 360px                          |
 | First item inside a 22px corner          | 16px from the edge             |
+
+The space of an island layout goes inside the islands. The page between them reads as a thin seam, the same width on every side.
+<!-- 2026-11-24: "i padding delle isole occupano piu spazio tra quelle e il background. questo permette di risparmiare spazio" -->
 
 The header has no bar. It is the first row of islands, and its edges align with the islands below.
 
@@ -215,6 +225,8 @@ Checkbox, Radio and Switch use their own geometry. Menu, listbox, select, combob
 - In settings, allow 84px per segmented option.
 - Icons: one outline set; 16px in controls and rows, 14px in segments, 20px in a rail or phone tab bar; 6–8px from their label.
 - A row has a fixed 20px leading slot, so text aligns with or without an icon.
+- A list inside a listbox, menu or combobox resets the browser's `ul` and `ol` margin and padding. Its rows start at the surface's padding.
+  <!-- 2026-11-25: "perché sono tutti cosi i dropdown? c'è quello spazio inutile" -->
 - An icon-only button has an accessible name and a kit Tooltip covering its whole hit area.
 
 ## 7. Motion
@@ -272,6 +284,8 @@ Rules for every movement:
 - Illustrations play once, under 850ms, then rest.
 - Drags track the pointer 1:1 from where it was grabbed, hand their release velocity to the settle animation, and rubber-band at the edges.
 - Keyboard-only rules read the last input from `<html data-cui-input>` (`keyboard` or `pointer`), not `:focus-visible`: a script focus after a click reports `:focus-visible` to a mouse user.
+- Every spinner turns on one clock, so spinners that mount at different moments stay in phase and read as one activity. **Proposed:** the kit `Spinner` aligns its animation to the document timeline itself.
+  <!-- 2026-11-27: "something that actually can be improved in particular about multiple loading spinners" -->
 - Reduced motion keeps opacity and colour, drops movement and scale.
 - Hover styles only under `@media (hover: hover) and (pointer: fine)`.
 - **No materials.** Unlike Apple's design language, Inkstone has no translucency or `backdrop-filter` on the interface. Matte is a trait.
@@ -292,12 +306,17 @@ The kit dialog follows Pop with keyframes: in from `scale(0.96)` over 200ms, out
 │ │           ( floating toolbar )           │ │ └─────────┘ │ │
 │ └──────────────────────────────────────────┘ └─────────────┘ │
 └──────────────────────────────────────────────────────────────┘
-  8px inset · 8px gap · 22px island radius
+  6px inset · 6px gap · 22px island radius
 ```
 
-- Chrome has fixed sizes. The content takes the rest.
-- A read-only view draws no container for controls it does not show.
-- **Accordion:** one section open; header is icon, title, secondary summary on the right, chevron; 36px, Label 600, radius 12; icon turns accent when open; everything in an open section is visible.
+- Chrome has fixed sizes. The content takes the rest. A side panel may be resizable with the kit `Resizable`, always between a minimum and a maximum width.
+  <!-- 2026-11-24: "integrate something with corvu resizable [...] obviously with a maximum width" -->
+- A view opens as a tab in an island, beside the content. Never replace the content with a full screen that needs a "Back to …" button.
+  <!-- 2026-11-27: "Back to conversation non serve. Tutte queste isole devono essere [...] apribili con il resizable e la tab" -->
+- A read-only view draws no container for controls it does not show. A list draws no row for an item with nothing in it.
+  <!-- 2026-11-27: "cosa é questo checkpoint vuoto? non ha molto senso" -->
+- **Accordion:** one section open; header is icon, title, secondary summary on the right, chevron; 36px, Label 600, radius 12; icon turns accent when open; everything in an open section is visible. The whole header row is the trigger. The chevron is an icon inside it, not a separate button, and row actions sit over the end of the row, inside its fill.
+  <!-- 2026-11-24: "deve essere cliccabile solo l'area con la V ma tutta la riga no?" -->
 - **Floating bar:** takes no layout space; its menus open over it; labels keep a minimum width; rarely used actions go to the command menu.
 - **Modes** that change what the user is doing (CodeImage's Animate timeline) are the one open question: today the timeline takes canvas space and moves the frame. Until decided, a mode may take space, but entering and leaving it must not rezoom the content.
 - **Responsive:** `max-width: 768px` is a phone (`min-width: 769px` the reverse; nothing else). On a phone a panel becomes a bottom sheet with a 36×4 grip, sections become tabs, timelines become lists, and header actions must fit the width.
@@ -337,6 +356,7 @@ No border; field fill, radius 12, padding 12; a 68px preview well (radius 8) ove
 | Overlay      | When                                   | Backdrop | Focus                                |
 | ------------ | -------------------------------------- | -------- | ------------------------------------ |
 | Tooltip      | Name an icon, explain a value          | None     | Opens on hover and keyboard focus    |
+| Hover card   | Show several facts or a description    | None     | Opens on hover, focus and click      |
 | Popover      | Pick a value for one row               | None     | Moves in, returns to the trigger     |
 | Menu         | Choose an action                       | None     | Moves in, returns to the trigger     |
 | Command menu | Find anything by name                  | None     | Trapped, returns on close            |
@@ -345,6 +365,11 @@ No border; field fill, radius 12, padding 12; a 68px preview well (radius 8) ove
 
 - A picker opens anchored to its row, over the panel that holds it: 360px, radius 16, padding 16.
 - A dialog is for settings and for blocking decisions, not for confirming something undoable.
+- A tooltip is one line that names one thing. A description, or more than one fact, goes in a hover card beside its trigger, on the right unless there is no room, wrapped at about 20rem. It opens on click too, so touch works. Never use the `title` attribute. Everything in a hover card is reachable another way. **Proposed:** a kit `HoverCard`.
+  <!-- 2026-11-26: "anziché usare title dovevamo usare hovercard laterale a destra" -->
+- A list in a menu or hover card has one line per entry: state icon, identifier, title truncated. Show nesting by indent, and drop a prefix every entry shares. Two or more entries for one action go in a submenu labelled with the count. A long list caps at about 24rem and scrolls on its own.
+  <!-- 2026-11-25: "quando ci sono molti task annidati la UI é incomprensibile su questa hover card" -->
+  <!-- 2026-11-26: "il menù è pieno di 'Open NomePr'. E sbagliatissimo" -->
 - Escape closes the innermost layer only.
 - Scrollbars inside overlays set `scrollbar-color`; never mix it with `::-webkit-scrollbar`.
 
@@ -352,9 +377,18 @@ No border; field fill, radius 12, padding 12; a 68px preview well (radius 8) ove
 
 `Mod+K` everywhere. Bottom centre, 16px from the edge, `min(640px, …)`, radius 22, padding 8, six rows at the shared sm height, no scrim. Grouped under Meta 600 labels. The highlighted row has field fill, previews on the content, Enter applies, Escape restores. A one-line hint in the input row: `↑↓ preview · ↵ apply · esc cancel`. It lists every visible option, action and setting, read from the same data as the controls.
 
+- A group label in a menu has about `--cui-space-2` above it and `--cui-space-1` below. The first label adds no space above.
+  <!-- 2026-11-26: "il padding-top di skills etc mi sembra troppo, alleggeriamolo" -->
+- The key hints sit in a footer row of keycaps (`↑↓ Navigate`, `↵ Run`, `esc Close`), not in the input row.
+  <!-- 2026-11-26: "Mi piace tantissimo questo dropdown fatto cosi per lo slash menu" -->
+- Rows are icon, name, then the description on the right. The highlighted row's full description opens in a hover card that follows the arrow keys.
+
 ### 9.7 Actions in dialogs and toasts
 
 Close and Confirm on the right; a tertiary action is a small ghost icon button on the left. No full-width buttons on desktop. A toast action is an inline text action. On a phone the footer stacks.
+
+An action at the end of a sentence or notice is a text link after `--cui-space-2`, in default text, underlined on hover. Never a button box pressed against the text.
+<!-- 2026-11-25: "Il pulsante sign in se possibile devi farlo di tipo link perché li senza spazio é orrendo" -->
 
 ### 9.8 Tag and keycap
 
@@ -369,12 +403,62 @@ A 6–7px accent dot on the new control, at most three in the app, never animate
 
 A loading control swaps its icon for a spinner and keeps its width. A loading region shows a skeleton of the content in place. An empty state names what is missing and offers the one action that fixes it. An error says what happened and what to do, where it happened.
 
+Loading never shows the empty state, not even for one frame. While the next content loads, keep the previous content or show a skeleton. Keep recently viewed content cached so going back is instant.
+<!-- 2026-11-27: "ricrea tutta la pagina senza cachare [...] un momento con un flash" -->
+
+### 9.11 Rows in a list
+
+- The leading slot holds what tells the item apart from its neighbours: its type, its source, its owner. Never a generic icon repeated on every row. A label that is the same on every row goes in the accessible description, not on screen.
+  <!-- 2026-11-24: "put an icon of the sub agent provider (claude, codex etc)" -->
+- The trailing slot has one meaning. It shows the time by default, and an icon only for live work, a failure, a stop or a request for the user.
+  <!-- 2026-11-24: "what's the difference between the 'completed' sub agent status than the '1h' date" -->
+- Show ownership by nesting the item under its owner, not by a separate section that changes with the selection. Keep organising groups (pinned, archived) outside that tree.
+  <!-- 2026-11-24: "Greeting compare sotto un'intestazione separata Threads, senza una relazione visiva con il progetto" -->
+- A summary and its members are one row: the live member first, then the count that opens the rest. A fact every member shares goes once on the group row.
+  <!-- 2026-11-27: "fai una riga unica" / "la doppia source effettivamente non serve" -->
+- A large flat group gets a second level by the owner the user recognises, with an avatar and a count, instead of long paths on every row.
+  <!-- 2026-11-27: "group skills also for repository name" -->
+
+### 9.12 Background work
+
+Work that runs while the user does something else stays visible as one control near where the user acts. It shows a count and how many are still active, for example "3 tasks · 1 running". It opens the list, where each item shows what it runs and for how long. It stays until nothing is left.
+<!-- 2026-11-24: "abbiamo modo di evidenziare quando ci sono dei sotto agenti che stanno facendo qualcosa in background?" -->
+<!-- 2026-11-27: "un 'process executor' [...] nell'header [...] un indicatore [...] al click voglio vedere le info" -->
+
+### 9.13 Data and technical values
+
+- Show data as what it is: lines of a file, a diff, or name and value rows. Raw JSON only for data with no known shape.
+  <!-- 2026-11-25: "ha poco senso e forse ha piu senso vedere una diff / read del file con pierre" -->
+- A technical value (command, path, query) shows itself, not a verb about it. The part that identifies it is primary text, the rest is tertiary mono, truncated. Opened, the full value is highlighted in the code font with a Copy button.
+  <!-- 2026-11-24: "Ridisegnerei la parte di accordion del comando in modo che sia piu esplicito [...] voglio poterlo eventualmente copiarlo" -->
+- Running work shows its elapsed time at the end of its row, in tabular figures with a reserved width. The time stays once the work ends.
+  <!-- 2026-11-25: "aggiungi anche il timer" -->
+- An author line is the author's mark in a rounded tile, the name in primary text, then facts in secondary text joined by " · ".
+  <!-- 2026-11-24: "the rounded square was actually fine [...] short model name / reasoning" -->
+
+### 9.14 Avatar
+
+A person is an avatar: their picture when there is one, otherwise one or two initials on a hue derived from their id, never from their name. Full radius with the §2.5 ring. The name is in the tooltip and the accessible name. **Proposed:** a kit `Avatar`.
+<!-- 2026-11-25: "il badge dell'utente sia piu comprensibile magari usando l'avatar [...] con le iniziali" -->
+
+### 9.15 Forms and inputs
+
+- A setup form asks the main choice first and puts the advanced methods behind a disclosure. Each method has a one-line hint on where to find its value. An error sits under the field that caused it and clears when the method changes.
+  <!-- 2026-11-24: Settings → Connections review, four radios "senza istruzioni" -->
+- A suggested value is the field's placeholder with a Tab keycap to accept it, not a separate chip.
+  <!-- 2026-11-25: "mettiamola come placeholder al posto del placeholder attuale, con la hint" -->
+- Context attached to an input is a chip above it: the source's mark, the key at 600, the title truncated, on `--cui-action-brand-soft-base`, with a remove button. Attaching never sends.
+  <!-- 2026-11-26: "Lo metterei sopra con il colore blu [...] con il logo jira" -->
+- A text input has no formatting toolbar. Formatting comes from shortcuts and renders as you type.
+  <!-- 2026-11-26: "i pulsanti sotto come bold italic etc non servono a niente" -->
+
 ## 10. Accessibility
 
 - Contrast 4.5:1 for text up to 18px; 3:1 for large text, icons, rings and control edges. Both themes.
 - The switch off track stays below 3:1 on some surfaces. It reaches 3.2:1 on the light page, 2.7:1 on a light field and 1.9:1 on a dark field. The thumb position and blue on track also indicate state.
 - Every control works from the keyboard. Pickers and cards open with Enter and Space. Lists preview on focus as on hover.
-- One focus ring: 2px, 2px offset, `--cui-focus-color`, on `:focus-visible`.
+- One focus ring: 2px, 2px offset, `--cui-focus-color`, on `:focus-visible`. In packed lists, trees and toolbars the ring sits inside the row (`outline-offset: calc(var(--cui-focus-width) * -1)`) and shows only for keyboard input, so it never covers a neighbour.
+  <!-- 2026-11-24: "forse anche l'outline che va sopra quel new thread non va bene?" -->
 - Closing an overlay returns focus to its trigger. Closing a corner card moves focus to the next control, never into a text field.
 - A dialog on a phone does not focus a text field on open.
 - Every icon button and field has an accessible name.
@@ -400,6 +484,11 @@ Do not propose these again without a new reason.
 | Draggable bezier handles                              | Read-only curve and a typed value             |
 | A blocking "What's new" dialog; a "7 new things" toast | Corner card, dots, archive                   |
 | Native SVG `title` as a tooltip                       | The kit Tooltip                               |
+| `title` attribute for a description                   | A hover card                                  |
+| A status footer for ambient state                     | A header control shown only when it needs action |
+| A full screen with "Back to …"                        | A tab in an island                            |
+| A formatting toolbar under a text input               | Shortcuts that render as you type             |
+| A generic icon and the same label on every row        | The item's own mark in the leading slot       |
 | Glass, blur, dot grids as decoration                  | Matte surfaces                                |
 | Text under 11px                                       | 11px minimum                                  |
 

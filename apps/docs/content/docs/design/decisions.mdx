@@ -33,6 +33,11 @@ Every rule in Inkstone was decided by reviewing a working build. None comes from
 | A toast pointing to "7 new things" in Settings | It sent the user away from their work | Dots on the controls themselves |
 | A 9.5px timeline label | Unreadable | 11px minimum |
 | Glass window style, dot grid backgrounds | Glossy and busy | Hairline, flat or accent wash |
+| `title` attributes for descriptions | Slow, unstyled, unreachable by touch | A hover card |
+| A status footer for ambient state | "un po fuorviante" | A header control shown only when it needs action |
+| A full screen with "Back to …" | It hid the work | A tab in an island |
+| A formatting toolbar under a text input | "non servono a niente" | Shortcuts that render as you type |
+| A generic icon and the same label on every row | Every row looked the same | The item's own mark in the leading slot |
 
 ## Where the kit disagrees with Inkstone
 
@@ -47,8 +52,9 @@ The kit's tokens were measured from CodeImage, so they carry CodeImage's drift a
 | Selection | Kit listbox fills the selected row with blue | Neutral fill |
 | Radius | Eleven tokens; buttons at 9px, dialogs at 14px, the toolbar at 18px | The nesting table |
 | Selection ring | Drawn with inset shadow, outline or border in different places | `outline` with a negative offset |
-| Focus | Mostly 2px offset, 3px in the accordion | 2px everywhere |
+| Focus | Mostly 2px offset, 3px in the accordion | 2px offset, inside the row in packed lists and toolbars |
 | Motion | Button press 200ms `ease`; focus `ease-in`; dialog `ease-in-out` keyframes | The movements on the Motion page |
+| Island gap | CodeImage sits 8px from the edge and between islands | 6px (`--cui-space-1-5`) |
 | Breakpoints | 767, 768 and 769px | 768 / 769 only |
 | Export colour | CodeImage's Export still uses the old kit blue `#0072f5` | `--cui-action-brand-base` |
 | Tags, keycaps, grips | Three tag styles, three keycap styles, two grips | One each |
