@@ -1,5 +1,5 @@
 import type { Component } from "solid-js";
-import { generateHydrationScript, renderToString } from "solid-js/web";
+import { generateHydrationScript, renderToString } from "@solidjs/web";
 
 const demos = import.meta.glob<{ default: Component }>(["./demos/*.tsx", "./demos/*/*.tsx"], { eager: true });
 

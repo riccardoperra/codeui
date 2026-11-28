@@ -1,4 +1,4 @@
-import type { ComponentProps } from "solid-js";
+import type { ComponentProps } from "@solidjs/web";
 import type { Select as KitSelect } from "@codeui/kit";
 import type { PropNotes } from "./notes";
 

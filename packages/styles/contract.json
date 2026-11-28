@@ -2068,6 +2068,157 @@
     "icon": "cui-icon",
     "iconSize": "var(--cui-icon-size)"
   },
+  "hovercard": {
+    "content": {
+      "default": "cui-hovercard-content"
+    },
+    "hoverCardParts": {
+      "trigger": "hovercard-trigger",
+      "content": "hovercard-content",
+      "list": "hovercard-list",
+      "item": "hovercard-item",
+      "itemIcon": "hovercard-item-icon",
+      "itemId": "hovercard-item-id",
+      "itemTitle": "hovercard-item-title"
+    },
+    "hoverCardStyles": {
+      "trigger": {
+        "default": ""
+      },
+      "content": {
+        "default": "cui-hovercard-content"
+      },
+      "list": {
+        "default": "cui-hovercard-list"
+      },
+      "item": {
+        "default": "cui-hovercard-item"
+      },
+      "itemIcon": {
+        "default": "cui-hovercard-item-icon"
+      },
+      "itemId": {
+        "default": "cui-hovercard-item-id"
+      },
+      "itemTitle": {
+        "default": "cui-hovercard-item-title"
+      }
+    },
+    "hoverCardVars": {
+      "contentBackground": "var(--cui-hovercard-content-background)",
+      "contentBoxShadow": "var(--cui-hovercard-content-box-shadow)",
+      "contentMaxWidth": "var(--cui-hovercard-content-max-width)",
+      "contentRadius": "var(--cui-hovercard-content-radius)",
+      "contentPadding": "var(--cui-hovercard-content-padding)",
+      "contentFontSize": "var(--cui-hovercard-content-font-size)",
+      "contentLineHeight": "var(--cui-hovercard-content-line-height)",
+      "contentColor": "var(--cui-hovercard-content-color)",
+      "listMaxHeight": "var(--cui-hovercard-list-max-height)",
+      "itemIndent": "var(--cui-hovercard-item-indent)",
+      "itemDepth": "var(--cui-hovercard-item-depth)"
+    },
+    "item": {
+      "default": "cui-hovercard-item"
+    },
+    "itemIcon": {
+      "default": "cui-hovercard-item-icon"
+    },
+    "itemId": {
+      "default": "cui-hovercard-item-id"
+    },
+    "itemTitle": {
+      "default": "cui-hovercard-item-title"
+    },
+    "list": {
+      "default": "cui-hovercard-list"
+    }
+  },
+  "resizable": {
+    "handle": {
+      "default": "cui-resizable-handle"
+    },
+    "resizableParts": {
+      "root": "resizable",
+      "panel": "resizable-panel",
+      "handle": "resizable-handle"
+    },
+    "resizableStyleProps": {
+      "default": {
+        "class": "cui-resizable-handle",
+        "data-cui": "resizable-handle",
+        "data-orientation": "horizontal"
+      }
+    },
+    "resizableStyles": {
+      "root": {
+        "default": ""
+      },
+      "panel": {
+        "default": ""
+      },
+      "handle": {
+        "default": "cui-resizable-handle"
+      }
+    },
+    "resizableVars": {
+      "handleSize": "var(--cui-resizable-handle-size)",
+      "handleLineColor": "var(--cui-resizable-handle-line-color)",
+      "handleLineActiveColor": "var(--cui-resizable-handle-line-active-color)",
+      "handleLineDraggingColor": "var(--cui-resizable-handle-line-dragging-color)",
+      "handleLineWidth": "var(--cui-resizable-handle-line-width)"
+    }
+  },
+  "avatar": {
+    "avatarHue": {
+      "function": true
+    },
+    "avatarInitials": {
+      "function": true
+    },
+    "avatarParts": {
+      "root": "avatar",
+      "image": "avatar-image",
+      "fallback": "avatar-fallback"
+    },
+    "avatarStyleProps": {
+      "default": {
+        "class": "cui-avatar",
+        "data-cui": "avatar",
+        "data-size": "xs"
+      }
+    },
+    "avatarStyles": {
+      "root": {
+        "default": "cui-avatar"
+      },
+      "image": {
+        "default": "cui-avatar-image"
+      },
+      "fallback": {
+        "default": "cui-avatar-fallback"
+      }
+    },
+    "avatarVars": {
+      "size": "var(--cui-avatar-size)",
+      "fontSize": "var(--cui-avatar-font-size)",
+      "hue": "var(--cui-avatar-hue)",
+      "lightness": "var(--cui-avatar-lightness)",
+      "chroma": "var(--cui-avatar-chroma)",
+      "background": "var(--cui-avatar-background)",
+      "color": "var(--cui-avatar-color)",
+      "ring": "var(--cui-avatar-ring)",
+      "unassignedColor": "var(--cui-avatar-unassigned-color)"
+    },
+    "fallback": {
+      "default": "cui-avatar-fallback"
+    },
+    "image": {
+      "default": "cui-avatar-image"
+    },
+    "root": {
+      "default": "cui-avatar"
+    }
+  },
   "$appearance": {
     "alert": {
       "variants": {
@@ -3480,6 +3631,62 @@
             "striped"
           ],
           "marker": "tableParts.root"
+        }
+      }
+    },
+    "resizable": {
+      "variants": {
+        "orientation": {
+          "kind": "enum",
+          "values": [
+            "horizontal",
+            "vertical"
+          ],
+          "base": {
+            "value": "horizontal",
+            "class": "cui-resizable-handle"
+          },
+          "default": "horizontal"
+        }
+      },
+      "parts": {
+        "handle": {
+          "classes": [
+            "resizableStyles.handle()"
+          ],
+          "options": [
+            "orientation"
+          ],
+          "marker": "resizableParts.handle"
+        }
+      }
+    },
+    "avatar": {
+      "variants": {
+        "size": {
+          "kind": "enum",
+          "values": [
+            "xs",
+            "sm",
+            "md",
+            "lg"
+          ],
+          "default": "xs"
+        },
+        "unassigned": {
+          "kind": "boolean"
+        }
+      },
+      "parts": {
+        "root": {
+          "classes": [
+            "avatarStyles.root()"
+          ],
+          "options": [
+            "size",
+            "unassigned"
+          ],
+          "marker": "avatarParts.root"
         }
       }
     }

@@ -1,4 +1,4 @@
-import { cleanup, render } from "solid-testing-library";
+import { cleanup, render } from "@solidjs/testing-library";
 import { Checkbox } from "../src/components/CheckBox/CheckBox";
 
 afterEach(cleanup);
@@ -9,7 +9,9 @@ it.each([undefined, "xs", "sm", "md", "lg", "xl"] as const)(
 		const { container, getByText } = render(() => (
 			<Checkbox size={size} label="Show line numbers" />
 		));
-		const box = container.querySelector('[data-cui="check-box-control"], .cui-checkbox-control')!;
+		const box = container.querySelector(
+			'[data-cui="check-box-control"], .cui-checkbox-control',
+		)!;
 		const label = getByText("Show line numbers");
 		const range = document.createRange();
 		range.selectNodeContents(label);

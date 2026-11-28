@@ -1,6 +1,7 @@
 import type { PopoverRootOptions as KPopoverRootOptions } from "@kobalte/core/popover";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
-import { type JSX, type ParentProps, Show, splitProps, type ValidComponent } from "solid-js";
+import { type ParentProps, Show, omit } from "solid-js";
+import { type JSX, type ValidComponent } from "@solidjs/web";
 import * as P from "../../parts/popover";
 import { mergeClasses } from "../../utils/css";
 
@@ -17,7 +18,7 @@ export type PopoverContentProps<T extends ValidComponent = "div"> = P.ContentPro
 	/** Short text that describes the popover. It is linked with `aria-describedby`. */
 	description?: JSX.Element;
 	/** Node the popover is portaled into. Defaults to `document.body`. */
-	mount?: Node;
+	mount?: globalThis.Element;
 	/** Classes for the parts this component renders, keyed by part name. */
 	classes?: Pick<P.PopoverClasses, "content" | "title" | "description">;
 };
@@ -25,14 +26,8 @@ export type PopoverContentProps<T extends ValidComponent = "div"> = P.ContentPro
 export function PopoverContent<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, PopoverContentProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"div", PopoverContentProps>, [
-		"title",
-		"description",
-		"mount",
-		"classes",
-		"class",
-		"children",
-	]);
+	const local = props as PolymorphicProps<"div", PopoverContentProps>;
+	const others = omit(local, "title", "description", "mount", "classes", "class", "children");
 
 	return (
 		<P.Portal mount={local.mount}>

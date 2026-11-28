@@ -1,12 +1,12 @@
 import { icons } from "@codeui/kit";
 import * as T from "@codeui/kit/toast/parts";
 import { toaster } from "@kobalte/core/toast";
-import { createUniqueId, onCleanup, onMount } from "solid-js";
+import { createUniqueId, onSettled } from "solid-js";
 
 /** One toast that stays, in a region drawn inside the figure instead of at a viewport edge. */
 export default function ToastAnatomy() {
 	const region = `toast-anatomy-${createUniqueId()}`;
-	onMount(() => {
+	onSettled(() => {
 		const id = toaster.show(
 			props => (
 				<T.Root toastId={props.toastId} tone="success" duration={60_000} persistent>
@@ -24,7 +24,7 @@ export default function ToastAnatomy() {
 			),
 			{ region },
 		);
-		onCleanup(() => toaster.dismiss(id));
+		return () => toaster.dismiss(id);
 	});
 	return (
 		<div style={{ position: "relative", width: "100%", "max-width": "420px", "min-height": "132px" }}>

@@ -10,7 +10,7 @@
 		],
 		"skipLibCheck": true,
 		/* Bundler mode */
-		"moduleResolution": "NodeNext",
+		"moduleResolution": "Bundler",
 		"allowImportingTsExtensions": true,
 		"resolveJsonModule": true,
 		"isolatedModules": true,
@@ -21,7 +21,7 @@
 		"noUnusedParameters": true,
 		"noFallthroughCasesInSwitch": true,
 		"jsx": "preserve",
-		"jsxImportSource": "solid-js",
+		"jsxImportSource": "@solidjs/web",
 		"allowJs": false,
 		"allowSyntheticDefaultImports": true,
 		"esModuleInterop": true,

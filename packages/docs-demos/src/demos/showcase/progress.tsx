@@ -21,7 +21,7 @@ export default function Upload() {
 	return (
 		<div class="showcase-stack">
 			<Progress label="Uploading files" value={done()} maxValue={files} showValue getValueLabel={({ value, max }) => `${value} of ${max}`} />
-			<section class="showcase-preview" aria-label="Upload summary" aria-busy={running()}>
+			<section class="showcase-preview" aria-label="Upload summary" aria-busy={running() ? "true" : "false"}>
 				<Show
 					when={running()}
 					fallback={

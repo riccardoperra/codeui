@@ -5,7 +5,7 @@ import "./reset.css";
 import "@codeui/styles/theme.css";
 import "./global.css";
 import { DocsContainer, DocsContainerProps } from "@storybook/addon-docs/blocks";
-import { createEffect, createRoot, createSignal, FlowProps } from "solid-js";
+import { createEffect, createRoot, createSignal, type FlowProps, onSettled } from "solid-js";
 import { addons } from "storybook/preview-api";
 import { useEffect, useState } from "react";
 
@@ -13,14 +13,13 @@ const channel = addons.getChannel();
 
 function ThemeWrapper(props: FlowProps) {
 	const [darkMode, setDarkMode] = createSignal<boolean>(true);
-	const channel = addons.getChannel();
-	channel.on(DARK_MODE_EVENT_NAME, setDarkMode);
+	onSettled(() => {
+		channel.on(DARK_MODE_EVENT_NAME, setDarkMode);
+		return () => channel.off(DARK_MODE_EVENT_NAME, setDarkMode);
+	});
 
-	createEffect(() => {
-		document.documentElement.setAttribute(
-			"data-cui-theme",
-			darkMode() ? "dark" : "light",
-		);
+	createEffect(darkMode, (dark) => {
+		document.documentElement.setAttribute("data-cui-theme", dark ? "dark" : "light");
 	});
 
 	return <div>{props.children}</div>;

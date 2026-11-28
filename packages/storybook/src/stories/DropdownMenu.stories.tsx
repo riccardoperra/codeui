@@ -11,9 +11,8 @@ import {
 	DropdownSubMenu,
 	DropdownSubMenuContent,
 	DropdownSubMenuTrigger,
-	As,
 } from "@codeui/kit";
-import { JSX } from "solid-js";
+import { JSX } from "@solidjs/web";
 
 const meta = {
 	title: "DesignSystem/DropdownMenu",

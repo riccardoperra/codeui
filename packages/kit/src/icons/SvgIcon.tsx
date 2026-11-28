@@ -1,6 +1,7 @@
 import "@codeui/styles/theme.css";
 import "@codeui/styles/icon.css";
-import { FlowProps, JSX, splitProps } from "solid-js";
+import { FlowProps, omit } from "solid-js";
+import { JSX } from "@solidjs/web";
 import { mergeClasses, assignInlineVars } from "../utils/css";
 import * as styles from "./icon.css";
 
@@ -9,11 +10,11 @@ export type SvgIconProps = JSX.IntrinsicElements["svg"] & {
 };
 
 export function SvgIcon(props: FlowProps<SvgIconProps>) {
-	const [local, others] = splitProps(props, ["class", "size", "children", "style"]);
-	const classes = () => mergeClasses(styles.icon, local.class);
+	const others = omit(props, "class", "size", "children", "style");
+	const classes = () => mergeClasses(styles.icon, props.class);
 
 	const mergedStyles = () => {
-		const style = local.style || {};
+		const style = props.style || {};
 		if (props.size) {
 			return {
 				...(style as {}),
@@ -31,7 +32,7 @@ export function SvgIcon(props: FlowProps<SvgIconProps>) {
 			class={classes()}
 			{...others}
 		>
-			{local.children}
+			{props.children}
 		</svg>
 	);
 }

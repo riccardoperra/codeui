@@ -14,7 +14,7 @@ node examples/run-consumer-check.mjs
 The runner builds both packages, packs them, and installs the tarballs into three independent temporary npm dependency trees. No workspace alias can hide a missing published file.
 
 - The Vite consumer imports no kit CSS manually and renders Button, Switch, TextField, Select, Dialog, Popover and SegmentedControl.
-- The SSR consumer compiles the same components with Solid's server compiler.
+- The SSR consumer compiles the same components with the Solid 2 Vite plugin.
 - The CSS-only consumer installs only styles and renders a native button with JavaScript disabled. No Solid package or browser script is required.
 
 The browser checks component markers, rendering errors, the Button fill against the current theme token, and a plain CSS brand override. The CSS-only check also loads composed FieldLabel and SwitchLabel classes, and Button and IconButton classes, in forward, reverse and duplicate stylesheet orders.
@@ -25,11 +25,11 @@ Add `--keep` to retain the installed fixtures and production builds. The runner 
 
 ## Server portals and hydration
 
-The command checks that Dialog and Popover bodies exist in server HTML. It also writes a server-rendered page with Solid's hydration script and the browser build. The browser check delays module loading to capture the server nodes, then starts hydration. The same two nodes must survive, appear exactly once and move outside the app container into their portal targets. Browser errors fail this check.
+The command checks that Dialog and Popover bodies exist in server HTML. It also writes a server-rendered page with Solid's hydration script and the browser build. The browser check delays module loading to capture the server nodes, then starts hydration. The same two nodes must survive, appear exactly once, and move into their portal targets. Escape must close the nested popover and return focus to its trigger. A second Escape must close the dialog. Browser errors and hydration mismatch warnings fail the check.
 
-Open or force-mounted Dialog, Popover, Sheet and CommandMenu portals render inline at their declaration on the server. Hydration adopts the server subtree before the native Solid Portal moves it. Closed content stays absent unless force-mounted. Place these portals in a valid flow-content context. The native client-only path still handles portals opened after hydration.
+Open or force-mounted Dialog, Popover, Sheet and CommandMenu portals render inline at their declaration on the server. Hydration adopts the server nodes and moves them into the portal target. Closed content stays absent unless force-mounted. Place these portals in a valid flow-content context. The native client-only path still handles portals opened after hydration.
 
-Focused SSR and hydration tests cover open and closed states, defaultOpen, forceMount, nested portals, typed input preservation, delegated events, synchronous autofocus, target changes, close/reopen, Escape, focus return and disposal.
+Focused SSR and hydration tests cover open and closed states, defaultOpen, forceMount, nested portals, typed input preservation, delegated events, autofocus, target changes, close/reopen, Escape, focus return and disposal.
 
 ## Check production CSS selection
 

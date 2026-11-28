@@ -1,5 +1,6 @@
-import { cleanup, render, screen } from "solid-testing-library";
-import { createSignal } from "solid-js";
+import { flush, createSignal } from "solid-js";
+import { cleanup, render, screen } from "@solidjs/testing-library";
+
 import { SettingsGroup, SettingsRow } from "../src/components/Settings/Settings";
 import { Switch } from "../src/components/Switch/Switch";
 import { SegmentedControl } from "../src/components/SegmentedControl/SegmentedControl";
@@ -48,9 +49,9 @@ it("keeps the same control while the description link comes and goes", () => {
 	));
 	const select = screen.getByRole("combobox", { name: "Language" });
 	expect(select).not.toHaveAttribute("aria-describedby");
-	setDescription("The language of the menus.");
+	flush(() => setDescription("The language of the menus."));
 	expect(select).toHaveAccessibleDescription("The language of the menus.");
-	setDescription(undefined);
+	flush(() => setDescription(undefined));
 	expect(select).not.toHaveAttribute("aria-describedby");
 });
 

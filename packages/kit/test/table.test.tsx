@@ -1,5 +1,5 @@
-import { userEvent } from "@vitest/browser/context";
-import { cleanup, render, screen, within } from "solid-testing-library";
+import { userEvent } from "vitest/browser";
+import { cleanup, render, screen, within } from "@solidjs/testing-library";
 import { Table, TableScrollArea, type TableSize } from "../src/components/Table/Table";
 
 afterEach(cleanup);
@@ -40,10 +40,11 @@ describe("Table", () => {
 	it("keeps native table semantics without wrappers", () => {
 		render(() => <Releases />);
 		const table = screen.getByRole("table", { name: "Releases" });
-		expect(within(table).getAllByRole("columnheader").map(cell => cell.textContent)).toEqual([
-			"Version",
-			"Downloads",
-		]);
+		expect(
+			within(table)
+				.getAllByRole("columnheader")
+				.map(cell => cell.textContent),
+		).toEqual(["Version", "Downloads"]);
 		expect(within(table).getAllByRole("rowheader")).toHaveLength(3);
 		expect(within(table).getByRole("cell", { name: "988" })).toBeInTheDocument();
 		expect(within(table).getAllByRole("row")).toHaveLength(4);
@@ -51,7 +52,12 @@ describe("Table", () => {
 
 	it("passes native attributes and merges class and classes.root on the table", () => {
 		render(() => (
-			<Table id="releases" aria-describedby="note" class="own" classes={{ root: "keyed" }}>
+			<Table
+				id="releases"
+				aria-describedby="note"
+				class="own"
+				classes={{ root: "keyed" }}
+			>
 				<tbody>
 					<tr>
 						<td>1</td>
@@ -122,7 +128,8 @@ describe("Table", () => {
 		const [plain, striped] = screen.getAllByRole("table");
 		const header = within(plain).getByRole("columnheader", { name: "Version" });
 		expect(fill(header)).not.toBe(transparent);
-		for (const cell of within(plain).getAllByRole("rowheader")) expect(fill(cell)).toBe(transparent);
+		for (const cell of within(plain).getAllByRole("rowheader"))
+			expect(fill(cell)).toBe(transparent);
 
 		const [first, second, third] = within(striped).getAllByRole("rowheader").map(fill);
 		expect(first).toBe(transparent);
@@ -133,9 +140,9 @@ describe("Table", () => {
 
 	it("uses tabular numbers", () => {
 		render(() => <Releases />);
-		expect(getComputedStyle(screen.getByRole("cell", { name: "988" })).fontVariantNumeric).toBe(
-			"tabular-nums",
-		);
+		expect(
+			getComputedStyle(screen.getByRole("cell", { name: "988" })).fontVariantNumeric,
+		).toBe("tabular-nums");
 	});
 
 	it("keeps Markdown column alignment and starts unaligned headers", () => {
@@ -202,7 +209,9 @@ describe("Table", () => {
 		const native = screen.getByRole("table", { name: "Native" });
 		const kit = screen.getByRole("table", { name: "Kit" });
 		expect(fill(within(native).getByText("b"))).toBe(transparent);
-		expect(getComputedStyle(within(native).getByText("b")).paddingInlineStart).toBe("1px");
+		expect(getComputedStyle(within(native).getByText("b")).paddingInlineStart).toBe(
+			"1px",
+		);
 		expect(fill(within(kit).getByText("d"))).toBe(transparent);
 		for (const row of within(kit).getAllByRole("row")) expect(height(row)).toBe(36);
 	});
@@ -212,7 +221,11 @@ describe("TableScrollArea", () => {
 	function Wide(props: { label?: string }) {
 		return (
 			<div style={{ width: "240px" }}>
-				<TableScrollArea aria-label={props.label} class="own" classes={{ scrollArea: "keyed" }}>
+				<TableScrollArea
+					aria-label={props.label}
+					class="own"
+					classes={{ scrollArea: "keyed" }}
+				>
 					<Table>
 						<tbody>
 							<tr>

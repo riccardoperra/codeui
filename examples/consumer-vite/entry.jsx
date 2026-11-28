@@ -1,4 +1,4 @@
-import { hydrate, render } from "solid-js/web";
+import { hydrate, render } from "@solidjs/web";
 import App from "./App";
 const container = document.getElementById("app");
 if (container.hasChildNodes()) {

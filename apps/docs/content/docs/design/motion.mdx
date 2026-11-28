@@ -41,6 +41,10 @@ Naming the movements gives designers, developers and agents a shared vocabulary.
 
 When you minimise CodeImage's large "What's new" dialog, it does not just fade out. It shrinks to a third of its size and slides into the small card in the bottom-left corner, in 200ms. The motion tells the user where the content went, so they know where to find it again. This is what motion is for in Inkstone.
 
+### Spinners share one clock
+
+Several spinners that mount at different moments, in a sidebar row, a list entry and a chip, turn out of phase and look like separate, nervous activities. Every spinner turns on one clock, aligned to the document timeline, so they read as one. **Proposed:** the kit `Spinner` does this itself.
+
 ### What stays still
 
 In CodeImage's side panel, the segmented control's indicator **jumps** to the new option instead of sliding. That is deliberate. The control is used many times while working, and the content it changes, such as the frame radius, animates instead. The control responds instantly and the content changes smoothly.

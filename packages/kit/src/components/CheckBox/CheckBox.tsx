@@ -1,5 +1,6 @@
 import type { CheckboxRootOptions } from "@kobalte/core/checkbox";
-import { Show, splitProps, type JSX, type Ref } from "solid-js";
+import { Show, type Ref, omit } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import * as P from "../../parts/checkbox";
 import type { SlotProp } from "../../utils/component";
 import type { FieldWithErrorMessageSupport } from "../Field/FieldError/createFieldErrorMessageProps";
@@ -16,7 +17,8 @@ export type CheckBoxProps = CheckboxRootOptions &
 	};
 
 export function Checkbox(props: CheckBoxProps) {
-	const [local, others] = splitProps(props, [
+	const others = omit(
+		props,
 		"description",
 		"size",
 		"label",
@@ -24,35 +26,39 @@ export function Checkbox(props: CheckBoxProps) {
 		"errorMessage",
 		"ref",
 		"slotClasses",
-	]);
+	);
 
 	return (
 		<P.Root
-			size={local.size}
-			variant={local.variant}
-			class={local.slotClasses?.root}
+			size={props.size}
+			variant={props.variant}
+			class={props.slotClasses?.root}
 			{...others}
 		>
-			<P.Input class={local.slotClasses?.input} ref={local.ref} />
-			<P.Control size={local.size} variant={local.variant} class={local.slotClasses?.control}>
+			<P.Input class={props.slotClasses?.input} ref={props.ref} />
+			<P.Control
+				size={props.size}
+				variant={props.variant}
+				class={props.slotClasses?.control}
+			>
 				<P.Indicator />
 			</P.Control>
 
 			<P.Content>
-				<Show when={local.label} keyed={false}>
-					{label => <P.Label class={local.slotClasses?.label}>{label()}</P.Label>}
+				<Show when={props.label} keyed={false}>
+					{label => <P.Label class={props.slotClasses?.label}>{label()}</P.Label>}
 				</Show>
 
-				<Show when={local.description} keyed={false}>
+				<Show when={props.description} keyed={false}>
 					{description => <P.Description>{description()}</P.Description>}
 				</Show>
 
 				<Show
-					when={props.validationState === "invalid" && local.errorMessage}
+					when={props.validationState === "invalid" && props.errorMessage}
 					keyed={false}
 				>
 					{errorMessage => (
-						<P.ErrorMessage class={local.slotClasses?.errorLabel}>
+						<P.ErrorMessage class={props.slotClasses?.errorLabel}>
 							{errorMessage()}
 						</P.ErrorMessage>
 					)}

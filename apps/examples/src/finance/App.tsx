@@ -1,8 +1,8 @@
 import { Button, type CommandItem, CommandMenu, createSelectOptions, createToaster, IconButton, Kbd, SegmentedControl, SegmentedControlItem, Select, Sheet, Text, Toaster } from "@codeui/kit";
-import PanelRight from "lucide-solid/icons/panel-right";
-import Plus from "lucide-solid/icons/plus";
-import Search from "lucide-solid/icons/search";
-import Wallet from "lucide-solid/icons/wallet";
+import PanelRight from "@lucide/solid/icons/panel-right";
+import Plus from "@lucide/solid/icons/plus";
+import Search from "@lucide/solid/icons/search";
+import Wallet from "@lucide/solid/icons/wallet";
 import { createSignal, Show } from "solid-js";
 import { ExampleMenu } from "../shared/ExampleMenu";
 import { modKey, onModK } from "../shared/hotkey";
@@ -86,7 +86,7 @@ export function App() {
 	);
 
 	return (
-		<LedgerContext.Provider value={ledger}>
+		<LedgerContext value={ledger}>
 			<div class="ex-page">
 				<header class="ex-header">
 					<span class="ex-brand">
@@ -173,6 +173,6 @@ export function App() {
 				}}
 			/>
 			<Toaster toaster={notifications} closeLabel="Dismiss" />
-		</LedgerContext.Provider>
+		</LedgerContext>
 	);
 }

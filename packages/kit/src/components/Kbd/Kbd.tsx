@@ -1,4 +1,4 @@
-import { splitProps } from "solid-js";
+import { omit } from "solid-js";
 import * as K from "../../parts/kbd";
 import { mergeClasses } from "../../utils/css";
 
@@ -9,6 +9,6 @@ export type KbdProps = K.RootProps & {
 
 /** One key or key label. Render a sequence as several Kbd elements. */
 export function Kbd(props: KbdProps) {
-	const [local, others] = splitProps(props, ["classes", "class"]);
-	return <K.Root {...others} class={mergeClasses(local.classes?.root, local.class)} />;
+	const others = omit(props, "classes", "class");
+	return <K.Root {...others} class={mergeClasses(props.classes?.root, props.class)} />;
 }

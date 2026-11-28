@@ -41,6 +41,10 @@ export * from "./ready/pagination";
 
 export * from "./ready/tooltip";
 
+export * from "./ready/hover-card";
+
+export * from "./ready/resizable";
+
 export * from "./ready/tabs";
 export * from "./ready/table";
 
@@ -51,6 +55,7 @@ export * from "./ready/virtualized-listbox";
 
 export * from "./ready/kbd";
 
+export * from "./ready/avatar";
 export * from "./ready/badge";
 
 export * from "./ready/spinner";

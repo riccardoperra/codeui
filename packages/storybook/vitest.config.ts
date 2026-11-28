@@ -1,4 +1,5 @@
 import { fileURLToPath } from "node:url";
+import { playwright } from "@vitest/browser-playwright";
 import { defineConfig } from "vitest/config";
 import { storybookTest } from "@storybook/addon-vitest/vitest-plugin";
 
@@ -21,25 +22,19 @@ export default defineConfig({
 						},
 					],
 				},
-				optimizeDeps: {
-					include: [
-						"@codeui/kit > @tanstack/solid-virtual",
-						"@codeui/kit > @maskito/kit",
-						"@codeui/kit > @solid-primitives/pagination",
-						"@codeui/kit > @solid-primitives/scheduled",
-						"@codeui/kit > @maskito/core",
-					],
-				},
 				plugins: [
+					// storybook-solidjs-vite adds the Solid 1 `vite-plugin-solid` when the
+					// config it receives has no plugin named "solid". Under Vitest it never
+					// sees vite.config.ts, so drop it and keep @solidjs/vite-plugin from there.
 					storybookTest({
 						configDir: fileURLToPath(new URL(".storybook", import.meta.url)),
-					}),
+					}).then((plugins) => plugins.filter((plugin) => plugin?.name !== "solid")),
 				],
 				test: {
 					name: "stories",
 					browser: {
 						enabled: true,
-						provider: "playwright",
+						provider: playwright(),
 						headless: true,
 						instances: [{ browser: "chromium" }],
 					},

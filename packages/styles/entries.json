@@ -348,5 +348,28 @@
 			"icons/icon.css.ts"
 		],
 		"dependencies": []
+	},
+	"hovercard": {
+		"modules": [
+			"components/HoverCard/HoverCard.css.ts"
+		],
+		"dependencies": [],
+		"helpers": "parts/hover-card.ts"
+	},
+	"resizable": {
+		"modules": [
+			"components/Resizable/Resizable.css.ts"
+		],
+		"dependencies": [],
+		"helpers": "parts/resizable.ts"
+	},
+	"avatar": {
+		"modules": [
+			"components/Avatar/Avatar.css.ts"
+		],
+		"dependencies": [
+			"tooltip"
+		],
+		"helpers": "parts/avatar.ts"
 	}
 }

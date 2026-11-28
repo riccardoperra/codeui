@@ -123,19 +123,18 @@ export const ListboxOptionWithCustomItemLabel: Story = {
 	},
 };
 
+// A plain array, not an arg. Solid 2 renders args as a store, which would wrap
+// all 100k rows in reactive proxies.
+const virtualizedOptions = Array.from({ length: 100_000 }, (_, index) => ({
+	label: `Item ${index + 1}`,
+	value: String(index),
+	disabled: false,
+}));
+
 export const ListboxVirtualized: Story = {
 	name: "Listbox Virtualized",
-	render: args => {
-		const options = (args.options! as string[]).map((option, index) => ({
-			label: option as string,
-			value: String(index),
-			disabled: false,
-		}));
-
-		return <VirtualizedListbox options={options} style={args.style} />;
-	},
+	render: args => <VirtualizedListbox options={virtualizedOptions} style={args.style} />,
 	args: {
-		options: new Array(100_000).fill(null).map((_, index) => `Item ${index + 1}`),
 		style: {
 			height: "400px",
 			overflow: "auto",

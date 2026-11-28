@@ -1,4 +1,4 @@
-import type { JSX } from "solid-js";
+import type { JSX } from "@solidjs/web";
 import { Accordion } from "../../src/components/Accordion/Accordion";
 import { Alert } from "../../src/components/Alert/Alert";
 import { Badge } from "../../src/components/Badge/Badge";

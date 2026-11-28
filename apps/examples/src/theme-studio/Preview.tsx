@@ -1,4 +1,5 @@
-import { createSignal, For, type JSX, onCleanup, onMount, Show } from "solid-js";
+import { createSignal, For, onSettled, Show } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import { parseColor, readableOn } from "./color";
 import type { Token } from "./highlight";
 import { findSample } from "./samples";
@@ -156,7 +157,7 @@ export function Stage() {
 	const style = createArtStyle();
 	const [room, setRoom] = createSignal({ width: Infinity, height: Infinity });
 	let viewport!: HTMLDivElement;
-	onMount(() => {
+	onSettled(() => {
 		const update = () => {
 			const computed = getComputedStyle(viewport);
 			setRoom({
@@ -166,7 +167,7 @@ export function Stage() {
 		};
 		const observer = new ResizeObserver(update);
 		observer.observe(viewport);
-		onCleanup(() => observer.disconnect());
+		return () => observer.disconnect();
 	});
 	const scale = () => Math.min(1, room().width / art.width, room().height / art.height);
 	return (

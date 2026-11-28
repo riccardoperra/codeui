@@ -1,5 +1,5 @@
 import { toaster } from "@kobalte/core/toast";
-import { cleanup, fireEvent, render, screen, waitFor } from "solid-testing-library";
+import { cleanup, fireEvent, render, screen, waitFor } from "@solidjs/testing-library";
 import { Alert } from "../src/components/Alert/Alert";
 import * as T from "../src/parts/toast";
 import { alertParts, alertStyles } from "../src/parts/alert";

@@ -1,4 +1,4 @@
-import { type Accessor, Show, splitProps } from "solid-js";
+import { type Accessor, Show, omit } from "solid-js";
 import * as P from "../../parts/slider";
 import { createBaseFieldProps, type FieldContent } from "../Field/createBaseFieldProps";
 import { mergeClasses } from "../../utils/css";
@@ -22,20 +22,8 @@ export function createSliderProps(props: Accessor<SliderProps>) {
 	const ids = createBaseFieldProps({}, props).ids;
 	return {
 		root: () => {
-			const [local, rest] = splitProps(props(), [
-				"label",
-				"description",
-				"errorMessage",
-				"inputId",
-				"aria-label",
-				"aria-labelledby",
-				"classes",
-				"showValue",
-				"value",
-				"defaultValue",
-				"onChange",
-				"onChangeEnd",
-			]);
+			const local = props();
+			const rest = omit(local, "label", "description", "errorMessage", "inputId", "aria-label", "aria-labelledby", "classes", "showValue", "value", "defaultValue", "onChange", "onChangeEnd");
 			return {
 				...rest,
 				value: local.value === undefined ? undefined : [local.value],
@@ -66,7 +54,7 @@ function ReadyThumb(
 			class={props.classes?.thumb}
 			aria-label={props["aria-label"]}
 			aria-labelledby={props["aria-labelledby"]}
-			aria-invalid={props.validationState === "invalid" || undefined}
+			aria-invalid={props.validationState === "invalid" ? "true" : undefined}
 			aria-valuetext={
 				props.getValueLabel
 					? props.getValueLabel({
@@ -87,30 +75,17 @@ export function Slider(props: SliderProps) {
 		<P.Root
 			{...field.root()}
 			class={mergeClasses(props.class, props.classes?.root)}
-			oncapture:keydown={(event: KeyboardEvent) => {
-				if (
-					props.readOnly &&
-					[
-						"ArrowLeft",
-						"ArrowRight",
-						"ArrowUp",
-						"ArrowDown",
-						"Home",
-						"End",
-						"PageUp",
-						"PageDown",
-					].includes(event.key)
-				) {
+			ref={[props.ref, (root: HTMLElement) => {
+				const stop = (event: Event) => {
+					if (!props.readOnly) return;
 					event.preventDefault();
 					event.stopPropagation();
-				}
-			}}
-			oncapture:pointerdown={(event: PointerEvent) => {
-				if (props.readOnly) {
-					event.preventDefault();
-					event.stopPropagation();
-				}
-			}}
+				};
+				root.addEventListener("keydown", event => {
+					if (["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Home", "End", "PageUp", "PageDown"].includes(event.key)) stop(event);
+				}, true);
+				root.addEventListener("pointerdown", stop, true);
+			}]}
 		>
 			<Show when={props.label}>
 				{label => <P.Label {...field.label()}>{label()}</P.Label>}

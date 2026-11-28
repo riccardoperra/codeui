@@ -4,7 +4,7 @@
 
 # CodeUI - [CodeImage](https://github.com/riccardoperra/codeimage) UI Kit
 
-Install `@codeui/kit` and `solid-js`. Solid components import their compiled CSS and theme automatically. No CSS import or vanilla-extract plugin is required in your app.
+Install `@codeui/kit`, `solid-js@^2`, and `@solidjs/web@^2`. Use `@solidjs/vite-plugin` to compile Solid JSX. Solid components import their compiled CSS and theme automatically. No CSS import or vanilla-extract plugin is required in your app.
 
 ```ts
 import { Button } from "@codeui/kit";

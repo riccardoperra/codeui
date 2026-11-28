@@ -1,8 +1,9 @@
 import { Accordion, type AccordionEntry, SegmentedControl, SegmentedControlItem, Text } from "@codeui/kit";
-import FlaskConical from "lucide-solid/icons/flask-conical";
-import Gauge from "lucide-solid/icons/gauge";
-import ListTree from "lucide-solid/icons/list-tree";
-import { createSignal, For, type JSX, Match, Switch } from "solid-js";
+import FlaskConical from "@lucide/solid/icons/flask-conical";
+import Gauge from "@lucide/solid/icons/gauge";
+import ListTree from "@lucide/solid/icons/list-tree";
+import { createSignal, For, Match, Switch } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import { MadeWith } from "../shared/ExampleMenu";
 import { formatNumber } from "../shared/format";
 import { modKey } from "../shared/hotkey";

@@ -7,7 +7,9 @@
     "icon-button",
     "link",
     "---Layout and text---",
+    "avatar",
     "kbd",
+    "resizable",
     "settings-row",
     "stack",
     "table",
@@ -41,6 +43,7 @@
     "command-menu",
     "dialog",
     "dropdown-menu",
+    "hover-card",
     "popover",
     "sheet",
     "tooltip"

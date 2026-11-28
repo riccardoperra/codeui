@@ -38,8 +38,8 @@ Wrap the element in `Tooltip` and pass the label as `content`. Hover the button,
 
 <SolidDemo name="tooltip/themes" />
 
-`variant="primary"` fills the tooltip with the brand blue. It is the default. `variant="secondary"` uses the neutral fill.
-Inkstone keeps the accent for focus, selection, and the one primary action, so prefer `secondary` in toolbars and panels.
+`variant="secondary"` uses the neutral fill. It is the default. `variant="primary"` fills the tooltip with the brand blue.
+Inkstone keeps the accent for focus, selection, and the one primary action, so keep `secondary` in toolbars and panels.
 
 ### Placement
 
@@ -52,8 +52,23 @@ Inkstone keeps the accent for focus, selection, and the one primary action, so p
 
 <SolidDemo name="tooltip/delays" />
 
-The tooltip opens 200ms after the pointer enters and closes at once when it leaves. Change this with `openDelay` and `closeDelay`.
+The tooltip opens 700ms after the pointer enters and closes at once when it leaves. Change this with `openDelay` and `closeDelay`.
 Keyboard focus ignores `openDelay` and opens the tooltip at once.
+
+### Defaults for a whole app
+
+Wrap the app in `TooltipProvider` to set the defaults of every tooltip below it. A prop on one tooltip still wins.
+
+```tsx
+import { TooltipProvider } from "@codeui/kit";
+
+<TooltipProvider openDelay={500} closeDelay={100}>
+	<App />
+</TooltipProvider>;
+```
+
+It takes `openDelay`, `closeDelay`, `skipDelayDuration`, `gutter`, `shift` and `variant`. With parts, import it as `Provider` from `@codeui/kit/tooltip/parts`.
+`skipDelayDuration` is how long after a tooltip closes the next one opens at once, without its delay or its animation. The kit default is 400ms.
 
 ### Icon button trigger
 
@@ -128,7 +143,7 @@ The trigger `div` and its children render on the server. The content renders on 
 | `--cui-shadow-md` | Shadow |
 | `--cui-motion-duration-normal`, `--cui-motion-duration-fast`, `--cui-motion-ease-out` | Pop: in from `scale(0.96)` over 160ms, out to `scale(0.98)` over 120ms |
 
-A tooltip opened by hover pops from its trigger. One opened by keyboard focus, and the next tooltip opened within 300ms of another closing, appear with no animation (`data-motion="none"`), as Inkstone asks. The description goes on the first focusable element inside the trigger, so a screen reader reads it with the focused control.
+A tooltip opened by hover pops from its trigger. One opened by keyboard focus, and the next tooltip opened within 400ms of another closing, appear with no animation (`data-motion="none"`), as Inkstone asks. The description goes on the first focusable element inside the trigger, so a screen reader reads it with the focused control.
 
 ## Composition examples
 

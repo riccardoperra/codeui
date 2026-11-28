@@ -1,3 +1,4 @@
+import { pickProps } from "../utils/pick-props";
 import { HydratablePortal } from "../utils/hydratable-portal";
 import "@codeui/styles/theme.css";
 import "@codeui/styles/commandmenu.css";
@@ -13,26 +14,17 @@ import {
 	type DialogTriggerProps as KDialogTriggerProps,
 } from "@kobalte/core/dialog";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
-import {
-	type ComponentProps,
-	createComputed,
-	type JSX,
-	onCleanup,
-	on,
-	onMount,
-	type ParentProps,
-	Show,
-	splitProps,
-	untrack,
-	type ValidComponent,
-} from "solid-js";
+import { callHandler } from "@kobalte/utils";
+import { createEffect, onCleanup, onSettled, type ParentProps, Show, omit } from "solid-js";
+import { type ComponentProps, type JSX, type ValidComponent } from "@solidjs/web";
 import * as styles from "../components/CommandMenu/CommandMenu.css";
 import { mergeClasses } from "../utils/css";
+import { allowEscapeToBubble } from "../utils/escape";
 import * as Dialog from "./dialog";
 
 import { commandMenuParts, type CommandMenuPart, type CommandMenuClasses, type CommandMenuStyles, commandMenuStyles } from "@codeui/styles/commandmenu";
 export { commandMenuParts, type CommandMenuPart, type CommandMenuClasses, type CommandMenuStyles, commandMenuStyles } from "@codeui/styles/commandmenu";
-function partAttributes(part: CommandMenuPart, local: { class?: string }) {
+function partAttributes(part: CommandMenuPart, local: { class?: JSX.ClassValue }) {
 	return {
 		"data-cui": commandMenuParts[part],
 		get class() {
@@ -56,9 +48,9 @@ export type TriggerProps<T extends ValidComponent = "button"> = KDialogTriggerPr
 export function Trigger<T extends ValidComponent = "button">(
 	props: PolymorphicProps<T, TriggerProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"button", TriggerProps>, [
-		"class",
-	]);
+	const allProps = props as PolymorphicProps<"button", TriggerProps>;
+	const local = pickProps(allProps, "class");
+	const others = omit(allProps, "class");
 	return <Dialog.Trigger {...others} {...partAttributes("trigger", local)} />;
 }
 
@@ -66,9 +58,9 @@ export type OverlayProps<T extends ValidComponent = "div"> = KDialogOverlayProps
 export function Overlay<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, OverlayProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"div", OverlayProps>, [
-		"class",
-	]);
+	const allProps = props as PolymorphicProps<"div", OverlayProps>;
+	const local = pickProps(allProps, "class");
+	const others = omit(allProps, "class");
 	return <Dialog.Overlay {...others} {...partAttributes("overlay", local)} />;
 }
 
@@ -143,20 +135,17 @@ function HighlightAdapter<Option>(props: {
 		reported = option;
 		props.onHighlightChange?.(option);
 	};
-	createComputed(() => {
+	createEffect(() => {
 		const key = manager().focusedKey();
 		const node = key == null ? undefined : context.listState().collection().getItem(key);
-		const option = node?.type === "item" ? (node.rawValue as Option) : undefined;
-		untrack(() => report(option));
-	});
-	onMount(() => highlightFirst(context));
-	createComputed(
-		on(
-			context.inputValue,
-			// The engine clears the highlight right after the query changes.
-			() => queueMicrotask(() => highlightFirst(context)),
-			{ defer: true },
-		),
+		return node?.type === "item" ? (node.rawValue as Option) : undefined;
+	}, report);
+	onSettled(() => highlightFirst(context));
+	createEffect(
+		context.inputValue,
+		// The engine clears the highlight right after the query changes.
+		() => queueMicrotask(() => highlightFirst(context)),
+		{ defer: true },
 	);
 	onCleanup(() => report(undefined));
 	return null;
@@ -174,7 +163,9 @@ function highlightFirst(context: K.ComboboxContextValue) {
  * enabled option and moves back to it whenever the query changes.
  */
 export function Content<Option, OptGroup = never>(props: ContentProps<Option, OptGroup>) {
-	const [engine, local, others] = splitProps(props, engineKeys, ["class", "children"]);
+	const engine = props;
+	const local = pickProps(props, "class", "children");
+	const others = omit(props, ...engineKeys, "class", "children");
 	return (
 		<Dialog.Content {...others} {...partAttributes("content", local)}>
 			<K.Root<Option, OptGroup, typeof Passthrough>
@@ -188,7 +179,7 @@ export function Content<Option, OptGroup = never>(props: ContentProps<Option, Op
 				itemComponent={engine.itemComponent}
 				sectionComponent={engine.sectionComponent}
 				defaultFilter={engine.defaultFilter}
-				translations={engine.translations}
+				{...(engine.translations ? { translations: engine.translations } : {})}
 				virtualized={engine.virtualized}
 				keyboardDelegate={engine.keyboardDelegate}
 				open
@@ -213,16 +204,17 @@ export type TitleProps<T extends ValidComponent = "h2"> = KDialogTitleProps<T>;
 export function Title<T extends ValidComponent = "h2">(
 	props: PolymorphicProps<T, TitleProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"h2", TitleProps>, [
-		"class",
-	]);
+	const allProps = props as PolymorphicProps<"h2", TitleProps>;
+	const local = pickProps(allProps, "class");
+	const others = omit(allProps, "class");
 	return <Dialog.Title {...others} {...partAttributes("title", local)} />;
 }
 
 export type SearchProps = ComponentProps<"div">;
 /** The field around the search input, its icon and the key hint. */
 export function Search(props: SearchProps) {
-	const [local, others] = splitProps(props, ["class"]);
+	const local = pickProps(props, "class");
+	const others = omit(props, "class");
 	return <div {...others} {...partAttributes("search", local)} />;
 }
 
@@ -231,16 +223,20 @@ export type SearchInputProps<T extends ValidComponent = "input"> =
 export function SearchInput<T extends ValidComponent = "input">(
 	props: PolymorphicProps<T, SearchInputProps<T>>,
 ) {
-	const [local, others] = splitProps(
-		props as PolymorphicProps<"input", SearchInputProps>,
-		["class"],
-	);
+	const allProps = props as PolymorphicProps<"input", SearchInputProps>;
+	const local = pickProps(allProps, "class", "onKeyDown");
+	const others = omit(allProps, "class", "onKeyDown");
 	return (
 		<K.Input
 			autocomplete="off"
 			spellcheck={false}
 			{...others}
 			{...partAttributes("searchInput", local)}
+			onKeyDown={event => {
+				callHandler(event, local.onKeyDown);
+				// The list is always open, so Escape belongs to the dialog.
+				allowEscapeToBubble(event);
+			}}
 		/>
 	);
 }
@@ -248,7 +244,8 @@ export function SearchInput<T extends ValidComponent = "input">(
 export type HintProps = ComponentProps<"span">;
 /** Key hints such as "↑↓ preview · ↵ apply · esc cancel". Hidden on phones. */
 export function Hint(props: HintProps) {
-	const [local, others] = splitProps(props, ["class"]);
+	const local = pickProps(props, "class");
+	const others = omit(props, "class");
 	return <span aria-hidden="true" {...others} {...partAttributes("hint", local)} />;
 }
 
@@ -262,10 +259,9 @@ export function Listbox<
 	OptGroup = never,
 	T extends ValidComponent = "ul",
 >(props: PolymorphicProps<T, ListboxProps<Option, OptGroup, T>>) {
-	const [local, others] = splitProps(
-		props as PolymorphicProps<"ul", ListboxProps<Option, OptGroup>>,
-		["class"],
-	);
+	const allProps = props as PolymorphicProps<"ul", ListboxProps<Option, OptGroup>>;
+	const local = pickProps(allProps, "class");
+	const others = omit(allProps, "class");
 	return (
 		<K.Listbox<Option, OptGroup> {...others} {...partAttributes("listbox", local)} />
 	);
@@ -276,15 +272,16 @@ export type GroupProps<T extends ValidComponent = "li"> = K.ComboboxSectionProps
 export function Group<T extends ValidComponent = "li">(
 	props: PolymorphicProps<T, GroupProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"li", GroupProps>, [
-		"class",
-	]);
+	const allProps = props as PolymorphicProps<"li", GroupProps>;
+	const local = pickProps(allProps, "class");
+	const others = omit(allProps, "class");
 	return <K.Section {...others} {...partAttributes("group", local)} />;
 }
 
 export type GroupLabelProps = ComponentProps<"span">;
 export function GroupLabel(props: GroupLabelProps) {
-	const [local, others] = splitProps(props, ["class"]);
+	const local = pickProps(props, "class");
+	const others = omit(props, "class");
 	return <span {...others} {...partAttributes("groupLabel", local)} />;
 }
 
@@ -292,16 +289,17 @@ export type ItemProps<T extends ValidComponent = "li"> = K.ComboboxItemProps<T>;
 export function Item<T extends ValidComponent = "li">(
 	props: PolymorphicProps<T, ItemProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"li", ItemProps>, [
-		"class",
-	]);
+	const allProps = props as PolymorphicProps<"li", ItemProps>;
+	const local = pickProps(allProps, "class");
+	const others = omit(allProps, "class");
 	return <K.Item {...others} {...partAttributes("item", local)} />;
 }
 
 export type LeadingProps = ComponentProps<"span">;
 /** A fixed box before the label, so labels line up with or without a visual. */
 export function Leading(props: LeadingProps) {
-	const [local, others] = splitProps(props, ["class"]);
+	const local = pickProps(props, "class");
+	const others = omit(props, "class");
 	return <span aria-hidden="true" {...others} {...partAttributes("leading", local)} />;
 }
 
@@ -310,9 +308,9 @@ export type ItemLabelProps<T extends ValidComponent = "div"> =
 export function ItemLabel<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, ItemLabelProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"div", ItemLabelProps>, [
-		"class",
-	]);
+	const allProps = props as PolymorphicProps<"div", ItemLabelProps>;
+	const local = pickProps(allProps, "class");
+	const others = omit(allProps, "class");
 	return <K.ItemLabel {...others} {...partAttributes("itemLabel", local)} />;
 }
 
@@ -321,10 +319,9 @@ export type ItemDescriptionProps<T extends ValidComponent = "div"> =
 export function ItemDescription<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, ItemDescriptionProps<T>>,
 ) {
-	const [local, others] = splitProps(
-		props as PolymorphicProps<"div", ItemDescriptionProps>,
-		["class"],
-	);
+	const allProps = props as PolymorphicProps<"div", ItemDescriptionProps>;
+	const local = pickProps(allProps, "class");
+	const others = omit(allProps, "class");
 	return <K.ItemDescription {...others} {...partAttributes("itemDescription", local)} />;
 }
 
@@ -334,23 +331,24 @@ export type ItemIndicatorProps<T extends ValidComponent = "div"> =
 export function ItemIndicator<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, ItemIndicatorProps<T>>,
 ) {
-	const [local, others] = splitProps(
-		props as PolymorphicProps<"div", ItemIndicatorProps>,
-		["class"],
-	);
+	const allProps = props as PolymorphicProps<"div", ItemIndicatorProps>;
+	const local = pickProps(allProps, "class");
+	const others = omit(allProps, "class");
 	return <K.ItemIndicator {...others} {...partAttributes("itemIndicator", local)} />;
 }
 
 export type ShortcutProps = ComponentProps<"span">;
 export function Shortcut(props: ShortcutProps) {
-	const [local, others] = splitProps(props, ["class"]);
+	const local = pickProps(props, "class");
+	const others = omit(props, "class");
 	return <span {...others} {...partAttributes("shortcut", local)} />;
 }
 
 export type EmptyProps = ComponentProps<"div">;
 /** Rendered only while no option matches the query. */
 export function Empty(props: EmptyProps) {
-	const [local, others] = splitProps(props, ["class"]);
+	const local = pickProps(props, "class");
+	const others = omit(props, "class");
 	const context = K.useComboboxContext();
 	return (
 		<Show when={context.listState().collection().getSize() === 0}>

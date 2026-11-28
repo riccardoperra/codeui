@@ -1,12 +1,16 @@
+import { pickProps } from "../utils/pick-props";
 import { comboboxStyleProps } from "@codeui/styles/combobox";
 import "@codeui/styles/theme.css";
 import "@codeui/styles/combobox.css";
 import * as K from "@kobalte/core/combobox";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
-import { splitProps, type ValidComponent } from "solid-js";
-import { callHandler, mergeRefs } from "@kobalte/utils";
+import { omit } from "solid-js";
+import { type ValidComponent, type JSX } from "@solidjs/web";
+import { callHandler } from "@kobalte/utils";
 import { mergeClasses } from "../utils/css";
-import { motionRef } from "../utils/open-source";
+import { LayerScope } from "../utils/layer-scope";
+import { createPopMotion, motionRef, PopMotionContext } from "../utils/pop-motion";
+import { keepCollectionScrollLocal } from "../utils/collection-scroll";
 export { useComboboxContext } from "@kobalte/core/combobox";
 export {
 	createComboboxOptions,
@@ -33,7 +37,7 @@ export {
 } from "@codeui/styles/combobox";
 const defaultComboboxSize = comboboxStyleProps()["data-size"];
 
-type Local = ComboboxVariants & { class?: string };
+type Local = ComboboxVariants & { class?: JSX.ClassValue };
 const variantKeys = ["class", "size"] as const;
 function partAttributes(part: ComboboxPart, local: Local) {
 	return {
@@ -55,11 +59,11 @@ export type RootProps<
 export function Root<Option, OptGroup = never, T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, RootProps<Option, OptGroup, T>>,
 ) {
-	const [local, input, others] = splitProps(
-		props as PolymorphicProps<"div", RootProps<Option, OptGroup>> & Local,
-		variantKeys,
-		["onInputChange"],
-	);
+	const allProps = props as PolymorphicProps<"div", RootProps<Option, OptGroup>> & Local;
+	const local = pickProps(allProps, ...variantKeys);
+	const input = allProps;
+	const others = omit(allProps, ...variantKeys, "onInputChange", "forceMount", "onOpenChange");
+	const motion = createPopMotion(allProps);
 	// Kobalte clears a single selection on empty text only when `value` is undefined.
 	// Report the clear for a controlled value too, so the parent can drop it.
 	const onInputChange = (text: string) => {
@@ -69,11 +73,15 @@ export function Root<Option, OptGroup = never, T extends ValidComponent = "div">
 		}
 	};
 	return (
-		<K.Root<Option, OptGroup>
-			{...others}
-			onInputChange={onInputChange}
-			{...partAttributes("root", local)}
-		/>
+		<PopMotionContext value={motion.setTarget}>
+			<K.Root<Option, OptGroup>
+				{...others}
+				forceMount={motion.forceMount()}
+				onOpenChange={motion.onOpenChange}
+				onInputChange={onInputChange}
+				{...partAttributes("root", local)}
+			/>
+		</PopMotionContext>
 	);
 }
 
@@ -84,10 +92,9 @@ export type ControlProps<
 export function Control<Option, T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, ControlProps<Option, T>>,
 ) {
-	const [local, others] = splitProps(
-		props as PolymorphicProps<"div", ControlProps<Option>> & Local,
-		variantKeys,
-	);
+	const allProps = props as PolymorphicProps<"div", ControlProps<Option>> & Local;
+	const local = pickProps(allProps, ...variantKeys);
+	const others = omit(allProps, ...variantKeys);
 	return <K.Control<Option> {...others} {...partAttributes("control", local)} />;
 }
 
@@ -96,12 +103,12 @@ export type InputProps<T extends ValidComponent = "input"> = K.ComboboxInputProp
 export function Input<T extends ValidComponent = "input">(
 	props: PolymorphicProps<T, InputProps<T>>,
 ) {
-	const [local, others] = splitProps(
-		props as PolymorphicProps<"input", InputProps> & Local,
-		variantKeys,
-	);
+	const allProps = props as PolymorphicProps<"input", InputProps> & Local;
+	const local = pickProps(allProps, ...variantKeys);
+	const others = omit(allProps, ...variantKeys);
 	const context = K.useComboboxContext();
-	const [events, rest] = splitProps(others, ["onKeyDown"]);
+	const events = others;
+	const rest = omit(others, "onKeyDown");
 	return (
 		<K.Input
 			{...rest}
@@ -120,10 +127,9 @@ export type TriggerProps<T extends ValidComponent = "button"> =
 export function Trigger<T extends ValidComponent = "button">(
 	props: PolymorphicProps<T, TriggerProps<T>>,
 ) {
-	const [local, others] = splitProps(
-		props as PolymorphicProps<"button", TriggerProps> & Local,
-		variantKeys,
-	);
+	const allProps = props as PolymorphicProps<"button", TriggerProps> & Local;
+	const local = pickProps(allProps, ...variantKeys);
+	const others = omit(allProps, ...variantKeys);
 	return <K.Trigger {...others} {...partAttributes("trigger", local)} />;
 }
 
@@ -132,10 +138,9 @@ export type IconProps<T extends ValidComponent = "span"> = K.ComboboxIconProps<T
 export function Icon<T extends ValidComponent = "span">(
 	props: PolymorphicProps<T, IconProps<T>>,
 ) {
-	const [local, others] = splitProps(
-		props as PolymorphicProps<"span", IconProps> & Local,
-		variantKeys,
-	);
+	const allProps = props as PolymorphicProps<"span", IconProps> & Local;
+	const local = pickProps(allProps, ...variantKeys);
+	const others = omit(allProps, ...variantKeys);
 	return <K.Icon {...others} {...partAttributes("icon", local)} />;
 }
 
@@ -149,17 +154,19 @@ export type ContentProps<T extends ValidComponent = "div"> = K.ComboboxContentPr
 export function Content<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, ContentProps<T>>,
 ) {
-	const [local, others] = splitProps(
-		props as PolymorphicProps<"div", ContentProps> & Local,
-		variantKeys,
-	);
-	const [refs, rest] = splitProps(others, ["ref"]);
+	const allProps = props as PolymorphicProps<"div", ContentProps> & Local;
+	const local = pickProps(allProps, ...variantKeys);
+	const others = omit(allProps, ...variantKeys);
+	const refs = others;
+	const rest = omit(others, "ref");
 	return (
-		<K.Content
-			ref={mergeRefs(motionRef(), refs.ref)}
-			{...rest}
-			{...partAttributes("content", local)}
-		/>
+		<LayerScope>
+			<K.Content
+				ref={[motionRef(), refs.ref]}
+				{...rest}
+				{...partAttributes("content", local)}
+			/>
+		</LayerScope>
 	);
 }
 
@@ -168,10 +175,9 @@ export type ArrowProps<T extends ValidComponent = "div"> = K.ComboboxArrowProps<
 export function Arrow<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, ArrowProps<T>>,
 ) {
-	const [local, others] = splitProps(
-		props as PolymorphicProps<"div", ArrowProps> & Local,
-		variantKeys,
-	);
+	const allProps = props as PolymorphicProps<"div", ArrowProps> & Local;
+	const local = pickProps(allProps, ...variantKeys);
+	const others = omit(allProps, ...variantKeys);
 	return <K.Arrow {...others} {...partAttributes("arrow", local)} />;
 }
 
@@ -185,10 +191,9 @@ export function Listbox<
 	OptGroup = never,
 	T extends ValidComponent = "ul",
 >(props: PolymorphicProps<T, ListboxProps<Option, OptGroup, T>>) {
-	const [local, others] = splitProps(
-		props as PolymorphicProps<"ul", ListboxProps<Option, OptGroup>> & Local,
-		variantKeys,
-	);
+	const allProps = props as PolymorphicProps<"ul", ListboxProps<Option, OptGroup>> & Local;
+	const local = pickProps(allProps, ...variantKeys);
+	const others = omit(allProps, ...variantKeys);
 	return (
 		<K.Listbox<Option, OptGroup> {...others} {...partAttributes("listbox", local)} />
 	);
@@ -199,11 +204,16 @@ export type ItemProps<T extends ValidComponent = "li"> = K.ComboboxItemProps<T> 
 export function Item<T extends ValidComponent = "li">(
 	props: PolymorphicProps<T, ItemProps<T>>,
 ) {
-	const [local, others] = splitProps(
-		props as PolymorphicProps<"li", ItemProps> & Local,
-		variantKeys,
+	const allProps = props as PolymorphicProps<"li", ItemProps> & Local;
+	const local = pickProps(allProps, ...variantKeys);
+	const others = omit(allProps, ...variantKeys, "ref");
+	return (
+		<K.Item
+			{...others}
+			{...partAttributes("item", local)}
+			ref={[keepCollectionScrollLocal, allProps.ref]}
+		/>
 	);
-	return <K.Item {...others} {...partAttributes("item", local)} />;
 }
 
 export type ItemLabelProps<T extends ValidComponent = "div"> =
@@ -211,22 +221,20 @@ export type ItemLabelProps<T extends ValidComponent = "div"> =
 export function ItemLabel<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, ItemLabelProps<T>>,
 ) {
-	const [local, others] = splitProps(
-		props as PolymorphicProps<"div", ItemLabelProps> & Local,
-		variantKeys,
-	);
+	const allProps = props as PolymorphicProps<"div", ItemLabelProps> & Local;
+	const local = pickProps(allProps, ...variantKeys);
+	const others = omit(allProps, ...variantKeys);
 	return <K.ItemLabel {...others} {...partAttributes("itemLabel", local)} />;
 }
 
 export type ItemDescriptionProps<T extends ValidComponent = "div"> =
-	K.ComboboxItemDescriptionProps<T> & ComboboxVariants;
+	K.ComboboxItemDescriptionProps & ComboboxVariants;
 export function ItemDescription<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, ItemDescriptionProps<T>>,
 ) {
-	const [local, others] = splitProps(
-		props as PolymorphicProps<"div", ItemDescriptionProps> & Local,
-		variantKeys,
-	);
+	const allProps = props as PolymorphicProps<"div", ItemDescriptionProps> & Local;
+	const local = pickProps(allProps, ...variantKeys);
+	const others = omit(allProps, ...variantKeys);
 	return <K.ItemDescription {...others} {...partAttributes("itemDescription", local)} />;
 }
 
@@ -235,10 +243,9 @@ export type ItemIndicatorProps<T extends ValidComponent = "div"> =
 export function ItemIndicator<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, ItemIndicatorProps<T>>,
 ) {
-	const [local, others] = splitProps(
-		props as PolymorphicProps<"div", ItemIndicatorProps> & Local,
-		variantKeys,
-	);
+	const allProps = props as PolymorphicProps<"div", ItemIndicatorProps> & Local;
+	const local = pickProps(allProps, ...variantKeys);
+	const others = omit(allProps, ...variantKeys);
 	return <K.ItemIndicator {...others} {...partAttributes("itemIndicator", local)} />;
 }
 
@@ -247,16 +254,16 @@ export type SectionProps<T extends ValidComponent = "li"> = K.ComboboxSectionPro
 export function Section<T extends ValidComponent = "li">(
 	props: PolymorphicProps<T, SectionProps<T>>,
 ) {
-	const [local, others] = splitProps(
-		props as PolymorphicProps<"li", SectionProps> & Local,
-		variantKeys,
-	);
+	const allProps = props as PolymorphicProps<"li", SectionProps> & Local;
+	const local = pickProps(allProps, ...variantKeys);
+	const others = omit(allProps, ...variantKeys);
 	return <K.Section {...others} {...partAttributes("section", local)} />;
 }
 
 export type HiddenSelectProps = K.ComboboxHiddenSelectProps & ComboboxVariants;
 export function HiddenSelect(props: HiddenSelectProps) {
-	const [local, others] = splitProps(props, variantKeys);
+	const local = pickProps(props, ...variantKeys);
+	const others = omit(props, ...variantKeys);
 	return <K.HiddenSelect {...others} {...partAttributes("hiddenSelect", local)} />;
 }
 
@@ -265,22 +272,20 @@ export type LabelProps<T extends ValidComponent = "span"> = K.ComboboxLabelProps
 export function Label<T extends ValidComponent = "span">(
 	props: PolymorphicProps<T, LabelProps<T>>,
 ) {
-	const [local, others] = splitProps(
-		props as PolymorphicProps<"span", LabelProps> & Local,
-		variantKeys,
-	);
+	const allProps = props as PolymorphicProps<"span", LabelProps> & Local;
+	const local = pickProps(allProps, ...variantKeys);
+	const others = omit(allProps, ...variantKeys);
 	return <K.Label {...others} {...partAttributes("label", local)} />;
 }
 
 export type DescriptionProps<T extends ValidComponent = "div"> =
-	K.ComboboxDescriptionProps<T> & ComboboxVariants;
+	K.ComboboxDescriptionProps & ComboboxVariants;
 export function Description<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, DescriptionProps<T>>,
 ) {
-	const [local, others] = splitProps(
-		props as PolymorphicProps<"div", DescriptionProps> & Local,
-		variantKeys,
-	);
+	const allProps = props as PolymorphicProps<"div", DescriptionProps> & Local;
+	const local = pickProps(allProps, ...variantKeys);
+	const others = omit(allProps, ...variantKeys);
 	return <K.Description {...others} {...partAttributes("description", local)} />;
 }
 
@@ -289,10 +294,9 @@ export type ErrorMessageProps<T extends ValidComponent = "div"> =
 export function ErrorMessage<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, ErrorMessageProps<T>>,
 ) {
-	const [local, others] = splitProps(
-		props as PolymorphicProps<"div", ErrorMessageProps> & Local,
-		variantKeys,
-	);
+	const allProps = props as PolymorphicProps<"div", ErrorMessageProps> & Local;
+	const local = pickProps(allProps, ...variantKeys);
+	const others = omit(allProps, ...variantKeys);
 	return <K.ErrorMessage {...others} {...partAttributes("errorMessage", local)} />;
 }
 

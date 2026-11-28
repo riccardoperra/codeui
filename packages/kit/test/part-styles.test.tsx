@@ -1,5 +1,6 @@
-import { createSignal } from "solid-js";
-import { cleanup, render, screen } from "solid-testing-library";
+import { createSignal, flush } from "solid-js";
+
+import { cleanup, render, screen } from "@solidjs/testing-library";
 import {
 	createBaseFieldProps,
 	optionCardStyles,
@@ -39,6 +40,6 @@ it("keeps custom field attributes in sync with its props", () => {
 	expect(input).toHaveClass("cui-field-input");
 	expect(input).toHaveAttribute("data-size", "sm");
 	expect(input).toHaveAttribute("data-variant", "inline");
-	setSize("lg");
+	flush(() => setSize("lg"));
 	expect(input).toHaveAttribute("data-size", "lg");
 });

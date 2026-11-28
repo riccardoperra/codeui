@@ -1,10 +1,11 @@
-import { cleanup, fireEvent, render, screen } from "solid-testing-library";
+import { cleanup, fireEvent, render, screen } from "@solidjs/testing-library";
 import { createSignal } from "solid-js";
 import { Dialog, DialogPanelContent } from "../src/components/Dialog/Dialog";
 import { Popover, PopoverContent, PopoverTrigger } from "../src/components/Popover/Popover";
+import { Select } from "../src/components/Select/Select";
 import * as D from "../src/parts/dialog";
 import * as P from "../src/parts/popover";
-import { expectDismissed, press, tick } from "./helpers";
+import { expectDismissed, expectFocus, expectFocusWithin, press, tick } from "./helpers";
 
 afterEach(cleanup);
 
@@ -86,9 +87,10 @@ describe("Dialog", () => {
 		const opener = screen.getByRole("button", { name: "Open" });
 		opener.focus();
 		fireEvent.click(opener);
-		await tick();
-		await closeDialog(screen.getByRole("dialog"));
-		expect(document.activeElement).toHaveTextContent("Elsewhere");
+		const dialog = screen.getByRole("dialog");
+		await expectFocusWithin(dialog);
+		await closeDialog(dialog);
+		await expectFocus(screen.getByRole("button", { name: "Elsewhere" }));
 	});
 });
 
@@ -145,9 +147,57 @@ describe("Dialog parts", () => {
 		["a plain button", false],
 	])("return focus to %s on close", async (_, withTrigger) => {
 		const opener = renderParts(withTrigger);
+		const dialog = screen.getByRole("dialog");
+		await expectFocusWithin(dialog);
+		await closeDialog(dialog);
+		await expectFocus(opener);
+	});
+});
+
+describe("Overlays inside a dialog", () => {
+	it.each([false, true])("keeps a nested popover available in a dialog with modal=%s", async modal => {
+		render(() => (
+			<Dialog defaultOpen modal={modal} title="Settings">
+				<Popover>
+					<PopoverTrigger>More details</PopoverTrigger>
+					<PopoverContent title="Details">
+						<button>More options</button>
+					</PopoverContent>
+				</Popover>
+			</Dialog>
+		));
+		const dialog = screen.getByRole("dialog", { name: "Settings" });
 		await tick();
-		await closeDialog(screen.getByRole("dialog"));
-		expect(document.activeElement).toBe(opener);
+		const trigger = screen.getByRole("button", { name: "More details" });
+		fireEvent.click(trigger);
+		const popover = await screen.findByRole("dialog", { name: "Details" });
+		const action = screen.getByRole("button", { name: "More options" });
+		await expectFocusWithin(popover);
+		fireEvent.pointerDown(action, { pointerType: "mouse" });
+		await tick();
+		expect(dialog).toBeInTheDocument();
+		press("Escape");
+		await expectDismissed(popover);
+		expect(dialog).toBeInTheDocument();
+		await expectFocus(trigger);
+	});
+
+	it("exposes a portaled select list inside a modal dialog", async () => {
+		render(() => (
+			<Dialog defaultOpen title="Settings">
+				<Select aria-label="Fruit" options={["Apple", "Pear"]} />
+			</Dialog>
+		));
+		const trigger = screen.getByRole("button", { name: /Fruit/ });
+		trigger.focus();
+		press("ArrowDown");
+		const list = await screen.findByRole("listbox");
+		const apple = screen.getByRole("option", { name: "Apple" });
+		await expectFocus(apple);
+		expect(screen.getByRole("option", { name: "Apple" })).toBe(apple);
+		press("Escape");
+		await expectDismissed(list);
+		await expectFocus(trigger);
 	});
 });
 

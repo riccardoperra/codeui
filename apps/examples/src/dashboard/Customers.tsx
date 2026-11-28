@@ -22,8 +22,8 @@ import {
 	TextField,
 	Tooltip,
 } from "@codeui/kit";
-import Ellipsis from "lucide-solid/icons/ellipsis";
-import { createEffect, createMemo, createSignal, For, on, onCleanup, onMount, Show } from "solid-js";
+import Ellipsis from "@lucide/solid/icons/ellipsis";
+import { createEffect, createMemo, createSignal, For, onSettled, Show } from "solid-js";
 import { formatMoneyWhole, formatNumber } from "../shared/format";
 import { createIsPhone } from "../shared/media";
 import { createControlSize } from "../shared/size";
@@ -52,10 +52,10 @@ export function Customers() {
 	const [page, setPage] = createSignal(1);
 	const [selected, setSelected] = createSignal<string[]>([]);
 
-	onMount(() => {
+	onSettled(() => {
 		if (pulse.customersLoaded()) return;
 		const timer = setTimeout(() => pulse.setCustomersLoaded(true), 700);
-		onCleanup(() => clearTimeout(timer));
+		return () => clearTimeout(timer);
 	});
 
 	const sorted = createMemo(() => [...pulse.customers()].sort((a, b) => a.lastSeen - b.lastSeen));
@@ -68,8 +68,8 @@ export function Customers() {
 	const pages = () => Math.max(1, Math.ceil(filtered().length / pageSize));
 	const rows = () => filtered().slice((page() - 1) * pageSize, page() * pageSize);
 	// A new filter starts from the first page with nothing selected. An archive only steps back when its page empties.
-	createEffect(on([tab, query], () => (setPage(1), setSelected([])), { defer: true }));
-	createEffect(() => page() > pages() && setPage(pages()));
+	createEffect(() => [tab(), query()], () => { setPage(1); setSelected([]); }, { defer: true });
+	createEffect(() => ({ page: page(), pages: pages() }), state => { if (state.page > state.pages) setPage(state.pages); });
 
 	const onPage = () => rows().filter(c => selected().includes(c.id));
 	const selectPage = (checked: boolean) => {

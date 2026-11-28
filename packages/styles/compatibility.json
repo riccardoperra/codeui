@@ -1,6 +1,7 @@
 [
 	"components/Accordion/Accordion.css",
 	"components/Alert/Alert.css",
+	"components/Avatar/Avatar.css",
 	"components/Badge/Badge.css",
 	"components/Button/Button.css",
 	"components/Button/Loading.css",
@@ -14,6 +15,7 @@
 	"components/Field/FieldLabel/FieldLabel.css",
 	"components/Field/FieldMessage/FieldMessage.css",
 	"components/Field/fieldStyle",
+	"components/HoverCard/HoverCard.css",
 	"components/IconButton/IconButton.css",
 	"components/Kbd/Kbd.css",
 	"components/Link/Link.css",
@@ -25,6 +27,7 @@
 	"components/Popover/Popover.css",
 	"components/Progress/Progress.css",
 	"components/RadioList/Radio.css",
+	"components/Resizable/Resizable.css",
 	"components/SegmentedControl/SegmentedControl.css",
 	"components/Select/Select.css",
 	"components/Settings/Settings.css",

@@ -1,4 +1,4 @@
-import { cleanup, fireEvent, render, screen, waitFor, within } from "solid-testing-library";
+import { cleanup, fireEvent, render, screen, waitFor, within } from "@solidjs/testing-library";
 import { createSignal } from "solid-js";
 import { Select } from "../src/components/Select/Select";
 import { Dialog } from "../src/components/Dialog/Dialog";
@@ -12,7 +12,8 @@ import {
 } from "../src/components/Dropdown/Dropdown";
 import { Listbox } from "../src/components/Listbox/Listbox";
 import { Tooltip } from "../src/components/Tooltip/Tooltip";
-import { expectDismissed, press, tick } from "./helpers";
+import * as Tabs from "../src/parts/tabs";
+import { expectDismissed, expectFocus, press, tick } from "./helpers";
 
 afterEach(cleanup);
 
@@ -105,8 +106,7 @@ describe("Dialog", () => {
 		await tick();
 		await expectDismissed(dialog);
 		await expectDismissed(overlay);
-		await tick();
-		expect(document.activeElement).toBe(opener);
+		await expectFocus(opener);
 	});
 });
 
@@ -178,7 +178,7 @@ describe("DropdownMenu", () => {
 		press("Escape");
 		await tick();
 		await expectDismissed(menu);
-		expect(document.activeElement).toBe(trigger);
+		await expectFocus(trigger);
 		expect(onSelect).not.toHaveBeenCalled();
 	});
 });
@@ -219,6 +219,28 @@ describe("Listbox inside a Dialog", () => {
 		await tick();
 		await expectDismissed(dialog);
 		expect(option).toHaveAttribute("aria-selected", "true");
+	});
+});
+
+describe("Tabs inside a dialog", () => {
+	it("lets Escape close the dialog from the active tab", async () => {
+		render(() => (
+			<Dialog defaultOpen title="Settings">
+				<Tabs.Root defaultValue="general">
+					<Tabs.List>
+						<Tabs.Trigger value="general">General</Tabs.Trigger>
+						<Tabs.Trigger value="advanced">Advanced</Tabs.Trigger>
+					</Tabs.List>
+					<Tabs.Content value="general">General settings</Tabs.Content>
+				</Tabs.Root>
+			</Dialog>
+		));
+		const dialog = screen.getByRole("dialog", { name: "Settings" });
+		const tab = screen.getByRole("tab", { name: "General" });
+		tab.focus();
+		await expectFocus(tab);
+		press("Escape");
+		await expectDismissed(dialog);
 	});
 });
 

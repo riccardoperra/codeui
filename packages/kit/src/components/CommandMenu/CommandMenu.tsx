@@ -1,13 +1,6 @@
 import type { DialogContentProps } from "@kobalte/core/dialog";
-import {
-	createComputed,
-	createMemo,
-	createSignal,
-	createUniqueId,
-	type JSX,
-	on,
-	Show,
-} from "solid-js";
+import { createEffect, createMemo, createSignal, createUniqueId, Show, untrack } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import { CheckIcon } from "../../icons/CheckIcon";
 import * as P from "../../parts/command-menu";
 import { mergeClasses } from "../../utils/css";
@@ -129,9 +122,8 @@ function SearchIcon() {
 
 function ControlledQuery(props: { value: string | undefined }) {
 	const context = P.useCommandMenuContext();
-	createComputed(() => {
-		const value = props.value;
-		if (value !== undefined && value !== context.inputValue())
+	createEffect(() => ({ value: props.value, engineValue: context.inputValue() }), ({ value, engineValue }) => {
+		if (value !== undefined && value !== engineValue)
 			context.setInputValue(value);
 	});
 	return null;
@@ -152,10 +144,18 @@ export function CommandMenu<T extends CommandItem>(props: CommandMenuProps<T>) {
 	const groups = createMemo(() =>
 		groupItems((props.filter ?? filterCommandItems)(props.items, query())),
 	);
+	// Throw a duplicate id here, before the dialog opens around an error.
+	untrack(groups);
 	const hasLeading = createMemo(
 		() => new Set(groups().flatMap(group => (group.leading ? group.items : []))),
 	);
-	let closing = false;
+	let closedByMenu = false;
+	let highlighted: T | undefined;
+	const reportHighlight = (item: T | undefined) => {
+		if (highlighted === item) return;
+		highlighted = item;
+		props.onHighlightChange?.(item);
+	};
 
 	const end = (selected?: T) => {
 		props.onBeforeClose?.();
@@ -164,20 +164,18 @@ export function CommandMenu<T extends CommandItem>(props: CommandMenuProps<T>) {
 		if (props.query) props.onQueryChange?.("");
 	};
 	const close = (selected?: T) => {
-		closing = true;
+		closedByMenu = true;
 		end(selected);
 		props.onOpenChange(false);
-		closing = false;
 		if (selected) props.onSelect(selected);
 	};
-	createComputed(
-		on(
-			() => props.open,
-			(open, wasOpen) => {
-				if (wasOpen && !open && !closing) end();
-			},
-			{ defer: true },
-		),
+	createEffect(
+		() => props.open,
+		(open, wasOpen) => {
+			if (wasOpen && !open && !closedByMenu) end();
+			closedByMenu = false;
+		},
+		{ defer: true },
 	);
 
 	return (
@@ -199,7 +197,8 @@ export function CommandMenu<T extends CommandItem>(props: CommandMenuProps<T>) {
 						setOwnQuery(value);
 						props.onQueryChange?.(value);
 					}}
-					onHighlightChange={item => props.onHighlightChange?.(item)}
+					onHighlightChange={reportHighlight}
+					onEscapeKeyDown={() => reportHighlight(undefined)}
 					onSelect={close}
 					onCloseAutoFocus={props.onCloseAutoFocus}
 					sectionComponent={node => (

@@ -15,3 +15,10 @@ export function releaseEscape(
 	root.addEventListener("keydown", listener, true);
 	return () => root.removeEventListener("keydown", listener, true);
 }
+
+/** Kobalte alpha.5 prevents Escape even when the list cannot clear selection. */
+export function allowEscapeToBubble(event: KeyboardEvent) {
+	if (event.key !== "Escape" || event.defaultPrevented) return;
+	// Skip the list's preventDefault call and leave the parent layer in charge.
+	event.preventDefault = () => Reflect.deleteProperty(event, "preventDefault");
+}

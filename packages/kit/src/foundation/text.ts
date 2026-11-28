@@ -1,7 +1,6 @@
 import { mergeClasses } from "../utils/css";
-import { JSX } from "solid-js";
+import type { Accessor } from "solid-js";
 import * as textStyles from "./text.css";
-import Accessor = JSX.Accessor;
 
 export interface UseTextProps {
 	size?: Accessor<keyof typeof textStyles.fontSize>;

@@ -1,6 +1,6 @@
 import { Button, NumberField, Stack, Text, TextArea, TextField } from "@codeui/kit";
 import { createSignal, Show } from "solid-js";
-import { createStore } from "solid-js/store";
+import { createStore } from "solid-js";
 
 type ExportSettings = {
 	fileName: string;
@@ -51,7 +51,7 @@ export default function ExportForm() {
 	};
 
 	return (
-		<form noValidate onSubmit={onSubmit} style={{ width: "360px" }}>
+		<form novalidate onSubmit={onSubmit} style={{ width: "360px" }}>
 			<Stack gap="4">
 				<TextField
 					name="fileName"
@@ -60,7 +60,7 @@ export default function ExportForm() {
 					autocomplete="off"
 					description="Without the extension."
 					value={values.fileName}
-					onChange={value => setValues("fileName", value)}
+					onChange={value => setValues(draft => { draft.fileName = value; })}
 					validationState={state("fileName")}
 					errorMessage={errors().fileName}
 				/>
@@ -70,7 +70,7 @@ export default function ExportForm() {
 					description="Optional. Shown under the image."
 					options={{ autoResize: true }}
 					value={values.caption}
-					onChange={value => setValues("caption", value)}
+					onChange={value => setValues(draft => { draft.caption = value; })}
 					validationState={state("caption")}
 					errorMessage={errors().caption}
 				/>
@@ -83,7 +83,7 @@ export default function ExportForm() {
 					max={4096}
 					step={160}
 					value={values.width}
-					onChange={value => setValues("width", value)}
+					onChange={value => setValues(draft => { draft.width = value; })}
 					validationState={state("width")}
 					errorMessage={errors().width}
 				/>

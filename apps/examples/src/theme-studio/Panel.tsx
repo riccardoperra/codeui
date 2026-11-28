@@ -1,9 +1,10 @@
 import { Accordion, type AccordionEntry, OptionCardGroup, SegmentedControl, SegmentedControlItem, Slider, Switch, Text, TextField } from "@codeui/kit";
-import AppWindow from "lucide-solid/icons/app-window";
-import Code from "lucide-solid/icons/code";
-import Palette from "lucide-solid/icons/palette";
-import TextCursor from "lucide-solid/icons/text-cursor";
-import { createEffect, createSignal, For, type JSX, on, Show } from "solid-js";
+import AppWindow from "@lucide/solid/icons/app-window";
+import Code from "@lucide/solid/icons/code";
+import Palette from "@lucide/solid/icons/palette";
+import TextCursor from "@lucide/solid/icons/text-cursor";
+import { createEffect, createSignal, For, Show } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import { MadeWith } from "../shared/ExampleMenu";
 import { createControlSize } from "../shared/size";
 import { ColorRow, SheetPicker } from "./Colors";
@@ -210,9 +211,9 @@ export function PanelTabs() {
 	let panel!: HTMLDivElement;
 	// The rows come back when the picker closes, so focus returns to the row that opened it.
 	createEffect(
-		on(studio.picker, (now, before) => {
+		studio.picker, (now, before) => {
 			if (!now && before) queueMicrotask(() => panel.querySelector<HTMLElement>(`[data-slot="${before}"] .ts-row-main`)?.focus());
-		}),
+		},
 	);
 	return (
 		<div class="ts-panel">

@@ -4,11 +4,10 @@ import {
 	createContext,
 	createEffect,
 	createSignal,
-	on,
 	ParentProps,
 	Setter,
-	splitProps,
 	useContext,
+	omit,
 } from "solid-js";
 import { AnimationControls } from "motion";
 
@@ -17,7 +16,9 @@ interface AnimationContextProps {
 	state: boolean;
 }
 
-const AnimationContext = createContext<ReturnType<typeof createAnimationContextState>>();
+const AnimationContext = createContext<ReturnType<
+	typeof createAnimationContextState
+> | null>(null);
 
 type AnimationContextState = {
 	ref: Accessor<HTMLElement | undefined>;
@@ -65,26 +66,16 @@ function createAnimationContextState(
 	} as const;
 
 	createEffect(
-		on(ref, ref => {
-			if (ref) {
-				createEffect(
-					on(
-						() => props.state,
-						state => {
-							if (state && onEnterCallback) {
-								onEnterCallback();
-							}
-							if (!state && onExitCallback) {
-								if (contextState.children) {
-									exitAnimationRecursive(contextState.children);
-								}
-								onExitCallback().finished.then(props.onExitAnimationFinish);
-							}
-						},
-					),
-				);
+		() => ({ element: ref(), state: props.state }),
+		({ element, state }) => {
+			if (!element) return;
+			if (state) {
+				onEnterCallback?.();
+			} else if (onExitCallback) {
+				if (contextState.children) exitAnimationRecursive(contextState.children);
+				void onExitCallback().finished.then(props.onExitAnimationFinish);
 			}
-		}),
+		},
 	);
 
 	if (parentContext) {
@@ -100,15 +91,15 @@ function createAnimationContextState(
  * @constructor
  */
 export function AnimationContextProvider(props: ParentProps<AnimationContextProps>) {
-	const [local, others] = splitProps(props, ["children"]);
+	const others = omit(props, "children");
 	const context = useContext(AnimationContext);
 
-	return createComponent(AnimationContext.Provider, {
+	return createComponent(AnimationContext, {
 		get value() {
-			return createAnimationContextState(others, context);
+			return createAnimationContextState(others, context ?? undefined);
 		},
 		get children() {
-			return local.children;
+			return props.children;
 		},
 	});
 }

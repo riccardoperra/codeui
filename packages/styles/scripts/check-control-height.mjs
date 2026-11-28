@@ -3,7 +3,7 @@ import { readFile } from "node:fs/promises";
 import { chromium } from "playwright";
 
 const styles = await Promise.all(
-	["theme", "button", "field"].map(name =>
+	["theme", "button", "field", "dropdownmenu"].map(name =>
 		readFile(new URL(`../dist/${name}.css`, import.meta.url), "utf8"),
 	),
 );
@@ -23,6 +23,13 @@ try {
 						<button class="cui-button">Save</button>
 					</div>
 				</section>
+				<div class="cui-dropdownmenu-content" role="menu" data-expanded data-motion="none">
+					<div class="cui-dropdownmenu-item" role="menuitem">Edit</div>
+					<hr class="cui-dropdownmenu-separator" />
+					<div class="cui-dropdownmenu-item" role="menuitem">Duplicate</div>
+					<div class="cui-dropdownmenu-separator" role="separator"></div>
+					<div class="cui-dropdownmenu-item" role="menuitem">Delete</div>
+				</div>
 			`);
 			const heights = await page
 				.locator("button")
@@ -37,6 +44,16 @@ try {
 				fieldText,
 				hasTouch ? ["16px", "16px"] : ["14px", "14px"],
 				"field text stays at 16px on touch devices at any density",
+			);
+			const separatorHeights = await page
+				.getByRole("separator")
+				.evaluateAll(separators =>
+					separators.map(separator => separator.getBoundingClientRect().height),
+				);
+			assert.deepEqual(
+				separatorHeights,
+				[1, 1],
+				"both separator elements draw a single line",
 			);
 		} finally {
 			await page.close();

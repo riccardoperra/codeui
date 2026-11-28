@@ -20,21 +20,22 @@ import {
 	Toaster,
 	Tooltip,
 } from "@codeui/kit";
-import ChevronDown from "lucide-solid/icons/chevron-down";
-import ChevronRight from "lucide-solid/icons/chevron-right";
-import Copy from "lucide-solid/icons/copy";
-import Download from "lucide-solid/icons/download";
-import FileBraces from "lucide-solid/icons/file-braces";
-import FileInput from "lucide-solid/icons/file-input";
-import GalleryVertical from "lucide-solid/icons/gallery-vertical";
-import Palette from "lucide-solid/icons/palette";
-import Redo from "lucide-solid/icons/redo-2";
-import RotateCcw from "lucide-solid/icons/rotate-ccw";
-import Search from "lucide-solid/icons/search";
-import SlidersHorizontal from "lucide-solid/icons/sliders-horizontal";
-import SwatchBook from "lucide-solid/icons/swatch-book";
-import Undo from "lucide-solid/icons/undo-2";
-import { createSignal, For, type JSX, onCleanup, onMount, Show } from "solid-js";
+import ChevronDown from "@lucide/solid/icons/chevron-down";
+import ChevronRight from "@lucide/solid/icons/chevron-right";
+import Copy from "@lucide/solid/icons/copy";
+import Download from "@lucide/solid/icons/download";
+import FileBraces from "@lucide/solid/icons/file-braces";
+import FileInput from "@lucide/solid/icons/file-input";
+import GalleryVertical from "@lucide/solid/icons/gallery-vertical";
+import Palette from "@lucide/solid/icons/palette";
+import Redo from "@lucide/solid/icons/redo-2";
+import RotateCcw from "@lucide/solid/icons/rotate-ccw";
+import Search from "@lucide/solid/icons/search";
+import SlidersHorizontal from "@lucide/solid/icons/sliders-horizontal";
+import SwatchBook from "@lucide/solid/icons/swatch-book";
+import Undo from "@lucide/solid/icons/undo-2";
+import { createSignal, For, onSettled, Show } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import { ExampleMenu } from "../shared/ExampleMenu";
 import { modKey, onModK } from "../shared/hotkey";
 import { createIsPhone } from "../shared/media";
@@ -240,7 +241,7 @@ function Toolbar(props: { hidden: boolean }) {
 			</span>
 			<Tip label={card() ? "Show the frame" : "Show the theme card"}>
 				{/* "On" is a step of fill, not the accent: this is a view, not a signal (DESIGN.md §2.3). */}
-				<IconButton {...button} ghost={!(card())} size={size()} aria-label="Theme card" aria-pressed={card()} onClick={() => studio.setView(card() ? "frame" : "card")}>
+				<IconButton {...button} ghost={!(card())} size={size()} aria-label="Theme card" aria-pressed={card() ? "true" : "false"} onClick={() => studio.setView(card() ? "frame" : "card")}>
 					<GalleryVertical size={16} />
 				</IconButton>
 			</Tip>
@@ -356,7 +357,7 @@ export function App() {
 	};
 	onModK(openCommands);
 
-	onMount(() => {
+	onSettled(() => {
 		const listener = (event: KeyboardEvent) => {
 			if (!(event.metaKey || event.ctrlKey) || event.altKey || event.key.toLowerCase() !== "z") return;
 			// Inside a field, undo belongs to the text being typed.
@@ -365,11 +366,11 @@ export function App() {
 			event.preventDefault();
 		};
 		window.addEventListener("keydown", listener);
-		onCleanup(() => window.removeEventListener("keydown", listener));
+		return () => window.removeEventListener("keydown", listener);
 	});
 
 	return (
-		<StudioContext.Provider value={studio}>
+		<StudioContext value={studio}>
 			<div class="ex-page">
 				<header class="ex-header">
 					<span class="ex-brand">
@@ -466,6 +467,6 @@ export function App() {
 				}}
 			/>
 			<Toaster toaster={notifications} closeLabel="Dismiss" />
-		</StudioContext.Provider>
+		</StudioContext>
 	);
 }

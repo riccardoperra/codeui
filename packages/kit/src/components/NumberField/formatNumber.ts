@@ -12,7 +12,6 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-import { isNumber } from "@kobalte/utils";
 import { defaultNumberFormat, NumberFormatSettings } from "./options";
 import { ceil, floor, round, trunc } from "./round";
 import { CHAR_HYPHEN } from "./unicodeCharacters";
@@ -107,7 +106,7 @@ export function tuiGetFractionPartPadded(
 ): string {
 	const [, fractionPartPadded = ``] = tuiNumberToStringWithoutExp(value).split(`.`);
 
-	return isNumber(precision)
+	return typeof precision === "number" && !Number.isNaN(precision)
 		? fractionPartPadded.slice(0, Math.max(0, precision))
 		: fractionPartPadded;
 }

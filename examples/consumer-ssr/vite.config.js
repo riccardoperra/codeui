@@ -1,5 +1,5 @@
 import { defineConfig } from "vite";
-import solid from "vite-plugin-solid";
+import solid from "@solidjs/vite-plugin";
 export default defineConfig({
 	plugins: [solid({ ssr: true })],
 	ssr: { noExternal: ["@codeui/kit"], resolve: { conditions: ["solid", "node"] } },

@@ -5,25 +5,27 @@ description: "Install static styles and the Solid components."
 
 ## Requirements
 
-The component package supports Solid `^1.9.8`. Its styles are plain CSS. The library builds the Inkstone theme from DTCG tokens before publishing.
+The component package requires Solid 2 and `@solidjs/web`. It uses Kobalte 2.0.0-alpha.5. Its styles are plain CSS. The library builds the Inkstone theme from DTCG tokens before publishing.
 
 ## Install
 
 ```sh
-pnpm add @codeui/kit solid-js@^1.9.8
-pnpm add -D vite vite-plugin-solid
+pnpm add @codeui/kit solid-js@^2 @solidjs/web@^2
+pnpm add -D vite@^8 @solidjs/vite-plugin@^3
 ```
 
 ## Configure Vite
 
 ```ts title="vite.config.ts"
 import { defineConfig } from "vite";
-import solid from "vite-plugin-solid";
+import solid from "@solidjs/vite-plugin";
 
 export default defineConfig({
 	plugins: [solid()],
 });
 ```
+
+Set `jsxImportSource` to `@solidjs/web` in `tsconfig.json`. To upgrade an existing project, follow the [Solid 2 migration guide](https://docs.solidjs.com/migration/from-solid-1/).
 
 ## Automatic styles
 

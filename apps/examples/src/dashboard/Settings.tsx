@@ -17,12 +17,13 @@ import {
 	TextField,
 } from "@codeui/kit";
 import * as D from "@codeui/kit/dialog/parts";
-import Bell from "lucide-solid/icons/bell";
-import ChevronDown from "lucide-solid/icons/chevron-down";
-import Palette from "lucide-solid/icons/palette";
-import SlidersHorizontal from "lucide-solid/icons/sliders-horizontal";
-import Users from "lucide-solid/icons/users";
-import { createEffect, createSignal, For, type JSX, Match, Show, Switch as SwitchMatch } from "solid-js";
+import Bell from "@lucide/solid/icons/bell";
+import ChevronDown from "@lucide/solid/icons/chevron-down";
+import Palette from "@lucide/solid/icons/palette";
+import SlidersHorizontal from "@lucide/solid/icons/sliders-horizontal";
+import Users from "@lucide/solid/icons/users";
+import { createMemo, createSignal, For, Match, Show, Switch as SwitchMatch } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import { createIsPhone } from "../shared/media";
 import { setTheme, theme, type Theme } from "../shared/theme";
 import type { Role, WeekStart } from "./data";
@@ -48,8 +49,8 @@ export function Settings() {
 	const isPhone = createIsPhone();
 	const [query, setQuery] = createSignal("");
 	// The last section stays on screen while the dialog closes.
-	const [shown, setShown] = createSignal<SectionId>("general");
-	createEffect(() => pulse.section() && setShown(pulse.section()!));
+	const shown = createMemo<SectionId>(previous => pulse.section() ?? previous ?? "general");
+
 
 	const matches = () => {
 		const text = query().trim().toLowerCase();
@@ -211,14 +212,14 @@ function Notifications() {
 		<>
 			<SettingsGroup title="Reports">
 				<SettingsRow label="Weekly digest" description="A summary of MRR, signups and churn every Monday." compactControl>
-					{control => <Switch {...control} checked={pulse.alerts.digest} onChange={checked => pulse.setAlerts("digest", checked)} />}
+					{control => <Switch {...control} checked={pulse.alerts.digest} onChange={checked => pulse.setAlerts(draft => { draft.digest = checked; })} />}
 				</SettingsRow>
 			</SettingsGroup>
 			<SettingsGroup title="Email alerts">
 				<For each={alerts}>
 					{alert => (
 						<SettingsRow label={alert.label} description={alert.description} compactControl>
-							{control => <Switch {...control} checked={pulse.alerts[alert.key]} onChange={checked => pulse.setAlerts(alert.key, checked)} />}
+							{control => <Switch {...control} checked={pulse.alerts[alert.key]} onChange={checked => pulse.setAlerts(draft => { draft[alert.key] = checked; })} />}
 						</SettingsRow>
 					)}
 				</For>

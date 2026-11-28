@@ -1,3 +1,4 @@
+import { Avatar } from "../src/components/Avatar/Avatar";
 import { Alert } from "../src/components/Alert/Alert";
 import { createToaster, Toaster } from "../src/components/Toast/Toaster";
 import * as T from "../src/parts/toast";
@@ -7,10 +8,11 @@ import { Skeleton } from "../src/components/Skeleton/Skeleton";
 import { Spinner } from "../src/components/Spinner/Spinner";
 import { TextArea } from "../src/components/TextArea/TextArea";
 import { NumberField } from "../src/components/NumberField/NumberField";
-import { renderToString } from "solid-js/web";
+import { renderToString } from "@solidjs/web";
 import { Button } from "../src/components/Button/Button";
 import { TextField } from "../src/components/TextField/TextField";
 import * as S from "../src/parts/sheet";
+import * as Tabs from "../src/parts/tabs";
 
 it("server-renders the button text", () => {
 	const html = renderToString(() => <Button>Save</Button>);
@@ -21,6 +23,22 @@ it("server-renders the button text", () => {
 it("server-renders the text field label", () => {
 	const html = renderToString(() => <TextField label="Email address" />);
 	expect(html).toContain("Email address");
+});
+
+it("server-renders the selected tab panel labelled by its trigger", () => {
+	const html = renderToString(() => (
+		<Tabs.Root defaultValue="general">
+			<Tabs.List>
+				<Tabs.Trigger value="general">General</Tabs.Trigger>
+			</Tabs.List>
+			<Tabs.Content value="general">General settings</Tabs.Content>
+		</Tabs.Root>
+	));
+	const trigger = html.match(/<button[^>]*\brole="tab"[^>]*>/)?.[0] ?? "";
+	const panel = html.match(/<div[^>]*\brole="tabpanel"[^>]*>/)?.[0] ?? "";
+	const triggerId = trigger.match(/\sid="([^"]+)"/)?.[1];
+	expect(triggerId).toBeTruthy();
+	expect(panel.match(/\saria-labelledby="([^"]+)"/)?.[1]).toBe(triggerId);
 });
 
 it.each([TextField, TextArea, NumberField])(
@@ -239,7 +257,11 @@ import { SettingsGroup, SettingsRow } from "../src/components/Settings/Settings"
 it("server-renders a settings group with rows wired to their controls", () => {
 	const html = renderToString(() => (
 		<SettingsGroup id="interface" title="Interface">
-			<SettingsRow id="language" label="Language" description="The language of the menus.">
+			<SettingsRow
+				id="language"
+				label="Language"
+				description="The language of the menus."
+			>
 				{control => <select {...control} />}
 			</SettingsRow>
 		</SettingsGroup>
@@ -247,6 +269,18 @@ it("server-renders a settings group with rows wired to their controls", () => {
 	expect(html).toMatch(/<section[^>]*aria-labelledby="interface-title"/);
 	expect(html).toMatch(/<h3[^>]*id="interface-title"[^>]*>Interface<\/h3>/);
 	expect(html).toMatch(/role="group"[^>]*aria-labelledby="language-label"/);
-	expect(html).toMatch(/<select[^>]*aria-labelledby="language-label"[^>]*aria-describedby="language-description"/);
+	expect(html).toMatch(
+		/<select[^>]*aria-labelledby="language-label"[^>]*aria-describedby="language-description"/,
+	);
 	expect(html).toContain("The language of the menus.");
+});
+
+it("server-renders an avatar with its name, initials and picture", () => {
+	const html = renderToString(() => (
+		<Avatar name="Ada Lovelace" identifier="user_42" src="/ada.png" />
+	));
+	expect(html).toMatch(/role="img"/);
+	expect(html).toMatch(/aria-label="Ada Lovelace"/);
+	expect(html).toContain(">AL<");
+	expect(html).toMatch(/<img[^>]*src="\/ada.png"/);
 });

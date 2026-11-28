@@ -37,7 +37,6 @@ const validationInspector = createPluginStateInspector({
 export function createEditor(options: { onFind(): void }): Editor {
 	// The session comes first: it replaces each plugin with an instrumented copy before the state exists.
 	const session = createSession([createHistoryInspector(), validationInspector]);
-	const [state, setState] = createSignal<EditorState>(undefined!, { equals: false });
 
 	// The chrome follows the editor one microtask late, so a scenario of 200 dispatches updates it
 	// once, and none of Solid's work is timed as part of a dispatch.
@@ -96,7 +95,7 @@ export function createEditor(options: { onFind(): void }): Editor {
 			attributes: { class: "pmi-paper", role: "textbox", "aria-multiline": "true", "aria-label": "Invoice" },
 		},
 	);
-	setState(view.state);
+	const [state, setState] = createSignal(view.state, { equals: false });
 	session.attach(view);
 
 	const editor: Editor = {

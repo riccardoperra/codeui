@@ -1,12 +1,33 @@
 import "@codeui/styles/theme.css";
 import "@codeui/styles/stack.css";
-import { type ComponentProps, type JSX, type ValidComponent, splitProps } from "solid-js";
-import { Dynamic } from "solid-js/web";
+import { omit } from "solid-js";
+import {
+	type ComponentProps,
+	type JSX,
+	type ValidComponent,
+	dynamic,
+} from "@solidjs/web";
+
 import { root } from "../components/Stack/Stack.css";
 import { mergeClasses } from "../utils/css";
 
-import { type Gap, type StackVariants, stackParts, type StackPart, type StackClasses, type StackStyles } from "@codeui/styles/stack";
-export { type Gap, type StackVariants, stackParts, type StackPart, type StackClasses, type StackStyles, stackStyles } from "@codeui/styles/stack";
+import {
+	type Gap,
+	type StackVariants,
+	stackParts,
+	type StackPart,
+	type StackClasses,
+	type StackStyles,
+} from "@codeui/styles/stack";
+export {
+	type Gap,
+	type StackVariants,
+	stackParts,
+	type StackPart,
+	type StackClasses,
+	type StackStyles,
+	stackStyles,
+} from "@codeui/styles/stack";
 export type StackProps<T extends ValidComponent = "div"> = StackVariants & {
 	as?: T;
 	children?: JSX.Element;
@@ -20,7 +41,8 @@ export type StackProps<T extends ValidComponent = "div"> = StackVariants & {
 export type RootProps<T extends ValidComponent = "div"> = StackProps<T>;
 
 export function Root<T extends ValidComponent = "div">(props: StackProps<T>) {
-	const [local, others] = splitProps(props, [
+	const others = omit(
+		props,
 		"as",
 		"class",
 		"classes",
@@ -30,19 +52,19 @@ export function Root<T extends ValidComponent = "div">(props: StackProps<T>) {
 		"direction",
 		"wrap",
 		"style",
-	]);
+	);
+	const Element = dynamic(() => props.as ?? "div");
 	return (
-		<Dynamic
+		<Element
 			{...others}
-			component={local.as ?? "div"}
 			data-cui={stackParts.root}
-			class={mergeClasses(root(), local.classes?.root, local.class)}
-			data-gap={local.gap ?? "2"}
-			data-align={local.align ?? "stretch"}
-			data-justify={local.justify ?? "start"}
-			data-direction={local.direction ?? "column"}
-			data-wrap={local.wrap ?? false}
-			style={local.style || undefined}
+			class={mergeClasses(root(), props.classes?.root, props.class)}
+			data-gap={props.gap ?? "2"}
+			data-align={props.align ?? "stretch"}
+			data-justify={props.justify ?? "start"}
+			data-direction={props.direction ?? "column"}
+			data-wrap={props.wrap ? "true" : "false"}
+			style={props.style || undefined}
 		/>
 	);
 }

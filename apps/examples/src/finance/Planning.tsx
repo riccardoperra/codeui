@@ -1,8 +1,9 @@
 import { Accordion, type AccordionEntry, Badge, Button, Progress, Slider, Text } from "@codeui/kit";
-import CalendarClock from "lucide-solid/icons/calendar-clock";
-import PiggyBank from "lucide-solid/icons/piggy-bank";
-import Target from "lucide-solid/icons/target";
-import { createSignal, For, type JSX, Show } from "solid-js";
+import CalendarClock from "@lucide/solid/icons/calendar-clock";
+import PiggyBank from "@lucide/solid/icons/piggy-bank";
+import Target from "@lucide/solid/icons/target";
+import { createSignal, For, Show } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import { MadeWith } from "../shared/ExampleMenu";
 import { formatDay, formatMoneyWhole } from "../shared/format";
 import { bills, budgets, goals, monthSpending, today } from "./data";

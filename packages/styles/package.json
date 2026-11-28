@@ -515,6 +515,39 @@
         "default": "./dist/cjs/icon.cjs"
       }
     },
+    "./hovercard.css": "./dist/hovercard.css",
+    "./hovercard": {
+      "import": {
+        "types": "./dist/types/hovercard.d.ts",
+        "default": "./dist/esm/hovercard.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/hovercard.d.cts",
+        "default": "./dist/cjs/hovercard.cjs"
+      }
+    },
+    "./resizable.css": "./dist/resizable.css",
+    "./resizable": {
+      "import": {
+        "types": "./dist/types/resizable.d.ts",
+        "default": "./dist/esm/resizable.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/resizable.d.cts",
+        "default": "./dist/cjs/resizable.cjs"
+      }
+    },
+    "./avatar.css": "./dist/avatar.css",
+    "./avatar": {
+      "import": {
+        "types": "./dist/types/avatar.d.ts",
+        "default": "./dist/esm/avatar.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/avatar.d.cts",
+        "default": "./dist/cjs/avatar.cjs"
+      }
+    },
     "./all.css": "./dist/all.css",
     "./internal/components/Accordion/Accordion.css": {
       "import": {
@@ -534,6 +567,16 @@
       "require": {
         "types": "./dist/types-cjs/internal/components/Alert/Alert.css.d.cts",
         "default": "./dist/cjs/internal/components/Alert/Alert.css.cjs"
+      }
+    },
+    "./internal/components/Avatar/Avatar.css": {
+      "import": {
+        "types": "./dist/types/internal/components/Avatar/Avatar.css.d.ts",
+        "default": "./dist/esm/internal/components/Avatar/Avatar.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/Avatar/Avatar.css.d.cts",
+        "default": "./dist/cjs/internal/components/Avatar/Avatar.css.cjs"
       }
     },
     "./internal/components/Badge/Badge.css": {
@@ -666,6 +709,16 @@
         "default": "./dist/cjs/internal/components/Field/fieldStyle.cjs"
       }
     },
+    "./internal/components/HoverCard/HoverCard.css": {
+      "import": {
+        "types": "./dist/types/internal/components/HoverCard/HoverCard.css.d.ts",
+        "default": "./dist/esm/internal/components/HoverCard/HoverCard.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/HoverCard/HoverCard.css.d.cts",
+        "default": "./dist/cjs/internal/components/HoverCard/HoverCard.css.cjs"
+      }
+    },
     "./internal/components/IconButton/IconButton.css": {
       "import": {
         "types": "./dist/types/internal/components/IconButton/IconButton.css.d.ts",
@@ -774,6 +827,16 @@
       "require": {
         "types": "./dist/types-cjs/internal/components/RadioList/Radio.css.d.cts",
         "default": "./dist/cjs/internal/components/RadioList/Radio.css.cjs"
+      }
+    },
+    "./internal/components/Resizable/Resizable.css": {
+      "import": {
+        "types": "./dist/types/internal/components/Resizable/Resizable.css.d.ts",
+        "default": "./dist/esm/internal/components/Resizable/Resizable.css.js"
+      },
+      "require": {
+        "types": "./dist/types-cjs/internal/components/Resizable/Resizable.css.d.cts",
+        "default": "./dist/cjs/internal/components/Resizable/Resizable.css.cjs"
       }
     },
     "./internal/components/SegmentedControl/SegmentedControl.css": {
@@ -1228,11 +1291,23 @@
       "icon": [
         "dist/types/icon.d.ts"
       ],
+      "hovercard": [
+        "dist/types/hovercard.d.ts"
+      ],
+      "resizable": [
+        "dist/types/resizable.d.ts"
+      ],
+      "avatar": [
+        "dist/types/avatar.d.ts"
+      ],
       "internal/components/Accordion/Accordion.css": [
         "dist/types/internal/components/Accordion/Accordion.css.d.ts"
       ],
       "internal/components/Alert/Alert.css": [
         "dist/types/internal/components/Alert/Alert.css.d.ts"
+      ],
+      "internal/components/Avatar/Avatar.css": [
+        "dist/types/internal/components/Avatar/Avatar.css.d.ts"
       ],
       "internal/components/Badge/Badge.css": [
         "dist/types/internal/components/Badge/Badge.css.d.ts"
@@ -1273,6 +1348,9 @@
       "internal/components/Field/fieldStyle": [
         "dist/types/internal/components/Field/fieldStyle.d.ts"
       ],
+      "internal/components/HoverCard/HoverCard.css": [
+        "dist/types/internal/components/HoverCard/HoverCard.css.d.ts"
+      ],
       "internal/components/IconButton/IconButton.css": [
         "dist/types/internal/components/IconButton/IconButton.css.d.ts"
       ],
@@ -1305,6 +1383,9 @@
       ],
       "internal/components/RadioList/Radio.css": [
         "dist/types/internal/components/RadioList/Radio.css.d.ts"
+      ],
+      "internal/components/Resizable/Resizable.css": [
+        "dist/types/internal/components/Resizable/Resizable.css.d.ts"
       ],
       "internal/components/SegmentedControl/SegmentedControl.css": [
         "dist/types/internal/components/SegmentedControl/SegmentedControl.css.d.ts"

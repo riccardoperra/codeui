@@ -1,4 +1,4 @@
-import { cleanup, render, screen } from "solid-testing-library";
+import { cleanup, render, screen } from "@solidjs/testing-library";
 import { Badge } from "../src/components/Badge/Badge";
 import { Kbd } from "../src/components/Kbd/Kbd";
 import { Skeleton } from "../src/components/Skeleton/Skeleton";
@@ -39,7 +39,9 @@ describe("Kbd", () => {
 
 describe("Badge", () => {
 	it("names the badge with its text, not its icon", () => {
-		render(() => <Badge icon={<svg role="img" aria-label="flask" />}>Experimental</Badge>);
+		render(() => (
+			<Badge icon={<svg role="img" aria-label="flask" />}>Experimental</Badge>
+		));
 		expect(screen.getByRole("status")).toHaveTextContent("Experimental");
 		expect(screen.queryByRole("img", { name: "flask" })).not.toBeInTheDocument();
 	});
@@ -116,7 +118,9 @@ describe("Skeleton", () => {
 	});
 
 	it("takes CSS lengths for its size and radius", () => {
-		const { container } = render(() => <Skeleton width="12rem" height="1.25rem" radius="50%" />);
+		const { container } = render(() => (
+			<Skeleton width="12rem" height="1.25rem" radius="50%" />
+		));
 		const block = container.querySelector<HTMLElement>('[data-cui="skeleton"]')!;
 		expect(block.style.width).toBe("12rem");
 		expect(block.style.height).toBe("1.25rem");

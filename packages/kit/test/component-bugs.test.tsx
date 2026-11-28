@@ -1,4 +1,4 @@
-import { cleanup, render, screen, waitFor } from "solid-testing-library";
+import { cleanup, render, screen, waitFor } from "@solidjs/testing-library";
 import { press } from "./helpers";
 import { NumberField } from "../src/components/NumberField/NumberField";
 import {
@@ -40,6 +40,9 @@ it.each([undefined, 0, 20])("positions submenu with gutter %s", async gutter => 
 		</DropdownMenu>
 	));
 	await waitFor(() =>
-		expect(screen.getByText("Child").getBoundingClientRect().left - screen.getByText("More").getBoundingClientRect().right).toBe(gutter ?? -4),
+		expect(
+			screen.getByText("Child").getBoundingClientRect().left -
+				screen.getByText("More").getBoundingClientRect().right,
+		).toBe(gutter ?? -4),
 	);
 });

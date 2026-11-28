@@ -3,8 +3,8 @@ import "@codeui/styles/theme.css";
 import "@codeui/styles/select.css";
 import * as K from "@kobalte/core/select";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
-import { mergeRefs } from "@kobalte/utils";
-import { For, splitProps, type ValidComponent } from "solid-js";
+import { For, omit } from "solid-js";
+import { type ValidComponent } from "@solidjs/web";
 import type { BaseFieldProps } from "../components/Field/createBaseFieldProps";
 import { baseFieldVariants } from "../components/Field/Field.css";
 import { errorMessage } from "../components/Field/FieldError/FieldError.css";
@@ -12,7 +12,9 @@ import { label } from "../components/Field/FieldLabel/FieldLabel.css";
 import { description } from "../components/Field/FieldMessage/FieldMessage.css";
 import * as styles from "../components/Select/Select.css";
 import { mergeClasses } from "../utils/css";
-import { motionRef } from "../utils/open-source";
+import { useNestedLayerMarker } from "../utils/layer-scope";
+import { createPopMotion, motionRef, PopMotionContext } from "../utils/pop-motion";
+import { keepCollectionScrollLocal } from "../utils/collection-scroll";
 
 export const selectParts = {
 	root: "select",
@@ -41,17 +43,22 @@ export type RootProps<
 export function Root<Option, OptGroup = never, T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, RootProps<Option, OptGroup, T>>,
 ) {
-	const [local, others] = splitProps(
-		props as PolymorphicProps<"div", RootProps<Option, OptGroup>>,
-		["class", "size"],
-	);
+	const local = props as PolymorphicProps<"div", RootProps<Option, OptGroup>>;
+	const others = omit(local, "class", "size", "forceMount", "onOpenChange");
+	const motion = createPopMotion(local);
 	return (
-		<K.Root<Option, OptGroup>
-			{...others}
-			data-cui={selectParts.root}
-			class={mergeClasses(styles.field, local.class)}
-			data-field-size={selectStyleProps.root({ fieldSize: local.size })["data-field-size"]}
-		/>
+		<PopMotionContext value={motion.setTarget}>
+			<K.Root<Option, OptGroup>
+				{...others}
+				forceMount={motion.forceMount()}
+				onOpenChange={motion.onOpenChange}
+				data-cui={selectParts.root}
+				class={mergeClasses(styles.field, local.class)}
+				data-field-size={
+					selectStyleProps.root({ fieldSize: local.size })["data-field-size"]
+				}
+			/>
+		</PopMotionContext>
 	);
 }
 
@@ -61,11 +68,8 @@ export type TriggerProps<T extends ValidComponent = "button"> = K.SelectTriggerP
 export function Trigger<T extends ValidComponent = "button">(
 	props: PolymorphicProps<T, TriggerProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"button", TriggerProps>, [
-		"class",
-		"size",
-		"variant",
-	]);
+	const local = props as PolymorphicProps<"button", TriggerProps>;
+	const others = omit(local, "class", "size", "variant");
 	return (
 		<K.Trigger
 			{...others}
@@ -91,15 +95,15 @@ export type ContentProps<T extends ValidComponent = "div"> = K.SelectContentProp
 export function Content<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, ContentProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"div", ContentProps>, [
-		"class",
-		"ref",
-	]);
+	const local = props as PolymorphicProps<"div", ContentProps>;
+	const others = omit(local, "class", "ref");
+	const nestedLayerMarker = useNestedLayerMarker();
 	return (
 		<K.Content
 			{...others}
-			ref={mergeRefs(motionRef(), local.ref)}
+			ref={[motionRef(), local.ref]}
 			data-cui={selectParts.content}
+			data-kb-top-layer={nestedLayerMarker()}
 			class={mergeClasses(styles.content, local.class)}
 		/>
 	);
@@ -115,10 +119,8 @@ export function Listbox<
 	OptGroup = never,
 	T extends ValidComponent = "ul",
 >(props: PolymorphicProps<T, ListboxProps<Option, OptGroup, T>>) {
-	const [local, others] = splitProps(
-		props as PolymorphicProps<"ul", ListboxProps<Option, OptGroup>>,
-		["class"],
-	);
+	const local = props as PolymorphicProps<"ul", ListboxProps<Option, OptGroup>>;
+	const others = omit(local, "class");
 	return (
 		<K.Listbox<Option, OptGroup>
 			{...others}
@@ -132,9 +134,8 @@ export type LabelProps<T extends ValidComponent = "span"> = K.SelectLabelProps<T
 export function Label<T extends ValidComponent = "span">(
 	props: PolymorphicProps<T, LabelProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"span", LabelProps>, [
-		"class",
-	]);
+	const local = props as PolymorphicProps<"span", LabelProps>;
+	const others = omit(local, "class");
 	return (
 		<K.Label
 			{...others}
@@ -144,14 +145,12 @@ export function Label<T extends ValidComponent = "span">(
 	);
 }
 
-export type DescriptionProps<T extends ValidComponent = "div"> =
-	K.SelectDescriptionProps<T>;
+export type DescriptionProps<T extends ValidComponent = "div"> = K.SelectDescriptionProps;
 export function Description<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, DescriptionProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"div", DescriptionProps>, [
-		"class",
-	]);
+	const local = props as PolymorphicProps<"div", DescriptionProps>;
+	const others = omit(local, "class");
 	return (
 		<K.Description
 			{...others}
@@ -166,10 +165,8 @@ export type ErrorMessageProps<T extends ValidComponent = "div"> =
 export function ErrorMessage<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, ErrorMessageProps<T>>,
 ) {
-	const [local, others] = splitProps(
-		props as PolymorphicProps<"div", ErrorMessageProps>,
-		["class"],
-	);
+	const local = props as PolymorphicProps<"div", ErrorMessageProps>;
+	const others = omit(local, "class");
 	return (
 		<K.ErrorMessage
 			{...others}
@@ -190,12 +187,12 @@ export type ItemProps<T extends ValidComponent = "li"> = K.SelectItemProps<T>;
 export function Item<T extends ValidComponent = "li">(
 	props: PolymorphicProps<T, ItemProps<T>>,
 ) {
-	const [local, others] = splitProps(props as PolymorphicProps<"li", ItemProps>, [
-		"class",
-	]);
+	const local = props as PolymorphicProps<"li", ItemProps>;
+	const others = omit(local, "class", "ref");
 	return (
 		<K.Item
 			{...others}
+			ref={[keepCollectionScrollLocal, local.ref]}
 			data-cui={selectParts.item}
 			class={mergeClasses(styles.item, local.class)}
 		/>

@@ -1,43 +1,30 @@
+import solid from "@solidjs/vite-plugin";
+import { playwright } from "@vitest/browser-playwright";
 import { defineConfig } from "vitest/config";
-import solid from "vite-plugin-solid";
 
-const plugins = () => [solid({ solid: { hydratable: true } })];
+const browser = () => ({
+	enabled: true,
+	provider: playwright(),
+	headless: true,
+	instances: [{ browser: "chromium" as const }],
+});
 
 export default defineConfig({
 	test: {
 		projects: [
 			{
-				plugins: plugins(),
-				optimizeDeps: {
-					include: ["solid-testing-library"],
-				},
+				plugins: [solid()],
 				test: {
 					name: "browser",
 					globals: true,
 					include: ["test/**/*.test.{ts,tsx}"],
 					exclude: ["test/**/*.ssr.test.tsx", "test/**/*.hydration.test.tsx"],
 					setupFiles: ["./test/setup.browser.ts"],
-					browser: {
-						enabled: true,
-						provider: "playwright",
-						headless: true,
-						instances: [{ browser: "chromium" }],
-					},
+					browser: browser(),
 				},
 			},
 			{
-				plugins: [solid({ ssr: true, solid: { hydratable: true } })],
-				resolve: { conditions: ["solid", "node"] },
-				ssr: {
-					resolve: { conditions: ["solid", "node"] },
-					noExternal: [
-						/@kobalte\//,
-						/@solid-primitives\//,
-						/solid-presence/,
-						/solid-prevent-scroll/,
-						/@corvu\//,
-					],
-				},
+				plugins: [solid({ solid: { hydratable: true } })],
 				test: {
 					name: "ssr",
 					globals: true,
@@ -46,21 +33,13 @@ export default defineConfig({
 				},
 			},
 			{
-				plugins: plugins(),
-				optimizeDeps: {
-					include: ["solid-testing-library"],
-				},
+				plugins: [solid({ solid: { hydratable: true } })],
 				test: {
 					name: "hydration",
 					globals: true,
 					include: ["test/**/*.hydration.test.tsx"],
 					setupFiles: ["./test/setup.browser.ts"],
-					browser: {
-						enabled: true,
-						provider: "playwright",
-						headless: true,
-						instances: [{ browser: "chromium" }],
-					},
+					browser: browser(),
 				},
 			},
 		],

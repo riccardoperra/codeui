@@ -17,6 +17,10 @@ Dialog and Popover open from a trigger, move focus inside, trap Tab while modal,
 - `popover-dismiss` closes on Escape and returns focus to the trigger.
 - `popover-pop` opens with `data-motion="none"` from the keyboard and pops from the trigger side with a pointer; surface `--cui-surface-dialog`, radius 18, 14px / 1.3 text. Journey: `journeys/popover-pop.mjs` on `designsystem-popover--popover-story`.
 - `menu-pop` the same for DropdownMenu, with 36px rows at 14px. Journey: `journeys/menu-pop.mjs` on `designsystem-dropdownmenu--dropdown-menu-story`.
+- `hovercard-open` opens `[data-cui=hovercard-content]` on trigger focus (no motion, focus stays on the trigger) and on a resting pointer; Escape and moving away close it; surface `--cui-surface-dialog`, radius 16, max width 320. Journey: `journeys/hovercard-open.mjs` on `designsystem-hovercard--hover-card-story`.
+- `hovercard-touch` opens the card on a touch tap without following the link, places it on the right of the trigger by default, keeps the floating surface (dialog fill, shadow with the dark inset ring, radius 16, max width 320), closes on an outside press, and opens at once on a mouse click. Journey: `journeys/hovercard-touch.mjs` on `designsystem-hovercard--hover-card-story`.
+- `hovercard-edge` flips the card to the left when there is no room on the right. Journey: `journeys/hovercard-edge.mjs` on `designsystem-hovercard--edge-placement`.
+- `hovercard-list` renders `HoverCardList`: one 28px line per entry, 16px indent per depth, truncated titles, named state icons, capped at 24rem with its own scroll. Journey: `journeys/hovercard-list.mjs` on `designsystem-hovercard--task-list`.
 - `popover-parts` composes `@codeui/kit/popover/parts` parts with title, description, arrow and close button.
 
 ## How to get to it (user POV)

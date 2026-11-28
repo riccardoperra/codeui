@@ -1,11 +1,11 @@
 import { IconButton, Text, Tooltip } from "@codeui/kit";
-import Maximize2 from "lucide-solid/icons/maximize-2";
-import Minimize2 from "lucide-solid/icons/minimize-2";
-import X from "lucide-solid/icons/x";
+import Maximize2 from "@lucide/solid/icons/maximize-2";
+import Minimize2 from "@lucide/solid/icons/minimize-2";
+import X from "@lucide/solid/icons/x";
 // The default `standalone` entry returns an inactive handle unless NODE_ENV is "development".
 // This page is served from a production build, so it takes the entry that mounts everywhere.
 import { mountProseMirrorDevtools } from "prosemirror-inspector/standalone/production";
-import { createEffect, createSignal, onCleanup, onMount, Show } from "solid-js";
+import { createEffect, createSignal, onSettled, Show } from "solid-js";
 import { createControlSize } from "../shared/size";
 import { theme } from "../shared/theme";
 import { useBench } from "./bench";
@@ -22,21 +22,21 @@ export default function InspectorDock(props: { onClose: () => void }) {
 	let dock!: HTMLElement;
 	let host!: HTMLDivElement;
 
-	onMount(() => {
+	const options = () => ({ store, theme: theme(), activePanel: bench.panel(), onActivePanelChange: bench.setPanel });
+	let panel: ReturnType<typeof mountProseMirrorDevtools> | undefined;
+	onSettled(() => {
 		if (bench.takeDockFocus()) dock.focus();
-		const options = () => ({ store, theme: theme(), activePanel: bench.panel(), onActivePanelChange: bench.setPanel });
-		const panel = mountProseMirrorDevtools(host, options());
-		createEffect(() => panel.update(options()));
-		onCleanup(() => panel.unmount());
+		panel = mountProseMirrorDevtools(host, options());
+		return () => panel?.unmount();
 	});
+	createEffect(options, current => panel?.update(current));
 
 	return (
 		<section
 			ref={dock}
-			class="pmi-dock"
-			classList={{ "pmi-dock-tall": tall() }}
+			class={["pmi-dock", { "pmi-dock-tall": tall() }]}
 			aria-label="ProseMirror Inspector"
-			tabIndex={-1}
+			tabindex={-1}
 			// Escape closes this layer when nothing inside the panel has used it.
 			onKeyDown={event => event.key === "Escape" && !event.defaultPrevented && props.onClose()}
 		>

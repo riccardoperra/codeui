@@ -1,12 +1,12 @@
 import { Button } from "@codeui/kit";
-import { For, createSignal, onMount } from "solid-js";
+import { For, createSignal, onSettled } from "solid-js";
 
 const durations = ["fast", "normal", "panel", "slow"] as const;
 
 export default function MotionDurations() {
 	const [moved, setMoved] = createSignal(false);
 	const [reduced, setReduced] = createSignal(false);
-	onMount(() => setReduced(matchMedia("(prefers-reduced-motion: reduce)").matches));
+	onSettled(() => { setReduced(matchMedia("(prefers-reduced-motion: reduce)").matches); });
 	return (
 		<div style={{ display: "grid", gap: "var(--cui-space-3)", width: "100%", "max-width": "420px" }}>
 			<For each={durations}>

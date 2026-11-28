@@ -1,7 +1,7 @@
-import { cleanup, fireEvent, render, screen } from "solid-testing-library";
-import { createSignal } from "solid-js";
+import { cleanup, fireEvent, render, screen, waitFor } from "@solidjs/testing-library";
+import { createSignal, Errored } from "solid-js";
 import { type CommandItem, CommandMenu } from "../src/components/CommandMenu/CommandMenu";
-import { expectDismissed, press, tick } from "./helpers";
+import { expectDismissed, expectFocus, press, tick } from "./helpers";
 
 afterEach(cleanup);
 
@@ -81,7 +81,9 @@ function renderMenu(
 		fireEvent.click(opener);
 		await tick();
 		await tick();
-		return screen.getByRole("combobox", { name: "Search themes and options" });
+		const input = screen.getByRole("combobox", { name: "Search themes and options" });
+		await waitFor(() => expect(input).toHaveFocus());
+		return input;
 	};
 	return { calls, opener, openMenu, setOpen };
 }
@@ -150,7 +152,7 @@ it("previews on highlight and commits only on Enter: before close, close, then s
 		"openChange:false",
 		"select:vercel",
 	]);
-	expect(opener).toHaveFocus();
+	await expectFocus(opener);
 });
 
 it("commits a clicked item", async () => {
@@ -178,8 +180,7 @@ it("cancels on Escape: the highlight clears, then before close, cancel and close
 		"cancel",
 		"openChange:false",
 	]);
-	expect(calls.some(call => call.startsWith("select"))).toBe(false);
-	expect(opener).toHaveFocus();
+	await expectFocus(opener);
 });
 
 it("cancels when the app closes the menu, such as a second shortcut press", async () => {
@@ -238,17 +239,19 @@ it("follows a controlled query and asks the app to clear it on close", async () 
 });
 
 it("rejects duplicate item ids", async () => {
-	const [open] = createSignal(true);
 	const duplicate = [items[0], { ...items[1], id: items[0].id }];
-	expect(() =>
-		render(() => (
+	render(() => (
+		<Errored fallback={error => <p role="alert">{(error() as Error).message}</p>}>
 			<CommandMenu
-				open={open()}
+				open
 				onOpenChange={() => {}}
 				items={duplicate}
 				title="Commands"
 				onSelect={() => {}}
 			/>
-		)),
-	).toThrow('CommandMenu item id "randomize" is not unique');
+		</Errored>
+	));
+	expect(await screen.findByRole("alert")).toHaveTextContent(
+		'CommandMenu item id "randomize" is not unique',
+	);
 });

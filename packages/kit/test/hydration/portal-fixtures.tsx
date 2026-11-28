@@ -1,5 +1,6 @@
-import { createSignal, type JSX } from "solid-js";
-import { isServer } from "solid-js/web";
+import { createSignal } from "solid-js";
+import { type JSX } from "@solidjs/web";
+import { isServer } from "@solidjs/web";
 import * as D from "../../src/parts/dialog";
 import * as P from "../../src/parts/popover";
 import * as S from "../../src/parts/sheet";
@@ -72,6 +73,28 @@ function Fixture(props: {
 	);
 }
 
+function NestedPortal(props: { openOnServer?: boolean }) {
+	return (
+		<D.Root defaultOpen modal={!props.openOnServer}>
+			<D.Portal>
+				<D.Content>
+					<D.Title>Outer dialog</D.Title>
+					<div data-portal-node="outer">Outer content</div>
+					<P.Root defaultOpen={props.openOnServer}>
+						<P.Trigger>Open inner</P.Trigger>
+						<P.Portal>
+							<P.Content>
+								<P.Title>Inner popover</P.Title>
+								<button data-portal-node="inner">Inner content</button>
+							</P.Content>
+						</P.Portal>
+					</P.Root>
+				</D.Content>
+			</D.Portal>
+		</D.Root>
+	);
+}
+
 export const portalFixtures: Record<string, () => JSX.Element> = {
 	Dialog: () => <Fixture kind="dialog" />,
 	Popover: () => <Fixture kind="popover" />,
@@ -102,23 +125,6 @@ export const portalFixtures: Record<string, () => JSX.Element> = {
 			</C.Portal>
 		</C.Root>
 	),
-	Nested: () => (
-		<D.Root defaultOpen modal={false}>
-			<D.Portal>
-				<D.Content>
-					<D.Title>Outer dialog</D.Title>
-					<div data-portal-node="outer">Outer content</div>
-					<P.Root defaultOpen>
-						<P.Trigger>Open inner</P.Trigger>
-						<P.Portal>
-							<P.Content>
-								<P.Title>Inner popover</P.Title>
-								<button data-portal-node="inner">Inner content</button>
-							</P.Content>
-						</P.Portal>
-					</P.Root>
-				</D.Content>
-			</D.Portal>
-		</D.Root>
-	),
+	Nested: () => <NestedPortal openOnServer />,
+	"Nested opens after hydration": () => <NestedPortal />,
 };

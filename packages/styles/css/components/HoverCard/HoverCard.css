@@ -1,0 +1,119 @@
+@layer cui.components {
+  .cui-hovercard-content {
+    --cui-hovercard-content-background: var(--cui-surface-dialog);
+    --cui-hovercard-content-box-shadow: var(--cui-shadow-dialog);
+    --cui-hovercard-content-max-width: min(320px, calc(100vw - 2 * var(--cui-space-4)));
+    --cui-hovercard-content-radius: var(--cui-radius-card);
+    --cui-hovercard-content-padding: var(--cui-space-4);
+    --cui-hovercard-content-font-size: var(--cui-font-size-sm);
+    --cui-hovercard-content-line-height: var(--cui-font-line-height-snug);
+    --cui-hovercard-content-color: var(--cui-text-dialog);
+    --cui-hovercard-list-max-height: 24rem;
+    --cui-hovercard-item-indent: var(--cui-space-4);
+  }
+  .cui-hovercard-content {
+    box-sizing: border-box;
+    box-shadow: var(--cui-hovercard-content-box-shadow);
+    background-color: var(--cui-hovercard-content-background);
+    border-radius: var(--cui-hovercard-content-radius);
+    padding: var(--cui-hovercard-content-padding);
+    max-width: var(--cui-hovercard-content-max-width);
+    overflow-wrap: break-word;
+    color: var(--cui-hovercard-content-color);
+    font-size: var(--cui-hovercard-content-font-size);
+    line-height: var(--cui-hovercard-content-line-height);
+    overflow: hidden;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--cui-space-2);
+    outline: none;
+    transform-origin: var(--cui-popper-content-transform-origin);
+    animation: cui-motion-pop-out var(--cui-motion-duration-fast) var(--cui-motion-ease-out) forwards;
+  }
+  .cui-hovercard-content[data-expanded] {
+    animation: cui-motion-pop-in var(--cui-motion-duration-normal) var(--cui-motion-ease-out);
+  }
+  .cui-hovercard-content[data-motion=none], .cui-hovercard-content[data-motion=none][data-expanded] {
+    animation: none;
+  }
+  :where(a[data-cui="hovercard-trigger"]) {
+    --cui-hovercard-trigger-decoration-color: var(--cui-text-hint);
+    text-decoration-line: underline;
+    text-decoration-style: dotted;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+    text-decoration-color: var(--cui-hovercard-trigger-decoration-color);
+    transition: text-decoration-color var(--cui-motion-duration-fast) ease;
+  }
+  :where(a[data-cui="hovercard-trigger"])[data-expanded] {
+    text-decoration-color: currentColor;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    :where(a[data-cui="hovercard-trigger"]):hover {
+      text-decoration-color: currentColor;
+    }
+  }
+  .cui-hovercard-list {
+    list-style: none;
+    margin: 0 calc(var(--cui-space-2) * -1);
+    padding: 0 var(--cui-space-2);
+    max-height: var(--cui-hovercard-list-max-height);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-color: var(--cui-surface-scroll-thumb) transparent;
+    scrollbar-width: thin;
+    display: flex;
+    flex-direction: column;
+    outline: none;
+    border-radius: var(--cui-radius-nav);
+  }
+  .cui-hovercard-list:focus-visible {
+    outline: var(--cui-focus-width) solid var(--cui-focus-color);
+    outline-offset: calc(var(--cui-focus-width) * -1);
+  }
+  .cui-hovercard-item {
+    display: flex;
+    align-items: center;
+    gap: var(--cui-space-2);
+    min-width: 0;
+    min-height: var(--cui-control-height-xs);
+    padding-inline-start: calc(var(--cui-hovercard-item-depth, 0) * var(--cui-hovercard-item-indent));
+    font-size: var(--cui-font-size-caption);
+    line-height: var(--cui-font-line-height-snug);
+    white-space: nowrap;
+  }
+  .cui-hovercard-item-icon {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    color: var(--cui-text-muted);
+  }
+  .cui-hovercard-item-icon > svg {
+    width: 16px;
+    height: 16px;
+  }
+  .cui-hovercard-item-id {
+    flex-shrink: 0;
+    color: var(--cui-text-muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .cui-hovercard-item-title {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--cui-hovercard-content-color);
+  }
+  @media (--cui-reduced-motion) {
+    .cui-hovercard-content {
+      animation-name: cui-motion-fade-out;
+    }
+    .cui-hovercard-content[data-expanded] {
+      animation-name: cui-motion-fade-in;
+    }
+  }
+}

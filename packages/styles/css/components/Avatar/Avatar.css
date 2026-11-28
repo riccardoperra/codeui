@@ -1,0 +1,80 @@
+@layer cui.components {
+  .cui-avatar {
+    --cui-avatar-size: var(--cui-control-height-xs);
+    --cui-avatar-font-size: var(--cui-font-size-badge);
+    --cui-avatar-lightness: light-dark(0.86, 0.48);
+    --cui-avatar-chroma: light-dark(0.06, 0.07);
+    --cui-avatar-background: oklch(var(--cui-avatar-lightness) var(--cui-avatar-chroma) var(--cui-avatar-hue, 0));
+    --cui-avatar-color: var(--cui-text-default);
+    --cui-avatar-ring: color-mix(in srgb, var(--cui-text-default) 20%, transparent);
+    --cui-avatar-unassigned-color: var(--cui-text-muted);
+  }
+  .cui-avatar {
+    position: relative;
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: var(--cui-avatar-size);
+    height: var(--cui-avatar-size);
+    border-radius: var(--cui-radius-full);
+    overflow: hidden;
+    background-color: var(--cui-avatar-background);
+    color: var(--cui-avatar-color);
+    font-family: var(--cui-font-family-sans);
+    font-size: var(--cui-avatar-font-size);
+    font-weight: var(--cui-font-weight-medium);
+    line-height: 1;
+    vertical-align: middle;
+    user-select: none;
+  }
+  .cui-avatar::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: inset 0 0 0 var(--cui-border-width) var(--cui-avatar-ring);
+    pointer-events: none;
+  }
+  :where(.cui-avatar) {
+    &:is(:not([data-size]), [data-size="xs"]) {
+      --cui-avatar-size: var(--cui-control-height-xs);
+      --cui-avatar-font-size: var(--cui-font-size-badge);
+    }
+
+    &[data-size="sm"] {
+      --cui-avatar-size: var(--cui-control-height-sm);
+      --cui-avatar-font-size: var(--cui-font-size-caption);
+    }
+
+    &[data-size="md"] {
+      --cui-avatar-size: var(--cui-control-height-md);
+      --cui-avatar-font-size: var(--cui-font-size-sm);
+    }
+
+    &[data-size="lg"] {
+      --cui-avatar-size: var(--cui-control-height-lg);
+      --cui-avatar-font-size: var(--cui-font-size-md);
+    }
+  }
+  .cui-avatar[data-unassigned] {
+    background-color: transparent;
+    border: var(--cui-border-width) dashed var(--cui-avatar-unassigned-color);
+  }
+  .cui-avatar[data-unassigned]::after {
+    content: none;
+  }
+  .cui-avatar-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+  }
+  .cui-avatar-fallback {
+    letter-spacing: normal;
+    text-transform: uppercase;
+  }
+}

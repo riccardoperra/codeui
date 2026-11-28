@@ -1,4 +1,5 @@
-import { Show, splitProps, type JSX } from "solid-js";
+import { Show, omit } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import * as P from "../../parts/progress";
 import { mergeClasses } from "../../utils/css";
 export type ProgressProps = Omit<P.RootProps, "children"> & {
@@ -11,27 +12,21 @@ export type ProgressProps = Omit<P.RootProps, "children"> & {
 	"aria-labelledby"?: string;
 };
 export function Progress(props: ProgressProps) {
-	const [local, rest] = splitProps(props, [
-		"label",
-		"showValue",
-		"classes",
-		"class",
-		"size",
-	]);
+	const rest = omit(props, "label", "showValue", "classes", "class", "size");
 	return (
 		<P.Root
 			{...rest}
-			size={local.size ?? "sm"}
-			class={mergeClasses(local.class, local.classes?.root)}
+			size={props.size ?? "sm"}
+			class={mergeClasses(props.class, props.classes?.root)}
 		>
-			<Show when={local.label}>
-				{label => <P.Label class={local.classes?.label}>{label()}</P.Label>}
+			<Show when={props.label}>
+				{label => <P.Label class={props.classes?.label}>{label()}</P.Label>}
 			</Show>
-			<Show when={local.showValue}>
-				<P.ValueLabel class={local.classes?.valueLabel} />
+			<Show when={props.showValue}>
+				<P.ValueLabel class={props.classes?.valueLabel} />
 			</Show>
-			<P.Track class={local.classes?.track}>
-				<P.Fill class={local.classes?.fill} />
+			<P.Track class={props.classes?.track}>
+				<P.Fill class={props.classes?.fill} />
 			</P.Track>
 		</P.Root>
 	);

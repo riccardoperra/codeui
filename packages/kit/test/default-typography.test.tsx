@@ -1,4 +1,4 @@
-import { cleanup, render } from "solid-testing-library";
+import { cleanup, render } from "@solidjs/testing-library";
 import { Checkbox } from "../src/components/CheckBox/CheckBox";
 import { Listbox } from "../src/components/Listbox/Listbox";
 import { Select } from "../src/components/Select/Select";

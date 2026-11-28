@@ -19,13 +19,15 @@ export default function App() {
 			<TextField label="Consumer text" value="Hello consumer" />
 			<Switch label="Consumer switch" />
 			<Select aria-label="Consumer select" options={["One", "Two"]} value="One" />
-			<Dialog open modal={false} title="Consumer dialog">
+			<Dialog defaultOpen modal={false} title="Consumer dialog">
 				Dialog body
+				<Popover defaultOpen>
+					<PopoverTrigger>Consumer popover trigger</PopoverTrigger>
+					<PopoverContent title="Consumer popover">
+						<button>Popover body</button>
+					</PopoverContent>
+				</Popover>
 			</Dialog>
-			<Popover open modal={false}>
-				<PopoverTrigger>Consumer popover trigger</PopoverTrigger>
-				<PopoverContent title="Consumer popover">Popover body</PopoverContent>
-			</Popover>
 			<SegmentedControl value="one">
 				<SegmentedControlItem value="one">Segment one</SegmentedControlItem>
 				<SegmentedControlItem value="two">Segment two</SegmentedControlItem>

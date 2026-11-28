@@ -1,5 +1,6 @@
 import { SegmentedControl, SegmentedControlItem, Text } from "@codeui/kit";
-import { For, type JSX } from "solid-js";
+import { For } from "solid-js";
+import { type JSX } from "@solidjs/web";
 import { BarChart, BarList, ChartLegend, LineChart, type Series, Sparkline } from "../shared/charts";
 import { formatChange, formatCompact, formatMoneyWhole, formatNumber, formatPercent } from "../shared/format";
 import { createIsPhone } from "../shared/media";

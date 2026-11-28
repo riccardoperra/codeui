@@ -8,6 +8,10 @@
     "foundation/cui.css.ts",
     "components/Alert/Alert.css.ts"
   ],
+  "components/Avatar/Avatar.css.ts": [
+    "foundation/cui.css.ts",
+    "components/Avatar/Avatar.css.ts"
+  ],
   "components/Badge/Badge.css.ts": [
     "foundation/cui.css.ts",
     "components/Badge/Badge.css.ts"
@@ -66,6 +70,11 @@
     "components/Field/Field.css.ts",
     "components/Field/FieldMessage/FieldMessage.css.ts"
   ],
+  "components/HoverCard/HoverCard.css.ts": [
+    "foundation/cui.css.ts",
+    "foundation/motion.css.ts",
+    "components/HoverCard/HoverCard.css.ts"
+  ],
   "components/IconButton/IconButton.css.ts": [
     "foundation/cui.css.ts",
     "foundation/motion.css.ts",
@@ -112,6 +121,10 @@
     "foundation/motion.css.ts",
     "components/Field/Field.css.ts",
     "components/RadioList/Radio.css.ts"
+  ],
+  "components/Resizable/Resizable.css.ts": [
+    "foundation/cui.css.ts",
+    "components/Resizable/Resizable.css.ts"
   ],
   "components/SegmentedControl/SegmentedControl.css.ts": [
     "foundation/cui.css.ts",
