@@ -1,5 +1,4 @@
-import { cleanup, render, screen } from "@solidjs/testing-library";
-import { userEvent } from "vitest/browser";
+import { cleanup, fireEvent, render, screen } from "@solidjs/testing-library";
 import { Tooltip } from "../src/components/Tooltip/Tooltip";
 import { Provider as TooltipProvider } from "../src/parts/tooltip";
 import { tick } from "./helpers";
@@ -8,13 +7,20 @@ afterEach(cleanup);
 
 const wait = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
+// A synthetic pointerenter stays in this test's frame. userEvent.hover moves the shared
+// browser pointer, which can open a tooltip in another test file running beside this one.
+function hover(name: string) {
+	const trigger = screen.getByRole("button", { name }).closest('[data-cui="tooltip-trigger"]')!;
+	fireEvent(trigger, new PointerEvent("pointerenter", { pointerType: "mouse" }));
+}
+
 it("opens 700ms after hover with the neutral fill by default", async () => {
 	render(() => (
 		<Tooltip content="Copy to clipboard">
 			<button>Copy</button>
 		</Tooltip>
 	));
-	await userEvent.hover(screen.getByRole("button", { name: "Copy" }));
+	hover("Copy");
 	await wait(450);
 	expect(screen.queryByRole("tooltip")).toBeNull();
 	await wait(450);
@@ -29,7 +35,7 @@ it("waits for the provider's open delay on hover", async () => {
 			</Tooltip>
 		</TooltipProvider>
 	));
-	await userEvent.hover(screen.getByRole("button", { name: "Copy" }));
+	hover("Copy");
 	await wait(300);
 	expect(screen.getByRole("tooltip")).toHaveTextContent("Copy to clipboard");
 });
