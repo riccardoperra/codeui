@@ -2,6 +2,7 @@ import { cleanup, fireEvent, render, screen, waitFor } from "@solidjs/testing-li
 import {
 	HoverCard,
 	HoverCardContent,
+	HoverCardGroup,
 	HoverCardItem,
 	HoverCardList,
 	HoverCardTrigger,
@@ -14,10 +15,12 @@ const card = () => document.querySelector<HTMLElement>("[data-cui=hovercard-cont
 
 function renderCard(props: { openDelay?: number; closeDelay?: number } = {}) {
 	render(() => (
-		<HoverCard {...props}>
-			<HoverCardTrigger href="#thread">Fix flaky test</HoverCardTrigger>
-			<HoverCardContent>Opened 2 hours ago by Codex</HoverCardContent>
-		</HoverCard>
+		<HoverCardGroup>
+			<HoverCard {...props}>
+				<HoverCardTrigger href="#thread">Fix flaky test</HoverCardTrigger>
+				<HoverCardContent>Opened 2 hours ago by Codex</HoverCardContent>
+			</HoverCard>
+		</HoverCardGroup>
 	));
 	return screen.getByRole("link", { name: "Fix flaky test" });
 }

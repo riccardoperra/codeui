@@ -1,5 +1,6 @@
 import type {
 	HoverCardContentProps,
+	HoverCardGroupProps,
 	HoverCardItemProps,
 	HoverCardProps,
 } from "@codeui/kit";
@@ -8,8 +9,11 @@ import type { PropNotes } from "./notes";
 /** Props that HoverCard adds or changes on Kobalte's popover root. */
 export type HoverCard = Pick<
 	HoverCardProps,
-	"openDelay" | "closeDelay" | "ignoreSafeArea"
+	"openDelay" | "closeDelay" | "ignoreSafeArea" | "shared"
 >;
+
+/** Props of the group that gives its hover cards a surface of their own. */
+export type HoverCardGroup = Pick<HoverCardGroupProps, "skipDelayDuration">;
 
 /** Kobalte popover root options that change behavior. The kit sets the gutter default. */
 export type HoverCardInherited = Pick<
@@ -53,6 +57,18 @@ export const notes = {
 			default: "false",
 			description: "Closes as soon as the pointer leaves, even on its way to the card.",
 		},
+		shared: {
+			default: "true",
+			description:
+				"Shares one card with the page or the nearest HoverCardGroup. With false, the card has its own.",
+		},
+	},
+	HoverCardGroup: {
+		skipDelayDuration: {
+			default: "400",
+			description:
+				"Milliseconds after a card of the group closes during which the next one opens at once.",
+		},
 	},
 	HoverCardInherited: {
 		open: { description: "Controlled open state." },
@@ -68,7 +84,9 @@ export const notes = {
 			description: "Distance between the trigger and the card, in pixels.",
 		},
 		shift: { default: "0", description: "Offset along the trigger edge, in pixels." },
-		forceMount: { description: "Keeps the card in the DOM while it is closed." },
+		forceMount: {
+			description: "Keeps the card in the DOM while it is closed. The card gets a surface of its own.",
+		},
 	},
 	HoverCardContent: {
 		mount: { default: "document.body", description: "Node the card is portaled into." },

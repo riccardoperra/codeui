@@ -18,6 +18,9 @@ export function trackInput() {
 	};
 	const options = { capture: true, passive: true };
 	document.addEventListener("pointerdown", record("press"), options);
+	// The browser fires pointerover before the pointermove that crosses into an element,
+	// so an overlay opened from pointerenter sees this pointer, not the previous one.
+	document.addEventListener("pointerover", record("hover"), options);
 	document.addEventListener("pointermove", record("hover"), options);
 	document.addEventListener("keydown", record("key"), options);
 }

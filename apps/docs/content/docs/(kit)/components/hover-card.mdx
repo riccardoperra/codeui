@@ -27,9 +27,10 @@ Put `HoverCardTrigger` and `HoverCardContent` in `HoverCard`. Hover the link, or
 
 | Export | Renders | `classes` key | `data-cui` | Role |
 | --- | --- | --- | --- | --- |
+| `HoverCardGroup` | Nothing. Gives the cards inside it a surface of their own, optional | none | none | none |
 | `HoverCard` | Nothing. Holds the open state and the timers | none | none | none |
 | `HoverCardTrigger` | `a`, or the element passed to `as` | none | `hovercard-trigger` | Link |
-| `HoverCardContent` | `div` in a portal on `mount`, or `document.body` | `content` | `hovercard-content` | none |
+| `HoverCardContent` | The shared card, a `div` in a portal on `mount` or `document.body`, and a `display: contents` `div` around the children | `content` | `hovercard-content` | none |
 | `HoverCardList` | `ul`, optional | none | `hovercard-list` | List |
 | `HoverCardItem` | `li`, with an icon slot, an identifier and a title | `item`, `itemIcon`, `itemId`, `itemTitle` | `hovercard-item`, `hovercard-item-icon`, `hovercard-item-id`, `hovercard-item-title` | List item |
 
@@ -49,6 +50,36 @@ Put `HoverCardTrigger` and `HoverCardContent` in `HoverCard`. Hover the link, or
 The card opens 500ms after the pointer enters or the trigger gets focus, and closes 150ms after the pointer leaves the trigger and the card. Change this with `openDelay` and `closeDelay`.
 On its way from the trigger to the card, the pointer may cross the gap between them without closing the card. `ignoreSafeArea` turns that off.
 
+Once one card is open, the next one opens at once. See [Moving between cards](#moving-between-cards).
+
+### Moving between cards
+
+<SolidDemo name="hover-card/shared" />
+
+All the hover cards of a page share one card. When the pointer or keyboard focus moves to another trigger while a card is open, that card moves to the new trigger instead of closing while a second one opens: it slides to its new place, grows or shrinks to the new content, and the new content fades in. Each `HoverCard` keeps its own props, so the card takes the `placement`, `gutter`, class and handlers of the trigger it moves to.
+
+- The move happens at once, without `openDelay`.
+- For 400ms after a card closes, the next one still opens at once and without the pop.
+- On its way to the open card, the pointer may cross another trigger. The card only moves when the pointer rests on that trigger for 150ms, so you can still reach the card you opened.
+- When focus moves from the keyboard, the card swaps its content in place, with no motion.
+- With reduced motion, the card stays in place and only the new content fades in.
+
+Because the card is shared, only one hover card of the page is open at a time. A card that must stay open next to another needs its own surface: put it in a `HoverCardGroup` or pass `shared={false}`.
+
+### Nested cards
+
+A hover card inside the content of another one gets a surface of its own, without a group. Both cards stay open: the outer card waits while the pointer is on the inner card and until the inner card closes. A press on the inner card does not close the outer one. Escape closes the inner card first.
+
+### Groups
+
+<SolidDemo name="hover-card/group" />
+
+`HoverCardGroup` gives the cards inside it a card of their own. Moving between triggers of the same group moves the group's card. The cards of a group never take over the page card or another group's card, so a card from each can be open at the same time. A card uses the nearest group above it; outside any group it uses the page card.
+
+`skipDelayDuration` sets how long after a card of the group closes the next one still opens at once. The page card uses 400ms.
+
+`shared={false}` gives one `HoverCard` a surface of its own, like a group with a single card. A card with `forceMount` always has its own.
+
 ### List of entries
 
 <SolidDemo name="hover-card/list" />
@@ -67,11 +98,17 @@ A click opens the card at once, without `openDelay`. On a touch screen, the firs
 
 ### Controlled
 
-Without `open`, the card manages its own state. To control it, pass `open` and `onOpenChange`.
+Without `open`, the card manages its own state. To control it, pass `open` and `onOpenChange`. When another card takes over the shared surface, the card calls `onOpenChange(false)`.
 
 ## Ready API
 
 Import from `@codeui/kit/hover-card` or from `@codeui/kit`.
+
+### `HoverCardGroup`
+
+Optional. Gives the cards inside it a surface of their own.
+
+<PropsTable name="HoverCardGroup" />
 
 ### `HoverCard`
 
@@ -87,9 +124,11 @@ Inherited from Kobalte's [popover](https://kobalte.dev/docs/core/components/popo
 
 Renders an `a`. Give it an `href`, or render another focusable element with `as`, so keyboard users can reach it. An `a` without `href` cannot take focus.
 
+A trigger that renders an `a`, alone or through `as={Link}`, has a dotted underline in the hint tone, so it reads as something to hover inside running text. The underline takes the text colour on hover and while the card is open. A trigger rendered as a button or a row keeps its own look.
+
 ### `HoverCardContent`
 
-Portals the card to `document.body` and places it next to the trigger.
+Renders its children into the shared card, which is portaled to `document.body` and placed next to the trigger. While this card is the one shown, its `class`, `classes`, `style`, `ref`, `mount` and dismiss handlers go on the card. Any other attribute or event handler, such as `id`, `aria-hidden` or `onPointerEnter`, goes on a `display: contents` element around the children.
 
 <PropsTable name="HoverCardContent" />
 
@@ -115,7 +154,7 @@ One line in a `HoverCardList`.
 
 | Key | Action |
 | --- | --- |
-| <kbd>Tab</kbd> | Moving focus to the trigger opens the card after `openDelay`. Moving focus away closes it. |
+| <kbd>Tab</kbd> | Moving focus to the trigger opens the card after `openDelay`. Moving focus away closes it. Moving focus to another trigger while the card is open moves the card there at once. |
 | <kbd>Enter</kbd> | Follows the link. A trigger rendered as a button opens the card. |
 | <kbd>Escape</kbd> | Closes the card. Focus stays on the trigger. |
 
@@ -131,7 +170,7 @@ The card never takes focus. Focus stays on the trigger while it is open.
 
 ## SSR notes
 
-The trigger renders on the server. The card renders on the client, and only while it is open.
+The trigger renders on the server. The card renders on the client, and only while it is open. The page card is created the first time a card opens, in a `div` it appends to `document.body`.
 
 ## Theming hooks
 
@@ -139,6 +178,7 @@ The trigger renders on the server. The card renders on the client, and only whil
 
 | Variable | Default | Used for |
 | --- | --- | --- |
+| `--cui-hovercard-trigger-decoration-color` | `--cui-text-hint` | Dotted underline of an `a` trigger, before hover |
 | `--cui-hovercard-content-background` | `--cui-surface-dialog` | Fill |
 | `--cui-hovercard-content-box-shadow` | `--cui-shadow-dialog` | Shadow, and the 1px ring in dark mode |
 | `--cui-hovercard-content-radius` | `--cui-radius-card` | Radius (16px) |
@@ -150,8 +190,9 @@ The trigger renders on the server. The card renders on the client, and only whil
 | `--cui-hovercard-item-indent` | `16px` | Indent per `depth` level |
 | `--cui-hovercard-item-depth` | Set from `depth` | Nesting level of one entry |
 | `--cui-motion-duration-normal`, `--cui-motion-duration-fast`, `--cui-motion-ease-out` | | Pop: in from `scale(0.96)` over 160ms, out to `scale(0.98)` over 120ms |
+| `--cui-motion-duration-panel`, `--cui-motion-ease-out` | | Moving between cards: slide, resize and content fade over 200ms, ease-out |
 
-A card opened by hover or click pops from the trigger side, with `transform-origin` from `--cui-popper-content-transform-origin`. A card opened by keyboard focus appears with no animation (`data-motion="none"`). With reduced motion, the card only fades.
+A card opened by hover or click pops from the trigger side, with `transform-origin` from `--cui-popper-content-transform-origin`. A card opened by keyboard focus, or within 400ms of another card closing, appears with no animation (`data-motion="none"`). With reduced motion, the card only fades, and moving between cards only fades the new content in. Moving between cards from the keyboard has no motion.
 
 ## Related
 
