@@ -8,7 +8,7 @@ import {
 	type TooltipRootProps,
 	type TooltipTriggerProps,
 } from "@kobalte/core/tooltip";
-import { createContext, createEffect, useContext, omit } from "solid-js";
+import { createContext, createEffect, useContext, omit, type ParentProps } from "solid-js";
 import { type JSX, type ValidComponent } from "@solidjs/web";
 import * as styles from "../components/Tooltip/Tooltip.css";
 import { mergeClasses } from "../utils/css";
@@ -64,12 +64,39 @@ function TriggerElement(
 const skipDelayDuration = 300;
 let lastClosed = -Infinity;
 
+export type TooltipDefaults = Pick<
+	TooltipRootProps,
+	"openDelay" | "closeDelay" | "skipDelayDuration" | "gutter" | "shift"
+> &
+	NonNullable<styles.TooltipVariants>;
+
+const DefaultsContext = createContext<TooltipDefaults>({});
+
+/**
+ * Sets the defaults of every tooltip below it. A prop on a tooltip still wins.
+ */
+export function Provider(props: ParentProps<TooltipDefaults>) {
+	const parent = useContext(DefaultsContext);
+	const defaults: TooltipDefaults = {
+		get openDelay() { return props.openDelay ?? parent.openDelay; },
+		get closeDelay() { return props.closeDelay ?? parent.closeDelay; },
+		get skipDelayDuration() { return props.skipDelayDuration ?? parent.skipDelayDuration; },
+		get gutter() { return props.gutter ?? parent.gutter; },
+		get shift() { return props.shift ?? parent.shift; },
+		get variant() { return props.variant ?? parent.variant; },
+	};
+	return <DefaultsContext value={defaults}>{props.children}</DefaultsContext>;
+}
+
 const TooltipMotionContext = createContext<() => number>(() => skipDelayDuration);
 
 export type RootProps = TooltipRootProps;
 
 export function Root(props: RootProps) {
+	const defaults = useContext(DefaultsContext);
 	const others = omit(props, "forceMount", "onOpenChange");
+	const skipDelay = () =>
+		props.skipDelayDuration ?? defaults.skipDelayDuration ?? skipDelayDuration;
 	const motion = createPopMotion({
 		get open() { return props.open; },
 		get defaultOpen() { return props.defaultOpen; },
@@ -81,16 +108,17 @@ export function Root(props: RootProps) {
 	});
 
 	return (
-		<TooltipMotionContext value={() => props.skipDelayDuration ?? skipDelayDuration}>
+		<TooltipMotionContext value={skipDelay}>
 			<PopMotionContext value={motion.setTarget}>
 				<KTooltip
 					{...others}
 					forceMount={motion.forceMount()}
 					onOpenChange={motion.onOpenChange}
-					gutter={props.gutter ?? 4}
-					shift={props.shift ?? 0}
-					openDelay={props.openDelay ?? 200}
-					closeDelay={props.closeDelay ?? 0}
+					gutter={props.gutter ?? defaults.gutter ?? 4}
+					shift={props.shift ?? defaults.shift ?? 0}
+					openDelay={props.openDelay ?? defaults.openDelay ?? 200}
+					closeDelay={props.closeDelay ?? defaults.closeDelay ?? 0}
+					skipDelayDuration={skipDelay()}
 				/>
 			</PopMotionContext>
 		</TooltipMotionContext>
@@ -123,6 +151,7 @@ export function Content<T extends ValidComponent = "div">(
 	const local = props as PolymorphicProps<"div", ContentProps>;
 	const others = omit(local, "class", "ref", "variant");
 	const delay = useContext(TooltipMotionContext);
+	const defaults = useContext(DefaultsContext);
 	const contentRef = motionRef({
 		hover: true,
 		still: () => performance.now() - lastClosed < delay(),
@@ -134,7 +163,7 @@ export function Content<T extends ValidComponent = "div">(
 				{...others}
 				ref={[contentRef, local.ref]}
 				data-cui="tooltip-content"
-				data-variant={local.variant ?? "primary"}
+				data-variant={local.variant ?? defaults.variant ?? "primary"}
 				class={mergeClasses(local.class, styles.tooltipContent())}
 			/>
 		</LayerScope>

@@ -55,6 +55,21 @@ Inkstone keeps the accent for focus, selection, and the one primary action, so p
 The tooltip opens 200ms after the pointer enters and closes at once when it leaves. Change this with `openDelay` and `closeDelay`.
 Keyboard focus ignores `openDelay` and opens the tooltip at once.
 
+### Defaults for a whole app
+
+Wrap the app in `TooltipProvider` to set the defaults of every tooltip below it. A prop on one tooltip still wins.
+
+```tsx
+import { TooltipProvider } from "@codeui/kit";
+
+<TooltipProvider openDelay={600} skipDelayDuration={400} variant="secondary">
+	<App />
+</TooltipProvider>;
+```
+
+It takes `openDelay`, `closeDelay`, `skipDelayDuration`, `gutter`, `shift` and `variant`. With parts, import it as `Provider` from `@codeui/kit/tooltip/parts`.
+`skipDelayDuration` is how long after a tooltip closes the next one opens at once, without its delay or its animation. The kit default is 300ms.
+
 ### Icon button trigger
 
 <SolidDemo name="tooltip/icon-button" />
