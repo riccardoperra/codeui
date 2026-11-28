@@ -105,3 +105,26 @@ export const CustomJsxComponent: Story = {
 		</Tooltip>
 	),
 };
+
+export const EmptyContent: Story = {
+	name: "Empty content",
+	args: {
+		content: undefined,
+	},
+	render: () => (
+		<div style={{ display: "flex", gap: "12px" }}>
+			<Tooltip content={undefined}>
+				<Button variant="secondary">Undefined</Button>
+			</Tooltip>
+			<Tooltip content={null}>
+				<Button variant="secondary">Null</Button>
+			</Tooltip>
+			<Tooltip content="">
+				<Button variant="secondary">Empty string</Button>
+			</Tooltip>
+			<Tooltip content="My tooltip content.">
+				<Button variant="primary">With content</Button>
+			</Tooltip>
+		</div>
+	),
+};

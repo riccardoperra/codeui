@@ -21,3 +21,23 @@ it("opens on child keyboard focus and closes on Escape without moving focus", as
 	await expectDismissed(tooltip);
 	expect(document.activeElement).toBe(button);
 });
+
+it.each([
+	["undefined", undefined],
+	["null", null],
+	["an empty string", ""],
+])("never opens and adds no description when content is %s", async (_, content) => {
+	render(() => (
+		<Tooltip content={content} slotClasses={{ trigger: "my-trigger" }}>
+			<button>Copy</button>
+		</Tooltip>
+	));
+	const button = screen.getByRole("button", { name: "Copy" });
+	expect(button.parentElement).toHaveClass("my-trigger");
+	button.focus();
+	await tick();
+	await new Promise(resolve => setTimeout(resolve, 300));
+	expect(screen.queryByRole("tooltip")).toBeNull();
+	expect(document.querySelector("[data-cui=tooltip-content]")).toBeNull();
+	expect(button).not.toHaveAttribute("aria-describedby");
+});

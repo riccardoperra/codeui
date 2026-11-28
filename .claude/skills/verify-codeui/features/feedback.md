@@ -9,11 +9,13 @@ Tooltip shows a short label next to its trigger on hover and should also show on
 - `tooltip-dismiss` hides it on Escape and when focus or the pointer leaves.
 - `tooltip-variants` renders primary, secondary, disabled and custom JSX content.
 - `tooltip-motion` pops on hover; keyboard focus opens it with `data-motion="none"`, and the focused child (not the wrapper) carries `aria-describedby`.
+- `tooltip-empty` never opens when `content` is `undefined`, `null` or `""`, on hover or focus, and the focused trigger gets no `aria-describedby`.
 - `toast-rise` (Toaster) renders in the inverted theme (`data-cui-theme` opposite the page) and sits 80px above the bottom of its region's container.
 
 ## How to get to it (user POV)
 
 - Hover or Tab to `Hover me` in `designsystem-tooltip--tooltip-story`; also `--tooltip-secondary`, `--tooltip-disabled`, `--custom-jsx-component`.
+- Hover or Tab through `Undefined`, `Null`, `Empty string` and `With content` in `designsystem-tooltip--empty-content`.
 
 ## Driving it with drive.mjs
 
@@ -24,6 +26,7 @@ Preconditions:
 - **Hover.** `page.getByRole('button', { name: 'Hover me' }).hover()`, wait ~1 s for the open delay, then `getByRole('tooltip')` count is 1. Observed in a probe on this base.
 - **Focus and Escape.** Run `node .claude/skills/verify-codeui/scripts/drive.mjs designsystem-tooltip--tooltip-story --journey .claude/skills/verify-codeui/journeys/tooltip-keyboard.mjs`. Tab opens the tooltip. Escape closes it and focus stays on `Hover me`.
 - **Motion and description.** `drive.mjs designsystem-tooltip--tooltip-story --journey .claude/skills/verify-codeui/journeys/tooltip-motion.mjs`.
+- **Empty content.** `drive.mjs designsystem-tooltip--empty-content --journey .claude/skills/verify-codeui/journeys/tooltip-empty.mjs`.
 - **Toast.** `drive.mjs designsystem-toaster--with-action --journey .claude/skills/verify-codeui/journeys/toast-rise.mjs`.
 - **Dismiss.** After hover, press Escape; expect count 0.
 - **Theme.** Screenshot the open tooltip in both themes (`step('hovered')`).
