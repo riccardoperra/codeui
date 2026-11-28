@@ -19,7 +19,12 @@ const threads = [
 export default function HoverCardShared() {
 	return (
 		<div
-			style={{ display: "flex", "flex-direction": "column", gap: "var(--cui-space-2)" }}
+			style={{
+				display: "flex",
+				"flex-direction": "column",
+				"align-items": "flex-start",
+				gap: "var(--cui-space-2)",
+			}}
 		>
 			<For each={threads}>
 				{thread => (

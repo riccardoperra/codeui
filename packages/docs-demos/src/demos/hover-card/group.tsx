@@ -23,6 +23,7 @@ export default function HoverCardGroups() {
 							style={{
 								display: "flex",
 								"flex-direction": "column",
+								"align-items": "flex-start",
 								gap: "var(--cui-space-2)",
 							}}
 						>
