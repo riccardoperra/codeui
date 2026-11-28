@@ -274,7 +274,9 @@
 			"HoverCardItem": "components/hover-card#hovercarditem",
 			"HoverCardItemProps": "components/hover-card#hovercarditem",
 			"HoverCardList": "components/hover-card#hovercardlist",
-			"HoverCardListProps": "components/hover-card#hovercardlist"
+			"HoverCardListProps": "components/hover-card#hovercardlist",
+			"TooltipDefaults": "components/tooltip#defaults-for-a-whole-app",
+			"TooltipProvider": "components/tooltip#defaults-for-a-whole-app"
 		},
 		"@codeui/kit/accordion/parts": {
 			"AccordionClasses": "components/accordion#anatomy",
@@ -1056,7 +1058,9 @@
 		},
 		"@codeui/kit/tooltip": {
 			"Tooltip": "components/tooltip#tooltip",
-			"TooltipProps": "components/tooltip#tooltip"
+			"TooltipProps": "components/tooltip#tooltip",
+			"TooltipDefaults": "components/tooltip#defaults-for-a-whole-app",
+			"TooltipProvider": "components/tooltip#defaults-for-a-whole-app"
 		},
 		"@codeui/kit/virtualized-listbox": {
 			"VirtualizedListbox": "components/virtualized-listbox#virtualizedlistbox",
@@ -1224,7 +1228,9 @@
 			"Root": "components/tooltip#styled-parts-api",
 			"RootProps": "components/tooltip#styled-parts-api",
 			"Trigger": "components/tooltip#styled-parts-api",
-			"TriggerProps": "components/tooltip#styled-parts-api"
+			"TriggerProps": "components/tooltip#styled-parts-api",
+			"Provider": "components/tooltip#defaults-for-a-whole-app",
+			"TooltipDefaults": "components/tooltip#defaults-for-a-whole-app"
 		},
 		"@codeui/kit/table": {
 			"Table": "components/table#table",
