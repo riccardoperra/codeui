@@ -4119,10 +4119,9 @@ export type HoverCardContentProps = Omit<JSX.HTMLAttributes<HTMLDivElement>, "st
 /**
  * The card's content. It renders into the surface its `HoverCard` shares, which is portaled,
  * placed beside the trigger (on the right unless there is no room), and never takes focus.
- * Its class, style, ref and dismiss handlers go on that surface while this card is the one
- * shown. Other attributes and event handlers go on a `display: contents` element that wraps
- * the children inside it. Hover cards inside the content get a surface of their own, so the
- * card stays open beside them.
+ * Its class, style, ref, attributes and event handlers go on that surface while this card is
+ * the one shown. Hover cards inside the content get a surface of their own, so the card stays
+ * open beside them.
  */
 export declare function HoverCardContent(props: HoverCardContentProps): JSX.Element;
 export type HoverCardListProps = JSX.HTMLAttributes<HTMLUListElement> & {
@@ -4168,6 +4167,8 @@ export type HoverCardSurfaceOptions = HoverCardDismissHandlers & {
     style?: JSX.CSSProperties | string;
     mount?: globalThis.Element;
     ref: (element: HTMLElement) => void;
+    /** Every other prop of `HoverCardContent`: attributes and event handlers. */
+    attributes: Record<string, unknown>;
 };
 export type Point = {
     x: number;

@@ -30,7 +30,7 @@ Put `HoverCardTrigger` and `HoverCardContent` in `HoverCard`. Hover the link, or
 | `HoverCardGroup` | Nothing. Gives the cards inside it a surface of their own, optional | none | none | none |
 | `HoverCard` | Nothing. Holds the open state and the timers | none | none | none |
 | `HoverCardTrigger` | `a`, or the element passed to `as` | none | `hovercard-trigger` | Link |
-| `HoverCardContent` | The shared card, a `div` in a portal on `mount` or `document.body`, and a `display: contents` `div` around the children | `content` | `hovercard-content` | none |
+| `HoverCardContent` | The shared card, a `div` in a portal on `mount` or `document.body` | `content` | `hovercard-content` | none |
 | `HoverCardList` | `ul`, optional | none | `hovercard-list` | List |
 | `HoverCardItem` | `li`, with an icon slot, an identifier and a title | `item`, `itemIcon`, `itemId`, `itemTitle` | `hovercard-item`, `hovercard-item-icon`, `hovercard-item-id`, `hovercard-item-title` | List item |
 
@@ -128,7 +128,7 @@ A trigger that renders an `a`, alone or through `as={Link}`, has a dotted underl
 
 ### `HoverCardContent`
 
-Renders its children into the shared card, which is portaled to `document.body` and placed next to the trigger. While this card is the one shown, its `class`, `classes`, `style`, `ref`, `mount` and dismiss handlers go on the card. Any other attribute or event handler, such as `id`, `aria-hidden` or `onPointerEnter`, goes on a `display: contents` element around the children.
+Renders its children into the shared card, which is portaled to `document.body` and placed next to the trigger. While this card is the one shown, its props go on the card: `class`, `classes`, `style`, `ref`, `mount`, the dismiss handlers, and any other attribute or event handler, such as `id`, `aria-hidden` or `onPointerEnter`. When another card takes the card over, they come off and that card's props go on. Attributes take string, number or boolean values.
 
 <PropsTable name="HoverCardContent" />
 

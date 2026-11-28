@@ -352,10 +352,9 @@ function applyRef(ref: unknown, element: HTMLElement) {
 /**
  * The card's content. It renders into the surface its `HoverCard` shares, which is portaled,
  * placed beside the trigger (on the right unless there is no room), and never takes focus.
- * Its class, style, ref and dismiss handlers go on that surface while this card is the one
- * shown. Other attributes and event handlers go on a `display: contents` element that wraps
- * the children inside it. Hover cards inside the content get a surface of their own, so the
- * card stays open beside them.
+ * Its class, style, ref, attributes and event handlers go on that surface while this card is
+ * the one shown. Hover cards inside the content get a surface of their own, so the card stays
+ * open beside them.
  */
 export function HoverCardContent(props: HoverCardContentProps) {
 	const card = useHoverCard();
@@ -386,6 +385,7 @@ export function HoverCardContent(props: HoverCardContentProps) {
 			return props.mount;
 		},
 		ref: element => applyRef(props.ref, element),
+		attributes,
 		onEscapeKeyDown: event => props.onEscapeKeyDown?.(event),
 		onPointerDownOutside: event => props.onPointerDownOutside?.(event),
 		onFocusOutside: event => props.onFocusOutside?.(event),
@@ -396,11 +396,9 @@ export function HoverCardContent(props: HoverCardContentProps) {
 		<Show when={card.slot()}>
 			{slot => (
 				<Portal mount={slot()}>
-					<div {...attributes} style={{ display: "contents" }}>
-						<HoverCardHostProvider host={card.nested}>
-							{props.children}
-						</HoverCardHostProvider>
-					</div>
+					<HoverCardHostProvider host={card.nested}>
+						{props.children}
+					</HoverCardHostProvider>
 				</Portal>
 			)}
 		</Show>

@@ -23,6 +23,7 @@ import { LayerScope } from "../../utils/layer-scope";
 import { pointerInitiated } from "../../utils/open-source";
 import { createPopMotion, motionRef, PopMotionContext } from "../../utils/pop-motion";
 import * as styles from "./HoverCard.css";
+import { applyAttributes } from "./surface-attributes";
 
 export type HoverCardPositioning = Pick<
 	KPopoverRootOptions,
@@ -53,6 +54,8 @@ export type HoverCardSurfaceOptions = HoverCardDismissHandlers & {
 	style?: JSX.CSSProperties | string;
 	mount?: globalThis.Element;
 	ref: (element: HTMLElement) => void;
+	/** Every other prop of `HoverCardContent`: attributes and event handlers. */
+	attributes: Record<string, unknown>;
 };
 
 export type Point = { x: number; y: number };
@@ -363,6 +366,16 @@ function SurfaceContent(props: { host: HoverCardHost }) {
 		({ element, ref }) => {
 			if (element && ref) ref(element);
 		},
+	);
+	createEffect(
+		() => {
+			const element = host.surface();
+			const attributes = options()?.attributes;
+			return element && attributes
+				? { element, entries: Object.entries(attributes) }
+				: undefined;
+		},
+		applied => (applied ? applyAttributes(applied.element, applied.entries) : undefined),
 	);
 	return (
 		<Show when={popover.contentPresent()}>

@@ -68,8 +68,7 @@ it("moves the open card to the next trigger at once, as the same element", async
 	});
 	expect(cards()).toEqual([surface]);
 	expect(surface).not.toHaveTextContent("Details of A");
-	expect(surface).toContainElement(document.getElementById("card-b"));
-	expect(document.getElementById("card-a")).toBeNull();
+	expect(surface.id).toBe("card-b");
 	expect(onA).toHaveBeenLastCalledWith(false);
 });
 
@@ -223,4 +222,37 @@ it("keeps a card open beside a card opened from inside it", async () => {
 	expect(cards()).toHaveLength(2);
 	press("Escape");
 	await waitFor(() => expect(cards()).toEqual([outer]));
+});
+
+it("puts the active card's attributes and handlers on the card itself", async () => {
+	const enterA = vi.fn();
+	const enterB = vi.fn();
+	render(() => (
+		<div
+			style={{ display: "flex", "flex-direction": "column", gap: "8px", width: "160px" }}
+		>
+			<HoverCard openDelay={0}>
+				<HoverCardTrigger href="#a">Thread A</HoverCardTrigger>
+				<HoverCardContent aria-label="Card A" data-kind="a" onPointerEnter={enterA}>
+					Details of A
+				</HoverCardContent>
+			</HoverCard>
+			<HoverCard openDelay={0}>
+				<HoverCardTrigger href="#b">Thread B</HoverCardTrigger>
+				<HoverCardContent onPointerEnter={enterB}>Details of B</HoverCardContent>
+			</HoverCard>
+		</div>
+	));
+	const surface = await openA();
+	expect(surface).toHaveAttribute("aria-label", "Card A");
+	expect(surface).toHaveAttribute("data-kind", "a");
+	fireEvent.pointerEnter(surface);
+	expect(enterA).toHaveBeenCalledTimes(1);
+	hover(screen.getByRole("link", { name: "Thread B" }));
+	await waitFor(() => expect(surface).toHaveTextContent("Details of B"));
+	expect(surface).not.toHaveAttribute("aria-label");
+	expect(surface).not.toHaveAttribute("data-kind");
+	fireEvent.pointerEnter(surface);
+	expect(enterB).toHaveBeenCalledTimes(1);
+	expect(enterA).toHaveBeenCalledTimes(1);
 });
