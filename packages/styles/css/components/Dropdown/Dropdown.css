@@ -24,7 +24,7 @@
     background-color: var(--cui-dropdownmenu-content-background);
     border-radius: var(--cui-dropdownmenu-content-radius);
     padding: var(--cui-dropdownmenu-content-padding);
-    min-width: max(var(--cui-dropdownmenu-content-min-width), var(--cui-popper-anchor-width, 0px));
+    min-width: max(var(--cui-dropdownmenu-content-min-width), var(--cui-popper-anchor-width, var(--trigger-width, 0px)));
     color: var(--cui-dropdownmenu-item-text-color);
     font-size: var(--cui-dropdownmenu-item-font-size);
     line-height: var(--cui-dropdownmenu-item-line-height);
@@ -35,13 +35,13 @@
     flex-direction: column;
     row-gap: var(--cui-space-0-5);
     outline: none;
-    transform-origin: var(--cui-popper-content-transform-origin);
+    transform-origin: var(--cui-popper-content-transform-origin, var(--trigger-anchor-point));
     animation: cui-motion-pop-out var(--cui-motion-duration-fast) var(--cui-motion-ease-out) forwards;
   }
-  .cui-dropdownmenu-content[data-expanded] {
+  .cui-dropdownmenu-content:is([data-expanded], :where([data-rac]):not([data-exiting])) {
     animation: cui-motion-pop-in var(--cui-motion-duration-normal) var(--cui-motion-ease-out);
   }
-  .cui-dropdownmenu-content[data-motion=none], .cui-dropdownmenu-content[data-motion=none][data-expanded] {
+  .cui-dropdownmenu-content[data-motion=none], .cui-dropdownmenu-content[data-motion=none]:is([data-expanded], :where([data-rac]):not([data-exiting])) {
     animation: none;
   }
   .cui-dropdownmenu-submenu-content {
@@ -84,7 +84,7 @@
     outline: none;
   }
   .cui-dropdownmenu-item {
-    &[data-highlighted] {
+    &:is([data-highlighted], :where([data-rac])[data-focused]) {
       box-shadow: none;
       outline: none;
       background-color: var(--cui-dropdownmenu-item-hover-background);
@@ -112,7 +112,7 @@
       color: var(--cui-dropdownmenu-item-hover-text-color);
     }
 
-    &[data-highlighted] .cui-dropdownmenu-right-slot {
+    &:is([data-highlighted], :where([data-rac])[data-focused]) .cui-dropdownmenu-right-slot {
       color: var(--cui-dropdownmenu-item-hover-text-color);
     }
   }
@@ -120,7 +120,7 @@
     .cui-dropdownmenu-content {
       animation-name: cui-motion-fade-out;
     }
-    .cui-dropdownmenu-content[data-expanded] {
+    .cui-dropdownmenu-content:is([data-expanded], :where([data-rac]):not([data-exiting])) {
       animation-name: cui-motion-fade-in;
     }
   }

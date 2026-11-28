@@ -21,13 +21,13 @@
     color: var(--cui-tooltip-color);
     background-color: var(--cui-tooltip-background-color);
     box-shadow: var(--cui-shadow-md);
-    transform-origin: var(--cui-popper-content-transform-origin);
+    transform-origin: var(--cui-popper-content-transform-origin, var(--trigger-anchor-point));
     animation: cui-motion-pop-out var(--cui-motion-duration-fast) var(--cui-motion-ease-out) forwards;
   }
-  .cui-tooltip-content[data-expanded] {
+  .cui-tooltip-content:is([data-expanded], :where([data-rac]):not([data-exiting])) {
     animation: cui-motion-pop-in var(--cui-motion-duration-normal) var(--cui-motion-ease-out);
   }
-  .cui-tooltip-content[data-motion=none], .cui-tooltip-content[data-motion=none][data-expanded] {
+  .cui-tooltip-content[data-motion=none], .cui-tooltip-content[data-motion=none]:is([data-expanded], :where([data-rac]):not([data-exiting])) {
     animation: none;
   }
   :where(.cui-tooltip-content) {
@@ -49,7 +49,7 @@
     .cui-tooltip-content {
       animation-name: cui-motion-fade-out;
     }
-    .cui-tooltip-content[data-expanded] {
+    .cui-tooltip-content:is([data-expanded], :where([data-rac]):not([data-exiting])) {
       animation-name: cui-motion-fade-in;
     }
   }

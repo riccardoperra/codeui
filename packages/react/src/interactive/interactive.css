@@ -1,0 +1,112 @@
+@layer cui.base, cui.components, cui.overrides;
+
+@layer cui.overrides {
+	:root[data-cui-input="keyboard"]
+		:is(
+			.cui-combobox-content,
+			.cui-dropdownmenu-content,
+			.cui-popover-content,
+			.cui-select-content,
+			.cui-tooltip-content
+		)[data-rac][data-exiting] {
+		animation: none;
+	}
+
+	/*
+	 * Overlays: React Aria puts a Dialog, Menu or ListBox inside the floating
+	 * surface, where the kit has one element. The inner element keeps the
+	 * surface's column and gap, so the parts lay out as in the kit.
+	 */
+	.cui-react-flow {
+		display: flex;
+		flex-direction: column;
+		row-gap: inherit;
+		min-width: 0;
+		outline: none;
+	}
+
+	.cui-react-flow > :is(.cui-popover-title, .cui-popover-description) {
+		margin: 0;
+	}
+
+	/*
+	 * Tabs: React Aria's SelectionIndicator moves between tabs with the
+	 * `translate` property. Keep the shared durations, keyboard and
+	 * reduced-motion rules, and add `translate` to the animated properties.
+	 */
+	.cui-tabs-indicator[data-rac] {
+		transition-property: translate, width, height;
+	}
+
+	/*
+	 * Dialog: React Aria's Modal sits between the positioner and the panel.
+	 * It takes no box, so the panel sizes against the positioner as in the kit.
+	 */
+	.cui-react-modal {
+		display: contents;
+	}
+
+	/*
+	 * React Aria waits for the overlay's own animations before it unmounts.
+	 * The scrim fades on `::before`, which it cannot see, so the positioner
+	 * holds for the same time while the panel plays its exit.
+	 */
+	.cui-dialog-positioner[data-rac][data-exiting]:not([data-motion="none"]) {
+		animation: cui-react-hold var(--cui-motion-duration-fast) linear;
+	}
+
+	/*
+	 * Sheet: React Aria moves the sheet by scrolling a container, so the
+	 * browser drives the swipe. The sheet sits in that flow instead of being
+	 * fixed to an edge, and the backdrop follows the scroll position.
+	 */
+	.cui-react-sheet-layer {
+		z-index: 40;
+	}
+
+	.cui-sheet-content[data-rac] {
+		align-self: stretch;
+		animation: none;
+	}
+
+	.cui-sheet-overlay[data-rac] {
+		background-color: transparent;
+		animation: none;
+		animation-duration: auto;
+	}
+
+	.cui-sheet-content[data-rac] .cui-sheet-handle {
+		touch-action: auto;
+	}
+
+	.cui-react-sheet-dialog {
+		display: flex;
+		flex: 1 1 auto;
+		flex-direction: column;
+		min-height: 0;
+		outline: none;
+	}
+
+	/*
+	 * Toast: React Aria wraps the title and description in one element that
+	 * carries the live region role. It takes the shared title column.
+	 */
+	.cui-react-toast-content {
+		display: flex;
+		flex-direction: column;
+		grid-column: 2;
+		grid-row: 1 / span 2;
+		align-self: center;
+		min-width: 0;
+	}
+
+	.cui-react-toast-content > * {
+		align-self: stretch;
+	}
+}
+
+@keyframes cui-react-hold {
+	to {
+		opacity: 1;
+	}
+}

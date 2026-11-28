@@ -32,13 +32,14 @@
     outline: none;
     max-height: var(--cui-select-content-max-height);
     border: var(--cui-border-width) solid var(--cui-select-content-border-color);
-    transform-origin: var(--cui-popper-content-transform-origin);
+    min-width: var(--trigger-width, 0px);
+    transform-origin: var(--cui-popper-content-transform-origin, var(--trigger-anchor-point));
     animation: cui-motion-pop-out var(--cui-motion-duration-fast) var(--cui-motion-ease-out) forwards;
   }
-  .cui-select-content[data-expanded] {
+  .cui-select-content:is([data-expanded], :where([data-rac]):not([data-exiting])) {
     animation: cui-motion-pop-in var(--cui-motion-duration-normal) var(--cui-motion-ease-out);
   }
-  .cui-select-content[data-motion=none], .cui-select-content[data-motion=none][data-expanded] {
+  .cui-select-content[data-motion=none], .cui-select-content[data-motion=none]:is([data-expanded], :where([data-rac]):not([data-exiting])) {
     animation: none;
   }
   .cui-select-listbox {
@@ -89,7 +90,7 @@
   .cui-select-item:first-child,.cui-select-item:last-child {
     margin: 0;
   }
-  .cui-select-item[data-highlighted] {
+  .cui-select-item:is([data-highlighted], :where([data-rac])[data-focused]) {
     box-shadow: none;
     outline: none;
     background-color: var(--cui-select-item-hover-background);
@@ -133,7 +134,7 @@
     .cui-select-content {
       animation-name: cui-motion-fade-out;
     }
-    .cui-select-content[data-expanded] {
+    .cui-select-content:is([data-expanded], :where([data-rac]):not([data-exiting])) {
       animation-name: cui-motion-fade-in;
     }
   }

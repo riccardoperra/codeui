@@ -1,0 +1,43 @@
+---
+title: React
+description: Inkstone components for React, built on React Aria Components.
+---
+
+`@codeui/react` brings the CodeUI component catalog to React. React Aria Components handles keyboard interaction, focus, and accessibility. The components use the same Inkstone tokens and styles as the Solid kit.
+
+## Install
+
+```bash
+pnpm add @codeui/react react react-dom
+```
+
+The package supports React 19. Import the stylesheet once in your app entry or root layout. Import components from `@codeui/react`.
+
+```tsx
+import '@codeui/react/style.css';
+import { Button } from '@codeui/react';
+
+export function ExportButton() {
+	return <Button>Export</Button>;
+}
+```
+
+## Compose components
+
+Use the React Aria props on interactive components. For example, use `onPress` for a button, `isDisabled` for a disabled control, and `defaultSelected` for an uncontrolled switch. Use the controlled props and their change callback when your application owns the state. Each component page shows a runnable example and links to the underlying behavior where applicable. Follow [Build a form](/docs/react/forms) to submit named fields with `FormData`.
+
+Intent UI is the reference for composition around React Aria Components. CodeUI uses the Inkstone stylesheet and ships the components as a package. [Intent UI installation](https://intentui.com/docs/getting-started/installation)
+
+## Theme and density
+
+Set `data-cui-theme="light"` or `data-cui-theme="dark"` on `<html>`. Without an explicit theme, the stylesheet follows the system preference. Keep the theme on `<html>` when using overlays so elements rendered through a portal inherit it.
+
+Set `data-cui-density="compact"`, `"comfortable"`, or `"touch"` on `<html>` or on the subtree you want to change. Set it on `<html>` if overlay content should inherit the same density. See the [Inkstone specification](/docs/design) and [theming guide](/docs/foundations/theming) for the token contract.
+
+## Server rendering
+
+Keep the stylesheet import in your root layout. Render the components in your React tree as usual. In a React Server Components app, put examples that use state, render functions, or event callbacks in a client component.
+
+## Component reference
+
+Choose a component from the React sidebar. The examples use React APIs that may differ from the corresponding Solid APIs.
