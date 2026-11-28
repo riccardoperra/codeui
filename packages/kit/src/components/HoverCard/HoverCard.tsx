@@ -1,14 +1,11 @@
 import "@codeui/styles/theme.css";
 import "@codeui/styles/hovercard.css";
 import { hoverCardParts, type HoverCardClasses } from "@codeui/styles/hovercard";
-import type { PolymorphicProps } from "@kobalte/core/polymorphic";
-import { callHandler, isPointInPolygon, type Polygon } from "@kobalte/utils";
-import {
-	Popover as KPopover,
-	usePopoverContext,
-	type PopoverAnchorProps as KPopoverAnchorProps,
-	type PopoverContentProps as KPopoverContentProps,
-	type PopoverRootOptions as KPopoverRootOptions,
+import { Polymorphic, type PolymorphicProps } from "@kobalte/core/polymorphic";
+import { callHandler, isPointInPolygon } from "@kobalte/utils";
+import type {
+	PopoverAnchorProps as KPopoverAnchorProps,
+	PopoverRootOptions as KPopoverRootOptions,
 } from "@kobalte/core/popover";
 import {
 	createContext,
@@ -21,12 +18,21 @@ import {
 	useContext,
 	type ParentProps,
 } from "solid-js";
-import { isServer, type JSX, type ValidComponent } from "@solidjs/web";
+import { isServer, Portal, type JSX, type ValidComponent } from "@solidjs/web";
 import { mergeClasses } from "../../utils/css";
-import { HydratablePortal } from "../../utils/hydratable-portal";
-import { LayerScope } from "../../utils/layer-scope";
-import { createPopMotion, motionRef, PopMotionContext } from "../../utils/pop-motion";
 import * as styles from "./HoverCard.css";
+import {
+	createHoverCardHost,
+	HoverCardSurface,
+	positioningKeys,
+	useHoverCardHost,
+	type HoverCardDismissHandlers,
+	type HoverCardEntry,
+	type HoverCardPositioning,
+	type HoverCardSurfaceOptions,
+	type Point,
+} from "./HoverCardHost";
+import { safeArea } from "./safe-area";
 
 export {
 	hoverCardParts,
@@ -35,28 +41,32 @@ export {
 	type HoverCardClasses,
 	type HoverCardStyles,
 } from "@codeui/styles/hovercard";
+export { HoverCardGroup, type HoverCardGroupProps } from "./HoverCardHost";
 
-export type HoverCardProps = Omit<
-	KPopoverRootOptions,
-	"modal" | "preventScroll" | "anchorRef" | "translations"
-> & {
-	/** Time in ms from when the pointer enters or the trigger gets focus until the card opens. Defaults to 500. */
-	openDelay?: number;
-	/** Time in ms from when the pointer leaves the trigger and the card until it closes. Defaults to 150. */
-	closeDelay?: number;
-	/** Close as soon as the pointer leaves, even on its way from the trigger to the card. */
-	ignoreSafeArea?: boolean;
-};
+export type HoverCardProps = HoverCardPositioning &
+	Pick<KPopoverRootOptions, "open" | "defaultOpen" | "onOpenChange" | "forceMount"> & {
+		/** Time in ms from when the pointer enters or the trigger gets focus until the card opens. Defaults to 500. */
+		openDelay?: number;
+		/** Time in ms from when the pointer leaves the trigger and the card until it closes. Defaults to 150. */
+		closeDelay?: number;
+		/** Close as soon as the pointer leaves, even on its way from the trigger to the card. */
+		ignoreSafeArea?: boolean;
+		/**
+		 * Share the card with the other hover cards of the page, or of the nearest `HoverCardGroup`.
+		 * Defaults to true. With false, or with `forceMount`, the card has a surface of its own.
+		 */
+		shared?: boolean;
+	};
 
 type HoverCardController = {
-	open: () => void;
+	open: (point?: Point) => void;
 	openNow: () => void;
 	isOpen: () => boolean;
 	close: () => void;
 	cancelOpen: () => void;
-	cancelClose: () => void;
 	setTrigger: (element: HTMLElement) => void;
-	setContent: (element: HTMLElement) => void;
+	setSurface: (options: HoverCardSurfaceOptions | undefined) => void;
+	slot: () => HTMLElement | undefined;
 	contains: (target: EventTarget | null) => boolean;
 };
 
@@ -64,45 +74,62 @@ const HoverCardContext = createContext<HoverCardController>();
 
 function useHoverCard() {
 	const context = useContext(HoverCardContext);
-	if (!context) throw new Error("[codeui]: HoverCard parts must be used within a `HoverCard`");
+	if (!context)
+		throw new Error("[codeui]: HoverCard parts must be used within a `HoverCard`");
 	return context;
+}
+
+function positioningFrom(props: HoverCardProps) {
+	const positioning = {} as HoverCardPositioning;
+	for (const key of positioningKeys)
+		Object.defineProperty(positioning, key, { enumerable: true, get: () => props[key] });
+	return positioning;
+}
+
+function inside(point: Point, rect: DOMRect) {
+	return (
+		point.x >= rect.left &&
+		point.x <= rect.right &&
+		point.y >= rect.top &&
+		point.y <= rect.bottom
+	);
 }
 
 /**
  * Kobalte alpha.5's HoverCard root adds its pointer listener inside an effect
  * callback, which Solid 2 rejects as soon as the card opens. The card is built
- * on Kobalte's Popover instead: Popper places it and its dismissable layer
- * handles Escape and outside presses. The hover and focus timers below follow
- * Kobalte's HoverCard. Return to `@kobalte/core/hover-card` once it registers
- * the listener from an effect cleanup.
+ * on Kobalte's Popover instead, one popover shared by many cards (see
+ * `HoverCardHost`): Popper places it and its dismissable layer handles Escape
+ * and outside presses. The hover and focus timers below follow Kobalte's
+ * HoverCard. Return to `@kobalte/core/hover-card` once it registers the
+ * listener from an effect cleanup.
  */
 export function HoverCard(props: ParentProps<HoverCardProps>) {
-	const others = omit(
-		props,
-		"open",
-		"defaultOpen",
-		"onOpenChange",
-		"forceMount",
-		"openDelay",
-		"closeDelay",
-		"ignoreSafeArea",
+	const ownSurface = untrack(() => props.shared === false || Boolean(props.forceMount));
+	const host = ownSurface
+		? createHoverCardHost({
+				get forceMount() {
+					return props.forceMount;
+				},
+			})
+		: useHoverCardHost();
+	const [requested, setRequested] = createSignal(
+		untrack(() => props.defaultOpen ?? false),
+		{
+			ownedWrite: true,
+		},
 	);
-	const [requested, setRequested] = createSignal(untrack(() => props.defaultOpen ?? false));
-	const isOpen = () => props.open ?? requested();
-	const motion = createPopMotion({
-		get open() {
-			return isOpen();
-		},
-		get forceMount() {
-			return props.forceMount;
-		},
-		onOpenChange(next: boolean) {
-			setRequested(next);
-			props.onOpenChange?.(next);
-		},
+	const wanted = () => props.open ?? requested();
+	let state = untrack(wanted);
+	const [trigger, setTrigger] = createSignal<HTMLElement | undefined>(undefined, {
+		ownedWrite: true,
 	});
-	const [trigger, setTrigger] = createSignal<HTMLElement>();
-	const [content, setContent] = createSignal<HTMLElement>();
+	const [surface, setSurface] = createSignal<HoverCardSurfaceOptions | undefined>(
+		undefined,
+		{
+			ownedWrite: true,
+		},
+	);
 	let openTimer: ReturnType<typeof setTimeout> | undefined;
 	let closeTimer: ReturnType<typeof setTimeout> | undefined;
 
@@ -117,20 +144,52 @@ export function HoverCard(props: ParentProps<HoverCardProps>) {
 	const setOpen = (next: boolean) => {
 		cancelOpen();
 		cancelClose();
-		if (next !== isOpen()) motion.onOpenChange(next);
+		if (next === state) return;
+		state = next;
+		setRequested(next);
+		props.onOpenChange?.(next);
+	};
+	const covers = (point: Point) => {
+		const anchor = trigger();
+		const card = untrack(host.surface);
+		if (!anchor || !card) return false;
+		if (inside(point, anchor.getBoundingClientRect())) return true;
+		if (inside(point, card.getBoundingClientRect())) return true;
+		return (
+			!props.ignoreSafeArea &&
+			isPointInPolygon([point.x, point.y], safeArea(anchor, card))
+		);
+	};
+	const entry: HoverCardEntry = {
+		trigger,
+		positioning: positioningFrom(props),
+		surface,
+		covers,
+		dismiss: () => setOpen(false),
+	};
+	const isOpen = () => host.showing(entry);
+	const show = () => {
+		cancelOpen();
+		cancelClose();
+		if (state) host.show(entry);
+		else setOpen(true);
 	};
 	const contains = (target: EventTarget | null) =>
 		target instanceof Node &&
-		Boolean(trigger()?.contains(target) || content()?.contains(target));
+		Boolean(
+			trigger()?.contains(target) || (isOpen() && host.surface()?.contains(target)),
+		);
 
 	const controller: HoverCardController = {
-		open() {
+		open(point) {
 			cancelClose();
 			if (isOpen() || openTimer) return;
-			openTimer = setTimeout(() => setOpen(true), props.openDelay ?? 500);
+			const delay = host.openDelay(entry, point) ?? props.openDelay ?? 500;
+			if (delay <= 0) return show();
+			openTimer = setTimeout(show, delay);
 		},
 		openNow() {
-			if (!isOpen()) setOpen(true);
+			if (!isOpen()) show();
 			else cancelClose();
 		},
 		isOpen,
@@ -140,14 +199,20 @@ export function HoverCard(props: ParentProps<HoverCardProps>) {
 			closeTimer = setTimeout(() => setOpen(false), props.closeDelay ?? 150);
 		},
 		cancelOpen,
-		cancelClose,
 		setTrigger,
-		setContent,
+		setSurface,
+		slot: () => host.slotFor(entry),
 		contains,
 	};
 
+	if (ownSurface) host.attach(entry);
+	createEffect(wanted, open => {
+		state = open;
+		if (open) host.show(entry);
+		else host.hide(entry);
+	});
 	createEffect(
-		() => (isOpen() ? { trigger: trigger(), content: content() } : undefined),
+		() => (isOpen() ? { trigger: trigger(), content: host.surface() } : undefined),
 		elements => {
 			if (isServer || !elements) return;
 			const onPointerMove = (event: PointerEvent) => {
@@ -170,33 +235,29 @@ export function HoverCard(props: ParentProps<HoverCardProps>) {
 	onCleanup(() => {
 		cancelOpen();
 		cancelClose();
+		host.release(entry);
 	});
 
 	return (
 		<HoverCardContext value={controller}>
-			<PopMotionContext value={motion.setTarget}>
-				<KPopover
-					{...others}
-					open={isOpen()}
-					onOpenChange={setOpen}
-					forceMount={motion.forceMount()}
-					placement={props.placement ?? "right-start"}
-					gutter={props.gutter ?? 6}
-				/>
-			</PopMotionContext>
+			{props.children}
+			<Show when={ownSurface}>
+				<HoverCardSurface host={host} />
+			</Show>
 		</HoverCardContext>
 	);
 }
 
-export type HoverCardTriggerProps<T extends ValidComponent = "a"> = KPopoverAnchorProps<T> & {
-	class?: string;
-	onPointerEnter?: JSX.EventHandlerUnion<HTMLElement, PointerEvent>;
-	onPointerLeave?: JSX.EventHandlerUnion<HTMLElement, PointerEvent>;
-	onFocus?: JSX.EventHandlerUnion<HTMLElement, FocusEvent>;
-	onBlur?: JSX.EventHandlerUnion<HTMLElement, FocusEvent>;
-	onPointerDown?: JSX.EventHandlerUnion<HTMLElement, PointerEvent>;
-	onClick?: JSX.EventHandlerUnion<HTMLElement, MouseEvent>;
-};
+export type HoverCardTriggerProps<T extends ValidComponent = "a"> =
+	KPopoverAnchorProps<T> & {
+		class?: string;
+		onPointerEnter?: JSX.EventHandlerUnion<HTMLElement, PointerEvent>;
+		onPointerLeave?: JSX.EventHandlerUnion<HTMLElement, PointerEvent>;
+		onFocus?: JSX.EventHandlerUnion<HTMLElement, FocusEvent>;
+		onBlur?: JSX.EventHandlerUnion<HTMLElement, FocusEvent>;
+		onPointerDown?: JSX.EventHandlerUnion<HTMLElement, PointerEvent>;
+		onClick?: JSX.EventHandlerUnion<HTMLElement, MouseEvent>;
+	};
 
 type TriggerEvent<E extends Event> = E & { currentTarget: HTMLElement; target: Element };
 
@@ -223,13 +284,16 @@ export function HoverCardTrigger<T extends ValidComponent = "a">(
 	const card = useHoverCard();
 	let pointerType = "";
 	return (
-		<KPopover.Anchor
+		<Polymorphic
 			as="a"
 			{...others}
+			data-expanded={card.isOpen() ? "" : undefined}
+			data-closed={card.isOpen() ? undefined : ""}
 			ref={[card.setTrigger, local.ref]}
 			onPointerEnter={(event: TriggerEvent<PointerEvent>) => {
 				callHandler(event, local.onPointerEnter);
-				if (event.pointerType !== "touch" && !event.defaultPrevented) card.open();
+				if (event.pointerType !== "touch" && !event.defaultPrevented)
+					card.open({ x: event.clientX, y: event.clientY });
 			}}
 			onPointerLeave={(event: TriggerEvent<PointerEvent>) => {
 				callHandler(event, local.onPointerLeave);
@@ -262,64 +326,74 @@ export function HoverCardTrigger<T extends ValidComponent = "a">(
 	);
 }
 
-export type HoverCardContentProps<T extends ValidComponent = "div"> = Omit<
-	KPopoverContentProps<T>,
-	"onOpenAutoFocus" | "onCloseAutoFocus"
-> & {
-	class?: string;
-	/** Node the card is portaled into. Defaults to `document.body`. */
-	mount?: globalThis.Element;
-	/** Classes for the parts this component renders, keyed by part name. */
-	classes?: Pick<HoverCardClasses, "content">;
-};
+export type HoverCardContentProps = Omit<JSX.HTMLAttributes<HTMLDivElement>, "style"> &
+	HoverCardDismissHandlers & {
+		class?: string;
+		style?: JSX.CSSProperties | string;
+		/** Node the card is portaled into. Defaults to `document.body`. */
+		mount?: globalThis.Element;
+		/** Classes for the parts this component renders, keyed by part name. */
+		classes?: Pick<HoverCardClasses, "content">;
+	};
 
-type PointerDownOutsideEvent = Parameters<
-	NonNullable<KPopoverContentProps["onPointerDownOutside"]>
->[0];
-
-/** The card. Portaled, placed beside the trigger (on the right unless there is no room), and never takes focus. */
-export function HoverCardContent<T extends ValidComponent = "div">(
-	props: PolymorphicProps<T, HoverCardContentProps<T>>,
-) {
-	const local = props as PolymorphicProps<"div", HoverCardContentProps>;
-	const others = omit(local, "class", "classes", "mount", "ref", "onPointerDownOutside");
-	const popover = usePopoverContext();
-	const card = useHoverCard();
-	return (
-		<Show when={popover.contentPresent()}>
-			<HydratablePortal mount={local.mount}>
-				<LayerScope>
-					<KPopover.Content
-						role={undefined}
-						{...others}
-						ref={[motionRef({ hover: true }), card.setContent, local.ref]}
-						onPointerDownOutside={(event: PointerDownOutsideEvent) => {
-							local.onPointerDownOutside?.(event);
-							// A press on the trigger is a click that keeps the card open.
-							if (card.contains(event.target)) event.preventDefault();
-						}}
-						data-cui={hoverCardParts.content}
-						class={mergeClasses(styles.content(), local.classes?.content, local.class)}
-					/>
-				</LayerScope>
-			</HydratablePortal>
-		</Show>
-	);
+function applyRef(ref: unknown, element: HTMLElement) {
+	if (Array.isArray(ref)) for (const each of ref) applyRef(each, element);
+	else if (typeof ref === "function") ref(element);
 }
 
-/** The region the pointer may cross from the trigger to the card without closing it, after Kobalte's HoverCard. */
-function safeArea(trigger: HTMLElement, content: HTMLElement): Polygon {
-	const a = trigger.getBoundingClientRect();
-	const f = content.getBoundingClientRect();
-	const centerX = a.left + a.width / 2;
-	const centerY = a.top + a.height / 2;
-	if (f.left >= a.right)
-		return [[centerX, a.top], [f.left, f.top], [f.right, f.top], [f.right, f.bottom], [f.left, f.bottom], [centerX, a.bottom]];
-	if (f.right <= a.left)
-		return [[centerX, a.top], [f.right, f.top], [f.left, f.top], [f.left, f.bottom], [f.right, f.bottom], [centerX, a.bottom]];
-	if (f.top >= a.bottom)
-		return [[a.left, centerY], [f.left, f.top], [f.left, f.bottom], [f.right, f.bottom], [f.right, f.top], [a.right, centerY]];
-	return [[a.left, centerY], [f.left, f.bottom], [f.left, f.top], [f.right, f.top], [f.right, f.bottom], [a.right, centerY]];
+/**
+ * The card's content. It renders into the surface its `HoverCard` shares, which is portaled,
+ * placed beside the trigger (on the right unless there is no room), and never takes focus.
+ * Its class, style, ref and dismiss handlers go on that surface while this card is the one
+ * shown. Other attributes and event handlers go on a `display: contents` element that wraps
+ * the children inside it.
+ */
+export function HoverCardContent(props: HoverCardContentProps) {
+	const card = useHoverCard();
+	const attributes = omit(
+		props,
+		"class",
+		"classes",
+		"style",
+		"mount",
+		"ref",
+		"children",
+		"onEscapeKeyDown",
+		"onPointerDownOutside",
+		"onFocusOutside",
+		"onInteractOutside",
+	);
+	card.setSurface({
+		get class() {
+			return props.class;
+		},
+		get classes() {
+			return props.classes;
+		},
+		get style() {
+			return props.style;
+		},
+		get mount() {
+			return props.mount;
+		},
+		ref: element => applyRef(props.ref, element),
+		onEscapeKeyDown: event => props.onEscapeKeyDown?.(event),
+		onPointerDownOutside: event => props.onPointerDownOutside?.(event),
+		onFocusOutside: event => props.onFocusOutside?.(event),
+		onInteractOutside: event => props.onInteractOutside?.(event),
+	});
+	onCleanup(() => card.setSurface(undefined));
+	return (
+		<Show when={card.slot()}>
+			{slot => (
+				<Portal mount={slot()}>
+					<div {...attributes} style={{ display: "contents" }}>
+						{props.children}
+					</div>
+				</Portal>
+			)}
+		</Show>
+	);
 }
 
 export type HoverCardListProps = JSX.HTMLAttributes<HTMLUListElement> & {

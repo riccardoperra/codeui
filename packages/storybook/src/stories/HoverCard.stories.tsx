@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from "storybook-solidjs-vite";
 import {
 	HoverCard,
 	HoverCardContent,
+	HoverCardGroup,
 	HoverCardItem,
 	HoverCardList,
 	HoverCardTrigger,
@@ -176,6 +177,69 @@ export const EdgePlacement: Story = {
 					<ThreadCard />
 				</HoverCardContent>
 			</HoverCard>
+		</div>
+	),
+};
+
+const threads = [
+	{ id: "flaky", title: "Fix flaky hydration test", meta: "Codex · 2 hours ago · 3 subagents" },
+	{ id: "popover", title: "Port Popover to Solid 2", meta: "Claude · yesterday" },
+	{
+		id: "docs",
+		title: "Update the docs demos",
+		meta: "Codex · 3 days ago",
+		body: "Checks every story in dark and light themes at three viewport sizes, then opens a pull request for review.",
+	},
+	{ id: "tokens", title: "Rename motion tokens", meta: "Claude · last week" },
+];
+
+const ThreadRows = () => (
+	<div style={{ display: "flex", "flex-direction": "column", gap: "4px", width: "240px" }}>
+		<For each={threads}>
+			{thread => (
+				<HoverCard>
+					<HoverCardTrigger
+						href={`#${thread.id}`}
+						style={{ color: "var(--cui-text-default)", padding: "6px 8px" }}
+					>
+						{thread.title}
+					</HoverCardTrigger>
+					<HoverCardContent>
+						<strong style={{ color: "var(--cui-text-default)", "font-weight": 600 }}>
+							{thread.title}
+						</strong>
+						<span style={{ color: "var(--cui-text-muted)", "font-size": "12px" }}>
+							{thread.meta}
+						</span>
+						{thread.body && <span>{thread.body}</span>}
+					</HoverCardContent>
+				</HoverCard>
+			)}
+		</For>
+	</div>
+);
+
+export const SharedCard: Story = {
+	name: "Moving between rows",
+	args: {},
+	render: () => (
+		<div style={{ padding: "48px" }}>
+			<ThreadRows />
+		</div>
+	),
+};
+
+export const Groups: Story = {
+	name: "Two groups",
+	args: {},
+	render: () => (
+		<div style={{ display: "flex", gap: "320px", padding: "48px" }}>
+			<HoverCardGroup>
+				<ThreadRows />
+			</HoverCardGroup>
+			<HoverCardGroup>
+				<ThreadRows />
+			</HoverCardGroup>
 		</div>
 	),
 };

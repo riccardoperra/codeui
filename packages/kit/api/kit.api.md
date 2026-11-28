@@ -4063,26 +4063,34 @@ export type FieldClasses = Partial<Record<"root" | "input" | "label" | "descript
 
 ```ts
 import { type HoverCardClasses } from "@codeui/styles/hovercard";
-import type { PolymorphicProps } from "@kobalte/core/polymorphic";
-import { type PopoverAnchorProps as KPopoverAnchorProps, type PopoverContentProps as KPopoverContentProps, type PopoverRootOptions as KPopoverRootOptions } from "@kobalte/core/popover";
+import { type PolymorphicProps } from "@kobalte/core/polymorphic";
+import type { PopoverAnchorProps as KPopoverAnchorProps, PopoverRootOptions as KPopoverRootOptions } from "@kobalte/core/popover";
 import { type ParentProps } from "solid-js";
 import { type JSX, type ValidComponent } from "@solidjs/web";
+import { type HoverCardDismissHandlers, type HoverCardPositioning } from "./HoverCardHost.js";
 export { hoverCardParts, hoverCardStyles, type HoverCardPart, type HoverCardClasses, type HoverCardStyles, } from "@codeui/styles/hovercard";
-export type HoverCardProps = Omit<KPopoverRootOptions, "modal" | "preventScroll" | "anchorRef" | "translations"> & {
+export { HoverCardGroup, type HoverCardGroupProps } from "./HoverCardHost.js";
+export type HoverCardProps = HoverCardPositioning & Pick<KPopoverRootOptions, "open" | "defaultOpen" | "onOpenChange" | "forceMount"> & {
     /** Time in ms from when the pointer enters or the trigger gets focus until the card opens. Defaults to 500. */
     openDelay?: number;
     /** Time in ms from when the pointer leaves the trigger and the card until it closes. Defaults to 150. */
     closeDelay?: number;
     /** Close as soon as the pointer leaves, even on its way from the trigger to the card. */
     ignoreSafeArea?: boolean;
+    /**
+     * Share the card with the other hover cards of the page, or of the nearest `HoverCardGroup`.
+     * Defaults to true. With false, or with `forceMount`, the card has a surface of its own.
+     */
+    shared?: boolean;
 };
 /**
  * Kobalte alpha.5's HoverCard root adds its pointer listener inside an effect
  * callback, which Solid 2 rejects as soon as the card opens. The card is built
- * on Kobalte's Popover instead: Popper places it and its dismissable layer
- * handles Escape and outside presses. The hover and focus timers below follow
- * Kobalte's HoverCard. Return to `@kobalte/core/hover-card` once it registers
- * the listener from an effect cleanup.
+ * on Kobalte's Popover instead, one popover shared by many cards (see
+ * `HoverCardHost`): Popper places it and its dismissable layer handles Escape
+ * and outside presses. The hover and focus timers below follow Kobalte's
+ * HoverCard. Return to `@kobalte/core/hover-card` once it registers the
+ * listener from an effect cleanup.
  */
 export declare function HoverCard(props: ParentProps<HoverCardProps>): JSX.Element;
 export type HoverCardTriggerProps<T extends ValidComponent = "a"> = KPopoverAnchorProps<T> & {
@@ -4100,15 +4108,22 @@ export type HoverCardTriggerProps<T extends ValidComponent = "a"> = KPopoverAnch
  * first tap on a closed card opens it instead of following the link; the next tap follows it.
  */
 export declare function HoverCardTrigger<T extends ValidComponent = "a">(props: PolymorphicProps<T, HoverCardTriggerProps<T>>): JSX.Element;
-export type HoverCardContentProps<T extends ValidComponent = "div"> = Omit<KPopoverContentProps<T>, "onOpenAutoFocus" | "onCloseAutoFocus"> & {
+export type HoverCardContentProps = Omit<JSX.HTMLAttributes<HTMLDivElement>, "style"> & HoverCardDismissHandlers & {
     class?: string;
+    style?: JSX.CSSProperties | string;
     /** Node the card is portaled into. Defaults to `document.body`. */
     mount?: globalThis.Element;
     /** Classes for the parts this component renders, keyed by part name. */
     classes?: Pick<HoverCardClasses, "content">;
 };
-/** The card. Portaled, placed beside the trigger (on the right unless there is no room), and never takes focus. */
-export declare function HoverCardContent<T extends ValidComponent = "div">(props: PolymorphicProps<T, HoverCardContentProps<T>>): JSX.Element;
+/**
+ * The card's content. It renders into the surface its `HoverCard` shares, which is portaled,
+ * placed beside the trigger (on the right unless there is no room), and never takes focus.
+ * Its class, style, ref and dismiss handlers go on that surface while this card is the one
+ * shown. Other attributes and event handlers go on a `display: contents` element that wraps
+ * the children inside it.
+ */
+export declare function HoverCardContent(props: HoverCardContentProps): JSX.Element;
 export type HoverCardListProps = JSX.HTMLAttributes<HTMLUListElement> & {
     /** Names the list for assistive technology, for example "Subtasks". */
     "aria-label"?: string;
@@ -4134,6 +4149,106 @@ export type HoverCardItemProps = Omit<JSX.HTMLAttributes<HTMLLIElement>, "childr
 };
 /** One line in a `HoverCardList`: state icon, identifier, then the title truncated. */
 export declare function HoverCardItem(props: HoverCardItemProps): JSX.Element;
+```
+
+## components/HoverCard/HoverCardHost.d.ts
+
+```ts
+import { type HoverCardClasses } from "@codeui/styles/hovercard";
+import { type PopoverContentProps as KPopoverContentProps, type PopoverRootOptions as KPopoverRootOptions } from "@kobalte/core/popover";
+import { type Accessor, type ParentProps } from "solid-js";
+import { type JSX } from "@solidjs/web";
+export type HoverCardPositioning = Pick<KPopoverRootOptions, "placement" | "gutter" | "shift" | "flip" | "slide" | "overlap" | "sameWidth" | "fitViewport" | "hideWhenDetached" | "detachedPadding" | "arrowPadding" | "overflowPadding" | "getAnchorRect">;
+export type HoverCardDismissHandlers = Pick<KPopoverContentProps, "onEscapeKeyDown" | "onPointerDownOutside" | "onFocusOutside" | "onInteractOutside">;
+/** What the active card asks of the shared surface: its classes, attributes and handlers. */
+export type HoverCardSurfaceOptions = HoverCardDismissHandlers & {
+    class?: string;
+    classes?: Pick<HoverCardClasses, "content">;
+    style?: JSX.CSSProperties | string;
+    mount?: globalThis.Element;
+    ref: (element: HTMLElement) => void;
+};
+export type Point = {
+    x: number;
+    y: number;
+};
+/** One `HoverCard` as the host sees it. */
+export type HoverCardEntry = {
+    trigger: Accessor<HTMLElement | undefined>;
+    positioning: HoverCardPositioning;
+    surface: Accessor<HoverCardSurfaceOptions | undefined>;
+    /** True when the point is on the trigger, on the card, or on the way between them. */
+    covers: (point: Point) => boolean;
+    /** The host showed another card or closed this one: update the card's own state. */
+    dismiss: () => void;
+};
+export declare const positioningKeys: (keyof HoverCardPositioning)[];
+type HostOptions = {
+    skipDelayDuration?: number;
+    forceMount?: boolean;
+    /** Renders the surface the first time a card opens. Hosts rendered in the tree leave it out. */
+    mount?: (host: HoverCardHost) => void;
+};
+type Size = {
+    width: number;
+    height: number;
+};
+/**
+ * How the surface moves to the next card. A keyboard move swaps in place (Inkstone: nothing
+ * from the keyboard animates). Reduced motion keeps only the content fade.
+ */
+type Morph = {
+    kind: "move";
+    from: Size;
+} | {
+    kind: "fade";
+};
+/**
+ * One floating surface that every card of a group, or of the page, shares.
+ * Opening a card while another is open, or shortly after it closed, moves the
+ * surface to the new trigger and swaps the content instead of closing one card
+ * and opening another.
+ */
+export declare function createHoverCardHost(options?: HostOptions): {
+    current: import("solid-js").SourceAccessor<HoverCardEntry | undefined>;
+    open: import("solid-js").SourceAccessor<boolean>;
+    surface: import("solid-js").SourceAccessor<HTMLElement | undefined>;
+    slot: import("solid-js").SourceAccessor<HTMLElement | undefined>;
+    setSlot: import("solid-js").Setter<HTMLElement | undefined>;
+    forceMount: () => boolean;
+    recentlyClosed: () => boolean;
+    setSurface(next: HTMLElement | undefined): void;
+    showing: (entry: HoverCardEntry) => boolean;
+    slotFor: (entry: HoverCardEntry) => HTMLElement | undefined;
+    /** 0 to open at once, or undefined to wait for the card's own `openDelay`. */
+    openDelay(entry: HoverCardEntry, point?: Point): number | undefined;
+    /** Makes the entry the one whose content the surface holds, without opening it. */
+    attach(entry: HoverCardEntry): void;
+    show(entry: HoverCardEntry): void;
+    hide(entry: HoverCardEntry): void;
+    /** Escape, a press outside, or a focus outside closed the surface. */
+    dismiss(): void;
+    /** The card unmounted. Its content leaves with it, so the surface closes without an exit. */
+    release(entry: HoverCardEntry): void;
+    takeMorph(): Morph | undefined;
+};
+export type HoverCardHost = ReturnType<typeof createHoverCardHost>;
+/** The host of the nearest `HoverCardGroup`, or the one the whole page shares. */
+export declare function useHoverCardHost(): HoverCardHost;
+export type HoverCardGroupProps = ParentProps<{
+    /** Time in ms after a card closes during which the next card in the group opens at once. Defaults to 400. */
+    skipDelayDuration?: number;
+}>;
+/**
+ * Gives the hover cards inside it their own surface. Moving between their triggers moves
+ * that card, and they never take over the surface of the cards outside the group.
+ */
+export declare function HoverCardGroup(props: HoverCardGroupProps): JSX.Element;
+/** The popover the host places next to the active trigger. */
+export declare function HoverCardSurface(props: {
+    host: HoverCardHost;
+}): JSX.Element;
+export {};
 ```
 
 ## components/IconButton/IconButton.d.ts

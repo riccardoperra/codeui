@@ -276,7 +276,9 @@
 			"HoverCardList": "components/hover-card#hovercardlist",
 			"HoverCardListProps": "components/hover-card#hovercardlist",
 			"TooltipDefaults": "components/tooltip#defaults-for-a-whole-app",
-			"TooltipProvider": "components/tooltip#defaults-for-a-whole-app"
+			"TooltipProvider": "components/tooltip#defaults-for-a-whole-app",
+			"HoverCardGroup": "components/hover-card#hovercardgroup",
+			"HoverCardGroupProps": "components/hover-card#hovercardgroup"
 		},
 		"@codeui/kit/accordion/parts": {
 			"AccordionClasses": "components/accordion#anatomy",
@@ -1260,7 +1262,9 @@
 			"HoverCardItem": "components/hover-card#hovercarditem",
 			"HoverCardItemProps": "components/hover-card#hovercarditem",
 			"HoverCardList": "components/hover-card#hovercardlist",
-			"HoverCardListProps": "components/hover-card#hovercardlist"
+			"HoverCardListProps": "components/hover-card#hovercardlist",
+			"HoverCardGroup": "components/hover-card#hovercardgroup",
+			"HoverCardGroupProps": "components/hover-card#hovercardgroup"
 		},
 		"@codeui/kit/resizable": {
 			"Resizable": "components/resizable#resizable",
