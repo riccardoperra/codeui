@@ -6278,8 +6278,14 @@ export declare function Action(props: ActionProps): JSX.Element;
 ```ts
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import { type TooltipContentProps, type TooltipRootProps, type TooltipTriggerProps } from "@kobalte/core/tooltip";
+import { type ParentProps } from "solid-js";
 import { type JSX, type ValidComponent } from "@solidjs/web";
 import * as styles from "../components/Tooltip/Tooltip.css.js";
+export type TooltipDefaults = Pick<TooltipRootProps, "openDelay" | "closeDelay" | "skipDelayDuration" | "gutter" | "shift"> & NonNullable<styles.TooltipVariants>;
+/**
+ * Sets the defaults of every tooltip below it. A prop on a tooltip still wins.
+ */
+export declare function Provider(props: ParentProps<TooltipDefaults>): JSX.Element;
 export type RootProps = TooltipRootProps;
 export declare function Root(props: RootProps): JSX.Element;
 export type TriggerProps<T extends ValidComponent = "div"> = TooltipTriggerProps<T>;
@@ -6562,6 +6568,7 @@ export type { CreateToasterOptions, ToastAction, ToastContent, ToastContext, Toa
 
 ```ts
 export { Tooltip, type TooltipProps } from "../components/Tooltip/Tooltip.js";
+export { Provider as TooltipProvider, type TooltipDefaults } from "../parts/tooltip.js";
 ```
 
 ## ready/virtualized-listbox.d.ts
