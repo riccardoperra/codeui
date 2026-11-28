@@ -23,7 +23,10 @@ import { mergeClasses } from "../../utils/css";
 import * as styles from "./HoverCard.css";
 import {
 	createHoverCardHost,
+	HoverCardHostProvider,
 	HoverCardSurface,
+	withinPortal,
+	type HoverCardHost,
 	positioningKeys,
 	useHoverCardHost,
 	type HoverCardDismissHandlers,
@@ -68,6 +71,8 @@ type HoverCardController = {
 	setSurface: (options: HoverCardSurfaceOptions | undefined) => void;
 	slot: () => HTMLElement | undefined;
 	contains: (target: EventTarget | null) => boolean;
+	/** The surface of the hover cards opened from inside this card's content. */
+	nested: HoverCardHost;
 };
 
 const HoverCardContext = createContext<HoverCardController>();
@@ -174,10 +179,11 @@ export function HoverCard(props: ParentProps<HoverCardProps>) {
 		if (state) host.show(entry);
 		else setOpen(true);
 	};
+	const nested = createHoverCardHost();
 	const contains = (target: EventTarget | null) =>
 		target instanceof Node &&
 		Boolean(
-			trigger()?.contains(target) || (isOpen() && host.surface()?.contains(target)),
+			trigger()?.contains(target) || (isOpen() && withinPortal(target, host.surface())),
 		);
 
 	const controller: HoverCardController = {
@@ -203,6 +209,7 @@ export function HoverCard(props: ParentProps<HoverCardProps>) {
 		setSurface,
 		slot: () => host.slotFor(entry),
 		contains,
+		nested,
 	};
 
 	if (ownSurface) host.attach(entry);
@@ -217,7 +224,8 @@ export function HoverCard(props: ParentProps<HoverCardProps>) {
 			if (isServer || !elements) return;
 			const onPointerMove = (event: PointerEvent) => {
 				if (event.pointerType === "touch") return;
-				if (contains(event.target)) return cancelClose();
+				// A card opened from inside this one keeps it open until that card closes.
+				if (contains(event.target) || nested.open()) return cancelClose();
 				const { trigger, content } = elements;
 				if (
 					!props.ignoreSafeArea &&
@@ -346,7 +354,8 @@ function applyRef(ref: unknown, element: HTMLElement) {
  * placed beside the trigger (on the right unless there is no room), and never takes focus.
  * Its class, style, ref and dismiss handlers go on that surface while this card is the one
  * shown. Other attributes and event handlers go on a `display: contents` element that wraps
- * the children inside it.
+ * the children inside it. Hover cards inside the content get a surface of their own, so the
+ * card stays open beside them.
  */
 export function HoverCardContent(props: HoverCardContentProps) {
 	const card = useHoverCard();
@@ -388,7 +397,9 @@ export function HoverCardContent(props: HoverCardContentProps) {
 			{slot => (
 				<Portal mount={slot()}>
 					<div {...attributes} style={{ display: "contents" }}>
-						{props.children}
+						<HoverCardHostProvider host={card.nested}>
+							{props.children}
+						</HoverCardHostProvider>
 					</div>
 				</Portal>
 			)}

@@ -64,7 +64,11 @@ All the hover cards of a page share one card. When the pointer or keyboard focus
 - When focus moves from the keyboard, the card swaps its content in place, with no motion.
 - With reduced motion, the card stays in place and only the new content fades in.
 
-Because the card is shared, only one hover card is open at a time. A hover card inside another hover card, or one that must stay open next to another, needs its own surface: put it in a `HoverCardGroup` or pass `shared={false}`.
+Because the card is shared, only one hover card of the page is open at a time. A card that must stay open next to another needs its own surface: put it in a `HoverCardGroup` or pass `shared={false}`.
+
+### Nested cards
+
+A hover card inside the content of another one gets a surface of its own, without a group. Both cards stay open: the outer card waits while the pointer is on the inner card and until the inner card closes. A press on the inner card does not close the outer one. Escape closes the inner card first.
 
 ### Groups
 
@@ -120,6 +124,8 @@ Inherited from Kobalte's [popover](https://kobalte.dev/docs/core/components/popo
 
 Renders an `a`. Give it an `href`, or render another focusable element with `as`, so keyboard users can reach it. An `a` without `href` cannot take focus.
 
+A trigger that renders an `a`, alone or through `as={Link}`, has a dotted underline in the hint tone, so it reads as something to hover inside running text. The underline takes the text colour on hover and while the card is open. A trigger rendered as a button or a row keeps its own look.
+
 ### `HoverCardContent`
 
 Renders its children into the shared card, which is portaled to `document.body` and placed next to the trigger. While this card is the one shown, its `class`, `classes`, `style`, `ref`, `mount` and dismiss handlers go on the card. Any other attribute or event handler, such as `id`, `aria-hidden` or `onPointerEnter`, goes on a `display: contents` element around the children.
@@ -172,6 +178,7 @@ The trigger renders on the server. The card renders on the client, and only whil
 
 | Variable | Default | Used for |
 | --- | --- | --- |
+| `--cui-hovercard-trigger-decoration-color` | `--cui-text-hint` | Dotted underline of an `a` trigger, before hover |
 | `--cui-hovercard-content-background` | `--cui-surface-dialog` | Fill |
 | `--cui-hovercard-content-box-shadow` | `--cui-shadow-dialog` | Shadow, and the 1px ring in dark mode |
 | `--cui-hovercard-content-radius` | `--cui-radius-card` | Radius (16px) |

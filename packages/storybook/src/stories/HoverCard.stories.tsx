@@ -182,7 +182,11 @@ export const EdgePlacement: Story = {
 };
 
 const threads = [
-	{ id: "flaky", title: "Fix flaky hydration test", meta: "Codex · 2 hours ago · 3 subagents" },
+	{
+		id: "flaky",
+		title: "Fix flaky hydration test",
+		meta: "Codex · 2 hours ago · 3 subagents",
+	},
 	{ id: "popover", title: "Port Popover to Solid 2", meta: "Claude · yesterday" },
 	{
 		id: "docs",
@@ -194,7 +198,9 @@ const threads = [
 ];
 
 const ThreadRows = () => (
-	<div style={{ display: "flex", "flex-direction": "column", gap: "4px", width: "240px" }}>
+	<div
+		style={{ display: "flex", "flex-direction": "column", gap: "4px", width: "240px" }}
+	>
 		<For each={threads}>
 			{thread => (
 				<HoverCard>
@@ -240,6 +246,40 @@ export const Groups: Story = {
 			<HoverCardGroup>
 				<ThreadRows />
 			</HoverCardGroup>
+		</div>
+	),
+};
+
+export const Nested: Story = {
+	name: "Card inside a card",
+	args: {},
+	render: () => (
+		<div style={{ padding: "48px" }}>
+			<HoverCard>
+				<HoverCardTrigger href="#thread" style={{ color: "var(--cui-text-default)" }}>
+					Fix flaky hydration test
+				</HoverCardTrigger>
+				<HoverCardContent>
+					<strong style={{ color: "var(--cui-text-default)", "font-weight": 600 }}>
+						Fix flaky hydration test
+					</strong>
+					<span>
+						Opened by{" "}
+						<HoverCard>
+							<HoverCardTrigger href="#codex">Codex</HoverCardTrigger>
+							<HoverCardContent>
+								<strong style={{ color: "var(--cui-text-default)", "font-weight": 600 }}>
+									Codex
+								</strong>
+								<span style={{ color: "var(--cui-text-muted)", "font-size": "12px" }}>
+									gpt-5.5 · 3 threads running
+								</span>
+							</HoverCardContent>
+						</HoverCard>{" "}
+						2 hours ago.
+					</span>
+				</HoverCardContent>
+			</HoverCard>
 		</div>
 	),
 };

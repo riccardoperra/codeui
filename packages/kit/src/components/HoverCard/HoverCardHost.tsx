@@ -275,12 +275,38 @@ export function HoverCardGroup(props: HoverCardGroupProps) {
 			return props.skipDelayDuration;
 		},
 	});
+	return <HoverCardHostProvider host={host}>{props.children}</HoverCardHostProvider>;
+}
+
+/** Makes `host` the surface of the hover cards below it, and renders that surface. */
+export function HoverCardHostProvider(props: ParentProps<{ host: HoverCardHost }>) {
+	const host = untrack(() => props.host);
 	return (
 		<HostContext value={host}>
 			{props.children}
 			<HoverCardSurface host={host} />
 		</HostContext>
 	);
+}
+
+/**
+ * True when `target` is inside `element`, following portals back to where they were
+ * declared. A hover card opened from inside another card is portaled to the body, but
+ * Solid links its nodes to their declaration inside the outer card.
+ */
+export function withinPortal(target: EventTarget | null, element: Node | undefined) {
+	if (!element) return false;
+	for (let node = target; node instanceof Node; ) {
+		if (node === element) return true;
+		const host = "_$host" in node ? node._$host : undefined;
+		node =
+			host instanceof Node
+				? host
+				: node instanceof ShadowRoot
+					? node.host
+					: node.parentNode;
+	}
+	return false;
 }
 
 function positioningOf(entry: Accessor<HoverCardEntry | undefined>) {
@@ -355,7 +381,9 @@ function SurfaceContent(props: { host: HoverCardHost }) {
 						onPointerDownOutside={(event: PointerDownOutsideEvent) => {
 							options()?.onPointerDownOutside?.(event);
 							// A press on a trigger is a click that keeps the card open or moves it there.
-							if (onTrigger(event.target)) event.preventDefault();
+							// A press on a card opened from inside this one is inside it.
+							if (onTrigger(event.target) || withinPortal(event.target, host.surface()))
+								event.preventDefault();
 						}}
 						onFocusOutside={(
 							event: Parameters<NonNullable<KPopoverContentProps["onFocusOutside"]>>[0],
@@ -363,7 +391,8 @@ function SurfaceContent(props: { host: HoverCardHost }) {
 							options()?.onFocusOutside?.(event);
 							// Focus on another trigger moves the card there. Leaving the previous
 							// trigger closes it through its blur handler and closeDelay instead.
-							if (onTrigger(event.target)) event.preventDefault();
+							if (onTrigger(event.target) || withinPortal(event.target, host.surface()))
+								event.preventDefault();
 						}}
 						onInteractOutside={(
 							event: Parameters<

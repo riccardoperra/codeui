@@ -1,5 +1,6 @@
 ---
 "@codeui/kit": minor
+"@codeui/styles": minor
 ---
 
 Hover cards share one card and move it between triggers.
@@ -9,3 +10,5 @@ Hover cards share one card and move it between triggers.
 - `HoverCardContent` is no longer polymorphic. Its `class`, `classes`, `style`, `ref`, `mount` and dismiss handlers go on the card; other attributes and event handlers go on a `display: contents` element around the children.
 - `HoverCard` drops the Kobalte root options it never used (`id`). The trigger renders without a Kobalte popover anchor and still sets `data-expanded` and `data-closed`.
 - Overlays opened by hover tell pointer from keyboard more reliably: the input tracker also records `pointerover`, which the browser fires before the `pointermove` that crosses into an element.
+- A hover card opened from inside another card's content gets a surface of its own. The outer card stays open while the pointer is on the inner card and until it closes, and a press on the inner card does not close it.
+- An `a` trigger (alone or `as={Link}`) has a dotted underline in the hint tone (`--cui-hovercard-trigger-decoration-color`) that takes the text colour on hover and while the card is open.

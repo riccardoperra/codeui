@@ -15,7 +15,7 @@ The demo renders the open card in normal flow, under its trigger. On a page, the
 
 | Part | Element | Class | `data-cui` |
 | --- | --- | --- | --- |
-| Trigger | `a` with an `href` | none | `hovercard-trigger` |
+| Trigger | `a` with an `href`. It gets a dotted underline in the hint tone | none | `hovercard-trigger` |
 | Content | `div` | `cui-hovercard-content` | `hovercard-content` |
 | List | `ul` with an `aria-label` | `cui-hovercard-list` | `hovercard-list` |
 | Entry | `li` | `cui-hovercard-item` | `hovercard-item` |
@@ -25,6 +25,7 @@ The demo renders the open card in normal flow, under its trigger. On a page, the
 
 | Attribute | Values | Default |
 | --- | --- | --- |
+| `data-expanded` on the trigger | Presence, while the card is open. The dotted underline takes the text colour | Off |
 | `data-expanded` on the content | Presence | Off |
 | `data-motion` on the content | `none` | None |
 

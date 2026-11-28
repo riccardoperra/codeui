@@ -4121,7 +4121,8 @@ export type HoverCardContentProps = Omit<JSX.HTMLAttributes<HTMLDivElement>, "st
  * placed beside the trigger (on the right unless there is no room), and never takes focus.
  * Its class, style, ref and dismiss handlers go on that surface while this card is the one
  * shown. Other attributes and event handlers go on a `display: contents` element that wraps
- * the children inside it.
+ * the children inside it. Hover cards inside the content get a surface of their own, so the
+ * card stays open beside them.
  */
 export declare function HoverCardContent(props: HoverCardContentProps): JSX.Element;
 export type HoverCardListProps = JSX.HTMLAttributes<HTMLUListElement> & {
@@ -4244,6 +4245,16 @@ export type HoverCardGroupProps = ParentProps<{
  * that card, and they never take over the surface of the cards outside the group.
  */
 export declare function HoverCardGroup(props: HoverCardGroupProps): JSX.Element;
+/** Makes `host` the surface of the hover cards below it, and renders that surface. */
+export declare function HoverCardHostProvider(props: ParentProps<{
+    host: HoverCardHost;
+}>): JSX.Element;
+/**
+ * True when `target` is inside `element`, following portals back to where they were
+ * declared. A hover card opened from inside another card is portaled to the body, but
+ * Solid links its nodes to their declaration inside the outer card.
+ */
+export declare function withinPortal(target: EventTarget | null, element: Node | undefined): boolean;
 /** The popover the host places next to the active trigger. */
 export declare function HoverCardSurface(props: {
     host: HoverCardHost;

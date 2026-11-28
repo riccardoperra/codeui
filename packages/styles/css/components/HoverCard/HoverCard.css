@@ -37,6 +37,23 @@
   .cui-hovercard-content[data-motion=none], .cui-hovercard-content[data-motion=none][data-expanded] {
     animation: none;
   }
+  :where(a[data-cui="hovercard-trigger"]) {
+    --cui-hovercard-trigger-decoration-color: var(--cui-text-hint);
+    text-decoration-line: underline;
+    text-decoration-style: dotted;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+    text-decoration-color: var(--cui-hovercard-trigger-decoration-color);
+    transition: text-decoration-color var(--cui-motion-duration-fast) ease;
+  }
+  :where(a[data-cui="hovercard-trigger"])[data-expanded] {
+    text-decoration-color: currentColor;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    :where(a[data-cui="hovercard-trigger"]):hover {
+      text-decoration-color: currentColor;
+    }
+  }
   .cui-hovercard-list {
     list-style: none;
     margin: 0 calc(var(--cui-space-2) * -1);

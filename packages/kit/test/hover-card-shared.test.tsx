@@ -194,3 +194,33 @@ it("closes the page card when the open HoverCard unmounts", async () => {
 	setShown(false);
 	await waitFor(() => expect(cards()).toHaveLength(0), { timeout: 200 });
 });
+
+it("keeps a card open beside a card opened from inside it", async () => {
+	render(() => (
+		<HoverCard openDelay={0}>
+			<HoverCardTrigger href="#outer">Outer</HoverCardTrigger>
+			<HoverCardContent>
+				<HoverCard openDelay={0}>
+					<HoverCardTrigger href="#inner">Inner</HoverCardTrigger>
+					<HoverCardContent>Inner details</HoverCardContent>
+				</HoverCard>
+			</HoverCardContent>
+		</HoverCard>
+	));
+	hover(screen.getByRole("link", { name: "Outer" }));
+	await waitFor(() => expect(cards()).toHaveLength(1));
+	const outer = cards()[0];
+	hover(await screen.findByRole("link", { name: "Inner" }));
+	await waitFor(() => expect(cards()).toHaveLength(2));
+	const inner = cards().find(card => card !== outer)!;
+	expect(inner).toHaveTextContent("Inner details");
+	expect(outer).toHaveTextContent("Inner");
+	fireEvent.pointerMove(inner, { pointerType: "mouse" });
+	await sleep(300);
+	expect(cards()).toEqual([outer, inner]);
+	fireEvent.pointerDown(inner, { pointerType: "mouse" });
+	await sleep(50);
+	expect(cards()).toHaveLength(2);
+	press("Escape");
+	await waitFor(() => expect(cards()).toEqual([outer]));
+});
