@@ -5243,6 +5243,7 @@ import type { SlotProp } from "../../utils/component.js";
 import type { TooltipVariants } from "./Tooltip.css.js";
 type TooltipSlot = "trigger" | "content";
 export type TooltipProps = P.RootProps & TooltipVariants & SlotProp<TooltipSlot> & {
+    /** Tooltip body. When `undefined`, `null`, `false` or `""`, the tooltip never opens. */
     content: JSX.Element;
     /** Portal target for the content. Defaults to `document.body`. */
     mount?: globalThis.Element;
