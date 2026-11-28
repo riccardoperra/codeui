@@ -61,7 +61,7 @@ function TriggerElement(
 	);
 }
 
-const skipDelayDuration = 300;
+const skipDelayDuration = 400;
 let lastClosed = -Infinity;
 
 export type TooltipDefaults = Pick<
@@ -116,7 +116,7 @@ export function Root(props: RootProps) {
 					onOpenChange={motion.onOpenChange}
 					gutter={props.gutter ?? defaults.gutter ?? 4}
 					shift={props.shift ?? defaults.shift ?? 0}
-					openDelay={props.openDelay ?? defaults.openDelay ?? 200}
+					openDelay={props.openDelay ?? defaults.openDelay ?? 700}
 					closeDelay={props.closeDelay ?? defaults.closeDelay ?? 0}
 					skipDelayDuration={skipDelay()}
 				/>
@@ -163,7 +163,7 @@ export function Content<T extends ValidComponent = "div">(
 				{...others}
 				ref={[contentRef, local.ref]}
 				data-cui="tooltip-content"
-				data-variant={local.variant ?? defaults.variant ?? "primary"}
+				data-variant={local.variant ?? defaults.variant ?? "secondary"}
 				class={mergeClasses(local.class, styles.tooltipContent())}
 			/>
 		</LayerScope>

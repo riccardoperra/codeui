@@ -27,7 +27,7 @@ const meta = {
 		},
 		variant: {
 			options: ["primary", "secondary"],
-			defaultValue: "primary",
+			defaultValue: "secondary",
 			control: { type: "inline-radio" },
 		},
 		disabled: {
@@ -42,7 +42,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const TooltipStory: Story = {
-	name: "Primary (default)",
+	name: "Primary",
 	args: {
 		content: "My tooltip content.",
 		variant: "primary",
@@ -57,7 +57,7 @@ export const TooltipStory: Story = {
 };
 
 export const TooltipSecondary: Story = {
-	name: "Secondary",
+	name: "Secondary (default)",
 	args: {
 		content: "My tooltip content.",
 		variant: "secondary",
